@@ -1,0 +1,50 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+    <div class="sheet-content">
+        <div>
+            <table>
+                <tr>
+                    <th>{{localize "rmss.transport.cost"}}</th>
+                    <th>{{localize "rmss.transport.feet_per_round"}}</th>
+                    <th>{{localize "rmss.transport.miles_per_hour"}}</th>
+                    <th>{{localize "rmss.transport.maneuver"}}</th>
+                    <th>{{localize "rmss.transport.height"}}</th>
+                    <th>{{localize "rmss.transport.weight"}}</th>
+                    <th>{{localize "rmss.transport.capacity"}}</th>
+                    <th>{{localize "rmss.transport.offensive_bonus"}}</th>
+                </tr>
+                <td>
+                    <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String"/>
+                </td>
+                <td>
+                    <input name="system.feet_per_round" type="text" value="{{system.feet_per_round}}" data-dtype="Number"/>
+                </td>
+                <td>
+                    <input name="system.miles_per_hour" type="text" value="{{system.miles_per_hour}}" data-dtype="Number"/>
+                </td>
+                <td>
+                    <input name="system.maneuver" type="text" value="{{system.maneuver}}" data-dtype="Number"/>
+                </td>
+                <td>
+                    <input name="system.height" type="text" value="{{system.height}}" data-dtype="Number"/>
+                </td>
+                <td>
+                    <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
+                </td>
+                <td>
+                    <input name="system.capacity" type="text" value="{{system.capacity}}" data-dtype="Number"/>
+                </td>
+                <td>
+                    <input name="system.offensive_bonus" type="text" value="{{system.offensive_bonus}}" data-dtype="Number"/>
+                </td>
+
+
+            </table>
+                {{localize "rmss.item.description"}}
+                {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+        </div>
+    </div>
+</form>

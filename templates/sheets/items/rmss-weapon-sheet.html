@@ -1,0 +1,54 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+    <div class="sheet-content">
+        <div>
+            <table>
+                <tr>
+                    <th>{{localize "rmss.weapon.equipped"}}</th>
+                    <th>{{localize "rmss.item.quantity"}}</th>
+                    <th>{{localize "rmss.weapon.cost"}}</th>
+                    <th>{{localize "rmss.weapon.type"}}</th>
+                    <th>{{localize "rmss.weapon.prod_time"}}</th>
+                    <th>{{localize "rmss.weapon.weight"}}</th>
+                    <th>{{localize "rmss.weapon.breakage_range"}}</th>
+                    <th>{{localize "rmss.weapon.strength"}}</th>
+                    <th>{{localize "rmss.weapon.fumble_range"}}</th>
+
+                </tr>
+                <td>
+                    <input type="checkbox" name="system.equipped" {{checked system.equipped}}/>
+                </td>
+                <td>
+                    <input name="system.quantity" type="text" value="{{system.quantity}}" data-dtype="Number"/>
+                </td>
+                <td>
+                    <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String"/>
+                </td>
+                <td>
+                    <input name="system.type" type="text" value="{{system.type}}" data-dtype="String"/>
+                </td>                
+                <td>
+                    <input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String"/>
+                </td>
+                <td>
+                    <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
+                </td>
+                <td>
+                    <input name="system.breakage_range" type="text" value="{{system.breakage_range}}" data-dtype="String"/>
+                </td>
+                <td>
+                    <input name="system.strength" type="text" value="{{system.strength}}" data-dtype="String"/>
+                </td>
+                <td>
+                    <input name="system.fumble_range" type="text" value="{{system.fumble_range}}" data-dtype="String"/>
+                </td>
+
+            </table>
+                {{localize "rmss.item.description"}}
+                {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+        </div>
+    </div>
+</form>

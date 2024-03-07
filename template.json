@@ -1,0 +1,355 @@
+{
+  "Actor": {
+    "types": ["character", "npc"],
+    "templates": {
+      "role_traits": {
+        "role_traits": {
+          "appearance": 0,
+          "sex": "",
+          "skin": "",
+          "apparent_age": 0,
+          "actual_age": 0,
+          "height": "",
+          "weight": "",
+          "hair": "",
+          "eyes": "",
+          "personality": "",
+          "motivations": "",
+          "alignment": ""
+        }
+      },
+      "race_stat_fixed_info": {
+        "race_stat_fixed_info" : {
+          "soul_departure_rounds": 0,
+          "recovery_multiplier": 0,
+          "body_development_progression": "",
+          "pp_development_progression": "",
+          "recover_hits_per_hour_resting": 0,
+          "recover_hits_per_sleep_cycle": 0,
+          "recover_pp_per_hour_resting": 0,
+          "recover_pp_per_sleep_cycle": 0
+        }
+      },
+      "armor_info": {
+        "armor_info": {
+          "armor_type": 0,
+          "mmp": 0,
+          "weight_penalty": 0,
+          "missile_penalty": 0,
+          "quickness_penalty": 0,
+          "quickness_bonus": 0,
+          "adrenal_defense": 0,
+          "shield_bonus": 0,
+          "magic": "",
+          "total_db": 0
+        }
+      },
+      "fixed_info": {
+        "fixed_info": {
+          "race": "",
+          "profession": "",
+          "training_packages": "",
+          "realm": ""
+        }
+      },
+      "resistance_rolls": {
+        "resistance_rolls": {
+          "channeling": {
+            "value": 0,
+            "race_mod": 0,
+            "total": 0
+          },
+          "essence": {
+            "value": 0,
+            "race_mod": 0,
+            "total": 0
+          },
+          "mentalism": {
+            "value": 0,
+            "race_mod": 0,
+            "total": 0
+          },
+          "chann_ess": {
+            "value": 0,
+            "race_mod": 0,
+            "total": 0
+          },
+          "chann_ment": {
+            "value": 0,
+            "race_mod": 0,
+            "total": 0
+          },
+          "ess_ment": {
+            "value": 0,
+            "race_mod": 0,
+            "total": 0
+          },
+          "arcane": {
+            "value": 0,
+            "race_mod": 0,
+            "total": 0
+          },
+          "poison_disease": {
+            "value": 0,
+            "race_mod": 0,
+            "total": 0
+          },
+          "fear": {
+            "value": 0,
+            "race_mod": 0,
+            "total": 0
+          }
+        }
+      },
+      "background": {
+        "background": {
+          "nationality": "",
+          "home_town": "",
+          "deity": "",
+          "patron": "",
+          "parents": "",
+          "spouse": "",
+          "children": "",
+          "other": ""
+        }
+      },
+      "stats": {
+        "stats": {
+          "agility": {
+            "shortname": "Ag",
+            "temp": 0,
+            "potential": 0,
+            "basic_bonus": 0,
+            "racial_bonus": 0,
+            "special_bonus": 0,
+            "stat_bonus": 0
+          },
+          "constitution": {
+            "shortname": "Co",
+            "temp": 0,
+            "potential": 0,
+            "basic_bonus": 0,
+            "racial_bonus": 0,
+            "special_bonus": 0,
+            "stat_bonus": 0
+          },
+          "memory": {
+            "shortname": "Me",
+            "temp": 0,
+            "potential": 0,
+            "basic_bonus": 0,
+            "racial_bonus": 0,
+            "special_bonus": 0,
+            "stat_bonus": 0
+          },
+          "reasoning": {
+            "shortname": "Re",
+            "temp": 0,
+            "potential": 0,
+            "basic_bonus": 0,
+            "racial_bonus": 0,
+            "special_bonus": 0,
+            "stat_bonus": 0
+          },
+          "self_discipline": {
+            "shortname": "SD",
+            "temp": 0,
+            "potential": 0,
+            "basic_bonus": 0,
+            "racial_bonus": 0,
+            "special_bonus": 0,
+            "stat_bonus": 0
+          },
+          "empathy": {
+            "shortname": "Em",
+            "temp": 0,
+            "potential": 0,
+            "basic_bonus": 0,
+            "racial_bonus": 0,
+            "special_bonus": 0,
+            "stat_bonus": 0
+          },
+          "intuition": {
+            "shortname": "In",
+            "temp": 0,
+            "potential": 0,
+            "basic_bonus": 0,
+            "racial_bonus": 0,
+            "special_bonus": 0,
+            "stat_bonus": 0
+          },
+          "presence": {
+            "shortname": "Pr",
+            "temp": 0,
+            "potential": 0,
+            "basic_bonus": 0,
+            "racial_bonus": 0,
+            "special_bonus": 0,
+            "stat_bonus": 0
+          },
+          "quickness": {
+            "shortname": "Qu",
+            "temp": 0,
+            "potential": 0,
+            "basic_bonus": 0,
+            "racial_bonus": 0,
+            "special_bonus": 0,
+            "stat_bonus": 0
+          },
+          "strength": {
+            "shortname": "St",
+            "temp": 0,
+            "potential": 0,
+            "basic_bonus": 0,
+            "racial_bonus": 0,
+            "special_bonus": 0,
+            "stat_bonus": 0
+          }
+        }
+      },
+      "money": { 
+        "money": {
+          "mithril": 0,
+          "platinum": 0,
+          "gold": 0,
+          "silver": 0,
+          "bronze": 0,
+          "copper": 0,
+          "tin": 0,
+          "iron": 0
+        }
+      }
+    },
+    "character": {
+      "templates": ["background", "stats", "resistance_rolls", "armor_info", "fixed_info", "race_stat_fixed_info", "role_traits", "money", "description"],
+      "attributes": {
+        "level": {
+          "value": 1
+        },
+        "hits": {
+          "current": 1,
+          "max": 1
+        },
+        "exhaustion_points": {
+          "current": 1,
+          "max": 1
+        },
+        "power_points": {
+          "current": 1,
+          "max": 1
+        },
+        "experience_points": {
+          "value": 0
+        }
+      },
+      "description": ""
+    }
+  },
+  "Item": {
+    "types": ["item", "skill_category", "skill", "armor", "weapon", "transport", "herb_or_poison", "spell", "language"],
+    "templates": {
+      "base": {
+        "description": "Description here."
+      }
+    },
+    "item": {
+      "templates": ["base"],
+      "worn": false,
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "prod_time": 0
+    },
+    "transport": {
+      "templates": ["base"],
+      "feet_per_round": 1,
+      "miles_per_hour": 0,
+      "cost": 0,
+      "maneuver": 0,
+      "height": 0,
+      "weight": 0,
+      "capacity": 0,
+      "offensive_bonus": 0
+    },
+    "armor": {
+      "templates": ["base"],
+      "equipped": false,
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "prod_time": 0,
+      "at": 0
+    },
+    "weapon": {
+      "templates": ["base"],
+      "equipped": false,
+      "quantity": 1,
+      "cost": 0,
+      "weight": 0,
+      "type" : "",
+      "prod_time": 0,
+      "at": 0,
+      "breakage_range": "",
+      "strength": "",
+      "fumble_range": ""
+    },
+    "herb_or_poison": {
+      "templates": ["base"],
+      "quantity": 1,
+      "weight": 0,
+      "codes": "",
+      "form_and_prep" : "",
+      "cost": 0,
+      "af": 0
+    },
+    "skill": {
+      "templates": ["base"],
+      "category" : "",
+      "ranks": 0,
+      "new_ranks": {
+        "value": 0,
+        "max": 3,
+        "max_default": 3
+      },
+      "rank_bonus": -15,
+      "category_bonus": 0,
+      "item_bonus": 0,
+      "special_bonus_1": 0,
+      "special_bonus_2": 0,
+      "total_bonus": 0,
+      "favorite": false,
+      "designation": "None"
+    },
+    "skill_category": {
+      "templates": ["base"],
+      "applicable_stats": "None",
+      "app_stat_1": "None",
+      "app_stat_2": "None",
+      "app_stat_3": "None",
+      "development_cost": "0",
+      "ranks": 0,
+      "new_ranks": {
+        "value": 0,
+        "max": 3,
+        "max_default": 3
+      },
+      "rank_bonus": -15,
+      "stat_bonus": 0,
+      "prof_bonus": 0,
+      "special_bonus_1": 0,
+      "special_bonus_2": 0,
+      "total_bonus": 0,
+      "favorite": false
+    },
+    "spell": {
+      "favorite": false,
+      "spell_list": "",
+      "level": 1,
+      "area_of_effect": "",
+      "duration": "",
+      "range": "",
+      "type": "",
+      "description": "Description here."
+    }
+  }
+}
