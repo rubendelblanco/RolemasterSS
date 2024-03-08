@@ -27,6 +27,9 @@ export class RMSSActor extends Actor {
   _prepareCharacterData(actorData) {
     if (actorData.type !== "character") return;
 
+    // Calculate basic bonus
+    this.calculateBasicBonuses(actorData);
+
     // Calculate Stat Bonuses for the Actor
     this.calculateStatBonuses(actorData);
 
@@ -49,6 +52,62 @@ export class RMSSActor extends Actor {
 
     // Make modifications to data here. For example:
     const data = actorData.data;
+  }
+
+  _getStatBasicBonusFromTable(value){
+    var statsTable = {
+      "102": 14,
+      "101": 12,
+      "100": 10,
+      "98-99": 9,
+      "96-97": 8,
+      "94-95": 7,
+      "92-93": 6,
+      "90-91": 5,
+      "85-89": 4,
+      "80-84": 3,
+      "75-79": 2,
+      "70-74": 1,
+      "31-69": 0,
+      "26-30": -1,
+      "21-25": -2,
+      "16-20": -3,
+      "11-15": -4,
+      "10": -5,
+      "08-09": -6,
+      "06-07": -7,
+      "04-05": -8,
+      "02-03": -9,
+      "01": -10
+    }
+
+    for (var range in statsTable) {
+      var limits = range.split('-');
+      var min = parseInt(limits[0], 10);
+      var max = limits.length > 1 ? parseInt(limits[1], 10) : min;
+
+      if (value >= min && value <= max) {
+        console.log(statsTable[range])
+        return statsTable[range];
+      }
+
+      if (value <= 0) return 0
+      if (value > 102) return 14
+    }
+  }
+
+  calculateBasicBonuses(actorData) {
+    const systemData = actorData.system;
+    actorData.system.stats.agility.basic_bonus = this._getStatBasicBonusFromTable(systemData.stats.agility.temp);
+    actorData.system.stats.constitution.basic_bonus = this._getStatBasicBonusFromTable(systemData.stats.constitution.temp);
+    actorData.system.stats.memory.basic_bonus = this._getStatBasicBonusFromTable(systemData.stats.memory.temp);
+    actorData.system.stats.reasoning.basic_bonus = this._getStatBasicBonusFromTable(systemData.stats.reasoning.temp);
+    actorData.system.stats.self_discipline.basic_bonus = this._getStatBasicBonusFromTable(systemData.stats.self_discipline.temp);
+    actorData.system.stats.empathy.basic_bonus = this._getStatBasicBonusFromTable(systemData.stats.empathy.temp);
+    actorData.system.stats.intuition.basic_bonus = this._getStatBasicBonusFromTable(systemData.stats.intuition.temp);
+    actorData.system.stats.presence.basic_bonus = this._getStatBasicBonusFromTable(systemData.stats.presence.temp);
+    actorData.system.stats.quickness.basic_bonus = this._getStatBasicBonusFromTable(systemData.stats.quickness.temp);
+    actorData.system.stats.strength.basic_bonus = this._getStatBasicBonusFromTable(systemData.stats.strength.temp);
   }
 
   // Tally each stat bonus and populate the total field.
