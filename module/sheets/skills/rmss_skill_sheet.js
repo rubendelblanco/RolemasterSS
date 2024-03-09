@@ -6,7 +6,7 @@ export default class RMSSSkillSheet extends ItemSheet {
     return mergeObject(super.defaultOptions, {
       width: 530,
       height: 440,
-      template: "systems/rmss/templates/sheets/skills/rmss-skill-sheet.html",
+      template: "systems/rmss/templates/sheets/races/rmss-skill-sheet.html",
       classes: ["rmss", "sheet", "item"]
     });
   }

@@ -38,6 +38,9 @@ export class RMSSItem extends Item {
       else if (this.type === "transport") {
         await this.updateSource({img: "systems/rmss/assets/default/transport.svg"});
       }
+      else if (this.type === "race") {
+        await this.updateSource({img: "systems/rmss/assets/default/race.svg"});
+      }
     }
   }
 

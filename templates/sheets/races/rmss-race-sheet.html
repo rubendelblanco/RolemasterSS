@@ -1,0 +1,101 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+    <div class="sheet-content">
+        <ol>
+            <li class="flexrow stat-row">
+                <div class="stat-header">{{ localize "rmss.race.stat_bonuses" }}</div>
+            </li>
+            <li class="flexrow stat-row">
+                <div class="stat-name">
+                    {{ localize "rmss.player_character.attribute.agility" }}
+                </div>
+               <div class="stat-name">
+                    <input type="Number" name="system.stat_bonus.ag" value="{{system.stat_bonus.ag}}" data-dtype="Number"/>
+                </div>
+                <div class="stat-name">
+                    {{ localize "rmss.player_character.attribute.constitution" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.stat_bonus.co" value="{{system.stat_bonus.co}}" data-dtype="Number"/>
+                </div>
+            </li>
+            <li class="flexrow stat-row">
+                <div class="stat-name">
+                    {{ localize "rmss.player_character.attribute.memory" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.stat_bonus.me" value="{{system.stat_bonus.me}}" data-dtype="Number"/>
+                </div>
+                <div class="stat-name">
+                    {{ localize "rmss.player_character.attribute.reasoning" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.stat_bonus.re" value="{{system.stat_bonus.re}}" data-dtype="Number"/>
+                </div>
+            </li><li class="flexrow stat-row">
+            <div class="stat-name">
+                {{ localize "rmss.player_character.attribute.self_discipline" }}
+            </div>
+            <div class="stat-name">
+                <input type="Number" name="system.stat_bonus.sd" value="{{system.stat_bonus.sd}}" data-dtype="Number"/>
+            </div>
+            <div class="stat-name">
+                {{ localize "rmss.player_character.attribute.empathy" }}
+            </div>
+            <div class="stat-name">
+                <input type="Number" name="system.stat_bonus.em" value="{{system.stat_bonus.em}}" data-dtype="Number"/>
+            </div>
+        </li>
+            <li class="flexrow stat-row">
+                <div class="stat-name">
+                    {{ localize "rmss.player_character.attribute.intuition" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.stat_bonus.in" value="{{system.stat_bonus.in}}" data-dtype="Number"/>
+                </div>
+                <div class="stat-name">
+                    {{ localize "rmss.player_character.attribute.presence" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.stat_bonus.pr" value="{{system.stat_bonus.pr}}" data-dtype="Number"/>
+                </div>
+            </li>
+            <li class="flexrow stat-row">
+                <div class="stat-name">
+                    {{ localize "rmss.player_character.attribute.quickness" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.stat_bonus.qu" value="{{system.stat_bonus.qu}}" data-dtype="Number"/>
+                </div>
+                <div class="stat-name">
+                    {{ localize "rmss.player_character.attribute.strength" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.stat_bonus.st" value="{{system.stat_bonus.st}}" data-dtype="Number"/>
+                </div>
+            </li>
+        </ol>
+        <ol>
+            <li class="flexrow stat-row">
+                <div class="stat-header">{{ localize "rmss.race.stat_bonuses" }}</div>
+            </li>
+            <li class="flexrow stat-row">
+                <div class="stat-name">
+                    {{ localize "rmss.player_character.attribute.agility" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.stat_bonus.ag" value="{{system.stat_bonus.ag}}" data-dtype="Number"/>
+                </div>
+                <div class="stat-name">
+                    {{ localize "rmss.player_character.attribute.constitution" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.stat_bonus.co" value="{{system.stat_bonus.co}}" data-dtype="Number"/>
+                </div>
+            </li>
+        </ol>
+    </div>
+</form>

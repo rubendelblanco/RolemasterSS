@@ -14,6 +14,7 @@ import RMSSHerbOrPoisonSheet from "./module/sheets/items/rmss_herb_or_poison_she
 import RMSSSpellSheet from "./module/sheets/spells/rmss_spell_sheet.js";
 import RMSSSkillCategorySheet from "./module/sheets/skills/rmss_skill_category_sheet.js";
 import RMSSSkillSheet from "./module/sheets/skills/rmss_skill_sheet.js";
+import RMSSRaceSheet from "./module/sheets/items/rmss_race_sheet.js";
 
 import RMSSPlayerSheet from "./module/sheets/actors/rmss_player_sheet.js";
 import RMSSActorSheetConfig from "./module/sheets/actors/rmss_player_sheet_config.js";
@@ -90,8 +91,11 @@ Hooks.once("init", function() {
   Items.registerSheet("rmss", RMSSSkillCategorySheet, {makeDefault: true, label: "rmss.entity_sheet.skill_category", types: ["skill_category"]});
   Items.registerSheet("rmss", RMSSSkillSheet, {makeDefault: true, label: "rmss.entity_sheet.skill", types: ["skill"]});
 
+  //Races
+  Items.registerSheet("rmss", RMSSRaceSheet, {makeDefault: true, label: "rmss.entity_sheet.race", types: ["race"]})
+
   // Actors
-  Actors.registerSheet("rmss", RMSSPlayerSheet, {makeDefault: true, label: "rmss.entity_sheet.player_characrer", types: ["character"]});
+  Actors.registerSheet("rmss", RMSSPlayerSheet, {makeDefault: true, label: "rmss.entity_sheet.player_character", types: ["character"]});
 
   // Preload Handlebars Templates
   console.log("rmss | Preloading Handlebars Templates");

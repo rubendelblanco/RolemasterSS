@@ -246,7 +246,7 @@
     }
   },
   "Item": {
-    "types": ["item", "skill_category", "skill", "armor", "weapon", "transport", "herb_or_poison", "spell", "language"],
+    "types": ["item", "race", "skill_category", "skill", "armor", "weapon", "transport", "herb_or_poison", "spell", "language"],
     "templates": {
       "base": {
         "description": "Description here."
@@ -350,6 +350,35 @@
       "range": "",
       "type": "",
       "description": "Description here."
+    },
+    "race": {
+      "stat_bonus": {
+        "ag": 0,
+        "co": 0,
+        "me": 0,
+        "re": 0,
+        "sd": 0,
+        "em": 0,
+        "in": 0,
+        "pr": 0,
+        "qu": 0,
+        "st": 0
+      },
+      "rr_mods": {
+        "ess": 0,
+        "chan": 0,
+        "ment": 0,
+        "poison": 0,
+        "disease": 0
+      },
+      "progression": {
+        "body_dev": "",
+        "chan_dev": "",
+        "ess_dev": "",
+        "ment_dev": ""
+      },
+      "hobby_skills": [],
+      "special_skills": []
     }
   }
 }
