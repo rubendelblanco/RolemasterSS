@@ -80,20 +80,71 @@
         </ol>
         <ol>
             <li class="flexrow stat-row">
-                <div class="stat-header">{{ localize "rmss.race.stat_bonuses" }}</div>
+                <div class="stat-header">{{ localize "rmss.race.rr_mods" }}</div>
             </li>
             <li class="flexrow stat-row">
                 <div class="stat-name">
-                    {{ localize "rmss.player_character.attribute.agility" }}
+                    {{ localize "rmss.race.resistances.essence" }}
                 </div>
                 <div class="stat-name">
-                    <input type="Number" name="system.stat_bonus.ag" value="{{system.stat_bonus.ag}}" data-dtype="Number"/>
+                    <input type="Number" name="system.rr_mods.ess" value="{{system.rr_mods.ess}}" data-dtype="Number"/>
                 </div>
                 <div class="stat-name">
-                    {{ localize "rmss.player_character.attribute.constitution" }}
+                    {{ localize "rmss.race.resistances.channeling" }}
                 </div>
                 <div class="stat-name">
-                    <input type="Number" name="system.stat_bonus.co" value="{{system.stat_bonus.co}}" data-dtype="Number"/>
+                    <input type="Number" name="system.rr_mods.chan" value="{{system.rr_mods.chan}}" data-dtype="Number"/>
+                </div>
+                <div class="stat-name">
+                    {{ localize "rmss.race.resistances.mentalism" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.rr_mods.ment" value="{{system.rr_mods.ment}}" data-dtype="Number"/>
+                </div>
+                <div class="stat-name">
+                    {{ localize "rmss.race.resistances.poison" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.rr_mods.poison" value="{{system.rr_mods.poison}}" data-dtype="Number"/>
+                </div>
+                <div class="stat-name">
+                    {{ localize "rmss.race.resistances.disease" }}
+                </div>
+                <div class="stat-name">
+                    <input type="Number" name="system.rr_mods.disease" value="{{system.rr_mods.disease}}" data-dtype="Number"/>
+                </div>
+            </li>
+        </ol>
+        <ol>
+            <li class="flexrow stat-row">
+                <div class="stat-header">{{ localize "rmss.race.progression" }}</div>
+            </li>
+            <li class="flexrow stat-row">
+                <div class="stat-name">
+                    {{ localize "rmss.race.dev_progression.body_dev" }}
+                </div>
+                <div class="stat-name">
+                    <input type="text" name="system.progression.body_dev" value="{{system.progression.body_dev}}"/>
+                </div>
+                <div class="stat-name">
+                    {{ localize "rmss.race.dev_progression.pp_chan" }}
+                </div>
+                <div class="stat-name">
+                    <input type="text" name="system.progression.chan_dev" value="{{system.progression.chan_dev}}"/>
+                </div>
+            </li>
+            <li class="flexrow stat-row">
+                <div class="stat-name">
+                    {{ localize "rmss.race.dev_progression.pp_ess" }}
+                </div>
+                <div class="stat-name">
+                    <input type="text" name="system.progression.ess_dev" value="{{system.progression.ess_dev}}"/>
+                </div>
+                <div class="stat-name">
+                    {{ localize "rmss.race.dev_progression.pp_ment" }}
+                </div>
+                <div class="stat-name">
+                    <input type="text" name="system.progression.ment_dev" value="{{system.progression.ment_dev}}"/>
                 </div>
             </li>
         </ol>

@@ -1,8 +1,28 @@
 {
   "rmss": {
     "race": {
-      "stat_bonuses": "Bonificaciones de estadísticas",
-      "rr_mods": "Mod RR"
+      "stat_bonuses": "Bonificaciones de atributos",
+      "rr_mods": "Mod RR",
+      "resistances": {
+        "channeling": "Canalizacion",
+        "essence": "Esencia",
+        "mentalism": "Mentalismo",
+        "chann_ess": "Canal/Esen",
+        "chann_ment": "Canal/Ment",
+        "ess_ment": "Esen/Ment",
+        "arcane": "Arcano",
+        "poison": "Veneno",
+        "disease": "Disease",
+        "fear": "Miedo"
+      },
+      "progression": "Progresión",
+      "dev_progression": {
+        "body_dev": "Desarrollo físico",
+        "pp_chan": "PP Canalización",
+        "pp_ess": "PP Esencia",
+        "pp_ment": "PP Mentalismo",
+        "pp_arcane": "PP Arcano"
+      }
     },
     "player_character": {
       "name": "Nombre:",
@@ -14,13 +34,13 @@
         "power_points": "Puntos de poder"
       },
       "attribute_headers": {
-        "stat": "Estadística",
+        "stat": "Atributo",
         "temp": "Temporal",
         "pot": "Potencial",
         "basic_bonus": "Bonificación Básica",
         "racial_bonus": "Bonificación Racial",
         "special_bonus": "Bonificación Especial",
-        "stat_bonus": "Bonificación de estadística"
+        "stat_bonus": "Bonificación de atributo"
       },
       "attribute": {
         "agility": "Agilidad",
@@ -126,12 +146,12 @@
     },
     "pc_sheet_skill_categories": {
       "skillcat_name": "Nombre de categoría de habilidad",
-      "applicable_stats": "Estadísticas aplicables",
+      "applicable_stats": "Atributos aplicables",
       "dev_cost": "Costo de desarrollo",
       "ranks": "# Rangos",
       "new_ranks": "Nuevos rangos",
       "rank_bonus": "Bono de rango",
-      "stat_bonus": "Bono de estadística",
+      "stat_bonus": "Bono de atributo",
       "prof_bonus": "Bono de profesión",
       "special_bonus": "Bono especial",
       "total_bonus": "Bono total",
@@ -236,12 +256,12 @@
       "description": "Descripción"
     },
     "skill_category": {
-      "applicable_stats": "Estadísticas aplicables:",
+      "applicable_stats": "Atributos aplicables:",
       "development_cost" : "Costo de desarrollo:",
       "ranks": "Rangos:",
       "new_ranks": "Nuevos rangos:",
       "rank_bonus": "Bonificación de rango:",
-      "stat_bonus": "Bonificación de estadística:",
+      "stat_bonus": "Bonificación de atributo:",
       "prof_bonus": "Bonificación profesional:",
       "special_bonus_1": "Bonificación especial 1:",
       "special_bonus_2": "Bonificación especial 2:",
