@@ -1,5 +1,9 @@
 {
     "rmss": {
+        "race": {
+            "stat_bonuses": "Stat Bonuses",
+            "rr_mods": "RR Mods"
+        },
         "player_character": {
             "name": "Name:",
             "level": "Level:",

@@ -1,0 +1,269 @@
+{
+  "rmss": {
+    "race": {
+      "stat_bonuses": "Bonificaciones de estadísticas",
+      "rr_mods": "Mod RR"
+    },
+    "player_character": {
+      "name": "Nombre:",
+      "level": "Nivel:",
+      "experience": "XP:",
+      "resources": {
+        "hits": "Golpes",
+        "exhaustion_points": "Puntos de agotamiento",
+        "power_points": "Puntos de poder"
+      },
+      "attribute_headers": {
+        "stat": "Estadística",
+        "temp": "Temporal",
+        "pot": "Potencial",
+        "basic_bonus": "Bonificación Básica",
+        "racial_bonus": "Bonificación Racial",
+        "special_bonus": "Bonificación Especial",
+        "stat_bonus": "Bonificación de estadística"
+      },
+      "attribute": {
+        "agility": "Agilidad",
+        "agility_short": "Ag",
+        "constitution": "Constitución",
+        "memory": "Memoria",
+        "reasoning": "Razonamiento",
+        "self_discipline": "Auto disciplina",
+        "empathy": "Empatía",
+        "intuition": "Intuición",
+        "presence": "Presencia",
+        "quickness": "Rapidez",
+        "strength": "Fuerza",
+        "stat_total": "Total"
+      }
+    },
+    "pc_sheet": {
+      "import_skillcat": "Importar"
+    },
+    "pc_sheet_tabs": {
+      "record": "Registro",
+      "skill_categories": "Categorías de habilidades",
+      "skills": "Habilidades",
+      "equipment": "Equipo",
+      "spells": "Hechizos",
+      "status_record": "Registro de estado",
+      "experience_points": "Puntos de experiencia"
+    },
+    "pc_sheet_fixed_info": {
+      "race": "Raza:",
+      "profession": "Profesión:",
+      "training_packages": "Paquetes de entrenamiento:",
+      "realm": "Reino:"
+    },
+    "pc_sheet_armor_info": {
+      "armor_type": "Tipo de armadura:",
+      "mmp": "MMP:",
+      "weight_penalty": "Penalización por peso:",
+      "missile_penalty": "Penalización de misiles:",
+      "quickness_penalty": "Penalización de rapidez:",
+      "quickness_bonus": "Bonificación de rapidez:",
+      "adrenal_defense": "Defensa adrenal:",
+      "shield_bonus": "Bonificación de escudo:",
+      "magic": "Magia (Hechizos, objetos, etc.):",
+      "total_db": "DB total:"
+    },
+    "pc_sheet_resistances": {
+      "channeling": "Canalizacion",
+      "essence": "Esencia",
+      "mentalism": "Mentalismo",
+      "chann_ess": "Canal/Esen",
+      "chann_ment": "Canal/Ment",
+      "ess_ment": "Esen/Ment",
+      "arcane": "Arcano",
+      "poison_disease": "Veneno/Enfermedad",
+      "fear": "Miedo"
+    },
+    "pc_sheet_race_stat_fixed_info": {
+      "soul_departure": "El alma parte en X rondas:",
+      "recovery_multiplier": "Multiplicador de recuperación:",
+      "body_dev_progression": "Progresión del desarrollo corporal:",
+      "pp_dev_progression": "Progresión del desarrollo de PP:",
+      "recover_hits_per_hour": "Recuperar X golpes/hora descansando:",
+      "recover_hits_per_sleep_cycle": "Recuperar X golpes/ciclo de sueño:",
+      "recover_pp_per_hour": "Recuperar X PP/hora descansando:",
+      "recover_pp_per_sleep_cycle": "Recuperar X PP/ciclo de sueño:"
+    },
+    "pc_sheet_role_traits": {
+      "appearance": "Apariencia:",
+      "sex": "Sexo:",
+      "skin": "Piel:",
+      "apparent_age": "Edad aparente:",
+      "actual_age": "Edad real:",
+      "height": "Altura:",
+      "weight": "Peso:",
+      "hair": "Cabello:",
+      "eyes": "Ojos:",
+      "personality": "Personalidad:",
+      "motivations": "Motivaciones:",
+      "alignment": "Alineamiento:"
+    },
+    "pc_sheet_background_info": {
+      "nationality": "Nacionalidad:",
+      "home_town": "Ciudad natal:",
+      "deity": "Deidad:",
+      "patron": "Patrono:",
+      "parents": "Padres:",
+      "spouse": "Cónyuge",
+      "children": "Hijos:",
+      "other": "Otros:"
+    },
+    "pc_sheet_skills": {
+      "favorite": "¿Favorito?",
+      "skill_name": "Nombre de habilidad",
+      "ranks": "# Rangos",
+      "new_ranks": "Nuevos rangos",
+      "rank_bonus": "Bono de rango",
+      "category_bonus": "Bono de categoría",
+      "item_bonus": "Bono de ítem",
+      "special_bonus": "Bono especial",
+      "total_bonus": "Bono total",
+      "add_skill": "Agregar habilidad"
+    },
+    "pc_sheet_skill_categories": {
+      "skillcat_name": "Nombre de categoría de habilidad",
+      "applicable_stats": "Estadísticas aplicables",
+      "dev_cost": "Costo de desarrollo",
+      "ranks": "# Rangos",
+      "new_ranks": "Nuevos rangos",
+      "rank_bonus": "Bono de rango",
+      "stat_bonus": "Bono de estadística",
+      "prof_bonus": "Bono de profesión",
+      "special_bonus": "Bono especial",
+      "total_bonus": "Bono total",
+      "import_skillcat": "Importar categorías de habilidades"
+    },
+    "pc_sheet_items": {
+      "equipped": "Equipado",
+      "worn": "Vestido",
+      "favorite": "Favorito",
+      "quantity": "Cantidad",
+      "item_name": "Nombre de ítem",
+      "weight": "Peso",
+      "cost": "Costo",
+      "add_item": "Agregar ítem"
+    },
+    "pc_sheet_spell": {
+      "favorite": "Favorito",
+      "level": "Nivel",
+      "name": "Nombre",
+      "spell_list": "Lista de hechizos",
+      "area_of_effect": "Área de efecto",
+      "duration": "Duración",
+      "range": "Rango",
+      "type": "Tipo"
+    },
+    "pc_sheet_language": {
+      "name": "Nombre",
+      "spoken": "Hablado",
+      "written": "Escrito"
+    },
+    "entity_sheet": {
+      "spell": "Hechizo de RMSS",
+      "weapon": "Arma de RMSS",
+      "item": "Armadura de RMSS",
+      "armor": "Ítem de RMSS",
+      "herb_or_poison": "Hierba o veneno de RMSS",
+      "transport": "Transporte de RMSS",
+      "skill": "Habilidad de RMSS",
+      "skill_category": "Categoría de habilidad de RMSS",
+      "player_characrer": "Personaje jugador de RMSS",
+      "npc": "NPC de RMSS",
+      "creature": "Criatura de RMSS"
+    },
+    "currency_type": {
+      "mp": "Piezas de Mithril",
+      "pp": "Piezas de Platino",
+      "gp": "Piezas de Oro",
+      "sp": "Piezas de Plata",
+      "bp": "Piezas de Bronce",
+      "cp": "Piezas de Cobre"
+    },
+    "item": {
+      "worn": "Usado",
+      "description": "Otras notas",
+      "quantity": "Cantidad",
+      "weight": "Peso",
+      "cost": "Costo",
+      "prod_time": "Tiempo de producción",
+      "equipped": "Equipado"
+    },
+    "armor": {
+      "at": "AT",
+      "weight": "Peso",
+      "cost": "Costo",
+      "prod_time": "Tiempo de producción"
+    },
+    "weapon": {
+      "cost": "Costo",
+      "type": "Tipo",
+      "prod_time": "Tiempo de producción",
+      "weight": "Peso",
+      "breakage_range": "Rango de rotura",
+      "strength": "Fuerza",
+      "fumble_range": "Rango de fallo",
+      "equipped": "Equipado"
+    },
+    "herb_or_poison": {
+      "codes": "Códigos",
+      "weight": "Peso",
+      "form_and_prep": "Forma/Prep",
+      "cost": "Costo",
+      "af": "AF"
+    },
+    "transport": {
+      "cost": "Costo",
+      "feet_per_round": "pies/ronda",
+      "miles_per_hour": "millas/hora",
+      "maneuver": "Man",
+      "height": "Altura",
+      "weight": "Peso",
+      "capacity": "Capacidad",
+      "offensive_bonus": "Bonificación Ofensiva"
+    },
+    "spell": {
+      "favorite": "Favorito",
+      "spell_list": "Lista de hechizos",
+      "level": "Nivel",
+      "area_of_effect": "Área de efecto",
+      "duration": "Duración",
+      "range": "Rango",
+      "type": "Tipo",
+      "description": "Descripción"
+    },
+    "skill_category": {
+      "applicable_stats": "Estadísticas aplicables:",
+      "development_cost" : "Costo de desarrollo:",
+      "ranks": "Rangos:",
+      "new_ranks": "Nuevos rangos:",
+      "rank_bonus": "Bonificación de rango:",
+      "stat_bonus": "Bonificación de estadística:",
+      "prof_bonus": "Bonificación profesional:",
+      "special_bonus_1": "Bonificación especial 1:",
+      "special_bonus_2": "Bonificación especial 2:",
+      "total_bonus": "Bonificación total:",
+      "description": "Descripción:"
+    },
+    "skill": {
+      "favorite": "¿Favorito?",
+      "ranks": "Rangos:",
+      "new_ranks": "Nuevos rangos:",
+      "rank_bonus": "Bonificación de rango:",
+      "category_bonus": "Bonificación de categoría:",
+      "item_bonus": "Bonificación de ítem:",
+      "special_bonus_1": "Bonificación especial 1:",
+      "special_bonus_2": "Bonificación especial 2:",
+      "total_bonus": "Bonificación total:",
+      "description": "Descripción:"
+    },
+    "language": {
+      "spoken": "Hablado",
+      "written": "Escrito",
+      "description": "Descripción"
+    }
+  }
+}
