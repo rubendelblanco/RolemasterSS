@@ -46,6 +46,31 @@ export default class RMSSPlayerSheet extends ActorSheet {
     const newitem = await Item.implementation.fromDropData(data);
     const itemData = newitem.toObject();
 
+    if (itemData.type === "race") {
+      console.log(itemData);
+      this.actor.update({"system.race_stat_fixed_info.body_development_progression":itemData.system.progression.body_dev})
+      this.actor.update({"system.fixed_info.race":itemData.name})
+      //stats race mods
+      this.actor.update({"system.stats.agility.racial_bonus":itemData.system.stat_bonus.ag})
+      this.actor.update({"system.stats.constitution.racial_bonus":itemData.system.stat_bonus.co})
+      this.actor.update({"system.stats.empathy.racial_bonus":itemData.system.stat_bonus.em})
+      this.actor.update({"system.stats.intuition.racial_bonus":itemData.system.stat_bonus.in})
+      this.actor.update({"system.stats.memory.racial_bonus":itemData.system.stat_bonus.me})
+      this.actor.update({"system.stats.presence.racial_bonus":itemData.system.stat_bonus.pr})
+      this.actor.update({"system.stats.quickness.racial_bonus":itemData.system.stat_bonus.qu})
+      this.actor.update({"system.stats.reasoning.racial_bonus":itemData.system.stat_bonus.re})
+      this.actor.update({"system.stats.self_discipline.racial_bonus":itemData.system.stat_bonus.sd})
+      this.actor.update({"system.stats.strength.racial_bonus":itemData.system.stat_bonus.st})
+
+      //RR race mods
+      this.actor.update({"system.resistance_rolls.channeling.race_mod":itemData.system.rr_mods.chan})
+      this.actor.update({"system.resistance_rolls.essence.race_mod":itemData.system.rr_mods.ess})
+      this.actor.update({"system.resistance_rolls.mentalism.race_mod":itemData.system.rr_mods.ment})
+      this.actor.update({"system.resistance_rolls.chann_es.race_mod":itemData.system.rr_mods.chan+itemData.system.rr_mods.ess})
+      this.actor.update({"system.resistance_rolls.ess_ment.race_mod":itemData.system.rr_mods.ess+itemData.system.rr_mods.ment})
+      this.actor.update({"system.resistance_rolls.arcane.race_mod":itemData.system.rr_mods.chan+itemData.system.rr_mods.ment+itemData.system.rr_mods.chan})
+    }
+
     // To Do: Seperate Skills and Skill Categories. Increment Counts for items
     if (itemData.type === "skill_category") {
 
