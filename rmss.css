@@ -517,3 +517,97 @@
 .sheet .sheet-content .editor {
   height: 100%;
 }
+
+/* Human Body */
+.human-body {
+  width: 207px;
+  position: relative;
+  padding-top: 240px;
+  height: 530px;
+  display: block;
+  margin: 40px auto;
+  background-color: #363636;
+}
+
+.human-body svg:hover {
+  cursor: pointer;
+}
+
+.human-body svg:hover path {
+  fill: #ff7d16;
+}
+
+.human-body svg {
+  position: absolute;
+  left: 50%;
+  fill: #ffffff;
+}
+
+.human-body svg#head {
+  margin-left: -28.5px;
+  top: 14px; /* Incrementado en 10px */
+}
+
+.human-body svg#left-shoulder {
+  margin-left: -53.5px;
+  top: 89px; /* Incrementado en 10px */
+}
+
+.human-body svg#right-shoulder {
+  margin-left: 13.5px;
+  top: 89px; /* Incrementado en 10px */
+}
+
+.human-body svg#left-arm {
+  margin-left: -78px;
+  top: 132px; /* Incrementado en 10px */
+}
+
+.human-body svg#right-arm {
+  margin-left: 38px;
+  top: 132px; /* Incrementado en 10px */
+  z-index: 10001;
+}
+
+.human-body svg#chest {
+  margin-left: -43.5px;
+  top: 108px; /* Incrementado en 10px */
+}
+
+.human-body svg#stomach {
+  margin-left: -37.5px;
+  top: 150px; /* Incrementado en 10px */
+}
+
+.human-body svg#left-leg {
+  margin-left: -46.5px;
+  top: 225px; /* Incrementado en 10px */
+  z-index: 9999;
+}
+
+.human-body svg#right-leg {
+  margin-left: 1.5px;
+  top: 225px; /* Incrementado en 10px */
+  z-index: 9999;
+}
+
+.human-body svg#left-hand {
+  margin-left: -102.5px;
+  top: 244px; /* Incrementado en 10px */
+}
+
+.human-body svg#right-hand {
+  margin-left: 66.5px;
+  top: 244px; /* Incrementado en 10px */
+  z-index: 10000;
+}
+
+.human-body svg#left-foot {
+  margin-left: -35.5px;
+  top: 475px; /* Incrementado en 10px */
+}
+
+.human-body svg#right-foot {
+  margin-left: 5.5px;
+  top: 475px; /* Incrementado en 10px */
+}
