@@ -44,7 +44,8 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-fav-spells.html",
     "systems/rmss/templates/sheets/actors/parts/actor-fav-items.html",
     "systems/rmss/templates/sheets/actors/apps/actor-settings.html",
-    "systems/rmss/templates/sheets/actors/parts/actor-status-info.html"
+    "systems/rmss/templates/sheets/actors/parts/actor-status-info.html",
+    "systems/rmss/templates/sheets/actors/parts/actor-exp-points.html"
   ];
   return loadTemplates(templatePaths);
 }
