@@ -1,7 +1,7 @@
 export default class RMSSProfessionSheet extends ItemSheet {
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width: 620,
             height: 640,
             template: "systems/rmss/templates/sheets/professions/rmss-profession-sheet.html",
@@ -17,7 +17,6 @@ export default class RMSSProfessionSheet extends ItemSheet {
 
     async getData() {
         const baseData = await super.getData();
-        const context = super.getData();
 
         let sheetData = {
             owner: this.item.isOwner,
@@ -27,13 +26,37 @@ export default class RMSSProfessionSheet extends ItemSheet {
             config: CONFIG.rmss
         };
 
-        this._prepareItems(context);
-
         return sheetData;
     }
 
+    activateListeners(html) {
+        super.activateListeners(html);
 
-    _prepareItems(context){
-        console.log(context);
+        html.find('.editor').each((_, editor) => {
+            // Cuando se actualice el contenido, asegurar que se guarda el cambio.
+            editor.addEventListener('input', () => {
+                // Puedes gestionar cambios si es necesario
+            });
+        });
+
+        html.find("#prime-stats").on( 'change', async ev => {
+            const selectedTagsContainer = document.getElementById('prime-stats-selected');
+            selectedTagsContainer.innerHTML = '';
+            const selectedOptions = Array.from(ev.currentTarget.selectedOptions);
+            console.log(selectedOptions);
+            let selectedStats = '';
+
+            selectedOptions.forEach(option => {
+                selectedStats = selectedStats + ' ' + option.text;
+            })
+
+            console.log(selectedStats);
+            selectedTagsContainer.innerHTML = selectedStats;
+
+            //Array.from(this.selectedOptions).forEach(option => {
+             //   console.log(option);
+            //    selectedTagsContainer.appendChild(tag);
+            //});
+        });
     }
 }
