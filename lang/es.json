@@ -284,6 +284,9 @@
       "spoken": "Hablado",
       "written": "Escrito",
       "description": "Descripción"
+    },
+    "chat":{
+      "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})"
     }
   }
 }

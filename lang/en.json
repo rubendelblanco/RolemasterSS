@@ -264,6 +264,9 @@
             "spoken": "Spoken",
             "written": "Written",
             "description": "Description"
+        },
+        "chat":{
+            "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})"
         }
     }
 }
