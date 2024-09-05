@@ -24,9 +24,23 @@
                 </select>
             </div>
             <div>
-                Progression
-                <select name="system.progression" class="app-stat-selector" value="{{system.progression}}" itemid="{{ item._id }}">
-                    {{selectOptions  category_progression selected=system.progression }}
+                {{ localize 'skill.category_progression' }}
+                <select name="system.progression" class="app-stat-selector" value="{{system.progression}}" itemid="{{item._id}}">
+                    {{#each category_progression}}
+                        <option value="{{this.data}}" {{#if (eq ../system.progression this.data)}}selected{{/if}}>
+                        {{this.name}}
+                        </option>
+                    {{/each}}
+                </select>
+            </div>
+            <div>
+                {{ localize 'skill.progression' }}
+                <select name="system.skill_progression" class="app-stat-selector" value="{{system.skill_progression}}" itemid="{{ item._id }}">
+                    {{#each skill_progression}}
+                    <option value="{{this.data}}" {{#if (eq ../system.skill_progression this.data)}}selected{{/if}}>
+                        {{this.name}}
+                    </option>
+                    {{/each}}
                 </select>
             </div>
         </div>

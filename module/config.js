@@ -61,9 +61,30 @@ rmss.skill_designations = {
 
 rmss.skill_category_progression = {
   standard: {
-    name: "Standard"
+    name: "Standard",
+    data: "standard"
   },
   zero: {
-    name: "0*0*0*0*0"
+    name: "0*0*0*0*0",
+    data: "none"
+  }
+}
+
+rmss.skill_progression = {
+  standard: {
+    name: "Standard",
+    data: "standard"
+  },
+  limited: {
+    name: "Limited",
+    data: "limited"
+  },
+  special:{
+    name: "Special",
+    data: "special"
+  },
+  combined:{
+    name: "Combined",
+    data: "combined"
   }
 }

@@ -2,7 +2,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
   // Override Default Options, Set CSS Classes, Set Default Sheet, Set up Sheet Tabs
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       width: 860,
       height: 780,
       template: "systems/rmss/templates/sheets/actors/rmss-character-sheet.html",
@@ -230,8 +230,90 @@ export default class RMSSPlayerSheet extends ActorSheet {
     return (configSheet);
   }
 
+  async handleStatsPotElement(element, potentialStatsInput) {
+    const inputValue = element.value;
+    let roll = null;
+
+    if (inputValue >=20 && inputValue<=24) {
+      roll = new Roll("20+8d10");
+    }
+    else if (inputValue >=25 && inputValue<=34){
+      roll = new Roll("30+7d10");
+    }
+    if (inputValue >=35 && inputValue<=44) {
+      roll = new Roll("40+6d10");
+    }
+    else if (inputValue >=45 && inputValue<=54){
+      roll = new Roll("50+5d10");
+    }
+    if (inputValue >=55 && inputValue<=64) {
+      roll = new Roll("60+4d10");
+    }
+    else if (inputValue >=65 && inputValue<=74){
+      roll = new Roll("70+3d10");
+    }
+    if (inputValue >=75 && inputValue<=84) {
+      roll = new Roll("80+2d10");
+    }
+    else if (inputValue >=85 && inputValue<=91){
+      roll = new Roll("90+1d10");
+    }
+    else if (inputValue >=92 && inputValue<=99) {
+      const variable_roll = 100 - inputValue + 1;
+      roll = new Roll( inputValue+"+1d"+variable_roll);
+    }
+    else if (inputValue===100) {
+      roll = new Roll("99+1d10");
+    }
+
+    await roll.evaluate();
+    console.log(roll.total);
+    ChatMessage.create({
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker(),
+      content: game.i18n.format("rmss.chat.potential_roll", { total: roll.total, result: roll.result }),
+      roll: roll
+    });
+
+    if (roll.total < element.value) {
+      potentialStatsInput.value = element.value;
+    }
+    else {
+      potentialStatsInput.value = roll.total;
+    }
+  }
+
   activateListeners(html) {
     super.activateListeners(html);
+
+    //Calculate potential stats (only when you are level 0)
+    html.find(".stat-pot").click(ev => {
+      const clickedElement = ev.currentTarget;
+      const parentLi = clickedElement.closest('li');
+      const characterLevel = html.find('input[name="system.attributes.level.value"]');
+
+      if (characterLevel.length > 0) {
+        const levelValue = characterLevel[0].value;
+        if (levelValue > 0 || levelValue === null ) return;
+      }
+
+      if (parentLi) {
+        const closestStatsTemp = parentLi.querySelector('.stat-temp');
+
+        if (closestStatsTemp) {
+          console.log('Elemento más cercano con clase .stat-temp encontrado:', closestStatsTemp);
+          this.handleStatsPotElement(closestStatsTemp, clickedElement);
+        }
+      }
+      else {
+        console.log('No se encontró el elemento <li> padre.');
+      }
+    });
+
+    html.find(".item-edit").click(ev => {
+      const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
+      item.sheet.render(true);
+    });
 
     // Render the item sheet for viewing/editing prior to the editable check.
     html.find(".item-edit").click(ev => {

@@ -29,6 +29,32 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
     let thirdApplicableStat = this.prepareApplicableSelectedStat("app_stat_3");
 
     let applicableCategoryProgression = this.prepareCategoryProgression(CONFIG);
+    let applicableSkillProgression = this.prepareSkillProgression(CONFIG);
+    console.log(applicableSkillProgression);
+
+    const actor = this.item.actor;
+
+    if (actor) {
+      const stat_fixed_info = actor.system.race_stat_fixed_info;
+      const body_development_skill = {
+        'name': stat_fixed_info.body_development_progression,
+        'data': stat_fixed_info.body_development_progression
+      }
+      const pp_development_skill = {
+        'name': stat_fixed_info.pp_development_progression,
+        'data': stat_fixed_info.pp_development_progression
+      }
+
+      const progression_regex = /^\d{1,2}\*\d{1,2}\*\d{1,2}\*\d{1,2}\*\d{1,2}$/;
+
+      if (progression_regex.test(stat_fixed_info.body_development_progression)) {
+        applicableSkillProgression[stat_fixed_info.body_development_progression] = body_development_skill
+      }
+
+      if (progression_regex.test(stat_fixed_info.pp_development_progression)) {
+        applicableSkillProgression[stat_fixed_info.pp_development_progression] = pp_development_skill
+      }
+    }
 
     // Build and apply the display string for Applicable Stats
     let applicableStatText =
@@ -48,6 +74,7 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
       applicable_stat_2_selected: secondApplicableStat,
       applicable_stat_3_selected: thirdApplicableStat,
       category_progression: applicableCategoryProgression,
+      skill_progression: applicableSkillProgression,
       enrichedDescription: enrichedDescription
     };
     return sheetData;
@@ -75,9 +102,23 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
   prepareCategoryProgression(config){
     let progressionCategoryList = {};
     for ( const item in config.rmss.skill_category_progression) {
-      progressionCategoryList[config.rmss.skill_category_progression[item].name] = config.rmss.skill_category_progression[item].name;
+      progressionCategoryList[config.rmss.skill_category_progression[item].name] = {
+        'data': config.rmss.skill_category_progression[item].data,
+        'name': config.rmss.skill_category_progression[item].name
+      };
     }
     return progressionCategoryList;
+  }
+
+  prepareSkillProgression(config){
+    let progressionSkillList = {};
+    for ( const item in config.rmss.skill_progression) {
+      progressionSkillList[config.rmss.skill_progression[item].name] = {
+        'data': config.rmss.skill_progression[item].data,
+        'name': config.rmss.skill_progression[item].name
+      };
+    }
+    return progressionSkillList;
   }
 
   // Get the values for the currently selected Applicable Stat so we can display it on the Skill Category Sheet
