@@ -246,7 +246,8 @@
             "special_bonus_1": "Special Bonus 1:",
             "special_bonus_2": "Special Bonus 2:",
             "total_bonus": "Total Bonus:",
-            "description": "Description:"
+            "description": "Description:",
+            "progression": "Category progression"
         },
         "skill": {
             "favorite": "Favorite?",
@@ -258,7 +259,9 @@
             "special_bonus_1": "Special Bonus 1:",
             "special_bonus_2": "Special Bonus 2:",
             "total_bonus": "Total Bonus:",
-            "description": "Description:"
+            "description": "Description:",
+            "progression": "Skill progression",
+            "category_progression": "Category progression"
         },
         "language": {
             "spoken": "Spoken",

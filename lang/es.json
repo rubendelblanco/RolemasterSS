@@ -266,7 +266,9 @@
       "special_bonus_1": "Bonificación especial 1:",
       "special_bonus_2": "Bonificación especial 2:",
       "total_bonus": "Bonificación total:",
-      "description": "Descripción:"
+      "description": "Descripción:",
+      "progression": "Progresión habilidad",
+      "category_progression": "Progresión categoría"
     },
     "skill": {
       "favorite": "¿Favorito?",
@@ -278,7 +280,8 @@
       "special_bonus_1": "Bonificación especial 1:",
       "special_bonus_2": "Bonificación especial 2:",
       "total_bonus": "Bonificación total:",
-      "description": "Descripción:"
+      "description": "Descripción:",
+      "progression": "Progresión habilidad"
     },
     "language": {
       "spoken": "Hablado",
