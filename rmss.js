@@ -15,6 +15,7 @@ import RMSSSpellSheet from "./module/sheets/spells/rmss_spell_sheet.js";
 import RMSSSkillCategorySheet from "./module/sheets/skills/rmss_skill_category_sheet.js";
 import RMSSSkillSheet from "./module/sheets/skills/rmss_skill_sheet.js";
 import RMSSRaceSheet from "./module/sheets/items/rmss_race_sheet.js";
+import RMSSProfessionSheet from "./module/sheets/items/rmss_profession_sheet.js";
 
 import RMSSPlayerSheet from "./module/sheets/actors/rmss_player_sheet.js";
 import RMSSActorSheetConfig from "./module/sheets/actors/rmss_player_sheet_config.js";
@@ -42,7 +43,9 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-spells.html",
     "systems/rmss/templates/sheets/actors/parts/actor-fav-spells.html",
     "systems/rmss/templates/sheets/actors/parts/actor-fav-items.html",
-    "systems/rmss/templates/sheets/actors/apps/actor-settings.html"
+    "systems/rmss/templates/sheets/actors/apps/actor-settings.html",
+    "systems/rmss/templates/sheets/actors/parts/actor-status-info.html",
+    "systems/rmss/templates/sheets/actors/parts/actor-exp-points.html"
   ];
   return loadTemplates(templatePaths);
 }
@@ -93,6 +96,9 @@ Hooks.once("init", function() {
 
   //Races
   Items.registerSheet("rmss", RMSSRaceSheet, {makeDefault: true, label: "rmss.entity_sheet.race", types: ["race"]})
+
+  //Profession
+  Items.registerSheet("rmss", RMSSProfessionSheet, {makeDefault: true, label: "rmss.entity_sheet.profession", types: ["profession"]})
 
   // Actors
   Actors.registerSheet("rmss", RMSSPlayerSheet, {makeDefault: true, label: "rmss.entity_sheet.player_character", types: ["character"]});

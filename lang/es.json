@@ -288,6 +288,24 @@
       "written": "Escrito",
       "description": "Descripción"
     },
+    "maneuver": {
+      "routine": "Rutina",
+      "easy": "Muy fácil",
+      "light": "Fácil",
+      "medium": "Medio",
+      "hard": "Difícil",
+      "very_hard": "Muy difícil",
+      "extremely_hard": "Extremadamente difícil",
+      "sheer_folly": "Locura completa",
+      "absurd": "Absurdo",
+      "maneuver": "Maniobra"
+    },
+    "experience": {
+      "spell_level": "Nivel de hechizo",
+      "caster_level": "Nivel de lanzador",
+      "opponent_level": "Nivel de oponente",
+      "critical_level": "Nivel de crítico"
+    },
     "chat":{
       "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})"
     }

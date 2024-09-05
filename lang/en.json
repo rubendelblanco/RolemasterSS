@@ -233,7 +233,7 @@
             "duration": "Duration",
             "range": "Range",
             "type": "Type",
-            "description": "Description"
+            "description": "Description",
         },
         "skill_category": {
             "applicable_stats": "Applicable Stats:",
@@ -267,6 +267,24 @@
             "spoken": "Spoken",
             "written": "Written",
             "description": "Description"
+        },
+        "maneuver": {
+            "routine": "Routine",
+            "easy": "Easy",
+            "light": "Light",
+            "medium": "Medium",
+            "hard": "Hard",
+            "very_hard": "Very hard",
+            "extremely_hard": "Extremely hard",
+            "sheer_folly": "Sheer folly",
+            "absurd": "Absurd",
+            "maneuver": "Maneuver"
+        },
+        "experience": {
+            "spell_level": "Spell level",
+            "caster_level": "Caster level",
+            "opponent_level": "Opponent level",
+            "critical_level": "Critical level"
         },
         "chat":{
             "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})"

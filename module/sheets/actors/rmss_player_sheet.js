@@ -47,7 +47,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
     const itemData = newitem.toObject();
 
     if (itemData.type === "race") {
-      console.log(itemData);
       this.actor.update({"system.race_stat_fixed_info.body_development_progression":itemData.system.progression.body_dev})
       this.actor.update({"system.fixed_info.race":itemData.name})
       //stats race mods
@@ -338,7 +337,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
     // Show Sheet Settings
     html.find(".import-skillcats").click(async ev => {
-
       let selectOptions = {};
       for (const pack of game.packs) {
         selectOptions[pack.metadata.id] = pack.metadata.label;
