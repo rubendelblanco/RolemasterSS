@@ -30,7 +30,6 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
 
     let applicableCategoryProgression = this.prepareCategoryProgression(CONFIG);
     let applicableSkillProgression = this.prepareSkillProgression(CONFIG);
-    console.log(applicableSkillProgression);
 
     const actor = this.item.actor;
 
@@ -157,6 +156,12 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
 
+    // Disable rank field if category progression is not applicable, i.e. 0*0*0*0*0
+    /*if (this.item.system.progression === "none" ) {
+      let ranks_field = html.find('input[name="system.ranks"]');
+      ranks_fields.setAttribute('disabled', 'disabled');
+    }*/
+
     // Every time the user selects one of the Applicable Stat dropdowns
     // fire an event to change the value in the Skill Category
     html.find(".stat-selector").change(ev => {
@@ -187,5 +192,6 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
           break;
       }
     });
+
   }
 }

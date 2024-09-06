@@ -25,7 +25,7 @@
             </div>
             <div>
                 {{ localize 'skill.category_progression' }}
-                <select name="system.progression" class="app-stat-selector" value="{{system.progression}}" itemid="{{item._id}}">
+                <select name="system.progression" class="app-skill-category-selector" value="{{system.progression}}" data-itemid="{{item._id}}">
                     {{#each category_progression}}
                         <option value="{{this.data}}" {{#if (eq ../system.progression this.data)}}selected{{/if}}>
                         {{this.name}}
@@ -35,7 +35,7 @@
             </div>
             <div>
                 {{ localize 'skill.progression' }}
-                <select name="system.skill_progression" class="app-stat-selector" value="{{system.skill_progression}}" itemid="{{ item._id }}">
+                <select name="system.skill_progression" class="app-skill-selector" value="{{system.skill_progression}}" data-itemid="{{ item._id }}">
                     {{#each skill_progression}}
                     <option value="{{this.data}}" {{#if (eq ../system.skill_progression this.data)}}selected{{/if}}>
                         {{this.name}}
@@ -65,7 +65,7 @@
                     <input name="system.development_cost" type="text" value="{{system.development_cost}}" data-dtype="String"/>
                 </td>
                 <td>
-                    <input name="system.ranks" type="text" value="{{system.ranks}}" data-dtype="Number"/>
+                    <input name="system.ranks" type="text" value="{{system.ranks}}" data-dtype="Number" {{#if (eq system.progression "none")}}disabled{{/if}}//>
                 </td>
                 <td>
                     <div>

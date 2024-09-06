@@ -301,13 +301,10 @@ export default class RMSSPlayerSheet extends ActorSheet {
         const closestStatsTemp = parentLi.querySelector('.stat-temp');
 
         if (closestStatsTemp) {
-          console.log('Elemento más cercano con clase .stat-temp encontrado:', closestStatsTemp);
           this.handleStatsPotElement(closestStatsTemp, clickedElement);
         }
       }
-      else {
-        console.log('No se encontró el elemento <li> padre.');
-      }
+
     });
 
     html.find(".item-edit").click(ev => {

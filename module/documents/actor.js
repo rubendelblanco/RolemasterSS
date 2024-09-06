@@ -87,7 +87,6 @@ export class RMSSActor extends Actor {
       var max = limits.length > 1 ? parseInt(limits[1], 10) : min;
 
       if (value >= min && value <= max) {
-        console.log(statsTable[range])
         return statsTable[range];
       }
 
