@@ -1,5 +1,4 @@
 export default class RMSSActorSheetConfig extends FormApplication {
-
   constructor(selectOptions, character) {
     super();
     this.selectOptions = selectOptions;

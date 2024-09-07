@@ -405,7 +405,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
     // Change New Ranks value when clicked in player sheet. From 0-3.
     html.find(".skill-newrank").click(ev => {
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-
       console.log("Firing in the Player Sheet");
       console.log(ev.currentTarget.getAttribute("value"));
       console.log(ev.currentTarget.getAttribute("data-item-id"));
@@ -441,25 +440,51 @@ export default class RMSSPlayerSheet extends ActorSheet {
       console.log(ev.currentTarget.getAttribute("value"));
       console.log(ev.currentTarget.getAttribute("data-item-id"));
 
+      function increaseRanks(ranks, bonus) {
+        let total_rank_bonus, total_ranks;
+        total_ranks = item.system.ranks+ranks;
+
+        if (total_ranks < 0) {
+          total_ranks = 0;
+        }
+
+        if (total_ranks === 0) {
+          total_rank_bonus = -15;
+        }
+        else if (total_ranks === 1) {
+          total_rank_bonus = 0;
+        }
+        else {
+          total_rank_bonus = item.system.rank_bonus + bonus;
+        }
+
+        item.update({ 'system.ranks': total_ranks });
+        item.update({ 'system.rank_bonus': total_rank_bonus });
+      }
+
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
           console.log("Skill Category NewRanks is 0 setting to 1");
           item.update({system: {new_ranks: { value: 1 }}});
+          if (item.system.progression.toLowerCase()==="standard") increaseRanks(1,2);
           break;
 
         case "1":
           console.log("Skill Category NewRanks is 1 setting to 2");
           item.update({system: {new_ranks: { value: 2 }}});
+          if (item.system.progression.toLowerCase()==="standard") increaseRanks(1,2);
           break;
 
         case "2":
           console.log("Skill Category NewRanks is 2 setting to 3");
           item.update({system: {new_ranks: { value: 3 }}});
+          if (item.system.progression.toLowerCase()==="standard") increaseRanks(1,2);
           break;
 
         case "3":
           console.log("Skill Category NewRanks is 3 setting to 0");
           item.update({system: {new_ranks: { value: 0 }}});
+          if (item.system.progression.toLowerCase()==="standard") increaseRanks(-3,-6);
           break;
       }
     });
