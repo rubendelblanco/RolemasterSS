@@ -69,16 +69,20 @@
                 </td>
                 <td>
                     <div>
+                        {{#if (eq system.progression "none")}}
+                        na
+                        {{else}}
                     {{#switch system.new_ranks.value}} 
                         {{#case 0}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
                         {{#case 1}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
                         {{#case 2}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
                         {{#case 3}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}} 
                     {{/switch}}
+                        {{/if}}
                     </div>
                 </td>
                 <td>
-                    <input name="system.rank_bonus" type="text" value="{{system.rank_bonus}}" data-dtype="Number"/>
+                    <input name="system.rank_bonus" type="text" value="{{system.rank_bonus}}" data-dtype="Number"  {{#if (eq system.progression "none")}}disabled{{/if}}/>
                 </td>
                 <td>
                     <input name="system.stat_bonus" type="text" value="{{system.stat_bonus}}" data-dtype="Number"/>
