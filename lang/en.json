@@ -233,7 +233,7 @@
             "duration": "Duration",
             "range": "Range",
             "type": "Type",
-            "description": "Description",
+            "description": "Description"
         },
         "skill_category": {
             "applicable_stats": "Applicable Stats:",
