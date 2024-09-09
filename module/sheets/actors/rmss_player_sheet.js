@@ -396,7 +396,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
       const category = this.actor.items.get(ev.currentTarget.getAttribute("data-category-id"));
       const progression = category.system.skill_progression;
       let progression_value = null;
-
       if (progression.split('*').length>1) {
         progression_value = progression; //some special race value (PP development or body development)
       }
@@ -408,25 +407,29 @@ export default class RMSSPlayerSheet extends ActorSheet {
         case "0":
           console.log("Skill NewRanks is 0 setting to 1");
           item.update({system: {new_ranks: { value: 1 }}});
-          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
+          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
+              progression_value);
           break;
 
         case "1":
           console.log("Skill NewRanks is 1 setting to 2");
           item.update({system: {new_ranks: { value: 2 }}});
-          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
+          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
+              progression_value);
           break;
 
         case "2":
           console.log("Skill NewRanks is 2 setting to 3");
           item.update({system: {new_ranks: { value: 3 }}});
-          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
+          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
+              progression_value);
           break;
 
         case "3":
           console.log("Skill NewRanks is 3 setting to 0");
           item.update({system: {new_ranks: { value: 0 }}});
-          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,-3,progression_value),progression_value);
+          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,-3,progression_value),
+              progression_value);
           break;
       }
     });

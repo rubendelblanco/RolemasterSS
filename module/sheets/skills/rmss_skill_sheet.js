@@ -47,23 +47,21 @@ export default class RMSSSkillSheet extends ItemSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+    const actor = this.item.actor;
+    const category_skill = actor.items.get(this.item.system.category);
+    const designation = this.item.system.designation;
+    let progression;
+
+    if (category_skill.system.skill_progression.split('*').length > 1) {
+      progression = category_skill.system.skill_progression //some special race value (PP development or body development)
+    }
+    else {
+      progression = CONFIG.rmss.skill_progression[category_skill.system.skill_progression].progression;
+    }
 
     html.find('input[name="system.ranks"]').blur(ev => {
       const total_ranks = ev.currentTarget.value;
-      const actor = this.item.actor;
-      const category_skill_id = html.find('select[name="system.category"]').get(0).value;
-      const category_skill = actor.items.get(category_skill_id);
-      let progression;
-
-      if (category_skill.system.skill_progression.split('*').length > 1) {
-        progression = category_skill.system.skill_progression //some special race value (PP development or body development)
-      }
-      else {
-        progression = CONFIG.rmss.skill_progression[category_skill.system.skill_progression].progression;
-      }
-
       RankCalculator.calculateRanksBonus(this.item,total_ranks,progression);
-
     })
 
     // Catch the event when the user clicks one of the New Ranks Checkboxes in a Skill.
@@ -72,15 +70,25 @@ export default class RMSSSkillSheet extends ItemSheet {
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
           this.object.update({system: {new_ranks: { value: 1 }}});
+          console.log(this.item);
+          RankCalculator.calculateRanksBonus(this.item,RankCalculator.increaseRanks(this.item,1,progression),
+              progression);
           break;
         case "1":
           this.object.update({system: {new_ranks: { value: 2 }}});
+          console.log(this.item);
+          RankCalculator.calculateRanksBonus(this.item,RankCalculator.increaseRanks(this.item,1,progression),
+              progression);
           break;
         case "2":
           this.object.update({system: {new_ranks: { value: 3 }}});
+          RankCalculator.calculateRanksBonus(this.item,RankCalculator.increaseRanks(this.item,1,progression),
+              progression);
           break;
         case "3":
           this.object.update({system: {new_ranks: { value: 0 }}});
+          RankCalculator.calculateRanksBonus(this.item,RankCalculator.increaseRanks(this.item,-3,progression),
+              progression);
           break;
       }
     });
