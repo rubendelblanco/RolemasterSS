@@ -213,10 +213,7 @@ export class RMSSActor extends Actor {
   calculateSkillBonuses() {
     for (const item of this.items) {
       if (item.type === "skill") {
-        console.log(`rmss | actor.js | Calculating skill bonus for Skill: ${item.name}`);
-        console.log(`rmss | actor.js | Updating Skill Category Bonus for Skill: ${item.name}`);
         item.calculateSelectedSkillCategoryBonus(item);
-        console.log(`rmss | actor.js | Updating Skill Total Bonus for Skill:  ${item.name}`);
         item.calculateSkillTotalBonus(item);
       }
     }
@@ -227,7 +224,6 @@ export class RMSSActor extends Actor {
     for (const item of this.items) {
       if (item.type === "skill_category") {
 
-        console.log(`rmss | actor.js | Calculating Skill Category Stat Bonuses for: ${item.name}`);
         // Get all the applicable stats for this skill category
         let app_stat_1 = item.system.app_stat_1;
         let app_stat_2 = item.system.app_stat_2;
@@ -295,7 +291,6 @@ export class RMSSActor extends Actor {
 
   getOwnedItemsByType(item_type) {
     let ownedItems = {None: "None"};
-    console.log(`rmss | actor.js | Getting owned ${item_type} for: ${this.name}`);
     for (const item of this.items) {
       if (item.type === item_type) {
         ownedItems[item._id] = item.name;

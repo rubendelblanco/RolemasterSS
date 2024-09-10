@@ -1,3 +1,6 @@
+import RankCalculator from '../skills/rmss_rank_calculator.js';
+
+
 export default class RMSSPlayerSheet extends ActorSheet {
 
   // Override Default Options, Set CSS Classes, Set Default Sheet, Set up Sheet Tabs
@@ -40,6 +43,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
   // Override this method to check for duplicates when things are dragged to the sheet
   // We don't want duplicate skills and skill categories.
+
   async _onDropItem(event, data) {
 
     // Reconstruct the item from the event
@@ -72,10 +76,8 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
     // To Do: Seperate Skills and Skill Categories. Increment Counts for items
     if (itemData.type === "skill_category") {
-
       // Get the already owned Items from the actor and push into an array
       const owneditems = this.object.getOwnedItemsByType("skill_category");
-
       let ownedskillcatlist = Object.values(owneditems);
 
       // Check if the dragged item is not in the array and not owned
@@ -104,8 +106,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
     // Calculate Power Point Exhaustion
     let powerpointPercentage = (Number(context.system.attributes.power_points.current) / Number(context.system.attributes.power_points.max)) * 100;
 
-    console.log(true);
-
     switch (true) {
       case (powerpointPercentage < 25):
         context.system.attributes.power_points.modifier = "PP Exhaustion Penalty: -30 ";
@@ -124,8 +124,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
     // Calculate Exhaustion Point Penalty
     let exhaustionPercentage = (Number(context.system.attributes.exhaustion_points.current) / Number(context.system.attributes.exhaustion_points.max)) * 100;
-
-    console.log(true);
 
     switch (true) {
       case (exhaustionPercentage < 1):
@@ -152,7 +150,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
   }
 
   _prepareItems(context) {
-    console.log(`rmss | rmss_player_sheet.js | Preparing items for:  ${this.name}`);
     // Initialize containers.
     const gear = [];
     const playerskill= [];
@@ -327,7 +324,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
     // Delete Item
     html.find(".item-delete").click(ev => {
-      console.log(ev.currentTarget.getAttribute("data-item-id"));
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
       item.delete();
     });
@@ -345,31 +341,23 @@ export default class RMSSPlayerSheet extends ActorSheet {
     // Check/Uncheck Favorite Skill
     html.find(".skill-favorite").click(ev => {
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      console.log(item);
-      console.log(`Before change: ${item.system.favorite}`);
+
       if (item.system.favorite === true) {
-        console.log("Setting False");
         item.update({system: {favorite: false}});
       } else {
-        console.log("Setting True");
         item.update({system: {favorite: true}});
       }
-      console.log(`After change: ${item.system.favorite}`);
     });
 
     // Check/Uncheck Favorite Spell
     html.find(".spell-favorite").click(ev => {
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      console.log(item);
-      console.log(`Before change: ${item.system.favorite}`);
+
       if (item.system.favorite === true) {
-        console.log("Setting False");
         item.update({system: {favorite: false}});
       } else {
-        console.log("Setting True");
         item.update({system: {favorite: true}});
       }
-      console.log(`After change: ${item.system.favorite}`);
     });
 
     // Equip/Unequip Weapon/Armor
@@ -405,30 +393,43 @@ export default class RMSSPlayerSheet extends ActorSheet {
     // Change New Ranks value when clicked in player sheet. From 0-3.
     html.find(".skill-newrank").click(ev => {
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-
-      console.log("Firing in the Player Sheet");
-      console.log(ev.currentTarget.getAttribute("value"));
-      console.log(ev.currentTarget.getAttribute("data-item-id"));
+      const category = this.actor.items.get(ev.currentTarget.getAttribute("data-category-id"));
+      const progression = category.system.skill_progression;
+      let progression_value = null;
+      if (progression.split('*').length>1) {
+        progression_value = progression; //some special race value (PP development or body development)
+      }
+      else {
+        progression_value = CONFIG.rmss.skill_progression[progression].progression; //otherwise (standard, limited, etc)
+      }
 
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
           console.log("Skill NewRanks is 0 setting to 1");
           item.update({system: {new_ranks: { value: 1 }}});
+          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
+              progression_value);
           break;
 
         case "1":
           console.log("Skill NewRanks is 1 setting to 2");
           item.update({system: {new_ranks: { value: 2 }}});
+          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
+              progression_value);
           break;
 
         case "2":
           console.log("Skill NewRanks is 2 setting to 3");
           item.update({system: {new_ranks: { value: 3 }}});
+          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
+              progression_value);
           break;
 
         case "3":
           console.log("Skill NewRanks is 3 setting to 0");
           item.update({system: {new_ranks: { value: 0 }}});
+          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,-3,progression_value),
+              progression_value);
           break;
       }
     });
@@ -436,30 +437,43 @@ export default class RMSSPlayerSheet extends ActorSheet {
     // Change New Ranks value when clicked in player sheet. From 0-3.
     html.find(".skillcategory-newrank").click(ev => {
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-
-      console.log("Firing in the Player Sheet");
-      console.log(ev.currentTarget.getAttribute("value"));
-      console.log(ev.currentTarget.getAttribute("data-item-id"));
+      const progression_value = "-15*2*1*0.5*0" //standard progression value
 
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
-          console.log("Skill Category NewRanks is 0 setting to 1");
           item.update({system: {new_ranks: { value: 1 }}});
+
+          if (item.system.progression.toLowerCase()==="standard") {
+            RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
+          }
+
           break;
 
         case "1":
-          console.log("Skill Category NewRanks is 1 setting to 2");
           item.update({system: {new_ranks: { value: 2 }}});
+
+          if (item.system.progression.toLowerCase()==="standard") {
+            RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
+          }
+
           break;
 
         case "2":
-          console.log("Skill Category NewRanks is 2 setting to 3");
           item.update({system: {new_ranks: { value: 3 }}});
+
+          if (item.system.progression.toLowerCase()==="standard") {
+            RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
+          }
+
           break;
 
         case "3":
-          console.log("Skill Category NewRanks is 3 setting to 0");
           item.update({system: {new_ranks: { value: 0 }}});
+
+          if (item.system.progression.toLowerCase()==="standard") {
+            RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,-3,progression_value),progression_value);
+          }
+
           break;
       }
     });

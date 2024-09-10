@@ -73,18 +73,20 @@ rmss.skill_category_progression = {
 rmss.skill_progression = {
   standard: {
     name: "Standard",
-    data: "standard"
+    data: "standard",
+    progression: "-15*3*2*1*0.5"
   },
   limited: {
     name: "Limited",
-    data: "limited"
+    data: "limited",
+    progression: "0*1*1*0.5*0"
   },
   special:{
     name: "Special",
-    data: "special"
+    progression: "0*6*5*4*3"
   },
   combined:{
     name: "Combined",
-    data: "combined"
+    progression: "-30*5*3*1.5*0.5"
   }
 }

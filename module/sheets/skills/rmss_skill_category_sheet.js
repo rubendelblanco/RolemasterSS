@@ -1,3 +1,5 @@
+import RankCalculator from './rmss_rank_calculator.js';
+
 // Our Item Sheet extends the default
 export default class RMSSSkillCategorySheet extends ItemSheet {
 
@@ -156,11 +158,14 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
 
-    // Disable rank field if category progression is not applicable, i.e. 0*0*0*0*0
-    /*if (this.item.system.progression === "none" ) {
-      let ranks_field = html.find('input[name="system.ranks"]');
-      ranks_fields.setAttribute('disabled', 'disabled');
-    }*/
+    //Calculate rank bonus if ranks field change
+    html.find('input[name="system.ranks"]').blur(ev => {
+      const total_ranks = ev.currentTarget.value;
+
+      if (this.item.system.progression.toLowerCase()==="standard") {
+        RankCalculator.calculateRanksBonus(this.item, total_ranks, "-15*2*1*0.5*0");
+      }
+    })
 
     // Every time the user selects one of the Applicable Stat dropdowns
     // fire an event to change the value in the Skill Category
