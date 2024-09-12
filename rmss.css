@@ -611,3 +611,18 @@
   margin-left: 5.5px;
   top: 475px; /* Incrementado en 10px */
 }
+
+.exp-grid-container {
+  display: inline-flex;
+  justify-content: space-between;
+  margin-right: 1.5em;
+  margin-bottom: 1em;
+}
+
+.exp-margin-right {
+  margin-right: 2em;
+}
+
+.exp-block {
+  display:block;
+}

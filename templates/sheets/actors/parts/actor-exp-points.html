@@ -1,41 +1,71 @@
 <div class="body-grid-container">
-    <div>
-        <label for="maneuver-exp">{{ localize "rmss.maneuver.maneuver" }} </label>
-
-        <select name="maneuver-exp" id="maneuver-exp">
-            <option value="routine">{{ localize "rmss.maneuver.routine" }}</option>
-            <option value="easy">{{ localize "rmss.maneuver.easy" }}</option>
-            <option value="light">{{ localize "rmss.maneuver.light" }}</option>
-            <option value="medium">{{ localize "rmss.maneuver.medium" }}</option>
-            <option value="hard">{{ localize "rmss.maneuver.hard" }}</option>
-            <option value="very_hard">{{ localize "rmss.maneuver.very_hard" }}</option>
-            <option value="extremely_hard">{{ localize "rmss.maneuver.extremely_hard" }}</option>
-            <option value="sheer_folly">{{ localize "rmss.maneuver.sheer_folly" }}</option>
-            <option value="absurd">{{ localize "rmss.maneuver.absurd" }}</option>
-        </select>
+    <h3>{{ localize "rmss.experience.level_up" }}</h3>
+    <div class="exp-grid-container">
+        <div class="exp-margin-right">
+            <label for="maneuver-exp">{{ localize "rmss.experience.dps" }} </label>
+            <input type="text" value="{{system.dps}}" id="development-points" name="development-points" data-dtype="Number"/>
+        </div>
+        <div class="exp-margin-right">
+            <button type="button" class="" title="level up"  {{#if (eq actor.system.levelAbove 0)}}disabled{{/if}} id="level-up">{{ localize "rmss.experience.level_up" }}</button>
+        </div>
+        <div class="exp-margin-right">
+            <label for="maneuver-exp">{{ localize "rmss.experience.dps" }} </label>
+        </div>
     </div>
-    <div>
-        <label for="spell-level-exp">{{ localize "rmss.experience.spell_level" }} </label>
-        <input type="text" id="spell-level-exp" name="spell-level-exp" data-dtype="Number"/>
-        <label for="spell-exp-caster">{{ localize "rmss.experience.caster_level" }} </label>
-        <input type="text" id="spell-exp-caster" name="spell-exp-caster" data-dtype="Number"/>
+    <h3>{{ localize "rmss.experience.maneuver" }}</h3>
+    <div class="exp-grid-container">
+        <div class="exp-margin-right">
+            <label for="maneuver-exp">{{ localize "rmss.maneuver.maneuver" }} </label>
+            <select name="maneuver-exp" id="maneuver-exp">
+                <option value="routine">{{ localize "rmss.maneuver.routine" }}</option>
+                <option value="easy">{{ localize "rmss.maneuver.easy" }}</option>
+                <option value="light">{{ localize "rmss.maneuver.light" }}</option>
+                <option value="medium">{{ localize "rmss.maneuver.medium" }}</option>
+                <option value="hard">{{ localize "rmss.maneuver.hard" }}</option>
+                <option value="very_hard">{{ localize "rmss.maneuver.very_hard" }}</option>
+                <option value="extremely_hard">{{ localize "rmss.maneuver.extremely_hard" }}</option>
+                <option value="sheer_folly">{{ localize "rmss.maneuver.sheer_folly" }}</option>
+                <option value="absurd">{{ localize "rmss.maneuver.absurd" }}</option>
+            </select>
+        </div>
     </div>
-    <div>
-        <label for="opponent-level">{{ localize "rmss.experience.critical_level" }} </label>
-        <select name="critical-level-exp" id="critical-level-exp">
-            <option value="a">A</option>
-            <option value="b">B</option>
-            <option value="c">C</option>
-            <option value="d">D</option>
-            <option value="e">E</option>
-        </select>
-        <label for="opponent-level">{{ localize "rmss.experience.opponent_level" }} </label>
-        <input type="text" id="opponent-level" name="opponent-level" data-dtype="Number"/>
+    <h3>{{ localize "rmss.experience.spell" }}</h3>
+    <div class="exp-grid-container">
+        <div class="exp-margin-right">
+            <label for="spell-level-exp">{{ localize "rmss.experience.spell_level" }} </label>
+            <input type="text" id="spell-level-exp" name="spell-level-exp" data-dtype="Number"/>
+        </div>
+        <div class="exp-margin-right">
+            <label for="spell-level-caster">{{ localize "rmss.experience.caster_level" }} </label>
+            <input type="text" value="{{system.attributes.level.value}}" id="spell-level-caster" name="spell-level-caster" data-dtype="Number"/>
+        </div>
     </div>
-    <div>
-        <label for="kill-opponent-level">{{ localize "rmss.experience.critical_level" }} </label>
-        <input type="text" id="kill-opponent-level" name="kill-opponent-level" data-dtype="Number"/>
-        <label for="kill-character-level">{{ localize "rmss.experience.critical_level" }} </label>
-        <input type="text" id="kill-character-level" name="kill-character-level" data-dtype="Number"/>
+    <h3>{{ localize "rmss.experience.critical" }}</h3>
+    <div class="exp-grid-container">
+        <div class="exp-margin-right">
+            <label class="exp-block" for="opponent-level">{{ localize "rmss.experience.critical_level" }} </label>
+            <select name="critical-level-exp" id="critical-level-exp">
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+                <option value="e">E</option>
+            </select>
+        </div>
+        <div class="exp-margin-right">
+            <label for="opponent-level">{{ localize "rmss.experience.opponent_level" }} </label>
+            <input type="text" id="opponent-level" name="opponent-level" data-dtype="Number"/>
+        </div>
+    </div>
+    <h3>{{ localize "rmss.experience.kill" }}</h3>
+    <div class="exp-grid-container">
+        <div class="exp-margin-right">
+            <label for="kill-opponent-level">{{ localize "rmss.experience.opponent_level" }} </label>
+            <input type="text" id="kill-opponent-level" name="kill-opponent-level" data-dtype="Number"/>
+        </div>
+        <div class="exp-margin-right">
+            <label for="killer-character-level">{{ localize "rmss.experience.killer_level" }} </label>
+            <input type="text" value="{{system.attributes.level.value}}" id="killer-character-level" name="killer-character-level" data-dtype="Number"/>
+        </div>
     </div>
 </div>

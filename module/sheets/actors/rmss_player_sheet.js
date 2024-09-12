@@ -1,5 +1,5 @@
 import RankCalculator from '../skills/rmss_rank_calculator.js';
-
+import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
 
 export default class RMSSPlayerSheet extends ActorSheet {
 
@@ -282,6 +282,8 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+
+    ExperiencePointsCalculator.loadListeners(html, this.actor);
 
     //Calculate potential stats (only when you are level 0)
     html.find(".stat-pot").click(ev => {

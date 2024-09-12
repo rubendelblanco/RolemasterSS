@@ -284,7 +284,14 @@
             "spell_level": "Spell level",
             "caster_level": "Caster level",
             "opponent_level": "Opponent level",
-            "critical_level": "Critical level"
+            "critical_level": "Critical level",
+            "killer_level": "Level of the Character Delivering the “Killing” Blow",
+            "spell": "Spell Eps",
+            "maneuver": "Maneuver EPs",
+            "critical": "Critical EPs",
+            "kill": "Kill EPs",
+            "level_up": "Level up",
+            "dps": "Development points"
         },
         "chat":{
             "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})"
