@@ -3,13 +3,10 @@
     <div class="exp-grid-container">
         <div class="exp-margin-right">
             <label for="maneuver-exp">{{ localize "rmss.experience.dps" }} </label>
-            <input type="text" value="{{system.dps}}" id="development-points" name="development-points" data-dtype="Number"/>
+            <input type="text" value="{{system.levelUp.developmentPoints}}" id="development-points" name="system.levelUp.developmentPoints" data-dtype="Number"/>
         </div>
         <div class="exp-margin-right">
-            <button type="button" class="" title="level up"  {{#if (eq actor.system.levelAbove 0)}}disabled{{/if}} id="level-up">{{ localize "rmss.experience.level_up" }}</button>
-        </div>
-        <div class="exp-margin-right">
-            <label for="maneuver-exp">{{ localize "rmss.experience.dps" }} </label>
+            <button type="button" class="" title="level up"  {{#if (eq actor.system.levelUp.levelAbove 0)}}disabled{{/if}} id="level-up">{{ localize "rmss.experience.level_up" }}</button>
         </div>
     </div>
     <h3>{{ localize "rmss.experience.maneuver" }}</h3>

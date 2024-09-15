@@ -1,3 +1,4 @@
+import levelUpManager from "./rmss_level_up_manager.js";
 export default class ExperiencePointsCalculator {
     // JSON object storing experience points for each maneuver type
     static data = {
@@ -65,6 +66,40 @@ export default class ExperiencePointsCalculator {
     }
 
     static loadListeners(html, actor=null){
+        //level up button
+        html.find("#level-up").click(async(ev) => {
+            const skills = actor.items.filter(item => item.type === "skill");
+            const categories = actor.items.filter(item => item.type === "skill_category");
+            const message = game.i18n.localize("rmss.level_up.ranks_reset");
+            const skillUpdates = skills.map(skill => {
+                return {
+                    _id: skill.id,
+                    'system.new_ranks.value': 0
+                };
+            });
+            const categoryUpdates = categories.map(category => {
+                return {
+                    _id: category.id,
+                    'system.new_ranks.value': 0
+                };
+            });
+            const updates = [...skillUpdates, ...categoryUpdates];
+
+            if (updates.length > 0) {
+                await actor.updateEmbeddedDocuments('Item', updates);
+            }
+
+            ChatMessage.create({
+                content: `
+                <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+                  <p style="color: #333; font-size: 16px;">
+                  <b>${actor.name}</b> ${message}
+                   </p>
+                </div>`
+            });
+
+            levelUpManager.calculateStatGainRolls(actor);
+        })
         //Check character level
         html.find("#experience-points").change(ev => {
             if (!actor) return;
@@ -72,11 +107,11 @@ export default class ExperiencePointsCalculator {
             const level = parseInt(html.find("#level").val());
             const calcLevel = this.getCharacterLevel(experience);
 
-            if(!actor.system.levelAbove) {
-                actor.update({system: {levelAbove: calcLevel-level}});
+            if(!actor.system.levelUp.levelAbove) {
+                actor.update({system: {'levelUp.levelAbove': calcLevel-level}});
             }
 
-            if (calcLevel > level && (calcLevel-level) > actor.system.levelAbove){
+            if (calcLevel > level && (calcLevel-level) > actor.system.levelUp.levelAbove){
                 const soundPath = "systems/rmss/assets/sounds/power_up.mp3";
                 foundry.audio.AudioHelper.play({ src: soundPath, volume: 0.8, loop: false }).catch(err => {
                     console.error("Sound error:", err);
@@ -94,7 +129,7 @@ export default class ExperiencePointsCalculator {
                         alias: "GM"
                     }
                 })
-                actor.update({system: {levelAbove: calcLevel-level}});
+                actor.update({system: {'levelUp.levelAbove': calcLevel-level}});
             }
         });
 

@@ -293,6 +293,9 @@
             "level_up": "Level up",
             "dps": "Development points"
         },
+        "level_up": {
+            "ranks_reset": "New ranks reset"
+        },
         "chat":{
             "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})"
         }

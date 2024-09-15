@@ -313,6 +313,9 @@
       "level_up": "Subir nivel",
       "dps": "Puntos de desarrollo"
     },
+    "level_up": {
+      "ranks_reset": "Nuevos rangos reinicializados"
+    },
     "chat":{
       "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})"
     }
