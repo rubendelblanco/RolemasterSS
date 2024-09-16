@@ -408,18 +408,21 @@ export default class RMSSPlayerSheet extends ActorSheet {
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
           item.update({system: {new_ranks: { value: 1 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
           RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
               progression_value);
           break;
 
         case "1":
           item.update({system: {new_ranks: { value: 2 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
           RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
               progression_value);
           break;
 
         case "2":
           item.update({system: {new_ranks: { value: 3 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
           RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
               progression_value);
           break;
@@ -427,6 +430,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
         case "3":
           console.log("Skill NewRanks is 3 setting to 0");
           item.update({system: {new_ranks: { value: 0 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
           RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,-3,progression_value),
               progression_value);
           break;

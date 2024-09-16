@@ -312,6 +312,7 @@
         "max": 3,
         "max_default": 3
       },
+      "development_cost": "0",
       "rank_bonus": -15,
       "category_bonus": 0,
       "item_bonus": 0,

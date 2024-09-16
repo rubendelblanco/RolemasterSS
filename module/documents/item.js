@@ -6,7 +6,6 @@ export class RMSSItem extends Item {
     // the following, in order: data reset (to clear active effects),
     // prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
     // prepareDerivedData().
-    console.log(`rmss | item.js | prepareData for:  ${this.name}`);
     super.prepareData();
   }
 
@@ -62,14 +61,12 @@ export class RMSSItem extends Item {
 
   _prepareSkillCategoryData(itemData) {
     if (itemData.type !== "skill_category") return;
-    console.log(`rmss | item.js | Preparing Skill Category Data for: ${itemData.name}`);
     // Calculate Skill Category Total Bonus
     this.calculateSkillCategoryTotalBonus(itemData);
   }
 
   _prepareSkillData(itemData) {
     if (itemData.type !== "skill") return;
-    console.log(`rmss | item.js | Preparing Skill Data for: ${itemData.name}`);
     // Make modifications to data here. For example:
     // const systemData = itemData.system;
     // Calculate Skill Category Bonus
@@ -80,7 +77,6 @@ export class RMSSItem extends Item {
 
   calculateSkillCategoryTotalBonus(itemData) {
     if (this.type === "skill_category") {
-      console.log(`rmss | item.js | Calculating Skill Category Total Bonus for:  ${itemData.name}`);
       const systemData = itemData.system;
       itemData.system.total_bonus = Number(systemData.rank_bonus)
                                   + Number(systemData.stat_bonus)
@@ -93,7 +89,6 @@ export class RMSSItem extends Item {
   calculateSkillTotalBonus(itemData) {
     if (this.type === "skill") {
       const systemData = itemData.system;
-      console.log(`rmss | item.js | Calculating Skill Total Bonus for: ${itemData.name}`);
       itemData.system.total_bonus = Number(systemData.rank_bonus)
                                   + Number(systemData.category_bonus)
                                   + Number(systemData.item_bonus)
@@ -114,6 +109,7 @@ export class RMSSItem extends Item {
         if (item.type === "skill_category" && item._id === itemData.system.category) {
           console.log(`rmss | item.js | Calculating Skill Category bonus for skill: ${this.name}`);
           this.system.category_bonus = item.system.total_bonus;
+          this.system.development_cost = item.system.development_cost;
         }
       }
     }
