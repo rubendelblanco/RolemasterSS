@@ -631,3 +631,21 @@
 .info-tip {
   font-size: 12px ;
 }
+
+.level-up-enabled{
+  background-color: #04AA6D;
+  color: white!important;
+}
+
+.level-up-enabled:hover {
+  background-color: #46a049;
+}
+
+.end-level-up {
+  background-color: #f44336;
+  color: white;
+}
+
+.end-level-up:hover {
+  background-color: #da190b;
+}

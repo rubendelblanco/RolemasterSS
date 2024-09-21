@@ -12,7 +12,7 @@
         "ess_ment": "Esen/Ment",
         "arcane": "Arcano",
         "poison": "Veneno",
-        "disease": "Disease",
+        "disease": "Enfermedad",
         "fear": "Miedo"
       },
       "progression": "Progresión",
@@ -311,6 +311,7 @@
       "critical": "PE por crítico",
       "kill": "PE por \"pieza\"",
       "level_up": "Subir nivel",
+      "end_level_up": "Terminar de subir nivel",
       "dps": "Puntos de desarrollo"
     },
     "level_up": {

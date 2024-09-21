@@ -27,11 +27,6 @@ export class RMSSActor extends Actor {
   _prepareCharacterData(actorData) {
     if (actorData.type !== "character") return;
 
-    //initialize level up attribute
-    if (!actorData.system.levelUp) {
-      actorData.system.levelUp = {};
-    }
-
     // Calculate basic bonus
     this.calculateBasicBonuses(actorData);
 

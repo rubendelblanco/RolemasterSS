@@ -71,6 +71,7 @@ export default class ExperiencePointsCalculator {
             const skills = actor.items.filter(item => item.type === "skill");
             const categories = actor.items.filter(item => item.type === "skill_category");
             const message = game.i18n.localize("rmss.level_up.ranks_reset");
+            actor.levelUp.isLevelingUp = true;
             const skillUpdates = skills.map(skill => {
                 return {
                     _id: skill.id,
