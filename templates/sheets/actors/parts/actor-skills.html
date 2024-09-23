@@ -1,6 +1,7 @@
 <div class="skills-grid-container">
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.favorite" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.skill_name" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.dev_cost" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.ranks" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.new_ranks" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.rank_bonus" }}</div>
@@ -10,7 +11,6 @@
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.special_bonus" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.total_bonus" }}</div>
     <div class="skills-grid-heading">
-      <!--<a class="item-create" title="Create Skill" data-type="skill"><i class="fas fa-plus"></i>{{ localize "rmss.pc_sheet_skills.add_skill" }}</a>-->
     </div>
   {{#each playerskill as |skill id|}}
       {{#if skill.system.favorite}}
@@ -18,8 +18,15 @@
       {{else}}
         <div><a class="skill-favorite" data-item-id="{{skill._id}}"><i class="fa-regular fa-square"></i></a></div>
       {{/if}}
-      <!--<div><input type="checkbox" name="system.favorite" {{checked skill.system.favorite}}/></div>-->
-      <div>{{skill.name}}</div>
+    <div
+        {{#if (eq skill.system.designation "Occupational")}} style="color:blue;"
+        {{else if (eq skill.system.designation "Everyman")}} style="color:green;"
+        {{else if (eq skill.system.designation "Restricted")}} style="color:red;"
+        {{/if}}>
+        {{skill.name}}
+    </div>
+
+<div>{{skill.system.development_cost}}</div>
       <div>{{skill.system.ranks}}</div>
       <div>
         {{#switch skill.system.new_ranks.value}} 

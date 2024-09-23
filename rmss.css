@@ -111,7 +111,7 @@
 }
 .stat-name,
 .money-name {
-  width: 75px;
+  width: 100px;
   border: none;
   font-family: Signika, sans-serif;
   font-size: 12px;
@@ -185,7 +185,7 @@
 }
 .skills-grid-container {
   display: grid;
-  grid-template-columns: [favorite] 9% [skill-name] 11% [num-ranks] 9% [new-ranks] 9% [rank-bonus] 9% [category-bonus] 9% [item-bonus] 9% [special-bonus-1] 9% [special-bonus-2] 9% [total-bonus] 9% [controls] 8%;
+  grid-template-columns: [favorite] 8% [skill-name] 11% [dev-cost] 5% [num-ranks] 8% [new-ranks] 9% [rank-bonus] 8% [category-bonus] 8% [item-bonus] 8% [special-bonus-1] 9% [special-bonus-2] 9% [total-bonus] 9% [controls] 8%;
 }
 .skills-grid-container > div {
   font-family: Signika, sans-serif;
@@ -199,17 +199,18 @@
   flex-direction: column;
   justify-content: center;
 }
-.skills-grid-container > div:nth-child(22n+1),
-.skills-grid-container > div:nth-child(22n+2),
-.skills-grid-container > div:nth-child(22n+3),
-.skills-grid-container > div:nth-child(22n+4),
-.skills-grid-container > div:nth-child(22n+5),
-.skills-grid-container > div:nth-child(22n+6),
-.skills-grid-container > div:nth-child(22n+7),
-.skills-grid-container > div:nth-child(22n+8),
-.skills-grid-container > div:nth-child(22n+9),
-.skills-grid-container > div:nth-child(22n+10),
-.skills-grid-container > div:nth-child(22n+11) {
+.skills-grid-container > div:nth-child(24n+1),
+.skills-grid-container > div:nth-child(24n+2),
+.skills-grid-container > div:nth-child(24n+3),
+.skills-grid-container > div:nth-child(24n+4),
+.skills-grid-container > div:nth-child(24n+5),
+.skills-grid-container > div:nth-child(24n+6),
+.skills-grid-container > div:nth-child(24n+7),
+.skills-grid-container > div:nth-child(24n+8),
+.skills-grid-container > div:nth-child(24n+9),
+.skills-grid-container > div:nth-child(24n+10),
+.skills-grid-container > div:nth-child(24n+11),
+.skills-grid-container > div:nth-child(24n+12) {
   font-family: Signika, sans-serif;
   font-size: 12px;
   text-align: center;
@@ -610,4 +611,41 @@
 .human-body svg#right-foot {
   margin-left: 5.5px;
   top: 475px; /* Incrementado en 10px */
+}
+
+.exp-grid-container {
+  display: inline-flex;
+  justify-content: space-between;
+  margin-right: 1.5em;
+  margin-bottom: 1em;
+}
+
+.exp-margin-right {
+  margin-right: 2em;
+}
+
+.exp-block {
+  display:block;
+}
+
+.info-tip {
+  font-size: 12px ;
+}
+
+.level-up-enabled{
+  background-color: #04AA6D;
+  color: white!important;
+}
+
+.level-up-enabled:hover {
+  background-color: #46a049;
+}
+
+.end-level-up {
+  background-color: #f44336;
+  color: white;
+}
+
+.end-level-up:hover {
+  background-color: #da190b;
 }

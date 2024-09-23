@@ -12,7 +12,7 @@
         "ess_ment": "Esen/Ment",
         "arcane": "Arcano",
         "poison": "Veneno",
-        "disease": "Disease",
+        "disease": "Enfermedad",
         "fear": "Miedo"
       },
       "progression": "Progresión",
@@ -304,7 +304,18 @@
       "spell_level": "Nivel de hechizo",
       "caster_level": "Nivel de lanzador",
       "opponent_level": "Nivel de oponente",
-      "critical_level": "Nivel de crítico"
+      "critical_level": "Nivel de crítico",
+      "killer_level": "Nivel del personaje que se cobra la pieza",
+      "spell": "PE por hechizo",
+      "maneuver": "PE por maniobra",
+      "critical": "PE por crítico",
+      "kill": "PE por \"pieza\"",
+      "level_up": "Subir nivel",
+      "end_level_up": "Terminar de subir nivel",
+      "dps": "Puntos de desarrollo"
+    },
+    "level_up": {
+      "ranks_reset": "Nuevos rangos reinicializados"
     },
     "chat":{
       "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})"

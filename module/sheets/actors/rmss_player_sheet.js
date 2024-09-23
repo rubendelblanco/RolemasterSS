@@ -1,5 +1,5 @@
 import RankCalculator from '../skills/rmss_rank_calculator.js';
-
+import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
 
 export default class RMSSPlayerSheet extends ActorSheet {
 
@@ -283,6 +283,8 @@ export default class RMSSPlayerSheet extends ActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
+    ExperiencePointsCalculator.loadListeners(html, this.actor);
+
     //Calculate potential stats (only when you are level 0)
     html.find(".stat-pot").click(ev => {
       const clickedElement = ev.currentTarget;
@@ -392,6 +394,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
     // Change New Ranks value when clicked in player sheet. From 0-3.
     html.find(".skill-newrank").click(ev => {
+      if (!this.actor.system.levelUp.isLevelingUp) return;
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
       const category = this.actor.items.get(ev.currentTarget.getAttribute("data-category-id"));
       const progression = category.system.skill_progression;
@@ -405,22 +408,22 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
-          console.log("Skill NewRanks is 0 setting to 1");
           item.update({system: {new_ranks: { value: 1 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
           RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
               progression_value);
           break;
 
         case "1":
-          console.log("Skill NewRanks is 1 setting to 2");
           item.update({system: {new_ranks: { value: 2 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
           RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
               progression_value);
           break;
 
         case "2":
-          console.log("Skill NewRanks is 2 setting to 3");
           item.update({system: {new_ranks: { value: 3 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
           RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
               progression_value);
           break;
@@ -428,6 +431,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
         case "3":
           console.log("Skill NewRanks is 3 setting to 0");
           item.update({system: {new_ranks: { value: 0 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
           RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,-3,progression_value),
               progression_value);
           break;
@@ -436,12 +440,14 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
     // Change New Ranks value when clicked in player sheet. From 0-3.
     html.find(".skillcategory-newrank").click(ev => {
+      if (!this.actor.system.levelUp.isLevelingUp) return;
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
       const progression_value = "-15*2*1*0.5*0" //standard progression value
 
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
           item.update({system: {new_ranks: { value: 1 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
 
           if (item.system.progression.toLowerCase()==="standard") {
             RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
@@ -451,6 +457,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
         case "1":
           item.update({system: {new_ranks: { value: 2 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
 
           if (item.system.progression.toLowerCase()==="standard") {
             RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
@@ -460,6 +467,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
         case "2":
           item.update({system: {new_ranks: { value: 3 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
 
           if (item.system.progression.toLowerCase()==="standard") {
             RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
@@ -469,6 +477,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
         case "3":
           item.update({system: {new_ranks: { value: 0 }}});
+          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
 
           if (item.system.progression.toLowerCase()==="standard") {
             RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,-3,progression_value),progression_value);

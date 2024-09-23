@@ -176,6 +176,15 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
     // Catch the event when the user clicks one of the New Ranks Checkboxes in a Skill Category.
     // It will increment by one or wrap back to zero on a value of three
     html.find(".skillcategorysheet-newrank").click(ev => {
+      if (!this.item.parent) {
+        return;
+      }
+
+      if (this.item.parent) {
+        let actor = this.item.parent;
+        if (!actor.system.levelUp.isLevelingUp) return;
+      }
+
       var selected_cat = html.find('select[name="system.progression"]').val();
 
       if (selected_cat !== "Standard") {

@@ -113,6 +113,14 @@
           "other": ""
         }
       },
+      "levelUp": {
+        "levelUp": {
+          "levelAbove": 0,
+          "developmentPoints": 0,
+          "isLevelingUp": false,
+          "isLevelZero": true
+        }
+      },
       "stats": {
         "stats": {
           "agility": {
@@ -221,10 +229,10 @@
       }
     },
     "character": {
-      "templates": ["background", "stats", "resistance_rolls", "armor_info", "fixed_info", "race_stat_fixed_info", "role_traits", "money", "description"],
+      "templates": ["background", "stats", "resistance_rolls", "levelUp", "armor_info", "fixed_info", "race_stat_fixed_info", "role_traits", "money", "description"],
       "attributes": {
         "level": {
-          "value": 1
+          "value": 0
         },
         "hits": {
           "current": 1,
@@ -312,6 +320,7 @@
         "max": 3,
         "max_default": 3
       },
+      "development_cost": "0",
       "rank_bonus": -15,
       "category_bonus": 0,
       "item_bonus": 0,

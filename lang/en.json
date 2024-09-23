@@ -2,7 +2,27 @@
     "rmss": {
         "race": {
             "stat_bonuses": "Stat Bonuses",
-            "rr_mods": "RR Mods"
+            "rr_mods": "RR Mods",
+            "resistances": {
+                "channeling": "Channeling",
+                "essence": "Essence",
+                "mentalism": "Mentalism",
+                "chann_ess": "Channel/Essen",
+                "chann_ment": "Channel/Ment",
+                "ess_ment": "Essen/Ment",
+                "arcane": "Arcane",
+                "poison": "Poison",
+                "disease": "Disease",
+                "fear": "Fear"
+            },
+            "progression": "Progression",
+            "dev_progression": {
+                "body_dev": "Body developmen",
+                "pp_chan": "PP Channeling",
+                "pp_ess": "PP Essence",
+                "pp_ment": "PP Mentalism",
+                "pp_arcane": "PP Arcane"
+            }
         },
         "player_character": {
             "name": "Name:",
@@ -284,7 +304,18 @@
             "spell_level": "Spell level",
             "caster_level": "Caster level",
             "opponent_level": "Opponent level",
-            "critical_level": "Critical level"
+            "critical_level": "Critical level",
+            "killer_level": "Level of the Character Delivering the “Killing” Blow",
+            "spell": "Spell Eps",
+            "maneuver": "Maneuver EPs",
+            "critical": "Critical EPs",
+            "kill": "Kill EPs",
+            "level_up": "Level up",
+            "end_level_up": "End level up",
+            "dps": "Development points"
+        },
+        "level_up": {
+            "ranks_reset": "New ranks reset"
         },
         "chat":{
             "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})"
