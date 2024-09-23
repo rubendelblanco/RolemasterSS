@@ -67,6 +67,15 @@ export default class RMSSSkillSheet extends ItemSheet {
     // Catch the event when the user clicks one of the New Ranks Checkboxes in a Skill.
     // It will increment by one or wrap back to zero on a value of three
     html.find(".skillsheet-newrank").click(ev => {
+      if (!this.item.parent) {
+        return;
+      }
+
+      if (this.item.parent) {
+        let actor = this.item.parent;
+        if (!actor.system.levelUp.isLevelingUp) return;
+      }
+
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
           this.object.update({system: {new_ranks: { value: 1 }}});

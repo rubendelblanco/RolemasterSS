@@ -394,6 +394,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
     // Change New Ranks value when clicked in player sheet. From 0-3.
     html.find(".skill-newrank").click(ev => {
+      if (!this.actor.system.levelUp.isLevelingUp) return;
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
       const category = this.actor.items.get(ev.currentTarget.getAttribute("data-category-id"));
       const progression = category.system.skill_progression;
@@ -439,6 +440,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
     // Change New Ranks value when clicked in player sheet. From 0-3.
     html.find(".skillcategory-newrank").click(ev => {
+      if (!this.actor.system.levelUp.isLevelingUp) return;
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
       const progression_value = "-15*2*1*0.5*0" //standard progression value
 
