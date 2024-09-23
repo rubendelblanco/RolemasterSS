@@ -7,7 +7,11 @@
         <div>
             Skill Category
             <select name="system.category" class="app-stat-selector" value="{{system.category}}" itemid="{{ item._id }}">
-                {{selectOptions owned_skillcats selected=selected_skillcat }}
+                {{#each owned_skillcats}}
+                <option value="{{this.[0]}}" {{#if (eq ../system.category this.[0])}}selected{{/if}}>
+                {{this.[1]}}
+                </option>
+                {{/each}}
             </select>
         </div>
         <div>

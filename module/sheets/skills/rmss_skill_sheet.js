@@ -105,8 +105,14 @@ export default class RMSSSkillSheet extends ItemSheet {
     }
     else
     {
+      if (!this.item.parent){
+        return [];
+      }
       const skillCategories = this.item.parent.getOwnedItemsByType("skill_category");
-      return (skillCategories);
+      const sortedSkillCategories = Object.entries(skillCategories)
+          .sort((a, b) => a[1].localeCompare(b[1]));
+      return sortedSkillCategories;
+      //return skillCategories;
     }
   }
 

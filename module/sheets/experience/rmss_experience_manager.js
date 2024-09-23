@@ -1,4 +1,5 @@
 import levelUpManager from "./rmss_level_up_manager.js";
+import LevelUpManager from "./rmss_level_up_manager.js";
 export default class ExperiencePointsCalculator {
     // JSON object storing experience points for each maneuver type
     static data = {
@@ -71,7 +72,7 @@ export default class ExperiencePointsCalculator {
             const skills = actor.items.filter(item => item.type === "skill");
             const categories = actor.items.filter(item => item.type === "skill_category");
             const message = game.i18n.localize("rmss.level_up.ranks_reset");
-            actor.levelUp.isLevelingUp = true;
+            await actor.update({system:{'levelUp.isLevelingUp': true}})
             const skillUpdates = skills.map(skill => {
                 return {
                     _id: skill.id,
@@ -99,8 +100,20 @@ export default class ExperiencePointsCalculator {
                 </div>`
             });
 
-            levelUpManager.calculateStatGainRolls(actor);
+            if (actor.system.attributes.experience_points.value >=20000){ //just don't do this when we are leveling up from 0 to 1
+                levelUpManager.calculateStatGainRolls(actor);
+            }
+            else {
+                actor.levelUp.isLevelZero = true; //first level. From 0 to 1.
+                levelUpManager.calculateDevelopmentPoints(actor);
+            }
+
         })
+
+        html.find("#end-level-up").click(ev => {
+            LevelUpManager.endLevelUp(actor);
+        });
+
         //Check character level
         html.find("#experience-points").change(ev => {
             if (!actor) return;

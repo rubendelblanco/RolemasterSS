@@ -7,11 +7,11 @@
         </div>
         <div class="exp-margin-right">
             <button type="button" title="level up"
-                    {{#if (or (eq actor.system.levelUp.levelAbove 0) actor.system.levelUp.isLevelingUp)}}disabled {{else}} class="level-up-enabled" {{/if}}
+                    {{#if (or (eq actor.system.levelUp.levelAbove 0) (and (not actor.system.levelUp.levelAbove 0 (not actor.system.levelUp.isLevelingUp))))}}disabled {{else}} class="level-up-enabled" {{/if}}
             id="level-up">{{ localize "rmss.experience.level_up" }}</button>
         </div>
         <div class="exp-margin-right">
-            {{#if actor.system.levelUp.isLevelingUp}}
+            {{#if (or actor.system.levelUp.isLevelingUp actor.system.levelUp.isLevelZero)}}
             <button type="button" class="end-level-up" title="level up" id="end-level-up">{{ localize "rmss.experience.end_level_up" }}</button>
             {{/if}}
         </div>

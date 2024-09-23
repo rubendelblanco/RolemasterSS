@@ -117,7 +117,8 @@
         "levelUp": {
           "levelAbove": 0,
           "developmentPoints": 0,
-          "isLevelingUp": false
+          "isLevelingUp": false,
+          "isLevelZero": true
         }
       },
       "stats": {

@@ -90,4 +90,19 @@ export default class LevelUpManager {
                 </div>`
         });
     }
+
+    static endLevelUp(actor) {
+        const currentLevel = parseInt(actor.system.attributes.level.value);
+        const currentLevelAbove = actor.system.levelUp.levelAbove -=1;
+        actor.update({
+            system: {
+                'levelUp.levelAbove': currentLevelAbove,
+                'attributes.level.value': currentLevel + 1,
+                'levelUp.isLevelingUp': false,
+                'levelUp.isLevelZero': false,
+                'levelUp.developmentPoints': 0
+            }
+        });
+
+    }
 }
