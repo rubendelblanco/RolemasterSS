@@ -1,5 +1,8 @@
 {
     "rmss": {
+        "initiative": {
+            "roll": "Tirando iniciativa"
+        },
         "race": {
             "stat_bonuses": "Stat Bonuses",
             "rr_mods": "RR Mods",
