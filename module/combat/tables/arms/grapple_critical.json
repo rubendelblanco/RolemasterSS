@@ -1,0 +1,155 @@
+[
+    {
+        "": "",
+        "A": "Foe escapes like the wind.",
+        "B": "Your attack falls short.",
+        "D": "A little elbow before you lose your grip. +2H",
+        "E": "You grip strand of foe's hair. It breaks. +3H",
+        "Result": "01 05",
+        "c": "Your fingernails deal a vicious wound. +1 H"
+    },
+    {
+        "": "",
+        "A": "",
+        "B": "",
+        "D": "",
+        "E": "",
+        "Result": "",
+        "c": ""
+    },
+    {
+        "": "",
+        "A": "Grab foe's arm. Oops. Try again. +0 H",
+        "B": "Your grip fails.",
+        "D": "This was not a special moment. +4H",
+        "E": "You have initiative next round. +5H",
+        "Result": 45571,
+        "c": "Foe grabs, misses. You have initiative. +3H"
+    },
+    {
+        "": "",
+        "A": "You impede foe's combat stance. You have the initiative.",
+        "B": "Foe collides with your attack before you get a grip. Small bruise.",
+        "D": "Grab foe's head. If foe has helm, you twist it. Otherwise, you gain initiative.",
+        "E": "Lame attack, but foe is concerned. He moves back.",
+        "Result": 42309,
+        "c": "You cannot get a good grip, foe hurts himself evading. You have initiative."
+    },
+    {
+        "": "",
+        "A": "+0 H",
+        "B": "+2H",
+        "D": "with helm:",
+        "E": "+6H _ x",
+        "Result": "",
+        "c": "+4H"
+    },
+    {
+        "": "",
+        "A": "Foe breaks free of a weak grip. You have the initiative next round.",
+        "B": "Grab foe and give him a weak punch. He thinks you are dangerous.",
+        "D": "Push foe, unbalancing him. You have initiative for 2 rounds.",
+        "E": "Strong passing blow near foe's head. His violent evasion is not productive.",
+        "Result": "16-20",
+        "c": "Foe recovers, continues his defense by sweeping his weapon at your feet."
+    },
+    {
+        "": "",
+        "A": "+0 H",
+        "B": "",
+        "D": "",
+        "E": "+3H",
+        "Result": "",
+        "c": ""
+    },
+    {
+        "": "",
+        "A": "Almost get a grip on foe's arm. He avoids his mistake. You gain the initiative next round.",
+        "B": "You grip foes shield arm. Foe's strike toward your head makes you let go of him. He keeps a distance.",
+        "D": "Hard, but poorly placed. Foe bounces back out of your grip. He looks like he does not recognize you.",
+        "E": "Uncoordinated attack and a little luck, allows foe to escape your grasp. You have initiative for 2 rounds.",
+        "Result": "21-35",
+        "c": "Collide with foe. You push him away and he stumbles back 5 feet. It went better than you could have hoped."
+    },
+    {
+        "": "",
+        "A": "+3 H",
+        "B": "X(-20)",
+        "D": "OH",
+        "E": "",
+        "Result": "",
+        "c": "+2 H"
+    },
+    {
+        "": "",
+        "A": "Grip to lower back. Foe wards off your attack and prepares for your next move.",
+        "B": "Grip fails, but bash does not. You unbalance your foe. You have the initiative.",
+        "D": "Strike to foe's shield arm. If foe has no shield, you immobilize arm for 6 rounds.",
+        "E": "Attack to upper leg. Foe spins to break free. He is disoriented badly. It takes a moment for him to see you.",
+        "Result": "36-45",
+        "c": "Your attack is almost comical as you seek any little grip you can get. All the tiny tugs finally have an effect on foe."
+    },
+    {
+        "": "",
+        "A": "",
+        "B": "+4H",
+        "D": "with shield: +3H",
+        "E": "St*",
+        "Result": "",
+        "c": ""
+    },
+    {
+        "": "",
+        "A": "Hinder foe's weapon arm. Foe violently frees himself and takes a defensive stance",
+        "B": "Pull foe over, he breaks free. He is",
+        "D": "Painful grip on foe's hand. You do not break anything, but he thinks so. You have initiative for 4 rounds",
+        "E": "You and foe collide. He breaks your grip and stumbles away. You bounce back and",
+        "Result": "46-50",
+        "c": "Grab foe's waist. Your grip appeared to be strong, but now it is losing its advantage. Your foe is working free"
+    },
+    {
+        "": "",
+        "A": "",
+        "B": "having trouble recovering. Your heart is",
+        "D": "",
+        "E": "",
+        "Result": "",
+        "c": ""
+    },
+    {
+        "": "",
+        "A": "defensive stance.",
+        "B": "broken.",
+        "D": "have initiative for 4 rounds.",
+        "E": "miss a good opportunity.",
+        "Result": "",
+        "c": "advantage. Your foe is working free."
+    },
+    {
+        "": "",
+        "A": "",
+        "B": "5H",
+        "D": "3(-30)",
+        "E": "2<28",
+        "Result": "",
+        "c": "3(-25)"
+    },
+    {
+        "": "",
+        "A": "You get in close and grab at foe's hair. He is daunted and steps back to escape your reach.",
+        "B": "Grip to foe's garments. They rip and you lose a hopeful hold. Foe is carried back by his break-away.",
+        "D": "Catch foe's waist garments and pull him in. He is in trouble. He seeks to strike your hand and break your hold.",
+        "E": "Grip to shield arm. Foe drops his shield as he wails in pain. You try to stay serous.",
+        "Result": "51-55",
+        "c": "Grapple foe's leg and try to lift it up off the ground. Foe slips away, but is off balance while recovering."
+    },
+    {
+        "": "",
+        "A": "%(-20)",
+        "B": "+7H",
+        "D": "3(-50)",
+        "E": "+5H -200\n",
+        "Result": "",
+        "c": -4.2
+    }
+]
