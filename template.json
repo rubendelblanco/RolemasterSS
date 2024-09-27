@@ -2,6 +2,10 @@
   "Actor": {
     "types": ["character", "npc"],
     "templates": {
+      "initiative": {
+        "value": 0,
+        "mod": 0
+      },
       "role_traits": {
         "role_traits": {
           "appearance": 0,

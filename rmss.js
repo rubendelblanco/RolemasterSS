@@ -5,6 +5,10 @@ import { rmss } from "./module/config.js";
 import { RMSSActor } from "./module/documents/actor.js";
 import { RMSSItem } from "./module/documents/item.js";
 
+//Import combat classes
+import {CombatStartManager, RMSSCombat} from "./module/combat/rmss_combat.js";
+import { RMSSCombatant } from "./module/combat/rmss_combatant.js";
+
 // Import Sheets
 import RMSSItemSheet from "./module/sheets/items/rmss_item_sheet.js";
 import RMSSArmorSheet from "./module/sheets/items/rmss_armor_sheet.js";
@@ -16,7 +20,6 @@ import RMSSSkillCategorySheet from "./module/sheets/skills/rmss_skill_category_s
 import RMSSSkillSheet from "./module/sheets/skills/rmss_skill_sheet.js";
 import RMSSRaceSheet from "./module/sheets/items/rmss_race_sheet.js";
 import RMSSProfessionSheet from "./module/sheets/items/rmss_profession_sheet.js";
-
 import RMSSPlayerSheet from "./module/sheets/actors/rmss_player_sheet.js";
 import RMSSActorSheetConfig from "./module/sheets/actors/rmss_player_sheet_config.js";
 
@@ -71,6 +74,14 @@ Hooks.once("init", function() {
   // Make Config Data Available
   CONFIG.rmss = rmss;
 
+  //combat tracker
+  CONFIG.Combat.initiative = {
+    formula: "2d10+ @stats.quickness.stat_bonus",
+    decimals: 2
+  };
+  CONFIG.Combat.documentClass = RMSSCombat;
+  CONFIG.Combatant.documentClass = RMSSCombatant;
+
   // Unregister Default Sheets
   console.log("rmss | Unregistering core sheets");
 
@@ -118,4 +129,7 @@ Hooks.once("init", function() {
       return options.fn(this);
     }
   });
+
+  //Combat hooks
+  const combatSoundManager = new CombatStartManager();
 });
