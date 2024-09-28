@@ -304,7 +304,10 @@
       "at": 0,
       "breakage_range": "",
       "strength": "",
-      "fumble_range": ""
+      "fumble_range": "",
+      "attack_table": "",
+      "critical_type": "",
+      "offensive_skill": ""
     },
     "herb_or_poison": {
       "templates": ["base"],
@@ -332,7 +335,8 @@
       "special_bonus_2": 0,
       "total_bonus": 0,
       "favorite": false,
-      "designation": "None"
+      "designation": "None",
+      "offensive_skill": "none"
     },
     "skill_category": {
       "templates": ["base"],

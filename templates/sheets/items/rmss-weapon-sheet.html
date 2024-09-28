@@ -5,6 +5,18 @@
     </header>
     <div class="sheet-content">
         <div>
+            <select name="system.attack_table" class="app-stat-selector" value="{{system.attack_table}}" itemid="{{ item._id }}">
+                {{selectOptions armsTables selected=system.attack_table}}
+            </select>
+            <select name="system.offensive_skill" class="app-stat-selector" itemid="{{ item._id }}">
+                {{#each offensiveSkills}}
+                <option value="{{this.id}}" {{#if (eq this.id ../system.offensive_skill)}}selected{{/if}}>
+                {{this.name}}
+                </option>
+                {{/each}}
+            </select>
+        </div>
+        <div>
             <table>
                 <tr>
                     <th>{{localize "rmss.weapon.equipped"}}</th>

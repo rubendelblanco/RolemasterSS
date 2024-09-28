@@ -284,7 +284,10 @@
       "special_bonus_2": "Bonificación especial 2:",
       "total_bonus": "Bonificación total:",
       "description": "Descripción:",
-      "progression": "Progresión habilidad"
+      "progression": "Progresión habilidad",
+      "designation": "Designación",
+      "category": "Categoría",
+      "offensive": "¿Ofensiva?"
     },
     "language": {
       "spoken": "Hablado",

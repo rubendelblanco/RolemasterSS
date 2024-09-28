@@ -284,7 +284,11 @@
             "total_bonus": "Total Bonus:",
             "description": "Description:",
             "progression": "Skill progression",
-            "category_progression": "Category progression"
+            "category_progression": "Category progression",
+            "designation": "Designation",
+            "category": "Category",
+            "offensive": "Offensive?"
+
         },
         "language": {
             "spoken": "Spoken",

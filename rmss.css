@@ -649,3 +649,7 @@
 .end-level-up:hover {
   background-color: #da190b;
 }
+
+table.weapons tr td {
+  text-align: center;
+}

@@ -90,3 +90,18 @@ rmss.skill_progression = {
     progression: "-30*5*3*1.5*0.5"
   }
 }
+
+rmss.paths = {
+  arms_tables: "systems/rmss/module/combat/tables/arms/"
+}
+
+rmss.attack = {
+  types : {
+    none: "None",
+    area: "Area",
+    base: "Base",
+    spell: "Directed spell",
+    melee: "Melee",
+    missile: "Missile",
+  }
+}

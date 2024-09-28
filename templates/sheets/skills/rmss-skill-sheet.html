@@ -5,7 +5,7 @@
     </header>
     <div class="sheet-content">
         <div>
-            Skill Category
+            {{localize "rmss.skill.category"}}
             <select name="system.category" class="app-stat-selector" value="{{system.category}}" itemid="{{ item._id }}">
                 {{#each owned_skillcats}}
                 <option value="{{this.[0]}}" {{#if (eq ../system.category this.[0])}}selected{{/if}}>
@@ -15,9 +15,13 @@
             </select>
         </div>
         <div>
-            Skill Designation
+            {{localize "rmss.skill.designation"}}
             <select name="system.designation" class="app-stat-selector" value="{{system.designation}}" itemid="{{ item._id }}">
                 {{selectOptions designations selected=system.designation}}
+            </select>
+            {{localize "rmss.skill.offensive"}}
+            <select name="system.offensive_skill" class="app-stat-selector" value="{{system.offensive_skill}}" itemid="{{ item._id }}">
+                {{selectOptions config.attack.types selected=system.offensive_skill}}
             </select>
         </div>
         <div>
