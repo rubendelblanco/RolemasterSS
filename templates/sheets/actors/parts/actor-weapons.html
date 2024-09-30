@@ -19,7 +19,7 @@
     <tbody>
     {{#each weapons as |weapon id|}}
     <tr draggable="true">
-        <td>{{weapon.name}} <i class="fa-solid fa-sword"></i></td>
+        <td class="clickable offensive-skill" data-item-id="{{weapon._id}}">{{weapon.name}} <i class="fa-solid fa-sword"></i></td>
         <td>
             {{#if weapon.system.equipped}}
             <a class="equippable" data-item-id="{{weapon._id}}">

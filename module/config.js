@@ -92,7 +92,10 @@ rmss.skill_progression = {
 }
 
 rmss.paths = {
-  arms_tables: "systems/rmss/module/combat/tables/arms/"
+  arms_tables: "systems/rmss/module/combat/tables/arms/",
+  assets_folder: "systems/rmss/assets/",
+  images_folder: "systems/rmss/assets/images/",
+  sounds_folder: "systems/rmss/assets/sounds/"
 }
 
 rmss.attack = {

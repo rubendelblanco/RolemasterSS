@@ -653,3 +653,7 @@
 table.weapons tr td {
   text-align: center;
 }
+
+.clickable {
+  cursor: pointer;
+}
