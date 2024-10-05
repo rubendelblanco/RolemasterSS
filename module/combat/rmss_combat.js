@@ -1,6 +1,8 @@
 export class RMSSCombat extends Combat {
     constructor(data, context) {
         super(data, context);
+        console.log(data);
+        console.log(context);
     }
 
     async rollInitiative(ids, {formula=null, updateTurn=true}={}) {
@@ -8,8 +10,8 @@ export class RMSSCombat extends Combat {
         return super.rollInitiative(ids, {formula, updateTurn});
     }
 
-    // Function to get the selected attacker and the target token based on toggle target state
-    static getAttackerAndTarget() {
+    // Function to get the selected target token based on toggle target state
+    static getTargets() {
         // Get the currently selected tokens
         const selectedTokens = canvas.tokens.controlled;
 
@@ -18,9 +20,6 @@ export class RMSSCombat extends Combat {
             ui.notifications.warn("Please select exactly one token as the attacker.");
             return;
         }
-
-        // Get the attacker token
-        const attacker = selectedTokens[0];
 
         // Find the target token that has the target state toggled on
         const targets = Array.from(game.user.targets);
@@ -31,10 +30,9 @@ export class RMSSCombat extends Combat {
             return;
         }
 
-        console.log("Attacker Token:", attacker);
         console.log("Target Token:", targets);
 
-        return { attacker, targets };
+        return targets;
     }
 
 }

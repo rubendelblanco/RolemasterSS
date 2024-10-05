@@ -287,31 +287,16 @@ export default class RMSSPlayerSheet extends ActorSheet {
     ExperiencePointsCalculator.loadListeners(html, this.actor);
 
     html.find(".offensive-skill").click(async ev => {
-      const tokens = RMSSCombat.getAttackerAndTarget();
+      const a = new RMSSCombat();
+      const tokens = RMSSCombat.getTargets();
       const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
       const ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
-      const attackTableName = weapon.system.attack_table;
-      const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
+      const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
       let roll = new Roll(`(1d100x>95)+${ob}`);
       // Roll the dice
-      await roll.evaluate();
-      roll.toMessage();
+      await roll.toMessage(undefined,{create:true});
       let result = roll.total;
       result = (result > 150) ? 150 : result;
-
-    /*  attackTable.forEach((element) => {
-        if (typeof element.Result === "string") {
-          console.log("Element");
-          console.log(element.Result);
-          const splitRange = element.Result.split("-");
-          if (result >= splitRange[0] && result <= splitRange[1]) {
-            console.log(element["1"]);
-          }
-        }
-        else if (element.Result === result) {
-          console.log(element["1"]);
-        }
-      });*/
 
       for (const element of attackTable) {
         if (typeof element.Result === "string") {
@@ -319,23 +304,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
           if (result >= splitRange[0] && result <= splitRange[1]) {
             const damage = element["1"];
             console.log(element["1"]);
-            async function sendMessageToChat() {
-              const messageContent = `Result: ${damage}`;
-              const speaker = "Game Master";
 
-              await ChatMessage.create({
-                content: messageContent,
-                speaker: speaker
-              });
-            }
-            sendMessageToChat();
-            break;
-          }
-        }
-        else if (element.Result === result) {
-          const damage = element["1"];
-          console.log(element["1"]);
-          async function sendMessageToChat() {
             const messageContent = `Result: <b>${damage}</b>`;
             const speaker = "Game Master";
 
@@ -343,12 +312,28 @@ export default class RMSSPlayerSheet extends ActorSheet {
               content: messageContent,
               speaker: speaker
             });
+
+            //await sendMessageToChat();
+            break;
           }
-          sendMessageToChat();
+        }
+        else if (element.Result === result) {
+          const damage = element["1"];
+          console.log(element["1"]);
+          const messageContent = `Result: <b>${damage}</b>`;
+          const speaker = "Game Master";
+
+          await ChatMessage.create({
+            content: messageContent,
+            speaker: speaker
+          });
+
+          await RMSSTableManager.manageArmTableResult(damage);
+
+          //await sendMessageToChat();
           break;
         }
       }
-
 
       if (tokens) {
         console.log(tokens);
