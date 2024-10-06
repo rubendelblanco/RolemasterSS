@@ -1,0 +1,37 @@
+
+  <form id="rmss-attack-melee-confirmation">
+    <h3><img src="{{actor.img}}" alt="{{actor.name}}" width="50" height="50"> {{ localize "rmss.combat.attacker" }}</h3>
+
+    <div class="form-group">
+      {{ localize "rmss.combat.ob" }} <input class="calculable" type="number" id="weapon.system.total_bonus" name="ob" value="{{ob}}">
+      {{ localize "rmss.combat.action_points" }} <input type="number" id="action-points" name="action-points" value="4">
+      <input type="hidden" class="calculable" id="action-points-penalty" name="action-points-penalty" value="0">
+      {{ localize "rmss.combat.hits_taken" }} <input class="calculable is-negative" type="number" id="hits-taken" name="hits-taken" value="{{hitsTaken}}">
+    </div>
+    <div class="form-group">
+      <label for="attacker-parry">{{ localize "rmss.combat.parry" }}</label>
+      <input class="calculable is-negative" type="number" id="attacker-parry" name="attacker-parry" value="0">
+      <label for="surprised">{{ localize "rmss.combat.surprised" }}</label>
+      <input type="checkbox" class="calculable" id="surprised" name="surprised" value="20"/>
+      <label for="facing">{{ localize "rmss.combat.facing" }}</label>
+      <select class="calculable" id="facing">
+        <option selected>{{ localize "rmss.combat.front" }}</option>
+        <option value="15">{{ localize "rmss.combat.flank" }} (+15)</option>
+        <option value="25">{{ localize "rmss.combat.rear_flank" }} (+25)</option>
+        <option value="35">{{ localize "rmss.combat.rear" }} (+35)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="target-status">{{ localize "rmss.combat.target_status" }}</label>
+      <select class="calculable" id="target-status">
+        <option selected>{{ localize "rmss.combat.normal" }}</option>
+        <option value="20">{{ localize "rmss.combat.stunned" }} (+20)</option>
+        <option value="30">{{ localize "rmss.combat.downed" }} (+30)</option>
+        <option value="50">{{ localize "rmss.combat.prone" }} (+50)</option>
+      </select>
+      <label for="attack-modifier">{{ localize "rmss.combat.misc" }} (+/-)</label>
+      <input type="number" class="calculable" id="attack-modifier" name="attack-modifier" value="0">
+      <label for="attack-total">{{ localize "rmss.combat.total" }}</label>
+      <input disabled type="number" id="attack-total" name="attack-total">
+    </div>
+  </form>

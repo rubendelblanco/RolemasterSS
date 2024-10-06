@@ -1,7 +1,7 @@
 import RankCalculator from '../skills/rmss_rank_calculator.js';
 import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
+import {RMSSWeaponSkillManager} from "../../combat/rmss_weapon_skill_manager.js";
 import {RMSSCombat} from "../../combat/rmss_combat.js";
-import RMSSTableManager from "../../combat/rmss_table_manager.js";
 
 export default class RMSSPlayerSheet extends ActorSheet {
 
@@ -19,10 +19,8 @@ export default class RMSSPlayerSheet extends ActorSheet {
   // Make the data available to the sheet template
   async getData() {
     const context = super.getData();
-
     // Use a safe clone of the actor data for further operations.
     const actorData = this.actor.toObject(false);
-
     let enrichedDescription = await TextEditor.enrichHTML(this.actor.system.description, {async: true});
 
     // Add the actor's data to context.data for easier access, as well as flags.
@@ -287,7 +285,17 @@ export default class RMSSPlayerSheet extends ActorSheet {
     ExperiencePointsCalculator.loadListeners(html, this.actor);
 
     html.find(".offensive-skill").click(async ev => {
-      const a = new RMSSCombat();
+      const enemy = RMSSCombat.getTargets()[0];
+      const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
+      const ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
+      let roll = new Roll(`(1d100x>95)`);
+      await roll.toMessage(undefined,{create:true});
+      RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy, weapon, ob);
+      //RMSSWeaponSkillManager.attackMessagePopup();
+      //await socket.executeAsGM("confirmWeaponAttack");
+
+
+     /* const a = new RMSSCombat();
       const tokens = RMSSCombat.getTargets();
       const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
       const ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
@@ -338,7 +346,7 @@ export default class RMSSPlayerSheet extends ActorSheet {
       if (tokens) {
         console.log(tokens);
         console.log(weapon);
-      }
+      }*/
     });
 
     //Calculate potential stats (only when you are level 0)

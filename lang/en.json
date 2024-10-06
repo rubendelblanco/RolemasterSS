@@ -321,6 +321,27 @@
             "end_level_up": "End level up",
             "dps": "Development points"
         },
+        "combat": {
+            "ob": "Offensive bonus",
+            "action_points": "Action points",
+            "hits_taken": "Hits taken",
+            "surprised": "Surprised",
+            "facing": "Facing",
+            "front": "Front",
+            "rear": "Rear",
+            "flank": "Flank",
+            "rear_flank": "Rear flank",
+            "parry": "Parry",
+            "misc": "Misc.",
+            "target_status": "Target status",
+            "normal": "Normal",
+            "stunned": "Stunned",
+            "downed": "Downed",
+            "prone": "Prone",
+            "total": "Total",
+            "attacker": "Attacker",
+            "defender": "Defender"
+        },
         "level_up": {
             "ranks_reset": "New ranks reset"
         },

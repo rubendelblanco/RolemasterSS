@@ -657,3 +657,7 @@ table.weapons tr td {
 .clickable {
   cursor: pointer;
 }
+
+.popup.wide {
+  min-width: 900px;
+}

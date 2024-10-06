@@ -320,6 +320,27 @@
       "end_level_up": "Terminar de subir nivel",
       "dps": "Puntos de desarrollo"
     },
+    "combat": {
+      "ob": "Bonificación ofensiva",
+      "action_points": "Puntos acción",
+      "hits_taken": "PV perdidos",
+      "surprised": "Sorprendido",
+      "facing": "Encaramiento",
+      "front": "Frente",
+      "rear": "Espalda",
+      "flank": "Flanco",
+      "rear_flank": "Espalda flanqueada",
+      "parry": "Parada",
+      "misc": "Otros",
+      "target_status": "Status defensor",
+      "normal": "Normal",
+      "stunned": "Aturdido",
+      "downed": "Derribado",
+      "prone": "Caído",
+      "total": "Total",
+      "attacker": "Atacante",
+      "defender": "Defensor"
+    },
     "level_up": {
       "ranks_reset": "Nuevos rangos reinicializados"
     },
