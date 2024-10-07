@@ -3,7 +3,12 @@ import {socket} from "../../rmss.js";
 export class RMSSWeaponSkillManager {
 
     static async sendAttackMessage(actor, enemy, weapon, ob) {
-        await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, ob);
+       const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, ob);
+
+       if (gmResponse["confirmed"]) {
+           let roll = new Roll(`(1d100x>95) + ${gmResponse["diff"]}`);
+           await roll.toMessage(undefined,{create:true});
+       }
     }
 
     static async attackMessagePopup(actor, enemy, weapon, ob) {
@@ -29,21 +34,16 @@ export class RMSSWeaponSkillManager {
 
         let confirmed = await new Promise((resolve) => {
             new Dialog({
-                title: "Confirmar ataque",
-                content: htmlContent,
+                title: game.i18n.localize("rmss.combat.confirm_attack"),
+            content: htmlContent,
                 buttons: {
                     confirm: {
                         label: "Confirmar",
                         callback: (html) => {
-                            const ob = parseInt(html.find("[name='ob']").val());
-                            const actionPoints = parseInt(html.find("#action-points").val());
-                            const hitsTaken = parseInt(html.find("#hits-taken").val());
-                            const attackerParry = parseInt(html.find("#hits-taken").val());
-                            const surprised = parseInt(html.find("#surprised").val());
-                            const facing = parseInt(html.find("#facing").val());
-                            const attackModifier = parseInt(html.find("#attack-modifier").val());
                             const attackTotal = parseInt(html.find("#attack-total").val());
-                            resolve({confirmed: true, ob, actionPoints, hitsTaken, attackerParry, surprised, facing, attackModifier, attackTotal});
+                            const defenseTotal = parseInt(html.find("#defense-total").val());
+                            const diff = parseInt(html.find("#difference").val());
+                            resolve({confirmed: true, attackTotal, defenseTotal, diff});
                         }
                     },
                     cancel: {
@@ -56,17 +56,31 @@ export class RMSSWeaponSkillManager {
                     function calculateTotal(){
                         let total = 0;
 
-                        html.find(".calculable").each(function() {
+                        html.find(".attacker .calculable").each(function() {
                             if (this.type === "checkbox") {
-                                total += this.checked ? parseFloat(this.value) || 0 : 0;
+                                total += this.checked ? parseInt(this.value) || 0 : 0;
                             } else if (this.type === "select-one") {
-                                total += parseFloat(this.value) || 0;
+                                total += parseInt(this.value) || 0;
                             } else {
-                                total += parseFloat(this.value) || 0;
+                                total += parseInt(this.value) || 0;
                             }
                         });
 
                         html.find("#attack-total").val(total);
+                        total = 0;
+
+                        html.find(".defender .calculable").each(function() {
+                            if (this.type === "checkbox") {
+                                total += this.checked ? parseInt(this.value) || 0 : 0;
+                            } else if (this.type === "select-one") {
+                                total += parseInt(this.value) || 0;
+                            } else {
+                                total += parseInt(this.value) || 0;
+                            }
+                        });
+
+                        html.find("#defense-total").val(total);
+                        html.find("#difference").val(html.find("#attack-total").val() - html.find("#defense-total").val());
                     }
                     calculateTotal();
                     setTimeout(() => {
@@ -87,6 +101,17 @@ export class RMSSWeaponSkillManager {
                     html.find(".is-negative").on("change", (event) => {
                          event.target.value = parseInt(event.target.value) > 0 ? -event.target.value : event.target.value;
                     });
+                    html.find(".is-positive").on("change", (event) => {
+                        event.target.value = parseInt(event.target.value) < 0 ? -event.target.value : event.target.value;
+                    });
+                    html.find("#target-at").on("change", (event) => {
+                        if (event.target.value < 1) {
+                            event.target.value = 1;
+                        }
+                        else if (event.target.value > 20) {
+                            event.target.value = 20;
+                        }
+                    });
                     html.find(".calculable").on("change", function(event) {
                         calculateTotal();
                     });
@@ -95,6 +120,6 @@ export class RMSSWeaponSkillManager {
             }).render(true);
         });
 
-        console.log(confirmed);
+        return confirmed;
     }
 }

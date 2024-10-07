@@ -661,3 +661,8 @@ table.weapons tr td {
 .popup.wide {
   min-width: 900px;
 }
+
+form#rmss-attack-melee-confirmation hr{
+  margin-bottom: 2%;
+  margin-top: 2%;
+}

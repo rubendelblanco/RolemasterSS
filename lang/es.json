@@ -321,6 +321,7 @@
       "dps": "Puntos de desarrollo"
     },
     "combat": {
+      "confirm_attack": "Confirmar ataque",
       "ob": "Bonificación ofensiva",
       "action_points": "Puntos acción",
       "hits_taken": "PV perdidos",
@@ -339,7 +340,17 @@
       "prone": "Caído",
       "total": "Total",
       "attacker": "Atacante",
-      "defender": "Defensor"
+      "defender": "Defensor",
+      "at": "TA",
+      "db": "BD",
+      "shield": "Escudo",
+      "no_cover": "Sin cobertura",
+      "cover": "Cobertura",
+      "half_soft": "Media blanda",
+      "full_soft": "Completa blanda",
+      "half_hard": "Media dura",
+      "full_hard": "Completa dura",
+      "att_minus_def": "Dif. total"
     },
     "level_up": {
       "ranks_reset": "Nuevos rangos reinicializados"

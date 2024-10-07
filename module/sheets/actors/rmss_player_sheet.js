@@ -288,9 +288,8 @@ export default class RMSSPlayerSheet extends ActorSheet {
       const enemy = RMSSCombat.getTargets()[0];
       const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
       const ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
-      let roll = new Roll(`(1d100x>95)`);
-      await roll.toMessage(undefined,{create:true});
-      RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy, weapon, ob);
+      await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, weapon, ob);
+
       //RMSSWeaponSkillManager.attackMessagePopup();
       //await socket.executeAsGM("confirmWeaponAttack");
 

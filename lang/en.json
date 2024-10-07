@@ -322,6 +322,7 @@
             "dps": "Development points"
         },
         "combat": {
+            "confirm_attack": "Confirm attack",
             "ob": "Offensive bonus",
             "action_points": "Action points",
             "hits_taken": "Hits taken",
@@ -340,7 +341,17 @@
             "prone": "Prone",
             "total": "Total",
             "attacker": "Attacker",
-            "defender": "Defender"
+            "defender": "Defender",
+            "at": "AT",
+            "db": "DB",
+            "shield": "Shield",
+            "no_cover": "No cover",
+            "cover": "Cover",
+            "half_soft": "Half soft",
+            "full_soft": "Full soft",
+            "half_hard": "Half hard",
+            "full_hard": "Full hard",
+            "att_minus_def": "Total diff"
         },
         "level_up": {
             "ranks_reset": "New ranks reset"
