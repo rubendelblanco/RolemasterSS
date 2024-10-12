@@ -109,3 +109,15 @@ rmss.attack = {
     missile: "Missile",
   }
 }
+
+rmss.criticalDictionary = {
+  "S": "slash",
+  "K": "krush",
+  "P": "puncture",
+  "U": "unbalance",
+  "G": "grappling",
+  "T": "tiny",
+  "brawl": "brawl",
+  "subdue": "subdue",
+  "sweeps": "sweeps"
+}

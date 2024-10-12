@@ -1,8 +1,6 @@
 export class RMSSCombat extends Combat {
     constructor(data, context) {
         super(data, context);
-        console.log(data);
-        console.log(context);
     }
 
     async rollInitiative(ids, {formula=null, updateTurn=true}={}) {

@@ -2,6 +2,7 @@ import RankCalculator from '../skills/rmss_rank_calculator.js';
 import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
 import {RMSSWeaponSkillManager} from "../../combat/rmss_weapon_skill_manager.js";
 import {RMSSCombat} from "../../combat/rmss_combat.js";
+import {RMSSWeaponCriticalManager} from "../../combat/rmss_weapon_critical_manager.js";
 
 export default class RMSSPlayerSheet extends ActorSheet {
 
@@ -289,63 +290,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
       const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
       const ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
       await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, weapon, ob);
-
-      //RMSSWeaponSkillManager.attackMessagePopup();
-      //await socket.executeAsGM("confirmWeaponAttack");
-
-
-     /* const a = new RMSSCombat();
-      const tokens = RMSSCombat.getTargets();
-      const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      const ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
-      const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
-      let roll = new Roll(`(1d100x>95)+${ob}`);
-      // Roll the dice
-      await roll.toMessage(undefined,{create:true});
-      let result = roll.total;
-      result = (result > 150) ? 150 : result;
-
-      for (const element of attackTable) {
-        if (typeof element.Result === "string") {
-          const splitRange = element.Result.split("-");
-          if (result >= splitRange[0] && result <= splitRange[1]) {
-            const damage = element["1"];
-            console.log(element["1"]);
-
-            const messageContent = `Result: <b>${damage}</b>`;
-            const speaker = "Game Master";
-
-            await ChatMessage.create({
-              content: messageContent,
-              speaker: speaker
-            });
-
-            //await sendMessageToChat();
-            break;
-          }
-        }
-        else if (element.Result === result) {
-          const damage = element["1"];
-          console.log(element["1"]);
-          const messageContent = `Result: <b>${damage}</b>`;
-          const speaker = "Game Master";
-
-          await ChatMessage.create({
-            content: messageContent,
-            speaker: speaker
-          });
-
-          await RMSSTableManager.manageArmTableResult(damage);
-
-          //await sendMessageToChat();
-          break;
-        }
-      }
-
-      if (tokens) {
-        console.log(tokens);
-        console.log(weapon);
-      }*/
     });
 
     //Calculate potential stats (only when you are level 0)

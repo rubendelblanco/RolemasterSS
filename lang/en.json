@@ -351,7 +351,9 @@
             "full_soft": "Full soft",
             "half_hard": "Half hard",
             "full_hard": "Full hard",
-            "att_minus_def": "Total diff"
+            "att_minus_def": "Total diff",
+            "critical_roll": "Critical roll",
+            "damage": "Damage"
         },
         "level_up": {
             "ranks_reset": "New ranks reset"
