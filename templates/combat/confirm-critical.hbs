@@ -2,6 +2,7 @@
   <h3><img src="{{enemy.img}}" alt="{{enemy.name}}" width="50" height="50"> {{ localize "rmss.combat.critical_roll" }}</h3>
   <div class="form-group attacker">
     <label for="damage">{{ localize "rmss.combat.damage" }}</label>
+      <input class="is-positive" type="hidden" id="damage-base" name="damage-base" value="{{damage}}">
     <input class="is-positive" type="number" id="damage" name="damage" value="{{damage}}">
       <select id="damage-mult">
           <option value="1">x1</option>
@@ -10,17 +11,12 @@
           <option value="4">x4</option>
           <option value="5">x5</option>
       </select>
-    <select id="critical-type">
+    <select name="severity" id="severity">
       <option value="A" {{#if (eq severity "A")}}selected{{/if}}>A</option>
       <option value="B" {{#if (eq severity "B")}}selected{{/if}}>B</option>
       <option value="C" {{#if (eq severity "C")}}selected{{/if}}>C</option>
       <option value="D" {{#if (eq severity "D")}}selected{{/if}}>D</option>
       <option value="E" {{#if (eq severity "E")}}selected{{/if}}>E</option>
-      <option value="F" {{#if (eq severity "F")}}selected{{/if}}>F</option>
-      <option value="G" {{#if (eq severity "G")}}selected{{/if}}>G</option>
-      <option value="H" {{#if (eq severity "H")}}selected{{/if}}>H</option>
-      <option value="I" {{#if (eq severity "I")}}selected{{/if}}>I</option>
-      <option value="J" {{#if (eq severity "J")}}selected{{/if}}>J</option>
     </select>
       <select id="critical-type">
           {{#each critDict}}

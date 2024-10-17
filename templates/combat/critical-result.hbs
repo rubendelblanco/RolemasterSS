@@ -1,0 +1,28 @@
+<p class="critical-description">{{result.text}}</p>
+<table class="rwd-table">
+    <tr>
+{{#if result.metadata.[0].HP}}
+    <td> <img width="20" src="systems/rmss/assets/default/hearts.svg"> <span>{{result.metadata.[0].HP}}</span></td>
+{{/if}}
+{{#if result.metadata.[0].STUN}}
+    <td>
+        <img width="20" src="systems/rmss/assets/default/stunned.svg"> {{result.metadata.[0].STUN}}
+    </td>
+{{/if}}
+{{#if result.metadata.[0].PARRY}}
+    <td><img width="20" src="systems/rmss/assets/default/sword-clash.svg"> {{result.metadata.[0].PARRY}} </td>
+{{/if}}
+{{#if result.metadata.[0].PE}}
+    <td><img width="20" src="systems/rmss/assets/default/broken-bone.svg"> {{result.metadata.[0].PE}} </td>
+{{/if}}
+{{#if result.metadata.[0].HPR}}
+    <td><img width="20" src="systems/rmss/assets/default/bleeding.svg"> {{result.metadata.[0].HPR}}</td>
+{{/if}}
+{{#if result.metadata.[0].NP}}
+    <td><img width="20" src="systems/rmss/assets/default/shield-disabled.svg"> {{result.metadata.[0].NP}}</td>
+{{/if}}
+{{#if result.metadata.[0].B}}
+    <td><img width="20" src="systems/rmss/assets/default/bonus.svg"> {{result.metadata.[0].B}}</td>
+{{/if}}
+    </tr>
+</table>

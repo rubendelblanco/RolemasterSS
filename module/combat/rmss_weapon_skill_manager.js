@@ -1,6 +1,5 @@
 import {socket} from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
-import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
 
 export class RMSSWeaponSkillManager {
 
@@ -12,47 +11,8 @@ export class RMSSWeaponSkillManager {
            await roll.toMessage(undefined,{create:true});
            let result = roll.total;
            result = (result > 150) ? 150 : result;
-           await RMSSWeaponSkillManager.getAttackTableResult(weapon, result, enemy);
+           await RMSSTableManager.getAttackTableResult(weapon, result, enemy);
        }
-    }
-
-    static async getAttackTableResult(weapon, result, enemy){
-        const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
-        const at = enemy.system.armor_info.armor_type;
-
-        for (const element of attackTable) {
-            if (typeof element.Result === "string") {
-                const splitRange = element.Result.split("-");
-                if (result >= splitRange[0] && result <= splitRange[1]) {
-                    const damage = element[at];
-                    const messageContent = `Result: <b>${damage}</b>`;
-                    const speaker = "Game Master";
-
-                    await ChatMessage.create({
-                        content: messageContent,
-                        speaker: speaker
-                    });
-
-                    break;
-                }
-            }
-            else if (element.Result === result) {
-                const damage = element[at];
-                const criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
-                const htmlContent = await renderTemplate("systems/rmss/templates/combat/critical-roll-button.hbs", {
-                    damage: damage,
-                    criticalData: criticalData,
-                    enemy:enemy
-                });
-                const speaker = "Game Master";
-
-                await ChatMessage.create({
-                    content: htmlContent,
-                    speaker: speaker
-                });
-
-            }
-        }
     }
 
     static async attackMessagePopup(actor, enemy, weapon, ob) {

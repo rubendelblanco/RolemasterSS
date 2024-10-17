@@ -2,8 +2,8 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": "Si querías hacerte amigo de él, deberías haber dicho algo antes. Lo ideal hubiera sido antes de la lucha.",
-        "B": "Deberías haber prestado más atención en las clases de combate. La ignorancia no es una bendición.",
+        "A": {"text": "Si querías hacerte amigo de él, deberías haber dicho algo antes. Lo ideal hubiera sido antes de la lucha."},
+        "B": {"text": "Deberías haber prestado más atención en las clases de combate. La ignorancia no es una bendición."},
         "C": {
             "text": "Eh, vuelve al mundo real. No estás en el campo de entrenamiento con tus",
             "metadata": [
@@ -32,7 +32,7 @@
     {
         "lower": "06",
         "upper": "10",
-        "A": "Buen movimiento, pero tratas de aplastarlo, no de presentarte.",
+        "A": {"text": "Buen movimiento, pero tratas de aplastarlo, no de presentarte."},
         "B": {
             "text": "En esta ocasión se queda quieto  lo suficiente como para encajarle un fuerte golpe en el torso.",
             "metadata": [
@@ -669,7 +669,7 @@
     {
         "lower": "76",
         "upper": "80",
-        "A": "Golpe en el escudo  de tu enemigo que lo destroza. Si no tiene escudo le rompe el brazo.\r\n",
+        "A": {"text": "Golpe en el escudo  de tu enemigo que lo destroza. Si no tiene escudo le rompe el brazo.\r\n"},
         "B": {
             "text": "Golpe en el brazo del escudo, que le deja la mano inútil. Suelta el escudo.",
             "metadata": [
@@ -809,7 +809,7 @@
                 }
             ]
         },
-        "E": "No puede respirar. Queda inactivo y muerte después de 12 asaltos. Bien. Su cuello está roto y su arteria seccionada.\r\n"
+        "E": { "text": "No puede respirar. Queda inactivo y muerte después de 12 asaltos. Bien. Su cuello está roto y su arteria seccionada."}
     },
     {
         "lower": "91",

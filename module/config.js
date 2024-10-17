@@ -96,7 +96,8 @@ rmss.paths = {
   critical_tables: "systems/rmss/module/combat/tables/critical/",
   assets_folder: "systems/rmss/assets/",
   images_folder: "systems/rmss/assets/images/",
-  sounds_folder: "systems/rmss/assets/sounds/"
+  sounds_folder: "systems/rmss/assets/sounds/",
+  icons_folder: "systems/rmss/assets/default/"
 }
 
 rmss.attack = {

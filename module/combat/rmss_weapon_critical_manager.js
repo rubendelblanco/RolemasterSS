@@ -1,4 +1,5 @@
 import {socket} from "../../rmss.js";
+import RMSSTableManager from "./rmss_table_manager.js";
 
 export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result) {
@@ -24,9 +25,11 @@ export class RMSSWeaponCriticalManager {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", enemy, damage, severity, critType);
 
         if (gmResponse["confirmed"]) {
+            enemy.system.attributes.hits.current -= parseInt(damage);
             let roll = new Roll(`(1d100)`);
             await roll.toMessage(undefined,{create:true});
             let result = roll.total;
+            await RMSSTableManager.getCriticalTableResult(result, enemy, severity, critType);
         }
     }
 
@@ -63,8 +66,10 @@ export class RMSSWeaponCriticalManager {
                     confirm: {
                         label: "Confirmar",
                         callback: (html) => {
-                            // Lógica para el botón de confirmación
-                            console.log("Ataque confirmado");
+                            const damage = parseInt(html.find("#damage").val());
+                            const severity = parseInt(html.find("#severity").val());
+                            const critType = parseInt(html.find("#critical-type").val());
+                            resolve({confirmed: true, damage, severity, critType});
                         }
                     },
                     cancel: {
@@ -74,8 +79,21 @@ export class RMSSWeaponCriticalManager {
                         }
                     }
                 },
-                default: "cancel"
+                default: "cancel",
+                render: (html) => {
+                    html.find("#damage-mult").on("change", (event) => {
+                        const mult = parseInt(event.target.value);
+                        const base = parseInt(html.find("#damage-base").val());
+                        const damage = mult*base;
+                        html.find("#damage").val(damage);
+                    });
+
+                    html.find(".is-positive").on("change", (event) => {
+                        event.target.value = parseInt(event.target.value) < 0 ? -event.target.value : event.target.value;
+                    });
+                }
             }).render(true);
-        })
+        });
+        return confirmed;
     }
 }
