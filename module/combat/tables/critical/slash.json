@@ -2,8 +2,8 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": "Ataque poco inspirado. Deja de avergonzar a tus amigos.",
-        "B": "Una demostración de libro de cómo no herir a alguien. El enemigo está complacido por la lección.",
+        "A": {"text":"Ataque poco inspirado. Deja de avergonzar a tus amigos."},
+        "B": {"text":"Una demostración de libro de cómo no herir a alguien. El enemigo está complacido por la lección."},
         "C": {
             "text": "Le alcanzas de refilón, como si de una advertencia se tratara. Inténtalo de nuevo.",
             "metadata": [
@@ -957,8 +957,8 @@
     {
         "lower": "100",
         "upper": "100",
-        "A": "El corte secciona la arteria carótida y  la vena yugular. Muere después de 6 asaltos de agonía y sangre.",
-        "B": "Cansado de todo esto, destripas a tu enemigo matándolo en el acto.",
+        "A": {"text":"El corte secciona la arteria carótida y  la vena yugular. Muere después de 6 asaltos de agonía y sangre."},
+        "B": {"text":"Cansado de todo esto, destripas a tu enemigo matándolo en el acto."},
         "C": {
             "text": "Queda cegado y cae sobre su espalda. Ni siquiera piensa en levantarse.",
             "metadata": [

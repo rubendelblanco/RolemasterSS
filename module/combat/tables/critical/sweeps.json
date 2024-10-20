@@ -2,8 +2,8 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": "Tus acrobacias impresionan a los espectadores, pero no consigues causar daño alguno en tu oponente.",
-        "B": "¿Pretendías ejecutar un barrido contra ti mismo? Caes pero no te haces daño. Por ahora.",
+        "A": {"text":"Tus acrobacias impresionan a los espectadores, pero no consigues causar daño alguno en tu oponente."},
+        "B": {"text":"¿Pretendías ejecutar un barrido contra ti mismo? Caes pero no te haces daño. Por ahora."},
         "C": {
             "text": "Todo se reduce a un embrollo de tirones y rasgaduras, pero en realidad no le haces nada.",
             "metadata": [
@@ -835,8 +835,8 @@
                 }
             ]
         },
-        "C": "Lanzas a tu enemigo contra la superficie sólida que desees. Fractura craneal. Si tiene yelmo cae en coma. Si no, muerte tras 1 asalto.",
-        "D": "No tienes piedad. Tu ataque rompe las costillas de tu enemigo. Lo lanzas al suelo sobre su estómago y lo empalas con sus propias costillas fracturadas. Muere después de 6 asaltos.",
+        "C": {"text":"Lanzas a tu enemigo contra la superficie sólida que desees. Fractura craneal. Si tiene yelmo cae en coma. Si no, muerte tras 1 asalto."},
+        "D": {"text":"No tienes piedad. Tu ataque rompe las costillas de tu enemigo. Lo lanzas al suelo sobre su estómago y lo empalas con sus propias costillas fracturadas. Muere después de 6 asaltos."},
         "E": {
             "text": "Apresas a tu enemigo con firmeza, le barres los pies y entonces te dejas caer sobre él en el suelo. El impacto le rompe el cuello y ... muere en el acto.",
             "metadata": [
@@ -849,10 +849,10 @@
     {
         "lower": "100",
         "upper": "100",
-        "A": "Lanzamiento primoroso. Tu enemigo cae inconsciente en la presa controlada. Puedes acabar con él o mantenerlo inmóvil e indefenso.",
-        "B": "Fabuloso lanzamiento que hace volar a tu enemigo. Se rompe el cuello en el impacto y muere. ¡Eres la muerte personificada!",
-        "C": "Haces caer a tu enemigo contra el suelo golpeando con tu rodilla su espalda. Le rompes la columna y lo dejas paralítico de hombros para abajo. La misericordia no tiene cabida en tu corazón.",
-        "D": "Conviertes su embestida en una presa brutal que le rompe la espalda. Paralizado de cuello para abajo.",
+        "A": {"text":"Lanzamiento primoroso. Tu enemigo cae inconsciente en la presa controlada. Puedes acabar con él o mantenerlo inmóvil e indefenso."},
+        "B": {"text":"Fabuloso lanzamiento que hace volar a tu enemigo. Se rompe el cuello en el impacto y muere. ¡Eres la muerte personificada!"},
+        "C": {"text":"Haces caer a tu enemigo contra el suelo golpeando con tu rodilla su espalda. Le rompes la columna y lo dejas paralítico de hombros para abajo. La misericordia no tiene cabida en tu corazón."},
+        "D": {"text":"Conviertes su embestida en una presa brutal que le rompe la espalda. Paralizado de cuello para abajo."},
         "E": {
             "text": "Usando sólo la mitad del asalto, lanzas a tu enemigo volando contra la superficie sólida que desees. Muere en el acto debido a heridas múltiples. Quién sabe qué le mató.",
             "metadata": [

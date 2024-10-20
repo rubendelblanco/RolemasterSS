@@ -2,8 +2,8 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": "Te dedicas a lanzar golpes al aire. Tu enemigo se siente más confiado.",
-        "B": "Quizá la próxima vez. El enemigo sonríe despectivamente. Eso parecía más fácil de lo que es.",
+        "A": {"text":"Te dedicas a lanzar golpes al aire. Tu enemigo se siente más confiado."},
+        "B": {"text":"Quizá la próxima vez. El enemigo sonríe despectivamente. Eso parecía más fácil de lo que es."},
         "C": {
             "text": "Casi lo consigues, aunque aquí no se premia el estilo. Quizás ahora te subestime. Tienes un buen plan, ¿eh?",
             "metadata": [
@@ -938,7 +938,7 @@
                 }
             ]
         },
-        "D": "Así es como se hace. Inmovilizas su brazo y le aplastas la sie, matándolo en el acto.\r\n",
-        "E": "Tu violencia te impresiona hastaa ti. Desearía no haberse cruzado en tu camino. Muere en el acto."
+        "D": {"text":"Así es como se hace. Inmovilizas su brazo y le aplastas la sie, matándolo en el acto."},
+        "E": {"text":"Tu violencia te impresiona hastaa ti. Desearía no haberse cruzado en tu camino. Muere en el acto."}
     }
 ]

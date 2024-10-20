@@ -2,8 +2,8 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": "Tu enemigo se escabulle como el viento. Es cuestión de tiempo.",
-        "B": "Tu ataque se queda corto. Aún no estás preparado.",
+        "A": {"text":"Tu enemigo se escabulle como el viento. Es cuestión de tiempo."},
+        "B": {"text":"Tu ataque se queda corto. Aún no estás preparado."},
         "C": {
             "text": "Tus dedos dejan una fea herida. ¡No es un ataque afeminado! Ha funcionado, ¿no?",
             "metadata": [

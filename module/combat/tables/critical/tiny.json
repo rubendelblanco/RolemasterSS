@@ -2,10 +2,10 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": "Se supone que quieres herirle, no abrazarle.",
-        "B": "Penoso.¿ No te enseño tu madre a no jugar  con la comida?",
-        "C": "Eso fue tan guuuaay ... Sigue así. Quizás te lleve a casa y te adopte.",
-        "D": "Los golpes diminutos necesitan más precisión que los ataques ordinarios. No lo olvides.",
+        "A": {"text":"Se supone que quieres herirle, no abrazarle."},
+        "B": {"text":"Penoso.¿ No te enseño tu madre a no jugar  con la comida?"},
+        "C": {"text":"Eso fue tan guuuaay ... Sigue así. Quizás te lleve a casa y te adopte."},
+        "D": {"text":"Los golpes diminutos necesitan más precisión que los ataques ordinarios. No lo olvides."},
         "E": {
             "text": "Tu titánico esfuerzo de refleja en un escado resultado. No tardará en sucumbir al \"poder  de los pequeños\".",
             "metadata": [
@@ -18,9 +18,9 @@
     {
         "lower": "06",
         "upper": "10",
-        "A": "Rodar por el suelo y dar golpes en el aire no va a causar mucho daño.\r\n",
-        "B": "Magnífica demostración de acrobacias  por tu parte, pero no está allí cuando aterrizas.",
-        "C": "¡Mira! ¡Un burro volando!",
+        "A": {"text":"Rodar por el suelo y dar golpes en el aire no va a causar mucho daño."},
+        "B": {"text":"Magnífica demostración de acrobacias  por tu parte, pero no está allí cuando aterrizas."},
+        "C": {"text":"¡Mira! ¡Un burro volando!"},
         "D": {
             "text": "No le alcanzas, pero destrozas su ropa. ¿Sabes cuánto le había costado?",
             "metadata": [
@@ -41,8 +41,8 @@
     {
         "lower": "11",
         "upper": "15",
-        "A": "Seguro que terminarás por hacerle daño.",
-        "B": "Ni te acercas. Recuerda lo que significa \"diminuto\".",
+        "A": {"text":"Seguro que terminarás por hacerle daño."},
+        "B": {"text":"Ni te acercas. Recuerda lo que significa \"diminuto\"."},
         "C": {
             "text": "Una lluvia de golpes que sólo consigue destrozar su túnica, pero no su piel.",
             "metadata": [

@@ -2,9 +2,9 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": "Deslumbrante. Trata de no herirte a ti mismo.\r\n",
-        "B": "¿De qué lado decías estar? Inténtalo con más ganas.\r\n",
-        "C": "Qué humillante. Confías en que nadie haya visto eso.",
+        "A": {"text": "Deslumbrante. Trata de no herirte a ti mismo.\r\n"},
+        "B": {"text": "¿De qué lado decías estar? Inténtalo con más ganas.\r\n"},
+        "C": {"text": "Qué humillante. Confías en que nadie haya visto eso."},
         "D": {
             "text": "Se rie ante tu ataque inepto y mal ejecutado. Te ruega que lo intentes de nuevo.",
             "metadata": [
@@ -499,7 +499,7 @@
                     "HP": 9,
                     "STUN": 3,
                     "NP": 3,
-                    "BONUS": 90
+                    "PE": -90
                 }
             ]
         },
@@ -842,7 +842,7 @@
                 }
             ]
         },
-        "C": "Elegante y pulido golpe que envía a tu enemigo al suelo sobre sus rodillas. Su arma sale despedida. Se le nubla la vista y queda mirando hacia delante sin parpadear.\r\n",
+        "C": {"text": "Elegante y pulido golpe que envía a tu enemigo al suelo sobre sus rodillas. Su arma sale despedida. Se le nubla la vista y queda mirando hacia delante sin parpadear.\r\n"},
         "D": {
             "text": "Golpe en la cabeza que rompe el yelmo. Los trozos vuelan en todas direcciones. Sin yelmo, cae en coma 4 semanas. No sabe muy bien lo que está pasando.",
             "metadata": [
@@ -852,7 +852,7 @@
                 }
             ]
         },
-        "E": "Su cabeza no parece girar del todo bien. Le rompes el cuello. Cae y muere en 3 asaltos.\r\n"
+        "E": {"text":"Su cabeza no parece girar del todo bien. Le rompes el cuello. Cae y muere en 3 asaltos.\r\n"}
     },
     {
         "lower": "100",
@@ -865,8 +865,8 @@
                 }
             ]
         },
-        "B": "Aterriza sobre su cuello y no puede levantarse. En realidad, queda parapléjico de cabeza para abajo.\r\n",
-        "C": "¿Qué ha ocurrido? Se rompe los 2 brazos y la cabeza al aterrizar y entra en coma por 2 meses.",
+        "B": {"text": "Aterriza sobre su cuello y no puede levantarse. En realidad, queda parapléjico de cabeza para abajo.\r\n"},
+        "C": {"text": "¿Qué ha ocurrido? Se rompe los 2 brazos y la cabeza al aterrizar y entra en coma por 2 meses."},
         "D": {
             "text": "Impacto salvaje contra la cabeza. Cae en coma y muere después de 12 asaltos debido  a una arteria seccionada.",
             "metadata": [

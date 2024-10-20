@@ -2,9 +2,9 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": "Recuerda: Para subyugarlo, al menos has de herirlo un poco.",
-        "B": "Frustra tu ataque por completo. No era esto lo que habías planeado.",
-        "C": "No es tiempo para la clemencia. No le haces nada. Quizá la próxima vez.",
+        "A": {"text":"Recuerda: Para subyugarlo, al menos has de herirlo un poco."},
+        "B": {"text":"Frustra tu ataque por completo. No era esto lo que habías planeado."},
+        "C": {"text":"No es tiempo para la clemencia. No le haces nada. Quizá la próxima vez."},
         "D": {
             "text": "Tu enemigo ni se ha inmutado. No estabas preparado.",
             "metadata": [

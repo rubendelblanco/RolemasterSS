@@ -2,8 +2,8 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": "No logras pincharle con la punta de tu espada. Tus esfuerzos no tienen la suficiente \"punta\".",
-        "B": "Se escabulle de tu golpe lateral. Nada más, aparte de tu intención hostil.",
+        "A": {"text":"No logras pincharle con la punta de tu espada. Tus esfuerzos no tienen la suficiente \"punta\"."},
+        "B": {"text":"Se escabulle de tu golpe lateral. Nada más, aparte de tu intención hostil."},
         "C": {
             "text": "Tu enemigo mueve sus pies de forma grácil, evitando la peor parte de tu ataque.",
             "metadata": [
