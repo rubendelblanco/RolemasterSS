@@ -92,7 +92,12 @@ rmss.skill_progression = {
 }
 
 rmss.paths = {
-  arms_tables: "systems/rmss/module/combat/tables/arms/"
+  arms_tables: "systems/rmss/module/combat/tables/arms/",
+  critical_tables: "systems/rmss/module/combat/tables/critical/",
+  assets_folder: "systems/rmss/assets/",
+  images_folder: "systems/rmss/assets/images/",
+  sounds_folder: "systems/rmss/assets/sounds/",
+  icons_folder: "systems/rmss/assets/default/"
 }
 
 rmss.attack = {
@@ -104,4 +109,16 @@ rmss.attack = {
     melee: "Melee",
     missile: "Missile",
   }
+}
+
+rmss.criticalDictionary = {
+  "S": "slash",
+  "K": "krush",
+  "P": "puncture",
+  "U": "unbalance",
+  "G": "grappling",
+  "T": "tiny",
+  "brawl": "brawl",
+  "subdue": "subdue",
+  "sweeps": "sweeps"
 }

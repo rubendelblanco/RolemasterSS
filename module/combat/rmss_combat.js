@@ -7,6 +7,32 @@ export class RMSSCombat extends Combat {
         console.log("Iniciativa personalizada");
         return super.rollInitiative(ids, {formula, updateTurn});
     }
+
+    // Function to get the selected target token based on toggle target state
+    static getTargets() {
+        // Get the currently selected tokens
+        const selectedTokens = canvas.tokens.controlled;
+
+        // Ensure we have exactly one selected token
+        if (selectedTokens.length !== 1) {
+            ui.notifications.warn("Please select exactly one token as the attacker.");
+            return;
+        }
+
+        // Find the target token that has the target state toggled on
+        const targets = Array.from(game.user.targets);
+
+        // Check if a target is found
+        if (!targets) {
+            ui.notifications.warn("Please target another token.");
+            return;
+        }
+
+        console.log("Target Token:", targets);
+
+        return targets;
+    }
+
 }
 
 //Singleton for combat start
@@ -33,7 +59,7 @@ export class CombatStartManager {
 
     playCombatSound(combat) {
         // Define the base directory path
-        const basePath = "systems/rmss/assets/sounds/combat/begin_combat/";
+        const basePath = CONFIG.rmss.paths.sounds_folder+"combat/begin_combat/";
         // Create an array with only the filenames
         const soundFiles = [
             "begin_combat_1.mp3",
@@ -63,7 +89,7 @@ export class CombatStartManager {
 
         // Add image
         const image = document.createElement("img");
-        image.src = "systems/rmss/assets/images/logo_swords.png";
+        image.src = CONFIG.rmss.paths.images_folder+"logo_swords.png"
         image.style.width = "400px";
         image.style.height = "auto";
         image.style.border = "none";

@@ -1,0 +1,1086 @@
+[
+    {
+        "lower": "01",
+        "upper": "05",
+        "A": {
+            "text": "Deslumbrante. Trata de no herirte a ti mismo.\r\n"
+        },
+        "B": {
+            "text": "¿De qué lado decías estar? Inténtalo con más ganas.\r\n"
+        },
+        "C": {
+            "text": "Qué humillante. Confías en que nadie haya visto eso."
+        },
+        "D": {
+            "text": "Se rie ante tu ataque inepto y mal ejecutado. Te ruega que lo intentes de nuevo.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "El sonido que logra tu ataque es bastante mejor que el daño causado.",
+            "metadata": [
+                {
+                    "HP": 2
+                }
+            ]
+        }
+    },
+    {
+        "lower": "06",
+        "upper": "10",
+        "A": {
+            "text": "Aprendió a esquivar ataques como ese en el jardín de infancia."
+        },
+        "B": {
+            "text": "Cuando le cargas, se mantiene firme y te quita de encima.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "C": {
+            "text": "Lanzas un golpe de advertencia, con la intención de romper su guardia.",
+            "metadata": [
+                {
+                    "HP": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "Se ríe mientras se zafa de tu presa. Te implora que lo intentes con más ganas.",
+            "metadata": [
+                {
+                    "HP": 3
+                }
+            ]
+        },
+        "E": {
+            "text": "Golpe fuerte y dirigido hacia su pecho, aunque no provocas mucho daño.",
+            "metadata": [
+                {
+                    "HP": 5
+                }
+            ]
+        }
+    },
+    {
+        "lower": "11",
+        "upper": "15",
+        "A": {
+            "text": "Fallas en tu asalto, pero finalmente has atraído su atención.",
+            "metadata": [
+                {
+                    "HP": 3
+                }
+            ]
+        },
+        "B": {
+            "text": "Golpe débil que impacta en los riñones, que podría haber sido mucho más efectivo de haber sido lanzado con más énfasis.",
+            "metadata": [
+                {
+                    "HP": 4
+                }
+            ]
+        },
+        "C": {
+            "text": "Tus nudillos van a parar a los nervios de su brazo. Le distraes, pero lo que necesitas en proyectarlo.",
+            "metadata": [
+                {
+                    "HP": 5
+                }
+            ]
+        },
+        "D": {
+            "text": "Se vuelve descuidado y deja que le golpees en la espalda.¿Eso en su cara es un gesto de descontento?",
+            "metadata": [
+                {
+                    "HP": 6
+                }
+            ]
+        },
+        "E": {
+            "text": "Solo daño \"táctico\". Necesitas que se sitúe en la posición idónea.",
+            "metadata": [
+                {
+                    "HP": 7
+                }
+            ]
+        }
+    },
+    {
+        "lower": "16",
+        "upper": "20",
+        "A": {
+            "text": "Para de manera agresiva e intenta empujarte, pero has conseguido hacerle algo de daño.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "HP": 4
+                }
+            ]
+        },
+        "B": {
+            "text": "Te para el golpe que iba a su costado, pero sabes que las tornas no tardarán en cambiar.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "HP": 4
+                }
+            ]
+        },
+        "C": {
+            "text": "Golpe en el costado. Tu enemigo retrocede para evitar tu próximo ataque. Aprende a respetarte.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "HP": 5
+                }
+            ]
+        },
+        "D": {
+            "text": "Impacto en el costado que capta su atención. Se examina la herida. No se lo esperaba.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "HP": 7
+                }
+            ]
+        },
+        "E": {
+            "text": "Realmente no le has roto las costillas, pero se encuentra en desventaja durante unos instantes.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 8
+                }
+            ]
+        }
+    },
+    {
+        "lower": "21",
+        "upper": "35",
+        "A": {
+            "text": "Te para y te echa a un lado, para luego retroceder.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "HP": 4
+                }
+            ]
+        },
+        "B": {
+            "text": "Ese pisotón le deja tratando de recuperar el equilibrio.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 5
+                }
+            ]
+        },
+        "C": {
+            "text": "Golpe en el pecho que lo aturde. Sus pulmones sufren, tose y se prepara para lo peor.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Golpe rápido en el pecho que hace retorcerse a tu enemigo. Aún sabe dónde estás.",
+            "metadata": [
+                {
+                    "HP": 8,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Esta vez sí que le has roto las costillas. Oyes cómo crujen.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "HP": 9,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "36",
+        "upper": "45",
+        "A": {
+            "text": "Empujón ligero que  rompe la concentración de tu enemigo. Tienes la iniciativa en el siguiente asalto.",
+            "metadata": [
+                {
+                    "HP": 4
+                }
+            ]
+        },
+        "B": {
+            "text": "Salvas tu ataque haciendo tropezar a tu enemigo. Tienes la iniciativa en el siguiente asalto.",
+            "metadata": [
+                {
+                    "PE": {
+                        "ROUNDS": 2,
+                        "VALUE": -5
+                    },
+                    "HP": 5
+                }
+            ]
+        },
+        "C": {
+            "text": "Le atenazas por el hombro y luego usas tu rodilla para lanzarlo al suelo.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -40
+                    },
+                    "HP": 5
+                }
+            ]
+        },
+        "D": {
+            "text": "Se contrae del dolor a causa del golpe en el pecho. Necesitará un momento para recuperarse.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -25
+                    },
+                    "HP": 7
+                }
+            ]
+        },
+        "E": {
+            "text": "Atacas su apoyo principal. Las piernas.",
+            "metadata": [
+                {
+                    "DESC": "Con armadura en la pierna",
+                    "HP": 12
+                },
+                {
+                    "DESC": "Sin armadura en la pierna",
+                    "HP": 8,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "46",
+        "upper": "50",
+        "A": {
+            "text": "Tu intento de rodear a tu enemigo casi tiene éxito, pero necesitarás más fuerza en la presa.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -10
+                    },
+                    "HP": 5
+                }
+            ]
+        },
+        "B": {
+            "text": "Si no estuviera a la defensiva lo habrías atrapado. El también lo sabe.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
+                    "HP": 5
+                }
+            ]
+        },
+        "C": {
+            "text": "Le golpeas en la cara. Retrocede 1,5 metros intentando mantenerse en pie. Su guardia está baja.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "D": {
+            "text": "Está aturdido, y se dedica a parar después de tu doble ataque a sus brazos.",
+            "metadata": [
+                {
+                    "HP": 8,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Lanzas una secuencia de golpes con la intentción de bajarle la guardia, y te preparas para colocarte en una posición de ventaja el próximo turno.",
+            "metadata": [
+                {
+                    "HP": 12,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        }
+    },
+    {
+        "lower": "51",
+        "upper": "55",
+        "A": {
+            "text": "Se zafa de tu presa echándose hacia atrás. Está preparado para tu siguiente ataque.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
+                    "HP": 5
+                }
+            ]
+        },
+        "B": {
+            "text": "Agarras a tu enemigo y levantas una rodilla para golpearle. Incluso él se sorprende.",
+            "metadata": [
+                {
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "Impactas en la rodilla y se la hundes hacia dentro. Eso debe de doler.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "D": {
+            "text": "Golpe en el pecho que hace expulsar todo el aire a tu enemigo. Baja la guardia. Se prepara para lo que está por venir.",
+            "metadata": [
+                {
+                    "HP": 10,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Su pierna ha de estar lesionada. Se colapsa. Parece incapaz de ponerse en pie.",
+            "metadata": [
+                {
+                    "HP": 12,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        }
+    },
+    {
+        "lower": "56",
+        "upper": "60",
+        "A": {
+            "text": "Golpe en el muslo. Empujas a tu enemigo hacia atrás.",
+            "metadata": [
+                {
+                    "DESC": "Con armadura en el muslo",
+                    "HP": 7
+                },
+                {
+                    "DESC": "Sin armadura en el muslo",
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu enemigo recibe un golpe en el muslo al intentar bloquearte. Retrocede.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -30
+                    },
+                    "HP": 6
+                }
+            ]
+        },
+        "C": {
+            "text": "Golpe de refilón en la pantorrilla. Tu enemigo no cae al suelo.",
+            "metadata": [
+                {
+                    "DESC": "Con armadura en la pierna",
+                    "HP": 9
+                },
+                {
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "DESC": "Sin armadura en la pierna",
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Fallas al golpear en el costado pero lo haces en el muslo. Tienes la iniciativa durante 3 asaltos.",
+            "metadata": [
+                {
+                    "HP": 12,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "La patada en la pierna casi le hace caer. Estará tambaleándose varios asaltos.",
+            "metadata": [
+                {
+                    "HP": 14,
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "61",
+        "upper": "65",
+        "A": {
+            "text": "Logras inmovilizar durante un instante los brazos de tu enemigo. Se escapa revolviéndose. Está aturdido.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Su brazo no debería poder doblarse de esa forma. Suelta su arma y te maldice.",
+            "metadata": [
+                {
+                    "HP": 6
+                }
+            ]
+        },
+        "C": {
+            "text": "Bien colocado. Golpe al brazo del arma logra desarmarlo. Puede ver el final cerca.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Bloqueas su brazo con tanta fuerza que lo desarmas. Aturdido, te contempla con incredulidad.",
+            "metadata": [
+                {
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "BONUS": {
+                        "VALUE": 20
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Golpe en el hombro que le hace dar una vuelta. Estará tambaleándose unos cuantos asaltos.",
+            "metadata": [
+                {
+                    "HP": 13,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        }
+    },
+    {
+        "lower": "66",
+        "upper": "66",
+        "A": {
+            "text": "Técnica superior. Golpe en el hombro que despide a tu enemigo hacia atrás dando vueltas. Está aturdido y mareado.",
+            "metadata": [
+                {
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "B": {
+            "text": "Golpe en el codo que lo disloca. Suelta el arma y se olvida de ti.",
+            "metadata": [
+                {
+                    "HP": 8,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "C": {
+            "text": "Golpe en la pierna que lo envía al suelo indefenso. Se rompe la rodilla y tienes su destino en sus manos.",
+            "metadata": [
+                {
+                    "HP": 9,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "NP": 3,
+                    "PE": {
+                        "VALUE": -90
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Fuerte golpe en la cabeza que lo noquea durante 24 horas (si no tiene yelmo). Si tiene yelmo saldrá despedido 3 metros.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Dejas inconsciente a tu enemigo con un golpe en la mandíbula. Pierde el equilibrio, cae, y se golpe la cabeza. Fuera de combate.",
+            "metadata": [
+                {
+                    "HP": 30
+                }
+            ]
+        }
+    },
+    {
+        "lower": "67",
+        "upper": "70",
+        "A": {
+            "text": "Era tan sencillo. Lanzas un puñetazo al pecho, que le coge desprevenido. Está más que desiquilibrado.",
+            "metadata": [
+                {
+                    "PE": {
+                        "ROUNDS": 2,
+                        "VALUE": -50
+                    },
+                    "HP": 6
+                }
+            ]
+        },
+        "B": {
+            "text": "No debería vestir ropa tan holgada. Lo agarras y lo zarandeas. Está confuso y se tambalea.",
+            "metadata": []
+        },
+        "C": {
+            "text": "Golpe en las costillas que rompe unas cuantas.  No le ha hecho mucha gracia. Estaba en la cresta de la ola hasta que te conoció.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 8,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Rompes la clavícula de tu enemigo, desorientándolo. Lo tienes donde querías.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -25
+                    },
+                    "HP": 10,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Golpeas con tu hombro en su estómago y lo haces levantarse. No sabe ni dónde está.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        }
+    },
+    {
+        "lower": "71",
+        "upper": "75",
+        "A": {
+            "text": "Martilleas la parte baja de la pierna. Se aturde.",
+            "metadata": [
+                {
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Atáque sólido en la pantorrilla. Un feo calambre. Tienes la iniciativa.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "HP": 9
+                }
+            ]
+        },
+        "C": {
+            "text": "Hieres la pierna de tu enemigo llegando incluso hasta el hueso. Pierde mucha movilidad.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 10,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "D": {
+            "text": "Levantas a tu enemigo en el aire, mandándolo al suelo. Busca el arma a su alderededor.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -75
+                    },
+                    "HP": 12,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Mala suerte para él. Cae sobre su arma. Tú también has tenido algo que ver en su desgracia.",
+            "metadata": [
+                {
+                    "HP": 15,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "NP": 3
+                }
+            ]
+        }
+    },
+    {
+        "lower": "76",
+        "upper": "80",
+        "A": {
+            "text": "Golpe en el costado del escudo. Si tiene escudo se raja a la mitad. Si no, va a necesitar uno.",
+            "metadata": [
+                {
+                    "HP": 12,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Golpeas el brazo de tu enemigo haciendo palanca contra él. Lo desequilibras.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "HP": 10,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "Retrocede 1,5 metros y se agarra el brazo fracturado. Su cara es una máscara de dolor.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -25
+                    },
+                    "HP": 11,
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "¿Ha sido tu barrido lo que le ha roto la rodilla o ha sido su pésimo aterrizaje? ¿Acaso importa?",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "HP": 11
+                }
+            ]
+        },
+        "E": {
+            "text": "Inmovilizas su brazo y lo proyectas al suelo. Está caído y desarmado.",
+            "metadata": [
+                {
+                    "HP": 15,
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
+                    "NP": 4
+                }
+            ]
+        }
+    },
+    {
+        "lower": "81",
+        "upper": "85",
+        "A": {
+            "text": "Lanza sus ataques hacia todas partes excepto donde te encuentras tú.",
+            "metadata": [
+                {
+                    "HP": 10,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1,
+                    "BONUS": {
+                        "VALUE": 10
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Buen golpe en el costado que lo envía tropezando 1 metro hacia tu derecha. Debería aprender a ignorar el dolor.",
+            "metadata": [
+                {
+                    "HP": 15,
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "¡Qué fácil se rompen las costillas! Deja caer todo lo que tenía en el brazo del escudo y se abandona al dolor.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Tu carga con el hombro lo hace caer. Se levanta apoyándose en el brazo del arma.",
+            "metadata": [
+                {
+                    "HP": 12,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "NP": 6
+                }
+            ]
+        },
+        "E": {
+            "text": "Te apartas cuando te carga y lo tiras al suelo. En el proceso se rompe una pierna.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "NP": 6
+                }
+            ]
+        }
+    },
+    {
+        "lower": "86",
+        "upper": "90",
+        "A": {
+            "text": "Golpeas a un desorientado enemigo en la pierna. Se tambalea 1,5 metros hacia atrás.",
+            "metadata": [
+                {
+                    "HP": 13,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "BONUS": {
+                        "VALUE": 20
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Hueles la victoria. Tu golpe en el costado le hace retrodecer 3 metros. No te llevará mucho más tiempo.",
+            "metadata": [
+                {
+                    "HP": 12,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "C": {
+            "text": "Por fin ha llegado tu oportunidad. Un golpe a la cabeza y cae bocabajo, desarmado.",
+            "metadata": [
+                {
+                    "HP": 14,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "BONUS": {
+                        "VALUE": 20
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Impacto en el brazo del escudo. Si tiene escudo se le rompe. Si no, se rompe el brazo. No se lo cree.",
+            "metadata": [
+                {
+                    "HP": 10,
+                    "STUN": {
+                        "ROUNDS": 9
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Estaba perfectamente situado para tu golpe en la cabeza. Queda de pie, pero inconsciente.",
+            "metadata": [
+                {
+                    "HP": 20,
+                    "STUN": {
+                        "ROUNDS": 12
+                    },
+                    "NP": 12
+                }
+            ]
+        }
+    },
+    {
+        "lower": "91",
+        "upper": "95",
+        "A": {
+            "text": "Le impactas en la cabeza. Si no tiene yelmo, cae inconsciente durante 2 horas.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Golpeas sus oídos al mismo tiempo, dañando su audición y su equilibrio 3 semanas. ¡Eso duele!",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "HP": 9,
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "Volteas a tu enemigo. Pifia con su arma."
+        },
+        "D": {
+            "text": "Te echas sobre él y lo arrojas al suelo. Te levantas con una sonrisa.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -30
+                    },
+                    "HP": 10,
+                    "STUN": {
+                        "ROUNDS": 8
+                    },
+                    "NP": 8
+                }
+            ]
+        },
+        "E": {
+            "text": "A menos que tenga escudo, rompes su brazo. También está caído he inconsciente.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "96",
+        "upper": "99",
+        "A": {
+            "text": "Golpe en el estómago. Se dobla de dolor, momento en el que le tiras al suelo sin contemplaciones.",
+            "metadata": [
+                {
+                    "HP": 10,
+                    "NP": 3
+                }
+            ]
+        },
+        "B": {
+            "text": "Te mira mientras piensa cómo demonios ha acbado en el suelo. No parece que las cosas le vayan muy bien.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "NP": 6
+                }
+            ]
+        },
+        "C": {
+            "text": "Elegante y pulido golpe que envía a tu enemigo al suelo sobre sus rodillas. Su arma sale despedida. Se le nubla la vista y queda mirando hacia delante sin parpadear.\r\n"
+        },
+        "D": {
+            "text": "Golpe en la cabeza que rompe el yelmo. Los trozos vuelan en todas direcciones. Sin yelmo, cae en coma 4 semanas. No sabe muy bien lo que está pasando.",
+            "metadata": [
+                {
+                    "HP": 9,
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Su cabeza no parece girar del todo bien. Le rompes el cuello. Cae y muere en 3 asaltos.\r\n"
+        }
+    },
+    {
+        "lower": "100",
+        "upper": "100",
+        "A": {
+            "text": "Le golpeas su cadera con la tuya y le envías al suelo, con una pierna rota. Delira durante 9 horas.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -90
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Aterriza sobre su cuello y no puede levantarse. En realidad, queda parapléjico de cabeza para abajo.\r\n"
+        },
+        "C": {
+            "text": "¿Qué ha ocurrido? Se rompe los 2 brazos y la cabeza al aterrizar y entra en coma por 2 meses."
+        },
+        "D": {
+            "text": "Impacto salvaje contra la cabeza. Cae en coma y muere después de 12 asaltos debido  a una arteria seccionada.",
+            "metadata": [
+                {
+                    "BONUS": {
+                        "VALUE": 20
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "¿Ha muerto a causa de una sien aplastada o un cuello roto? ¿Antes, o depués de caer? Ya no importa.",
+            "metadata": [
+                {
+                    "BONUS": {
+                        "ROUNDS": 2,
+                        "VALUE": 20
+                    }
+                }
+            ]
+        }
+    }
+]

@@ -1,0 +1,40 @@
+<p class="critical-description">{{result.text}}</p>
+<table class="rwd-table">
+    <tr>
+{{#if result.metadata.HP}}
+    <td> <img width="20" src="systems/rmss/assets/default/hearts.svg"> <span>{{result.metadata.HP}}</span></td>
+{{/if}}
+{{#if result.metadata.STUN}}
+    <td>
+        <img width="20" src="systems/rmss/assets/default/stunned.svg"> {{result.metadata.STUN.ROUNDS}}
+    </td>
+{{/if}}
+{{#if result.metadata.P}}
+    <td><img width="20" src="systems/rmss/assets/default/sword-clash.svg"> {{result.metadata.P.ROUNDS}}
+        {{#if result.metadata.P.VALUE}} ({{result.metadata.P.VALUE}}){{/if}}
+    </td>
+{{/if}}
+{{#if result.metadata.PE}}
+    <td><img width="20" src="systems/rmss/assets/default/broken-bone.svg">
+        {{#if result.metadata.PE.ROUNDS}}  {{result.metadata.PE.ROUNDS}}({{result.metadata.PE.VALUE}})
+        {{else}}
+            {{result.metadata.PE.VALUE}}
+        {{/if}}
+    </td>
+{{/if}}
+{{#if result.metadata.HPR}}
+    <td><img width="20" src="systems/rmss/assets/default/bleeding.svg"> {{result.metadata.HPR}}</td>
+{{/if}}
+{{#if result.metadata.NP}}
+    <td><img width="20" src="systems/rmss/assets/default/shield-disabled.svg"> {{result.metadata.NP}}</td>
+{{/if}}
+{{#if result.metadata.BONUS}}
+    <td><img width="20" src="systems/rmss/assets/default/bonus.svg">
+        {{#if result.metadata.BONUS.ROUNDS}}  {{result.metadata.BONUS.ROUNDS}}({{result.metadata.BONUS.VALUE}})
+        {{else}}
+            {{result.metadata.BONUS.VALUE}}
+        {{/if}}
+    </td>
+{{/if}}
+    </tr>
+</table>

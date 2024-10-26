@@ -653,3 +653,64 @@
 table.weapons tr td {
   text-align: center;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.popup.wide {
+  min-width: 900px;
+}
+
+form#rmss-attack-melee-confirmation hr{
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+/* Table format (as seen on https://codepen.io/geoffyuen/pen/DZxEKy)*/
+.rwd-table {
+  margin: 1em 0;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: inline-table;
+}
+.rwd-table td:first-child {
+  padding-top: 0.5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: 0.5em;
+}
+.rwd-table {
+  background: #a4b7c9;
+  color: #000;
+  border-radius: 0.4em;
+  overflow: hidden;
+  font-weight: bold;
+  font-size: large;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table tr td img {
+  border:0;
+}
+.rwd-table th,
+.rwd-table td {
+  margin: 0.5em 1em;
+}
+.rwd-table th,
+.rwd-table td:before {
+  color: #dd5;
+}
+.critical-description {
+  font-weight: bold;
+  font-style: italic;
+}
+

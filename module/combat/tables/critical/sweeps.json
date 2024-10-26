@@ -1,0 +1,1084 @@
+[
+    {
+        "lower": "01",
+        "upper": "05",
+        "A": {
+            "text": "Tus acrobacias impresionan a los espectadores, pero no consigues causar daño alguno en tu oponente."
+        },
+        "B": {
+            "text": "¿Pretendías ejecutar un barrido contra ti mismo? Caes pero no te haces daño. Por ahora."
+        },
+        "C": {
+            "text": "Todo se reduce a un embrollo de tirones y rasgaduras, pero en realidad no le haces nada.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "D": {
+            "text": "Has olvidado todo lo que una vez aprendiste sobre las artes marciales, y apenas lo hieres.",
+            "metadata": [
+                {
+                    "HP": 2
+                }
+            ]
+        },
+        "E": {
+            "text": "Tu ataque parece mortal pero fallas en la ejecución. Mejor establecer contacto que realizar bonitos movimientos.",
+            "metadata": [
+                {
+                    "HP": 3
+                }
+            ]
+        }
+    },
+    {
+        "lower": "06",
+        "upper": "10",
+        "A": {
+            "text": "Si no te hubieras roto los pantalones con esa ridícula maniobra puede que hasta incluso le hubieras hecho algo de daño.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "B": {
+            "text": "Tienes tantos problemas en sujetarlo, que te olvidas de ejecutar el barrido.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "C": {
+            "text": "Tu florido barrido no consigue impactar, pero aun así logras rozar su caja torácica.",
+            "metadata": [
+                {
+                    "HP": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "Parece como si te estuvieses entrenando. Tu enemigo, no. Demuéstrale lo contrario.",
+            "metadata": [
+                {
+                    "HP": 3
+                }
+            ]
+        },
+        "E": {
+            "text": "Golpe de la rodilla contra el muslo que desequilibra a tu enemigo. Tienes la iniciativa.",
+            "metadata": [
+                {
+                    "HP": 4
+                }
+            ]
+        }
+    },
+    {
+        "lower": "11",
+        "upper": "15",
+        "A": {
+            "text": "Obtienes una posición mejor y la iniciativa en el próximo asalto.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu ataque es desviado pero obtienes la iniciativa el siguiente asalto.",
+            "metadata": [
+                {
+                    "HP": 3
+                }
+            ]
+        },
+        "C": {
+            "text": "Tu forma física sorprende a tu enemigo sobremanera. Responde con lentitud. Tienes la iniciativa.",
+            "metadata": [
+                {
+                    "BONUS": {
+                        "VALUE": 20
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Tu enemigo evita en parte tu envite y adopta una posición defensiva.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "HP": 4
+                }
+            ]
+        },
+        "E": {
+            "text": "Realizas una presa contra una prenda de ropa que se desgarra. Ambos sabéis lo cerca que estuvo.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "BONUS": {
+                        "VALUE": 10
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "16",
+        "upper": "20",
+        "A": {
+            "text": "Tu ataque hace que tu enemigo busque refugio detrás de su arma.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "HP": 2
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu enemigo está deslumbrado con tu forma física. Intenta evitar tu arremetida.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -10
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "Tu enemigo te empuja, desesperado por zafarse. Se desequilibra en el proceso.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
+                    "HP": 3
+                }
+            ]
+        },
+        "D": {
+            "text": "Eres tan escurridizo que provocas que tu enemigo se golpee a sí mismo ligeramente.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "HP": 4
+                }
+            ]
+        },
+        "E": {
+            "text": "Una combinación de golpes te deja el camino libre para seguir atacando.",
+            "metadata": [
+                {
+                    "HP": 2,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        }
+    },
+    {
+        "lower": "21",
+        "upper": "35",
+        "A": {
+            "text": "Tu enemigo salta hacia atrás ante tus intentos. Necesita tiempo para recuperarse.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -10
+                    },
+                    "HP": 2
+                }
+            ]
+        },
+        "B": {
+            "text": "Casi logras apresarle y darle una patada. Tu enemigo escapa y te mantiene a raya.",
+            "metadata": []
+        },
+        "C": {
+            "text": "Un golpe no es un barrido. Necesita tiempo para recuperarse.",
+            "metadata": [
+                {
+                    "HP": 4,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "El pie de tu enemigo deja de sostenerle. Se recupera admirablemente pero no del todo.",
+            "metadata": [
+                {
+                    "HP": 2,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Tu enemigo trata de recuperar el equilibrio. Te posicionas para evitar el próximo ataque.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "36",
+        "upper": "45",
+        "A": {
+            "text": "Tu  barrido es poco más que una ligera patada. Tu enemigo  retrocede 1 paso.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
+                    "HP": 3
+                }
+            ]
+        },
+        "B": {
+            "text": "El barrido magulla la pierna de tu enemigo, que, cojeando, se aparta de ti.",
+            "metadata": [
+                {
+                    "PE": {
+                        "ROUNDS": 3,
+                        "VALUE": -25
+                    },
+                    "HP": 4
+                }
+            ]
+        },
+        "C": {
+            "text": "Tu enemigo salta para evitar tu barrido pero no lo consigue del todo. Magulladuras en la pierna. Tienes la iniciativa.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -10
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "El barrido hace perder pie a tu enemigo pero su pantorrilla está dañada y sufre espamos en la zona. Se deja caer sobre una rodilla, pero lucha por levantarse del todo.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 5
+                }
+            ]
+        },
+        "E": {
+            "text": "El barrido hace que tu enemigo tenga que apoyarse sobre una rodilla. Se libera y se pone en pie con dolor. Un golpe más y no se volverá a levantar.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "46",
+        "upper": "50",
+        "A": {
+            "text": "Tu enemigo salta en tu envite. Te golpea en defensa.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -25
+                    },
+                    "HP": 4
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu barrido echa a un lado a tu enemigo. Se recupera en un santiamén.",
+            "metadata": [
+                {
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "Barrido que no hace caer a tu enemigo. Intenta buscar una posición mejor mientras tu enemigo se recupera.",
+            "metadata": [
+                {
+                    "HP": 4,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "El pie de tu enemigo deja de sostenerle. Consigue recuperarse admirablemente pero no del todo.",
+            "metadata": [
+                {
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Casi desarmas a tu enemigo. Se agacha por su arma. Tienes ventaja. Acaba con él.",
+            "metadata": [
+                {
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        }
+    },
+    {
+        "lower": "51",
+        "upper": "55",
+        "A": {
+            "text": "Tu oponente retrocede un metro para evitar tu barrido y reevalúa la situación.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -30
+                    },
+                    "HP": 5
+                }
+            ]
+        },
+        "B": {
+            "text": "El lanzamiento no consigue tirarlo al suelo, pero sí dejarlo sin aire.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "Presa estable que hace retroceder a tu enemigo. Sin embargo, no logras efectuar un barrido en condiciones.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Te cuelas en su guardia y consigues golpearle. El impacto rompe algunas costillas, aunque sigue en pie.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Haces tropezar a tu enemigo 1,5 metros en la dirección que desees. Está a punto de caer.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "56",
+        "upper": "60",
+        "A": {
+            "text": "Intentas lanzar a tu enemigo, pero se libera. Queda desequilibrado.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Presa en la mano del arma que disloca los dedos. Tu enemigo consigue mantener el arma en su lugar.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "Tu ataque hace bajar la guardia de tu enemigo. Encuentras un punto por el que atacar. ¿Qué será lo siguiente?",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "D": {
+            "text": "El barrido casi derriba a tu enemigo. Tu enemigo baja la guardia intentando no caer.",
+            "metadata": [
+                {
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Tu barrido es efectivo porque tu enemigo se tambalea. El porqué no llega a caer, es un misterio.",
+            "metadata": [
+                {
+                    "HP": 9,
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "61",
+        "upper": "65",
+        "A": {
+            "text": "Logras hacer caer a tu enemigo, que se reincorpora con suma rapidez. Tu golpe mortal falla.",
+            "metadata": [
+                {
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Haces presa en el brazo del arma de tu enemigo, estirándolo y volteándolo brutalmente.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 3,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "Tu barrido acaba con un intento de lanzar a tu enemigo estirando del brazo. Queda desarmado. La ventaja es tuya.",
+            "metadata": [
+                {
+                    "HP": 3,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Bien hecho. Tu enemigo logra evitar tu embestida pero le arrebatas tu arma cuando te bloquea con ella.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Excelente lanzamiento que envía a tu enemigo al suelo sobre su propia arma. Está caído y desarmado.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "66",
+        "upper": "66",
+        "A": {
+            "text": "El lanzamiento disloca el brazo del escudo de tu enemigo. No llega a caer pero su hombro está dolorido. Bastante dolorido.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "NP": 3
+                }
+            ]
+        },
+        "B": {
+            "text": "Ingeniosa proyección. Tienes a tu enemigo dando vueltas sobre sí mismo. Queda desarmado en inmovilizado.",
+            "metadata": [
+                {
+                    "HP": 9
+                }
+            ]
+        },
+        "C": {
+            "text": "Esta vez has ido al grano. Impacto en las espinillas que barre las piernas de tu enemigo hacia arriba. Tu enemigo genuflexiona sobre sus rodillas. Ambas se rompen.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -80
+                    },
+                    "HP": 15,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "NP": 6
+                }
+            ]
+        },
+        "D": {
+            "text": "Cae mal, y queda inconsciente si tiene yelmo. Si no, queda paralizado de cintura para abajo.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -90
+                    },
+                    "HP": 10,
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
+                    "NP": 4
+                }
+            ]
+        },
+        "E": {
+            "text": "Lo lanzas sobre tu hombro y cae en la dirección que quieras, a unos 3 metros. Si lo deseas muere a causa del impacto. Si no, cae inconsciente. ¡Eres un maestro!"
+        }
+    },
+    {
+        "lower": "67",
+        "upper": "70",
+        "A": {
+            "text": "Con dureza, pero poco más que un intento de lanzamiento, aunque queda desequilibrado.",
+            "metadata": [
+                {
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Siempre va un segundos por detrás de tus movimientos. Tienes la inciativa durante 6 asaltos.",
+            "metadata": [
+                {
+                    "HP": 8
+                }
+            ]
+        },
+        "C": {
+            "text": "Patada de refilón a la cara de tu enemigo. Al bajarla golpeas el costado. Retrocede 1,5 metros.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Haces que parezca fácil. Lanzas a tu enemigo contra el suelo que golpea contra el hombro del escudo, rompiéndose la clavícula. El brazo se fractura y queda inútil.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Aterriza sobre el brazo del escudo. Si tiene escudo, se rompe. Si no, se fractura el brazo y queda inútil.",
+            "metadata": [
+                {
+                    "DESC": "Con escudo",
+                    "HP": 20
+                },
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "DESC": "Sin escudo",
+                    "HP": 10,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        }
+    },
+    {
+        "lower": "71",
+        "upper": "75",
+        "A": {
+            "text": "La caída magulla el muslo de tu enemigo. Se levanta sobre sus pies inmediatamente.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -5
+                    },
+                    "HP": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "B": {
+            "text": "La caída provoca desgarros en los ligamentos de la pierna de tu enemigo. Se levanta con dificultad.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "C": {
+            "text": "Haces caer a tu enemigo al suelo y le inmovilizas la pierna intentando que golpee el suelo. Se desgarra un músculo en un intento de liberarse.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -25
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "Ayudas a tu enemigo a golpear el suelo con dureza. Fractura en la pierna. Rueda lejos de ti para alejarse.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -30
+                    },
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "E": {
+            "text": "Derribas a tu enemigo, que cae y se rompe la cadera. Te cebas en ese sitio para conseguir ventaja.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -40
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        }
+    },
+    {
+        "lower": "76",
+        "upper": "80",
+        "A": {
+            "text": "Tu enemigo cae sobre el costado de su escudo. Si tiene escudo, se rompe. Si no, se disloca el brazo.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu enemigo para la caída con el brazo de su arma. Se disloca 2 dedos en el aterrizaje.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -25
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "Tiras al suelo a tu adversario y te pones encima de él. Se te sacude pero queda apoyado sobre el brazo de su arma, dislocándose el hombro.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 6
+                    },
+                    "PE": {
+                        "VALUE": -40
+                    },
+                    "HP": 6
+                }
+            ]
+        },
+        "D": {
+            "text": "Lanzas a tu enemigo con fuerza mortífera. Cae sobre su espalda y fractura el hombro del arma. ¡Hora de acudir a la enfermería!",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 9,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "E": {
+            "text": "Lanzas a tu enemigo de espaldas. Tropieza durante 3 metros hasta que cae sobre su codo. Articulación rota. El brazo queda inútil.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
+                    "NP": 1
+                }
+            ]
+        }
+    },
+    {
+        "lower": "81",
+        "upper": "85",
+        "A": {
+            "text": "El barrido desequilibra a tu enemigo que te permite colocarte en una mejor posición para tu próximo ataque.",
+            "metadata": [
+                {
+                    "HP": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "BONUS": {
+                        "VALUE": 25
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "El barrido envía a tu enemigo 3 metros hacia un lado. Se tiene capa, cae. Si no, queda encarado en la dirección equivocada, dándote la espalda.",
+            "metadata": [
+                {
+                    "HP": 9,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "C": {
+            "text": "El barrido hace tambalearse a tu enemigo. Te acercas para conseguir una posición mejor. Tu enemigo no se da cuenta de la situación.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2,
+                    "BONUS": {
+                        "VALUE": 30
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Aterriza sobre sus armas, desgarrando músculos y tendones en su muñeca. Deja caer el arma. Brazo inútil.",
+            "metadata": [
+                {
+                    "HP": 10
+                }
+            ]
+        },
+        "E": {
+            "text": "Realizas un lanzamiento a la carrera. Lo cargas durante unos buenos 3 metros hasta caer sobre su cara. Al gritar se llena la boca de tierra.",
+            "metadata": [
+                {
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "NP": 6
+                }
+            ]
+        }
+    },
+    {
+        "lower": "86",
+        "upper": "90",
+        "A": {
+            "text": "Tu enemigo aterriza sobre su espalda rueda sobre sí mismo y se levanta. Músculos magullados. El daño ya está hecho.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu enemigo cae sobre su espalda, dándose cuenta que está en peligro. El impacto desgarra tendones y rompe huesos.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -25
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "C": {
+            "text": "Ataque contra las piernas que hace caer a tu enemigo. Siempre recordarás ese sonido de vértebras crujiendo.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "NP": 3
+                }
+            ]
+        },
+        "D": {
+            "text": "Derribas a tu enemigo y lo inmovilizas con una llave al brazo. Está atrapado a  menos que posea alguna técnica de escape.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "NP": 6
+                }
+            ]
+        },
+        "E": {
+            "text": "El lanzamiento manda volando a tu enemigo contra cualquier espectador a menos de 3 metros. Ambos quedan fuera de combate y aturdidos. ¡Qué fácil!",
+            "metadata": [
+                {
+                    "HP": 9,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "NP": 3
+                }
+            ]
+        }
+    },
+    {
+        "lower": "91",
+        "upper": "95",
+        "A": {
+            "text": "Tu enemigo se rompe la nariz al caer cuando lo lanzas por los aires. Es derribado y queda confundido.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -25
+                    },
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "La caída rompe costillas y deja desarmado a tu enemigo. Cae rodando y se levanta mirando en la dirección equivocada.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -30
+                    },
+                    "STUN": {
+                        "ROUNDS": 12
+                    },
+                    "NP": 12
+                }
+            ]
+        },
+        "C": {
+            "text": "El barrido derriba a tu enemigo, y aprovechas para hacerle una presa. Puedes romperle la pierna si quieres. Para qué engañarnos, todos sabemos que lo vas a hacer.",
+            "metadata": [
+                {
+                    "HP": 9,
+                    "NP": 15
+                }
+            ]
+        },
+        "D": {
+            "text": "El lanzamiento estampa a tu enemigo contra la superficie más cercana. Cae inconsciente. Podrás matarlo cuando quieras. Está a tu merced.",
+            "metadata": [
+                {
+                    "HP": 10
+                }
+            ]
+        },
+        "E": {
+            "text": "Astuto lanzamiento giratorio que hace volar a tu enemigo mientras le ayudas a caer al suelo. Cae inconsciente y queda desarmado."
+        }
+    },
+    {
+        "lower": "96",
+        "upper": "99",
+        "A": {
+            "text": "En esta ocasión aterriza con la cabeza. No es nada bueno. Si no tiene yelmo, queda inconsciente.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 9
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Con solo un golpe desarmas a tu enemigo, lo dejas inconsciente y le pateas la espalda. Una victoria exultante.",
+            "metadata": [
+                {
+                    "HP": 20
+                }
+            ]
+        },
+        "C": {
+            "text": "Lanzas a tu enemigo contra la superficie sólida que desees. Fractura craneal. Si tiene yelmo cae en coma. Si no, muerte tras 1 asalto."
+        },
+        "D": {
+            "text": "No tienes piedad. Tu ataque rompe las costillas de tu enemigo. Lo lanzas al suelo sobre su estómago y lo empalas con sus propias costillas fracturadas. Muere después de 6 asaltos."
+        },
+        "E": {
+            "text": "Apresas a tu enemigo con firmeza, le barres los pies y entonces te dejas caer sobre él en el suelo. El impacto le rompe el cuello y ... muere en el acto.",
+            "metadata": [
+                {
+                    "BONUS": {
+                        "ROUNDS": 1,
+                        "VALUE": 25
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "100",
+        "upper": "100",
+        "A": {
+            "text": "Lanzamiento primoroso. Tu enemigo cae inconsciente en la presa controlada. Puedes acabar con él o mantenerlo inmóvil e indefenso."
+        },
+        "B": {
+            "text": "Fabuloso lanzamiento que hace volar a tu enemigo. Se rompe el cuello en el impacto y muere. ¡Eres la muerte personificada!"
+        },
+        "C": {
+            "text": "Haces caer a tu enemigo contra el suelo golpeando con tu rodilla su espalda. Le rompes la columna y lo dejas paralítico de hombros para abajo. La misericordia no tiene cabida en tu corazón."
+        },
+        "D": {
+            "text": "Conviertes su embestida en una presa brutal que le rompe la espalda. Paralizado de cuello para abajo."
+        },
+        "E": {
+            "text": "Usando sólo la mitad del asalto, lanzas a tu enemigo volando contra la superficie sólida que desees. Muere en el acto debido a heridas múltiples. Quién sabe qué le mató.",
+            "metadata": [
+                {
+                    "BONUS": {
+                        "ROUNDS": 1,
+                        "VALUE": 25
+                    }
+                }
+            ]
+        }
+    }
+]

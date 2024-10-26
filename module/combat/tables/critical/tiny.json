@@ -1,0 +1,1089 @@
+[
+    {
+        "lower": "01",
+        "upper": "05",
+        "A": {
+            "text": "Se supone que quieres herirle, no abrazarle."
+        },
+        "B": {
+            "text": "Penoso.¿ No te enseño tu madre a no jugar  con la comida?"
+        },
+        "C": {
+            "text": "Eso fue tan guuuaay ... Sigue así. Quizás te lleve a casa y te adopte."
+        },
+        "D": {
+            "text": "Los golpes diminutos necesitan más precisión que los ataques ordinarios. No lo olvides."
+        },
+        "E": {
+            "text": "Tu titánico esfuerzo de refleja en un escado resultado. No tardará en sucumbir al \"poder  de los pequeños\".",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        }
+    },
+    {
+        "lower": "06",
+        "upper": "10",
+        "A": {
+            "text": "Rodar por el suelo y dar golpes en el aire no va a causar mucho daño."
+        },
+        "B": {
+            "text": "Magnífica demostración de acrobacias  por tu parte, pero no está allí cuando aterrizas."
+        },
+        "C": {
+            "text": "¡Mira! ¡Un burro volando!"
+        },
+        "D": {
+            "text": "No le alcanzas, pero destrozas su ropa. ¿Sabes cuánto le había costado?",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Buen golpe, pero no tenía mucha fuerza y causa poco daño.",
+            "metadata": [
+                {
+                    "HP": 2
+                }
+            ]
+        }
+    },
+    {
+        "lower": "11",
+        "upper": "15",
+        "A": {
+            "text": "Seguro que terminarás por hacerle daño."
+        },
+        "B": {
+            "text": "Ni te acercas. Recuerda lo que significa \"diminuto\"."
+        },
+        "C": {
+            "text": "Una lluvia de golpes que sólo consigue destrozar su túnica, pero no su piel.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "D": {
+            "text": "Corte en el cuello que rompe cualquier colgante de tu enemigo.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Hincas tus garras en las ropas de tu enemigo. Luchas por liberarte.",
+            "metadata": [
+                {
+                    "HP": 2
+                }
+            ]
+        }
+    },
+    {
+        "lower": "16",
+        "upper": "20",
+        "A": {
+            "text": "En este punto incluso un impacto pequeño no sirve de mucho, y éste ha sido uno. Solo está molesto.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu intento de aferrarte a tu enemigo ha sido bloqueado por su brazo.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "C": {
+            "text": "Pensabas que lo tenías, pero sólo golpeas el aire. Se aparte de ti sin esfuerzo.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "D": {
+            "text": "No alcanzas su garganta y sólo consigues aporrear su pecho. Ya verás cuando claves tus dientes en él.",
+            "metadata": [
+                {
+                    "HP": 2
+                }
+            ]
+        },
+        "E": {
+            "text": "Corte ligero que tiene poco efecto aunque logras probar su sangre. Te está dando ideas.",
+            "metadata": [
+                {
+                    "HP": 1,
+                    "HPR": 1
+                }
+            ]
+        }
+    },
+    {
+        "lower": "21",
+        "upper": "35",
+        "A": {
+            "text": "Es de los pequeños golpes de donde salen las heridas más grandes. Sigue insistiendo y terminarás por conseguirlo. La perseverancia es la clave.",
+            "metadata": [
+                {
+                    "HP": 1
+                }
+            ]
+        },
+        "B": {
+            "text": "Estás cerca, pero tu enemigo te patea antes de que tu ataque sea mortal.",
+            "metadata": [
+                {
+                    "HP": 2
+                }
+            ]
+        },
+        "C": {
+            "text": "El golpe en la cadera habría servido para algo si su armadura no se hubiera interpuesto en tu camino.",
+            "metadata": [
+                {
+                    "HP": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "No ha sido más que una cicatriz a su espalda. ¿Estás tratando de matarlo a cosquillas?",
+            "metadata": [
+                {
+                    "HP": 3
+                }
+            ]
+        },
+        "E": {
+            "text": "Arañas a tu enemigo en la pierna, que comienza a sangrar. Te abre el apetito.",
+            "metadata": [
+                {
+                    "HP": 2,
+                    "HPR": 1
+                }
+            ]
+        }
+    },
+    {
+        "lower": "36",
+        "upper": "45",
+        "A": {
+            "text": "Urg. Algo más que un golpe de poca importancia. Aunque tampoco mucho.",
+            "metadata": [
+                {
+                    "HP": 2
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu intento de destriparlo falla por poco. Estás acostumbrado a este tipo de frustraciones.",
+            "metadata": [
+                {
+                    "HP": 3
+                }
+            ]
+        },
+        "C": {
+            "text": "Agarre débil. Tu enemigo se libera, haciéndose daño. Sonríes y te responde con una mueca de dolor.",
+            "metadata": [
+                {
+                    "HP": 2,
+                    "HPR": 1
+                }
+            ]
+        },
+        "D": {
+            "text": "Golpe en la parte baja de la pierna. Si no tiene armadura allí le causas algo de daño.",
+            "metadata": [
+                {
+                    "DESC": "Sin grebas",
+                    "HP": 5,
+                    "HPR": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Contempla la herida de su muslo como si fuera la primera vez que lo ve sangrar.",
+            "metadata": [
+                {
+                    "HP": 3,
+                    "HPR": 1
+                }
+            ]
+        }
+    },
+    {
+        "lower": "46",
+        "upper": "50",
+        "A": {
+            "text": "Tu ataque falla por poco y pierdes una uña, garra, o lo que sea. Necesitas ser más preciso.",
+            "metadata": [
+                {
+                    "PE": {
+                        "ROUNDS": 2,
+                        "VALUE": -5
+                    },
+                    "HP": 4
+                }
+            ]
+        },
+        "B": {
+            "text": "Corte poco profundo en un costado de tu enemigo. Logra esquivar lo peor. Sólo ha sido suerte.",
+            "metadata": [
+                {
+                    "HP": 3
+                }
+            ]
+        },
+        "C": {
+            "text": "Golpe poderoso en el costado pero que no logra traspasar la piel. Tu enemigo se gira para verte mejor.",
+            "metadata": [
+                {
+                    "HP": 4
+                }
+            ]
+        },
+        "D": {
+            "text": "Pinchazo inesperado en el costado. Estás tan sorprendido como él. Te encanta que los planes salgan bien.",
+            "metadata": [
+                {
+                    "HP": 3,
+                    "HPR": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Te revuelves para asestar un impacto fuerte en la espalda del enemigo. Hay más sorpresa que dolor en su rostro, cuando se aleja de ti.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "HP": 5,
+                    "HPR": 1
+                }
+            ]
+        }
+    },
+    {
+        "lower": "51",
+        "upper": "55",
+        "A": {
+            "text": "Patada voladora. Una lástima que se aparte con tanta facilidad.",
+            "metadata": [
+                {
+                    "HP": 3
+                }
+            ]
+        },
+        "B": {
+            "text": "Corte profundo que produce algo de daño. Eso le ensañará.",
+            "metadata": [
+                {
+                    "HP": 3,
+                    "HPR": 1
+                }
+            ]
+        },
+        "C": {
+            "text": "Golpe débil en el pecho que lo coge de improviso; comienza a sangrar. Bien hecho. Está sorprendido.",
+            "metadata": [
+                {
+                    "HP": 4,
+                    "HPR": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "Oh. Si no tiene armadura, le abres el estómago.",
+            "metadata": [
+                {
+                    "DESC": "Sin armadura en el abdome",
+                    "HP": 5,
+                    "HPR": 3
+                }
+            ]
+        },
+        "E": {
+            "text": "Has conseguido que se enrede con su propio escudo. No será capaz de usarlo hasta el siguiente asalto.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "HPR": 1
+                }
+            ]
+        }
+    },
+    {
+        "lower": "56",
+        "upper": "60",
+        "A": {
+            "text": "Rompes sus ropas y le alcanzas en el muslo. Ey, hay sangre.",
+            "metadata": [
+                {
+                    "HP": 1,
+                    "HPR": 1
+                }
+            ]
+        },
+        "B": {
+            "text": "Arañas la piel de tu enemigo, pero no logras hendirla. Te mira y sacude la cabeza.",
+            "metadata": [
+                {
+                    "HP": 6
+                }
+            ]
+        },
+        "C": {
+            "text": "Estás cogiendo el ritmo; fintas a su garganta y alcanzas su muslo. Más sangre.",
+            "metadata": [
+                {
+                    "HP": 4,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "HPR": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "Sangra y está desquilibrado. No se esperaba ese golpe en la rodilla.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "HPR": 2
+                }
+            ]
+        },
+        "E": {
+            "text": "Sabroso. Te diviertes rasgando su muslo. \"Sonríes\" al ver la expresión de su rostro.",
+            "metadata": [
+                {
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "HPR": 3
+                }
+            ]
+        }
+    },
+    {
+        "lower": "61",
+        "upper": "65",
+        "A": {
+            "text": "Leve herida en el antebrazo. Lo estás haciendo muy bien. Sigue así.",
+            "metadata": [
+                {
+                    "HP": 2,
+                    "HPR": 2
+                }
+            ]
+        },
+        "B": {
+            "text": "Golpe inclinado en el antebrazo que deja una fea cicatriz (en caso de que no lo mates).",
+            "metadata": [
+                {
+                    "HP": 3,
+                    "HPR": 2
+                }
+            ]
+        },
+        "C": {
+            "text": "Tu enemigo bloquea el ataque con su brazo pero logras rasgárselo como pago. Todos esos rasguños comienzan a convertirse en algo más serio.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 2
+                    },
+                    "HP": 3,
+                    "HPR": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "Tu intento de apresarle falla, pero lo mantiene ocupado.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 2
+                    },
+                    "HP": 5,
+                    "HPR": 2,
+                    "BONUS": {
+                        "VALUE": 10
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Golpe que atraviesa sus defensas y corta el brazo que sujeta el escudo. Causas una fea hemorragia.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "HPR": 3
+                }
+            ]
+        }
+    },
+    {
+        "lower": "66",
+        "upper": "66",
+        "A": {
+            "text": "Su estómago está sangrando mientras se aparta de ti. Incluso se desequilibra.",
+            "metadata": [
+                {
+                    "HP": 4,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "HPR": 2,
+                    "NP": 2
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu golpe alcanza la pantorrilla de tu enemigo. Se aleja de ti violentamente, hiriéndose un poco más.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "C": {
+            "text": "Te agarras a él como si fueras una túnica barata. Deja caer su arma y salta 3 metros hacia atrás.",
+            "metadata": [
+                {
+                    "HP": 4,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "BONUS": {
+                        "VALUE": 10
+                    }
+                }
+            ]
+        },
+        "D": {
+            "text": "Destruyes uno de sus ojos y dejas al otro cegado por 2 días.",
+            "metadata": [
+                {
+                    "DESC": "Con yelmo",
+                    "HP": 4
+                },
+                {
+                    "DESC": "Sin yelmo",
+                    "HP": 7,
+                    "NP": 6
+                }
+            ]
+        },
+        "E": {
+            "text": "Le dejas retorciéndose en el suelo. Destruyes uno de sus ojos y dejas al otro cegado por 2 días.\r\nSu apariencia se modifica a -20.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -95
+                    },
+                    "HP": 15,
+                    "STUN": {
+                        "ROUNDS": 24
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lower": "67",
+        "upper": "70",
+        "A": {
+            "text": "Su túnica queda rota a la altura del hombro y hay más sangre. Eso podría yudar.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "HP": 3,
+                    "HPR": 1
+                }
+            ]
+        },
+        "B": {
+            "text": "Las uñas alcanzan un trozo de armadura en su recorrido. ¡Qué chirrido tan desagradable!",
+            "metadata": [
+                {
+                    "HP": 4,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "HPR": 1
+                }
+            ]
+        },
+        "C": {
+            "text": "Te estás acostumbrando a atacar a sus miembros vulnerables. Debería no exponer tanto las manos.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "HPR": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "La sangre que mana del tajo en su garganta le cubre la cara y le consigue desorientar.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "HPR": 2,
+                    "NP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Los tendones rotos hace que retroceda a causa del dolor. Eso le enseñará al capullo grandote.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 7,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        }
+    },
+    {
+        "lower": "71",
+        "upper": "75",
+        "A": {
+            "text": "Tu arrementida alcanza la parte baja de la pierna. Obtienes la iniciativa.",
+            "metadata": [
+                {
+                    "DESC": "Con armadura en la pierna",
+                    "HP": 4
+                },
+                {
+                    "DESC": "Sin armadura en la pierna",
+                    "HP": 1,
+                    "HPR": 2
+                }
+            ]
+        },
+        "B": {
+            "text": "No estás muy orgulloso de la forma que has tenido de agarrar la piel de tu enemigo. Tu oponente piensa que no peleas limpio.",
+            "metadata": [
+                {
+                    "DESC": "Con armadura en la pierna",
+                    "HP": 6
+                },
+                {
+                    "P": {
+                        "ROUNDS": 2
+                    },
+                    "DESC": "Sin armadura en la pierna",
+                    "HP": 3,
+                    "HPR": 2
+                }
+            ]
+        },
+        "C": {
+            "text": "Sajas un músculo de la pantorrilla de tu enemigo. Tienes la iniciativa del siguiente asalto. ¡El poder para los pequeños!",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "HPR": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "Golpe en la parte baja de la pierna. Retrocede con la intención de evitar tu próximo ataque \"diminuto\".",
+            "metadata": [
+                {
+                    "DESC": "Con armadura en la pierna",
+                    "HP": 3,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                },
+                {
+                    "DESC": "Sin armadura en la pierna",
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 1
+                }
+            ]
+        },
+        "E": {
+            "text": "Tu enemigo intenta parar la hemorragia de la herida de su pierna recogiendo la sangre con las manos. Solo consigue mancharlas de rojo.",
+            "metadata": [
+                {
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "HPR": 4
+                }
+            ]
+        }
+    },
+    {
+        "lower": "76",
+        "upper": "80",
+        "A": {
+            "text": "Débil, pero preciso golpe en el brazo. Tu enemigo logra sacudírsete de encima pero aun así consigues hacerle daño.",
+            "metadata": [
+                {
+                    "HP": 3,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "HPR": 1
+                }
+            ]
+        },
+        "B": {
+            "text": "Golpe fuerte pero impreciso en el brazo que provoca una herida de tamaño respetable. Estás orgulloso de tu propia \"diminutez\".",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -15
+                    },
+                    "HP": 5,
+                    "HPR": 2
+                }
+            ]
+        },
+        "C": {
+            "text": "Ese corte se ha cargado las cosas que hacen que su brazo funcione, pero no está desarmado. (aún).",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -25
+                    },
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "HPR": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "Te agarras con fuerza al brazo del enemigo y se lo desgarras sin piedad. ¡Eres una bestia!",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -25
+                    },
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "HPR": 2
+                }
+            ]
+        },
+        "E": {
+            "text": "Presta más atención a la sangría del brazo que a ti.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "HPR": 3,
+                    "NP": 2
+                }
+            ]
+        }
+    },
+    {
+        "lower": "81",
+        "upper": "85",
+        "A": {
+            "text": "No puede creer que le hayas cortado la cara. Retrocede, preparado para tu siguiente ataque.",
+            "metadata": [
+                {
+                    "HP": 4,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "HPR": 2
+                }
+            ]
+        },
+        "B": {
+            "text": "Encomendándote a los vientos te lanzas contra su cara.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "DESC": "Con armadura facial",
+                    "HP": 3
+                },
+                {
+                    "DESC": "Sin armadura facial",
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "HPR": 3
+                }
+            ]
+        },
+        "C": {
+            "text": "Golpe en la cabeza. Logras quitarle el yelmo. Ahora está arrugado y húmedo.",
+            "metadata": [
+                {
+                    "DESC": "Con yelmo",
+                    "HP": 3
+                },
+                {
+                    "PE": {
+                        "VALUE": -40
+                    },
+                    "DESC": " Sin yelmo",
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "HPR": 3
+                }
+            ]
+        },
+        "D": {
+            "text": "Golpe con fuerza en la cara. El daño causado depende de la armadura facial.",
+            "metadata": [
+                {
+                    "DESC": "Con armadura facial",
+                    "HP": 5
+                },
+                {
+                    "PE": {
+                        "VALUE": -40
+                    },
+                    "DESC": "Sin armadura facial",
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "HPR": 3
+                }
+            ]
+        },
+        "E": {
+            "text": "A menos que tenga un guantelete metálico en la mano, cortas unos cuantos dedos. Le mantendrá ocupado cierto tiempo.",
+            "metadata": [
+                {
+                    "HP": 8,
+                    "STUN": {
+                        "ROUNDS": 9
+                    },
+                    "HPR": 3
+                }
+            ]
+        }
+    },
+    {
+        "lower": "86",
+        "upper": "90",
+        "A": {
+            "text": "Un corte de precisión a la altura del codo hace que tu enemigo comience a tomarte en serio.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Corte en el cuello. Piensa que acabas de matarle, aunque la herida no es mortal. Se tambalea, con las manos sujetándose el cuello.",
+            "metadata": [
+                {
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "HPR": 2
+                }
+            ]
+        },
+        "C": {
+            "text": "Impacto que lo deja dando vueltas. Trazas círculos en torno a él.",
+            "metadata": [
+                {
+                    "HP": 6,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "NP": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "Te agarras con fuerza al brazo del arma de tu enemigo, obligándole a soltarla. Has atraído su atención por el momento.",
+            "metadata": [
+                {
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Te deslizas a su espalda y se le rajas. Hay sangre por todas partes.",
+            "metadata": [
+                {
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "VALUE": -40
+                    },
+                    "HP": 4,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "HPR": 3
+                }
+            ]
+        }
+    },
+    {
+        "lower": "91",
+        "upper": "95",
+        "A": {
+            "text": "Saltas golpeando la cabeza. Si no tiene yelmo le haces un corte en la cara y la oreja.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -30
+                    },
+                    "HP": 3,
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu enemigo bloquea el ataque con su brazo por lo que lo alcanzas allí en vez de tu destino original.",
+            "metadata": [
+                {
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "HPR": 2,
+                    "NP": 3
+                }
+            ]
+        },
+        "C": {
+            "text": "Tu golpe en su mejilla le desorienta. Recula, pensando en lo cerca que ha estado.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "HPR": 2,
+                    "NP": 2
+                }
+            ]
+        },
+        "D": {
+            "text": "El dedo pulgar del brazo que sostiene el arma es reducido al pulpa. Has atraído su atención al completo.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "HPR": 2
+                }
+            ]
+        },
+        "E": {
+            "text": "Deslumbrante salto que deja inconsciente a tu enemigo y le hace caer de espaldas. Queda desarmado.",
+            "metadata": [
+                {
+                    "HP": 9
+                }
+            ]
+        }
+    },
+    {
+        "lower": "96",
+        "upper": "99",
+        "A": {
+            "text": "Sabedor de que la precisión  lo es todo, golpeas a tu oponente en la nariz, a menos que la tenga protegida.",
+            "metadata": [
+                {
+                    "STUN": {
+                        "ROUNDS": 9
+                    },
+                    "HPR": 3
+                }
+            ]
+        },
+        "B": {
+            "text": "Queda cegado a causa de la sangre que mana de su frente. Tu enemigo queda con la guardia baja intentando parar la hemorragia. Ésta es tu oportunidad.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -40
+                    },
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "HPR": 3,
+                    "NP": 3
+                }
+            ]
+        },
+        "C": {
+            "text": "Cae y trata de alejarse reptando. Es lo que tiene perder el tendón de Aquiles.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -65
+                    },
+                    "HP": 5,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "NP": 6
+                }
+            ]
+        },
+        "D": {
+            "text": "Colpe en la cara. Si tiene telmo con visor queda ciego e indefenso mientras dure la hinchazón. Si no tenía yelmo con visor, pierde un ojo y queda ciego el otro.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -100
+                    }
+                }
+            ]
+        },
+        "E": {
+            "text": "Golpe mortal en la cabeza que lo derriba. Se parte la cabeza cuando cae al suelo. Muere después de 9 asaltos."
+        }
+    },
+    {
+        "lower": "100",
+        "upper": "100",
+        "A": {
+            "text": "Bien hecho. Golpe en los ojos. Si no tiene un yelmo con visor, pierde uno de sus ojos.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -75
+                    },
+                    "HP": 15,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "NP": 3
+                }
+            ]
+        },
+        "B": {
+            "text": "Tu enemigo salta hacia atrás para evitar un corte en la garganta. Cae derribado.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "HPR": 3,
+                    "NP": 6
+                }
+            ]
+        },
+        "C": {
+            "text": "Impacto grave en la cabeza. Si tiene yelmo cae inconsciente durante 1-10 días. Sin yelmo, es caro data vermibus.",
+            "metadata": [
+                {
+                    "HP": 25,
+                    "HPR": 1
+                }
+            ]
+        },
+        "D": {
+            "text": "Pasas a formar parte de la cima de la cadena alimenticia y le ciegas para siempre. Está a tu merced.",
+            "metadata": [
+                {
+                    "PE": {
+                        "VALUE": -95
+                    },
+                    "HP": 10,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "HPR": 2,
+                    "NP": 6
+                }
+            ]
+        },
+        "E": {
+            "text": "Es tan fácil que no entiendes cómo no lo has hecho antes. Sajas la arteria de su cuello. Muerto en 6 asaltos.",
+            "metadata": [
+                {
+                    "HPR": 20
+                }
+            ]
+        }
+    }
+]

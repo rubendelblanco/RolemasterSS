@@ -22,6 +22,10 @@ import RMSSRaceSheet from "./module/sheets/items/rmss_race_sheet.js";
 import RMSSProfessionSheet from "./module/sheets/items/rmss_profession_sheet.js";
 import RMSSPlayerSheet from "./module/sheets/actors/rmss_player_sheet.js";
 import RMSSActorSheetConfig from "./module/sheets/actors/rmss_player_sheet_config.js";
+import {RMSSWeaponSkillManager} from "./module/combat/rmss_weapon_skill_manager.js";
+import {RMSSWeaponCriticalManager} from "./module/combat/rmss_weapon_critical_manager.js";
+
+export let socket;
 
 /**  Preload handlebars templates for character sheets */
 async function preloadHandlebarsTemplates() {
@@ -52,6 +56,13 @@ async function preloadHandlebarsTemplates() {
   ];
   return loadTemplates(templatePaths);
 }
+
+//Socketlib actions
+Hooks.once("socketlib.ready", () => {
+  socket = socketlib.registerSystem("rmss");
+  socket.register("confirmWeaponAttack", RMSSWeaponSkillManager.attackMessagePopup);
+  socket.register("confirmWeaponCritical", RMSSWeaponCriticalManager.criticalMessagePopup);
+});
 
 // Hook the init function and set up our system
 Hooks.once("init", function() {

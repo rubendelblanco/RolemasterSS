@@ -1,13 +1,22 @@
 {
   "name": "rmss",
+  "id": "rmss",
   "title": "Rolemaster Standard System",
   "description": "The Rolemaster Standard System system for FoundryVTT.",
-  "author": "Cynicide",
-  "version": "0.0.3",
+  "authors": [
+    {
+    "name": "Cynicide"
+    },
+    {
+      "name": "Ruben Rey"
+    }
+  ],
+  "version": "0.1.0",
   "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "10",
+  "compatibleCoreVersion": "12",
   "esmodules":[
-    "rmss.js"
+    "rmss.js",
+    "module/chat/hooks.js"
   ],
   "styles": ["rmss.css"],
   "packs": [    {
@@ -30,7 +39,18 @@
       "path": "lang/es.json"
     }
   ],
-  "gridDistance": 5,
-  "gridUnits": "ft",
-  "license": "LICENSE.txt"
+  "grid":{
+    "distance": 5,
+    "units": "ft"
+  },
+  "license": "LICENSE.txt",
+  "socket": true,
+  "requires": [
+    {
+      "id": "socketlib",
+      "type": "module",
+      "manifest": "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/master/module.json",
+      "compatibility": {}
+    }
+  ]
 }
