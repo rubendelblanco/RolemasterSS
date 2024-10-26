@@ -2,10 +2,18 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": {"text":"Se supone que quieres herirle, no abrazarle."},
-        "B": {"text":"Penoso.¿ No te enseño tu madre a no jugar  con la comida?"},
-        "C": {"text":"Eso fue tan guuuaay ... Sigue así. Quizás te lleve a casa y te adopte."},
-        "D": {"text":"Los golpes diminutos necesitan más precisión que los ataques ordinarios. No lo olvides."},
+        "A": {
+            "text": "Se supone que quieres herirle, no abrazarle."
+        },
+        "B": {
+            "text": "Penoso.¿ No te enseño tu madre a no jugar  con la comida?"
+        },
+        "C": {
+            "text": "Eso fue tan guuuaay ... Sigue así. Quizás te lleve a casa y te adopte."
+        },
+        "D": {
+            "text": "Los golpes diminutos necesitan más precisión que los ataques ordinarios. No lo olvides."
+        },
         "E": {
             "text": "Tu titánico esfuerzo de refleja en un escado resultado. No tardará en sucumbir al \"poder  de los pequeños\".",
             "metadata": [
@@ -18,9 +26,15 @@
     {
         "lower": "06",
         "upper": "10",
-        "A": {"text":"Rodar por el suelo y dar golpes en el aire no va a causar mucho daño."},
-        "B": {"text":"Magnífica demostración de acrobacias  por tu parte, pero no está allí cuando aterrizas."},
-        "C": {"text":"¡Mira! ¡Un burro volando!"},
+        "A": {
+            "text": "Rodar por el suelo y dar golpes en el aire no va a causar mucho daño."
+        },
+        "B": {
+            "text": "Magnífica demostración de acrobacias  por tu parte, pero no está allí cuando aterrizas."
+        },
+        "C": {
+            "text": "¡Mira! ¡Un burro volando!"
+        },
         "D": {
             "text": "No le alcanzas, pero destrozas su ropa. ¿Sabes cuánto le había costado?",
             "metadata": [
@@ -41,8 +55,12 @@
     {
         "lower": "11",
         "upper": "15",
-        "A": {"text":"Seguro que terminarás por hacerle daño."},
-        "B": {"text":"Ni te acercas. Recuerda lo que significa \"diminuto\"."},
+        "A": {
+            "text": "Seguro que terminarás por hacerle daño."
+        },
+        "B": {
+            "text": "Ni te acercas. Recuerda lo que significa \"diminuto\"."
+        },
         "C": {
             "text": "Una lluvia de golpes que sólo consigue destrozar su túnica, pero no su piel.",
             "metadata": [
@@ -213,7 +231,10 @@
             "text": "Tu ataque falla por poco y pierdes una uña, garra, o lo que sea. Necesitas ser más preciso.",
             "metadata": [
                 {
-                    "PE": "2:5",
+                    "PE": {
+                        "ROUNDS": 2,
+                        "VALUE": -5
+                    },
                     "HP": 4
                 }
             ]
@@ -247,7 +268,9 @@
             "text": "Te revuelves para asestar un impacto fuerte en la espalda del enemigo. Hay más sorpresa que dolor en su rostro, cuando se aleja de ti.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 5,
                     "HPR": 1
                 }
@@ -328,7 +351,9 @@
             "metadata": [
                 {
                     "HP": 4,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 2
                 }
             ]
@@ -338,7 +363,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 2
                 }
             ]
@@ -348,7 +375,9 @@
             "metadata": [
                 {
                     "HP": 7,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 3
                 }
             ]
@@ -379,7 +408,9 @@
             "text": "Tu enemigo bloquea el ataque con su brazo pero logras rasgárselo como pago. Todos esos rasguños comienzan a convertirse en algo más serio.",
             "metadata": [
                 {
-                    "P": 2,
+                    "P": {
+                        "ROUNDS": 2
+                    },
                     "HP": 3,
                     "HPR": 2
                 }
@@ -389,10 +420,14 @@
             "text": "Tu intento de apresarle falla, pero lo mantiene ocupado.",
             "metadata": [
                 {
-                    "P": 2,
+                    "P": {
+                        "ROUNDS": 2
+                    },
                     "HP": 5,
                     "HPR": 2,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         },
@@ -401,7 +436,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 3
                 }
             ]
@@ -415,7 +452,9 @@
             "metadata": [
                 {
                     "HP": 4,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 2,
                     "NP": 2
                 }
@@ -425,9 +464,13 @@
             "text": "Tu golpe alcanza la pantorrilla de tu enemigo. Se aleja de ti violentamente, hiriéndose un poco más.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 5,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -436,8 +479,12 @@
             "metadata": [
                 {
                     "HP": 4,
-                    "STUN": 1,
-                    "BONUS": 10
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         },
@@ -459,9 +506,13 @@
             "text": "Le dejas retorciéndose en el suelo. Destruyes uno de sus ojos y dejas al otro cegado por 2 días.\r\nSu apariencia se modifica a -20.",
             "metadata": [
                 {
-                    "PE": 95,
+                    "PE": {
+                        "VALUE": -95
+                    },
                     "HP": 15,
-                    "STUN": 24
+                    "STUN": {
+                        "ROUNDS": 24
+                    }
                 }
             ]
         }
@@ -473,7 +524,9 @@
             "text": "Su túnica queda rota a la altura del hombro y hay más sangre. Eso podría yudar.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 3,
                     "HPR": 1
                 }
@@ -484,7 +537,9 @@
             "metadata": [
                 {
                     "HP": 4,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 1
                 }
             ]
@@ -493,9 +548,13 @@
             "text": "Te estás acostumbrando a atacar a sus miembros vulnerables. Debería no exponer tanto las manos.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 5,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 2
                 }
             ]
@@ -505,7 +564,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 2,
                     "NP": 1
                 }
@@ -515,9 +576,13 @@
             "text": "Los tendones rotos hace que retroceda a causa del dolor. Eso le enseñará al capullo grandote.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 7,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -548,7 +613,9 @@
                     "HP": 6
                 },
                 {
-                    "P": 2,
+                    "P": {
+                        "ROUNDS": 2
+                    },
                     "DESC": "Sin armadura en la pierna",
                     "HP": 3,
                     "HPR": 2
@@ -559,8 +626,12 @@
             "text": "Sajas un músculo de la pantorrilla de tu enemigo. Tienes la iniciativa del siguiente asalto. ¡El poder para los pequeños!",
             "metadata": [
                 {
-                    "PE": 20,
-                    "STUN": 2,
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 2
                 }
             ]
@@ -571,11 +642,15 @@
                 {
                     "DESC": "Con armadura en la pierna",
                     "HP": 3,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 },
                 {
                     "DESC": "Sin armadura en la pierna",
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 1
                 }
             ]
@@ -585,7 +660,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "HPR": 4
                 }
             ]
@@ -599,7 +676,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 1
                 }
             ]
@@ -608,7 +687,9 @@
             "text": "Golpe fuerte pero impreciso en el brazo que provoca una herida de tamaño respetable. Estás orgulloso de tu propia \"diminutez\".",
             "metadata": [
                 {
-                    "PE": 15,
+                    "PE": {
+                        "VALUE": -15
+                    },
                     "HP": 5,
                     "HPR": 2
                 }
@@ -618,9 +699,13 @@
             "text": "Ese corte se ha cargado las cosas que hacen que su brazo funcione, pero no está desarmado. (aún).",
             "metadata": [
                 {
-                    "PE": 25,
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 5,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 2
                 }
             ]
@@ -629,9 +714,13 @@
             "text": "Te agarras con fuerza al brazo del enemigo y se lo desgarras sin piedad. ¡Eres una bestia!",
             "metadata": [
                 {
-                    "PE": 25,
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 5,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "HPR": 2
                 }
             ]
@@ -640,7 +729,9 @@
             "text": "Presta más atención a la sangría del brazo que a ti.",
             "metadata": [
                 {
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 3,
                     "NP": 2
                 }
@@ -655,7 +746,9 @@
             "metadata": [
                 {
                     "HP": 4,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 2
                 }
             ]
@@ -664,13 +757,17 @@
             "text": "Encomendándote a los vientos te lanzas contra su cara.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "DESC": "Con armadura facial",
                     "HP": 3
                 },
                 {
                     "DESC": "Sin armadura facial",
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "HPR": 3
                 }
             ]
@@ -683,10 +780,14 @@
                     "HP": 3
                 },
                 {
-                    "PE": 40,
+                    "PE": {
+                        "VALUE": -40
+                    },
                     "DESC": " Sin yelmo",
                     "HP": 5,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 3
                 }
             ]
@@ -699,9 +800,13 @@
                     "HP": 5
                 },
                 {
-                    "PE": 40,
+                    "PE": {
+                        "VALUE": -40
+                    },
                     "DESC": "Sin armadura facial",
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "HPR": 3
                 }
             ]
@@ -711,7 +816,9 @@
             "metadata": [
                 {
                     "HP": 8,
-                    "STUN": 9,
+                    "STUN": {
+                        "ROUNDS": 9
+                    },
                     "HPR": 3
                 }
             ]
@@ -725,7 +832,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -734,7 +843,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "HPR": 2
                 }
             ]
@@ -744,7 +855,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -754,7 +867,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -762,10 +877,16 @@
             "text": "Te deslizas a su espalda y se le rajas. Hay sangre por todas partes.",
             "metadata": [
                 {
-                    "P": 1,
-                    "PE": 40,
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "VALUE": -40
+                    },
                     "HP": 4,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "HPR": 3
                 }
             ]
@@ -778,9 +899,13 @@
             "text": "Saltas golpeando la cabeza. Si no tiene yelmo le haces un corte en la cara y la oreja.",
             "metadata": [
                 {
-                    "PE": 30,
+                    "PE": {
+                        "VALUE": -30
+                    },
                     "HP": 3,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -789,7 +914,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "HPR": 2,
                     "NP": 3
                 }
@@ -799,9 +926,13 @@
             "text": "Tu golpe en su mejilla le desorienta. Recula, pensando en lo cerca que ha estado.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 5,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 2,
                     "NP": 2
                 }
@@ -811,8 +942,12 @@
             "text": "El dedo pulgar del brazo que sostiene el arma es reducido al pulpa. Has atraído su atención al completo.",
             "metadata": [
                 {
-                    "PE": 50,
-                    "STUN": 2,
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 2
                 }
             ]
@@ -833,7 +968,9 @@
             "text": "Sabedor de que la precisión  lo es todo, golpeas a tu oponente en la nariz, a menos que la tenga protegida.",
             "metadata": [
                 {
-                    "STUN": 9,
+                    "STUN": {
+                        "ROUNDS": 9
+                    },
                     "HPR": 3
                 }
             ]
@@ -842,8 +979,12 @@
             "text": "Queda cegado a causa de la sangre que mana de su frente. Tu enemigo queda con la guardia baja intentando parar la hemorragia. Ésta es tu oportunidad.",
             "metadata": [
                 {
-                    "PE": 40,
-                    "STUN": 3,
+                    "PE": {
+                        "VALUE": -40
+                    },
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "HPR": 3,
                     "NP": 3
                 }
@@ -853,9 +994,13 @@
             "text": "Cae y trata de alejarse reptando. Es lo que tiene perder el tendón de Aquiles.",
             "metadata": [
                 {
-                    "PE": 65,
+                    "PE": {
+                        "VALUE": -65
+                    },
                     "HP": 5,
-                    "STUN": 6,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
                     "NP": 6
                 }
             ]
@@ -864,11 +1009,15 @@
             "text": "Colpe en la cara. Si tiene telmo con visor queda ciego e indefenso mientras dure la hinchazón. Si no tenía yelmo con visor, pierde un ojo y queda ciego el otro.",
             "metadata": [
                 {
-                    "PE": 100
+                    "PE": {
+                        "VALUE": -100
+                    }
                 }
             ]
         },
-        "E": "Golpe mortal en la cabeza que lo derriba. Se parte la cabeza cuando cae al suelo. Muere después de 9 asaltos.\r\n"
+        "E": {
+            "text": "Golpe mortal en la cabeza que lo derriba. Se parte la cabeza cuando cae al suelo. Muere después de 9 asaltos."
+        }
     },
     {
         "lower": "100",
@@ -877,9 +1026,13 @@
             "text": "Bien hecho. Golpe en los ojos. Si no tiene un yelmo con visor, pierde uno de sus ojos.",
             "metadata": [
                 {
-                    "PE": 75,
+                    "PE": {
+                        "VALUE": -75
+                    },
                     "HP": 15,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -888,8 +1041,12 @@
             "text": "Tu enemigo salta hacia atrás para evitar un corte en la garganta. Cae derribado.",
             "metadata": [
                 {
-                    "PE": 50,
-                    "STUN": 6,
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
                     "HPR": 3,
                     "NP": 6
                 }
@@ -908,9 +1065,13 @@
             "text": "Pasas a formar parte de la cima de la cadena alimenticia y le ciegas para siempre. Está a tu merced.",
             "metadata": [
                 {
-                    "PE": 95,
+                    "PE": {
+                        "VALUE": -95
+                    },
                     "HP": 10,
-                    "STUN": 6,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
                     "HPR": 2,
                     "NP": 6
                 }

@@ -2,8 +2,12 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": {"text":"Ataque poco inspirado. Deja de avergonzar a tus amigos."},
-        "B": {"text":"Una demostración de libro de cómo no herir a alguien. El enemigo está complacido por la lección."},
+        "A": {
+            "text": "Ataque poco inspirado. Deja de avergonzar a tus amigos."
+        },
+        "B": {
+            "text": "Una demostración de libro de cómo no herir a alguien. El enemigo está complacido por la lección."
+        },
         "C": {
             "text": "Le alcanzas de refilón, como si de una advertencia se tratara. Inténtalo de nuevo.",
             "metadata": [
@@ -104,7 +108,9 @@
             "text": "Fuerzas a tu enemigo a retroceder. Te mantiene a rayas a con mandobles desesperados al aire.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 3
                 }
             ]
@@ -113,7 +119,9 @@
             "text": "Desvías el arma de tu enemigo, obligándole a retroceder.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 4
                 }
             ]
@@ -126,7 +134,9 @@
             "text": "El golpe pasa por debajo del brazo de tu enemigo. Retrocede, sin saber muy bien qué ha sucedido.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 1
                 }
             ]
@@ -135,7 +145,10 @@
             "text": "Impacto en el costado. Aun te queda por hacer.",
             "metadata": [
                 {
-                    "P": "1:-10",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -10
+                    },
                     "HP": 2
                 }
             ]
@@ -144,7 +157,10 @@
             "text": "Tu ataque alcanza a tu enemigo en el costado, obligándole a retroceder 1,5 metros. Pasa a adoptar postura defensiva.",
             "metadata": [
                 {
-                    "P": "1:-20",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
                     "HP": 4
                 }
             ]
@@ -153,7 +169,9 @@
             "text": "Te aproximas y sajas las costillas de tu adversario. Tienes la iniciativa el siguiente asalto.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 2
                 }
             ]
@@ -162,9 +180,13 @@
             "text": "Fuerte golpe en las costillas. Tu enemigo baja la guardia y casi deja el arma.",
             "metadata": [
                 {
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         }
@@ -176,8 +198,13 @@
             "text": "Has atraído su atención. Te esquiva pero está a la defensiva.",
             "metadata": [
                 {
-                    "P": 1,
-                    "PE": "1:-10",
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "ROUNDS": 1,
+                        "VALUE": -10
+                    },
                     "HP": 2
                 }
             ]
@@ -186,7 +213,10 @@
             "text": "Tu enemigo se tambalea cuando tu ataque golpea su costado. Se recupera a duras penas.",
             "metadata": [
                 {
-                    "P": "1:-20",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
                     "HP": 2
                 }
             ]
@@ -196,7 +226,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -205,7 +237,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -214,7 +248,9 @@
             "text": "Le haces un corte en el costado que deja asomar un poco de sangre, retrocede 3 metros.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 3,
                     "HPR": 1
                 }
@@ -236,7 +272,9 @@
             "text": "Le golpeas en la espinilla. Si no tiene grebas, le abres una brecha.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "DESC": "Con grebas",
                     "HP": 2
                 },
@@ -287,7 +325,10 @@
             "text": "Golpe en la espalda, tras penetrar sus defensas. Tu enemigo intenta protegerse con mandobles al aire.",
             "metadata": [
                 {
-                    "P": "1:-30",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -30
+                    },
                     "HP": 2
                 }
             ]
@@ -296,17 +337,22 @@
             "text": "Lo golpeas en la espalda, aunque consigue evitar la mayor parte del daño.",
             "metadata": [
                 {
-                    "P": "1:-30",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -30
+                    },
                     "HP": 4
                 }
             ]
         },
         "C": {
-            "text": "Golpe en la espalda. Intenta girarse lo que tu arma abre más  su herida. Sangre y dolor.",
+            "text": "Golpe en la espalda. Intenta girarse, por lo que tu arma abre más su herida. Sangre y dolor.",
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 1,
                     "NP": 1
                 }
@@ -317,7 +363,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 2,
                     "NP": 1
                 }
@@ -328,7 +376,9 @@
             "metadata": [
                 {
                     "HP": 4,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 3,
                     "NP": 1
                 }
@@ -342,7 +392,10 @@
             "text": "Golpe en el pecho. Se tambalea hacia atrás intentando defenderse de ti con una guardia bastante mala.",
             "metadata": [
                 {
-                    "P": "1:-25",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -25
+                    },
                     "HP": 2,
                     "HPR": 1
                 }
@@ -352,13 +405,19 @@
             "text": "Se tambalea tras la herida en el pecho que le has causado.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "DESC": "Con armadura pectoral",
                     "HP": 4
                 },
                 {
-                    "P": 2,
-                    "PE": 5,
+                    "P": {
+                        "ROUNDS": 2
+                    },
+                    "PE": {
+                        "VALUE": -5
+                    },
                     "DESC": "Sin armadura pectoral",
                     "HP": 3,
                     "HPR": 1
@@ -369,8 +428,12 @@
             "text": "Tu ambicioso golpe en el pecho no es mortal, pero aun así sangra copiosamente, y pasa a adoptar una posición defensiva.",
             "metadata": [
                 {
-                    "P": 1,
-                    "PE": 10,
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 4,
                     "HPR": 2
                 }
@@ -380,8 +443,12 @@
             "text": "Potente golpe en el hombro. La herida es profunda. Suguardia sigue alta de manera increíble.",
             "metadata": [
                 {
-                    "P": 1,
-                    "PE": 15,
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "VALUE": -15
+                    },
                     "HP": 5,
                     "HPR": 3
                 }
@@ -391,8 +458,12 @@
             "text": "Sí, eso que brota de su pecho es sangre. La experiencia te dice que es una buena señal.",
             "metadata": [
                 {
-                    "P": 2,
-                    "PE": 10,
+                    "P": {
+                        "ROUNDS": 2
+                    },
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 6,
                     "HPR": 4
                 }
@@ -406,7 +477,9 @@
             "text": "Logras que tu mandoble inicial abra una corte en el muslo de tu enemigo. Debe doler mucho.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 3,
                     "HPR": 2
                 }
@@ -416,7 +489,9 @@
             "text": "El filo del arma entra en contacto con claridad. Herida leve en el muslo, pero no cesa de sangrar, y se mantiene a la defensiva.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 3,
                     "HPR": 2
                 }
@@ -427,7 +502,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 2
                 }
             ]
@@ -437,7 +514,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 2
                 }
             ]
@@ -447,7 +526,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 5
                 }
             ]
@@ -460,7 +541,9 @@
             "text": "Finges golpear alto, asestándolo por la parte posterior de la pierna de tu enemigo.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 3,
                     "HPR": 2
                 }
@@ -470,9 +553,13 @@
             "text": "Impactas en el antebrazo. La herida sangra mucho por lo que te mira con sorpresa en sus ojos. ¿Cómo ha ocurrido?",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 8,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 2
                 }
             ]
@@ -481,9 +568,13 @@
             "text": "Tu estocada se queda corta ya que tu enemigo retrocede. Rompes la rodilla de tu enemigo. Cae.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 4,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "HPR": 3
                 }
             ]
@@ -492,9 +583,13 @@
             "text": "Impacto en el antebrazo que lo aturde. No se esperaba esa clase de lucha.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 4,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 3
                 }
             ]
@@ -503,9 +598,13 @@
             "text": "Tu enemigo intenta desarmarte, pagándolo con una fea herida en su antebrazo. Más sangre.",
             "metadata": [
                 {
-                    "PE": 15,
+                    "PE": {
+                        "VALUE": -15
+                    },
                     "HP": 6,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 3
                 }
             ]
@@ -519,9 +618,13 @@
             "metadata": [
                 {
                     "HP": 9,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 1,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         },
@@ -530,7 +633,9 @@
             "metadata": [
                 {
                     "HP": 8,
-                    "STUN": 4,
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
                     "NP": 2
                 }
             ]
@@ -539,7 +644,9 @@
             "text": "Retrocede, pero en el último momento alcanzas su rodilla y de la rompes. Cae, intentando defenderse.",
             "metadata": [
                 {
-                    "PE": 90,
+                    "PE": {
+                        "VALUE": -90
+                    },
                     "HP": 6,
                     "NP": 3
                 }
@@ -558,7 +665,9 @@
             "metadata": [
                 {
                     "HP": 12,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         }
@@ -571,7 +680,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 1
                 }
             ]
@@ -580,9 +691,13 @@
             "text": "Casi consigues decapitar a tu enemigo con un golpe en el cuello. Tu enemigo no está contento.",
             "metadata": [
                 {
-                    "PE": 5,
+                    "PE": {
+                        "VALUE": -5
+                    },
                     "HP": 7,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 3
                 }
             ]
@@ -592,9 +707,13 @@
             "metadata": [
                 {
                     "HP": 8,
-                    "STUN": 4,
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
                     "NP": 2,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         },
@@ -603,9 +722,15 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": "3:-20",
-                    "NP": 2,
-                    "BONUS": 10
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         },
@@ -626,7 +751,9 @@
             "text": "Golpe en la parte baja de la pierna, y consigues cortar tendones. ¿Qué es lo que ha ocurrido?",
             "metadata": [
                 {
-                    "PE": 30,
+                    "PE": {
+                        "VALUE": -30
+                    },
                     "HP": 4,
                     "HPR": 2,
                     "NP": 2
@@ -637,9 +764,13 @@
             "text": "Tiene problemas para mantenerse en pie. Quizá la herida de la pantorrilla tenga algo que ver.",
             "metadata": [
                 {
-                    "PE": 40,
+                    "PE": {
+                        "VALUE": -40
+                    },
                     "HP": 6,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 1
                 }
             ]
@@ -648,9 +779,13 @@
             "text": "Tajo en el cuello que corta cualquier ropaje (y armadura) que tuviese. Está sorprendido de seguir vivo.",
             "metadata": [
                 {
-                    "PE": 45,
+                    "PE": {
+                        "VALUE": -45
+                    },
                     "HP": 7,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -659,8 +794,12 @@
             "text": "Cortas los músculos y tendones de la parte baja de la pierna de tu enemigo. No podrá hacer mucho hasta que se recupere.",
             "metadata": [
                 {
-                    "PE": 50,
-                    "STUN": 3,
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 2
                 }
             ]
@@ -669,9 +808,13 @@
             "text": "Cortas los músculos y tendones de la parte baja de la pierna de tu enemigo. Caerá si no tiene donde apoyarse.",
             "metadata": [
                 {
-                    "PE": 70,
+                    "PE": {
+                        "VALUE": -70
+                    },
                     "HP": 8,
-                    "STUN": 6
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
                 }
             ]
         }
@@ -680,12 +823,16 @@
         "lower": "76",
         "upper": "80",
         "A": {
-            "text": "Tu enemigo se agacha  pero aun así logras impactar en la parte superior de su brazo. Está aturdido y sangra como un cerdo.",
+            "text": "Tu enemigo se agacha pero aun así logras impactar en la parte superior de su brazo. Está aturdido y sangra como un cerdo.",
             "metadata": [
                 {
-                    "PE": 25,
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 5,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 3,
                     "NP": 2
                 }
@@ -695,20 +842,26 @@
             "text": "Tu enemigo mueve con mucha lentitud el brazo del escudo. Le haces un corte en el brazo.",
             "metadata": [
                 {
-                    "PE": 30,
+                    "PE": {
+                        "VALUE": -30
+                    },
                     "HP": 6,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 3,
                     "NP": 2
                 }
             ]
         },
         "C": {
-            "text": "Golpeas alto y rápido. Cortas músculos y tendones del brazo del  escudo de tu enemigo, dejando el brazo inútil. Se dedicaría a para si pudiera.",
+            "text": "Golpeas alto y rápido. Cortas músculos y tendones del brazo del  escudo de tu enemigo, dejando el brazo inútil. Se dedicaría a parar si pudiera.",
             "metadata": [
                 {
                     "HP": 9,
-                    "STUN": 6,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
                     "HPR": 4
                 }
             ]
@@ -718,7 +871,9 @@
             "metadata": [
                 {
                     "HP": 10,
-                    "STUN": 4,
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
                     "NP": 2
                 }
             ]
@@ -728,7 +883,9 @@
             "metadata": [
                 {
                     "HP": 12,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -742,9 +899,13 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 5,
+                    "STUN": {
+                        "ROUNDS": 5
+                    },
                     "HPR": 6,
-                    "BONUS": 20
+                    "BONUS": {
+                        "VALUE": 20
+                    }
                 }
             ]
         },
@@ -753,7 +914,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 6,
                     "NP": 2
                 }
@@ -763,9 +926,13 @@
             "text": "Haces honor a tu entrenamiento, alargando el arco de la estocada. El golpe impacta en el costado de tu enemigo.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 8,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 4,
                     "NP": 2
                 }
@@ -775,9 +942,13 @@
             "text": "Hundes tu arma en el estómago de enemigo. Herida grave abdominal. Tu enemigo sus tripas  como si pudiera leerlas.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 10,
-                    "STUN": 4,
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
                     "HPR": 8,
                     "NP": 2
                 }
@@ -788,7 +959,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 12,
+                    "STUN": {
+                        "ROUNDS": 12
+                    },
                     "NP": 12
                 }
             ]
@@ -801,9 +974,13 @@
             "text": "Tu enemigo intenta alejarse de tu arremetida pero aun así alcanzas su costado, dejándolo aturdido y sangrando.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 8,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "HPR": 2,
                     "NP": 2
                 }
@@ -814,7 +991,9 @@
             "metadata": [
                 {
                     "HP": 10,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "HPR": 3,
                     "NP": 3
                 }
@@ -824,9 +1003,13 @@
             "text": "De alguna manera te colocas a su espalda y tu golpe rompe algunos huesos. Cae. Tiene graves problemas para ponerse de pie.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 9,
-                    "STUN": 4,
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
                     "NP": 4
                 }
             ]
@@ -836,7 +1019,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 6,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
                     "NP": 6
                 }
             ]
@@ -846,7 +1031,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 12,
+                    "STUN": {
+                        "ROUNDS": 12
+                    },
                     "NP": 12
                 }
             ]
@@ -861,13 +1048,17 @@
                 {
                     "DESC": "Con yelmo",
                     "HP": 3,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 },
                 {
                     "DESC": "Sin yelmo",
                     "HP": 3,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "HPR": 3,
                     "NP": 1
                 }
@@ -877,11 +1068,17 @@
             "text": "Golpe en la cadera con mucha fuerza. Tu enemigo se tambalea. Se recuperación es lenta.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 7,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 1,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         },
@@ -898,7 +1095,9 @@
             "metadata": [
                 {
                     "HP": 15,
-                    "STUN": 9,
+                    "STUN": {
+                        "ROUNDS": 9
+                    },
                     "NP": 9
                 }
             ]
@@ -919,9 +1118,13 @@
             "text": "La punta de tu arma le regala una cicatriz permanente en la cara... si vive lo suficiente.",
             "metadata": [
                 {
-                    "PE": 30,
+                    "PE": {
+                        "VALUE": -30
+                    },
                     "HP": 2,
-                    "STUN": 6,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
                     "HPR": 2
                 }
             ]
@@ -939,7 +1142,9 @@
             "metadata": [
                 {
                     "HP": 18,
-                    "STUN": 12,
+                    "STUN": {
+                        "ROUNDS": 12
+                    },
                     "NP": 12
                 }
             ]
@@ -952,19 +1157,27 @@
                 }
             ]
         },
-        "E": "El cerebro que una vez tuvo ha sido destruido, además de quedar bastante visible. Muerte instantánea."
+        "E": {
+            "text": "El cerebro que una vez tuvo ha sido destruido, además de quedar bastante visible. Muerte instantánea."
+        }
     },
     {
         "lower": "100",
         "upper": "100",
-        "A": {"text":"El corte secciona la arteria carótida y  la vena yugular. Muere después de 6 asaltos de agonía y sangre."},
-        "B": {"text":"Cansado de todo esto, destripas a tu enemigo matándolo en el acto."},
+        "A": {
+            "text": "El corte secciona la arteria carótida y  la vena yugular. Muere después de 6 asaltos de agonía y sangre."
+        },
+        "B": {
+            "text": "Cansado de todo esto, destripas a tu enemigo matándolo en el acto."
+        },
         "C": {
             "text": "Queda cegado y cae sobre su espalda. Ni siquiera piensa en levantarse.",
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 30,
+                    "STUN": {
+                        "ROUNDS": 30
+                    },
                     "NP": 30
                 }
             ]
@@ -982,7 +1195,9 @@
             "metadata": [
                 {
                     "HP": 10,
-                    "STUN": 12,
+                    "STUN": {
+                        "ROUNDS": 12
+                    },
                     "NP": 12
                 }
             ]

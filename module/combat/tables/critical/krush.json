@@ -2,8 +2,12 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": {"text": "Si querías hacerte amigo de él, deberías haber dicho algo antes. Lo ideal hubiera sido antes de la lucha."},
-        "B": {"text": "Deberías haber prestado más atención en las clases de combate. La ignorancia no es una bendición."},
+        "A": {
+            "text": "Si querías hacerte amigo de él, deberías haber dicho algo antes. Lo ideal hubiera sido antes de la lucha."
+        },
+        "B": {
+            "text": "Deberías haber prestado más atención en las clases de combate. La ignorancia no es una bendición."
+        },
         "C": {
             "text": "Eh, vuelve al mundo real. No estás en el campo de entrenamiento con tus",
             "metadata": [
@@ -32,7 +36,9 @@
     {
         "lower": "06",
         "upper": "10",
-        "A": {"text": "Buen movimiento, pero tratas de aplastarlo, no de presentarte."},
+        "A": {
+            "text": "Buen movimiento, pero tratas de aplastarlo, no de presentarte."
+        },
         "B": {
             "text": "En esta ocasión se queda quieto  lo suficiente como para encajarle un fuerte golpe en el torso.",
             "metadata": [
@@ -97,7 +103,10 @@
             "text": "Si hubieras impactado en su garganta, estaría pronunciando sus últimas palabras. Trata de mantenerse alejado.",
             "metadata": [
                 {
-                    "P": "1:-10",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -10
+                    },
                     "HP": 5
                 }
             ]
@@ -107,8 +116,12 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 1,
-                    "BONUS": 5
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
+                    "BONUS": {
+                        "VALUE": 5
+                    }
                 }
             ]
         }
@@ -120,7 +133,9 @@
             "text": "Comienzas a preocuparle. Tu enemigo retrocede 1,5 metros, y tienes la iniciativa. Atrápale si puedes.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 2
                 }
             ]
@@ -129,7 +144,9 @@
             "text": "Intentando preservar la vida, tu enemigo retrocede 1,5 metros.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 4
                 }
             ]
@@ -138,7 +155,10 @@
             "text": "Golpe en la cintura, que lo manda lejos de ti, dando vueltas. Tendrá que recuperarse.",
             "metadata": [
                 {
-                    "P": "1:-20",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
                     "HP": 6
                 }
             ]
@@ -147,7 +167,9 @@
             "text": "Golpe de refilón que se lleva un poco de piel. Tienes la iniciativa el siguiente asalto (además de un bonito recuerdo).",
             "metadata": [
                 {
-                    "PE": -5,
+                    "PE": {
+                        "VALUE": -5
+                    },
                     "HP": 5
                 }
             ]
@@ -156,9 +178,13 @@
             "text": "Fuerte impacto que rompe la guardia de tu enemigo, desequilibrándolo.",
             "metadata": [
                 {
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         }
@@ -170,9 +196,13 @@
             "text": "Tu enemigo intenta evitar tu golpe. Lo golpeas por la espalda.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 3,
-                    "BONUS": 5
+                    "BONUS": {
+                        "VALUE": 5
+                    }
                 }
             ]
         },
@@ -180,7 +210,10 @@
             "text": "Ese golpe en su escudo atrae su atención y le da algo por lo que preocuparse. ¡Es la hora de las tortas!",
             "metadata": [
                 {
-                    "P": "1:-20",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
                     "HP": 4
                 }
             ]
@@ -190,7 +223,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -199,7 +234,9 @@
             "metadata": [
                 {
                     "HP": 4,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -208,7 +245,9 @@
             "text": "Fuerte golpe que rompe las costillas de tu enemigo. Tienes la iniciativa el siguiente asalto.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 6
                 }
             ]
@@ -225,7 +264,9 @@
                     "HP": 9
                 },
                 {
-                    "PE": -5,
+                    "PE": {
+                        "VALUE": -5
+                    },
                     "DESC": "Sin grebas",
                     "HP": 6
                 }
@@ -235,12 +276,17 @@
             "text": "Golpe en la pantorrilla izquierda de tu enemigo que le deja con un agarrotamiento y a  ti con la iniciativa.",
             "metadata": [
                 {
-                    "P": 2,
+                    "P": {
+                        "ROUNDS": 2
+                    },
                     "DESC": "Con grebas",
                     "HP": 9
                 },
                 {
-                    "PE": "2:-20",
+                    "PE": {
+                        "ROUNDS": 2,
+                        "VALUE": -20
+                    },
                     "DESC": "Con grebas",
                     "HP": 6
                 }
@@ -250,7 +296,10 @@
             "text": "Alcanzas a tu enemigo en la parte baja de la pierna. Ganas la iniciativa mientras intenta mantenerse en pie.",
             "metadata": [
                 {
-                    "PE": "2:-25",
+                    "PE": {
+                        "ROUNDS": 2,
+                        "VALUE": -25
+                    },
                     "HP": 9
                 }
             ]
@@ -259,7 +308,9 @@
             "text": "Le mantienes ocupado con un golpe que le magulla la pantorrilla. Tienes la iniciativa.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 10
                 }
             ]
@@ -268,7 +319,9 @@
             "text": "Golpe en la parte superior de la pierna.Fractura leve que sanará si sale vivo de ésta. Tienes la iniciativa.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 12
                 }
             ]
@@ -281,8 +334,12 @@
             "text": "Piensa que se ha ido  de rositas tras esquivar tu golpe. Es entonces cuando le alcanzas por la espalda.",
             "metadata": [
                 {
-                    "P": 1,
-                    "PE": -25,
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 4
                 }
             ]
@@ -291,8 +348,12 @@
             "text": "Su desaforada maniobra evasiva te permite impactar su espalda. Mal, mal.",
             "metadata": [
                 {
-                    "P": 1,
-                    "PE": -25,
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 6
                 }
             ]
@@ -302,7 +363,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -312,7 +375,9 @@
             "metadata": [
                 {
                     "HP": 10,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -322,7 +387,9 @@
             "metadata": [
                 {
                     "HP": 15,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -335,8 +402,12 @@
             "text": "Golpe en el pecho. Tu enemigo se ladea del dolor. Gritaría su pudiera respirar.",
             "metadata": [
                 {
-                    "P": 1,
-                    "PE": -25,
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 5
                 }
             ]
@@ -345,7 +416,9 @@
             "text": "Tu enemigo recula 1,5 metros ante el impacto de tu ataque, mientras intenta defenderse.",
             "metadata": [
                 {
-                    "P": 2,
+                    "P": {
+                        "ROUNDS": 2
+                    },
                     "HP": 6
                 }
             ]
@@ -354,9 +427,13 @@
             "text": "Golpe tan fuerte en el pecho que la armadura no ayuda demasiado.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 5,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -364,7 +441,9 @@
             "text": "El golpe en las costillas hace que apenas pueda levantar sus brazos. Así aprenderá.",
             "metadata": [
                 {
-                    "PE": -15,
+                    "PE": {
+                        "VALUE": -15
+                    },
                     "HP": 10
                 }
             ]
@@ -373,9 +452,13 @@
             "text": "El golpe en el pecho le arrebata el aliento. Cree que sobrevivirá si consigue recuperar el fuelle.",
             "metadata": [
                 {
-                    "PE": -15,
+                    "PE": {
+                        "VALUE": -15
+                    },
                     "HP": 15,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         }
@@ -387,8 +470,12 @@
             "text": "Un golpe a la cintura de tu enemigo hace que suele lo que sea que sostiene. Retrocede para recuperar el fuelle.",
             "metadata": [
                 {
-                    "P": 1,
-                    "PE": -25,
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 5
                 }
             ]
@@ -397,8 +484,12 @@
             "text": "Golpe limpio que pasa por debajo del brazo del escudo, impactando en el muslo de tu enemigo. ¡Eso duele!",
             "metadata": [
                 {
-                    "P": 1,
-                    "PE": -5,
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "VALUE": -5
+                    },
                     "HP": 6
                 }
             ]
@@ -407,10 +498,16 @@
             "text": "Un potente golpe dirigido hacia las piernas acaba impactando sobre la derecha. Duele.",
             "metadata": [
                 {
-                    "P": 1,
-                    "PE": -5,
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "PE": {
+                        "VALUE": -5
+                    },
                     "HP": 6,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         },
@@ -418,9 +515,13 @@
             "text": "Fallas al golpear el brazo de tu enemigo pero golpeas su muslo. Tropieza y deja caer algo.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 6,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -428,9 +529,13 @@
             "text": "Golpe en el muslo derecho de tu enemigo que le hacer perder pie durante un momento.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 10,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -443,14 +548,18 @@
             "text": "Atacas los miembros con los que sostiene sus dos armas. ¡Buena táctica!",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "DESC": "Con brazales",
                     "HP": 8
                 },
                 {
                     "DESC": "Sin brazales",
                     "HP": 5,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -458,9 +567,13 @@
             "text": "Golpe sólido en el antebrazo de tu enemigo. El dolor es real y le durará un tiempo.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 9,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -469,7 +582,9 @@
             "metadata": [
                 {
                     "HP": 8,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -477,9 +592,13 @@
             "text": "Golpe en el antebrazo; destrozas la ropa pero no la piel, aunque magullas el brazo. Ni siquiera sangra.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 10,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -488,9 +607,13 @@
             "text": "El sonido de tu titánico golpeando contra su arma reverbera en los oÍdos de aquellos que lo oyen. Deja caer el arma y se bambolea.",
             "metadata": [
                 {
-                    "PE": -15,
+                    "PE": {
+                        "VALUE": -15
+                    },
                     "HP": 10,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         }
@@ -503,7 +626,9 @@
             "metadata": [
                 {
                     "HP": 8,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -512,7 +637,9 @@
             "text": "Quieres que suelte su arma, así que le rompes el codo. Siempre funciona.",
             "metadata": [
                 {
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -521,9 +648,13 @@
             "text": "Queriendo patearle la cabeza, le rompes su rodilla en primer lugar y le haces caer. ¿Siguiente?",
             "metadata": [
                 {
-                    "PE": -90,
+                    "PE": {
+                        "VALUE": -90
+                    },
                     "HP": 9,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -541,7 +672,9 @@
             "metadata": [
                 {
                     "HP": 15,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         }
@@ -554,7 +687,9 @@
             "metadata": [
                 {
                     "HP": 8,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 1
                 }
             ]
@@ -563,9 +698,13 @@
             "text": "El impacto en la parte superior del pecho algo de dentro. Trastabilla y trata de recuperar el resuello.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 10,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -574,9 +713,13 @@
             "text": "Golpe en el pecho que causa muchos problemas.",
             "metadata": [
                 {
-                    "PE": -10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 10,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 2
                 }
             ]
@@ -587,13 +730,19 @@
                 {
                     "DESC": "Con armadura en el hombro",
                     "HP": 6,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 },
                 {
-                    "PE": -20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "DESC": "Sin armadura en el hombro",
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -602,7 +751,9 @@
             "text": "Golpe en el brazo del escudo; si tenía uno, se rompe. Si no, desearía haber llevado uno, porque su brazo está roto.",
             "metadata": [
                 {
-                    "PE": -25,
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 5
                 }
             ]
@@ -615,9 +766,13 @@
             "text": "Trata de saltar pero falla, y aprovechas para golpear la parte baja de la pierna.",
             "metadata": [
                 {
-                    "PE": -20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 5,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -626,9 +781,13 @@
             "text": "Golpe en el talón de Aquiles derecho de tu enemigo. Igual que arrancarle las alas a una mosca. Cruel.",
             "metadata": [
                 {
-                    "PE": -35,
+                    "PE": {
+                        "VALUE": -35
+                    },
                     "HP": 10,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 1
                 }
             ]
@@ -637,9 +796,13 @@
             "text": "Golpe de costado que provoca un esguince en la rodilla de tu enemigo. Apenas se mantiene en pie.",
             "metadata": [
                 {
-                    "PE": -40,
+                    "PE": {
+                        "VALUE": -40
+                    },
                     "HP": 10,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -648,9 +811,13 @@
             "text": "Oyes cómo se rompe su pierna. Daño grave en los cartílagos, aque ese es el menor de sus futuros problemas.",
             "metadata": [
                 {
-                    "PE": -50,
+                    "PE": {
+                        "VALUE": -50
+                    },
                     "HP": 12,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -659,9 +826,13 @@
             "text": "Redefines el término \"Aplastamiento\" cuando destrozas su cadera. Cae y no puede levantarse.",
             "metadata": [
                 {
-                    "PE": -75,
+                    "PE": {
+                        "VALUE": -75
+                    },
                     "HP": 15,
-                    "STUN": 3
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
                 }
             ]
         }
@@ -669,13 +840,17 @@
     {
         "lower": "76",
         "upper": "80",
-        "A": {"text": "Golpe en el escudo  de tu enemigo que lo destroza. Si no tiene escudo le rompe el brazo.\r\n"},
+        "A": {
+            "text": "Golpe en el escudo  de tu enemigo que lo destroza. Si no tiene escudo le rompe el brazo.\r\n"
+        },
         "B": {
             "text": "Golpe en el brazo del escudo, que le deja la mano inútil. Suelta el escudo.",
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -683,9 +858,13 @@
             "text": "¡Krunch! Si el brazo que sostiene el arma está protegido por armadura, el brazo queda inútil hasta que se retire el metal destrozado.",
             "metadata": [
                 {
-                    "PE": -50,
+                    "PE": {
+                        "VALUE": -50
+                    },
                     "HP": 9,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -695,7 +874,9 @@
             "metadata": [
                 {
                     "HP": 8,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -705,7 +886,9 @@
             "metadata": [
                 {
                     "HP": 9,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -718,9 +901,13 @@
             "text": "Golpe en el costado del enemigo que lo envía a 1,5 metros a tu derecha.",
             "metadata": [
                 {
-                    "PE": -20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 10,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -729,9 +916,13 @@
             "text": "Todo el mundo escucha el golpe cuando tu impacto alcanza sus costillas. Crack. Eso duele.",
             "metadata": [
                 {
-                    "PE": -25,
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 12,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -740,9 +931,13 @@
             "text": "Tu enemigo aúlla cuando lo ve venir. Luego deja de oírse nada, excepto el crujido de sus costillas.",
             "metadata": [
                 {
-                    "PE": 40,
+                    "PE": {
+                        "VALUE": -40
+                    },
                     "HP": 12,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -752,9 +947,13 @@
             "metadata": [
                 {
                     "HP": 15,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         },
@@ -774,9 +973,13 @@
             "text": "Te echas a un lado y golpeas a tu enemigo en la parte baja de al espalda. Daño en músculos y cartílagos.",
             "metadata": [
                 {
-                    "PE": 25,
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 12,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -785,8 +988,12 @@
             "text": "Tu enemigo comete un fallo y paga por ello. Lo sientas en el suelo con un golpe bien situado. Los tendones quedan aplastados.",
             "metadata": [
                 {
-                    "PE": 30,
-                    "STUN": 4,
+                    "PE": {
+                        "VALUE": -30
+                    },
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
                     "NP": 4
                 }
             ]
@@ -795,9 +1002,13 @@
             "text": "Golpe poderoso en el pecho que hace caer a tu enemigo de espaldas.  Los huesos se rompen y los músculos se desgarran.",
             "metadata": [
                 {
-                    "PE": 50,
+                    "PE": {
+                        "VALUE": -50
+                    },
                     "HP": 20,
-                    "STUN": 6
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
                 }
             ]
         },
@@ -809,7 +1020,9 @@
                 }
             ]
         },
-        "E": { "text": "No puede respirar. Queda inactivo y muerte después de 12 asaltos. Bien. Su cuello está roto y su arteria seccionada."}
+        "E": {
+            "text": "No puede respirar. Queda inactivo y muerte después de 12 asaltos. Bien. Su cuello está roto y su arteria seccionada."
+        }
     },
     {
         "lower": "91",
@@ -820,13 +1033,17 @@
                 {
                     "DESC": "Con protección en la nariz",
                     "HP": 10,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 },
                 {
                     "DESC": "Sin protección en la nariz",
                     "HP": 15,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 2
                 }
             ]
@@ -836,7 +1053,9 @@
             "metadata": [
                 {
                     "HP": 20,
-                    "STUN": 12
+                    "STUN": {
+                        "ROUNDS": 12
+                    }
                 }
             ]
         },
@@ -848,7 +1067,9 @@
                 }
             ]
         },
-        "D": "El escudo cuelga de tu brazo roto.Tu enemigo muerte del shock y de la hemorragia después de 9 asaltos.\r\n",
+        "D": {
+            "text": "El escudo cuelga de tu brazo roto.Tu enemigo muerte del shock y de la hemorragia después de 9 asaltos."
+        },
         "E": {
             "text": "Te deslizas hasta situarte en su espalda. El golpe hace que una vértebra se clave en un órgano interno. Está caído y muere en 6 asaltos.",
             "metadata": [
@@ -866,7 +1087,9 @@
             "metadata": [
                 {
                     "HP": 20,
-                    "STUN": 6
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
                 }
             ]
         },
@@ -874,16 +1097,22 @@
             "text": "Impacto en el pecho que envía el esternón dentro del corazón. El enemigo cae y muere en 6 asaltos.",
             "metadata": [
                 {
-                    "BONUS": 20
+                    "BONUS": {
+                        "VALUE": 20
+                    }
                 }
             ]
         },
-        "C": "Golpe en el abdomen de tu enemigo que revienta como una castaña. El probre desgraciado muere tras 6 asaltos de inactividad.",
+        "C": {
+            "text": "Golpe en el abdomen de tu enemigo que revienta como una castaña. El probre desgraciado muere tras 6 asaltos de inactividad."
+        },
         "D": {
             "text": "Con el pecho aplastado por completo, te mira lastimeramente mientras cae al suelo y muere en 3 asaltos.",
             "metadata": [
                 {
-                    "BONUS": 25
+                    "BONUS": {
+                        "VALUE": 25
+                    }
                 }
             ]
         },
@@ -892,7 +1121,9 @@
             "metadata": [
                 {
                     "HP": 30,
-                    "BONUS": 20
+                    "BONUS": {
+                        "VALUE": 20
+                    }
                 }
             ]
         }
@@ -905,7 +1136,9 @@
             "metadata": [
                 {
                     "HP": 50,
-                    "BONUS": 20
+                    "BONUS": {
+                        "VALUE": 20
+                    }
                 }
             ]
         },
@@ -914,7 +1147,9 @@
             "metadata": [
                 {
                     "HP": 25,
-                    "STUN": 15
+                    "STUN": {
+                        "ROUNDS": 15
+                    }
                 }
             ]
         },
@@ -923,7 +1158,9 @@
             "metadata": [
                 {
                     "HP": 30,
-                    "STUN": 24,
+                    "STUN": {
+                        "ROUNDS": 24
+                    },
                     "NP": 24
                 }
             ]
@@ -940,9 +1177,14 @@
             "text": "Golpe que reduce a polvo la cadera. Tu enemigo cae. Intenta ponerse de pie. Cae otra vez y muere en 6 asaltos.",
             "metadata": [
                 {
-                    "PE": "6:-30",
+                    "PE": {
+                        "ROUNDS": 6,
+                        "VALUE": -30
+                    },
                     "HP": 35,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         }

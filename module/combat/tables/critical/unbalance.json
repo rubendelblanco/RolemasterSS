@@ -2,9 +2,15 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": {"text": "Deslumbrante. Trata de no herirte a ti mismo.\r\n"},
-        "B": {"text": "¿De qué lado decías estar? Inténtalo con más ganas.\r\n"},
-        "C": {"text": "Qué humillante. Confías en que nadie haya visto eso."},
+        "A": {
+            "text": "Deslumbrante. Trata de no herirte a ti mismo.\r\n"
+        },
+        "B": {
+            "text": "¿De qué lado decías estar? Inténtalo con más ganas.\r\n"
+        },
+        "C": {
+            "text": "Qué humillante. Confías en que nadie haya visto eso."
+        },
         "D": {
             "text": "Se rie ante tu ataque inepto y mal ejecutado. Te ruega que lo intentes de nuevo.",
             "metadata": [
@@ -25,7 +31,9 @@
     {
         "lower": "06",
         "upper": "10",
-        "A": "Aprendió a esquivar ataques como ese en el jardín de infancia.\r\n",
+        "A": {
+            "text": "Aprendió a esquivar ataques como ese en el jardín de infancia."
+        },
         "B": {
             "text": "Cuando le cargas, se mantiene firme y te quita de encima.",
             "metadata": [
@@ -110,7 +118,9 @@
             "text": "Para de manera agresiva e intenta empujarte, pero has conseguido hacerle algo de daño.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 4
                 }
             ]
@@ -119,7 +129,9 @@
             "text": "Te para el golpe que iba a su costado, pero sabes que las tornas no tardarán en cambiar.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 4
                 }
             ]
@@ -128,7 +140,9 @@
             "text": "Golpe en el costado. Tu enemigo retrocede para evitar tu próximo ataque. Aprende a respetarte.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 5
                 }
             ]
@@ -137,7 +151,9 @@
             "text": "Impacto en el costado que capta su atención. Se examina la herida. No se lo esperaba.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 7
                 }
             ]
@@ -146,7 +162,9 @@
             "text": "Realmente no le has roto las costillas, pero se encuentra en desventaja durante unos instantes.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 8
                 }
             ]
@@ -159,7 +177,9 @@
             "text": "Te para y te echa a un lado, para luego retroceder.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 4
                 }
             ]
@@ -168,7 +188,9 @@
             "text": "Ese pisotón le deja tratando de recuperar el equilibrio.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 5
                 }
             ]
@@ -178,7 +200,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -187,7 +211,9 @@
             "metadata": [
                 {
                     "HP": 8,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -195,9 +221,13 @@
             "text": "Esta vez sí que le has roto las costillas. Oyes cómo crujen.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 9,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         }
@@ -217,7 +247,10 @@
             "text": "Salvas tu ataque haciendo tropezar a tu enemigo. Tienes la iniciativa en el siguiente asalto.",
             "metadata": [
                 {
-                    "PE": "2:5",
+                    "PE": {
+                        "ROUNDS": 2,
+                        "VALUE": -5
+                    },
                     "HP": 5
                 }
             ]
@@ -226,7 +259,9 @@
             "text": "Le atenazas por el hombro y luego usas tu rodilla para lanzarlo al suelo.",
             "metadata": [
                 {
-                    "PE": 40,
+                    "PE": {
+                        "VALUE": -40
+                    },
                     "HP": 5
                 }
             ]
@@ -235,7 +270,9 @@
             "text": "Se contrae del dolor a causa del golpe en el pecho. Necesitará un momento para recuperarse.",
             "metadata": [
                 {
-                    "PE": 25,
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 7
                 }
             ]
@@ -250,7 +287,9 @@
                 {
                     "DESC": "Sin armadura en la pierna",
                     "HP": 8,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         }
@@ -262,7 +301,10 @@
             "text": "Tu intento de rodear a tu enemigo casi tiene éxito, pero necesitarás más fuerza en la presa.",
             "metadata": [
                 {
-                    "P": "1:-10",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -10
+                    },
                     "HP": 5
                 }
             ]
@@ -271,7 +313,10 @@
             "text": "Si no estuviera a la defensiva lo habrías atrapado. El también lo sabe.",
             "metadata": [
                 {
-                    "P": "1:-20",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
                     "HP": 5
                 }
             ]
@@ -281,7 +326,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -291,7 +338,9 @@
             "metadata": [
                 {
                     "HP": 8,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -301,7 +350,9 @@
             "metadata": [
                 {
                     "HP": 12,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -314,7 +365,10 @@
             "text": "Se zafa de tu presa echándose hacia atrás. Está preparado para tu siguiente ataque.",
             "metadata": [
                 {
-                    "P": "1:-20",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
                     "HP": 5
                 }
             ]
@@ -324,7 +378,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -333,7 +389,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -343,7 +401,9 @@
             "metadata": [
                 {
                     "HP": 10,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -353,7 +413,9 @@
             "metadata": [
                 {
                     "HP": 12,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -372,7 +434,9 @@
                 {
                     "DESC": "Sin armadura en el muslo",
                     "HP": 5,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -380,7 +444,10 @@
             "text": "Tu enemigo recibe un golpe en el muslo al intentar bloquearte. Retrocede.",
             "metadata": [
                 {
-                    "P": "1:-30",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -30
+                    },
                     "HP": 6
                 }
             ]
@@ -393,10 +460,14 @@
                     "HP": 9
                 },
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "DESC": "Sin armadura en la pierna",
                     "HP": 7,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -405,7 +476,9 @@
             "metadata": [
                 {
                     "HP": 12,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -414,7 +487,9 @@
             "metadata": [
                 {
                     "HP": 14,
-                    "STUN": 3
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
                 }
             ]
         }
@@ -427,7 +502,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -444,7 +521,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -453,8 +532,12 @@
             "metadata": [
                 {
                     "HP": 7,
-                    "STUN": 2,
-                    "BONUS": 20
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
+                    "BONUS": {
+                        "VALUE": 20
+                    }
                 }
             ]
         },
@@ -463,7 +546,9 @@
             "metadata": [
                 {
                     "HP": 13,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -477,7 +562,9 @@
             "metadata": [
                 {
                     "HP": 7,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -487,7 +574,9 @@
             "metadata": [
                 {
                     "HP": 8,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -497,9 +586,13 @@
             "metadata": [
                 {
                     "HP": 9,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3,
-                    "PE": -90
+                    "PE": {
+                        "VALUE": -90
+                    }
                 }
             ]
         },
@@ -507,7 +600,9 @@
             "text": "Fuerte golpe en la cabeza que lo noquea durante 24 horas (si no tiene yelmo). Si tiene yelmo saldrá despedido 3 metros.",
             "metadata": [
                 {
-                    "STUN": 6
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
                 }
             ]
         },
@@ -527,7 +622,10 @@
             "text": "Era tan sencillo. Lanzas un puñetazo al pecho, que le coge desprevenido. Está más que desiquilibrado.",
             "metadata": [
                 {
-                    "PE": "2:-50",
+                    "PE": {
+                        "ROUNDS": 2,
+                        "VALUE": -50
+                    },
                     "HP": 6
                 }
             ]
@@ -540,9 +638,13 @@
             "text": "Golpe en las costillas que rompe unas cuantas.  No le ha hecho mucha gracia. Estaba en la cresta de la ola hasta que te conoció.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 8,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -550,9 +652,13 @@
             "text": "Rompes la clavícula de tu enemigo, desorientándolo. Lo tienes donde querías.",
             "metadata": [
                 {
-                    "PE": 25,
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 10,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -561,8 +667,12 @@
             "text": "Golpeas con tu hombro en su estómago y lo haces levantarse. No sabe ni dónde está.",
             "metadata": [
                 {
-                    "PE": 10,
-                    "STUN": 2,
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -576,7 +686,9 @@
             "metadata": [
                 {
                     "HP": 7,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -584,7 +696,9 @@
             "text": "Atáque sólido en la pantorrilla. Un feo calambre. Tienes la iniciativa.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 9
                 }
             ]
@@ -593,9 +707,13 @@
             "text": "Hieres la pierna de tu enemigo llegando incluso hasta el hueso. Pierde mucha movilidad.",
             "metadata": [
                 {
-                    "PE": 20,
+                    "PE": {
+                        "VALUE": -20
+                    },
                     "HP": 10,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -604,9 +722,13 @@
             "text": "Levantas a tu enemigo en el aire, mandándolo al suelo. Busca el arma a su alderededor.",
             "metadata": [
                 {
-                    "PE": 75,
+                    "PE": {
+                        "VALUE": -75
+                    },
                     "HP": 12,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -616,7 +738,9 @@
             "metadata": [
                 {
                     "HP": 15,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -630,7 +754,9 @@
             "metadata": [
                 {
                     "HP": 12,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -638,9 +764,13 @@
             "text": "Golpeas el brazo de tu enemigo haciendo palanca contra él. Lo desequilibras.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 10,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -648,9 +778,13 @@
             "text": "Retrocede 1,5 metros y se agarra el brazo fracturado. Su cara es una máscara de dolor.",
             "metadata": [
                 {
-                    "PE": 25,
+                    "PE": {
+                        "VALUE": -25
+                    },
                     "HP": 11,
-                    "STUN": 3
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
                 }
             ]
         },
@@ -658,7 +792,9 @@
             "text": "¿Ha sido tu barrido lo que le ha roto la rodilla o ha sido su pésimo aterrizaje? ¿Acaso importa?",
             "metadata": [
                 {
-                    "PE": 50,
+                    "PE": {
+                        "VALUE": -50
+                    },
                     "HP": 11
                 }
             ]
@@ -668,7 +804,9 @@
             "metadata": [
                 {
                     "HP": 15,
-                    "STUN": 4,
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
                     "NP": 4
                 }
             ]
@@ -682,9 +820,13 @@
             "metadata": [
                 {
                     "HP": 10,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1,
-                    "BONUS": 10
+                    "BONUS": {
+                        "VALUE": 10
+                    }
                 }
             ]
         },
@@ -693,7 +835,9 @@
             "metadata": [
                 {
                     "HP": 15,
-                    "STUN": 3
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
                 }
             ]
         },
@@ -701,7 +845,9 @@
             "text": "¡Qué fácil se rompen las costillas! Deja caer todo lo que tenía en el brazo del escudo y se abandona al dolor.",
             "metadata": [
                 {
-                    "STUN": 6
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
                 }
             ]
         },
@@ -710,7 +856,9 @@
             "metadata": [
                 {
                     "HP": 12,
-                    "STUN": 6,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
                     "NP": 6
                 }
             ]
@@ -719,8 +867,12 @@
             "text": "Te apartas cuando te carga y lo tiras al suelo. En el proceso se rompe una pierna.",
             "metadata": [
                 {
-                    "PE": 50,
-                    "STUN": 6,
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
                     "NP": 6
                 }
             ]
@@ -734,8 +886,12 @@
             "metadata": [
                 {
                     "HP": 13,
-                    "STUN": 3,
-                    "BONUS": 20
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
+                    "BONUS": {
+                        "VALUE": 20
+                    }
                 }
             ]
         },
@@ -744,7 +900,9 @@
             "metadata": [
                 {
                     "HP": 12,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -754,8 +912,12 @@
             "metadata": [
                 {
                     "HP": 14,
-                    "STUN": 6,
-                    "BONUS": 20
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
+                    "BONUS": {
+                        "VALUE": 20
+                    }
                 }
             ]
         },
@@ -764,7 +926,9 @@
             "metadata": [
                 {
                     "HP": 10,
-                    "STUN": 9
+                    "STUN": {
+                        "ROUNDS": 9
+                    }
                 }
             ]
         },
@@ -773,7 +937,9 @@
             "metadata": [
                 {
                     "HP": 20,
-                    "STUN": 12,
+                    "STUN": {
+                        "ROUNDS": 12
+                    },
                     "NP": 12
                 }
             ]
@@ -786,7 +952,9 @@
             "text": "Le impactas en la cabeza. Si no tiene yelmo, cae inconsciente durante 2 horas.",
             "metadata": [
                 {
-                    "STUN": 3
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
                 }
             ]
         },
@@ -794,20 +962,30 @@
             "text": "Golpeas sus oídos al mismo tiempo, dañando su audición y su equilibrio 3 semanas. ¡Eso duele!",
             "metadata": [
                 {
-                    "PE": 50,
+                    "PE": {
+                        "VALUE": -50
+                    },
                     "HP": 9,
-                    "STUN": 6
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
                 }
             ]
         },
-        "C": "Volteas a tu enemigo. Pifia con su arma.\r\n",
+        "C": {
+            "text": "Volteas a tu enemigo. Pifia con su arma."
+        },
         "D": {
             "text": "Te echas sobre él y lo arrojas al suelo. Te levantas con una sonrisa.",
             "metadata": [
                 {
-                    "PE": 30,
+                    "PE": {
+                        "VALUE": -30
+                    },
                     "HP": 10,
-                    "STUN": 8,
+                    "STUN": {
+                        "ROUNDS": 8
+                    },
                     "NP": 8
                 }
             ]
@@ -816,7 +994,9 @@
             "text": "A menos que tenga escudo, rompes su brazo. También está caído he inconsciente.",
             "metadata": [
                 {
-                    "STUN": 6
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
                 }
             ]
         }
@@ -837,22 +1017,30 @@
             "text": "Te mira mientras piensa cómo demonios ha acbado en el suelo. No parece que las cosas le vayan muy bien.",
             "metadata": [
                 {
-                    "STUN": 6,
+                    "STUN": {
+                        "ROUNDS": 6
+                    },
                     "NP": 6
                 }
             ]
         },
-        "C": {"text": "Elegante y pulido golpe que envía a tu enemigo al suelo sobre sus rodillas. Su arma sale despedida. Se le nubla la vista y queda mirando hacia delante sin parpadear.\r\n"},
+        "C": {
+            "text": "Elegante y pulido golpe que envía a tu enemigo al suelo sobre sus rodillas. Su arma sale despedida. Se le nubla la vista y queda mirando hacia delante sin parpadear.\r\n"
+        },
         "D": {
             "text": "Golpe en la cabeza que rompe el yelmo. Los trozos vuelan en todas direcciones. Sin yelmo, cae en coma 4 semanas. No sabe muy bien lo que está pasando.",
             "metadata": [
                 {
                     "HP": 9,
-                    "STUN": 6
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
                 }
             ]
         },
-        "E": {"text":"Su cabeza no parece girar del todo bien. Le rompes el cuello. Cae y muere en 3 asaltos.\r\n"}
+        "E": {
+            "text": "Su cabeza no parece girar del todo bien. Le rompes el cuello. Cae y muere en 3 asaltos.\r\n"
+        }
     },
     {
         "lower": "100",
@@ -861,17 +1049,25 @@
             "text": "Le golpeas su cadera con la tuya y le envías al suelo, con una pierna rota. Delira durante 9 horas.",
             "metadata": [
                 {
-                    "PE": 90
+                    "PE": {
+                        "VALUE": -90
+                    }
                 }
             ]
         },
-        "B": {"text": "Aterriza sobre su cuello y no puede levantarse. En realidad, queda parapléjico de cabeza para abajo.\r\n"},
-        "C": {"text": "¿Qué ha ocurrido? Se rompe los 2 brazos y la cabeza al aterrizar y entra en coma por 2 meses."},
+        "B": {
+            "text": "Aterriza sobre su cuello y no puede levantarse. En realidad, queda parapléjico de cabeza para abajo.\r\n"
+        },
+        "C": {
+            "text": "¿Qué ha ocurrido? Se rompe los 2 brazos y la cabeza al aterrizar y entra en coma por 2 meses."
+        },
         "D": {
             "text": "Impacto salvaje contra la cabeza. Cae en coma y muere después de 12 asaltos debido  a una arteria seccionada.",
             "metadata": [
                 {
-                    "BONUS": 20
+                    "BONUS": {
+                        "VALUE": 20
+                    }
                 }
             ]
         },
@@ -879,7 +1075,10 @@
             "text": "¿Ha muerto a causa de una sien aplastada o un cuello roto? ¿Antes, o depués de caer? Ya no importa.",
             "metadata": [
                 {
-                    "BONUS": "2:20"
+                    "BONUS": {
+                        "ROUNDS": 2,
+                        "VALUE": 20
+                    }
                 }
             ]
         }

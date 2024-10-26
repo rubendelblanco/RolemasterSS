@@ -2,8 +2,12 @@
     {
         "lower": "01",
         "upper": "05",
-        "A": {"text":"Tu enemigo se escabulle como el viento. Es cuestión de tiempo."},
-        "B": {"text":"Tu ataque se queda corto. Aún no estás preparado."},
+        "A": {
+            "text": "Tu enemigo se escabulle como el viento. Es cuestión de tiempo."
+        },
+        "B": {
+            "text": "Tu ataque se queda corto. Aún no estás preparado."
+        },
         "C": {
             "text": "Tus dedos dejan una fea herida. ¡No es un ataque afeminado! Ha funcionado, ¿no?",
             "metadata": [
@@ -32,7 +36,9 @@
     {
         "lower": "06",
         "upper": "10",
-        "A": "Te quedas con cara de tonto cuando se deshace de tu presa. Otra vez será.\r\n",
+        "A": {
+            "text": "Te quedas con cara de tonto cuando se deshace de tu presa. Otra vez será."
+        },
         "B": {
             "text": "Lo tuviste y lo perdiste. Sigue así. Piensa a lo grande.",
             "metadata": [
@@ -69,7 +75,9 @@
     {
         "lower": "11",
         "upper": "15",
-        "A": "Impides que tu enemigo adopte posición de combate. Tienes la iniciativa.\r\n",
+        "A": {
+            "text": "Impides que tu enemigo adopte posición de combate. Tienes la iniciativa."
+        },
         "B": {
             "text": "Pequeña magulladura. Choca contra ti antes de que puedas efectuar tu presa.",
             "metadata": [
@@ -91,7 +99,9 @@
             "metadata": [
                 {
                     "DESC": "Con yelmo",
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -108,12 +118,16 @@
     {
         "lower": "16",
         "upper": "20",
-        "A": "Tu enemigo se libera de un agarre débil. Tienes la iniciativa el próximo asalto. Esfuérzate.\r\n",
+        "A": {
+            "text": "Tu enemigo se libera de un agarre débil. Tienes la iniciativa el próximo asalto. Esfuérzate."
+        },
         "B": {
             "text": "Agarras a tu enemigo y le propinas un leve puñetazo. Comienza a pensar que puedes ser peligroso.",
             "metadata": [
                 {
-                    "P": 1
+                    "P": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -121,17 +135,23 @@
             "text": "Tu enemigo se recupera y continúa defendiéndose lanzando una estocada a tus pies.",
             "metadata": [
                 {
-                    "P": 1
+                    "P": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
-        "D": "Empujas a tu enemigo, desquilibrándolo. Tienes la iniciativa los 2 asaltos siguientes.",
+        "D": {
+            "text": "Empujas a tu enemigo, desquilibrándolo. Tienes la iniciativa los 2 asaltos siguientes."
+        },
         "E": {
             "text": "Esquiva tu abrazo con una maniobra evasiva.",
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         }
@@ -151,7 +171,10 @@
             "text": "Agarras el brazo del escudo pero un ataque contra tu cabeza hace que te alejes de él. Tu enemigo mantiene las distancias.",
             "metadata": [
                 {
-                    "P": "1:-20"
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    }
                 }
             ]
         },
@@ -160,7 +183,9 @@
             "metadata": [
                 {
                     "HP": 2,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -169,7 +194,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -177,7 +204,9 @@
             "text": "Un ataque sin coordinación y con aún menos fortuna pero que tu enemigo escape de la presa. Aunque ganas la iniciativa los 2 próximos asaltos.",
             "metadata": [
                 {
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         }
@@ -189,7 +218,9 @@
             "text": "Agarras sus \"lóbulos\", pero se deshace de tu ataque. Obtienes iniciativa.",
             "metadata": [
                 {
-                    "P": 1
+                    "P": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -197,7 +228,9 @@
             "text": "Tu presa falla pero logras empujarle y desequilibrarle. Tienes la iniciativa.",
             "metadata": [
                 {
-                    "P": 1,
+                    "P": {
+                        "ROUNDS": 1
+                    },
                     "HP": 4
                 }
             ]
@@ -206,8 +239,12 @@
             "text": "Tu movimientos y contras son casi divertidos, pero al final tienen efecto.",
             "metadata": [
                 {
-                    "P": 1,
-                    "STUN": 1
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -224,7 +261,9 @@
             "text": "Ataque en la parte superior de la pierna. Tu enemigo gira para liberarse, desorientándose en el intento. Tarda un rato en localizarte.",
             "metadata": [
                 {
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -237,7 +276,9 @@
             "text": "Inmovilizas el brazo del arma de tu enemigo. Tu enemigo se separa violentamente de ti y adopta una posición defensiva.",
             "metadata": [
                 {
-                    "P": 1
+                    "P": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -246,7 +287,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -254,7 +297,10 @@
             "text": "Le trabas por la cintura, pero poco a poco se libera.",
             "metadata": [
                 {
-                    "PE": "3:25"
+                    "PE": {
+                        "ROUNDS": 3,
+                        "VALUE": -25
+                    }
                 }
             ]
         },
@@ -262,7 +308,10 @@
             "text": "Presa en la mano que le hace pensar que se la has roto. Tienes la iniciativa durante 4 asaltos.",
             "metadata": [
                 {
-                    "PE": "3:30"
+                    "PE": {
+                        "ROUNDS": 3,
+                        "VALUE": -30
+                    }
                 }
             ]
         },
@@ -270,7 +319,9 @@
             "text": "Chocas contra tu enemigo. Se deshace de tu presa y escapa a trompicones. Casi.",
             "metadata": [
                 {
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -283,8 +334,12 @@
             "text": "Te acercas y agarras del pelo a tu enemigo. No se lo esperaba y lucha para zafarse.",
             "metadata": [
                 {
-                    "PE": 20,
-                    "P": 1
+                    "PE": {
+                        "VALUE": -20
+                    },
+                    "P": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -293,7 +348,9 @@
             "metadata": [
                 {
                     "HP": 7,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -301,7 +358,9 @@
             "text": "Alzas la pierna que has apresado, pero de algún modo se zafa de ti. Se encuentra desquilibrado.",
             "metadata": [
                 {
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -310,7 +369,10 @@
             "text": "Trata de deshacerse de tu presa de la cintura con desesperación. Sabe que esto pinta mal.",
             "metadata": [
                 {
-                    "PE": "3:50"
+                    "PE": {
+                        "ROUNDS": 3,
+                        "VALUE": -50
+                    }
                 }
             ]
         },
@@ -319,7 +381,9 @@
             "metadata": [
                 {
                     "HP": 5,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -333,7 +397,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -341,8 +407,12 @@
             "text": "Tu enemigo se libera de tu presa. Sin embargo, al girar pierde la oportunidad para contraatacar.",
             "metadata": [
                 {
-                    "P": 1,
-                    "STUN": 1
+                    "P": {
+                        "ROUNDS": 1
+                    },
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -351,7 +421,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1,
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -361,7 +433,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 3
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
                 }
             ]
         },
@@ -369,8 +443,13 @@
             "text": "Presa efectiva en la pierna de tu enemigo. Desea sacudírsete encima.",
             "metadata": [
                 {
-                    "PE": "3:25",
-                    "STUN": 1,
+                    "PE": {
+                        "ROUNDS": 3,
+                        "VALUE": -25
+                    },
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -383,7 +462,10 @@
             "text": "Agita tu brazo hasta quedar libre, y se prepara para tu ataque. Luce un bonito hematoma en su bíceps.",
             "metadata": [
                 {
-                    "P": "1:-20",
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
                     "HP": 3
                 }
             ]
@@ -392,7 +474,9 @@
             "text": "Tu presa es débil y resbala por la cintura de tu enemigo, que se aleja tambaleándose de ti.",
             "metadata": [
                 {
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -400,7 +484,10 @@
             "text": "Presa en la cintura. Justo cuando piensas que estás apretando como unas tenazas comienza a liberarse. Aún puedes ganar.",
             "metadata": [
                 {
-                    "PE": "3:50",
+                    "PE": {
+                        "ROUNDS": 3,
+                        "VALUE": -50
+                    },
                     "HP": 3
                 }
             ]
@@ -409,8 +496,13 @@
             "text": "Tu \"abrazo de oso\" deja a tu enemigo indefenso. Tiene ambos  brazos inmovilizados.",
             "metadata": [
                 {
-                    "P": "1:-20",
-                    "STUN": 2,
+                    "P": {
+                        "ROUNDS": 1,
+                        "VALUE": -20
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -421,7 +513,9 @@
                 {
                     "DESC": "Sin escudo",
                     "HP": 7,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -435,7 +529,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -443,8 +539,12 @@
             "text": "Te agarras al brazo del arma de tu enemigo y se la haces soltar de una sacudida. Se luxa la muñeca intentando liberarse.",
             "metadata": [
                 {
-                    "PE": 25,
-                    "STUN": 2
+                    "PE": {
+                        "VALUE": -25
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -469,7 +569,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         }
@@ -481,7 +583,10 @@
             "text": "Golpeas su pecho, mas tu enemigo elude la presa, asumiendo una posición defensiva.",
             "metadata": [
                 {
-                    "P": "2:-20"
+                    "P": {
+                        "ROUNDS": 2,
+                        "VALUE": -20
+                    }
                 }
             ]
         },
@@ -489,7 +594,9 @@
             "text": "Agarras su cuello y le obligas a retroceder. Deberá hacer algo pronto, de lo contrario...\r\n* Revisar libro. -10 PE por asalto acumulativo *",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "DESC": "Y 10 de PE extra por cada asalto"
                 }
             ]
@@ -498,7 +605,10 @@
             "text": "Agarras el brazo del escudo. Si tiene escudo lo deja  caer. Hasta que no lo suelo tendrá -50 de penalización.",
             "metadata": [
                 {
-                    "PE": "3:40",
+                    "PE": {
+                        "ROUNDS": 3,
+                        "VALUE": -40
+                    },
                     "DESC": "Sin escudo"
                 }
             ]
@@ -516,8 +626,12 @@
             "text": "Frustra tu presa arrojándose al suelo.",
             "metadata": [
                 {
-                    "PE": 75,
-                    "STUN": 2,
+                    "PE": {
+                        "VALUE": -75
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -530,7 +644,10 @@
             "text": "Al lograr agarrarlo de su ropaje impides que te ataque.",
             "metadata": [
                 {
-                    "PE": "2:50",
+                    "PE": {
+                        "ROUNDS": 2,
+                        "VALUE": -50
+                    },
                     "HP": 5
                 }
             ]
@@ -539,7 +656,10 @@
             "text": "Un  rodillazo rompe tu presa, pero no recupera la iniciativa.",
             "metadata": [
                 {
-                    "PE": "3:50",
+                    "PE": {
+                        "ROUNDS": 3,
+                        "VALUE": -50
+                    },
                     "HP": 4
                 }
             ]
@@ -548,8 +668,12 @@
             "text": "Presa muy potente en la cintura. Tu oponente, en desventaja, intentará zafarse.",
             "metadata": [
                 {
-                    "PE": 50,
-                    "STUN": 2,
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -558,8 +682,13 @@
             "text": "Agarras a un enemigo antes de que se de cuenta de  lo que ocurre y retuerces casi cada parte de su cuerpo. ¿Qué será lo siguiente que le hagas a ésta patética criatura?",
             "metadata": [
                 {
-                    "PE": "3:70",
-                    "STUN": 1,
+                    "PE": {
+                        "ROUNDS": 3,
+                        "VALUE": -70
+                    },
+                    "STUN": {
+                        "ROUNDS": 1
+                    },
                     "NP": 1
                 }
             ]
@@ -569,7 +698,9 @@
             "metadata": [
                 {
                     "HP": 9,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -582,7 +713,10 @@
             "text": "Presa en el brazo del escudo de tu enemigo. Si tiene escudo se lo tiras al suelo. Si no, le inmovilizas el brazo.",
             "metadata": [
                 {
-                    "PE": "4:50",
+                    "PE": {
+                        "ROUNDS": 4,
+                        "VALUE": -50
+                    },
                     "HP": 2
                 }
             ]
@@ -591,7 +725,9 @@
             "text": "Trabas el brazo del escudo. Si tiene escudo, hasta que no lo suelte estará a -30.",
             "metadata": [
                 {
-                    "PE": 40
+                    "PE": {
+                        "VALUE": -40
+                    }
                 }
             ]
         },
@@ -599,8 +735,12 @@
             "text": "Trabas el brazo de su arma, inmovilizándosela. No puede usarla pero intenta hincarte un rodillazo.",
             "metadata": [
                 {
-                    "PE": 50,
-                    "STUN": 2,
+                    "PE": {
+                        "VALUE": -50
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -617,8 +757,12 @@
             "text": "Presionas el brazo que sostiene el arma hasta que la suelte: Provocas daño interno.",
             "metadata": [
                 {
-                    "PE": 40,
-                    "STUN": 3
+                    "PE": {
+                        "VALUE": -40
+                    },
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
                 }
             ]
         }
@@ -630,9 +774,14 @@
             "text": "Rodeas su cuello con tus manos hasta tornarse tu cara roja. Lentamente intenta deshacerse de tu presa, pero le cuesta respirar.",
             "metadata": [
                 {
-                    "PE": "2:25",
+                    "PE": {
+                        "ROUNDS": 2,
+                        "VALUE": -25
+                    },
                     "HP": 5,
-                    "STUN": 2
+                    "STUN": {
+                        "ROUNDS": 2
+                    }
                 }
             ]
         },
@@ -640,7 +789,10 @@
             "text": "Presa alrededor de la cintura que desesquilibra a tu enemigo. Su pericia en estas lides queda en entredicho y la iniativa es tuya.",
             "metadata": [
                 {
-                    "PE": "6:50"
+                    "PE": {
+                        "ROUNDS": 6,
+                        "VALUE": -50
+                    }
                 }
             ]
         },
@@ -648,9 +800,13 @@
             "text": "Presa brutal en el pecho que siembra magulladuras por todo su plexo. Nunca había recibido una paliza así. ¿Qué sucederá ahora?",
             "metadata": [
                 {
-                    "PE": 5,
+                    "PE": {
+                        "VALUE": -5
+                    },
                     "HP": 3,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -659,9 +815,13 @@
             "text": "Presa en la rodilla que hace caer a tu enemigo. En la caída, su escudo y su brazo se fracturan.",
             "metadata": [
                 {
-                    "PE": 10,
+                    "PE": {
+                        "VALUE": -10
+                    },
                     "HP": 5,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -670,7 +830,10 @@
             "text": "Está indefenso bajo el yugo de tu potente presa. Parece que quiere rendirse.",
             "metadata": [
                 {
-                    "PE": "10:75"
+                    "PE": {
+                        "ROUNDS": 10,
+                        "VALUE": -75
+                    }
                 }
             ]
         }
@@ -683,7 +846,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 3
+                    "STUN": {
+                        "ROUNDS": 3
+                    }
                 }
             ]
         },
@@ -691,8 +856,12 @@
             "text": "Trabas la pierna de tu enemigo haciéndole caer con dureza. Uno de los músculos de su pierna se resiente.",
             "metadata": [
                 {
-                    "PE": 10,
-                    "STUN": 2,
+                    "PE": {
+                        "VALUE": -10
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -701,9 +870,13 @@
             "text": "Lo inmovilizas y lo precipitas al duro suelo, donde se fractura el hombro.",
             "metadata": [
                 {
-                    "PE": 40,
+                    "PE": {
+                        "VALUE": -40
+                    },
                     "HP": 10,
-                    "STUN": 6
+                    "STUN": {
+                        "ROUNDS": 6
+                    }
                 }
             ]
         },
@@ -712,7 +885,9 @@
             "metadata": [
                 {
                     "HP": 10,
-                    "STUN": 9,
+                    "STUN": {
+                        "ROUNDS": 9
+                    },
                     "NP": 9
                 }
             ]
@@ -722,7 +897,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         }
@@ -735,7 +912,9 @@
             "metadata": [
                 {
                     "HP": 4,
-                    "STUN": 2,
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -744,8 +923,13 @@
             "text": "Returces sus piernas hasta que cae. Muerde el polvo y pierde todas su armas. Se arrastra por el suelo en su busca.",
             "metadata": [
                 {
-                    "PE": "4:25",
-                    "STUN": 2,
+                    "PE": {
+                        "ROUNDS": 4,
+                        "VALUE": -25
+                    },
+                    "STUN": {
+                        "ROUNDS": 2
+                    },
                     "NP": 2
                 }
             ]
@@ -754,9 +938,14 @@
             "text": "Agarras el brazo del arma y lo rompes sin dudar. Cae inconsciente del dolor.",
             "metadata": [
                 {
-                    "PE": "8:95",
+                    "PE": {
+                        "ROUNDS": 8,
+                        "VALUE": -95
+                    },
                     "HP": 15,
-                    "STUN": 4,
+                    "STUN": {
+                        "ROUNDS": 4
+                    },
                     "NP": 4
                 }
             ]
@@ -766,7 +955,9 @@
             "metadata": [
                 {
                     "HP": 10,
-                    "STUN": 30,
+                    "STUN": {
+                        "ROUNDS": 30
+                    },
                     "NP": 30
                 }
             ]
@@ -775,7 +966,9 @@
             "text": "Tu enemigo se precipita contra el suelo cual muñeco de trapo rompiéndose ambos brazos y un tobillo en el acto. Por suerte para él, inconsciente.",
             "metadata": [
                 {
-                    "PE": 95,
+                    "PE": {
+                        "VALUE": -95
+                    },
                     "HP": 20
                 }
             ]
@@ -789,7 +982,9 @@
             "metadata": [
                 {
                     "HP": 6,
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -798,7 +993,9 @@
             "text": "Trabas el brazo de tu enemigo y lo lanzas contra el suelo, fracturándole un pierna. Lo inmovilizas completamente.",
             "metadata": [
                 {
-                    "PE": 40
+                    "PE": {
+                        "VALUE": -40
+                    }
                 }
             ]
         },
@@ -806,9 +1003,13 @@
             "text": "Trabas las piernas de tu enemigo, que besa el suelo. El brazo que sostiene el arma se rompe y queda inconsciente.",
             "metadata": [
                 {
-                    "PE": 30,
+                    "PE": {
+                        "VALUE": -30
+                    },
                     "HP": 20,
-                    "STUN": 10,
+                    "STUN": {
+                        "ROUNDS": 10
+                    },
                     "NP": 10
                 }
             ]
@@ -818,7 +1019,9 @@
             "metadata": [
                 {
                     "DESC": "Con armadura en el cuello",
-                    "STUN": 3,
+                    "STUN": {
+                        "ROUNDS": 3
+                    },
                     "NP": 3
                 }
             ]
@@ -828,7 +1031,9 @@
             "metadata": [
                 {
                     "HP": 3,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         }
@@ -841,7 +1046,9 @@
             "metadata": [
                 {
                     "HP": 9,
-                    "BONUS": 20
+                    "BONUS": {
+                        "VALUE": 20
+                    }
                 }
             ]
         },
@@ -849,9 +1056,13 @@
             "text": "Presa cruel en el cuello que lo dejará inconsciente en 4 asaltos a menos que...",
             "metadata": [
                 {
-                    "PE": 40,
+                    "PE": {
+                        "VALUE": -40
+                    },
                     "HP": 10,
-                    "STUN": 1
+                    "STUN": {
+                        "ROUNDS": 1
+                    }
                 }
             ]
         },
@@ -859,10 +1070,14 @@
             "text": "Presa en la cabeza. Luego le retuerces el cuello. Si no tiene armadura en el cuello, muere.",
             "metadata": [
                 {
-                    "PE": 75,
+                    "PE": {
+                        "VALUE": -75
+                    },
                     "DESC": "Con armadura en el cuello",
                     "HP": 5,
-                    "STUN": 5,
+                    "STUN": {
+                        "ROUNDS": 5
+                    },
                     "NP": 5
                 }
             ]
@@ -873,7 +1088,9 @@
                 {
                     "DESC": "Con yelmo",
                     "HP": 3,
-                    "STUN": 9,
+                    "STUN": {
+                        "ROUNDS": 9
+                    },
                     "NP": 9
                 }
             ]
@@ -882,7 +1099,9 @@
             "text": "Machacas la tráquea de tu enemigo y le arrancas la cabeza de su sitio. ¿Qué decir ante esto?",
             "metadata": [
                 {
-                    "BONUS": 25
+                    "BONUS": {
+                        "VALUE": 25
+                    }
                 }
             ]
         }
