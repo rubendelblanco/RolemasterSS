@@ -230,10 +230,22 @@
           "tin": 0,
           "iron": 0
         }
+      },
+      "condition": {
+        "condition": {
+          "hits_per_round": 0,
+          "stunned": 0,
+          "penalty": [],
+          "parry": [],
+          "no_parry": 0,
+          "bonus": [],
+          "wounds": []
+        }
       }
     },
     "character": {
-      "templates": ["background", "stats", "resistance_rolls", "levelUp", "armor_info", "fixed_info", "race_stat_fixed_info", "role_traits", "money", "description"],
+      "templates": ["background", "stats", "resistance_rolls", "levelUp", "armor_info", "fixed_info", "race_stat_fixed_info",
+        "role_traits", "money", "description", "condition"],
       "attributes": {
         "level": {
           "value": 0
@@ -252,6 +264,10 @@
         },
         "experience_points": {
           "value": 0
+        },
+        "action_points": {
+          "current": 4,
+          "max": 4
         }
       },
       "description": ""
