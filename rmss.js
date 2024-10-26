@@ -62,6 +62,7 @@ Hooks.once("socketlib.ready", () => {
   socket = socketlib.registerSystem("rmss");
   socket.register("confirmWeaponAttack", RMSSWeaponSkillManager.attackMessagePopup);
   socket.register("confirmWeaponCritical", RMSSWeaponCriticalManager.criticalMessagePopup);
+  socket.register("chooseCriticalOption", RMSSWeaponCriticalManager.chooseCriticalOption);
 });
 
 // Hook the init function and set up our system

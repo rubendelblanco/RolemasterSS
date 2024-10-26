@@ -1,6 +1,25 @@
+import {RMSSCombatant} from "./rmss_combatant.js";
+
 export class RMSSCombat extends Combat {
     constructor(data, context) {
         super(data, context);
+    }
+
+    /** @override */
+    _createCombatant(data, initData) {
+        // Use RMSSCombatant instead Combatant
+        return new RMSSCombatant(data, this, initData);
+    }
+
+    /** @override */
+    async nextTurn() {
+        console.log("next turn");
+        const combatant = this.combatants.get(this.current.combatantId);
+        console.log(combatant);
+        if (combatant instanceof RMSSCombatant) {
+            await combatant.startTurn();
+        }
+        return super.nextTurn();
     }
 
     async rollInitiative(ids, {formula=null, updateTurn=true}={}) {

@@ -1,4 +1,5 @@
 import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
+import {socket} from "../../rmss.js";
 
 export default class RMSSTableManager {
     static async loadAttackTable(tableName) {
@@ -51,8 +52,14 @@ export default class RMSSTableManager {
                     content: htmlContent,
                     speaker: speaker
                 });
+
+                if (parseInt(criticalData["damage"]) > 0) {
+                    enemy.system.attributes.hits.current -= parseInt(criticalData["damage"]);
+                    await enemy.update({ "system.attributes.hits.current": enemy.system.attributes.hits.current });
+                }
             }
         }
+
     }
 
     static async loadCriticalTable(criticalType) {
@@ -75,17 +82,30 @@ export default class RMSSTableManager {
         const criticalTable = await RMSSTableManager.loadCriticalTable(critType);
 
         for (const element of criticalTable) {
+            let criticalResult = element[severity];
             if (result >= parseInt(element["lower"]) && result <= parseInt(element["upper"])) {
-                console.log(element[severity]);
+                if (!element[severity].hasOwnProperty("metadata")) {
+                    return {};
+                }
+
+                if (element[severity].metadata.length > 1) {
+                    const gmResponse = await socket.executeAsGM("chooseCriticalOption", element[severity]);
+                    criticalResult["metadata"] = gmResponse;
+                }
+                else {
+                    criticalResult["metadata"] = element[severity]["metadata"][0];
+                }
+                console.log(criticalResult);
                 const htmlContent = await renderTemplate("systems/rmss/templates/combat/critical-result.hbs", {
-                    result: element[severity]
+                    result: criticalResult
                 });
                 const speaker = "Game Master";
-
                 await ChatMessage.create({
                     content: htmlContent,
                     speaker: speaker
                 });
+
+                return criticalResult;
             }
         }
     }

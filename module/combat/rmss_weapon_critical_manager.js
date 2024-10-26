@@ -25,11 +25,11 @@ export class RMSSWeaponCriticalManager {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", enemy, damage, severity, critType);
 
         if (gmResponse["confirmed"]) {
-            enemy.system.attributes.hits.current -= parseInt(damage);
+            enemy.system.attributes.hits.current -= parseInt(gmResponse.damage);
             let roll = new Roll(`(1d100)`);
             await roll.toMessage(undefined,{create:true});
             let result = roll.total;
-            await RMSSTableManager.getCriticalTableResult(result, enemy, severity, critType);
+            return await RMSSTableManager.getCriticalTableResult(result, enemy, gmResponse.severity, gmResponse.critType);
         }
     }
 
@@ -67,8 +67,8 @@ export class RMSSWeaponCriticalManager {
                         label: "Confirmar",
                         callback: (html) => {
                             const damage = parseInt(html.find("#damage").val());
-                            const severity = parseInt(html.find("#severity").val());
-                            const critType = parseInt(html.find("#critical-type").val());
+                            const severity = html.find("#severity").val();
+                            const critType = html.find("#critical-type").val();
                             resolve({confirmed: true, damage, severity, critType});
                         }
                     },
@@ -95,5 +95,110 @@ export class RMSSWeaponCriticalManager {
             }).render(true);
         });
         return confirmed;
+    }
+
+    static async applyCriticalToEnemy(critical, enemyId){
+        const enemy = game.actors.get(enemyId);
+        let condition = {
+            "hits_per_round": enemy.system.condition.hits_per_round,
+            "stunned": enemy.system.condition.stunned,
+            "penalty": enemy.system.condition.penalty,
+            "parry": enemy.system.condition.parry,
+            "no_parry": enemy.system.condition.no_parry,
+            "bonus": enemy.system.condition.bonus
+        };
+
+        if (!critical.hasOwnProperty("metadata")) {
+            return;
+        }
+
+        if (critical.metadata.hasOwnProperty("HP")){
+            enemy.system.attributes.hits.current -= critical.metadata.HP;
+            await enemy.update({"system.attributes.hits.current": enemy.system.attributes.hits.current});
+        }
+
+        if (critical.metadata.hasOwnProperty("STUN")){
+            condition.stunned += critical.metadata["STUN"]["ROUNDS"];
+           // await RMSSWeaponCriticalManager.applyEffectOnCritical(enemyId, "daze.svg");
+            const effectData = {
+                label: "Stunned", // Nombre del efecto
+                icon: "icons/svg/daze.svg", // Icono del efecto, puedes cambiarlo a uno de tu elección
+                origin: enemyId, // Vincula el efecto al actor
+                changes: [
+                   // { key: "data.attributes.speed.value", mode: CONST.ACTIVE_EFFECT_MODES.MULTIPLY, value: 0 }, // Ejemplo: reduce la velocidad a 0
+                    { key: "system.attributes.hits.current", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: -2 } // Ejemplo: modifica HP
+                ],
+                duration: {
+                    rounds: 1, // Duración en rondas
+                    startRound: game.combat ? game.combat.round : 0 // Inicia en la ronda actual
+                },
+                disabled: false // Asegura que esté activo
+            };
+
+            await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
+        }
+
+        if (critical.metadata.hasOwnProperty("HPR")){
+            condition.hits_per_round += critical.metadata["HPR"];
+            await RMSSWeaponCriticalManager.applyEffectOnCritical(enemyId, "blood.svg");
+        }
+
+        if (critical.metadata.hasOwnProperty("PE")){
+            condition.penalty.push(critical.metadata["PE"]);
+            await RMSSWeaponCriticalManager.applyEffectOnCritical(enemyId, "downgrade.svg");
+        }
+
+        if (critical.metadata.hasOwnProperty("P")){
+            condition.parry.push(critical.metadata["P"]);
+        }
+
+        if (critical.metadata.hasOwnProperty("NP")){
+            condition.no_parry += critical.metadata["NP"];
+        }
+
+        if (critical.metadata.hasOwnProperty("BONUS")){
+            condition.bonus.push(critical.metadata["BONUS"]);
+        }
+
+        console.log("Critical");
+        console.log(critical.metadata);
+        console.log("Condition");
+        console.log(condition);
+        await enemy.update({"system.condition": condition});
+    }
+
+    static async applyEffectOnCritical(enemyId, icon) {
+        const actorId = enemyId;
+        const token = canvas.tokens.placeables.find(t => t.actor.id === actorId);
+
+        if (token) {
+            const effect = `icons/svg/${icon}`;
+           // await token.document.toggleEffect(effect, {active: true});
+        } else {
+            console.log("No token found for this actor on the canvas.");
+        }
+    }
+
+
+static async chooseCriticalOption(criticalResult) {
+        let option = await new Promise((resolve) => {
+            new Dialog({
+                title: "Elige una opción",
+                content: `<p class="critical-description">${criticalResult.text}</p>`,
+                buttons: {
+                    optionA: {
+                        label: `${criticalResult.metadata[0].DESC}`,
+                        callback: () => resolve(criticalResult.metadata[0])
+                    },
+                    optionB: {
+                        label: `${criticalResult.metadata[1].DESC}`,
+                        callback: () => resolve(criticalResult.metadata[1])
+                    }
+                },
+                default: "optionA"
+            }).render(true);
+        });
+
+        return option;
     }
 }
