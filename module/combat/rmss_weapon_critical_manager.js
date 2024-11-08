@@ -119,17 +119,15 @@ export class RMSSWeaponCriticalManager {
 
         if (critical.metadata.hasOwnProperty("STUN")){
             condition.stunned += critical.metadata["STUN"]["ROUNDS"];
-           // await RMSSWeaponCriticalManager.applyEffectOnCritical(enemyId, "daze.svg");
             const effectData = {
-                label: "Stunned", // Nombre del efecto
-                icon: "icons/svg/daze.svg", // Icono del efecto, puedes cambiarlo a uno de tu elección
-                origin: enemyId, // Vincula el efecto al actor
+                label: "Stunned",
+                icon: "icons/svg/daze.svg",
+                origin: enemyId,
                 changes: [
-                   // { key: "data.attributes.speed.value", mode: CONST.ACTIVE_EFFECT_MODES.MULTIPLY, value: 0 }, // Ejemplo: reduce la velocidad a 0
                     { key: "system.attributes.hits.current", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: -2 } // Ejemplo: modifica HP
                 ],
                 duration: {
-                    rounds: 1, // Duración en rondas
+                    rounds: 2,
                     startRound: game.combat ? game.combat.round : 0 // Inicia en la ronda actual
                 },
                 disabled: false // Asegura que esté activo

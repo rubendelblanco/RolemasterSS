@@ -2,6 +2,7 @@ import {RMSSCombatant} from "./rmss_combatant.js";
 
 export class RMSSCombat extends Combat {
     constructor(data, context) {
+        console.log(data);
         super(data, context);
     }
 
@@ -16,9 +17,11 @@ export class RMSSCombat extends Combat {
         console.log("next turn");
         const combatant = this.combatants.get(this.current.combatantId);
         console.log(combatant);
+
         if (combatant instanceof RMSSCombatant) {
             await combatant.startTurn();
         }
+
         return super.nextTurn();
     }
 
