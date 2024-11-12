@@ -1,61 +1,51 @@
-Hooks.on("updateCombat", async (combat) => {
-    for (let combatant of combat.combatants) {
-        const actor = combatant.actor;
-        if (!actor) continue;
+Hooks.on("hoverToken", (token, hovered) => {
+    if (hovered) {
+        let effectInfo= {};
+        console.log(token.actor.effects);
+        for (let effect of token.actor.effects) {
+            const iconPath = effect.img;
 
-        const tokenActor = combatant.token?.actor;
-
-        for (let effect of actor.effects) {
-            const duration = effect.duration;
-            console.log("actor with effect:", actor);
-
-            if (duration.rounds) {
-                duration.rounds--;
-                const tokenEffect = tokenActor.effects.find(e => e.name === effect.name);
-                const actorEffect = actor.effects.get(tokenEffect.origin);
-                console.log("Effect in round");
-                console.log(await tokenEffect.update({ "duration.rounds": duration.rounds }));
-                //await actor.update({ "effects": actor.effects });
-
-                if (duration.rounds <= 0) {
-                    console.log("actor before effect:", actor);
-                    console.log("actorEffect:", actorEffect);
-                    console.log("actor after effect:", actor);
-                    if (actorEffect) {
-                        console.log("Updating token effects:");
-                       // await actorEffect.delete();
-                        await actor.update({ "effects": actor.effects });
-                    }
-
-                    await effect.delete();
-
-                    /*if (actor.type === "character" && tokenActor) {
-                        const tokenEffect = tokenActor.effects.find(e => e.name === effect.name);
-                        if (tokenEffect) await tokenEffect.delete();
-                    }*/
-                } else {
-                   // await effect.update({ "duration.rounds": duration.rounds });
-
-                   /* if (actor.type === "character" && tokenActor) {
-                       // console.log("Updating token effects:");
-                        const tokenEffect = tokenActor.effects.find(e => e.name === effect.name);
-
-                        if (tokenEffect) {
-                          //  console.log("el caso es entrar aqui");
-                            await tokenEffect.update({ "duration.rounds": duration.rounds });
-                            const actorEffect = actor.effects.find(e => e.name === tokenEffect.name);
-                          //  console.log(actorEffect);
-                            if (actorEffect) {
-                                await actorEffect.update({ "duration.rounds": duration.rounds });
-                            }
-                            //await actor.update({ "effects": tokenActor.effects });
-                        } else {
-                            await tokenActor.createEmbeddedDocuments("ActiveEffect", [effect.toObject()]);
-                        }
-
-                    }*/
+            if (effect.name === "Stunned" || effect.name === "Parry" || effect.name === "No parry") {
+                if (!effectInfo[iconPath]){
+                    effectInfo[iconPath] = effect.duration.rounds
+                }
+                else {
+                    effectInfo[iconPath] = parseInt(effectInfo[iconPath]) + parseInt(effect.duration.rounds)
                 }
             }
+
+            if (effect.name === "Bleeding") {
+                if (!effectInfo[iconPath]) effectInfo[iconPath] = [];
+                effectInfo[iconPath].push(-effect.flags.value);
+            }
+
+            if (effect.name === "Penalty") {
+                if (!effectInfo[iconPath]) effectInfo[iconPath] = [];
+                effectInfo[iconPath].push(effect.flags.value);
+            }
+
+            if (effect.name === "Bonus") {
+                if (!effectInfo[iconPath]) effectInfo[iconPath] = [];
+                effectInfo[iconPath] = effect.duration.rounds + " ("+effect.flags.value+")";
+            }
+
         }
+
+        let tooltipContent = Object.entries(effectInfo).map(([iconPath, value]) => {
+            return `<div><img src="${iconPath}" width="20" height="20" style="vertical-align: middle; margin-right: 5px;"> ${value}</div>`;
+        }).join("");
+
+        let tooltip = $(`<div class="tooltip" style="position: absolute; z-index: 1000; padding: 5px; 
+                          background: black; color: white; border: 1px solid white; border-radius: 5px;">
+                          ${tooltipContent || "No effects"}
+                          </div>`);
+
+        $("body").append(tooltip);
+        $(document).on("mousemove.tooltip", (event) => {
+            tooltip.css({ left: event.pageX + 15, top: event.pageY + 15 });
+        });
+    } else {
+        $(".tooltip").remove();
+        $(document).off("mousemove.tooltip");
     }
 });

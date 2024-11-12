@@ -30,11 +30,14 @@
             <div class="item-name effect-name">
                 <h4>{{effect.name}}</h4>
             </div>
+            <div class="item-name effect-name">
+                <h4>{{effect.duration.rounds}}</h4>
+            </div>
             <div class="effect-controls">
                 <a class="effect-control" data-action="edit" title="{{localize 'DND5E.EffectEdit'}}">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a class="effect-control" data-action="delete" title="{{localize 'DND5E.EffectDelete'}}">
+                <a class="effect-control delete" data-effect-id="{{effects.id}}" data-action="delete" title="{{localize 'DND5E.EffectDelete'}}">
                     <i class="fas fa-trash"></i>
                 </a>
             </div>

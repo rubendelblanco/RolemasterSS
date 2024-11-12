@@ -1,5 +1,22 @@
 import {RMSSCombatant} from "./rmss_combatant.js";
 
+/**
+ * Custom Combat class for RMSS system.
+ *
+ * NOTE: Due to known issues with ActiveEffect handling in Foundry VTT version 12,
+ * specifically with automatic round-based duration decrementing, this class
+ * implements custom logic in `nextRound` to manually manage effect durations.
+ *
+ * In version 12, ActiveEffect duration fields (e.g., rounds) do not reliably decrement
+ * or expire at the end of each round when expected, especially in systems outside of
+ * the official D&D 5E system. As a result, effects relying on round-based expiry can
+ * persist indefinitely, even when they should have expired.
+ *
+ * This implementation of `nextRound` iterates over each combatant's active effects and
+ * manually decrements round-based durations. When an effect reaches zero rounds, it is
+ * removed from the actor. This custom solution ensures that effects with round-based
+ * durations expire correctly in each new combat round.
+ */
 export class RMSSCombat extends Combat {
     constructor(data, context) {
         console.log(data);
@@ -12,17 +29,53 @@ export class RMSSCombat extends Combat {
         return new RMSSCombatant(data, this, initData);
     }
 
+    async _decreaseRoundsEffect(effect){
+        const duration = effect.duration;
+
+        if (duration.rounds) {
+            const remainingRounds = duration.rounds - 1;
+
+            if (remainingRounds <= 0) {
+                await effect.delete();
+            } else {
+                await effect.update({"duration.rounds": remainingRounds});
+            }
+        }
+    }
+
     /** @override */
     async nextTurn() {
-        console.log("next turn");
-        const combatant = this.combatants.get(this.current.combatantId);
-        console.log(combatant);
-
-        if (combatant instanceof RMSSCombatant) {
-            await combatant.startTurn();
-        }
-
         return super.nextTurn();
+    }
+
+    /** @override */
+    async nextRound(){
+        super.nextRound();
+        console.log("next round");
+        for (let combatant of this.combatants) {
+            const actor = combatant.actor;
+            if (!actor) continue;
+            const permanentEffects = ["Bleeding", "Penalty"];
+            let effectsAlreadyErased = {"Stunned": false, "No parry": false, "Parry": false};
+
+            for (let effect of [...actor.effects]) {
+                console.log("EFECTO: "+effect.name);
+                if (effect.name === "Bleeding") {
+                    actor.system.attributes.hits.current -= effect.flags.bleeding;
+                }
+
+                if (permanentEffects.includes(effect.name) || (effectsAlreadyErased.hasOwnProperty(effect.name) && effectsAlreadyErased[effect.name])) {
+                    continue;
+                }
+
+                await this._decreaseRoundsEffect(effect);
+
+                //only erase one effect per round
+                if (effectsAlreadyErased.hasOwnProperty(effect.name)) {
+                    effectsAlreadyErased[effect.name] = true;
+                }
+            }
+        }
     }
 
     async rollInitiative(ids, {formula=null, updateTurn=true}={}) {

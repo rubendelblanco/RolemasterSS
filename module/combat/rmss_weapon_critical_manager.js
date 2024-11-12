@@ -97,6 +97,11 @@ export class RMSSWeaponCriticalManager {
         return confirmed;
     }
 
+    /**
+     * NOTE: Due to known issues with ActiveEffect handling in Foundry VTT version 12,
+     * specifically with automatic round-based duration, need to fix some issues like
+     * token icon effects rendering with undefined duration effects.
+     */
     static async applyCriticalToEnemy(critical, enemyId){
         const enemy = game.actors.get(enemyId);
         let condition = {
@@ -117,45 +122,119 @@ export class RMSSWeaponCriticalManager {
             await enemy.update({"system.attributes.hits.current": enemy.system.attributes.hits.current});
         }
 
-        if (critical.metadata.hasOwnProperty("STUN")){
-            condition.stunned += critical.metadata["STUN"]["ROUNDS"];
+        if (critical.metadata.hasOwnProperty("STUN")) {
+            const stunRounds = critical.metadata["STUN"]["ROUNDS"];
+            const existingStunEffect = enemy.effects.find(e => e.name === "Stunned");
+
+            if (existingStunEffect) {
+                const newRounds = (existingStunEffect.duration.rounds || 0) + stunRounds;
+                console.log(newRounds);
+                await existingStunEffect.update({ "duration.rounds": newRounds });
+            } else {
+                const effectData = {
+                    label: "Stunned",
+                    icon: `${CONFIG.rmss.paths.icons_folder}stunned.svg`,
+                    origin: enemyId,
+                    duration: {
+                        rounds: stunRounds,
+                        startRound: game.combat ? game.combat.round : 0
+                    },
+                    disabled: false
+                };
+
+                await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            }
+        }
+
+        if (critical.metadata.hasOwnProperty("HPR")){
             const effectData = {
-                label: "Stunned",
-                icon: "icons/svg/daze.svg",
+                name: "Bleeding",
+                icon: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
                 origin: enemyId,
-                changes: [
-                    { key: "system.attributes.hits.current", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: -2 } // Ejemplo: modifica HP
-                ],
                 duration: {
-                    rounds: 2,
-                    startRound: game.combat ? game.combat.round : 0 // Inicia en la ronda actual
+                    rounds: 1, //need to put a value. Otherwise, ActiveEffects doesn't render the icon in token
+                    startRound: game.combat ? game.combat.round : 0
                 },
-                disabled: false // Asegura que esté activo
+                flags: {
+                    value: parseInt(critical.metadata["HPR"])
+                },
+                disabled: false
             };
 
             await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
-        if (critical.metadata.hasOwnProperty("HPR")){
-            condition.hits_per_round += critical.metadata["HPR"];
-            await RMSSWeaponCriticalManager.applyEffectOnCritical(enemyId, "blood.svg");
-        }
-
         if (critical.metadata.hasOwnProperty("PE")){
-            condition.penalty.push(critical.metadata["PE"]);
-            await RMSSWeaponCriticalManager.applyEffectOnCritical(enemyId, "downgrade.svg");
+            const effectData = {
+                name: "Penalty",
+                icon: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
+                origin: enemyId,
+                disabled: false,
+                description: critical.text,
+                flags: {
+                    value: parseInt(critical.metadata["PE"]["VALUE"])
+                },
+                duration: {
+                    rounds: 1, //need to put a value. Otherwise, ActiveEffects doesn't render the icon in token
+                    startRound: game.combat ? game.combat.round : 0
+                },
+            };
+
+            await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
         if (critical.metadata.hasOwnProperty("P")){
-            condition.parry.push(critical.metadata["P"]);
+            const effectData = {
+                name: "Parry",
+                icon: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
+                origin: enemyId,
+                disabled: false,
+                description: critical.text,
+                duration: {
+                    rounds: critical.metadata["P"]["ROUNDS"],
+                    startRound: game.combat ? game.combat.round : 0
+                }
+            };
+
+            await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
         if (critical.metadata.hasOwnProperty("NP")){
-            condition.no_parry += critical.metadata["NP"];
+            const noParryRounds = critical.metadata["NP"];
+            const effectData = {
+                name: "No parry",
+                icon: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
+                origin: enemyId,
+                disabled: false,
+                description: critical.text,
+                duration: {
+                    rounds: 1,
+                    startRound: game.combat ? game.combat.round : 0
+                }
+            };
+
+            for (let i = 0; i < noParryRounds; i++) {
+                await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            }
         }
 
         if (critical.metadata.hasOwnProperty("BONUS")){
-            condition.bonus.push(critical.metadata["BONUS"]);
+            const effectData = {
+                name: "Bonus",
+                icon: `${CONFIG.rmss.paths.icons_folder}bonus.svg`,
+                origin: enemyId,
+                disabled: false,
+                description: critical.text,
+                duration: {
+                    rounds: critical.metadata["BONUS"] && critical.metadata["BONUS"]["ROUNDS"] ? critical.metadata["BONUS"]["ROUNDS"] : 1,
+                    startRound: game.combat ? game.combat.round : 0
+                },
+                flags: {
+                    value: parseInt(critical.metadata["BONUS"]["VALUE"])
+                }
+            };
+
+            await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
         console.log("Critical");
@@ -163,18 +242,6 @@ export class RMSSWeaponCriticalManager {
         console.log("Condition");
         console.log(condition);
         await enemy.update({"system.condition": condition});
-    }
-
-    static async applyEffectOnCritical(enemyId, icon) {
-        const actorId = enemyId;
-        const token = canvas.tokens.placeables.find(t => t.actor.id === actorId);
-
-        if (token) {
-            const effect = `icons/svg/${icon}`;
-           // await token.document.toggleEffect(effect, {active: true});
-        } else {
-            console.log("No token found for this actor on the canvas.");
-        }
     }
 
 
