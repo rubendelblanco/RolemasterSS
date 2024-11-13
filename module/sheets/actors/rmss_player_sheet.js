@@ -29,6 +29,11 @@ export default class RMSSPlayerSheet extends ActorSheet {
     context.flags = actorData.flags;
     context.enrichedDescription = enrichedDescription;
 
+    //effects
+    context.effects = this.actor.effects.contents;
+    console.log("=============================EFFECTS==============================");
+    console.log(context.effects);
+
     // Prepare character data and items.
     if (actorData.type === "character") {
       this._prepareItems(context);
@@ -493,6 +498,32 @@ export default class RMSSPlayerSheet extends ActorSheet {
           break;
       }
     });
+    html.find(".effect-control").click(this._onEffectControl.bind(this));
+
+  }
+
+  _onEffectControl(event) {
+    event.preventDefault();
+    const owner = this.actor;
+    const a = event.currentTarget;
+    const li = a.closest("li");
+    const effect = li?.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
+    switch (a.dataset.action) {
+      case "create":
+        if (this.actor.isEmbedded) {
+          return ui.notifications.error("Managing embedded Documents which are not direct descendants of a primary Document is un-supported at this time.");
+        }
+        return owner.createEmbeddedDocuments("ActiveEffect", [{
+          label: "New Effect",
+          icon: "icons/svg/aura.svg",
+          origin: owner.uuid,
+          disabled: true
+        }]);
+      case "edit":
+        return effect.sheet.render(true);
+      case "delete":
+        return effect.delete();
+    }
   }
 
   async _onItemCreate(event) {
