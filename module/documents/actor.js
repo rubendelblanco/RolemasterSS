@@ -51,7 +51,7 @@ export class RMSSActor extends Actor {
     if (actorData.type !== "npc") return;
 
     // Make modifications to data here. For example:
-    const data = actorData.data;
+    const data = actorData.system;
   }
 
   _getStatBasicBonusFromTable(value){

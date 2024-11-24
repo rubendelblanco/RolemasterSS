@@ -103,7 +103,7 @@ export class RMSSItem extends Item {
     }
     else
     {
-      const items = this.parent.items;
+      const items = this.parent?.items || [];
       console.log(`rmss | item.js | Skill ${this.name} has owner, calculating skill category bonus.`);
       for (const item of items) {
         if (item.type === "skill_category" && item._id === itemData.system.category) {

@@ -2,7 +2,6 @@ import RankCalculator from '../skills/rmss_rank_calculator.js';
 import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
 import {RMSSWeaponSkillManager} from "../../combat/rmss_weapon_skill_manager.js";
 import {RMSSCombat} from "../../combat/rmss_combat.js";
-import {RMSSWeaponCriticalManager} from "../../combat/rmss_weapon_critical_manager.js";
 
 export default class RMSSPlayerSheet extends ActorSheet {
 
@@ -40,10 +39,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
       this._prepareCharacterData(context);
     }
 
-    // Prepare NPC data and items.
-    if (actorData.type === "npc") {
-      this._prepareItems(context);
-    }
     return context;
   }
 

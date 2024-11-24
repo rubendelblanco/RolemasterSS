@@ -718,3 +718,12 @@ table.rwd-table td img {
   filter: brightness(0) saturate(100%) invert(24%) sepia(93%) saturate(5587%) hue-rotate(1deg) brightness(99%) contrast(106%);
 }
 
+.npc-skill-calc {
+  display: contents!important;
+  border-bottom: inherit;
+}
+
+.npc-skill-calc > div {
+  border-bottom: inherit;
+}
+

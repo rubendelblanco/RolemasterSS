@@ -24,6 +24,7 @@ import RMSSPlayerSheet from "./module/sheets/actors/rmss_player_sheet.js";
 import RMSSActorSheetConfig from "./module/sheets/actors/rmss_player_sheet_config.js";
 import {RMSSWeaponSkillManager} from "./module/combat/rmss_weapon_skill_manager.js";
 import {RMSSWeaponCriticalManager} from "./module/combat/rmss_weapon_critical_manager.js";
+import RMSSNpcSheet from "./module/sheets/actors/rmss_npc_sheet.js";
 
 export let socket;
 
@@ -44,7 +45,6 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-weapons.html",
     "systems/rmss/templates/sheets/actors/parts/actor-money.html",
     "systems/rmss/templates/sheets/actors/parts/actor-skill-categories.html",
-    "systems/rmss/templates/sheets/actors/parts/actor-skills.html",
     "systems/rmss/templates/sheets/actors/parts/actor-armor.html",
     "systems/rmss/templates/sheets/actors/parts/actor-herbs.html",
     "systems/rmss/templates/sheets/actors/parts/actor-spells.html",
@@ -52,7 +52,8 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-fav-items.html",
     "systems/rmss/templates/sheets/actors/apps/actor-settings.html",
     "systems/rmss/templates/sheets/actors/parts/actor-status-info.html",
-    "systems/rmss/templates/sheets/actors/parts/actor-exp-points.html"
+    "systems/rmss/templates/sheets/actors/parts/actor-exp-points.html",
+    "systems/rmss/templates/sheets/actors/parts/npc-skills.hbs"
   ];
   return loadTemplates(templatePaths);
 }
@@ -125,6 +126,8 @@ Hooks.once("init", function() {
 
   // Actors
   Actors.registerSheet("rmss", RMSSPlayerSheet, {makeDefault: true, label: "rmss.entity_sheet.player_character", types: ["character"]});
+  Actors.registerSheet("rmss", RMSSNpcSheet, {makeDefault: true, label: "rmss.entity_sheet.npc", types: ["npc"]});
+
 
   // Preload Handlebars Templates
   console.log("rmss | Preloading Handlebars Templates");

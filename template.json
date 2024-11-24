@@ -245,7 +245,7 @@
     },
     "character": {
       "templates": ["background", "stats", "resistance_rolls", "levelUp", "armor_info", "fixed_info", "race_stat_fixed_info",
-        "role_traits", "money", "description", "condition"],
+        "role_traits", "money", "description"],
       "attributes": {
         "level": {
           "value": 0
@@ -271,6 +271,12 @@
         }
       },
       "description": ""
+    },
+    "npc":{
+      "action_points": {
+        "current": 4,
+        "max": 4
+      }
     }
   },
   "Item": {
