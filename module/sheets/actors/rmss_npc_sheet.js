@@ -1,7 +1,6 @@
-import {RMSSCombat} from "../../combat/rmss_combat.js";
-import {RMSSWeaponSkillManager} from "../../combat/rmss_weapon_skill_manager.js";
+import RMSSCharacterSheet from "./rmss_character_sheet.js";
 
-export default class RMSSNpcSheet extends ActorSheet {
+export default class RMSSNpcSheet extends RMSSCharacterSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             width: 860,
@@ -12,10 +11,25 @@ export default class RMSSNpcSheet extends ActorSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
+        html.find('.npc-skill-calc').on('blur', '[contenteditable="true"]', async (event) => {
+            const skillCalc = $(event.currentTarget).closest('.npc-skill-calc');
+            const rankBonus = parseInt(skillCalc.find('[name="npc-item-rank-bonus"]').text()) || 0;
+            const itemBonus = parseInt(skillCalc.find('[name="npc-item-bonus"]').text()) || 0;
+            const specialBonus = parseInt(skillCalc.find('[name="npc-item-special-bonus-1"]').text()) || 0;
+            const total = rankBonus + itemBonus + specialBonus;
+            const totalBonus = skillCalc.find('[name="npc-item-total-bonus"]').text(total);
+            const data = {
+                "system.rank_bonus": rankBonus,
+                "system.item_bonus": itemBonus,
+                "system.special_bonus_1": specialBonus,
+                "system.total_bonus": totalBonus,
+            }
+            const itemId = totalBonus.data('item-id');
+            const item = this.actor.items.get(itemId);
 
-        html.find(".item-delete").click(async ev => {
-            const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-            item.delete();
+            if (item) {
+                await item.update(data);
+            }
         });
     }
 
@@ -117,5 +131,30 @@ export default class RMSSNpcSheet extends ActorSheet {
         context.armor = armor;
         context.herbs = herbs;
         context.spells = spells;
+    }
+
+    async _onItemCreate(event) {
+        event.preventDefault();
+        const header = event.currentTarget;
+
+        // Get the type of item to create.
+        const type = header.dataset.type;
+
+        // Grab any data associated with this control.
+        const data = duplicate(header.dataset);
+
+        // Initialize a default name.
+        const name = `New ${type.capitalize()}`;
+
+        // Prepare the item object.
+        const itemData = {
+            name: name,
+            type: type,
+            data: data
+        };
+        // Remove the type from the dataset since it's in the itemData.type prop.
+        delete itemData.data.type;
+        // Finally, create the item!
+        return await Item.create(itemData, {parent: this.actor});
     }
 }

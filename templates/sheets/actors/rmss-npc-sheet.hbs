@@ -1,6 +1,6 @@
 <form class="npc-sheet {{cssClass}}" autocomplete="off">
-  <header class="sheet-header">
-    <div class="container">
+    <header class="sheet-header">
+      <div class="container">
 
       <!-- Actor Icon Section-->
       <div>
@@ -8,34 +8,26 @@
           <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
         </div>
       </div>
-
-      <!-- Resource Boxes Section-->
-
       <div class="resource-container">
 
         <div class="resource-entry">
           {{ localize "rmss.player_character.resources.hits" }}
           <h4><input type="text" name="system.attributes.hits.current" data-dtype="Number" value="{{system.attributes.hits.current}}"/>/<input type="text" name="system.attributes.hits.max" data-dtype="Number" value="{{system.attributes.hits.max}}"/></h4>
+            {{ localize "rmss.npc.at" }}/{{ localize "rmss.npc.db" }}
+            <h4>
+                <input type="text" name="system.armor_info.armor_type" data-dtype="Number" value="{{system.armor_info.armor_type}}"/>/
+                <input type="text" name="system.armor_info.total_db" data-dtype="Number" value="{{system.armor_info.total_db}}"/>
+            </h4>
         </div>
-
-        <div class="resource-entry">
-          <div class="exhaustion-resources">
-            {{ localize "rmss.player_character.resources.exhaustion_points" }}
-            <h4><input type="text" name="system.attributes.exhaustion_points.current" data-dtype="Number" value="{{system.attributes.exhaustion_points.current}}"/>/<input type="text" name="system.attributes.exhaustion_points.max" data-dtype="Number" value="{{system.attributes.exhaustion_points.max}}"/></h4>
-          </div>
-          <div class="exhaustion-modifier">
-            <label>{{system.attributes.exhaustion_points.modifier}}</label>
-          </div>
-        </div>
-
         <div class="resource-entry">
           <div class="pp-resources">
             {{ localize "rmss.player_character.resources.power_points" }}
             <h4><input name="system.attributes.power_points.current" type="Number" value="{{system.attributes.power_points.current}}"/>/<input name="system.attributes.power_points.max" type="Number" value="{{system.attributes.power_points.max}}"/></h4>
           </div>
-          <div class="pp-exhaustion">
-            <label>{{system.attributes.power_points.modifier}}</label>
-          </div>
+            {{ localize "rmss.npc.movement_rate" }}
+            <h4>
+                <input type="text" name="system.attributes.movement_rate.current" data-dtype="Number" value="{{system.attributes.movement_rate.current}}"/>
+            </h4>
         </div>
       </div>
 
@@ -51,11 +43,21 @@
           <label for="level">{{ localize "rmss.player_character.level" }}</label>
           <input id="level" name="system.attributes.level.value" type="text" value="{{system.attributes.level.value}}"/>
         </div>
+
+          <div class="header-text flexrow">
+              <label for="race">{{ localize "rmss.pc_sheet_fixed_info.race" }} </label>
+              <input id="race" type="text" name="system.fixed_info.race" value="{{system.fixed_info.race}}" data-dtype="String"/>
+          </div>
+          <div class="header-text flexrow">
+              <label for="profession">{{ localize "rmss.pc_sheet_fixed_info.profession" }}  </label>
+              <input id="profession" type="text" name="system.fixed_info.profession" value="{{system.fixed_info.profession}}" data-dtype="String"/>
+          </div>
       </div>
 
     </div>
   </header>
     <section class="sheet-body">
+        {{> "systems/rmss/templates/sheets/actors/parts/actor-weapons.html" }}
         {{> "systems/rmss/templates/sheets/actors/parts/npc-skills.hbs" }}
     </section>
 </form>

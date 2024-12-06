@@ -2,8 +2,9 @@ import RankCalculator from '../skills/rmss_rank_calculator.js';
 import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
 import {RMSSWeaponSkillManager} from "../../combat/rmss_weapon_skill_manager.js";
 import {RMSSCombat} from "../../combat/rmss_combat.js";
+import RMSSCharacterSheet from "./rmss_character_sheet.js";
 
-export default class RMSSPlayerSheet extends ActorSheet {
+export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
   // Override Default Options, Set CSS Classes, Set Default Sheet, Set up Sheet Tabs
   static get defaultOptions() {
@@ -285,13 +286,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
     super.activateListeners(html);
     ExperiencePointsCalculator.loadListeners(html, this.actor);
 
-    html.find(".offensive-skill").click(async ev => {
-      const enemy = RMSSCombat.getTargets()[0];
-      const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      const ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
-      await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, weapon, ob);
-    });
-
     //Calculate potential stats (only when you are level 0)
     html.find(".stat-pot").click(ev => {
       const clickedElement = ev.currentTarget;
@@ -313,29 +307,9 @@ export default class RMSSPlayerSheet extends ActorSheet {
 
     });
 
-    html.find(".item-edit").click(ev => {
-      const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      item.sheet.render(true);
-    });
-
-    // Render the item sheet for viewing/editing prior to the editable check.
-    html.find(".item-edit").click(ev => {
-      const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      item.sheet.render(true);
-    });
-
     // -------------------------------------------------------------
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
-
-    // Add Item
-    html.find(".item-create").click(this._onItemCreate.bind(this));
-
-    // Delete Item
-    html.find(".item-delete").click(ev => {
-      const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      item.delete();
-    });
 
     // Show Sheet Settings
     html.find(".import-skillcats").click(async ev => {
@@ -367,21 +341,6 @@ export default class RMSSPlayerSheet extends ActorSheet {
       } else {
         item.update({system: {favorite: true}});
       }
-    });
-
-    // Equip/Unequip Weapon/Armor
-    html.find(".equippable").click(ev => {
-      const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      console.log(item);
-      console.log(`Before change: ${item.system.equipped}`);
-      if (item.system.equipped === true) {
-        console.log("Setting False");
-        item.update({system: {equipped: false}});
-      } else {
-        console.log("Setting True");
-        item.update({system: {equipped: true}});
-      }
-      console.log(`After change: ${item.system.equipped}`);
     });
 
     // Wear/Remove Item

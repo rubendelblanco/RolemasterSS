@@ -359,6 +359,11 @@
     },
     "chat":{
       "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})"
+    },
+    "npc": {
+      "at": "TA",
+      "db": "BD",
+      "movement_rate": "Movimiento base"
     }
   }
 }

@@ -230,17 +230,6 @@
           "tin": 0,
           "iron": 0
         }
-      },
-      "condition": {
-        "condition": {
-          "hits_per_round": 0,
-          "stunned": 0,
-          "penalty": [],
-          "parry": [],
-          "no_parry": 0,
-          "bonus": [],
-          "wounds": []
-        }
       }
     },
     "character": {
@@ -268,6 +257,9 @@
         "action_points": {
           "current": 4,
           "max": 4
+        },
+        "movement_points": {
+          "current": 50
         }
       },
       "description": ""

@@ -360,6 +360,11 @@
         },
         "chat":{
             "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})"
+        },
+        "npc": {
+            "at": "AT",
+            "db": "DB",
+            "movement_rate": "Movement rate"
         }
     }
 }
