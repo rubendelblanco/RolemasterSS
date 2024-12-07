@@ -56,8 +56,33 @@
 
     </div>
   </header>
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="Skills">{{ localize "rmss.pc_sheet_tabs.skills" }}</a>
+        <a class="item" data-tab="Equipment">{{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
+        <a class="item" data-tab="Spells">{{ localize "rmss.pc_sheet_tabs.spells" }}</a>
+        <a class="item" data-tab="StatusRecord">{{ localize "rmss.pc_sheet_tabs.status_record" }}</a>
+    </nav>
     <section class="sheet-body">
-        {{> "systems/rmss/templates/sheets/actors/parts/actor-weapons.html" }}
-        {{> "systems/rmss/templates/sheets/actors/parts/npc-skills.hbs" }}
+        <div class="tab skills" data-group="primary" data-tab="Skills">
+            {{> "systems/rmss/templates/sheets/actors/parts/npc-skills.hbs" }}
+        </div>
+        <div class="tab equipment" data-group="primary" data-tab="Equipment">
+            <div class="container">
+                <div class="equipment-container">
+                    <h2>Weapons</h2>
+                    {{> "systems/rmss/templates/sheets/actors/parts/actor-weapons.html" }}
+                    <h2>Items</h2>
+                    {{> "systems/rmss/templates/sheets/actors/parts/actor-items.html" }}
+                    <h2>Armor and Equipables</h2>
+                    {{> "systems/rmss/templates/sheets/actors/parts/actor-armor.html" }}
+                    <h2>Herbs and Poisons</h2>
+                    {{> "systems/rmss/templates/sheets/actors/parts/actor-herbs.html" }}
+                </div>
+            </div>
+        </div>
+        <div class="tab status-record" data-group="primary" data-tab="StatusRecord">
+            {{> "systems/rmss/templates/sheets/actors/rmss-critical-codes.hbs" }}
+        </div>
     </section>
 </form>

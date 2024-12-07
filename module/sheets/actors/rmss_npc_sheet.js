@@ -6,6 +6,7 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
             width: 860,
             height: 780,
             template: "systems/rmss/templates/sheets/actors/rmss-npc-sheet.hbs",
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body" }]
         });
     }
 

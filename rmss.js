@@ -53,7 +53,8 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/apps/actor-settings.html",
     "systems/rmss/templates/sheets/actors/parts/actor-status-info.html",
     "systems/rmss/templates/sheets/actors/parts/actor-exp-points.html",
-    "systems/rmss/templates/sheets/actors/parts/npc-skills.hbs"
+    "systems/rmss/templates/sheets/actors/parts/npc-skills.hbs",
+    "systems/rmss/templates/sheets/actors/rmss-critical-codes.hbs"
   ];
   return loadTemplates(templatePaths);
 }
