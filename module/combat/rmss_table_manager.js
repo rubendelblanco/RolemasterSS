@@ -18,7 +18,7 @@ export default class RMSSTableManager {
         }
     }
 
-    static async getAttackTableResult(weapon, result, enemy){
+    static async getAttackTableResult(weapon, result, enemy, attacker){
         const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
         const at = enemy.system.armor_info.armor_type;
 
@@ -44,7 +44,8 @@ export default class RMSSTableManager {
                 const htmlContent = await renderTemplate("systems/rmss/templates/combat/critical-roll-button.hbs", {
                     damage: damage,
                     criticalData: criticalData,
-                    enemy:enemy
+                    enemy:enemy,
+                    attacker: attacker
                 });
                 const speaker = "Game Master";
 

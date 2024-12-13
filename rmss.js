@@ -25,6 +25,7 @@ import RMSSActorSheetConfig from "./module/sheets/actors/rmss_player_sheet_confi
 import {RMSSWeaponSkillManager} from "./module/combat/rmss_weapon_skill_manager.js";
 import {RMSSWeaponCriticalManager} from "./module/combat/rmss_weapon_critical_manager.js";
 import RMSSNpcSheet from "./module/sheets/actors/rmss_npc_sheet.js";
+import RMSSCreaturesSheet from "./module/sheets/actors/rmss_creature_sheet.js";
 
 export let socket;
 
@@ -128,6 +129,7 @@ Hooks.once("init", function() {
   // Actors
   Actors.registerSheet("rmss", RMSSPlayerSheet, {makeDefault: true, label: "rmss.entity_sheet.player_character", types: ["character"]});
   Actors.registerSheet("rmss", RMSSNpcSheet, {makeDefault: true, label: "rmss.entity_sheet.npc", types: ["npc"]});
+  Actors.registerSheet("rmss", RMSSCreaturesSheet, {makeDefault: true, label: "rmss.entity_sheet.creature", types: ["creature"]});
 
 
   // Preload Handlebars Templates
