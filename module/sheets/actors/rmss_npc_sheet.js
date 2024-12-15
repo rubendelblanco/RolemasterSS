@@ -59,9 +59,7 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
         const newitem = await Item.implementation.fromDropData(data);
         const itemData = newitem.toObject();
 
-        if (itemData.type === "skill_category") {
-             // no skill category needed for NPCs. Use skills directly
-        } else if ( itemData.type === "skill") {
+       if ( itemData.type === "skill") {
             // Get the already owned Items from the actor and push into an array
             const owneditems = this.object.getOwnedItemsByType("skill");
 
@@ -86,7 +84,6 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
         const armor = [];
         const herbs = [];
         const spells = [];
-        const equipables = [];
 
         // Iterate through items, allocating to containers
         for (let i of context.items) {

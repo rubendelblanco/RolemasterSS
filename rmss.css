@@ -220,7 +220,12 @@
     grid-template-columns: [favorite] 8% [skill-name] 11% [dev-cost] 5% [num-ranks] 8% [new-ranks] 9% [rank-bonus] 8% [category-bonus] 8% [item-bonus] 8% [special-bonus-1] 9% [special-bonus-2] 9% [total-bonus] 9% [controls] 8%;
 }
 
-.skills-grid-container > div {
+.skills-grid-container-creature {
+    display: grid;
+    grid-template-columns: [skill-name] 19% [rank-bonus] 18% [item-bonus] 18% [special-bonus-1] 19% [total-bonus] 18% [controls] 8%;
+}
+
+.skills-grid-container > div, .skills-grid-container-creature > div {
     font-family: Signika, sans-serif;
     font-size: 12px;
     text-align: center;
