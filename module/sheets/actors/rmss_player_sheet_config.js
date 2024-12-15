@@ -6,7 +6,7 @@ export default class RMSSActorSheetConfig extends FormApplication {
   }
 
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["form"],
       popOut: true,
       template: "systems/rmss/templates/sheets/actors/apps/actor-settings.html"

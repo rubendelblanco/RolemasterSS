@@ -1,6 +1,6 @@
 export default class RMSSRaceSheet extends ItemSheet {
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width: 530,
             height: 440,
             template: "systems/rmss/templates/sheets/races/rmss-race-sheet.html",

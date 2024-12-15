@@ -3,7 +3,7 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
 
     // Set the height and width
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width: 530,
             height: 440,
             template: "systems/rmss/templates/sheets/items/rmss-creature-attack-sheet.hbs",
