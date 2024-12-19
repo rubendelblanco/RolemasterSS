@@ -19,18 +19,39 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
     // Make the data available to the sheet template
     async getData() {
         const baseData = await super.getData();
-
-        let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
-
         let sheetData = {
             owner: this.item.isOwner,
             editable: this.isEditable,
             item: baseData.item,
             system: baseData.item.system,
             config: CONFIG.rmss,
-            enrichedDescription: enrichedDescription
+            actorId: this.getActorId(),
+            armsTables: await this.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.arms_tables),
         };
 
         return sheetData;
+    }
+
+    getActorId() {
+        let actorId = null;
+        if (this.item.parent instanceof Actor) {
+            actorId = this.item.parent.id;
+        }
+        return actorId;
+    }
+
+    async getJSONFileNamesFromDirectory(directory) {
+        // Open the file picker and retrieve the files from the specified directory
+        const picker = await FilePicker.browse("data", directory);
+
+        const jsonFilesObject = picker.files
+            .filter(file => file.endsWith(".json"))
+            .reduce((obj, file) => {
+                const fileName = file.split('/').pop().replace(".json", "");
+                obj[fileName] = fileName; // Create an entry where key and value are the same
+                return obj;
+            }, {});
+
+        return jsonFilesObject;
     }
 }

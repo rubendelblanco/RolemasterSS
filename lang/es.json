@@ -70,7 +70,8 @@
       "equipment": "Equipo",
       "spells": "Hechizos",
       "status_record": "Registro de estado",
-      "experience_points": "Puntos de experiencia"
+      "experience_points": "Puntos de experiencia",
+      "attacks": "Ataques"
     },
     "pc_sheet_fixed_info": {
       "race": "Raza:",
@@ -214,6 +215,16 @@
       "cost": "Costo",
       "prod_time": "Tiempo de producción",
       "equipped": "Equipado"
+    },
+    "creature_attack": {
+      "attack": "Ataque",
+      "attacks": "Ataques",
+      "bonus": "Bonus",
+      "multiplier": "Multiplicador daño",
+      "attack_table": "Tabla de ataque",
+      "special": "Especial",
+      "probability": "Probabilidad de ataque",
+      "attacks_number": "# de ataques"
     },
     "armor": {
       "at": "AT",

@@ -29,8 +29,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
     //effects
     context.effects = this.actor.effects.contents;
-    console.log("=============================EFFECTS==============================");
-    console.log(context.effects);
 
     // Prepare character data and items.
     if (actorData.type === "character") {

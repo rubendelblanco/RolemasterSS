@@ -49,14 +49,14 @@
     </header>
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="Skills">{{ localize "rmss.pc_sheet_tabs.skills" }}</a>
+        <a class="item" data-tab="Skills">{{ localize "rmss.pc_sheet_tabs.attacks" }}</a>
         <a class="item" data-tab="Equipment">{{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
         <a class="item" data-tab="Spells">{{ localize "rmss.pc_sheet_tabs.spells" }}</a>
         <a class="item" data-tab="StatusRecord">{{ localize "rmss.pc_sheet_tabs.status_record" }}</a>
     </nav>
     <section class="sheet-body">
         <div class="tab skills" data-group="primary" data-tab="Skills">
-            {{> "systems/rmss/templates/sheets/actors/parts/creature-skills.hbs" }}
+            {{> "systems/rmss/templates/sheets/actors/parts/creature-attacks.hbs" }}
         </div>
         <div class="tab equipment" data-group="primary" data-tab="Equipment">
             <div class="container">

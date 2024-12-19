@@ -1,0 +1,20 @@
+<div class="skills-grid-container-creature">
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.skill_name" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.rank_bonus" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.item_bonus" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.special_bonus" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.total_bonus" }}</div>
+    <div></div>
+    {{#each playerskill as |skill id|}}
+        <div class="npc-skill-calc">
+            <div data-item-id="{{skill._id}}">{{skill.name}}</div>
+            <div name="npc-item-rank-bonus" contenteditable="true" data-item-id="{{skill._id}}">{{skill.system.rank_bonus}}</div>
+            <div name="npc-item-bonus" contenteditable="true" data-item-id="{{skill._id}}">{{skill.system.item_bonus}}</div>
+            <div name="npc-item-special-bonus-1" contenteditable="true" data-item-id="{{skill._id}}">{{skill.system.special_bonus_1}}</div>
+            <div name="npc-item-total-bonus" data-item-id="{{skill._id}}" contenteditable="true">{{skill.system.total_bonus}}</div>
+            <div>
+                <a class="item-delete" title="Delete Skill" data-item-id="{{skill._id}}"><i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+    {{/each}}
+</div>

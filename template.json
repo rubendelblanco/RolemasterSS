@@ -309,9 +309,10 @@
       "templates": ["base"],
       "bonus": 0,
       "multiplier": 1,
+      "attacks_number": 1,
       "attack_table": "",
       "special": "",
-      "probabilities": 0
+      "probability": 0
     },
     "transport": {
       "templates": ["base"],
