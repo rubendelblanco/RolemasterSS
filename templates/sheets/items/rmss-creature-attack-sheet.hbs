@@ -41,7 +41,16 @@
                 <td>
                     <input name="system.probability" type="text" value="{{system.probability}}" data-dtype="Number"/>
                 </td>
+                <td>
+                {{#unless (eq attack.system.order 1)}}
+                    <select name="system.special">
+                        <option value="none" {{#if (eq system.special "none")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.none" }}</option>
+                        <option value="same" {{#if (eq system.special "same")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.same" }}</option>
+                        <option value="next" {{#if (eq system.special "next")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.next" }}</option>
+                    </select>
+                {{/unless}}
                 {{/if}}
+                </td>
             </tr>
         </table>
     </div>

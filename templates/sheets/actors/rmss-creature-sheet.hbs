@@ -43,6 +43,28 @@
                     <label for="level">{{ localize "rmss.player_character.level" }}</label>
                     <input id="level" name="system.attributes.level.value" type="text" value="{{system.attributes.level.value}}"/>
                 </div>
+                <div class="header-text flexrow">
+                    <label for="bonus-experience">{{ localize "rmss.creature.bonus_experience" }}</label>
+                    <select id="bonus-experience" name="system.bonus_experience">
+                        <option value="none" {{#if (eq system.bonus_experience "none")}}selected{{/if}}>-</option>
+                        <option value="a" {{#if (eq system.bonus_experience "a")}}selected{{/if}}>A</option>
+                        <option value="b" {{#if (eq system.bonus_experience "b")}}selected{{/if}}>B</option>
+                        <option value="c" {{#if (eq system.bonus_experience "c")}}selected{{/if}}>C</option>
+                        <option value="d" {{#if (eq system.bonus_experience "d")}}selected{{/if}}>D</option>
+                        <option value="e" {{#if (eq system.bonus_experience "e")}}selected{{/if}}>E</option>
+                        <option value="f" {{#if (eq system.bonus_experience "f")}}selected{{/if}}>F</option>
+                        <option value="g" {{#if (eq system.bonus_experience "g")}}selected{{/if}}>G</option>
+                        <option value="h" {{#if (eq system.bonus_experience "h")}}selected{{/if}}>H</option>
+                        <option value="i" {{#if (eq system.bonus_experience "i")}}selected{{/if}}>I</option>
+                        <option value="j" {{#if (eq system.bonus_experience "j")}}selected{{/if}}>J</option>
+                        <option value="k" {{#if (eq system.bonus_experience "k")}}selected{{/if}}>K</option>
+                        <option value="l" {{#if (eq system.bonus_experience "l")}}selected{{/if}}>L</option>
+                    </select>
+                </div>
+                <div class="header-text flexrow">
+                    <label for="level">{{ localize "rmss.creature.treasure" }}</label>
+                    <input id="level" name="system.treasure" type="text" value="{{system.treasure}}" data-dtype="String"/>
+                </div>
             </div>
 
         </div>

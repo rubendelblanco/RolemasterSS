@@ -313,7 +313,9 @@
       "attacks_number": 1,
       "attack_table": "",
       "special": "",
-      "probability": 100
+      "probability": 100,
+      "bonus_experience": "none",
+      "treasure": ""
     },
     "transport": {
       "templates": ["base"],

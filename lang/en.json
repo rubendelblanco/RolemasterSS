@@ -216,6 +216,10 @@
             "prod_time": "Production Time",
             "equipped": "Equipped"
         },
+        "creature": {
+            "bonus_experience": "Bonus experience",
+            "treasure": "Treasure"
+        },
         "creature_attack": {
             "attack": "Attack",
             "attacks": "Attacks",

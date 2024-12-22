@@ -8,7 +8,9 @@
     <div></div>
     {{#each creature_attack as |attack id|}}
         <div class="creature-attack-calc" data-item-id="{{attack._id}}" data-item-order="{{attack.system.order}}">
-            <div class="creature-attack-name" data-item-id="{{attack._id}}">{{attack.name}}</div>
+            <div class="creature-attack-name clickable offensive-skill" data-item-id="{{attack._id}}">{{attack.name}}
+                <span data-item-id="{{weapon._id}}"><i class="fa-solid fa-sword"></i></span>
+            </div>
             <div class="creature-attack-bonus" contenteditable="true" data-item-id="{{attack._id}}">{{attack.system.bonus}}</div>
             <div class="creature-attack-multiplier" data-item-id="{{attack._id}}">
                 <select name="system.multiplier">
@@ -32,6 +34,7 @@
             {{/unless}}
             </div>
             <div>
+                <a class="item-control item-edit" title="Edit Item" data-item-id="{{attack._id}}"><i class="fas fa-edit"></i></a>
                 <a class="item-delete" title="Delete Skill" data-item-id="{{attack._id}}"><i class="fas fa-trash"></i></a>
             </div>
         </div>
