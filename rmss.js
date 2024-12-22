@@ -25,6 +25,8 @@ import RMSSActorSheetConfig from "./module/sheets/actors/rmss_player_sheet_confi
 import {RMSSWeaponSkillManager} from "./module/combat/rmss_weapon_skill_manager.js";
 import {RMSSWeaponCriticalManager} from "./module/combat/rmss_weapon_critical_manager.js";
 import RMSSNpcSheet from "./module/sheets/actors/rmss_npc_sheet.js";
+import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
+import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 
 export let socket;
 
@@ -54,6 +56,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-status-info.html",
     "systems/rmss/templates/sheets/actors/parts/actor-exp-points.html",
     "systems/rmss/templates/sheets/actors/parts/npc-skills.hbs",
+    "systems/rmss/templates/sheets/actors/parts/creature-attacks.hbs",
     "systems/rmss/templates/sheets/actors/rmss-critical-codes.hbs"
   ];
   return loadTemplates(templatePaths);
@@ -111,6 +114,7 @@ Hooks.once("init", function() {
   Items.registerSheet("rmss", RMSSTransportSheet, {makeDefault: true, label: "rmss.entity_sheet.transport", types: ["transport"]});
   Items.registerSheet("rmss", RMSSWeaponSheet, {makeDefault: true, label: "rmss.entity_sheet.weapon", types: ["weapon"]});
   Items.registerSheet("rmss", RMSSHerbOrPoisonSheet, {makeDefault: true, label: "rmss.entity_sheet.herb_or_poison", types: ["herb_or_poison"]});
+  Items.registerSheet("rmss", RMSSCreatureAttackSheet, {makeDefault: true, label: "rmss.entity_sheet.creature_attack", types: ["creature_attack"]});
 
   // Spells
   Items.registerSheet("rmss", RMSSSpellSheet, {makeDefault: true, label: "rmss.entity_sheet.spell", types: ["spell"]});
@@ -128,6 +132,7 @@ Hooks.once("init", function() {
   // Actors
   Actors.registerSheet("rmss", RMSSPlayerSheet, {makeDefault: true, label: "rmss.entity_sheet.player_character", types: ["character"]});
   Actors.registerSheet("rmss", RMSSNpcSheet, {makeDefault: true, label: "rmss.entity_sheet.npc", types: ["npc"]});
+  Actors.registerSheet("rmss", RMSSCreatureSheet, {makeDefault: true, label: "rmss.entity_sheet.creature", types: ["creature"]});
 
 
   // Preload Handlebars Templates

@@ -5,7 +5,7 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
 
   // Set the height and width
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       width: 580,
       height: 440,
       template: "systems/rmss/templates/sheets/skills/rmss-skill-category-sheet.html",

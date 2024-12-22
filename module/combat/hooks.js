@@ -1,7 +1,7 @@
 Hooks.on("hoverToken", (token, hovered) => {
     if (hovered) {
         let effectInfo= {};
-        console.log(token.actor.effects);
+
         for (let effect of token.actor.effects) {
             const iconPath = effect.img;
 

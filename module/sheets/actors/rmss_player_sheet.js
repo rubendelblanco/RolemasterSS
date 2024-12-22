@@ -1,7 +1,5 @@
 import RankCalculator from '../skills/rmss_rank_calculator.js';
 import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
-import {RMSSWeaponSkillManager} from "../../combat/rmss_weapon_skill_manager.js";
-import {RMSSCombat} from "../../combat/rmss_combat.js";
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
@@ -31,8 +29,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
     //effects
     context.effects = this.actor.effects.contents;
-    console.log("=============================EFFECTS==============================");
-    console.log(context.effects);
 
     // Prepare character data and items.
     if (actorData.type === "character") {

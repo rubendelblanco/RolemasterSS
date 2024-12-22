@@ -1,0 +1,57 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+    <div class="sheet-content">
+        <table>
+            <tr>
+                <th>{{localize "rmss.creature_attack.attack_table"}}</th>
+                <th>{{localize "rmss.creature_attack.bonus"}}</th>
+                <th>{{localize "rmss.creature_attack.multiplier"}}</th>
+                <th>{{localize "rmss.creature_attack.attacks_number"}}</th>
+                {{#if actorId}}
+                    <th>{{localize "rmss.creature_attack.probability"}}</th>
+                    <th>{{localize "rmss.creature_attack.special"}}</th>
+                {{/if}}
+            </tr>
+            <tr>
+                <td>
+                    <select name="system.attack_table" class="app-stat-selector" value="{{system.attack_table}}" itemid="{{ item._id }}">
+                    {{selectOptions armsTables selected=system.attack_table}}
+                    </select>
+                </td>
+                <td>
+                    <input name="system.bonus" type="text" value="{{system.bonus}}" data-dtype="Number"/>
+                </td>
+                <td>
+                    <select id="damage-mult" value="{{system.multiplier}}">
+                        <option value="1">1D</option>
+                        <option value="2">2D</option>
+                        <option value="3">3D</option>
+                        <option value="4">4D</option>
+                        <option value="5">5D</option>
+                        <option value="6">6D</option>
+                    </select>
+                </td>
+                <td>
+                    <input name="system.attacks_number" type="text" value="{{system.attacks_number}}" data-dtype="Number"/>
+                </td>
+                {{#if actorId}}
+                <td>
+                    <input name="system.probability" type="text" value="{{system.probability}}" data-dtype="Number"/>
+                </td>
+                <td>
+                {{#unless (eq attack.system.order 1)}}
+                    <select name="system.special">
+                        <option value="none" {{#if (eq system.special "none")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.none" }}</option>
+                        <option value="same" {{#if (eq system.special "same")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.same" }}</option>
+                        <option value="next" {{#if (eq system.special "next")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.next" }}</option>
+                    </select>
+                {{/unless}}
+                {{/if}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

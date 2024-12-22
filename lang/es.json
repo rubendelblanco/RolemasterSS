@@ -70,7 +70,8 @@
       "equipment": "Equipo",
       "spells": "Hechizos",
       "status_record": "Registro de estado",
-      "experience_points": "Puntos de experiencia"
+      "experience_points": "Puntos de experiencia",
+      "attacks": "Ataques"
     },
     "pc_sheet_fixed_info": {
       "race": "Raza:",
@@ -214,6 +215,25 @@
       "cost": "Costo",
       "prod_time": "Tiempo de producción",
       "equipped": "Equipado"
+    },
+    "creature": {
+      "bonus_experience": "PE Bonus",
+      "treasure": "Tesoro"
+    },
+    "creature_attack": {
+      "attack": "Ataque",
+      "attacks": "Ataques",
+      "bonus": "Bonus",
+      "multiplier": "Multiplicador daño",
+      "attack_table": "Tabla de ataque",
+      "special": "Especial",
+      "probability": "Probabilidad de ataque",
+      "attacks_number": "# de ataques",
+      "special_desc": {
+        "none": "Nada",
+        "same": "Atacar en el mismo asalto que el ataque de arriba",
+        "next": "Atacar en el asalto siguiente al ataque de arriba"
+      }
     },
     "armor": {
       "at": "AT",

@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "npc"],
+    "types": ["character", "npc", "creature"],
     "templates": {
       "initiative": {
         "value": 0,
@@ -268,12 +268,30 @@
       "action_points": {
         "current": 4,
         "max": 4
+      },
+      "critical_codes" : {
+        "critical_procedure": "-",
+        "critical_table": "-",
+        "stun_bleeding": "-"
       }
+    },
+    "creature":{
+      "action_points": {
+        "current": 4,
+        "max": 4
+      },
+      "critical_codes" : {
+        "critical_procedure": "-",
+        "critical_table": "-",
+        "stun_bleeding": "-"
+      },
+      "bonus_xp": "",
+      "treasure": ""
     }
   },
   "Item": {
     "types": ["item", "race", "skill_category", "skill", "armor", "weapon", "transport", "herb_or_poison", "spell",
-      "language", "profession"],
+      "language", "profession","creature_attack"],
     "templates": {
       "base": {
         "description": "Description here."
@@ -286,6 +304,18 @@
       "weight": 0,
       "cost": 0,
       "prod_time": 0
+    },
+    "creature_attack": {
+      "templates": ["base"],
+      "order": 0,
+      "bonus": 0,
+      "multiplier": 1,
+      "attacks_number": 1,
+      "attack_table": "",
+      "special": "",
+      "probability": 100,
+      "bonus_experience": "none",
+      "treasure": ""
     },
     "transport": {
       "templates": ["base"],

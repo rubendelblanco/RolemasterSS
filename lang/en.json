@@ -70,7 +70,8 @@
             "equipment": "Equipment",
             "spells": "Spells",
             "status_record": "Status Record",
-            "experience_points": "Experience Points"
+            "experience_points": "Experience Points",
+            "attacks": "Attacks"
         },
         "pc_sheet_fixed_info": {
             "race": "Race:",
@@ -214,6 +215,25 @@
             "cost": "Cost",
             "prod_time": "Production Time",
             "equipped": "Equipped"
+        },
+        "creature": {
+            "bonus_experience": "Bonus experience",
+            "treasure": "Treasure"
+        },
+        "creature_attack": {
+            "attack": "Attack",
+            "attacks": "Attacks",
+            "bonus": "Bonus",
+            "multiplier": "Damage multiplier",
+            "attack_table": "Attack table",
+            "special": "Special",
+            "probability": "Attack probability",
+            "attacks_number": "# of attacks",
+            "special_desc": {
+                "none": "None",
+                "same": "Attack in the same round as the attack above",
+                "next": "Attack in the round following the attack above"
+            }
         },
         "armor": {
             "at": "AT",

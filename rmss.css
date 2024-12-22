@@ -220,7 +220,12 @@
     grid-template-columns: [favorite] 8% [skill-name] 11% [dev-cost] 5% [num-ranks] 8% [new-ranks] 9% [rank-bonus] 8% [category-bonus] 8% [item-bonus] 8% [special-bonus-1] 9% [special-bonus-2] 9% [total-bonus] 9% [controls] 8%;
 }
 
-.skills-grid-container > div {
+.skills-grid-container-creature {
+    display: grid;
+    grid-template-columns: [attack-name] 19% [attack-bonus] 10% [attack-multiplier] 10% [attacks-number] 10% [attack-probability] 18% [special] 25% [controls] 8%;
+}
+
+.skills-grid-container > div, .skills-grid-container-creature > div {
     font-family: Signika, sans-serif;
     font-size: 12px;
     text-align: center;
@@ -798,12 +803,12 @@ table.rwd-table td img {
     filter: brightness(0) saturate(100%) invert(24%) sepia(93%) saturate(5587%) hue-rotate(1deg) brightness(99%) contrast(106%);
 }
 
-.npc-skill-calc {
+.npc-skill-calc, .creature-attack-calc {
     display: contents !important;
     border-bottom: inherit;
 }
 
-.npc-skill-calc > div {
+.npc-skill-calc > div, .creature-attack-calc > div {
     border-bottom: inherit;
 }
 

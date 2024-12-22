@@ -102,16 +102,9 @@ export class RMSSWeaponCriticalManager {
      * specifically with automatic round-based duration, need to fix some issues like
      * token icon effects rendering with undefined duration effects.
      */
-    static async applyCriticalToEnemy(critical, enemyId){
+    static async applyCriticalToEnemy(critical, enemyId, attackerId){
         const enemy = game.actors.get(enemyId);
-        let condition = {
-            "hits_per_round": enemy.system.condition.hits_per_round,
-            "stunned": enemy.system.condition.stunned,
-            "penalty": enemy.system.condition.penalty,
-            "parry": enemy.system.condition.parry,
-            "no_parry": enemy.system.condition.no_parry,
-            "bonus": enemy.system.condition.bonus
-        };
+        const attacker =  game.actors.get(attackerId);
 
         if (!critical.hasOwnProperty("metadata")) {
             return;
@@ -222,7 +215,7 @@ export class RMSSWeaponCriticalManager {
             const effectData = {
                 name: "Bonus",
                 icon: `${CONFIG.rmss.paths.icons_folder}bonus.svg`,
-                origin: enemyId,
+                origin: attackerId,
                 disabled: false,
                 description: critical.text,
                 duration: {
@@ -234,14 +227,11 @@ export class RMSSWeaponCriticalManager {
                 }
             };
 
-            await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            await attacker.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
         console.log("Critical");
         console.log(critical.metadata);
-        console.log("Condition");
-        console.log(condition);
-        await enemy.update({"system.condition": condition});
     }
 
 

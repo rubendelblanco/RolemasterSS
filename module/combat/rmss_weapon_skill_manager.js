@@ -11,7 +11,7 @@ export class RMSSWeaponSkillManager {
            await roll.toMessage(undefined,{create:true});
            let result = roll.total;
            result = (result > 150) ? 150 : result;
-           await RMSSTableManager.getAttackTableResult(weapon, result, enemy);
+           await RMSSTableManager.getAttackTableResult(weapon, result, enemy, actor);
        }
     }
 
