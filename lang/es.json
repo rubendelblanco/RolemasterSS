@@ -224,7 +224,12 @@
       "attack_table": "Tabla de ataque",
       "special": "Especial",
       "probability": "Probabilidad de ataque",
-      "attacks_number": "# de ataques"
+      "attacks_number": "# de ataques",
+      "special_desc": {
+        "none": "Nada",
+        "same": "Atacar en el mismo asalto que el ataque de arriba",
+        "next": "Atacar en el asalto siguiente al ataque de arriba"
+      }
     },
     "armor": {
       "at": "AT",

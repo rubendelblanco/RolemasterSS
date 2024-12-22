@@ -307,12 +307,13 @@
     },
     "creature_attack": {
       "templates": ["base"],
+      "order": 0,
       "bonus": 0,
       "multiplier": 1,
       "attacks_number": 1,
       "attack_table": "",
       "special": "",
-      "probability": 0
+      "probability": 100
     },
     "transport": {
       "templates": ["base"],

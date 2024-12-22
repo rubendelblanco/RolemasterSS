@@ -14,11 +14,11 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
         super.activateListeners(html);
         html.find('.npc-skill-calc').on('blur', '[contenteditable="true"]', async (event) => {
             const skillCalc = $(event.currentTarget).closest('.npc-skill-calc');
-            const rankBonus = parseInt(skillCalc.find('[name="npc-item-rank-bonus"]').text()) || 0;
-            const itemBonus = parseInt(skillCalc.find('[name="npc-item-bonus"]').text()) || 0;
-            const specialBonus = parseInt(skillCalc.find('[name="npc-item-special-bonus-1"]').text()) || 0;
+            const rankBonus = parseInt(skillCalc.find('[class="npc-item-rank-bonus"]').text()) || 0;
+            const itemBonus = parseInt(skillCalc.find('[class="npc-item-bonus"]').text()) || 0;
+            const specialBonus = parseInt(skillCalc.find('[class="npc-item-special-bonus-1"]').text()) || 0;
             const total = rankBonus + itemBonus + specialBonus;
-            const totalBonus = skillCalc.find('[name="npc-item-total-bonus"]').text(total);
+            const totalBonus = skillCalc.find('[class="npc-item-total-bonus"]').text(total);
             const data = {
                 "system.rank_bonus": rankBonus,
                 "system.item_bonus": itemBonus,

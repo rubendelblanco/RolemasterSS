@@ -12,26 +12,43 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('.npc-skill-calc').on('blur', '[contenteditable="true"]', async (event) => {
-            const skillCalc = $(event.currentTarget).closest('.npc-skill-calc');
-            const rankBonus = parseInt(skillCalc.find('[name="npc-item-rank-bonus"]').text()) || 0;
-            const itemBonus = parseInt(skillCalc.find('[name="npc-item-bonus"]').text()) || 0;
-            const specialBonus = parseInt(skillCalc.find('[name="npc-item-special-bonus-1"]').text()) || 0;
-            const total = rankBonus + itemBonus + specialBonus;
-            const totalBonus = skillCalc.find('[name="npc-item-total-bonus"]').text(total);
+        html.find('.creature-attack-calc').on('blur', '[contenteditable="true"]', async (event) => {
+            const attackCalc = $(event.currentTarget).closest('.creature-attack-calc');
+            const attackBonus = parseInt(attackCalc.find('[class="creature-attack-bonus"]').text()) || 0;
+            const attackMult = parseInt(attackCalc.find('[class="creature-attack-multiplier"] select').val()) || 1;
+            const attackNumber = parseInt(attackCalc.find('[clas="creature-attack-number"]').text()) || 1;
+            const attackProb = parseInt(attackCalc.find('[clas="creature-attack-probability"]').text()) || 100;
             const data = {
-                "system.rank_bonus": rankBonus,
-                "system.item_bonus": itemBonus,
-                "system.special_bonus_1": specialBonus,
-                "system.total_bonus": totalBonus,
+                "system.attacks_number": attackNumber,
+                "system.bonus": attackBonus,
+                "system.multiplier": attackMult,
+                "system.probability": attackProb
             }
-            const itemId = totalBonus.data('item-id');
+            const itemId = attackCalc.data('item-id');
             const item = this.actor.items.get(itemId);
 
             if (item) {
                 await item.update(data);
             }
         });
+    }
+
+    async _onDropItem(event, data) {
+        await super._onDropItem(event, data);
+
+        if (data.type === 'Item') {
+            const item = await fromUuid(data.uuid);
+
+            if (item && item.type === "creature_attack") {
+                const creatureAttacks = this.actor.items.filter(item => item.type === "creature_attack");
+
+                for (let [index, attack] of creatureAttacks.entries()) {
+                    await attack.update({ "system.order": index + 1 });
+                }
+
+                console.log(creatureAttacks);
+            }
+        }
     }
 
     async getData() {
@@ -54,32 +71,10 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
         return context;
     }
 
-    async _onDropItem(event, data) {
-        // Reconstruct the item from the event
-        const newitem = await Item.implementation.fromDropData(data);
-        const itemData = newitem.toObject();
-
-        if ( itemData.type === "skill") {
-            // Get the already owned Items from the actor and push into an array
-            const owneditems = this.object.getOwnedItemsByType("skill");
-
-            let ownedskilllist = Object.values(owneditems);
-
-            // Check if the dragged item is not in the array and not owned
-            if (!ownedskilllist.includes(itemData.name)) {
-                console.log("Not Owned!");
-                super._onDropItem(event, data);
-            }
-        }
-        else {
-            super._onDropItem(event, data);
-        }
-    }
-
     _prepareItems(context) {
         // Initialize containers.
         const gear = [];
-        const playerskill= [];
+        const creatureAttack= [];
         const weapons = [];
         const armor = [];
         const herbs = [];
@@ -99,8 +94,8 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
                 herbs.push(i);
             }
             // Append to playerskill
-            else if (i.type === "skill") {
-                playerskill.push(i);
+            else if (i.type === "creature_attack") {
+                creatureAttack.push(i);
             }
             else if (i.type === "armor") {
                 armor.push(i);
@@ -110,20 +105,9 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
             }
         }
 
-        // Sort Skill Arrays
-        playerskill.sort(function(a, b) {
-            if (a.name < b.name) {
-                return -1;
-            }
-            if (a.name > b.name) {
-                return 1;
-            }
-            return 0;
-        });
-
         // Assign and return
         context.gear = gear;
-        context.playerskill = playerskill;
+        context.creature_attack = creatureAttack;
         context.weapons = weapons;
         context.armor = armor;
         context.herbs = herbs;

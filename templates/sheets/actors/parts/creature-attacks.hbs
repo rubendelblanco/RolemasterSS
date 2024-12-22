@@ -1,19 +1,38 @@
 <div class="skills-grid-container-creature">
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.skill_name" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.rank_bonus" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.item_bonus" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.special_bonus" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.total_bonus" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.creature_attack.attack" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.creature_attack.bonus" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.creature_attack.multiplier" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.creature_attack.attacks_number" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.creature_attack.probability" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.creature_attack.special" }}</div>
     <div></div>
-    {{#each playerskill as |skill id|}}
-        <div class="npc-skill-calc">
-            <div data-item-id="{{skill._id}}">{{skill.name}}</div>
-            <div name="npc-item-rank-bonus" contenteditable="true" data-item-id="{{skill._id}}">{{skill.system.rank_bonus}}</div>
-            <div name="npc-item-bonus" contenteditable="true" data-item-id="{{skill._id}}">{{skill.system.item_bonus}}</div>
-            <div name="npc-item-special-bonus-1" contenteditable="true" data-item-id="{{skill._id}}">{{skill.system.special_bonus_1}}</div>
-            <div name="npc-item-total-bonus" data-item-id="{{skill._id}}" contenteditable="true">{{skill.system.total_bonus}}</div>
+    {{#each creature_attack as |attack id|}}
+        <div class="creature-attack-calc" data-item-id="{{attack._id}}" data-item-order="{{attack.system.order}}">
+            <div class="creature-attack-name" data-item-id="{{attack._id}}">{{attack.name}}</div>
+            <div class="creature-attack-bonus" contenteditable="true" data-item-id="{{attack._id}}">{{attack.system.bonus}}</div>
+            <div class="creature-attack-multiplier" data-item-id="{{attack._id}}">
+                <select name="system.multiplier">
+                    <option value="1" {{#if (eq system.multiplier "1")}}selected{{/if}}>1D</option>
+                    <option value="2" {{#if (eq system.multiplier "2")}}selected{{/if}}>2D</option>
+                    <option value="3" {{#if (eq system.multiplier "3")}}selected{{/if}}>3D</option>
+                    <option value="4" {{#if (eq system.multiplier "4")}}selected{{/if}}>4D</option>
+                    <option value="5" {{#if (eq system.multiplier "5")}}selected{{/if}}>5D</option>
+                    <option value="6" {{#if (eq system.multiplier "6")}}selected{{/if}}>6D</option>
+                </select>
+            </div>
+            <div class="creature-attack-number" contenteditable="true" data-item-id="{{attack._id}}" data-dtype="Number">{{attack.system.attacks_number}}</div>
+            <div class="creature-attack-probability" data-item-id="{{attack._id}}" contenteditable="true" data-dtype="Number">{{attack.system.probability}}</div>
+            <div class="creature-attack-special" data-item-id="{{attack._id}}">
+            {{#unless (eq attack.system.order 1)}}
+                <select name="system.special">
+                    <option value="none" {{#if (eq system.special "none")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.none" }}</option>
+                    <option value="same" {{#if (eq system.special "same")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.same" }}</option>
+                    <option value="next" {{#if (eq system.special "next")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.next" }}</option>
+                </select>
+            {{/unless}}
+            </div>
             <div>
-                <a class="item-delete" title="Delete Skill" data-item-id="{{skill._id}}"><i class="fas fa-trash"></i></a>
+                <a class="item-delete" title="Delete Skill" data-item-id="{{attack._id}}"><i class="fas fa-trash"></i></a>
             </div>
         </div>
     {{/each}}

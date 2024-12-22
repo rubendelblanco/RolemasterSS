@@ -224,7 +224,12 @@
             "attack_table": "Attack table",
             "special": "Special",
             "probability": "Attack probability",
-            "attacks_number": "# of attacks"
+            "attacks_number": "# of attacks",
+            "special_desc": {
+                "none": "None",
+                "same": "Attack in the same round as the attack above",
+                "next": "Attack in the round following the attack above"
+            }
         },
         "armor": {
             "at": "AT",

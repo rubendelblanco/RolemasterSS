@@ -222,7 +222,7 @@
 
 .skills-grid-container-creature {
     display: grid;
-    grid-template-columns: [skill-name] 19% [rank-bonus] 18% [item-bonus] 18% [special-bonus-1] 19% [total-bonus] 18% [controls] 8%;
+    grid-template-columns: [attack-name] 19% [attack-bonus] 10% [attack-multiplier] 10% [attacks-number] 10% [attack-probability] 18% [special] 25% [controls] 8%;
 }
 
 .skills-grid-container > div, .skills-grid-container-creature > div {
@@ -803,12 +803,12 @@ table.rwd-table td img {
     filter: brightness(0) saturate(100%) invert(24%) sepia(93%) saturate(5587%) hue-rotate(1deg) brightness(99%) contrast(106%);
 }
 
-.npc-skill-calc {
+.npc-skill-calc, .creature-attack-calc {
     display: contents !important;
     border-bottom: inherit;
 }
 
-.npc-skill-calc > div {
+.npc-skill-calc > div, .creature-attack-calc > div {
     border-bottom: inherit;
 }
 
