@@ -1,5 +1,5 @@
-import levelUpManager from "./rmss_level_up_manager.js";
 import LevelUpManager from "./rmss_level_up_manager.js";
+
 export default class ExperiencePointsCalculator {
     // JSON object storing experience points for each maneuver type
     static data = {
@@ -22,6 +22,108 @@ export default class ExperiencePointsCalculator {
             e:5
         }
     };
+
+    static calculateKillExpPoints(opponentLevel, killerLevel) {
+        let expPoints;
+
+        if (opponentLevel === 0) {
+            expPoints = (50 - (killerLevel*5)) + 5;
+            return expPoints;
+        }
+
+        const diff = opponentLevel - killerLevel;
+
+        if (diff >= 0) {
+            expPoints = 200 + (diff * 50);
+        } else {
+            if (diff === -1) {
+                expPoints = 150;
+            } else if (diff === -2 || diff === -3) {
+                expPoints = 150 + ((diff + 1) * 20);
+            } else {
+                expPoints = 110 + ((diff + 3) * 10);
+            }
+        }
+
+        if (expPoints < 0) {
+            expPoints = 0;
+        }
+
+        return expPoints;
+    }
+
+    static calculateBonusExpPoints(attackerLevel, code) {
+        let expPoints;
+
+        const table = [
+            {
+                a: 50,
+                b: 75,
+                c: 100,
+                d: 200,
+                e: 400,
+                f: 800,
+                g: 1200,
+                h: 1600,
+                i: 2000,
+                j: 3000,
+                k: 4000,
+                l: 5000,
+            },
+            {
+                a: 40,
+                b: 60,
+                c: 95,
+                d: 190,
+                e: 380,
+                f: 760,
+                g: 1140,
+                h: 1520,
+                i: 1900,
+                j: 2850,
+                k: 3800,
+                l: 4750,
+            },
+        ];
+
+        const inc = {
+            a: 10,
+            b: 10,
+            c: 5,
+            d: 10,
+            e: 20,
+            f: 40,
+            g: 60,
+            h: 80,
+            i: 100,
+            j: 150,
+            k: 200,
+            l: 250,
+        };
+
+        if (!table[0][code]) {
+            return 0;
+        }
+
+        if (attackerLevel === 1 || attackerLevel === 2) {
+            expPoints = table[0][code];
+        } else if (attackerLevel === 3 || attackerLevel === 4) {
+            expPoints = table[1][code]
+        } else {
+            const row = Math.ceil(attackerLevel / 2);
+            expPoints = Math.max(
+                table[table.length - 1][code] - (row - table.length) * inc[code],
+                0
+            );
+        }
+
+        return expPoints;
+    }
+
+    static calculateCriticalExpPoints(criticalLevel, opponentLevel) {
+        const critical = ExperiencePointsCalculator.data.criticalExpPoints[criticalLevel];
+        return (critical * 5 * opponentLevel);
+    }
 
     static getCharacterLevel(experiencePoints) {
         const experienceTable = [
@@ -69,45 +171,7 @@ export default class ExperiencePointsCalculator {
     static loadListeners(html, actor=null){
         //level up button
         html.find("#level-up").click(async(ev) => {
-            const skills = actor.items.filter(item => item.type === "skill");
-            const categories = actor.items.filter(item => item.type === "skill_category");
-            const message = game.i18n.localize("rmss.level_up.ranks_reset");
-            await actor.update({system:{'levelUp.isLevelingUp': true}})
-            const skillUpdates = skills.map(skill => {
-                return {
-                    _id: skill.id,
-                    'system.new_ranks.value': 0
-                };
-            });
-            const categoryUpdates = categories.map(category => {
-                return {
-                    _id: category.id,
-                    'system.new_ranks.value': 0
-                };
-            });
-            const updates = [...skillUpdates, ...categoryUpdates];
-
-            if (updates.length > 0) {
-                await actor.updateEmbeddedDocuments('Item', updates);
-            }
-
-            ChatMessage.create({
-                content: `
-                <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
-                  <p style="color: #333; font-size: 16px;">
-                  <b>${actor.name}</b> ${message}
-                   </p>
-                </div>`
-            });
-
-            if (actor.system.attributes.experience_points.value >=20000){ //just don't do this when we are leveling up from 0 to 1
-                levelUpManager.calculateStatGainRolls(actor);
-            }
-            else {
-                actor.levelUp.isLevelZero = true; //first level. From 0 to 1.
-                levelUpManager.calculateDevelopmentPoints(actor);
-            }
-
+            await LevelUpManager.levelUp(actor)
         })
 
         html.find("#end-level-up").click(ev => {
@@ -151,7 +215,8 @@ export default class ExperiencePointsCalculator {
         html.find("#maneuver-exp").change(ev => {
             const maneuverType = ev.currentTarget.value.toLowerCase(); // Convert input to lowercase to match JSON keys
             const expPoints = ExperiencePointsCalculator.data.maneuverExpPoints[maneuverType];
-            console.log(`Experience Points: ${expPoints}`);
+            html.find('.maneuver-exp-total').text(expPoints);
+            calculateTotalExpPoints();
         })
 
         function calculateSpellExpPoints() {
@@ -161,6 +226,7 @@ export default class ExperiencePointsCalculator {
 
             if (isNaN(spellCaster) || spellCaster === null || isNaN(spellLevel) || spellLevel === null) {
                 expPoints = 0;
+                console.log("PIFIA AQUI");
             } else {
                 expPoints = 100 - (10 * (spellCaster - spellLevel));
 
@@ -170,53 +236,119 @@ export default class ExperiencePointsCalculator {
                     expPoints = 0;
                 }
             }
-            console.log(`Experience Points: ${expPoints}`);
+
+            if (!isNaN(expPoints)) {
+                html.find('.spell-exp-total').text(expPoints);
+            }
+            else{
+                html.find('.spell-exp-total').text(0);
+            }
+
+            calculateTotalExpPoints();
         }
 
         html.find("#spell-level-exp").change(calculateSpellExpPoints);
         html.find("#spell-level-caster").change(calculateSpellExpPoints);
 
-        function calculateCriticalExpPoints() {
+        function getCriticalExpPoints(){
             const criticalLevel = html.find("#critical-level-exp").val();
             const opponentLevel = parseInt(html.find("#opponent-level").val());
-            const critical = ExperiencePointsCalculator.data.criticalExpPoints[criticalLevel];
-            console.log(criticalLevel);
-            console.log(opponentLevel);
-            console.log(critical);
-            const expPoints = (critical * 5 * opponentLevel);
+            let expPoints = 0;
 
-            console.log(`Experience Points: ${expPoints}`);
+            if (criticalLevel !== null && opponentLevel !== null) {
+                expPoints = ExperiencePointsCalculator.calculateCriticalExpPoints(criticalLevel, opponentLevel);
+            }
+
+            if (!isNaN(expPoints)) {
+                html.find('.critical-exp-total').text(expPoints);
+            }
+            else {
+                html.find('.critical-exp-total').text(0);
+            }
+
+            calculateTotalExpPoints();
         }
 
-        html.find("#critical-level-exp").change(calculateCriticalExpPoints);
-        html.find("#opponent-level").change(calculateCriticalExpPoints);
+        html.find("#critical-level-exp").change(getCriticalExpPoints);
+        html.find("#opponent-level").change(getCriticalExpPoints);
 
-        function calculateKillExpPoints() {
+        function getKillExpPoints(){
             const opponentLevel = parseInt(html.find("#kill-opponent-level").val());
             const killerLevel = parseInt(html.find("#killer-character-level").val());
-            const diff = opponentLevel - killerLevel;
-            let expPoints;
+            let expPoints = 0;
 
-            if (diff >= 0) {
-                expPoints = 200 + (diff * 50);
-            } else {
-                if (diff === -1) {
-                    expPoints = 150;
-                } else if (diff === -2 || diff === -3) {
-                    expPoints = 150 + ((diff + 1) * 20);
-                } else {
-                    expPoints = 110 + ((diff + 3) * 10);
-                }
+            if (killerLevel !== null && opponentLevel !== null) {
+                expPoints = ExperiencePointsCalculator.calculateKillExpPoints (opponentLevel, killerLevel);
             }
 
-            if (expPoints < 0) {
-                expPoints = 0;
+            if (!isNaN(expPoints)) {
+                html.find('.kill-exp-total').text(expPoints);
+            }
+            else {
+                html.find('.kill-exp-total').text(0);
             }
 
-            console.log(`Experience Points: ${expPoints}`);
+            calculateTotalExpPoints();
         }
 
-        html.find("#kill-opponent-level").change(calculateKillExpPoints);
-        html.find("#killer-character-level").change(calculateKillExpPoints);
+        html.find("#kill-opponent-level").change(getKillExpPoints);
+        html.find("#killer-character-level").change(getKillExpPoints);
+
+        function getBonusExpPoints(){
+            const bonusAttackerLevel = parseInt(html.find("#bonus-attacker-level").val());
+            const bonusCode = html.find("#bonus-code").val();
+            let expPoints = 0;
+
+            console.log(bonusAttackerLevel);
+            console.log(bonusCode);
+
+            if (bonusAttackerLevel !== null && bonusCode !== null) {
+                expPoints = ExperiencePointsCalculator.calculateBonusExpPoints(bonusAttackerLevel, bonusCode);
+            }
+
+            if (!isNaN(expPoints)) {
+                html.find('.bonus-exp-total').text(expPoints);
+            }
+            else{
+                html.find('.bonus-exp-total').text(0);
+            }
+            calculateTotalExpPoints();
+        }
+
+        html.find("#bonus-attacker-level").change(getBonusExpPoints);
+        html.find("#bonus-code").change(getBonusExpPoints);
+        html.find("#misc-exp-points").change(ev => {
+            html.find('.misc-exp-total').text(ev.currentTarget.value);
+            calculateTotalExpPoints();
+        })
+
+        function calculateTotalExpPoints() {
+            const maneuver = parseInt(html.find('.maneuver-exp-total').text());
+            const spell = parseInt(html.find('.spell-exp-total').text());
+            const critical = parseInt(html.find('.critical-exp-total').text());
+            const kill = parseInt(html.find('.kill-exp-total').text());
+            const bonus = parseInt(html.find('.bonus-exp-total').text());
+            const misc = parseInt(html.find('.misc-exp-total').text());
+            const totalExp = maneuver+spell+critical+kill+bonus+misc;
+            html.find('.exp-total').text(totalExp);
+        }
+
+        html.find("#add-exp").click(async ev => {
+            const totalExp = parseInt(html.find('.exp-total').text());
+            actor.system.attributes.experience_points += parseInt(totalExp);
+            let totalExpActor = parseInt(actor.system.attributes.experience_points);
+
+            if (isNaN(totalExpActor)) {
+                ui.notifications.error("Experience calculation error.");
+                return;
+            }
+            await actor.update({"system.attributes.experience_points": totalExpActor});
+        })
+
+        html.find("#reset-exp").click(async ev => {
+            if (actor.sheet) {
+                actor.sheet.render(true);
+            }
+        });
     }
 }

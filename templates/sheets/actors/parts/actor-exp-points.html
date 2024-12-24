@@ -1,4 +1,4 @@
-<div class="body-grid-container">
+<div class="body-grid-container experience-sheet">
     <h3>{{ localize "rmss.experience.level_up" }}</h3>
     <div class="exp-grid-container">
         <div class="exp-margin-right">
@@ -36,6 +36,10 @@
                 <option value="absurd">{{ localize "rmss.maneuver.absurd" }}</option>
             </select>
         </div>
+        <div class="exp-margin-right">
+            <div class="total">Total</div>
+            <div class="maneuver-exp-total exp-total-sum">0</div>
+        </div>
     </div>
     <h3>{{ localize "rmss.experience.spell" }}</h3>
     <div class="exp-grid-container">
@@ -47,12 +51,17 @@
             <label for="spell-level-caster">{{ localize "rmss.experience.caster_level" }} </label>
             <input type="text" value="{{system.attributes.level.value}}" id="spell-level-caster" name="spell-level-caster" data-dtype="Number"/>
         </div>
+        <div class="exp-margin-right">
+            <div class="total">Total</div>
+            <div class="spell-exp-total exp-total-sum">0</div>
+        </div>
     </div>
     <h3>{{ localize "rmss.experience.critical" }}</h3>
     <div class="exp-grid-container">
         <div class="exp-margin-right">
             <label class="exp-block" for="opponent-level">{{ localize "rmss.experience.critical_level" }} </label>
             <select name="critical-level-exp" id="critical-level-exp">
+                <option value="none">--</option>
                 <option value="a">A</option>
                 <option value="b">B</option>
                 <option value="c">C</option>
@@ -64,6 +73,10 @@
             <label for="opponent-level">{{ localize "rmss.experience.opponent_level" }} </label>
             <input type="text" id="opponent-level" name="opponent-level" data-dtype="Number"/>
         </div>
+        <div class="exp-margin-right">
+            <div class="total">Total</div>
+            <div class="critical-exp-total exp-total-sum">0</div>
+        </div>
     </div>
     <h3>{{ localize "rmss.experience.kill" }}</h3>
     <div class="exp-grid-container">
@@ -74,6 +87,63 @@
         <div class="exp-margin-right">
             <label for="killer-character-level">{{ localize "rmss.experience.killer_level" }} </label>
             <input type="text" value="{{system.attributes.level.value}}" id="killer-character-level" name="killer-character-level" data-dtype="Number"/>
+        </div>
+        <div class="exp-margin-right">
+            <div class="total">Total</div>
+            <div class="kill-exp-total exp-total-sum">0</div>
+        </div>
+    </div>
+    <h3>{{ localize "rmss.experience.bonus" }}</h3>
+    <div class="exp-grid-container">
+        <div class="exp-margin-right">
+            <label for="bonus-attacker-level">{{ localize "rmss.experience.killer_level" }} </label>
+            <input type="text" value="{{system.attributes.level.value}}" id="bonus-attacker-level" name="bonus-attacker-level" data-dtype="Number"/>
+        </div>
+        <div class="exp-margin-right">
+            <label class="exp-block" for="bonus-code">{{ localize "rmss.experience.bonus_code" }} </label>
+            <select name="bonus-code" id="bonus-code">
+                <option value="none">--</option>
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+                <option value="e">E</option>
+                <option value="f">F</option>
+                <option value="g">G</option>
+                <option value="h">H</option>
+                <option value="i">I</option>
+                <option value="j">J</option>
+                <option value="k">K</option>
+                <option value="l">L</option>
+            </select>
+        </div>
+        <div class="exp-margin-right">
+            <div class="total">Total</div>
+            <div class="bonus-exp-total exp-total-sum">0</div>
+        </div>
+    </div>
+    <h3>{{ localize "rmss.experience.misc" }}</h3>
+    <div class="exp-grid-container">
+        <div class="exp-margin-right">
+            <label for="kill-opponent-level">{{ localize "rmss.experience.misc_description" }} </label>
+            <input type="text" id="misc-exp-points" name="misc-exp-points" data-dtype="Number"/>
+        </div>
+        <div class="exp-margin-right">
+            <div class="total">Total</div>
+            <div class="misc-exp-total exp-total-sum">0</div>
+        </div>
+    </div>
+    <h3>{{ localize "rmss.experience.total" }}</h3>
+    <div class="exp-grid-container">
+        <div class="exp-margin-right">
+            <div class="total">Total experience</div>
+            <div class="exp-total exp-total-sum">0</div>
+        </div>
+        <div class="exp-margin-right">
+            <button type="button" title="add exp" id="add-exp">Add exp</button>
+        </div>
+        <div class="exp-margin-right">
+            <button type="button" title="reset exp" id="reset-exp">Reset</button>
         </div>
     </div>
 </div>

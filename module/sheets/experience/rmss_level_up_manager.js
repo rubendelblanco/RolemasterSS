@@ -1,5 +1,46 @@
 export default class LevelUpManager {
 
+    static async levelUp(actor){
+        const skills = actor.items.filter(item => item.type === "skill");
+        const categories = actor.items.filter(item => item.type === "skill_category");
+        const message = game.i18n.localize("rmss.level_up.ranks_reset");
+        await actor.update({system:{'levelUp.isLevelingUp': true}})
+        const skillUpdates = skills.map(skill => {
+            return {
+                _id: skill.id,
+                'system.new_ranks.value': 0
+            };
+        });
+        const categoryUpdates = categories.map(category => {
+            return {
+                _id: category.id,
+                'system.new_ranks.value': 0
+            };
+        });
+        const updates = [...skillUpdates, ...categoryUpdates];
+
+        if (updates.length > 0) {
+            await actor.updateEmbeddedDocuments('Item', updates);
+        }
+
+        ChatMessage.create({
+            content: `
+                <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+                  <p style="color: #333; font-size: 16px;">
+                  <b>${actor.name}</b> ${message}
+                   </p>
+                </div>`
+        });
+
+        if (actor.system.attributes.experience_points.value >=20000){ //just don't do this when we are leveling up from 0 to 1
+            await LevelUpManager.calculateStatGainRolls(actor);
+        }
+        else {
+            actor.levelUp.isLevelZero = true; //first level. From 0 to 1.
+            LevelUpManager.calculateDevelopmentPoints(actor);
+        }
+    }
+
     //Stat gain rolls for the character when level up!
     static async calculateStatGainRolls(actor) {
         let stats = actor.system.stats;

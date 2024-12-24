@@ -339,7 +339,9 @@
             "kill": "Kill EPs",
             "level_up": "Level up",
             "end_level_up": "End level up",
-            "dps": "Development points"
+            "dps": "Development points",
+            "bonus_code": "Bonus code",
+            "bonus": "Creature bonus"
         },
         "combat": {
             "confirm_attack": "Confirm attack",

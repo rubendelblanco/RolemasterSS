@@ -61,7 +61,7 @@ export class RMSSCombat extends Combat {
             for (let effect of [...actor.effects]) {
                 console.log("EFECTO: "+effect.name);
                 if (effect.name === "Bleeding") {
-                    actor.system.attributes.hits.current -= effect.flags.bleeding;
+                    actor.system.attributes.hits.current -= effect.flags.value;
                 }
 
                 if (permanentEffects.includes(effect.name) || (effectsAlreadyErased.hasOwnProperty(effect.name) && effectsAlreadyErased[effect.name])) {

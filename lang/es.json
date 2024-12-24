@@ -338,7 +338,9 @@
       "kill": "PE por \"pieza\"",
       "level_up": "Subir nivel",
       "end_level_up": "Terminar de subir nivel",
-      "dps": "Puntos de desarrollo"
+      "dps": "Puntos de desarrollo",
+      "bonus_code": "Código bonus",
+      "bonus": "Bonus por criatura"
     },
     "combat": {
       "confirm_attack": "Confirmar ataque",

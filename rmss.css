@@ -706,21 +706,21 @@
     font-size: 12px;
 }
 
-.level-up-enabled {
+.level-up-enabled, #add-exp {
     background-color: #04AA6D;
     color: white !important;
 }
 
-.level-up-enabled:hover {
+.level-up-enabled:hover, #add-exp:hover {
     background-color: #46a049;
 }
 
-.end-level-up {
+.end-level-up, #reset-exp {
     background-color: #f44336;
     color: white;
 }
 
-.end-level-up:hover {
+.end-level-up:hover, #reset-exp:hover {
     background-color: #da190b;
 }
 
@@ -825,5 +825,9 @@ table.rwd-table td img {
 .critical-procedure > div, .critical-table > div {
   display: inline-block;
   margin-right: 10px;
+}
+
+.experience-sheet .total, .exp-total-sum {
+    font-weight: bold;
 }
 
