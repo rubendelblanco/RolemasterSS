@@ -44,7 +44,6 @@ export default class RMSSTableManager {
                 const htmlContent = await renderTemplate("systems/rmss/templates/combat/critical-roll-button.hbs", {
                     damage: damage,
                     criticalData: criticalData,
-                    enemy:enemy,
                     attacker: attacker
                 });
                 const speaker = "Game Master";
@@ -53,8 +52,7 @@ export default class RMSSTableManager {
                     content: htmlContent,
                     speaker: speaker
                 });
-
-                if (parseInt(criticalData["damage"]) > 0) {
+                 if (parseInt(criticalData["damage"]) > 0) {
                     enemy.system.attributes.hits.current -= parseInt(criticalData["damage"]);
                     await enemy.update({ "system.attributes.hits.current": enemy.system.attributes.hits.current });
                 }

@@ -87,7 +87,6 @@ export class RMSSCombat extends Combat {
     static getTargets() {
         // Get the currently selected tokens
         const selectedTokens = canvas.tokens.controlled;
-
         // Ensure we have exactly one selected token
         if (selectedTokens.length !== 1) {
             ui.notifications.warn("Please select exactly one token as the attacker.");

@@ -1,31 +1,57 @@
 import {socket} from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
+import {RMSSCombat} from "./rmss_combat.js";
 
 export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result) {
-        const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
-        const match = result.match(regex);
-
         if (result === "-") {
             return {};
-        } else if (match) {
-            const damage = match[1] || null;
-            const severity = match[2] || null;
-            const critType = match[3] || null;
+        }
+        else if (isNaN(parseInt(result))) {
+            console.log("aqui parse critical result");
+            const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
+            const match = result.match(regex);
 
+            if (match) {
+                const damage = match[1] || null;
+                const severity = match[2] || null;
+                const critType = match[3] || null;
+                return {'damage':damage, 'severity':severity, 'critType':critType};
+            }
+            else {
+                console.log("Invalid critical format");
+                return {};
+            }
+
+            const damage = result;
+            const severity = null;
+            const critType = null;
             return {'damage':damage, 'severity':severity, 'critType':critType};
-        } else {
-            console.log("Invalid format");
-            return {};
+        }
+        else {
+            const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
+            const match = result.match(regex);
+
+            if (match) {
+                const damage = match[1] || null;
+                const severity = match[2] || null;
+                const critType = match[3] || null;
+                return {'damage':damage, 'severity':severity, 'critType':critType};
+            }
+            else {
+                console.log("Invalid critical format");
+                return {};
+            }
         }
     }
 
-    static async sendCriticalMessage(enemyId, damage, severity, critType) {
-        const enemy = game.actors.get(enemyId);
+    static async sendCriticalMessage(enemy, damage, severity, critType) {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", enemy, damage, severity, critType);
 
         if (gmResponse["confirmed"]) {
+            console.log(enemy.system);
             enemy.system.attributes.hits.current -= parseInt(gmResponse.damage);
+            await enemy.update({ "system.attributes.hits.current": enemy.system.attributes.hits.current });
             let roll = new Roll(`(1d100)`);
             await roll.toMessage(undefined,{create:true});
             let result = roll.total;
@@ -57,6 +83,14 @@ export class RMSSWeaponCriticalManager {
             critTables: await RMSSWeaponCriticalManager.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.critical_tables),
             critDict: CONFIG.rmss.criticalDictionary
         });
+        console.log(
+            {
+                enemy: enemy,
+                damage: damage,
+                severity: severity,
+                critType: critType
+            }
+        );
 
         let confirmed = await new Promise((resolve) => {
             new Dialog({
@@ -102,8 +136,7 @@ export class RMSSWeaponCriticalManager {
      * specifically with automatic round-based duration, need to fix some issues like
      * token icon effects rendering with undefined duration effects.
      */
-    static async applyCriticalToEnemy(critical, enemyId, attackerId){
-        const enemy = game.actors.get(enemyId);
+    static async applyCriticalToEnemy(critical, enemy, attackerId){
         const attacker =  game.actors.get(attackerId);
 
         if (!critical.hasOwnProperty("metadata")) {
@@ -127,7 +160,7 @@ export class RMSSWeaponCriticalManager {
                 const effectData = {
                     label: "Stunned",
                     icon: `${CONFIG.rmss.paths.icons_folder}stunned.svg`,
-                    origin: enemyId,
+                    origin: enemy.id,
                     duration: {
                         rounds: stunRounds,
                         startRound: game.combat ? game.combat.round : 0
@@ -143,7 +176,7 @@ export class RMSSWeaponCriticalManager {
             const effectData = {
                 name: "Bleeding",
                 icon: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
-                origin: enemyId,
+                origin: enemy.id,
                 duration: {
                     rounds: 1, //need to put a value. Otherwise, ActiveEffects doesn't render the icon in token
                     startRound: game.combat ? game.combat.round : 0
@@ -161,7 +194,7 @@ export class RMSSWeaponCriticalManager {
             const effectData = {
                 name: "Penalty",
                 icon: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
-                origin: enemyId,
+                origin: enemy.id,
                 disabled: false,
                 description: critical.text,
                 flags: {
@@ -180,7 +213,7 @@ export class RMSSWeaponCriticalManager {
             const effectData = {
                 name: "Parry",
                 icon: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
-                origin: enemyId,
+                origin: enemy.id,
                 disabled: false,
                 description: critical.text,
                 duration: {
@@ -197,7 +230,7 @@ export class RMSSWeaponCriticalManager {
             const effectData = {
                 name: "No parry",
                 icon: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
-                origin: enemyId,
+                origin: enemy.id,
                 disabled: false,
                 description: critical.text,
                 duration: {
