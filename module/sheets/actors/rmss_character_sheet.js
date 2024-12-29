@@ -48,5 +48,31 @@ export default class RMSSCharacterSheet extends ActorSheet {
             const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
             item.sheet.render(true);
         });
+
+        html.find(".effect-control").click(this._onEffectControl.bind(this));
+    }
+
+    _onEffectControl(event) {
+        event.preventDefault();
+        const owner = this.actor;
+        const a = event.currentTarget;
+        const li = a.closest("li");
+        const effect = li?.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
+        switch (a.dataset.action) {
+            case "create":
+                if (this.actor.isEmbedded) {
+                    return ui.notifications.error("Managing embedded Documents which are not direct descendants of a primary Document is un-supported at this time.");
+                }
+                return owner.createEmbeddedDocuments("ActiveEffect", [{
+                    label: "New Effect",
+                    icon: "icons/svg/aura.svg",
+                    origin: owner.uuid,
+                    disabled: true
+                }]);
+            case "edit":
+                return effect.sheet.render(true);
+            case "delete":
+                return effect.delete();
+        }
     }
 }

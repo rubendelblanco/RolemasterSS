@@ -387,6 +387,9 @@
             "at": "AT",
             "db": "DB",
             "movement_rate": "Movement rate"
+        },
+        "effects": {
+            "effects": "Active effects"
         }
     }
 }

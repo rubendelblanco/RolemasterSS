@@ -386,6 +386,9 @@
       "at": "TA",
       "db": "BD",
       "movement_rate": "Movimiento base"
+    },
+    "effects": {
+      "effects": "Efectos activos"
     }
   }
 }

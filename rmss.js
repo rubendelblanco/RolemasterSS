@@ -57,7 +57,8 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-exp-points.html",
     "systems/rmss/templates/sheets/actors/parts/npc-skills.hbs",
     "systems/rmss/templates/sheets/actors/parts/creature-attacks.hbs",
-    "systems/rmss/templates/sheets/actors/rmss-critical-codes.hbs"
+    "systems/rmss/templates/sheets/actors/rmss-critical-codes.hbs",
+    "systems/rmss/templates/sheets/actors/parts/active-effects.hbs"
   ];
   return loadTemplates(templatePaths);
 }
