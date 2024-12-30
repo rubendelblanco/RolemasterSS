@@ -3,46 +3,55 @@
     <div class="critical-procedure">
         <h3>Critical procedure</h3>
         <div>
-            <input type="radio" id="normal" name="critical-procedure" value="-" checked />
+            <input type="radio" id="normal" name="critical-procedure" value="-"
+                   {{#if (eq system.attributes.critical_codes.critical_procedure "-")}}checked{{/if}} />
             <label for="normal">Normal</label>
         </div>
         <div>
-            <input type="radio" id="I" name="critical-procedure" value="I" />
+            <input type="radio" id="I" name="critical-procedure" value="I"
+                   {{#if (eq system.attributes.critical_codes.critical_procedure "I")}}checked{{/if}} />
             <label for="I">Decrease critical severity by one</label>
         </div>
         <div>
-            <input type="radio" id="II" name="critical-procedure" value="II" />
+            <input type="radio" id="II" name="critical-procedure" value="II"
+                   {{#if (eq system.attributes.critical_codes.critical_procedure "II")}}checked{{/if}} />
             <label for="II">Decrease critical severity by two</label>
         </div>
     </div>
     <div class="critical-table">
         <h3>Critical table</h3>
         <div>
-            <input type="radio" id="normal" name="critical-table" value="-" checked />
-            <label for="normal">Normal</label>
+            <input type="radio" id="normal-creature" name="critical-table" value="-"
+                   {{#if (eq system.attributes.critical_codes.critical_table "-")}}checked{{/if}} />
+            <label for="normal-creature">Normal</label>
         </div>
         <div>
-            <input type="radio" id="la" name="critical-table" value="la" />
+            <input type="radio" id="la" name="critical-table" value="la"
+                   {{#if (eq system.attributes.critical_codes.critical_table "la")}}checked{{/if}} />
             <label for="la">Large creatures</label>
         </div>
         <div>
-            <input type="radio" id="sl" name="critical-table" value="sl" />
+            <input type="radio" id="sl" name="critical-table" value="sl"
+                   {{#if (eq system.attributes.critical_codes.critical_table "sl")}}checked{{/if}} />
             <label for="sl">Super large creatures</label>
         </div>
     </div>
     <div class="stun-bleeding">
         <h3>Stun & bleeding</h3>
         <div>
-            <input type="radio" id="normal" name="stun-bleeding" value="-" checked />
-            <label for="normal">Normal</label>
+            <input type="radio" id="no-ignore" name="stun-bleeding" value="-"
+                   {{#if (eq system.attributes.critical_codes.stun_bleeding "-")}}checked{{/if}} />
+            <label for="no-ignore">Normal</label>
         </div>
         <div>
-            <input type="radio" id="la" name="stun-bleeding" value="stun" />
-            <label for="la">Ignore stun</label>
+            <input type="radio" id="ignore-stun" name="stun-bleeding" value="stun"
+                   {{#if (eq system.attributes.critical_codes.stun_bleeding "stun")}}checked{{/if}} />
+            <label for="ignore-stun">Ignore stun</label>
         </div>
         <div>
-            <input type="radio" id="sl" name="stun-bleeding" value="bleeding" />
-            <label for="sl">Ignore stun and bleeding</label>
+            <input type="radio" id="ignore-bleeding" name="stun-bleeding" value="bleeding"
+                   {{#if (eq system.attributes.critical_codes.stun_bleeding "bleeding")}}checked{{/if}} />
+            <label for="ignore-bleeding">Ignore stun and bleeding</label>
         </div>
     </div>
 </div>

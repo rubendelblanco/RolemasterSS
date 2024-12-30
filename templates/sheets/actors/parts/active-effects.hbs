@@ -1,27 +1,30 @@
-<div class="panelBorder sheet-card effects-list">
-    <h2>{{localize "rmss.effects.effects"}}
-        <a class="effect-control" data-action="create">
-            <i class="fas fa-plus"></i>
-        </a>
-    </h2>
-    <ol>
+<div class="panelBorder sheet-card">
+    <h2>{{localize "rmss.effects.effects"}}</h2>
+    <div class="effects-list">
+        <div class="effect-grid-heading">Name</div>
+        <div class="effect-grid-heading">Duration</div>
+        <div class="effect-grid-heading">Actions</div>
+        <div class="effect-grid-heading">
+            <a class="effect-control" data-action="create">
+                Add effect <i class="fas fa-plus"></i>
+            </a>
+        </div>
         {{#each effects as |effect|}}
-            <li class="item effect" data-effect-id="{{effect.id}}">
-                <div class="item-name effect-name">
-                    <h4>{{effect.name}}</h4>
+                <div class="active-effect effect-name">
+                    {{effect.name}}
                 </div>
-                <div class="item-name effect-name">
-                    <h4>{{effect.duration.rounds}}</h4>
+                <div class="active-effect effect-duration">
+                    {{effect.duration.rounds}}
                 </div>
-                <div class="effect-controls">
-                    <a class="effect-control" data-action="edit" title="{{localize 'DND5E.EffectEdit'}}">
+                <div class="active-effect effect-controls">
+                    <a class="effect-control edit" data-effect-id="{{effect._id}}" data-action="edit">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a class="effect-control delete" data-effect-id="{{effects.id}}" data-action="delete" title="{{localize 'DND5E.EffectDelete'}}">
+                    <a class="effect-control delete" data-effect-id="{{effect._id}}" data-action="delete">
                         <i class="fas fa-trash"></i>
                     </a>
                 </div>
-            </li>
+            <div class="active-effect effect-create"></div>
         {{/each}}
-    </ol>
+    </div>
 </div>

@@ -50,15 +50,25 @@ export default class RMSSCharacterSheet extends ActorSheet {
         });
 
         html.find(".effect-control").click(this._onEffectControl.bind(this));
+
+        const updateCriticalCodes = (html, name, updatePath) => {
+            html.find(`input[name="${name}"]`).click(async ev => {
+                const selectedValue = ev.currentTarget.value;
+                await this.actor.update({ [updatePath]: selectedValue });
+            });
+        };
+
+        updateCriticalCodes(html, "critical-procedure", "system.attributes.critical_codes.critical_procedure");
+        updateCriticalCodes(html, "critical-table", "system.attributes.critical_codes.critical_table");
+        updateCriticalCodes(html, "stun-bleeding", "system.attributes.critical_codes.stun_bleeding");
     }
 
     _onEffectControl(event) {
         event.preventDefault();
         const owner = this.actor;
-        const a = event.currentTarget;
-        const li = a.closest("li");
-        const effect = li?.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
-        switch (a.dataset.action) {
+        const effectId = event.currentTarget.getAttribute("data-effect-id");
+        const effect = owner.effects.get(effectId);
+        switch (event.currentTarget.dataset.action) {
             case "create":
                 if (this.actor.isEmbedded) {
                     return ui.notifications.error("Managing embedded Documents which are not direct descendants of a primary Document is un-supported at this time.");
