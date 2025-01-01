@@ -25,15 +25,16 @@ export default class RMSSCharacterSheet extends ActorSheet {
         html.find(".offensive-skill").click(async ev => {
             const enemy = RMSSCombat.getTargets()[0];
             const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
+            let ob = null;
 
             if (this.actor.type !== "creature") {
-                const ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
+                ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
             }
             else {
-                const ob = weapon.system.bonus;
+                ob = weapon.system.bonus;
             }
 
-            await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, weapon, this.ob);
+            await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, weapon, ob);
         });
 
         // Items

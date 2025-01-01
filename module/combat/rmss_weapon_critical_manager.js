@@ -1,6 +1,5 @@
 import {socket} from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
-import {RMSSCombat} from "./rmss_combat.js";
 
 export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result) {
@@ -8,7 +7,6 @@ export class RMSSWeaponCriticalManager {
             return {};
         }
         else if (isNaN(parseInt(result))) {
-            console.log("aqui parse critical result");
             const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
             const match = result.match(regex);
 
@@ -49,12 +47,13 @@ export class RMSSWeaponCriticalManager {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", enemy, damage, severity, critType);
 
         if (gmResponse["confirmed"]) {
-            console.log(enemy.system);
             enemy.system.attributes.hits.current -= parseInt(gmResponse.damage);
             await enemy.update({ "system.attributes.hits.current": enemy.system.attributes.hits.current });
             let roll = new Roll(`(1d100)`);
             await roll.toMessage(undefined,{create:true});
-            let result = roll.total;
+            let result = (parseInt(roll.total)+parseInt(gmResponse.modifier));
+            if (result < 1) result = 1;
+            if (result > 100) result = 100;
             return await RMSSTableManager.getCriticalTableResult(result, enemy, gmResponse.severity, gmResponse.critType);
         }
     }
@@ -81,16 +80,9 @@ export class RMSSWeaponCriticalManager {
             severity: severity,
             critType: critType,
             critTables: await RMSSWeaponCriticalManager.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.critical_tables),
-            critDict: CONFIG.rmss.criticalDictionary
+            critDict: CONFIG.rmss.criticalDictionary,
+            modifier: 0
         });
-        console.log(
-            {
-                enemy: enemy,
-                damage: damage,
-                severity: severity,
-                critType: critType
-            }
-        );
 
         let confirmed = await new Promise((resolve) => {
             new Dialog({
@@ -103,7 +95,8 @@ export class RMSSWeaponCriticalManager {
                             const damage = parseInt(html.find("#damage").val());
                             const severity = html.find("#severity").val();
                             const critType = html.find("#critical-type").val();
-                            resolve({confirmed: true, damage, severity, critType});
+                            const modifier = html.find("#modifier").val();
+                            resolve({confirmed: true, damage, severity, critType, modifier});
                         }
                     },
                     cancel: {
@@ -143,12 +136,18 @@ export class RMSSWeaponCriticalManager {
             return;
         }
 
-        if (critical.metadata.hasOwnProperty("HP")){
-            enemy.system.attributes.hits.current -= critical.metadata.HP;
-            await enemy.update({"system.attributes.hits.current": enemy.system.attributes.hits.current});
+        let stun_bleeding = "-";
+
+        if (enemy.system.attributes.hasOwnProperty("critical_codes")) {
+            stun_bleeding = enemy.system.attributes.critical_codes.stun_bleeding;
         }
 
-        if (critical.metadata.hasOwnProperty("STUN")) {
+        if (critical.metadata.hasOwnProperty("HP")){
+            enemy.system.attributes.hits.current -= parseInt(critical.metadata["HP"]);
+            await enemy.update({ "system.attributes.hits.current": enemy.system.attributes.hits.current });
+        }
+
+        if (critical.metadata.hasOwnProperty("STUN") && stun_bleeding === "-") {
             const stunRounds = critical.metadata["STUN"]["ROUNDS"];
             const existingStunEffect = enemy.effects.find(e => e.name === "Stunned");
 
@@ -172,7 +171,7 @@ export class RMSSWeaponCriticalManager {
             }
         }
 
-        if (critical.metadata.hasOwnProperty("HPR")){
+        if (critical.metadata.hasOwnProperty("HPR") && stun_bleeding !== "bleeding"){
             const effectData = {
                 name: "Bleeding",
                 icon: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,

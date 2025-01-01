@@ -375,7 +375,11 @@
             "full_hard": "Full hard",
             "att_minus_def": "Total diff",
             "critical_roll": "Critical roll",
-            "damage": "Damage"
+            "damage": "Damage",
+            "multiplier": "Multiplier",
+            "critical_severity": "Severity",
+            "critical_type": "Type",
+            "critical_modifier": "Critical roll modifier (+/-)"
         },
         "level_up": {
             "ranks_reset": "New ranks reset"
