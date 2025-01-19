@@ -5,7 +5,7 @@
   "description": "The Rolemaster Standard System system for FoundryVTT.",
   "authors": [
     {
-    "name": "Cynicide"
+      "name": "Cynicide"
     },
     {
       "name": "Ruben Rey"
@@ -14,20 +14,30 @@
   "version": "0.1.0",
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "12",
-  "esmodules":[
+  "esmodules": [
     "rmss.js",
     "module/chat/hooks.js",
     "module/combat/hooks.js",
     "module/sheets/hooks.js"
   ],
-  "styles": ["rmss.css"],
-  "packs": [    {
-    "name": "skill_categories",
-    "label": "Skill Categories",
-    "system": "rmss",
-    "path": "./packs/skill_categories.db",
-    "type": "Item"
-  }
+  "styles": [
+    "rmss.css"
+  ],
+  "packs": [
+    {
+      "name": "skill_categories",
+      "label": "Skill Categories",
+      "system": "rmss",
+      "path": "./packs/skill_categories.db",
+      "type": "Item"
+    },
+    {
+      "name": "skills",
+      "label": "Skills",
+      "system": "rmss",
+      "path": "./packs/skills.db",
+      "type": "Item"
+    }
   ],
   "languages": [
     {
@@ -41,7 +51,7 @@
       "path": "lang/es.json"
     }
   ],
-  "grid":{
+  "grid": {
     "distance": 5,
     "units": "ft"
   },

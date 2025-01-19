@@ -1,5 +1,6 @@
 import RankCalculator from '../skills/rmss_rank_calculator.js';
 import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
+import { InputTextSearchStrategy } from '../search/rmss_text_search.js';
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
@@ -20,7 +21,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const context = super.getData();
     // Use a safe clone of the actor data for further operations.
     const actorData = this.actor.toObject(false);
-    let enrichedDescription = await TextEditor.enrichHTML(this.actor.system.description, {async: true});
+    let enrichedDescription = await TextEditor.enrichHTML(this.actor.system.description, { async: true });
 
     // Add the actor's data to context.data for easier access, as well as flags.
     context.system = actorData.system;
@@ -49,27 +50,27 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const itemData = newitem.toObject();
 
     if (itemData.type === "race") {
-      this.actor.update({"system.race_stat_fixed_info.body_development_progression":itemData.system.progression.body_dev})
-      this.actor.update({"system.fixed_info.race":itemData.name})
+      this.actor.update({ "system.race_stat_fixed_info.body_development_progression": itemData.system.progression.body_dev })
+      this.actor.update({ "system.fixed_info.race": itemData.name })
       //stats race mods
-      this.actor.update({"system.stats.agility.racial_bonus":itemData.system.stat_bonus.ag})
-      this.actor.update({"system.stats.constitution.racial_bonus":itemData.system.stat_bonus.co})
-      this.actor.update({"system.stats.empathy.racial_bonus":itemData.system.stat_bonus.em})
-      this.actor.update({"system.stats.intuition.racial_bonus":itemData.system.stat_bonus.in})
-      this.actor.update({"system.stats.memory.racial_bonus":itemData.system.stat_bonus.me})
-      this.actor.update({"system.stats.presence.racial_bonus":itemData.system.stat_bonus.pr})
-      this.actor.update({"system.stats.quickness.racial_bonus":itemData.system.stat_bonus.qu})
-      this.actor.update({"system.stats.reasoning.racial_bonus":itemData.system.stat_bonus.re})
-      this.actor.update({"system.stats.self_discipline.racial_bonus":itemData.system.stat_bonus.sd})
-      this.actor.update({"system.stats.strength.racial_bonus":itemData.system.stat_bonus.st})
+      this.actor.update({ "system.stats.agility.racial_bonus": itemData.system.stat_bonus.ag })
+      this.actor.update({ "system.stats.constitution.racial_bonus": itemData.system.stat_bonus.co })
+      this.actor.update({ "system.stats.empathy.racial_bonus": itemData.system.stat_bonus.em })
+      this.actor.update({ "system.stats.intuition.racial_bonus": itemData.system.stat_bonus.in })
+      this.actor.update({ "system.stats.memory.racial_bonus": itemData.system.stat_bonus.me })
+      this.actor.update({ "system.stats.presence.racial_bonus": itemData.system.stat_bonus.pr })
+      this.actor.update({ "system.stats.quickness.racial_bonus": itemData.system.stat_bonus.qu })
+      this.actor.update({ "system.stats.reasoning.racial_bonus": itemData.system.stat_bonus.re })
+      this.actor.update({ "system.stats.self_discipline.racial_bonus": itemData.system.stat_bonus.sd })
+      this.actor.update({ "system.stats.strength.racial_bonus": itemData.system.stat_bonus.st })
 
       //RR race mods
-      this.actor.update({"system.resistance_rolls.channeling.race_mod":itemData.system.rr_mods.chan})
-      this.actor.update({"system.resistance_rolls.essence.race_mod":itemData.system.rr_mods.ess})
-      this.actor.update({"system.resistance_rolls.mentalism.race_mod":itemData.system.rr_mods.ment})
-      this.actor.update({"system.resistance_rolls.chann_es.race_mod":itemData.system.rr_mods.chan+itemData.system.rr_mods.ess})
-      this.actor.update({"system.resistance_rolls.ess_ment.race_mod":itemData.system.rr_mods.ess+itemData.system.rr_mods.ment})
-      this.actor.update({"system.resistance_rolls.arcane.race_mod":itemData.system.rr_mods.chan+itemData.system.rr_mods.ment+itemData.system.rr_mods.chan})
+      this.actor.update({ "system.resistance_rolls.channeling.race_mod": itemData.system.rr_mods.chan })
+      this.actor.update({ "system.resistance_rolls.essence.race_mod": itemData.system.rr_mods.ess })
+      this.actor.update({ "system.resistance_rolls.mentalism.race_mod": itemData.system.rr_mods.ment })
+      this.actor.update({ "system.resistance_rolls.chann_es.race_mod": itemData.system.rr_mods.chan + itemData.system.rr_mods.ess })
+      this.actor.update({ "system.resistance_rolls.ess_ment.race_mod": itemData.system.rr_mods.ess + itemData.system.rr_mods.ment })
+      this.actor.update({ "system.resistance_rolls.arcane.race_mod": itemData.system.rr_mods.chan + itemData.system.rr_mods.ment + itemData.system.rr_mods.chan })
     }
 
     // To Do: Seperate Skills and Skill Categories. Increment Counts for items
@@ -83,7 +84,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         console.log("Not Owned!");
         super._onDropItem(event, data);
       }
-    } else if ( itemData.type === "skill") {
+    } else if (itemData.type === "skill") {
       // Get the already owned Items from the actor and push into an array
       const owneditems = this.object.getOwnedItemsByType("skill");
 
@@ -150,7 +151,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   _prepareItems(context) {
     // Initialize containers.
     const gear = [];
-    const playerskill= [];
+    const playerskill = [];
     const skillcat = [];
     const weapons = [];
     const armor = [];
@@ -189,7 +190,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
 
     // Sort Skill/Skillcat Arrays
-    skillcat.sort(function(a, b) {
+    skillcat.sort(function (a, b) {
       if (a.name < b.name) {
         return -1;
       }
@@ -199,7 +200,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       return 0;
     });
 
-    playerskill.sort(function(a, b) {
+    playerskill.sort(function (a, b) {
       if (a.name < b.name) {
         return -1;
       }
@@ -229,35 +230,35 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const inputValue = element.value;
     let roll = null;
 
-    if (inputValue >=20 && inputValue<=24) {
+    if (inputValue >= 20 && inputValue <= 24) {
       roll = new Roll("20+8d10");
     }
-    else if (inputValue >=25 && inputValue<=34){
+    else if (inputValue >= 25 && inputValue <= 34) {
       roll = new Roll("30+7d10");
     }
-    if (inputValue >=35 && inputValue<=44) {
+    if (inputValue >= 35 && inputValue <= 44) {
       roll = new Roll("40+6d10");
     }
-    else if (inputValue >=45 && inputValue<=54){
+    else if (inputValue >= 45 && inputValue <= 54) {
       roll = new Roll("50+5d10");
     }
-    if (inputValue >=55 && inputValue<=64) {
+    if (inputValue >= 55 && inputValue <= 64) {
       roll = new Roll("60+4d10");
     }
-    else if (inputValue >=65 && inputValue<=74){
+    else if (inputValue >= 65 && inputValue <= 74) {
       roll = new Roll("70+3d10");
     }
-    if (inputValue >=75 && inputValue<=84) {
+    if (inputValue >= 75 && inputValue <= 84) {
       roll = new Roll("80+2d10");
     }
-    else if (inputValue >=85 && inputValue<=91){
+    else if (inputValue >= 85 && inputValue <= 91) {
       roll = new Roll("90+1d10");
     }
-    else if (inputValue >=92 && inputValue<=99) {
+    else if (inputValue >= 92 && inputValue <= 99) {
       const variable_roll = 100 - inputValue + 1;
-      roll = new Roll( inputValue+"+1d"+variable_roll);
+      roll = new Roll(inputValue + "+1d" + variable_roll);
     }
-    else if (inputValue===100) {
+    else if (inputValue === 100) {
       roll = new Roll("99+1d10");
     }
 
@@ -282,6 +283,16 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     super.activateListeners(html);
     ExperiencePointsCalculator.loadListeners(html, this.actor);
 
+    Hooks.on("renderActorSheet", (app, html, data) => {
+      InputTextSearchStrategy.create("mod-search-form-actor-skills").load(html);
+    });
+    Hooks.on("renderActorSheet", (app, html, data) => {
+      InputTextSearchStrategy.create("mod-search-form-actor-skill-categories").load(html);
+    });
+    Hooks.on("renderActorSheet", (app, html, data) => {
+      InputTextSearchStrategy.create("mod-search-form-actor-spells").load(html);
+    });
+
     //Calculate potential stats (only when you are level 0)
     html.find(".stat-pot").click(ev => {
       const clickedElement = ev.currentTarget;
@@ -290,7 +301,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
       if (characterLevel.length > 0) {
         const levelValue = characterLevel[0].value;
-        if (levelValue > 0 || levelValue === null ) return;
+        if (levelValue > 0 || levelValue === null) return;
       }
 
       if (parentLi) {
@@ -322,9 +333,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
 
       if (item.system.favorite === true) {
-        item.update({system: {favorite: false}});
+        item.update({ system: { favorite: false } });
       } else {
-        item.update({system: {favorite: true}});
+        item.update({ system: { favorite: true } });
       }
     });
 
@@ -333,9 +344,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
 
       if (item.system.favorite === true) {
-        item.update({system: {favorite: false}});
+        item.update({ system: { favorite: false } });
       } else {
-        item.update({system: {favorite: true}});
+        item.update({ system: { favorite: true } });
       }
     });
 
@@ -346,10 +357,10 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       console.log(`Before change: ${item.system.equipped}`);
       if (item.system.worn === true) {
         console.log("Setting False");
-        item.update({system: {worn: false}});
+        item.update({ system: { worn: false } });
       } else {
         console.log("Setting True");
-        item.update({system: {worn: true}});
+        item.update({ system: { worn: true } });
       }
       console.log(`After change: ${item.system.equipped}`);
     });
@@ -361,7 +372,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       const category = this.actor.items.get(ev.currentTarget.getAttribute("data-category-id"));
       const progression = category.system.skill_progression;
       let progression_value = null;
-      if (progression.split('*').length>1) {
+      if (progression.split('*').length > 1) {
         progression_value = progression; //some special race value (PP development or body development)
       }
       else {
@@ -370,32 +381,32 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
-          item.update({system: {new_ranks: { value: 1 }}});
+          item.update({ system: { new_ranks: { value: 1 } } });
           if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
-          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
-              progression_value);
+          RankCalculator.calculateRanksBonus(item, RankCalculator.increaseRanks(item, 1, progression_value),
+            progression_value);
           break;
 
         case "1":
-          item.update({system: {new_ranks: { value: 2 }}});
+          item.update({ system: { new_ranks: { value: 2 } } });
           if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
-          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
-              progression_value);
+          RankCalculator.calculateRanksBonus(item, RankCalculator.increaseRanks(item, 1, progression_value),
+            progression_value);
           break;
 
         case "2":
-          item.update({system: {new_ranks: { value: 3 }}});
+          item.update({ system: { new_ranks: { value: 3 } } });
           if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
-          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),
-              progression_value);
+          RankCalculator.calculateRanksBonus(item, RankCalculator.increaseRanks(item, 1, progression_value),
+            progression_value);
           break;
 
         case "3":
           console.log("Skill NewRanks is 3 setting to 0");
-          item.update({system: {new_ranks: { value: 0 }}});
+          item.update({ system: { new_ranks: { value: 0 } } });
           if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
-          RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,-3,progression_value),
-              progression_value);
+          RankCalculator.calculateRanksBonus(item, RankCalculator.increaseRanks(item, -3, progression_value),
+            progression_value);
           break;
       }
     });
@@ -408,41 +419,41 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
-          item.update({system: {new_ranks: { value: 1 }}});
+          item.update({ system: { new_ranks: { value: 1 } } });
           if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
 
-          if (item.system.progression.toLowerCase()==="standard") {
-            RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
+          if (item.system.progression.toLowerCase() === "standard") {
+            RankCalculator.calculateRanksBonus(item, RankCalculator.increaseRanks(item, 1, progression_value), progression_value);
           }
 
           break;
 
         case "1":
-          item.update({system: {new_ranks: { value: 2 }}});
+          item.update({ system: { new_ranks: { value: 2 } } });
           if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
 
-          if (item.system.progression.toLowerCase()==="standard") {
-            RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
+          if (item.system.progression.toLowerCase() === "standard") {
+            RankCalculator.calculateRanksBonus(item, RankCalculator.increaseRanks(item, 1, progression_value), progression_value);
           }
 
           break;
 
         case "2":
-          item.update({system: {new_ranks: { value: 3 }}});
+          item.update({ system: { new_ranks: { value: 3 } } });
           if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
 
-          if (item.system.progression.toLowerCase()==="standard") {
-            RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,1,progression_value),progression_value);
+          if (item.system.progression.toLowerCase() === "standard") {
+            RankCalculator.calculateRanksBonus(item, RankCalculator.increaseRanks(item, 1, progression_value), progression_value);
           }
 
           break;
 
         case "3":
-          item.update({system: {new_ranks: { value: 0 }}});
+          item.update({ system: { new_ranks: { value: 0 } } });
           if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
 
-          if (item.system.progression.toLowerCase()==="standard") {
-            RankCalculator.calculateRanksBonus(item,RankCalculator.increaseRanks(item,-3,progression_value),progression_value);
+          if (item.system.progression.toLowerCase() === "standard") {
+            RankCalculator.calculateRanksBonus(item, RankCalculator.increaseRanks(item, -3, progression_value), progression_value);
           }
 
           break;
@@ -472,6 +483,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     // Remove the type from the dataset since it's in the itemData.type prop.
     delete itemData.data.type;
     // Finally, create the item!
-    return await Item.create(itemData, {parent: this.actor});
+    return await Item.create(itemData, { parent: this.actor });
   }
 }

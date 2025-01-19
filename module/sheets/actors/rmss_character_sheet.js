@@ -1,5 +1,5 @@
-import {RMSSCombat} from "../../combat/rmss_combat.js";
-import {RMSSWeaponSkillManager} from "../../combat/rmss_weapon_skill_manager.js";
+import { RMSSCombat } from "../../combat/rmss_combat.js";
+import { RMSSWeaponSkillManager } from "../../combat/rmss_weapon_skill_manager.js";
 
 /**
  * All the actions and feats in common for characters (PCs, NPCs, Creatures & Monsters)
@@ -14,10 +14,10 @@ export default class RMSSCharacterSheet extends ActorSheet {
             console.log(`Before change: ${item.system.equipped}`);
             if (item.system.equipped === true) {
                 console.log("Setting False");
-                item.update({system: {equipped: false}});
+                item.update({ system: { equipped: false } });
             } else {
                 console.log("Setting True");
-                item.update({system: {equipped: true}});
+                item.update({ system: { equipped: true } });
             }
             console.log(`After change: ${item.system.equipped}`);
         });
