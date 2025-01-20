@@ -1,50 +1,73 @@
+{{> "systems/rmss/templates/sheets/actors/parts/search-text.hbs"
+id="mod-search-form-actor-skill-categories"
+targetSelector=".skillcat-grid-container [data-search]"
+targetDataAttribute="search"
+debounce="50"
+placeholder="Search skill category..."
+}}
+
 <div class="skillcat-grid-container">
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.skillcat_name" }}</div>
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.applicable_stats" }}</div>
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.dev_cost" }}</div>
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.ranks" }}</div>
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.new_ranks" }}</div>
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.rank_bonus" }}</div>
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.stat_bonus" }}</div>
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.prof_bonus" }}</div>
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.special_bonus" }}</div>
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.special_bonus" }}</div>
-    <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.total_bonus" }}</div>
-    <div class="skillcat-grid-heading">
-      <div class="settings-button">
-        <button type="button" class="import-skillcats" title="Import" acotr_id="">{{ localize "rmss.pc_sheet.import_skillcat" }}</button>
-      </div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.skillcat_name" }}</div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.applicable_stats" }}</div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.dev_cost" }}</div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.ranks" }}</div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.new_ranks" }}</div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.rank_bonus" }}</div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.stat_bonus" }}</div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.prof_bonus" }}</div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.special_bonus" }}</div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.special_bonus" }}</div>
+  <div class="skillcat-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.total_bonus" }}</div>
+  <div class="skillcat-grid-heading">
+    <div class="settings-button">
+      <button type="button" class="import-skillcats" title="Import" acotr_id="">{{ localize
+        "rmss.pc_sheet.import_skillcat" }}</button>
     </div>
-    <table>
-  {{#each skillcat as |skill_category id|}}
+  </div>
+  <table>
+    {{#each skillcat as |skill_category id|}}
     <tr class="item-categories-skill" id="{{skill_category._id}}">
-      <div class="category-name">{{skill_category.name}}</div>
-      <div class="category-stats">{{skill_category.system.applicable_stats}}</div>
-      <div class="category-development-cost" data-development-cost="{{skill_category.system.development_cost}}">{{skill_category.system.development_cost}}</div>
-      <div class="category-ranks-number">{{skill_category.system.ranks}}</div>
-      <div class="category-new">
-          {{#if (eq system.progression "none")}}
-          na
-          {{else}}
-        {{#switch skill_category.system.new_ranks.value}} 
-          {{#case 0}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}" value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
-          {{#case 1}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}" value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
-          {{#case 2}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}" value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
-          {{#case 3}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}" value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}} 
+      <div data-search="{{skill_category.name}}" class="category-name">{{skill_category.name}}</div>
+      <div data-search="{{skill_category.name}}" class="category-stats">{{skill_category.system.applicable_stats}}</div>
+      <div data-search="{{skill_category.name}}" class="category-development-cost"
+        data-development-cost="{{skill_category.system.development_cost}}">
+        {{skill_category.system.development_cost}}</div>
+      <div data-search="{{skill_category.name}}" class="category-ranks-number">{{skill_category.system.ranks}}</div>
+      <div data-search="{{skill_category.name}}" class="category-new">
+        {{#if (eq system.progression "none")}}
+        na
+        {{else}}
+        {{#switch skill_category.system.new_ranks.value}}
+        {{#case 0}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}"
+          value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i
+            class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+        {{#case 1}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}"
+          value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i
+            class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+        {{#case 2}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}"
+          value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i
+            class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+        {{#case 3}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}"
+          value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i
+            class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}}
         {{/switch}}
-          {{/if}}
+        {{/if}}
       </div>
-      <div class="category-rank-bonus">{{skill_category.system.rank_bonus}}</div>
-      <div class="category-stat-bonus">{{skill_category.system.stat_bonus}}</div>
-      <div class="category-prof-bonus">{{skill_category.system.prof_bonus}}</div>
-      <div class="category-special-bonus1">{{skill_category.system.special_bonus_1}}</div>
-      <div class="category-special-bonus2">{{skill_category.system.special_bonus_2}}</div>
-      <div class="category-total-bonus">{{skill_category.system.total_bonus}}</div>
-      <div>
+      <div data-search="{{skill_category.name}}" class="category-rank-bonus">{{skill_category.system.rank_bonus}}</div>
+      <div data-search="{{skill_category.name}}" class="category-stat-bonus">{{skill_category.system.stat_bonus}}</div>
+      <div data-search="{{skill_category.name}}" class="category-prof-bonus">{{skill_category.system.prof_bonus}}</div>
+      <div data-search="{{skill_category.name}}" class="category-special-bonus1">
+        {{skill_category.system.special_bonus_1}}</div>
+      <div data-search="{{skill_category.name}}" class="category-special-bonus2">
+        {{skill_category.system.special_bonus_2}}</div>
+      <div data-search="{{skill_category.name}}" class="category-total-bonus">{{skill_category.system.total_bonus}}
+      </div>
+      <div data-search="{{skill_category.name}}">
         <a class="item-edit" title="Edit Category" data-item-id="{{skill_category._id}}"><i class="fas fa-edit"></i></a>
-        <a class="item-delete item" title="Delete Category" data-item-id="{{skill_category._id}}"><i class="fas fa-trash"></i></a>
+        <a class="item-delete item" title="Delete Category" data-item-id="{{skill_category._id}}"><i
+            class="fas fa-trash"></i></a>
       </div>
     </tr>
-  {{/each}}
-    </table>
+    {{/each}}
+  </table>
 </div>
