@@ -848,3 +848,7 @@ table.rwd-table td img {
     margin-bottom: 5%;
 }
 
+form .spell-list tr.spell td {
+    text-align: center;
+}
+

@@ -28,7 +28,7 @@ export class RMSSItem extends Item {
       else if (this.type === "skill_category") {
         await this.updateSource({img: "systems/rmss/assets/default/skill_category.svg"});
       }
-      else if (this.type === "spell") {
+      else if (this.type === "spell" || this.type === "spell_list") {
         await this.updateSource({img: "systems/rmss/assets/default/spell.svg"});
       }
       else if (this.type === "herb_or_poison") {

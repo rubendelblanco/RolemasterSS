@@ -122,3 +122,16 @@ rmss.criticalDictionary = {
   "subdue": "subdue",
   "sweeps": "sweeps"
 }
+
+rmss.spell_reign = {
+  "essence": "Essence",
+  "channeling": "Channeling",
+  "mentalism": "Mentalism",
+  "arcane": "Arcane"
+}
+
+rmss.spell_list_type = {
+  "open": "Open",
+  "closed": "Closed",
+  "base": "Base",
+}
