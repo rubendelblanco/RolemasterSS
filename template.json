@@ -401,7 +401,8 @@
       "special_bonus_1": 0,
       "special_bonus_2": 0,
       "total_bonus": 0,
-      "favorite": false
+      "favorite": false,
+      "tab": "skills"
     },
     "spell": {
       "favorite": false,

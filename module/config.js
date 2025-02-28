@@ -133,5 +133,11 @@ rmss.spell_reign = {
 rmss.spell_list_type = {
   "open": "Open",
   "closed": "Closed",
-  "base": "Base",
+  "base": "Base"
+}
+
+rmss.skill_tab = {
+  "skills": "Skills",
+  "spells": "Spells",
+  "languages": "Languages"
 }

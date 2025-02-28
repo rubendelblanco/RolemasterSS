@@ -84,10 +84,13 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         console.log("Not Owned!");
         super._onDropItem(event, data);
       }
-    } else if (itemData.type === "skill") {
+    }
+    else if (itemData.type === "skill") {
+      const skillCategoryId = itemData.system.category;
+      const skillCategory = this.actor.items.get(skillCategoryId);
+
       // Get the already owned Items from the actor and push into an array
       const owneditems = this.object.getOwnedItemsByType("skill");
-
       let ownedskilllist = Object.values(owneditems);
 
       // Check if the dragged item is not in the array and not owned
@@ -152,6 +155,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     // Initialize containers.
     const gear = [];
     const playerskill = [];
+    const spellskill = [];
     const skillcat = [];
     const weapons = [];
     const armor = [];
@@ -178,7 +182,23 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       }
       // Append to playerskill
       else if (i.type === "skill") {
-        playerskill.push(i);
+        const skillCategoryId = i.system.category;
+        let skillCategory = this.actor.items.get(skillCategoryId);
+
+        if (skillCategory === undefined) {
+          playerskill.push(i);
+          continue;
+        }
+
+        if (!skillCategory.system.hasOwnProperty("skill_tab")) {
+          skillCategory.system.skill_tab = "skills";
+        }
+        if (skillCategory.system.skill_tab === "spells") {
+          spellskill.push(i);
+        }
+        else {
+          playerskill.push(i);
+        }
       }
       else if (i.type === "armor") {
         armor.push(i);
@@ -218,6 +238,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     context.armor = armor;
     context.herbs = herbs;
     context.spells = spells;
+    context.spellskill = spellskill;
   }
 
   async renderCharacterSettings(data) {

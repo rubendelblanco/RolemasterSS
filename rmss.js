@@ -61,6 +61,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/rmss-critical-codes.hbs",
     "systems/rmss/templates/sheets/actors/parts/active-effects.hbs",
     "systems/rmss/templates/sheets/actors/parts/search-text.hbs",
+    "systems/rmss/templates/sheets/actors/parts/actor-skill-list.hbs"
   ];
   return loadTemplates(templatePaths);
 }
@@ -146,8 +147,9 @@ Hooks.once("init", function () {
 
   // Handlebars Helpers
   Handlebars.registerHelper("switch", function (value, options) {
-    this.switch_value = value;
-    return options.fn(this);
+    const context = Object.assign({}, this);
+    context.switch_value = value;
+    return options.fn(context);
   });
 
   Handlebars.registerHelper("case", function (value, options) {

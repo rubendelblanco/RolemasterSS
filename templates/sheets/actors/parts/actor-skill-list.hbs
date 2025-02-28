@@ -1,0 +1,58 @@
+<div class="skills-grid-container">
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.favorite" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.skill_name" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.dev_cost" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.ranks" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.new_ranks" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.rank_bonus" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.category_bonus" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.item_bonus" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.special_bonus" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.special_bonus" }}</div>
+    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.total_bonus" }}</div>
+    <div class="skills-grid-heading">
+    </div>
+    {{#each skills as |skill id|}}
+    {{#if skill.system.favorite}}
+    <div data-search="{{skill.name}}"><a class="skill-favorite" data-item-id="{{skill._id}}"><i
+            class="fa-regular fa-square-check"></i></a></div>
+    {{else}}
+    <div data-search="{{skill.name}}"><a class="skill-favorite" data-item-id="{{skill._id}}"><i
+            class="fa-regular fa-square"></i></a></div>
+    {{/if}}
+    <div data-search="{{skill.name}}" {{#if (eq skill.system.designation "Occupational" )}} style="color:blue;" {{else if
+    (eq skill.system.designation "Everyman" )}} style="color:green;" {{else if (eq skill.system.designation "Restricted"
+    )}} style="color:red;" {{/if}}>
+    {{skill.name}}
+</div>
+
+<div data-search="{{skill.name}}">{{skill.system.development_cost}}</div>
+<div data-search="{{skill.name}}">{{skill.system.ranks}}</div>
+<div data-search="{{skill.name}}">
+    {{#switch skill.system.new_ranks.value}}
+    {{#case 0}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}"
+                   value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i>
+    <i class="fa-regular fa-square"></i></a> {{/case}}
+    {{#case 1}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}"
+                   value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i
+        class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+    {{#case 2}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}"
+                   value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i
+        class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+    {{#case 3}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}"
+                   value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i
+        class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}}
+    {{/switch}}
+</div>
+<div data-search="{{skill.name}}">{{skill.system.rank_bonus}}</div>
+<div data-search="{{skill.name}}">{{skill.system.category_bonus}}</div>
+<div data-search="{{skill.name}}">{{skill.system.item_bonus}}</div>
+<div data-search="{{skill.name}}">{{skill.system.special_bonus_1}}</div>
+<div data-search="{{skill.name}}">{{skill.system.special_bonus_2}}</div>
+<div data-search="{{skill.name}}">{{skill.system.total_bonus}}</div>
+<div data-search="{{skill.name}}">
+    <a class="item-edit" title="Edit Skill" data-item-id="{{skill._id}}"><i class="fas fa-edit"></i></a>
+    <a class="item-delete" title="Delete Skill" data-item-id="{{skill._id}}"><i class="fas fa-trash"></i></a>
+</div>
+{{/each}}
+</div>

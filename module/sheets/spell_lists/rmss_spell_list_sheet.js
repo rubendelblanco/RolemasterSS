@@ -12,9 +12,23 @@ export default class RMSSSpellListSheet extends ItemSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
-
-        // Agregar evento de drop
         html[0].addEventListener("drop", this._onDropSpell.bind(this));
+
+        html.find(".item-delete").click(async ev => {
+            const spellId = ev.currentTarget.getAttribute("data-spell-id");
+            const spells = this.object.system.spells;
+            const updatedSpells = spells.filter(s => s._id !== spellId);
+            await this.object.update({ "system.spells": updatedSpells });
+        });
+
+        html.find(".item-edit").click(ev => {
+            const spellId = ev.currentTarget.getAttribute("data-spell-id");
+            const spells = this.object.system.spells;
+            const updatedSpells = spells.filter(s => s._id === spellId);
+            console.log(updatedSpells[0]._id);
+            const item = game.items.get(updatedSpells[0]._id);
+            if (item) item.sheet.render(true);
+        });
     }
 
     // If our sheet is called here it is.
@@ -48,27 +62,28 @@ export default class RMSSSpellListSheet extends ItemSheet {
         try {
             data = JSON.parse(event.dataTransfer.getData("text/plain"));
         } catch (err) {
-            return console.warn("Error al leer los datos arrastrados.", err);
+            return console.warn("Error reading data", err);
         }
 
         if (!data || !data.uuid) return;
 
         const droppedSpell = await fromUuid(data.uuid);
         if (!droppedSpell || droppedSpell.type !== "spell") {
-            return ui.notifications.warn("Solo puedes añadir hechizos a la lista.");
+            return ui.notifications.warn("Just spell items type can added.");
         }
 
         const spellList = this.item;
         const existingSpells = spellList.system.spells || [];
+        const spellCoincidence =  existingSpells.filter(s => s._id === droppedSpell._id);
 
-        if (existingSpells.includes(droppedSpell.id)) {
-            return ui.notifications.warn("Este hechizo ya está en la lista.");
+        if (spellCoincidence.length !== 0) {
+            return ui.notifications.warn("This spell is already on the list");
         }
 
         await spellList.update({
             "system.spells": [...existingSpells, droppedSpell]
         });
 
-        ui.notifications.info(`Añadido ${droppedSpell.name} a la lista.`);
+        ui.notifications.info(`${droppedSpell.name} added to the list.`);
     }
 }

@@ -291,7 +291,8 @@
       "total_bonus": "Bonificación total:",
       "description": "Descripción:",
       "progression": "Progresión habilidad",
-      "category_progression": "Progresión categoría"
+      "category_progression": "Progresión categoría",
+      "skill_tab": "Sección"
     },
     "skill": {
       "favorite": "¿Favorito?",

@@ -290,7 +290,8 @@
             "special_bonus_2": "Special Bonus 2:",
             "total_bonus": "Total Bonus:",
             "description": "Description:",
-            "progression": "Category progression"
+            "progression": "Category progression",
+            "skill_tab": "Skill tab"
         },
         "skill": {
             "favorite": "Favorite?",
