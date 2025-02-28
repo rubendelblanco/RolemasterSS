@@ -309,7 +309,11 @@
             "designation": "Designation",
             "category": "Category",
             "offensive": "Offensive?"
-
+        },
+        "skills_tabs": {
+            "skills": "Skills",
+            "spells": "Spells",
+            "languages": "Languages"
         },
         "language": {
             "spoken": "Spoken",

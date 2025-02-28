@@ -12,7 +12,10 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       height: 780,
       template: "systems/rmss/templates/sheets/actors/rmss-character-sheet.html",
       classes: ["rmss", "sheet", "actor"],
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body" }]
+      tabs: [
+          { navSelector: ".sheet-tabs", contentSelector: ".sheet-body" },
+          { navSelector: ".sub-tabs", contentSelector: ".sub-tab-content" }
+      ]
     });
   }
 

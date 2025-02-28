@@ -1,3 +1,10 @@
+{{> "systems/rmss/templates/sheets/actors/parts/search-text.hbs"
+        id="mod-search-form-actor-skills"
+        targetSelector=".skills-grid-container > [data-search]"
+        targetDataAttribute="search"
+        debounce="50"
+        placeholder="Search skill..."
+}}
 <div class="skills-grid-container">
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.favorite" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.skill_name" }}</div>

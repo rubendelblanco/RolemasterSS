@@ -310,6 +310,11 @@
       "category": "Categoría",
       "offensive": "¿Ofensiva?"
     },
+    "skills_tabs": {
+      "skills": "Habilidades",
+      "spells": "Hechizos",
+      "languages": "Idiomas"
+    },
     "language": {
       "spoken": "Hablado",
       "written": "Escrito",
