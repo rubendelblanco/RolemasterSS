@@ -110,7 +110,6 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
             }
         }
 
-
         // Sort Skill Arrays
         playerskill.sort(function(a, b) {
             if (a.name < b.name) {

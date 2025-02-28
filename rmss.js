@@ -42,7 +42,6 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-role-traits.html",
     "systems/rmss/templates/sheets/actors/parts/actor-background-info.html",
     "systems/rmss/templates/sheets/actors/parts/actor-skill-categories.html",
-    "systems/rmss/templates/sheets/actors/parts/actor-skills.html",
     "systems/rmss/templates/sheets/actors/parts/actor-fav-skills.html",
     "systems/rmss/templates/sheets/actors/parts/actor-items.html",
     "systems/rmss/templates/sheets/actors/parts/actor-weapons.html",

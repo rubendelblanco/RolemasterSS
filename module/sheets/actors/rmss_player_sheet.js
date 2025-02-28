@@ -160,6 +160,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const playerskill = [];
     const spellskill = [];
     const skillcat = [];
+    const languageskill = [];
     const weapons = [];
     const armor = [];
     const herbs = [];
@@ -198,6 +199,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         }
         if (skillCategory.system.skill_tab === "spells") {
           spellskill.push(i);
+        }
+        else if (skillCategory.system.skill_tab === "languages") {
+          languageskill.push(i);
         }
         else {
           playerskill.push(i);
@@ -242,6 +246,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     context.herbs = herbs;
     context.spells = spells;
     context.spellskill = spellskill;
+    context.languageskill= languageskill;
   }
 
   async renderCharacterSettings(data) {
@@ -377,7 +382,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     // Wear/Remove Item
     html.find(".wearable").click(ev => {
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      console.log(item);
       console.log(`Before change: ${item.system.equipped}`);
       if (item.system.worn === true) {
         console.log("Setting False");
