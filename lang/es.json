@@ -399,6 +399,11 @@
     },
     "effects": {
       "effects": "Efectos activos"
+    },
+    "spell_lists": {
+      "realm": "Reino",
+      "type": "Tipo",
+      "profession": "Profesión"
     }
   }
 }

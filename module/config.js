@@ -123,10 +123,20 @@ rmss.criticalDictionary = {
   "sweeps": "sweeps"
 }
 
-rmss.spell_reign = {
+rmss.spell_realm = {
   "essence": "Essence",
   "channeling": "Channeling",
   "mentalism": "Mentalism",
+  "arcane": "Arcane"
+}
+
+rmss.character_realm = {
+  "essence": "Essence",
+  "channeling": "Channeling",
+  "mentalism": "Mentalism",
+  "essence/channeling": "Essence/Channeling",
+  "essence/mentalism": "Essence/Mentalism",
+  "channeling/mentalism": "Channeling/Mentalism",
   "arcane": "Arcane"
 }
 

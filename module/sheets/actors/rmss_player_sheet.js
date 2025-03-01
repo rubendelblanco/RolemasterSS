@@ -2,6 +2,7 @@ import RankCalculator from '../skills/rmss_rank_calculator.js';
 import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
 import { InputTextSearchStrategy } from '../search/rmss_text_search.js';
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
+import * as CONFIG from "../../config.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -165,6 +166,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const armor = [];
     const herbs = [];
     const spells = [];
+    const spellists = [];
     const equipables = [];
 
     // Iterate through items, allocating to containers
@@ -183,6 +185,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       // Append to skill categories.
       else if (i.type === "skill_category") {
         skillcat.push(i);
+      }
+      else if (i.type === "spell_list"){
+        spellists.push(i);
       }
       // Append to playerskill
       else if (i.type === "skill") {
@@ -215,7 +220,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       }
     }
 
-
     // Sort Skill/Skillcat Arrays
     skillcat.sort(function (a, b) {
       if (a.name < b.name) {
@@ -246,11 +250,13 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     context.herbs = herbs;
     context.spells = spells;
     context.spellskill = spellskill;
+    context.spellists = spellists;
     context.languageskill= languageskill;
+    context.config = CONFIG.rmss;
+    console.log(spellists);
   }
 
   async renderCharacterSettings(data) {
-    console.log(data);
     const configSheet = await renderTemplate("systems/rmss/templates/sheets/actors/dialogs/actor-settings.html", data);
     return (configSheet);
   }

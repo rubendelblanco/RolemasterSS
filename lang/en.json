@@ -399,6 +399,11 @@
         },
         "effects": {
             "effects": "Active effects"
+        },
+        "spell_lists": {
+            "realm": "Realm",
+            "type": "Type",
+            "profession": "Profession"
         }
     }
 }

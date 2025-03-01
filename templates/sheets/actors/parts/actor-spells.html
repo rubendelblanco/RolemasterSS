@@ -5,35 +5,49 @@ targetDataAttribute="search"
 debounce="50"
 placeholder="Search spell..."
 }}
-<div class="spell-grid-container">
-  <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.favorite" }}</div>
-  <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.level" }}</div>
-  <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.name" }}</div>
-  <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.spell_list" }}</div>
-  <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.area_of_effect" }}</div>
-  <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.duration" }}</div>
-  <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.range" }}</div>
-  <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.type" }}</div>
-  <div class="spell-grid-heading">
+
+{{#each spellists as | list id|}}
+<div class="spell-list-container">
+  <div class="spell-list-title">
+    <div class="spell-list-name">{{list.name}}
+      ({{#if (eq list.system.type "base")}} Base {{list.system.profession}} {{else}} {{list.system.spell_list_type}} {{list.system.realm}} {{/if}})
+    </div>
+    <span class="spell-list-actions">
+      <a class="item-edit" title="Edit Spell" data-item-id="{{list._id}}"><i class="fas fa-edit"></i></a>
+      <a class="item-delete" title="Delete Spell" data-item-id="{{list._id}}"><i class="fas fa-trash"></i></a>
+    </span>
   </div>
-  {{#each spells as |spell id|}}
-  {{#if spell.system.favorite}}
-  <div data-search="{{spell.name}}"><a class="spell-favorite" data-item-id="{{spell._id}}"><i
-        class="fa-regular fa-square-check"></i></a></div>
-  {{else}}
-  <div data-search="{{spell.name}}"><a class="spell-favorite" data-item-id="{{spell._id}}"><i
-        class="fa-regular fa-square"></i></a></div>
-  {{/if}}
-  <div data-search="{{spell.name}}">{{spell.system.level}}</div>
-  <div data-search="{{spell.name}}">{{spell.name}}</div>
-  <div data-search="{{spell.name}}">{{spell.system.spell_list}}</div>
-  <div data-search="{{spell.name}}">{{spell.system.area_of_effect}}</div>
-  <div data-search="{{spell.name}}">{{spell.system.duration}}</div>
-  <div data-search="{{spell.name}}">{{spell.system.range}}</div>
-  <div data-search="{{spell.name}}">{{spell.system.type}}</div>
-  <div data-search="{{spell.name}}">
-    <a class="item-edit" title="Edit Spell" data-item-id="{{spell._id}}"><i class="fas fa-edit"></i></a>
-    <a class="item-delete" title="Delete Spell" data-item-id="{{spell._id}}"><i class="fas fa-trash"></i></a>
+  <div class="spell-grid-container">
+    <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.favorite" }}</div>
+    <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.level" }}</div>
+    <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.name" }}</div>
+    <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.spell_list" }}</div>
+    <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.area_of_effect" }}</div>
+    <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.duration" }}</div>
+    <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.range" }}</div>
+    <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.type" }}</div>
+    <div class="spell-grid-heading">
+    </div>
+    {{#each list.system.spells as |spell id|}}
+    {{#if spell.system.favorite}}
+    <div data-search="{{spell.name}}"><a class="spell-favorite" data-item-id="{{spell._id}}"><i
+          class="fa-regular fa-square-check"></i></a></div>
+    {{else}}
+    <div data-search="{{spell.name}}"><a class="spell-favorite" data-item-id="{{spell._id}}"><i
+          class="fa-regular fa-square"></i></a></div>
+    {{/if}}
+    <div data-search="{{spell.name}}">{{spell.system.level}}</div>
+    <div data-search="{{spell.name}}">{{spell.name}}</div>
+    <div data-search="{{spell.name}}">{{spell.system.spell_list}}</div>
+    <div data-search="{{spell.name}}">{{spell.system.area_of_effect}}</div>
+    <div data-search="{{spell.name}}">{{spell.system.duration}}</div>
+    <div data-search="{{spell.name}}">{{spell.system.range}}</div>
+    <div data-search="{{spell.name}}">{{spell.system.type}}</div>
+    <div data-search="{{spell.name}}">
+      <a class="item-edit" title="Edit Spell" data-item-id="{{spell._id}}"><i class="fas fa-edit"></i></a>
+      <a class="item-delete" title="Delete Spell" data-item-id="{{spell._id}}"><i class="fas fa-trash"></i></a>
+    </div>
+    {{/each}}
   </div>
-  {{/each}}
 </div>
+{{/each}}

@@ -1,8 +1,34 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+        <h1>
+            <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/>
+        </h1>
     </header>
+    <div class="spell-list-info">
+        {{ localize "rmss.spell_lists.type" }}
+        <select name="system.type">
+            {{#each config.spell_list_type as |label key|}}
+            <option value="{{key}}" {{#if (eq ../system.type key)}}selected{{/if}}>
+            {{label}}
+            </option>
+            {{/each}}
+        </select>
+        {{#unless (eq system.type "base")}}
+        {{ localize "rmss.spell_lists.realm" }}
+        <select name="system.realm">
+            {{#each config.spell_realm as |label key|}}
+            <option value="{{key}}" {{#if (eq ../system.realm key)}}selected{{/if}}>
+            {{label}}
+            </option>
+            {{/each}}
+        </select>
+        {{/unless}}
+        {{#if (eq system.type "base")}}
+            {{ localize "rmss.spell_lists.profession" }}
+            <input type="text" style="width:40%" name="system.profession" value="{{system.profession}}" placeholder="Which profession?">
+        {{/if}}
+    </div>
     <div class="sheet-content spell-list">
         <table>
             <thead>

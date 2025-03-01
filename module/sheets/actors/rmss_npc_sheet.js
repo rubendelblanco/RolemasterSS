@@ -71,6 +71,9 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
                 super._onDropItem(event, data);
             }
         }
+       else if (itemData.type === "spell_list"){
+
+       }
         else {
             super._onDropItem(event, data);
         }
