@@ -18,9 +18,15 @@
         <input type="text" name="system.fixed_info.training_packages" value="{{system.fixed_info.training_packages}}" data-dtype="String"/>
     </div>
     <div class="label-name">            
-        {{ localize "rmss.pc_sheet_fixed_info.realm" }}  
+        {{ localize "rmss.pc_sheet_fixed_info.realm" }}
     </div>
-    <div class="label-name">      
-        <input type="text" name="system.fixed_info.realm" value="{{system.fixed_info.realm}}" data-dtype="String"/>
+    <div class="label-name">
+        <select name="system.fixed_info.realm">
+            {{#each config.character_realm as |label key|}}
+            <option value="{{key}}" {{#if (eq ../system.fixed_info.realm key)}}selected{{/if}}>
+            {{label}}
+            </option>
+            {{/each}}
+        </select>
     </div>
 </section>

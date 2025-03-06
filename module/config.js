@@ -122,3 +122,32 @@ rmss.criticalDictionary = {
   "subdue": "subdue",
   "sweeps": "sweeps"
 }
+
+rmss.spell_realm = {
+  "essence": "Essence",
+  "channeling": "Channeling",
+  "mentalism": "Mentalism",
+  "arcane": "Arcane"
+}
+
+rmss.character_realm = {
+  "essence": "Essence",
+  "channeling": "Channeling",
+  "mentalism": "Mentalism",
+  "essence/channeling": "Essence/Channeling",
+  "essence/mentalism": "Essence/Mentalism",
+  "channeling/mentalism": "Channeling/Mentalism",
+  "arcane": "Arcane"
+}
+
+rmss.spell_list_type = {
+  "open": "Open",
+  "closed": "Closed",
+  "base": "Base"
+}
+
+rmss.skill_tab = {
+  "skills": "Skills",
+  "spells": "Spells",
+  "languages": "Languages"
+}

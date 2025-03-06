@@ -848,3 +848,28 @@ table.rwd-table td img {
     margin-bottom: 5%;
 }
 
+form .spell-list tr.spell td {
+    text-align: center;
+}
+
+.spell-list-container .spell-grid-container{
+    margin-left: 1em;
+}
+
+.spell-list-container .spell-list-title {
+    font-weight: bold;
+    background-color: #b4bcbf;
+    padding-top: 0.5em;
+    padding-left: 0.5em;
+    padding-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+.spell-list-container .spell-list-name {
+    float:left;
+}
+
+.spell-list-container .spell-list-actions {
+   margin-left: 10%;
+}
+

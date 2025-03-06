@@ -291,7 +291,7 @@
   },
   "Item": {
     "types": ["item", "race", "skill_category", "skill", "armor", "weapon", "transport", "herb_or_poison", "spell",
-      "language", "profession","creature_attack"],
+      "spell_list","language", "profession","creature_attack"],
     "templates": {
       "base": {
         "description": "Description here."
@@ -401,7 +401,8 @@
       "special_bonus_1": 0,
       "special_bonus_2": 0,
       "total_bonus": 0,
-      "favorite": false
+      "favorite": false,
+      "tab": "skills"
     },
     "spell": {
       "favorite": false,
@@ -412,6 +413,13 @@
       "range": "",
       "type": "",
       "description": "Description here."
+    },
+    "spell_list": {
+      "name": "",
+      "realm": "",
+      "type": "",
+      "profession": "",
+      "spells": []
     },
     "race": {
       "stat_bonus": {

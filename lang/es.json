@@ -291,7 +291,8 @@
       "total_bonus": "Bonificación total:",
       "description": "Descripción:",
       "progression": "Progresión habilidad",
-      "category_progression": "Progresión categoría"
+      "category_progression": "Progresión categoría",
+      "skill_tab": "Sección"
     },
     "skill": {
       "favorite": "¿Favorito?",
@@ -308,6 +309,11 @@
       "designation": "Designación",
       "category": "Categoría",
       "offensive": "¿Ofensiva?"
+    },
+    "skills_tabs": {
+      "skills": "Habilidades",
+      "spells": "Hechizos",
+      "languages": "Idiomas"
     },
     "language": {
       "spoken": "Hablado",
@@ -393,6 +399,11 @@
     },
     "effects": {
       "effects": "Efectos activos"
+    },
+    "spell_lists": {
+      "realm": "Reino",
+      "type": "Tipo",
+      "profession": "Profesión"
     }
   }
 }

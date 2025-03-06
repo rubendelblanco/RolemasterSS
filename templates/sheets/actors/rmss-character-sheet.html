@@ -122,7 +122,29 @@
     </div>
 
     <div class="tab skills" data-group="primary" data-tab="Skills">
-      {{> "systems/rmss/templates/sheets/actors/parts/actor-skills.html" }}
+      <nav class="sub-tabs tabs" data-group="skills-tabs">
+        <a class="item" data-tab="skills-skills">{{ localize "rmss.skills_tabs.skills" }}</a>
+        <a class="item" data-tab="spells-skills">{{ localize "rmss.skills_tabs.spells" }}</a>
+        <a class="item" data-tab="languages-skills">{{ localize "rmss.skills_tabs.languages" }}</a>
+      </nav>
+      {{> "systems/rmss/templates/sheets/actors/parts/search-text.hbs"
+      id="mod-search-form-actor-skills"
+      targetSelector=".skills-grid-container > [data-search]"
+      targetDataAttribute="search"
+      debounce="50"
+      placeholder="Search skill..."
+      }}
+      <section class="sub-tab-content">
+        <div class="tab" data-group="skills-tabs" data-tab="skills-skills">
+          {{> "systems/rmss/templates/sheets/actors/parts/actor-skill-list.hbs" skills=playerskill}}
+        </div>
+        <div class="tab" data-group="skills-tabs" data-tab="spells-skills">
+          {{> "systems/rmss/templates/sheets/actors/parts/actor-skill-list.hbs" skills=spellskill}}
+        </div>
+        <div class="tab" data-group="skills-tabs" data-tab="languages-skills">
+          {{> "systems/rmss/templates/sheets/actors/parts/actor-skill-list.hbs" skills=languageskill}}
+        </div>
+      </section>
     </div>
 
     <div class="tab equipment" data-group="primary" data-tab="Equipment">

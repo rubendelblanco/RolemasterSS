@@ -1,4 +1,5 @@
 import RankCalculator from './rmss_rank_calculator.js';
+import * as CONFIG from "../../config.js";
 
 // Our Item Sheet extends the default
 export default class RMSSSkillCategorySheet extends ItemSheet {
@@ -76,7 +77,8 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
       applicable_stat_3_selected: thirdApplicableStat,
       category_progression: applicableCategoryProgression,
       skill_progression: applicableSkillProgression,
-      enrichedDescription: enrichedDescription
+      enrichedDescription: enrichedDescription,
+      skill_tab: CONFIG.rmss.skill_tab
     };
     return sheetData;
   }

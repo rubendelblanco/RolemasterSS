@@ -24,7 +24,7 @@
                 </select>
             </div>
             <div>
-                {{ localize 'skill.category_progression' }}
+                {{ localize 'rmss.skill.category_progression' }}
                 <select name="system.progression" class="app-skill-category-selector" value="{{system.progression}}" data-itemid="{{item._id}}">
                     {{#each category_progression}}
                         <option value="{{this.data}}" {{#if (eq ../system.progression this.data)}}selected{{/if}}>
@@ -34,11 +34,21 @@
                 </select>
             </div>
             <div>
-                {{ localize 'skill.progression' }}
+                {{ localize 'rmss.skill.progression' }}
                 <select name="system.skill_progression" class="app-skill-selector" value="{{system.skill_progression}}" data-itemid="{{ item._id }}">
                     {{#each skill_progression}}
                     <option value="{{this.data}}" {{#if (eq ../system.skill_progression this.data)}}selected{{/if}}>
                         {{this.name}}
+                    </option>
+                    {{/each}}
+                </select>
+            </div>
+            <div>
+                {{ localize 'rmss.skill_category.skill_tab' }}
+                <select name="system.skill_tab" class="app-skill-selector" value="{{system.skill_tab}}" data-itemid="{{ item._id }}">
+                    {{#each skill_tab as |label key|}}
+                    <option value="{{key}}" {{#if (eq ../system.skill_tab key)}}selected{{/if}}>
+                    {{label}}
                     </option>
                     {{/each}}
                 </select>

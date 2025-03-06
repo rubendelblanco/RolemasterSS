@@ -16,6 +16,7 @@ import RMSSTransportSheet from "./module/sheets/items/rmss_transport_sheet.js";
 import RMSSWeaponSheet from "./module/sheets/items/rmss_weapon_sheet.js";
 import RMSSHerbOrPoisonSheet from "./module/sheets/items/rmss_herb_or_poison_sheet.js";
 import RMSSSpellSheet from "./module/sheets/spells/rmss_spell_sheet.js";
+import RMSSSpellListSheet from "./module/sheets/spell_lists/rmss_spell_list_sheet.js";
 import RMSSSkillCategorySheet from "./module/sheets/skills/rmss_skill_category_sheet.js";
 import RMSSSkillSheet from "./module/sheets/skills/rmss_skill_sheet.js";
 import RMSSRaceSheet from "./module/sheets/items/rmss_race_sheet.js";
@@ -41,7 +42,6 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-role-traits.html",
     "systems/rmss/templates/sheets/actors/parts/actor-background-info.html",
     "systems/rmss/templates/sheets/actors/parts/actor-skill-categories.html",
-    "systems/rmss/templates/sheets/actors/parts/actor-skills.html",
     "systems/rmss/templates/sheets/actors/parts/actor-fav-skills.html",
     "systems/rmss/templates/sheets/actors/parts/actor-items.html",
     "systems/rmss/templates/sheets/actors/parts/actor-weapons.html",
@@ -60,6 +60,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/rmss-critical-codes.hbs",
     "systems/rmss/templates/sheets/actors/parts/active-effects.hbs",
     "systems/rmss/templates/sheets/actors/parts/search-text.hbs",
+    "systems/rmss/templates/sheets/actors/parts/actor-skill-list.hbs"
   ];
   return loadTemplates(templatePaths);
 }
@@ -120,6 +121,8 @@ Hooks.once("init", function () {
 
   // Spells
   Items.registerSheet("rmss", RMSSSpellSheet, { makeDefault: true, label: "rmss.entity_sheet.spell", types: ["spell"] });
+  Items.registerSheet("rmss", RMSSSpellListSheet, { makeDefault: true, label: "rmss.entity_sheet.spell_list", types: ["spell_list"] });
+
 
   // Skills
   Items.registerSheet("rmss", RMSSSkillCategorySheet, { makeDefault: true, label: "rmss.entity_sheet.skill_category", types: ["skill_category"] });
@@ -143,8 +146,9 @@ Hooks.once("init", function () {
 
   // Handlebars Helpers
   Handlebars.registerHelper("switch", function (value, options) {
-    this.switch_value = value;
-    return options.fn(this);
+    const context = Object.assign({}, this);
+    context.switch_value = value;
+    return options.fn(context);
   });
 
   Handlebars.registerHelper("case", function (value, options) {

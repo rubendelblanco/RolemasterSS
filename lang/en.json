@@ -290,7 +290,8 @@
             "special_bonus_2": "Special Bonus 2:",
             "total_bonus": "Total Bonus:",
             "description": "Description:",
-            "progression": "Category progression"
+            "progression": "Category progression",
+            "skill_tab": "Skill tab"
         },
         "skill": {
             "favorite": "Favorite?",
@@ -308,7 +309,11 @@
             "designation": "Designation",
             "category": "Category",
             "offensive": "Offensive?"
-
+        },
+        "skills_tabs": {
+            "skills": "Skills",
+            "spells": "Spells",
+            "languages": "Languages"
         },
         "language": {
             "spoken": "Spoken",
@@ -394,6 +399,11 @@
         },
         "effects": {
             "effects": "Active effects"
+        },
+        "spell_lists": {
+            "realm": "Realm",
+            "type": "Type",
+            "profession": "Profession"
         }
     }
 }

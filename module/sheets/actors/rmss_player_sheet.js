@@ -2,6 +2,7 @@ import RankCalculator from '../skills/rmss_rank_calculator.js';
 import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
 import { InputTextSearchStrategy } from '../search/rmss_text_search.js';
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
+import * as CONFIG from "../../config.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -12,7 +13,10 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       height: 780,
       template: "systems/rmss/templates/sheets/actors/rmss-character-sheet.html",
       classes: ["rmss", "sheet", "actor"],
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body" }]
+      tabs: [
+          { navSelector: ".sheet-tabs", contentSelector: ".sheet-body" },
+          { navSelector: ".sub-tabs", contentSelector: ".sub-tab-content" }
+      ]
     });
   }
 
@@ -84,10 +88,13 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         console.log("Not Owned!");
         super._onDropItem(event, data);
       }
-    } else if (itemData.type === "skill") {
+    }
+    else if (itemData.type === "skill") {
+      const skillCategoryId = itemData.system.category;
+      const skillCategory = this.actor.items.get(skillCategoryId);
+
       // Get the already owned Items from the actor and push into an array
       const owneditems = this.object.getOwnedItemsByType("skill");
-
       let ownedskilllist = Object.values(owneditems);
 
       // Check if the dragged item is not in the array and not owned
@@ -152,11 +159,14 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     // Initialize containers.
     const gear = [];
     const playerskill = [];
+    const spellskill = [];
     const skillcat = [];
+    const languageskill = [];
     const weapons = [];
     const armor = [];
     const herbs = [];
     const spells = [];
+    const spellists = [];
     const equipables = [];
 
     // Iterate through items, allocating to containers
@@ -176,9 +186,31 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       else if (i.type === "skill_category") {
         skillcat.push(i);
       }
+      else if (i.type === "spell_list"){
+        spellists.push(i);
+      }
       // Append to playerskill
       else if (i.type === "skill") {
-        playerskill.push(i);
+        const skillCategoryId = i.system.category;
+        let skillCategory = this.actor.items.get(skillCategoryId);
+
+        if (skillCategory === undefined) {
+          playerskill.push(i);
+          continue;
+        }
+
+        if (!skillCategory.system.hasOwnProperty("skill_tab")) {
+          skillCategory.system.skill_tab = "skills";
+        }
+        if (skillCategory.system.skill_tab === "spells") {
+          spellskill.push(i);
+        }
+        else if (skillCategory.system.skill_tab === "languages") {
+          languageskill.push(i);
+        }
+        else {
+          playerskill.push(i);
+        }
       }
       else if (i.type === "armor") {
         armor.push(i);
@@ -187,7 +219,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         spells.push(i);
       }
     }
-
 
     // Sort Skill/Skillcat Arrays
     skillcat.sort(function (a, b) {
@@ -218,10 +249,14 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     context.armor = armor;
     context.herbs = herbs;
     context.spells = spells;
+    context.spellskill = spellskill;
+    context.spellists = spellists;
+    context.languageskill= languageskill;
+    context.config = CONFIG.rmss;
+    console.log(spellists);
   }
 
   async renderCharacterSettings(data) {
-    console.log(data);
     const configSheet = await renderTemplate("systems/rmss/templates/sheets/actors/dialogs/actor-settings.html", data);
     return (configSheet);
   }
@@ -353,7 +388,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     // Wear/Remove Item
     html.find(".wearable").click(ev => {
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      console.log(item);
       console.log(`Before change: ${item.system.equipped}`);
       if (item.system.worn === true) {
         console.log("Setting False");
