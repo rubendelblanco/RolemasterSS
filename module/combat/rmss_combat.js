@@ -102,8 +102,6 @@ export class RMSSCombat extends Combat {
             return;
         }
 
-        console.log("Target Token:", targets);
-
         return targets;
     }
 

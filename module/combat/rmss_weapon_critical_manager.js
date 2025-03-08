@@ -43,18 +43,24 @@ export class RMSSWeaponCriticalManager {
         }
     }
 
+    static async updateActorHits(actorId, damage, gmResponse, enemy) {
+        let actor = game.actors.get(actorId);
+        if (!actor) return;
+        let newHits = actor.system.attributes.hits.current - parseInt(gmResponse.damage);
+        await actor.update({ "system.attributes.hits.current": newHits });
+        let roll = new Roll(`(1d100)`);
+        await roll.toMessage(undefined,{create:true});
+        let result = (parseInt(roll.total)+parseInt(gmResponse.modifier));
+        if (result < 1) result = 1;
+        if (result > 100) result = 100;
+        return await RMSSTableManager.getCriticalTableResult(result, enemy, gmResponse.severity, gmResponse.critType);
+    }
+
     static async sendCriticalMessage(enemy, damage, severity, critType) {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", enemy, damage, severity, critType);
 
         if (gmResponse["confirmed"]) {
-            enemy.system.attributes.hits.current -= parseInt(gmResponse.damage);
-            await enemy.update({ "system.attributes.hits.current": enemy.system.attributes.hits.current });
-            let roll = new Roll(`(1d100)`);
-            await roll.toMessage(undefined,{create:true});
-            let result = (parseInt(roll.total)+parseInt(gmResponse.modifier));
-            if (result < 1) result = 1;
-            if (result > 100) result = 100;
-            return await RMSSTableManager.getCriticalTableResult(result, enemy, gmResponse.severity, gmResponse.critType);
+            await socket.executeAsGM("updateActorHits", enemy.id, parseInt(gmResponse.damage), gmResponse, enemy);
         }
     }
 
