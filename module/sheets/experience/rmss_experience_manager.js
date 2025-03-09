@@ -334,15 +334,15 @@ export default class ExperiencePointsCalculator {
         }
 
         html.find("#add-exp").click(async ev => {
-            const totalExp = parseInt(html.find('.exp-total').text());
-            actor.system.attributes.experience_points += parseInt(totalExp);
-            let totalExpActor = parseInt(actor.system.attributes.experience_points);
+            const totalExp = parseInt(html.find('.exp-total').text().trim(), 10);
+            actor.system.attributes.experience_points.value += parseInt(totalExp);
+            let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
 
             if (isNaN(totalExpActor)) {
                 ui.notifications.error("Experience calculation error.");
                 return;
             }
-            await actor.update({"system.attributes.experience_points": totalExpActor});
+            await actor.update({"system.attributes.experience_points.value": totalExpActor});
         })
 
         html.find("#reset-exp").click(async ev => {
