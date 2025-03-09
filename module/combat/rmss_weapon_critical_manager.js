@@ -37,30 +37,29 @@ export class RMSSWeaponCriticalManager {
                 return {'damage':damage, 'severity':severity, 'critType':critType};
             }
             else {
-                console.log("Invalid critical format");
+                ui.notifications.error("Invalid critical format");
                 return {};
             }
         }
     }
 
-    static async updateActorHits(actorId, damage, gmResponse, enemy) {
-        let actor = game.actors.get(actorId);
-        if (!actor) return;
-        let newHits = actor.system.attributes.hits.current - parseInt(gmResponse.damage);
-        await actor.update({ "system.attributes.hits.current": newHits });
+    static async updateActorHits(target, damage, gmResponse, enemy) {
+        if (!target) return;
+        let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
+        await target.update({ "system.attributes.hits.current": newHits });
         let roll = new Roll(`(1d100)`);
         await roll.toMessage(undefined,{create:true});
         let result = (parseInt(roll.total)+parseInt(gmResponse.modifier));
         if (result < 1) result = 1;
         if (result > 100) result = 100;
-        return await RMSSTableManager.getCriticalTableResult(result, enemy, gmResponse.severity, gmResponse.critType);
+        return await RMSSTableManager.getCriticalTableResult(result, target, gmResponse.severity, gmResponse.critType);
     }
 
-    static async sendCriticalMessage(enemy, damage, severity, critType) {
-        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", enemy, damage, severity, critType);
+    static async sendCriticalMessage(target, damage, severity, critType) {
+        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target, damage, severity, critType);
 
         if (gmResponse["confirmed"]) {
-            await socket.executeAsGM("updateActorHits", enemy.id, parseInt(gmResponse.damage), gmResponse, enemy);
+           return await socket.executeAsGM("updateActorHits", target, parseInt(gmResponse.damage), gmResponse);
         }
     }
 
@@ -108,7 +107,7 @@ export class RMSSWeaponCriticalManager {
                     cancel: {
                         label: "Cancelar",
                         callback: () => {
-                            console.log("Ataque cancelado");
+                            ui.notifications.error("Attack cancelled!");
                         }
                     }
                 },
@@ -137,6 +136,7 @@ export class RMSSWeaponCriticalManager {
      */
     static async applyCriticalToEnemy(critical, enemy, attackerId){
         const attacker =  game.actors.get(attackerId);
+        console.log(critical);
 
         if (!critical.hasOwnProperty("metadata")) {
             return;

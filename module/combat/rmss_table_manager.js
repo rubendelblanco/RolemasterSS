@@ -52,10 +52,6 @@ export default class RMSSTableManager {
                     content: htmlContent,
                     speaker: speaker
                 });
-                 if (parseInt(criticalData["damage"]) > 0) {
-                    enemy.system.attributes.hits.current -= parseInt(criticalData["damage"]);
-                    await enemy.update({ "system.attributes.hits.current": enemy.system.attributes.hits.current });
-                }
             }
         }
 
