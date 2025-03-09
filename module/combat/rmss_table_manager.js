@@ -41,7 +41,7 @@ export default class RMSSTableManager {
             else if (element.Result === result) {
                 const damage = element[at];
                 const criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
-                const htmlContent = await renderTemplate("systems/rmss/templates/combat/critical-roll-button.hbs", {
+                const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
                     damage: damage,
                     criticalData: criticalData,
                     attacker: attacker
@@ -90,8 +90,7 @@ export default class RMSSTableManager {
                 else {
                     criticalResult["metadata"] = element[severity]["metadata"][0];
                 }
-                console.log(criticalResult);
-                const htmlContent = await renderTemplate("systems/rmss/templates/combat/critical-result.hbs", {
+                const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-result.hbs", {
                     result: criticalResult
                 });
                 const speaker = "Game Master";
