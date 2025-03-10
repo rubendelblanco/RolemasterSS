@@ -342,6 +342,7 @@
             "maneuver": "Maneuver EPs",
             "critical": "Critical EPs",
             "kill": "Kill EPs",
+            "hp": "Hit points Eps",
             "level_up": "Level up",
             "end_level_up": "End level up",
             "dps": "Development points",

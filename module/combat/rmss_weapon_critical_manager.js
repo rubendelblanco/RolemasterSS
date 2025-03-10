@@ -1,5 +1,7 @@
 import {socket} from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
+import CombatExperience from "../sheets/experience/rmss_combat_experience.js";
+import {sendExpMessage} from "../chat/chatMessages.js";
 
 export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result) {
@@ -43,7 +45,7 @@ export class RMSSWeaponCriticalManager {
         }
     }
 
-    static async updateActorHits(target, damage, gmResponse, enemy) {
+    static async updateActorHits(target, damage, gmResponse) {
         if (!target) return;
         let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
         await target.update({ "system.attributes.hits.current": newHits });
@@ -55,10 +57,21 @@ export class RMSSWeaponCriticalManager {
         return await RMSSTableManager.getCriticalTableResult(result, target, gmResponse.severity, gmResponse.critType);
     }
 
-    static async sendCriticalMessage(target, damage, severity, critType) {
+    static async sendCriticalMessage(target, damage, severity, critType, attackerId) {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target, damage, severity, critType);
 
         if (gmResponse["confirmed"]) {
+            const actor = CombatExperience.isAPC(attackerId);
+            if (actor) {
+                const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target, gmResponse.severity));
+                const hpExp = parseInt(damage);
+                const breakDown = {'critical':criticalExp, 'hp':hpExp};
+                const totalExp = criticalExp+hpExp;
+                let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
+                totalExpActor = totalExpActor + totalExp;
+                await actor.update({"system.attributes.experience_points.value": totalExpActor});
+                sendExpMessage(actor, breakDown, totalExp);
+            }
            return await socket.executeAsGM("updateActorHits", target, parseInt(gmResponse.damage), gmResponse);
         }
     }

@@ -122,7 +122,8 @@ export default class ExperiencePointsCalculator {
     }
 
     static calculateCriticalExpPoints(criticalLevel, opponentLevel) {
-        const critical = ExperiencePointsCalculator.data.criticalExpPoints[criticalLevel];
+        opponentLevel = parseInt(opponentLevel);
+        const critical = ExperiencePointsCalculator.data.criticalExpPoints[criticalLevel.toLowerCase()];
         return (critical * 5 * opponentLevel);
     }
 
@@ -227,7 +228,6 @@ export default class ExperiencePointsCalculator {
 
             if (isNaN(spellCaster) || spellCaster === null || isNaN(spellLevel) || spellLevel === null) {
                 expPoints = 0;
-                console.log("PIFIA AQUI");
             } else {
                 expPoints = 100 - (10 * (spellCaster - spellLevel));
 
@@ -253,7 +253,7 @@ export default class ExperiencePointsCalculator {
 
         function getCriticalExpPoints(){
             const criticalLevel = html.find("#critical-level-exp").val();
-            const opponentLevel = parseInt(html.find("#opponent-level").val());
+            const opponentLevel = html.find("#opponent-level").val();
             let expPoints = 0;
 
             if (criticalLevel !== null && opponentLevel !== null) {
@@ -347,7 +347,6 @@ export default class ExperiencePointsCalculator {
                 return;
             }
             const experienceBreakdown = getExperienceBreakdown();
-            console.log("--------------------------------------------------------------------------------------------");
             console.log(experienceBreakdown);
             await actor.update({"system.attributes.experience_points.value": totalExpActor});
             await sendExpMessage(actor, experienceBreakdown, totalExp);

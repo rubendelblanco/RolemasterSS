@@ -12,10 +12,10 @@ export async function sendExpMessage(actor, expBreakdown, expAmount) {
     //send only to user owner an GMs
     const whispers = [];
     if (actor.isOwner) {
-        whispers.push(game.user.id);  // El propietario del actor
+        whispers.push(game.user.id);
     }
     if (game.users.filter(u => u.isGM).length > 0) {
-        whispers.push(...game.users.filter(u => u.isGM).map(u => u.id)); // Los GMs
+        whispers.push(...game.users.filter(u => u.isGM).map(u => u.id));
     }
 
     ChatMessage.create({

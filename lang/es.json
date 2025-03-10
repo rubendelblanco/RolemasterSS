@@ -342,6 +342,7 @@
       "maneuver": "PE por maniobra",
       "critical": "PE por crítico",
       "kill": "PE por \"pieza\"",
+      "hp": "PE por PV",
       "level_up": "Subir nivel",
       "end_level_up": "Terminar de subir nivel",
       "dps": "Puntos de desarrollo",
