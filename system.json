@@ -57,12 +57,11 @@
   },
   "license": "LICENSE.txt",
   "socket": true,
-  "requires": [
+  "dependencies": [
     {
-      "id": "socketlib",
-      "type": "module",
-      "manifest": "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/master/module.json",
-      "compatibility": {}
+      "name": "socketlib",
+      "url": "https://github.com/ElDiablo/FoundryVTT-SocketLib",
+      "type": "module"
     }
   ]
 }

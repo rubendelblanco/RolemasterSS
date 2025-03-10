@@ -12,4 +12,10 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         const criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(token.actor, damage, severity, critType);
         await RMSSWeaponCriticalManager.applyCriticalToEnemy(criticalResult, token.actor, attackerId);
     });
+
+    html.find('.click-to-toggle').on('click', (event) => {
+        const breakdown = html.find('.breakdown-details');
+        breakdown.toggle();
+    });
 });
+

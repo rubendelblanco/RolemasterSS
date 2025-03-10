@@ -158,6 +158,11 @@ Hooks.once("init", function () {
     }
   });
 
+  Handlebars.registerHelper('localizeKey', function(key) {
+    return game.i18n.localize(`rmss.experience.${key}`);
+  });
+
+
   //Combat hooks
   const combatSoundManager = new CombatStartManager();
 });

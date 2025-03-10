@@ -1,4 +1,5 @@
 import LevelUpManager from "./rmss_level_up_manager.js";
+import { sendExpMessage } from "../../chat/chatMessages.js";
 
 export default class ExperiencePointsCalculator {
     // JSON object storing experience points for each maneuver type
@@ -299,9 +300,6 @@ export default class ExperiencePointsCalculator {
             const bonusCode = html.find("#bonus-code").val();
             let expPoints = 0;
 
-            console.log(bonusAttackerLevel);
-            console.log(bonusCode);
-
             if (bonusAttackerLevel !== null && bonusCode !== null) {
                 expPoints = ExperiencePointsCalculator.calculateBonusExpPoints(bonusAttackerLevel, bonusCode);
             }
@@ -322,14 +320,20 @@ export default class ExperiencePointsCalculator {
             calculateTotalExpPoints();
         })
 
-        function calculateTotalExpPoints() {
+        function getExperienceBreakdown() {
             const maneuver = parseInt(html.find('.maneuver-exp-total').text());
             const spell = parseInt(html.find('.spell-exp-total').text());
             const critical = parseInt(html.find('.critical-exp-total').text());
             const kill = parseInt(html.find('.kill-exp-total').text());
             const bonus = parseInt(html.find('.bonus-exp-total').text());
             const misc = parseInt(html.find('.misc-exp-total').text());
-            const totalExp = maneuver+spell+critical+kill+bonus+misc;
+
+            return {'maneuver': maneuver, 'spell': spell, 'critical': critical, 'kill': kill, 'bonus': bonus, 'misc':misc};
+        }
+
+        function calculateTotalExpPoints() {
+            const experienceBreakdown = getExperienceBreakdown();
+            const totalExp = Object.values(experienceBreakdown).reduce((sum, value) => sum + value, 0);
             html.find('.exp-total').text(totalExp);
         }
 
@@ -342,7 +346,11 @@ export default class ExperiencePointsCalculator {
                 ui.notifications.error("Experience calculation error.");
                 return;
             }
+            const experienceBreakdown = getExperienceBreakdown();
+            console.log("--------------------------------------------------------------------------------------------");
+            console.log(experienceBreakdown);
             await actor.update({"system.attributes.experience_points.value": totalExpActor});
+            await sendExpMessage(actor, experienceBreakdown, totalExp);
         })
 
         html.find("#reset-exp").click(async ev => {

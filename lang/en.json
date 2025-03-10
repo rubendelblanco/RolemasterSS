@@ -346,7 +346,12 @@
             "end_level_up": "End level up",
             "dps": "Development points",
             "bonus_code": "Bonus code",
-            "bonus": "Creature bonus"
+            "bonus": "Creature bonus",
+            "misc": "Miscellaneous",
+            "total": "Total",
+            "has_gained": "has gained",
+            "experience_points": "experience points",
+            "experience_gained": "\uD83C\uDF89 Experience Gained! \uD83C\uDF89"
         },
         "combat": {
             "confirm_attack": "Confirm attack",
