@@ -2,6 +2,7 @@ import {socket} from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
 import CombatExperience from "../sheets/experience/rmss_combat_experience.js";
 import {sendExpMessage} from "../chat/chatMessages.js";
+import Utils from "../utils.js";
 
 export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result) {
@@ -61,7 +62,7 @@ export class RMSSWeaponCriticalManager {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target, damage, severity, critType);
 
         if (gmResponse["confirmed"]) {
-            const actor = CombatExperience.isAPC(attackerId);
+            const actor = Utils.isAPC(attackerId);
             if (actor) {
                 const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target, gmResponse.severity));
                 const hpExp = parseInt(damage);

@@ -1,5 +1,6 @@
 import {socket} from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
+import Utils from "../utils.js";
 
 export class RMSSWeaponSkillManager {
 
@@ -28,12 +29,28 @@ export class RMSSWeaponSkillManager {
         else if (hitsTaken < 25) {
             hitsTakenPenalty = -30;
         }
+
+        const bonusEffects = Utils.getEffectByName(actor, "Bonus");
+        const stunEffect = Utils.getEffectByName(enemy, "Stunned");
+        let bonusValue = 0;
+        let stunnedValue = false;
+
+        bonusEffects.forEach((bonus) => {
+            bonusValue += bonus.flags.value;
+        })
+
+        if (stunEffect.length > 0 && stunEffect[0].duration.rounds > 0) {
+            stunnedValue = true;
+        }
+
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: actor,
             enemy: enemy,
             weapon: weapon,
             ob: ob,
-            hitsTaken: hitsTakenPenalty
+            hitsTaken: hitsTakenPenalty,
+            bonusValue: bonusValue,
+            stunnedValue: stunnedValue,
         });
 
         let confirmed = await new Promise((resolve) => {

@@ -335,7 +335,7 @@
       "weight": 0,
       "cost": 0,
       "prod_time": 0,
-      "at": 0
+      "at": 1
     },
     "weapon": {
       "templates": ["base"],
