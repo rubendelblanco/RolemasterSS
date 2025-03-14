@@ -54,7 +54,6 @@ export default class RMSSTableManager {
                 });
             }
         }
-
     }
 
     static async loadCriticalTable(criticalType) {
@@ -80,7 +79,7 @@ export default class RMSSTableManager {
             let criticalResult = element[severity];
             if (result >= parseInt(element["lower"]) && result <= parseInt(element["upper"])) {
                 if (!element[severity].hasOwnProperty("metadata")) {
-                    return {};
+                    criticalResult["metadata"] = {};
                 }
 
                 if (element[severity].metadata.length > 1) {
