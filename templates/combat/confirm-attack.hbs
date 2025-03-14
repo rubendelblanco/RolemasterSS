@@ -45,10 +45,10 @@
       <input type="number" id="target-at" name="target-at" value="{{actor.system.armor_info.armor_type}}">
 
       <label for="target-shield">{{ localize "rmss.combat.shield" }} </label>
-      <input type="number" class="calculable is-positive" id="target-shield" name="target-shield" value="0">
+      <input type="number" class="calculable is-positive" id="target-shield" name="target-shield" value="{{enemy.system.armor_info.shield_bonus}}">
 
       <label for="target-db">{{ localize "rmss.combat.db" }}</label>
-      <input type="number" class="calculable is-positive" id="target-db" name="target-db" value="0">
+      <input type="number" class="calculable is-positive" id="target-db" name="target-db" value="{{enemy.system.armor_info.total_db}}">
 
       <label for="target-cover">{{ localize "rmss.combat.cover" }}</label>
       <select class="calculable" id="target-cover">
