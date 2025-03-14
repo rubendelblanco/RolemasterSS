@@ -342,11 +342,17 @@
       "maneuver": "PE por maniobra",
       "critical": "PE por crítico",
       "kill": "PE por \"pieza\"",
+      "hp": "PE por PV",
       "level_up": "Subir nivel",
       "end_level_up": "Terminar de subir nivel",
       "dps": "Puntos de desarrollo",
       "bonus_code": "Código bonus",
-      "bonus": "Bonus por criatura"
+      "bonus": "Bonus por criatura",
+      "misc": "Misceláneo",
+      "total": "Total",
+      "has_gained": "ha ganado",
+      "experience_points": "puntos de experiencia",
+      "experience_gained": "\uD83C\uDF89 ¡Experiencia Ganada! \uD83C\uDF89"
     },
     "combat": {
       "confirm_attack": "Confirmar ataque",

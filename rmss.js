@@ -71,6 +71,7 @@ Hooks.once("socketlib.ready", () => {
   socket.register("confirmWeaponAttack", RMSSWeaponSkillManager.attackMessagePopup);
   socket.register("confirmWeaponCritical", RMSSWeaponCriticalManager.criticalMessagePopup);
   socket.register("chooseCriticalOption", RMSSWeaponCriticalManager.chooseCriticalOption);
+  socket.register("updateActorHits", RMSSWeaponCriticalManager.updateActorHits);
 });
 
 // Hook the init function and set up our system
@@ -156,6 +157,11 @@ Hooks.once("init", function () {
       return options.fn(this);
     }
   });
+
+  Handlebars.registerHelper('localizeKey', function(key) {
+    return game.i18n.localize(`rmss.experience.${key}`);
+  });
+
 
   //Combat hooks
   const combatSoundManager = new CombatStartManager();

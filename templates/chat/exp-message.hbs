@@ -1,0 +1,14 @@
+<div class="chat-exp-message">
+    <h3>{{localize "rmss.experience.experience_gained"}}</h3>
+    <p><strong>{{actorName}}</strong> {{localize "rmss.experience.has_gained"}} <strong>{{expGained}}</strong> {{localize "rmss.experience.experience_points"}}</p>
+    <p class="click-to-toggle">+ Info</p>
+    <div class="breakdown-details" style="display:none;">
+        <ol>
+            {{#each expBreakdown}}
+                {{#if this}}
+                    <li>{{localizeKey @key}}: {{this}}</li>
+                {{/if}}
+            {{/each}}
+        </ol>
+    </div>
+</div>

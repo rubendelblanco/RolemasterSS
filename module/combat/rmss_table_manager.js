@@ -41,7 +41,7 @@ export default class RMSSTableManager {
             else if (element.Result === result) {
                 const damage = element[at];
                 const criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
-                const htmlContent = await renderTemplate("systems/rmss/templates/combat/critical-roll-button.hbs", {
+                const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
                     damage: damage,
                     criticalData: criticalData,
                     attacker: attacker
@@ -52,13 +52,8 @@ export default class RMSSTableManager {
                     content: htmlContent,
                     speaker: speaker
                 });
-                 if (parseInt(criticalData["damage"]) > 0) {
-                    enemy.system.attributes.hits.current -= parseInt(criticalData["damage"]);
-                    await enemy.update({ "system.attributes.hits.current": enemy.system.attributes.hits.current });
-                }
             }
         }
-
     }
 
     static async loadCriticalTable(criticalType) {
@@ -84,7 +79,7 @@ export default class RMSSTableManager {
             let criticalResult = element[severity];
             if (result >= parseInt(element["lower"]) && result <= parseInt(element["upper"])) {
                 if (!element[severity].hasOwnProperty("metadata")) {
-                    return {};
+                    criticalResult["metadata"] = {};
                 }
 
                 if (element[severity].metadata.length > 1) {
@@ -94,8 +89,7 @@ export default class RMSSTableManager {
                 else {
                     criticalResult["metadata"] = element[severity]["metadata"][0];
                 }
-                console.log(criticalResult);
-                const htmlContent = await renderTemplate("systems/rmss/templates/combat/critical-result.hbs", {
+                const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-result.hbs", {
                     result: criticalResult
                 });
                 const speaker = "Game Master";
