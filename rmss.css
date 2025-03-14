@@ -873,3 +873,58 @@ form .spell-list tr.spell td {
    margin-left: 10%;
 }
 
+<<<<<<< Updated upstream
+=======
+.chat-exp-message {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.click-to-toggle {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.breakdown-details {
+    margin-top: 10px;
+    padding: 0.5em;
+    display: none;
+    background-color: #9bc4a4;
+    border-radius: 10px;
+}
+
+.breakdown-details ol li {
+    background-color: #32CD32FF;
+    padding: 1%;
+    border-radius:5px;
+}
+
+.breakdown-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.chat-exp-message ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.chat-exp-message li {
+    padding-left: 0;
+    margin-bottom: 0.5em;
+}
+
+.creature-attack-special select {
+    width:50%;
+}
+
+select[name="system.special"] {
+    width:50%;
+}
+
+
+>>>>>>> Stashed changes
