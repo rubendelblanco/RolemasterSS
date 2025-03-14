@@ -5,7 +5,11 @@
     <div class="skills-grid-heading">{{ localize "rmss.creature_attack.attacks_number" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.creature_attack.probability" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.creature_attack.special" }}</div>
-    <div></div>
+    <div class="skills-grid-heading">
+        <a class="item-control item-create" title="Create Item" data-type="creature_attack">
+            <i class="fas fa-plus"></i>{{ localize "rmss.pc_sheet_items.add_item" }}
+        </a>
+    </div>
     {{#each creature_attack as |attack id|}}
         <div class="creature-attack-calc" data-item-id="{{attack._id}}" data-item-order="{{attack.system.order}}">
             <div class="creature-attack-name clickable offensive-skill" data-item-id="{{attack._id}}">{{attack.name}}

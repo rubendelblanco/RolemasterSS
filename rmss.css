@@ -916,4 +916,11 @@ form .spell-list tr.spell td {
     margin-bottom: 0.5em;
 }
 
+.creature-attack-special select {
+    width:50%;
+}
+
+select[name="system.special"] {
+    width:50%;
+}
 
