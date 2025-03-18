@@ -42,7 +42,7 @@
 
     <div class="form-group defender">
       <label for="target-at">{{ localize "rmss.combat.at" }}</label>
-      <input type="number" id="target-at" name="target-at" value="{{actor.system.armor_info.armor_type}}">
+      <input type="number" id="target-at" name="target-at" value="{{enemy.system.armor_info.armor_type}}">
 
       <label for="target-shield">{{ localize "rmss.combat.shield" }} </label>
       <input type="number" class="calculable is-positive" id="target-shield" name="target-shield" value="{{enemy.system.armor_info.shield_bonus}}">

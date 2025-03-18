@@ -22,14 +22,13 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
   // Make the data available to the sheet template
   async getData() {
-    const context = super.getData();
+    const context = await super.getData();
     // Use a safe clone of the actor data for further operations.
     const actorData = this.actor.toObject(false);
     let enrichedDescription = await TextEditor.enrichHTML(this.actor.system.description, { async: true });
 
     // Add the actor's data to context.data for easier access, as well as flags.
     context.system = actorData.system;
-    context.flags = actorData.flags;
     context.enrichedDescription = enrichedDescription;
 
     //effects
@@ -43,6 +42,13 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
     return context;
   }
+
+  //Not sure if this thing do something (legacy code)
+  async renderCharacterSettings(data) {
+     const configSheet = await renderTemplate("systems/rmss/templates/sheets/actors/apps/actor-settings.html", data);
+     return (configSheet);
+  }
+
 
   // Override this method to check for duplicates when things are dragged to the sheet
   // We don't want duplicate skills and skill categories.
@@ -254,11 +260,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     context.languageskill= languageskill;
     context.config = CONFIG.rmss;
     console.log(spellists);
-  }
-
-  async renderCharacterSettings(data) {
-    const configSheet = await renderTemplate("systems/rmss/templates/sheets/actors/dialogs/actor-settings.html", data);
-    return (configSheet);
   }
 
   async handleStatsPotElement(element, potentialStatsInput) {

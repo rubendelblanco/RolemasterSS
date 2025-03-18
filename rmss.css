@@ -924,3 +924,9 @@ select[name="system.special"] {
     width:50%;
 }
 
+.sheet .editor-content {
+    min-height: 30px;
+    overflow-y: auto;
+    word-break: break-word;
+}
+

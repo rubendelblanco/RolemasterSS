@@ -210,6 +210,9 @@ export class RMSSWeaponCriticalManager {
         }
 
         if (critical.metadata.hasOwnProperty("PE")){
+            let penaltyValue = parseInt(critical.metadata["PE"]["VALUE"]);
+            penaltyValue = penaltyValue > 0 ? -penaltyValue: penaltyValue;
+
             const effectData = {
                 name: "Penalty",
                 icon: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
@@ -217,7 +220,7 @@ export class RMSSWeaponCriticalManager {
                 disabled: false,
                 description: critical.text,
                 flags: {
-                    value: parseInt(critical.metadata["PE"]["VALUE"])
+                    value: penaltyValue
                 },
                 duration: {
                     rounds: 1, //need to put a value. Otherwise, ActiveEffects doesn't render the icon in token

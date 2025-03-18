@@ -33,7 +33,6 @@ export default class RMSSCharacterSheet extends ActorSheet {
             else {
                 ob = weapon.system.bonus;
             }
-            console.log(enemy.document.system);
 
             await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, weapon, ob);
         });
