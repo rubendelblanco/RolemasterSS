@@ -1,0 +1,1185 @@
+[
+    {
+      "lower": "01",
+      "upper": "05",
+      "A": {
+        "text": "El enemigo rueda con el golpe y apenas se inmuta.",
+        "metadata": []
+      },
+      "B": {
+        "text": "Le causas un leve moretón en el codo. Nada grave.",
+        "metadata": []
+      },
+      "C": {
+        "text": "El impacto le roza; sigue avanzando sin mayores problemas.",
+        "metadata": [
+          {
+            "HP": 1
+          }
+        ]
+      },
+      "D": {
+        "text": "Tu golpe no va muy fuerte. El rival resiste sin caer.",
+        "metadata": [
+          {
+            "HP": 2
+          }
+        ]
+      },
+      "E": {
+        "text": "De algún modo, esquiva lo peor del golpe. ¿Suerte o habilidad?",
+        "metadata": [
+          {
+            "HP": 3
+          }
+        ]
+      }
+    },
+    {
+      "lower": "06",
+      "upper": "10",
+      "A": {
+        "text": "Parece un golpe sólido, pero el rival no se ve perjudicado.",
+        "metadata": [
+          {
+            "HP": 1
+          }
+        ]
+      },
+      "B": {
+        "text": "Empujón al pecho que le hace perder un adorno de su atuendo.",
+        "metadata": [
+          {
+            "HP": 2
+          }
+        ]
+      },
+      "C": {
+        "text": "Gira para evadir y recibe un leve impacto en las nalgas.",
+        "metadata": [
+          {
+            "HP": 3
+          }
+        ]
+      },
+      "D": {
+        "text": "Atacas al hombro, pero apenas logras un golpe superficial.",
+        "metadata": [
+          {
+            "HP": 4
+          }
+        ]
+      },
+      "E": {
+        "text": "El rival se desequilibra y retrocede para recobrar la postura.",
+        "metadata": [
+          {
+            "HP": 3,
+            "PE": {
+              "VALUE": 15,
+              "ROUNDS": 2
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "11",
+      "upper": "15",
+      "A": {
+        "text": "Con gran esfuerzo, evita casi todo el daño. Ganas la iniciativa.",
+        "metadata": [
+          {
+            "HP": 2
+          }
+        ]
+      },
+      "B": {
+        "text": "Le alteras el equilibrio; tropieza y pierde la iniciativa.",
+        "metadata": [
+          {
+            "HP": 4
+          }
+        ]
+      },
+      "C": {
+        "text": "Golpe firme que lo hace retroceder. Debe pararse a defender 1 ronda.",
+        "metadata": [
+          {
+            "HP": 3,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Impacto leve pero bien colocado en el pecho. Retrocede 5 pies.",
+        "metadata": [
+          {
+            "HP": 4,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Se tambalea y tropieza, recibiendo algo de daño y quedando aturdido.",
+        "metadata": [
+          {
+            "HP": 6,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "16",
+      "upper": "20",
+      "A": {
+        "text": "Lo haces girar, pero se recupera con rapidez. Ganas la iniciativa.",
+        "metadata": [
+          {
+            "HP": 3
+          }
+        ]
+      },
+      "B": {
+        "text": "Esquiva el daño serio, pero debe cubrirse 1 ronda.",
+        "metadata": [
+          {
+            "HP": 2,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Golpe sólido que anula su oportunidad de iniciativa y lo fuerza a replegarse.",
+        "metadata": [
+          {
+            "HP": 4,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Retrocede para evitar el impacto en sus piernas.",
+        "metadata": [
+          {
+            "HP": 6,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "No esquiva del todo y casi se cae. Queda aturdido.",
+        "metadata": [
+          {
+            "HP": 9,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "21",
+      "upper": "35",
+      "A": {
+        "text": "Golpe desequilibrante: el rival no logra postura firme. Ganas 2 rondas de iniciativa.",
+        "metadata": [
+          {
+            "HP": 5
+          }
+        ]
+      },
+      "B": {
+        "text": "Buscas la cabeza, pero bloquea con un arma con bastante habilidad.",
+        "metadata": [
+          {
+            "HP": 5,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Se tambalea y solo logra defensas torpes mientras se recupera.",
+        "metadata": [
+          {
+            "HP": 8,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Casi lo mandas al suelo; golpea el suelo con el arma para sostenerse.",
+        "metadata": [
+          {
+            "HP": 10,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Se retuerce bajo tu golpe brutal. Evita un daño letal, pero su costado queda muy magullado.",
+        "metadata": [
+          {
+            "HP": 15,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "36",
+      "upper": "45",
+      "A": {
+        "text": "Debe retroceder 5 pies o caer. Pierde 2 rondas de iniciativa.",
+        "metadata": [
+          {
+            "HP": 8
+          }
+        ]
+      },
+      "B": {
+        "text": "Violento golpe al costado del escudo. Si hay escudo, se destruye. Queda con el costado dolorido.",
+        "metadata": [
+          {
+            "HP": 9,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Impacto cruel a la parte baja de la pierna. Defiende como puede para no desplomarse.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "¡Boom! Lo sacudes por la espalda, pero logra recuperarse con moretones leves.",
+        "metadata": [
+          {
+            "HP": 12,
+            "STUN": {
+              "ROUNDS": 2
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Golpe brutal en el hombro que lo lanza 10 pies. Se tambalea otros 5 antes de controlarse.",
+        "metadata": [
+          {
+            "HP": 15,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "PE": {
+              "VALUE": 15,
+              "ROUNDS": 2
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "46",
+      "upper": "50",
+      "A": {
+        "text": "Impacto contundente que lo descoloca. Recupera muy lento. Ganas 3 rondas de iniciativa.",
+        "metadata": [
+          {
+            "HP": 10
+          }
+        ]
+      },
+      "B": {
+        "text": "El enemigo pierde el equilibrio antes del golpe y esquiva parte del daño. Un objeto sale despedido.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Su brazo armado se estrella contra el pecho. Retrocede 5 pies casi cayendo.",
+        "metadata": [
+          {
+            "HP": 12,
+            "P": {
+              "ROUNDS": 2
+            },
+            "BONUS": {
+              "VALUE": 5
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Se sacude y da 5 pies de paso atrás durante 2 rondas. Si no puede moverse, cae.",
+        "metadata": [
+          {
+            "HP": 5,
+            "P": {
+              "ROUNDS": 2
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Vuela 5 pies atrás pero no cae. Queda aturdido y no puede parar.",
+        "metadata": [
+          {
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "51",
+      "upper": "55",
+      "A": {
+        "text": "Golpe lateral que daña parte de su equipo y lo hace tambalear.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Lo aplastas de costado. Sigue peleando, pero su postura se vuelve torpe y la armadura se afloja.",
+        "metadata": [
+          {
+            "HP": 12,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Golpe duro al flanco, la armadura no ayuda. El moretón es profundo.",
+        "metadata": [
+          {
+            "HP": 15,
+            "P": {
+              "ROUNDS": 2
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Lo aporreas: casi suelta el arma. Está aturdido y apenas reacciona.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": 1,
+            "BONUS": {
+              "VALUE": 5
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Intenta aguantar, pero termina en el suelo. Le cuesta 2 rondas levantarse.",
+        "metadata": [
+          {
+            "HP": 20,
+            "PE": {
+              "VALUE": 40,
+              "ROUNDS": 2
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "56",
+      "upper": "60",
+      "A": {
+        "text": "El brazo del escudo recibe castigo y el rival retrocede aturdido.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpe desordenado que clava su brazo armado contra su costado, dejándolo aturdido.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Bastonazo a las piernas. Casi se doblan por el dolor y retrocede 5 pies.",
+        "metadata": [
+          {
+            "HP": 12
+          },
+          {
+            "STUN": {
+              "ROUNDS": 2
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "El golpe golpea costillas y piel con dureza. Cree estar mortalmente herido.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2",
+            "PE": {
+              "VALUE": 10
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "El impacto hace volar su equipo suelto (escudo, casco...). Luego cae gravemente herido.",
+        "metadata": [
+          {
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "61",
+      "upper": "65",
+      "A": {
+        "text": "Golpe en el brazo armado. Sostiene el arma, pero el brazo queda maltrecho.",
+        "metadata": [
+          {
+            "DESC": "Con grebas de brazo",
+            "HP": 8,
+            "P": {
+              "ROUNDS": 1
+            }
+          },
+          {
+            "DESC": "Sin grebas de brazo",
+            "HP": 12,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpe al pecho. Si lleva armadura queda dañada; sin armadura, costillas rotas.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en el pecho",
+            "HP": 12,
+            "P": {
+              "ROUNDS": 2
+            }
+          },
+          {
+            "DESC": "Sin armadura en el pecho",
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1"
+          }
+        ]
+      },
+      "C": {
+        "text": "Arremetida feroz que hace caer al enemigo sobre su brazo armado. Queda indefenso un momento.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": 1,
+            "BONUS": {
+              "VALUE": 5
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Destrozas su brazo de escudo. Este absorbe algo del golpe, pero queda inútil.",
+        "metadata": [
+          {
+            "DESC": "Con escudo",
+            "HP": 5,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "PE": {
+              "VALUE": 10,
+              "ROUNDS": 3
+            }
+          },
+          {
+            "DESC": "Sin escudo",
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "1"
+          }
+        ]
+      },
+      "E": {
+        "text": "Destruyes su equilibrio y cae de espaldas. Piernas y orgullo muy heridos.",
+        "metadata": [
+          {
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "66",
+      "upper": "66",
+      "A": {
+        "text": "No se preparó bien para el golpe; su rodilla se tuerce dañando músculos y tendones.",
+        "metadata": [
+          {
+            "HP": 20,
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Los dedos quedan atrapados y fracturados. La mano de escudo es inútil por un día.",
+        "metadata": [
+          {
+            "HP": 15,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": 1
+          }
+        ]
+      },
+      "C": {
+        "text": "El impacto rompe su brazo de escudo y, al caer, se fractura la muñeca del otro brazo.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "PE": {
+              "VALUE": 90
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Le sacudes la cabeza con brutalidad. Cae inconsciente. Si no lleva casco, podría morir.",
+        "metadata": []
+      },
+      "E": {
+        "text": "Golpe letal a la cabeza. El cráneo se aplasta. Muerte instantánea, con casco o sin él.",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "67",
+      "upper": "70",
+      "A": {
+        "text": "Al evadir, expone el costado. Se tambalea y baja la guardia.",
+        "metadata": [
+          {
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": 1
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpe en la espalda lo pone de rodillas. Deja caer el arma y se levanta sin guardia.",
+        "metadata": [
+          {
+            "HP": 12,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": 1
+          }
+        ]
+      },
+      "C": {
+        "text": "Una parte rígida de su equipo se clava en el pecho. Dolor punzante y moretón permanente.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "1"
+          }
+        ]
+      },
+      "D": {
+        "text": "Lo derribas sobre su equipo, soltando el arma. No puede levantarse en 2 rondas.",
+        "metadata": [
+          {
+            "HP": 15,
+            "BONUS": {
+              "VALUE": 5
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Golpe al muslo que tuerce la pierna. En el forcejeo, se disloca un dedo.",
+        "metadata": [
+          {
+            "HP": 15,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "PE": {
+              "VALUE": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "71",
+      "upper": "75",
+      "A": {
+        "text": "Golpe moderado; deja huecos en su defensa. Si lleva escudo, está mal posicionado 1 ronda.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Impacto sólido al hombro: sentidos entumecidos y músculos doloridos. Anda desorientado.",
+        "metadata": [
+          {
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "1"
+          }
+        ]
+      },
+      "C": {
+        "text": "Arremetida violenta al torso. Cae y suelta equipo, quedando vulnerable mientras se alza.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": 2,
+            "BONUS": {
+              "VALUE": 5,
+              "ROUNDS": 2
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Golpe a las piernas que intenta saltar hacia atrás. Espinillas y rodillas muy adoloridas.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en piernas",
+            "HP": 8,
+            "PE": {
+              "VALUE": 20,
+              "ROUNDS": 2
+            }
+          },
+          {
+            "DESC": "Sin armadura en piernas",
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Impacto en el pecho que lo derriba. Armadura rota y costillas fracturadas.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en el pecho",
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 5
+            },
+            "P": {
+              "VALUE": 10
+            }
+          },
+          {
+            "DESC": "Sin armadura en el pecho",
+            "HP": 15,
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "PE": {
+              "VALUE": 30
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "76",
+      "upper": "80",
+      "A": {
+        "text": "Descarga un golpe fuerte al lado del escudo. Casi pierde el equilibrio. Si hay algo cerca, se apoya.",
+        "metadata": [
+          {
+            "DESC": "Con escudo",
+            "HP": 6,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          },
+          {
+            "DESC": "Sin escudo",
+            "HP": 15,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "1"
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpe irresistible que lo lanza de espaldas. Suelta el arma y acaba con varios moretones.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en el pecho",
+            "HP": 12,
+            "P": {
+              "ROUNDS": 3
+            }
+          },
+          {
+            "DESC": "Sin armadura en el pecho",
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": 2,
+            "BONUS": {
+              "VALUE": 5
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Lo barres de las piernas y cae de espaldas. Con armadura en piernas, tarda más en levantarse.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en piernas",
+            "HP": 5,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "PE": {
+              "VALUE": 60,
+              "ROUNDS": 2
+            }
+          },
+          {
+            "DESC": "Sin armadura en piernas",
+            "HP": 15,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "PE": {
+              "VALUE": 25
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Derribas su brazo armado contra el cuerpo como si fuera un palo. El brazo queda inútil.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Tremendo golpe al costado rompe hombro y clavícula. Un brazo inútil; el otro casi no responde.",
+        "metadata": [
+          {
+            "HP": 25
+          }
+        ]
+      }
+    },
+    {
+      "lower": "81",
+      "upper": "85",
+      "A": {
+        "text": "Un duro impacto al pecho deja un moretón profundo. Costillas agrietadas, cartílagos resentidos.",
+        "metadata": [
+          {
+            "HP": 10,
+            "PE": {
+              "VALUE": 25
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpe brutal entre los omóplatos: tendones y músculos sufren; el dolor lo invade todo.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "PE": {
+              "VALUE": 25
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Parecía liviano, pero su clavícula se quiebra. Furioso y adolorido, maldice su suerte.",
+        "metadata": [
+          {
+            "HP": 15,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "PE": {
+              "VALUE": 25
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Impacto a la cara y pecho: dientes rotos y costillas fisuradas. Queda inmóvil 3 asaltos.",
+        "metadata": [
+          {
+            "HP": 20
+          }
+        ]
+      },
+      "E": {
+        "text": "Embestida que daña órganos internos. Morirá en 6 asaltos si no recibe ayuda urgente.",
+        "metadata": [
+          {
+            "HP": 30
+          }
+        ]
+      }
+    },
+    {
+      "lower": "86",
+      "upper": "90",
+      "A": {
+        "text": "Golpe a las piernas que roba su equilibrio. Cae, golpeando espinilla y rodilla contra el suelo.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en piernas",
+            "HP": 8,
+            "STUN": {
+              "ROUNDS": 2
+            }
+          },
+          {
+            "DESC": "Sin armadura en piernas",
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3"
+          }
+        ]
+      },
+      "B": {
+        "text": "La fuerza se concentra en sus piernas: moretones y tendones dañados, pero sigue en pie.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en piernas",
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "PE": {
+              "VALUE": 50
+            }
+          },
+          {
+            "DESC": "Sin armadura en piernas",
+            "HP": 20,
+            "NP": "1",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "PE": {
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Le fracturas el muslo. No cae, pero no podrá caminar sin entablillado. Momento perfecto para rematar.",
+        "metadata": [
+          {
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2",
+            "PE": {
+              "VALUE": 60
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Arremetida brutal al torso: dañas órganos y tose sangre. Cae y no debería moverse. Si no lleva armadura en el abdomen, muere en 6 asaltos",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 12
+            },
+            "DESC": "Con armadura en el abdomen"
+          }
+        ]
+      },
+      "E": {
+        "text": "Lo derribas con dos costillas asomando. Órganos destrozados. Morirá en 3 asaltos inactivo.",
+        "metadata": [
+          {
+            "HP": "50"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "91",
+      "upper": "95",
+      "A": {
+        "text": "Golpe a la cabeza. Con casco, este se le gira tapándole la vista; sin casco, queda noqueado.",
+        "metadata": [
+          {
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": 50
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Impacto al costado de la cabeza. Con casco: coma 2 semanas; sin casco: muere en 1-10 asaltos.",
+        "metadata": [
+          {
+            "HP": 25
+          }
+        ]
+      },
+      "C": {
+        "text": "Quiebras su rodilla y cae. No se puede alzar sin ayuda. Baraja la rendición.",
+        "metadata": [
+          {
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 9
+            },
+            "NP": "9",
+            "PE": {
+              "0": "7",
+              "1": "5",
+              "VALUE": 75
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Mandíbula, rostro y cuello se rompen. Retrocede unos pasos y muere tras 3 asaltos sin moverse.",
+        "metadata": [
+          {
+            "HP": 50
+          }
+        ]
+      },
+      "E": {
+        "text": "Su mitad inferior queda aplastada. Pérdida de sangre masiva. Muere en 6 asaltos.",
+        "metadata": [
+          {
+            "HP": 30
+          }
+        ]
+      }
+    },
+    {
+      "lower": "96",
+      "upper": "99",
+      "A": {
+        "text": "Pierde la consciencia al instante. Se queda en pie un segundo con convulsiones y luego se desploma.",
+        "metadata": [
+          {
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": 50
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "La sobrecarga nerviosa hace que su corazón se detenga y reinicie varias veces. Cae y morirá en 9 asaltos.",
+        "metadata": [
+          {
+            "HP": 25
+          }
+        ]
+      },
+      "C": {
+        "text": "El calor y la fuerza del golpe fusionan huesos y tejidos. Muere en 3 asaltos.",
+        "metadata": [
+          {
+            "HP": 50
+          }
+        ]
+      },
+      "D": {
+        "text": "Lo lanzas 10 pies atrás. Con cadera y brazo rotos, agoniza 3 asaltos antes de morir.",
+        "metadata": [
+          {
+            "HP": 25
+          }
+        ]
+      },
+      "E": {
+        "text": "Una fuerza titánica casi lo parte en dos. Muere en el acto, y el impacto amenaza a cualquiera cerca.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "100",
+      "upper": "100",
+      "A": {
+        "text": "Brutal golpe que lo lanza al suelo con el tórax reventado. Con armadura solo queda inconsciente; sin armadura, muere en 3 asaltos por hemorragia interna.",
+        "metadata": [
+          {
+            "HP": 25
+          }
+        ]
+      },
+      "B": {
+        "text": "Aplastas su costado y un hombro. El omóplato choca con su columna, dejándolo paralizado desde ahí.",
+        "metadata": [
+          {
+            "HP": 30
+          }
+        ]
+      },
+      "C": {
+        "text": "Golpe a la cabeza que lo mata al instante, aplastando el cráneo. Además, rompe algunos huesos al caer.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 10
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Aplastas pulmones y corazón. Cae y muere enseguida.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 25
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Rompes casi todos sus huesos. Muere en un segundo y su cadáver queda prácticamente irreconocible.",
+        "metadata": []
+      }
+    }
+  ]
