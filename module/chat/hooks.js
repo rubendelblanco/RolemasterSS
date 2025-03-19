@@ -9,7 +9,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         const severity = ev.currentTarget.dataset.severity;
         const critType = ev.currentTarget.dataset.crittype;
         const attackerId = ev.currentTarget.dataset.attacker;
-        const criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(token.actor, damage, severity, critType, attackerId);
+        const criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(token, damage, severity, critType, attackerId);
         await RMSSWeaponCriticalManager.applyCriticalToEnemy(criticalResult, token.actor, attackerId);
     });
 

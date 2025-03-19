@@ -39,6 +39,7 @@ export default class RMSSTableManager {
                 }
             }
             else if (element.Result === result) {
+                console.log(result);
                 const damage = element[at];
                 const criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
                 const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {

@@ -3,13 +3,17 @@ import RMSSTableManager from "./rmss_table_manager.js";
 import CombatExperience from "../sheets/experience/rmss_combat_experience.js";
 import {sendExpMessage} from "../chat/chatMessages.js";
 import Utils from "../utils.js";
+import {RMSSCombat} from "./rmss_combat.js";
 
 export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result) {
         if (result === "-") {
             return {};
         }
-        else if (isNaN(parseInt(result))) {
+        else if (typeof result==="number") {
+            return {'damage':result, 'severity':null, 'critType':null};
+        }
+        else {
             const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
             const match = result.match(regex);
 
@@ -29,42 +33,42 @@ export class RMSSWeaponCriticalManager {
             const critType = null;
             return {'damage':damage, 'severity':severity, 'critType':critType};
         }
-        else {
-            const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
-            const match = result.match(regex);
-
-            if (match) {
-                const damage = match[1] || null;
-                const severity = match[2] || null;
-                const critType = match[3] || null;
-                return {'damage':damage, 'severity':severity, 'critType':critType};
-            }
-            else {
-                ui.notifications.error("Invalid critical format");
-                return {};
-            }
-        }
     }
 
-    static async updateActorHits(target, damage, gmResponse) {
+    static async updateActorHits(target, isToken, damage, gmResponse) {
+        console.log(target);
         if (!target) return;
-        let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
-        await target.update({ "system.attributes.hits.current": newHits });
+
+        let newHits = target.actor.system.attributes.hits.current - parseInt(gmResponse.damage);
+        await target.actor.update({ "system.attributes.hits.current": newHits });
+
+        if (gmResponse.severity === "null") return;
+
         let roll = new Roll(`(1d100)`);
-        await roll.toMessage(undefined,{create:true});
-        let result = (parseInt(roll.total)+parseInt(gmResponse.modifier));
-        if (result < 1) result = 1;
-        if (result > 100) result = 100;
-        return await RMSSTableManager.getCriticalTableResult(result, target, gmResponse.severity, gmResponse.critType);
+        await roll.toMessage(undefined, { create: true });
+        let result = parseInt(roll.total) + parseInt(gmResponse.modifier);
+        result = Math.min(Math.max(result, 1), 100);
+        console.log(target.actor);
+
+        return await RMSSTableManager.getCriticalTableResult(result, target.actor, gmResponse.severity, gmResponse.critType);
     }
 
     static async sendCriticalMessage(target, damage, severity, critType, attackerId) {
-        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target, damage, severity, critType);
+        console.log(target);
+        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, damage, severity, critType);
 
         if (gmResponse["confirmed"]) {
             const actor = Utils.isAPC(attackerId);
+            let criticalExp;
+
             if (actor) {
-                const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target, gmResponse.severity));
+                if (gmResponse.severity === "null") {
+                    criticalExp = 0;
+                }
+                else {
+                    criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target.actor, gmResponse.severity));
+                }
+
                 const hpExp = parseInt(damage);
                 const breakDown = {'critical':criticalExp, 'hp':hpExp};
                 const totalExp = criticalExp+hpExp;
@@ -73,7 +77,7 @@ export class RMSSWeaponCriticalManager {
                 await actor.update({"system.attributes.experience_points.value": totalExpActor});
                 sendExpMessage(actor, breakDown, totalExp);
             }
-           return await socket.executeAsGM("updateActorHits", target, parseInt(gmResponse.damage), gmResponse);
+           return await socket.executeAsGM("updateActorHits", target, target.isToken, parseInt(gmResponse.damage), gmResponse);
         }
     }
 
@@ -150,7 +154,8 @@ export class RMSSWeaponCriticalManager {
      */
     static async applyCriticalToEnemy(critical, enemy, attackerId){
         const attacker =  game.actors.get(attackerId);
-        console.log(critical);
+
+        if (!critical) critical = {};
 
         if (!critical.hasOwnProperty("metadata")) {
             return;
