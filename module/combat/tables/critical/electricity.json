@@ -856,7 +856,7 @@
                 ]
             },
             "B": {
-                "text": "Un “serpiente” de energía atrapa el abdomen del rival. Cae al suelo y la descarga desaparece.",
+                "text": "Una “serpiente” de energía atrapa el abdomen del rival. Cae al suelo y la descarga desaparece.",
                 "metadata": [
                     {
                         "DESC": "Con armadura en el abdomen",
@@ -874,7 +874,7 @@
                 ]
             },
             "C": {
-                "text": "Los nervios del codo del oponente quedan dañados. Su brazo de escudo se suelta y el arma cae sobre su pie.",
+                "text": "Los nervios del codo del oponente quedan dañados. Su brazo del escudo se suelta y el arma cae sobre su pie.",
                 "metadata": [
                     {
                         "STUN": {

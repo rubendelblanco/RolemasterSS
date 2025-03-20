@@ -1,7 +1,6 @@
 //Called when a experience info message is sended
 export async function sendExpMessage(actor, expBreakdown, expAmount) {
     const templatePath = "systems/rmss/templates/chat/exp-message.hbs";
-
     const data = {
         actorName: actor.name,
         expGained: expAmount,

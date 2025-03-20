@@ -23,15 +23,27 @@ export default class RMSSTableManager {
         const at = enemy.system.armor_info.armor_type;
 
         for (const element of attackTable) {
+
             if (typeof element.Result === "string") {
-                const splitRange = element.Result.split("-");
-                if (result >= splitRange[0] && result <= splitRange[1]) {
+                const splitRange = element.Result.split("-").map(s => s.trim()); // Limpiar espacios
+                const min = parseInt(splitRange[0], 10);
+                const max = parseInt(splitRange[1], 10);
+                const attackResult = parseInt(result, 10);
+
+                console.log(`Comparando: ${attackResult} con rango ${min}-${max}`);
+
+                if (attackResult >= min && attackResult <= max) {
                     const damage = element[at];
-                    const messageContent = `Result: <b>${damage}</b>`;
+                    const criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
+                    const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
+                        damage: damage,
+                        criticalData: criticalData,
+                        attacker: attacker
+                    });
                     const speaker = "Game Master";
 
                     await ChatMessage.create({
-                        content: messageContent,
+                        content: htmlContent,
                         speaker: speaker
                     });
 
@@ -39,6 +51,7 @@ export default class RMSSTableManager {
                 }
             }
             else if (element.Result === result) {
+                console.log(result);
                 const damage = element[at];
                 const criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
                 const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
@@ -52,6 +65,7 @@ export default class RMSSTableManager {
                     content: htmlContent,
                     speaker: speaker
                 });
+                break;
             }
         }
     }

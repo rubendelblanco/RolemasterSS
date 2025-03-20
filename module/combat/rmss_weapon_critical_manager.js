@@ -6,30 +6,13 @@ import Utils from "../utils.js";
 
 export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result) {
-        if (result === "-") {
+        if (result === "-") { //nothing
             return {};
         }
-        else if (isNaN(parseInt(result))) {
-            const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
-            const match = result.match(regex);
-
-            if (match) {
-                const damage = match[1] || null;
-                const severity = match[2] || null;
-                const critType = match[3] || null;
-                return {'damage':damage, 'severity':severity, 'critType':critType};
-            }
-            else {
-                console.log("Invalid critical format");
-                return {};
-            }
-
-            const damage = result;
-            const severity = null;
-            const critType = null;
-            return {'damage':damage, 'severity':severity, 'critType':critType};
+        else if (typeof result === "number") { //only HP
+            return {'damage':result, 'severity':"null", 'critType':"null"};
         }
-        else {
+        else { //critical
             const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
             const match = result.match(regex);
 
@@ -50,6 +33,7 @@ export class RMSSWeaponCriticalManager {
         if (!target) return;
         let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
         await target.update({ "system.attributes.hits.current": newHits });
+        if (gmResponse.severity === "null") return;
         let roll = new Roll(`(1d100)`);
         await roll.toMessage(undefined,{create:true});
         let result = (parseInt(roll.total)+parseInt(gmResponse.modifier));
@@ -64,10 +48,20 @@ export class RMSSWeaponCriticalManager {
         if (gmResponse["confirmed"]) {
             const actor = Utils.isAPC(attackerId);
             if (actor) {
+                let breakDown;
+                let totalExp;
                 const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target, gmResponse.severity));
                 const hpExp = parseInt(damage);
-                const breakDown = {'critical':criticalExp, 'hp':hpExp};
-                const totalExp = criticalExp+hpExp;
+                console.log(criticalExp);
+                if (criticalExp==="null" || isNaN(criticalExp)) {
+                    breakDown = {'hp':hpExp};
+                    totalExp = hpExp;
+                }
+                else{
+                    breakDown = {'critical':criticalExp, 'hp':hpExp};
+                    totalExp = criticalExp+hpExp;
+                }
+
                 let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
                 totalExpActor = totalExpActor + totalExp;
                 await actor.update({"system.attributes.experience_points.value": totalExpActor});
@@ -150,9 +144,8 @@ export class RMSSWeaponCriticalManager {
      */
     static async applyCriticalToEnemy(critical, enemy, attackerId){
         const attacker =  game.actors.get(attackerId);
-        console.log(critical);
 
-        if (!critical.hasOwnProperty("metadata")) {
+        if (!critical || critical.hasOwnProperty("metadata")) {
             return;
         }
 
