@@ -120,7 +120,11 @@ rmss.criticalDictionary = {
   "T": "tiny",
   "brawl": "brawl",
   "subdue": "subdue",
-  "sweeps": "sweeps"
+  "sweeps": "sweeps",
+  "heat": "heat",
+  "cold": "cold",
+  "electricity": "electricity",
+  "impact": "impact",
 }
 
 rmss.spell_realm = {
