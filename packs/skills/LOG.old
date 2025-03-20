@@ -1,3 +1,10 @@
+<<<<<<< Updated upstream
 2025/03/19-22:19:40.361 4c1c Recovering log #135
 2025/03/19-22:19:40.370 4c1c Delete type=0 #135
 2025/03/19-22:19:40.370 4c1c Delete type=3 #134
+=======
+2025/03/20-20:32:30.970 2984 Log #124: 0 ops saved to Table #125 OK
+2025/03/20-20:32:30.970 2984 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills/000124.log: OK
+2025/03/20-20:32:30.973 2984 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills/MANIFEST-000123: OK
+2025/03/20-20:32:30.978 2984 **** Repaired leveldb C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills; recovered 0 files; 0 bytes. Some data may have been lost. ****
+>>>>>>> Stashed changes
