@@ -29,7 +29,14 @@ export class RMSSWeaponCriticalManager {
         }
     }
 
-    static async updateActorHits(target, damage, gmResponse) {
+    static async updateActorHits(targetId, isToken, damage, gmResponse) {
+        let target;
+
+        if (isToken) {
+            target = canvas.tokens.get(targetId)?.actor;
+        } else {
+            target = game.actors.get(targetId);
+        }
         if (!target) return;
         let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
         await target.update({ "system.attributes.hits.current": newHits });
@@ -43,16 +50,16 @@ export class RMSSWeaponCriticalManager {
     }
 
     static async sendCriticalMessage(target, damage, severity, critType, attackerId) {
-        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target, damage, severity, critType);
+        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, damage, severity, critType);
 
         if (gmResponse["confirmed"]) {
             const actor = Utils.isAPC(attackerId);
             if (actor) {
                 let breakDown;
                 let totalExp;
-                const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target, gmResponse.severity));
+                const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target.actor, gmResponse.severity));
                 const hpExp = parseInt(damage);
-                console.log(criticalExp);
+
                 if (criticalExp==="null" || isNaN(criticalExp)) {
                     breakDown = {'hp':hpExp};
                     totalExp = hpExp;
@@ -67,7 +74,7 @@ export class RMSSWeaponCriticalManager {
                 await actor.update({"system.attributes.experience_points.value": totalExpActor});
                 sendExpMessage(actor, breakDown, totalExp);
             }
-           return await socket.executeAsGM("updateActorHits", target, parseInt(gmResponse.damage), gmResponse);
+            return await socket.executeAsGM("updateActorHits", target.id, target instanceof Token, parseInt(gmResponse.damage), gmResponse);
         }
     }
 
@@ -142,37 +149,45 @@ export class RMSSWeaponCriticalManager {
      * specifically with automatic round-based duration, need to fix some issues like
      * token icon effects rendering with undefined duration effects.
      */
-    static async applyCriticalToEnemy(critical, enemy, attackerId){
-        const attacker =  game.actors.get(attackerId);
+    static async applyCriticalToEnemy(critical, enemyId, attackerId, isToken){
+        let entity;
 
-        if (!critical || critical.hasOwnProperty("metadata")) {
+        if (isToken) {
+            const enemy = canvas.scene.tokens.get(enemyId);
+            if (!enemy) return ui.notifications.error("Token not found.");
+            entity = enemy.actor;
+        } else {
+            entity = game.actors.get(enemyId);
+            if (!entity) return ui.notifications.error("Actor not found.");
+        }
+
+        if (!critical || !critical.hasOwnProperty("metadata")) {
             return;
         }
 
         let stun_bleeding = "-";
 
-        if (enemy.system.attributes.hasOwnProperty("critical_codes")) {
-            stun_bleeding = enemy.system.attributes.critical_codes.stun_bleeding;
+        if (entity.system.attributes.hasOwnProperty("critical_codes")) {
+            stun_bleeding = entity.system.attributes.critical_codes.stun_bleeding;
         }
 
         if (critical.metadata.hasOwnProperty("HP")){
-            enemy.system.attributes.hits.current -= parseInt(critical.metadata["HP"]);
-            await enemy.update({ "system.attributes.hits.current": enemy.system.attributes.hits.current });
+            entity.system.attributes.hits.current -= parseInt(critical.metadata["HP"]);
+            await entity.update({ "system.attributes.hits.current": entity.system.attributes.hits.current });
         }
 
         if (critical.metadata.hasOwnProperty("STUN") && stun_bleeding === "-") {
             const stunRounds = critical.metadata["STUN"]["ROUNDS"];
-            const existingStunEffect = enemy.effects.find(e => e.name === "Stunned");
+            const existingStunEffect = entity.effects.find(e => e.name === "Stunned");
 
             if (existingStunEffect) {
                 const newRounds = (existingStunEffect.duration.rounds || 0) + stunRounds;
-                console.log(newRounds);
                 await existingStunEffect.update({ "duration.rounds": newRounds });
             } else {
                 const effectData = {
                     label: "Stunned",
                     icon: `${CONFIG.rmss.paths.icons_folder}stunned.svg`,
-                    origin: enemy.id,
+                    origin: entity.id,
                     duration: {
                         rounds: stunRounds,
                         startRound: game.combat ? game.combat.round : 0
@@ -180,7 +195,7 @@ export class RMSSWeaponCriticalManager {
                     disabled: false
                 };
 
-                await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
+                await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
             }
         }
 
@@ -188,7 +203,7 @@ export class RMSSWeaponCriticalManager {
             const effectData = {
                 name: "Bleeding",
                 icon: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
-                origin: enemy.id,
+                origin: entity.id,
                 duration: {
                     rounds: 1, //need to put a value. Otherwise, ActiveEffects doesn't render the icon in token
                     startRound: game.combat ? game.combat.round : 0
@@ -199,7 +214,7 @@ export class RMSSWeaponCriticalManager {
                 disabled: false
             };
 
-            await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
         if (critical.metadata.hasOwnProperty("PE")){
@@ -209,7 +224,7 @@ export class RMSSWeaponCriticalManager {
             const effectData = {
                 name: "Penalty",
                 icon: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
-                origin: enemy.id,
+                origin: entity.id,
                 disabled: false,
                 description: critical.text,
                 flags: {
@@ -221,14 +236,14 @@ export class RMSSWeaponCriticalManager {
                 },
             };
 
-            await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
         if (critical.metadata.hasOwnProperty("P")){
             const effectData = {
                 name: "Parry",
                 icon: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
-                origin: enemy.id,
+                origin: entity.id,
                 disabled: false,
                 description: critical.text,
                 duration: {
@@ -237,7 +252,7 @@ export class RMSSWeaponCriticalManager {
                 }
             };
 
-            await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
         if (critical.metadata.hasOwnProperty("NP")){
@@ -245,7 +260,7 @@ export class RMSSWeaponCriticalManager {
             const effectData = {
                 name: "No parry",
                 icon: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
-                origin: enemy.id,
+                origin: entity.id,
                 disabled: false,
                 description: critical.text,
                 duration: {
@@ -255,7 +270,7 @@ export class RMSSWeaponCriticalManager {
             };
 
             for (let i = 0; i < noParryRounds; i++) {
-                await enemy.createEmbeddedDocuments("ActiveEffect", [effectData]);
+                await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
             }
         }
 

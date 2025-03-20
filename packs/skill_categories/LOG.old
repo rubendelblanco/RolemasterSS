@@ -1,11 +1,11 @@
-<<<<<<< Updated upstream
-2025/03/19-22:19:40.351 5794 Recovering log #1047
-2025/03/19-22:19:40.359 5794 Delete type=0 #1047
-2025/03/19-22:19:40.360 5794 Delete type=3 #1046
-=======
-2025/03/20-20:32:30.948 5788 Log #1035: 0 ops saved to Table #1036 OK
-2025/03/20-20:32:30.948 5788 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories/001035.log: OK
-2025/03/20-20:32:30.948 5788 Table #1012: 53 entries OK
-2025/03/20-20:32:30.952 5788 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories/MANIFEST-001034: OK
-2025/03/20-20:32:30.956 5788 **** Repaired leveldb C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories; recovered 1 files; 13550 bytes. Some data may have been lost. ****
->>>>>>> Stashed changes
+2025/03/20-21:40:34.521 2dc4 Delete type=3 #1
+2025/03/20-22:25:24.791 3404 Level-0 table #1062: started
+2025/03/20-22:25:24.791 3404 Level-0 table #1062: 0 bytes OK
+2025/03/20-22:25:24.796 3404 Delete type=0 #1060
+2025/03/20-22:25:24.803 3404 Manual compaction at level-0 from '!items!1HevhbCbvMonyQXe' @ 72057594037927935 : 1 .. '!items!yRIFroc5VC9Oj3qY' @ 0 : 0; will stop at '!items!yRIFroc5VC9Oj3qY' @ 106 : 1
+2025/03/20-22:25:24.803 3404 Compacting 1@0 + 0@1 files
+2025/03/20-22:25:24.808 3404 Generated table #1063@0: 53 keys, 13550 bytes
+2025/03/20-22:25:24.808 3404 Compacted 1@0 + 0@1 files => 13550 bytes
+2025/03/20-22:25:24.812 3404 compacted to: files[ 0 1 0 0 0 0 0 ]
+2025/03/20-22:25:24.812 3404 Delete type=2 #1045
+2025/03/20-22:25:24.818 3404 Manual compaction at level-0 from '!items!yRIFroc5VC9Oj3qY' @ 106 : 1 .. '!items!yRIFroc5VC9Oj3qY' @ 0 : 0; will stop at (end)
