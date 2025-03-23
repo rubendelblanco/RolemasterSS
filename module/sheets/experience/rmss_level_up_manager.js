@@ -36,7 +36,7 @@ export default class LevelUpManager {
             await LevelUpManager.calculateStatGainRolls(actor);
         }
         else {
-            actor.levelUp.isLevelZero = true; //first level. From 0 to 1.
+            actor.system.levelUp.isLevelZero = true; //first level. From 0 to 1.
             LevelUpManager.calculateDevelopmentPoints(actor);
         }
     }

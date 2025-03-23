@@ -15,7 +15,7 @@
             id="level-up">{{ localize "rmss.experience.level_up" }}</button>
         </div>
         <div class="exp-margin-right">
-            {{#if (or actor.system.levelUp.isLevelingUp actor.system.levelUp.isLevelZero)}}
+            {{#if actor.system.levelUp.isLevelingUp}}
             <button type="button" class="end-level-up" title="level up" id="end-level-up">{{ localize "rmss.experience.end_level_up" }}</button>
             {{/if}}
         </div>
