@@ -163,14 +163,22 @@ Hooks.once("init", function () {
   });
 
   Item.prototype.use = async function () {
-   // if (this.type !== "skill") return;
-    console.log(this);
+    if (this.type !== "weapon") return;
+    const enemy = RMSSCombat.getTargets()?.[0];
 
-    // Aquí puedes definir cómo se ejecuta el ataque
-    console.log(`Usando la skill ${this.name} de ${this.actor.name}`);
+    if (!enemy) {
+      ui.notifications.warn("No hay un objetivo seleccionado.");
+      return;
+    }
 
-    // Llamada a la función que maneja ataques en tu sistema
-    await RMSSWeaponSkillManager.attack(this.actor, this);
+    let ob = null;
+    if (this.actor.type !== "creature") {
+      ob = this.actor.items.get(this.system.offensive_skill)?.system.total_bonus ?? 0;
+    } else {
+      ob = this.system.bonus ?? 0;
+    }
+
+    await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, this, ob);
   };
 
   //Combat hooks

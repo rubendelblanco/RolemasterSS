@@ -12,38 +12,47 @@ Hooks.on("createActor", async (actor) => {
 
 Hooks.on("hotbarDrop", async (bar, data, slot) => {
     if (data.type !== "Item") return;
-
     let item = await fromUuid(data.uuid);
     if (!item) return;
 
-    let actor = item.actor;
-    if (!actor) {
+    let actorId = item.actor ? item.actor.id : null;
+    if (!actorId) {
         return ui.notifications.warn("No puedes asignar una habilidad sin un actor.");
     }
 
-    // Comando que se ejecutará al hacer clic en el macro
     let command = `
-        let actor = game.actors.get("${actor.id}");
+        let actor = game.actors.get("${actorId}");
         if (!actor) return;
         let item = actor.items.get("${item.id}");
         if (!item) return;
         item.use();
     `;
 
-    // Buscar si el macro ya existe (para evitar duplicados)
-    let macro = game.macros.find(m => m.name === item.name && m.command === command);
-    if (!macro) {
-        macro = await Macro.create({
-            name: item.name,
-            type: "script",  // <-- IMPORTANTE: Asegurar que es un script
-            img: item.img,
-            command: command,
-            flags: { "rmss.skillMacro": true }
-        });
+    console.log("Comando del macro:", command);
+
+    let existingMacro = game.macros.find(m => m.name === item.name && m.type === "script");
+    if (existingMacro) {
+        await existingMacro.delete();
     }
 
+    let macro = await Macro.create({
+        name: item.name,
+        type: "script",
+        img: item.img,
+        command: command,
+        flags: { "rmss.skillMacro": true }
+    }, { temporary: false });
+
+    console.log("Macro creado:", macro);
+
     await game.user.assignHotbarMacro(macro, slot);
-    console.log(`Macro asignado en slot ${slot}:`, macro);
+    await game.macros.get(macro.id)?.update({ command: command });
+
+    ui.notifications.info(`Macro ${macro.name} asignado al slot ${slot}`);
 });
 
+
+Hooks.once('hotbarReady', () => {
+    game.user.hotbar.render();
+});
 

@@ -6,7 +6,7 @@ import Utils from "../utils.js";
 
 export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result) {
-        if (result === "-") { //nothing
+        if (result === "–") { //nothing
             return {};
         }
         else if (typeof result === "number") { //only HP
