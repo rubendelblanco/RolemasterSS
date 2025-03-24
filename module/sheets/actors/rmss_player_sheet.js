@@ -27,7 +27,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const actorData = this.actor.toObject(false);
     let enrichedDescription = await TextEditor.enrichHTML(this.actor.system.description, { async: true });
 
-    // Add the actor's data to context.data for easier access, as well as flags.
+    // Add the actor's data to context.data for easier access.
     context.system = actorData.system;
     context.enrichedDescription = enrichedDescription;
 
@@ -39,7 +39,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       this._prepareItems(context);
       this._prepareCharacterData(context);
     }
-
     return context;
   }
 
@@ -102,7 +101,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       // Get the already owned Items from the actor and push into an array
       const owneditems = this.object.getOwnedItemsByType("skill");
       let ownedskilllist = Object.values(owneditems);
-
       // Check if the dragged item is not in the array and not owned
       if (!ownedskilllist.includes(itemData.name)) {
         console.log("Not Owned!");
@@ -173,11 +171,11 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const herbs = [];
     const spells = [];
     const spellists = [];
-    const equipables = [];
+   // const equipables = [];
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
-      i.img = i.img || DEFAULT_TOKEN;
+      i.actorId = this.actor.id; //needed for uuid
       // Append to gear.
       if (i.type === "item") {
         gear.push(i);
@@ -259,7 +257,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     context.spellists = spellists;
     context.languageskill= languageskill;
     context.config = CONFIG.rmss;
-    console.log(spellists);
   }
 
   async handleStatsPotElement(element, potentialStatsInput) {

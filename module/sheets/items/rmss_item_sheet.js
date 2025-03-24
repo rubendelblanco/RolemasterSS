@@ -42,6 +42,7 @@ export default class RMSSItemSheet extends ItemSheet {
       html.find(".effect-control").click(this._onEffectControl.bind(this));
       html.find(".shtick-type").change(this._onShtickTypeChange.bind(this));
     }
+
   }
 
   _onEffectControl(event) {

@@ -143,7 +143,6 @@ Hooks.once("init", function () {
 
 
   // Preload Handlebars Templates
-  console.log("rmss | Preloading Handlebars Templates");
   preloadHandlebarsTemplates();
 
   // Handlebars Helpers
@@ -163,6 +162,24 @@ Hooks.once("init", function () {
     return game.i18n.localize(`rmss.experience.${key}`);
   });
 
+  Item.prototype.use = async function () {
+    if (this.type !== "weapon") return;
+    const enemy = RMSSCombat.getTargets()?.[0];
+
+    if (!enemy) {
+      ui.notifications.warn("No hay un objetivo seleccionado.");
+      return;
+    }
+
+    let ob = null;
+    if (this.actor.type !== "creature") {
+      ob = this.actor.items.get(this.system.offensive_skill)?.system.total_bonus ?? 0;
+    } else {
+      ob = this.system.bonus ?? 0;
+    }
+
+    await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, this, ob);
+  };
 
   //Combat hooks
   const combatSoundManager = new CombatStartManager();

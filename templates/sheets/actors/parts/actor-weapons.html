@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     {{#each weapons as |weapon id|}}
-    <tr draggable="true">
+    <tr draggable="true" data-type="Item" data-item-id="{{weapon._id}}" data-uuid="Actor.{{weapon.actorId}}.Item.{{weapon._id}}">
         <td class="clickable offensive-skill" data-item-id="{{weapon._id}}">{{weapon.name}} <i class="fa-solid fa-sword"></i></td>
         <td>
             {{#if weapon.system.equipped}}

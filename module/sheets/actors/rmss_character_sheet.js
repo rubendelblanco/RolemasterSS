@@ -59,6 +59,24 @@ export default class RMSSCharacterSheet extends ActorSheet {
             });
         };
 
+        // Hotbar drag & drop
+        document.querySelectorAll("tr[draggable='true']").forEach(el => {
+            el.addEventListener("dragstart", event => {
+                let itemId = event.currentTarget.getAttribute("data-item-id");
+                let uuid = event.currentTarget.getAttribute("data-uuid");
+
+                if (!itemId || !uuid) return;
+
+                let dragData = {
+                    type: "Item",
+                    uuid: uuid
+                };
+
+                event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+            });
+        });
+
+
         updateCriticalCodes(html, "critical-procedure", "system.attributes.critical_codes.critical_procedure");
         updateCriticalCodes(html, "critical-table", "system.attributes.critical_codes.critical_table");
         updateCriticalCodes(html, "stun-bleeding", "system.attributes.critical_codes.stun_bleeding");
