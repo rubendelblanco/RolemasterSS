@@ -1,1 +1,7 @@
-2025/03/22-19:05:16.651 46dc Delete type=3 #1
+2025/03/24-14:37:22.720 4bc4 Recovering log #1116
+2025/03/24-14:37:22.725 4bc4 Delete type=0 #1116
+2025/03/24-14:37:22.725 4bc4 Delete type=3 #1114
+2025/03/24-17:11:10.572 4d64 Level-0 table #1121: started
+2025/03/24-17:11:10.572 4d64 Level-0 table #1121: 0 bytes OK
+2025/03/24-17:11:10.579 4d64 Delete type=0 #1119
+2025/03/24-17:11:10.586 4d64 Manual compaction at level-0 from '!items!1HevhbCbvMonyQXe' @ 72057594037927935 : 1 .. '!items!yRIFroc5VC9Oj3qY' @ 0 : 0; will stop at (end)

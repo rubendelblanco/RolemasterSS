@@ -143,7 +143,6 @@ Hooks.once("init", function () {
 
 
   // Preload Handlebars Templates
-  console.log("rmss | Preloading Handlebars Templates");
   preloadHandlebarsTemplates();
 
   // Handlebars Helpers
@@ -163,6 +162,16 @@ Hooks.once("init", function () {
     return game.i18n.localize(`rmss.experience.${key}`);
   });
 
+  Item.prototype.use = async function () {
+   // if (this.type !== "skill") return;
+    console.log(this);
+
+    // Aquí puedes definir cómo se ejecuta el ataque
+    console.log(`Usando la skill ${this.name} de ${this.actor.name}`);
+
+    // Llamada a la función que maneja ataques en tu sistema
+    await RMSSWeaponSkillManager.attack(this.actor, this);
+  };
 
   //Combat hooks
   const combatSoundManager = new CombatStartManager();
