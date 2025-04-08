@@ -78,6 +78,7 @@ export default class LevelUpManager {
             stat.temp = stat.temp+increment;
             stat.temp < 0 ? stat.temp = 0 : stat.temp;
             stat.temp > stat.potential ? stat.temp = stat.potential : stat.temp;
+            actor.update({ [`system.stats.${stat}.temp`]: stat.temp });
             return {"dice1":rolls[0], "dice2":rolls[1], "inc":increment};
         }
 
@@ -104,8 +105,8 @@ export default class LevelUpManager {
                         </section>
                     </div>`
             });
-            this.calculateDevelopmentPoints(actor);
         }
+        this.calculateDevelopmentPoints(actor);
     }
 
     static calculateDevelopmentPoints(actor) {
