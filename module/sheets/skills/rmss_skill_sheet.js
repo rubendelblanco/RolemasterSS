@@ -115,13 +115,13 @@ export default class RMSSSkillSheet extends ItemSheet {
     else
     {
       if (!this.item.parent){
-        return [];
+        return CONFIG.rmss.skillCategories.map(cat => [cat.id, cat.name]);
       }
       const skillCategories = this.item.parent.getOwnedItemsByType("skill_category");
+      console.log(skillCategories);
       const sortedSkillCategories = Object.entries(skillCategories)
           .sort((a, b) => a[1].localeCompare(b[1]));
       return sortedSkillCategories;
-      //return skillCategories;
     }
   }
 

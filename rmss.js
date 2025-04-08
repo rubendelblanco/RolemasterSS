@@ -183,4 +183,12 @@ Hooks.once("init", function () {
 
   //Combat hooks
   const combatSoundManager = new CombatStartManager();
+
+  Hooks.once("ready", async function () {
+    const pack = game.packs.get("rmss.skill_categories_es");
+    const documents = await pack?.getDocuments() ?? [];
+    CONFIG.rmss = CONFIG.rmss || {};
+    CONFIG.rmss.skillCategories = documents;
+    CONFIG.rmss.skillCategories.sort((a, b) => a.name.localeCompare(b.name));
+  })
 });

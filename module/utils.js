@@ -19,5 +19,4 @@ export default class Utils {
         const actor = actorOrToken ?? actorOrToken.actor;
         return actor.effects.filter(effect => effect.name === effectName);
     }
-
 }
