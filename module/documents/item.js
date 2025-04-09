@@ -14,7 +14,7 @@ export class RMSSItem extends Item {
     await super._preCreate(data, options, userId);
 
     // Do not set on copied items if they have a custom Icon.
-    if (!data.name.includes("(Copy)"))
+    /*if (!data.name.includes("(Copy)") && this.img==="icons/svg/item-bag.svg")
     {
       if (this.type === "armor") {
         await this.updateSource({img: "systems/rmss/assets/default/armor.svg"});
@@ -40,7 +40,7 @@ export class RMSSItem extends Item {
       else if (this.type === "race") {
         await this.updateSource({img: "systems/rmss/assets/default/race.svg"});
       }
-    }
+    }*/
   }
 
   prepareDerivedData() {

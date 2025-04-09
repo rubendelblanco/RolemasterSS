@@ -364,7 +364,7 @@
     },
     "skill": {
       "templates": ["base"],
-      "category" : "",
+      "category": "",
       "ranks": 0,
       "new_ranks": {
         "value": 0,

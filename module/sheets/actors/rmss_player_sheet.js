@@ -95,17 +95,45 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       }
     }
     else if (itemData.type === "skill") {
-      const skillCategoryId = itemData.system.category;
-      const skillCategory = this.actor.items.get(skillCategoryId);
+      const originalCategoryId = itemData.system.category;
+      const originalCategory = game.items.get(originalCategoryId)
+          ?? game.packs.get("rmss.skill-categories-es")?.index.get(originalCategoryId);
 
-      // Get the already owned Items from the actor and push into an array
-      const owneditems = this.object.getOwnedItemsByType("skill");
-      let ownedskilllist = Object.values(owneditems);
-      // Check if the dragged item is not in the array and not owned
-      if (!ownedskilllist.includes(itemData.name)) {
-        console.log("Not Owned!");
-        super._onDropItem(event, data);
+      if (!originalCategory) {
+        ui.notifications.warn("No se ha podido encontrar la categoría original.");
+        return;
       }
+
+      const categoryName = originalCategory.name;
+      console.log(categoryName);
+      const actorCategory = this.actor.items.find(i => i.type === "skill_category" && i.name === categoryName);
+
+      if (!actorCategory) {
+        ui.notifications.warn("El actor no tiene la categoría correspondiente.");
+        return;
+      }
+
+      console.log("SKILL DROPPED");
+      const ownedSkills = this.actor.items.filter(i => i.type === "skill");
+      const alreadyOwned = ownedSkills.some(i => i.name === itemData.name);
+
+      if (alreadyOwned) {
+        ui.notifications.warn("Skill already acquired.");
+        return;
+      }
+
+     const skillToCreate = {
+        name: itemData.name,
+        img: itemData.img,
+        type: "skill",
+       system: {
+         ...foundry.utils.deepClone(itemData.system),
+         category: actorCategory.id
+       }
+      };
+
+      const created = await this.actor.createEmbeddedDocuments("Item", [skillToCreate]);
+      console.log("Item created:", created[0].toObject());
     }
     else {
       super._onDropItem(event, data);

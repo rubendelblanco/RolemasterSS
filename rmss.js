@@ -185,7 +185,7 @@ Hooks.once("init", function () {
   const combatSoundManager = new CombatStartManager();
 
   Hooks.once("ready", async function () {
-    const pack = game.packs.get("rmss.skill_categories_es");
+    const pack = game.packs.get("rmss.skill-categories-es");
     const documents = await pack?.getDocuments() ?? [];
     CONFIG.rmss = CONFIG.rmss || {};
     CONFIG.rmss.skillCategories = documents;

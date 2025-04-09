@@ -32,7 +32,7 @@
       "type": "Item"
     },
     {
-      "name": "skill_categories_es",
+      "name": "skill-categories-es",
       "label": "Skill Categories (ES)",
       "path": "packs/skill-categories-es.db",
       "type": "Item",
