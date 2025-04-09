@@ -1,8 +1,1 @@
-2025/04/09-10:58:51.072 151c Log #1175: 0 ops saved to Table #1194 OK
-2025/04/09-10:58:51.072 151c Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories/001175.log: OK
-2025/04/09-10:58:51.072 151c Log #1193: 0 ops saved to Table #1195 OK
-2025/04/09-10:58:51.072 151c Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories/001193.log: OK
-2025/04/09-10:58:51.072 151c Table #1135: 53 entries OK
-2025/04/09-10:58:51.077 151c Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories/MANIFEST-001174: OK
-2025/04/09-10:58:51.078 151c Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories/MANIFEST-001192: OK
-2025/04/09-10:58:51.082 151c **** Repaired leveldb C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories; recovered 1 files; 13550 bytes. Some data may have been lost. ****
+2025/04/09-10:58:51.092 151c Delete type=3 #1

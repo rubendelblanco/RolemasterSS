@@ -175,6 +175,21 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
       this._setApplicableStat(this.item, ev);
     });
 
+    html.find('select[name="system.progression"]').change(ev => {
+      const selection = ev.currentTarget.value;
+      let total_ranks = document.querySelector('[name="system.ranks"]').value;
+
+      if (selection==="standard") {
+        RankCalculator.calculateRanksBonus(this.item, total_ranks, "-15*2*1*0.5*0");
+      }
+      else {
+        this.item.update({ 'system.rank_bonus': 0 });
+        this.item.update({ 'system.ranks': 0 });
+        this.item.update({ 'system.progression': selection });
+        console.log(this.item);
+      }
+    });
+
     // Catch the event when the user clicks one of the New Ranks Checkboxes in a Skill Category.
     // It will increment by one or wrap back to zero on a value of three
     html.find(".skillcategorysheet-newrank").click(ev => {

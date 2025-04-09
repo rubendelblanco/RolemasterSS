@@ -49,7 +49,6 @@ export default class RMSSSkillSheet extends ItemSheet {
     super.activateListeners(html);
     const actor = this.item.actor;
     const category_skill = actor.items.get(this.item.system.category);
-    const designation = this.item.system.designation;
     let progression;
 
     if (category_skill.system.skill_progression.split('*').length > 1) {

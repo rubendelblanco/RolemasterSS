@@ -22,6 +22,20 @@ export default class RankCalculator {
         return dev_cost[new_ranks] <= dps ? dev_cost[new_ranks] : false;
     }
 
+    static getCategoryProgression(category_skill) {
+        let progression;
+        console.log(category_skill);
+
+        if (category_skill.system.skill_progression.split('*').length > 1) {
+            progression = category_skill.system.skill_progression //some special race value (PP development or body development)
+        }
+        else {
+            progression = CONFIG.rmss.skill_progression[category_skill.system.skill_progression].progression;
+        }
+
+        return progression;
+    }
+
     static payDevelopmentCost(actor, item){
         const devCost = this._isPayable(actor, item);
 
