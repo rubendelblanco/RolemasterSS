@@ -1,3 +1,7 @@
-2025/04/08-23:13:54.701 3d78 Recovering log #274
-2025/04/08-23:13:54.705 3d78 Delete type=0 #274
-2025/04/08-23:13:54.705 3d78 Delete type=3 #273
+2025/04/09-10:58:51.119 3e60 Log #260: 0 ops saved to Table #279 OK
+2025/04/09-10:58:51.120 3e60 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills/000260.log: OK
+2025/04/09-10:58:51.120 3e60 Log #278: 0 ops saved to Table #280 OK
+2025/04/09-10:58:51.120 3e60 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills/000278.log: OK
+2025/04/09-10:58:51.125 3e60 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills/MANIFEST-000259: OK
+2025/04/09-10:58:51.126 3e60 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills/MANIFEST-000277: OK
+2025/04/09-10:58:51.131 3e60 **** Repaired leveldb C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills; recovered 0 files; 0 bytes. Some data may have been lost. ****

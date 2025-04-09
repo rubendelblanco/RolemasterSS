@@ -105,7 +105,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       }
 
       const categoryName = originalCategory.name;
-      console.log(categoryName);
       const actorCategory = this.actor.items.find(i => i.type === "skill_category" && i.name === categoryName);
 
       if (!actorCategory) {
@@ -113,7 +112,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         return;
       }
 
-      console.log("SKILL DROPPED");
       const ownedSkills = this.actor.items.filter(i => i.type === "skill");
       const alreadyOwned = ownedSkills.some(i => i.name === itemData.name);
 
@@ -324,7 +322,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     }
 
     await roll.evaluate();
-    console.log(roll.total);
     ChatMessage.create({
       user: game.user.id,
       speaker: ChatMessage.getSpeaker(),
@@ -338,6 +335,8 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     else {
       potentialStatsInput.value = roll.total;
     }
+
+    await this.actor.update({[potentialStatsInput.name]: parseInt(potentialStatsInput.value)});
   }
 
   activateListeners(html) {
@@ -355,9 +354,11 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     });
 
     //Calculate potential stats (only when you are level 0)
-    html.find(".stat-pot").click(ev => {
+    html.find(".fa-dice.roll-stat").click(ev => {
       const clickedElement = ev.currentTarget;
       const parentLi = clickedElement.closest('li');
+      const input = parentLi.querySelector(".stat-pot");
+
       const characterLevel = html.find('input[name="system.attributes.level.value"]');
 
       if (characterLevel.length > 0) {
@@ -369,7 +370,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         const closestStatsTemp = parentLi.querySelector('.stat-temp');
 
         if (closestStatsTemp) {
-          this.handleStatsPotElement(closestStatsTemp, clickedElement);
+          if (this.actor.system.levelUp.isLevelZero) {
+            this.handleStatsPotElement(closestStatsTemp, input);
+          }
         }
       }
 

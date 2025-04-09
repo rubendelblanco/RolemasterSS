@@ -604,7 +604,7 @@
     background-color: #363636;
 }
 
-.human-body svg:hover {
+.human-body svg:hover, .fa-dice.roll-stat:hover {
     cursor: pointer;
 }
 
