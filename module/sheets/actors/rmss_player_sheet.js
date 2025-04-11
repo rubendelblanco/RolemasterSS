@@ -3,6 +3,7 @@ import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js
 import { InputTextSearchStrategy } from '../search/rmss_text_search.js';
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
 import * as CONFIG from "../../config.js";
+import LevelUpManager from "../experience/rmss_level_up_manager.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -91,7 +92,12 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       // Check if the dragged item is not in the array and not owned
       if (!ownedskillcatlist.includes(itemData.name)) {
         console.log("Not Owned!");
-        super._onDropItem(event, data);
+        await super._onDropItem(event, data);
+
+        if (itemData.system.progression.toLowerCase()==="standard") {
+          const item = this.actor.items.find(i => i.name === itemData.name);
+          RankCalculator.calculateRanksBonus(item, 0, "-15*2*1*0.5*0");
+        }
       }
     }
     else if (itemData.type === "skill") {
@@ -130,8 +136,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
        }
       };
 
-      const created = await this.actor.createEmbeddedDocuments("Item", [skillToCreate]);
-      console.log("Item created:", created[0].toObject());
+       await this.actor.createEmbeddedDocuments("Item", [skillToCreate]);
     }
     else {
       super._onDropItem(event, data);
@@ -354,17 +359,10 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     });
 
     //Calculate potential stats (only when you are level 0)
-    html.find(".fa-dice.roll-stat").click(ev => {
+    html.find(".fa-dice.roll-stat").click(async ev => {
       const clickedElement = ev.currentTarget;
       const parentLi = clickedElement.closest('li');
       const input = parentLi.querySelector(".stat-pot");
-
-      const characterLevel = html.find('input[name="system.attributes.level.value"]');
-
-      if (characterLevel.length > 0) {
-        const levelValue = characterLevel[0].value;
-        if (levelValue > 0 || levelValue === null) return;
-      }
 
       if (parentLi) {
         const closestStatsTemp = parentLi.querySelector('.stat-temp');
@@ -372,6 +370,19 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         if (closestStatsTemp) {
           if (this.actor.system.levelUp.isLevelZero) {
             this.handleStatsPotElement(closestStatsTemp, input);
+          } else if(this.actor.system.levelUp.isLevelingUp) {
+            let dps = parseInt(this.actor.system.levelUp.developmentPoints);
+
+            if (dps < 8){
+              return;
+            }
+
+            dps -=8;
+            const statPath = ev.currentTarget.dataset.stat;
+            const statName = statPath.split(".")[2];
+            const stat = foundry.utils.getProperty(this.actor.system, `stats.${statName}`);
+            await LevelUpManager.handleStatRoll(this.actor, statName, stat);
+            this.actor.update({'system.levelUp.developmentPoints': dps});
           }
         }
       }

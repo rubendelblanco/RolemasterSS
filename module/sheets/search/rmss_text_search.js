@@ -67,8 +67,6 @@ export class InputTextSearchStrategy {
                 performSearch('');
             }
         });
-
-        console.log(`🔍 Búsqueda inicializada en #${this.formId} filtrando '${targetSelector}'`);
     }
 
     // Método Factory

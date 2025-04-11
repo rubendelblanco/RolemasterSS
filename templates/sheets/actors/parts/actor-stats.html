@@ -12,7 +12,9 @@
 
         <li class="flexrow stat-row">
             <div class="stat-name">
-                <i class="fa-solid fa-dice roll-stat"></i>
+                {{#if (or system.levelUp.isLevelZero system.levelUp.isLevelingUp)}}
+                <i class="fa-solid fa-dice roll-stat" data-stat="system.stats.agility"></i>
+                {{/if}}
                 {{ localize "rmss.player_character.attribute.agility" }}
             </div>
         
@@ -43,7 +45,9 @@
 
         <li class="flexrow stat-row">
             <div class="stat-name">
-                <i class="fa-solid fa-dice roll-stat"></i>
+                {{#if (or system.levelUp.isLevelZero system.levelUp.isLevelingUp)}}
+                <i class="fa-solid fa-dice roll-stat" data-stat="system.stats.constitution"></i>
+                {{/if}}
                 {{ localize "rmss.player_character.attribute.constitution" }}
             </div>
         
@@ -75,7 +79,7 @@
         <li class="flexrow stat-row">
             <div class="stat-name">
                 {{#if (or system.levelUp.isLevelZero system.levelUp.isLevelingUp)}}
-                <i class="fa-solid fa-dice roll-stat"></i>
+                <i class="fa-solid fa-dice roll-stat" data-stat="system.stats.memory"></i>
                 {{/if}}
                 {{ localize "rmss.player_character.attribute.memory" }}
             </div>
@@ -108,7 +112,7 @@
         <li class="flexrow stat-row">
             <div class="stat-name">
                 {{#if (or system.levelUp.isLevelZero system.levelUp.isLevelingUp)}}
-                <i class="fa-solid fa-dice roll-stat"></i>
+                <i class="fa-solid fa-dice roll-stat" data-stat="system.stats.reasoning"></i>
                 {{/if}}
                 {{ localize "rmss.player_character.attribute.reasoning" }}
             </div>
@@ -141,7 +145,7 @@
         <li class="flexrow stat-row">
             <div class="stat-name">
                 {{#if (or system.levelUp.isLevelZero system.levelUp.isLevelingUp)}}
-                <i class="fa-solid fa-dice roll-stat"></i>
+                <i class="fa-solid fa-dice roll-stat" data-stat="system.stats.self_discipline"></i>
                 {{/if}}
                 {{ localize "rmss.player_character.attribute.self_discipline" }}
             </div>
@@ -174,7 +178,7 @@
         <li class="flexrow stat-row">
             <div class="stat-name">
                 {{#if (or system.levelUp.isLevelZero system.levelUp.isLevelingUp)}}
-                <i class="fa-solid fa-dice roll-stat"></i>
+                <i class="fa-solid fa-dice roll-stat" data-stat="system.stats.empathy"></i>
                 {{/if}}
                 {{ localize "rmss.player_character.attribute.empathy" }}
             </div>
@@ -207,7 +211,7 @@
         <li class="flexrow stat-row">
             <div class="stat-name">
                 {{#if (or system.levelUp.isLevelZero system.levelUp.isLevelingUp)}}
-                <i class="fa-solid fa-dice roll-stat"></i>
+                <i class="fa-solid fa-dice roll-stat" data-stat="system.stats.intuition"></i>
                 {{/if}}
                 {{ localize "rmss.player_character.attribute.intuition" }}
             </div>
@@ -240,7 +244,7 @@
         <li class="flexrow stat-row">
             <div class="stat-name">
                 {{#if (or system.levelUp.isLevelZero system.levelUp.isLevelingUp)}}
-                <i class="fa-solid fa-dice roll-stat"></i>
+                <i class="fa-solid fa-dice roll-stat" data-stat="system.stats.presence"></i>
                 {{/if}}
                 {{ localize "rmss.player_character.attribute.presence" }}
             </div>
@@ -273,7 +277,7 @@
         <li class="flexrow stat-row">
             <div class="stat-name">
                 {{#if (or system.levelUp.isLevelZero system.levelUp.isLevelingUp)}}
-                <i class="fa-solid fa-dice roll-stat"></i>
+                <i class="fa-solid fa-dice roll-stat" data-stat="system.stats.quickness"></i>
                 {{/if}}
                 {{ localize "rmss.player_character.attribute.quickness" }}
             </div>
@@ -306,7 +310,7 @@
         <li class="flexrow stat-row">
             <div class="stat-name">
                 {{#if (or system.levelUp.isLevelZero system.levelUp.isLevelingUp)}}
-                <i class="fa-solid fa-dice roll-stat"></i>
+                <i class="fa-solid fa-dice roll-stat" data-stat="system.stats.strength"></i>
                 {{/if}}
                 {{ localize "rmss.player_character.attribute.strength" }}
             </div>
