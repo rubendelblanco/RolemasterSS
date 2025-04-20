@@ -125,6 +125,7 @@ rmss.criticalDictionary = {
   "cold": "cold",
   "electricity": "electricity",
   "impact": "impact",
+  "strikes": "strikes",
 }
 
 rmss.spell_realm = {
