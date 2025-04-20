@@ -18,6 +18,24 @@ export default class RMSSTableManager {
         }
     }
 
+    static async getAttackTableMaxResult(weapon) {
+        const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
+        let maximum = 1;
+
+        for (const element of attackTable) {
+            if (typeof element.Result === "string") {
+                const splitRange = element.Result.split("-").map(s => s.trim());
+                const row = parseInt(splitRange[1] ?? splitRange[0]);
+                maximum = (row > maximum) ? row : maximum;
+            }
+            else if (Number.isInteger(parseInt(element.Result))){
+                maximum = (element.Result > maximum) ? element.Result : maximum;
+            }
+        }
+
+        return maximum;
+    }
+
     static async getAttackTableResult(weapon, result, enemy, attacker){
         const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
         const at = enemy.system.armor_info.armor_type;
@@ -25,16 +43,20 @@ export default class RMSSTableManager {
         for (const element of attackTable) {
 
             if (typeof element.Result === "string") {
-                const splitRange = element.Result.split("-").map(s => s.trim()); // Limpiar espacios
+                const splitRange = element.Result.split("-").map(s => s.trim());
                 const min = parseInt(splitRange[0], 10);
                 const max = parseInt(splitRange[1], 10);
                 const attackResult = parseInt(result, 10);
 
                 console.log(`Comparando: ${attackResult} con rango ${min}-${max}`);
+                console.log(weapon);
 
                 if (attackResult >= min && attackResult <= max) {
                     const damage = element[at];
                     const criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
+                    if (criticalData.critType === null) {
+                        criticalData.critType = weapon.system.critical_type;
+                    }
                     const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
                         damage: damage,
                         criticalData: criticalData,
@@ -52,8 +74,14 @@ export default class RMSSTableManager {
             }
             else if (element.Result === result) {
                 console.log(result);
+                console.log(weapon);
                 const damage = element[at];
-                const criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
+                let criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
+
+                if (criticalData.critType === null) {
+                    criticalData.critType = weapon.system.critical_type;
+                }
+
                 const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
                     damage: damage,
                     criticalData: criticalData,

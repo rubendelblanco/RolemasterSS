@@ -8,13 +8,21 @@
             <select name="system.attack_table" class="app-stat-selector" value="{{system.attack_table}}" itemid="{{ item._id }}">
                 {{selectOptions armsTables selected=system.attack_table}}
             </select>
-            <select name="system.offensive_skill" class="app-stat-selector" itemid="{{ item._id }}">
+            <select name="system.offensive_skill" class="app-stat-selector" value="{{system.offensive_skill}}" itemid="{{ item._id }}">
                 {{#each offensiveSkills}}
                 <option value="{{this.id}}" {{#if (eq this.id ../system.offensive_skill)}}selected{{/if}}>
                 {{this.name}}
                 </option>
                 {{/each}}
             </select>
+            <select name="system.critical_type" class="app-stat-selector" value="{{system.critical_type}}" itemid="{{ item._id }}">
+                {{#each criticalTables}}
+                <option value="{{@key}}" {{#if (eq @key ../system.critical_type)}}selected{{/if}}>
+                {{this}}
+                </option>
+                {{/each}}
+            </select>
+
         </div>
         <div>
             <table>

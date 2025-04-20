@@ -11,7 +11,8 @@ export class RMSSWeaponSkillManager {
            let roll = new Roll(`(1d100x>95) + ${gmResponse["diff"]}`);
            await roll.toMessage(undefined,{create:true});
            let result = roll.total;
-           result = (result > 150) ? 150 : result;
+           const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
+           result = (result > maximum) ? maximum : result;
            await RMSSTableManager.getAttackTableResult(weapon, result, enemy, actor);
        }
     }

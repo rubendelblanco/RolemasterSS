@@ -1,4 +1,5 @@
 // Our Item Sheet extends the default
+
 export default class RMSSWeaponSheet extends ItemSheet {
 
   // Set the height and width
@@ -30,8 +31,11 @@ export default class RMSSWeaponSheet extends ItemSheet {
       config: CONFIG.rmss,
       enrichedDescription: enrichedDescription,
       armsTables: await this.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.arms_tables),
+      criticalTables: await this.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.critical_tables),
       offensiveSkills: await this.getOffensiveSkills()
     };
+
+    console.log(sheetData.criticalTables);
 
     return sheetData;
   }
