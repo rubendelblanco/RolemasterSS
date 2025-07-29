@@ -49,6 +49,36 @@ export class RMSSWeaponCriticalManager {
         return await RMSSTableManager.getCriticalTableResult(result, target, gmResponse.severity, gmResponse.critType);
     }
 
+    static async sendCriticalMessage2(target) {
+        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, damage, severity, critType);
+
+
+        if (gmResponse["confirmed"]) {
+            const actor = Utils.isAPC(attackerId);
+            if (actor) {
+                let breakDown;
+                let totalExp;
+                const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target.actor, gmResponse.severity));
+                const hpExp = parseInt(damage);
+
+                if (criticalExp==="null" || isNaN(criticalExp)) {
+                    breakDown = {'hp':hpExp};
+                    totalExp = hpExp;
+                }
+                else{
+                    breakDown = {'critical':criticalExp, 'hp':hpExp};
+                    totalExp = criticalExp+hpExp;
+                }
+
+                let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
+                totalExpActor = totalExpActor + totalExp;
+                await actor.update({"system.attributes.experience_points.value": totalExpActor});
+                sendExpMessage(actor, breakDown, totalExp);
+            }
+            return await socket.executeAsGM("updateActorHits", target.id, target instanceof Token, parseInt(gmResponse.damage), gmResponse);
+        }
+    }
+
     static async sendCriticalMessage(target, damage, severity, critType, attackerId) {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, damage, severity, critType);
 
@@ -144,22 +174,9 @@ export class RMSSWeaponCriticalManager {
         return confirmed;
     }
 
-    /**
-     * NOTE: Due to known issues with ActiveEffect handling in Foundry VTT version 12,
-     * specifically with automatic round-based duration, need to fix some issues like
-     * token icon effects rendering with undefined duration effects.
-     */
-    static async applyCriticalToEnemy(critical, enemyId, attackerId, isToken){
-        let entity;
-
-        if (isToken) {
-            const enemy = canvas.scene.tokens.get(enemyId);
-            if (!enemy) return ui.notifications.error("Token not found.");
-            entity = enemy.actor;
-        } else {
-            entity = game.actors.get(enemyId);
-            if (!entity) return ui.notifications.error("Actor not found.");
-        }
+    static async applyCriticalTo(critical, token, originId){
+        console.log("Applying critical to:", critical, token, originId);
+        let entity = token.actor;
 
         if (!critical || !critical.hasOwnProperty("metadata")) {
             return;
@@ -278,7 +295,7 @@ export class RMSSWeaponCriticalManager {
             const effectData = {
                 name: "Bonus",
                 icon: `${CONFIG.rmss.paths.icons_folder}bonus.svg`,
-                origin: attackerId,
+                origin: originId,
                 disabled: false,
                 description: critical.text,
                 duration: {
@@ -296,9 +313,30 @@ export class RMSSWeaponCriticalManager {
         console.log("Critical");
         console.log(critical.metadata);
     }
+    /**
+     * NOTE: Due to known issues with ActiveEffect handling in Foundry VTT version 12,
+     * specifically with automatic round-based duration, need to fix some issues like
+     * token icon effects rendering with undefined duration effects.
+     */
 
 
-static async chooseCriticalOption(criticalResult) {
+    static async applyCriticalToEnemy(critical, enemyId, attackerId, isToken){
+        console.log("Applying critical to enemy:", critical, enemyId, attackerId, isToken);
+        let entity;
+
+        if (isToken) {
+            const enemy = canvas.scene.tokens.get(enemyId);
+            if (!enemy) return ui.notifications.error("Token not found.");
+            entity = enemy.actor;
+        } else {
+            entity = game.actors.get(enemyId);
+            if (!entity) return ui.notifications.error("Actor not found.");
+        }
+
+        return await RMSSWeaponCriticalManager.applyCriticalTo(critical, entity, attackerId);
+    }
+
+    static async chooseCriticalOption(criticalResult) {
         let option = await new Promise((resolve) => {
             new Dialog({
                 title: "Elige una opción",
