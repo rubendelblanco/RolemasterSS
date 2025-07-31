@@ -765,7 +765,7 @@
         ]
       },
       "E": {
-        "text": "Impacto en el pecho que lo derriba. Armadura rota y costillas fracturadas.",
+        "text": "Impacto en el pecho que lo derriba. Queda fuera de combate. Armadura rota y costillas fracturadas.",
         "metadata": [
           {
             "DESC": "Con armadura en el pecho",
@@ -773,7 +773,7 @@
             "STUN": {
               "ROUNDS": 5
             },
-            "P": {
+            "PE": {
               "VALUE": 10
             }
           },

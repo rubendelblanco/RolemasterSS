@@ -5,26 +5,43 @@ import {sendExpMessage} from "../chat/chatMessages.js";
 import Utils from "../utils.js";
 
 export class RMSSWeaponCriticalManager {
-    static decomposeCriticalResult(result) {
+    static decomposeCriticalResult(result, criticalSeverity=null) {
+        // e.g result is "10A", "20B", "30C", "–", "F" or 50
         if (result === "–") { //nothing
-            return {};
+            return {criticals: []};
         }
-        else if (typeof result === "number") { //only HP
-            return {'damage':result, 'severity':"null", 'critType':"null"};
+        if (result === "F") { //fumble
+            // TODO
+            return {criticals: []};// Also nothing 
+        }
+
+        if (typeof result === "number") { //only HP
+            return {'damage':result, 'criticals': [{'severity':"null", 'critType':"null"}]};
         }
         else { //critical
             const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
             const match = result.match(regex);
 
             if (match) {
-                const damage = match[1] || null;
-                const severity = match[2] || null;
-                const critType = match[3] || null;
-                return {'damage':damage, 'severity':severity, 'critType':critType};
+                const damage = match[1] || null; // e.g. "10"
+                const severity = match[2] || null; // A, B, C...
+                const critType = match[3] || null; // S=slash, K=krush
+                if (!!severity && severity >= "F" && !!criticalSeverity) {
+                    // Hostia guapa. Caso especial.
+                    let criticalsRaw = criticalSeverity[severity];
+                    const criticals = Array.from(Object.entries(criticalsRaw)).map(([key, value]) => {
+                        return {'severity': value, 'critType': key};
+                    });
+
+                    return {damage, criticals};
+                } else if (critType==null && !!criticalSeverity) {
+                    return {damage, criticals: [{'severity':severity, 'critType':criticalSeverity.default}]};
+                }
+                return {'damage':damage, 'criticals': [{'severity':severity, 'critType':critType}]};
             }
             else {
                 ui.notifications.error("Invalid critical format");
-                return {};
+                return {criticals:[]};
             }
         }
     }

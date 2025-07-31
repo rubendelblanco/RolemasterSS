@@ -4,6 +4,7 @@
         "100-100"
     ],
     "critical_severity": {
+        "default": "electricity",
         "F": {
             "electricity": "E",
             "impact": "A"

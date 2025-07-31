@@ -4,6 +4,7 @@
         "100-100"
     ],
     "critical_severity": {
+        "default": "impact",
         "G": {
             "impact": "E",
             "cold": "C"

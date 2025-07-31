@@ -5,16 +5,27 @@ import Utils from "../utils.js";
 export class RMSSWeaponSkillManager {
 
     static async sendAttackMessage(actor, enemy, weapon, ob) {
-       const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, ob);
+        // TODO: "ob" es la bonificación ofensiva inicial? unused?
+        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, ob);
 
-       if (gmResponse["confirmed"]) {
-           let roll = new Roll(`(1d100x>95) + ${gmResponse["diff"]}`);
-           await roll.toMessage(undefined,{create:true});
-           let result = roll.total;
-           const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
-           result = (result > maximum) ? maximum : result;
-           await RMSSTableManager.getAttackTableResult(weapon, result, enemy, actor);
-       }
+        if (gmResponse["confirmed"]) {
+            const attackRoll = new Roll(`1d100x>95`);
+            const flavor = `
+                <b>${actor.name}</b> ataca con <b>${weapon.name}</b> y bonificación ofensiva de <b>${gmResponse.attackTotal}</b><br/>
+                a <b>${enemy.name}</b> con bonificación defensiva de <b>${gmResponse.defenseTotal}</b>.<br/>
+                Diferencia final: <b>${gmResponse.diff}</b><br/>
+                <i>Tirada: 1d100x>95 + ${gmResponse.diff}</i>
+            `;
+            await attackRoll.toMessage({
+                flavor: flavor
+            }, {create: true});
+            const baseAttack = attackRoll.terms[0].results[0].result;
+            let totalAttack = attackRoll.total + gmResponse["diff"];
+            // TODO: refactor getAttackTableResult to use the totalRoll instead of result
+            const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
+            totalAttack = (totalAttack > maximum) ? maximum : totalAttack;
+            await RMSSTableManager.getAttackTableResult(weapon, baseAttack, totalAttack, enemy, actor);
+        }
     }
 
     static async attackMessagePopup(actor, enemy, weapon, ob) {

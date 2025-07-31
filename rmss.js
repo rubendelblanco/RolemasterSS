@@ -1,6 +1,5 @@
 // Import Configuration Object
 import { rmss } from "./module/config.js";
-
 // Import document classes.
 import { RMSSActor } from "./module/documents/actor.js";
 import { RMSSItem } from "./module/documents/item.js";
@@ -78,6 +77,9 @@ Hooks.once("socketlib.ready", () => {
 // Hook the init function and set up our system
 Hooks.once("init", function () {
   console.log("rmss | Initialising Rolemaster Standard System");
+  Handlebars.registerHelper('inc', function (value) {
+    return parseInt(value) + 1;
+  });
 
   // Load our custom actor and item classes
   console.log("rmss | Loading Rolemaster Actor and Item classes");
@@ -270,5 +272,5 @@ Hooks.on("renderTokenHUD", (app, html, data) => {
     CONFIG.rmss = CONFIG.rmss || {};
     CONFIG.rmss.skillCategories = documents;
     CONFIG.rmss.skillCategories.sort((a, b) => a.name.localeCompare(b.name));
-  })
+  });
 });

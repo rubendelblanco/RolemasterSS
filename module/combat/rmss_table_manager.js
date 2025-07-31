@@ -1,6 +1,53 @@
 import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
 import {socket} from "../../rmss.js";
 
+const findUnmodifiedAttack = (tableName, baseAttack, attackTable) => {
+   let umResult  = null;
+   for (const rangeStr of attackTable.um) {
+        const range = rangeStr.split("-").map(Number);
+        const lower = range[0];
+        const upper = range[1];
+
+       if (baseAttack >= lower && baseAttack <= upper) {
+        umResult = {
+            id: rangeStr,
+            lower: lower,
+            upper: upper,
+            attack: baseAttack
+        }
+        break;
+       }
+   }
+   if (!umResult) {
+    return null;
+   }
+   // Ahora buscamos la fila
+    umResult.row =  findAttackTableRow(tableName, attackTable, baseAttack);
+    return umResult;
+
+}
+
+const findAttackTableRow = (tableName, attackTable, result) => {
+    const numResult = parseInt(result, 10);
+    for (const element of attackTable.rows) {
+        const range = element.Result.split("-");
+        const isRange = range.length > 1;
+
+        if (isRange) {
+            const lowerBound = parseInt(range[0], 10);
+            const upperBound = parseInt(range[1], 10);
+
+            if (numResult >= lowerBound && numResult <= upperBound) {
+                return element;
+            }
+
+        } else if (numResult === range) {
+            return element;
+        }
+    }
+    throw new Error(`No matching row found in attack table ${tableName} for result ${result}`);
+}
+
 export default class RMSSTableManager {
     static async loadAttackTable(tableName) {
         const path = `systems/rmss/module/combat/tables/arms/${tableName}.json`;
@@ -22,7 +69,7 @@ export default class RMSSTableManager {
         const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
         let maximum = 1;
 
-        for (const element of attackTable) {
+        for (const element of attackTable.rows) {
             if (typeof element.Result === "string") {
                 const splitRange = element.Result.split("-").map(s => s.trim());
                 const row = parseInt(splitRange[1] ?? splitRange[0]);
@@ -36,66 +83,38 @@ export default class RMSSTableManager {
         return maximum;
     }
 
-    static async getAttackTableResult(weapon, result, enemy, attacker){
+    static async getAttackTableResult(weapon, baseAttack, totalAttack, enemy, attacker){
+        console.log("getAttackTableResult", weapon, baseAttack, totalAttack, enemy, attacker);
         const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
-        const at = enemy.system.armor_info.armor_type;
-
-        for (const element of attackTable) {
-
-            if (typeof element.Result === "string") {
-                const splitRange = element.Result.split("-").map(s => s.trim());
-                const min = parseInt(splitRange[0], 10);
-                const max = parseInt(splitRange[1], 10);
-                const attackResult = parseInt(result, 10);
-
-                console.log(`Comparando: ${attackResult} con rango ${min}-${max}`);
-                console.log(weapon);
-
-                if (attackResult >= min && attackResult <= max) {
-                    const damage = element[at];
-                    const criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
-                    if (criticalData.critType === null) {
-                        criticalData.critType = weapon.system.critical_type;
-                    }
-                    const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
-                        damage: damage,
-                        criticalData: criticalData,
-                        attacker: attacker
-                    });
-                    const speaker = "Game Master";
-
-                    await ChatMessage.create({
-                        content: htmlContent,
-                        speaker: speaker
-                    });
-
-                    break;
-                }
-            }
-            else if (element.Result === result) {
-                console.log(result);
-                console.log(weapon);
-                const damage = element[at];
-                let criticalData = RMSSWeaponCriticalManager.decomposeCriticalResult(damage);
-
-                if (criticalData.critType === null) {
-                    criticalData.critType = weapon.system.critical_type;
-                }
-
-                const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
-                    damage: damage,
-                    criticalData: criticalData,
-                    attacker: attacker
-                });
-                const speaker = "Game Master";
-
-                await ChatMessage.create({
-                    content: htmlContent,
-                    speaker: speaker
-                });
-                break;
-            }
+        const AT = enemy.system.armor_info.armor_type;
+        // Si sale tirada UM contemplar.
+        let resultRow = null;
+        const umResult = findUnmodifiedAttack(weapon.system.attack_table, baseAttack, attackTable);
+        if (umResult) {
+            resultRow = umResult.row;
+        } else {
+            resultRow = findAttackTableRow(weapon.system.attack_table, attackTable, totalAttack);
         }
+
+        const damage = resultRow[AT];
+        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(damage, attackTable.critical_severity||null);
+        if (criticalResult.criticals.length === 0) {
+            criticalResult.criticals = [
+                {'severity': null, 'critType': weapon.system.critical_type}
+            ];
+        }
+        const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
+            damageStr: damage,
+            damage: criticalResult.damage,
+            criticals: criticalResult.criticals,
+            attacker: attacker
+        });
+        const speaker = "Game Master";
+
+        await ChatMessage.create({
+            content: htmlContent,
+            speaker: speaker
+        });
     }
 
     static async loadCriticalTable(criticalType) {

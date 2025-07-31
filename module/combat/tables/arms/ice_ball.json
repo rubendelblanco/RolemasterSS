@@ -4,7 +4,9 @@
         "96-99",
         "100-100"
     ],
-    "critical_severity": {},
+    "critical_severity": {
+        "default": "impact"
+    },
     "rows": [
         {
             "1": "F",

@@ -5,7 +5,9 @@
         "98-99",
         "100-100"
     ],
-    "critical_severity": {},
+    "critical_severity": {
+        "default": "heat"
+    },
     "rows": [
         {
             "1": "F",
