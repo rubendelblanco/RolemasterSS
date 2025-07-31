@@ -3,7 +3,7 @@
   <button class="chat-critical-roll"
           type="button"
           data-attacker="{{../attacker.id}}"
-          data-damage="{{#if @first}}{{../damage}}{{else}}0{{/if}}"
+          data-damage="{{damage}}"
           data-severity="{{severity}}"
           data-crittype="{{critType}}">
     {{localize "rmss.combat.critical_roll"}} {{inc @index}}

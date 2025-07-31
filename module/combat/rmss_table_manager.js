@@ -100,7 +100,7 @@ export default class RMSSTableManager {
         const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(damage, attackTable.critical_severity||null);
         if (criticalResult.criticals.length === 0) {
             criticalResult.criticals = [
-                {'severity': null, 'critType': weapon.system.critical_type}
+                {'severity': null, 'critType': weapon.system.critical_type, damage: criticalResult.damage}
             ];
         }
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {

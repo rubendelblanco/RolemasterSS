@@ -16,7 +16,7 @@ export class RMSSWeaponCriticalManager {
         }
 
         if (typeof result === "number") { //only HP
-            return {'damage':result, 'criticals': [{'severity':"null", 'critType':"null"}]};
+            return {'damage':result, 'criticals': [{'severity':"null", 'critType':"null", damage: result}]};
         }
         else { //critical
             const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
@@ -29,15 +29,15 @@ export class RMSSWeaponCriticalManager {
                 if (!!severity && severity >= "F" && !!criticalSeverity) {
                     // Hostia guapa. Caso especial.
                     let criticalsRaw = criticalSeverity[severity];
-                    const criticals = Array.from(Object.entries(criticalsRaw)).map(([key, value]) => {
-                        return {'severity': value, 'critType': key};
+                    const criticals = Array.from(Object.entries(criticalsRaw)).map(([key, value], idx) => {
+                        return {'severity': value, 'critType': key, damage: idx === 0 ? damage : 0};
                     });
 
                     return {damage, criticals};
                 } else if (critType==null && !!criticalSeverity) {
-                    return {damage, criticals: [{'severity':severity, 'critType':criticalSeverity.default}]};
+                    return {damage, criticals: [{'severity':severity, 'critType':criticalSeverity.default, damage}]};
                 }
-                return {'damage':damage, 'criticals': [{'severity':severity, 'critType':critType}]};
+                return {'damage':damage, 'criticals': [{'severity':severity, 'critType':critType, damage}]};
             }
             else {
                 ui.notifications.error("Invalid critical format");
