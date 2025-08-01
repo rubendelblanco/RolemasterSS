@@ -3,7 +3,8 @@ import {socket} from "../../rmss.js";
 
 const findUnmodifiedAttack = (tableName, baseAttack, attackTable) => {
    let umResult  = null;
-   for (const rangeStr of attackTable.um) {
+   const um = attackTable.um || [];
+   for (const rangeStr of um) {
         const range = rangeStr.split("-").map(Number);
         const lower = range[0];
         const upper = range[1];
