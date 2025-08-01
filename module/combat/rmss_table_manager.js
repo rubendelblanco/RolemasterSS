@@ -42,7 +42,7 @@ const findAttackTableRow = (tableName, attackTable, result) => {
                 return element;
             }
 
-        } else if (numResult === range) {
+        } else if (numResult === parseInt(range[0], 10)) {
             return element;
         }
     }
