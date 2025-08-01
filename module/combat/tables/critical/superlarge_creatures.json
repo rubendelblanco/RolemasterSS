@@ -1,4 +1,5 @@
-  [
+{
+  "rows": [
     {
       "lower": "01",
       "upper": "05",
@@ -632,4 +633,8 @@
         "metadata": []
       }
     }
-  ]
+  ],
+  "id": 1754071475500,
+  "name": "superlarge_creatures",
+  "filename": "superlarge_creatures.json"
+}

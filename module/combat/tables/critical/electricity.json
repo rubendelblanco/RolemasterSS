@@ -1,1212 +1,1217 @@
-[
-        {
-            "lower": "01",
-            "upper": "05",
-            "A": {
-                "text": "La descarga es aterradora, pero no causa daño real.",
-                "metadata": []
-            },
-            "B": {
-                "text": "La energía de tu ataque se desvía sin perjudicar al enemigo.",
-                "metadata": []
-            },
-            "C": {
-                "text": "La energía se filtra en el suelo. El enemigo siente un ligero hormigueo.",
-                "metadata": [
-                    {
-                        "HP": 1
-                    }
-                ]
-            },
-            "D": {
-                "text": "Un destello brillante y poco calor sacude al enemigo.",
-                "metadata": [
-                    {
-                        "HP": 2
-                    }
-                ]
-            },
-            "E": {
-                "text": "El enemigo esquiva el ataque, pero queda cargado de estática.",
-                "metadata": [
-                    {
-                        "HP": 3
-                    }
-                ]
+{
+  "rows": [
+    {
+      "lower": "01",
+      "upper": "05",
+      "A": {
+        "text": "La descarga es aterradora, pero no causa daño real.",
+        "metadata": []
+      },
+      "B": {
+        "text": "La energía de tu ataque se desvía sin perjudicar al enemigo.",
+        "metadata": []
+      },
+      "C": {
+        "text": "La energía se filtra en el suelo. El enemigo siente un ligero hormigueo.",
+        "metadata": [
+          {
+            "HP": 1
+          }
+        ]
+      },
+      "D": {
+        "text": "Un destello brillante y poco calor sacude al enemigo.",
+        "metadata": [
+          {
+            "HP": 2
+          }
+        ]
+      },
+      "E": {
+        "text": "El enemigo esquiva el ataque, pero queda cargado de estática.",
+        "metadata": [
+          {
+            "HP": 3
+          }
+        ]
+      }
+    },
+    {
+      "lower": "06",
+      "upper": "10",
+      "A": {
+        "text": "Chispas vuelan alrededor del rival, iluminándolo brevemente.",
+        "metadata": [
+          {
+            "HP": 1
+          }
+        ]
+      },
+      "B": {
+        "text": "El cabello del enemigo se eriza, como si fuera a saltar de un susto.",
+        "metadata": [
+          {
+            "HP": 2
+          }
+        ]
+      },
+      "C": {
+        "text": "El contrincante intenta sacudirse chispas y humo sin mucho éxito.",
+        "metadata": [
+          {
+            "HP": 3
+          }
+        ]
+      },
+      "D": {
+        "text": "La electricidad estática se acumula en torno al enemigo; sientes que un golpe mayor se avecina.",
+        "metadata": [
+          {
+            "HP": 4
+          }
+        ]
+      },
+      "E": {
+        "text": "¡Chasquido! El rival ve destellos y quedas con la iniciativa.",
+        "metadata": [
+          {
+            "HP": 4
+          }
+        ]
+      }
+    },
+    {
+      "lower": "11",
+      "upper": "15",
+      "A": {
+        "text": "El relámpago se dirige al enemigo, pero se descarga en el suelo. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": 2
+          }
+        ]
+      },
+      "B": {
+        "text": "Un leve calambre golpea el hombro del rival y lo hace dudar. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": 2
+          }
+        ]
+      },
+      "C": {
+        "text": "El estruendo de tu ataque asusta al oponente. Ganas la iniciativa.",
+        "metadata": [
+          {
+            "HP": 3
+          }
+        ]
+      },
+      "D": {
+        "text": "La descarga salta a las armas del adversario y luego se desvanece. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": 4
+          }
+        ]
+      },
+      "E": {
+        "text": "Un destello enceguece al enemigo y lo pone a la defensiva. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": 5,
+            "STUN": {
+              "ROUNDS": 1
             }
-        },
-        {
-            "lower": "06",
-            "upper": "10",
-            "A": {
-                "text": "Chispas vuelan alrededor del rival, iluminándolo brevemente.",
-                "metadata": [
-                    {
-                        "HP": 1
-                    }
-                ]
-            },
-            "B": {
-                "text": "El cabello del enemigo se eriza, como si fuera a saltar de un susto.",
-                "metadata": [
-                    {
-                        "HP": 2
-                    }
-                ]
-            },
-            "C": {
-                "text": "El contrincante intenta sacudirse chispas y humo sin mucho éxito.",
-                "metadata": [
-                    {
-                        "HP": 3
-                    }
-                ]
-            },
-            "D": {
-                "text": "La electricidad estática se acumula en torno al enemigo; sientes que un golpe mayor se avecina.",
-                "metadata": [
-                    {
-                        "HP": 4
-                    }
-                ]
-            },
-            "E": {
-                "text": "¡Chasquido! El rival ve destellos y quedas con la iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 4
-                    }
-                ]
+          }
+        ]
+      }
+    },
+    {
+      "lower": "16",
+      "upper": "20",
+      "A": {
+        "text": "El enemigo se estremece por la estática en el aire. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": 3
+          }
+        ]
+      },
+      "B": {
+        "text": "El fogonazo de luz y calor lo atemoriza; aparta la mirada y pierdes de vista su reacción. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": 4
+          }
+        ]
+      },
+      "C": {
+        "text": "Fragmentos y restos salen despedidos e impiden la visión del oponente. Ganas 2 rondas de iniciativa.",
+        "metadata": [
+          {
+            "HP": 3
+          }
+        ]
+      },
+      "D": {
+        "text": "El rival forcejea con la descarga para protegerse. Parece servirle, aunque sea poco.",
+        "metadata": [
+          {
+            "HP": 4,
+            "P": {
+              "ROUNDS": 1
             }
-        },
-        {
-            "lower": "11",
-            "upper": "15",
-            "A": {
-                "text": "El relámpago se dirige al enemigo, pero se descarga en el suelo. Tienes la iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 2
-                    }
-                ]
-            },
-            "B": {
-                "text": "Un leve calambre golpea el hombro del rival y lo hace dudar. Tienes la iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 2
-                    }
-                ]
-            },
-            "C": {
-                "text": "El estruendo de tu ataque asusta al oponente. Ganas la iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 3
-                    }
-                ]
-            },
-            "D": {
-                "text": "La descarga salta a las armas del adversario y luego se desvanece. Tienes la iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 4
-                    }
-                ]
-            },
-            "E": {
-                "text": "Un destello enceguece al enemigo y lo pone a la defensiva. Tienes la iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 5,
-                        "STUN": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
+          }
+        ]
+      },
+      "E": {
+        "text": "El enemigo no puede esquivar por completo y casi cae al suelo.",
+        "metadata": [
+          {
+            "HP": 6,
+            "STUN": {
+              "ROUNDS": 1
             }
-        },
-        {
-            "lower": "16",
-            "upper": "20",
-            "A": {
-                "text": "El enemigo se estremece por la estática en el aire. Tienes la iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 3
-                    }
-                ]
-            },
-            "B": {
-                "text": "El fogonazo de luz y calor lo atemoriza; aparta la mirada y pierdes de vista su reacción. Tienes la iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 4
-                    }
-                ]
-            },
-            "C": {
-                "text": "Fragmentos y restos salen despedidos e impiden la visión del oponente. Ganas 2 rondas de iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 3
-                    }
-                ]
-            },
-            "D": {
-                "text": "El rival forcejea con la descarga para protegerse. Parece servirle, aunque sea poco.",
-                "metadata": [
-                    {
-                        "HP": 4,
-                        "P": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
-            },
-            "E": {
-                "text": "El enemigo no puede esquivar por completo y casi cae al suelo.",
-                "metadata": [
-                    {
-                        "HP": 6,
-                        "STUN": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
+          }
+        ]
+      }
+    },
+    {
+      "lower": "21",
+      "upper": "35",
+      "A": {
+        "text": "El estruendo de la descarga hace retroceder al enemigo. Pierde 2 rondas de iniciativa.",
+        "metadata": [
+          {
+            "HP": 4
+          }
+        ]
+      },
+      "B": {
+        "text": "Destellos y crujidos eléctricos impresionan al rival. Tienes 2 rondas de iniciativa.",
+        "metadata": [
+          {
+            "HP": 5
+          }
+        ]
+      },
+      "C": {
+        "text": "Las monedas o metal en los bolsillos del enemigo se calientan. Da un paso atrás, alarmado.",
+        "metadata": [
+          {
+            "HP": 6,
+            "P": {
+              "ROUNDS": 1
             }
-        },
-        {
-            "lower": "21",
-            "upper": "35",
-            "A": {
-                "text": "El estruendo de la descarga hace retroceder al enemigo. Pierde 2 rondas de iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 4
-                    }
-                ]
+          }
+        ]
+      },
+      "D": {
+        "text": "Tu ataque sacude al rival y lo obliga a retroceder, lanzando golpes al aire. Parece muy alterado.",
+        "metadata": [
+          {
+            "HP": 5,
+            "P": {
+              "ROUNDS": 2
             },
-            "B": {
-                "text": "Destellos y crujidos eléctricos impresionan al rival. Tienes 2 rondas de iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 5
-                    }
-                ]
-            },
-            "C": {
-                "text": "Las monedas o metal en los bolsillos del enemigo se calientan. Da un paso atrás, alarmado.",
-                "metadata": [
-                    {
-                        "HP": 6,
-                        "P": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
-            },
-            "D": {
-                "text": "Tu ataque sacude al rival y lo obliga a retroceder, lanzando golpes al aire. Parece muy alterado.",
-                "metadata": [
-                    {
-                        "HP": 5,
-                        "P": {
-                            "ROUNDS": 2
-                        },
-                        "HPR": 1
-                    }
-                ]
-            },
-            "E": {
-                "text": "Por un instante, el enemigo se magnetiza y queda aturdido. Mira alrededor, confundido.",
-                "metadata": [
-                    {
-                        "HP": 10,
-                        "STUN": {
-                            "ROUNDS": 2
-                        }
-                    }
-                ]
+            "HPR": 1
+          }
+        ]
+      },
+      "E": {
+        "text": "Por un instante, el enemigo se magnetiza y queda aturdido. Mira alrededor, confundido.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
             }
-        },
-        {
-            "lower": "36",
-            "upper": "45",
-            "A": {
-                "text": "El ataque casi falla, pero logra descargarse en el brazo armado del rival.",
-                "metadata": [
-                    {
-                        "DESC": "Sin arma metálica",
-                        "HP": 5,
-                        "P": {
-                            "ROUNDS": 1
-                        }
-                    },
-                    {
-                        "DESC": "Con arma metálica",
-                        "HP": 7,
-                        "STUN": {
-                            "ROUNDS": 1
-                        },
-                        "P": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
-            },
-            "B": {
-                "text": "La electricidad atrapa el costado y la espalda del enemigo. Este queda visiblemente sacudido.",
-                "metadata": [
-                    {
-                        "HP": 2,
-                        "P": {
-                            "ROUNDS": 1
-                        },
-                        "HPR": 1
-                    }
-                ]
-            },
-            "C": {
-                "text": "El enemigo se sobrecalienta y adopta una postura defensiva hasta que se enfríe.",
-                "metadata": [
-                    {
-                        "HP": 7,
-                        "P": {
-                            "ROUNDS": 2
-                        }
-                    }
-                ]
-            },
-            "D": {
-                "text": "Enredas al rival en un destello azulado letal. Sus ropas humean mientras la energía recorre su equipo.",
-                "metadata": [
-                    {
-                        "HP": 7,
-                        "STUN": {
-                            "ROUNDS": 1
-                        },
-                        "PE": {
-                            "VALUE": 10,
-                            "ROUNDS": 2
-                        }
-                    }
-                ]
-            },
-            "E": {
-                "text": "La descarga infesta el equipo del rival. Sus ropas se chamuscan y la piel expuesta se quema.",
-                "metadata": [
-                    {
-                        "HP": 12,
-                        "STUN": {
-                            "ROUNDS": 2
-                        }
-                    }
-                ]
+          }
+        ]
+      }
+    },
+    {
+      "lower": "36",
+      "upper": "45",
+      "A": {
+        "text": "El ataque casi falla, pero logra descargarse en el brazo armado del rival.",
+        "metadata": [
+          {
+            "DESC": "Sin arma metálica",
+            "HP": 5,
+            "P": {
+              "ROUNDS": 1
             }
-        },
-        {
-            "lower": "46",
-            "upper": "50",
-            "A": {
-                "text": "Pequeños rastros de energía brincan sobre el cuerpo del enemigo; intenta sacudirlos inútilmente.",
-                "metadata": [
-                    {
-                        "HP": 2,
-                        "P": {
-                            "ROUNDS": 1
-                        },
-                        "HPR": 1
-                    }
-                ]
+          },
+          {
+            "DESC": "Con arma metálica",
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 1
             },
-            "B": {
-                "text": "Descarga directa al pecho. La ropa humedece con humo y luego prende fuego, mientras el enemigo forcejea para apagarlo.",
-                "metadata": [
-                    {
-                        "HP": 6,
-                        "P": {
-                            "ROUNDS": 2
-                        }
-                    }
-                ]
-            },
-            "C": {
-                "text": "El impacto recorre el brazo del rival y rebota en cada pieza de metal. Las áreas descubiertas se llenan de ampollas.",
-                "metadata": [
-                    {
-                        "HP": 7,
-                        "STUN": {
-                            "ROUNDS": 2
-                        }
-                    }
-                ]
-            },
-            "D": {
-                "text": "El enemigo queda iluminado por un golpe directo. Parte de la energía se va a tierra, pero algo permanece unos instantes.",
-                "metadata": [
-                    {
-                        "HP": 7,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "PE": {
-                            "VALUE": 10,
-                            "ROUNDS": 2
-                        }
-                    }
-                ]
-            },
-            "E": {
-                "text": "El estallido eléctrico alcanza la cintura del rival. Tropieza y queda temblando visiblemente. Ganas 6 rondas de iniciativa.",
-                "metadata": [
-                    {
-                        "HP": 13,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "NP": 1
-                    }
-                ]
+            "P": {
+              "ROUNDS": 1
             }
-        },
-        {
-            "lower": "51",
-            "upper": "55",
-            "A": {
-                "text": "Un rayo chisporroteante golpea el hombro del enemigo dejándolo aturdido.",
-                "metadata": [
-                    {
-                        "HP": 6,
-                        "STUN": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
+          }
+        ]
+      },
+      "B": {
+        "text": "La electricidad atrapa el costado y la espalda del enemigo. Este queda visiblemente sacudido.",
+        "metadata": [
+          {
+            "HP": 2,
+            "P": {
+              "ROUNDS": 1
             },
-            "B": {
-                "text": "El ataque por la espalda arroja parte del equipo del rival. Sufre quemaduras leves en zonas expuestas.",
-                "metadata": [
-                    {
-                        "HP": 7,
-                        "STUN": {
-                            "ROUNDS": 1
-                        },
-                        "HPR": 2
-                    }
-                ]
-            },
-            "C": {
-                "text": "Un impacto fuerte al costado ignora la armadura superficial y deja una marca eléctrica duradera.",
-                "metadata": [
-                    {
-                        "HP": 7,
-                        "STUN": {
-                            "ROUNDS": 1
-                        },
-                        "NP": 1,
-                        "HPR": 1
-                    }
-                ]
-            },
-            "D": {
-                "text": "La descarga sacude el brazo del escudo. Con armadura metálica, el enemigo queda fuera de combate.",
-                "metadata": [
-                    {
-                        "HP": 10,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "P": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
-            },
-            "E": {
-                "text": "El brazo armado sufre una descarga terrible; el enemigo suelta lo que sostiene.",
-                "metadata": [
-                    {
-                        "HP": 13,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "HPR": 2
-                    }
-                ]
+            "HPR": 1
+          }
+        ]
+      },
+      "C": {
+        "text": "El enemigo se sobrecalienta y adopta una postura defensiva hasta que se enfríe.",
+        "metadata": [
+          {
+            "HP": 7,
+            "P": {
+              "ROUNDS": 2
             }
-        },
-        {
-            "lower": "56",
-            "upper": "60",
-            "A": {
-                "text": "El enemigo es sacudido y pierde el equilibrio. Le cuesta recomponerse.",
-                "metadata": [
-                    {
-                        "HP": 7,
-                        "P": {
-                            "ROUNDS": 3
-                        }
-                    }
-                ]
+          }
+        ]
+      },
+      "D": {
+        "text": "Enredas al rival en un destello azulado letal. Sus ropas humean mientras la energía recorre su equipo.",
+        "metadata": [
+          {
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 1
             },
-            "B": {
-                "text": "La descarga calienta cualquier metal que lleve el rival, causando quemaduras serias.",
-                "metadata": [
-                    {
-                        "DESC": "Sin metal",
-                        "HP": 8,
-                        "STUN": {
-                            "ROUNDS": 2
-                        }
-                    },
-                    {
-                        "DESC": "Con metal",
-                        "HP": 10,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "NP": 2
-                    }
-                ]
-            },
-            "C": {
-                "text": "Un golpe eléctrico fuerte sacude las piernas del contrincante. Casi se doblan por el dolor.",
-                "metadata": [
-                    {
-                        "DESC": "Con armadura en piernas",
-                        "HP": 12,
-                        "STUN": {
-                            "ROUNDS": 1
-                        }
-                    },
-                    {
-                        "DESC": "Sin armadura en piernas",
-                        "HP": 9,
-                        "STUN": {
-                            "ROUNDS": 2
-                        }
-                    }
-                ]
-            },
-            "D": {
-                "text": "Descarga contundente al abdomen. El enemigo retrocede 5 pies ante el impacto.",
-                "metadata": [
-                    {
-                        "DESC": "Con armadura abdominal",
-                        "HP": 20
-                    },
-                    {
-                        "DESC": "Sin armadura abdominal",
-                        "HP": 15,
-                        "STUN": {
-                            "ROUNDS": 6
-                        }
-                    }
-                ]
-            },
-            "E": {
-                "text": "El relámpago atraviesa la pierna del rival y se filtra en el suelo. El dolor es intenso.",
-                "metadata": [
-                    {
-                        "DESC": "Con armadura en piernas",
-                        "HP": 8,
-                        "STUN": {
-                            "ROUNDS": 1
-                        },
-                        "NP": 1
-                    },
-                    {
-                        "DESC": "Sin armadura en piernas",
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "HPR": 2
-                    }
-                ]
+            "PE": {
+              "VALUE": 10,
+              "ROUNDS": 2
             }
-        },
-        {
-            "lower": "61",
-            "upper": "65",
-            "A": {
-                "text": "¡Golpe preciso! La descarga alcanza el brazo armado del enemigo. Su evasión resulta ridícula.",
-                "metadata": [
-                    {
-                        "DESC": "Con grebas metálicas",
-                        "HP": 3,
-                        "STUN": {
-                            "ROUNDS": 2
-                        }
-                    },
-                    {
-                        "DESC": "Sin grebas metálicas",
-                        "HP": 7,
-                        "STUN": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
-            },
-            "B": {
-                "text": "Los reflejos del rival quedan entumecidos. Se mueve y reacciona con lentitud.",
-                "metadata": [
-                    {
-                        "HP": 9,
-                        "STUN": {
-                            "ROUNDS": 1
-                        },
-                        "NP": 1
-                    }
-                ]
-            },
-            "C": {
-                "text": "El rayo se descarga bajo tierra, pero un arco eléctrico salta a la pierna del contrincante.",
-                "metadata": [
-                    {
-                        "HP": 10,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "P": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
-            },
-            "D": {
-                "text": "La explosión impacta el hombro del escudo. Tanto el brazo como el propio escudo son presa de las chispas.",
-                "metadata": [
-                    {
-                        "DESC": "Con escudo",
-                        "STUN": {
-                            "ROUNDS": 6
-                        },
-                        "HPR": 3
-                    },
-                    {
-                        "DESC": "Sin escudo",
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "HPR": 2
-                    }
-                ]
-            },
-            "E": {
-                "text": "El rival cae, envuelto en ropas chamuscadas. La descarga lo supera por completo.",
-                "metadata": [
-                    {
-                        "HP": 14,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "P": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
+          }
+        ]
+      },
+      "E": {
+        "text": "La descarga infesta el equipo del rival. Sus ropas se chamuscan y la piel expuesta se quema.",
+        "metadata": [
+          {
+            "HP": 12,
+            "STUN": {
+              "ROUNDS": 2
             }
-        },
-        {
-            "lower": "66",
-            "upper": "66",
-            "A": {
-                "text": "Interrumpes momentáneamente el latido cardíaco del enemigo. Sus músculos se tensan y cae.",
-                "metadata": [
-                    {
-                        "STUN": {
-                            "ROUNDS": 3
-                        }
-                    }
-                ]
+          }
+        ]
+      }
+    },
+    {
+      "lower": "46",
+      "upper": "50",
+      "A": {
+        "text": "Pequeños rastros de energía brincan sobre el cuerpo del enemigo; intenta sacudirlos inútilmente.",
+        "metadata": [
+          {
+            "HP": 2,
+            "P": {
+              "ROUNDS": 1
             },
-            "B": {
-                "text": "Un destello recorre todo su cuerpo. Cada músculo se contrae. Volverá a estremecerse en 10 asaltos.",
-                "metadata": [
-                    {
-                        "HP": 15,
-                        "STUN": {
-                            "ROUNDS": 3
-                        },
-                        "NP": 3,
-                        "HPR": 2,
-                        "PE": {
-                            "VALUE": 20
-                        }
-                    }
-                ]
-            },
-            "C": {
-                "text": "Cualquier armadura metálica en brazo y pecho se fusiona con su piel. El brazo queda inutilizado.",
-                "metadata": [
-                    {
-                        "HP": 9,
-                        "STUN": {
-                            "ROUNDS": 12
-                        }
-                    }
-                ]
-            },
-            "D": {
-                "text": "El cuello absorbe casi todo el golpe. Queda inconsciente y mudo por varios días.",
-                "metadata": [
-                    {
-                        "HP": 20,
-                        "HPR": 4
-                    }
-                ]
-            },
-            "E": {
-                "text": "El esqueleto del enemigo cruje con la fuerza de tu ataque. Cae y muere en 2 asaltos.",
-                "metadata": [
-                    {
-                        "BONUS": {
-                            "VALUE": 10
-                        }
-                    }
-                ]
+            "HPR": 1
+          }
+        ]
+      },
+      "B": {
+        "text": "Descarga directa al pecho. La ropa humedece con humo y luego prende fuego, mientras el enemigo forcejea para apagarlo.",
+        "metadata": [
+          {
+            "HP": 6,
+            "P": {
+              "ROUNDS": 2
             }
-        },
-        {
-            "lower": "67",
-            "upper": "70",
-            "A": {
-                "text": "La descarga trepa por el costado del rival y lo hace retroceder 5 pies. Se cubre el rostro, temiendo otro ataque.",
-                "metadata": [
-                    {
-                        "HP": 7,
-                        "STUN": {
-                            "ROUNDS": 1
-                        },
-                        "P": {
-                            "ROUNDS": 1
-                        }
-                    }
-                ]
-            },
-            "B": {
-                "text": "La explosión impacta en el hombro y recorre la espalda. El enemigo se adelanta torpemente intentando esquivarlo.",
-                "metadata": [
-                    {
-                        "HP": 10,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "NP": 1
-                    }
-                ]
-            },
-            "C": {
-                "text": "La onda eléctrica golpea por la espalda. El rival cae de rodillas y se levanta con dificultad. Sufre ampollas graves.",
-                "metadata": [
-                    {
-                        "HP": 11,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "NP": 2,
-                        "PE": {
-                            "VALUE": 10
-                        }
-                    }
-                ]
-            },
-            "D": {
-                "text": "El choque afecta la columna del contrincante. Músculos y tendones se tensan. Le cuesta mantenerse en pie.",
-                "metadata": [
-                    {
-                        "HP": 12,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "PE": {
-                            "VALUE": 20
-                        }
-                    }
-                ]
-            },
-            "E": {
-                "text": "La electricidad salta al brazo del escudo y lo incendia. Si el escudo es metálico, parte del metal se fusiona.",
-                "metadata": [
-                    {
-                        "STUN": {
-                            "ROUNDS": 4
-                        },
-                        "HPR": 3,
-                        "PE": {
-                            "VALUE": 40
-                        }
-                    }
-                ]
+          }
+        ]
+      },
+      "C": {
+        "text": "El impacto recorre el brazo del rival y rebota en cada pieza de metal. Las áreas descubiertas se llenan de ampollas.",
+        "metadata": [
+          {
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 2
             }
-        },
-        {
-            "lower": "71",
-            "upper": "75",
-            "A": {
-                "text": "La electricidad recorre todo el cuerpo del enemigo y chisporrotea por unos segundos. Tardará en recuperarse.",
-                "metadata": [
-                    {
-                        "HP": 8,
-                        "STUN": {
-                            "ROUNDS": 3
-                        },
-                        "PE": {
-                            "VALUE": 5
-                        }
-                    }
-                ]
+          }
+        ]
+      },
+      "D": {
+        "text": "El enemigo queda iluminado por un golpe directo. Parte de la energía se va a tierra, pero algo permanece unos instantes.",
+        "metadata": [
+          {
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 2
             },
-            "B": {
-                "text": "Un impacto al pecho y brazo quema la armadura orgánica y calienta la metálica. El enemigo huele a pelo chamuscado.",
-                "metadata": [
-                    {
-                        "STUN": {
-                            "ROUNDS": 4
-                        },
-                        "DESC": "Con armadura metátlica",
-                        "NP": "2",
-                        "HPR": "3"
-                    },
-                    {
-                        "DESC": "Sin armadura metálica",
-                        "STUN": {
-                            "ROUNDS": 4
-                        },
-                        "NP": "2"
-                    }
-                ]
-            },
-            "C": {
-                "text": "La descarga al tórax destruye la protección orgánica. La armadura metálica debe quitarse para evitar más quemaduras.",
-                "metadata": [
-                    {
-                        "HP": 12,
-                        "STUN": {
-                            "ROUNDS": 8
-                        },
-                        "HPR": "5",
-                        "DESC": "Si no se despoja de la armadura"
-                    },
-                    {
-                        "DESC": "Si se despoja de la armadura",
-                        "HP": "12",
-                        "STUN": {
-                            "ROUNDS": 8
-                        }
-                    }
-                ]
-            },
-            "D": {
-                "text": "El arma del enemigo (en mano) conduce la descarga a brazo y nervios. El brazo queda inútil. Músculos y tendones muy dañados.",
-                "metadata": [
-                    {
-                        "HP": 13,
-                        "STUN": {
-                            "ROUNDS": 3
-                        }
-                    }
-                ]
-            },
-            "E": {
-                "text": "El rayo sacude el centro del pecho del rival. Sus convulsiones parecen una macabra danza; uno de sus brazos se paraliza.",
-                "metadata": [
-                    {
-                        "HP": "10",
-                        "STUN": {
-                            "ROUNDS": 3
-                        },
-                        "DESC": "Con armadura",
-                        "NP": "3",
-                        "HPR": "1"
-                    },
-                    {
-                        "DESC": "Sin armadura en el pecho",
-                        "STUN": {
-                            "ROUNDS": 6
-                        },
-                        "HPR": "3"
-                    }
-                ]
+            "PE": {
+              "VALUE": 10,
+              "ROUNDS": 2
             }
-        },
-        {
-            "lower": "76",
-            "upper": "80",
-            "A": {
-                "text": "Descarga electrificante en el lado del escudo. Poco sirve para protegerle si es de metal; arde igual.",
-                "metadata": [
-                    {
-                        "HP": "6",
-                        "STUN": {
-                            "ROUNDS": 1
-                        },
-                        "NP": 1,
-                        "DESC": "Sin metal en el escudo"
-                    },
-                    {
-                        "DESC": "Con metal en el escudo",
-                        "HP": "9",
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "NP": "2"
-                    }
-                ]
+          }
+        ]
+      },
+      "E": {
+        "text": "El estallido eléctrico alcanza la cintura del rival. Tropieza y queda temblando visiblemente. Ganas 6 rondas de iniciativa.",
+        "metadata": [
+          {
+            "HP": 13,
+            "STUN": {
+              "ROUNDS": 2
             },
-            "B": {
-                "text": "Una “serpiente” de energía atrapa el abdomen del rival. Cae al suelo y la descarga desaparece.",
-                "metadata": [
-                    {
-                        "DESC": "Con armadura en el abdomen",
-                        "HP": "15",
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "NP": "1"
-                    },
-                    {
-                        "DESC": "Sin armadura en el abdomen",
-                        "HP": "11",
-                        "HPR": "2"
-                    }
-                ]
-            },
-            "C": {
-                "text": "Los nervios del codo del oponente quedan dañados. Su brazo del escudo se suelta y el arma cae sobre su pie.",
-                "metadata": [
-                    {
-                        "STUN": {
-                            "ROUNDS": 8
-                        },
-                        "PE": {
-                            "VALUE": 5
-                        },
-                        "HPR": "1"
-                    }
-                ]
-            },
-            "D": {
-                "text": "Una descarga recorre cuello y espalda. Los nervios se queman y los músculos se desgarran. Se tambalea sin control.",
-                "metadata": [
-                    {
-                        "HP": 20,
-                        "STUN": {
-                            "ROUNDS": 10
-                        },
-                        "NP": "10"
-                    }
-                ]
-            },
-            "E": {
-                "text": "El metal en el cuerpo del enemigo se fusiona con su piel. Aturdido, se arroja al suelo buscando alivio.",
-                "metadata": [
-                    {
-                        "HP": 18,
-                        "HPR": 3
-                    }
-                ]
+            "NP": 1
+          }
+        ]
+      }
+    },
+    {
+      "lower": "51",
+      "upper": "55",
+      "A": {
+        "text": "Un rayo chisporroteante golpea el hombro del enemigo dejándolo aturdido.",
+        "metadata": [
+          {
+            "HP": 6,
+            "STUN": {
+              "ROUNDS": 1
             }
-        },
-        {
-            "lower": "81",
-            "upper": "85",
-            "A": {
-                "text": "La descarga entra por la espalda y el enemigo tiembla, ajeno a lo que ocurre a su alrededor. Agita su arma al aire.",
-                "metadata": [
-                    {
-                        "HP": 12,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "P": {
-                            "ROUNDS": 2
-                        }
-                    }
-                ]
+          }
+        ]
+      },
+      "B": {
+        "text": "El ataque por la espalda arroja parte del equipo del rival. Sufre quemaduras leves en zonas expuestas.",
+        "metadata": [
+          {
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 1
             },
-            "B": {
-                "text": "El choque hace que los músculos del rival se contraigan contra sus propios tendones. Grita de dolor en espasmos violentos.",
-                "metadata": [
-                    {
-                        "HP": 13,
-                        "STUN": {
-                            "ROUNDS": 3
-                        },
-                        "NP": "3"
-                    }
-                ]
+            "HPR": 2
+          }
+        ]
+      },
+      "C": {
+        "text": "Un impacto fuerte al costado ignora la armadura superficial y deja una marca eléctrica duradera.",
+        "metadata": [
+          {
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 1
             },
-            "C": {
-                "text": "Golpe eléctrico brutal en el abdomen. La armadura frena algo del daño, pero queda desequilibrado y con cartílagos rotos.",
-                "metadata": [
-                    {
-                        "HP": 10,
-                        "STUN": {
-                            "ROUNDS": 1
-                        },
-                        "PE": {
-                            "VALUE": 20
-                        },
-                        "DESC": "Con armadura"
-                    },
-                    {
-                        "DESC": "Sin armadura",
-                        "STUN": {
-                            "ROUNDS": 4
-                        },
-                        "PE": {
-                            "VALUE": 40
-                        },
-                        "HPR": "2"
-                    }
-                ]
+            "NP": 1,
+            "HPR": 1
+          }
+        ]
+      },
+      "D": {
+        "text": "La descarga sacude el brazo del escudo. Con armadura metálica, el enemigo queda fuera de combate.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
             },
-            "D": {
-                "text": "La descarga viaja por el brazo armado y alcanza órganos internos. Tras 6 asaltos activos, colapsa inconsciente.",
-                "metadata": [
-                    {
-                        "HP": 15,
-                        "PE": {
-                            "VALUE": 30,
-                            "ROUNDS": 6
-                        }
-                    }
-                ]
-            },
-            "E": {
-                "text": "Tu rayo reorganiza por completo su sistema nervioso. Colapsa y morirá en 12 asaltos por shock masivo.",
-                "metadata": []
+            "P": {
+              "ROUNDS": 1
             }
-        },
-        {
-            "lower": "86",
-            "upper": "90",
-            "A": {
-                "text": "Golpe a la parte baja de la pierna fusiona metal y quema gravemente. El enemigo cae. Una pierna queda paralizada si usa grebas metálicas.",
-                "metadata": [
-                    {
-                        "HP": 15,
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "DESC": "Con armadura metálica",
-                        "NP": "2"
-                    },
-                    {
-                        "DESC": "Sin armadura metálica",
-                        "HP": "15",
-                        "STUN": {
-                            "ROUNDS": 3
-                        },
-                        "NP": "3"
-                    }
-                ]
+          }
+        ]
+      },
+      "E": {
+        "text": "El brazo armado sufre una descarga terrible; el enemigo suelta lo que sostiene.",
+        "metadata": [
+          {
+            "HP": 13,
+            "STUN": {
+              "ROUNDS": 2
             },
-            "B": {
-                "text": "La descarga impacta la pierna con fuerza anormal. Si tiene armadura, sufre fractura simple; sin ella, fractura múltiple expuesta.",
-                "metadata": [
-                    {
-                        "DESC": "Con armadura en la pierna",
-                        "STUN": {
-                            "ROUNDS": 6
-                        },
-                        "NP": "6",
-                        "HPR": "1"
-                    },
-                    {
-                        "DESC": "Sin armadura en la pierna",
-                        "STUN": {
-                            "ROUNDS": 6
-                        },
-                        "PE": {
-                            "VALUE": 50
-                        }
-                    }
-                ]
-            },
-            "C": {
-                "text": "La mayor parte del impacto se concentra en la rodilla. Músculos y nervios arden. Cae presa del dolor, sujetando su rodilla.",
-                "metadata": [
-                    {
-                        "STUN": {
-                            "ROUNDS": 2
-                        },
-                        "NP": "2",
-                        "PE": {
-                            "ROUNDS": 60
-                        }
-                    }
-                ]
-            },
-            "D": {
-                "text": "El relámpago recorre todo su cuerpo. Si no lleva armadura, morirá en 12 asaltos por convulsiones masivas.",
-                "metadata": [
-                    {
-                        "DESC": "Con armadura",
-                        "STUN": {
-                            "ROUNDS": 9
-                        },
-                        "HPR": "6"
-                    }
-                ]
-            },
-            "E": {
-                "text": "La descarga trepa desde el hombro hasta la columna. El enemigo cae con la cadera y la espalda destrozadas, muriendo en 12 asaltos.",
-                "metadata": []
+            "HPR": 2
+          }
+        ]
+      }
+    },
+    {
+      "lower": "56",
+      "upper": "60",
+      "A": {
+        "text": "El enemigo es sacudido y pierde el equilibrio. Le cuesta recomponerse.",
+        "metadata": [
+          {
+            "HP": 7,
+            "P": {
+              "ROUNDS": 3
             }
-        },
-        {
-            "lower": "91",
-            "upper": "95",
-            "A": {
-                "text": "El rayo se arquea hasta la cadera del rival y prende fuego a su ropa. Sufre daño de shock y nervios.",
-                "metadata": [
-                    {
-                        "STUN": {
-                            "ROUNDS": 3
-                        },
-                        "PE": {
-                            "VALUE": 50
-                        }
-                    }
-                ]
-            },
-            "B": {
-                "text": "Una sacudida ciega al enemigo por al menos dos días. Cae al suelo, aturdido y sin defensa mientras dure la ceguera.",
-                "metadata": [
-                    {
-                        "STUN": {
-                            "ROUNDS": 9
-                        }
-                    }
-                ]
-            },
-            "C": {
-                "text": "Atrapado en una telaraña de relámpagos, el enemigo cae inconsciente. Sin ayuda inmediata, morirá en 12 asaltos por shock.",
-                "metadata": [
-                    {
-                        "PE": {
-                            "VALUE": 75
-                        },
-                        "HPR": "5"
-                    }
-                ]
-            },
-            "D": {
-                "text": "Un impacto en la cabeza devasta el sistema nervioso. El oponente cae en coma, convertido en un vegetal viviente.",
-                "metadata": [
-                    {
-                        "HP": "30"
-                    }
-                ]
-            },
-            "E": {
-                "text": "La descarga desgarra órganos vitales. Los ojos del rival saltan de sus órbitas y muere tras 9 asaltos inactivo.",
-                "metadata": [
-                    {
-                        "HP": "25"
-                    }
-                ]
+          }
+        ]
+      },
+      "B": {
+        "text": "La descarga calienta cualquier metal que lleve el rival, causando quemaduras serias.",
+        "metadata": [
+          {
+            "DESC": "Sin metal",
+            "HP": 8,
+            "STUN": {
+              "ROUNDS": 2
             }
-        },
-        {
-            "lower": "96",
-            "upper": "99",
-            "A": {
-                "text": "El enemigo pierde el conocimiento de inmediato. Aun convulsiona de pie un instante, luego se desploma.",
-                "metadata": [
-                    {
-                        "HP": 10,
-                        "STUN": {
-                            "ROUNDS": 12
-                        }
-                    }
-                ]
+          },
+          {
+            "DESC": "Con metal",
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
             },
-            "B": {
-                "text": "La red nerviosa del rival se sobrecarga: su corazón se detiene y reinicia varias veces. Morirá en 9 asaltos.",
-                "metadata": [
-                    {
-                        "HP": 15
-                    }
-                ]
-            },
-            "C": {
-                "text": "El calor sostenido funde metal, tela y piel. Los ojos del rival saltan de su cabeza y perece en 3 asaltos.",
-                "metadata": []
-            },
-            "D": {
-                "text": "El enemigo retrocede 10 pies. El daño nervioso y la fractura de cadera y brazo le causan la muerte en 3 asaltos de agonía.",
-                "metadata": [
-                    {
-                        "HP": "20"
-                    }
-                ]
-            },
-            "E": {
-                "text": "Un estallido titánico parte virtualmente en dos al enemigo, mientras relámpagos corren por el suelo. Está muerto al instante.",
-                "metadata": [
-                    {
-                        "BONUS": {
-                            "VALUE": 20
-                        }
-                    }
-                ]
+            "NP": 2
+          }
+        ]
+      },
+      "C": {
+        "text": "Un golpe eléctrico fuerte sacude las piernas del contrincante. Casi se doblan por el dolor.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en piernas",
+            "HP": 12,
+            "STUN": {
+              "ROUNDS": 1
             }
-        },
-        {
-            "lower": "100",
-            "upper": "100",
-            "A": {
-                "text": "La cabeza del enemigo se enciende y su ropa prende fuego. Cae inconsciente y muere en 6 asaltos por daño nervioso.",
-                "metadata": [
-                    {
-                        "HP": 20
-                    }
-                ]
-            },
-            "B": {
-                "text": "Los órganos internos hierven y se consumen. El rival cae y fallece instantáneamente.",
-                "metadata": [
-                    {
-                        "BONUS": {
-                            "VALUE": 10
-                        }
-                    }
-                ]
-            },
-            "C": {
-                "text": "El golpe alcanza la cabeza. Músculos y tendones se fusionan, y el cerebro se fríe. Muere en 3 asaltos.",
-                "metadata": [
-                    {
-                        "BONUS": {
-                            "VALUE": 10,
-                            "ROUNDS": 3
-                        }
-                    }
-                ]
-            },
-            "D": {
-                "text": "El caos estalla alrededor del rival. Lo más cercano a él también sufre la mortífera descarga. Muere 2 asaltos después.",
-                "metadata": [
-                    {
-                        "BONUS": {
-                            "VALUE": 15
-                        }
-                    }
-                ]
-            },
-            "E": {
-                "text": "La cabeza del adversario se carboniza por completo y lo que queda se lo lleva el viento. Todos sienten pavor ante ti.",
-                "metadata": [
-                    {
-                        "BONUS": {
-                            "VALUE": 20
-                        }
-                    }
-                ]
+          },
+          {
+            "DESC": "Sin armadura en piernas",
+            "HP": 9,
+            "STUN": {
+              "ROUNDS": 2
             }
-        }
-    ]
+          }
+        ]
+      },
+      "D": {
+        "text": "Descarga contundente al abdomen. El enemigo retrocede 5 pies ante el impacto.",
+        "metadata": [
+          {
+            "DESC": "Con armadura abdominal",
+            "HP": 20
+          },
+          {
+            "DESC": "Sin armadura abdominal",
+            "HP": 15,
+            "STUN": {
+              "ROUNDS": 6
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "El relámpago atraviesa la pierna del rival y se filtra en el suelo. El dolor es intenso.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en piernas",
+            "HP": 8,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": 1
+          },
+          {
+            "DESC": "Sin armadura en piernas",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "HPR": 2
+          }
+        ]
+      }
+    },
+    {
+      "lower": "61",
+      "upper": "65",
+      "A": {
+        "text": "¡Golpe preciso! La descarga alcanza el brazo armado del enemigo. Su evasión resulta ridícula.",
+        "metadata": [
+          {
+            "DESC": "Con grebas metálicas",
+            "HP": 3,
+            "STUN": {
+              "ROUNDS": 2
+            }
+          },
+          {
+            "DESC": "Sin grebas metálicas",
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Los reflejos del rival quedan entumecidos. Se mueve y reacciona con lentitud.",
+        "metadata": [
+          {
+            "HP": 9,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": 1
+          }
+        ]
+      },
+      "C": {
+        "text": "El rayo se descarga bajo tierra, pero un arco eléctrico salta a la pierna del contrincante.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "La explosión impacta el hombro del escudo. Tanto el brazo como el propio escudo son presa de las chispas.",
+        "metadata": [
+          {
+            "DESC": "Con escudo",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "HPR": 3
+          },
+          {
+            "DESC": "Sin escudo",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "HPR": 2
+          }
+        ]
+      },
+      "E": {
+        "text": "El rival cae, envuelto en ropas chamuscadas. La descarga lo supera por completo.",
+        "metadata": [
+          {
+            "HP": 14,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "66",
+      "upper": "66",
+      "A": {
+        "text": "Interrumpes momentáneamente el latido cardíaco del enemigo. Sus músculos se tensan y cae.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 3
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Un destello recorre todo su cuerpo. Cada músculo se contrae. Volverá a estremecerse en 10 asaltos.",
+        "metadata": [
+          {
+            "HP": 15,
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": 3,
+            "HPR": 2,
+            "PE": {
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Cualquier armadura metálica en brazo y pecho se fusiona con su piel. El brazo queda inutilizado.",
+        "metadata": [
+          {
+            "HP": 9,
+            "STUN": {
+              "ROUNDS": 12
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "El cuello absorbe casi todo el golpe. Queda inconsciente y mudo por varios días.",
+        "metadata": [
+          {
+            "HP": 20,
+            "HPR": 4
+          }
+        ]
+      },
+      "E": {
+        "text": "El esqueleto del enemigo cruje con la fuerza de tu ataque. Cae y muere en 2 asaltos.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "67",
+      "upper": "70",
+      "A": {
+        "text": "La descarga trepa por el costado del rival y lo hace retroceder 5 pies. Se cubre el rostro, temiendo otro ataque.",
+        "metadata": [
+          {
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "La explosión impacta en el hombro y recorre la espalda. El enemigo se adelanta torpemente intentando esquivarlo.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": 1
+          }
+        ]
+      },
+      "C": {
+        "text": "La onda eléctrica golpea por la espalda. El rival cae de rodillas y se levanta con dificultad. Sufre ampollas graves.",
+        "metadata": [
+          {
+            "HP": 11,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": 2,
+            "PE": {
+              "VALUE": 10
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "El choque afecta la columna del contrincante. Músculos y tendones se tensan. Le cuesta mantenerse en pie.",
+        "metadata": [
+          {
+            "HP": 12,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "PE": {
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "La electricidad salta al brazo del escudo y lo incendia. Si el escudo es metálico, parte del metal se fusiona.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 4
+            },
+            "HPR": 3,
+            "PE": {
+              "VALUE": 40
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "71",
+      "upper": "75",
+      "A": {
+        "text": "La electricidad recorre todo el cuerpo del enemigo y chisporrotea por unos segundos. Tardará en recuperarse.",
+        "metadata": [
+          {
+            "HP": 8,
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "PE": {
+              "VALUE": 5
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Un impacto al pecho y brazo quema la armadura orgánica y calienta la metálica. El enemigo huele a pelo chamuscado.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 4
+            },
+            "DESC": "Con armadura metátlica",
+            "NP": "2",
+            "HPR": "3"
+          },
+          {
+            "DESC": "Sin armadura metálica",
+            "STUN": {
+              "ROUNDS": 4
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "C": {
+        "text": "La descarga al tórax destruye la protección orgánica. La armadura metálica debe quitarse para evitar más quemaduras.",
+        "metadata": [
+          {
+            "HP": 12,
+            "STUN": {
+              "ROUNDS": 8
+            },
+            "HPR": "5",
+            "DESC": "Si no se despoja de la armadura"
+          },
+          {
+            "DESC": "Si se despoja de la armadura",
+            "HP": "12",
+            "STUN": {
+              "ROUNDS": 8
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "El arma del enemigo (en mano) conduce la descarga a brazo y nervios. El brazo queda inútil. Músculos y tendones muy dañados.",
+        "metadata": [
+          {
+            "HP": 13,
+            "STUN": {
+              "ROUNDS": 3
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "El rayo sacude el centro del pecho del rival. Sus convulsiones parecen una macabra danza; uno de sus brazos se paraliza.",
+        "metadata": [
+          {
+            "HP": "10",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "DESC": "Con armadura",
+            "NP": "3",
+            "HPR": "1"
+          },
+          {
+            "DESC": "Sin armadura en el pecho",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "HPR": "3"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "76",
+      "upper": "80",
+      "A": {
+        "text": "Descarga electrificante en el lado del escudo. Poco sirve para protegerle si es de metal; arde igual.",
+        "metadata": [
+          {
+            "HP": "6",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": 1,
+            "DESC": "Sin metal en el escudo"
+          },
+          {
+            "DESC": "Con metal en el escudo",
+            "HP": "9",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "B": {
+        "text": "Una “serpiente” de energía atrapa el abdomen del rival. Cae al suelo y la descarga desaparece.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en el abdomen",
+            "HP": "15",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "1"
+          },
+          {
+            "DESC": "Sin armadura en el abdomen",
+            "HP": "11",
+            "HPR": "2"
+          }
+        ]
+      },
+      "C": {
+        "text": "Los nervios del codo del oponente quedan dañados. Su brazo del escudo se suelta y el arma cae sobre su pie.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 8
+            },
+            "PE": {
+              "VALUE": 5
+            },
+            "HPR": "1"
+          }
+        ]
+      },
+      "D": {
+        "text": "Una descarga recorre cuello y espalda. Los nervios se queman y los músculos se desgarran. Se tambalea sin control.",
+        "metadata": [
+          {
+            "HP": 20,
+            "STUN": {
+              "ROUNDS": 10
+            },
+            "NP": "10"
+          }
+        ]
+      },
+      "E": {
+        "text": "El metal en el cuerpo del enemigo se fusiona con su piel. Aturdido, se arroja al suelo buscando alivio.",
+        "metadata": [
+          {
+            "HP": 18,
+            "HPR": 3
+          }
+        ]
+      }
+    },
+    {
+      "lower": "81",
+      "upper": "85",
+      "A": {
+        "text": "La descarga entra por la espalda y el enemigo tiembla, ajeno a lo que ocurre a su alrededor. Agita su arma al aire.",
+        "metadata": [
+          {
+            "HP": 12,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "P": {
+              "ROUNDS": 2
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "El choque hace que los músculos del rival se contraigan contra sus propios tendones. Grita de dolor en espasmos violentos.",
+        "metadata": [
+          {
+            "HP": 13,
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3"
+          }
+        ]
+      },
+      "C": {
+        "text": "Golpe eléctrico brutal en el abdomen. La armadura frena algo del daño, pero queda desequilibrado y con cartílagos rotos.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "PE": {
+              "VALUE": 20
+            },
+            "DESC": "Con armadura"
+          },
+          {
+            "DESC": "Sin armadura",
+            "STUN": {
+              "ROUNDS": 4
+            },
+            "PE": {
+              "VALUE": 40
+            },
+            "HPR": "2"
+          }
+        ]
+      },
+      "D": {
+        "text": "La descarga viaja por el brazo armado y alcanza órganos internos. Tras 6 asaltos activos, colapsa inconsciente.",
+        "metadata": [
+          {
+            "HP": 15,
+            "PE": {
+              "VALUE": 30,
+              "ROUNDS": 6
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Tu rayo reorganiza por completo su sistema nervioso. Colapsa y morirá en 12 asaltos por shock masivo.",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "86",
+      "upper": "90",
+      "A": {
+        "text": "Golpe a la parte baja de la pierna fusiona metal y quema gravemente. El enemigo cae. Una pierna queda paralizada si usa grebas metálicas.",
+        "metadata": [
+          {
+            "HP": 15,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "DESC": "Con armadura metálica",
+            "NP": "2"
+          },
+          {
+            "DESC": "Sin armadura metálica",
+            "HP": "15",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3"
+          }
+        ]
+      },
+      "B": {
+        "text": "La descarga impacta la pierna con fuerza anormal. Si tiene armadura, sufre fractura simple; sin ella, fractura múltiple expuesta.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en la pierna",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "NP": "6",
+            "HPR": "1"
+          },
+          {
+            "DESC": "Sin armadura en la pierna",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "PE": {
+              "VALUE": 50
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "La mayor parte del impacto se concentra en la rodilla. Músculos y nervios arden. Cae presa del dolor, sujetando su rodilla.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2",
+            "PE": {
+              "ROUNDS": 60
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "El relámpago recorre todo su cuerpo. Si no lleva armadura, morirá en 12 asaltos por convulsiones masivas.",
+        "metadata": [
+          {
+            "DESC": "Con armadura",
+            "STUN": {
+              "ROUNDS": 9
+            },
+            "HPR": "6"
+          }
+        ]
+      },
+      "E": {
+        "text": "La descarga trepa desde el hombro hasta la columna. El enemigo cae con la cadera y la espalda destrozadas, muriendo en 12 asaltos.",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "91",
+      "upper": "95",
+      "A": {
+        "text": "El rayo se arquea hasta la cadera del rival y prende fuego a su ropa. Sufre daño de shock y nervios.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "PE": {
+              "VALUE": 50
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Una sacudida ciega al enemigo por al menos dos días. Cae al suelo, aturdido y sin defensa mientras dure la ceguera.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 9
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Atrapado en una telaraña de relámpagos, el enemigo cae inconsciente. Sin ayuda inmediata, morirá en 12 asaltos por shock.",
+        "metadata": [
+          {
+            "PE": {
+              "VALUE": 75
+            },
+            "HPR": "5"
+          }
+        ]
+      },
+      "D": {
+        "text": "Un impacto en la cabeza devasta el sistema nervioso. El oponente cae en coma, convertido en un vegetal viviente.",
+        "metadata": [
+          {
+            "HP": "30"
+          }
+        ]
+      },
+      "E": {
+        "text": "La descarga desgarra órganos vitales. Los ojos del rival saltan de sus órbitas y muere tras 9 asaltos inactivo.",
+        "metadata": [
+          {
+            "HP": "25"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "96",
+      "upper": "99",
+      "A": {
+        "text": "El enemigo pierde el conocimiento de inmediato. Aun convulsiona de pie un instante, luego se desploma.",
+        "metadata": [
+          {
+            "HP": 10,
+            "STUN": {
+              "ROUNDS": 12
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "La red nerviosa del rival se sobrecarga: su corazón se detiene y reinicia varias veces. Morirá en 9 asaltos.",
+        "metadata": [
+          {
+            "HP": 15
+          }
+        ]
+      },
+      "C": {
+        "text": "El calor sostenido funde metal, tela y piel. Los ojos del rival saltan de su cabeza y perece en 3 asaltos.",
+        "metadata": []
+      },
+      "D": {
+        "text": "El enemigo retrocede 10 pies. El daño nervioso y la fractura de cadera y brazo le causan la muerte en 3 asaltos de agonía.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "E": {
+        "text": "Un estallido titánico parte virtualmente en dos al enemigo, mientras relámpagos corren por el suelo. Está muerto al instante.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "100",
+      "upper": "100",
+      "A": {
+        "text": "La cabeza del enemigo se enciende y su ropa prende fuego. Cae inconsciente y muere en 6 asaltos por daño nervioso.",
+        "metadata": [
+          {
+            "HP": 20
+          }
+        ]
+      },
+      "B": {
+        "text": "Los órganos internos hierven y se consumen. El rival cae y fallece instantáneamente.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 10
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "El golpe alcanza la cabeza. Músculos y tendones se fusionan, y el cerebro se fríe. Muere en 3 asaltos.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 10,
+              "ROUNDS": 3
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "El caos estalla alrededor del rival. Lo más cercano a él también sufre la mortífera descarga. Muere 2 asaltos después.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 15
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "La cabeza del adversario se carboniza por completo y lo que queda se lo lleva el viento. Todos sienten pavor ante ti.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 20
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "id": 1754071475477,
+  "name": "electricity",
+  "filename": "electricity.json"
+}

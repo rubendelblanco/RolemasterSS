@@ -137,7 +137,7 @@ export default class RMSSTableManager {
     static async getCriticalTableResult(result, enemy, severity, critType){
         const criticalTable = await RMSSTableManager.loadCriticalTable(critType);
 
-        for (const element of criticalTable) {
+        for (const element of criticalTable.rows) {
             let criticalResult = element[severity];
             if (result >= parseInt(element["lower"]) && result <= parseInt(element["upper"])) {
                 if (!element[severity].hasOwnProperty("metadata")) {

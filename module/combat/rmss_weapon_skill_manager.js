@@ -10,11 +10,13 @@ export class RMSSWeaponSkillManager {
 
         if (gmResponse["confirmed"]) {
             const attackRoll = new Roll(`1d100x>95`);
+            await attackRoll.evaluate();
             const flavor = `
                 <b>${actor.name}</b> ataca con <b>${weapon.name}</b> y bonificación ofensiva de <b>${gmResponse.attackTotal}</b><br/>
                 a <b>${enemy.name}</b> con bonificación defensiva de <b>${gmResponse.defenseTotal}</b>.<br/>
                 Diferencia final: <b>${gmResponse.diff}</b><br/>
-                <i>Tirada: 1d100x>95 + ${gmResponse.diff}</i>
+                <i>Tirada: 1d100x>95 + ${gmResponse.diff}</i><br/>
+                <b>Total: ${attackRoll.total + gmResponse.diff}</b>
             `;
             await attackRoll.toMessage({
                 flavor: flavor

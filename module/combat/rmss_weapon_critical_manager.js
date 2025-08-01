@@ -66,36 +66,6 @@ export class RMSSWeaponCriticalManager {
         return await RMSSTableManager.getCriticalTableResult(result, target, gmResponse.severity, gmResponse.critType);
     }
 
-    static async sendCriticalMessage2(target) {
-        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, damage, severity, critType);
-
-
-        if (gmResponse["confirmed"]) {
-            const actor = Utils.isAPC(attackerId);
-            if (actor) {
-                let breakDown;
-                let totalExp;
-                const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target.actor, gmResponse.severity));
-                const hpExp = parseInt(damage);
-
-                if (criticalExp==="null" || isNaN(criticalExp)) {
-                    breakDown = {'hp':hpExp};
-                    totalExp = hpExp;
-                }
-                else{
-                    breakDown = {'critical':criticalExp, 'hp':hpExp};
-                    totalExp = criticalExp+hpExp;
-                }
-
-                let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
-                totalExpActor = totalExpActor + totalExp;
-                await actor.update({"system.attributes.experience_points.value": totalExpActor});
-                sendExpMessage(actor, breakDown, totalExp);
-            }
-            return await socket.executeAsGM("updateActorHits", target.id, target instanceof Token, parseInt(gmResponse.damage), gmResponse);
-        }
-    }
-
     static async sendCriticalMessage(target, damage, severity, critType, attackerId) {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, damage, severity, critType);
 
@@ -191,11 +161,11 @@ export class RMSSWeaponCriticalManager {
         return confirmed;
     }
 
-    static async applyCriticalTo(critical, token, originId){
-        console.log("Applying critical to:", critical, token, originId);
-        let entity = token.actor;
+    static async applyCriticalTo(critical, actor, originId){
+        console.log("Applying critical to:", critical, actor, originId);
+        let entity = actor;
 
-        if (!critical || !critical.hasOwnProperty("metadata")) {
+        if (!critical || !critical.hasOwnProperty("metadata") || !critical.metadata) {
             return;
         }
 
@@ -324,7 +294,10 @@ export class RMSSWeaponCriticalManager {
                 }
             };
 
-            await attacker.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            const attacker = game.actors.get(originId);
+            if (attacker) {
+                await attacker.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            }
         }
 
         console.log("Critical");
