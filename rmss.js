@@ -189,8 +189,6 @@ Hooks.once("init", function () {
           enemy: enemy
         });
 
-        return; // No ejecutar lógica de ataque original
-
       } catch (error) {
         console.error("Error ejecutando macro del item:", error);
         ui.notifications.error(`Error en macro: ${error.message}`);
