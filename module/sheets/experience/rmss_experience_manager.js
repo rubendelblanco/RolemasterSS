@@ -1,5 +1,26 @@
 import LevelUpManager from "./rmss_level_up_manager.js";
+import Utils from "../../utils.js";
 import { sendExpMessage } from "../../chat/chatMessages.js";
+
+export class ExperienceManager {
+    /*
+      Suma la experiencia al actor y avisa por el chat
+    */
+    static async applyExperience(target, xp) {
+        const actor = Utils.getActor(target);
+        if (!actor) {
+            ui.notifications.warn("No se ha sumado exp. No se haencontrado un actor para el objetivo.");
+            console.warn("No actor found for target:", target);
+            return;
+        }
+        const breakDown = { 'hp': xp };
+
+        let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
+        totalExpActor = totalExpActor + xp;
+        await actor.update({ "system.attributes.experience_points.value": totalExpActor });
+        sendExpMessage(actor, breakDown, xp);
+    }
+}
 
 export default class ExperiencePointsCalculator {
     // JSON object storing experience points for each maneuver type
@@ -16,11 +37,11 @@ export default class ExperiencePointsCalculator {
             absurd: 500
         },
         criticalExpPoints: {
-            a:1,
-            b:2,
-            c:3,
-            d:4,
-            e:5
+            a: 1,
+            b: 2,
+            c: 3,
+            d: 4,
+            e: 5
         }
     };
 
@@ -28,7 +49,7 @@ export default class ExperiencePointsCalculator {
         let expPoints;
 
         if (opponentLevel === 0) {
-            expPoints = (50 - (killerLevel*5)) + 5;
+            expPoints = (50 - (killerLevel * 5)) + 5;
             return expPoints;
         }
 
@@ -170,9 +191,9 @@ export default class ExperiencePointsCalculator {
         return 1;
     }
 
-    static loadListeners(html, actor=null){
+    static loadListeners(html, actor = null) {
         //level up button
-        html.find("#level-up").click(async(ev) => {
+        html.find("#level-up").click(async (ev) => {
             await LevelUpManager.levelUp(actor)
         })
 
@@ -187,11 +208,11 @@ export default class ExperiencePointsCalculator {
             const level = parseInt(html.find("#level").val());
             const calcLevel = this.getCharacterLevel(experience);
 
-            if(!actor.system.levelUp.levelAbove) {
-                actor.update({system: {'levelUp.levelAbove': calcLevel-level}});
+            if (!actor.system.levelUp.levelAbove) {
+                actor.update({ system: { 'levelUp.levelAbove': calcLevel - level } });
             }
 
-            if (calcLevel > level && (calcLevel-level) > actor.system.levelUp.levelAbove){
+            if (calcLevel > level && (calcLevel - level) > actor.system.levelUp.levelAbove) {
                 const soundPath = "systems/rmss/assets/sounds/power_up.mp3";
                 foundry.audio.AudioHelper.play({ src: soundPath, volume: 0.8, loop: false }).catch(err => {
                     console.error("Sound error:", err);
@@ -209,7 +230,7 @@ export default class ExperiencePointsCalculator {
                         alias: "GM"
                     }
                 })
-                actor.update({system: {'levelUp.levelAbove': calcLevel-level}});
+                actor.update({ system: { 'levelUp.levelAbove': calcLevel - level } });
             }
         });
 
@@ -241,7 +262,7 @@ export default class ExperiencePointsCalculator {
             if (!isNaN(expPoints)) {
                 html.find('.spell-exp-total').text(expPoints);
             }
-            else{
+            else {
                 html.find('.spell-exp-total').text(0);
             }
 
@@ -251,7 +272,7 @@ export default class ExperiencePointsCalculator {
         html.find("#spell-level-exp").change(calculateSpellExpPoints);
         html.find("#spell-level-caster").change(calculateSpellExpPoints);
 
-        function getCriticalExpPoints(){
+        function getCriticalExpPoints() {
             const criticalLevel = html.find("#critical-level-exp").val();
             const opponentLevel = html.find("#opponent-level").val();
             let expPoints = 0;
@@ -273,13 +294,13 @@ export default class ExperiencePointsCalculator {
         html.find("#critical-level-exp").change(getCriticalExpPoints);
         html.find("#opponent-level").change(getCriticalExpPoints);
 
-        function getKillExpPoints(){
+        function getKillExpPoints() {
             const opponentLevel = parseInt(html.find("#kill-opponent-level").val());
             const killerLevel = parseInt(html.find("#killer-character-level").val());
             let expPoints = 0;
 
             if (killerLevel !== null && opponentLevel !== null) {
-                expPoints = ExperiencePointsCalculator.calculateKillExpPoints (opponentLevel, killerLevel);
+                expPoints = ExperiencePointsCalculator.calculateKillExpPoints(opponentLevel, killerLevel);
             }
 
             if (!isNaN(expPoints)) {
@@ -295,7 +316,7 @@ export default class ExperiencePointsCalculator {
         html.find("#kill-opponent-level").change(getKillExpPoints);
         html.find("#killer-character-level").change(getKillExpPoints);
 
-        function getBonusExpPoints(){
+        function getBonusExpPoints() {
             const bonusAttackerLevel = parseInt(html.find("#bonus-attacker-level").val());
             const bonusCode = html.find("#bonus-code").val();
             let expPoints = 0;
@@ -307,7 +328,7 @@ export default class ExperiencePointsCalculator {
             if (!isNaN(expPoints)) {
                 html.find('.bonus-exp-total').text(expPoints);
             }
-            else{
+            else {
                 html.find('.bonus-exp-total').text(0);
             }
             calculateTotalExpPoints();
@@ -328,7 +349,7 @@ export default class ExperiencePointsCalculator {
             const bonus = parseInt(html.find('.bonus-exp-total').text());
             const misc = parseInt(html.find('.misc-exp-total').text());
 
-            return {'maneuver': maneuver, 'spell': spell, 'critical': critical, 'kill': kill, 'bonus': bonus, 'misc':misc};
+            return { 'maneuver': maneuver, 'spell': spell, 'critical': critical, 'kill': kill, 'bonus': bonus, 'misc': misc };
         }
 
         function calculateTotalExpPoints() {
@@ -348,7 +369,7 @@ export default class ExperiencePointsCalculator {
             }
             const experienceBreakdown = getExperienceBreakdown();
             console.log(experienceBreakdown);
-            await actor.update({"system.attributes.experience_points.value": totalExpActor});
+            await actor.update({ "system.attributes.experience_points.value": totalExpActor });
             await sendExpMessage(actor, experienceBreakdown, totalExp);
         })
 

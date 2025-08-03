@@ -19,4 +19,16 @@ export default class Utils {
         const actor = actorOrToken ?? actorOrToken.actor;
         return actor.effects.filter(effect => effect.name === effectName);
     }
+
+    static getActor(actorOrTokenOrId) {
+        if (actorOrTokenOrId instanceof Actor) {
+            return actorOrTokenOrId;
+        }
+
+        if (actorOrTokenOrId instanceof Token) {
+            return canvas.tokens.get(actorOrTokenOrId.id)?.actor;
+        }
+
+        return game.actors.get(actorOrTokenOrId);
+    }
 }

@@ -1,49 +1,57 @@
-import {socket} from "../../rmss.js";
+import { socket } from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
 import CombatExperience from "../sheets/experience/rmss_combat_experience.js";
-import {sendExpMessage} from "../chat/chatMessages.js";
+import { sendExpMessage } from "../chat/chatMessages.js";
 import Utils from "../utils.js";
 
 export class RMSSWeaponCriticalManager {
-    static decomposeCriticalResult(result, criticalSeverity=null) {
-        // e.g result is "10A", "20B", "30C", "–", "F" or 50
-        if (result === "–") { //nothing
-            return {criticals: []};
+    static decomposeCriticalResult(result, criticalSeverity = null) {
+        // e.g result is "10A", "20B", "30C", "-", "F" or 50
+        if (result === "-") { //nothing
+            return { criticals: [] };
         }
         if (result === "F") { //fumble
             // TODO
-            return {criticals: []};// Also nothing 
+            return { criticals: [] };// Also nothing 
         }
 
-        if (typeof result === "number") { //only HP
-            return {'damage':result, 'criticals': [{'severity':"null", 'critType':"null", damage: result}]};
+        if (typeof result === "number" || /^\d+$/.test(result)) {
+            //only HP
+            return { 'damage': parseInt(result, 10), 'criticals': [] };
         }
-        else { //critical
-            const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
-            const match = result.match(regex);
 
-            if (match) {
-                const damage = match[1] || null; // e.g. "10"
-                const severity = match[2] || null; // A, B, C...
-                const critType = match[3] || null; // S=slash, K=krush
-                if (!!severity && severity >= "F" && !!criticalSeverity) {
-                    // Hostia guapa. Caso especial.
-                    let criticalsRaw = criticalSeverity[severity];
-                    const criticals = Array.from(Object.entries(criticalsRaw)).map(([key, value], idx) => {
-                        return {'severity': value, 'critType': key, damage: idx === 0 ? damage : 0};
-                    });
+        // critical "tipo" 36CK -> 36 HP, C severity, Krush critical type
+        const regex = /^(\d+)?([A-Z])?([A-Z])?$/;
+        const match = result.match(regex);
 
-                    return {damage, criticals};
-                } else if (critType==null && !!criticalSeverity) {
-                    return {damage, criticals: [{'severity':severity, 'critType':criticalSeverity.default, damage}]};
-                }
-                return {'damage':damage, 'criticals': [{'severity':severity, 'critType':critType, damage}]};
+        if (match) {
+            const damage = match[1] || null; // e.g. "10"
+            const severity = match[2] || null; // A, B, C...
+            const critType = match[3] || null; // S=slash, K=krush
+            if (!!severity && severity >= "F" && !!criticalSeverity) {
+                // Hostia guapa. Caso especial.
+                let criticalsRaw = criticalSeverity[severity];
+                const criticals = Array.from(Object.entries(criticalsRaw)).map(([key, value], idx) => {
+                    return { 'severity': value, 'critType': key, damage: idx === 0 ? damage : 0 };
+                });
+
+                return { damage, criticals };
+            } else if (critType == null && !!criticalSeverity) {
+                return { damage, criticals: [{ 'severity': severity, 'critType': criticalSeverity.default, damage }] };
             }
-            else {
-                ui.notifications.error("Invalid critical format");
-                return {criticals:[]};
-            }
+            return { 'damage': damage, 'criticals': [{ 'severity': severity, 'critType': critType, damage }] };
         }
+        else {
+            ui.notifications.error("Invalid critical format");
+            return { criticals: [] };
+        }
+    }
+
+    static async updateTokenOrActorHits(token, damage) {
+        const actor = Utils.getActor(token);
+        if (!actor) return;
+        let newHits = actor.system.attributes.hits.current - parseInt(damage);
+        await actor.update({ "system.attributes.hits.current": newHits });
     }
 
     static async updateActorHits(targetId, isToken, damage, gmResponse) {
@@ -59,8 +67,8 @@ export class RMSSWeaponCriticalManager {
         await target.update({ "system.attributes.hits.current": newHits });
         if (gmResponse.severity === "null") return;
         let roll = new Roll(`(1d100)`);
-        await roll.toMessage(undefined,{create:true});
-        let result = (parseInt(roll.total)+parseInt(gmResponse.modifier));
+        await roll.toMessage(undefined, { create: true });
+        let result = (parseInt(roll.total) + parseInt(gmResponse.modifier));
         if (result < 1) result = 1;
         if (result > 100) result = 100;
         return await RMSSTableManager.getCriticalTableResult(result, target, gmResponse.severity, gmResponse.critType);
@@ -77,18 +85,18 @@ export class RMSSWeaponCriticalManager {
                 const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target.actor, gmResponse.severity));
                 const hpExp = parseInt(damage);
 
-                if (criticalExp==="null" || isNaN(criticalExp)) {
-                    breakDown = {'hp':hpExp};
+                if (criticalExp === "null" || isNaN(criticalExp)) {
+                    breakDown = { 'hp': hpExp };
                     totalExp = hpExp;
                 }
-                else{
-                    breakDown = {'critical':criticalExp, 'hp':hpExp};
-                    totalExp = criticalExp+hpExp;
+                else {
+                    breakDown = { 'critical': criticalExp, 'hp': hpExp };
+                    totalExp = criticalExp + hpExp;
                 }
 
                 let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
                 totalExpActor = totalExpActor + totalExp;
-                await actor.update({"system.attributes.experience_points.value": totalExpActor});
+                await actor.update({ "system.attributes.experience_points.value": totalExpActor });
                 sendExpMessage(actor, breakDown, totalExp);
             }
             return await socket.executeAsGM("updateActorHits", target.id, target instanceof Token, parseInt(gmResponse.damage), gmResponse);
@@ -133,7 +141,7 @@ export class RMSSWeaponCriticalManager {
                             const severity = html.find("#severity").val();
                             const critType = html.find("#critical-type").val();
                             const modifier = html.find("#modifier").val();
-                            resolve({confirmed: true, damage, severity, critType, modifier});
+                            resolve({ confirmed: true, damage, severity, critType, modifier });
                         }
                     },
                     cancel: {
@@ -148,7 +156,7 @@ export class RMSSWeaponCriticalManager {
                     html.find("#damage-mult").on("change", (event) => {
                         const mult = parseInt(event.target.value);
                         const base = parseInt(html.find("#damage-base").val());
-                        const damage = mult*base;
+                        const damage = mult * base;
                         html.find("#damage").val(damage);
                     });
 
@@ -161,7 +169,7 @@ export class RMSSWeaponCriticalManager {
         return confirmed;
     }
 
-    static async applyCriticalTo(critical, actor, originId){
+    static async applyCriticalTo(critical, actor, originId) {
         console.log("Applying critical to:", critical, actor, originId);
         let entity = actor;
 
@@ -175,7 +183,7 @@ export class RMSSWeaponCriticalManager {
             stun_bleeding = entity.system.attributes.critical_codes.stun_bleeding;
         }
 
-        if (critical.metadata.hasOwnProperty("HP")){
+        if (critical.metadata.hasOwnProperty("HP")) {
             entity.system.attributes.hits.current -= parseInt(critical.metadata["HP"]);
             await entity.update({ "system.attributes.hits.current": entity.system.attributes.hits.current });
         }
@@ -203,7 +211,7 @@ export class RMSSWeaponCriticalManager {
             }
         }
 
-        if (critical.metadata.hasOwnProperty("HPR") && stun_bleeding !== "bleeding"){
+        if (critical.metadata.hasOwnProperty("HPR") && stun_bleeding !== "bleeding") {
             const effectData = {
                 name: "Bleeding",
                 icon: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
@@ -221,9 +229,9 @@ export class RMSSWeaponCriticalManager {
             await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
-        if (critical.metadata.hasOwnProperty("PE")){
+        if (critical.metadata.hasOwnProperty("PE")) {
             let penaltyValue = parseInt(critical.metadata["PE"]["VALUE"]);
-            penaltyValue = penaltyValue > 0 ? -penaltyValue: penaltyValue;
+            penaltyValue = penaltyValue > 0 ? -penaltyValue : penaltyValue;
 
             const effectData = {
                 name: "Penalty",
@@ -243,7 +251,7 @@ export class RMSSWeaponCriticalManager {
             await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
-        if (critical.metadata.hasOwnProperty("P")){
+        if (critical.metadata.hasOwnProperty("P")) {
             const effectData = {
                 name: "Parry",
                 icon: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
@@ -259,7 +267,7 @@ export class RMSSWeaponCriticalManager {
             await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
 
-        if (critical.metadata.hasOwnProperty("NP")){
+        if (critical.metadata.hasOwnProperty("NP")) {
             const noParryRounds = critical.metadata["NP"];
             const effectData = {
                 name: "No parry",
@@ -278,7 +286,7 @@ export class RMSSWeaponCriticalManager {
             }
         }
 
-        if (critical.metadata.hasOwnProperty("BONUS")){
+        if (critical.metadata.hasOwnProperty("BONUS")) {
             const effectData = {
                 name: "Bonus",
                 icon: `${CONFIG.rmss.paths.icons_folder}bonus.svg`,
@@ -310,7 +318,7 @@ export class RMSSWeaponCriticalManager {
      */
 
 
-    static async applyCriticalToEnemy(critical, enemyId, attackerId, isToken){
+    static async applyCriticalToEnemy(critical, enemyId, attackerId, isToken) {
         console.log("Applying critical to enemy:", critical, enemyId, attackerId, isToken);
         let entity;
 

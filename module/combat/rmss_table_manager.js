@@ -1,4 +1,5 @@
 import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
+import {ExperienceManager} from "../sheets/experience/rmss_experience_manager.js";
 import {socket} from "../../rmss.js";
 
 const findUnmodifiedAttack = (tableName, baseAttack, attackTable) => {
@@ -106,12 +107,24 @@ export default class RMSSTableManager {
         }
 
         const damage = resultRow[AT];
-        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(damage, attackTable.critical_severity||null);
+        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
+            damage, 
+            attackTable.critical_severity||null,
+        );
         if (criticalResult.criticals.length === 0) {
             criticalResult.criticals = [
-                {'severity': null, 'critType': weapon.system.critical_type, damage: criticalResult.damage}
+                {'severity': null, 'critType': weapon.system.critical_type, damage: 0}
             ];
+            // Si no hay críticos, se considera que es un ataque normal y se aplica el daño.
+            await RMSSWeaponCriticalManager.updateTokenOrActorHits(
+                enemy,
+                parseInt(criticalResult.damage)
+            );
+            // Se envia el mensaje de la experiencia del ataque.
+            await ExperienceManager.applyExperience(attacker, criticalResult.damage);
         }
+        // Independientemente de que haya críticos o no, se envía el boton para lanzar un critico a discreción del master.
+        // Por eso, si no habia críticos, se crea uno por defecto, ya que tiene que haber al menos un boton de crítico.
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
             damageStr: damage,
             damage: criticalResult.damage,
