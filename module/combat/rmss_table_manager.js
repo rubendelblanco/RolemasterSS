@@ -71,13 +71,21 @@ export default class RMSSTableManager {
         let maximum = 1;
 
         for (const element of attackTable.rows) {
-            if (typeof element.Result === "string") {
-                const splitRange = element.Result.split("-").map(s => s.trim());
-                const row = parseInt(splitRange[1] ?? splitRange[0]);
-                maximum = (row > maximum) ? row : maximum;
-            }
-            else if (Number.isInteger(parseInt(element.Result))){
-                maximum = (element.Result > maximum) ? element.Result : maximum;
+            const range = element.Result.split("-");
+            const isRange = range.length > 1;
+
+            if (isRange) {
+                const lowerBound = parseInt(range[0], 10);
+                const upperBound = parseInt(range[1], 10);
+                const limit = Math.max(lowerBound, upperBound);
+                if (limit > maximum) {
+                    maximum = limit;
+                }
+            } else  {
+                const value = parseInt(range[0], 10);
+                if (value > maximum) {
+                    maximum = value;
+                }
             }
         }
 
