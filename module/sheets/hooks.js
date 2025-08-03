@@ -34,7 +34,7 @@ Hooks.on("hotbarDrop", async (bar, data, slot) => {
 
     existingMacro = game.macros.find(m => m.name === item.name && m.type === "script");
     if (existingMacro) {
-        await existingMacro.delete();
+        await game.user.assignHotbarMacro(null, slot);
     }
 
     let macro = await Macro.create({
