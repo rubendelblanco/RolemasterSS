@@ -1,34 +1,59 @@
 <form id="rmss-critical-melee-confirmation">
-  <h3><img src="{{enemy.img}}" alt="{{enemy.name}}" width="50" height="50"> {{ localize "rmss.combat.critical_roll" }}</h3>
-  <div class="form-group attacker">
-      <label for="damage">{{ localize "rmss.combat.damage" }}</label>
-      <input class="is-positive" type="hidden" id="damage-base" data-dtype="Number" name="damage-base" value="{{damage}}">
-      <input class="is-positive" type="number" id="damage" data-dtype="Number" name="damage" value="{{damage}}">
-      <label for="damage-mult">{{ localize "rmss.combat.multiplier" }}</label>
-      <select id="damage-mult">
-          <option value="1">x1</option>
-          <option value="2">x2</option>
-          <option value="3">x3</option>
-          <option value="4">x4</option>
-          <option value="5">x5</option>
-          <option value="6">x6</option>
-      </select>
-      <label for="severity">{{ localize "rmss.combat.critical_severity" }}</label>
-      <select name="severity" id="severity">
-          <option value="null" {{#if (eq severity "null")}}selected{{/if}}>-</option>
-          <option value="A" {{#if (eq severity "A")}}selected{{/if}}>A</option>
-          <option value="B" {{#if (eq severity "B")}}selected{{/if}}>B</option>
-          <option value="C" {{#if (eq severity "C")}}selected{{/if}}>C</option>
-          <option value="D" {{#if (eq severity "D")}}selected{{/if}}>D</option>
-          <option value="E" {{#if (eq severity "E")}}selected{{/if}}>E</option>
-      </select>
-      <label>{{ localize "rmss.combat.critical_type" }}</label>
-      <select id="critical-type">
-          {{#each critDict}}
-              <option value="{{@key}}" {{#if (eq @key ../critType)}}selected{{/if}}>{{this}}</option>
-          {{/each}}
-      </select>
-      <label>{{ localize "rmss.combat.critical_modifier" }}</label>
-      <input type="number" id="modifier" data-dtype="Number" name="modifier" value="{{modifier}}">
-  </div>
+    <h3><img src="{{enemy.img}}" alt="{{enemy.name}}" width="50" height="50"> {{ localize "rmss.combat.critical_roll" }}
+    </h3>
+    <div class="form-group attacker" style="flex-direction: row; flex-wrap: wrap; gap: 1em;">
+        <div style="flex-direction: row; align-items: center; gap: 0.5em;">
+            <label for="damage">{{ localize "rmss.combat.damage" }}</label>
+            <input class="is-positive" type="hidden" id="damage-base" data-dtype="Number" name="damage-base"
+                value="{{damage}}">
+            <input class="is-positive" type="number" id="damage" data-dtype="Number" name="damage" value="{{damage}}">
+        </div>
+
+        <div style="flex-direction: row; align-items: center; gap: 0.5em;">
+            <label for="damage-mult">{{ localize "rmss.combat.multiplier" }}</label>
+            <select id="damage-mult">
+                <option value="1">x1</option>
+                <option value="2">x2</option>
+                <option value="3">x3</option>
+                <option value="4">x4</option>
+                <option value="5">x5</option>
+                <option value="6">x6</option>
+            </select>
+        </div>
+
+        <div style="flex-direction: row; align-items: center; gap: 0.5em;">
+            <label for="severity">{{ localize "rmss.combat.critical_severity" }}</label>
+            <select name="severity" id="severity">
+                <option value="null" {{#if (eq severity "null" )}}selected{{/if}}>-</option>
+                <option value="A" {{#if (eq severity "A" )}}selected{{/if}}>A</option>
+                <option value="B" {{#if (eq severity "B" )}}selected{{/if}}>B</option>
+                <option value="C" {{#if (eq severity "C" )}}selected{{/if}}>C</option>
+                <option value="D" {{#if (eq severity "D" )}}selected{{/if}}>D</option>
+                <option value="E" {{#if (eq severity "E" )}}selected{{/if}}>E</option>
+            </select>
+        </div>
+
+        <div style="flex-direction: row; align-items: center; gap: 0.5em;">
+            <label>{{ localize "rmss.combat.critical_type" }}</label>
+            <select id="critical-type">
+                {{#each critDict}}
+                <option value="{{@key}}" {{#if (eq @key ../critType)}}selected{{/if}}>{{this}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div id="critical-subtype-container" style="flex-direction: row; align-items: center; gap: 0.5em;">
+            <label>{{ localize "rmss.combat.critical_subtype" }}</label>
+            <select id="critical-subtype">
+                {{#each subcritdict}}
+                <option value="{{@key}}" {{#if (eq @key ../crittype)}}selected{{/if}}>{{this}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div style="flex-direction: row; align-items: center; gap: 0.5em;">
+            <label>{{ localize "rmss.combat.critical_modifier" }}</label>
+            <input type="number" id="modifier" data-dtype="Number" name="modifier" value="{{modifier}}">
+        </div>
+    </div>
 </form>

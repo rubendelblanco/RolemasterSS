@@ -3,6 +3,7 @@ import RMSSTableManager from "./rmss_table_manager.js";
 import CombatExperience from "../sheets/experience/rmss_combat_experience.js";
 import { sendExpMessage } from "../chat/chatMessages.js";
 import Utils from "../utils.js";
+import { rmss } from "../config.js";
 
 export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result, criticalSeverity = null) {
@@ -119,15 +120,18 @@ export class RMSSWeaponCriticalManager {
     }
 
     static async criticalMessagePopup(enemy, damage, severity, critType) {
-        const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-critical.hbs", {
+        const initialContext = {
             enemy: enemy,
             damage: damage,
             severity: severity,
             critType: critType,
             critTables: await RMSSWeaponCriticalManager.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.critical_tables),
+            subcritdict: CONFIG.rmss.criticalSubtypes,
             critDict: CONFIG.rmss.criticalDictionary,
-            modifier: 0
-        });
+            modifier: 0,
+            criticalHasSubtypes: (rmss.large_critical_types[critType] || []).length > 0,
+        };
+        const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-critical.hbs", initialContext);
 
         let confirmed = await new Promise((resolve) => {
             new Dialog({
@@ -160,9 +164,32 @@ export class RMSSWeaponCriticalManager {
                         html.find("#damage").val(damage);
                     });
 
+                    // Tener en cuenta criaturas largas y superlargas.
+                    html.find("#critical-type").on("change", (event) => {
+                        const tableName = (event.target.value);
+                        // Display block subtype if 
+                        const criticalSubtypes = rmss.large_critical_types[tableName] || [];
+                        if (criticalSubtypes.length > 0) {
+                            html.find("#critical-subtype").empty();
+                            criticalSubtypes.forEach((subtype) => {
+                                html.find("#critical-subtype").append(`<option value="${subtype}">${subtype}</option>`);
+                            });
+                            html.find("#critical-subtype-container").show();
+                        } else {
+                            html.find("#critical-subtype-container").hide();
+                        }
+                    });
+
                     html.find(".is-positive").on("change", (event) => {
                         event.target.value = parseInt(event.target.value) < 0 ? -event.target.value : event.target.value;
                     });
+
+                    // En funcion del tipo de critico inicial, se muestra o no el selector de subtipos.
+                    if (!initialContext.criticalHasSubtypes) {
+                        html.find("#critical-subtype-container").hide();
+                    } else {
+                        html.find("#critical-subtype-container").show();
+                    }
                 }
             }).render(true);
         });

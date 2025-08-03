@@ -81,11 +81,11 @@ rmss.skill_progression = {
     data: "limited",
     progression: "0*1*1*0.5*0"
   },
-  special:{
+  special: {
     name: "Special",
     progression: "0*6*5*4*3"
   },
-  combined:{
+  combined: {
     name: "Combined",
     progression: "-30*5*3*1.5*0.5"
   }
@@ -101,7 +101,7 @@ rmss.paths = {
 }
 
 rmss.attack = {
-  types : {
+  types: {
     none: "None",
     area: "Area",
     base: "Base",
@@ -126,6 +126,17 @@ rmss.criticalDictionary = {
   "electricity": "electricity",
   "impact": "impact",
   "strikes": "strikes",
+  "large_melee": "large_melee",
+  "large_spell": "large_spell",
+  "superlarge_melee": "superlarge_melee",
+  "superlarge_spell": "superlarge_spell",
+}
+
+rmss.large_critical_types = {
+  superlarge_spell: ['normal', 'slaying'],
+  large_spell: ['normal', 'slaying'],
+  superlarge_melee: ['normal', 'magic', 'mithril', 'sacred', 'slaying'],
+  large_melee: ['normal', 'magic', 'mithril', 'sacred', 'slaying']
 }
 
 rmss.spell_realm = {
