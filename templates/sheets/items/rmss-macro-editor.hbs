@@ -1,0 +1,40 @@
+<form class="flexcol">
+  <div class="form-group">
+    <label>Nombre de la Macro:</label>
+    <input type="text" name="name" value="{{macro.name}}" placeholder="Nombre de la macro"/>
+  </div>
+  
+  <div class="form-group flexcol" style="flex: 1;">
+    <label>Código JavaScript:</label>
+    <textarea name="command" style="font-family: monospace; flex: 1; min-height: 300px; resize: vertical;">{{macro.command}}</textarea>
+  </div>
+  
+  <div class="form-group">
+    <p class="notes">
+      <strong>Variables disponibles:</strong><br>
+      • <code>item</code> - El item actual<br>
+      • <code>actor</code> - El actor propietario del item (si existe)<br>
+      • <code>token</code> - El token activo del actor (si existe)
+    </p>
+  </div>
+  
+  <footer class="sheet-footer flexrow">
+    <button type="button" class="save-macro">
+      <i class="fas fa-save"></i> Guardar
+    </button>
+    
+    {{#if hasExistingMacro}}
+    <button type="button" class="execute-macro">
+      <i class="fas fa-play"></i> Ejecutar
+    </button>
+    
+    <button type="button" class="create-global-macro">
+      <i class="fas fa-globe"></i> Crear Macro Global
+    </button>
+    
+    <button type="button" class="delete-macro">
+      <i class="fas fa-trash"></i> Eliminar
+    </button>
+    {{/if}}
+  </footer>
+</form>

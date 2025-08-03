@@ -59,7 +59,8 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/rmss-critical-codes.hbs",
     "systems/rmss/templates/sheets/actors/parts/active-effects.hbs",
     "systems/rmss/templates/sheets/actors/parts/search-text.hbs",
-    "systems/rmss/templates/sheets/actors/parts/actor-skill-list.hbs"
+    "systems/rmss/templates/sheets/actors/parts/actor-skill-list.hbs",
+    "systems/rmss/templates/sheets/items/rmss-macro-editor.hbs",
   ];
   return loadTemplates(templatePaths);
 }
@@ -72,6 +73,8 @@ Hooks.once("socketlib.ready", () => {
   socket.register("chooseCriticalOption", RMSSWeaponCriticalManager.chooseCriticalOption);
   socket.register("updateActorHits", RMSSWeaponCriticalManager.updateActorHits);
   socket.register("applyCriticalToEnemy", RMSSWeaponCriticalManager.applyCriticalToEnemy);
+
+
 });
 
 // Hook the init function and set up our system
