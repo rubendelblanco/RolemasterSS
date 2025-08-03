@@ -25,16 +25,44 @@ export default class RMSSCharacterSheet extends ActorSheet {
         html.find(".offensive-skill").click(async ev => {
             const enemy = RMSSCombat.getTargets()[0];
             const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-            let ob = null;
 
-            if (this.actor.type !== "creature") {
-                ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
-            }
-            else {
-                ob = weapon.system.bonus;
-            }
+            // Check if weapon has a macro
+            const macroData = weapon.getFlag("rmss", "macro");
 
-            await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, weapon, ob);
+            if (macroData && macroData.command.trim()) {
+                // Execute weapon macro using Foundry's macro system
+                try {
+                    const macro = new Macro({
+                        name: macroData.name || "Weapon Macro",
+                        type: "script",
+                        command: macroData.command,
+                        scope: "global"
+                    });
+
+                    // Execute with proper context
+                    await macro.execute({
+                        item: weapon,
+                        actor: this.actor,
+                        token: this.actor.getActiveTokens()?.[0],
+                        enemy: enemy
+                    });
+
+                } catch (error) {
+                    console.error("Error ejecutando macro del arma:", error);
+                    ui.notifications.error(`Error en macro: ${error.message}`);
+                }
+            } else {
+                // Original attack logic
+                let ob = null;
+
+                if (this.actor.type !== "creature") {
+                    ob = this.actor.items.get(weapon.system.offensive_skill).system.total_bonus;
+                } else {
+                    ob = weapon.system.bonus;
+                }
+
+                await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, weapon, ob);
+            }
         });
 
         // Items
