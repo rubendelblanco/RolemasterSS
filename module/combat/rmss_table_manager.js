@@ -51,6 +51,14 @@ const findAttackTableRow = (tableName, attackTable, result) => {
 }
 
 export default class RMSSTableManager {
+    static findAttackTableRow(tableName, attackTable, result) {
+        return findAttackTableRow(tableName, attackTable, result);
+    }
+
+    static findUnmodifiedAttack(tableName, baseAttack, attackTable) {
+        return findUnmodifiedAttack(tableName, baseAttack, attackTable);
+    }
+
     static async loadAttackTable(tableName) {
         const path = `systems/rmss/module/combat/tables/arms/${tableName}.json`;
 
@@ -157,7 +165,6 @@ export default class RMSSTableManager {
 
     static async getCriticalTableResult(result, enemy, severity, critType){
         const criticalTable = await RMSSTableManager.loadCriticalTable(critType);
-
         for (const element of criticalTable.rows) {
             let criticalResult = element[severity];
             if (result >= parseInt(element["lower"]) && result <= parseInt(element["upper"])) {

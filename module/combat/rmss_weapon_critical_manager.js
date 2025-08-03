@@ -5,7 +5,138 @@ import { sendExpMessage } from "../chat/chatMessages.js";
 import Utils from "../utils.js";
 import { rmss } from "../config.js";
 
+class LargeCreatureCriticalStrategy {
+
+    constructor(criticalType) {
+        this.criticalType = criticalType;
+    }
+
+    getColumForCriticalSubtype(subtype) {
+        switch (this.criticalType) {
+            case "large_spell":
+            case "superlarge_spell": {
+                switch (subtype) {
+                    case "normal":
+                        return "A";
+                    default:
+                        return "B";
+                }
+            }
+            case "large_melee":
+            case "superlarge_melee": {
+                switch (subtype) {
+                    case "normal":
+                        return "A";
+                    case "magic":
+                        return "B";
+                    case "mithril":
+                        return "C";
+                    case "sacred":
+                        return "D";
+                    case "slaying":
+                        return "E";
+                    default:
+                        throw new Error(`Unknown subtype ${subtype} for critical type ${this.criticalType}`);
+                }
+            }
+        }
+    }
+
+    async apply(attackerActor, defenderActor,data = {}) {
+        const {
+            damage,
+            severity,
+            critType,
+            subCritType,
+            modifier = 0,
+            metadata = {},
+        } = data;
+        const tableName = this.criticalType;
+        // 1. Calculamos la XP.
+        const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
+        const hpExp = parseInt(data.damage);
+        let breakDown = {};
+        let totalExp = 0;
+
+        if (criticalExp === "null" || isNaN(criticalExp)) {
+            breakDown = { 'hp': hpExp };
+            totalExp = hpExp;
+        } else {
+            breakDown = { 'critical': criticalExp, 'hp': hpExp };
+            totalExp = criticalExp + hpExp;
+        }
+
+        let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
+        totalExpActor += totalExp;
+        await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
+        await sendExpMessage(attackerActor, breakDown, totalExp);
+        // 2. Tiramos el critico
+        const column = this.getColumForCriticalSubtype(subCritType);
+        const roll = new Roll(`1d100x>95`);
+        await roll.evaluate({ async: true });
+        await roll.toMessage(undefined, { create: true });
+        const total = roll.total;
+        // TODO: Restar cuando el bixo tiene lo de -25 o -50 por critical procedure.
+        // NOTA: Esto se ejecuta como GM porque el modal de editar el critico lo edita el GM
+        let newHits = defenderActor.system.attributes.hits.current - parseInt(damage);
+        await defenderActor.update({ "system.attributes.hits.current": newHits });
+        if (severity === "null") return;
+        let result = (parseInt(total) + parseInt(modifier));
+        if (result < 1) result = 1;
+        else {
+            result = Math.min(result, 999);
+        }
+        return await RMSSTableManager.getCriticalTableResult(
+            result,
+            defenderActor,
+            column, // aka severity, pero para las critauras grandes ha habido que sacar la columna especificamente.
+            tableName
+        );
+    }
+}
+
+class BaseCriticalStrategy {
+    constructor(criticalType) {
+        this.criticalType = criticalType;
+    }
+    async apply(attackerActor, defenderActor, data = {}) {
+        const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
+        const hpExp = parseInt(data.damage);
+        let breakDown = {};
+        let totalExp = 0;
+
+        if (criticalExp === "null" || isNaN(criticalExp)) {
+            breakDown = { 'hp': hpExp };
+            totalExp = hpExp;
+        }
+        else {
+            breakDown = { 'critical': criticalExp, 'hp': hpExp };
+            totalExp = criticalExp + hpExp;
+        }
+
+        let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
+        totalExpActor = totalExpActor + totalExp;
+        await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
+        await sendExpMessage(attackerActor, breakDown, totalExp);
+        return await socket.executeAsGM("updateActorHits", defenderActor.id, undefined, parseInt(data.damage), data);
+    }
+}
+
+
 export class RMSSWeaponCriticalManager {
+    static criticalCalculatorStrategy(criticalType) {
+        switch (criticalType) {
+            // TODO: Tal vez tenga sentido meter esto en un lista "verde especial".
+            case "large_melee":
+            case "superlarge_melee":
+            case "large_spell":
+            case "superlarge_spell":
+                return new LargeCreatureCriticalStrategy(criticalType);
+            default:
+                return new BaseCriticalStrategy(criticalType);
+        }
+    }
+
     static decomposeCriticalResult(result, criticalSeverity = null) {
         // e.g result is "10A", "20B", "30C", "-", "F" or 50
         if (result === "-") { //nothing
@@ -56,13 +187,7 @@ export class RMSSWeaponCriticalManager {
     }
 
     static async updateActorHits(targetId, isToken, damage, gmResponse) {
-        let target;
-
-        if (isToken) {
-            target = canvas.tokens.get(targetId)?.actor;
-        } else {
-            target = game.actors.get(targetId);
-        }
+        let target = Utils.getActor(targetId);
         if (!target) return;
         let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
         await target.update({ "system.attributes.hits.current": newHits });
@@ -72,36 +197,49 @@ export class RMSSWeaponCriticalManager {
         let result = (parseInt(roll.total) + parseInt(gmResponse.modifier));
         if (result < 1) result = 1;
         if (result > 100) result = 100;
-        return await RMSSTableManager.getCriticalTableResult(result, target, gmResponse.severity, gmResponse.critType);
+        return await RMSSTableManager.getCriticalTableResult(
+            result,
+            target,
+            gmResponse.severity,
+            gmResponse.critType,
+        );
     }
 
-    static async sendCriticalMessage(target, damage, severity, critType, attackerId) {
-        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, damage, severity, critType);
+    /**
+     * se llama cuando se hace click en el botón de chat para lanzar un crítico
+     */
+    static async sendCriticalMessage(
+        target,
+        initialDamage, initialSeverity, initialCritType, attackerId,
+    ) {
+        // Saca el modal formulario al GM para editar y/o confirmar el critico.
+        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType);
 
-        if (gmResponse["confirmed"]) {
-            const actor = Utils.isAPC(attackerId);
-            if (actor) {
-                let breakDown;
-                let totalExp;
-                const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(target.actor, gmResponse.severity));
-                const hpExp = parseInt(damage);
-
-                if (criticalExp === "null" || isNaN(criticalExp)) {
-                    breakDown = { 'hp': hpExp };
-                    totalExp = hpExp;
-                }
-                else {
-                    breakDown = { 'critical': criticalExp, 'hp': hpExp };
-                    totalExp = criticalExp + hpExp;
-                }
-
-                let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
-                totalExpActor = totalExpActor + totalExp;
-                await actor.update({ "system.attributes.experience_points.value": totalExpActor });
-                sendExpMessage(actor, breakDown, totalExp);
-            }
-            return await socket.executeAsGM("updateActorHits", target.id, target instanceof Token, parseInt(gmResponse.damage), gmResponse);
+        if (!gmResponse["confirmed"]) {
+            return
         }
+        const actor = Utils.getActor(attackerId);
+        if (!actor) {
+            ui.notifications.error("Attacker actor not found.");
+            return;
+        }
+        if (!Utils.isAPC(actor.id)) {
+            // no tiene sentido mirar puntos de xp
+            return;
+        }
+
+        const {
+            damage,
+            severity,
+            critType,
+            subCritType,
+            modifier,
+            metadata = {},
+        } = gmResponse;
+
+        let strategy = RMSSWeaponCriticalManager.criticalCalculatorStrategy(critType);
+
+        return await strategy.apply(actor, target.actor,  { damage, severity, critType, subCritType, modifier, metadata });
     }
 
     static async getJSONFileNamesFromDirectory(directory) {
@@ -144,8 +282,9 @@ export class RMSSWeaponCriticalManager {
                             const damage = parseInt(html.find("#damage").val());
                             const severity = html.find("#severity").val();
                             const critType = html.find("#critical-type").val();
+                            const subCritType = html.find("#critical-subtype").val();
                             const modifier = html.find("#modifier").val();
-                            resolve({ confirmed: true, damage, severity, critType, modifier });
+                            resolve({ confirmed: true, damage, severity, critType, subCritType, modifier });
                         }
                     },
                     cancel: {
@@ -199,7 +338,6 @@ export class RMSSWeaponCriticalManager {
     static async applyCriticalTo(critical, actor, originId) {
         console.log("Applying critical to:", critical, actor, originId);
         let entity = actor;
-
         if (!critical || !critical.hasOwnProperty("metadata") || !critical.metadata) {
             return;
         }

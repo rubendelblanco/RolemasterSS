@@ -26,9 +26,16 @@ export default class Utils {
         }
 
         if (actorOrTokenOrId instanceof Token) {
-            return canvas.tokens.get(actorOrTokenOrId.id)?.actor;
+            return token.actor;
         }
 
+        // tokenId?
+        let actor = canvas.tokens.get(actorOrTokenOrId)?.actor;
+        if (actor){
+            return actor;
+        }
+
+        // actorId?
         return game.actors.get(actorOrTokenOrId);
     }
 }

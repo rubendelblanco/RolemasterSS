@@ -160,7 +160,7 @@ Hooks.once("init", function () {
     }
   });
 
-  Handlebars.registerHelper('localizeKey', function(key) {
+  Handlebars.registerHelper('localizeKey', function (key) {
     return game.i18n.localize(`rmss.experience.${key}`);
   });
 
@@ -184,17 +184,17 @@ Hooks.once("init", function () {
   };
 
 
-Hooks.on("renderTokenHUD", (app, html, data) => {
-    console.log("[rmss] renderTokenHUD hook fired", {app, html, data, user: game.user});
+  Hooks.on("renderTokenHUD", (app, html, data) => {
+    console.log("[rmss] renderTokenHUD hook fired", { app, html, data, user: game.user });
     // 1. Solo mostramos el botón al GM.
     if (!game.user.isGM) {
-        console.log("[rmss] Usuario no es GM, no se muestra el botón");
-        return;
+      console.log("[rmss] Usuario no es GM, no se muestra el botón");
+      return;
     }
 
     // 2. Definimos el botón del crítico.
     const critButton = $(
-        `<div class="control-icon" title="Forzar Crítico (RMSS)">
+      `<div class="control-icon" title="Forzar Crítico (RMSS)">
             <i class="fas fa-skull-crossbones"></i>
         </div>`
     );
@@ -202,66 +202,65 @@ Hooks.on("renderTokenHUD", (app, html, data) => {
     // 3. Añadimos el botón al HUD.
     const colRight = html.find('.col.right');
     if (colRight.length === 0) {
-        console.warn("[rmss] No se encontró .col.right en el HUD", html);
+      console.warn("[rmss] No se encontró .col.right en el HUD", html);
     } else {
-        console.log("[rmss] Añadiendo botón de crítico al HUD", colRight);
-        colRight.append(critButton);
+      console.log("[rmss] Añadiendo botón de crítico al HUD", colRight);
+      colRight.append(critButton);
     }
 
     // 4. Adjuntamos la lógica al hacer clic.
     critButton.on('click', async (event) => {
-        event.preventDefault();
-        console.log("[rmss] Botón de crítico pulsado", {app, html, data});
+      event.preventDefault();
+      console.log("[rmss] Botón de crítico pulsado", { app, html, data });
 
-        // Obtenemos el actor del token sobre el que hemos abierto el HUD.
-        const targetToken = app.object;
-        if (!targetToken?.actor) {
-            console.warn("[rmss] Token sin actor", targetToken);
-            return;
-        }
+      // Obtenemos el actor del token sobre el que hemos abierto el HUD.
+      const targetToken = app.object;
+      if (!targetToken?.actor) {
+        console.warn("[rmss] Token sin actor", targetToken);
+        return;
+      }
 
-        // Como no hay un ataque previo, pasamos valores iniciales que el GM puede
-        // modificar en el pop-up. Por ejemplo, daño 0 y severidad 'A'.
-        const initialDamage = 0;
-        const initialSeverity = 'A'; // O la severidad por defecto que prefieras
-        const initialCritType = 'K'; // O el tipo que prefieras
+      // Como no hay un ataque previo, pasamos valores iniciales que el GM puede
+      // modificar en el pop-up. Por ejemplo, daño 0 y severidad 'A'.
+      const initialDamage = 0;
+      const initialSeverity = 'A'; // O la severidad por defecto que prefieras
+      const initialCritType = 'K'; // O el tipo que prefieras
 
-        // a) Mostramos el pop-up al GM. El 'await' pausa el código hasta que el GM confirma.
-        console.log("[rmss] Llamando a criticalMessagePopup", {actor: targetToken.actor, initialDamage, initialSeverity, initialCritType});
-        const gmResponse = await RMSSWeaponCriticalManager.criticalMessagePopup(
-            targetToken.actor, 
-            initialDamage, 
-            initialSeverity, 
-            initialCritType
+      // a) Mostramos el pop-up al GM. El 'await' pausa el código hasta que el GM confirma.
+      console.log("[rmss] Llamando a criticalMessagePopup", { actor: targetToken.actor, initialDamage, initialSeverity, initialCritType });
+      const gmResponse = await RMSSWeaponCriticalManager.criticalMessagePopup(
+        targetToken.actor,
+        initialDamage,
+        initialSeverity,
+        initialCritType
+      );
+      // b) Si el GM confirmó, aplicamos el resultado.
+      if (gmResponse && gmResponse.confirmed) {
+        console.log("[rmss] Crítico confirmado por el GM", gmResponse);
+        // Llamamos directamente a la función que aplica los hits y el resto de efectos.
+        // No necesitamos socket porque ya somos el GM.
+        let res = await RMSSWeaponCriticalManager.updateActorHits(
+          targetToken.id,
+          targetToken instanceof Token,
+          parseInt(gmResponse.damage),
+          gmResponse
         );
 
-        // b) Si el GM confirmó, aplicamos el resultado.
-        if (gmResponse && gmResponse.confirmed) {
-            console.log("[rmss] Crítico confirmado por el GM", gmResponse);
-            // Llamamos directamente a la función que aplica los hits y el resto de efectos.
-            // No necesitamos socket porque ya somos el GM.
-            let res = await RMSSWeaponCriticalManager.updateActorHits(
-                targetToken.id,
-                targetToken instanceof Token,
-                parseInt(gmResponse.damage),
-                gmResponse
-            );
+        console.log("[rmss] Resultado de updateActorHits:", res);
 
-            console.log("[rmss] Resultado de updateActorHits:", res);
-            
-            await RMSSWeaponCriticalManager.applyCriticalTo(
-                res,
-                targetToken,
-                null,
-            );
+        await RMSSWeaponCriticalManager.applyCriticalTo(
+          res,
+          targetToken,
+          null,
+        );
 
-            ui.notifications.info(`Crítico aplicado a ${targetToken.name} según lo confirmado por el GM.`);
-        } else {
-            console.log("[rmss] Acción de crítico cancelada o no confirmada", gmResponse);
-            ui.notifications.warn("Acción de crítico cancelada.");
-        }
+        ui.notifications.info(`Crítico aplicado a ${targetToken.name} según lo confirmado por el GM.`);
+      } else {
+        console.log("[rmss] Acción de crítico cancelada o no confirmada", gmResponse);
+        ui.notifications.warn("Acción de crítico cancelada.");
+      }
     });
-});
+  });
 
   //Combat hooks
   const combatSoundManager = new CombatStartManager();
