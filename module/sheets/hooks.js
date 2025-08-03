@@ -30,7 +30,13 @@ Hooks.on("hotbarDrop", async (bar, data, slot) => {
 
     console.log("Comando del macro:", command);
 
-    let existingMacro = game.macros.find(m => m.name === item.name && m.type === "script");
+    let existingMacro;
+    //let existingMacro= await item.getFlag("rmss", "macro");
+    //if (existingMacro && existingMacro.command.trim().length) {
+    //    command = existingMacro.command.trim();
+    //}
+
+    existingMacro = game.macros.find(m => m.name === item.name && m.type === "script");
     if (existingMacro) {
         await existingMacro.delete();
     }

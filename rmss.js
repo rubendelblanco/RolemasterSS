@@ -168,7 +168,39 @@ Hooks.once("init", function () {
   });
 
   Item.prototype.use = async function () {
+
+    // Verificar si tiene macro personalizada PRIMERO
+    const macroData = this.getFlag("rmss", "macro");
+
+    if (macroData && macroData.command.trim()) {
+      try {
+        const macro = new Macro({
+          name: macroData.name || `${this.name} Macro`,
+          type: "script",
+          command: macroData.command
+        });
+
+        const enemy = RMSSCombat.getTargets()?.[0];
+
+        await macro.execute({
+          item: this,
+          actor: this.actor,
+          token: this.actor?.getActiveTokens()?.[0],
+          enemy: enemy
+        });
+
+        return; // No ejecutar lógica de ataque original
+
+      } catch (error) {
+        console.error("Error ejecutando macro del item:", error);
+        ui.notifications.error(`Error en macro: ${error.message}`);
+        // Si falla la macro, continuar con lógica original
+      }
+    }
+
     if (this.type !== "weapon") return;
+
+    // Lógica original de ataque
     const enemy = RMSSCombat.getTargets()?.[0];
 
     if (!enemy) {
@@ -185,7 +217,6 @@ Hooks.once("init", function () {
 
     await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, this, ob);
   };
-
 
   Hooks.on("renderTokenHUD", (app, html, data) => {
     console.log("[rmss] renderTokenHUD hook fired", { app, html, data, user: game.user });
