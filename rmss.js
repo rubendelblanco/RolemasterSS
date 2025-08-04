@@ -216,7 +216,7 @@ Hooks.once("init", function () {
     await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, this, ob);
   };
 
-  Hooks.on("renderTokenHUD", (app, html, data) => {
+ /* Hooks.on("renderTokenHUD", (app, html, data) => {
     console.log("[rmss] renderTokenHUD hook fired", { app, html, data, user: game.user });
     // 1. Solo mostramos el botón al GM.
     if (!game.user.isGM) {
@@ -224,20 +224,19 @@ Hooks.once("init", function () {
       return;
     }
 
-    // 2. Definimos el botón del crítico.
-    const critButton = $(
-      `<div class="control-icon" title="Forzar Crítico (RMSS)">
-            <i class="fas fa-skull-crossbones"></i>
-        </div>`
-    );
+    const critButton = document.createElement("div");
+    critButton.classList.add("control-icon");
+    critButton.title = "Forzar Crítico (RMSS)";
+    critButton.innerHTML = `<i class="fas fa-skull-crossbones"></i>`;
 
     // 3. Añadimos el botón al HUD.
-    const colRight = html.find('.col.right');
+    const colRight = html.querySelector('.col.right');
     if (colRight.length === 0) {
       console.warn("[rmss] No se encontró .col.right en el HUD", html);
     } else {
       console.log("[rmss] Añadiendo botón de crítico al HUD", colRight);
-      colRight.append(critButton);
+      colRight?.appendChild(critButton);
+      colRight.appendChild(critButton);
     }
 
     // 4. Adjuntamos la lógica al hacer clic.
@@ -292,7 +291,90 @@ Hooks.once("init", function () {
         ui.notifications.warn("Acción de crítico cancelada.");
       }
     });
+  });*/
+
+  Hooks.on("renderTokenHUD", (app, html, data) => {
+    console.log("[rmss] renderTokenHUD hook fired", { app, html, data, user: game.user });
+
+    // 1. Solo mostramos el botón al GM.
+    if (!game.user.isGM) {
+      console.log("[rmss] Usuario no es GM, no se muestra el botón");
+      return;
+    }
+
+    // 2. Creamos el botón manualmente.
+    const critButton = document.createElement("div");
+    critButton.classList.add("control-icon");
+    critButton.title = "Forzar Crítico (RMSS)";
+    critButton.innerHTML = `<i class="fas fa-skull-crossbones"></i>`;
+
+    // 3. Añadimos el listener.
+    critButton.addEventListener('click', async (event) => {
+      event.preventDefault();
+      console.log("[rmss] Botón de crítico pulsado", { app, html, data });
+
+      // Obtenemos el actor del token sobre el que hemos abierto el HUD.
+      const targetToken = app.object;
+      if (!targetToken?.actor) {
+        console.warn("[rmss] Token sin actor", targetToken);
+        return;
+      }
+
+      // Valores iniciales que el GM puede modificar.
+      const initialDamage = 0;
+      const initialSeverity = 'A';
+      const initialCritType = 'K';
+
+      // Mostrar pop-up al GM.
+      console.log("[rmss] Llamando a criticalMessagePopup", {
+        actor: targetToken.actor,
+        initialDamage,
+        initialSeverity,
+        initialCritType
+      });
+
+      const gmResponse = await RMSSWeaponCriticalManager.criticalMessagePopup(
+          targetToken.actor,
+          initialDamage,
+          initialSeverity,
+          initialCritType
+      );
+
+      // Si el GM confirmó, aplicamos el resultado.
+      if (gmResponse && gmResponse.confirmed) {
+        console.log("[rmss] Crítico confirmado por el GM", gmResponse);
+
+        const res = await RMSSWeaponCriticalManager.updateActorHits(
+            targetToken.id,
+            targetToken instanceof Token,
+            parseInt(gmResponse.damage),
+            gmResponse
+        );
+
+        console.log("[rmss] Resultado de updateActorHits:", res);
+
+        await RMSSWeaponCriticalManager.applyCriticalTo(
+            res,
+            targetToken,
+            null
+        );
+
+        ui.notifications.info(`Crítico aplicado a ${targetToken.name} según lo confirmado por el GM.`);
+      } else {
+        console.log("[rmss] Acción de crítico cancelada o no confirmada", gmResponse);
+        ui.notifications.warn("Acción de crítico cancelada.");
+      }
+    });
+
+    // 4. Añadimos el botón al HUD.
+    const colRight = html.querySelector('.col.right');
+    if (colRight) {
+      colRight.appendChild(critButton);
+    } else {
+      console.warn("[rmss] No se encontró '.col.right' en el HUD");
+    }
   });
+
 
   //Combat hooks
   const combatSoundManager = new CombatStartManager();

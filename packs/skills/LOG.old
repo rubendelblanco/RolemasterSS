@@ -1,7 +1,7 @@
-2025/04/19-21:31:16.970 824 Recovering log #314
-2025/04/19-21:31:16.974 824 Delete type=0 #314
-2025/04/19-21:31:16.975 824 Delete type=3 #313
-2025/04/19-21:45:34.320 5068 Level-0 table #318: started
-2025/04/19-21:45:34.320 5068 Level-0 table #318: 0 bytes OK
-2025/04/19-21:45:34.323 5068 Delete type=0 #316
-2025/04/19-21:45:34.326 5068 Manual compaction at level-0 from 'undefined' @ 72057594037927935 : 1 .. 'undefined' @ 0 : 0; will stop at (end)
+2025/08/04-21:05:33.573 657c Log #320: 0 ops saved to Table #399 OK
+2025/08/04-21:05:33.574 657c Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills/000320.log: OK
+2025/08/04-21:05:33.574 657c Log #398: 0 ops saved to Table #400 OK
+2025/08/04-21:05:33.575 657c Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills/000398.log: OK
+2025/08/04-21:05:33.579 657c Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills/MANIFEST-000319: OK
+2025/08/04-21:05:33.580 657c Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills/MANIFEST-000397: OK
+2025/08/04-21:05:33.585 657c **** Repaired leveldb C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skills; recovered 0 files; 0 bytes. Some data may have been lost. ****

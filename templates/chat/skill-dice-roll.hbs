@@ -1,0 +1,70 @@
+<div class="dice-roll">
+    <div class="dice-result">
+        Rolling for : {{name}}
+    </div>
+    {{#if highopen }}
+        <div class=dice-result>
+            Rolled over 95 - High Open-Ended!
+        </div>
+    {{/if}}
+    {{#if lowopen }}
+        <div class=dice-result>
+            Rolled under 6 - Low Open-Ended!
+        </div>
+    {{/if}}
+
+    {{#if difficulty}}
+        <div class=dice-result>
+            Difficulty : {{difficulty}}
+        </div>
+    {{/if}}
+
+    {{#if combatSituation}}
+        <div class=dice-result>
+            Combat situation : {{combatSituation}}
+        </div>
+    {{/if}}
+
+    {{#if stunnedModifier}}
+        <div class=dice-result>
+            Stunned : {{stunnedModifier}}
+        </div>
+    {{/if}}
+
+    {{#if hitsPerRound}}
+        <div class=dice-result>
+            Hits/round malus : {{hitsPerRound}}
+        </div>
+    {{/if}}
+
+    {{#if lightningModifier}}
+        <div class=dice-result>
+            Lightning modifierLight : {{lightningModifier}}
+        </div>
+    {{/if}}
+    {{#if darknessModifier}}
+        <div class=dice-result>
+            Darkness modifierDark : {{darknessModifier}}
+        </div>
+    {{/if}}
+
+    {{#if woundsModifier}}
+        <div class="dice-result">
+            <div>% of hits malus : {{woundsModifier}}</div>
+        </div>
+    {{/if}}
+
+    <div class="dice-result">
+        Total of d100 rolls:
+        <h4 class="dice-total">{{totalRolls}}<br>
+            ({{#each rolls as |roll|}}{{roll.total}}{{#unless @last}}, {{/unless}}{{/each}})</h4>
+    </div>
+    <div class=dice-result>
+        Character Bonus : {{characterBonus}}
+    </div>
+
+    <div class="dice-result">
+        Total :
+        <h4 class="dice-total">{{totalFinal}}</h4>
+    </div>
+</div>
