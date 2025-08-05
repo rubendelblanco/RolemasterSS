@@ -352,7 +352,8 @@
             "total": "Total",
             "has_gained": "has gained",
             "experience_points": "experience points",
-            "experience_gained": "\uD83C\uDF89 Experience Gained! \uD83C\uDF89"
+            "experience_gained": "\uD83C\uDF89 Experience Gained! \uD83C\uDF89",
+            "misc_description": "Miscellaneous (travel, ideas, other...)"
         },
         "combat": {
             "confirm_attack": "Confirm attack",
