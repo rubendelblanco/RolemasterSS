@@ -1,6 +1,7 @@
 <div class="items-grid-container">
     
     <!-- LOCALIZE THE LAST STRINGS IN THIS PAGE. ALSO SKILLS AND SKILL CATEGORIES-->
+    <div class="items-grid-heading"></div>
     <div class="items-grid-heading">{{ localize "rmss.pc_sheet_items.item_name" }}</div>
     <div class="items-grid-heading">{{ localize "rmss.pc_sheet_items.worn" }}</div>
     <div class="items-grid-heading">{{ localize "rmss.pc_sheet_items.quantity" }}</div>
@@ -10,6 +11,7 @@
       <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i>{{ localize "rmss.pc_sheet_items.add_item" }}</a>
     </div>
   {{#each gear as |item id|}}
+      <div><img src="{{item.img}}" width="32" height="32"/></div>
       <div>{{item.name}}</div>
       {{#if item.system.worn}}
       <div><a class="wearable" data-item-id="{{item._id}}"><i class="fa-regular fa-square-check"></i></a></div>

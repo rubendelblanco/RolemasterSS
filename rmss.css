@@ -217,7 +217,7 @@
 
 .skills-grid-container {
     display: grid;
-    grid-template-columns: [favorite] 8% [skill-name] 11% [dev-cost] 5% [num-ranks] 8% [new-ranks] 9% [rank-bonus] 8% [category-bonus] 8% [item-bonus] 8% [special-bonus-1] 9% [special-bonus-2] 9% [total-bonus] 9% [controls] 8%;
+    grid-template-columns: [image] 5% [favorite] 3% [skill-name] 11% [dev-cost] 5% [num-ranks] 8% [new-ranks] 9% [rank-bonus] 8% [category-bonus] 8% [item-bonus] 8% [special-bonus-1] 9% [special-bonus-2] 9% [total-bonus] 9% [controls] 8%;
 }
 
 .skills-grid-container-creature {
@@ -238,18 +238,18 @@
     justify-content: center;
 }
 
-.skills-grid-container > div:nth-child(24n+1),
-.skills-grid-container > div:nth-child(24n+2),
-.skills-grid-container > div:nth-child(24n+3),
-.skills-grid-container > div:nth-child(24n+4),
-.skills-grid-container > div:nth-child(24n+5),
-.skills-grid-container > div:nth-child(24n+6),
-.skills-grid-container > div:nth-child(24n+7),
-.skills-grid-container > div:nth-child(24n+8),
-.skills-grid-container > div:nth-child(24n+9),
-.skills-grid-container > div:nth-child(24n+10),
-.skills-grid-container > div:nth-child(24n+11),
-.skills-grid-container > div:nth-child(24n+12) {
+.skills-grid-container > div:nth-child(26n+1),
+.skills-grid-container > div:nth-child(26n+2),
+.skills-grid-container > div:nth-child(26n+3),
+.skills-grid-container > div:nth-child(26n+4),
+.skills-grid-container > div:nth-child(26n+5),
+.skills-grid-container > div:nth-child(26n+6),
+.skills-grid-container > div:nth-child(26n+7),
+.skills-grid-container > div:nth-child(26n+8),
+.skills-grid-container > div:nth-child(26n+9),
+.skills-grid-container > div:nth-child(26n+10),
+.skills-grid-container > div:nth-child(26n+11),
+.skills-grid-container > div:nth-child(26n+12) {
     font-family: Signika, sans-serif;
     font-size: 12px;
     text-align: center;
@@ -281,7 +281,7 @@
 
 .items-grid-container {
     display: grid;
-    grid-template-columns: [worn] 10% [name] 30% [quantity] 15% [weight] 15% [cost] 15% [controls] 15%;
+    grid-template-columns: [image] 5% [name] 35% [worn] 10%  [quantity] 10% [weight] 10% [cost] 15% [controls] 15%;
 }
 
 .items-grid-container > div {
@@ -297,12 +297,12 @@
     justify-content: center;
 }
 
-.items-grid-container > div:nth-child(12n+1),
-.items-grid-container > div:nth-child(12n+2),
-.items-grid-container > div:nth-child(12n+3),
-.items-grid-container > div:nth-child(12n+4),
-.items-grid-container > div:nth-child(12n+5),
-.items-grid-container > div:nth-child(12n+6) {
+.items-grid-container > div:nth-child(14n+1),
+.items-grid-container > div:nth-child(14n+2),
+.items-grid-container > div:nth-child(14n+3),
+.items-grid-container > div:nth-child(14n+4),
+.items-grid-container > div:nth-child(14n+5),
+.items-grid-container > div:nth-child(14n+6) {
     font-family: Signika, sans-serif;
     font-size: 12px;
     text-align: center;
@@ -324,7 +324,7 @@
 
 .weapons-grid-container {
     display: grid;
-    grid-template-columns: [name] 30% [equipped] 8% [breakage_range] 9% [fumble_range] 9% [strength] 9% [quantity] 9% [weight] 9% [cost] 9% [controls] 8%;
+    grid-template-columns: [image] 6% [name] 30% [equipped] 8% [breakage_range] 7% [fumble_range] 7% [strength] 7% [quantity] 9% [weight] 9% [cost] 9% [controls] 8%;
 }
 
 .weapons-grid-container > div {
@@ -370,7 +370,7 @@
 
 .armor-grid-container {
     display: grid;
-    grid-template-columns: [name] 30% [equipped] 12% [at] 12% [quantity] 12% [weight] 12% [cost] 12% [controls] 10%;
+    grid-template-columns: [image] 5% [name] 30% [equipped] 11% [at] 11% [quantity] 11% [weight] 11% [cost] 11% [controls] 10%;
 }
 
 .armor-grid-container > div {
@@ -386,13 +386,13 @@
     justify-content: center;
 }
 
-.armor-grid-container > div:nth-child(14n+1),
-.armor-grid-container > div:nth-child(14n+2),
-.armor-grid-container > div:nth-child(14n+3),
-.armor-grid-container > div:nth-child(14n+4),
-.armor-grid-container > div:nth-child(14n+5),
-.armor-grid-container > div:nth-child(14n+6),
-.armor-grid-container > div:nth-child(14n+7) {
+.armor-grid-container > div:nth-child(16n+1),
+.armor-grid-container > div:nth-child(16n+2),
+.armor-grid-container > div:nth-child(16n+3),
+.armor-grid-container > div:nth-child(16n+4),
+.armor-grid-container > div:nth-child(16n+5),
+.armor-grid-container > div:nth-child(16n+6),
+.armor-grid-container > div:nth-child(16n+7) {
     font-family: Signika, sans-serif;
     font-size: 12px;
     text-align: center;
@@ -414,7 +414,7 @@
 
 .herbs-grid-container {
     display: grid;
-    grid-template-columns: [name] 30% [quantity] 11% [codes] 12% [af] 12% [weight] 12% [cost] 11% [controls] 12%;
+    grid-template-columns: [image] 5% [name] 25% [quantity] 11% [codes] 12% [af] 12% [weight] 12% [cost] 11% [controls] 12%;
 }
 
 .herbs-grid-container > div {
@@ -430,13 +430,13 @@
     justify-content: center;
 }
 
-.herbs-grid-container > div:nth-child(14n+1),
-.herbs-grid-container > div:nth-child(14n+2),
-.herbs-grid-container > div:nth-child(14n+3),
-.herbs-grid-container > div:nth-child(14n+4),
-.herbs-grid-container > div:nth-child(14n+5),
-.herbs-grid-container > div:nth-child(14n+6),
-.herbs-grid-container > div:nth-child(14n+7) {
+.herbs-grid-container > div:nth-child(16n+1),
+.herbs-grid-container > div:nth-child(16n+2),
+.herbs-grid-container > div:nth-child(16n+3),
+.herbs-grid-container > div:nth-child(16n+4),
+.herbs-grid-container > div:nth-child(16n+5),
+.herbs-grid-container > div:nth-child(16n+6),
+.herbs-grid-container > div:nth-child(16n+7) {
     font-family: Signika, sans-serif;
     font-size: 12px;
     text-align: center;
@@ -458,7 +458,7 @@
 
 .spell-grid-container {
     display: grid;
-    grid-template-columns: [favorite] 9% [level] 8% [name] 30% [spell_list] 9% [area_of_effect] 9% [duration] 9% [range] 9% [type] 9% [controls] 8%;
+    grid-template-columns: [img] 6% [favorite] 3% [level] 8% [name] 30% [spell_list] 9% [area_of_effect] 9% [duration] 9% [range] 9% [type] 9% [controls] 8%;
 }
 
 .spell-grid-container > div {
@@ -474,15 +474,16 @@
     justify-content: center;
 }
 
-.spell-grid-container > div:nth-child(18n+1),
-.spell-grid-container > div:nth-child(18n+2),
-.spell-grid-container > div:nth-child(18n+3),
-.spell-grid-container > div:nth-child(18n+4),
-.spell-grid-container > div:nth-child(18n+5),
-.spell-grid-container > div:nth-child(18n+6),
-.spell-grid-container > div:nth-child(18n+7),
-.spell-grid-container > div:nth-child(18n+8),
-.spell-grid-container > div:nth-child(18n+9) {
+.spell-grid-container > div:nth-child(20n+1),
+.spell-grid-container > div:nth-child(20n+2),
+.spell-grid-container > div:nth-child(20n+3),
+.spell-grid-container > div:nth-child(20n+4),
+.spell-grid-container > div:nth-child(20n+5),
+.spell-grid-container > div:nth-child(20n+6),
+.spell-grid-container > div:nth-child(20n+7),
+.spell-grid-container > div:nth-child(20n+8),
+.spell-grid-container > div:nth-child(20n+9),
+.spell-grid-container > div:nth-child(20n+10){
     font-family: Signika, sans-serif;
     font-size: 12px;
     text-align: center;

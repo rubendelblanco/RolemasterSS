@@ -18,6 +18,7 @@ placeholder="Search spell..."
     </span>
   </div>
   <div class="spell-grid-container">
+    <div class="spell-grid-heading"></div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.favorite" }}</div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.level" }}</div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.name" }}</div>
@@ -29,6 +30,7 @@ placeholder="Search spell..."
     <div class="spell-grid-heading">
     </div>
     {{#each list.system.spells as |spell id|}}
+    <div data-search="{{spell.name}}"><img src="{{spell.img}}" alt="{{spell.name}}" width="32" height="32"/></div>
     {{#if spell.system.favorite}}
     <div data-search="{{spell.name}}"><a class="spell-favorite" data-item-id="{{spell._id}}"><i
           class="fa-regular fa-square-check"></i></a></div>

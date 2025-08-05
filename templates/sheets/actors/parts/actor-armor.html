@@ -1,6 +1,6 @@
 <div class="armor-grid-container">
     <!-- LOCALIZE THE LAST STRINGS IN THIS PAGE. ALSO SKILLS AND SKILL CATEGORIES-->
-
+    <div class="armor-grid-heading"></div>
     <div class="armor-grid-heading">{{ localize "rmss.pc_sheet_items.item_name" }}</div>
     <div class="armor-grid-heading">{{ localize "rmss.pc_sheet_items.equipped" }}</div>
     <div class="armor-grid-heading">{{ localize "rmss.armor.at" }}</div> 
@@ -11,6 +11,7 @@
       <a class="item-control item-create" title="Create Item" data-type="armor"><i class="fas fa-plus"></i>{{ localize "rmss.pc_sheet_items.add_item" }}</a>
     </div>
   {{#each armor as |equipable id|}}
+        <div><img src="{{equipable.img}}" alt="{{equipable.name}}" width="32" height="32"/></div>
         <div>{{equipable.name}}</div>         
         {{#if equipable.system.equipped}}
           <div><a class="equippable" data-item-id="{{equipable._id}}"><i class="fa-regular fa-square-check"></i></a></div>

@@ -1,6 +1,7 @@
 <div class="herbs-grid-container">
     
     <!-- LOCALIZE THE LAST STRINGS IN THIS PAGE. ALSO SKILLS AND SKILL CATEGORIES-->
+    <div class="herbs-grid-heading"></div>
     <div class="herbs-grid-heading">{{ localize "rmss.pc_sheet_items.item_name" }}</div>
     <div class="herbs-grid-heading">{{ localize "rmss.pc_sheet_items.quantity" }}</div>
     <div class="herbs-grid-heading">{{ localize "rmss.herb_or_poison.codes" }}</div>
@@ -11,6 +12,7 @@
       <a class="item-control item-create" title="Create Item" data-type="herb_or_poison"><i class="fas fa-plus"></i>{{ localize "rmss.pc_sheet_items.add_item" }}</a>
     </div>
   {{#each herbs as |herb id|}}
+      <div><img src="{{herb.img}}" alt="{{herb.name}}" width="32" height="32"/></div>
       <div>{{herb.name}}</div>
       <div>{{herb.system.quantity}}</div>
       <div>{{herb.system.codes}}</div>

@@ -1,5 +1,6 @@
 
 <div class="skills-grid-container">
+    <div class="skills-grid-heading"></div>
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.favorite" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.skill_name" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.dev_cost" }}</div>
@@ -14,6 +15,7 @@
     <div class="skills-grid-heading">
     </div>
     {{#each skills as |skill id|}}
+        <td><img src="{{skill.img}}" alt="{{skill.name}}" width="32" height="32"/></td>
         {{#if skill.system.favorite}}
             <div data-search="{{skill.name}}"><a class="skill-favorite" data-item-id="{{skill._id}}"><i
                     class="fa-regular fa-square-check"></i></a></div>

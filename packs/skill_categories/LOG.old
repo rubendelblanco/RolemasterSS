@@ -1,9 +1,7 @@
-2025/08/04-21:05:33.511 5504 Log #1236: 0 ops saved to Table #1317 OK
-2025/08/04-21:05:33.512 5504 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories/001236.log: OK
-2025/08/04-21:05:33.512 5504 Log #1316: 0 ops saved to Table #1318 OK
-2025/08/04-21:05:33.513 5504 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories/001316.log: OK
-2025/08/04-21:05:33.513 5504 Table #1234: 53 entries OK
-2025/08/04-21:05:33.513 5504 Table #1302: 53 entries OK
-2025/08/04-21:05:33.517 5504 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories/MANIFEST-001235: OK
-2025/08/04-21:05:33.517 5504 Archiving C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories/MANIFEST-001315: OK
-2025/08/04-21:05:33.523 5504 **** Repaired leveldb C:\Users\Ruben\AppData\Local\FoundryVTT\Data\systems\rmss\packs\skill_categories; recovered 2 files; 27231 bytes. Some data may have been lost. ****
+2025/08/05-10:50:24.077 49c4 Recovering log #1323
+2025/08/05-10:50:24.081 49c4 Delete type=0 #1323
+2025/08/05-10:50:24.081 49c4 Delete type=3 #1321
+2025/08/05-11:03:47.676 3268 Level-0 table #1329: started
+2025/08/05-11:03:47.676 3268 Level-0 table #1329: 0 bytes OK
+2025/08/05-11:03:47.677 3268 Delete type=0 #1327
+2025/08/05-11:03:47.680 3268 Manual compaction at level-0 from '!items!1HevhbCbvMonyQXe' @ 72057594037927935 : 1 .. '!items!yRIFroc5VC9Oj3qY' @ 0 : 0; will stop at (end)
