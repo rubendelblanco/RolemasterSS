@@ -51,7 +51,7 @@ export class RMSSCombat extends Combat {
     /** @override */
     async nextRound(){
         super.nextRound();
-        console.log("next round");
+
         for (let combatant of this.combatants) {
             const actor = combatant.actor;
             if (!actor) continue;
@@ -59,9 +59,8 @@ export class RMSSCombat extends Combat {
             let effectsAlreadyErased = {"Stunned": false, "No parry": false, "Parry": false};
 
             for (let effect of [...actor.effects]) {
-                console.log("EFECTO: "+effect.name);
                 if (effect.name === "Bleeding") {
-                    actor.system.attributes.hits.current -= effect.flags.value;
+                    actor.system.attributes.hits.current -= effect.flags.rmss.value;
                 }
 
                 if (permanentEffects.includes(effect.name) || (effectsAlreadyErased.hasOwnProperty(effect.name) && effectsAlreadyErased[effect.name])) {

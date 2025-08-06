@@ -362,7 +362,7 @@ export class RMSSWeaponCriticalManager {
                 await existingStunEffect.update({ "duration.rounds": newRounds });
             } else {
                 const effectData = {
-                    label: "Stunned",
+                    name: "Stunned",
                     icon: `${CONFIG.rmss.paths.icons_folder}stunned.svg`,
                     origin: entity.id,
                     duration: {
@@ -380,19 +380,23 @@ export class RMSSWeaponCriticalManager {
             const effectData = {
                 name: "Bleeding",
                 icon: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
-                origin: entity.id,
+                origin: `Actor.${entity.id}`,
+                description: critical.text,
                 duration: {
-                    rounds: 1, //need to put a value. Otherwise, ActiveEffects doesn't render the icon in token
+                    rounds: 1,
                     startRound: game.combat ? game.combat.round : 0
                 },
                 flags: {
-                    value: parseInt(critical.metadata["HPR"])
+                    rmss: {
+                        value: parseInt(critical.metadata["HPR"])
+                    }
                 },
                 disabled: false
             };
 
             await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
         }
+
 
         if (critical.metadata.hasOwnProperty("PE")) {
             let penaltyValue = parseInt(critical.metadata["PE"]["VALUE"]);
@@ -405,7 +409,9 @@ export class RMSSWeaponCriticalManager {
                 disabled: false,
                 description: critical.text,
                 flags: {
-                    value: penaltyValue
+                    rmss:{
+                        value: penaltyValue
+                    }
                 },
                 duration: {
                     rounds: 1, //need to put a value. Otherwise, ActiveEffects doesn't render the icon in token
@@ -417,37 +423,47 @@ export class RMSSWeaponCriticalManager {
         }
 
         if (critical.metadata.hasOwnProperty("P")) {
-            const effectData = {
-                name: "Parry",
-                icon: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
-                origin: entity.id,
-                disabled: false,
-                description: critical.text,
-                duration: {
-                    rounds: critical.metadata["P"]["ROUNDS"],
-                    startRound: game.combat ? game.combat.round : 0
-                }
-            };
+            const existingParryEffect = entity.effects.find(e => e.name === "Parry");
 
-            await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            if (existingParryEffect) {
+                const newRounds = (existingStunEffect.duration.rounds || 0) + stunRounds;
+                await existingStunEffect.update({ "duration.rounds": newRounds });
+            }
+            else {
+                const effectData = {
+                    name: "Parry",
+                    icon: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
+                    origin: entity.id,
+                    disabled: false,
+                    duration: {
+                        rounds: critical.metadata["P"]["ROUNDS"],
+                        startRound: game.combat ? game.combat.round : 0
+                    }
+                };
+
+                await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            }
         }
 
         if (critical.metadata.hasOwnProperty("NP")) {
             const noParryRounds = critical.metadata["NP"];
-            const effectData = {
-                name: "No parry",
-                icon: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
-                origin: entity.id,
-                disabled: false,
-                description: critical.text,
-                duration: {
-                    rounds: 1,
-                    startRound: game.combat ? game.combat.round : 0
-                }
-            };
+            const existingParryEffect = entity.effects.find(e => e.name === "Parry");
 
-            for (let i = 0; i < noParryRounds; i++) {
-                await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
+            if (existingParryEffect) {
+                const newRounds = (existingStunEffect.duration.rounds || 0) + noParryRounds;
+                await existingStunEffect.update({ "duration.rounds": newRounds });
+            }
+            else {
+                const effectData = {
+                    name: "No parry",
+                    icon: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
+                    origin: entity.id,
+                    disabled: false,
+                    duration: {
+                        rounds: noParryRounds,
+                        startRound: game.combat ? game.combat.round : 0
+                    }
+                };
             }
         }
 
@@ -463,7 +479,9 @@ export class RMSSWeaponCriticalManager {
                     startRound: game.combat ? game.combat.round : 0
                 },
                 flags: {
-                    value: parseInt(critical.metadata["BONUS"]["VALUE"])
+                    rmss:{
+                        value: parseInt(critical.metadata["BONUS"]["VALUE"])
+                    }
                 }
             };
 
@@ -473,8 +491,6 @@ export class RMSSWeaponCriticalManager {
             }
         }
 
-        console.log("Critical");
-        console.log(critical.metadata);
     }
     /**
      * NOTE: Due to known issues with ActiveEffect handling in Foundry VTT version 12,
