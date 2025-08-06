@@ -391,7 +391,8 @@
             "multiplier": "Multiplier",
             "critical_severity": "Severity",
             "critical_type": "Type",
-            "critical_modifier": "Critical roll modifier (+/-)"
+            "critical_modifier": "Critical roll modifier (+/-)",
+            "penalty": "Wound penalties"
         },
         "level_up": {
             "ranks_reset": "New ranks reset"

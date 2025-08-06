@@ -197,9 +197,7 @@ Hooks.once("init", function () {
       }
     }
 
-    if (this.type !== "weapon" && this.type !== "creature_attack") return;
-
-    // Lógica original de ataque
+    if (!["weapon", "creature_attack"].includes(this.type)) return;
     const enemy = RMSSCombat.getTargets()?.[0];
 
     if (!enemy) {

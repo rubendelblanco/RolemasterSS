@@ -254,10 +254,6 @@
         "experience_points": {
           "value": 0
         },
-        "action_points": {
-          "current": 4,
-          "max": 4
-        },
         "movement_points": {
           "current": 50
         }
@@ -265,10 +261,6 @@
       "description": ""
     },
     "npc":{
-      "action_points": {
-        "current": 4,
-        "max": 4
-      },
       "critical_codes" : {
         "critical_procedure": "-",
         "critical_table": "-",
@@ -276,10 +268,6 @@
       }
     },
     "creature":{
-      "action_points": {
-        "current": 4,
-        "max": 4
-      },
       "critical_codes" : {
         "critical_procedure": "-",
         "critical_table": "-",

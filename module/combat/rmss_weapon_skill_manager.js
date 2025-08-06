@@ -44,13 +44,19 @@ export class RMSSWeaponSkillManager {
             hitsTakenPenalty = -30;
         }
 
+        const penaltyEffects = Utils.getEffectByName(actor, "Penalty");
         const bonusEffects = Utils.getEffectByName(actor, "Bonus");
         const stunEffect = Utils.getEffectByName(enemy, "Stunned");
         let bonusValue = 0;
         let stunnedValue = false;
+        let penaltyValue = 0;
+
+        penaltyEffects.forEach( (penalty) => {
+            penaltyValue += penalty.flags.rmss.value;
+        })
 
         bonusEffects.forEach((bonus) => {
-            bonusValue += bonus.flags.value;
+            bonusValue += bonus.flags.rmss.value;
         })
 
         if (stunEffect.length > 0 && stunEffect[0].duration.rounds > 0) {
@@ -65,6 +71,7 @@ export class RMSSWeaponSkillManager {
             hitsTaken: hitsTakenPenalty,
             bonusValue: bonusValue,
             stunnedValue: stunnedValue,
+            penaltyValue: penaltyValue
         });
 
         let confirmed = await new Promise((resolve) => {

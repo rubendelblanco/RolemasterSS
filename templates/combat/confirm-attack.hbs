@@ -4,8 +4,7 @@
 
     <div class="form-group attacker">
       {{ localize "rmss.combat.ob" }} <input class="calculable" type="number" id="weapon.system.total_bonus" name="ob" value="{{ob}}">
-      {{ localize "rmss.combat.action_points" }} <input type="number" id="action-points" name="action-points" value="4">
-      <input type="hidden" class="calculable" id="action-points-penalty" name="action-points-penalty" value="0">
+      {{ localize "rmss.combat.penalty" }} <input class="calculable" type="number" id="penalty" name="penalty" value="{{penaltyValue}}">
       {{ localize "rmss.combat.hits_taken" }} <input class="calculable is-negative" type="number" id="hits-taken" name="hits-taken" value="{{hitsTaken}}">
     </div>
 

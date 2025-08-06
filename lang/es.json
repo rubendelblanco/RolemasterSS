@@ -391,7 +391,8 @@
       "multiplier": "Multiplicador",
       "critical_severity": "Critico",
       "critical_type": "Tipo",
-      "critical_modifier": "Modificador de tirada crítico (+/-)"
+      "critical_modifier": "Modificador de tirada crítico (+/-)",
+      "penalty": "Penalización heridas"
     },
     "level_up": {
       "ranks_reset": "Nuevos rangos reinicializados"
