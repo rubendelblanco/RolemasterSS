@@ -392,7 +392,8 @@
             "critical_severity": "Severity",
             "critical_type": "Type",
             "critical_modifier": "Critical roll modifier (+/-)",
-            "penalty": "Wound penalties"
+            "penalty": "Wound penalties",
+            "attacks": "attacks!"
         },
         "level_up": {
             "ranks_reset": "New ranks reset"

@@ -128,11 +128,11 @@ export default class RMSSTableManager {
                 enemy,
                 parseInt(criticalResult.damage)
             );
-            // Se envia el mensaje de la experiencia del ataque.
-            await ExperienceManager.applyExperience(attacker, criticalResult.damage);
+            if (attacker.type === "character") {
+                await ExperienceManager.applyExperience(attacker, criticalResult.damage);
+            }
         }
-        // Independientemente de que haya críticos o no, se envía el boton para lanzar un critico a discreción del master.
-        // Por eso, si no habia críticos, se crea uno por defecto, ya que tiene que haber al menos un boton de crítico.
+        console.log(attacker.id);
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
             damageStr: damage,
             damage: criticalResult.damage,

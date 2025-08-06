@@ -83,3 +83,14 @@ Hooks.on("hoverToken", (token, hovered) => {
     }
 
 });
+
+//Hide critical roll button if is not owner
+Hooks.on("renderChatMessage", (message, html, data) => {
+    html.find(".chat-critical-roll").each(function () {
+        const attackerId = this.dataset.attacker;
+        const actor = game.actors.get(attackerId);
+        if (!actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)) {
+            this.remove();
+        }
+    });
+});

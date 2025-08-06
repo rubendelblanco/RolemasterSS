@@ -392,7 +392,8 @@
       "critical_severity": "Critico",
       "critical_type": "Tipo",
       "critical_modifier": "Modificador de tirada crítico (+/-)",
-      "penalty": "Penalización heridas"
+      "penalty": "Penalización heridas",
+      "attacks": "ataca!"
     },
     "level_up": {
       "ranks_reset": "Nuevos rangos reinicializados"
