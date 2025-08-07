@@ -74,8 +74,6 @@ Hooks.once("socketlib.ready", () => {
   socket.register("chooseCriticalOption", RMSSWeaponCriticalManager.chooseCriticalOption);
   socket.register("updateActorHits", RMSSWeaponCriticalManager.updateActorHits);
   socket.register("applyCriticalToEnemy", RMSSWeaponCriticalManager.applyCriticalToEnemy);
-
-
 });
 
 // Hook the init function and set up our system

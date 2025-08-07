@@ -132,7 +132,7 @@ export default class RMSSTableManager {
                 await ExperienceManager.applyExperience(attacker, criticalResult.damage);
             }
         }
-        console.log(attacker.id);
+
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
             damageStr: damage,
             damage: criticalResult.damage,

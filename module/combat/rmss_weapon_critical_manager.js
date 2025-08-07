@@ -52,24 +52,27 @@ class LargeCreatureCriticalStrategy {
             metadata = {},
         } = data;
         const tableName = this.criticalType;
-        // 1. Calculamos la XP.
-        const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
-        const hpExp = parseInt(data.damage);
-        let breakDown = {};
-        let totalExp = 0;
 
-        if (criticalExp === "null" || isNaN(criticalExp)) {
-            breakDown = { 'hp': hpExp };
-            totalExp = hpExp;
-        } else {
-            breakDown = { 'critical': criticalExp, 'hp': hpExp };
-            totalExp = criticalExp + hpExp;
+        if (Utils.isAPC(actor.id)) {
+            const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
+            const hpExp = parseInt(data.damage);
+            let breakDown = {};
+            let totalExp = 0;
+
+            if (criticalExp === "null" || isNaN(criticalExp)) {
+                breakDown = { 'hp': hpExp };
+                totalExp = hpExp;
+            } else {
+                breakDown = { 'critical': criticalExp, 'hp': hpExp };
+                totalExp = criticalExp + hpExp;
+            }
+
+            let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
+            totalExpActor += totalExp;
+            await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
+            await sendExpMessage(attackerActor, breakDown, totalExp);
         }
 
-        let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
-        totalExpActor += totalExp;
-        await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
-        await sendExpMessage(attackerActor, breakDown, totalExp);
         // 2. Tiramos el critico
         const column = this.getColumForCriticalSubtype(subCritType);
         const roll = new Roll(`1d100x>95`);
@@ -100,24 +103,25 @@ class BaseCriticalStrategy {
         this.criticalType = criticalType;
     }
     async apply(attackerActor, defenderActor, data = {}) {
-        const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
-        const hpExp = parseInt(data.damage);
-        let breakDown = {};
-        let totalExp = 0;
+        if (Utils.isAPC(attackerActor)) {
+            const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
+            const hpExp = parseInt(data.damage);
+            let breakDown = {};
+            let totalExp = 0;
 
-        if (criticalExp === "null" || isNaN(criticalExp)) {
-            breakDown = { 'hp': hpExp };
-            totalExp = hpExp;
-        }
-        else {
-            breakDown = { 'critical': criticalExp, 'hp': hpExp };
-            totalExp = criticalExp + hpExp;
-        }
+            if (criticalExp === "null" || isNaN(criticalExp)) {
+                breakDown = {'hp': hpExp};
+                totalExp = hpExp;
+            } else {
+                breakDown = {'critical': criticalExp, 'hp': hpExp};
+                totalExp = criticalExp + hpExp;
+            }
 
-        let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
-        totalExpActor = totalExpActor + totalExp;
-        await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
-        await sendExpMessage(attackerActor, breakDown, totalExp);
+            let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
+            totalExpActor = totalExpActor + totalExp;
+            await attackerActor.update({"system.attributes.experience_points.value": totalExpActor});
+            await sendExpMessage(attackerActor, breakDown, totalExp);
+        }
         return await socket.executeAsGM("updateActorHits", defenderActor.id, undefined, parseInt(data.damage), data);
     }
 }
@@ -221,10 +225,6 @@ export class RMSSWeaponCriticalManager {
         const actor = Utils.getActor(attackerId);
         if (!actor) {
             ui.notifications.error("Attacker actor not found.");
-            return;
-        }
-        if (!Utils.isAPC(actor.id)) {
-            // no tiene sentido mirar puntos de xp
             return;
         }
 
