@@ -15,7 +15,7 @@
     <div class="skills-grid-heading">
     </div>
     {{#each skills as |skill id|}}
-        <td><img src="{{skill.img}}" alt="{{skill.name}}" width="32" height="32"/></td>
+    <div data-search="{{skill.name}}"><img src="{{skill.img}}" alt="{{skill.name}}" width="32" height="32"/></div>
         {{#if skill.system.favorite}}
             <div data-search="{{skill.name}}"><a class="skill-favorite" data-item-id="{{skill._id}}"><i
                     class="fa-regular fa-square-check"></i></a></div>
