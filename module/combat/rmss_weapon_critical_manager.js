@@ -447,10 +447,10 @@ export class RMSSWeaponCriticalManager {
 
         if (critical.metadata.hasOwnProperty("NP")) {
             const noParryRounds = critical.metadata["NP"];
-            const existingParryEffect = entity.effects.find(e => e.name === "Parry");
+            const existingParryEffect = entity.effects.find(e => e.name === "No parry");
 
             if (existingParryEffect) {
-                const newRounds = (existingStunEffect.duration.rounds || 0) + noParryRounds;
+                const newRounds = (noParryRounds || 0) + noParryRounds;
                 await existingStunEffect.update({ "duration.rounds": newRounds });
             }
             else {
@@ -464,6 +464,7 @@ export class RMSSWeaponCriticalManager {
                         startRound: game.combat ? game.combat.round : 0
                     }
                 };
+                await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
             }
         }
 
