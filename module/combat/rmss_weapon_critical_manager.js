@@ -191,11 +191,11 @@ export class RMSSWeaponCriticalManager {
     }
 
     static async updateActorHits(targetId, isToken, damage, gmResponse) {
-        let target = Utils.getActor(targetId);
-        debugger;
+        let target = Array.from(game.user.targets)[0]?.actor;
         if (!target) return;
         let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
         await target.update({ "system.attributes.hits.current": newHits });
+        console.log("NEW HITS: ", gmResponse.damage);
         if (gmResponse.severity === "null") return;
         let roll = new Roll(`(1d100)`);
         await roll.toMessage(undefined, { create: true });
