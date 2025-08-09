@@ -192,6 +192,7 @@ export class RMSSWeaponCriticalManager {
 
     static async updateActorHits(targetId, isToken, damage, gmResponse) {
         let target = Utils.getActor(targetId);
+        debugger;
         if (!target) return;
         let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
         await target.update({ "system.attributes.hits.current": newHits });
@@ -426,8 +427,8 @@ export class RMSSWeaponCriticalManager {
             const existingParryEffect = entity.effects.find(e => e.name === "Parry");
 
             if (existingParryEffect) {
-                const newRounds = (existingStunEffect.duration.rounds || 0) + stunRounds;
-                await existingStunEffect.update({ "duration.rounds": newRounds });
+                const newRounds = (existingParryEffect.duration.rounds || 0) + stunRounds;
+                await existingParryEffect.update({ "duration.rounds": newRounds });
             }
             else {
                 const effectData = {
