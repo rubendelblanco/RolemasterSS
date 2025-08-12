@@ -1,4 +1,6 @@
 // Our Item Sheet extends the default
+import ItemMacroEditor from "../macros";
+
 export default class RMSSHerbAndPoisonSheet extends ItemSheet {
 
   // Set the height and width
@@ -30,5 +32,24 @@ export default class RMSSHerbAndPoisonSheet extends ItemSheet {
     };
 
     return sheetData;
+  }
+
+  _getHeaderButtons() {
+    let buttons = super._getHeaderButtons();
+
+    if (this.isEditable) {
+      buttons.unshift({
+        label: "Macro",
+        class: "item-macro-button",
+        icon: "fas fa-code",
+        onclick: ev => this._onOpenMacroEditor(ev)
+      });
+    }
+
+    return buttons;
+  }
+
+  _onOpenMacroEditor(event) {
+    new ItemMacroEditor(this.item).render(true);
   }
 }

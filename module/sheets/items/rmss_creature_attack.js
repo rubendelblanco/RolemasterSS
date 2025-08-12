@@ -1,4 +1,6 @@
 // Our Item Sheet extends the default
+import ItemMacroEditor from "../macros.js";
+
 export default class RMSSCreatureAttackSheet extends ItemSheet {
 
     // Set the height and width
@@ -53,5 +55,24 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
             }, {});
 
         return jsonFilesObject;
+    }
+
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+
+        if (this.isEditable) {
+            buttons.unshift({
+                label: "Macro",
+                class: "item-macro-button",
+                icon: "fas fa-code",
+                onclick: ev => this._onOpenMacroEditor(ev)
+            });
+        }
+
+        return buttons;
+    }
+
+    _onOpenMacroEditor(event) {
+        new ItemMacroEditor(this.item).render(true);
     }
 }

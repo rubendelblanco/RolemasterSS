@@ -404,9 +404,7 @@
         "metadata": [
           {
             "P": {
-              "ROUNDS": 1
-            },
-            "PE": {
+              "ROUNDS": 1,
               "VALUE": -25
             },
             "HP": 5

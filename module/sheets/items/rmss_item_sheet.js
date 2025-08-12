@@ -1,4 +1,6 @@
 // Our Item Sheet extends the default
+import ItemMacroEditor from "../macros";
+
 export default class RMSSItemSheet extends ItemSheet {
 
   // Set the height and width
@@ -72,6 +74,25 @@ export default class RMSSItemSheet extends ItemSheet {
   async _onShtickTypeChange(event) {
     await this._onSubmit(event);
     //this.item.update({ img: `systems/fs2e/icons/shticks/${this.item.data.data.type}.png` });
+  }
+
+  _getHeaderButtons() {
+    let buttons = super._getHeaderButtons();
+
+    if (this.isEditable) {
+      buttons.unshift({
+        label: "Macro",
+        class: "item-macro-button",
+        icon: "fas fa-code",
+        onclick: ev => this._onOpenMacroEditor(ev)
+      });
+    }
+
+    return buttons;
+  }
+
+  _onOpenMacroEditor(event) {
+    new ItemMacroEditor(this.item).render(true);
   }
 
 }
