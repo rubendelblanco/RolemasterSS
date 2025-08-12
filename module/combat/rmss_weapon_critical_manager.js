@@ -4,6 +4,7 @@ import CombatExperience from "../sheets/experience/rmss_combat_experience.js";
 import { sendExpMessage } from "../chat/chatMessages.js";
 import Utils from "../utils.js";
 import { rmss } from "../config.js";
+import {RMSSCombat} from "./rmss_combat.js";
 
 class LargeCreatureCriticalStrategy {
 
@@ -122,7 +123,8 @@ class BaseCriticalStrategy {
             await attackerActor.update({"system.attributes.experience_points.value": totalExpActor});
             await sendExpMessage(attackerActor, breakDown, totalExp);
         }
-        return await socket.executeAsGM("updateActorHits", defenderActor.id, undefined, parseInt(data.damage), data);
+        let target = RMSSCombat.getTargets()[0].id; //token id
+        return await socket.executeAsGM("updateActorHits", target, undefined, parseInt(data.damage), data);
     }
 }
 
@@ -191,10 +193,12 @@ export class RMSSWeaponCriticalManager {
     }
 
     static async updateActorHits(targetId, isToken, damage, gmResponse) {
-        let target = Array.from(game.user.targets)[0]?.actor;
-        if (!target) return;
+        const token = canvas.scene.tokens.get(targetId);
+        if (!token) return;
+        const target = token.actor;
         let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
         await target.update({ "system.attributes.hits.current": newHits });
+        debugger;
         if (gmResponse.severity === "null") return;
         let roll = new Roll(`(1d100)`);
         await roll.toMessage(undefined, { create: true });
