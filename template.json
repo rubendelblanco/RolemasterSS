@@ -261,17 +261,21 @@
       "description": ""
     },
     "npc":{
-      "critical_codes" : {
-        "critical_procedure": "-",
-        "critical_table": "-",
-        "stun_bleeding": "-"
+      "attributes": {
+        "critical_codes" : {
+          "critical_procedure": "-",
+          "critical_table": "-",
+          "stun_bleeding": "-"
+        }
       }
     },
     "creature":{
-      "critical_codes" : {
-        "critical_procedure": "-",
-        "critical_table": "-",
-        "stun_bleeding": "-"
+      "attributes": {
+        "critical_codes" : {
+          "critical_procedure": "-",
+          "critical_table": "-",
+          "stun_bleeding": "-"
+        }
       },
       "bonus_xp": "",
       "treasure": ""

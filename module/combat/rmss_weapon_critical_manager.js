@@ -262,6 +262,22 @@ export class RMSSWeaponCriticalManager {
     }
 
     static async criticalMessagePopup(enemy, damage, severity, critType) {
+        let modifier = 0;
+        debugger;
+        if (enemy.type === "creature" || enemy.type === "npc") {
+            if (enemy.system.attributes.critical_codes.critical_procedure === "I") {
+                const S = ["A","B","C","D","E"];
+                if (severity === "A") modifier -= 25;
+                else severity = S[Math.max(0, S.indexOf(severity) - 1)];
+            }
+            else if (enemy.system.attributes.critical_codes.critical_procedure === "II") {
+                const S = ["A","B","C","D","E"];
+                if (severity === "A") modifier -= 50;
+                else if (severity === "B") modifier -= 25;
+                else severity = S[Math.max(0, S.indexOf(severity) - 1)];
+            }
+        }
+
         const initialContext = {
             enemy: enemy,
             damage: damage,
@@ -270,7 +286,7 @@ export class RMSSWeaponCriticalManager {
             critTables: await RMSSWeaponCriticalManager.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.critical_tables),
             subcritdict: CONFIG.rmss.criticalSubtypes,
             critDict: CONFIG.rmss.criticalDictionary,
-            modifier: 0,
+            modifier: modifier,
             criticalHasSubtypes: (rmss.large_critical_types[critType] || []).length > 0,
         };
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-critical.hbs", initialContext);
