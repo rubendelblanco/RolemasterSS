@@ -198,7 +198,6 @@ export class RMSSWeaponCriticalManager {
         const target = token.actor;
         let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
         await target.update({ "system.attributes.hits.current": newHits });
-        debugger;
         if (gmResponse.severity === "null") return;
         let roll = new Roll(`(1d100)`);
         await roll.toMessage(undefined, { create: true });
