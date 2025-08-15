@@ -262,7 +262,6 @@ export class RMSSWeaponCriticalManager {
 
     static async criticalMessagePopup(enemy, damage, severity, critType) {
         let modifier = 0;
-        debugger;
         if (enemy.type === "creature" || enemy.type === "npc") {
             if (enemy.system.attributes.critical_codes.critical_procedure === "I") {
                 const S = ["A","B","C","D","E"];
