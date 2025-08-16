@@ -5,6 +5,21 @@
     </header>
     <div class="sheet-content">
         <div>
+            <div class="form-group">
+                <label for="is-container">{{localize "rmss.item.is_container"}}</label>
+                <input type="checkbox" id="is-container" name="system.is_container" {{checked system.is_container}} />
+            </div>
+
+            {{#if system.is_container}}
+            <div class="form-group">
+                <label for="container-capacity">{{localize "rmss.item.capacity"}}</label>
+                <input type="number" id="container-capacity" name="system.capacity" value="{{system.capacity}}" data-dtype="Number"/>
+                <span class="units">kg</span>
+            </div>
+                <div class="drop-target" data-item-id="{{item.id}}">
+                    <p><em>Aquí puedes soltar objetos.</em></p>
+                </div>
+            {{/if}}
             <table>
                 <tr>
                     <th>{{localize "rmss.item.worn"}}</th>
@@ -29,7 +44,8 @@
                     <input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String"/>
                 </td>
             </table>
-                {{localize "rmss.item.description"}}
+
+            {{localize "rmss.item.description"}}
                 {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
         </div>
     </div>

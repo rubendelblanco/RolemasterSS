@@ -931,3 +931,14 @@ select[name="system.special"] {
     word-break: break-word;
 }
 
+.drop-target {
+    border: 2px dashed #aaa;
+    padding: 10px;
+    text-align: center;
+}
+.drop-target:hover {
+    background: rgba(0,180,16,0.7);
+}
+
+
+

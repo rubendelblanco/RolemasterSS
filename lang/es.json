@@ -218,7 +218,9 @@
       "weight": "Peso",
       "cost": "Costo",
       "prod_time": "Tiempo de producción",
-      "equipped": "Equipado"
+      "equipped": "Equipado",
+      "is_container": "¿Es un contenedor?",
+      "capacity": "Capacidad"
     },
     "creature": {
       "bonus_experience": "PE Bonus",

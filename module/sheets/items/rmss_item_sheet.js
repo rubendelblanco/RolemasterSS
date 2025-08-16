@@ -43,9 +43,32 @@ export default class RMSSItemSheet extends ItemSheet {
     if (this.isEditable) {
       html.find(".effect-control").click(this._onEffectControl.bind(this));
       html.find(".shtick-type").change(this._onShtickTypeChange.bind(this));
+      html.find(".drop-target").on("drop", this._onDropItem.bind(this));
     }
 
   }
+
+  async _onDropItem(event) {
+    event.preventDefault();
+
+    const data = JSON.parse(event.originalEvent.dataTransfer.getData("text/plain"));
+
+    if (data.type !== "Item") return;
+
+    const sourceItem = await fromUuid(data.uuid);
+    if (!sourceItem) return;
+
+    const containerId = this.item.id;
+
+    // Solo se permiten drops si este item es un contenedor válido
+    if (!this.item.system.is_container) return;
+
+    // Mover el ítem al contenedor usando flags
+    await sourceItem.setFlag("rmss", "containerId", containerId);
+
+    ui.notifications.info(`${sourceItem.name} se ha guardado en ${this.item.name}`);
+  }
+
 
   _onEffectControl(event) {
     event.preventDefault();

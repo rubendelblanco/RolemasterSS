@@ -218,7 +218,9 @@
             "weight": "Weight",
             "cost": "Cost",
             "prod_time": "Production Time",
-            "equipped": "Equipped"
+            "equipped": "Equipped",
+            "is_container": "It's a container?",
+            "capacity": "Capacity"
         },
         "creature": {
             "bonus_experience": "Bonus experience",
