@@ -6,8 +6,17 @@
         <input type="text" name="system.fixed_info.race" value="{{system.fixed_info.race}}" data-dtype="String"/>
     </div>
     <div class="label-name">
+        {{ localize "rmss.pc_sheet_role_traits.sex" }}
+    </div>
+    <div class="label-name">
+        <select name="system.role_traits.sex" data-dtype="String">
+            <option value="Male" {{#if (eq system.role_traits.sex "Male")}}selected{{/if}}>{{ localize "rmss.pc_sheet_role_traits.sex_options.male" }}</option>
+            <option value="Female" {{#if (eq system.role_traits.sex "Female")}}selected{{/if}}>{{ localize "rmss.pc_sheet_role_traits.sex_options.female" }}</option>
+        </select>
+    </div>
+    <div class="label-name">
         {{ localize "rmss.pc_sheet_fixed_info.profession" }}  
-    </div>        
+    </div>
     <div class="label-name">
         <input type="text" name="system.fixed_info.profession" value="{{system.fixed_info.profession}}" data-dtype="String"/>
     </div>

@@ -115,6 +115,10 @@
         "pc_sheet_role_traits": {
             "appearance": "Appearance:",
             "sex": "Sex:",
+            "sex_options": {
+                "male": "Male",
+                "female": "Female"
+            },
             "skin": "Skin:",
             "apparent_age": "Apparent Age:",
             "actual_age": "Actual Age:",
