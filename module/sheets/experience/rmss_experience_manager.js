@@ -8,13 +8,14 @@ export class ExperienceManager {
     */
     static async applyExperience(target, xp) {
         const actor = Utils.getActor(target);
+
         if (!actor) {
             ui.notifications.warn("No se ha sumado exp. No se haencontrado un actor para el objetivo.");
             console.warn("No actor found for target:", target);
             return;
         }
-        const breakDown = { 'hp': xp };
 
+        const breakDown = { 'hp': xp };
         let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
         totalExpActor = totalExpActor + xp;
         await actor.update({ "system.attributes.experience_points.value": totalExpActor });

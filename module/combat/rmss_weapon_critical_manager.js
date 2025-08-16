@@ -104,7 +104,7 @@ class BaseCriticalStrategy {
         this.criticalType = criticalType;
     }
     async apply(attackerActor, defenderActor, data = {}) {
-        if (Utils.isAPC(attackerActor)) {
+        if (Utils.isAPC(attackerActor.id)) {
             const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
             const hpExp = parseInt(data.damage);
             let breakDown = {};
@@ -167,7 +167,6 @@ export class RMSSWeaponCriticalManager {
             const severity = match[2] || null; // A, B, C...
             const critType = match[3] || null; // S=slash, K=krush
             if (!!severity && severity >= "F" && !!criticalSeverity) {
-                // Hostia guapa. Caso especial.
                 let criticalsRaw = criticalSeverity[severity];
                 const criticals = Array.from(Object.entries(criticalsRaw)).map(([key, value], idx) => {
                     return { 'severity': value, 'critType': key, damage: idx === 0 ? damage : 0 };
@@ -195,6 +194,7 @@ export class RMSSWeaponCriticalManager {
     static async updateActorHits(targetId, isToken, damage, gmResponse) {
         const token = canvas.scene.tokens.get(targetId);
         if (!token) return;
+        if (isNaN(damage)) return;
         const target = token.actor;
         let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
         await target.update({ "system.attributes.hits.current": newHits });
@@ -215,16 +215,14 @@ export class RMSSWeaponCriticalManager {
     /**
      * se llama cuando se hace click en el botón de chat para lanzar un crítico
      */
-    static async sendCriticalMessage(
-        target,
-        initialDamage, initialSeverity, initialCritType, attackerId,
-    ) {
+    static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId,) {
         // Saca el modal formulario al GM para editar y/o confirmar el critico.
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType);
 
         if (!gmResponse["confirmed"]) {
             return
         }
+
         const actor = Utils.getActor(attackerId);
         if (!actor) {
             ui.notifications.error("Attacker actor not found.");

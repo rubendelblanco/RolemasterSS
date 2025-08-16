@@ -116,13 +116,10 @@ export default class RMSSTableManager {
 
         const damage = resultRow[AT];
         if (isNaN(parseInt(damage))) {
-            // Nada quer hacer
             return;
         }
-        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
-            damage, 
-            attackTable.critical_severity||null,
-        );
+        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(damage,attackTable.critical_severity||null,);
+
         if (criticalResult.criticals.length === 0) {
             criticalResult.criticals = [
                 {'severity': null, 'critType': weapon.system.critical_type, damage: 0}
