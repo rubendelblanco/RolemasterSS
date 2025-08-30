@@ -11,9 +11,11 @@
       "name": "Ruben Rey"
     }
   ],
-  "version": "0.1.0",
-  "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "12",
+  "version": "0.2.0",
+  "compatibility": {
+    "minimum": 13,
+    "verified": 13
+  },
   "esmodules": [
     "rmss.js",
     "module/chat/hooks.js",
