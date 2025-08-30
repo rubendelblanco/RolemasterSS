@@ -67,7 +67,7 @@
   "dependencies": [
     {
       "name": "socketlib",
-      "url": "https://github.com/ElDiablo/FoundryVTT-SocketLib",
+      "url": "https://github.com/farling42/foundryvtt-socketlib/releases/download/v1.1.3/module.json",
       "type": "module"
     }
   ]

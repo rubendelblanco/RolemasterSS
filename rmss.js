@@ -78,6 +78,8 @@ Hooks.once("socketlib.ready", () => {
 
 // Hook the init function and set up our system
 Hooks.once("init", function () {
+  CONFIG.time.roundTime = 10; //1 round is 10 seconds in Rolemaster system
+
   console.log("rmss | Initialising Rolemaster Standard System");
   Handlebars.registerHelper('inc', function (value) {
     return parseInt(value) + 1;
