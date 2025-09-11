@@ -52,7 +52,6 @@ export default class RMSSItemSheet extends ItemSheet {
     event.preventDefault();
 
     const data = JSON.parse(event.originalEvent.dataTransfer.getData("text/plain"));
-
     if (data.type !== "Item") return;
 
     const sourceItem = await fromUuid(data.uuid);
@@ -60,15 +59,24 @@ export default class RMSSItemSheet extends ItemSheet {
 
     const containerId = this.item.id;
 
-    // Solo se permiten drops si este item es un contenedor válido
     if (!this.item.system.is_container) return;
 
-    // Mover el ítem al contenedor usando flags
-    await sourceItem.setFlag("rmss", "containerId", containerId);
+    const actor = this.item.parent;
+    if (!actor) return;
 
-    ui.notifications.info(`${sourceItem.name} se ha guardado en ${this.item.name}`);
+    if (sourceItem.parent?.id === actor.id) {
+      await sourceItem.setFlag("rmss", "containerId", containerId);
+      ui.notifications.info(`${sourceItem.name} se ha guardado en ${this.item.name}`);
+      return;
+    }
+
+    const newItemData = sourceItem.toObject();
+    newItemData.flags = newItemData.flags || {};
+    newItemData.flags["rmss"] = { containerId };
+
+    const created = await actor.createEmbeddedDocuments("Item", [newItemData]);
+    ui.notifications.info(`${created[0].name} se ha copiado dentro de ${this.item.name}`);
   }
-
 
   _onEffectControl(event) {
     event.preventDefault();
