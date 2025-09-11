@@ -22,8 +22,15 @@ export default class RMSSItemSheet extends ItemSheet {
   async getData() {
     const baseData = await super.getData();
     const item = await baseData.item;
-
     let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
+
+    //Functionality if is a container
+    let contents = [];
+    if (this.item.system.is_container && this.item.parent) {
+      contents = this.item.parent.items.filter(i =>
+          i.getFlag("rmss", "containerId") === this.item.id
+      );
+    }
 
     let sheetData = {
       owner: this.item.isOwner,
@@ -32,7 +39,8 @@ export default class RMSSItemSheet extends ItemSheet {
       system: baseData.item.system,
       config: CONFIG.rmss,
       effects: item.getEmbeddedCollection("ActiveEffect").contents,
-      enrichedDescription: enrichedDescription
+      enrichedDescription: enrichedDescription,
+      contents: contents
     };
 
     return sheetData;
