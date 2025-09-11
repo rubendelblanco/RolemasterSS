@@ -19,6 +19,24 @@
                 <div class="drop-target" data-item-id="{{item.id}}">
                     <p><em>Aquí puedes soltar objetos.</em></p>
                 </div>
+
+            <hr/>
+            <h3>Contenido de {{item.name}}</h3>
+            {{#if contents.length}}
+            <ul class="container-contents">
+                {{#each contents as |contained|}}
+                <li class="item contained">
+                    <img src="{{contained.img}}" data-edit="img" title="{{contained.name}}" height="32" width="32"/>
+                    <span class="description"> <strong>{{contained.name}}</strong>
+                    ({{contained.system.weight}} kg)
+                    <a class="remove-from-container" data-item-id="{{contained.id}}" title="Sacar"><i class="fas fa-box-open"></i></a>
+                    </span>
+                </li>
+                {{/each}}
+            </ul>
+            {{else}}
+            <p><em>La mochila está vacía.</em></p>
+            {{/if}}
             {{/if}}
             <table>
                 <tr>

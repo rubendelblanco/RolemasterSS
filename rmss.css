@@ -936,9 +936,20 @@ select[name="system.special"] {
     padding: 10px;
     text-align: center;
 }
+
 .drop-target:hover {
     background: rgba(0,180,16,0.7);
 }
 
+ul.container-contents li.item.contained {
+    display: inline-flex;
+    width: 100%;
+}
+
+li.item.contained span.description {
+    font-weight: bold;
+    padding-top: 2%;
+    margin-left: 2%;
+}
 
 
