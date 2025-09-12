@@ -3,41 +3,8 @@
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
-    <div class="sheet-content">
+    <div class="sheet-content {{#if system.is_container}}drop-target{{/if}}" data-item-id="{{item.id}}">
         <div>
-            <div class="form-group">
-                <label for="is-container">{{localize "rmss.item.is_container"}}</label>
-                <input type="checkbox" id="is-container" name="system.is_container" {{checked system.is_container}} />
-            </div>
-
-            {{#if system.is_container}}
-            <div class="form-group">
-                <label for="container-capacity">{{localize "rmss.item.capacity"}}</label>
-                <input type="number" id="container-capacity" name="system.capacity" value="{{system.capacity}}" data-dtype="Number"/>
-                <span class="units">kg</span>
-            </div>
-                <div class="drop-target" data-item-id="{{item.id}}">
-                    <p><em>Aquí puedes soltar objetos.</em></p>
-                </div>
-
-            <hr/>
-            <h3>Contenido de {{item.name}}</h3>
-            {{#if contents.length}}
-            <ul class="container-contents">
-                {{#each contents as |contained|}}
-                <li class="item contained">
-                    <img src="{{contained.img}}" data-edit="img" title="{{contained.name}}" height="32" width="32"/>
-                    <span class="description"> <strong>{{contained.name}}</strong>
-                    ({{contained.system.weight}} kg)
-                    <a class="remove-from-container" data-item-id="{{contained.id}}" title="Sacar"><i class="fas fa-box-open"></i></a>
-                    </span>
-                </li>
-                {{/each}}
-            </ul>
-            {{else}}
-            <p><em>La mochila está vacía.</em></p>
-            {{/if}}
-            {{/if}}
             <table>
                 <tr>
                     <th>{{localize "rmss.item.worn"}}</th>
@@ -62,6 +29,35 @@
                     <input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String"/>
                 </td>
             </table>
+            <div class="form-group">
+                <label for="is-container">{{localize "rmss.item.is_container"}}</label>
+                <input type="checkbox" id="is-container" name="system.is_container" {{checked system.is_container}} />
+            </div>
+
+            {{#if system.is_container}}
+            <div class="form-group">
+                <label for="container-capacity">{{localize "rmss.item.capacity"}}</label>
+                <input type="number" id="container-capacity" name="system.capacity" value="{{system.capacity}}" data-dtype="Number"/>
+                <span class="units">kg</span>
+            </div>
+            <hr/>
+            <h3>Contenido de {{item.name}}</h3>
+            {{#if contents.length}}
+            <ul class="container-contents">
+                {{#each contents as |contained|}}
+                <li class="item contained">
+                    <img src="{{contained.img}}" data-edit="img" title="{{contained.name}}" height="32" width="32"/>
+                    <span class="description"> <strong>{{contained.name}}</strong>
+                    ({{contained.system.weight}} kg)
+                    <a class="remove-from-container" data-item-id="{{contained.id}}" title="Sacar"><i class="fas fa-box-open"></i></a>
+                    </span>
+                </li>
+                {{/each}}
+            </ul>
+            {{else}}
+            <p><em>La mochila está vacía.</em></p>
+            {{/if}}
+            {{/if}}
 
             {{localize "rmss.item.description"}}
                 {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
