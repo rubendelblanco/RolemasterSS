@@ -42,6 +42,11 @@
 
                 {{#if system.is_container}}
                 <hr/>
+                <div class="rmss-progress">
+                    <div class="rmss-progress-bar" style="width: {{percentage system.container.usedCapacity system.container.maxCapacity}}%;">
+                    <span class="rmss-progress-bar-text">{{percentage system.container.usedCapacity system.container.maxCapacity}}%</span>
+                    </div>
+                </div>
                 <h3>Contenido de {{item.name}}</h3>
                 {{#if contents.length}}
                 <ul class="container-contents">
@@ -79,11 +84,12 @@
             <div class="form-group">
                 {{#if (eq system.container.capacityType "weight")}}
                 <label>{{localize "rmss.item.capacity"}} (kg):</label>
+                <input type="number" class="container-capacity" name="system.container.maxCapacity" value="{{system.container.maxCapacity}}" data-dtype="Number"/>
                 {{/if}}
                 {{#if (eq system.container.capacityType "quantity")}}
                 <label>{{localize "rmss.item.capacity"}} (items):</label>
+                <input type="number" class="container-capacity" name="system.container.maxCapacity" value="{{system.container.maxCapacity}}" data-dtype="Number"/>
                 {{/if}}
-                <input type="number" id="container-capacity" name="system.maxCapacity" value="{{system.maxCapacity}}" data-dtype="Number"/>
             </div>
 
             <div class="form-group">

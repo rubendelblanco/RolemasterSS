@@ -79,9 +79,6 @@ Hooks.once("socketlib.ready", () => {
 // Hook the init function and set up our system
 Hooks.once("init", function () {
   console.log("rmss | Initialising Rolemaster Standard System");
-  Handlebars.registerHelper('inc', function (value) {
-    return parseInt(value) + 1;
-  });
 
   // Load our custom actor and item classes
   console.log("rmss | Loading Rolemaster Actor and Item classes");
@@ -150,6 +147,11 @@ Hooks.once("init", function () {
   preloadHandlebarsTemplates();
 
   // Handlebars Helpers
+
+  Handlebars.registerHelper('inc', function (value) {
+    return parseInt(value) + 1;
+  });
+
   Handlebars.registerHelper("switch", function (value, options) {
     const context = Object.assign({}, this);
     context.switch_value = value;
@@ -176,9 +178,21 @@ Hooks.once("init", function () {
     return array.join(separator);
   });
 
-  Item.prototype.use = async function () {
+  Handlebars.registerHelper("divide", function (a, b) {
+    if (typeof a !== "number" || typeof b !== "number" || b === 0) return 0;
+    return a / b;
+  });
 
-    // Verificar si tiene macro personalizada PRIMERO
+  Handlebars.registerHelper("or", function (a, b) {
+    return a || b;
+  });
+
+  Handlebars.registerHelper("percentage", function (a, b) {
+    if (typeof a !== "number" || typeof b !== "number" || b === 0) return 0;
+    return Math.round((a / b) * 100);
+  });
+
+  Item.prototype.use = async function () {
     const macroData = this.getFlag("rmss", "macro");
 
     if (macroData && macroData.command.trim()) {
@@ -201,7 +215,6 @@ Hooks.once("init", function () {
       } catch (error) {
         console.error("Error ejecutando macro del item:", error);
         ui.notifications.error(`Error en macro: ${error.message}`);
-        // Si falla la macro, continuar con lógica original
       }
     }
 

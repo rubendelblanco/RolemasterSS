@@ -27,6 +27,7 @@ export default class RMSSItemSheet extends ItemSheet {
     // Use container logic to gather contents
     let contents = [];
     const handler = ContainerHandler.for(this.item);
+
     if (handler) {
       contents = handler.contents;
     }
@@ -59,13 +60,22 @@ export default class RMSSItemSheet extends ItemSheet {
       const item = this.item.parent?.items.get(itemId);
       if (!item) return;
 
+      // Remove item from container
       await item.unsetFlag("rmss", "containerId");
 
-      // Re-render the container sheet to reflect removal
+      // Recalculate used capacity
+      const handler = ContainerHandler.for(this.item);
+      if (handler) {
+        const used = handler.usedValue;
+        await this.item.update({ "system.container.usedCapacity": used });
+      }
+
+      // Re-render container sheet
       if (this.item.sheet.rendered) {
         this.item.sheet.render(false);
       }
     });
+
   }
 
   // Handle dropping an item onto a container
@@ -83,25 +93,31 @@ export default class RMSSItemSheet extends ItemSheet {
     const handler = ContainerHandler.for(this.item);
     if (!handler) return;
 
-    // Validate item compatibility with container
+    // Validate item compatibility
     if (!handler.canAccept(sourceItem)) {
       ui.notifications.warn(`${this.item.name} cannot contain ${sourceItem.name}`);
       return;
     }
 
-    // Case 1: the item already belongs to this actor
+    // Validate space
+    if (!handler.canFit(sourceItem)) {
+      ui.notifications.error(`${this.item.name} is full and cannot contain ${sourceItem.name}.`);
+      return;
+    }
+
+    // Case 1: item already belongs to this actor
     if (sourceItem.parent?.id === actor.id) {
       await sourceItem.setFlag("rmss", "containerId", this.item.id);
+      await this.item.update({ "system.container.usedCapacity": handler.usedValue });
       if (this.item.sheet.rendered) this.item.sheet.render(false);
       return;
     }
 
-    // Case 2: the item comes from a compendium or another actor
-    const newItemData = sourceItem.toObject();
-    newItemData.flags = newItemData.flags || {};
-    newItemData.flags["rmss"] = { containerId: this.item.id };
+    // Case 2: item comes from another actor/compendium
+    const newItem = await actor.createEmbeddedDocuments("Item", [sourceItem.toObject()]);
+    await newItem[0].setFlag("rmss", "containerId", this.item.id);
+    await this.item.update({ "system.container.usedCapacity": handler.usedValue });
 
-    await actor.createEmbeddedDocuments("Item", [newItemData]);
     if (this.item.sheet.rendered) this.item.sheet.render(false);
   }
 

@@ -297,7 +297,13 @@
       "cost": 0,
       "prod_time": 0,
       "is_container": false,
-      "capacity": null
+      "capacity": null,
+      "container": {
+        "maxCapacity": 0,
+        "usedCapacity": 0,
+        "capacityType": "weight",
+        "allowedTags": null
+      }
     },
     "creature_attack": {
       "templates": ["base"],

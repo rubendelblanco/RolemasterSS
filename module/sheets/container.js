@@ -1,3 +1,4 @@
+// All comments in English as requested
 export class ContainerHandler {
     constructor(item) {
         this.item = item;
@@ -14,41 +15,76 @@ export class ContainerHandler {
     get contents() {
         const actor = this.item.parent;
         if (!actor) return [];
-        return actor.items.filter(i =>
-            i.getFlag("rmss", "containerId") === this.item.id
-        );
+        return actor.items.filter(i => i.getFlag("rmss", "containerId") === this.item.id);
     }
 
     canAccept(item) {
         const acceptedTags = this.item.system.acceptedItemTags ?? [];
         const itemTags = item.system.tags ?? [];
-
         if (acceptedTags.length === 0) return true;
         return itemTags.some(tag => acceptedTags.includes(tag));
     }
 
     getTotalWeight() {
         return this.contents.reduce(
-            (sum, i) => sum + (i.system.weight * (i.system.quantity || 1)),
+            (sum, i) => sum + ((Number(i.system.weight) || 0) * (Number(i.system.quantity) || 1)),
             0
         );
     }
 
     getTotalCount() {
-        return this.contents.reduce((sum, i) => sum + (i.system.quantity || 1), 0);
+        return this.contents.reduce(
+            (sum, i) => sum + (Number(i.system.quantity) || 1),
+            0
+        );
+    }
+
+    // Normalize capacity type: support both "quantity" and legacy "count"
+    get capacityType() {
+        const t = this.item.system?.container?.capacityType ?? "weight";
+        return t === "count" ? "quantity" : t;
+    }
+
+    // Max capacity numeric guard
+    get maxCapacity() {
+        return Number(this.item.system?.container?.maxCapacity) || 0;
+    }
+
+    /**
+     * Used value in the appropriate unit:
+     * - weight: total kg
+     * - quantity: total items
+     */
+    get usedValue() {
+        if (this.capacityType === "weight") return this.getTotalWeight();
+        if (this.capacityType === "quantity") return this.getTotalCount();
+        return 0;
+    }
+
+    /**
+     * Used capacity as a percentage (0..100, rounded, clamped).
+     */
+    get usedPercent() {
+        if (this.maxCapacity <= 0) return 0;
+        const pct = (this.usedValue / this.maxCapacity) * 100;
+        return Math.max(0, Math.min(100, Math.round(pct)));
     }
 
     isOverCapacity() {
-        const type = this.item.system.containerType;
+        return this.usedValue > this.maxCapacity;
+    }
 
-        if (type === "weight") {
-            return this.getTotalWeight() > (this.item.system.capacity || 0);
+    /**
+     * Check if this container can fit an item without overflowing.
+     * Returns true if it fits, false if not.
+     */
+    canFit(item) {
+        let projectedUsed = this.usedValue;
+        if (this.capacityType === "weight") {
+            projectedUsed += (Number(item.system.weight) || 0) * (Number(item.system.quantity) || 1);
+        } else if (this.capacityType === "quantity") {
+            projectedUsed += (Number(item.system.quantity) || 1);
         }
-
-        if (type === "count") {
-            return this.getTotalCount() > (this.item.system.maxItems || 0);
-        }
-
-        return false;
+        return projectedUsed <= this.maxCapacity;
     }
 }
