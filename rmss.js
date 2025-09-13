@@ -166,6 +166,16 @@ Hooks.once("init", function () {
     return game.i18n.localize(`rmss.experience.${key}`);
   });
 
+  Handlebars.registerHelper('localizeKey', function (key) {
+    return game.i18n.localize(`rmss.experience.${key}`);
+  });
+
+  Handlebars.registerHelper("join", function (array, separator) {
+    // If it's not an array, return empty string
+    if (!Array.isArray(array)) return "";
+    return array.join(separator);
+  });
+
   Item.prototype.use = async function () {
 
     // Verificar si tiene macro personalizada PRIMERO

@@ -9,7 +9,8 @@ export default class RMSSItemSheet extends ItemSheet {
       width: 530,
       height: 440,
       template: "systems/rmss/templates/sheets/items/rmss-item-sheet.html",
-      classes: ["rmss", "sheet", "item"]
+      classes: ["rmss", "sheet", "item"],
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "details" }]
     });
   }
 
