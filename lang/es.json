@@ -217,7 +217,7 @@
       "worn": "Usado",
       "description": "Otras notas",
       "quantity": "Cantidad",
-      "weight": "Peso",
+      "weight": "Peso (ud.)",
       "cost": "Costo",
       "prod_time": "Tiempo de producción",
       "equipped": "Equipado",

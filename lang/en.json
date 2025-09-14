@@ -217,7 +217,7 @@
             "worn": "Worn",
             "description": "Other Notes",
             "quantity": "Quantity",
-            "weight": "Weight",
+            "weight": "Weight (unit)",
             "cost": "Cost",
             "prod_time": "Production Time",
             "equipped": "Equipped",

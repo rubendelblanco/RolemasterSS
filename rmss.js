@@ -28,6 +28,7 @@ import RMSSNpcSheet from "./module/sheets/actors/rmss_npc_sheet.js";
 import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 import utils from "./module/utils.js";
+import {ContainerHandler} from "./module/sheets/container.js";
 
 export let socket;
 
@@ -329,4 +330,55 @@ Hooks.once("init", function () {
     CONFIG.rmss.skillCategories = documents;
     CONFIG.rmss.skillCategories.sort((a, b) => a.name.localeCompare(b.name));
   });
+
+  // Hook: updateItem
+  // This hook triggers whenever an item is updated.
+  // We only care about changes to weight or quantity, because they affect container capacity.
+  // If the updated item is inside a container, we enforce the capacity limit (eject if exceeded)
+  // and recalculate the container's used capacity to keep it in sync.
+  Hooks.on("updateItem", async (item, update, options, userId) => {
+    if (!(
+        "system.weight" in update ||
+        "system.quantity" in update ||
+        update.system?.weight !== undefined ||
+        update.system?.quantity !== undefined
+    )) return;
+
+    const containerId = item.getFlag("rmss", "containerId");
+    if (!containerId) return;
+
+    const actor = item.parent;
+    if (!actor) return;
+
+    const container = actor.items.get(containerId);
+    if (!container) return;
+
+    const handler = ContainerHandler.for(container);
+    if (!handler) return;
+
+    // Check capacity and recalculate
+    await handler.enforceCapacity(item);
+    await handler.recalc();
+  });
+
+  // Hook: deleteItem
+  // This hook triggers whenever an item is deleted.
+  // If the item was inside a container, we recalculate the container's used capacity.
+  // This ensures the container updates correctly when items are removed from the actor.
+  Hooks.on("deleteItem", async (item, options, userId) => {
+    const containerId = item.getFlag("rmss", "containerId");
+    if (!containerId) return;
+
+    const actor = item.parent;
+    if (!actor) return;
+
+    const container = actor.items.get(containerId);
+    if (!container) return;
+
+    const handler = ContainerHandler.for(container);
+    if (!handler) return;
+
+    await handler.recalc();
+  });
+
 });

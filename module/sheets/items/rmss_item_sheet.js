@@ -75,7 +75,6 @@ export default class RMSSItemSheet extends ItemSheet {
         this.item.sheet.render(false);
       }
     });
-
   }
 
   // Handle dropping an item onto a container

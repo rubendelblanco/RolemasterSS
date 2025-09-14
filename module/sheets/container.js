@@ -87,4 +87,29 @@ export class ContainerHandler {
         }
         return projectedUsed <= this.maxCapacity;
     }
+
+    async recalc() {
+        const used = this.usedValue;
+        await this.item.update({ "system.container.usedCapacity": used });
+
+        if (this.item.sheet.rendered) {
+            this.item.sheet.render(false);
+        }
+    }
+
+    /**
+     * Ensure container is not over capacity.
+     * If exceeded, eject the given item.
+     */
+    async enforceCapacity(item) {
+        if (this.usedValue > this.maxCapacity) {
+            await item.unsetFlag("rmss", "containerId");
+            ui.notifications.error(
+                `${item.name} no cabe en ${this.item.name} (excede la capacidad).`
+            );
+            await this.recalc();
+            return false;
+        }
+        return true;
+    }
 }
