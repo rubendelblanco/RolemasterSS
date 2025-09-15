@@ -34,6 +34,11 @@
         <td>{{item.system.weight}}</td>
         <td>{{item.system.cost}}</td>
         <td class="item-controls">
+            {{#if (gt system.quantity 1)}}
+            <a class="item-control split-stack" data-item-id="{{item._id}}" title="Split pile">
+                <i class="fa-solid fa-split"></i>
+            </a>
+            {{/if}}
             <a class="item-control item-edit" title="Edit Item" data-item-id="{{item._id}}">
                 <i class="fas fa-edit"></i>
             </a>

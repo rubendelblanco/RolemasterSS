@@ -419,7 +419,13 @@
       "realm": "",
       "type": "",
       "profession": "",
-      "spells": []
+      "is_container": true,
+      "container": {
+        "maxCapacity": 50,
+        "usedCapacity": 0,
+        "capacityType": "quantity",
+        "allowedTags": ["spell"]
+      }
     },
     "race": {
       "stat_bonus": {

@@ -389,6 +389,35 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
     });
 
+    html.find(".split-stack").click(async ev => {
+      ev.preventDefault();
+
+      const li = ev.currentTarget.closest("[data-item-id]");
+      const itemId = li.dataset.itemId;
+      const item = this.actor.items.get(itemId);
+      if (!item) return;
+
+      const max = item.system.quantity;
+      const quantity = await Dialog.prompt({
+        title: `Dividir pila de ${item.name}`,
+        content: `<p>¿Cuántos quieres separar de la pila (${max} disponibles)?</p>
+              <input type="number" id="split-qty" value="1" min="1" max="${max - 1}" />`,
+        callback: html => parseInt(html.find("#split-qty").val()) || 0,
+        rejectClose: false
+      });
+
+      if (!quantity || quantity <= 0 || quantity >= max) return;
+
+      // Reducir la pila original
+      await item.update({ "system.quantity": max - quantity });
+
+      // Crear un nuevo ítem con la cantidad separada
+      const newItemData = duplicate(item.toObject());
+      newItemData.system.quantity = quantity;
+      delete newItemData._id; // necesario para crear nuevo
+      await this.actor.createEmbeddedDocuments("Item", [newItemData]);
+    });
+
     // -------------------------------------------------------------
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
