@@ -1,4 +1,6 @@
 // Our Item Sheet extends the default
+import {ContainerHandler} from "../container.js";
+
 export default class RMSSSpellListSheet extends ItemSheet {
 
     // Set the height and width
@@ -39,8 +41,14 @@ export default class RMSSSpellListSheet extends ItemSheet {
     // Make the data available to the sheet template
     async getData() {
         const baseData = await super.getData();
-
         let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
+        // Use container logic to gather contents
+        let contents = [];
+        const handler = ContainerHandler.for(this.item);
+
+        if (handler) {
+            contents = handler.contents;
+        }
 
         let sheetData = {
             owner: this.item.isOwner,
@@ -48,17 +56,22 @@ export default class RMSSSpellListSheet extends ItemSheet {
             item: baseData.item,
             system: baseData.item.system,
             config: CONFIG.rmss,
-            enrichedDescription: enrichedDescription
+            enrichedDescription: enrichedDescription,
+            contents
         };
 
         return sheetData;
     }
 
+    /**
+     * Handle dropping a spell onto a spell list.
+     * Works like other containers: uses containerId flag and ContainerHandler.
+     */
     async _onDropSpell(event) {
         event.preventDefault();
         event.stopPropagation();
-        let data;
 
+        let data;
         try {
             data = JSON.parse(event.dataTransfer.getData("text/plain"));
         } catch (err) {
@@ -69,21 +82,43 @@ export default class RMSSSpellListSheet extends ItemSheet {
 
         const droppedSpell = await fromUuid(data.uuid);
         if (!droppedSpell || droppedSpell.type !== "spell") {
-            return ui.notifications.warn("Just spell items type can added.");
+            return ui.notifications.warn("Only spell items can be added to a spell list.");
         }
 
-        const spellList = this.item;
-        const existingSpells = spellList.system.spells || [];
-        const spellCoincidence =  existingSpells.filter(s => s._id === droppedSpell._id);
+        const spellList = this.item; // puede estar en un actor o en game.items
+        const handler = ContainerHandler.for(spellList);
+        if (!handler) return;
 
-        if (spellCoincidence.length !== 0) {
-            return ui.notifications.warn("This spell is already on the list");
+        // Validate compatibility
+        if (!handler.canAccept(droppedSpell)) {
+            return ui.notifications.warn(`${spellList.name} cannot contain ${droppedSpell.name}`);
         }
 
-        await spellList.update({
-            "system.spells": [...existingSpells, droppedSpell]
-        });
+        // Validate capacity
+        if (!handler.canFit(droppedSpell)) {
+            return ui.notifications.error(`${spellList.name} has no space for ${droppedSpell.name}.`);
+        }
 
-        ui.notifications.info(`${droppedSpell.name} added to the list.`);
+        // Case 1: spell already in the same parent (actor o game.items)
+        if (droppedSpell.parent?.id === spellList.parent?.id) {
+            await droppedSpell.setFlag("rmss", "containerId", spellList.id || spellList._id);
+            await handler.recalc();
+            ui.notifications.info(`${droppedSpell.name} added to ${spellList.name}.`);
+            return;
+        }
+
+        // Case 2: create a new spell in the correct collection
+        let newSpell;
+        if (spellList.parent && spellList.parent.items) {
+            // Spell list belongs to an Actor
+            newSpell = await spellList.parent.createEmbeddedDocuments("Item", [droppedSpell.toObject()]);
+        } else {
+            // Spell list is global (game.items)
+            newSpell = [await Item.create(droppedSpell.toObject(), { renderSheet: false })];
+        }
+
+        await newSpell[0].setFlag("rmss", "containerId", spellList.id || spellList._id);
+        await handler.recalc();
+        ui.notifications.info(`${droppedSpell.name} added to ${spellList.name}.`);
     }
 }

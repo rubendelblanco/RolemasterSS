@@ -40,6 +40,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       this._prepareItems(context);
       this._prepareCharacterData(context);
     }
+    console.log(context);
     return context;
   }
 
@@ -191,45 +192,25 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   }
 
   _prepareItems(context) {
-    // Initialize containers.
-    const gear = [];
-    const playerskill = [];
-    const spellskill = [];
-    const skillcat = [];
-    const languageskill = [];
-    const weapons = [];
-    const armor = [];
-    const herbs = [];
-    const spells = [];
-    const spellists = [];
-   // const equipables = [];
+    // Initialize containers
+    const gear = [], playerskill = [], spellskill = [], skillcat = [];
+    const languageskill = [], weapons = [], armor = [], herbs = [];
+    const spells = [], spellists = [];
 
-    // Iterate through items, allocating to containers
+    // Iterate through items
     for (let i of context.items) {
-      i.actorId = this.actor.id; //needed for uuid
-      // Append to gear.
-      if (i.type === "item") {
-        gear.push(i);
-      }
-      else if (i.type === "weapon") {
-        weapons.push(i);
-      }
-      else if (i.type === "herb_or_poison") {
-        herbs.push(i);
-      }
-      // Append to skill categories.
-      else if (i.type === "skill_category") {
-        skillcat.push(i);
-      }
-      else if (i.type === "spell_list"){
-        spellists.push(i);
-      }
-      // Append to playerskill
+      i.actorId = this.actor.id; // needed for uuid
+
+      if (i.type === "item") gear.push(i);
+      else if (i.type === "weapon") weapons.push(i);
+      else if (i.type === "herb_or_poison") herbs.push(i);
+      else if (i.type === "skill_category") skillcat.push(i);
+      else if (i.type === "spell_list") spellists.push(i);
       else if (i.type === "skill") {
         const skillCategoryId = i.system.category;
         let skillCategory = this.actor.items.get(skillCategoryId);
 
-        if (skillCategory === undefined) {
+        if (!skillCategory) {
           playerskill.push(i);
           continue;
         }
@@ -237,46 +218,40 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         if (!skillCategory.system.hasOwnProperty("skill_tab")) {
           skillCategory.system.skill_tab = "skills";
         }
-        if (skillCategory.system.skill_tab === "spells") {
-          spellskill.push(i);
-        }
-        else if (skillCategory.system.skill_tab === "languages") {
-          languageskill.push(i);
-        }
-        else {
-          playerskill.push(i);
-        }
+
+        if (skillCategory.system.skill_tab === "spells") spellskill.push(i);
+        else if (skillCategory.system.skill_tab === "languages") languageskill.push(i);
+        else playerskill.push(i);
       }
-      else if (i.type === "armor") {
-        armor.push(i);
-      }
-      else if (i.type === "spell") {
-        spells.push(i);
-      }
+      else if (i.type === "armor") armor.push(i);
+      else if (i.type === "spell") spells.push(i);
     }
 
-    // Sort Skill/Skillcat Arrays
-    skillcat.sort(function (a, b) {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      return 0;
-    });
+    // Sort skill categories and skills
+    skillcat.sort((a, b) => a.name.localeCompare(b.name));
+    playerskill.sort((a, b) => a.name.localeCompare(b.name));
 
-    playerskill.sort(function (a, b) {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      return 0;
-    });
+    // Map spells to their spell lists using flags
+    const spellsByList = {};
+    for (let spell of spells) {
+      const containerId = spell.flags?.rmss?.containerId;
+      if (!containerId) continue;
+      if (!spellsByList[containerId]) spellsByList[containerId] = [];
+      spellsByList[containerId].push(spell);
+    }
 
-    // Assign and return
+    // Sort spell lists by name and attach contents
+    const spellistsWithContents = spellists.map(list => {
+      const listId = list.id || list._id; // 👈 asegúrate de coger id o _id
+      let contents = spellsByList[listId] || [];
+      contents.sort((a, b) => (a.system.level || 0) - (b.system.level || 0));
+      return {
+        ...list,
+        contents
+      };
+    }).sort((a, b) => a.name.localeCompare(b.name));
+
+    // Assign to context
     context.gear = gear;
     context.skillcat = skillcat;
     context.playerskill = playerskill;
@@ -285,8 +260,8 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     context.herbs = herbs;
     context.spells = spells;
     context.spellskill = spellskill;
-    context.spellists = spellists;
-    context.languageskill= languageskill;
+    context.spellists = spellistsWithContents;
+    context.languageskill = languageskill;
     context.config = CONFIG.rmss;
   }
 

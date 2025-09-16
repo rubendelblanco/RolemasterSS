@@ -8,7 +8,12 @@
       "name": "Cynicide"
     },
     {
-      "name": "Ruben Rey"
+      "name": "Ruben Rey",
+      "url": "https://github.com/rubendelblanco"
+    },
+    {
+      "name": "Marcos Sanchez",
+      "url": "https://github.com/sonirico"
     }
   ],
   "version": "0.1.0",

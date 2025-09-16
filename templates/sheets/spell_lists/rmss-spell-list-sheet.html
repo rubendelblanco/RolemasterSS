@@ -5,7 +5,8 @@
             <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/>
         </h1>
     </header>
-    <div class="spell-list-info">
+
+    <div class="spell-list-info" data-tab="container">
         {{ localize "rmss.spell_lists.type" }}
         <select name="system.type">
             {{#each config.spell_list_type as |label key|}}
@@ -14,6 +15,7 @@
             </option>
             {{/each}}
         </select>
+
         {{#unless (eq system.type "base")}}
         {{ localize "rmss.spell_lists.realm" }}
         <select name="system.realm">
@@ -24,11 +26,13 @@
             {{/each}}
         </select>
         {{/unless}}
+
         {{#if (eq system.type "base")}}
-            {{ localize "rmss.spell_lists.profession" }}
-            <input type="text" style="width:40%" name="system.profession" value="{{system.profession}}" placeholder="Which profession?">
+        {{ localize "rmss.spell_lists.profession" }}
+        <input type="text" style="width:40%" name="system.profession" value="{{system.profession}}" placeholder="Which profession?">
         {{/if}}
     </div>
+
     <div class="sheet-content spell-list">
         <table>
             <thead>
@@ -43,29 +47,21 @@
             </tr>
             </thead>
             <tbody>
-            {{#each system.spells as |spell id|}}
-            <tr class="spell" data-spell-id="{{spell._id}}">
+            {{#each list.contents as |spell|}}
+            <tr class="spell" data-item-id="{{spell.id}}">
+                <td>{{spell.system.level}}</td>
+                <td>{{spell.name}}</td>
+                <td>{{spell.system.area_of_effect}}</td>
+                <td>{{spell.system.duration}}</td>
+                <td>{{spell.system.range}}</td>
+                <td>{{spell.system.type}}</td>
                 <td>
-                    {{spell.system.level}}
-                </td>
-                <td>
-                    {{spell.name}}
-                </td>
-                <td>
-                    {{spell.system.area_of_effect}}
-                </td>
-                <td>
-                    {{spell.system.duration}}
-                </td>
-                <td>
-                    {{spell.system.range}}
-                </td>
-                <td>
-                    {{spell.system.type}}
-                </td>
-                <td>
-                    <a class="item-edit" title="Edit Spell" data-spell-id="{{spell._id}}"><i class="fas fa-edit"></i></a>
-                    <a class="item-delete" title="Delete Spell" data-spell-id="{{spell._id}}"><i class="fas fa-trash"></i></a>
+                    <a class="item-edit" title="Edit Spell" data-item-id="{{spell.id}}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="item-delete" title="Delete Spell" data-item-id="{{spell.id}}">
+                        <i class="fas fa-trash"></i>
+                    </a>
                 </td>
             </tr>
             {{/each}}
