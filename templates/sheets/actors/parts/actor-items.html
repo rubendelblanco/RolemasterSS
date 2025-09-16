@@ -1,29 +1,52 @@
-<div class="items-grid-container">
-    
-    <!-- LOCALIZE THE LAST STRINGS IN THIS PAGE. ALSO SKILLS AND SKILL CATEGORIES-->
-    <div class="items-grid-heading"></div>
-    <div class="items-grid-heading">{{ localize "rmss.pc_sheet_items.item_name" }}</div>
-    <div class="items-grid-heading">{{ localize "rmss.pc_sheet_items.worn" }}</div>
-    <div class="items-grid-heading">{{ localize "rmss.pc_sheet_items.quantity" }}</div>
-    <div class="items-grid-heading">{{ localize "rmss.pc_sheet_items.weight" }}</div>
-    <div class="items-grid-heading">{{ localize "rmss.pc_sheet_items.cost" }}</div>
-    <div class="items-grid-heading">
-      <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i>{{ localize "rmss.pc_sheet_items.add_item" }}</a>
-    </div>
-  {{#each gear as |item id|}}
-      <div><img src="{{item.img}}" width="32" height="32"/></div>
-      <div>{{item.name}}</div>
-      {{#if item.system.worn}}
-      <div><a class="wearable" data-item-id="{{item._id}}"><i class="fa-regular fa-square-check"></i></a></div>
-      {{else}}
-      <div><a class="wearable" data-item-id="{{item._id}}"><i class="fa-regular fa-square"></i></a></div>
-      {{/if}}
-      <div>{{item.system.quantity}}</div>
-      <div>{{item.system.weight}}</div>
-      <div>{{item.system.cost}}</div>
-      <div>
-        <a class="item-control item-edit" title="Edit Item" data-item-id="{{item._id}}"><i class="fas fa-edit"></i></a>
-        <a class="item-control item-delete" title="Delete Item" data-item-id="{{item._id}}"><i class="fas fa-trash"></i></a>
-      </div>
-  {{/each}}
-  </div>
+<table class="items">
+    <thead>
+    <tr>
+        <th></th>
+        <th>{{ localize "rmss.pc_sheet_items.item_name" }}</th>
+        <th>{{ localize "rmss.pc_sheet_items.worn" }}</th>
+        <th>{{ localize "rmss.pc_sheet_items.quantity" }}</th>
+        <th>{{ localize "rmss.pc_sheet_items.weight" }}</th>
+        <th>{{ localize "rmss.pc_sheet_items.cost" }}</th>
+        <th>
+            <a class="item-control item-create" title="Create Item" data-type="item">
+                <i class="fas fa-plus"></i>{{ localize "rmss.pc_sheet_items.add_item" }}
+            </a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each gear as |item id|}}
+    <tr draggable="true" data-type="Item" data-item-id="{{item._id}}" data-uuid="Actor.{{item.actorId}}.Item.{{item._id}}">
+        <td><img src="{{item.img}}" alt="{{item.name}}" width="32" height="32"/></td>
+        <td data-item-id="{{item._id}}">{{item.name}}</td>
+        <td>
+            {{#if item.system.worn}}
+            <a class="equippable" data-item-id="{{item._id}}">
+                <i class="fa-regular fa-square-check"></i>
+            </a>
+            {{else}}
+            <a class="equippable" data-item-id="{{item._id}}">
+                <i class="fa-regular fa-square"></i>
+            </a>
+            {{/if}}
+        </td>
+        <td>{{item.system.quantity}}</td>
+        <td>{{item.system.weight}}</td>
+        <td>{{item.system.cost}}</td>
+        <td class="item-controls">
+            {{#if (gt system.quantity 1)}}
+            <a class="item-control split-stack" data-item-id="{{item._id}}" title="Split pile">
+                <i class="fa-solid fa-split"></i>
+            </a>
+            {{/if}}
+            <a class="item-control item-edit" title="Edit Item" data-item-id="{{item._id}}">
+                <i class="fas fa-edit"></i>
+            </a>
+            <a class="item-control item-delete" title="Delete Item" data-item-id="{{item._id}}">
+                <i class="fas fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+    {{/each}}
+    </tbody>
+</table>

@@ -3,34 +3,101 @@
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
-    <div class="sheet-content">
-        <div>
-            <table>
-                <tr>
-                    <th>{{localize "rmss.item.worn"}}</th>
-                    <th>{{localize "rmss.item.quantity"}}</th>
-                    <th>{{localize "rmss.item.weight"}}</th>
-                    <th>{{localize "rmss.item.cost"}}</th>
-                    <th>{{localize "rmss.item.prod_time"}}</th>
-                </tr>
-                <td>
-                    <input type="checkbox" name="system.worn" {{checked system.worn}}/>
-                </td>
-                <td>
-                    <input name="system.quantity" type="text" value="{{system.quantity}}" data-dtype="Number"/>
-                </td>
-                <td>
-                    <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
-                </td>
-                <td>
-                    <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String"/>
-                </td>
-                <td>
-                    <input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String"/>
-                </td>
-            </table>
-                {{localize "rmss.item.description"}}
+
+    <!-- Tabs -->
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="details">{{localize "rmss.item.details"}}</a>
+        {{#if system.is_container}}
+        <a class="item" data-tab="container">{{localize "rmss.item.container"}}</a>
+        {{/if}}
+    </nav>
+
+    <!-- Body -->
+    <section class="sheet-body">
+
+        <!-- Tab: Details -->
+        <section class="tab" data-group="primary" data-tab="details">
+            <div class="sheet-content {{#if system.is_container}}drop-target{{/if}}" data-item-id="{{item.id}}">
+                <table>
+                    <tr>
+                        <th>{{localize "rmss.item.worn"}}</th>
+                        <th>{{localize "rmss.item.quantity"}}</th>
+                        <th>{{localize "rmss.item.weight"}}</th>
+                        <th>{{localize "rmss.item.cost"}}</th>
+                        <th>{{localize "rmss.item.prod_time"}}</th>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="system.worn" {{checked system.worn}}/></td>
+                        <td><input name="system.quantity" type="text" value="{{system.quantity}}" data-dtype="Number"/></td>
+                        <td><input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/></td>
+                        <td><input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String"/></td>
+                        <td><input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String"/></td>
+                    </tr>
+                </table>
+
+                <div class="form-group">
+                    <label for="is-container">{{localize "rmss.item.is_container"}}</label>
+                    <input type="checkbox" id="is-container" name="system.is_container" {{checked system.is_container}} />
+                </div>
+
+                {{#if system.is_container}}
+                <hr/>
+                <div class="rmss-progress">
+                    <div class="rmss-progress-bar" style="width: {{percentage system.container.usedCapacity system.container.maxCapacity}}%;">
+                    <span class="rmss-progress-bar-text">{{percentage system.container.usedCapacity system.container.maxCapacity}}%</span>
+                    </div>
+                </div>
+                <h3>Contenido de {{item.name}}</h3>
+                {{#if contents.length}}
+                <ul class="container-contents">
+                    {{#each contents as |contained|}}
+                    <li class="item contained">
+                        <img src="{{contained.img}}" data-edit="img" title="{{contained.name}}" height="32" width="32"/>
+                        <span class="description">
+                    <strong>{{contained.name}}</strong> ({{contained.system.weight}} kg)
+                    <a class="remove-from-container" data-item-id="{{contained.id}}" title="Sacar"><i class="fas fa-box-open"></i></a>
+                  </span>
+                    </li>
+                    {{/each}}
+                </ul>
+                {{else}}
+                <p><em>La mochila está vacía.</em></p>
+                {{/if}}
+                {{/if}}
+
+                <label>{{localize "rmss.item.description"}}</label>
                 {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
-        </div>
-    </div>
+            </div>
+        </section>
+
+        <!-- Tab: Container -->
+        {{#if system.is_container}}
+        <section class="tab" data-group="primary" data-tab="container">
+            <div class="form-group">
+                <label>Tipo de capacidad:</label>
+                <select name="system.container.capacityType">
+                    <option value="weight" {{#if (eq system.container.capacityType "weight")}}selected{{/if}}>Peso</option>
+                    <option value="quantity" {{#if (eq system.container.capacityType "quantity")}}selected{{/if}}>Cantidad</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                {{#if (eq system.container.capacityType "weight")}}
+                <label>{{localize "rmss.item.capacity"}} (kg):</label>
+                <input type="number" class="container-capacity" name="system.container.maxCapacity" value="{{system.container.maxCapacity}}" data-dtype="Number"/>
+                {{/if}}
+                {{#if (eq system.container.capacityType "quantity")}}
+                <label>{{localize "rmss.item.capacity"}} (items):</label>
+                <input type="number" class="container-capacity" name="system.container.maxCapacity" value="{{system.container.maxCapacity}}" data-dtype="Number"/>
+                {{/if}}
+            </div>
+
+            <div class="form-group">
+                <label>Tags permitidos (coma):</label>
+                <input type="text" name="system.container.allowedTags" value="{{join system.container.allowedTags ", "}}" />
+            </div>
+        </section>
+        {{/if}}
+
+    </section>
 </form>

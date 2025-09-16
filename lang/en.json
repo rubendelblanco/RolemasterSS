@@ -173,7 +173,9 @@
             "item_name": "Item Name",
             "weight": "Weight",
             "cost": "Cost",
-            "add_item": "Add Item"
+            "add_item": "Add Item",
+            "details": "Details",
+            "container": "Container"
         },
         "pc_sheet_spell": {
             "favorite": "Favorite",
@@ -193,8 +195,8 @@
         "entity_sheet": {
             "spell": "RMSS Spell",
             "weapon": "RMSS Weapon",
-            "item": "RMSS Armor",
-            "armor": "RMSS Item",
+            "item": "RMSS Item",
+            "armor": "RMSS Armor",
             "herb_or_poison": "RMSS Herb or Poison",
             "transport": "RMSS Transport",
             "skill": "RMSS Skill",
@@ -215,10 +217,14 @@
             "worn": "Worn",
             "description": "Other Notes",
             "quantity": "Quantity",
-            "weight": "Weight",
+            "weight": "Weight (unit)",
             "cost": "Cost",
             "prod_time": "Production Time",
-            "equipped": "Equipped"
+            "equipped": "Equipped",
+            "is_container": "It's a container?",
+            "capacity": "Capacity",
+            "container": "Container",
+            "details": "Details"
         },
         "creature": {
             "bonus_experience": "Bonus experience",

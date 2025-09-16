@@ -28,6 +28,7 @@ import RMSSNpcSheet from "./module/sheets/actors/rmss_npc_sheet.js";
 import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 import utils from "./module/utils.js";
+import {ContainerHandler} from "./module/sheets/container.js";
 
 export let socket;
 
@@ -81,9 +82,6 @@ Hooks.once("init", function () {
   CONFIG.time.roundTime = 10; //1 round is 10 seconds in Rolemaster system
 
   console.log("rmss | Initialising Rolemaster Standard System");
-  Handlebars.registerHelper('inc', function (value) {
-    return parseInt(value) + 1;
-  });
 
   // Load our custom actor and item classes
   console.log("rmss | Loading Rolemaster Actor and Item classes");
@@ -152,6 +150,11 @@ Hooks.once("init", function () {
   preloadHandlebarsTemplates();
 
   // Handlebars Helpers
+
+  Handlebars.registerHelper('inc', function (value) {
+    return parseInt(value) + 1;
+  });
+
   Handlebars.registerHelper("switch", function (value, options) {
     const context = Object.assign({}, this);
     context.switch_value = value;
@@ -168,9 +171,31 @@ Hooks.once("init", function () {
     return game.i18n.localize(`rmss.experience.${key}`);
   });
 
-  Item.prototype.use = async function () {
+  Handlebars.registerHelper('localizeKey', function (key) {
+    return game.i18n.localize(`rmss.experience.${key}`);
+  });
 
-    // Verificar si tiene macro personalizada PRIMERO
+  Handlebars.registerHelper("join", function (array, separator) {
+    // If it's not an array, return empty string
+    if (!Array.isArray(array)) return "";
+    return array.join(separator);
+  });
+
+  Handlebars.registerHelper("divide", function (a, b) {
+    if (typeof a !== "number" || typeof b !== "number" || b === 0) return 0;
+    return a / b;
+  });
+
+  Handlebars.registerHelper("or", function (a, b) {
+    return a || b;
+  });
+
+  Handlebars.registerHelper("percentage", function (a, b) {
+    if (typeof a !== "number" || typeof b !== "number" || b === 0) return 0;
+    return Math.round((a / b) * 100);
+  });
+
+  Item.prototype.use = async function () {
     const macroData = this.getFlag("rmss", "macro");
 
     if (macroData && macroData.command.trim()) {
@@ -193,7 +218,6 @@ Hooks.once("init", function () {
       } catch (error) {
         console.error("Error ejecutando macro del item:", error);
         ui.notifications.error(`Error en macro: ${error.message}`);
-        // Si falla la macro, continuar con lógica original
       }
     }
 
@@ -308,4 +332,81 @@ Hooks.once("init", function () {
     CONFIG.rmss.skillCategories = documents;
     CONFIG.rmss.skillCategories.sort((a, b) => a.name.localeCompare(b.name));
   });
+
+  // Hook: updateItem
+  // This hook triggers whenever an item is updated.
+  // We only care about changes to weight or quantity, because they affect container capacity.
+  // If the updated item is inside a container, we enforce the capacity limit (eject if exceeded)
+  // and recalculate the container's used capacity to keep it in sync.
+  Hooks.on("updateItem", async (item, update, options, userId) => {
+    if (!(
+        "system.weight" in update ||
+        "system.quantity" in update ||
+        update.system?.weight !== undefined ||
+        update.system?.quantity !== undefined
+    )) return;
+
+    const containerId = item.getFlag("rmss", "containerId");
+    if (!containerId) return;
+
+    const actor = item.parent;
+    if (!actor) return;
+
+    const container = actor.items.get(containerId);
+    if (!container) return;
+
+    const handler = ContainerHandler.for(container);
+    if (!handler) return;
+
+    // Check capacity and recalculate
+    await handler.enforceCapacity(item);
+    await handler.recalc();
+  });
+
+  // Hook: deleteItem
+  // This hook triggers whenever an item is deleted.
+  // If the item was inside a container, we recalculate the container's used capacity.
+  // This ensures the container updates correctly when items are removed from the actor.
+  Hooks.on("deleteItem", async (item, options, userId) => {
+    const containerId = item.getFlag("rmss", "containerId");
+    if (!containerId) return;
+
+    const actor = item.parent;
+    if (!actor) return;
+
+    const container = actor.items.get(containerId);
+    if (!container) return;
+
+    const handler = ContainerHandler.for(container);
+    if (!handler) return;
+
+    await handler.recalc();
+  });
+
+  // Auto-prefix spell names with their level
+  Hooks.on("preCreateItem", (item, data, options, userId) => {
+    if (item.type !== "spell") return;
+
+    const level = item.system.level;
+    if (level == null) return;
+
+    const baseName = item.name.replace(/^\d+\.\s*/, ""); // quita prefijo si ya lo tenía
+    const padded = String(level).padStart(2, "0");
+    item.updateSource({ name: `${padded}. ${baseName}` });
+  });
+
+  Hooks.on("preUpdateItem", (item, update, options, userId) => {
+    if (item.type !== "spell") return;
+
+    //only if name or level changes
+    const newLevel = update?.system?.level ?? item.system.level;
+    if (newLevel == null) return;
+
+    const newName = update?.name ?? item.name;
+    const baseName = newName.replace(/^\d+\.\s*/, ""); // quita prefijo anterior
+    const padded = String(newLevel).padStart(2, "0");
+
+    update.name = `${padded}. ${baseName}`;
+  });
+
 });

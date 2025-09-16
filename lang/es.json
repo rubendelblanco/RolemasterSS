@@ -173,7 +173,9 @@
       "item_name": "Nombre de ítem",
       "weight": "Peso",
       "cost": "Costo",
-      "add_item": "Agregar ítem"
+      "add_item": "Agregar ítem",
+      "details": "Detalles",
+      "container": "Contenedor"
     },
     "pc_sheet_spell": {
       "favorite": "Favorito",
@@ -215,10 +217,14 @@
       "worn": "Usado",
       "description": "Otras notas",
       "quantity": "Cantidad",
-      "weight": "Peso",
+      "weight": "Peso (ud.)",
       "cost": "Costo",
       "prod_time": "Tiempo de producción",
-      "equipped": "Equipado"
+      "equipped": "Equipado",
+      "is_container": "¿Es un contenedor?",
+      "capacity": "Capacidad",
+      "container": "Contenedor",
+      "details": "Detalles"
     },
     "creature": {
       "bonus_experience": "PE Bonus",
