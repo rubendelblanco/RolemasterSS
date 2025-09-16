@@ -2,8 +2,7 @@
 import {ContainerHandler} from "../container.js";
 
 export default class RMSSSpellListSheet extends ItemSheet {
-
-    // Set the height and width
+    // Default options
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             width: 530,
@@ -12,61 +11,64 @@ export default class RMSSSpellListSheet extends ItemSheet {
         });
     }
 
-    activateListeners(html) {
-        super.activateListeners(html);
-        html[0].addEventListener("drop", this._onDropSpell.bind(this));
-
-        html.find(".item-delete").click(async ev => {
-            const spellId = ev.currentTarget.getAttribute("data-spell-id");
-            const spells = this.object.system.spells;
-            const updatedSpells = spells.filter(s => s._id !== spellId);
-            await this.object.update({ "system.spells": updatedSpells });
-        });
-
-        html.find(".item-edit").click(ev => {
-            const spellId = ev.currentTarget.getAttribute("data-spell-id");
-            const spells = this.object.system.spells;
-            const updatedSpells = spells.filter(s => s._id === spellId);
-            console.log(updatedSpells[0]._id);
-            const item = game.items.get(updatedSpells[0]._id);
-            if (item) item.sheet.render(true);
-        });
-    }
-
-    // If our sheet is called here it is.
+    /** Template path */
     get template() {
         return "systems/rmss/templates/sheets/spell_lists/rmss-spell-list-sheet.html";
     }
 
-    // Make the data available to the sheet template
+    /** Activate listeners */
+    activateListeners(html) {
+        super.activateListeners(html);
+
+        // Handle drop
+        html[0].addEventListener("drop", this._onDropSpell.bind(this));
+
+        // Delete spell
+        html.find(".item-delete").click(async ev => {
+            ev.preventDefault();
+            const itemId = ev.currentTarget.dataset.itemId;
+            const spell = this.item.parent?.items.get(itemId) || game.items.get(itemId);
+            if (!spell) return;
+
+            await spell.unsetFlag("rmss", "containerId");
+            const handler = ContainerHandler.for(this.item);
+            if (handler) await handler.recalc();
+        });
+
+        // Edit spell
+        html.find(".item-edit").click(ev => {
+            ev.preventDefault();
+            const itemId = ev.currentTarget.dataset.itemId;
+            const spell = this.item.parent?.items.get(itemId) || game.items.get(itemId);
+            if (spell) spell.sheet.render(true);
+        });
+    }
+
+    /** Prepare data for the sheet */
     async getData() {
         const baseData = await super.getData();
-        let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
-        // Use container logic to gather contents
-        let contents = [];
-        const handler = ContainerHandler.for(this.item);
+        let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, { async: true });
 
+        // Use ContainerHandler to gather contents
+        let spells = [];
+        const handler = ContainerHandler.for(this.item);
         if (handler) {
-            contents = handler.contents;
+            spells = handler.contents;
+            spells.sort((a, b) => (a.system.level || 0) - (b.system.level || 0));
         }
 
-        let sheetData = {
+        return {
             owner: this.item.isOwner,
             editable: this.isEditable,
             item: baseData.item,
             system: baseData.item.system,
             config: CONFIG.rmss,
-            enrichedDescription: enrichedDescription,
-            contents
+            enrichedDescription,
+            spells
         };
-
-        return sheetData;
     }
 
-    /**
-     * Handle dropping a spell onto a spell list.
-     * Works like other containers: uses containerId flag and ContainerHandler.
-     */
+    /** Handle dropping a spell onto the spell list */
     async _onDropSpell(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -85,7 +87,7 @@ export default class RMSSSpellListSheet extends ItemSheet {
             return ui.notifications.warn("Only spell items can be added to a spell list.");
         }
 
-        const spellList = this.item; // puede estar en un actor o en game.items
+        const spellList = this.item;
         const handler = ContainerHandler.for(spellList);
         if (!handler) return;
 
@@ -94,15 +96,9 @@ export default class RMSSSpellListSheet extends ItemSheet {
             return ui.notifications.warn(`${spellList.name} cannot contain ${droppedSpell.name}`);
         }
 
-        // Validate capacity
-        if (!handler.canFit(droppedSpell)) {
-            return ui.notifications.error(`${spellList.name} has no space for ${droppedSpell.name}.`);
-        }
-
-        // Case 1: spell already in the same parent (actor o game.items)
+        // Case 1: spell already in the same parent (actor or game.items)
         if (droppedSpell.parent?.id === spellList.parent?.id) {
             await droppedSpell.setFlag("rmss", "containerId", spellList.id || spellList._id);
-            await handler.recalc();
             ui.notifications.info(`${droppedSpell.name} added to ${spellList.name}.`);
             return;
         }
@@ -118,7 +114,7 @@ export default class RMSSSpellListSheet extends ItemSheet {
         }
 
         await newSpell[0].setFlag("rmss", "containerId", spellList.id || spellList._id);
-        await handler.recalc();
         ui.notifications.info(`${droppedSpell.name} added to ${spellList.name}.`);
     }
 }
+

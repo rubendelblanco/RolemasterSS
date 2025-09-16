@@ -47,7 +47,7 @@
             </tr>
             </thead>
             <tbody>
-            {{#each list.contents as |spell|}}
+            {{#each spells as |spell|}}
             <tr class="spell" data-item-id="{{spell.id}}">
                 <td>{{spell.system.level}}</td>
                 <td>{{spell.name}}</td>
@@ -69,3 +69,4 @@
         </table>
     </div>
 </form>
+

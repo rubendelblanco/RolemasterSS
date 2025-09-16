@@ -40,7 +40,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       this._prepareItems(context);
       this._prepareCharacterData(context);
     }
-    console.log(context);
     return context;
   }
 
@@ -50,10 +49,8 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
      return (configSheet);
   }
 
-
   // Override this method to check for duplicates when things are dragged to the sheet
   // We don't want duplicate skills and skill categories.
-
   async _onDropItem(event, data) {
 
     // Reconstruct the item from the event
