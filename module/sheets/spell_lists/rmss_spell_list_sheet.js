@@ -1,5 +1,5 @@
 // Our Item Sheet extends the default
-import {ContainerHandler} from "../container.js";
+import { ContainerHandler } from "../container.js";
 
 export default class RMSSSpellListSheet extends ItemSheet {
     // Default options
@@ -27,7 +27,7 @@ export default class RMSSSpellListSheet extends ItemSheet {
         html.find(".item-delete").click(async ev => {
             ev.preventDefault();
             const itemId = ev.currentTarget.dataset.itemId;
-            const spell = this.item.parent?.items.get(itemId) || game.items.get(itemId);
+            const spell = this.item.parent?.items.get(itemId);
             if (!spell) return;
 
             await spell.unsetFlag("rmss", "containerId");
@@ -39,7 +39,7 @@ export default class RMSSSpellListSheet extends ItemSheet {
         html.find(".item-edit").click(ev => {
             ev.preventDefault();
             const itemId = ev.currentTarget.dataset.itemId;
-            const spell = this.item.parent?.items.get(itemId) || game.items.get(itemId);
+            const spell = this.item.parent?.items.get(itemId);
             if (spell) spell.sheet.render(true);
         });
     }
@@ -82,39 +82,60 @@ export default class RMSSSpellListSheet extends ItemSheet {
 
         if (!data || !data.uuid) return;
 
-        const droppedSpell = await fromUuid(data.uuid);
-        if (!droppedSpell || droppedSpell.type !== "spell") {
-            return ui.notifications.warn("Only spell items can be added to a spell list.");
-        }
-
         const spellList = this.item;
         const handler = ContainerHandler.for(spellList);
         if (!handler) return;
 
-        // Validate compatibility
-        if (!handler.canAccept(droppedSpell)) {
-            return ui.notifications.warn(`${spellList.name} cannot contain ${droppedSpell.name}`);
-        }
+        // Case 1: folder drop
+        if (data.type === "Folder") {
+            const folder = await fromUuid(data.uuid);
+            if (!folder || folder.type !== "Item") {
+                return ui.notifications.warn("Only Item folders can be dropped here.");
+            }
 
-        // Case 1: spell already in the same parent (actor or game.items)
-        if (droppedSpell.parent?.id === spellList.parent?.id) {
-            await droppedSpell.setFlag("rmss", "containerId", spellList.id || spellList._id);
-            ui.notifications.info(`${droppedSpell.name} added to ${spellList.name}.`);
+            const spellsInFolder = folder.contents.filter(i => i.type === "spell");
+            if (!spellsInFolder.length) {
+                return ui.notifications.warn(`The folder "${folder.name}" contains no spells.`);
+            }
+
+            for (let spell of spellsInFolder) {
+                await this._addSpellToList(spell, spellList, handler);
+            }
+
+            ui.notifications.info(`${spellsInFolder.length} spells added from folder "${folder.name}" to ${spellList.name}.`);
             return;
         }
 
-        // Case 2: create a new spell in the correct collection
-        let newSpell;
-        if (spellList.parent && spellList.parent.items) {
-            // Spell list belongs to an Actor
-            newSpell = await spellList.parent.createEmbeddedDocuments("Item", [droppedSpell.toObject()]);
-        } else {
-            // Spell list is global (game.items)
-            newSpell = [await Item.create(droppedSpell.toObject(), { renderSheet: false })];
+        // Case 2: single spell drop
+        const droppedSpell = await fromUuid(data.uuid);
+        if (!droppedSpell || droppedSpell.type !== "spell") {
+            return ui.notifications.warn("Only spell items or folders of spells can be added to a spell list.");
         }
 
-        await newSpell[0].setFlag("rmss", "containerId", spellList.id || spellList._id);
-        ui.notifications.info(`${droppedSpell.name} added to ${spellList.name}.`);
+        await this._addSpellToList(droppedSpell, spellList, handler);
+    }
+
+    async _addSpellToList(spell, spellList, handler) {
+        // Validate compatibility
+        if (!handler.canAccept(spell)) {
+            ui.notifications.warn(`${spellList.name} cannot contain ${spell.name}`);
+            return;
+        }
+
+        // Actor context only
+        if (spellList.parent && spellList.parent.items) {
+            // Case: spell already in the same actor
+            if (spell.parent?.id === spellList.parent.id) {
+                await spell.setFlag("rmss", "containerId", spellList.id || spellList._id);
+                return;
+            }
+
+            // Case: needs to be cloned into actor
+            const newSpell = await spellList.parent.createEmbeddedDocuments("Item", [spell.toObject()]);
+            await newSpell[0].setFlag("rmss", "containerId", spellList.id || spellList._id);
+            if (handler) await handler.recalc();
+        } else {
+            ui.notifications.warn("Spells cannot be added directly to catalog spell lists. Use actor spell lists instead.");
+        }
     }
 }
-

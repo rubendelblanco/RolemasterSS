@@ -381,4 +381,30 @@ Hooks.once("init", function () {
     await handler.recalc();
   });
 
+  // Auto-prefix spell names with their level
+  Hooks.on("preCreateItem", (item, data, options, userId) => {
+    if (item.type !== "spell") return;
+
+    const level = item.system.level;
+    if (level == null) return;
+
+    const baseName = item.name.replace(/^\d+\.\s*/, ""); // quita prefijo si ya lo tenía
+    const padded = String(level).padStart(2, "0");
+    item.updateSource({ name: `${padded}. ${baseName}` });
+  });
+
+  Hooks.on("preUpdateItem", (item, update, options, userId) => {
+    if (item.type !== "spell") return;
+
+    //only if name or level changes
+    const newLevel = update?.system?.level ?? item.system.level;
+    if (newLevel == null) return;
+
+    const newName = update?.name ?? item.name;
+    const baseName = newName.replace(/^\d+\.\s*/, ""); // quita prefijo anterior
+    const padded = String(newLevel).padStart(2, "0");
+
+    update.name = `${padded}. ${baseName}`;
+  });
+
 });
