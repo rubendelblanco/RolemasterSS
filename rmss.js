@@ -409,4 +409,33 @@ Hooks.once("init", function () {
     update.name = `${padded}. ${baseName}`;
   });
 
+  // Register GM-only transfer handler
+  socket.register("doItemTransfer", async ({ sourceActorId, sourceItemId, targetActorId, qty }) => {
+    const sourceActor = game.actors.get(sourceActorId);
+    const targetActor = game.actors.get(targetActorId);
+    if (!sourceActor || !targetActor) return;
+
+    const sourceItem = sourceActor.items.get(sourceItemId);
+    if (!sourceItem) return;
+
+    // Clone item data for the target
+    const itemData = sourceItem.toObject();
+    itemData.system.quantity = qty;
+    delete itemData._id; // ensure new document is created
+
+    await targetActor.createEmbeddedDocuments("Item", [itemData]);
+
+    // Update or remove from the source
+    const newQty = (sourceItem.system.quantity || 1) - qty;
+    if (newQty <= 0) {
+      await sourceItem.delete();
+    } else {
+      await sourceItem.update({ "system.quantity": newQty });
+    }
+
+    ui.notifications.info(
+        `${qty}x ${sourceItem.name} transferido de ${sourceActor.name} a ${targetActor.name}`
+    );
+  });
+
 });

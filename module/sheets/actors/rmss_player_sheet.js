@@ -4,6 +4,7 @@ import { InputTextSearchStrategy } from '../search/rmss_text_search.js';
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
 import * as CONFIG from "../../config.js";
 import LevelUpManager from "../experience/rmss_level_up_manager.js";
+import {socket} from "../../../rmss.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -316,6 +317,52 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     await this.actor.update({[potentialStatsInput.name]: parseInt(potentialStatsInput.value)});
   }
 
+  async _onGiveItem(item) {
+    // Selectable character actors
+    const actors = canvas.tokens.placeables
+        .map(t => t.actor)
+        .filter(a => a && a.type === "character" && a.id !== this.actor.id);
+
+    const options = actors
+        .map(a => `<option value="${a.id}">${a.name}</option>`)
+        .join("");
+
+    const maxQty = item.system.quantity || 1;
+
+    new Dialog({
+      title: `Dar ${item.name}`,
+      content: `
+      <form>
+        <div class="form-group">
+          <label>Cantidad:</label>
+          <input type="number" name="qty" value="1" min="1" max="${maxQty}"/>
+        </div>
+        <div class="form-group">
+          <label>Destino:</label>
+          <select name="target">${options}</select>
+        </div>
+      </form>`,
+      buttons: {
+        ok: {
+          label: "Dar",
+          callback: async html => {
+            const qty = Number(html.find("[name=qty]").val()) || 1;
+            const targetId = html.find("[name=target]").val();
+            if (!targetId) return;
+
+            await socket.executeAsGM("doItemTransfer", {
+              sourceActorId: this.actor.id,
+              sourceItemId: item.id,
+              targetActorId: targetId,
+              qty
+            });
+          }
+        },
+        cancel: { label: "Cancelar" }
+      }
+    }).render(true);
+  }
+
   activateListeners(html) {
     super.activateListeners(html);
     ExperiencePointsCalculator.loadListeners(html, this.actor);
@@ -328,6 +375,13 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     });
     Hooks.on("renderActorSheet", (app, html, data) => {
       InputTextSearchStrategy.create("mod-search-form-actor-spells").load(html);
+    });
+
+    html.find(".item-give").click(ev => {
+      ev.preventDefault();
+      const itemId = ev.currentTarget.dataset.itemId;
+      const item = this.actor.items.get(itemId);
+      if (item) this._onGiveItem(item);
     });
 
     //Calculate potential stats (only when you are level 0)
