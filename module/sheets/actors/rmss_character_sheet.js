@@ -95,4 +95,52 @@ export default class RMSSCharacterSheet extends ActorSheet {
                 return effect.delete();
         }
     }
+
+    /** @override */
+    async _onDropItem(event, data) {
+        event.preventDefault();
+
+        const newItem = await Item.implementation.fromDropData(data);
+        const itemData = newItem.toObject();
+
+        // --- Check for existing matching item ---
+        const existing = this.actor.items.find(i =>
+            i.name === itemData.name &&
+            i.system.description === itemData.system.description &&
+            i.system.is_stackable
+        );
+
+        if (existing) {
+            // Current and added quantity
+            const addQty = itemData.system.quantity || 1;
+            const oldQty = existing.system.quantity || 1;
+            const newQty = oldQty + addQty;
+
+            // Base unit values
+            const unitWeight = (existing.system.unitWeight ?? (existing.system.weight / oldQty)) || 0;
+            const unitCost   = (existing.system.unitCost   ?? (existing.system.cost / oldQty))   || 0;
+
+            // Recalculate totals
+            const newWeight = unitWeight * newQty;
+            const newCost   = unitCost * newQty;
+
+            await existing.update({
+                "system.quantity": newQty,
+                "system.weight": newWeight,
+                "system.cost": newCost
+            });
+
+            // Remove the duplicate only if it’s already in the actor (not from compendium/catalogue)
+            const duplicate = this.actor.items.get(itemData._id);
+            if (duplicate) {
+                await duplicate.delete();
+            }
+
+            ui.notifications.info(`${itemData.name} stacked. New quantity: ${newQty}`);
+            return;
+        }
+
+        // --- Default behavior (not stackable or no match) ---
+        return super._onDropItem(event, data);
+    }
 }

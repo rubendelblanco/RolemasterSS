@@ -39,7 +39,10 @@
                     <label for="is-container">{{localize "rmss.item.is_container"}}</label>
                     <input type="checkbox" id="is-container" name="system.is_container" {{checked system.is_container}} />
                 </div>
-
+                <div class="form-group">
+                    <label>{{localize "rmss.item.is_stackable"}}</label>
+                    <input type="checkbox" name="system.is_stackable" {{checked system.is_stackable}} />
+                </div>
                 {{#if system.is_container}}
                 <hr/>
                 <div class="rmss-progress">
