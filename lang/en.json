@@ -224,7 +224,8 @@
             "is_container": "It's a container?",
             "capacity": "Capacity",
             "container": "Container",
-            "details": "Details"
+            "details": "Details",
+            "is_stackable": "Is stackable"
         },
         "creature": {
             "bonus_experience": "Bonus experience",

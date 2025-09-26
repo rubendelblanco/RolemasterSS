@@ -224,7 +224,8 @@
       "is_container": "¿Es un contenedor?",
       "capacity": "Capacidad",
       "container": "Contenedor",
-      "details": "Detalles"
+      "details": "Detalles",
+      "is_stackable": "Es apilable"
     },
     "creature": {
       "bonus_experience": "PE Bonus",
