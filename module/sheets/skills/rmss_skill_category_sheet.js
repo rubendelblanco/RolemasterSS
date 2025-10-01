@@ -1,4 +1,4 @@
-import RankCalculator from './rmss_rank_calculator.js';
+import RankCalculator from '../../skills/rmss_rank_calculator.js';
 import * as CONFIG from "../../config.js";
 
 // Our Item Sheet extends the default

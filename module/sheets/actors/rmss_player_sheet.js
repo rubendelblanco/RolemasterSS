@@ -1,4 +1,4 @@
-import RankCalculator from '../skills/rmss_rank_calculator.js';
+import RankCalculator from '../../skills/rmss_rank_calculator.js';
 import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
 import { InputTextSearchStrategy } from '../search/rmss_text_search.js';
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
@@ -57,89 +57,10 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     // Reconstruct the item from the event
     const newitem = await Item.implementation.fromDropData(data);
     const itemData = newitem.toObject();
+    const handler = dropHandlers[itemData.type];
 
-    if (itemData.type === "race") {
-      this.actor.update({ "system.race_stat_fixed_info.body_development_progression": itemData.system.progression.body_dev })
-      this.actor.update({ "system.fixed_info.race": itemData.name })
-      //stats race mods
-      this.actor.update({ "system.stats.agility.racial_bonus": itemData.system.stat_bonus.ag })
-      this.actor.update({ "system.stats.constitution.racial_bonus": itemData.system.stat_bonus.co })
-      this.actor.update({ "system.stats.empathy.racial_bonus": itemData.system.stat_bonus.em })
-      this.actor.update({ "system.stats.intuition.racial_bonus": itemData.system.stat_bonus.in })
-      this.actor.update({ "system.stats.memory.racial_bonus": itemData.system.stat_bonus.me })
-      this.actor.update({ "system.stats.presence.racial_bonus": itemData.system.stat_bonus.pr })
-      this.actor.update({ "system.stats.quickness.racial_bonus": itemData.system.stat_bonus.qu })
-      this.actor.update({ "system.stats.reasoning.racial_bonus": itemData.system.stat_bonus.re })
-      this.actor.update({ "system.stats.self_discipline.racial_bonus": itemData.system.stat_bonus.sd })
-      this.actor.update({ "system.stats.strength.racial_bonus": itemData.system.stat_bonus.st })
-
-      //RR race mods
-      this.actor.update({ "system.resistance_rolls.channeling.race_mod": itemData.system.rr_mods.chan })
-      this.actor.update({ "system.resistance_rolls.essence.race_mod": itemData.system.rr_mods.ess })
-      this.actor.update({ "system.resistance_rolls.mentalism.race_mod": itemData.system.rr_mods.ment })
-      this.actor.update({ "system.resistance_rolls.chann_es.race_mod": itemData.system.rr_mods.chan + itemData.system.rr_mods.ess })
-      this.actor.update({ "system.resistance_rolls.ess_ment.race_mod": itemData.system.rr_mods.ess + itemData.system.rr_mods.ment })
-      this.actor.update({ "system.resistance_rolls.arcane.race_mod": itemData.system.rr_mods.chan + itemData.system.rr_mods.ment + itemData.system.rr_mods.chan })
-    }
-
-    // To Do: Seperate Skills and Skill Categories. Increment Counts for items
-    if (itemData.type === "skill_category") {
-      // Get the already owned Items from the actor and push into an array
-      const owneditems = this.object.getOwnedItemsByType("skill_category");
-      let ownedskillcatlist = Object.values(owneditems);
-
-      // Check if the dragged item is not in the array and not owned
-      if (!ownedskillcatlist.includes(itemData.name)) {
-        console.log("Not Owned!");
-        await super._onDropItem(event, data);
-
-        if (itemData.system.progression.toLowerCase()==="standard") {
-          const item = this.actor.items.find(i => i.name === itemData.name);
-          RankCalculator.calculateRanksBonus(item, 0, "-15*2*1*0.5*0");
-        }
-      }
-    }
-    else if (itemData.type === "skill") {
-      const originalCategoryId = itemData.system.category;
-      const originalCategory = game.items.get(originalCategoryId)
-          ?? game.packs.get("rmss.skill-categories-es")?.index.get(originalCategoryId);
-
-      if (!originalCategory) {
-        ui.notifications.warn("No se ha podido encontrar la categoría original.");
-        return;
-      }
-
-      const categoryName = originalCategory.name;
-      const actorCategory = this.actor.items.find(i => i.type === "skill_category" && i.name === categoryName);
-
-      if (!actorCategory) {
-        ui.notifications.warn("El actor no tiene la categoría correspondiente.");
-        return;
-      }
-
-      const ownedSkills = this.actor.items.filter(i => i.type === "skill");
-      const alreadyOwned = ownedSkills.some(i => i.name === itemData.name);
-
-      if (alreadyOwned) {
-        ui.notifications.warn("Skill already acquired.");
-        return;
-      }
-
-     const skillToCreate = {
-        name: itemData.name,
-        img: itemData.img,
-        type: "skill",
-       system: {
-         ...foundry.utils.deepClone(itemData.system),
-         category: actorCategory.id
-       }
-      };
-
-       await this.actor.createEmbeddedDocuments("Item", [skillToCreate]);
-    }
-    else {
-      super._onDropItem(event, data);
-    }
+    if (handler) return handler(this.actor, itemData, event, data);
+    return super._onDropItem(event, data);
   }
 
   _prepareCharacterData(context) {

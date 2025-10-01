@@ -1,5 +1,5 @@
 // Our Item Sheet extends the default
-import RankCalculator from "./rmss_rank_calculator.js";
+import RankCalculator from "../../skills/rmss_rank_calculator.js";
 
 export default class RMSSSkillSheet extends ItemSheet {
 
