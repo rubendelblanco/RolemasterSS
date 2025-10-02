@@ -39,7 +39,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     // Prepare character data and items.
     if (actorData.type === "character") {
       this._prepareItems(context);
-      this._prepareCharacterData(context);
     }
     return context;
   }
@@ -53,61 +52,12 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   // Override this method to check for duplicates when things are dragged to the sheet
   // We don't want duplicate skills and skill categories.
   async _onDropItem(event, data) {
-
-    // Reconstruct the item from the event
     const newitem = await Item.implementation.fromDropData(data);
     const itemData = newitem.toObject();
     const handler = dropHandlers[itemData.type];
 
     if (handler) return handler(this.actor, itemData, event, data);
     return super._onDropItem(event, data);
-  }
-
-  _prepareCharacterData(context) {
-    // Calculate Power Point Exhaustion
-    let powerpointPercentage = (Number(context.system.attributes.power_points.current) / Number(context.system.attributes.power_points.max)) * 100;
-
-    switch (true) {
-      case (powerpointPercentage < 25):
-        context.system.attributes.power_points.modifier = "PP Exhaustion Penalty: -30 ";
-        break;
-      case (powerpointPercentage < 50):
-        context.system.attributes.power_points.modifier = "PP Exhaustion Penalty: -20 ";
-        break;
-      case (powerpointPercentage < 75):
-        console.log("Less than 75");
-        context.system.attributes.power_points.modifier = "PP Exhaustion Penalty: -10 ";
-        break;
-      default:
-        console.log("Setting Default");
-        context.system.attributes.power_points.modifier = "PP Exhaustion Penalty: 0 ";
-    }
-
-    // Calculate Exhaustion Point Penalty
-    let exhaustionPercentage = (Number(context.system.attributes.exhaustion_points.current) / Number(context.system.attributes.exhaustion_points.max)) * 100;
-
-    switch (true) {
-      case (exhaustionPercentage < 1):
-        context.system.attributes.exhaustion_points.modifier = "Exhaustion Penalty: -100 ";
-        break;
-      case (exhaustionPercentage < 10):
-        context.system.attributes.exhaustion_points.modifier = "Exhaustion Penalty: -60 ";
-        break;
-      case (exhaustionPercentage < 25):
-        context.system.attributes.exhaustion_points.modifier = "Exhaustion Penalty: -30 ";
-        break;
-      case (exhaustionPercentage < 50):
-        context.system.attributes.exhaustion_points.modifier = "Exhaustion Penalty: -15 ";
-        break;
-      case (exhaustionPercentage < 75):
-        console.log("Less than 75");
-        context.system.attributes.exhaustion_points.modifier = "Exhaustion Penalty: -5 ";
-        break;
-      default:
-        console.log("Setting Default");
-        context.system.attributes.exhaustion_points.modifier = "Exhaustion Penalty: 0 ";
-    }
-
   }
 
   _prepareItems(context) {
