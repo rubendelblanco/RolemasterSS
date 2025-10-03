@@ -23,7 +23,7 @@ export default class SkillCategoryService {
         if (itemData.system.progression?.toLowerCase() === "standard") {
             const item = actor.items.find(i => i.name === itemData.name);
             if (item) {
-                RankCalculator.calculateRanksBonus(item, 0, "-15*2*1*0.5*0");
+                RankCalculator.applyRanksAndBonus(item, 0, "-15*2*1*0.5*0");
             }
         }
     }

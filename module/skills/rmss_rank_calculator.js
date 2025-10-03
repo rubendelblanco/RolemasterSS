@@ -51,15 +51,21 @@ export default class RankCalculator {
      * @returns {number} - The new total ranks.
      */
     static increaseRanks(baseRanks, deltaRanks, designation) {
+        // Ensure numeric inputs
+        baseRanks = Number(baseRanks) || 0;
+        deltaRanks = Number(deltaRanks) || 0;
+
+        // Default linear increase
         let total = baseRanks + deltaRanks;
 
+        // Handle special designations
         if (designation === "Occupational") {
-            total = baseRanks + deltaRanks * 3;
+            total = baseRanks + (deltaRanks * 3);
         } else if (designation === "Everyman") {
-            total = baseRanks + deltaRanks * 2;
+            total = baseRanks + (deltaRanks * 2);
         }
 
-        return Math.max(total, 0); // never below 0
+        return total;
     }
 
     /**
@@ -139,6 +145,30 @@ export default class RankCalculator {
 
         await item.update({
             "system.ranks": newTotal,
+            "system.rank_bonus": bonus
+        });
+
+        return bonus;
+    }
+
+    /**
+     * Set an absolute total ranks value and recompute the bonus.
+     * This bypasses designation multipliers: it sets the total directly.
+     * @param {Item} item - The skill item document.
+     * @param {number|string} totalRanks - Absolute target ranks.
+     * @param {string} progressionString - Progression formula.
+     * @returns {number} - The calculated bonus.
+     */
+    static async applyAbsoluteRanksAndBonus(item, totalRanks, progressionString) {
+        const safeTotal = Math.max(0, Number(totalRanks) || 0);
+        const bonus = this.calculateBonus(
+            safeTotal,
+            progressionString,
+            item.system.designation
+        );
+
+        await item.update({
+            "system.ranks": safeTotal,
             "system.rank_bonus": bonus
         });
 

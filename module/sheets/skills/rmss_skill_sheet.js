@@ -58,9 +58,15 @@ export default class RMSSSkillSheet extends ItemSheet {
       progression = CONFIG.rmss.skill_progression[category_skill.system.skill_progression].progression;
     }
 
-    html.find('input[name="system.ranks"]').blur(ev => {
-      const total_ranks = ev.currentTarget.value;
-      RankCalculator.calculateRanksBonus(this.item,total_ranks,progression);
+    html.find('input[name="system.ranks"]').blur(async ev => {
+      // Ensure numeric value from the input
+      const raw = ev.currentTarget.value;
+      const total = Number(raw);
+
+      // Guard against NaN
+      if (Number.isNaN(total)) return;
+
+      await RankCalculator.applyAbsoluteRanksAndBonus(this.item, total, progression);
     })
 
     // Catch the event when the user clicks one of the New Ranks Checkboxes in a Skill.
@@ -78,24 +84,23 @@ export default class RMSSSkillSheet extends ItemSheet {
       switch (ev.currentTarget.getAttribute("value")) {
         case "0":
           this.object.update({system: {new_ranks: { value: 1 }}});
-          console.log(this.item);
-          RankCalculator.calculateRanksBonus(this.item,RankCalculator.increaseRanks(this.item,1,progression),
+          RankCalculator.applyRanksAndBonus(this.item,RankCalculator.increaseRanks(this.item,1,progression),
               progression);
           break;
         case "1":
           this.object.update({system: {new_ranks: { value: 2 }}});
-          console.log(this.item);
-          RankCalculator.calculateRanksBonus(this.item,RankCalculator.increaseRanks(this.item,1,progression),
+          RankCalculator.applyRanksAndBonus(this.item,RankCalculator.increaseRanks(this.item,1,progression),
               progression);
           break;
         case "2":
           this.object.update({system: {new_ranks: { value: 3 }}});
-          RankCalculator.calculateRanksBonus(this.item,RankCalculator.increaseRanks(this.item,1,progression),
+          RankCalculator.applyRanksAndBonus(this.item,RankCalculator.increaseRanks(this.item,1,progression),
               progression);
           break;
         case "3":
+          debugger;
           this.object.update({system: {new_ranks: { value: 0 }}});
-          RankCalculator.calculateRanksBonus(this.item,RankCalculator.increaseRanks(this.item,-3,progression),
+          RankCalculator.applyRanksAndBonus(this.item,RankCalculator.increaseRanks(this.item,-3,progression),
               progression);
           break;
       }
@@ -118,9 +123,8 @@ export default class RMSSSkillSheet extends ItemSheet {
       }
       const skillCategories = this.item.parent.getOwnedItemsByType("skill_category");
       console.log(skillCategories);
-      const sortedSkillCategories = Object.entries(skillCategories)
+      return Object.entries(skillCategories)
           .sort((a, b) => a[1].localeCompare(b[1]));
-      return sortedSkillCategories;
     }
   }
 
