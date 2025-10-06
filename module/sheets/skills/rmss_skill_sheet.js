@@ -98,7 +98,6 @@ export default class RMSSSkillSheet extends ItemSheet {
               progression);
           break;
         case "3":
-          debugger;
           this.object.update({system: {new_ranks: { value: 0 }}});
           RankCalculator.applyRanksAndBonus(this.item,RankCalculator.increaseRanks(this.item,-3,progression),
               progression);

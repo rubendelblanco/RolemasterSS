@@ -1,6 +1,9 @@
-// module/actors/services/skill_service.js
-export default class SkillService {
+import RankCalculator from "../../skills/rmss_rank_calculator.js";
 
+/**
+ * Service to handle skill-related operations on actors and sheets.
+ */
+export default class SkillService {
     /**
      * Create a new skill for the given actor, based on the provided itemData.
      *
@@ -16,8 +19,9 @@ export default class SkillService {
      */
     static async createSkill(actor, itemData) {
         const originalCategoryId = itemData.system.category;
-        const originalCategory = game.items.get(originalCategoryId)
-            ?? game.packs.get("rmss.skill-categories-es")?.index.get(originalCategoryId);
+        const originalCategory =
+            game.items.get(originalCategoryId) ??
+            game.packs.get("rmss.skill-categories-es")?.index.get(originalCategoryId);
 
         if (!originalCategory) {
             ui.notifications.warn("No se ha podido encontrar la categoría original.");
@@ -25,15 +29,18 @@ export default class SkillService {
         }
 
         const categoryName = originalCategory.name;
-        const actorCategory = actor.items.find(i => i.type === "skill_category" && i.name === categoryName);
+        const actorCategory = actor.items.find(
+            i => i.type === "skill_category" && i.name === categoryName
+        );
 
         if (!actorCategory) {
             ui.notifications.warn("El actor no tiene la categoría correspondiente.");
             return;
         }
 
-        const ownedSkills = actor.items.filter(i => i.type === "skill");
-        const alreadyOwned = ownedSkills.some(i => i.name === itemData.name);
+        const alreadyOwned = actor.items.some(
+            i => i.type === "skill" && i.name === itemData.name
+        );
 
         if (alreadyOwned) {
             ui.notifications.warn("Skill already acquired.");
@@ -50,6 +57,91 @@ export default class SkillService {
             }
         };
 
-        await this.actor.createEmbeddedDocuments("Item", [skillToCreate]);
+        await actor.createEmbeddedDocuments("Item", [skillToCreate]);
     }
+
+    /**
+     * Handle a click on a skill's "new rank" button.
+     * Advances or resets the skill ranks depending on the clicked value.
+     *
+     * @param {Actor} actor - The Foundry actor.
+     * @param {Item} item - The skill item.
+     * @param {Item} category - The skill category item.
+     * @param {string} clickedValue - The clicked value ("0","1","2","3").
+     */
+    static async handleSkillRankClick(actor, item, category, clickedValue) {
+        const progressionValue = RankCalculator.getCategoryProgression(category, CONFIG);
+
+        switch (clickedValue) {
+            case "0":
+                await item.update({ "system.new_ranks.value": 1 });
+                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
+                await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
+                break;
+
+            case "1":
+                await item.update({ "system.new_ranks.value": 2 });
+                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
+                await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
+                break;
+
+            case "2":
+                await item.update({ "system.new_ranks.value": 3 });
+                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
+                await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
+                break;
+
+            case "3":
+                await item.update({ "system.new_ranks.value": 0 });
+                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
+                await RankCalculator.applyRanksAndBonus(item, -3, progressionValue);
+                break;
+        }
+    }
+
+    /**
+     * Handle a click on a skill category's "new rank" button.
+     *
+     * @param {Actor} actor - The Foundry actor.
+     * @param {Item} item - The skill category item.
+     * @param {string} clickedValue - The clicked value ("0","1","2","3").
+     */
+    static async handleSkillCategoryRankClick(actor, item, clickedValue) {
+        const progressionValue = "-15*2*1*0.5*0"; // standard progression
+
+        switch (clickedValue) {
+            case "0":
+                await item.update({ "system.new_ranks.value": 1 });
+                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
+                if (item.system.progression.toLowerCase() === "standard") {
+                    await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
+                }
+                break;
+
+            case "1":
+                await item.update({ "system.new_ranks.value": 2 });
+                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
+                if (item.system.progression.toLowerCase() === "standard") {
+                    await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
+                }
+                break;
+
+            case "2":
+                await item.update({ "system.new_ranks.value": 3 });
+                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
+                if (item.system.progression.toLowerCase() === "standard") {
+                    await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
+                }
+                break;
+
+            case "3":
+                await item.update({ "system.new_ranks.value": 0 });
+                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
+                if (item.system.progression.toLowerCase() === "standard") {
+                    await RankCalculator.applyRanksAndBonus(item, -3, progressionValue);
+                }
+                break;
+        }
+    }
+
 }

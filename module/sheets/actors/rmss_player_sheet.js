@@ -5,6 +5,8 @@ import RMSSCharacterSheet from "./rmss_character_sheet.js";
 import * as CONFIG from "../../config.js";
 import LevelUpManager from "../experience/rmss_level_up_manager.js";
 import {socket} from "../../../rmss.js";
+import SkillService from "../../actors/services/skill_service.js";
+import ItemService from "../../actors/services/item_service.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -41,12 +43,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       this._prepareItems(context);
     }
     return context;
-  }
-
-  //Not sure if this thing do something (legacy code)
-  async renderCharacterSettings(data) {
-     const configSheet = await renderTemplate("systems/rmss/templates/sheets/actors/apps/actor-settings.html", data);
-     return (configSheet);
   }
 
   // Override this method to check for duplicates when things are dragged to the sheet
@@ -248,6 +244,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       InputTextSearchStrategy.create("mod-search-form-actor-spells").load(html);
     });
 
+    this._registerSkillListeners(html);
+    this._registerFavoriteItemListeners(html);
+
     html.find(".item-give").click(ev => {
       ev.preventDefault();
       const itemId = ev.currentTarget.dataset.itemId;
@@ -329,28 +328,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       new game.rmss.applications.RMSSActorSheetConfig(selectOptions, this.actor).render(true);
     });
 
-    // Check/Uncheck Favorite Skill
-    html.find(".skill-favorite").click(ev => {
-      const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-
-      if (item.system.favorite === true) {
-        item.update({ system: { favorite: false } });
-      } else {
-        item.update({ system: { favorite: true } });
-      }
-    });
-
-    // Check/Uncheck Favorite Spell
-    html.find(".spell-favorite").click(ev => {
-      const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-
-      if (item.system.favorite === true) {
-        item.update({ system: { favorite: false } });
-      } else {
-        item.update({ system: { favorite: true } });
-      }
-    });
-
     // Wear/Remove Item
     html.find(".wearable").click(ev => {
       const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
@@ -363,51 +340,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         item.update({ system: { worn: true } });
       }
       console.log(`After change: ${item.system.equipped}`);
-    });
-
-    // Change New Ranks value when clicked in player sheet. From 0-3.
-    html.find(".skill-newrank").click(ev => {
-      if (!this.actor.system.levelUp.isLevelingUp) return;
-      const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-      const category = this.actor.items.get(ev.currentTarget.getAttribute("data-category-id"));
-      const progression = category.system.skill_progression;
-      let progression_value = null;
-      if (progression.split('*').length > 1) {
-        progression_value = progression; //some special race value (PP development or body development)
-      }
-      else {
-        progression_value = CONFIG.rmss.skill_progression[progression].progression; //otherwise (standard, limited, etc)
-      }
-
-      switch (ev.currentTarget.getAttribute("value")) {
-        case "0":
-          item.update({ system: { new_ranks: { value: 1 } } });
-          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
-          RankCalculator.applyRanksAndBonus(item, RankCalculator.increaseRanks(item, 1, progression_value),
-            progression_value);
-          break;
-
-        case "1":
-          item.update({ system: { new_ranks: { value: 2 } } });
-          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
-          RankCalculator.applyRanksAndBonus(item, RankCalculator.increaseRanks(item, 1, progression_value),
-            progression_value);
-          break;
-
-        case "2":
-          item.update({ system: { new_ranks: { value: 3 } } });
-          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
-          RankCalculator.applyRanksAndBonus(item, RankCalculator.increaseRanks(item, 1, progression_value),
-            progression_value);
-          break;
-
-        case "3":
-          item.update({ system: { new_ranks: { value: 0 } } });
-          if (RankCalculator.payDevelopmentCost(this.actor, item)) break;
-          RankCalculator.applyRanksAndBonus(item, RankCalculator.increaseRanks(item, -3, progression_value),
-            progression_value);
-          break;
-      }
     });
 
     // Change New Ranks value when clicked in player sheet. From 0-3.
@@ -483,5 +415,36 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     delete itemData.data.type;
     // Finally, create the item!
     return await Item.create(itemData, { parent: this.actor });
+  }
+
+  _registerSkillListeners(html) {
+    html.find(".skill-newrank").click(ev => this._onSkillRankClick(ev));
+    html.find(".skillcategory-newrank").click(ev => this._onSkillCategoryRankClick(ev));
+  }
+
+  _registerFavoriteItemListeners(html){
+    html.find(".spell-favorite, .skill-favorite").click(ev => {
+      const item = this.actor.items.get(ev.currentTarget.dataset.itemId);
+      if (item) ItemService.toggleFavorite(item).then(r => {});
+    });
+  }
+
+  async _onSkillRankClick(ev) {
+    if (!this.actor.system.levelUp.isLevelingUp) return;
+
+    const item = this.actor.items.get(ev.currentTarget.dataset.itemId);
+    const category = this.actor.items.get(ev.currentTarget.dataset.categoryId);
+    const clickedValue = ev.currentTarget.getAttribute("value");
+
+    await SkillService.handleSkillRankClick(this.actor, item, category, clickedValue);
+  }
+
+  async _onSkillCategoryRankClick(ev) {
+    if (!this.actor.system.levelUp.isLevelingUp) return;
+
+    const item = this.actor.items.get(ev.currentTarget.dataset.itemId);
+    const clickedValue = ev.currentTarget.getAttribute("value");
+
+    await SkillService.handleSkillCategoryRankClick(this.actor, item, clickedValue);
   }
 }
