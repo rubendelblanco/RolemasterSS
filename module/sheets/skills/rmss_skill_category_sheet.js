@@ -161,11 +161,13 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
     if (!this.isEditable) return;
 
     //Calculate rank bonus if ranks field change
-    html.find('input[name="system.ranks"]').blur(ev => {
-      const total_ranks = ev.currentTarget.value;
+    html.find('input[name="system.ranks"]').blur(async ev => {
+      const raw = ev.currentTarget.value;
+      const total = Number(raw);
 
-      if (this.item.system.progression.toLowerCase()==="standard") {
-        RankCalculator.calculateRanksBonus(this.item, total_ranks, "-15*2*1*0.5*0");
+      if (this.item.system.progression.toLowerCase() === "standard") {
+        if (Number.isNaN(total)) return;
+        RankCalculator.applyAbsoluteRanksAndBonus(this.item, total, "-15*2*1*0.5*0");
       }
     })
 
