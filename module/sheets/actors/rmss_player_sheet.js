@@ -1,8 +1,6 @@
-import RankCalculator from '../../skills/rmss_rank_calculator.js';
 import ExperiencePointsCalculator from '../experience/rmss_experience_manager.js';
 import { InputTextSearchStrategy } from '../search/rmss_text_search.js';
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
-import * as CONFIG from "../../config.js";
 import SkillService from "../../actors/services/skill_service.js";
 import ItemService from "../../actors/services/item_service.js";
 import StatService from "../../actors/services/stat_service.js";
@@ -145,8 +143,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const itemId = ev.currentTarget.dataset.itemId;
     const item = this.actor.items.get(itemId);
     const clickedValue = ev.currentTarget.getAttribute("value");
-
-    await SkillService.handleSkillCategoryRankClick(this.actor, item, clickedValue);
     await SkillCategoryService.handleSkillCategoryRankClick(this.actor, item, clickedValue);
   }
 

@@ -41,44 +41,43 @@ export default class SkillCategoryService {
      * @returns {Promise<void>} Resolves when updates are complete.
      */
     static async handleSkillCategoryRankClick(actor, item, clickedValue) {
-        const progressionValue = "-15*2*1*0.5*0"; // Standard progression formula
+        const progressionValue = "-15*2*1*0.5*0";
+        const current = Number(item.system.new_ranks?.value || 0);
+        const available = String(item.system.development_cost).split("/").length;
 
         switch (clickedValue) {
             case "0":
-                await item.update({ "system.new_ranks.value": 1 });
-                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
-
-                if (item.system.progression.toLowerCase() === "standard") {
-                    await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
-                }
-                break;
-
             case "1":
-                await item.update({ "system.new_ranks.value": 2 });
-                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
+            case "2": {
+                const next = current + 1;
 
-                if (item.system.progression.toLowerCase() === "standard") {
+                const pay = await RankCalculator.payDevelopmentCost(actor, item, next);
+                if (pay === false) return;
+
+                if (pay === "refunded") {
+                    const toSubtract = Math.min(current, available);
+                    await item.update({ "system.new_ranks.value": 0 });
+                    if (item.system.progression?.toLowerCase?.() === "standard" && toSubtract) {
+                        await RankCalculator.applyRanksAndBonus(item, -toSubtract, progressionValue);
+                    }
+                    return;
+                }
+
+                await item.update({ "system.new_ranks.value": next });
+                if (item.system.progression?.toLowerCase?.() === "standard") {
                     await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
                 }
-                break;
+                return;
+            }
 
-            case "2":
-                await item.update({ "system.new_ranks.value": 3 });
-                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
-
-                if (item.system.progression.toLowerCase() === "standard") {
-                    await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
-                }
-                break;
-
-            case "3":
+            case "3": {
+                const toSubtract = Math.min(current, available);
                 await item.update({ "system.new_ranks.value": 0 });
-                if (await RankCalculator.payDevelopmentCost(actor, item)) return;
-
-                if (item.system.progression.toLowerCase() === "standard") {
-                    await RankCalculator.applyRanksAndBonus(item, -3, progressionValue);
+                if (item.system.progression?.toLowerCase?.() === "standard" && toSubtract) {
+                    await RankCalculator.applyRanksAndBonus(item, -toSubtract, progressionValue);
                 }
-                break;
+                return;
+            }
         }
     }
 }

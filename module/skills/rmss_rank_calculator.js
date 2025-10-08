@@ -19,14 +19,17 @@ export default class RankCalculator {
         const dev_cost = costString.split("/").map(Number);
         const available_ranks = dev_cost.length;
 
-        if (newRanks === 3) {
-            // reset new ranks, recover development points
+        // --- If trying to buy beyond the available ranks, reset to 0 and refund ---
+        if (newRanks > available_ranks) {
+            // recover development points previously spent
             return dev_cost.reduce((acc, value) => acc - value, 0);
-        } else if (available_ranks < newRanks) {
-            return false;
         }
 
-        return dev_cost[newRanks] <= dps ? dev_cost[newRanks] : false;
+        // --- Standard cost check: can we afford the rank at newRanks? ---
+        const cost = dev_cost[newRanks - 1]; // arrays are 0-based
+        if (cost === undefined) return false;
+
+        return cost <= dps ? cost : false;
     }
 
     /**
@@ -104,24 +107,29 @@ export default class RankCalculator {
     // SIDE-EFFECT METHODS (Foundry updates)
     // -----------------------------
 
+    // RankCalculator.js
+
     /**
-     * Pay development cost if possible, updating the actor's DPS.
-     * @param {Actor} actor - The Foundry actor document.
-     * @param {Item} item - The skill item being purchased.
-     * @returns {boolean} - True if cost paid, false otherwise.
+     * Pay or refund development points based on the intended nextRanks.
+     * @param {Actor} actor
+     * @param {Item} item
+     * @param {number} nextRanks - Intended new_ranks.value to validate (1..N or 0 on reset)
+     * @returns {Promise<"paid"|"refunded"|false>}
+     *  - "paid": cost paid and DP deducted
+     *  - "refunded": over max ranks → points refunded
+     *  - false: not enough DP to pay
      */
-    static async payDevelopmentCost(actor, item) {
+    static async payDevelopmentCost(actor, item, nextRanks) {
         const devCost = this.isPayable(
             actor.system.levelUp.developmentPoints,
-            item.system.new_ranks.value,
+            nextRanks,
             item.system.development_cost
         );
+        if (devCost === false) return false;
 
-        if (!devCost) return false;
-
-        const newDps = actor.system.levelUp.developmentPoints - devCost;
+        const newDps = actor.system.levelUp.developmentPoints - devCost; // devCost<0 → refund
         await actor.update({ "system.levelUp.developmentPoints": newDps });
-        return true;
+        return devCost < 0 ? "refunded" : "paid";
     }
 
     /**
