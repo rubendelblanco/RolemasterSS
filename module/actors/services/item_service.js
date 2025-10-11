@@ -1,3 +1,5 @@
+import { socket } from "../../../rmss.js";
+
 /**
  * Service to handle skill-related operations on items.
  */
@@ -46,7 +48,7 @@ export default class ItemService {
         <form>
           <div class="form-group">
             <label>Cantidad:</label>
-            <input type="number" name="qty" value="1" min="1" max="${maxQty}"/>
+            <input type="number" name="qty" value="1" min="1" max="${maxQty}" />
           </div>
           <div class="form-group">
             <label>Destino:</label>
@@ -57,9 +59,25 @@ export default class ItemService {
                 ok: {
                     label: "Dar",
                     callback: async html => {
-                        const qty = Number(html.find("[name=qty]").val()) || 1;
+                        const qty = Number(html.find("[name=qty]").val()) || 0;
                         const targetId = html.find("[name=target]").val();
-                        if (!targetId) return;
+
+                        if (!targetId) {
+                            ui.notifications.warn("No target selected.");
+                            return;
+                        }
+
+                        if (qty <= 0) {
+                            ui.notifications.warn("Quantity must be greater than zero.");
+                            return;
+                        }
+
+                        if (qty > maxQty) {
+                            ui.notifications.warn(
+                                `You don't have that many ${item.name}! You only own ${maxQty}.`
+                            );
+                            return;
+                        }
 
                         await socket.executeAsGM("doItemTransfer", {
                             sourceActorId: actor.id,
@@ -225,5 +243,23 @@ export default class ItemService {
                 return { ...list, contents };
             })
             .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    /**
+     * Recalculate totals when quantity, unit weight or unit cost change.
+     */
+    static async recalculateTotals(item) {
+        const qty = Math.max(Number(item.system.quantity || 1), 1);
+        const weightPerUnit = Number(item.system.unitWeight || 0);
+        const costPerUnit = Number(item.system.unitCost || 0);
+
+        const totalWeight = weightPerUnit * qty;
+        const totalCost = costPerUnit * qty;
+
+        await item.update({
+            "system.quantity": qty,
+            "system.weight": totalWeight,
+            "system.cost": totalCost
+        });
     }
 }

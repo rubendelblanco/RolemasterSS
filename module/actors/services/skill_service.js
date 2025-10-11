@@ -1,4 +1,4 @@
-import RankCalculator from "../../skills/rmss_rank_calculator.js";
+import RankCalculator from "../../core/skills/rmss_rank_calculator.js";
 
 /**
  * Service to handle skill-related operations on actors and sheets.
@@ -69,12 +69,12 @@ export default class SkillService {
      * @param {Item} category - The skill category item.
      * @param {string} clickedValue - The clicked value ("0","1","2","3").
      */
+    // SkillService.handleSkillRankClick(...)
     static async handleSkillRankClick(actor, item, category, clickedValue) {
         if (!actor.system.levelUp.isLevelingUp) return;
-
         const progressionValue = RankCalculator.getCategoryProgression(category, CONFIG);
+        const available = String(item.system.development_cost).split("/").length;
         const current = Number(item.system.new_ranks?.value || 0);
-        const available = String(category.system.skill_progression).split("/").length; // según la categoría
 
         switch (clickedValue) {
             case "0":
@@ -85,19 +85,17 @@ export default class SkillService {
                 const pay = await RankCalculator.payDevelopmentCost(actor, item, next);
                 if (pay === false) return;
 
-                // Excedió rangos permitidos → refund
                 if (pay === "refunded") {
                     const toSubtract = Math.min(current, available);
                     await item.update({ "system.new_ranks.value": 0 });
                     if (toSubtract) {
-                        await RankCalculator.applyRanksAndBonus(item, -toSubtract, progressionValue);
+                        RankCalculator.applyRanksAndBonus(item, -toSubtract, progressionValue);
                     }
                     return;
                 }
 
-                // Pagado correctamente → aplicar bonus
                 await item.update({ "system.new_ranks.value": next });
-                await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
+                RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
                 return;
             }
 
@@ -105,11 +103,10 @@ export default class SkillService {
                 const toSubtract = Math.min(current, available);
                 await item.update({ "system.new_ranks.value": 0 });
                 if (toSubtract) {
-                    await RankCalculator.applyRanksAndBonus(item, -toSubtract, progressionValue);
+                    RankCalculator.applyRanksAndBonus(item, -toSubtract, progressionValue);
                 }
                 return;
             }
         }
     }
-
 }

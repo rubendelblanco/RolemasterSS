@@ -28,7 +28,7 @@ import RMSSNpcSheet from "./module/sheets/actors/rmss_npc_sheet.js";
 import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 import utils from "./module/utils.js";
-import {ContainerHandler} from "./module/sheets/container.js";
+import {ContainerHandler} from "./module/actors/utils/container_handler.js";
 import { StackableItemHandler } from "./module/items/stackable_item_handler.js";
 
 export let socket;

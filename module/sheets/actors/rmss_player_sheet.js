@@ -5,6 +5,7 @@ import SkillService from "../../actors/services/skill_service.js";
 import ItemService from "../../actors/services/item_service.js";
 import StatService from "../../actors/services/stat_service.js";
 import SkillCategoryService from "../../actors/services/skill_category_service.js";
+import SkillDropHandler from "../../actors/drop_handlers/skill_drop_handler.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -46,11 +47,14 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   // Override this method to check for duplicates when things are dragged to the sheet
   // We don't want duplicate skills and skill categories.
   async _onDropItem(event, data) {
-    const newitem = await Item.implementation.fromDropData(data);
-    const itemData = newitem.toObject();
-    const handler = dropHandlers[itemData.type];
+    const newItem = await Item.implementation.fromDropData(data);
+    const itemData = newItem.toObject();
 
-    if (handler) return handler(this.actor, itemData, event, data);
+    if (itemData.type === "skill") {
+      const handler = new SkillDropHandler(this.actor);
+      return handler.handle(itemData);
+    }
+
     return super._onDropItem(event, data);
   }
 

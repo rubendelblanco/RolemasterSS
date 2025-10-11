@@ -22,16 +22,32 @@
                     <tr>
                         <th>{{localize "rmss.item.worn"}}</th>
                         <th>{{localize "rmss.item.quantity"}}</th>
+                        <th>{{localize "rmss.item.unitWeight"}}</th>
                         <th>{{localize "rmss.item.weight"}}</th>
+                        <th>{{localize "rmss.item.unitCost"}}</th>
                         <th>{{localize "rmss.item.cost"}}</th>
                         <th>{{localize "rmss.item.prod_time"}}</th>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="system.worn" {{checked system.worn}}/></td>
-                        <td><input name="system.quantity" type="text" value="{{system.quantity}}" data-dtype="Number"/></td>
-                        <td><input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/></td>
-                        <td><input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String"/></td>
-                        <td><input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String"/></td>
+                        <td><input type="checkbox" name="system.worn" {{checked system.worn}} /></td>
+                        <td>
+                            <input name="system.quantity" type="number" value="{{system.quantity}}" data-dtype="Number" min="1" />
+                        </td>
+                        <td>
+                            <input name="system.unitWeight" type="number" value="{{system.unitWeight}}" data-dtype="Number" step="0.01" />
+                        </td>
+                        <td>
+                            <input name="system.weight" type="number" value="{{system.weight}}" data-dtype="Number" step="0.01" readonly />
+                        </td>
+                        <td>
+                            <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
+                        </td>
+                        <td>
+                            <input name="system.cost" type="number" value="{{system.cost}}" data-dtype="Number" step="0.01" readonly />
+                        </td>
+                        <td>
+                            <input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String" />
+                        </td>
                     </tr>
                 </table>
 

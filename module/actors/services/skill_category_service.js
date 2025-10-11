@@ -1,5 +1,5 @@
 // module/actors/services/skill_category_service.js
-import RankCalculator from "../../skills/rmss_rank_calculator.js";
+import RankCalculator from "../../core/skills/rmss_rank_calculator.js";
 
 export default class SkillCategoryService {
     /**
