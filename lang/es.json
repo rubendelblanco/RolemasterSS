@@ -206,17 +206,30 @@
       "creature": "Criatura de RMSS"
     },
     "currency_type": {
-      "mp": "Piezas de Mithril",
-      "pp": "Piezas de Platino",
-      "gp": "Piezas de Oro",
-      "sp": "Piezas de Plata",
-      "bp": "Piezas de Bronce",
-      "cp": "Piezas de Cobre"
+      "mp": "Monedas de Mithril",
+      "pp": "Monedas de Platino",
+      "gp": "Monedas de Oro",
+      "sp": "Monedas de Plata",
+      "bp": "Monedas de Bronce",
+      "cp": "Monedas de Cobre",
+      "tp": "Monedas de Estaño",
+      "ip": "Monedas de Hierro"
+    },
+    "currency_type_abb": {
+      "mp": "mm",
+      "pp": "mpt",
+      "gp": "mo",
+      "sp": "mp",
+      "bp": "mb",
+      "cp": "mc",
+      "tp": "me",
+      "ip": "mh"
     },
     "item": {
       "worn": "Usado",
       "description": "Otras notas",
       "quantity": "Cantidad",
+      "currency": "Moneda",
       "weight": "Peso (total)",
       "cost": "Coste (total)",
       "unitWeight": "Peso (ud.)",

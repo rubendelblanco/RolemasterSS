@@ -25,6 +25,7 @@
                         <th>{{localize "rmss.item.unitWeight"}}</th>
                         <th>{{localize "rmss.item.weight"}}</th>
                         <th>{{localize "rmss.item.unitCost"}}</th>
+                        <th>{{localize "rmss.item.currency"}}</th>
                         <th>{{localize "rmss.item.cost"}}</th>
                         <th>{{localize "rmss.item.prod_time"}}</th>
                     </tr>
@@ -41,6 +42,15 @@
                         </td>
                         <td>
                             <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
+                        </td>
+                        <td>
+                            <select name="system.currency_type">
+                                {{#each config.currency_type_abb as |label key|}}
+                                <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
+                                {{localize label}}
+                                </option>
+                                {{/each}}
+                            </select>
                         </td>
                         <td>
                             <input name="system.cost" type="number" value="{{system.cost}}" data-dtype="Number" step="0.01" readonly />

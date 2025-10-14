@@ -254,7 +254,7 @@ export default class ItemService {
      */
     static normalizeItemFormData(item, formData) {
         // --- Read current values from form ---
-        let qty         = Math.max(num(formData["system.quantity"], 1), 1);
+        let qty         = Math.max(formData["system.quantity"], 1);
         let unitWeight  = formData["system.unitWeight"];
         let totalWeight = formData["system.weight"];
         let unitCost    = formData["system.unitCost"];

@@ -306,6 +306,11 @@
         "usedCapacity": 0,
         "capacityType": "weight",
         "allowedTags": null
+      },
+      "currency_type": {
+        "type": "string",
+        "default": "gp",
+        "label": "RMSS.CurrencyType"
       }
     },
     "creature_attack": {

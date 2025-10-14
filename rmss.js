@@ -151,6 +151,10 @@ Hooks.once("init", function () {
 
   // Handlebars Helpers
 
+  Handlebars.registerHelper("gt", (a, b) => Number(a) > Number(b));
+  Handlebars.registerHelper("lt", (a, b) => Number(a) < Number(b));
+  Handlebars.registerHelper("eq", (a, b) => a === b);
+
   Handlebars.registerHelper('inc', function (value) {
     return parseInt(value) + 1;
   });
