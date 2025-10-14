@@ -246,20 +246,30 @@ export default class ItemService {
     }
 
     /**
-     * Recalculate totals when quantity, unit weight or unit cost change.
+     * Normalize item data before updating: keeps quantity, unit and total weight/cost consistent.
+     *
+     * @param {Item} item - The Foundry item being updated.
+     * @param {Object} formData - Raw form data from the sheet.
+     * @returns {Object} The normalized formData ready for update.
      */
-    static async recalculateTotals(item) {
-        const qty = Math.max(Number(item.system.quantity || 1), 1);
-        const weightPerUnit = Number(item.system.unitWeight || 0);
-        const costPerUnit = Number(item.system.unitCost || 0);
+    static normalizeItemFormData(item, formData) {
+        // --- Read current values from form ---
+        let qty         = Math.max(num(formData["system.quantity"], 1), 1);
+        let unitWeight  = formData["system.unitWeight"];
+        let totalWeight = formData["system.weight"];
+        let unitCost    = formData["system.unitCost"];
+        let totalCost   = formData["system.cost"];
 
-        const totalWeight = weightPerUnit * qty;
-        const totalCost = costPerUnit * qty;
+        totalWeight = unitWeight * qty;
+        totalCost = unitCost * qty;
 
-        await item.update({
-            "system.quantity": qty,
-            "system.weight": totalWeight,
-            "system.cost": totalCost
-        });
+        // --- Write normalized values ---
+        formData["system.quantity"]   = qty;
+        formData["system.unitWeight"] = unitWeight;
+        formData["system.weight"]     = totalWeight;
+        formData["system.unitCost"]   = unitCost;
+        formData["system.cost"]       = totalCost;
+
+        return formData;
     }
 }

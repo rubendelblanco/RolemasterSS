@@ -45,13 +45,14 @@ export default class RMSSItemSheet extends ItemSheet {
     html.find(".drop-target").on("drop", this._onDropItem.bind(this));
     html.find(".remove-from-container").click(ev => this._onRemoveFromContainer(ev));
 
-    // --- Recalculate weight/cost ---
-    html.find('input[name="system.quantity"], input[name="system.unitWeight"], input[name="system.unitCost"]').on("change", ev => {
-      ItemService.recalculateTotals(this.item);
-    });
-
     // --- Macro ---
     html.find(".shtick-type").change(ev => this._onShtickTypeChange(ev));
+  }
+
+  /** @override */
+  async _updateObject(event, formData) {
+    const normalizedData = ItemService.normalizeItemFormData(this.item, formData);
+    return super._updateObject(event, normalizedData);
   }
 
   async _onRemoveFromContainer(ev) {
