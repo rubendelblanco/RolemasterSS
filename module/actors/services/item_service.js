@@ -100,50 +100,52 @@ export default class ItemService {
         }
 
         const quantity = await Dialog.prompt({
-            title: `Dividir pila de ${item.name}`,
+            title: `Split stack of ${item.name}`,
             content: `
-      <p>¿Cuántos quieres separar de la pila (${totalQty} disponibles)?</p>
+      <p>How many do you want to split from the stack (${totalQty} available)?</p>
       <input type="number" id="split-qty" value="1" min="1" max="${totalQty - 1}" />
     `,
             callback: html => parseInt(html.find("#split-qty").val()) || 0,
             rejectClose: false
         });
 
+        // Abort if user cancels or enters an invalid amount
         if (!quantity || quantity <= 0 || quantity >= totalQty) return;
 
+        // --- Calculate accurate unit values before splitting ---
         const totalCost   = Number(item.system.cost || 0);
         const totalWeight = Number(item.system.weight || 0);
         const unitCost    = totalQty > 0 ? totalCost / totalQty : 0;
         const unitWeight  = totalQty > 0 ? totalWeight / totalQty : 0;
         const remaining   = totalQty - quantity;
 
-        const baseData = foundry.utils.duplicate(item.toObject());
-        delete baseData._id;
+        // --- Update the original item with remaining quantity and totals ---
+        await item.update({
+            "system.quantity":   remaining,
+            "system.unitCost":   unitCost,
+            "system.unitWeight": unitWeight,
+            "system.cost":       unitCost * remaining,
+            "system.weight":     unitWeight * remaining
+        });
 
-        const newItemData1 = foundry.utils.duplicate(baseData);
-        newItemData1.system.quantity   = quantity;
-        newItemData1.system.unitCost   = unitCost;
-        newItemData1.system.unitWeight = unitWeight;
-        newItemData1.system.cost       = unitCost * quantity;
-        newItemData1.system.weight     = unitWeight * quantity;
+        // --- Duplicate the item and create a new one with the split quantity ---
+        const newItemData = foundry.utils.duplicate(item.toObject());
+        delete newItemData._id;
+        newItemData.system.quantity   = quantity;
+        newItemData.system.unitCost   = unitCost;
+        newItemData.system.unitWeight = unitWeight;
+        newItemData.system.cost       = unitCost * quantity;
+        newItemData.system.weight     = unitWeight * quantity;
 
-        const newItemData2 = foundry.utils.duplicate(baseData);
-        newItemData2.system.quantity   = remaining;
-        newItemData2.system.unitCost   = unitCost;
-        newItemData2.system.unitWeight = unitWeight;
-        newItemData2.system.cost       = unitCost * remaining;
-        newItemData2.system.weight     = unitWeight * remaining;
+        // --- Preserve currency type if defined ---
+        if (item.system.currency_type)
+            newItemData.system.currency_type = item.system.currency_type;
 
-        if (item.system.currency_type) {
-            newItemData1.system.currency_type = item.system.currency_type;
-            newItemData2.system.currency_type = item.system.currency_type;
-        }
-
-        await item.delete();
-        await actor.createEmbeddedDocuments("Item", [newItemData1, newItemData2]);
+        // --- Create the new item in the actor's inventory ---
+        await actor.createEmbeddedDocuments("Item", [newItemData]);
 
         ui.notifications.info(
-            `${item.name} dividido: ${quantity} separados, ${remaining} restantes.`
+            `${item.name} split: ${quantity} separated, ${remaining} remaining.`
         );
     }
 
