@@ -10,7 +10,8 @@ export default class RMSSItemSheet extends ItemSheet {
       height: 440,
       template: "systems/rmss/templates/sheets/items/rmss-item-sheet.html",
       classes: ["rmss", "sheet", "item"],
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "details" }]
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "details" }],
+      submitOnChange: false
     });
   }
 
@@ -47,6 +48,16 @@ export default class RMSSItemSheet extends ItemSheet {
 
     // --- Macro ---
     html.find(".shtick-type").change(ev => this._onShtickTypeChange(ev));
+
+    html.find('input[name="system.quantity"], input[name="system.unitCost"], input[name="system.unitWeight"]').on("input", ev => {
+      const form = html[0];
+      const qty = Number(form.querySelector('input[name="system.quantity"]').value) || 1;
+      const unitCost = Number(form.querySelector('input[name="system.unitCost"]').value) || 0;
+      const unitWeight = Number(form.querySelector('input[name="system.unitWeight"]').value) || 0;
+
+      form.querySelector('input[name="system.cost"]').value = unitCost * qty;
+      form.querySelector('input[name="system.weight"]').value = unitWeight * qty;
+    });
   }
 
   /** @override */

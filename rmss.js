@@ -29,7 +29,6 @@ import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 import utils from "./module/utils.js";
 import {ContainerHandler} from "./module/actors/utils/container_handler.js";
-import { StackableItemHandler } from "./module/items/stackable_item_handler.js";
 
 export let socket;
 
@@ -365,17 +364,6 @@ Hooks.once("init", function () {
     // Check capacity and recalculate
     await handler.enforceCapacity(item);
     await handler.recalc();
-  });
-
-  Hooks.on("updateItem", async (item, update) => {
-    // Only react if quantity changed
-    if (update.system?.quantity === undefined) return;
-
-    // Respect the is_stackable flag (default true)
-    if ((item.system.is_stackable ?? true) !== true) return;
-
-    // Recompute totals from unit flags
-    await new StackableItemHandler(item).recalcTotals();
   });
 
   // Hook: deleteItem

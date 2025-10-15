@@ -92,21 +92,9 @@ export default class ItemService {
         }).render(true);
     }
 
-    /**
-     * Split a stackable item into two separate stacks.
-     *
-     * This opens a dialog to choose how many units to separate, then:
-     * - Decreases the quantity of the original stack.
-     * - Creates a new item with the separated quantity.
-     *
-     * @param {Actor} actor - The actor owning the item.
-     * @param {Item} item - The stackable item to split.
-     * @returns {Promise<void>} Resolves when the operation completes.
-     */
     static async splitStack(actor, item) {
-        const max = item.system.quantity || 1;
-
-        if (max <= 1) {
+        const totalQty = Number(item.system.quantity || 1);
+        if (totalQty <= 1) {
             ui.notifications.warn("This item cannot be split (quantity is 1).");
             return;
         }
@@ -114,25 +102,49 @@ export default class ItemService {
         const quantity = await Dialog.prompt({
             title: `Dividir pila de ${item.name}`,
             content: `
-      <p>¿Cuántos quieres separar de la pila (${max} disponibles)?</p>
-      <input type="number" id="split-qty" value="1" min="1" max="${max - 1}" />
+      <p>¿Cuántos quieres separar de la pila (${totalQty} disponibles)?</p>
+      <input type="number" id="split-qty" value="1" min="1" max="${totalQty - 1}" />
     `,
             callback: html => parseInt(html.find("#split-qty").val()) || 0,
             rejectClose: false
         });
 
-        // Abort if user cancels or enters invalid amount
-        if (!quantity || quantity <= 0 || quantity >= max) return;
+        if (!quantity || quantity <= 0 || quantity >= totalQty) return;
 
-        // Reduce original stack
-        await item.update({ "system.quantity": max - quantity });
+        const totalCost   = Number(item.system.cost || 0);
+        const totalWeight = Number(item.system.weight || 0);
+        const unitCost    = totalQty > 0 ? totalCost / totalQty : 0;
+        const unitWeight  = totalQty > 0 ? totalWeight / totalQty : 0;
+        const remaining   = totalQty - quantity;
 
-        // Duplicate and create a new item
-        const newItemData = foundry.utils.duplicate(item.toObject());
-        newItemData.system.quantity = quantity;
-        delete newItemData._id; // Remove ID so Foundry treats it as new
+        const baseData = foundry.utils.duplicate(item.toObject());
+        delete baseData._id;
 
-        await actor.createEmbeddedDocuments("Item", [newItemData]);
+        const newItemData1 = foundry.utils.duplicate(baseData);
+        newItemData1.system.quantity   = quantity;
+        newItemData1.system.unitCost   = unitCost;
+        newItemData1.system.unitWeight = unitWeight;
+        newItemData1.system.cost       = unitCost * quantity;
+        newItemData1.system.weight     = unitWeight * quantity;
+
+        const newItemData2 = foundry.utils.duplicate(baseData);
+        newItemData2.system.quantity   = remaining;
+        newItemData2.system.unitCost   = unitCost;
+        newItemData2.system.unitWeight = unitWeight;
+        newItemData2.system.cost       = unitCost * remaining;
+        newItemData2.system.weight     = unitWeight * remaining;
+
+        if (item.system.currency_type) {
+            newItemData1.system.currency_type = item.system.currency_type;
+            newItemData2.system.currency_type = item.system.currency_type;
+        }
+
+        await item.delete();
+        await actor.createEmbeddedDocuments("Item", [newItemData1, newItemData2]);
+
+        ui.notifications.info(
+            `${item.name} dividido: ${quantity} separados, ${remaining} restantes.`
+        );
     }
 
     /**
@@ -256,12 +268,9 @@ export default class ItemService {
         // --- Read current values from form ---
         let qty         = Math.max(formData["system.quantity"], 1);
         let unitWeight  = formData["system.unitWeight"];
-        let totalWeight = formData["system.weight"];
         let unitCost    = formData["system.unitCost"];
-        let totalCost   = formData["system.cost"];
-
-        totalWeight = unitWeight * qty;
-        totalCost = unitCost * qty;
+        const totalWeight = unitWeight * qty;
+        const totalCost = unitCost * qty;
 
         // --- Write normalized values ---
         formData["system.quantity"]   = qty;
