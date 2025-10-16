@@ -33,6 +33,10 @@
                     <input name="system.af" type="text" value="{{system.af}}" data-dtype="Number"/>
                 </td>
             </table>
+            <div class="form-group">
+                <label>{{localize "rmss.item.is_stackable"}}</label>
+                <input type="checkbox" name="system.is_stackable" {{checked system.is_stackable}} />
+            </div>
                 {{localize "rmss.item.description"}}
                 {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
         </div>

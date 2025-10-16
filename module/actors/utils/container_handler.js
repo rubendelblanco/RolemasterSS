@@ -27,7 +27,7 @@ export class ContainerHandler {
 
     getTotalWeight() {
         return this.contents.reduce(
-            (sum, i) => sum + ((Number(i.system.weight) || 0) * (Number(i.system.quantity) || 1)),
+            (sum, i) => sum + ((Number(i.system.weight) || 0)),
             0
         );
     }
@@ -81,7 +81,7 @@ export class ContainerHandler {
     canFit(item) {
         let projectedUsed = this.usedValue;
         if (this.capacityType === "weight") {
-            projectedUsed += (Number(item.system.weight) || 0) * (Number(item.system.quantity) || 1);
+            projectedUsed += (Number(item.system.weight) || 0);
         } else if (this.capacityType === "quantity") {
             projectedUsed += (Number(item.system.quantity) || 1);
         }
