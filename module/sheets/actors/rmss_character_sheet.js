@@ -103,6 +103,15 @@ export default class RMSSCharacterSheet extends ActorSheet {
         const newItem = await Item.implementation.fromDropData(data);
         const itemData = newItem.toObject();
 
+        // --- Prevent dropping an item onto itself ---
+        const draggedId = itemData._id;
+        if (this.actor.items.has(draggedId)) {
+            const target = this.actor.items.get(draggedId);
+            if (target && target.system.is_stackable) {
+                return;
+            }
+        }
+
         // --- Check for existing matching item ---
         const existing = this.actor.items.find(i =>
             i.name === itemData.name &&
