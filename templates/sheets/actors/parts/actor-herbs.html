@@ -24,6 +24,14 @@
       <td>{{herb.system.weight}}</td>
       <td>{{herb.system.cost}}</td>
       <td>
+          {{#if (gt system.quantity 1)}}
+          <a class="item-control split-stack" data-item-id="{{herb._id}}" title="Split pile">
+              <i class="fa-solid fa-split"></i>
+          </a>
+          {{/if}}
+          <a class="item-give" title="Give item" data-item-id="{{herb._id}}">
+              <i class="fas fa-hands-helping"></i>
+          </a>
         <a class="item-control item-edit" title="Edit Item" data-item-id="{{herb._id}}"><i class="fas fa-edit"></i></a>
         <a class="item-control item-delete" title="Delete Item" data-item-id="{{herb._id}}"><i class="fas fa-trash"></i></a>
       </td>
