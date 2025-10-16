@@ -279,10 +279,13 @@
     },
     "herb_or_poison": {
       "codes": "Códigos",
-      "weight": "Peso",
-      "form_and_prep": "Forma/Prep",
-      "cost": "Costo",
-      "af": "AF"
+      "form_and_prep": "Form/Prep",
+      "af": "FA",
+      "weight": "Peso (total)",
+      "cost": "Coste (total)",
+      "currency": "Moneda",
+      "unitWeight": "Peso (unit)",
+      "unitCost": "Coste (unit)"
     },
     "transport": {
       "cost": "Costo",

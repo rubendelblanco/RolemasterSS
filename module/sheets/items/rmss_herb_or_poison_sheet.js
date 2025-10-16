@@ -1,5 +1,6 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
+import ItemService from "../../actors/services/item_service.js";
 
 export default class RMSSHerbAndPoisonSheet extends ItemSheet {
 
@@ -9,8 +10,15 @@ export default class RMSSHerbAndPoisonSheet extends ItemSheet {
       width: 530,
       height: 440,
       template: "systems/rmss/templates/sheets/items/rmss-herb-or-poison-sheet.html",
-      classes: ["rmss", "sheet", "item"]
+      classes: ["rmss", "sheet", "item"],
+      submitOnChange: true
     });
+  }
+
+  /** @override */
+  async _updateObject(event, formData) {
+    const normalizedData = ItemService.normalizeItemFormData(this.item, formData);
+    return super._updateObject(event, normalizedData);
   }
 
   // If our sheet is called here it is.

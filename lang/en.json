@@ -279,10 +279,13 @@
         },
         "herb_or_poison": {
             "codes": "Codes",
-            "weight": "Weight",
             "form_and_prep": "Form/Prep",
-            "cost": "Cost",
-            "af": "AF"
+            "af": "AF",
+            "weight": "Weight (total)",
+            "cost": "Cost (total)",
+            "currency": "Currency",
+            "unitWeight": "Weight (unit)",
+            "unitCost": "Cost (unit)"
         },
         "transport": {
             "cost": "Cost",
