@@ -970,4 +970,7 @@ li.item.contained span.description {
     color: #cce7f5;
 }
 
+td.indent{
+    padding-left: 2% !important;
+}
 

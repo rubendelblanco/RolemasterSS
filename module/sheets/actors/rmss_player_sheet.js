@@ -25,24 +25,34 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
   // Make the data available to the sheet template
   async getData() {
-    const context = await super.getData();
-    // Use a safe clone of the actor data for further operations.
-    const actorData = this.actor.toObject(false);
-    let enrichedDescription = await TextEditor.enrichHTML(this.actor.system.description, { async: true });
+    // Retrieve base data from Foundry's ActorSheet
+    let context = await super.getData();
 
-    // Add the actor's data to context.data for easier access.
+    // Safe clone of the actor data for further operations
+    const actorData = this.actor.toObject(false);
+
+    // Enrich description text for HTML rendering
+    const enrichedDescription = await TextEditor.enrichHTML(
+        this.actor.system.description,
+        { async: true }
+    );
+
+    // Attach actor system data and description to context
     context.system = actorData.system;
     context.enrichedDescription = enrichedDescription;
 
-    //effects
+    // Active effects
     context.effects = this.actor.effects.contents;
 
-    // Prepare character data and items.
+    // Prepare character data and items (use ItemService instead of legacy)
     if (actorData.type === "character") {
-      this._prepareItems(context);
+      context = this._prepareItems(context);
     }
+
+    // Return the enriched context to the template
     return context;
   }
+
 
   // Override this method to check for duplicates when things are dragged to the sheet
   // We don't want duplicate skills and skill categories.

@@ -181,30 +181,70 @@ export default class ItemService {
         const languageskill = [], weapons = [], armor = [], herbs = [];
         const spells = [], spellists = [];
 
-        for (let item of context.items) {
+        // Map containerId -> [contained items]
+        const containersMap = new Map();
+
+        // Helper to normalize Document/POJO IDs
+        const getId = (obj) => obj?.id ?? obj?._id ?? null;
+
+        // Pass 1: classify everything
+        for (const item of context.items) {
             item.actorId = actor.id;
 
             switch (item.type) {
-                case "item": gear.push(item); break;
-                case "weapon": weapons.push(item); break;
+                case "item":           gear.push(item); break;
+                case "weapon":         weapons.push(item); break;
                 case "herb_or_poison": herbs.push(item); break;
                 case "skill_category": skillcat.push(item); break;
-                case "spell_list": spellists.push(item); break;
+                case "spell_list":     spellists.push(item); break;
                 case "skill":
                     this._classifySkill(actor, item, playerskill, spellskill, languageskill);
                     break;
-                case "armor": armor.push(item); break;
-                case "spell": spells.push(item); break;
+                case "armor":          armor.push(item); break;
+                case "spell":          spells.push(item); break;
             }
         }
 
+        // Pass 2: group gear by container flag
+        for (const i of gear) {
+            // Read container relation from flags
+            const containerId = i.flags?.rmss?.containerId ?? null;
+            if (!containerId) continue;
+
+            // Ensure map bucket exists
+            if (!containersMap.has(containerId)) containersMap.set(containerId, []);
+            containersMap.get(containerId).push(i);
+        }
+
+        // Pass 3: build final grouped structure
+        const containers = [];
+        const looseGear = [];
+
+        for (let i of gear) {
+            const isContainer = i.system?.is_container === true;
+            const itemId = i._id ?? i.id;
+
+            if (isContainer) {
+                containers.push({
+                    container: i,
+                    contents: containersMap.get(itemId) || []
+                });
+            } else if (!i.flags?.rmss?.containerId) {
+                looseGear.push(i);
+            }
+        }
+
+        // Sorts
         skillcat.sort((a, b) => a.name.localeCompare(b.name));
         playerskill.sort((a, b) => a.name.localeCompare(b.name));
 
+        // Map spells to lists
         const spellistsWithContents = this._mapSpellsToLists(spellists, spells);
 
+        // Return enriched context
         return Object.assign(context, {
-            gear,
+            containers,
+            looseGear,
             skillcat,
             playerskill,
             weapons,
@@ -282,5 +322,20 @@ export default class ItemService {
         formData["system.cost"]       = totalCost;
 
         return formData;
+    }
+
+    static async deleteContainer(actor, containerItem) {
+        const containerId = containerItem._id ?? containerItem.id;
+        const containedItems = actor.items.filter(
+            i => i.flags?.rmss?.containerId === containerId
+        );
+
+        // Unlink all contained items before deleting
+        for (const item of containedItems) {
+            await item.unsetFlag("rmss", "containerId");
+        }
+
+        await containerItem.delete();
+        ui.notifications.info(`${containerItem.name} and its contents have been unlinked.`);
     }
 }

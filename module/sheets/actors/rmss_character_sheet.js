@@ -1,5 +1,6 @@
 import { RMSSCombat } from "../../combat/rmss_combat.js";
 import { RMSSWeaponSkillManager } from "../../combat/rmss_weapon_skill_manager.js";
+import ItemService from "../../actors/services/item_service.js";
 
 /**
  * All the actions and feats in common for characters (PCs, NPCs, Creatures & Monsters)
@@ -33,7 +34,12 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
         html.find(".item-delete").click(async ev => {
             const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-            item.delete();
+            if (item.system.is_container) {
+                await ItemService.deleteContainer(this.actor, item);
+            }
+            else {
+                item.delete();
+            }
         });
 
         html.find(".item-edit").click(ev => {
