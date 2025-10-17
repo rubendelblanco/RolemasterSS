@@ -169,25 +169,24 @@ export default class ItemService {
     // --- Item Preparation ------------------------------------------------------
 
     /**
-     * Prepare and classify all actor items for use in the sheet context.
-     * Groups and sorts items by type, attaches spells to their spell lists, etc.
+     * Prepare all actor items and group them by type and container relationships.
      *
-     * @param {Actor} actor - The Foundry VTT actor.
-     * @param {Object} context - The sheet context to populate.
-     * @returns {Object} The updated context with categorized items.
+     * This method now supports both normal gear ("item") and herbs ("herb_or_poison")
+     * being placed inside containers of type "item". Containers only appear once,
+     * but their contents may include multiple item types.
      */
     static prepareItems(actor, context) {
         const gear = [], playerskill = [], spellskill = [], skillcat = [];
         const languageskill = [], weapons = [], armor = [], herbs = [];
         const spells = [], spellists = [];
 
-        // Map containerId -> [contained items]
+        // Map: containerId -> [contained items]
         const containersMap = new Map();
 
         // Helper to normalize Document/POJO IDs
         const getId = (obj) => obj?.id ?? obj?._id ?? null;
 
-        // Pass 1: classify everything
+        // Pass 1: classify items by type
         for (const item of context.items) {
             item.actorId = actor.id;
 
@@ -205,24 +204,25 @@ export default class ItemService {
             }
         }
 
-        // Pass 2: group gear by container flag
-        for (const i of gear) {
-            // Read container relation from flags
+        // Pass 2: group all containerable items (gear + herbs) by containerId flag
+        const allContainerables = [...gear, ...herbs];
+
+        for (const i of allContainerables) {
             const containerId = i.flags?.rmss?.containerId ?? null;
             if (!containerId) continue;
 
-            // Ensure map bucket exists
             if (!containersMap.has(containerId)) containersMap.set(containerId, []);
             containersMap.get(containerId).push(i);
         }
 
-        // Pass 3: build final grouped structure
+        // Pass 3: build final grouped structures
         const containers = [];
         const looseGear = [];
+        const looseHerbs = [];
 
-        for (let i of gear) {
+        for (const i of gear) {
             const isContainer = i.system?.is_container === true;
-            const itemId = i._id ?? i.id;
+            const itemId = getId(i);
 
             if (isContainer) {
                 containers.push({
@@ -234,17 +234,23 @@ export default class ItemService {
             }
         }
 
-        // Sorts
+        // Herbs not inside any container → looseHerbs
+        for (const h of herbs) {
+            if (!h.flags?.rmss?.containerId) looseHerbs.push(h);
+        }
+
+        // Sort skills alphabetically
         skillcat.sort((a, b) => a.name.localeCompare(b.name));
         playerskill.sort((a, b) => a.name.localeCompare(b.name));
 
         // Map spells to lists
         const spellistsWithContents = this._mapSpellsToLists(spellists, spells);
 
-        // Return enriched context
+        // Attach everything to context
         return Object.assign(context, {
             containers,
             looseGear,
+            looseHerbs,
             skillcat,
             playerskill,
             weapons,
