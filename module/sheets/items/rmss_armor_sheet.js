@@ -1,5 +1,5 @@
 // Our Item Sheet extends the default
-import ItemMacroEditor from "../macros.js";
+import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 
 export default class RMSSArmorSheet extends ItemSheet {
 

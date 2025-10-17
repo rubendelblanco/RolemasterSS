@@ -8,9 +8,12 @@
             <table>
                 <tr>
                     <th>{{localize "rmss.item.quantity"}}</th>
+                    <th>{{localize "rmss.herb_or_poison.unitWeight"}}</th>
                     <th>{{localize "rmss.herb_or_poison.weight"}}</th>
                     <th>{{localize "rmss.herb_or_poison.codes"}}</th>
                     <th>{{localize "rmss.herb_or_poison.form_and_prep"}}</th>
+                    <th>{{localize "rmss.herb_or_poison.unitCost"}}</th>
+                    <th>{{localize "rmss.herb_or_poison.currency"}}</th>
                     <th>{{localize "rmss.herb_or_poison.cost"}}</th>
                     <th>{{localize "rmss.herb_or_poison.af"}}</th>
                 </tr>
@@ -18,8 +21,11 @@
                     <input name="system.quantity" type="text" value="{{system.quantity}}" data-dtype="Number"/>
                 </td>
                 <td>
-                    <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
-                </td> 
+                    <input name="system.unitWeight" type="number" value="{{system.unitWeight}}" data-dtype="Number" step="0.01" />
+                </td>
+                <td>
+                    <input name="system.weight" type="number" value="{{system.weight}}" data-dtype="Number" readonly/>
+                </td>
                 <td>
                     <input name="system.codes" type="text" value="{{system.codes}}" data-dtype="String"/>
                 </td>                
@@ -27,12 +33,28 @@
                     <input name="system.form_and_prep" type="text" value="{{system.form_and_prep}}" data-dtype="String"/>
                 </td>
                 <td>
-                    <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String"/>
+                    <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
+                </td>
+                <td>
+                    <select name="system.currency_type">
+                        {{#each config.currency_type_abb as |label key|}}
+                        <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
+                        {{localize label}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String" readonly/>
                 </td>
                 <td>
                     <input name="system.af" type="text" value="{{system.af}}" data-dtype="Number"/>
                 </td>
             </table>
+            <div class="form-group">
+                <label>{{localize "rmss.item.is_stackable"}}</label>
+                <input type="checkbox" name="system.is_stackable" {{checked system.is_stackable}} />
+            </div>
                 {{localize "rmss.item.description"}}
                 {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
         </div>

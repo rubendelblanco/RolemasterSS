@@ -970,4 +970,12 @@ li.item.contained span.description {
     color: #cce7f5;
 }
 
+tr.contained-item td.indent {
+    padding-left: 1.5em;
+    opacity: 0.9;
+}
+
+tr.container-row {
+    background-color: rgba(0, 135, 245, 0.15);
+}
 

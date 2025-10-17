@@ -28,8 +28,7 @@ import RMSSNpcSheet from "./module/sheets/actors/rmss_npc_sheet.js";
 import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 import utils from "./module/utils.js";
-import {ContainerHandler} from "./module/sheets/container.js";
-import { StackableItemHandler } from "./module/items/stackable_item_handler.js";
+import {ContainerHandler} from "./module/actors/utils/container_handler.js";
 
 export let socket;
 
@@ -54,7 +53,6 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-spells.html",
     "systems/rmss/templates/sheets/actors/parts/actor-fav-spells.html",
     "systems/rmss/templates/sheets/actors/parts/actor-fav-items.html",
-    "systems/rmss/templates/sheets/actors/apps/actor-settings.html",
     "systems/rmss/templates/sheets/actors/parts/actor-status-info.html",
     "systems/rmss/templates/sheets/actors/parts/actor-exp-points.html",
     "systems/rmss/templates/sheets/actors/parts/npc-skills.hbs",
@@ -151,6 +149,10 @@ Hooks.once("init", function () {
   preloadHandlebarsTemplates();
 
   // Handlebars Helpers
+
+  Handlebars.registerHelper("gt", (a, b) => Number(a) > Number(b));
+  Handlebars.registerHelper("lt", (a, b) => Number(a) < Number(b));
+  Handlebars.registerHelper("eq", (a, b) => a === b);
 
   Handlebars.registerHelper('inc', function (value) {
     return parseInt(value) + 1;
@@ -362,17 +364,6 @@ Hooks.once("init", function () {
     // Check capacity and recalculate
     await handler.enforceCapacity(item);
     await handler.recalc();
-  });
-
-  Hooks.on("updateItem", async (item, update) => {
-    // Only react if quantity changed
-    if (update.system?.quantity === undefined) return;
-
-    // Respect the is_stackable flag (default true)
-    if ((item.system.is_stackable ?? true) !== true) return;
-
-    // Recompute totals from unit flags
-    await new StackableItemHandler(item).recalcTotals();
   });
 
   // Hook: deleteItem

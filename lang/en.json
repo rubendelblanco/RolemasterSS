@@ -206,19 +206,34 @@
             "creature": "RMSS Creature"
         },
         "currency_type": {
-            "mp": "Mithril Pieces",
-            "pp": "Platinum Pieces",
-            "gp": "Gold Pieces",
-            "sp": "Silver Pieces",
-            "bp": "Bronze Pieces",
-            "cp": "Copper Pieces"
+            "mp": "Mithril pieces",
+            "pp": "Platinum pieces",
+            "gp": "Gold pieces",
+            "sp": "Silver pieces",
+            "bp": "Bronze pieces",
+            "cp": "Copper pieces",
+            "tp": "Tin pieces",
+            "ip": "Iron pieces"
+        },
+        "currency_type_abb": {
+            "mp": "mp",
+            "pp": "pp",
+            "gp": "gp",
+            "sp": "sp",
+            "bp": "bp",
+            "cp": "cp",
+            "tp": "tp",
+            "ip": "ip"
         },
         "item": {
             "worn": "Worn",
             "description": "Other Notes",
             "quantity": "Quantity",
-            "weight": "Weight (unit)",
-            "cost": "Cost",
+            "weight": "Weight (total)",
+            "cost": "Cost (total)",
+            "currency": "Currency",
+            "unitWeight": "Weight (unit)",
+            "unitCost": "Cost (unit)",
             "prod_time": "Production Time",
             "equipped": "Equipped",
             "is_container": "It's a container?",
@@ -264,10 +279,13 @@
         },
         "herb_or_poison": {
             "codes": "Codes",
-            "weight": "Weight",
             "form_and_prep": "Form/Prep",
-            "cost": "Cost",
-            "af": "AF"
+            "af": "AF",
+            "weight": "Weight (total)",
+            "cost": "Cost (total)",
+            "currency": "Currency",
+            "unitWeight": "Weight (unit)",
+            "unitCost": "Cost (unit)"
         },
         "transport": {
             "cost": "Cost",

@@ -20,7 +20,6 @@ export class InputTextSearchStrategy {
      * Configura la funcionalidad de búsqueda usando los atributos del <form>.
      */
     initializeSearch(html, $form) {
-        // Leer atributos del <form>
         const targetSelector = $form.data("target-selector");
         const targetDataAttribute = $form.data("target-data-attribute") || "";
         const debounceTime = parseInt($form.data("debounce")) || 200;
@@ -30,14 +29,12 @@ export class InputTextSearchStrategy {
             return;
         }
 
-        // Obtener el input de búsqueda
         const $input = $form.find("input[type='text']");
         if (!$input.length) {
             console.warn(`No se encontró un input en el formulario #${this.formId}`);
             return;
         }
 
-        // Función de búsqueda con debounce
         const performSearch = (query) => {
             query = query.toLowerCase().trim();
             const $items = html.find(targetSelector);
@@ -53,14 +50,12 @@ export class InputTextSearchStrategy {
             });
         };
 
-        // Aplicar evento con debounce
         let debounceTimer;
         $input.on("input", (event) => {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(() => performSearch(event.target.value), debounceTime);
         });
 
-        // Limpiar la búsqueda con la tecla Escape
         $input.on("keydown", (event) => {
             if (event.key === "Escape") {
                 $input.val('');
@@ -69,7 +64,6 @@ export class InputTextSearchStrategy {
         });
     }
 
-    // Método Factory
     static create(formId) {
         return new InputTextSearchStrategy(formId);
     }

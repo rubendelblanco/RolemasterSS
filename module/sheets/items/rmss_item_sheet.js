@@ -1,42 +1,33 @@
-import ItemMacroEditor from "../macros.js";
-import { ContainerHandler } from "../container.js";
+import ItemService from "../../actors/services/item_service.js";
+import {ContainerHandler} from "../../actors/utils/container_handler.js";
+import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 
 export default class RMSSItemSheet extends ItemSheet {
 
-  // Default options for the item sheet
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       width: 530,
       height: 440,
       template: "systems/rmss/templates/sheets/items/rmss-item-sheet.html",
       classes: ["rmss", "sheet", "item"],
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "details" }]
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "details" }],
+      submitOnChange: true
     });
   }
 
-  get template() {
-    return "systems/rmss/templates/sheets/items/rmss-item-sheet.html";
-  }
-
-  // Gather data to render the item sheet
   async getData() {
-    const baseData = await super.getData();
-    const item = baseData.item;
-    const enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, { async: true });
+    const base = await super.getData();
+    const item = base.item;
 
-    // Use container logic to gather contents
-    let contents = [];
-    const handler = ContainerHandler.for(this.item);
-
-    if (handler) {
-      contents = handler.contents;
-    }
+    const enrichedDescription = await TextEditor.enrichHTML(item.system.description, { async: true });
+    const handler = ContainerHandler.for(item);
+    const contents = handler ? handler.contents : [];
 
     return {
-      owner: this.item.isOwner,
+      owner: item.isOwner,
       editable: this.isEditable,
-      item: baseData.item,
-      system: baseData.item.system,
+      item,
+      system: item.system,
       config: CONFIG.rmss,
       effects: item.getEmbeddedCollection("ActiveEffect").contents,
       enrichedDescription,
@@ -44,40 +35,43 @@ export default class RMSSItemSheet extends ItemSheet {
     };
   }
 
-  // Setup interactive listeners for UI elements
   activateListeners(html) {
     super.activateListeners(html);
+    if (!this.isEditable) return;
 
-    if (this.isEditable) {
-      html.find(".effect-control").click(this._onEffectControl.bind(this));
-      html.find(".shtick-type").change(this._onShtickTypeChange.bind(this));
-      html.find(".drop-target").on("drop", this._onDropItem.bind(this));
-    }
+    // --- Effects ---
+    html.find(".effect-control").click(this._onEffectControl.bind(this));
 
-    // Handle removing an item from a container
-    html.find(".remove-from-container").click(async ev => {
-      const itemId = ev.currentTarget.dataset.itemId;
-      const item = this.item.parent?.items.get(itemId);
-      if (!item) return;
+    // --- Containers ---
+    html.find(".drop-target").on("drop", this._onDropItem.bind(this));
+    html.find(".remove-from-container").click(ev => this._onRemoveFromContainer(ev));
 
-      // Remove item from container
-      await item.unsetFlag("rmss", "containerId");
+    // --- Macro ---
+    html.find(".shtick-type").change(ev => this._onShtickTypeChange(ev));
 
-      // Recalculate used capacity
-      const handler = ContainerHandler.for(this.item);
-      if (handler) {
-        const used = handler.usedValue;
-        await this.item.update({ "system.container.usedCapacity": used });
-      }
-
-      // Re-render container sheet
-      if (this.item.sheet.rendered) {
-        this.item.sheet.render(false);
-      }
-    });
   }
 
-  // Handle dropping an item onto a container
+  /** @override */
+  async _updateObject(event, formData) {
+    const normalizedData = ItemService.normalizeItemFormData(this.item, formData);
+    return super._updateObject(event, normalizedData);
+  }
+
+  async _onRemoveFromContainer(ev) {
+    const itemId = ev.currentTarget.dataset.itemId;
+    const containedItem = this.item.parent?.items.get(itemId);
+    if (!containedItem) return;
+
+    await containedItem.unsetFlag("rmss", "containerId");
+
+    const handler = ContainerHandler.for(this.item);
+    if (handler) {
+      await this.item.update({ "system.container.usedCapacity": handler.usedValue });
+    }
+
+    this.render(false);
+  }
+
   async _onDropItem(event) {
     event.preventDefault();
     const data = JSON.parse(event.originalEvent.dataTransfer.getData("text/plain"));
@@ -92,69 +86,52 @@ export default class RMSSItemSheet extends ItemSheet {
     const handler = ContainerHandler.for(this.item);
     if (!handler) return;
 
-    // Validate item compatibility
     if (!handler.canAccept(sourceItem)) {
-      ui.notifications.warn(`${this.item.name} cannot contain ${sourceItem.name}`);
-      return;
+      return ui.notifications.warn(`${this.item.name} cannot contain ${sourceItem.name}`);
     }
 
-    // Validate space
     if (!handler.canFit(sourceItem)) {
-      ui.notifications.error(`${this.item.name} is full and cannot contain ${sourceItem.name}.`);
-      return;
+      return ui.notifications.error(`${this.item.name} is full and cannot contain ${sourceItem.name}.`);
     }
 
-    // Case 1: item already belongs to this actor
     if (sourceItem.parent?.id === actor.id) {
       await sourceItem.setFlag("rmss", "containerId", this.item.id);
-      await this.item.update({ "system.container.usedCapacity": handler.usedValue });
-      if (this.item.sheet.rendered) this.item.sheet.render(false);
-      return;
+    } else {
+      const newItem = await actor.createEmbeddedDocuments("Item", [sourceItem.toObject()]);
+      await newItem[0].setFlag("rmss", "containerId", this.item.id);
     }
 
-    // Case 2: item comes from another actor/compendium
-    const newItem = await actor.createEmbeddedDocuments("Item", [sourceItem.toObject()]);
-    await newItem[0].setFlag("rmss", "containerId", this.item.id);
     await this.item.update({ "system.container.usedCapacity": handler.usedValue });
-
-    if (this.item.sheet.rendered) this.item.sheet.render(false);
+    this.render(false);
   }
 
-  // Handle effect button controls (create/edit/delete)
   _onEffectControl(event) {
     event.preventDefault();
-    const owner = this.item;
-    const a = event.currentTarget;
-    const li = a.closest("li");
-    const effect = li?.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
+    const action = event.currentTarget.dataset.action;
+    const effectId = event.currentTarget.closest("li")?.dataset.effectId;
+    const effect = effectId ? this.item.effects.get(effectId) : null;
 
-    switch (a.dataset.action) {
+    switch (action) {
       case "create":
-        if (this.item.isEmbedded) {
-          return ui.notifications.error("Managing embedded Documents which are not direct descendants of a primary Document is un-supported at this time.");
-        }
-        return owner.createEmbeddedDocuments("ActiveEffect", [{
+        return this.item.createEmbeddedDocuments("ActiveEffect", [{
           label: "New Effect",
           icon: "icons/svg/aura.svg",
-          origin: owner.uuid,
+          origin: this.item.uuid,
           disabled: true
         }]);
       case "edit":
-        return effect.sheet.render(true);
+        return effect?.sheet.render(true);
       case "delete":
-        return effect.delete();
+        return effect?.delete();
     }
   }
 
-  // Update shtick type immediately
   async _onShtickTypeChange(event) {
     await this._onSubmit(event);
   }
 
-  // Add custom header button for macro editor
   _getHeaderButtons() {
-    let buttons = super._getHeaderButtons();
-
+    const buttons = super._getHeaderButtons();
     if (this.isEditable) {
       buttons.unshift({
         label: "Macro",
@@ -163,7 +140,6 @@ export default class RMSSItemSheet extends ItemSheet {
         onclick: ev => this._onOpenMacroEditor(ev)
       });
     }
-
     return buttons;
   }
 

@@ -1,5 +1,5 @@
 // Our Item Sheet extends the default
-import { ContainerHandler } from "../container.js";
+import { ContainerHandler } from "../../actors/utils/container_handler.js";
 
 export default class RMSSSpellListSheet extends ItemSheet {
     // Default options

@@ -1,5 +1,6 @@
 import { RMSSCombat } from "../../combat/rmss_combat.js";
 import { RMSSWeaponSkillManager } from "../../combat/rmss_weapon_skill_manager.js";
+import ItemService from "../../actors/services/item_service.js";
 
 /**
  * All the actions and feats in common for characters (PCs, NPCs, Creatures & Monsters)
@@ -33,7 +34,12 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
         html.find(".item-delete").click(async ev => {
             const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-            item.delete();
+            if (item.system.is_container) {
+                await ItemService.deleteContainer(this.actor, item);
+            }
+            else {
+                item.delete();
+            }
         });
 
         html.find(".item-edit").click(ev => {
@@ -100,47 +106,56 @@ export default class RMSSCharacterSheet extends ActorSheet {
     async _onDropItem(event, data) {
         event.preventDefault();
 
-        const newItem = await Item.implementation.fromDropData(data);
-        const itemData = newItem.toObject();
+        // Identify drop target from the HTML element
+        const targetId = event.currentTarget.closest("[data-item-id]")?.dataset.itemId;
+        const targetItem = targetId ? this.actor.items.get(targetId) : null;
 
-        // --- Check for existing matching item ---
-        const existing = this.actor.items.find(i =>
+        // Retrieve dragged item from UUID
+        const sourceItem = await fromUuid(data.uuid);
+        if (!sourceItem) return;
+
+        // Prevent self-drop
+        if (targetItem && sourceItem.id === targetItem.id) {
+            ui.notifications.warn("You cannot drop an item onto itself.");
+            return;
+        }
+
+        // Prepare item data clone
+        const itemData = sourceItem.toObject();
+
+        // Try to find an existing matching stackable item
+        const existing = targetItem ?? this.actor.items.find(i =>
+            i.id !== sourceItem.id &&
             i.name === itemData.name &&
-            i.system.description === itemData.system.description &&
+            i.type === itemData.type &&
             i.system.is_stackable
         );
 
         if (existing) {
-            // Current and added quantity
+            // Combine stack quantities
             const addQty = itemData.system.quantity || 1;
             const oldQty = existing.system.quantity || 1;
             const newQty = oldQty + addQty;
 
-            // Base unit values
             const unitWeight = (existing.system.unitWeight ?? (existing.system.weight / oldQty)) || 0;
             const unitCost   = (existing.system.unitCost   ?? (existing.system.cost / oldQty))   || 0;
 
-            // Recalculate totals
-            const newWeight = unitWeight * newQty;
-            const newCost   = unitCost * newQty;
-
             await existing.update({
                 "system.quantity": newQty,
-                "system.weight": newWeight,
-                "system.cost": newCost
+                "system.weight": unitWeight * newQty,
+                "system.cost": unitCost * newQty
             });
 
-            // Remove the duplicate only if it’s already in the actor (not from compendium/catalogue)
-            const duplicate = this.actor.items.get(itemData._id);
-            if (duplicate) {
-                await duplicate.delete();
+            // Delete the dragged item if it belongs to the same actor
+            if (sourceItem.parent?.id === this.actor.id) {
+                await sourceItem.delete();
             }
 
             ui.notifications.info(`${itemData.name} stacked. New quantity: ${newQty}`);
             return;
         }
 
-        // --- Default behavior (not stackable or no match) ---
+        // Default behavior for non-stackable or unmatched items
         return super._onDropItem(event, data);
     }
 }

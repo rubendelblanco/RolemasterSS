@@ -295,6 +295,8 @@
       "quantity": 1,
       "weight": 0,
       "cost": 0,
+      "unitWeight": 0,
+      "unitCost": 0,
       "prod_time": 0,
       "is_container": false,
       "is_stackable": true,
@@ -304,6 +306,11 @@
         "usedCapacity": 0,
         "capacityType": "weight",
         "allowedTags": null
+      },
+      "currency_type": {
+        "type": "string",
+        "default": "gp",
+        "label": "RMSS.CurrencyType"
       }
     },
     "creature_attack": {
