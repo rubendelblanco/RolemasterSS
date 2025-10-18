@@ -78,6 +78,25 @@ Hooks.once("socketlib.ready", () => {
 
 // Hook the init function and set up our system
 Hooks.once("init", function () {
+  // Register the system setting for critical table language
+  game.settings.register("rmss", "criticalTableLanguage", {
+    name: "Critical tables language",
+    hint: "Select the language for the critical descripctions.",
+    scope: "world",              // Setting is shared across the entire world
+    config: true,                // Displayed in the configuration UI
+    type: String,                // The stored data type
+    choices: {
+      "es": "Spanish",
+      "en": "English"
+    },
+    default: "es",               // Default language
+    onChange: value => {
+      // Triggered whenever the setting changes
+      console.log(`Critical table language changed to: ${value}`);
+      ui.notifications.info(`Critical table language changed to: ${value.toUpperCase()}.`);
+    }
+  });
+
   CONFIG.time.roundTime = 10; //1 round is 10 seconds in Rolemaster system
 
   console.log("rmss | Initialising Rolemaster Standard System");

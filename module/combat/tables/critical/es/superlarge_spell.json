@@ -1,0 +1,640 @@
+{
+  "rows": [
+    {
+      "lower": "01",
+      "upper": "05",
+      "A": {
+        "text": "La fuerza de tu ataque no ha dado la talla.",
+        "metadata": []
+      },
+      "B": {
+        "text": "Adviertes a tu enemigo de su destino con este leve destello de tu poder.",
+        "metadata": [
+          {
+            "HP": 3
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "06",
+      "upper": "10",
+      "A": {
+        "text": "El ataque impacta sin efectividad. Será mejor que te lo tornes en serio la próxima vez.",
+        "metadata": [
+          {
+            "HP": 1
+          }
+        ]
+      },
+      "B": {
+        "text": "Tu enemigo evita casi todo el daño. Quizás la próxima vez.",
+        "metadata": [
+          {
+            "HP": 5
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "11",
+      "upper": "20",
+      "A": {
+        "text": "La bestia está hecha de un material más duro del que creías.",
+        "metadata": [
+          {
+            "HP": 2
+          }
+        ]
+      },
+      "B": {
+        "text": "Tu ataque raspa el hombro de tu enemigo, siseando al contacto con su piel.",
+        "metadata": [
+          {
+            "HP": 9
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "21",
+      "upper": "30",
+      "A": {
+        "text": "El ataque golpea de refilón a tu enemigo dañando las proximidades.",
+        "metadata": [
+          {
+            "HP": 3
+          }
+        ]
+      },
+      "B": {
+        "text": "Tu golpe ha sido fuerte, tu enemigo ha sido quemado por el encantamiento.",
+        "metadata": [
+          {
+            "HP": 12
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "31",
+      "upper": "40",
+      "A": {
+        "text": "Sólido pero lejos de una zona vital. Magullas un poco el músculo de la pantorrilla.",
+        "metadata": [
+          {
+            "HP": 5
+          }
+        ]
+      },
+      "B": {
+        "text": "Gran ataque que inflige bastante daño en la pierna del enemigo.",
+        "metadata": [
+          {
+            "HP": 15
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "41",
+      "upper": "50",
+      "A": {
+        "text": "Golpe bien posicionado contra el costado. Sus órganos vitales están más allá de tu alcance.",
+        "metadata": [
+          {
+            "HP": 7
+          }
+        ]
+      },
+      "B": {
+        "text": "El impacto desola la espalda de tu enemigo. Se agacha de dolor.",
+        "metadata": [
+          {
+            "HP": 18
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "51",
+      "upper": "65",
+      "A": {
+        "text": "Ante el daño que le haces en los ojos tu enemigo retrocede. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": 7
+          }
+        ]
+      },
+      "B": {
+        "text": "Impacto en la cara. Le infliges un poco de daño.",
+        "metadata": [
+          {
+            "HP": 20
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "66",
+      "upper": "66",
+      "A": {
+        "text": "Encuentras un punto débil. Inesperadamente, tu enemigo retrocede y cae, rompiéndose el hombro. Se levanta lentamente.",
+        "metadata": [
+          {
+            "HP": 25,
+            "PE": {
+              "VALUE": 75
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Hundes el pecho de tu enemigo con un golpe preciso. Sus pulmones quedan destruidas y su corazón se para. Muere después de 6 asaltos de respiración jadeante.",
+        "metadata": [
+          {
+            "HP": 30
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "67",
+      "upper": "70",
+      "A": {
+        "text": "Aunque no es mortal, este golpe ha dejado una herida visible y alentadora. Aun puedes ganar.",
+        "metadata": [
+          {
+            "HP": 12
+          }
+        ]
+      },
+      "B": {
+        "text": "Tu asalto rebota en el brazo principal de tu enemigo, dañándolo. Inténtalo de nuevo.",
+        "metadata": [
+          {
+            "HP": 25
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "71",
+      "upper": "80",
+      "A": {
+        "text": "Impacto en la parte superior del brazo. Diversas magulladuras y una dislocación señalan tu éxito.",
+        "metadata": [
+          {
+            "HP": 15
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpe sólido en el pecho. Tu enemigo retrocede 3 metros y vuelve hacia adelante.",
+        "metadata": [
+          {
+            "HP": 25
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "81",
+      "upper": "90",
+      "A": {
+        "text": "No logras impactar en una zona vital pero oyes como crujen las costillas del costado de tu enemigo. Tendrá que pelear con dolores.",
+        "metadata": [
+          {
+            "HP": 20
+          }
+        ]
+      },
+      "B": {
+        "text": "Las chispas y el humo vuelan al impactar tu ataque.",
+        "metadata": [
+          {
+            "HP": 30
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "91",
+      "upper": "95",
+      "A": {
+        "text": "Con fuerza y duro. Tu ataque es efectivo. Dañas el abdomen de tu enemigo.",
+        "metadata": [
+          {
+            "HP": 30
+          }
+        ]
+      },
+      "B": {
+        "text": "Tu ataque impacta con un bonito crujido. La pierna de tu enemigo está gravemente dañada. Se tambalea intentando defenderse.",
+        "metadata": [
+          {
+            "HP": 25,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "96",
+      "upper": "98",
+      "A": {
+        "text": "Tu acometida impacta contra el cráneo. Daño cerebral. Grandes fracturas en el cráneo. Cae y muere después de 6 asaltos.",
+        "metadata": []
+      },
+      "B": {
+        "text": "El disparo aterriza contra el pecho. El peso de tu hechizo acaba con la vida de tu enemigo instantáneamente.",
+        "metadata": []
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "99",
+      "upper": "100",
+      "A": {
+        "text": "Golpe violento en la cara que daña gravemente sus ojos y le deja ciego. Cae. Ya es tuyo.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 12
+            },
+            "NP": "12",
+            "PE": {
+              "VALUE": 95
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Impacto en la cabeza. Oído interno destruido. Muere después de 6 asaltos de inactividad.",
+        "metadata": [
+          {
+            "HP": 20
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "101",
+      "upper": "150",
+      "A": {
+        "text": "Impacto brutal que manda a tu enemigo tambaleándose hacia atrás a pesar de su constitución. No puede defenderse durante un tiempo.",
+        "metadata": [
+          {
+            "HP": 30,
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "B": {
+        "text": "Tu enemigo tropieza 3 metros hacia su derecha debido al impacto de tu ataque. Es vulnerable.",
+        "metadata": [
+          {
+            "HP": 35,
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3"
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "151",
+      "upper": "175",
+      "A": {
+        "text": "Golpe en el costado. Tu enemigo se vuelve hacia un lado, recibiendo el daño en sus costillas, que se rompen.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 4
+            },
+            "NP": "4",
+            "PE": {
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "El impacto rompe huesos y causa una hemorragia en la pierna de tu enemigo. Aún está activo.",
+        "metadata": [
+          {
+            "HPR": "5",
+            "PE": {
+              "VALUE": 20,
+              "ROUNDS": 8
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "176",
+      "upper": "200",
+      "A": {
+        "text": "Poderoso ataque. Es tu turno de golpear. Abres el pecho de tu enemigo salpicando de sangre a los espectadores.",
+        "metadata": [
+          {
+            "HP": "30",
+            "PE": {
+              "VALUE": 30
+            },
+            "HPR": "5"
+          }
+        ]
+      },
+      "B": {
+        "text": "Asalto épico en el costado que manda a tu enemigo de espaldas al suelo. La herida es grave. Hemorragia interna. Está en apuros.",
+        "metadata": [
+          {
+            "HP": "40",
+            "HPR": "10",
+            "PE": {
+              "VALUE": 50
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "201",
+      "upper": "250",
+      "A": {
+        "text": "Doblas la cabeza de tu enemigo hacia atrás, fracturando su columna vertebral. Paralizado de cuello hacia abajo.",
+        "metadata": [
+          {
+            "HP": "40"
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpeas la cara y cuello de tu enemigo. La energía rocía su garganta. Sistema nervioso destruido. Muere después de 9 asaltos de inactividad.",
+        "metadata": [
+          {
+            "HP": "50"
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    },
+    {
+      "lower": "251",
+      "upper": "999",
+      "A": {
+        "text": "Fracturas partes del esqueleto de tu enemigo. Corazón y pulmones dañados. Tu enemigo cae muerto. Su sangre llena todo el suelo.",
+        "metadata": []
+      },
+      "B": {
+        "text": "El impacto atraviesa los ojos de tu enemigo saliendo por detrás de manera horrible. Muere en el acto. Su terrible cuerpo cae al suelo en medio de crujidos.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "",
+        "metadata": []
+      },
+      "D": {
+        "text": "",
+        "metadata": []
+      },
+      "E": {
+        "text": "",
+        "metadata": []
+      }
+    }
+  ],
+  "id": 1754071475500,
+  "name": "superlarge_creatures",
+  "filename": "superlarge_creatures.json"
+}

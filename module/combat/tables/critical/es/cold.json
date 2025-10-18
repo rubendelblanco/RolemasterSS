@@ -1,0 +1,1240 @@
+{
+  "id": 1741028542622,
+  "name": "cold",
+  "filename": "cold.json",
+  "rows": [
+    {
+      "lower": 1,
+      "upper": 5,
+      "A": {
+        "text": "Ligera brisa que produce poco daño",
+        "metadata": []
+      },
+      "B": {
+        "text": "El ataque produce un corto cambio de clima",
+        "metadata": [
+          {}
+        ]
+      },
+      "C": {
+        "text": "Haces que las mejillas de tu enemigo se sonrosen un poco.",
+        "metadata": [
+          {
+            "HP": "1"
+          }
+        ]
+      },
+      "D": {
+        "text": "Tu ataque parece potente, pero no ha funcionado bien.",
+        "metadata": [
+          {
+            "HP": "2"
+          }
+        ]
+      },
+      "E": {
+        "text": "Un frío e incisivo aire recorre la piel de tu enemigo.",
+        "metadata": [
+          {
+            "HP": "3"
+          }
+        ]
+      }
+    },
+    {
+      "lower": 6,
+      "upper": 10,
+      "A": {
+        "text": "Débil y mal dirigido. Tu enemigo no tiene de qué preocuparse",
+        "metadata": [
+          {
+            "HP": "1"
+          }
+        ]
+      },
+      "B": {
+        "text": "Una ráfaga de frío incomoda ligeramente a tu objetivo.",
+        "metadata": [
+          {
+            "HP": "2"
+          }
+        ]
+      },
+      "C": {
+        "text": "Tu ataque materializa un ligero viento ártico.\nTu enemigo no se deja impresionar.",
+        "metadata": [
+          {
+            "HP": "3"
+          }
+        ]
+      },
+      "D": {
+        "text": "Tu enemigo se protege con sus brazos.\nTu ataque pierde mucho de su efectividad.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      },
+      "E": {
+        "text": "El hielo cubre el suelo y los pies de tu enemigo, teniendo que estornudar. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      }
+    },
+    {
+      "lower": 11,
+      "upper": 15,
+      "A": {
+        "text": "El enemigo esquiva tu ataque con demasiado esfuerzo. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": "2"
+          }
+        ]
+      },
+      "B": {
+        "text": "Tu enemigo se evade desesperadamente pero aun así está helado. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": "3"
+          }
+        ]
+      },
+      "C": {
+        "text": "Incrustas a tu enemigo con hielo. Se desequilibra intentando quitárselo. Ganas la iniciativa.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      },
+      "D": {
+        "text": "Una ligera escarcha deja tu enemigo indeciso. Puedes golpearle otra vez.",
+        "metadata": [
+          {
+            "HP": "5",
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Golpe frío contra el pecho y la cara de tu enemigo. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": "6",
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 16,
+      "upper": 20,
+      "A": {
+        "text": "El enemigo está espantado de tu ataque. Ganas la iniciativa.",
+        "metadata": [
+          {
+            "HP": "3"
+          }
+        ]
+      },
+      "B": {
+        "text": "El ataque ciega momentáneamente a tu enemigo. Tienes la iniciativa dos asaltos.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      },
+      "C": {
+        "text": "Un torbellino entumecedor envuelve a tu enemigo. Tienes 2 asaltos de iniciativa.",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "D": {
+        "text": "El enemigo intenta evitar el ataque golpeándose él solo. Intentas no carcajearte.",
+        "metadata": [
+          {
+            "HP": "6",
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Los fallidos intentos de tu enemigo de evitar tu ataque lo colocan en grave desventaja.",
+        "metadata": [
+          {
+            "HP": "7",
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 21,
+      "upper": 35,
+      "A": {
+        "text": "Un golpe de frío en la cara hace retroceder a tu enemigo. Tienes la iniciativa durante dos asaltos.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      },
+      "B": {
+        "text": "Un golpe cargado de hielo fuerza a tu enemigo a retroceder. Cualquier recipiente de agua se hiela y explota. Tienes 2 asaltos de iniciativa.",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "C": {
+        "text": "Desorientas a tu enemigo con un golpe certero. Sus ropajes no han evitado que se hiele. Presiónale mientras puedas.",
+        "metadata": [
+          {
+            "HP": "6",
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Con una explosión blanca, duchas a tu enemigo con cristales de hielo, teniendo que cerrar los ojos para evitar la acometida.",
+        "metadata": [
+          {
+            "HP": "7",
+            "P": {
+              "ROUNDS": 1
+            },
+            "HPR": "1",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "\"Hilas el pelo y el cuero cabelludo de tu enemigo. Si tiene el pelo largo, este se rompe. El enemigo se esfuerza en vano en reparar el daño.",
+        "metadata": [
+          {
+            "HP": "8",
+            "P": {
+              "VALUE": -15,
+              "ROUNDS": 2
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 36,
+      "upper": 45,
+      "A": {
+        "text": "Tu ataque congela uno de los objetos metálicos de tu enemigo, haciéndole tomar una posición defensiva.",
+        "metadata": [
+          {
+            "HP": "5",
+            "P": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "El enemigo hace un fútil intento de parar el ataque. Pierde 3 asaltos de iniciativa.",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "C": {
+        "text": "Alcanzas a tu enemigo en la pantorilla. Ganas la iniciativa mientras intenta reestablecer la circulación.",
+        "metadata": [
+          {
+            "HP": "7",
+            "P": {
+              "ROUNDS": 2
+            },
+            "HPR": "1"
+          }
+        ]
+      },
+      "D": {
+        "text": "Tu enemigo se hiela, congelando toda la piel expuesta. El dolor es enorme.",
+        "metadata": [
+          {
+            "HP": "9",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "HPR": "2",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Aciertas en las piernas. Con hipotermia, tu enemigo intenta permanecer en pie.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 46,
+      "upper": 50,
+      "A": {
+        "text": "Concentras tu ataque contra el pecho de tu enemigo, cubriéndolo de escarcha. Bastante macabro.",
+        "metadata": [
+          {
+            "HP": "6",
+            "P": {
+              "ROUNDS": 2
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "El frío penetra el pecho de tu enemigo dejándolo congelado. El dolor será bastante grave. Retrocede.",
+        "metadata": [
+          {
+            "HP": "7",
+            "P": {
+              "ROUNDS": 2
+            },
+            "HPR": "2"
+          }
+        ]
+      },
+      "C": {
+        "text": "La bola golpea en el pecho de tu enemigo, esparciéndose. El frío muerde en toda la piel expuesta, dejándole una expresión de sorpresa en la cara.",
+        "metadata": [
+          {
+            "HP": "8",
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "El ataque se concentra en el brazo del arma de tu enemigo. Tiene que hacer un gran esfuerzo para mantener cerca el arma, siendo incapaz de protegerse.",
+        "metadata": [
+          {
+            "HP": "9",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "HPR": "2",
+            "PE": {
+              "VALUE": -10
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Ligero golpe en la baja espalda que hace girar a tu enemigo lanzando su arma lejos de él. Ya lo tienes.",
+        "metadata": [
+          {
+            "HP": "10",
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 51,
+      "upper": 55,
+      "A": {
+        "text": "Golpe en el pecho. Tu ataque ha tenido fuerza por lo que hace tropezar al enemigo.",
+        "metadata": [
+          {
+            "HP": "7",
+            "STUN": {
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Un golpe fuerte no del todo centrado que golpea en el brazo, muñeca y costado del escudo.",
+        "metadata": [
+          {
+            "HP": "8",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "HPR": "3"
+          }
+        ]
+      },
+      "C": {
+        "text": "Duro golpe contra el pecho, sin que la armadura proteja. La explosión deja su fría marca.",
+        "metadata": [
+          {
+            "HP": "5",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "PE": {
+              "VALUE": -10
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Potente golpe en el hombre del escudo. El enemigo cae hacia atrás 1,5 metros. Daño muscular.",
+        "metadata": [
+          {
+            "HP": "10",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "HPR": "3"
+          }
+        ]
+      },
+      "E": {
+        "text": "Golpe en el costado. El enemigo intenta recuperar el aliento y sobrevivir a tu siguiente acometida.",
+        "metadata": [
+          {
+            "HP": "11",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "P": {
+              "ROUNDS": 1
+            },
+            "HPR": "4"
+          }
+        ]
+      }
+    },
+    {
+      "lower": 56,
+      "upper": 60,
+      "A": {
+        "text": "La bola golpea en una zona expuesta. Está temblando pero su guardia aún está levantada.",
+        "metadata": [
+          {
+            "HP": "8",
+            "STUN": {
+              "ROUNDS": 2
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "El enemigo se vuelve para evitar tu ataque, dejando sin protección su espalda. Toda la madera que tuviese en la espalda se congela y quiebra.",
+        "metadata": [
+          {
+            "HP": "9",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "HPR": "2"
+          }
+        ]
+      },
+      "C": {
+        "text": "Tremendo golpe en la zona baja de tu enemigo; sus piernas soportan la peor parte. Retrocede 1,5 metros.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en la pierna",
+            "HP": "5",
+            "P": {
+              "ROUNDS": 2
+            }
+          },
+          {
+            "DESC": "Sin armadura en la pierna",
+            "HP": "9",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1"
+          }
+        ]
+      },
+      "D": {
+        "text": "Fallas el brazo de tu enemigo, golpeando en el muslo. Pierde el pie. Daño en piel y nervios que causan dolor al enemigo.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1",
+            "HPR": "3",
+            "P": {
+              "VALUE": -15
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Tu explosión engulle el brazo del arma de tu enemigo atrayéndolo hacia su torso. Retrocede intentando evitar desesperadamente el dolor.",
+        "metadata": [
+          {
+            "HP": "10",
+            "P": {
+              "ROUNDS": 1
+            },
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "HPR": "4",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 61,
+      "upper": 65,
+      "A": {
+        "text": "Bien situado. Golpeas fuertemente el brazo del arma. El intento de evitarlo es cómico.",
+        "metadata": [
+          {
+            "DESC": "Con brazales",
+            "HP": "2",
+            "P": {
+              "ROUNDS": 1
+            }
+          },
+          {
+            "DESC": "Sin brazales",
+            "HP": "9",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1"
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpe sólido en el antebrazo. Pierde la sensibilidad de la mano durante 1 asalto.",
+        "metadata": [
+          {
+            "HP": "10",
+            "P": {
+              "ROUNDS": 1
+            },
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "HPR": "3",
+            "PE": {
+              "VALUE": -5
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "La explosión reseca y hiela todo el material orgánico en la espalda de tu enemigo.",
+        "metadata": [
+          {
+            "HP": "11",
+            "STUN": {
+              "ROUNDS": 4
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "La explosión hiela el brazo y escudo de tu enemigo; si no tiene escudo, el brazo queda inútil debido a daño en el sistema nervioso.",
+        "metadata": [
+          {
+            "DESC": "Con escudo",
+            "HP": "20",
+            "PE": {
+              "VALUE": -20
+            }
+          },
+          {
+            "DESC": "Sin escudo",
+            "STUN": {
+              "ROUNDS": 5
+            },
+            "PE": {
+              "VALUE": -30
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Golpeas la cintura de tu enemigo. Todo el equipo del cinturón se congela, rompiéndose si el enemigo se mueve.",
+        "metadata": [
+          {
+            "HP": "13",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "PE": {
+              "VALUE": -30
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 66,
+      "upper": 66,
+      "A": {
+        "text": "Robas todo el calor del cuello y pecho del enemigo, por lo que dejar caer todo lo que tenía agarrándose al cuello.",
+        "metadata": [
+          {
+            "HP": "10",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3"
+          }
+        ]
+      },
+      "B": {
+        "text": "El enemigo está cubierto por la explosión, con todas sus extremidades dañadas. El dolor irá creciendo hasta que entre en calor.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 4
+            },
+            "NP": "4",
+            "HPR": "3"
+          }
+        ]
+      },
+      "C": {
+        "text": "Tu enemigo responde a tu bola de frío cayendo al suelo, en medio de un tremendo dolor e intentando ponerse en pie.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "PE": {
+              "VALUE": -15
+            },
+            "HPR": "4"
+          }
+        ]
+      },
+      "D": {
+        "text": "Una fría acometida llena los ojos y boca de tu enemigo con hielo, cegándole hasta que pueda limpiar sus ojos.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 4
+            },
+            "PE": {
+              "VALUE": -30
+            },
+            "HPR": "4"
+          }
+        ]
+      },
+      "E": {
+        "text": "Tu golpe roba todo el calor del cuello y el pecho de tu enemigo. Nervios y músculos dañados.",
+        "metadata": [
+          {
+            "HP": "15",
+            "STUN": {
+              "ROUNDS": 8
+            },
+            "NP": "8",
+            "HPR": "4"
+          }
+        ]
+      }
+    },
+    {
+      "lower": 67,
+      "upper": 70,
+      "A": {
+        "text": "Anótate un golpe en el costado de tu enemigo que le produce una ligera congelación. Cualquier hierba que tuviera en el cinto se hecha a perder.",
+        "metadata": [
+          {
+            "HP": "10",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1",
+            "PE": {
+              "VALUE": -5
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Espolvoreas la cara de tu enemigo con un a lluvia de hielo. Intenta sin éxito evitar tu ataque. El daño le durará.",
+        "metadata": [
+          {
+            "HP": "11",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "1",
+            "PE": {
+              "VALUE": -10
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Hiela el brazo del arma de tu enemigo, dejándolo inútil hasta que lo caliente. Sufre mucho e intenta mantenerse en pie.",
+        "metadata": [
+          {
+            "HP": "12",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "1",
+            "PE": {
+              "VALUE": -15
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Un viento polar se introduce en el pecho de tu enemigo dejándolo temblando. Estás cerca de la victoria. Tu enemigo ha encontrado su horma.",
+        "metadata": [
+          {
+            "DESC": "Con armadura pectoral",
+            "HP": "15",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1",
+            "PE": {
+              "VALUE": -5
+            }
+          },
+          {
+            "DESC": "Sin armadura pectoral",
+            "HP": "13",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "0",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Golpe en el brazo del escudo. Cae al suelo. Si tiene escudo, se rompe. Si no, se rompe el brazo.",
+        "metadata": [
+          {
+            "DESC": "Con escudo",
+            "STUN": {
+              "ROUNDS": 2
+            }
+          },
+          {
+            "DESC": "Sin escudo",
+            "STUN": {
+              "ROUNDS": 6
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 71,
+      "upper": 75,
+      "A": {
+        "text": "Tremendo golpe desequilibrante. La temperatura corporal de tu enemigo desciende.",
+        "metadata": [
+          {
+            "HP": "11",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "PE": {
+              "VALUE": -10
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "El golpe se aposenta en las piernas de tu enemigo. El dolor y la descarga le hacen flaquear.",
+        "metadata": [
+          {
+            "HP": "12",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2",
+            "HPR": "3"
+          }
+        ]
+      },
+      "C": {
+        "text": "Un golpe lateral impacta en tu enemigo con acierto. Todo el cuerpo o ropa se congela y se rompe.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2",
+            "HPR": "3",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "La explosión drena el calor del brazo del arma de tu enemigo, dejando mano y brazo inútiles. La mano se congela cerrada. ",
+        "metadata": [
+          {
+            "HP": "13",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2",
+            "PE": {
+              "VALUE": -50
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "La explosión hiela la mano del arma, el hombro y la cara. El enemigo queda entumecido y necesita tiempo, aunque aún se mantiene en pie. ",
+        "metadata": [
+          {
+            "HP": "15",
+            "STUN": {
+              "ROUNDS": 3
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 76,
+      "upper": 80,
+      "A": {
+        "text": "Golpe en el brazo del escudo. Si había visto el ataque puede rechazarlo con el escudo. Retrocede 1,5 metros de la explosión.",
+        "metadata": [
+          {
+            "DESC": "Con escudo",
+            "HP": "2",
+            "P": {
+              "ROUNDS": 2
+            }
+          },
+          {
+            "DESC": "Sin escudo",
+            "HP": "12",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "1"
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpe en el pecho que congela lo que toca, dañando el equipo. El dolor es persistente. La armadura pectoral está destrozada.",
+        "metadata": [
+          {
+            "DESC": "Con armadura pectoral",
+            "HP": "13",
+            "STUN": {
+              "ROUNDS": 4
+            },
+            "BONUS": {
+              "VALUE": 15
+            },
+            "HPR": "3"
+          },
+          {
+            "DESC": "Sin armadura pectoral",
+            "HP": "20",
+            "P": {
+              "ROUNDS": 4
+            },
+            "PE": {
+              "VALUE": -5
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Golpe en los brazos. Cualquier protección metálica se congela, inmovilizando los brazos hasta que los pueda quitar o descongelar.",
+        "metadata": [
+          {
+            "DESC": "Con armadura pectoral",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "HPR": "4"
+          },
+          {
+            "DESC": "Sin armadura pectoral",
+            "PE": {
+              "VALUE": -25
+            },
+            "HPR": "4"
+          }
+        ]
+      },
+      "D": {
+        "text": "Golpe en el costado del enemigo que lo hace caer. Grave congelación que estorba todo movimiento. Cualquier líquido entre el equipo del enemigo se congela.",
+        "metadata": [
+          {
+            "HP": "15",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": -25
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Sólido golpe en el pecho. El enemigo voltea sobre su espalda, dejando caer todo lo que sostuviese. Lo tienes a tu merced.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 12
+            },
+            "PE": {
+              "VALUE": -30
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 81,
+      "upper": 85,
+      "A": {
+        "text": "Onda expansiva por la espalda. Todo el cristal que tuviese se rompe. Magulladura dolorosa.",
+        "metadata": [
+          {
+            "HP": "13",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "B": {
+        "text": "Un duro y limpio golpe empuja al enemigo hacia atrás, rompiéndole las costillas. Su recuperación será lenta.",
+        "metadata": [
+          {
+            "HP": "12",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2",
+            "PE": {
+              "VALUE": -15
+            },
+            "HPR": "4"
+          }
+        ]
+      },
+      "C": {
+        "text": "Explosión ártica contra el torso de tu enemigo que se congela gravemente y cae de rodillas de dolor.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "HPR": "5",
+            "PE": {
+              "VALUE": -40
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Congelas las manos de tu enemigo, quedando los brazos inútiles y dejando caer todo lo que estuviese cargando.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 9
+            },
+            "HPR": "6"
+          }
+        ]
+      },
+      "E": {
+        "text": "El ataque a la cara y garganta es definitivo. El enemigo aun estará activo pero morirá en 12 asaltos.",
+        "metadata": [
+          {
+            "HP": "17"
+          }
+        ]
+      }
+    },
+    {
+      "lower": 86,
+      "upper": 90,
+      "A": {
+        "text": "El ataque a la pantorrilla del enemigo congela parte de la pierna. Cae. Si no tiene armadura en la pierna, el pie tendrá que ser amputado.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en la pierna",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "PE": {
+              "VALUE": -10,
+              "ROUNDS": 6
+            }
+          },
+          {
+            "DESC": "Sin armadura en la pierna",
+            "PE": {
+              "VALUE": -70
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "El golpe da en la pierna congelándola. Con armadura necesitará ayuda en 20 asaltos para conservar el pie. Sin armadura, ya se puede despedir del mismo.",
+        "metadata": [
+          {
+            "DESC": "Con armadura en la pierna",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "PE": {
+              "ROUNDS": 6,
+              "VALUE": -10
+            }
+          },
+          {
+            "DESC": "Sin armadura en la pierna",
+            "PE": {
+              "VALUE": -70
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Golpe en las rodillas de tu enemigo, que se las congela y lo hace caer. Del impacto se fractura una. Su caída lo hace dos veces malo.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 9
+            },
+            "HPR": "6",
+            "PE": {
+              "VALUE": -80
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "El golpe en el pecho produce muchísimo dolor. Si tenía ropa de abrigo caerá inconsciente. Si no, morirá en 12 asaltos.",
+        "metadata": [
+          {
+            "HP": "25",
+            "PE": {
+              "VALUE": -40
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Tu cruel tormenta embrolla a tu enemigo y le roba todo el calor del cuerpo. Cae y muere después de 9 asaltos de inactividad.",
+        "metadata": []
+      }
+    },
+    {
+      "lower": 91,
+      "upper": 95,
+      "A": {
+        "text": "El golpe impacta en la cara su nariz orejas y mejillas. Tu enemigo cae. Si no lleva yelmo pierde ambas orejas.",
+        "metadata": [
+          {
+            "DESC": "Con yelmo",
+            "STUN": {
+              "ROUNDS": 3
+            }
+          },
+          {
+            "DESC": "Sin yelmo",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "PE": {
+              "VALUE": -50
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Impactas en la cadera de tu enemigo, fracturándola y haciéndole caer indefenso. La piel y músculos quedan congelados.\\r\\n\\r\\n[{\\\"PV\\\":17,\\\"AT\\\":3,\\\"SP\\\":3,\\\"B\\\":-75}]",
+        "metadata": [
+          {
+            "HP": "17",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": -75
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Congelas la sangre del muslo de tu enemigo. Al calentarse, los coágulos se mueven hacia el corazón, matándolo en 9 asaltos.",
+        "metadata": [
+          {
+            "HP": "15",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": -30
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Eliminas el calor de toda la parte inferior del cuerpo de tu enemigo. Todos los órganos vitales son destruidos. Queda inmóvil y muere en 9 asaltos.",
+        "metadata": [
+          {
+            "HP": "18"
+          }
+        ]
+      },
+      "E": {
+        "text": "Empujas hacia atrás y desequilibras a tu enemigo. La sangre de sus extremidades se congela. Muere después de 6 asaltos de agonía.",
+        "metadata": [
+          {
+            "HP": "19"
+          }
+        ]
+      }
+    },
+    {
+      "lower": 96,
+      "upper": 99,
+      "A": {
+        "text": "Un golpe en el pecho manda a tu enemigo hacia atrás, dejándolo inconsciente. Sus labios se congelan y quedan abiertos. No podrá hablar en 2 semanas.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 9
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "La explosión golpe al cuello y la clavícula. Si tiene armadura en el cuello bloqueará el ataque pero quedará inconsciente. Si no tiene armadura, se le congelará y morirá en 9 asaltos.",
+        "metadata": []
+      },
+      "C": {
+        "text": "Tu acometida congela el torso y cabeza de tu enemigo que aunque permanece en pie durante un momento cae en shock y muere 6 asaltos después.",
+        "metadata": [
+          {
+            "HP": "18"
+          }
+        ]
+      },
+      "D": {
+        "text": "Los pulmones y corazón de tu enemigo son congelados en un instante por tu explosión ártica. Está acabado: muere de shock y asfixia después de 6 asaltos.\n",
+        "metadata": [
+          {
+            "HP": "19"
+          }
+        ]
+      },
+      "E": {
+        "text": "Tu enemigo se convierte en una estatua sin vida. Está muerto y bien preservado. Mantenlo en lugar fresco y seco.",
+        "metadata": [
+          {
+            "HP": "20",
+            "BONUS": {
+              "VALUE": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": 100,
+      "upper": 100,
+      "A": {
+        "text": "Tu enemigo cae en coma durante un mes debido al ataque. Pierde la nariz por congelación.",
+        "metadata": [
+          {
+            "HP": "21"
+          }
+        ]
+      },
+      "B": {
+        "text": "El asalto hace descender la temperatura de tu enemigo, parándole el corazón. Muere en 1 asalto, aunque bien conservado. Eres respetado por todos.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 5
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "La explosión congela los ojos y el cuello de tu enemigo. Cae en coma durante 2 semanas, quedando paralizado de cuello para abajo",
+        "metadata": []
+      },
+      "D": {
+        "text": "El enorme ataque congela el cuerpo de tu enemigo por completo. Se mantiene en pie, pero si es golpeado saltará en pedazos.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "E": {
+        "text": "Tu enemigo se congela y explota en miles de pedazos, dejándolo todo alrededor de 6 metros lleno de trocitos.",
+        "metadata": [
+          {
+            "BONUS": {
+              "VALUE": 20
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
