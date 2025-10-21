@@ -89,7 +89,7 @@ Hooks.once("init", function () {
       "es": "Spanish",
       "en": "English"
     },
-    default: "es",               // Default language
+    default: "en",               // Default language
     onChange: value => {
       // Triggered whenever the setting changes
       console.log(`Critical table language changed to: ${value}`);

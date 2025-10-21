@@ -149,7 +149,8 @@ export default class RMSSTableManager {
     }
 
     static async loadCriticalTable(criticalType) {
-        const path = `systems/rmss/module/combat/tables/critical/${(CONFIG.rmss.criticalDictionary)[criticalType]}.json`;
+        const lang = game.settings.get("rmss", "criticalTableLanguage") ?? "en";
+        const path = `systems/rmss/module/combat/tables/critical/${lang}/${(CONFIG.rmss.criticalDictionary)[criticalType]}.json`;
 
         try {
             const response = await fetch(path);
