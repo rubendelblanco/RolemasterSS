@@ -979,3 +979,28 @@ tr.container-row {
     background-color: rgba(0, 135, 245, 0.15);
 }
 
+/* --- Align Fate Points row just like other header-text rows --- */
+.fate-points-row {
+    align-items: center; /* Vertically center label and icons */
+}
+
+/* --- Align icons on the right, similar width as input fields --- */
+.fate-points-row .fate-icons {
+    display: flex;                /* Arrange icons in a row */
+    gap: 0.25rem;                 /* Small spacing between icons */
+    justify-content: flex-end;    /* Align to the right column */
+    flex: 1;                      /* Take the same space as the input field */
+}
+
+/* --- Optional: make icons interactive or indicate remaining points --- */
+.fate-points-row .fa-skull {
+    color: #428bca;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.fate-points-row .fa-skull.spent {
+    color: #cce7f5; /* Grayed out when spent */
+}
+
+

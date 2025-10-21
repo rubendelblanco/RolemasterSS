@@ -56,6 +56,34 @@ export default class RMSSCharacterSheet extends ActorSheet {
             });
         };
 
+        // --- Handle left and right click on Fate Points ---
+        html.find(".fate-icons i").on("click contextmenu", async ev => {
+            ev.preventDefault();
+
+            // Get the actor and current data
+            const actor = this.actor;
+            const maxFate = game.settings.get("rmss", "maxFatePoints");
+            const fate = foundry.utils.getProperty(actor.system.attributes, "fate_points") || { value: 0, max: maxFate };
+
+            // Determine if left or right click
+            const isRightClick = ev.type === "contextmenu";
+
+            // Calculate new value
+            let newValue;
+
+            if (isRightClick) {
+                // Right click → increase up to max
+                newValue = Math.min(maxFate, fate.value + 1);
+            } else {
+                // Left click → decrease down to 0
+                newValue = Math.max(0, fate.value - 1);
+            }
+
+            // Update actor data
+            await actor.update({ "system.attributes.fate_points.value": newValue });
+
+        });
+
         // Hotbar drag & drop
         document.querySelectorAll("tr[draggable='true']").forEach(el => {
             el.addEventListener("dragstart", event => {

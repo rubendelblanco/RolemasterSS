@@ -77,7 +77,9 @@
       "race": "Raza:",
       "profession": "Profesión:",
       "training_packages": "Paquetes de entrenamiento:",
-      "realm": "Reino:"
+      "realm": "Reino:",
+      "movement_rate": "Movimiento base",
+      "fate_points": "Ptos destino"
     },
     "pc_sheet_armor_info": {
       "armor_type": "Tipo de armadura:",

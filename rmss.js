@@ -97,6 +97,21 @@ Hooks.once("init", function () {
     }
   });
 
+  // --- Register the system setting for maximum Fate Points ---
+  game.settings.register("rmss", "maxFatePoints", {
+    name: "Maximum Fate Points",
+    hint: "Defines the maximum number of Fate Points available to player characters (0–6).",
+    scope: "world",              // Shared across the entire world
+    config: true,                // Visible in the configuration UI
+    type: Number,                // Stored as a numeric value
+    range: { min: 0, max: 6, step: 1 }, // Numeric range selector
+    default: 3,                  // Default maximum Fate Points
+    onChange: async value => {
+      // Triggered whenever the setting changes
+      ui.notifications.info(`Maximum Fate Points changed to: ${value}`);
+    }
+  });
+
   CONFIG.time.roundTime = 10; //1 round is 10 seconds in Rolemaster system
 
   console.log("rmss | Initialising Rolemaster Standard System");

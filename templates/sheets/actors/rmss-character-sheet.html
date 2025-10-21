@@ -52,6 +52,37 @@
       <!-- Name, XP and Level Section-->
 
       <div class="header-container">
+        <!-- Fate Points row -->
+        {{#if fateIcons.length}}
+        <div class="header-text flexrow fate-points-row">
+          <!-- Label column -->
+          <label>{{ localize "rmss.pc_sheet_fixed_info.fate_points" }}</label>
+
+          <!-- Icon column -->
+          <div class="fate-icons">
+            {{#each fateIcons as |index|}}
+            {{#unless (lt ../system.attributes.fate_points.value index)}}
+            <i class="fa-solid fa-skull" data-index="{{index}}"></i>
+            {{else}}
+            <i class="fa-regular fa-skull" data-index="{{index}}"></i>
+            {{/unless}}
+            {{/each}}
+          </div>
+        </div>
+        {{/if}}
+
+        <!-- Movement Rate row -->
+        <div class="header-text flexrow">
+          <label for="movement-rate">{{ localize "rmss.pc_sheet_fixed_info.movement_rate" }}</label>
+          <input id="movement-rate" name="system.movement_rate" data-dtype="Number" type="text"
+                 value="{{system.movement_rate}}" />
+        </div>
+
+        <div class="header-text flexrow">
+        </div>
+      </div>
+
+      <div class="header-container">
         <div class="header-text">
           <label for="character-name">{{ localize "rmss.player_character.name" }}</label>
           <input id="character-name" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize Name }}" />
@@ -60,13 +91,13 @@
         <div class="header-text flexrow">
           <label for="level">{{ localize "rmss.player_character.level" }}</label>
           <input id="level" name="system.attributes.level.value" data-dtype="Number" type="text"
-            value="{{system.attributes.level.value}}" />
+                 value="{{system.attributes.level.value}}" />
         </div>
 
         <div class="header-text flexrow">
           <label for="experience-points">{{ localize "rmss.player_character.experience" }}</label>
           <input id="experience-points" name="system.attributes.experience_points.value" data-dtype="Number" type="text"
-            value="{{system.attributes.experience_points.value}}" />
+                 value="{{system.attributes.experience_points.value}}" />
         </div>
       </div>
 

@@ -77,7 +77,9 @@
             "race": "Race:",
             "profession": "Profession:",
             "training_packages": "Training Packages:",
-            "realm": "Realm:"
+            "realm": "Realm:",
+            "movement_rate": "Movement Rate",
+            "fate_points": "Fate Points"
         },
         "pc_sheet_armor_info": {
             "armor_type": "Armor Type:",
