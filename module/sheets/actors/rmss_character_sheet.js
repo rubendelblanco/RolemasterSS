@@ -132,27 +132,25 @@ export default class RMSSCharacterSheet extends ActorSheet {
     /** @override */
     async _onDropItem(event, data) {
         event.preventDefault();
+        // --- Retrieve the dropped item from UUID ---
+        const droppedItem = await fromUuid(data.uuid);
+        if (!droppedItem) return;
 
-        // Identify drop target from the HTML element
-        const targetId = event.currentTarget.closest("[data-item-id]")?.dataset.itemId;
-        const targetItem = targetId ? this.actor.items.get(targetId) : null;
-
-        // Retrieve dragged item from UUID
-        const sourceItem = await fromUuid(data.uuid);
-        if (!sourceItem) return;
+        // Optional: get the item as it exists within this actor, if any
+        const targetItem = this.actor.items.get(droppedItem.id) ?? null;
 
         // Prevent self-drop
-        if (targetItem && sourceItem.id === targetItem.id) {
+        if (targetItem && droppedItem.id === targetItem.id) {
             ui.notifications.warn("You cannot drop an item onto itself.");
             return;
         }
 
         // Prepare item data clone
-        const itemData = sourceItem.toObject();
+        const itemData = droppedItem.toObject();
 
         // Try to find an existing matching stackable item
         const existing = targetItem ?? this.actor.items.find(i =>
-            i.id !== sourceItem.id &&
+            i.id !== droppedItem.id &&
             i.name === itemData.name &&
             i.type === itemData.type &&
             i.system.is_stackable
@@ -174,8 +172,8 @@ export default class RMSSCharacterSheet extends ActorSheet {
             });
 
             // Delete the dragged item if it belongs to the same actor
-            if (sourceItem.parent?.id === this.actor.id) {
-                await sourceItem.delete();
+            if (droppedItem.parent?.id === this.actor.id) {
+                await droppedItem.delete();
             }
 
             ui.notifications.info(`${itemData.name} stacked. New quantity: ${newQty}`);
