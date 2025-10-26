@@ -231,7 +231,7 @@ Hooks.once("init", function () {
     if (typeof a !== "number" || typeof b !== "number" || b === 0) return 0;
     return Math.round((a / b) * 100);
   });
-
+/*
   Item.prototype.use = async function () {
     const macroData = this.getFlag("rmss", "macro");
 
@@ -274,7 +274,7 @@ Hooks.once("init", function () {
     }
 
     await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, this, ob);
-  };
+  };*/
 
   Hooks.on("renderTokenHUD", (app, html, data) => {
     console.log("[rmss] renderTokenHUD hook fired", { app, html, data, user: game.user });

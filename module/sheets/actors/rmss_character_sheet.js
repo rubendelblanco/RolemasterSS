@@ -26,7 +26,6 @@ export default class RMSSCharacterSheet extends ActorSheet {
         html.find(".offensive-skill").click(async ev => {
             const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
             weapon.use();
-            // TODO: base attacks??
         });
 
         // Items
