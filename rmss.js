@@ -8,6 +8,9 @@ import { RMSSItem } from "./module/documents/item.js";
 import { CombatStartManager, RMSSCombat } from "./module/combat/rmss_combat.js";
 import { RMSSCombatant } from "./module/combat/rmss_combatant.js";
 
+//Import hooks
+import "./module/combat/hooks.js"
+
 // Import Sheets
 import RMSSItemSheet from "./module/sheets/items/rmss_item_sheet.js";
 import RMSSArmorSheet from "./module/sheets/items/rmss_armor_sheet.js";
@@ -231,50 +234,6 @@ Hooks.once("init", function () {
     if (typeof a !== "number" || typeof b !== "number" || b === 0) return 0;
     return Math.round((a / b) * 100);
   });
-/*
-  Item.prototype.use = async function () {
-    const macroData = this.getFlag("rmss", "macro");
-
-    if (macroData && macroData.command.trim()) {
-      try {
-        const macro = new Macro({
-          name: macroData.name || `${this.name} Macro`,
-          type: "script",
-          command: macroData.command
-        });
-
-        const enemy = RMSSCombat.getTargets()?.[0];
-
-        await macro.execute({
-          item: this,
-          actor: this.actor,
-          token: this.actor?.getActiveTokens()?.[0],
-          enemy: enemy
-        });
-
-      } catch (error) {
-        console.error("Error ejecutando macro del item:", error);
-        ui.notifications.error(`Error en macro: ${error.message}`);
-      }
-    }
-
-    if (!["weapon", "creature_attack"].includes(this.type)) return;
-    const enemy = RMSSCombat.getTargets()?.[0];
-
-    if (!enemy) {
-      ui.notifications.warn("No hay un objetivo seleccionado.");
-      return;
-    }
-
-    let ob = null;
-    if (this.actor.type !== "creature") {
-      ob = this.actor.items.get(this.system.offensive_skill)?.system.total_bonus ?? 0;
-    } else {
-      ob = this.system.bonus ?? 0;
-    }
-
-    await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, this, ob);
-  };*/
 
   Hooks.on("renderTokenHUD", (app, html, data) => {
     console.log("[rmss] renderTokenHUD hook fired", { app, html, data, user: game.user });

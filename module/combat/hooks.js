@@ -1,4 +1,4 @@
-import { RMSSCombat } from "rmss_combat.js";
+import { RMSSCombat } from "./rmss_combat.js";
 import {RMSSWeaponSkillManager} from "./rmss_weapon_skill_manager.js";
 
 Hooks.on("hoverToken", (token, hovered) => {
@@ -97,6 +97,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         }
     });
 });
+
 
 Hooks.on("rmssItemUsed", async (item) => {
     if (!["weapon", "creature_attack"].includes(item.type)) return;

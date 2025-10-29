@@ -1,8 +1,29 @@
 import {socket} from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
 import Utils from "../utils.js";
+import RollService from "./services/roll_service.js";
 
 export class RMSSWeaponSkillManager {
+
+    static async handleAttack(actor, enemy, weapon) {
+        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon);
+        if (!gmResponse.confirmed) return;
+        const rollData = await RollService.highOpenEndedD100();
+        const total = rollData.total + gmResponse.diff;
+        const text = `${rollData.details} → +${gmResponse.diff} = <b>${total}</b>`;
+        const flavor = `
+    <b>${actor.name}</b> ataca con <b>${weapon.name}</b><br/>
+    OB: ${gmResponse.attackTotal} / DB: ${gmResponse.defenseTotal}<br/>
+    Diferencia: ${gmResponse.diff}<br/>
+    <i>${text}</i><br/>
+  `;
+
+        await ChatMessage.create({
+            rolls: rollData.roll,
+            flavor: flavor,
+            speaker: ChatMessage.getSpeaker({ actor })
+        });
+    }
 
     static async sendAttackMessage(actor, enemy, weapon, ob) {
         // TODO: "ob" es la bonificación ofensiva inicial? unused?
