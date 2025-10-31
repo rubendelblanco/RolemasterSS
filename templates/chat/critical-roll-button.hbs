@@ -1,13 +1,33 @@
-<h5><img src="{{attacker.img}}" alt="{{attacker.name}}" width="50" height="50"> {{attacker.name}} {{ localize "rmss.combat.attacks" }}</h5>
-<h6>{{damageStr}}</h6>
-{{#each criticals}}
-  <button class="chat-critical-roll"
-          type="button"
-          data-attacker="{{../attacker.id}}"
-          data-damage="{{damage}}"
-          data-severity="{{severity}}"
-          data-crittype="{{critType}}">
-    {{localize "rmss.combat.critical_roll"}} {{inc @index}}
-    ({{critType}}/{{severity}})
-  </button>
-{{/each}}
+<div style="border: 1px solid #555; border-radius: 8px; padding: 8px 10px; background: rgba(0,0,0,0.25); box-shadow: 0 0 6px rgba(0,0,0,0.4);">
+
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+        <img src="{{attacker.img}}" alt="{{attacker.name}}" width="48" height="48" style="border-radius: 6px; border: 1px solid #333;">
+        <div>
+            <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000;">
+                {{attacker.name}} {{ localize "rmss.combat.attacks" }}
+            </h4>
+            <div style="font-size: 0.9em; color: #ccc;">
+                {{damageStr}}
+            </div>
+        </div>
+    </div>
+
+    {{#if criticals.length}}
+        <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+            {{#each criticals}}
+                <button class="chat-critical-roll"
+                        type="button"
+                        data-attacker="{{../attacker.id}}"
+                        data-damage="{{damage}}"
+                        data-severity="{{severity}}"
+                        data-crittype="{{critType}}"
+                        style="background: linear-gradient(180deg, #a00, #600); color: #fff; border: none; border-radius: 6px; padding: 4px 6px; font-weight: bold; cursor: pointer; text-shadow: 0 0 3px #000;">
+                    ⚔️ {{localize "rmss.combat.critical_roll"}} {{inc @index}} — <span style="color: #ffb;">{{critType}}</span> / <span style="color: #ffd;">{{severity}}</span>
+                </button>
+            {{/each}}
+        </div>
+    {{/if}}
+
+</div>
+
