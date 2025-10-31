@@ -32,10 +32,17 @@ export class RMSSWeaponSkillManager {
         const baseAttack = rollData.roll.terms[0].results[0].result;
         const tableName = weapon.system.attack_table;
         const attackTable = await RMSSTableManager.loadAttackTable(tableName);
-        RMSSTableManager.findUnmodifiedAttack(tableName, baseAttack, attackTable);
+        const um = RMSSTableManager.findUnmodifiedAttack(tableName, baseAttack, attackTable) != null;
         const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
-        total = (total > maximum) ? maximum : total;
-        await RMSSTableManager.getAttackTableResult(weapon, baseAttack, total, enemy, actor);
+
+        if (um) {
+            total = um;
+        }
+        else {
+            total = (total > maximum) ? maximum : total;
+        }
+
+        await RMSSTableManager.getAttackTableResult(weapon, attackTable, total, enemy, actor, um);
     }
 
     static async sendAttackMessage(actor, enemy, weapon) {

@@ -1,0 +1,26 @@
+<div style="border: 1px solid #700; border-radius: 8px; padding: 10px; background: linear-gradient(180deg, #300, #100); box-shadow: 0 0 8px rgba(0,0,0,0.5);">
+
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+        <img src="{{attacker.img}}" alt="{{attacker.name}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #900;">
+        <div>
+            <h4 style="margin: 0; color: #ff4444; text-shadow: 0 0 6px #000;">
+                😱 {{attacker.name}} {{ localize "rmss.combat.fumble" }}
+            </h4>
+            <div style="font-size: 0.9em; color: #ddd;">
+                {{ localize "rmss.combat.fumble_message" }}
+            </div>
+        </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #500; margin: 8px 0;">
+
+    <div style="text-align: center; padding: 6px;">
+        <p style="margin: 0; font-size: 1.1em; color: #ff8888; font-weight: bold; text-shadow: 0 0 4px #000;">
+            {{ localize "rmss.combat.fumble_title" }}
+        </p>
+        <p style="margin-top: 4px; color: #ccc;">
+            {{ localize "rmss.combat.fumble_description" }}
+        </p>
+    </div>
+
+</div>

@@ -424,7 +424,8 @@
             "critical_type": "Type",
             "critical_modifier": "Critical roll modifier (+/-)",
             "penalty": "Wound penalties",
-            "attacks": "attacks!"
+            "attacks": "attacks!",
+            "fumble": "FUMBLES!"
         },
         "level_up": {
             "ranks_reset": "New ranks reset"

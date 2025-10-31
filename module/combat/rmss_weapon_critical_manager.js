@@ -146,7 +146,7 @@ export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result, criticalSeverity = null) {
         // e.g result is "10A", "20B", "30C", "-", "F" or 50
         if (result === "-") { //nothing
-            return { criticals: [] };
+            return { criticals: 'fumble' };
         }
         if (result === "F") { //fumble
             // TODO
@@ -552,5 +552,17 @@ export class RMSSWeaponCriticalManager {
         });
 
         return option;
+    }
+
+    static async getFumbleMessage(attacker){
+        const htmlContent = await renderTemplate("systems/rmss/templates/chat/fumble-result.hbs", {
+            attacker: attacker
+        });
+        const speaker = "Game Master";
+
+        await ChatMessage.create({
+            content: htmlContent,
+            speaker: speaker
+        });
     }
 }

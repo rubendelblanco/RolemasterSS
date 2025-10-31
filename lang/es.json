@@ -424,7 +424,8 @@
       "critical_type": "Tipo",
       "critical_modifier": "Modificador de tirada crítico (+/-)",
       "penalty": "Penalización heridas",
-      "attacks": "ataca!"
+      "attacks": "ataca!",
+      "fumble": "¡PIFIA!"
     },
     "level_up": {
       "ranks_reset": "Nuevos rangos reinicializados"

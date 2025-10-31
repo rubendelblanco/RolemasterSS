@@ -24,7 +24,6 @@ const findAttackTableRow = (tableName, attackTable, result) => {
 }
 
 export default class RMSSTableManager {
-
     static findUnmodifiedAttack (tableName, baseAttack, attackTable) {
         let umResult  = null;
         const um = attackTable.um || [];
@@ -97,10 +96,8 @@ export default class RMSSTableManager {
         return maximum;
     }
 
-    static async getAttackTableResult(weapon, baseAttack, totalAttack, enemy, attacker){
-        const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
+    static async getAttackTableResult(weapon, attackTable, totalAttack, enemy, attacker, isUM = false){
         const AT = enemy.system.armor_info.armor_type;
-        // Si sale tirada UM contemplar.
         let resultRow = findAttackTableRow(weapon.system.attack_table, attackTable, totalAttack);
         const damage = resultRow[AT];
         if (isNaN(parseInt(damage))) {
@@ -108,6 +105,12 @@ export default class RMSSTableManager {
         }
         const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(damage,attackTable.critical_severity||null,);
 
+        //fumble!
+        if (criticalResult.criticals === "fumble"){
+            await RMSSWeaponCriticalManager.getFumbleMessage(attacker);
+        }
+
+        //critical exists
         if (criticalResult.criticals.length === 0) {
             criticalResult.criticals = [
                 {'severity': null, 'critType': weapon.system.critical_type, damage: 0}
