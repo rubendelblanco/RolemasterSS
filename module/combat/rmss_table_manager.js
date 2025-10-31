@@ -108,9 +108,10 @@ export default class RMSSTableManager {
         //fumble!
         if (criticalResult.criticals === "fumble"){
             await RMSSWeaponCriticalManager.getFumbleMessage(attacker);
+            return;
         }
 
-        //critical exists
+        //critical not exists
         if (criticalResult.criticals.length === 0) {
             criticalResult.criticals = [
                 {'severity': null, 'critType': weapon.system.critical_type, damage: 0}
@@ -124,18 +125,7 @@ export default class RMSSTableManager {
             }
         }
 
-        const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
-            damageStr: damage,
-            damage: criticalResult.damage,
-            criticals: criticalResult.criticals,
-            attacker: attacker
-        });
-        const speaker = "Game Master";
-
-        await ChatMessage.create({
-            content: htmlContent,
-            speaker: speaker
-        });
+        await RMSSWeaponCriticalManager.getCriticalMessage(damage, criticalResult, attacker);
     }
 
     static async loadCriticalTable(criticalType) {

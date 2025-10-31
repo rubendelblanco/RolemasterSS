@@ -11,17 +11,13 @@ export class RMSSWeaponSkillManager {
         const rollData = await RollService.highOpenEndedD100();
         let total = rollData.total + gmResponse.diff;
         const text = `${rollData.details} → +${gmResponse.diff} = <b>${total}</b>`;
-        const flavor = `
-          <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:4px;">
-            <img src="${actor.img}" width="50" height="50" style="border-radius:6px;">
-            <span style="font-weight:bold;">VS</span>
-            <img src="${enemy.img}" width="50" height="50" style="border-radius:6px;">
-          </div>
-          <b>${actor.name}</b> ataca a <b>${enemy.name}</b> con <b>${weapon.name}</b><br/>
-          OB: ${gmResponse.attackTotal} / DB: ${gmResponse.defenseTotal}<br/>
-          Diferencia: ${gmResponse.diff}<br/>
-          <i>${text}</i><br/>
-        `;
+        const flavor = await renderTemplate("systems/rmss/templates/chat/attack-result.hbs", {
+            actor,
+            enemy,
+            weapon,
+            gmResponse,
+            text
+        });
 
         await ChatMessage.create({
             rolls: rollData.roll,
