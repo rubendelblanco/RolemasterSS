@@ -104,7 +104,6 @@ Hooks.on("rmssItemUsed", async (item) => {
 
     const enemy = RMSSCombat?.getTargets()?.[0];
     if (!enemy) return ui.notifications.warn("No target selected.");
-
     await RMSSWeaponSkillManager.handleAttack(item.actor, enemy.actor, item);
 });
 

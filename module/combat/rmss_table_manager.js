@@ -2,33 +2,6 @@ import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
 import {ExperienceManager} from "../sheets/experience/rmss_experience_manager.js";
 import {socket} from "../../rmss.js";
 
-const findUnmodifiedAttack = (tableName, baseAttack, attackTable) => {
-   let umResult  = null;
-   const um = attackTable.um || [];
-   for (const rangeStr of um) {
-        const range = rangeStr.split("-").map(Number);
-        const lower = range[0];
-        const upper = range[1];
-
-       if (baseAttack >= lower && baseAttack <= upper) {
-        umResult = {
-            id: rangeStr,
-            lower: lower,
-            upper: upper,
-            attack: baseAttack
-        }
-        break;
-       }
-   }
-   if (!umResult) {
-    return null;
-   }
-   // Ahora buscamos la fila
-    umResult.row =  findAttackTableRow(tableName, attackTable, baseAttack);
-    return umResult;
-
-}
-
 const findAttackTableRow = (tableName, attackTable, result) => {
     const numResult = parseInt(result, 10);
     for (const element of attackTable.rows) {
@@ -51,12 +24,35 @@ const findAttackTableRow = (tableName, attackTable, result) => {
 }
 
 export default class RMSSTableManager {
-    static findAttackTableRow(tableName, attackTable, result) {
-        return findAttackTableRow(tableName, attackTable, result);
+
+    static findUnmodifiedAttack (tableName, baseAttack, attackTable) {
+        let umResult  = null;
+        const um = attackTable.um || [];
+        for (const rangeStr of um) {
+            const range = rangeStr.split("-").map(Number);
+            const lower = range[0];
+            const upper = range[1];
+
+            if (baseAttack >= lower && baseAttack <= upper) {
+                umResult = {
+                    id: rangeStr,
+                    lower: lower,
+                    upper: upper,
+                    attack: baseAttack
+                }
+                break;
+            }
+        }
+        if (!umResult) {
+            return null;
+        }
+
+        umResult.row =  findAttackTableRow(tableName, attackTable, baseAttack);
+        return umResult;
     }
 
-    static findUnmodifiedAttack(tableName, baseAttack, attackTable) {
-        return findUnmodifiedAttack(tableName, baseAttack, attackTable);
+    static findAttackTableRow(tableName, attackTable, result) {
+        return findAttackTableRow(tableName, attackTable, result);
     }
 
     static async loadAttackTable(tableName) {
@@ -102,18 +98,10 @@ export default class RMSSTableManager {
     }
 
     static async getAttackTableResult(weapon, baseAttack, totalAttack, enemy, attacker){
-        console.log("getAttackTableResult", weapon, baseAttack, totalAttack, enemy, attacker);
         const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
         const AT = enemy.system.armor_info.armor_type;
         // Si sale tirada UM contemplar.
-        let resultRow = null;
-        const umResult = findUnmodifiedAttack(weapon.system.attack_table, baseAttack, attackTable);
-        if (umResult) {
-            resultRow = umResult.row;
-        } else {
-            resultRow = findAttackTableRow(weapon.system.attack_table, attackTable, totalAttack);
-        }
-
+        let resultRow = findAttackTableRow(weapon.system.attack_table, attackTable, totalAttack);
         const damage = resultRow[AT];
         if (isNaN(parseInt(damage))) {
             return;
@@ -124,7 +112,6 @@ export default class RMSSTableManager {
             criticalResult.criticals = [
                 {'severity': null, 'critType': weapon.system.critical_type, damage: 0}
             ];
-            // Si no hay críticos, se considera que es un ataque normal y se aplica el daño.
             await RMSSWeaponCriticalManager.updateTokenOrActorHits(
                 enemy,
                 parseInt(criticalResult.damage)

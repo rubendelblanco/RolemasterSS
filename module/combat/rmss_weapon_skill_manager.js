@@ -9,25 +9,38 @@ export class RMSSWeaponSkillManager {
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon);
         if (!gmResponse.confirmed) return;
         const rollData = await RollService.highOpenEndedD100();
-        const total = rollData.total + gmResponse.diff;
+        let total = rollData.total + gmResponse.diff;
         const text = `${rollData.details} → +${gmResponse.diff} = <b>${total}</b>`;
         const flavor = `
-    <b>${actor.name}</b> ataca con <b>${weapon.name}</b><br/>
-    OB: ${gmResponse.attackTotal} / DB: ${gmResponse.defenseTotal}<br/>
-    Diferencia: ${gmResponse.diff}<br/>
-    <i>${text}</i><br/>
-  `;
+          <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:4px;">
+            <img src="${actor.img}" width="50" height="50" style="border-radius:6px;">
+            <span style="font-weight:bold;">VS</span>
+            <img src="${enemy.img}" width="50" height="50" style="border-radius:6px;">
+          </div>
+          <b>${actor.name}</b> ataca a <b>${enemy.name}</b> con <b>${weapon.name}</b><br/>
+          OB: ${gmResponse.attackTotal} / DB: ${gmResponse.defenseTotal}<br/>
+          Diferencia: ${gmResponse.diff}<br/>
+          <i>${text}</i><br/>
+        `;
 
         await ChatMessage.create({
             rolls: rollData.roll,
             flavor: flavor,
-            speaker: ChatMessage.getSpeaker({ actor })
+            speaker: "Game master"
         });
+
+        const baseAttack = rollData.roll.terms[0].results[0].result;
+        const tableName = weapon.system.attack_table;
+        const attackTable = await RMSSTableManager.loadAttackTable(tableName);
+        RMSSTableManager.findUnmodifiedAttack(tableName, baseAttack, attackTable);
+        const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
+        total = (total > maximum) ? maximum : total;
+        await RMSSTableManager.getAttackTableResult(weapon, baseAttack, total, enemy, actor);
     }
 
-    static async sendAttackMessage(actor, enemy, weapon, ob) {
+    static async sendAttackMessage(actor, enemy, weapon) {
         // TODO: "ob" es la bonificación ofensiva inicial? unused?
-        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, ob);
+        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon);
 
         if (gmResponse["confirmed"]) {
             const attackRoll = new Roll(`1d100x>95`);
@@ -43,28 +56,17 @@ export class RMSSWeaponSkillManager {
                 flavor: flavor
             }, {create: true});
             const baseAttack = attackRoll.terms[0].results[0].result;
+
             let totalAttack = attackRoll.total + gmResponse["diff"];
-            // TODO: refactor getAttackTableResult to use the totalRoll instead of result
             const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
             totalAttack = (totalAttack > maximum) ? maximum : totalAttack;
             await RMSSTableManager.getAttackTableResult(weapon, baseAttack, totalAttack, enemy, actor);
         }
     }
 
-    static async attackMessagePopup(actor, enemy, weapon, ob) {
-        const hitsTaken = (actor.system.attributes.hits.current/actor.system.attributes.hits.max)*100;
-        let hitsTakenPenalty = 0;
-
-        if (hitsTaken < 75 && hitsTaken >=50) {
-            hitsTakenPenalty = -10;
-        }
-        else if (hitsTaken < 50 && hitsTaken >=25) {
-            hitsTakenPenalty = -20;
-        }
-        else if (hitsTaken < 25) {
-            hitsTakenPenalty = -30;
-        }
-
+    static async attackMessagePopup(actor, enemy, weapon) {
+        const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon);
+        const hitsTakenPenalty = RMSSWeaponSkillManager._getHitsPenalty(actor);
         const penaltyEffects = Utils.getEffectByName(actor, "Penalty");
         const bonusEffects = Utils.getEffectByName(actor, "Bonus");
         const stunEffect = Utils.getEffectByName(enemy, "Stunned");
@@ -182,7 +184,34 @@ export class RMSSWeaponSkillManager {
                 }
             }).render(true);
         });
-
         return confirmed;
+    }
+
+    static _getOffensiveBonusFromWeapon(weapon) {
+        const skillId = weapon.system.offensive_skill;
+        const skillItem = weapon.actor?.items.get(skillId);
+
+        if (!skillItem) {
+            return 0;
+        } else {
+            return skillItem.system.total_bonus ?? 0;
+        }
+    }
+
+    static _getHitsPenalty(actor) {
+        const hitsTaken = (actor.system.attributes.hits.current/actor.system.attributes.hits.max)*100;
+        let hitsTakenPenalty = 0;
+
+        if (hitsTaken < 75 && hitsTaken >=50) {
+            hitsTakenPenalty = -10;
+        }
+        else if (hitsTaken < 50 && hitsTaken >=25) {
+            hitsTakenPenalty = -20;
+        }
+        else if (hitsTaken < 25) {
+            hitsTakenPenalty = -30;
+        }
+
+        return hitsTakenPenalty;
     }
 }

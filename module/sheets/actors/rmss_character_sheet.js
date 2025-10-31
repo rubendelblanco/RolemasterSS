@@ -138,7 +138,6 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
         // Optional: get the item as it exists within this actor, if any
         const targetItem = this.actor.items.get(droppedItem.id) ?? null;
-
         // Prevent self-drop
         if (targetItem && droppedItem.id === targetItem.id) {
             ui.notifications.warn("You cannot drop an item onto itself.");
