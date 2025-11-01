@@ -2,6 +2,7 @@ import {socket} from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
 import Utils from "../utils.js";
 import RollService from "./services/roll_service.js";
+import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
 
 export class RMSSWeaponSkillManager {
 
@@ -38,7 +39,29 @@ export class RMSSWeaponSkillManager {
             total = (total > maximum) ? maximum : total;
         }
 
-        await RMSSTableManager.getAttackTableResult(weapon, attackTable, total, enemy, actor, um);
+        const attackResult = await RMSSTableManager.getAttackTableResult(weapon, attackTable, total, enemy, actor);
+        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage,attackTable.critical_severity||null);
+        //fumble!
+        if (criticalResult.criticals === "fumble"){
+            await RMSSWeaponCriticalManager.getFumbleMessage(attacker);
+            return;
+        }
+
+        //critical not exists
+        if (criticalResult.criticals.length === 0) {
+            criticalResult.criticals = [
+                {'severity': null, 'critType': weapon.system.critical_type, damage: 0}
+            ];
+            await RMSSWeaponCriticalManager.updateTokenOrActorHits(
+                enemy,
+                parseInt(criticalResult.damage)
+            );
+            if (attacker.type === "character") {
+                await ExperienceManager.applyExperience(attacker, criticalResult.damage);
+            }
+        }
+
+        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, enemy);
     }
 
     static async sendAttackMessage(actor, enemy, weapon) {

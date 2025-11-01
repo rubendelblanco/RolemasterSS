@@ -96,36 +96,16 @@ export default class RMSSTableManager {
         return maximum;
     }
 
-    static async getAttackTableResult(weapon, attackTable, totalAttack, enemy, attacker, isUM = false){
+    static async getAttackTableResult(weapon, attackTable, totalAttack, enemy, attacker){
         const AT = enemy.system.armor_info.armor_type;
         let resultRow = findAttackTableRow(weapon.system.attack_table, attackTable, totalAttack);
         const damage = resultRow[AT];
+
         if (isNaN(parseInt(damage))) {
-            return;
-        }
-        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(damage,attackTable.critical_severity||null,);
-
-        //fumble!
-        if (criticalResult.criticals === "fumble"){
-            await RMSSWeaponCriticalManager.getFumbleMessage(attacker);
-            return;
+            return { damage: null, criticalSeverity: null };
         }
 
-        //critical not exists
-        if (criticalResult.criticals.length === 0) {
-            criticalResult.criticals = [
-                {'severity': null, 'critType': weapon.system.critical_type, damage: 0}
-            ];
-            await RMSSWeaponCriticalManager.updateTokenOrActorHits(
-                enemy,
-                parseInt(criticalResult.damage)
-            );
-            if (attacker.type === "character") {
-                await ExperienceManager.applyExperience(attacker, criticalResult.damage);
-            }
-        }
-
-        await RMSSWeaponCriticalManager.getCriticalMessage(damage, criticalResult, attacker);
+        return { damage: damage, criticalSeverity: attackTable.critical_severity||null };
     }
 
     static async loadCriticalTable(criticalType) {

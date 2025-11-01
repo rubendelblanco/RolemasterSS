@@ -146,11 +146,11 @@ export class RMSSWeaponCriticalManager {
     static decomposeCriticalResult(result, criticalSeverity = null) {
         // e.g result is "10A", "20B", "30C", "-", "F" or 50
         if (result === "-") { //nothing
-            return { criticals: 'fumble' };
+            return { criticals: [] };
         }
         if (result === "F") { //fumble
             // TODO
-            return { criticals: [] };// Also nothing 
+            return { criticals: 'fumble' };// Also nothing
         }
 
         if (typeof result === "number" || /^\d+$/.test(result)) {
@@ -212,9 +212,7 @@ export class RMSSWeaponCriticalManager {
         );
     }
 
-    /**
-     * se llama cuando se hace click en el botón de chat para lanzar un crítico
-     */
+
     static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId,) {
         // Saca el modal formulario al GM para editar y/o confirmar el critico.
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType);
