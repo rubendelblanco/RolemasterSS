@@ -6,44 +6,46 @@ import Utils from "../utils.js";
 import { rmss } from "../config.js";
 import {RMSSCombat} from "./rmss_combat.js";
 
-class LargeCreatureCriticalStrategy {
 
+/* ---------------------------------------------
+ * Mapping of column results for large creature criticals
+ * --------------------------------------------- */
+const CRITICAL_COLUMN_MAP = {
+    large_spell: { normal: "A", default: "B" },
+    superlarge_spell: { normal: "A", default: "B" },
+    large_melee: {
+        normal: "A",
+        magic: "B",
+        mithril: "C",
+        sacred: "D",
+        slaying: "E"
+    },
+    superlarge_melee: {
+        normal: "A",
+        magic: "B",
+        mithril: "C",
+        sacred: "D",
+        slaying: "E"
+    }
+};
+
+class LargeCreatureCriticalStrategy {
     constructor(criticalType) {
         this.criticalType = criticalType;
     }
 
+    /**
+     * Determine which critical table column applies to this subtype.
+     * @param {string} subtype - The weapon or material subtype (normal, magic, mithril, etc.)
+     * @returns {string} - The letter of the column (A–E).
+     */
     getColumForCriticalSubtype(subtype) {
-        switch (this.criticalType) {
-            case "large_spell":
-            case "superlarge_spell": {
-                switch (subtype) {
-                    case "normal":
-                        return "A";
-                    default:
-                        return "B";
-                }
-            }
-            case "large_melee":
-            case "superlarge_melee": {
-                switch (subtype) {
-                    case "normal":
-                        return "A";
-                    case "magic":
-                        return "B";
-                    case "mithril":
-                        return "C";
-                    case "sacred":
-                        return "D";
-                    case "slaying":
-                        return "E";
-                    default:
-                        throw new Error(`Unknown subtype ${subtype} for critical type ${this.criticalType}`);
-                }
-            }
-        }
+        const map = CRITICAL_COLUMN_MAP[this.criticalType];
+        if (!map) throw new Error(`Unknown critical type: ${this.criticalType}`);
+        return map[subtype] ?? map.default ?? "A";
     }
 
-    async apply(attackerActor, defenderActor,data = {}) {
+    async apply(attackerActor, defenderActor, data = {}) {
         const {
             damage,
             severity,
@@ -54,48 +56,32 @@ class LargeCreatureCriticalStrategy {
         } = data;
         const tableName = this.criticalType;
 
-        if (Utils.isAPC(actor.id)) {
+        // Apply XP for player characters
+        if (Utils.isAPC(attackerActor.id)) {
             const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
             const hpExp = parseInt(data.damage);
-            let breakDown = {};
-            let totalExp = 0;
+            const breakDown = isNaN(criticalExp)
+                ? { hp: hpExp }
+                : { critical: criticalExp, hp: hpExp };
+            const totalExp = Object.values(breakDown).reduce((a, b) => a + b, 0);
+            const totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0) + totalExp;
 
-            if (criticalExp === "null" || isNaN(criticalExp)) {
-                breakDown = { 'hp': hpExp };
-                totalExp = hpExp;
-            } else {
-                breakDown = { 'critical': criticalExp, 'hp': hpExp };
-                totalExp = criticalExp + hpExp;
-            }
-
-            let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
-            totalExpActor += totalExp;
             await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
             await sendExpMessage(attackerActor, breakDown, totalExp);
         }
 
-        // 2. Tiramos el critico
+        // Roll for the critical
         const column = this.getColumForCriticalSubtype(subCritType);
         const roll = new Roll(`1d100x>95`);
         await roll.evaluate({ async: true });
         await roll.toMessage(undefined, { create: true });
-        const total = roll.total;
-        // TODO: Restar cuando el bixo tiene lo de -25 o -50 por critical procedure.
-        // NOTA: Esto se ejecuta como GM porque el modal de editar el critico lo edita el GM
+
         let newHits = defenderActor.system.attributes.hits.current - parseInt(damage);
         await defenderActor.update({ "system.attributes.hits.current": newHits });
         if (severity === "null") return;
-        let result = (parseInt(total) + parseInt(modifier));
-        if (result < 1) result = 1;
-        else {
-            result = Math.min(result, 999);
-        }
-        return await RMSSTableManager.getCriticalTableResult(
-            result,
-            defenderActor,
-            column, // aka severity, pero para las critauras grandes ha habido que sacar la columna especificamente.
-            tableName
-        );
+
+        let result = Math.min(Math.max(parseInt(roll.total) + parseInt(modifier), 1), 999);
+        return await RMSSTableManager.getCriticalTableResult(result, defenderActor, column, tableName);
     }
 }
 
@@ -103,6 +89,7 @@ class BaseCriticalStrategy {
     constructor(criticalType) {
         this.criticalType = criticalType;
     }
+
     async apply(attackerActor, defenderActor, data = {}) {
         if (Utils.isAPC(attackerActor.id)) {
             const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
@@ -111,28 +98,27 @@ class BaseCriticalStrategy {
             let totalExp = 0;
 
             if (criticalExp === "null" || isNaN(criticalExp)) {
-                breakDown = {'hp': hpExp};
+                breakDown = { hp: hpExp };
                 totalExp = hpExp;
             } else {
-                breakDown = {'critical': criticalExp, 'hp': hpExp};
+                breakDown = { critical: criticalExp, hp: hpExp };
                 totalExp = criticalExp + hpExp;
             }
 
             let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
             totalExpActor = totalExpActor + totalExp;
-            await attackerActor.update({"system.attributes.experience_points.value": totalExpActor});
+            await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
             await sendExpMessage(attackerActor, breakDown, totalExp);
         }
-        let target = RMSSCombat.getTargets()[0].id; //token id
+
+        const target = RMSSCombat.getTargets()[0].id;
         return await socket.executeAsGM("updateActorHits", target, undefined, parseInt(data.damage), data);
     }
 }
 
-
 export class RMSSWeaponCriticalManager {
     static criticalCalculatorStrategy(criticalType) {
         switch (criticalType) {
-            // TODO: Tal vez tenga sentido meter esto en un lista "verde especial".
             case "large_melee":
             case "superlarge_melee":
             case "large_spell":
@@ -212,9 +198,7 @@ export class RMSSWeaponCriticalManager {
         );
     }
 
-
     static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId,) {
-        // Saca el modal formulario al GM para editar y/o confirmar el critico.
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType);
 
         if (!gmResponse["confirmed"]) {
@@ -317,7 +301,6 @@ export class RMSSWeaponCriticalManager {
                         html.find("#damage").val(damage);
                     });
 
-                    // Tener en cuenta criaturas largas y superlargas.
                     html.find("#critical-type").on("change", (event) => {
                         const tableName = (event.target.value);
                         // Display block subtype if 
