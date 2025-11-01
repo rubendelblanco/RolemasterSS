@@ -1,4 +1,3 @@
-
 /**
  * @class RMSSEffectApplier
  * @classdesc
@@ -62,6 +61,11 @@ export class RMSSEffectApplier {
         const dmg = parseInt(hp) || 0;
         const newHits = entity.system.attributes.hits.current - dmg;
         await entity.update({ "system.attributes.hits.current": newHits });
+
+        if (entity.system.attributes.hits.current <= 0) {
+            const token = entity.getActiveTokens()[0];
+            if (token) await RMSSEffectApplier._markTokenAsDead(entity);
+        }
     }
 
     static async _applyStun(entity, data, stun_bleeding) {
@@ -95,7 +99,7 @@ export class RMSSEffectApplier {
             description,
             disabled: false,
             flags: { rmss: { value: rate } },
-            duration: { rounds: 1, startRound: game.combat ? game.combat.round : 0 }
+            duration: { rounds: null, startRound: game.combat ? game.combat.round : 0 }
         }]);
     }
 
@@ -109,7 +113,7 @@ export class RMSSEffectApplier {
             description,
             disabled: false,
             flags: { rmss: { value: penalty } },
-            duration: { rounds: 1, startRound: game.combat ? game.combat.round : 0 }
+            duration: { rounds: null, startRound: game.combat ? game.combat.round : 0 }
         }]);
     }
 
@@ -162,6 +166,43 @@ export class RMSSEffectApplier {
             flags: { rmss: { value } },
             duration: { rounds, startRound: game.combat ? game.combat.round : 0 }
         }]);
+    }
+
+    /**
+     * Marks a token as dead (like manual GM toggle).
+     * Works both in and out of combat.
+     * @param {Token} token - The target token object.
+     */
+    static async _markTokenAsDead(actor) {
+        if (!actor) return ui.notifications.error("No token provided.");
+
+        await actor.createEmbeddedDocuments("ActiveEffect", [{
+            name: "Dead",
+            icon: globalThis.CONFIG.controlIcons.defeated,
+            origin: actor.id,
+            disabled: false,
+            flags: { core: { overlay: true } },
+            duration: { rounds: 1, startRound: game.combat ? game.combat.round : 0 }
+        }]);
+
+        const combatant = game.combat?.getCombatantByToken(actor.id);
+
+        // Clean old overlay
+        await actor.document.update({ overlayEffect: null });
+
+        // Sync with combat
+        if (combatant && !combatant.defeated) {
+            await combatant.update({defeated: true});
+        }
+
+        // Apply the overlay and refresh token
+        await actor.document.update({ overlayEffect: globalThis.CONFIG.controlIcons.defeated });
+
+        // Chat message
+        ChatMessage.create({
+            content: `💀 <b>${actor.name}</b> has died! 💀`,
+            speaker: ChatMessage.getSpeaker({ actor })
+        });
     }
 
 }

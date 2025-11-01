@@ -61,7 +61,7 @@ export class RMSSWeaponSkillManager {
             }
         }
 
-        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, enemy);
+        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor);
     }
 
     static async sendAttackMessage(actor, enemy, weapon) {

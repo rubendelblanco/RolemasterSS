@@ -93,11 +93,14 @@
     {{!-- Default tab is specified in actor-sheet.mjs --}}
     <a class="item" data-tab="Record"><i class="fa-regular fa-circle-user"></i> {{ localize "rmss.pc_sheet_tabs.record" }}</a>
     <a class="item" data-tab="SkillCategory"><i class="fa-regular fa-list"></i> {{ localize "rmss.pc_sheet_tabs.skill_categories" }}</a>
-    <a class="item" data-tab="Skills">{{ localize "rmss.pc_sheet_tabs.skills" }}</a>
-    <a class="item" data-tab="Equipment">{{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
-    <a class="item" data-tab="Spells">{{ localize "rmss.pc_sheet_tabs.spells" }}</a>
-    <a class="item" data-tab="StatusRecord">{{ localize "rmss.pc_sheet_tabs.status_record" }}</a>
-    <a class="item" data-tab="ExperiencePoints">{{ localize "rmss.pc_sheet_tabs.experience_points" }}</a>
+    <a class="item" data-tab="Skills"><i class="fa fa-cogs" aria-hidden="true"></i>
+      {{ localize "rmss.pc_sheet_tabs.skills" }}</a>
+    <a class="item" data-tab="Equipment"><i class="fa-solid fa-backpack"></i> {{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
+    <a class="item" data-tab="Spells"><i class="fa-solid fa-scroll"></i> {{ localize "rmss.pc_sheet_tabs.spells" }}</a>
+    <a class="item" data-tab="StatusRecord"><i class="fa-solid fa-person-rays"></i>
+      {{ localize "rmss.pc_sheet_tabs.status_record" }}</a>
+    <a class="item" data-tab="ExperiencePoints"><i class="fa-solid fa-brain"></i>
+      {{ localize "rmss.pc_sheet_tabs.experience_points" }}</a>
   </nav>
   <!-- Body Section-->
   <section class="sheet-body">
@@ -137,9 +140,9 @@
 
     <div class="tab skills" data-group="primary" data-tab="Skills">
       <nav class="sub-tabs tabs" data-group="skills-tabs">
-        <a class="item" data-tab="skills-skills">{{ localize "rmss.skills_tabs.skills" }}</a>
-        <a class="item" data-tab="spells-skills">{{ localize "rmss.skills_tabs.spells" }}</a>
-        <a class="item" data-tab="languages-skills">{{ localize "rmss.skills_tabs.languages" }}</a>
+        <a class="item" data-tab="skills-skills"><i class="fa-regular fa-gear"></i> {{ localize "rmss.skills_tabs.skills" }}</a>
+        <a class="item" data-tab="spells-skills"><i class="fad fa-scroll"></i> {{ localize "rmss.skills_tabs.spells" }}</a>
+        <a class="item" data-tab="languages-skills"><i class="fa-solid fa-comments"></i>  {{ localize "rmss.skills_tabs.languages" }}</a>
       </nav>
       {{> "systems/rmss/templates/sheets/actors/parts/search-text.hbs"
       id="mod-search-form-actor-skills"
