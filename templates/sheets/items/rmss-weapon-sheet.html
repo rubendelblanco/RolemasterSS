@@ -8,15 +8,19 @@
         <div style="display:flex; justify-content:center; text-align:center; gap:8px;">
             <!-- Columna 1 -->
             <div style="flex:1;">
-                <div>Tabla de ataque</div>
+                <div>{{localize "rmss.weapon.attack_table"}}</div>
                 <select name="system.attack_table" class="app-stat-selector" value="{{system.attack_table}}" itemid="{{ item._id }}">
-                    {{selectOptions armsTables selected=system.attack_table}}
+                    {{#each armsTables as |key|}}
+                    <option value="{{key}}" {{#if (eq key ../system.attack_table)}}selected{{/if}}>
+                    {{localize (concat "rmss.attack_table." key)}}
+                    </option>
+                    {{/each}}
                 </select>
             </div>
 
             <!-- Columna 2 -->
             <div style="flex:1;">
-                <div>Habilidad</div>
+                <div>{{localize "rmss.weapon.skill"}}</div>
                 <select name="system.offensive_skill" class="app-stat-selector" value="{{system.offensive_skill}}" itemid="{{ item._id }}">
                     {{#each offensiveSkills}}
                     <option value="{{this.id}}" {{#if (eq this.id ../system.offensive_skill)}}selected{{/if}}>{{this.name}}</option>
@@ -26,10 +30,12 @@
 
             <!-- Columna 3 -->
             <div style="flex:1;">
-                <div>Crítico por defecto</div>
+                <div>{{localize "rmss.weapon.default_critical"}}</div>
                 <select name="system.critical_type" class="app-stat-selector" value="{{system.critical_type}}" itemid="{{ item._id }}">
-                    {{#each criticalTables}}
-                    <option value="{{@key}}" {{#if (eq @key ../system.critical_type)}}selected{{/if}}>{{this}}</option>
+                    {{#each criticalTables as |key|}}
+                    <option value="{{key}}" {{#if (eq key ../system.critical_type)}}selected{{/if}}>
+                    {{localize (concat "rmss.critical_table." key)}}
+                    </option>
                     {{/each}}
                 </select>
             </div>
