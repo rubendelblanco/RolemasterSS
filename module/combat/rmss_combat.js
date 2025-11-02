@@ -19,7 +19,6 @@ import {RMSSCombatant} from "./rmss_combatant.js";
  */
 export class RMSSCombat extends Combat {
     constructor(data, context) {
-        console.log(data);
         super(data, context);
     }
 
@@ -78,7 +77,6 @@ export class RMSSCombat extends Combat {
     }
 
     async rollInitiative(ids, {formula=null, updateTurn=true}={}) {
-        console.log("Iniciativa personalizada");
         return super.rollInitiative(ids, {formula, updateTurn});
     }
 
@@ -145,7 +143,6 @@ export class CombatStartManager {
         const randomSound = soundFiles[randomIndex];
 
         foundry.audio.AudioHelper.play({ src: basePath + randomSound, volume: 0.8, loop: false, singleton: true }, true);
-        console.log("¡El combate ha comenzado!");
     }
 
     showCombatImage() {
@@ -179,3 +176,39 @@ export class CombatStartManager {
         }, 3000);
     }
 }
+
+//Singleton for combat end
+export class CombatEndManager {
+    constructor() {
+        if (CombatEndManager.instance) {
+            return CombatEndManager.instance;
+        }
+        this._registerHook();
+        CombatEndManager.instance = this;
+    }
+
+    _registerHook() {
+        if (!CombatEndManager.hookRegistered) {
+            Hooks.on("deleteCombat", (combat) => this.handleCombatEnd(combat));
+            CombatEndManager.hookRegistered = true;
+        }
+    }
+
+    handleCombatEnd(combat) {
+        this.playCombatEndSound();
+    }
+
+    playCombatEndSound() {
+        // Define the exact path to the end combat sound
+        const soundPath = CONFIG.rmss.paths.sounds_folder+"combat/end_combat.ogg";
+
+        // Play the sound once, no loop
+        foundry.audio.AudioHelper.play({
+            src: soundPath,
+            volume: 0.8,
+            loop: false,
+            singleton: true
+        }, true);
+    }
+}
+

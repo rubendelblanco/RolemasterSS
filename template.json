@@ -254,8 +254,12 @@
         "experience_points": {
           "value": 0
         },
-        "movement_points": {
-          "current": 50
+        "movement_rate": {
+          "value": 0,
+          "current": 0
+        },
+        "fate_points": {
+          "value": 0
         }
       },
       "description": ""

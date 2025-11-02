@@ -1,0 +1,44 @@
+<div style="border: 1px solid #444;margin-bottom:10px; border-radius: 8px; padding: 10px; background: rgba(0,0,0,0.3); box-shadow: 0 0 6px rgba(0,0,0,0.5); font-family: 'Signika', sans-serif;">
+
+    <!-- Header: portraits -->
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+        <div style="text-align: center;">
+            <img title="{{actor.name}}" src="{{actor.img}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #666;">
+            <div style="font-size: 1.2em; color: #ccc;">{{actor.name}}</div>
+        </div>
+
+        <div style="font-weight: bold; font-size: 1.1em; color: #ffcc00; text-shadow: 0 0 6px #000;">VS</div>
+
+        <div style="text-align: center;">
+            <img title="{{enemy.name}}" src="{{enemy.img}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #666;">
+            <div style="font-size: 1.2em; color: #ccc;">{{enemy.name}}</div>
+        </div>
+    </div>
+
+    <!-- Attack summary -->
+    <div style="text-align: center; color: #ddd; font-size: 1.2em; line-height: 1.4;">
+        <b>{{actor.name}}</b> ataca con <b>{{weapon.name}}</b><br>
+        OB: <span style="color:#9cf;">{{gmResponse.attackTotal}}</span> /
+        DB: <span style="color:#f99;">{{gmResponse.defenseTotal}}</span><br>
+        Diferencia: <span style="color:#ffd700; font-weight:bold;">{{gmResponse.diff}}</span>
+    </div>
+
+    <hr style="border:none; border-top:1px solid #333; margin:8px 0;">
+
+    <!-- Roll result -->
+    <div style="
+      text-align: center;
+      background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, rgba(255,165,0,0.1) 80%);
+      color: #fff;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-shadow: 0 0 5px #000, 0 0 8px #ff0;
+      border-radius: 6px;
+      padding: 6px;
+      margin-top: 4px;
+      ">
+        {{{text}}}
+    </div>
+
+</div>
+

@@ -180,6 +180,12 @@ export default class ItemService {
         const languageskill = [], weapons = [], armor = [], herbs = [];
         const spells = [], spellists = [];
 
+        // Get maximum Fate Points from settings (world-level)
+        const maxFate = game.settings.get("rmss", "maxFatePoints") ?? 3;
+
+        // Build an array [1, 2, ..., maxFate] for Handlebars iteration
+        const fateIcons = Array.from({ length: maxFate }, (_, i) => i + 1);
+
         // Map: containerId -> [contained items]
         const containersMap = new Map();
 
@@ -267,6 +273,7 @@ export default class ItemService {
             spellskill,
             spellists: spellistsWithContents,
             languageskill,
+            fateIcons,
             config: CONFIG.rmss
         });
     }

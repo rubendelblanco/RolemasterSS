@@ -979,3 +979,169 @@ tr.container-row {
     background-color: rgba(0, 135, 245, 0.15);
 }
 
+/* --- Align Fate Points row just like other header-text rows --- */
+.fate-points-row {
+    align-items: center; /* Vertically center label and icons */
+}
+
+/* --- Align icons on the right, similar width as input fields --- */
+.fate-points-row .fate-icons {
+    display: flex;                /* Arrange icons in a row */
+    gap: 0.25rem;                 /* Small spacing between icons */
+    justify-content: flex-end;    /* Align to the right column */
+    flex: 1;                      /* Take the same space as the input field */
+}
+
+/* --- Optional: make icons interactive or indicate remaining points --- */
+.fate-points-row .fa-skull {
+    color: #428bca;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.fate-points-row .fa-skull.spent {
+    color: #cce7f5; /* Grayed out when spent */
+}
+
+/* ================================
+   Rolemaster Sheet Tabs Styling
+   ================================ */
+
+/* Contenedor general de pestañas */
+.sheet-tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(90deg, #5a4a35 0%, #7a6542 100%);
+    border-bottom: 2px solid #c9a86b;
+    border-radius: 6px 6px 0 0;
+    font-family: var(--font-primary, "Roboto", sans-serif);
+}
+
+/* Cada pestaña individual */
+.sheet-tabs .item {
+    flex: 1;
+    text-align: center;
+    color: #d0d0d0;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 6px 8px;
+    transition: all 0.2s ease-in-out;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.sheet-tabs .item i {
+    margin-right: 6px;
+    font-size: 1.1rem;
+    vertical-align: middle;
+    color: #c8a861; /* tono dorado clásico */
+    transition: color 0.2s ease-in-out;
+}
+
+/* Hover */
+.sheet-tabs .item:hover {
+    color: #fff;
+    border-bottom: 2px solid #c8a861;
+    background: rgba(200, 168, 97, 0.1);
+}
+
+.sheet-tabs .item:hover i {
+    color: #ffd87b;
+}
+
+.sheet-tabs .item.active {
+    color: #fff;
+    background: linear-gradient(180deg, #47433b 0%, #2e2b26 100%);
+    border-bottom: 2px solid #e3c978;
+    box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.sheet-tabs .item.active i {
+    color: #f2d07d;
+}
+
+@media (max-width: 800px) {
+    .sheet-tabs .item {
+        font-size: 0.8rem;
+        padding: 4px;
+    }
+    .sheet-tabs .item i {
+        margin-right: 4px;
+        font-size: 1rem;
+    }
+}
+
+/* ================================
+   Rolemaster Sub-Tabs (secondary level)
+   ================================ */
+
+.sub-tabs {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(90deg, #2f2f2f 0%, #3a3a3a 100%);
+    border-bottom: 1px solid #444;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    font-family: var(--font-primary, "Roboto", sans-serif);
+}
+
+.sub-tabs .item {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    color: #ccc;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.sub-tabs .item:hover {
+    color: #fff;
+    background: rgba(200, 168, 97, 0.08);
+    border-bottom: 2px solid #c8a861;
+}
+
+.sub-tabs .item.active {
+    color: #fff;
+    background: rgba(200, 168, 97, 0.15);
+    border-bottom: 2px solid #e3c978;
+    font-weight: 600;
+}
+
+@media (max-width: 800px) {
+    .sub-tabs .item {
+        font-size: 0.75rem;
+    }
+}
+
+/* Search bar */
+.search-bar {
+    padding: 5px 0 8px 0;
+}
+.search-bar input[type="text"] {
+    width: 100%;
+    padding:  6px 10px;
+    border: 1px solid #8883;
+    border-radius: 6px;
+    outline: none;
+    background: linear-gradient(145deg, #ffc800, #ffffff, #ffcc44);
+    color: #313131;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4) inset, 0 0 4px rgba(255,255,255,0.05);
+    transition: all 0.2s ease;
+}
+.search-bar input[type="text"]:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 6px #58a6ff44;
+}
+
+
+
+

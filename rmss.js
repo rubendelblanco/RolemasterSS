@@ -5,8 +5,11 @@ import { RMSSActor } from "./module/documents/actor.js";
 import { RMSSItem } from "./module/documents/item.js";
 
 //Import combat classes
-import { CombatStartManager, RMSSCombat } from "./module/combat/rmss_combat.js";
+import {CombatEndManager, CombatStartManager, RMSSCombat} from "./module/combat/rmss_combat.js";
 import { RMSSCombatant } from "./module/combat/rmss_combatant.js";
+
+//Import hooks
+import "./module/combat/hooks.js"
 
 // Import Sheets
 import RMSSItemSheet from "./module/sheets/items/rmss_item_sheet.js";
@@ -76,12 +79,35 @@ Hooks.once("socketlib.ready", () => {
   socket.register("applyCriticalToEnemy", RMSSWeaponCriticalManager.applyCriticalToEnemy);
 });
 
+Hooks.once("ready", async function() {
+  console.log("RMSS | Loading arms table index...");
+  const indexPath = `${CONFIG.rmss.paths.arms_tables.replace(/\/?$/, "/")}index.json`;
+  const response = await fetch(indexPath);
+  console.log(response);
+  if (response.ok) {
+    const tablesIndex = await response.json();
+    game.rmss = game.rmss || {};
+    game.rmss.attackTableIndex = tablesIndex;
+  } else {
+    console.error("RMSS | Can't load attack table index:", indexPath);
+  }
+
+  console.log("RMSS | Loading criticals table index...");
+  const lang = game.i18n.lang === "es" ? "es" : "en";
+  const base = `${CONFIG.rmss.paths.critical_tables}/${lang}/`;
+  const response2 = await fetch(`${base}index.json`);
+  if (response2.ok) {
+    const list = await response2.json();
+    game.rmss.criticalTableIndex = list;
+  }
+});
+
 // Hook the init function and set up our system
 Hooks.once("init", function () {
   // Register the system setting for critical table language
   game.settings.register("rmss", "criticalTableLanguage", {
     name: "Critical tables language",
-    hint: "Select the language for the critical descripctions.",
+    hint: "Select the language for the critical descriptions.",
     scope: "world",              // Setting is shared across the entire world
     config: true,                // Displayed in the configuration UI
     type: String,                // The stored data type
@@ -89,11 +115,26 @@ Hooks.once("init", function () {
       "es": "Spanish",
       "en": "English"
     },
-    default: "es",               // Default language
+    default: "en",               // Default language
     onChange: value => {
       // Triggered whenever the setting changes
       console.log(`Critical table language changed to: ${value}`);
       ui.notifications.info(`Critical table language changed to: ${value.toUpperCase()}.`);
+    }
+  });
+
+  // --- Register the system setting for maximum Fate Points ---
+  game.settings.register("rmss", "maxFatePoints", {
+    name: "Maximum Fate Points",
+    hint: "Defines the maximum number of Fate Points available to player characters (0–6).",
+    scope: "world",              // Shared across the entire world
+    config: true,                // Visible in the configuration UI
+    type: Number,                // Stored as a numeric value
+    range: { min: 0, max: 6, step: 1 }, // Numeric range selector
+    default: 3,                  // Default maximum Fate Points
+    onChange: async value => {
+      // Triggered whenever the setting changes
+      ui.notifications.info(`Maximum Fate Points changed to: ${value}`);
     }
   });
 
@@ -217,50 +258,6 @@ Hooks.once("init", function () {
     return Math.round((a / b) * 100);
   });
 
-  Item.prototype.use = async function () {
-    const macroData = this.getFlag("rmss", "macro");
-
-    if (macroData && macroData.command.trim()) {
-      try {
-        const macro = new Macro({
-          name: macroData.name || `${this.name} Macro`,
-          type: "script",
-          command: macroData.command
-        });
-
-        const enemy = RMSSCombat.getTargets()?.[0];
-
-        await macro.execute({
-          item: this,
-          actor: this.actor,
-          token: this.actor?.getActiveTokens()?.[0],
-          enemy: enemy
-        });
-
-      } catch (error) {
-        console.error("Error ejecutando macro del item:", error);
-        ui.notifications.error(`Error en macro: ${error.message}`);
-      }
-    }
-
-    if (!["weapon", "creature_attack"].includes(this.type)) return;
-    const enemy = RMSSCombat.getTargets()?.[0];
-
-    if (!enemy) {
-      ui.notifications.warn("No hay un objetivo seleccionado.");
-      return;
-    }
-
-    let ob = null;
-    if (this.actor.type !== "creature") {
-      ob = this.actor.items.get(this.system.offensive_skill)?.system.total_bonus ?? 0;
-    } else {
-      ob = this.system.bonus ?? 0;
-    }
-
-    await RMSSWeaponSkillManager.sendAttackMessage(this.actor, enemy.actor, this, ob);
-  };
-
   Hooks.on("renderTokenHUD", (app, html, data) => {
     console.log("[rmss] renderTokenHUD hook fired", { app, html, data, user: game.user });
 
@@ -345,7 +342,8 @@ Hooks.once("init", function () {
 
 
   //Combat hooks
-  const combatSoundManager = new CombatStartManager();
+ new CombatStartManager();
+ new CombatEndManager();
 
   Hooks.once("ready", async function () {
     const pack = game.packs.get("rmss.skill-categories-es");

@@ -28,7 +28,7 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
             system: baseData.item.system,
             config: CONFIG.rmss,
             actorId: this.getActorId(),
-            armsTables: await this.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.arms_tables),
+            armsTables: await game.rmss?.attackTableIndex || [],
         };
 
         return sheetData;
@@ -40,21 +40,6 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
             actorId = this.item.parent.id;
         }
         return actorId;
-    }
-
-    async getJSONFileNamesFromDirectory(directory) {
-        // Open the file picker and retrieve the files from the specified directory
-        const picker = await FilePicker.browse("data", directory);
-
-        const jsonFilesObject = picker.files
-            .filter(file => file.endsWith(".json"))
-            .reduce((obj, file) => {
-                const fileName = file.split('/').pop().replace(".json", "");
-                obj[fileName] = fileName; // Create an entry where key and value are the same
-                return obj;
-            }, {});
-
-        return jsonFilesObject;
     }
 
     _getHeaderButtons() {

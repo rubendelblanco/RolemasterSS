@@ -1,49 +1,72 @@
 import {socket} from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
 import Utils from "../utils.js";
+import RollService from "./services/roll_service.js";
+import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
 
 export class RMSSWeaponSkillManager {
 
-    static async sendAttackMessage(actor, enemy, weapon, ob) {
-        // TODO: "ob" es la bonificación ofensiva inicial? unused?
-        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, ob);
+    static async handleAttack(actor, enemy, weapon) {
+        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon);
+        if (!gmResponse.confirmed) return;
+        const rollData = await RollService.highOpenEndedD100();
+        let total = rollData.total + gmResponse.diff;
+        const text = `${rollData.details} → +${gmResponse.diff} = <b>${total}</b>`;
+        const flavor = await renderTemplate("systems/rmss/templates/chat/attack-result.hbs", {
+            actor,
+            enemy,
+            weapon,
+            gmResponse,
+            text
+        });
 
-        if (gmResponse["confirmed"]) {
-            const attackRoll = new Roll(`1d100x>95`);
-            await attackRoll.evaluate();
-            const flavor = `
-                <b>${actor.name}</b> ataca con <b>${weapon.name}</b> y bonificación ofensiva de <b>${gmResponse.attackTotal}</b><br/>
-                a <b>${enemy.name}</b> con bonificación defensiva de <b>${gmResponse.defenseTotal}</b>.<br/>
-                Diferencia final: <b>${gmResponse.diff}</b><br/>
-                <i>Tirada: 1d100x>95 + ${gmResponse.diff}</i><br/>
-                <b>Total: ${attackRoll.total + gmResponse.diff}</b>
-            `;
-            await attackRoll.toMessage({
-                flavor: flavor
-            }, {create: true});
-            const baseAttack = attackRoll.terms[0].results[0].result;
-            let totalAttack = attackRoll.total + gmResponse["diff"];
-            // TODO: refactor getAttackTableResult to use the totalRoll instead of result
-            const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
-            totalAttack = (totalAttack > maximum) ? maximum : totalAttack;
-            await RMSSTableManager.getAttackTableResult(weapon, baseAttack, totalAttack, enemy, actor);
+        await ChatMessage.create({
+            rolls: rollData.roll,
+            flavor: flavor,
+            speaker: "Game master"
+        });
+
+        const baseAttack = rollData.roll.terms[0].results[0].result;
+        const tableName = weapon.system.attack_table;
+        const attackTable = await RMSSTableManager.loadAttackTable(tableName);
+        const um = RMSSTableManager.findUnmodifiedAttack(tableName, baseAttack, attackTable) != null;
+        const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
+
+        if (um) {
+            total = um;
         }
+        else {
+            total = (total > maximum) ? maximum : total;
+        }
+
+        const attackResult = await RMSSTableManager.getAttackTableResult(weapon, attackTable, total, enemy, actor);
+        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage,attackTable.critical_severity||null);
+        //fumble!
+        if (criticalResult.criticals === "fumble"){
+            await RMSSWeaponCriticalManager.getFumbleMessage(attacker);
+            return;
+        }
+
+        //critical not exists
+        if (criticalResult.criticals.length === 0) {
+            criticalResult.criticals = [
+                {'severity': null, 'critType': weapon.system.critical_type, damage: 0}
+            ];
+            await RMSSWeaponCriticalManager.updateTokenOrActorHits(
+                enemy,
+                parseInt(criticalResult.damage)
+            );
+            if (attacker.type === "character") {
+                await ExperienceManager.applyExperience(attacker, criticalResult.damage);
+            }
+        }
+
+        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor);
     }
 
-    static async attackMessagePopup(actor, enemy, weapon, ob) {
-        const hitsTaken = (actor.system.attributes.hits.current/actor.system.attributes.hits.max)*100;
-        let hitsTakenPenalty = 0;
-
-        if (hitsTaken < 75 && hitsTaken >=50) {
-            hitsTakenPenalty = -10;
-        }
-        else if (hitsTaken < 50 && hitsTaken >=25) {
-            hitsTakenPenalty = -20;
-        }
-        else if (hitsTaken < 25) {
-            hitsTakenPenalty = -30;
-        }
-
+    static async attackMessagePopup(actor, enemy, weapon) {
+        const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, actor);
+        const hitsTakenPenalty = RMSSWeaponSkillManager._getHitsPenalty(actor);
         const penaltyEffects = Utils.getEffectByName(actor, "Penalty");
         const bonusEffects = Utils.getEffectByName(actor, "Bonus");
         const stunEffect = Utils.getEffectByName(enemy, "Stunned");
@@ -131,15 +154,6 @@ export class RMSSWeaponSkillManager {
                             height: "auto",
                         });
                     }, 0);
-                    html.find("#action-points").on("change", (event) => {
-                        let actionPoints = parseInt(event.target.value);
-                        if (actionPoints < 2) actionPoints = 2;
-                        if (actionPoints > 4) actionPoints = 4;
-                        event.target.value = actionPoints;
-                        const actionPenalty = (4-actionPoints)*(-25);
-                        html.find("#action-points-penalty").val(actionPenalty);
-                        calculateTotal();
-                    });
                     html.find(".is-negative").on("change", (event) => {
                          event.target.value = parseInt(event.target.value) > 0 ? -event.target.value : event.target.value;
                     });
@@ -161,7 +175,34 @@ export class RMSSWeaponSkillManager {
                 }
             }).render(true);
         });
-
         return confirmed;
+    }
+
+    static _getOffensiveBonusFromWeapon(weapon, actor) {
+        const skillId = weapon.system.offensive_skill;
+        const skillItem = game.actors.get(actor._id).items.get(skillId);
+
+        if (!skillItem) {
+            return 0;
+        } else {
+            return skillItem.system.total_bonus ?? 0;
+        }
+    }
+
+    static _getHitsPenalty(actor) {
+        const hitsTaken = (actor.system.attributes.hits.current/actor.system.attributes.hits.max)*100;
+        let hitsTakenPenalty = 0;
+
+        if (hitsTaken < 75 && hitsTaken >=50) {
+            hitsTakenPenalty = -10;
+        }
+        else if (hitsTaken < 50 && hitsTaken >=25) {
+            hitsTakenPenalty = -20;
+        }
+        else if (hitsTaken < 25) {
+            hitsTakenPenalty = -30;
+        }
+
+        return hitsTakenPenalty;
     }
 }

@@ -18,7 +18,11 @@
             <tr>
                 <td>
                     <select name="system.attack_table" class="app-stat-selector" value="{{system.attack_table}}" itemid="{{ item._id }}">
-                    {{selectOptions armsTables selected=system.attack_table}}
+                        {{#each armsTables as |key|}}
+                            <option value="{{key}}" {{#if (eq key ../system.attack_table)}}selected{{/if}}>
+                                {{localize (concat "rmss.attack_table." key)}}
+                            </option>
+                        {{/each}}
                     </select>
                 </td>
                 <td>

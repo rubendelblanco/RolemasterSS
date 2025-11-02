@@ -22,20 +22,6 @@
               value="{{system.attributes.hits.current}}" />/<input name="system.attributes.hits.max" type="Number"
               value="{{system.attributes.hits.max}}" /></h4>
         </div>
-
-        <div class="resource-entry">
-          <div class="exhaustion-resources">
-            {{ localize "rmss.player_character.resources.exhaustion_points" }}
-            <h4><input name="system.attributes.exhaustion_points.current" type="Number"
-                value="{{system.attributes.exhaustion_points.current}}" />/<input
-                name="system.attributes.exhaustion_points.max" type="Number"
-                value="{{system.attributes.exhaustion_points.max}}" /></h4>
-          </div>
-          <div class="exhaustion-modifier">
-            <label>{{system.attributes.exhaustion_points.modifier}}</label>
-          </div>
-        </div>
-
         <div class="resource-entry">
           <div class="pp-resources">
             {{ localize "rmss.player_character.resources.power_points" }}
@@ -43,13 +29,41 @@
                 value="{{system.attributes.power_points.current}}" />/<input name="system.attributes.power_points.max"
                 type="Number" value="{{system.attributes.power_points.max}}" /></h4>
           </div>
-          <div class="pp-exhaustion">
-            <label>{{system.attributes.power_points.modifier}}</label>
-          </div>
         </div>
       </div>
 
       <!-- Name, XP and Level Section-->
+
+      <div class="header-container">
+        <!-- Fate Points row -->
+        {{#if fateIcons.length}}
+        <div class="header-text flexrow fate-points-row">
+          <!-- Label column -->
+          <label>{{ localize "rmss.pc_sheet_fixed_info.fate_points" }}</label>
+
+          <!-- Icon column -->
+          <div class="fate-icons">
+            {{#each fateIcons as |index|}}
+            {{#unless (lt ../system.attributes.fate_points.value index)}}
+            <i class="fa-solid fa-skull" data-index="{{index}}"></i>
+            {{else}}
+            <i class="fa-regular fa-skull" data-index="{{index}}"></i>
+            {{/unless}}
+            {{/each}}
+          </div>
+        </div>
+        {{/if}}
+
+        <!-- Movement Rate row -->
+        <div class="header-text flexrow">
+          <label for="movement-rate">{{ localize "rmss.pc_sheet_fixed_info.movement_rate" }}</label>
+          <input id="movement-rate" name="system.movement_rate" data-dtype="Number" type="text"
+                 value="{{system.movement_rate}}" />
+        </div>
+
+        <div class="header-text flexrow">
+        </div>
+      </div>
 
       <div class="header-container">
         <div class="header-text">
@@ -60,13 +74,13 @@
         <div class="header-text flexrow">
           <label for="level">{{ localize "rmss.player_character.level" }}</label>
           <input id="level" name="system.attributes.level.value" data-dtype="Number" type="text"
-            value="{{system.attributes.level.value}}" />
+                 value="{{system.attributes.level.value}}" />
         </div>
 
         <div class="header-text flexrow">
           <label for="experience-points">{{ localize "rmss.player_character.experience" }}</label>
           <input id="experience-points" name="system.attributes.experience_points.value" data-dtype="Number" type="text"
-            value="{{system.attributes.experience_points.value}}" />
+                 value="{{system.attributes.experience_points.value}}" />
         </div>
       </div>
 
@@ -77,13 +91,16 @@
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     {{!-- Default tab is specified in actor-sheet.mjs --}}
-    <a class="item" data-tab="Record">{{ localize "rmss.pc_sheet_tabs.record" }}</a>
-    <a class="item" data-tab="SkillCategory">{{ localize "rmss.pc_sheet_tabs.skill_categories" }}</a>
-    <a class="item" data-tab="Skills">{{ localize "rmss.pc_sheet_tabs.skills" }}</a>
-    <a class="item" data-tab="Equipment">{{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
-    <a class="item" data-tab="Spells">{{ localize "rmss.pc_sheet_tabs.spells" }}</a>
-    <a class="item" data-tab="StatusRecord">{{ localize "rmss.pc_sheet_tabs.status_record" }}</a>
-    <a class="item" data-tab="ExperiencePoints">{{ localize "rmss.pc_sheet_tabs.experience_points" }}</a>
+    <a class="item" data-tab="Record"><i class="fa-regular fa-circle-user"></i> {{ localize "rmss.pc_sheet_tabs.record" }}</a>
+    <a class="item" data-tab="SkillCategory"><i class="fa-regular fa-list"></i> {{ localize "rmss.pc_sheet_tabs.skill_categories" }}</a>
+    <a class="item" data-tab="Skills"><i class="fa fa-cogs" aria-hidden="true"></i>
+      {{ localize "rmss.pc_sheet_tabs.skills" }}</a>
+    <a class="item" data-tab="Equipment"><i class="fa-solid fa-backpack"></i> {{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
+    <a class="item" data-tab="Spells"><i class="fa-solid fa-scroll"></i> {{ localize "rmss.pc_sheet_tabs.spells" }}</a>
+    <a class="item" data-tab="StatusRecord"><i class="fa-solid fa-person-rays"></i>
+      {{ localize "rmss.pc_sheet_tabs.status_record" }}</a>
+    <a class="item" data-tab="ExperiencePoints"><i class="fa-solid fa-brain"></i>
+      {{ localize "rmss.pc_sheet_tabs.experience_points" }}</a>
   </nav>
   <!-- Body Section-->
   <section class="sheet-body">
@@ -123,9 +140,9 @@
 
     <div class="tab skills" data-group="primary" data-tab="Skills">
       <nav class="sub-tabs tabs" data-group="skills-tabs">
-        <a class="item" data-tab="skills-skills">{{ localize "rmss.skills_tabs.skills" }}</a>
-        <a class="item" data-tab="spells-skills">{{ localize "rmss.skills_tabs.spells" }}</a>
-        <a class="item" data-tab="languages-skills">{{ localize "rmss.skills_tabs.languages" }}</a>
+        <a class="item" data-tab="skills-skills"><i class="fa-regular fa-gear"></i> {{ localize "rmss.skills_tabs.skills" }}</a>
+        <a class="item" data-tab="spells-skills"><i class="fad fa-scroll"></i> {{ localize "rmss.skills_tabs.spells" }}</a>
+        <a class="item" data-tab="languages-skills"><i class="fa-solid fa-comments"></i>  {{ localize "rmss.skills_tabs.languages" }}</a>
       </nav>
       {{> "systems/rmss/templates/sheets/actors/parts/search-text.hbs"
       id="mod-search-form-actor-skills"

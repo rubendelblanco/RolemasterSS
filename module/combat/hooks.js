@@ -1,3 +1,6 @@
+import { RMSSCombat } from "./rmss_combat.js";
+import {RMSSWeaponSkillManager} from "./rmss_weapon_skill_manager.js";
+
 Hooks.on("hoverToken", (token, hovered) => {
     if (hovered) {
         let effectInfo = {};
@@ -94,3 +97,13 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         }
     });
 });
+
+
+Hooks.on("rmssItemUsed", async (item) => {
+    if (!["weapon", "creature_attack"].includes(item.type)) return;
+
+    const enemy = RMSSCombat?.getTargets()?.[0];
+    if (!enemy) return ui.notifications.warn("No target selected.");
+    await RMSSWeaponSkillManager.handleAttack(item.actor, enemy.actor, item);
+});
+

@@ -85,4 +85,47 @@ export class RMSSItem extends Item {
       }
     }
   }
+
+  /**
+   * Main entry point when the item is used.
+   * Executes any assigned macro and triggers system hooks.
+   */
+  async use() {
+    // 1. Execute custom macro if present
+    await this._executeItemMacro();
+
+    // 2. Trigger system-wide hook for specific handlers
+    Hooks.callAll("rmssItemUsed", this);
+  }
+
+  /**
+   * Execute an embedded macro if the item defines one.
+   * @private
+   */
+  async _executeItemMacro() {
+    const macroData = this.getFlag("rmss", "macro");
+    if (!macroData || !macroData.command?.trim()) return;
+
+    try {
+      const macro = new Macro({
+        name: macroData.name || `${this.name} Macro`,
+        type: "script",
+        command: macroData.command
+      });
+
+      await macro.execute({
+        item: this,
+        actor: this.actor,
+        token: this.actor?.getActiveTokens()?.[0]
+      });
+    } catch (err) {
+      console.error("Error executing item macro:", err);
+      ui.notifications.error(`Macro error: ${err.message}`);
+    }
+  }
+
+  static _getOwnerActor() {
+    const ownerId = Object.keys(item.ownership).find(k => k !== "default");
+    return game.actors.get(ownerId);
+  }
 }

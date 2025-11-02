@@ -5,45 +5,48 @@ import { sendExpMessage } from "../chat/chatMessages.js";
 import Utils from "../utils.js";
 import { rmss } from "../config.js";
 import {RMSSCombat} from "./rmss_combat.js";
+import {RMSSEffectApplier} from "./rmss_effect_applier.js";
+
+
+/* ---------------------------------------------
+ * Mapping of column results for large creature criticals
+ * --------------------------------------------- */
+const CRITICAL_COLUMN_MAP = {
+    large_spell: { normal: "A", default: "B" },
+    superlarge_spell: { normal: "A", default: "B" },
+    large_melee: {
+        normal: "A",
+        magic: "B",
+        mithril: "C",
+        sacred: "D",
+        slaying: "E"
+    },
+    superlarge_melee: {
+        normal: "A",
+        magic: "B",
+        mithril: "C",
+        sacred: "D",
+        slaying: "E"
+    }
+};
 
 class LargeCreatureCriticalStrategy {
-
     constructor(criticalType) {
         this.criticalType = criticalType;
     }
 
+    /**
+     * Determine which critical table column applies to this subtype.
+     * @param {string} subtype - The weapon or material subtype (normal, magic, mithril, etc.)
+     * @returns {string} - The letter of the column (A–E).
+     */
     getColumForCriticalSubtype(subtype) {
-        switch (this.criticalType) {
-            case "large_spell":
-            case "superlarge_spell": {
-                switch (subtype) {
-                    case "normal":
-                        return "A";
-                    default:
-                        return "B";
-                }
-            }
-            case "large_melee":
-            case "superlarge_melee": {
-                switch (subtype) {
-                    case "normal":
-                        return "A";
-                    case "magic":
-                        return "B";
-                    case "mithril":
-                        return "C";
-                    case "sacred":
-                        return "D";
-                    case "slaying":
-                        return "E";
-                    default:
-                        throw new Error(`Unknown subtype ${subtype} for critical type ${this.criticalType}`);
-                }
-            }
-        }
+        const map = CRITICAL_COLUMN_MAP[this.criticalType];
+        if (!map) throw new Error(`Unknown critical type: ${this.criticalType}`);
+        return map[subtype] ?? map.default ?? "A";
     }
 
-    async apply(attackerActor, defenderActor,data = {}) {
+    async apply(attackerActor, defenderActor, data = {}) {
         const {
             damage,
             severity,
@@ -54,48 +57,32 @@ class LargeCreatureCriticalStrategy {
         } = data;
         const tableName = this.criticalType;
 
-        if (Utils.isAPC(actor.id)) {
+        // Apply XP for player characters
+        if (Utils.isAPC(attackerActor.id)) {
             const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
             const hpExp = parseInt(data.damage);
-            let breakDown = {};
-            let totalExp = 0;
+            const breakDown = isNaN(criticalExp)
+                ? { hp: hpExp }
+                : { critical: criticalExp, hp: hpExp };
+            const totalExp = Object.values(breakDown).reduce((a, b) => a + b, 0);
+            const totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0) + totalExp;
 
-            if (criticalExp === "null" || isNaN(criticalExp)) {
-                breakDown = { 'hp': hpExp };
-                totalExp = hpExp;
-            } else {
-                breakDown = { 'critical': criticalExp, 'hp': hpExp };
-                totalExp = criticalExp + hpExp;
-            }
-
-            let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
-            totalExpActor += totalExp;
             await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
             await sendExpMessage(attackerActor, breakDown, totalExp);
         }
 
-        // 2. Tiramos el critico
+        // Roll for the critical
         const column = this.getColumForCriticalSubtype(subCritType);
         const roll = new Roll(`1d100x>95`);
         await roll.evaluate({ async: true });
         await roll.toMessage(undefined, { create: true });
-        const total = roll.total;
-        // TODO: Restar cuando el bixo tiene lo de -25 o -50 por critical procedure.
-        // NOTA: Esto se ejecuta como GM porque el modal de editar el critico lo edita el GM
+
         let newHits = defenderActor.system.attributes.hits.current - parseInt(damage);
         await defenderActor.update({ "system.attributes.hits.current": newHits });
         if (severity === "null") return;
-        let result = (parseInt(total) + parseInt(modifier));
-        if (result < 1) result = 1;
-        else {
-            result = Math.min(result, 999);
-        }
-        return await RMSSTableManager.getCriticalTableResult(
-            result,
-            defenderActor,
-            column, // aka severity, pero para las critauras grandes ha habido que sacar la columna especificamente.
-            tableName
-        );
+
+        let result = Math.min(Math.max(parseInt(roll.total) + parseInt(modifier), 1), 999);
+        return await RMSSTableManager.getCriticalTableResult(result, defenderActor, column, tableName);
     }
 }
 
@@ -103,6 +90,7 @@ class BaseCriticalStrategy {
     constructor(criticalType) {
         this.criticalType = criticalType;
     }
+
     async apply(attackerActor, defenderActor, data = {}) {
         if (Utils.isAPC(attackerActor.id)) {
             const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
@@ -111,28 +99,27 @@ class BaseCriticalStrategy {
             let totalExp = 0;
 
             if (criticalExp === "null" || isNaN(criticalExp)) {
-                breakDown = {'hp': hpExp};
+                breakDown = { hp: hpExp };
                 totalExp = hpExp;
             } else {
-                breakDown = {'critical': criticalExp, 'hp': hpExp};
+                breakDown = { critical: criticalExp, hp: hpExp };
                 totalExp = criticalExp + hpExp;
             }
 
             let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
             totalExpActor = totalExpActor + totalExp;
-            await attackerActor.update({"system.attributes.experience_points.value": totalExpActor});
+            await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
             await sendExpMessage(attackerActor, breakDown, totalExp);
         }
-        let target = RMSSCombat.getTargets()[0].id; //token id
+
+        const target = RMSSCombat.getTargets()[0].id;
         return await socket.executeAsGM("updateActorHits", target, undefined, parseInt(data.damage), data);
     }
 }
 
-
 export class RMSSWeaponCriticalManager {
     static criticalCalculatorStrategy(criticalType) {
         switch (criticalType) {
-            // TODO: Tal vez tenga sentido meter esto en un lista "verde especial".
             case "large_melee":
             case "superlarge_melee":
             case "large_spell":
@@ -150,7 +137,7 @@ export class RMSSWeaponCriticalManager {
         }
         if (result === "F") { //fumble
             // TODO
-            return { criticals: [] };// Also nothing 
+            return { criticals: 'fumble' };// Also nothing
         }
 
         if (typeof result === "number" || /^\d+$/.test(result)) {
@@ -212,11 +199,7 @@ export class RMSSWeaponCriticalManager {
         );
     }
 
-    /**
-     * se llama cuando se hace click en el botón de chat para lanzar un crítico
-     */
     static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId,) {
-        // Saca el modal formulario al GM para editar y/o confirmar el critico.
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType);
 
         if (!gmResponse["confirmed"]) {
@@ -243,21 +226,6 @@ export class RMSSWeaponCriticalManager {
         return await strategy.apply(actor, target.actor,  { damage, severity, critType, subCritType, modifier, metadata });
     }
 
-    static async getJSONFileNamesFromDirectory(directory) {
-        // Open the file picker and retrieve the files from the specified directory
-        const picker = await FilePicker.browse("data", directory);
-
-        const jsonFilesObject = picker.files
-            .filter(file => file.endsWith(".json"))
-            .reduce((obj, file) => {
-                const fileName = file.split('/').pop().replace(".json", "");
-                obj[fileName] = fileName; // Create an entry where key and value are the same
-                return obj;
-            }, {});
-
-        return jsonFilesObject;
-    }
-
     static async criticalMessagePopup(enemy, damage, severity, critType) {
         let modifier = 0;
         if (enemy.type === "creature" || enemy.type === "npc") {
@@ -279,7 +247,7 @@ export class RMSSWeaponCriticalManager {
             damage: damage,
             severity: severity,
             critType: critType,
-            critTables: await RMSSWeaponCriticalManager.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.critical_tables),
+            critTables: await game.rmss?.attackTableIndex || [],
             subcritdict: CONFIG.rmss.criticalSubtypes,
             critDict: CONFIG.rmss.criticalDictionary,
             modifier: modifier,
@@ -289,7 +257,7 @@ export class RMSSWeaponCriticalManager {
 
         let confirmed = await new Promise((resolve) => {
             new Dialog({
-                title: game.i18n.localize("rmss.combat.confirm_attack"),
+                title: game.i18n.localize("rmss.combat.confirm_critical"),
                 content: htmlContent,
                 buttons: {
                     confirm: {
@@ -319,7 +287,6 @@ export class RMSSWeaponCriticalManager {
                         html.find("#damage").val(damage);
                     });
 
-                    // Tener en cuenta criaturas largas y superlargas.
                     html.find("#critical-type").on("change", (event) => {
                         const tableName = (event.target.value);
                         // Display block subtype if 
@@ -353,161 +320,7 @@ export class RMSSWeaponCriticalManager {
 
     static async applyCriticalTo(critical, actor, originId) {
         console.log("Applying critical to:", critical, actor, originId);
-        let entity = actor;
-        if (!critical || !critical.hasOwnProperty("metadata") || !critical.metadata) {
-            return;
-        }
-
-        let stun_bleeding = "-";
-
-        if (entity.system.attributes.hasOwnProperty("critical_codes")) {
-            stun_bleeding = entity.system.attributes.critical_codes.stun_bleeding;
-        }
-
-        if (critical.metadata.hasOwnProperty("HP")) {
-            entity.system.attributes.hits.current -= parseInt(critical.metadata["HP"]);
-            await entity.update({ "system.attributes.hits.current": entity.system.attributes.hits.current });
-        }
-
-        if (critical.metadata.hasOwnProperty("STUN") && stun_bleeding === "-") {
-            const stunRounds = critical.metadata["STUN"]["ROUNDS"];
-            const existingStunEffect = entity.effects.find(e => e.name === "Stunned");
-
-            if (existingStunEffect) {
-                const newRounds = (existingStunEffect.duration.rounds || 0) + stunRounds;
-                await existingStunEffect.update({ "duration.rounds": newRounds });
-            } else {
-                const effectData = {
-                    name: "Stunned",
-                    icon: `${CONFIG.rmss.paths.icons_folder}stunned.svg`,
-                    origin: entity.id,
-                    duration: {
-                        rounds: stunRounds,
-                        startRound: game.combat ? game.combat.round : 0
-                    },
-                    disabled: false
-                };
-
-                await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
-            }
-        }
-
-        if (critical.metadata.hasOwnProperty("HPR") && stun_bleeding !== "bleeding") {
-            const effectData = {
-                name: "Bleeding",
-                icon: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
-                origin: `Actor.${entity.id}`,
-                description: critical.text,
-                duration: {
-                    rounds: 1,
-                    startRound: game.combat ? game.combat.round : 0
-                },
-                flags: {
-                    rmss: {
-                        value: parseInt(critical.metadata["HPR"])
-                    }
-                },
-                disabled: false
-            };
-
-            await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
-        }
-
-
-        if (critical.metadata.hasOwnProperty("PE")) {
-            let penaltyValue = parseInt(critical.metadata["PE"]["VALUE"]);
-            penaltyValue = penaltyValue > 0 ? -penaltyValue : penaltyValue;
-
-            const effectData = {
-                name: "Penalty",
-                icon: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
-                origin: entity.id,
-                disabled: false,
-                description: critical.text,
-                flags: {
-                    rmss:{
-                        value: penaltyValue
-                    }
-                },
-                duration: {
-                    rounds: 1, //need to put a value. Otherwise, ActiveEffects doesn't render the icon in token
-                    startRound: game.combat ? game.combat.round : 0
-                },
-            };
-
-            await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
-        }
-
-        if (critical.metadata.hasOwnProperty("P")) {
-            const existingParryEffect = entity.effects.find(e => e.name === "Parry");
-
-            if (existingParryEffect) {
-                const newRounds = (existingParryEffect.duration.rounds || 0) + stunRounds;
-                await existingParryEffect.update({ "duration.rounds": newRounds });
-            }
-            else {
-                const effectData = {
-                    name: "Parry",
-                    icon: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
-                    origin: entity.id,
-                    disabled: false,
-                    duration: {
-                        rounds: critical.metadata["P"]["ROUNDS"],
-                        startRound: game.combat ? game.combat.round : 0
-                    }
-                };
-
-                await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
-            }
-        }
-
-        if (critical.metadata.hasOwnProperty("NP")) {
-            const noParryRounds = critical.metadata["NP"];
-            const existingParryEffect = entity.effects.find(e => e.name === "No parry");
-
-            if (existingParryEffect) {
-                const newRounds = (noParryRounds || 0) + noParryRounds;
-                await existingStunEffect.update({ "duration.rounds": newRounds });
-            }
-            else {
-                const effectData = {
-                    name: "No parry",
-                    icon: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
-                    origin: entity.id,
-                    disabled: false,
-                    duration: {
-                        rounds: noParryRounds,
-                        startRound: game.combat ? game.combat.round : 0
-                    }
-                };
-                await entity.createEmbeddedDocuments("ActiveEffect", [effectData]);
-            }
-        }
-
-        if (critical.metadata.hasOwnProperty("BONUS")) {
-            const effectData = {
-                name: "Bonus",
-                icon: `${CONFIG.rmss.paths.icons_folder}bonus.svg`,
-                origin: originId,
-                disabled: false,
-                description: critical.text,
-                duration: {
-                    rounds: critical.metadata["BONUS"] && critical.metadata["BONUS"]["ROUNDS"] ? critical.metadata["BONUS"]["ROUNDS"] : 1,
-                    startRound: game.combat ? game.combat.round : 0
-                },
-                flags: {
-                    rmss:{
-                        value: parseInt(critical.metadata["BONUS"]["VALUE"])
-                    }
-                }
-            };
-
-            const attacker = game.actors.get(originId);
-            if (attacker) {
-                await attacker.createEmbeddedDocuments("ActiveEffect", [effectData]);
-            }
-        }
-
+        return await RMSSEffectApplier.applyCriticalEffects(critical, actor, originId);
     }
     /**
      * NOTE: Due to known issues with ActiveEffect handling in Foundry VTT version 12,
@@ -552,5 +365,32 @@ export class RMSSWeaponCriticalManager {
         });
 
         return option;
+    }
+
+    static async getFumbleMessage(attacker){
+        const htmlContent = await renderTemplate("systems/rmss/templates/chat/fumble-result.hbs", {
+            attacker: attacker
+        });
+        const speaker = "Game Master";
+
+        await ChatMessage.create({
+            content: htmlContent,
+            speaker: speaker
+        });
+    }
+
+    static async getCriticalMessage(damage, criticalResult, attacker) {
+        const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
+            damageStr: damage,
+            damage: criticalResult.damage,
+            criticals: criticalResult.criticals,
+            attacker: attacker
+        });
+        const speaker = "Game Master";
+
+        await ChatMessage.create({
+            content: htmlContent,
+            speaker: speaker
+        });
     }
 }
