@@ -5,7 +5,7 @@ import { RMSSActor } from "./module/documents/actor.js";
 import { RMSSItem } from "./module/documents/item.js";
 
 //Import combat classes
-import { CombatStartManager, RMSSCombat } from "./module/combat/rmss_combat.js";
+import {CombatEndManager, CombatStartManager, RMSSCombat} from "./module/combat/rmss_combat.js";
 import { RMSSCombatant } from "./module/combat/rmss_combatant.js";
 
 //Import hooks
@@ -342,7 +342,8 @@ Hooks.once("init", function () {
 
 
   //Combat hooks
-  const combatSoundManager = new CombatStartManager();
+ new CombatStartManager();
+ new CombatEndManager();
 
   Hooks.once("ready", async function () {
     const pack = game.packs.get("rmss.skill-categories-es");

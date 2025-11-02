@@ -100,7 +100,7 @@ export class RMSSEffectApplier {
             description,
             disabled: false,
             flags: { rmss: { value: rate } },
-            duration: { rounds: null, startRound: game.combat ? game.combat.round : 0 }
+            duration: { rounds: 99, startRound: game.combat ? game.combat.round : 0 }
         }]);
     }
 
@@ -114,7 +114,7 @@ export class RMSSEffectApplier {
             description,
             disabled: false,
             flags: { rmss: { value: penalty } },
-            duration: { rounds: null, startRound: game.combat ? game.combat.round : 0 }
+            duration: { rounds: 99, startRound: game.combat ? game.combat.round : 0 }
         }]);
     }
 
