@@ -123,4 +123,9 @@ export class RMSSItem extends Item {
       ui.notifications.error(`Macro error: ${err.message}`);
     }
   }
+
+  static _getOwnerActor() {
+    const ownerId = Object.keys(item.ownership).find(k => k !== "default");
+    return game.actors.get(ownerId);
+  }
 }

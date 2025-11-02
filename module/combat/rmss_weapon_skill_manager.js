@@ -65,7 +65,7 @@ export class RMSSWeaponSkillManager {
     }
 
     static async attackMessagePopup(actor, enemy, weapon) {
-        const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon);
+        const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, actor);
         const hitsTakenPenalty = RMSSWeaponSkillManager._getHitsPenalty(actor);
         const penaltyEffects = Utils.getEffectByName(actor, "Penalty");
         const bonusEffects = Utils.getEffectByName(actor, "Bonus");
@@ -178,10 +178,9 @@ export class RMSSWeaponSkillManager {
         return confirmed;
     }
 
-    static _getOffensiveBonusFromWeapon(weapon) {
-        debugger;
+    static _getOffensiveBonusFromWeapon(weapon, actor) {
         const skillId = weapon.system.offensive_skill;
-        const skillItem = weapon.actor?.items.get(skillId);
+        const skillItem = game.actors.get(actor._id).items.get(skillId);
 
         if (!skillItem) {
             return 0;

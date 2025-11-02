@@ -99,7 +99,6 @@ Hooks.once("ready", async function() {
   if (response2.ok) {
     const list = await response2.json();
     game.rmss.criticalTableIndex = list;
-    console.log(`RMSS | Critical tables (${lang}):`, list);
   }
 });
 
