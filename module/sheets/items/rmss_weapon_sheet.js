@@ -2,6 +2,7 @@
 
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 
+
 export default class RMSSWeaponSheet extends ItemSheet {
 
   // Set the height and width

@@ -358,4 +358,38 @@ export default class ItemService {
         await containerItem.delete();
         ui.notifications.info(`${containerItem.name} and its contents have been unlinked.`);
     }
+
+    /**
+     * Compare two items to determine if they are equal.
+     *
+     * Two items are considered equal if they have the same name and,
+     * if either item has an image, they both have the same image.
+     *
+     * @param {Item} item1 - The first item to compare.
+     * @param {Item} item2 - The second item to compare.
+     * @returns {boolean} True if the items have the same name and image (if present), false otherwise.
+     */
+    static equals(item1, item2) {
+        // Compare names
+        if (item1.name !== item2.name) {
+            return false;
+        }
+
+        // Compare images if either item has one
+        const img1 = item1.img || null;
+        const img2 = item2.img || null;
+
+        // If both have no image, they are equal (same name)
+        if (!img1 && !img2) {
+            return true;
+        }
+
+        // If one has an image and the other doesn't, they are not equal
+        if ((img1 && !img2) || (!img1 && img2)) {
+            return false;
+        }
+
+        // Both have images, compare them
+        return img1 === img2;
+    }
 }
