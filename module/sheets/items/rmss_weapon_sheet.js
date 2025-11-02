@@ -33,11 +33,12 @@ export default class RMSSWeaponSheet extends ItemSheet {
       config: CONFIG.rmss,
       enrichedDescription: enrichedDescription,
       armsTables: await game.rmss?.attackTableIndex || [],
-      criticalTables: await game.rmss.criticalTableIndex,
+      criticalTables: await game.rmss?.criticalTableIndex || [],
       offensiveSkills: await this.getOffensiveSkills()
     };
 
-    console.log(sheetData.criticalTables);
+    console.log("------------------------------------------------------");
+    console.log (sheetData);
 
     return sheetData;
   }

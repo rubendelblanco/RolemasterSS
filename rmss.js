@@ -97,13 +97,11 @@ Hooks.once("ready", async function() {
   const base = `${CONFIG.rmss.paths.critical_tables}/${lang}/`;
   const response2 = await fetch(`${base}index.json`);
   if (response2.ok) {
-    const list = await response.json();
+    const list = await response2.json();
     game.rmss.criticalTableIndex = list;
     console.log(`RMSS | Critical tables (${lang}):`, list);
   }
 });
-
-
 
 // Hook the init function and set up our system
 Hooks.once("init", function () {

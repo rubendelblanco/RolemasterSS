@@ -1122,5 +1122,26 @@ tr.container-row {
     }
 }
 
+/* Search bar */
+.search-bar {
+    padding: 5px 0 8px 0;
+}
+.search-bar input[type="text"] {
+    width: 100%;
+    padding:  6px 10px;
+    border: 1px solid #8883;
+    border-radius: 6px;
+    outline: none;
+    background: linear-gradient(145deg, #ffc800, #ffffff, #ffcc44);
+    color: #313131;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4) inset, 0 0 4px rgba(255,255,255,0.05);
+    transition: all 0.2s ease;
+}
+.search-bar input[type="text"]:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 6px #58a6ff44;
+}
+
+
 
 
