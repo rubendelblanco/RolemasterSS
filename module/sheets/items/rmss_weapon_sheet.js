@@ -32,29 +32,14 @@ export default class RMSSWeaponSheet extends ItemSheet {
       system: baseData.item.system,
       config: CONFIG.rmss,
       enrichedDescription: enrichedDescription,
-      armsTables: await this.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.arms_tables),
-      criticalTables: await this.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.critical_tables),
+      armsTables: await game.rmss?.attackTableIndex || [],
+      criticalTables: await game.rmss.criticalTableIndex,
       offensiveSkills: await this.getOffensiveSkills()
     };
 
     console.log(sheetData.criticalTables);
 
     return sheetData;
-  }
-
-  async getJSONFileNamesFromDirectory(directory) {
-    // Open the file picker and retrieve the files from the specified directory
-    const picker = await FilePicker.browse("data", directory);
-
-    const jsonFilesObject = picker.files
-      .filter(file => file.endsWith(".json"))
-      .reduce((obj, file) => {
-        const fileName = file.split('/').pop().replace(".json", "");
-        obj[fileName] = fileName; // Create an entry where key and value are the same
-        return obj;
-      }, {});
-
-    return jsonFilesObject;
   }
 
   async getOffensiveSkills() {

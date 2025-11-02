@@ -79,12 +79,38 @@ Hooks.once("socketlib.ready", () => {
   socket.register("applyCriticalToEnemy", RMSSWeaponCriticalManager.applyCriticalToEnemy);
 });
 
+Hooks.once("ready", async function() {
+  console.log("RMSS | Loading arms table index...");
+  const indexPath = `${CONFIG.rmss.paths.arms_tables.replace(/\/?$/, "/")}index.json`;
+  const response = await fetch(indexPath);
+  console.log(response);
+  if (response.ok) {
+    const tablesIndex = await response.json();
+    game.rmss = game.rmss || {};
+    game.rmss.attackTableIndex = tablesIndex;
+  } else {
+    console.error("RMSS | Can't load attack table index:", indexPath);
+  }
+
+  console.log("RMSS | Loading criticals table index...");
+  const lang = game.i18n.lang === "es" ? "es" : "en";
+  const base = `${CONFIG.rmss.paths.critical_tables}/${lang}/`;
+  const response2 = await fetch(`${base}index.json`);
+  if (response2.ok) {
+    const list = await response.json();
+    game.rmss.criticalTableIndex = list;
+    console.log(`RMSS | Critical tables (${lang}):`, list);
+  }
+});
+
+
+
 // Hook the init function and set up our system
 Hooks.once("init", function () {
   // Register the system setting for critical table language
   game.settings.register("rmss", "criticalTableLanguage", {
     name: "Critical tables language",
-    hint: "Select the language for the critical descripctions.",
+    hint: "Select the language for the critical descriptions.",
     scope: "world",              // Setting is shared across the entire world
     config: true,                // Displayed in the configuration UI
     type: String,                // The stored data type

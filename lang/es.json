@@ -388,6 +388,7 @@
     },
     "combat": {
       "confirm_attack": "Confirmar ataque",
+      "confirm_critical": "Confirmar critico",
       "ob": "Bonificación ofensiva",
       "action_points": "Puntos acción",
       "hits_taken": "PV perdidos",

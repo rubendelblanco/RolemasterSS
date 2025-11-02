@@ -63,8 +63,9 @@ export class RMSSEffectApplier {
         await entity.update({ "system.attributes.hits.current": newHits });
 
         if (entity.system.attributes.hits.current <= 0) {
-            const token = entity.getActiveTokens()[0];
-            if (token) await RMSSEffectApplier._markTokenAsDead(entity);
+            const tokens = entity.getActiveTokens(true);
+            const selected = tokens.find(t => t.controlled) || tokens[0];
+            if (selected) await RMSSEffectApplier._markTokenAsDead(selected);
         }
     }
 
@@ -173,36 +174,45 @@ export class RMSSEffectApplier {
      * Works both in and out of combat.
      * @param {Token} token - The target token object.
      */
-    static async _markTokenAsDead(actor) {
-        if (!actor) return ui.notifications.error("No token provided.");
+    static async _markTokenAsDead(token) {
+        if (!token) return ui.notifications.error("No token provided.");
 
-        await actor.createEmbeddedDocuments("ActiveEffect", [{
+        const actor = token.actor;
+        // 1) Create overlay effect ON THE TOKEN (not actor)
+        await token.actor.createEmbeddedDocuments("ActiveEffect", [{
             name: "Dead",
-            icon: globalThis.CONFIG.controlIcons.defeated,
-            origin: actor.id,
+            icon: globalThis.CONFIG.controlIcons.defeated,  // core skull
+            origin: actor.uuid,
             disabled: false,
             flags: { core: { overlay: true } },
-            duration: { rounds: 1, startRound: game.combat ? game.combat.round : 0 }
+            // Use a large numeric duration so FVTT v13 renders it reliably
+            duration: {
+                rounds: 999999,
+                startRound: game.combat ? game.combat.round : 0,
+                seconds: 999999 * (CONFIG.time?.roundTime ?? 6),
+                startTime: game.time.worldTime
+            }
         }]);
 
-        const combatant = game.combat?.getCombatantByToken(actor.id);
-
-        // Clean old overlay
-        await actor.document.update({ overlayEffect: null });
-
-        // Sync with combat
+        // 2) If this token is in the active combat, mark its combatant defeated (greys the portrait)
+        const combatant = game.combat?.getCombatantByToken(token.id);
         if (combatant && !combatant.defeated) {
-            await combatant.update({defeated: true});
+            await combatant.update({ defeated: true });
         }
 
-        // Apply the overlay and refresh token
-        await actor.document.update({ overlayEffect: globalThis.CONFIG.controlIcons.defeated });
-
-        // Chat message
-        ChatMessage.create({
-            content: `💀 <b>${actor.name}</b> has died! 💀`,
-            speaker: ChatMessage.getSpeaker({ actor })
+        await ChatMessage.create({
+            speaker: { alias: "Game Master" },
+            content: `
+    <div style="border:1px solid #666; background:#222; color:#eee; border-radius:4px;
+                padding:6px; text-align:center; font-family:'Times New Roman',serif;">
+      <div style="font-size:1.2em;">
+        <strong>${actor.name}</strong> has been <span style="color:#ff4444;">SLAIN</span>!
+      </div>
+      <div style="margin-top:4px; font-size:0.9em; opacity:0.8;">💀 Rest in Peace 💀</div>
+    </div>`
         });
+
     }
+
 
 }

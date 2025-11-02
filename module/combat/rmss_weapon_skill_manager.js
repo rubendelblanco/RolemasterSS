@@ -64,32 +64,6 @@ export class RMSSWeaponSkillManager {
         await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor);
     }
 
-    static async sendAttackMessage(actor, enemy, weapon) {
-        // TODO: "ob" es la bonificación ofensiva inicial? unused?
-        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon);
-
-        if (gmResponse["confirmed"]) {
-            const attackRoll = new Roll(`1d100x>95`);
-            await attackRoll.evaluate();
-            const flavor = `
-                <b>${actor.name}</b> ataca con <b>${weapon.name}</b> y bonificación ofensiva de <b>${gmResponse.attackTotal}</b><br/>
-                a <b>${enemy.name}</b> con bonificación defensiva de <b>${gmResponse.defenseTotal}</b>.<br/>
-                Diferencia final: <b>${gmResponse.diff}</b><br/>
-                <i>Tirada: 1d100x>95 + ${gmResponse.diff}</i><br/>
-                <b>Total: ${attackRoll.total + gmResponse.diff}</b>
-            `;
-            await attackRoll.toMessage({
-                flavor: flavor
-            }, {create: true});
-            const baseAttack = attackRoll.terms[0].results[0].result;
-
-            let totalAttack = attackRoll.total + gmResponse["diff"];
-            const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
-            totalAttack = (totalAttack > maximum) ? maximum : totalAttack;
-            await RMSSTableManager.getAttackTableResult(weapon, baseAttack, totalAttack, enemy, actor);
-        }
-    }
-
     static async attackMessagePopup(actor, enemy, weapon) {
         const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon);
         const hitsTakenPenalty = RMSSWeaponSkillManager._getHitsPenalty(actor);
@@ -180,15 +154,6 @@ export class RMSSWeaponSkillManager {
                             height: "auto",
                         });
                     }, 0);
-                    html.find("#action-points").on("change", (event) => {
-                        let actionPoints = parseInt(event.target.value);
-                        if (actionPoints < 2) actionPoints = 2;
-                        if (actionPoints > 4) actionPoints = 4;
-                        event.target.value = actionPoints;
-                        const actionPenalty = (4-actionPoints)*(-25);
-                        html.find("#action-points-penalty").val(actionPenalty);
-                        calculateTotal();
-                    });
                     html.find(".is-negative").on("change", (event) => {
                          event.target.value = parseInt(event.target.value) > 0 ? -event.target.value : event.target.value;
                     });
@@ -214,6 +179,7 @@ export class RMSSWeaponSkillManager {
     }
 
     static _getOffensiveBonusFromWeapon(weapon) {
+        debugger;
         const skillId = weapon.system.offensive_skill;
         const skillItem = weapon.actor?.items.get(skillId);
 

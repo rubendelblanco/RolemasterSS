@@ -226,21 +226,6 @@ export class RMSSWeaponCriticalManager {
         return await strategy.apply(actor, target.actor,  { damage, severity, critType, subCritType, modifier, metadata });
     }
 
-    static async getJSONFileNamesFromDirectory(directory) {
-        // Open the file picker and retrieve the files from the specified directory
-        const picker = await FilePicker.browse("data", directory);
-
-        const jsonFilesObject = picker.files
-            .filter(file => file.endsWith(".json"))
-            .reduce((obj, file) => {
-                const fileName = file.split('/').pop().replace(".json", "");
-                obj[fileName] = fileName; // Create an entry where key and value are the same
-                return obj;
-            }, {});
-
-        return jsonFilesObject;
-    }
-
     static async criticalMessagePopup(enemy, damage, severity, critType) {
         let modifier = 0;
         if (enemy.type === "creature" || enemy.type === "npc") {
@@ -262,7 +247,7 @@ export class RMSSWeaponCriticalManager {
             damage: damage,
             severity: severity,
             critType: critType,
-            critTables: await RMSSWeaponCriticalManager.getJSONFileNamesFromDirectory(CONFIG.rmss.paths.critical_tables),
+            critTables: await game.rmss?.attackTableIndex || [],
             subcritdict: CONFIG.rmss.criticalSubtypes,
             critDict: CONFIG.rmss.criticalDictionary,
             modifier: modifier,
@@ -272,7 +257,7 @@ export class RMSSWeaponCriticalManager {
 
         let confirmed = await new Promise((resolve) => {
             new Dialog({
-                title: game.i18n.localize("rmss.combat.confirm_attack"),
+                title: game.i18n.localize("rmss.combat.confirm_critical"),
                 content: htmlContent,
                 buttons: {
                     confirm: {

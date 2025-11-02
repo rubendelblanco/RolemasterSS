@@ -388,6 +388,7 @@
         },
         "combat": {
             "confirm_attack": "Confirm attack",
+            "confirm_critical": "Confirm critical",
             "ob": "Offensive bonus",
             "action_points": "Action points",
             "hits_taken": "Hits taken",
