@@ -1,3 +1,7 @@
+import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_manager.js";
+import Utils from "../utils.js";
+import {sendExpMessage} from "../chat/chatMessages.js";
+
 /**
  * @class RMSSEffectApplier
  * @classdesc
@@ -42,8 +46,23 @@ export class RMSSEffectApplier {
         const entity = actor;
         const stun_bleeding = entity.system.attributes.critical_codes?.stun_bleeding ?? "-";
 
-        if (critical.metadata.HP)
-            await this._applyHPDamage(entity, critical.metadata.HP);
+        if (critical.metadata.HP){
+            const isDead = await this._applyHPDamage(entity, critical.metadata.HP);
+
+            if (isDead && Utils.isAPC(originId)) {
+                debugger;
+                const killer = Utils.getActor(originId)
+                const killExp = ExperiencePointsCalculator.calculateKillExpPoints(entity.system.attributes.level.value,
+                    killer.system.attributes.level.value);
+                const code = entity.system?.bonus_experience ?? null;
+                const bonusExp = ExperiencePointsCalculator.calculateBonusExpPoints(killer.system.attributes.level.value, code);
+                const breakDown =  { kill: killExp, bonus: bonusExp };
+                const totalAmountExp = killExp+bonusExp;
+                const totalExpActor = parseInt(killer.system.attributes.experience_points.value || 0) + totalAmountExp;
+                await killer.update({ "system.attributes.experience_points.value": totalExpActor });
+                await sendExpMessage(killer, breakDown, totalAmountExp);
+            }
+        }
 
         for (const [key, value] of Object.entries(critical.metadata)) {
             switch (key) {
@@ -66,7 +85,10 @@ export class RMSSEffectApplier {
             const tokens = entity.getActiveTokens(true);
             const selected = tokens.find(t => t.controlled) || tokens[0];
             if (selected) await RMSSEffectApplier._markTokenAsDead(selected);
+            return true;
         }
+
+        return false;
     }
 
     static async _applyStun(entity, data, stun_bleeding) {
@@ -200,19 +222,19 @@ export class RMSSEffectApplier {
             await combatant.update({ defeated: true });
         }
 
+        //chat dead announcement
+        const templatePath = "systems/rmss/templates/chat/dead-announcement.hbs";
+        const templateData = {
+            name: actor.name,
+            slain: game.i18n.localize("rmss.chat.slain"),
+            restInPeace: game.i18n.localize("rmss.chat.restInPeace")
+        };
+
+        const content = await renderTemplate(templatePath, templateData);
+
         await ChatMessage.create({
-            speaker: { alias: "Game Master" },
-            content: `
-    <div style="border:1px solid #666; background:#222; color:#eee; border-radius:4px;
-                padding:6px; text-align:center; font-family:'Times New Roman',serif;">
-      <div style="font-size:1.2em;">
-        <strong>${actor.name}</strong> has been <span style="color:#ff4444;">SLAIN</span>!
-      </div>
-      <div style="margin-top:4px; font-size:0.9em; opacity:0.8;">💀 Rest in Peace 💀</div>
-    </div>`
+            speaker: 'Game Master',
+            content
         });
-
     }
-
-
 }

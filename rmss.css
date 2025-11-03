@@ -892,13 +892,13 @@ form .spell-list tr.spell td {
     margin-top: 10px;
     padding: 0.5em;
     display: none;
-    background-color: #9bc4a4;
+    background-color: #000000;
     border-radius: 10px;
+    border: 1px solid #ddd;
 }
 
 .breakdown-details ol li {
-    background-color: #32CD32FF;
-    padding: 1%;
+    padding: 3%;
     border-radius:5px;
 }
 

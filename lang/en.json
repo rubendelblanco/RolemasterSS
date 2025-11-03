@@ -435,7 +435,10 @@
             "ranks_reset": "New ranks reset"
         },
         "chat":{
-            "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})"
+            "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})",
+            "slain": "has been <span style='color:#ff4444;'>SLAIN</span>!",
+            "restInPeace": "Rest in Peace",
+            "gmAlias": "Game Master"
         },
         "npc": {
             "at": "AT",

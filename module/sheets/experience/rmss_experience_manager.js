@@ -10,7 +10,7 @@ export class ExperienceManager {
         const actor = Utils.getActor(target);
 
         if (!actor) {
-            ui.notifications.warn("No se ha sumado exp. No se haencontrado un actor para el objetivo.");
+            ui.notifications.warn("No se ha sumado exp. No se ha encontrado un actor para el objetivo.");
             console.warn("No actor found for target:", target);
             return;
         }
@@ -19,7 +19,7 @@ export class ExperienceManager {
         let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
         totalExpActor = totalExpActor + xp;
         await actor.update({ "system.attributes.experience_points.value": totalExpActor });
-        sendExpMessage(actor, breakDown, xp);
+        await sendExpMessage(actor, breakDown, xp);
     }
 }
 
@@ -72,7 +72,7 @@ export default class ExperiencePointsCalculator {
             expPoints = 0;
         }
 
-        return expPoints;
+        return Number.isNaN(expPoints) ? 0 : expPoints;
     }
 
     static calculateBonusExpPoints(attackerLevel, code) {
@@ -140,13 +140,14 @@ export default class ExperiencePointsCalculator {
             );
         }
 
-        return expPoints;
+        return Number.isNaN(expPoints) ? 0 : expPoints;
     }
 
     static calculateCriticalExpPoints(criticalLevel, opponentLevel) {
         opponentLevel = parseInt(opponentLevel);
         const critical = ExperiencePointsCalculator.data.criticalExpPoints[criticalLevel.toLowerCase()];
-        return (critical * 5 * opponentLevel);
+        const expPoints = critical * 5 * opponentLevel;
+        return Number.isNaN(expPoints) ? 0 : expPoints;
     }
 
     static getCharacterLevel(experiencePoints) {

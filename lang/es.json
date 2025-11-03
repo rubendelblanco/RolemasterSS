@@ -435,7 +435,10 @@
       "ranks_reset": "Nuevos rangos reinicializados"
     },
     "chat":{
-      "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})"
+      "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})",
+      "slain": "ha sido <span style='color:#ff4444;'>AJUSTICIADO</span>!",
+      "restInPeace": "Descanse en paz",
+      "gmAlias": "Game Master"
     },
     "npc": {
       "at": "TA",

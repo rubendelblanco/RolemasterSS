@@ -35,6 +35,13 @@
                 <option value="sheer_folly">{{ localize "rmss.maneuver.sheer_folly" }}</option>
                 <option value="absurd">{{ localize "rmss.maneuver.absurd" }}</option>
             </select>
+            <select name="maneuver-exp" id="maneuver-exp-mult">
+                <option value="1">x1</option>
+                <option value="2">x2</option>
+                <option value="3">x3</option>
+                <option value="4">x4</option>
+                <option value="5">x5</option>
+            </select>
         </div>
         <div class="exp-margin-right">
             <div class="total">Total</div>
@@ -50,6 +57,16 @@
         <div class="exp-margin-right">
             <label for="spell-level-caster">{{ localize "rmss.experience.caster_level" }} </label>
             <input type="text" value="{{system.attributes.level.value}}" id="spell-level-caster" name="spell-level-caster" data-dtype="Number"/>
+        </div>
+        <div class="exp-margin-right">
+            <div class="total">Mult.</div>
+            <select name="maneuver-exp" id="spell-exp-mult">
+                <option value="1">x1</option>
+                <option value="2">x2</option>
+                <option value="3">x3</option>
+                <option value="4">x4</option>
+                <option value="5">x5</option>
+            </select>
         </div>
         <div class="exp-margin-right">
             <div class="total">Total</div>
@@ -74,6 +91,16 @@
             <input type="text" id="opponent-level" name="opponent-level" data-dtype="Number"/>
         </div>
         <div class="exp-margin-right">
+            <div class="total">Mult.</div>
+            <select name="maneuver-exp" id="critical-exp-mult">
+                <option value="1">x1</option>
+                <option value="2">x2</option>
+                <option value="3">x3</option>
+                <option value="4">x4</option>
+                <option value="5">x5</option>
+            </select>
+        </div>
+        <div class="exp-margin-right">
             <div class="total">Total</div>
             <div class="critical-exp-total exp-total-sum">0</div>
         </div>
@@ -87,6 +114,16 @@
         <div class="exp-margin-right">
             <label for="killer-character-level">{{ localize "rmss.experience.killer_level" }} </label>
             <input type="text" value="{{system.attributes.level.value}}" id="killer-character-level" name="killer-character-level" data-dtype="Number"/>
+        </div>
+        <div class="exp-margin-right">
+            <div class="total">Mult.</div>
+            <select name="maneuver-exp" id="kill-exp-mult">
+                <option value="1">x1</option>
+                <option value="2">x2</option>
+                <option value="3">x3</option>
+                <option value="4">x4</option>
+                <option value="5">x5</option>
+            </select>
         </div>
         <div class="exp-margin-right">
             <div class="total">Total</div>
@@ -115,6 +152,16 @@
                 <option value="j">J</option>
                 <option value="k">K</option>
                 <option value="l">L</option>
+            </select>
+        </div>
+        <div class="exp-margin-right">
+            <div class="total">Mult.</div>
+            <select name="maneuver-exp" id="bonus-exp-mult">
+                <option value="1">x1</option>
+                <option value="2">x2</option>
+                <option value="3">x3</option>
+                <option value="4">x4</option>
+                <option value="5">x5</option>
             </select>
         </div>
         <div class="exp-margin-right">
