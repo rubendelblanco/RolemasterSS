@@ -28,6 +28,16 @@ export default class RMSSCharacterSheet extends ActorSheet {
             weapon.use();
         });
 
+        html.find("a.item-roll").on("click", async ev => {
+            ev.preventDefault();
+            await this.actor.update({"system.movement_rate.current": this.actor.system.movement_rate.value});
+        });
+
+        html.find("#movement-rate-current").on("change", async ev => {
+            const value = Math.min(Number(ev.currentTarget.value) || 0, this.actor.system.movement_rate.value);
+            await this.actor.update({ "system.movement_rate.current": value });
+        });
+
         // Items
         html.find(".item-create").click(this._onItemCreate.bind(this));
 

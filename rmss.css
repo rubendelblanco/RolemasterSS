@@ -66,12 +66,19 @@
     margin-top: 1px;
     margin-left: 1px;
     padding: 5px;
+    max-width: 250px;
 }
 
 .header-text {
     display: flex;
     align-items: center;
     padding: 1px;
+}
+
+#movement-rate-current{
+    background-color:#aaa;
+    border:1px solid #444;
+    text-align:center;
 }
 
 .settings-button,

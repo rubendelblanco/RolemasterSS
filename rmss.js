@@ -8,9 +8,6 @@ import { RMSSItem } from "./module/documents/item.js";
 import {CombatEndManager, CombatStartManager, RMSSCombat} from "./module/combat/rmss_combat.js";
 import { RMSSCombatant } from "./module/combat/rmss_combatant.js";
 
-//Import hooks
-import "./module/combat/hooks.js"
-
 // Import Sheets
 import RMSSItemSheet from "./module/sheets/items/rmss_item_sheet.js";
 import RMSSArmorSheet from "./module/sheets/items/rmss_armor_sheet.js";
