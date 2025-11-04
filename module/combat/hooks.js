@@ -87,7 +87,7 @@ export function registerCombatHooks() {
 
     });
 
-//Hide critical roll button if is not owner
+    //Hide critical roll button if is not owner
     Hooks.on("renderChatMessage", (message, html, data) => {
         html.find(".chat-critical-roll").each(function () {
             const attackerId = this.dataset.attacker;
@@ -104,6 +104,21 @@ export function registerCombatHooks() {
         const enemy = RMSSCombat?.getTargets()?.[0];
         if (!enemy) return ui.notifications.warn("No target selected.");
         await RMSSWeaponSkillManager.handleAttack(item.actor, enemy.actor, item);
+    });
+
+    Hooks.on("updateCombat", async (combat, update) => {
+        // Solo cuando cambia el número de ronda
+        if (!("round" in update)) return;
+
+        for (const combatant of combat.combatants) {
+            const actor = combatant.actor;
+            const move = actor?.system?.movement_rate;
+            if (!move) continue;
+
+            await actor.update({ "system.movement_rate.current": move.value });
+        }
+
+        ui.notifications.info("⚔️ Se ha restaurado el movimiento de todos los personajes.");
     });
 
     Hooks.on("preUpdateToken", (tokenDoc, data) => {

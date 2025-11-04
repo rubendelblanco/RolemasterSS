@@ -1,5 +1,3 @@
-import { RMSSCombat } from "../../combat/rmss_combat.js";
-import { RMSSWeaponSkillManager } from "../../combat/rmss_weapon_skill_manager.js";
 import ItemService from "../../actors/services/item_service.js";
 
 /**
