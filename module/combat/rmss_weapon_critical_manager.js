@@ -261,7 +261,7 @@ export class RMSSWeaponCriticalManager {
                 content: htmlContent,
                 buttons: {
                     confirm: {
-                        label: "Confirmar",
+                        label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
                         callback: (html) => {
                             const damage = parseInt(html.find("#damage").val());
                             const severity = html.find("#severity").val();
@@ -272,7 +272,7 @@ export class RMSSWeaponCriticalManager {
                         }
                     },
                     cancel: {
-                        label: "Cancelar",
+                        label: `❌ ${game.i18n.localize("rmss.combat.cancel")}`,
                         callback: () => {
                             ui.notifications.error("Attack cancelled!");
                         }

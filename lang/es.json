@@ -391,6 +391,8 @@
     },
     "combat": {
       "confirm_attack": "Confirmar ataque",
+      "confirm": "Confirmar",
+      "cancel": "Cancelar",
       "confirm_critical": "Confirmar critico",
       "ob": "Bonificación ofensiva",
       "action_points": "Puntos acción",

@@ -117,7 +117,7 @@ export class RMSSWeaponSkillManager {
             content: htmlContent,
                 buttons: {
                     confirm: {
-                        label: "✅ Confirmar",
+                        label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
                         callback: (html) => {
                             const attackTotal = parseInt(html.find("#attack-total").val());
                             const defenseTotal = parseInt(html.find("#defense-total").val());
@@ -126,7 +126,7 @@ export class RMSSWeaponSkillManager {
                         }
                     },
                     cancel: {
-                        label: "❌ Cancelar",
+                        label: `❌ ${game.i18n.localize("rmss.combat.cancel")}`,
                         callback: () => resolve({confirmed: false})
                     }
                 },
