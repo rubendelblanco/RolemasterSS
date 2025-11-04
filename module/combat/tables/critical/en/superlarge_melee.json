@@ -1,0 +1,1059 @@
+{
+  "id": 987654321003,
+  "name": "super_large_creatures",
+  "filename": "super_large_creatures_es.json",
+  "rows": [
+    {
+      "lower": "01",
+      "upper": "05",
+      "A": {
+        "text": "That hurt him, but then there's so much of him to hurt. Your weapon also broke in half.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "B": {
+        "text": "He strikes faster than you expected. Where is your weapon? Take 2 rounds to recover it.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "C": {
+        "text": "You strike him so hard that you lose the rest of your round from the vibratory feedback.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "D": {
+        "text": "You strike him so enthusiastically that you must roll for a fumbled weapon.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "E": {
+        "text": "That blow to his chest sends a numbing vibration through you. You stumble back.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "06",
+      "upper": "10",
+      "A": {
+        "text": "That one popped some ornament on your weapon off it. He may have noticed you.",
+        "metadata": [
+          {
+            "HP": "2"
+          }
+        ]
+      },
+      "B": {
+        "text": "Your weapon hits at an awkward angle. Roll for weapon breakage and hope for the best.",
+        "metadata": [
+          {
+            "HP": "3"
+          }
+        ]
+      },
+      "C": {
+        "text": "You may have broken your weapon over his shoulder. Use the edge. Make a breakage check.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      },
+      "D": {
+        "text": "You hurt his arm, but even better\nyou have the initiative next round.\nDo something creative!",
+        "metadata": [
+          {
+            "HP": "6"
+          }
+        ]
+      },
+      "E": {
+        "text": "Be more careful how you strike\nhim. Check for weapon breakage.\nUse the edge.",
+        "metadata": [
+          {
+            "HP": "8"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "11",
+      "upper": "20",
+      "A": {
+        "text": "Unable to withstand the stare of this awesome creature you make only a half-hearted attack.",
+        "metadata": [
+          {
+            "HP": "3"
+          }
+        ]
+      },
+      "B": {
+        "text": "He deflected your attack but he's in an awkward position. Initiative is yours next round.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      },
+      "C": {
+        "text": "Clever strike to his leg captures his\nattention and you gain the\ninitiative for next round.",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "D": {
+        "text": "That whack to his back does little\ndamage. You know it will take\nmore than that to fell him.",
+        "metadata": [
+          {
+            "HP": "8"
+          }
+        ]
+      },
+      "E": {
+        "text": "Your blow to his back gets his\nattention and distracts him. You\nhave the initiative next round.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "21",
+      "upper": "30",
+      "A": {
+        "text": "Now you know His hide deflects all but the strongest of blows. This won't be easy.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      },
+      "B": {
+        "text": "Your weapon may be magical after all. Your glancing blow left sparks in the air.",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "C": {
+        "text": "Your blow slides across his hide and actually leaves Adamantium smeared along its path.",
+        "metadata": [
+          {
+            "HP": "6"
+          }
+        ]
+      },
+      "D": {
+        "text": "Your blow doesn’t even slow this\nbig, bad boy down. You hurt him\nbut he’s indifferent to pain.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "E": {
+        "text": "This time you use the edge. Sparks\nare flying off his hide. You should\nhave an audience.",
+        "metadata": [
+          {
+            "HP": "12"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "31",
+      "upper": "40",
+      "A": {
+        "text": "Solid strike to his flank but it doesn't do much good. Perhaps you need a higger weapon.",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "B": {
+        "text": "Finally, the big boy is unbalanced and you have the initiative next round. About time, too.",
+        "metadata": [
+          {
+            "HP": "6"
+          }
+        ]
+      },
+      "C": {
+        "text": "You bruise his calf muscle, but you realize it will take a critical attack to kill him.",
+        "metadata": [
+          {
+            "HP": "7"
+          }
+        ]
+      },
+      "D": {
+        "text": "Now he’s angry. You hit him in the\nchest with some effect but he only\nscreams at you.",
+        "metadata": [
+          {
+            "HP": "12"
+          }
+        ]
+      },
+      "E": {
+        "text": "Blow to his chest makes a\nsatisfying thud, but it will take\nmore to bring this bad boy down.",
+        "metadata": [
+          {
+            "HP": "15"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "41",
+      "upper": "50",
+      "A": {
+        "text": "You strike him to ward off his\nwild, swinging attack, but you do\nhim little real damage.",
+        "metadata": [
+          {
+            "HP": "6"
+          }
+        ]
+      },
+      "B": {
+        "text": "You strike his “leg.” He stands\nthere staring. He can’t believe you\ndid that to him.",
+        "metadata": [
+          {
+            "HP": "7"
+          }
+        ]
+      },
+      "C": {
+        "text": "Your blow to his “horn” actually\nvibrates audibly. You felt it\nthrough your weapon.",
+        "metadata": [
+          {
+            "HP": "8"
+          }
+        ]
+      },
+      "D": {
+        "text": "Going low under his assault you\nstrike his abdomen. Too bad he’s\nsuch a big boy.",
+        "metadata": [
+          {
+            "HP": "15"
+          }
+        ]
+      },
+      "E": {
+        "text": "That was a glancing blow but\nthere’s hair, horn, scales, and\nbodily fluids in the air.",
+        "metadata": [
+          {
+            "HP": "18"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "51",
+      "upper": "65",
+      "A": {
+        "text": "You're starting to chip away at him. Are there a few scales or some fur in the air?",
+        "metadata": [
+          {
+            "HP": "7"
+          }
+        ]
+      },
+      "B": {
+        "text": "Nice strike placement to his neck, but his hide is too resistant. Harder next time?",
+        "metadata": [
+          {
+            "HP": "8"
+          }
+        ]
+      },
+      "C": {
+        "text": "\"Hitting him in the nose\" doesn't work on this one. He is angry with you now",
+        "metadata": [
+          {
+            "HP": "9"
+          }
+        ]
+      },
+      "D": {
+        "text": "Incautiously he leans his big snout down toward you. He rages loudly after you whack it.",
+        "metadata": [
+          {
+            "HP": "18"
+          }
+        ]
+      },
+      "E": {
+        "text": "Seizing a lucky break you pierce his side. You're both surprised.\n",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "66",
+      "upper": "66",
+      "A": {
+        "text": "If only you had used the edge! The\nflat of your weapon hits his neck\nbut can’t cut.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "B": {
+        "text": "As he lunges, you go low and\nstrike with the combined force to\nhis underside. He felt that.",
+        "metadata": [
+          {
+            "HP": "12",
+            "HPR": "3",
+            "PE": {
+              "VALUE": -10
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "You tear open the skin on his\n“shin” and penetrate the bone\nitself. You have initiative.",
+        "metadata": [
+          {
+            "HP": "15",
+            "HPR": "5",
+            "PE": {
+              "VALUE": -10
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "This is the way to do it. Your strike to his shoulder has left him stunned and bleeding.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1",
+            "HPR": "10",
+            "PE": {
+              "VALUE": -15
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Somehow your weapon penetrates his chest and his heart. Instant death. Blood is all over you.",
+        "metadata": [
+          {
+            "HP": "50",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "67",
+      "upper": "70",
+      "A": {
+        "text": "You're beginning to get the rhythm. Striking at his leg, you slip away from his counterattack.",
+        "metadata": [
+          {
+            "HP": "8"
+          }
+        ]
+      },
+      "B": {
+        "text": "You have bruised his thigh but\nyour weapon has cracked and\nbent. It will break next time",
+        "metadata": [
+          {
+            "HP": "9"
+          }
+        ]
+      },
+      "C": {
+        "text": "The big guy gains some respect for\nyou after your whack to his thigh.\nYou have the initiative.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "D": {
+        "text": "That blow to his thigh has staggered him. He's on his \"feet\" but you have initiative next rd.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "E": {
+        "text": "That broke some bones in his chest. His guard is down and there is an opportunity for you.",
+        "metadata": [
+          {
+            "HP": "30",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "71",
+      "upper": "80",
+      "A": {
+        "text": "He has a really hard head. You\nknow because your weapon just\nbounced off it.",
+        "metadata": [
+          {
+            "HP": "9"
+          }
+        ]
+      },
+      "B": {
+        "text": "His hide is so tough that he uses\nhis forearm to parry. Well, you did\ndo some damage to it.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "C": {
+        "text": "His arm was a good target, but\nyou didn’t follow through. Put\nyour weight into it next time.",
+        "metadata": [
+          {
+            "HP": "15"
+          }
+        ]
+      },
+      "D": {
+        "text": "The bruise on his exposed leg will slow him down, so you have the initiative.",
+        "metadata": [
+          {
+            "HP": "13",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 10
+            },
+            "HPR": "5",
+            "PE": {
+              "VALUE": -10
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Glancing blow across his shoulder and chest does real damage regardless. He knows it.",
+        "metadata": [
+          {
+            "HP": "24",
+            "HPR": "5",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "81",
+      "upper": "90",
+      "A": {
+        "text": "Well, your strike to his “arm” does\nbruise it, but you must roll for\nweapon breakage.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "B": {
+        "text": "Nice try at striking his arm joint.\nHe’s bruised. Maybe that was too\nprecise a target?",
+        "metadata": [
+          {
+            "HP": "15"
+          }
+        ]
+      },
+      "C": {
+        "text": "You miss his vital parts but hear\nhis ribs crack loudly. Now this is\nthe way you like it.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "D": {
+        "text": "You were all over him like a cheap tunic. His neck hurts and there is indeed some blood.",
+        "metadata": [
+          {
+            "HP": "12",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            },
+            "P": {
+              "ROUNDS": 1,
+              "PE": {
+                "VALUE": 40
+              }
+            },
+            "HPR": "4"
+          }
+        ]
+      },
+      "E": {
+        "text": "Did your weapon just display a mind of its own with that brilliant strike to his thigh?",
+        "metadata": [
+          {
+            "HP": "25",
+            "HPR": "20",
+            "PE": {
+              "PE": {
+                "VALUE": 25
+              },
+              "VALUE": -25
+            },
+            "STUN": {
+              "VALUE": 3
+            },
+            "NP": "3"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "91",
+      "upper": "95",
+      "A": {
+        "text": "You strike with admirable force,\nbut you might try hitting a vital\nspot in the future.",
+        "metadata": [
+          {
+            "HP": "15"
+          }
+        ]
+      },
+      "B": {
+        "text": "Again his thick hide protects him.\nHe’s damaged, but you may need a\ncritical.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "C": {
+        "text": "He’ll be nursing his bruised neck\nfor the next 2 rounds. Too bad it’s\nstill on his shoulder.",
+        "metadata": [
+          {
+            "HP": "12",
+            "HPR": "4",
+            "BONUS": {
+              "VALUE": 20,
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Decisively you strike his exposed\nmouth. If he has a breath weapon\nhe may not use it.",
+        "metadata": [
+          {
+            "HP": "25",
+            "HPR": "3",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "E": {
+        "text": "Your weapon is in his neck, but his\ndoom is his eyes. He falls and dies\nin 3 rounds.",
+        "metadata": [
+          {
+            "HP": "35"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "96",
+      "upper": "98",
+      "A": {
+        "text": "Classic. You sever veins and an\nartery in his leg. Yes, he falls and\ndies in 12 rounds.",
+        "metadata": [
+          {}
+        ]
+      },
+      "B": {
+        "text": "Finally living up to your\nreputation, you break his neck,\nspine, etc. He falls and dies in 1 rd",
+        "metadata": [
+          {
+            "BONUS": {
+              "0": "5",
+              "VALUE": 25,
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Enough already. You just destroy\nhis lower skull. After 1 round of\nstun he realizes it too.",
+        "metadata": [
+          {
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Surprise! You cleave through his\nskull killing him in 6 rds. Your\nweapon falls with him.\nAll allies 1(+10)",
+        "metadata": [
+          {
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 10
+            },
+            "DESC": "All allies 1(+10)"
+          }
+        ]
+      },
+      "E": {
+        "text": "Your weapon plunges through his\nchest. Take 12 rounds to extricate\nit from his fallen form.",
+        "metadata": [
+          {
+            "HP": "40"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "99",
+      "upper": "100",
+      "A": {
+        "text": "Your strike deftly pierces through\nhis ribs. This one is going to be a\nreal bleeder.",
+        "metadata": [
+          {
+            "HP": "30",
+            "HPR": "10",
+            "PE": {
+              "VALUE": -25
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "A flash of intuition reveals his\nweak spot to you. You strike and\ndestroy it. He’s dead.",
+        "metadata": []
+      },
+      "C": {
+        "text": "Finally, one of your blows to his\nneck strikes true. He falls and dies\nin 1 round. Sweet!",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "D": {
+        "text": "Your blow ruptures his heart in an\ninstant kill. Try to crawl out from\nunder as he falls on you.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "E": {
+        "text": "Why did he let you drive your\nweapon through his eye like that?\nHe dies in 3 rounds.",
+        "metadata": [
+          {
+            "BONUS": {
+              "0": "3",
+              "1": "5",
+              "VALUE": 25
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "101",
+      "upper": "150",
+      "A": {
+        "text": "You’d have opened up his guts if\nhe was human. As it is your blow\nglances off.",
+        "metadata": [
+          {
+            "HP": "12",
+            "HPR": "1",
+            "BONUS": {
+              "ROUNDS": 1,
+              "PE": {
+                "VALUE": 20
+              },
+              "VALUE": 10
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "He shields his bleeding ribs and\nbacks away cautiously. He doesn’t\nlike this much.",
+        "metadata": [
+          {
+            "HP": "13",
+            "HPR": 2,
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Using “martial art” more than\nsheer force you sweep away his\ndefenses and strike.",
+        "metadata": [
+          {
+            "HP": "30",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 10
+            },
+            "STUN": {
+              "ROUNDS": 3,
+              "PE": {
+                "VALUE": 25
+              }
+            },
+            "NP": "3"
+          }
+        ]
+      },
+      "D": {
+        "text": "He reels away from your strike to\nhis arm. He wishes he was\nsomewhere you weren’t.",
+        "metadata": [
+          {
+            "HP": "30",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "E": {
+        "text": "His leg bleeds mightily as he\nwrithes on the ground in pain and\ndies in 6 rounds.",
+        "metadata": [
+          {
+            "HP": "20",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "NP": "6"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "151",
+      "upper": "175",
+      "A": {
+        "text": "His “arm” now features deep\nwounds and severed muscles. Yes,\nthat is a lot of blood.",
+        "metadata": [
+          {
+            "HP": "20",
+            "HPR": "5",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "That subtle tap dance on his head\nstuns him long enough for you to\nstrike him for real.",
+        "metadata": [
+          {
+            "HP": "25",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Very agile. Striking his calf you\nalso trip him with the attack. He’s\noccupied for awhile.",
+        "metadata": [
+          {
+            "HP": "25",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2",
+            "BONUS": {
+              "VALUE": 10,
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "He blocks your vicious blow with his forehead and then falls. He's in a coma if his head falls on a rock.",
+        "metadata": [
+          {
+            "HP": "40",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "NP": "6"
+          }
+        ]
+      },
+      "E": {
+        "text": "With his chest and throat both\ncrushed, he falls and suffocates in\n12 rounds.",
+        "metadata": [
+          {
+            "HP": "25",
+            "BONUS": {
+              "VALUE": 20,
+              "ROUNDS": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "176",
+      "upper": "200",
+      "A": {
+        "text": "Seizing the opportunity you strike\nhis neck but without fatal effect.",
+        "metadata": [
+          {
+            "HP": "15",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            },
+            "PE": {
+              "VALUE": -25
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Your chest strike puts him down\nand you even take an ‘A’\nUnbalancing Critical. Scramble!",
+        "metadata": [
+          {
+            "HP": "20",
+            "BONUS": {
+              "VALUE": 25,
+              "ROUNDS": 1
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "C": {
+        "text": "Ripping open his side below the\nribs, you make him hate you. His\nblood is all over both of you.",
+        "metadata": [
+          {
+            "HP": "28",
+            "HPR": "10",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": -40
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Before this you had never seen a\npulped abdomen. Now you have\nseen one.",
+        "metadata": [
+          {
+            "HP": "25",
+            "STUN": {
+              "ROUNDS": 9
+            },
+            "NP": "9",
+            "PE": {
+              "VALUE": -25
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Tiring of all the back and forth\nyou strike him in the eye and kill\nhim with a single blow.",
+        "metadata": [
+          {
+            "HP": "24",
+            "PE": {
+              "PE": {
+                "VALUE": 20
+              },
+              "VALUE": -20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "201",
+      "upper": "250",
+      "A": {
+        "text": "His back goes snap, crackle and\npop as your blow lands. He has to\nhave internal damage.",
+        "metadata": [
+          {
+            "HP": "35",
+            "HPR": "10",
+            "STUN": {
+              "ROUNDS": 2,
+              "PE": {
+                "VALUE": 30
+              }
+            },
+            "NP": "2",
+            "PE": {
+              "VALUE": -30
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "His abdomen had a lot of blood in it. It's all over him and you. There's more in there.",
+        "metadata": [
+          {
+            "HP": "35",
+            "HPR": "10",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": -40
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "You rip his leg open all the way down. You can hear your weapon congratulating you.",
+        "metadata": [
+          {
+            "HP": "30",
+            "HPR": "12",
+            "STUN": {
+              "ROUNDS": 6,
+              "PE": {
+                "VALUE": 40
+              }
+            },
+            "NP": "6",
+            "PE": {
+              "VALUE": -50
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Slipping past his guard you tear his head apart through the ear. Brain damage kills in 3 rds.",
+        "metadata": [
+          {
+            "HP": "15",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Stepping past his guard you gut him. He dies in 4 rds, but he falls all over you. Very messy.",
+        "metadata": [
+          {
+            "HP": "35"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "251",
+      "upper": "999",
+      "A": {
+        "text": "He leads with his “face” exposing\nhis eyes to your reach. Coldly, you\nblind him with a strike.",
+        "metadata": [
+          {
+            "HP": "20",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "NP": "6",
+            "PE": {
+              "VALUE": -100
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "You penetrate his eye and brain as he leans over. In 1 round he will realize that he's dead.",
+        "metadata": [
+          {
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "With his own bones driven\nthrough both his lungs, he dies\nafter 18 rounds of coma.",
+        "metadata": []
+      },
+      "D": {
+        "text": "His spirit is broken and so is his spine. He dies in 2 rounds. You look like an epic hero.",
+        "metadata": [
+          {
+            "HP": "50"
+          }
+        ]
+      },
+      "E": {
+        "text": "That sound must have been his ribcage breaking. He dies after bleeding all over you.",
+        "metadata": [
+          {
+            "HP": "100"
+          }
+        ]
+      }
+    }
+  ]
+}
