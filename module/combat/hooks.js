@@ -129,11 +129,11 @@ export function registerCombatHooks() {
         const move = actor?.system?.movement_rate;
         if (!move) return;
 
-        const start = {x: tokenDoc.x, y: tokenDoc.y};
-        const end = {x: data.x ?? tokenDoc.x, y: data.y ?? tokenDoc.y};
-
-        // ✅ Foundry v13 ya devuelve distancia en unidades reales (pies/metros)
-        const distance = canvas.grid.measureDistance(start, end);
+        const start = { x: tokenDoc.x, y: tokenDoc.y };
+        const end   = { x: data.x ?? tokenDoc.x, y: data.y ?? tokenDoc.y };
+        const ray = new Ray(start, end);
+        const distances = canvas.grid.measureDistances([{ ray }], { gridSpaces: true });
+        const distance = distances[0];
         const remaining = Math.round(move.current || 0);
 
         if (distance > remaining) {
@@ -144,8 +144,9 @@ export function registerCombatHooks() {
         }
 
         const newRemaining = Math.max(remaining - Math.round(distance), 0);
-        actor.update({"system.movement_rate.current": newRemaining});
+        actor.update({ "system.movement_rate.current": newRemaining });
     });
+
 }
 
 
