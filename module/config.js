@@ -1,25 +1,25 @@
 export const rmss = {};
 
 rmss.currency_type = {
-  mp: "rmss.currency_type.mp",
-  pp: "rmss.currency_type.pp",
-  gp: "rmss.currency_type.gp",
-  sp: "rmss.currency_type.sp",
-  bp: "rmss.currency_type.bp",
-  cp: "rmss.currency_type.cp",
-  tp: "rmss.currency_type.tp",
-  ip: "rmss.currency_type.ip"
+  mithril: "rmss.currency_type.mithril",
+  platinum: "rmss.currency_type.platinum",
+  gold: "rmss.currency_type.gold",
+  silver: "rmss.currency_type.silver",
+  bronze: "rmss.currency_type.bronze",
+  copper: "rmss.currency_type.copper",
+  tin: "rmss.currency_type.tin",
+  iron: "rmss.currency_type.iron"
 };
 
 rmss.currency_type_abb = {
-  mp: "rmss.currency_type_abb.mp",
-  pp: "rmss.currency_type_abb.pp",
-  gp: "rmss.currency_type_abb.gp",
-  sp: "rmss.currency_type_abb.sp",
-  bp: "rmss.currency_type_abb.bp",
-  cp: "rmss.currency_type_abb.cp",
-  tp: "rmss.currency_type_abb.tp",
-  ip: "rmss.currency_type_abb.ip"
+  mithril: "rmss.currency_type_abb.mithril",
+  platinum: "rmss.currency_type_abb.platinum",
+  gold: "rmss.currency_type_abb.gold",
+  silver: "rmss.currency_type_abb.silver",
+  bronze: "rmss.currency_type_abb.bronze",
+  copper: "rmss.currency_type_abb.copper",
+  tin: "rmss.currency_type_abb.tin",
+  iron: "rmss.currency_type_abb.iron"
 };
 
 rmss.stats = {

@@ -208,24 +208,24 @@
       "creature": "Criatura de RMSS"
     },
     "currency_type": {
-      "mp": "Monedas de Mithril",
-      "pp": "Monedas de Platino",
-      "gp": "Monedas de Oro",
-      "sp": "Monedas de Plata",
-      "bp": "Monedas de Bronce",
-      "cp": "Monedas de Cobre",
-      "tp": "Monedas de Estaño",
-      "ip": "Monedas de Hierro"
+      "mithril": "Monedas de Mithril",
+      "platinum": "Monedas de Platino",
+      "gold": "Monedas de Oro",
+      "silver": "Monedas de Plata",
+      "bronze": "Monedas de Bronce",
+      "copper": "Monedas de Cobre",
+      "tin": "Monedas de Estaño",
+      "iron": "Monedas de Hierro"
     },
     "currency_type_abb": {
-      "mp": "mm",
-      "pp": "mpt",
-      "gp": "mo",
-      "sp": "mp",
-      "bp": "mb",
-      "cp": "mc",
-      "tp": "me",
-      "ip": "mh"
+      "mithril": "mm",
+      "platinum": "mpt",
+      "gold": "mo",
+      "silver": "mp",
+      "bronze": "mb",
+      "copper": "bc",
+      "tin": "me",
+      "iron": "mh"
     },
     "item": {
       "worn": "Usado",

@@ -208,24 +208,24 @@
             "creature": "RMSS Creature"
         },
         "currency_type": {
-            "mp": "Mithril pieces",
-            "pp": "Platinum pieces",
-            "gp": "Gold pieces",
-            "sp": "Silver pieces",
-            "bp": "Bronze pieces",
-            "cp": "Copper pieces",
-            "tp": "Tin pieces",
-            "ip": "Iron pieces"
+            "mithril": "Mithril pieces",
+            "platinum": "Platinum pieces",
+            "gold": "Gold pieces",
+            "silver": "Silver pieces",
+            "bronze": "Bronze pieces",
+            "copper": "Copper pieces",
+            "tin": "Tin pieces",
+            "iron": "Iron pieces"
         },
         "currency_type_abb": {
-            "mp": "mp",
-            "pp": "pp",
-            "gp": "gp",
-            "sp": "sp",
-            "bp": "bp",
-            "cp": "cp",
-            "tp": "tp",
-            "ip": "ip"
+            "mithril": "mp",
+            "platinum": "pp",
+            "gold": "gp",
+            "silver": "sp",
+            "bronze": "bp",
+            "copper": "cp",
+            "tin": "tp",
+            "iron": "ip"
         },
         "item": {
             "worn": "Worn",

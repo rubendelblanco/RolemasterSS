@@ -83,7 +83,6 @@ export class RMSSWeaponSkillManager {
         const movePenalty = Math.round(
             (1 - (moveRatio)) * 100
         );
-        debugger;
 
         penaltyEffects.forEach( (penalty) => {
             penaltyValue += penalty.flags.rmss.value;

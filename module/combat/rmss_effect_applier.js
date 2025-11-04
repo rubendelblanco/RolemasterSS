@@ -50,7 +50,6 @@ export class RMSSEffectApplier {
             const isDead = await this._applyHPDamage(entity, critical.metadata.HP);
 
             if (isDead && Utils.isAPC(originId)) {
-                debugger;
                 const killer = Utils.getActor(originId)
                 const killExp = ExperiencePointsCalculator.calculateKillExpPoints(entity.system.attributes.level.value,
                     killer.system.attributes.level.value);
