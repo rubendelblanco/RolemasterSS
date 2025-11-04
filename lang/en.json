@@ -552,6 +552,7 @@
             "impact": "Impact",
             "krush": "Krush",
             "large_spell": "Large Creature (Spell)",
+            "large_melee": "Large Creature (Melee)",
             "puncture": "Puncture",
             "slash": "Slash",
             "strikes": "Strikes",
