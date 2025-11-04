@@ -24,9 +24,15 @@
                         {{ localize "rmss.player_character.resources.power_points" }}
                         <h4><input name="system.attributes.power_points.current" type="Number" value="{{system.attributes.power_points.current}}"/>/<input name="system.attributes.power_points.max" type="Number" value="{{system.attributes.power_points.max}}"/></h4>
                     </div>
-                    {{ localize "rmss.npc.movement_rate" }}
+                    <a class="item-roll">{{ localize "rmss.npc.movement_rate" }} <i class="fa fa-refresh" aria-hidden="true"></i></a>
                     <h4>
-                        <input type="text" name="system.attributes.movement_rate.value" data-dtype="Number" value="{{system.attributes.movement_rate.current}}"/>
+                        <input type="text" name="system.attributes.movement_rate.value" data-dtype="Number" value="{{system.attributes.movement_rate.value}}"/>/
+                        <input id="movement-rate-current"
+                               name="system.attributes.movement_rate.current"
+                               data-dtype="Number"
+                               type="text"
+                               value="{{system.attributes.movement_rate.current}}"
+                        />
                     </h4>
                 </div>
             </div>

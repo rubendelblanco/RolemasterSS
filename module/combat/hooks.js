@@ -112,10 +112,10 @@ export function registerCombatHooks() {
 
         for (const combatant of combat.combatants) {
             const actor = combatant.actor;
-            const move = actor?.system?.movement_rate;
+            const move = actor?.system?.attributes.movement_rate;
             if (!move) continue;
 
-            await actor.update({ "system.movement_rate.current": move.value });
+            await actor.update({ "system.attributes.movement_rate.current": move.value });
         }
 
         ui.notifications.info("⚔️ Se ha restaurado el movimiento de todos los personajes.");
@@ -126,7 +126,7 @@ export function registerCombatHooks() {
         if (data.x === undefined && data.y === undefined) return;
 
         const actor = tokenDoc.actor;
-        const move = actor?.system?.movement_rate;
+        const move = actor?.system?.attributes?.movement_rate;
         if (!move) return;
 
         const start = { x: tokenDoc.x, y: tokenDoc.y };
@@ -144,7 +144,7 @@ export function registerCombatHooks() {
         }
 
         const newRemaining = Math.max(remaining - Math.round(distance), 0);
-        actor.update({ "system.movement_rate.current": newRemaining });
+        actor.update({ "system.attributes.movement_rate.current": newRemaining });
     });
 
 }

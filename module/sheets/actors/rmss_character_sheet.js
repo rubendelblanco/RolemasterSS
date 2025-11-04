@@ -28,7 +28,7 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
         html.find("a.item-roll").on("click", async ev => {
             ev.preventDefault();
-            await this.actor.update({"system.movement_rate.current": this.actor.system.movement_rate.value});
+            await this.actor.update({"system.attributes.movement_rate.current": this.actor.system.attributes.movement_rate.value});
         });
 
         html.find("#movement-rate-current").on("change", async ev => {
