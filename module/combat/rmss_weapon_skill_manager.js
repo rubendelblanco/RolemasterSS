@@ -73,14 +73,21 @@ export class RMSSWeaponSkillManager {
         let bonusValue = 0;
         let stunnedValue = false;
         let penaltyValue = 0;
+        const movePenalty = Math.round(
+            (1 - (actor.system.attributes.movement_rate.current / actor.system.attributes.movement_rate.value)) * 100
+        );
+        debugger;
 
         penaltyEffects.forEach( (penalty) => {
             penaltyValue += penalty.flags.rmss.value;
         })
 
+        //bonus - movement used in the round
         bonusEffects.forEach((bonus) => {
             bonusValue += bonus.flags.rmss.value;
         })
+
+        bonusValue = bonusValue - movePenalty;
 
         if (stunEffect.length > 0 && stunEffect[0].duration.rounds > 0) {
             stunnedValue = true;
@@ -94,7 +101,7 @@ export class RMSSWeaponSkillManager {
             hitsTaken: hitsTakenPenalty,
             bonusValue: bonusValue,
             stunnedValue: stunnedValue,
-            penaltyValue: penaltyValue
+            penaltyValue: penaltyValue,
         });
 
         let confirmed = await new Promise((resolve) => {
