@@ -1,0 +1,1059 @@
+{
+  "id": 987654321003,
+  "name": "super_large_creatures",
+  "filename": "super_large_creatures_es.json",
+  "rows": [
+    {
+      "lower": "01",
+      "upper": "05",
+      "A": {
+        "text": "Eso le dolió, pero es que hay tanto de él por herir. Tu arma también se partió por la mitad.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpea más rápido de lo esperado. ¿Dónde está tu arma? Tardas 2 asaltos en recuperarla.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "C": {
+        "text": "Lo golpeas tan fuerte que pierdes el resto de tu asalto por la vibración del impacto.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "D": {
+        "text": "Lo golpeas con tanto entusiasmo que debes tirar en la tabla de pifias de arma.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "E": {
+        "text": "Ese golpe en su pecho envía una vibración entumecedora a través de ti. Retrocedes tambaleante.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "06",
+      "upper": "10",
+      "A": {
+        "text": "Ese golpe hizo saltar algún ornamento de tu arma. Puede que te haya notado.",
+        "metadata": [
+          {
+            "HP": "2"
+          }
+        ]
+      },
+      "B": {
+        "text": "Tu arma impacta en un ángulo incómodo. Tira para rotura de arma y espera lo mejor.",
+        "metadata": [
+          {
+            "HP": "3"
+          }
+        ]
+      },
+      "C": {
+        "text": "Puede que hayas roto tu arma sobre su hombro. Usa el filo. Haz una tirada de rotura.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      },
+      "D": {
+        "text": "Hieres su brazo, pero mejor aún tienes la iniciativa el próximo asalto. ¡Haz algo creativo!",
+        "metadata": [
+          {
+            "HP": "6"
+          }
+        ]
+      },
+      "E": {
+        "text": "Ten más cuidado al golpearlo. Comprueba rotura de arma. Usa el filo.",
+        "metadata": [
+          {
+            "HP": "8"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "11",
+      "upper": "20",
+      "A": {
+        "text": "Incapaz de soportar la mirada de esta criatura imponente solo haces un ataque a medias.",
+        "metadata": [
+          {
+            "HP": "3"
+          }
+        ]
+      },
+      "B": {
+        "text": "Desvió tu ataque pero está en una posición incómoda. La iniciativa es tuya el próximo asalto.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      },
+      "C": {
+        "text": "Golpe astuto en su pierna capta su atención y ganas la iniciativa para el próximo asalto.",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "D": {
+        "text": "Ese golpe en su espalda hace poco daño. Sabes que hará falta más para derribarlo.",
+        "metadata": [
+          {
+            "HP": "8"
+          }
+        ]
+      },
+      "E": {
+        "text": "Tu golpe en su espalda capta su atención y lo distrae. Tienes la iniciativa el próximo asalto.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "21",
+      "upper": "30",
+      "A": {
+        "text": "Ahora lo sabes. Su piel desvía todos los golpes salvo los más fuertes. Esto no será fácil.",
+        "metadata": [
+          {
+            "HP": "4"
+          }
+        ]
+      },
+      "B": {
+        "text": "Tu arma puede ser mágica después de todo. Tu golpe de refilón dejó chispas en el aire.",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "C": {
+        "text": "Tu golpe se desliza por su piel y de hecho deja adamantium untado a lo largo de su rastro.",
+        "metadata": [
+          {
+            "HP": "6"
+          }
+        ]
+      },
+      "D": {
+        "text": "Tu golpe ni siquiera ralentiza a este grandullón. Lo hieres pero es indiferente al dolor.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "E": {
+        "text": "Esta vez usas el filo. Saltan chispas de su piel. Deberías tener público.",
+        "metadata": [
+          {
+            "HP": "12"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "31",
+      "upper": "40",
+      "A": {
+        "text": "Golpe sólido en su flanco pero no hace mucho bien. Quizás necesites un arma mayor.",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "B": {
+        "text": "Finalmente, el grandullón pierde el equilibrio y tienes la iniciativa el próximo asalto. Ya era hora.",
+        "metadata": [
+          {
+            "HP": "6"
+          }
+        ]
+      },
+      "C": {
+        "text": "Magullas su músculo de la pantorrilla, pero te das cuenta de que hará falta un crítico para matarlo.",
+        "metadata": [
+          {
+            "HP": "7"
+          }
+        ]
+      },
+      "D": {
+        "text": "Ahora está enfadado. Lo golpeas en el pecho con algún efecto pero solo te grita.",
+        "metadata": [
+          {
+            "HP": "12"
+          }
+        ]
+      },
+      "E": {
+        "text": "El golpe en su pecho produce un ruido satisfactorio, pero hará falta más para derribar a este rufián.",
+        "metadata": [
+          {
+            "HP": "15"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "41",
+      "upper": "50",
+      "A": {
+        "text": "Lo golpeas para rechazar su ataque salvaje y oscilante, pero le haces poco daño real.",
+        "metadata": [
+          {
+            "HP": "6"
+          }
+        ]
+      },
+      "B": {
+        "text": "Golpeas su \"pierna\". Se queda ahí mirando. No puede creer que le hayas hecho eso.",
+        "metadata": [
+          {
+            "HP": "7"
+          }
+        ]
+      },
+      "C": {
+        "text": "Tu golpe en su \"cuerno\" de hecho vibra audiblemente. Lo sentiste a través de tu arma.",
+        "metadata": [
+          {
+            "HP": "8"
+          }
+        ]
+      },
+      "D": {
+        "text": "Agachándote bajo su asalto golpeas su abdomen. Lástima que sea un grandullón.",
+        "metadata": [
+          {
+            "HP": "15"
+          }
+        ]
+      },
+      "E": {
+        "text": "Fue un golpe de refilón pero hay pelo, cuerno, escamas y fluidos corporales en el aire.",
+        "metadata": [
+          {
+            "HP": "18"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "51",
+      "upper": "65",
+      "A": {
+        "text": "Empiezas a desgastarlo poco a poco. ¿Hay algunas escamas o pelo en el aire?",
+        "metadata": [
+          {
+            "HP": "7"
+          }
+        ]
+      },
+      "B": {
+        "text": "Buen golpe en su cuello, pero su piel es demasiado resistente. ¿Más fuerte la próxima?",
+        "metadata": [
+          {
+            "HP": "8"
+          }
+        ]
+      },
+      "C": {
+        "text": "\"Golpearlo en la nariz\" no funciona con este. Ahora está enfadado contigo.",
+        "metadata": [
+          {
+            "HP": "9"
+          }
+        ]
+      },
+      "D": {
+        "text": "Incautamente inclina su gran hocico hacia ti. Ruge estrepitosamente después de que lo golpees.",
+        "metadata": [
+          {
+            "HP": "18"
+          }
+        ]
+      },
+      "E": {
+        "text": "Aprovechando un golpe de suerte perforas su costado. Ambos estáis sorprendidos.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "66",
+      "upper": "66",
+      "A": {
+        "text": "¡Si solo hubieras usado el filo! El plano de tu arma golpea su cuello pero no puede cortar.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "B": {
+        "text": "Cuando se abalanza, te agachas y golpeas con la fuerza combinada en su parte inferior. Sintió eso.",
+        "metadata": [
+          {
+            "HP": "12",
+            "HPR": "3",
+            "PE": {
+              "VALUE": -10
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Desgarras la piel de su \"espinilla\" y penetras el hueso mismo. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": "15",
+            "HPR": "5",
+            "PE": {
+              "VALUE": -10
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Así es como se hace. Tu golpe en su hombro lo ha dejado aturdido y sangrando.",
+        "metadata": [
+          {
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1",
+            "HPR": "10",
+            "PE": {
+              "VALUE": -15
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "De algún modo tu arma penetra su pecho y su corazón. Muerte instantánea. La sangre está por todas partes sobre ti.",
+        "metadata": [
+          {
+            "HP": "50",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "67",
+      "upper": "70",
+      "A": {
+        "text": "Empiezas a cogerle el ritmo. Golpeando su pierna, te escabulles de su contraataque.",
+        "metadata": [
+          {
+            "HP": "8"
+          }
+        ]
+      },
+      "B": {
+        "text": "Has magullado su muslo pero tu arma se ha agrietado y doblado. Se romperá la próxima vez.",
+        "metadata": [
+          {
+            "HP": "9"
+          }
+        ]
+      },
+      "C": {
+        "text": "El grandullón gana algo de respeto por ti después de tu golpe en su muslo. Tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "D": {
+        "text": "Ese golpe en su muslo lo ha hecho tambalear. Está en pie pero tienes la iniciativa el próximo asalto.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "E": {
+        "text": "Eso rompió algunos huesos en su pecho. Su guardia está baja y hay una oportunidad para ti.",
+        "metadata": [
+          {
+            "HP": "30",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "71",
+      "upper": "80",
+      "A": {
+        "text": "Tiene una cabeza realmente dura. Lo sabes porque tu arma acaba de rebotar en ella.",
+        "metadata": [
+          {
+            "HP": "9"
+          }
+        ]
+      },
+      "B": {
+        "text": "Su piel es tan dura que usa su antebrazo para parar. Bueno, sí le hiciste algo de daño.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "C": {
+        "text": "Su brazo era un buen objetivo, pero no seguiste adelante. Pon tu peso en ello la próxima vez.",
+        "metadata": [
+          {
+            "HP": "15"
+          }
+        ]
+      },
+      "D": {
+        "text": "El moretón en su pierna expuesta lo ralentizará, así que tienes la iniciativa.",
+        "metadata": [
+          {
+            "HP": "13",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 10
+            },
+            "HPR": "5",
+            "PE": {
+              "VALUE": -10
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Golpe de refilón por su hombro y pecho hace daño real de todos modos. Él lo sabe.",
+        "metadata": [
+          {
+            "HP": "24",
+            "HPR": "5",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "81",
+      "upper": "90",
+      "A": {
+        "text": "Bueno, tu golpe en su \"brazo\" sí lo magulla, pero debes tirar para rotura de arma.",
+        "metadata": [
+          {
+            "HP": "10"
+          }
+        ]
+      },
+      "B": {
+        "text": "Buen intento de golpear la articulación de su brazo. Está magullado. ¿Quizás era un objetivo demasiado preciso?",
+        "metadata": [
+          {
+            "HP": "15"
+          }
+        ]
+      },
+      "C": {
+        "text": "Fallas sus partes vitales pero oyes sus costillas crujir con fuerza. Ahora esto es como te gusta.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "D": {
+        "text": "Estuviste por todas partes como una túnica barata. Su cuello duele y de hecho hay algo de sangre.",
+        "metadata": [
+          {
+            "HP": "12",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            },
+            "P": {
+              "ROUNDS": 1,
+              "PE": {
+                "VALUE": 40
+              }
+            },
+            "HPR": "4"
+          }
+        ]
+      },
+      "E": {
+        "text": "¿Tu arma acaba de mostrar voluntad propia con ese brillante golpe en su muslo?",
+        "metadata": [
+          {
+            "HP": "25",
+            "HPR": "20",
+            "PE": {
+              "PE": {
+                "VALUE": 25
+              },
+              "VALUE": -25
+            },
+            "STUN": {
+              "VALUE": 3
+            },
+            "NP": "3"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "91",
+      "upper": "95",
+      "A": {
+        "text": "Golpeas con fuerza admirable, pero podrías intentar golpear un punto vital en el futuro.",
+        "metadata": [
+          {
+            "HP": "15"
+          }
+        ]
+      },
+      "B": {
+        "text": "De nuevo su gruesa piel lo protege. Está dañado, pero puede que necesites un crítico.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "C": {
+        "text": "Estará cuidando su cuello magullado durante los próximos 2 asaltos. Lástima que siga sobre su hombro.",
+        "metadata": [
+          {
+            "HP": "12",
+            "HPR": "4",
+            "BONUS": {
+              "VALUE": 20,
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Decisivamente golpeas su boca expuesta. Si tiene arma de aliento puede que no la use.",
+        "metadata": [
+          {
+            "HP": "25",
+            "HPR": "3",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "E": {
+        "text": "Tu arma está en su cuello, pero su perdición son sus ojos. Cae y muere en 3 asaltos.",
+        "metadata": [
+          {
+            "HP": "35"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "96",
+      "upper": "98",
+      "A": {
+        "text": "Clásico. Secciotas venas y una arteria en su pierna. Sí, cae y muere en 12 asaltos.",
+        "metadata": [
+          {}
+        ]
+      },
+      "B": {
+        "text": "Finalmente a la altura de tu reputación, rompes su cuello, columna, etc. Cae y muere en 1 asalto.",
+        "metadata": [
+          {
+            "BONUS": {
+              "0": "5",
+              "VALUE": 25,
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Ya es suficiente. Simplemente destruyes su cráneo inferior. Después de 1 asalto aturdido él también se da cuenta.",
+        "metadata": [
+          {
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "¡Sorpresa! Partes su cráneo matándolo en 6 asaltos. Tu arma cae con él. Todos los aliados 1(+10)",
+        "metadata": [
+          {
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 10
+            },
+            "DESC": "Todos los aliados 1(+10)"
+          }
+        ]
+      },
+      "E": {
+        "text": "Tu arma se hunde en su pecho. Tardas 12 asaltos en sacarla de su forma caída.",
+        "metadata": [
+          {
+            "HP": "40"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "99",
+      "upper": "100",
+      "A": {
+        "text": "Tu golpe perfora diestramente a través de sus costillas. Este va a sangrar mucho.",
+        "metadata": [
+          {
+            "HP": "30",
+            "HPR": "10",
+            "PE": {
+              "VALUE": -25
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Un destello de intuición te revela su punto débil. Golpeas y lo destruyes. Está muerto.",
+        "metadata": []
+      },
+      "C": {
+        "text": "Finalmente, uno de tus golpes en su cuello da en el blanco. Cae y muere en 1 asalto. ¡Dulce!",
+        "metadata": [
+          {
+            "HP": "5"
+          }
+        ]
+      },
+      "D": {
+        "text": "Tu golpe rompe su corazón en una muerte instantánea. Intenta arrastrarte fuera cuando cae sobre ti.",
+        "metadata": [
+          {
+            "HP": "20"
+          }
+        ]
+      },
+      "E": {
+        "text": "¿Por qué te dejó clavar tu arma a través de su ojo así? Muere en 3 asaltos.",
+        "metadata": [
+          {
+            "BONUS": {
+              "0": "3",
+              "1": "5",
+              "VALUE": 25
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "101",
+      "upper": "150",
+      "A": {
+        "text": "Habrías abierto sus tripas si fuera humano. Tal como es tu golpe rebota.",
+        "metadata": [
+          {
+            "HP": "12",
+            "HPR": "1",
+            "BONUS": {
+              "ROUNDS": 1,
+              "PE": {
+                "VALUE": 20
+              },
+              "VALUE": 10
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Protege sus costillas sangrantes y retrocede con cautela. Esto no le gusta mucho.",
+        "metadata": [
+          {
+            "HP": "13",
+            "HPR": 2,
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Usando \"arte marcial\" más que fuerza bruta apartas sus defensas y golpeas.",
+        "metadata": [
+          {
+            "HP": "30",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 10
+            },
+            "STUN": {
+              "ROUNDS": 3,
+              "PE": {
+                "VALUE": 25
+              }
+            },
+            "NP": "3"
+          }
+        ]
+      },
+      "D": {
+        "text": "Se tambalea lejos de tu golpe en su brazo. Desearía estar en algún lugar donde tú no estés.",
+        "metadata": [
+          {
+            "HP": "30",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "E": {
+        "text": "Su pierna sangra copiosamente mientras se retuerce en el suelo con dolor y muere en 6 asaltos.",
+        "metadata": [
+          {
+            "HP": "20",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "NP": "6"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "151",
+      "upper": "175",
+      "A": {
+        "text": "Su \"brazo\" ahora presenta heridas profundas y músculos seccionados. Sí, esa es mucha sangre.",
+        "metadata": [
+          {
+            "HP": "20",
+            "HPR": "5",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Ese sutil zapateado en su cabeza lo aturde lo suficiente para que lo golpees de verdad.",
+        "metadata": [
+          {
+            "HP": "25",
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": "1",
+            "PE": {
+              "VALUE": -20
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Muy ágil. Golpeando su pantorrilla también lo tropiezas con el ataque. Estará ocupado un rato.",
+        "metadata": [
+          {
+            "HP": "25",
+            "STUN": {
+              "ROUNDS": 2
+            },
+            "NP": "2",
+            "BONUS": {
+              "VALUE": 10,
+              "ROUNDS": 1
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Bloquea tu golpe vicioso con su frente y luego cae. Está en coma si su cabeza cae sobre una roca.",
+        "metadata": [
+          {
+            "HP": "40",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "NP": "6"
+          }
+        ]
+      },
+      "E": {
+        "text": "Con su pecho y garganta ambos aplastados, cae y se asfixia en 12 asaltos.",
+        "metadata": [
+          {
+            "HP": "25",
+            "BONUS": {
+              "VALUE": 20,
+              "ROUNDS": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "176",
+      "upper": "200",
+      "A": {
+        "text": "Aprovechando la oportunidad golpeas su cuello pero sin efecto fatal.",
+        "metadata": [
+          {
+            "HP": "15",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            },
+            "PE": {
+              "VALUE": -25
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Tu golpe en el pecho lo derriba e incluso recibes un Crítico de Desequilibrio 'A'. ¡Escápate!",
+        "metadata": [
+          {
+            "HP": "20",
+            "BONUS": {
+              "VALUE": 25,
+              "ROUNDS": 1
+            },
+            "NP": "2"
+          }
+        ]
+      },
+      "C": {
+        "text": "Rasgando su costado bajo las costillas, haces que te odie. Su sangre está por todas partes sobre ambos.",
+        "metadata": [
+          {
+            "HP": "28",
+            "HPR": "10",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": -40
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Antes de esto nunca habías visto un abdomen pulverizado. Ahora has visto uno.",
+        "metadata": [
+          {
+            "HP": "25",
+            "STUN": {
+              "ROUNDS": 9
+            },
+            "NP": "9",
+            "PE": {
+              "VALUE": -25
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Cansándote de todo el ir y venir lo golpeas en el ojo y lo matas con un solo golpe.",
+        "metadata": [
+          {
+            "HP": "24",
+            "PE": {
+              "PE": {
+                "VALUE": 20
+              },
+              "VALUE": -20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lower": "201",
+      "upper": "250",
+      "A": {
+        "text": "Su espalda hace cric, crac y pop cuando tu golpe impacta. Tiene que tener daño interno.",
+        "metadata": [
+          {
+            "HP": "35",
+            "HPR": "10",
+            "STUN": {
+              "ROUNDS": 2,
+              "PE": {
+                "VALUE": 30
+              }
+            },
+            "NP": "2",
+            "PE": {
+              "VALUE": -30
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Su abdomen tenía mucha sangre dentro. Está por todas partes sobre él y sobre ti. Hay más ahí dentro.",
+        "metadata": [
+          {
+            "HP": "35",
+            "HPR": "10",
+            "STUN": {
+              "ROUNDS": 3
+            },
+            "NP": "3",
+            "PE": {
+              "VALUE": -40
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Rasgas su pierna abierta de arriba abajo. Puedes oír a tu arma felicitándote.",
+        "metadata": [
+          {
+            "HP": "30",
+            "HPR": "12",
+            "STUN": {
+              "ROUNDS": 6,
+              "PE": {
+                "VALUE": 40
+              }
+            },
+            "NP": "6",
+            "PE": {
+              "VALUE": -50
+            }
+          }
+        ]
+      },
+      "D": {
+        "text": "Pasando su guardia desgarras su cabeza a través de la oreja. El daño cerebral mata en 3 asaltos.",
+        "metadata": [
+          {
+            "HP": "15",
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "E": {
+        "text": "Pasando su guardia lo destripas. Muere en 4 asaltos, pero cae sobre ti. Muy sucio.",
+        "metadata": [
+          {
+            "HP": "35"
+          }
+        ]
+      }
+    },
+    {
+      "lower": "251",
+      "upper": "999",
+      "A": {
+        "text": "Lidera con su \"cara\" exponiendo sus ojos a tu alcance. Fríamente, lo ciegas con un golpe.",
+        "metadata": [
+          {
+            "HP": "20",
+            "STUN": {
+              "ROUNDS": 6
+            },
+            "NP": "6",
+            "PE": {
+              "VALUE": -100
+            }
+          }
+        ]
+      },
+      "B": {
+        "text": "Penetras su ojo y cerebro cuando se inclina. En 1 asalto se dará cuenta de que está muerto.",
+        "metadata": [
+          {
+            "BONUS": {
+              "ROUNDS": 1,
+              "VALUE": 20
+            }
+          }
+        ]
+      },
+      "C": {
+        "text": "Con sus propios huesos clavados a través de ambos pulmones, muere después de 18 asaltos en coma.",
+        "metadata": []
+      },
+      "D": {
+        "text": "Su espíritu está roto y también su columna. Muere en 2 asaltos. Pareces un héroe épico.",
+        "metadata": [
+          {
+            "HP": "50"
+          }
+        ]
+      },
+      "E": {
+        "text": "Ese sonido debe haber sido su caja torácica rompiéndose. Muere después de sangrar por todas partes sobre ti.",
+        "metadata": [
+          {
+            "HP": "100"
+          }
+        ]
+      }
+    }
+  ]
+}
