@@ -1,5 +1,3 @@
-import { RMSSCombat } from "../../combat/rmss_combat.js";
-import { RMSSWeaponSkillManager } from "../../combat/rmss_weapon_skill_manager.js";
 import ItemService from "../../actors/services/item_service.js";
 
 /**
@@ -26,6 +24,16 @@ export default class RMSSCharacterSheet extends ActorSheet {
         html.find(".offensive-skill").click(async ev => {
             const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
             weapon.use();
+        });
+
+        html.find("a.item-roll").on("click", async ev => {
+            ev.preventDefault();
+            await this.actor.update({"system.attributes.movement_rate.current": this.actor.system.attributes.movement_rate.value});
+        });
+
+        html.find("#movement-rate-current").on("change", async ev => {
+            const value = Math.min(Number(ev.currentTarget.value) || 0, this.actor.system.movement_rate.value);
+            await this.actor.update({ "system.movement_rate.current": value });
         });
 
         // Items

@@ -1,4 +1,5 @@
 import {RMSSCombatant} from "./rmss_combatant.js";
+import { registerCombatHooks } from "./hooks.js";
 
 /**
  * Custom Combat class for RMSS system.
@@ -116,10 +117,11 @@ export class CombatStartManager {
     }
 
     _registerHook() {
-        if (!CombatStartManager.hookRegistered) {
-            Hooks.on("combatStart", (combat) => this.handleCombatStart(combat));
-            CombatStartManager.hookRegistered = true;
-        }
+        if (CombatStartManager.hookRegistered) return;
+
+        Hooks.on("combatStart", (combat) => this.handleCombatStart(combat));
+        registerCombatHooks();
+        CombatStartManager.hookRegistered = true;
     }
 
     handleCombatStart(combat) {

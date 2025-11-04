@@ -65,6 +65,13 @@ export class RMSSWeaponSkillManager {
     }
 
     static async attackMessagePopup(actor, enemy, weapon) {
+        const moveRatio = (actor.system.attributes.movement_rate.current / actor.system.attributes.movement_rate.value);
+
+        if (moveRatio < 0.5) {
+            ui.notifications.warn("Unable to attack (activity behind 50%)", {localize: true});
+            return;
+        }
+
         const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, actor);
         const hitsTakenPenalty = RMSSWeaponSkillManager._getHitsPenalty(actor);
         const penaltyEffects = Utils.getEffectByName(actor, "Penalty");
@@ -73,14 +80,21 @@ export class RMSSWeaponSkillManager {
         let bonusValue = 0;
         let stunnedValue = false;
         let penaltyValue = 0;
+        const movePenalty = Math.round(
+            (1 - (moveRatio)) * 100
+        );
+        debugger;
 
         penaltyEffects.forEach( (penalty) => {
             penaltyValue += penalty.flags.rmss.value;
         })
 
+        //bonus - movement used in the round
         bonusEffects.forEach((bonus) => {
             bonusValue += bonus.flags.rmss.value;
         })
+
+        bonusValue = bonusValue - movePenalty;
 
         if (stunEffect.length > 0 && stunEffect[0].duration.rounds > 0) {
             stunnedValue = true;
@@ -94,7 +108,7 @@ export class RMSSWeaponSkillManager {
             hitsTaken: hitsTakenPenalty,
             bonusValue: bonusValue,
             stunnedValue: stunnedValue,
-            penaltyValue: penaltyValue
+            penaltyValue: penaltyValue,
         });
 
         let confirmed = await new Promise((resolve) => {
@@ -103,7 +117,7 @@ export class RMSSWeaponSkillManager {
             content: htmlContent,
                 buttons: {
                     confirm: {
-                        label: "Confirmar",
+                        label: "✅ Confirmar",
                         callback: (html) => {
                             const attackTotal = parseInt(html.find("#attack-total").val());
                             const defenseTotal = parseInt(html.find("#defense-total").val());
@@ -112,7 +126,7 @@ export class RMSSWeaponSkillManager {
                         }
                     },
                     cancel: {
-                        label: "Cancelar",
+                        label: "❌ Cancelar",
                         callback: () => resolve({confirmed: false})
                     }
                 },

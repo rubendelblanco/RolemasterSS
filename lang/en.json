@@ -438,7 +438,8 @@
             "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})",
             "slain": "has been <span style='color:#ff4444;'>SLAIN</span>!",
             "restInPeace": "Rest in Peace",
-            "gmAlias": "Game Master"
+            "gmAlias": "Game Master",
+            "unable_to_attack": "Unable to attack (activity behind 50%)"
         },
         "npc": {
             "at": "AT",

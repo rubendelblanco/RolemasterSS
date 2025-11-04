@@ -1,77 +1,101 @@
+<form id="rmss-attack-melee-confirmation"
+      style="background: #9a9991; color: #222; border: 1px solid #444; border-radius: 8px; padding: 12px; font-family: 'Signika', sans-serif;">
 
-  <form id="rmss-attack-melee-confirmation">
-    <h3><img src="{{actor.img}}" alt="{{actor.name}}" width="50" height="50"> {{ localize "rmss.combat.attacker" }}</h3>
+    <!-- Attacker section -->
+    <h3 style="display:flex; align-items:center; gap:8px; border-bottom:2px solid #555; padding-bottom:4px; color:#b00; text-shadow: 1px 1px 0 #fff;">
+        <img src="{{actor.img}}" alt="{{actor.name}}" width="45" height="45"
+             style="border-radius:6px; border:2px solid #555; background:#ddd;">
+        {{ localize "rmss.combat.attacker" }}
+    </h3>
 
-    <div class="form-group attacker">
-      {{ localize "rmss.combat.ob" }} <input class="calculable" type="number" id="weapon.system.total_bonus" name="ob" value="{{ob}}">
-      {{ localize "rmss.combat.penalty" }} <input class="calculable" type="number" id="penalty" name="penalty" value="{{penaltyValue}}">
-      {{ localize "rmss.combat.hits_taken" }} <input class="calculable is-negative" type="number" id="hits-taken" name="hits-taken" value="{{hitsTaken}}">
+    <div class="form-group attacker" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+        <label>{{ localize "rmss.combat.ob" }}</label>
+        <input class="calculable" type="number" id="weapon.system.total_bonus" name="ob" value="{{ob}}"
+               style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
+        <label>{{ localize "rmss.combat.penalty" }}</label>
+        <input class="calculable" type="number" id="penalty" name="penalty" value="{{penaltyValue}}"
+               style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
+        <label>{{ localize "rmss.combat.hits_taken" }}</label>
+        <input class="calculable is-negative" type="number" id="hits-taken" name="hits-taken" value="{{hitsTaken}}"
+               style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
     </div>
 
-    <div class="form-group attacker">
-      <label for="attacker-parry">{{ localize "rmss.combat.parry" }}</label>
-      <input class="calculable is-negative" type="number" id="attacker-parry" name="attacker-parry" value="0">
-      <label for="surprised">{{ localize "rmss.combat.surprised" }}</label>
-      <input type="checkbox" class="calculable" id="surprised" name="surprised" value="20"/>
-      <label for="facing">{{ localize "rmss.combat.facing" }}</label>
-      <select class="calculable" id="facing">
-        <option selected>{{ localize "rmss.combat.front" }}</option>
-        <option value="15">{{ localize "rmss.combat.flank" }} (+15)</option>
-        <option value="25">{{ localize "rmss.combat.rear_flank" }} (+25)</option>
-        <option value="35">{{ localize "rmss.combat.rear" }} (+35)</option>
-      </select>
+    <div class="form-group attacker" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+        <label for="attacker-parry">{{ localize "rmss.combat.parry" }}</label>
+        <input class="calculable is-negative" type="number" id="attacker-parry" value="0"
+               style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
+        <label for="surprised">{{ localize "rmss.combat.surprised" }}</label>
+        <input type="checkbox" class="calculable" id="surprised" value="20">
+        <label for="facing">{{ localize "rmss.combat.facing" }}</label>
+        <select class="calculable" id="facing"
+                style="width:110px; border:1px solid #666; background:#fafafa;">
+            <option selected>{{ localize "rmss.combat.front" }}</option>
+            <option value="15">{{ localize "rmss.combat.flank" }} (+15)</option>
+            <option value="25">{{ localize "rmss.combat.rear_flank" }} (+25)</option>
+            <option value="35">{{ localize "rmss.combat.rear" }} (+35)</option>
+        </select>
     </div>
 
-    <div class="form-group attacker">
-      <label for="target-status">{{ localize "rmss.combat.target_status" }}</label>
-      <select class="calculable" id="target-status">
-          <option {{#unless stunnedValue}}selected{{/unless}}>{{ localize "rmss.combat.normal" }}</option>
-          <option value="20" {{#if stunnedValue}}selected{{/if}}>{{ localize "rmss.combat.stunned" }} (+20)</option>
-          <option value="30">{{ localize "rmss.combat.downed" }} (+30)</option>
-          <option value="50">{{ localize "rmss.combat.prone" }} (+50)</option>
-      </select>
-      <label for="attack-modifier">{{ localize "rmss.combat.misc" }} (+/-)</label>
-      <input type="number" class="calculable" id="attack-modifier" name="attack-modifier" value="{{bonusValue}}">
-      <label for="attack-total">{{ localize "rmss.combat.total" }}</label>
-      <input disabled type="number" id="attack-total" name="attack-total">
+    <div class="form-group attacker" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px;">
+        <label for="target-status">{{ localize "rmss.combat.target_status" }}</label>
+        <select class="calculable" id="target-status"
+                style="width:130px; border:1px solid #666; background:#fafafa;">
+            <option {{#unless stunnedValue}}selected{{/unless}}>{{ localize "rmss.combat.normal" }}</option>
+            <option value="20" {{#if stunnedValue}}selected{{/if}}>{{ localize "rmss.combat.stunned" }} (+20)</option>
+            <option value="30">{{ localize "rmss.combat.downed" }} (+30)</option>
+            <option value="50">{{ localize "rmss.combat.prone" }} (+50)</option>
+        </select>
+        <label for="attack-modifier">{{ localize "rmss.combat.misc" }}</label>
+        <input type="number" class="calculable" id="attack-modifier" value="{{bonusValue}}"
+               style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
+        <label for="attack-total">{{ localize "rmss.combat.total" }}</label>
+        <input disabled type="number" id="attack-total"
+               style="width:70px; text-align:center; border:1px solid #666; background:#ddd; color:#000;">
     </div>
 
-    <hr>
-    <h3><img src="{{enemy.img}}" alt="{{enemy.name}}" width="50" height="50"> {{ localize "rmss.combat.defender" }}</h3>
+    <hr style="border:none; border-top:2px solid #666; margin:10px 0;">
 
-    <div class="form-group defender">
-      <label for="target-at">{{ localize "rmss.combat.at" }}</label>
-      <input type="number" id="target-at" name="target-at" value="{{enemy.system.armor_info.armor_type}}">
+    <!-- Defender section -->
+    <h3 style="display:flex; align-items:center; gap:8px; border-bottom:2px solid #555; padding-bottom:4px; color:#004080; text-shadow: 1px 1px 0 #fff;">
+        <img src="{{enemy.img}}" alt="{{enemy.name}}" width="45" height="45"
+             style="border-radius:6px; border:2px solid #555; background:#ddd;">
+        {{ localize "rmss.combat.defender" }}
+    </h3>
 
-      <label for="target-shield">{{ localize "rmss.combat.shield" }} </label>
-      <input type="number" class="calculable is-positive" id="target-shield" name="target-shield" value="{{enemy.system.armor_info.shield_bonus}}">
-
-      <label for="target-db">{{ localize "rmss.combat.db" }}</label>
-      <input type="number" class="calculable is-positive" id="target-db" name="target-db" value="{{enemy.system.armor_info.total_db}}">
-
-      <label for="target-cover">{{ localize "rmss.combat.cover" }}</label>
-      <select class="calculable" id="target-cover">
-        <option selected>{{ localize "rmss.combat.no_cover" }}</option>
-        <option value="20">{{ localize "rmss.combat.half_soft" }} (+20)</option>
-        <option value="40">{{ localize "rmss.combat.full_soft" }} (+30)</option>
-        <option value="50">{{ localize "rmss.combat.half_hard" }} (+50)</option>
-        <option value="100">{{ localize "rmss.combat.full_hard" }} (+100)</option>
-      </select>
+    <div class="form-group defender" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+        <label for="target-at">{{ localize "rmss.combat.at" }}</label>
+        <input type="number" id="target-at" value="{{enemy.system.armor_info.armor_type}}"
+               style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
+        <label for="target-shield">{{ localize "rmss.combat.shield" }}</label>
+        <input type="number" class="calculable is-positive" id="target-shield" value="{{enemy.system.armor_info.shield_bonus}}"
+               style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
+        <label for="target-db">{{ localize "rmss.combat.db" }}</label>
+        <input type="number" class="calculable is-positive" id="target-db" value="{{enemy.system.armor_info.total_db}}"
+               style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
+        <label for="target-cover">{{ localize "rmss.combat.cover" }}</label>
+        <select class="calculable" id="target-cover"
+                style="width:130px; border:1px solid #666; background:#fafafa;">
+            <option selected>{{ localize "rmss.combat.no_cover" }}</option>
+            <option value="20">{{ localize "rmss.combat.half_soft" }} (+20)</option>
+            <option value="30">{{ localize "rmss.combat.full_soft" }} (+30)</option>
+            <option value="50">{{ localize "rmss.combat.half_hard" }} (+50)</option>
+            <option value="100">{{ localize "rmss.combat.full_hard" }} (+100)</option>
+        </select>
     </div>
 
-    <div class="form-group defender">
-      <label for="target-parry">{{ localize "rmss.combat.parry" }} </label>
-      <input type="number" class="calculable is-positive" id="target-parry" name="target-parry" value="0">
-
-      <label for="target-db">{{ localize "rmss.combat.misc" }} (+/-)</label>
-      <input type="number" class="calculable" id="target-misc" name="target-misc" value="0">
-
-      <label for="defense-total">{{ localize "rmss.combat.total" }}</label>
-      <input disabled type="number" id="defense-total" name="defense-total">
-
-      <label for="difference">{{ localize "rmss.combat.att_minus_def" }}</label>
-      <input disabled type="number" id="difference" name="difference">
+    <div class="form-group defender" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+        <label for="target-parry">{{ localize "rmss.combat.parry" }}</label>
+        <input type="number" class="calculable is-positive" id="target-parry" value="0"
+               style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
+        <label for="target-misc">{{ localize "rmss.combat.misc" }}</label>
+        <input type="number" class="calculable" id="target-misc" value="0"
+               style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
+        <label for="defense-total">{{ localize "rmss.combat.total" }}</label>
+        <input disabled type="number" id="defense-total"
+               style="width:70px; text-align:center; border:1px solid #666; background:#ddd; color:#000;">
+        <label for="difference">{{ localize "rmss.combat.att_minus_def" }}</label>
+        <input disabled type="number" id="difference"
+               style="width:70px; text-align:center; border:1px solid #666; background:#ddd; color:#000;">
     </div>
 
-    <hr>
-  </form>
+</form>

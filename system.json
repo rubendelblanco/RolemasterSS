@@ -24,7 +24,6 @@
   "esmodules": [
     "rmss.js",
     "module/chat/hooks.js",
-    "module/combat/hooks.js",
     "module/sheets/hooks.js"
   ],
   "styles": [

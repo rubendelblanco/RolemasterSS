@@ -26,7 +26,13 @@
           </div>
             {{ localize "rmss.npc.movement_rate" }}
             <h4>
-                <input type="text" name="system.attributes.movement_rate.current" data-dtype="Number" value="{{system.attributes.movement_rate.current}}"/>
+                <input type="text" name="system.attributes.movement_rate.value" data-dtype="Number" value="{{system.attributes.movement_rate.value}}"/>/
+                <input id="movement-rate-current"
+                       name="system.attributes.movement_rate.current"
+                       data-dtype="Number"
+                       type="text"
+                       value="{{system.attributes.movement_rate.current}}"
+                />
             </h4>
         </div>
       </div>

@@ -438,7 +438,8 @@
       "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})",
       "slain": "ha sido <span style='color:#ff4444;'>AJUSTICIADO</span>!",
       "restInPeace": "Descanse en paz",
-      "gmAlias": "Game Master"
+      "gmAlias": "Game Master",
+      "unable_to_attack": "No se puede atacar (actividad por debajo del 50%)"
     },
     "npc": {
       "at": "TA",
