@@ -271,6 +271,7 @@
         },
         "weapon": {
             "cost": "Cost",
+            "currency": "Currency",
             "type": "Type",
             "prod_time": "Production Time",
             "weight": "Weight",

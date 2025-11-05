@@ -272,6 +272,7 @@
     "weapon": {
       "cost": "Costo",
       "type": "Tipo",
+      "currency": "Moneda",
       "prod_time": "Tiempo de producción",
       "weight": "Peso",
       "breakage_range": "Rango de rotura",

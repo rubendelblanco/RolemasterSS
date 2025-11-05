@@ -178,7 +178,7 @@ export default class ItemService {
     static prepareItems(actor, context) {
         const gear = [], playerskill = [], spellskill = [], skillcat = [];
         const languageskill = [], weapons = [], armor = [], herbs = [];
-        const spells = [], spellists = [];
+        const spells = [], spellists = [], creature_attacks = [];
 
         // Get maximum Fate Points from settings (world-level)
         const maxFate = game.settings.get("rmss", "maxFatePoints") ?? 3;
@@ -207,6 +207,7 @@ export default class ItemService {
                     break;
                 case "armor":          armor.push(item); break;
                 case "spell":          spells.push(item); break;
+                case "creature_attack": creature_attacks.push(item); break;
             }
         }
 
@@ -274,6 +275,7 @@ export default class ItemService {
             spellists: spellistsWithContents,
             languageskill,
             fateIcons,
+            creature_attacks,
             config: CONFIG.rmss
         });
     }
