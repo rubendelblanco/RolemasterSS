@@ -4,13 +4,13 @@
       "lower": "01",
       "upper": "05",
       "A": {
-        "text": "No logras pincharle con la punta de tu espada. Tus esfuerzos no tienen la suficiente \"punta\"."
+        "text": "Foe avoids most of the attack."
       },
       "B": {
-        "text": "Se escabulle de tu golpe lateral. Nada más, aparte de tu intención hostil."
+        "text": "Glancing blow. Nothing extra."
       },
       "C": {
-        "text": "Tu enemigo mueve sus pies de forma grácil, evitando la peor parte de tu ataque.",
+        "text": "Foe dances clear of the worst.",
         "metadata": [
           {
             "HP": 1
@@ -18,7 +18,7 @@
         ]
       },
       "D": {
-        "text": "El golpe hace algo pero en realidad rebota. ¡Qué afortunado!",
+        "text": "Strike bounces off.",
         "metadata": [
           {
             "HP": 2
@@ -26,7 +26,7 @@
         ]
       },
       "E": {
-        "text": "Utiliza la punta afilada la próxima vez. Seguro que capta la idea.",
+        "text": "Strike lands flat.",
         "metadata": [
           {
             "HP": 3
@@ -38,7 +38,7 @@
       "lower": "06",
       "upper": "10",
       "A": {
-        "text": "Le alcanzas de refilón, pero al menos has establecido contacto. Es un comienzo.",
+        "text": "Strike failed to connect well.",
         "metadata": [
           {
             "HP": 1
@@ -46,7 +46,7 @@
         ]
       },
       "B": {
-        "text": "Siente el primer mordisco de tu acero y la primera brizna de miedo. ¿Cómo ha podido suceder esto ... ?",
+        "text": "Panck!",
         "metadata": [
           {
             "HP": 2
@@ -54,7 +54,7 @@
         ]
       },
       "C": {
-        "text": "Esmerado. Haces una muesca en tu arma y en tu enemigo. No bloquees con el filo.",
+        "text": "Nick your weapon and your foe.",
         "metadata": [
           {
             "HP": 3
@@ -62,7 +62,7 @@
         ]
       },
       "D": {
-        "text": "Tu golpe llega sin fuerza y no hace demasiado daño.",
+        "text": "Strike lands without energy.",
         "metadata": [
           {
             "HP": 4
@@ -70,7 +70,7 @@
         ]
       },
       "E": {
-        "text": "El impacto desequilibra a tu enemigo. Tienes la iniciativa y toda su atención.",
+        "text": "Shot unbalances foe. You have initiative.",
         "metadata": [
           {
             "HP": 5
@@ -82,7 +82,7 @@
       "lower": "11",
       "upper": "15",
       "A": {
-        "text": "El impacto hace respingar a tu enemigo. Ganas la iniciativa del siguiente asalto.",
+        "text": "Strike causes foe to flinch. You gain initiative next round.",
         "metadata": [
           {
             "HP": 1
@@ -90,7 +90,7 @@
         ]
       },
       "B": {
-        "text": "Comienza a preguntarse por qué empezó la lucha. Ganas la iniciativa del siguiente asalto.",
+        "text": "Foe questions his resolve. You gain initiative next round.",
         "metadata": [
           {
             "HP": 3
@@ -98,7 +98,7 @@
         ]
       },
       "C": {
-        "text": "La esquiva de tu enemigo le descoloca. Obtienes la iniciativa el siguiente asalto.",
+        "text": "Foe's evasion puts him out of position. You gain initiative next round.",
         "metadata": [
           {
             "HP": 5
@@ -106,7 +106,7 @@
         ]
       },
       "D": {
-        "text": "Tu enemigo esquiva y maniobra para obtener una posición mejor, a la vez que evita la mayor parte de tu ataque.",
+        "text": "Foe evades and maneuvers for a better position.",
         "metadata": [
           {
             "P": {
@@ -117,7 +117,7 @@
         ]
       },
       "E": {
-        "text": "Tu enemigo teme tu habilidad y retrocede ante tu poderosa acometida. Redoblas tus esfuerzos.",
+        "text": "Foe is fearful of your skill and steps back from your mighty onslaught.",
         "metadata": [
           {
             "P": {
@@ -132,7 +132,7 @@
       "lower": "16",
       "upper": "20",
       "A": {
-        "text": "Has atraído su atención. Tu enemigo retrocede intentando alejarse de ti.",
+        "text": "Foe steps back defensively.",
         "metadata": [
           {
             "P": {
@@ -143,7 +143,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo retrocede, evitando lo peor de tu ataque.",
+        "text": "For steps back and avoids the worst.",
         "metadata": [
           {
             "P": {
@@ -155,7 +155,7 @@
         ]
       },
       "C": {
-        "text": "Golpe en el costado. si tiene cinturón, éste cae cortado. Qué afortunado.",
+        "text": "Blow to foe's side. If foe has a belt it is severed.",
         "metadata": [
           {
             "P": {
@@ -167,7 +167,7 @@
         ]
       },
       "D": {
-        "text": "Golpe preciso en el costado. Tienes la iniciativa el siguiente asalto.",
+        "text": "Precise strike to foe's side. You have the initiative for 1 round.",
         "metadata": [
           {
             "PE": {
@@ -177,7 +177,7 @@
         ]
       },
       "E": {
-        "text": "El enemigo vibra por el impacto del ataque.",
+        "text": "Foe vibrates from the impact of the strike.",
         "metadata": [
           {
             "STUN": {
@@ -194,7 +194,7 @@
       "lower": "21",
       "upper": "35",
       "A": {
-        "text": "Casi lo destripas. Sabe lo cerca que estuvo.",
+        "text": "Convince foe of his peril by just missing his abdomen.",
         "metadata": [
           {
             "P": {
@@ -206,7 +206,7 @@
         ]
       },
       "B": {
-        "text": "No sabe qué hacer, por lo que decide dejarte mover primero, ganando la iniciativa.",
+        "text": "Foe is uncertain about your next attack. He choses to let you make the first move (you gain the initiative).",
         "metadata": [
           {
             "P": {
@@ -217,7 +217,7 @@
         ]
       },
       "C": {
-        "text": "El impacto roza la cabeza. Si tiene yelmo quedará descolocado y abollado.",
+        "text": "Strike crosses foe's head. If he has a helm it is knocked off and dented.",
         "metadata": [
           {
             "STUN": {
@@ -228,7 +228,7 @@
         ]
       },
       "D": {
-        "text": "Hieres a tu enemigo en la cadera. El golpe destruye el equipo del costado derecho  de la cintura.",
+        "text": "You wound foe in hip. Strike strips equipment from right side of waist.",
         "metadata": [
           {
             "STUN": {
@@ -239,7 +239,7 @@
         ]
       },
       "E": {
-        "text": "Consigues un buen impacto en el costado de tu enemigo. Cualquier recipiente que tenga quedará agujereado.",
+        "text": "Deal foe a measurable blow to his side. Any one container on your foe now has a hole in it.",
         "metadata": [
           {
             "PE": {
@@ -255,7 +255,7 @@
       "lower": "36",
       "upper": "45",
       "A": {
-        "text": "Haces un orificio de entrada en la pantorrila de tu enemigo.",
+        "text": "Nick foe's calf with long follow through.",
         "metadata": [
           {
             "HPR": 1
@@ -263,24 +263,24 @@
         ]
       },
       "B": {
-        "text": "Pobre golpe en la espinilla",
+        "text": "Cheap shot to foe's shin.",
         "metadata": [
           {
             "P": {
               "ROUNDS": 1
             },
-            "DESC": "Con grebas",
+            "DESC": "With leg greaves",
             "HP": 5
           },
           {
-            "DESC": "Sin grebas",
+            "DESC": "Without leg greaves",
             "HP": 2,
             "HPR": 1
           }
         ]
       },
       "C": {
-        "text": "Impacto a lo largo de la espinilla.  El daño tarda un momento en ser evidente. No ha sido casualidad.",
+        "text": "Strike along foe's calf. The damage takes a moment to show.",
         "metadata": [
           {
             "HPR": 2
@@ -288,33 +288,33 @@
         ]
       },
       "D": {
-        "text": "Casi perforas su ingle. ¿Lo has hecho a propósito?",
+        "text": "Close call for foe's groin.",
         "metadata": [
           {
-            "DESC": "Con armadura en la cintura",
+            "DESC": "With waist armor",
             "HP": 4,
             "STUN": {
               "ROUNDS": 1
             }
           },
           {
-            "DESC": "Sin armadura en la cintura",
+            "DESC": "Without waist armor",
             "HPR": 3
           }
         ]
       },
       "E": {
-        "text": "Golpe en la parte superior de la pierna que muerde profundo su carne.",
+        "text": "Strike to upper leg rips clothing.",
         "metadata": [
           {
             "P": {
               "ROUNDS": 1
             },
-            "DESC": "Con armadura en la pierna",
+            "DESC": "With leg armor",
             "HP": 3
           },
           {
-            "DESC": "Sin armadura en la pierna",
+            "DESC": "Without leg armor",
             "HP": 2,
             "HPR": 3
           }
@@ -325,7 +325,7 @@
       "lower": "46",
       "upper": "50",
       "A": {
-        "text": "El intento  de esquiva expone la espalda de tu enemigo a tu ataque.",
+        "text": "Foe's evasion exposes his back to your strike.",
         "metadata": [
           {
             "P": {
@@ -337,7 +337,7 @@
         ]
       },
       "B": {
-        "text": "Golpe en la espalda que daña cualquier equipo que llevase ahí. Muy ágil.",
+        "text": "Blow to back damages any equipment worn there.",
         "metadata": [
           {
             "STUN": {
@@ -348,7 +348,7 @@
         ]
       },
       "C": {
-        "text": "Golpe en la espalda baja que tambalea a tu enemigo. Aún tiene la guardia alta.",
+        "text": "Lower back strike sends foe reeling. His guard is still up.",
         "metadata": [
           {
             "STUN": {
@@ -359,7 +359,7 @@
         ]
       },
       "D": {
-        "text": "Golpe leve que hace voltear el brazo del arma hacia al costado.",
+        "text": "Light strike pins foe's weapon arm to his side.",
         "metadata": [
           {
             "HP": 6,
@@ -371,10 +371,10 @@
         ]
       },
       "E": {
-        "text": "Golpe en el costado. Si tiene armadura, el impacto deja expuesta y dañada la piel.",
+        "text": "Strike to side. If foe has armor, the blow tears it open and exposes skin.",
         "metadata": [
           {
-            "DESC": "Con armadura en el abdomen",
+            "DESC": "With abdomen armor",
             "HP": 8,
             "STUN": {
               "ROUNDS": 1
@@ -382,7 +382,7 @@
             "HPR": 1
           },
           {
-            "DESC": "Sin armadura en el abdomen",
+            "DESC": "Without abdomen armor",
             "HP": 4,
             "STUN": {
               "ROUNDS": 1
@@ -397,7 +397,7 @@
       "lower": "51",
       "upper": "55",
       "A": {
-        "text": "Hay sangre en su pecho y una pizca de duda en sus ojos.",
+        "text": "Strike to foe's chest and he looks impressed.",
         "metadata": [
           {
             "P": {
@@ -409,7 +409,7 @@
         ]
       },
       "B": {
-        "text": "Golpe sólido en el pecho. La sangre de la herida arruina cualquier símbolo heráldico.",
+        "text": "Solid strike to foe's chest. Blood from wound ruins any heraldry.",
         "metadata": [
           {
             "P": {
@@ -421,7 +421,7 @@
         ]
       },
       "C": {
-        "text": "Golpe en el pecho. Si tiene un escudo quedará fuera de posición durante el resto del asalto.",
+        "text": "Strike toward chest. If foe has a shield, it is out of position for the rest of the round.",
         "metadata": [
           {
             "HP": 3,
@@ -431,7 +431,7 @@
         ]
       },
       "D": {
-        "text": "Buen golpe en el pecho que deja magulladuras y sangre. ¿Has alcanzado un punto vital?",
+        "text": "Solid chest strike leaves bruises and blood.",
         "metadata": [
           {
             "P": {
@@ -446,7 +446,7 @@
         ]
       },
       "E": {
-        "text": "Tu enemigo se agacha para evitar tu ataque pero le alcanzas una rodilla. Acaba con él.",
+        "text": "Foe goes low to evade your attack. Strike takes foe down on one knee. Finish him.",
         "metadata": [
           {
             "PE": {
@@ -465,7 +465,7 @@
       "lower": "56",
       "upper": "60",
       "A": {
-        "text": "Herida leve en el muslo, que provoca una hemorragia. No está mal, pero sólo es el principio. Te encargarás de que sea así.",
+        "text": "Minor thigh wound. It could have been better.",
         "metadata": [
           {
             "HP": 2,
@@ -477,7 +477,7 @@
         ]
       },
       "B": {
-        "text": "Es solo una herida en el muslo, pero le duele y ha hecho que brote sangre. ¿Qué va a hacer ahora?",
+        "text": "Thigh wound does some damage.",
         "metadata": [
           {
             "HP": 3,
@@ -490,10 +490,10 @@
         ]
       },
       "C": {
-        "text": "Golpe en el muslo de tu enemigo o en la armadura que lo recubre.",
+        "text": "Strike to foe's thigh.",
         "metadata": [
           {
-            "DESC": "Con armadura en la pierna",
+            "DESC": "With leg armor",
             "HP": 8,
             "STUN": {
               "ROUNDS": 1
@@ -505,7 +505,7 @@
             "PE": {
               "VALUE": -10
             },
-            "DESC": "Con armadura en la pierna",
+            "DESC": "Without leg armor",
             "HP": 5,
             "STUN": {
               "ROUNDS": 2
@@ -515,15 +515,15 @@
         ]
       },
       "D": {
-        "text": "Golpe doloroso en el abdomen de tu enemigo, que será sucio si no lleva armadura.",
+        "text": "Strike foe in abdomen.",
         "metadata": [
           {
-            "DESC": "Con armadura en el abdomen",
+            "DESC": "With abdomen armor",
             "HP": 5,
             "NP": 2
           },
           {
-            "DESC": "Sin armadura en el abdomen",
+            "DESC": "Without abdomen armor",
             "HP": 3,
             "STUN": {
               "ROUNDS": 1
@@ -534,7 +534,7 @@
         ]
       },
       "E": {
-        "text": "Golpe en el costado de tu enemigo. Se tambalea hacia tu derecha 3 metros.",
+        "text": "Blow to foe's side. He stumbles to your right 10 feet.",
         "metadata": [
           {
             "HP": 6,
@@ -551,7 +551,7 @@
       "lower": "61",
       "upper": "65",
       "A": {
-        "text": "Herida leve en el antebrazo que debilita el agarre del enemigo. Mala, señal.",
+        "text": "Minor forearm wound numbs foe's grip.",
         "metadata": [
           {
             "PE": {
@@ -563,7 +563,7 @@
         ]
       },
       "B": {
-        "text": "Golpe en el antebrazo que hace moverse al enemigo. Intenta recuperarse.",
+        "text": "Forearm strike shakes foe up. Foe attempts a recovery.",
         "metadata": [
           {
             "PE": {
@@ -578,10 +578,10 @@
         ]
       },
       "C": {
-        "text": "Buen golpe en el antebrazo derecho de tu enemigo.",
+        "text": "Solid strike to foe's right forearm.",
         "metadata": [
           {
-            "DESC": "Con brazales",
+            "DESC": "With arm greaves",
             "HP": 8,
             "STUN": {
               "ROUNDS": 2
@@ -592,7 +592,7 @@
             "PE": {
               "VALUE": -10
             },
-            "DESC": "Sin brazales",
+            "DESC": "Without arm greaves",
             "HP": 5,
             "STUN": {
               "ROUNDS": 2
@@ -602,7 +602,7 @@
         ]
       },
       "D": {
-        "text": "Impacto en el brazo del arma que lo deja entumecido. Necesita un tiempo que ya no tiene.",
+        "text": "Blow to foe's weapon arm. Arm is numb.",
         "metadata": [
           {
             "PE": {
@@ -617,7 +617,7 @@
         ]
       },
       "E": {
-        "text": "Lo alcanzas en el antebrazo. Herida abierta. Aprende el significado de la palabra \"dolor\".",
+        "text": "Catch foe's forearm. The wound opens up nicely. Foe is in pain.",
         "metadata": [
           {
             "PE": {
@@ -636,7 +636,7 @@
       "lower": "66",
       "upper": "66",
       "A": {
-        "text": "Golpe en el hombro del escudo. El brazo queda inútil. Empieza a ver cerca el final.",
+        "text": "Strike to foe's shield shoulder. Arm is useless. That must really hurt!",
         "metadata": [
           {
             "NP": 3,
@@ -647,7 +647,7 @@
         ]
       },
       "B": {
-        "text": "La mala noticia es que el codo - ahora fracturado - bloquea tu ataque. El brazo del arma queda inútil.",
+        "text": "Foe blocks your attack with his elbow. Elbow is shattered. Shield arm is useless.",
         "metadata": [
           {
             "HP": 3,
@@ -659,7 +659,7 @@
         ]
       },
       "C": {
-        "text": "¡Golpe cruel! El impacto rompe la rodilla de tu enemigo, que se derrumba en el suelo. Queda inconsciente durante 3 asaltos.",
+        "text": "Strike shatters foe's knee. Foe crumbles to the ground. He is down for 3 rounds.",
         "metadata": [
           {
             "PE": {
@@ -673,7 +673,7 @@
         ]
       },
       "D": {
-        "text": "Lo hiciste. Golpe en la cabeza que mata a tu enemigo si no tiene yelmo. Si lo tiene, queda inconsciente durante 3 horas.",
+        "text": "Strike to head kills foe, if he has no helm. If he has a helm he in knocked out for 6 hours.",
         "metadata": [
           {
             "HP": 10
@@ -681,7 +681,7 @@
         ]
       },
       "E": {
-        "text": "Muere de forma natural. Después de un golpe que atraviesa ambos pulmones, ¿qué otra cosa podría suceder? Expira en 6 asaltos.",
+        "text": "Strike through both of foe's lungs. Foe drops and passes out. He dies 6 rounds later.",
         "metadata": [
           {
             "BONUS": {
@@ -695,7 +695,7 @@
       "lower": "67",
       "upper": "70",
       "A": {
-        "text": "El golpe en el cuello falla en su intento por ensartarle, pero es un comienzo. Está preocupado.",
+        "text": "Strike along foe's neck.",
         "metadata": [
           {
             "HP": 5,
@@ -707,7 +707,7 @@
         ]
       },
       "B": {
-        "text": "Golpe en el cuello. No es suficiente para matar a tu enemigo... de forma inmedianta. ¿El siguiente?",
+        "text": "Strike to foe's neck. It's not enough for a kill.",
         "metadata": [
           {
             "PE": {
@@ -721,7 +721,7 @@
         ]
       },
       "C": {
-        "text": "Impacto a lo largo del cuello.    Tu enemigo intenta desesperadamente evitar la muerte. Rechinan los dientes.",
+        "text": "Strike along foe's neck. Foe is frantic to evade death.",
         "metadata": [
           {
             "STUN": {
@@ -735,7 +735,7 @@
         ]
       },
       "D": {
-        "text": "El ataque desarma la defensa de tu enemigo impactando en ambos brazos.",
+        "text": "Strike down foe's defenses with a blow to both arms.",
         "metadata": [
           {
             "PE": {
@@ -750,7 +750,7 @@
         ]
       },
       "E": {
-        "text": "Seccionas de abajo a arriba el brazo de tu enemigo, dañando tendones y músculos. El brazo queda inútil.",
+        "text": "Shot raises foe's arm up, severing many muscles and tendons. Arm is useless.",
         "metadata": [
           {
             "STUN": {
@@ -765,13 +765,13 @@
       "lower": "71",
       "upper": "75",
       "A": {
-        "text": "Golpe en la parte baja de la pierna.",
+        "text": "Strike to lower leg.",
         "metadata": [
           {
             "PE": {
               "VALUE": -10
             },
-            "DESC": "Con grebas",
+            "DESC": "With leg greaves",
             "HP": 5,
             "NP": 3
           },
@@ -779,7 +779,7 @@
             "PE": {
               "VALUE": -25
             },
-            "DESC": "Sin grebas",
+            "DESC": "Without leg greaves",
             "HP": 3,
             "STUN": {
               "ROUNDS": 1
@@ -789,7 +789,7 @@
         ]
       },
       "B": {
-        "text": "Impacto en la pantorrilla que saja el músculo. El enemigo está a punto de caer.Ahora eres consciente del verdadero significado de la palabra \"mutilar\".",
+        "text": "Strike to foe's calf. Slash muscle. Foe almost falls down",
         "metadata": [
           {
             "PE": {
@@ -804,7 +804,7 @@
         ]
       },
       "C": {
-        "text": "Golpe destructor en la parte baja de la pierna. Si no tiene armadura la herida queda expuesta.",
+        "text": "Destructive strike to lower leg. If foe has leg armor, it is torn free.",
         "metadata": [
           {
             "PE": {
@@ -819,7 +819,7 @@
         ]
       },
       "D": {
-        "text": "Excelente golpe en la parte baja de la pierna que saja músculos y cartílagos. El enemigo cae en el suelo.",
+        "text": "Excellent blow to lower leg slashes muscles and cartilage. Foe falls prone.",
         "metadata": [
           {
             "PE": {
@@ -834,7 +834,7 @@
         ]
       },
       "E": {
-        "text": "El golpe penetra en la pierna letalmente. El enemigo cae gritando y agarrándose la pierna del dolor.",
+        "text": "Strike plunges into leg with deadly effect. Foe drops, gripping his leg in pain.",
         "metadata": [
           {
             "PE": {
@@ -852,7 +852,7 @@
       "lower": "76",
       "upper": "80",
       "A": {
-        "text": "Golpe en la parte superior del brazo. Desgarras sus preciosas ropas. Encuentra difícil combinar sus vestiduras con el color rojo sangre.",
+        "text": "Strike foe in upper arm. You tear his pretty clothes.",
         "metadata": [
           {
             "PE": {
@@ -867,7 +867,7 @@
         ]
       },
       "B": {
-        "text": "Impacto en el costado del escudo. Si tiene escudo, tu arma queda atrapada durante 1 asalto.",
+        "text": "Strike to shield side. If foe has shield, your weapon is stuck in it for a round.",
         "metadata": [
           {
             "PE": {
@@ -881,7 +881,7 @@
         ]
       },
       "C": {
-        "text": "Golpe que atraviesa los músculos del brazo del escudo. Si tiene escudo lo deja caer.",
+        "text": "Strike through muscle in shield arm. If foe has a shield, he drops it.",
         "metadata": [
           {
             "PE": {
@@ -895,7 +895,7 @@
         ]
       },
       "D": {
-        "text": "Golpe en el brazo del arma que lo deja inútil.",
+        "text": "Strike to foe's shield arm. Arm is useless.",
         "metadata": [
           {
             "HP": 12,
@@ -907,7 +907,7 @@
         ]
       },
       "E": {
-        "text": "Impacto en el brazo del arma que rompe el hueso. Su brazo queda inútil, el tuyo no.",
+        "text": "Strike foe in weapon arm, the bone is broken. Arm is useless.",
         "metadata": [
           {
             "HP": 10,
@@ -923,7 +923,7 @@
       "lower": "81",
       "upper": "85",
       "A": {
-        "text": "Herida profunda en el costado. Bien, parece ser una herida mortal, pero sigue en pie. Veremos por cuánto.",
+        "text": "Deep wound in foe's side. Well, it looked like a killing blow.",
         "metadata": [
           {
             "STUN": {
@@ -937,7 +937,7 @@
         ]
       },
       "B": {
-        "text": "Herida abierta en el costado de tu enemigo en una muestra gráfica de violencia. ¿Realmente era necesario?",
+        "text": "Tear open foe's side in a graphic display of violence.",
         "metadata": [
           {
             "PE": {
@@ -953,7 +953,7 @@
         ]
       },
       "C": {
-        "text": "Ese sonido horrible es el de tu arma  rompiendo las costillas. La sangre mana a borbotones.",
+        "text": "Strike bites into foe's ribs. The impact sounds truly terrible.",
         "metadata": [
           {
             "PE": {
@@ -969,7 +969,7 @@
         ]
       },
       "D": {
-        "text": "Herida grave abdominal. La sangre sale en cantidades industriales. ¡Espantoso!",
+        "text": "Major abdomenal wound. Blood pours out in frightening quantities.",
         "metadata": [
           {
             "PE": {
@@ -985,14 +985,14 @@
         ]
       },
       "E": {
-        "text": "Golpe en la espalda que secciona una vena. Tu enemigo cae de rodillas y muere después de 12 asaltos."
+        "text": "Strike to foe's back severs a vein. Foe goes to his knees and dies in 12 rounds."
       }
     },
     {
       "lower": "86",
       "upper": "90",
       "A": {
-        "text": "Alcanzas la espalda. Tu enemigo deja caer la guardia y se tambalea.",
+        "text": "Catch foe in the back. He drops his guard and stumbles foward.",
         "metadata": [
           {
             "PE": {
@@ -1007,7 +1007,7 @@
         ]
       },
       "B": {
-        "text": "Golpe en la cabeza. Si no tiene yelmo, muere. Si lo tiene, cae de rodillas.",
+        "text": "Strike to foe's head. If foe has no helm he dies. If foe has helm, he falls to his knees.",
         "metadata": [
           {
             "HP": 6,
@@ -1019,7 +1019,7 @@
         ]
       },
       "C": {
-        "text": "¡Golpe en la cabeza! Si no tiene yelmo muere. El yelmo queda destrozado, toda una sorpresa.",
+        "text": "Strike impacts on foe's head. If he has no helm, he dies. Helm is destroyed.",
         "metadata": [
           {
             "HP": 6,
@@ -1031,7 +1031,7 @@
         ]
       },
       "D": {
-        "text": "Golpe que atraviesa los riñones de tu enemigo. Cae y permanece inmóvil durante 2 horas, momento en el que muere.",
+        "text": "Strike through foes kidneys. Foe is down and immobile for 2 hours, then he dies.",
         "metadata": [
           {
             "HP": 9
@@ -1039,17 +1039,17 @@
         ]
       },
       "E": {
-        "text": "El golpe impacta justo en la clavícula. Tu enemigo cae y muere después de 12 asaltos."
+        "text": "Strike plunges in just below foe's collarbone Foe drops and dies in 12 rounds."
       }
     },
     {
       "lower": "91",
       "upper": "95",
       "A": {
-        "text": "El nuevo agujero que le has hecho en su oreja no le ayuda a oir mejor. Capacidad auditiva a -50.",
+        "text": "Strike to foe's ear. Foe hears at -50.",
         "metadata": [
           {
-            "DESC": "Con yelmo",
+            "DESC": "With helmet",
             "HP": 5,
             "STUN": {
               "ROUNDS": 4
@@ -1057,7 +1057,7 @@
             "NP": 1
           },
           {
-            "DESC": "Sin yelmo",
+            "DESC": "Without helmet",
             "HP": 3,
             "STUN": {
               "ROUNDS": 2
@@ -1068,10 +1068,10 @@
         ]
       },
       "B": {
-        "text": "Golpe rápido a la cadera que habría hecho más daño si no hubiese llevado armadura.",
+        "text": "Strike to foe's hip.",
         "metadata": [
           {
-            "DESC": "Con armadura",
+            "DESC": "With waist armor",
             "HP": 7,
             "STUN": {
               "ROUNDS": 1
@@ -1084,7 +1084,7 @@
             "PE": {
               "VALUE": -25
             },
-            "DESC": "Sin yelmo",
+            "DESC": "Without waist armor",
             "HP": 5,
             "STUN": {
               "ROUNDS": 1
@@ -1094,13 +1094,13 @@
         ]
       },
       "C": {
-        "text": "Golpe en el pecho. Si tiene armadura pectoral cae y muere en 9 asaltos. Si no, muere en el acto."
+        "text": "Strike to chest. If foe has plate chest armor, he drops and dies in 9 rounds. If not, he dies instantly."
       },
       "D": {
-        "text": "Acabas de esparcir sus entrañas por todo el suelo. El enemigo lucha con normalidad durante 6 asaltos, momento en el que muere."
+        "text": "Strike through foe's side spills his guts on the floor. Foe fights on normally for 6 rounds, then dies."
       },
       "E": {
-        "text": "Tu arma pasa a través del brazo saliendo por el otro lado. Tu enemigo muerte en 12 asaltos.",
+        "text": "Your weapon passes through the arm and sticks out the other side. Foe dies in 12 rounds.",
         "metadata": [
           {
             "STUN": {
@@ -1114,7 +1114,7 @@
       "lower": "96",
       "upper": "99",
       "A": {
-        "text": "Impacto en la nariz que le dejará una cicatriz permanente. Tu enemgio bizquea durante un instante.",
+        "text": "Strike to nose. There is a permanent scar. Foe's eyes are crossed for a moment.",
         "metadata": [
           {
             "STUN": {
@@ -1126,7 +1126,7 @@
         ]
       },
       "B": {
-        "text": "No es agradable. Golpe que atraviesa la mejilla y la garganta. Cae y muere después de 9 asaltos.",
+        "text": "Strike through foe's cheek and throat. Foe drops and dies after 9 rounds of incapacity.",
         "metadata": [
           {
             "BONUS": {
@@ -1136,26 +1136,26 @@
         ]
       },
       "C": {
-        "text": "Golpe en el cuello que rompe la columna vertebral y secciona la espina dorsal. Queda paralítico de cuello hacia abajo."
+        "text": "Strike through foe's neck breaks backbone and severs spine. Foe is paralyzed from the neck down."
       },
       "D": {
-        "text": "El golpe se interna en el pecho de tu enemigo, emergiendo por el otro lado. Cae y muere después de 6 asaltos. Se acabó."
+        "text": "Strike plunges into doomed foe's chest and emerges from the other side. Foe drops and dies in 6 rounds."
       },
       "E": {
-        "text": "Impacto que atraviesa el corazón; tu enemigo retrocede 3 metros en busca de un sitio donde morir. Tu arma queda atrapada en el cuerpo."
+        "text": "Shot through heart sends foe reeling back 10 feet to a place suitable for death. Your weapon is stuck in reeling foe."
       }
     },
     {
       "lower": "100",
       "upper": "100",
       "A": {
-        "text": "Golpe qie atraviesa el cuello y secciona una vena y un arteria. La sangre lo salpica todo. Está muerto, señor."
+        "text": "Strike through neck. Sever vein and artery. Foe cannot breath. Foe drops and dies of heart failure."
       },
       "B": {
-        "text": "Nunca olvidarás este golpe. Atraviesa su ojo; muere de forma instantánea. Nunca supo lo que le golpeó.\r\n** Revisar libro: Todos los aliados +10 **",
+        "text": "Strike plunges into foe's eye. Foe dies instantly. Foe remains standing for a moment until he realizes this.",
         "metadata": [
           {
-            "DESC": "Todos los aliados bonificación +10",
+            "DESC": "All allies get +10 for one round",
             "BONUS": {
               "VALUE": 10
             }
@@ -1163,7 +1163,7 @@
         ]
       },
       "C": {
-        "text": "No mejoras su audición aun después de haber atravesado sus dos orejas. Muere en el acto.",
+        "text": "Shot through both ears proves effective. Foe dies instantly. Pretty shot.",
         "metadata": [
           {
             "BONUS": {
@@ -1174,7 +1174,7 @@
         ]
       },
       "D": {
-        "text": "Golpe elegante que atraviesa el cerebro y hace difícil que tu enemigo siga vivo. Aún tienes medio asalto para actuar.",
+        "text": "Strike through brain makes life difficult for foe. You have a half round left to act.",
         "metadata": [
           {
             "BONUS": {
@@ -1184,7 +1184,7 @@
         ]
       },
       "E": {
-        "text": "Al final vislumbra tu acero ... ¡a través de tu ojo! Muere en el acto.No le habrá parecido gracioso.",
+        "text": "Strike to foe's eye. Foe dies instantly. Carry on soldier.",
         "metadata": [
           {
             "BONUS": {

@@ -4,13 +4,13 @@
       "lower": "01",
       "upper": "05",
       "A": {
-        "text": "Tus acrobacias impresionan a los espectadores, pero no consigues causar daño alguno en tu oponente."
+        "text": "Acrobatic, but no extra damage."
       },
       "B": {
-        "text": "¿Pretendías ejecutar un barrido contra ti mismo? Caes pero no te haces daño. Por ahora."
+        "text": "You look like you are trying to sweep yourself. Fortunately, you fail."
       },
       "C": {
-        "text": "Todo se reduce a un embrollo de tirones y rasgaduras, pero en realidad no le haces nada.",
+        "text": "Clever strike exposes foe's garment tags and washing instructions.",
         "metadata": [
           {
             "HP": 1
@@ -18,7 +18,7 @@
         ]
       },
       "D": {
-        "text": "Has olvidado todo lo que una vez aprendiste sobre las artes marciales, y apenas lo hieres.",
+        "text": "You forget you are a master martial artist and attack at rank 1",
         "metadata": [
           {
             "HP": 2
@@ -26,7 +26,7 @@
         ]
       },
       "E": {
-        "text": "Tu ataque parece mortal pero fallas en la ejecución. Mejor establecer contacto que realizar bonitos movimientos.",
+        "text": "Your attack looked deadly, but failed to connect.",
         "metadata": [
           {
             "HP": 3
@@ -38,7 +38,7 @@
       "lower": "06",
       "upper": "10",
       "A": {
-        "text": "Si no te hubieras roto los pantalones con esa ridícula maniobra puede que hasta incluso le hubieras hecho algo de daño.",
+        "text": "Rip your pants and miss an opportunity.",
         "metadata": [
           {
             "HP": 1
@@ -46,7 +46,7 @@
         ]
       },
       "B": {
-        "text": "Tienes tantos problemas en sujetarlo, que te olvidas de ejecutar el barrido.",
+        "text": "Your attack is little more than a clumsy grip.",
         "metadata": [
           {
             "HP": 1
@@ -54,7 +54,7 @@
         ]
       },
       "C": {
-        "text": "Tu florido barrido no consigue impactar, pero aun así logras rozar su caja torácica.",
+        "text": "You slip in a punch, after failing your sweep.",
         "metadata": [
           {
             "HP": 2
@@ -62,7 +62,7 @@
         ]
       },
       "D": {
-        "text": "Parece como si te estuvieses entrenando. Tu enemigo, no. Demuéstrale lo contrario.",
+        "text": "It looks like you're sparring. Your foe is serious.",
         "metadata": [
           {
             "HP": 3
@@ -70,7 +70,7 @@
         ]
       },
       "E": {
-        "text": "Golpe de la rodilla contra el muslo que desequilibra a tu enemigo. Tienes la iniciativa.",
+        "text": "Knee to thigh. Unbalance foe. You have the initiative.",
         "metadata": [
           {
             "HP": 4
@@ -82,7 +82,7 @@
       "lower": "11",
       "upper": "15",
       "A": {
-        "text": "Obtienes una posición mejor y la iniciativa en el próximo asalto.",
+        "text": "You get to a better position and you have the initiative next round.",
         "metadata": [
           {
             "HP": 1
@@ -90,7 +90,7 @@
         ]
       },
       "B": {
-        "text": "Tu ataque es desviado pero obtienes la iniciativa el siguiente asalto.",
+        "text": "Your attack is deflected, but you gain the initiative next round.",
         "metadata": [
           {
             "HP": 3
@@ -98,7 +98,7 @@
         ]
       },
       "C": {
-        "text": "Tu forma física sorprende a tu enemigo sobremanera. Responde con lentitud. Tienes la iniciativa.",
+        "text": "Your form confuses foe greatly. He responds slowly, you have initiative.",
         "metadata": [
           {
             "BONUS": {
@@ -108,7 +108,7 @@
         ]
       },
       "D": {
-        "text": "Tu enemigo evita en parte tu envite y adopta una posición defensiva.",
+        "text": "Foe steps out of your assault and puts up a determined defense.",
         "metadata": [
           {
             "P": {
@@ -119,7 +119,7 @@
         ]
       },
       "E": {
-        "text": "Realizas una presa contra una prenda de ropa que se desgarra. Ambos sabéis lo cerca que estuvo.",
+        "text": "Base your grip on a garment that tears off. You miss a good throw.",
         "metadata": [
           {
             "STUN": {
@@ -136,7 +136,7 @@
       "lower": "16",
       "upper": "20",
       "A": {
-        "text": "Tu ataque hace que tu enemigo busque refugio detrás de su arma.",
+        "text": "Your attack causes foe to seek saftey behind his weapon.",
         "metadata": [
           {
             "P": {
@@ -147,7 +147,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo está deslumbrado con tu forma física. Intenta evitar tu arremetida.",
+        "text": "Foe is dazzled by your form. He seeks to avoid your onslaught.",
         "metadata": [
           {
             "P": {
@@ -158,7 +158,7 @@
         ]
       },
       "C": {
-        "text": "Tu enemigo te empuja, desesperado por zafarse. Se desequilibra en el proceso.",
+        "text": "Foe fights back and pushes you clear. He unbalances himself in the process",
         "metadata": [
           {
             "P": {
@@ -170,7 +170,7 @@
         ]
       },
       "D": {
-        "text": "Eres tan escurridizo que provocas que tu enemigo se golpee a sí mismo ligeramente.",
+        "text": "Your attack causes foe to strike himself lightly. You are happy with the result.",
         "metadata": [
           {
             "P": {
@@ -181,7 +181,7 @@
         ]
       },
       "E": {
-        "text": "Una combinación de golpes te deja el camino libre para seguir atacando.",
+        "text": "A soft strike and a hard punch leaves an openning for you to exploit.",
         "metadata": [
           {
             "HP": 2,
@@ -197,7 +197,7 @@
       "lower": "21",
       "upper": "35",
       "A": {
-        "text": "Tu enemigo salta hacia atrás ante tus intentos. Necesita tiempo para recuperarse.",
+        "text": "Foe leaps back from your attempts. He needs some time to recover.",
         "metadata": [
           {
             "P": {
@@ -209,11 +209,11 @@
         ]
       },
       "B": {
-        "text": "Casi logras apresarle y darle una patada. Tu enemigo escapa y te mantiene a raya.",
+        "text": "You almost connect your grapple with the force of a kick. Foe escapes and wards you away.",
         "metadata": []
       },
       "C": {
-        "text": "Un golpe no es un barrido. Necesita tiempo para recuperarse.",
+        "text": "Solid strike is not a sweep. Your foe stands listless for a moment and then recovers.",
         "metadata": [
           {
             "HP": 4,
@@ -224,7 +224,7 @@
         ]
       },
       "D": {
-        "text": "El pie de tu enemigo deja de sostenerle. Se recupera admirablemente pero no del todo.",
+        "text": "Sweep almost takes foe off his feet. He drops down on one knee, but struggles back to his feet.",
         "metadata": [
           {
             "HP": 2,
@@ -236,7 +236,7 @@
         ]
       },
       "E": {
-        "text": "Tu enemigo trata de recuperar el equilibrio. Te posicionas para evitar el próximo ataque.",
+        "text": "Sweep foe over. He spends some time trying to recover his balance. You recover and prepare for an opportunity.",
         "metadata": [
           {
             "STUN": {
@@ -250,7 +250,7 @@
       "lower": "36",
       "upper": "45",
       "A": {
-        "text": "Tu  barrido es poco más que una ligera patada. Tu enemigo  retrocede 1 paso.",
+        "text": "Sweep is little more than a threatening kick. Foe steps back.",
         "metadata": [
           {
             "P": {
@@ -262,7 +262,7 @@
         ]
       },
       "B": {
-        "text": "El barrido magulla la pierna de tu enemigo, que, cojeando, se aparta de ti.",
+        "text": "Sweep bruises foe's leg. Foe limps clear of your attack.",
         "metadata": [
           {
             "PE": {
@@ -274,7 +274,7 @@
         ]
       },
       "C": {
-        "text": "Tu enemigo salta para evitar tu barrido pero no lo consigue del todo. Magulladuras en la pierna. Tienes la iniciativa.",
+        "text": "Sweep to foe's legs. Foe jumps over some of your assault, but not all of it. Leg is bruised. You have initiative.",
         "metadata": [
           {
             "PE": {
@@ -284,7 +284,7 @@
         ]
       },
       "D": {
-        "text": "El barrido hace perder pie a tu enemigo pero su pantorrilla está dañada y sufre espamos en la zona. Se deja caer sobre una rodilla, pero lucha por levantarse del todo.",
+        "text": "Sweep strikes foe's calf. Foe does not fall, but the bruise is heavy. Foe is in pain.",
         "metadata": [
           {
             "PE": {
@@ -295,7 +295,7 @@
         ]
       },
       "E": {
-        "text": "El barrido hace que tu enemigo tenga que apoyarse sobre una rodilla. Se libera y se pone en pie con dolor. Un golpe más y no se volverá a levantar.",
+        "text": "Sweep takes foe down on one knee. He breaks free and stands in pain. Try a shot to that bruise and you have him.",
         "metadata": [
           {
             "PE": {
@@ -313,7 +313,7 @@
       "lower": "46",
       "upper": "50",
       "A": {
-        "text": "Tu enemigo salta en tu envite. Te golpea en defensa.",
+        "text": "Foe jumps over your assault. He strikes out at you in defense.",
         "metadata": [
           {
             "P": {
@@ -325,7 +325,7 @@
         ]
       },
       "B": {
-        "text": "Tu barrido echa a un lado a tu enemigo. Se recupera en un santiamén.",
+        "text": "Your sweep pushes foe to the side. He recovers at bay.",
         "metadata": [
           {
             "HP": 5,
@@ -336,7 +336,7 @@
         ]
       },
       "C": {
-        "text": "Barrido que no hace caer a tu enemigo. Intenta buscar una posición mejor mientras tu enemigo se recupera.",
+        "text": "Sweep foe over. He does not fall. You look for a good opening, while foe recovers.",
         "metadata": [
           {
             "HP": 4,
@@ -347,7 +347,7 @@
         ]
       },
       "D": {
-        "text": "El pie de tu enemigo deja de sostenerle. Consigue recuperarse admirablemente pero no del todo.",
+        "text": "Foe's feet come out from under him. He makes a remarkable recovery, but it's not that remarkable.",
         "metadata": [
           {
             "HP": 5,
@@ -359,7 +359,7 @@
         ]
       },
       "E": {
-        "text": "Casi desarmas a tu enemigo. Se agacha por su arma. Tienes ventaja. Acaba con él.",
+        "text": "You almost disarm foe. He bends down to recover his weapon. You have the advantage. Finish him.",
         "metadata": [
           {
             "HP": 7,
@@ -375,7 +375,7 @@
       "lower": "51",
       "upper": "55",
       "A": {
-        "text": "Tu oponente retrocede un metro para evitar tu barrido y reevalúa la situación.",
+        "text": "Foe must step back 3 feet to avoid your sweep.",
         "metadata": [
           {
             "P": {
@@ -387,7 +387,7 @@
         ]
       },
       "B": {
-        "text": "El lanzamiento no consigue tirarlo al suelo, pero sí dejarlo sin aire.",
+        "text": "Throw knocks the wind out of foe. It fails to knock him down.",
         "metadata": [
           {
             "HP": 6,
@@ -398,7 +398,7 @@
         ]
       },
       "C": {
-        "text": "Presa estable que hace retroceder a tu enemigo. Sin embargo, no logras efectuar un barrido en condiciones.",
+        "text": "Steady grip sends foe stumbling. Your follow up misses, but who is perfect?",
         "metadata": [
           {
             "HP": 6,
@@ -409,7 +409,7 @@
         ]
       },
       "D": {
-        "text": "Te cuelas en su guardia y consigues golpearle. El impacto rompe algunas costillas, aunque sigue en pie.",
+        "text": "You step in and grab foe. The impact breaks ribs. You fail to throw him down as planned.",
         "metadata": [
           {
             "PE": {
@@ -423,7 +423,7 @@
         ]
       },
       "E": {
-        "text": "Haces tropezar a tu enemigo 1,5 metros en la dirección que desees. Está a punto de caer.",
+        "text": "Stumble foe in the direction of your choice 5 feet. Foe does not fall, but he looks like he will.",
         "metadata": [
           {
             "STUN": {
@@ -437,7 +437,7 @@
       "lower": "56",
       "upper": "60",
       "A": {
-        "text": "Intentas lanzar a tu enemigo, pero se libera. Queda desequilibrado.",
+        "text": "You try to throw foe, but he breaks free. Foe is unbalanced.",
         "metadata": [
           {
             "HP": 6,
@@ -448,7 +448,7 @@
         ]
       },
       "B": {
-        "text": "Presa en la mano del arma que disloca los dedos. Tu enemigo consigue mantener el arma en su lugar.",
+        "text": "Grip foe's weapon hand and sprain his finger. Foe keeps hold of his weapon.",
         "metadata": [
           {
             "PE": {
@@ -461,7 +461,7 @@
         ]
       },
       "C": {
-        "text": "Tu ataque hace bajar la guardia de tu enemigo. Encuentras un punto por el que atacar. ¿Qué será lo siguiente?",
+        "text": "Your attack breaks foe's guard down. You see an open spot.",
         "metadata": [
           {
             "STUN": {
@@ -472,7 +472,7 @@
         ]
       },
       "D": {
-        "text": "El barrido casi derriba a tu enemigo. Tu enemigo baja la guardia intentando no caer.",
+        "text": "Sweep nearly knocks foe down. Foe drops his guard to avoid falling.",
         "metadata": [
           {
             "HP": 7,
@@ -484,7 +484,7 @@
         ]
       },
       "E": {
-        "text": "Tu barrido es efectivo porque tu enemigo se tambalea. El porqué no llega a caer, es un misterio.",
+        "text": "Your sweep is effective. Foe is sent reeling. Why he does not fall is a mystery.",
         "metadata": [
           {
             "HP": 9,
@@ -499,7 +499,7 @@
       "lower": "61",
       "upper": "65",
       "A": {
-        "text": "Logras hacer caer a tu enemigo, que se reincorpora con suma rapidez. Tu golpe mortal falla.",
+        "text": "You throw foe down, but he gets up quickly. Your killing blow misses him.",
         "metadata": [
           {
             "HP": 7,
@@ -510,7 +510,7 @@
         ]
       },
       "B": {
-        "text": "Haces presa en el brazo del arma de tu enemigo, estirándolo y volteándolo brutalmente.",
+        "text": "You grip foe's weapon arm, pulling and twisting it brutally. Foe breaks free, he is bruised badly.",
         "metadata": [
           {
             "PE": {
@@ -524,7 +524,7 @@
         ]
       },
       "C": {
-        "text": "Tu barrido acaba con un intento de lanzar a tu enemigo estirando del brazo. Queda desarmado. La ventaja es tuya.",
+        "text": "Your sweep results in an attempt at throwing foe's arm. He is disarmed. His arm, however, stays attached.",
         "metadata": [
           {
             "HP": 3,
@@ -535,7 +535,7 @@
         ]
       },
       "D": {
-        "text": "Bien hecho. Tu enemigo logra evitar tu embestida pero le arrebatas tu arma cuando te bloquea con ella.",
+        "text": "You attempt a throw. Foe avoids your main attack, but you steal his weapon when he blocks with it.",
         "metadata": [
           {
             "STUN": {
@@ -545,7 +545,7 @@
         ]
       },
       "E": {
-        "text": "Excelente lanzamiento que envía a tu enemigo al suelo sobre su propia arma. Está caído y desarmado.",
+        "text": "Excellent throw sends foe falling on his weapon arm. He is disarmed. He must roll over to stand. You should have fun.",
         "metadata": [
           {
             "STUN": {
@@ -559,7 +559,7 @@
       "lower": "66",
       "upper": "66",
       "A": {
-        "text": "El lanzamiento disloca el brazo del escudo de tu enemigo. No llega a caer pero su hombro está dolorido. Bastante dolorido.",
+        "text": "Throw dislocates foe's shield shoulder. Foe does not fall, but his shoulder is in pain.",
         "metadata": [
           {
             "PE": {
@@ -573,7 +573,7 @@
         ]
       },
       "B": {
-        "text": "Ingeniosa proyección. Tienes a tu enemigo dando vueltas sobre sí mismo. Queda desarmado en inmovilizado.",
+        "text": "Nifty throw. You have foe pinned, on his face, and in an armlock. Foe is disarmed and immobilized.",
         "metadata": [
           {
             "HP": 9
@@ -581,7 +581,7 @@
         ]
       },
       "C": {
-        "text": "Esta vez has ido al grano. Impacto en las espinillas que barre las piernas de tu enemigo hacia arriba. Tu enemigo genuflexiona sobre sus rodillas. Ambas se rompen.",
+        "text": "Strike to foe's shins sweeps his legs up and behind him. Foe comes down on his knees. Both are broken. Foe falls over helpless.",
         "metadata": [
           {
             "PE": {
@@ -596,7 +596,7 @@
         ]
       },
       "D": {
-        "text": "Cae mal, y queda inconsciente si tiene yelmo. Si no, queda paralizado de cintura para abajo.",
+        "text": "You use your body to lift foe up and throw him into the ground. He hits head first. If he has a helm, he is knocked out. If no helm, foe is paralyzed from the waist down.",
         "metadata": [
           {
             "PE": {
@@ -611,14 +611,14 @@
         ]
       },
       "E": {
-        "text": "Lo lanzas sobre tu hombro y cae en la dirección que quieras, a unos 3 metros. Si lo deseas muere a causa del impacto. Si no, cae inconsciente. ¡Eres un maestro!"
+        "text": "Perfect throw sends foe flying over your shoulder. He lands how you want him to, within 10 feet. If you like, he dies on impact. If not, he is knocked out."
       }
     },
     {
       "lower": "67",
       "upper": "70",
       "A": {
-        "text": "Con dureza, pero poco más que un intento de lanzamiento, aunque queda desequilibrado.",
+        "text": "Hard, but less than smooth throw attempt. Foe is unbalanced.",
         "metadata": [
           {
             "HP": 7,
@@ -629,7 +629,7 @@
         ]
       },
       "B": {
-        "text": "Siempre va un segundos por detrás de tus movimientos. Tienes la inciativa durante 6 asaltos.",
+        "text": "Strong throw. Foe is left a second behind you and confused. You have initiative for 6 rounds.",
         "metadata": [
           {
             "HP": 8
@@ -637,7 +637,7 @@
         ]
       },
       "C": {
-        "text": "Patada de refilón a la cara de tu enemigo. Al bajarla golpeas el costado. Retrocede 1,5 metros.",
+        "text": "Glancing kick to foe's face. Your recovery strikes foe in side. Foe steps back 5 feet to recover.",
         "metadata": [
           {
             "PE": {
@@ -650,7 +650,7 @@
         ]
       },
       "D": {
-        "text": "Haces que parezca fácil. Lanzas a tu enemigo contra el suelo que golpea contra el hombro del escudo, rompiéndose la clavícula. El brazo se fractura y queda inútil.",
+        "text": "You make it look simple. You throw foe down on his shield shoulder. Break collar bone and arm. Arm is useless.",
         "metadata": [
           {
             "PE": {
@@ -664,17 +664,17 @@
         ]
       },
       "E": {
-        "text": "Aterriza sobre el brazo del escudo. Si tiene escudo, se rompe. Si no, se fractura el brazo y queda inútil.",
+        "text": "Foe lands on shield arm. If foe has shield, it is broken. If foe has no shield, arm is shattered and useless.",
         "metadata": [
           {
-            "DESC": "Con escudo",
+            "DESC": "With shield",
             "HP": 20
           },
           {
             "PE": {
               "VALUE": -20
             },
-            "DESC": "Sin escudo",
+            "DESC": "Without shield",
             "HP": 10,
             "STUN": {
               "ROUNDS": 2
@@ -688,7 +688,7 @@
       "lower": "71",
       "upper": "75",
       "A": {
-        "text": "La caída magulla el muslo de tu enemigo. Se levanta sobre sus pies inmediatamente.",
+        "text": "Fall bruises foe's thigh. He gets back to his feet instantly.",
         "metadata": [
           {
             "PE": {
@@ -703,7 +703,7 @@
         ]
       },
       "B": {
-        "text": "La caída provoca desgarros en los ligamentos de la pierna de tu enemigo. Se levanta con dificultad.",
+        "text": "Fall from throw tears ligaments in foe's leg. Foe rises with some difficulty.",
         "metadata": [
           {
             "PE": {
@@ -718,7 +718,7 @@
         ]
       },
       "C": {
-        "text": "Haces caer a tu enemigo al suelo y le inmovilizas la pierna intentando que golpee el suelo. Se desgarra un músculo en un intento de liberarse.",
+        "text": "You sweep foe down and grip his leg to keep it from breaking his fall. He strains a muscle trying to break free.",
         "metadata": [
           {
             "PE": {
@@ -732,7 +732,7 @@
         ]
       },
       "D": {
-        "text": "Ayudas a tu enemigo a golpear el suelo con dureza. Fractura en la pierna. Rueda lejos de ti para alejarse.",
+        "text": "You assist foe in falling very hard. Foe's leg is fractured. He rolls away from you to get off his wounded leg.",
         "metadata": [
           {
             "PE": {
@@ -747,7 +747,7 @@
         ]
       },
       "E": {
-        "text": "Derribas a tu enemigo, que cae y se rompe la cadera. Te cebas en ese sitio para conseguir ventaja.",
+        "text": "You sweep foe over. Foe falls and breaks his hip. You strike at foe's mild hip fracture for advantage.",
         "metadata": [
           {
             "PE": {
@@ -765,7 +765,7 @@
       "lower": "76",
       "upper": "80",
       "A": {
-        "text": "Tu enemigo cae sobre el costado de su escudo. Si tiene escudo, se rompe. Si no, se disloca el brazo.",
+        "text": "Foe falls on his shield side. If he has a shield, it is broken. If no shield, arm is sprained.",
         "metadata": [
           {
             "PE": {
@@ -778,7 +778,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo para la caída con el brazo de su arma. Se disloca 2 dedos en el aterrizaje.",
+        "text": "Foe breaks his fall with his weapon hand. He sprains two fingers when landing.",
         "metadata": [
           {
             "PE": {
@@ -791,7 +791,7 @@
         ]
       },
       "C": {
-        "text": "Tiras al suelo a tu adversario y te pones encima de él. Se te sacude pero queda apoyado sobre el brazo de su arma, dislocándose el hombro.",
+        "text": "You knock foe over and ride him down. He throws you off, but lands on his shield arm. He dislocates his shoulder.",
         "metadata": [
           {
             "P": {
@@ -805,7 +805,7 @@
         ]
       },
       "D": {
-        "text": "Lanzas a tu enemigo con fuerza mortífera. Cae sobre su espalda y fractura el hombro del arma. ¡Hora de acudir a la enfermería!",
+        "text": "You throw foe down hard and deadly. He lands on his back and cracks his shoulder blade.",
         "metadata": [
           {
             "PE": {
@@ -820,7 +820,7 @@
         ]
       },
       "E": {
-        "text": "Lanzas a tu enemigo de espaldas. Tropieza durante 3 metros hasta que cae sobre su codo. Articulación rota. El brazo queda inútil.",
+        "text": "You send foe over backwards. He stumbles 10 feet. He falls on his elbow . Joint is shattered. Arm is useless.",
         "metadata": [
           {
             "STUN": {
@@ -835,7 +835,7 @@
       "lower": "81",
       "upper": "85",
       "A": {
-        "text": "El barrido desequilibra a tu enemigo que te permite colocarte en una mejor posición para tu próximo ataque.",
+        "text": "Sweep unbalances foe and puts you in a good position for your next strike.",
         "metadata": [
           {
             "HP": 3,
@@ -849,7 +849,7 @@
         ]
       },
       "B": {
-        "text": "El barrido envía a tu enemigo 3 metros hacia un lado. Se tiene capa, cae. Si no, queda encarado en la dirección equivocada, dándote la espalda.",
+        "text": "Sweep knocks foe 10 feet to side. If foe has a cloak or cape, he falls down. If not, foe is facing the wrong way.",
         "metadata": [
           {
             "HP": 9,
@@ -861,7 +861,7 @@
         ]
       },
       "C": {
-        "text": "El barrido hace tambalearse a tu enemigo. Te acercas para conseguir una posición mejor. Tu enemigo no se da cuenta de la situación.",
+        "text": "Sweep staggers foe. You step in close for better position. Foe is oblivious to your advantage.",
         "metadata": [
           {
             "STUN": {
@@ -875,7 +875,7 @@
         ]
       },
       "D": {
-        "text": "Aterriza sobre sus armas, desgarrando músculos y tendones en su muñeca. Deja caer el arma. Brazo inútil.",
+        "text": "Your throwing grip lands on foe's weapon hand. You tear tendons and muscles in his wrist. He drops his weapon. Arm is useless.",
         "metadata": [
           {
             "HP": 10
@@ -883,7 +883,7 @@
         ]
       },
       "E": {
-        "text": "Realizas un lanzamiento a la carrera. Lo cargas durante unos buenos 3 metros hasta caer sobre su cara. Al gritar se llena la boca de tierra.",
+        "text": "Throw foe with a running assault. You carry him a good 10 feet to land on his face. As he yells dirt shovels into his mouth. You try not to laugh.",
         "metadata": [
           {
             "HP": 5,
@@ -899,7 +899,7 @@
       "lower": "86",
       "upper": "90",
       "A": {
-        "text": "Tu enemigo aterriza sobre su espalda rueda sobre sí mismo y se levanta. Músculos magullados. El daño ya está hecho.",
+        "text": "Foe lands on his back. He rolls over and stands up. Bruised muscles. The damage is done.",
         "metadata": [
           {
             "PE": {
@@ -913,7 +913,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo cae sobre su espalda, dándose cuenta que está en peligro. El impacto desgarra tendones y rompe huesos.",
+        "text": "Foe lands on his back. He realizes that he is in peril. The impact tears tendons and breaks bones.",
         "metadata": [
           {
             "PE": {
@@ -927,7 +927,7 @@
         ]
       },
       "C": {
-        "text": "Ataque contra las piernas que hace caer a tu enemigo. Siempre recordarás ese sonido de vértebras crujiendo.",
+        "text": "Strike to legs. Throw foe to the ground. He will always remember this one. Foe has cracked a vertebrae.",
         "metadata": [
           {
             "PE": {
@@ -941,7 +941,7 @@
         ]
       },
       "D": {
-        "text": "Derribas a tu enemigo y lo inmovilizas con una llave al brazo. Está atrapado a  menos que posea alguna técnica de escape.",
+        "text": "Throw foe down. You immobilize him in an arm lock. It will take a special move to get out of your grip.",
         "metadata": [
           {
             "STUN": {
@@ -952,7 +952,7 @@
         ]
       },
       "E": {
-        "text": "El lanzamiento manda volando a tu enemigo contra cualquier espectador a menos de 3 metros. Ambos quedan fuera de combate y aturdidos. ¡Qué fácil!",
+        "text": "Throw sends foe flying into an available enemy within 10 feet. Both are knocked down and confused.",
         "metadata": [
           {
             "HP": 9,
@@ -968,7 +968,7 @@
       "lower": "91",
       "upper": "95",
       "A": {
-        "text": "Tu enemigo se rompe la nariz al caer cuando lo lanzas por los aires. Es derribado y queda confundido.",
+        "text": "Foe breaks his nose on a piece of equipment when you throw him. He is down and confused.",
         "metadata": [
           {
             "PE": {
@@ -982,7 +982,7 @@
         ]
       },
       "B": {
-        "text": "La caída rompe costillas y deja desarmado a tu enemigo. Cae rodando y se levanta mirando en la dirección equivocada.",
+        "text": "Fall breaks ribs, and disarms foe. Foe hits the ground rolling. His attempts to stand facing in the wrong direction.",
         "metadata": [
           {
             "PE": {
@@ -996,7 +996,7 @@
         ]
       },
       "C": {
-        "text": "El barrido derriba a tu enemigo, y aprovechas para hacerle una presa. Puedes romperle la pierna si quieres. Para qué engañarnos, todos sabemos que lo vas a hacer.",
+        "text": "Sweep downs foe and you put him in a leg-breaking hold. You pin foe and may break his leg at your leasure.",
         "metadata": [
           {
             "HP": 9,
@@ -1005,7 +1005,7 @@
         ]
       },
       "D": {
-        "text": "El lanzamiento estampa a tu enemigo contra la superficie más cercana. Cae inconsciente. Podrás matarlo cuando quieras. Está a tu merced.",
+        "text": "Throw bashes foe against nearby hard surface. Foe is knocked out. You may kill him when you like. He is at your mercy.",
         "metadata": [
           {
             "HP": 10
@@ -1013,14 +1013,14 @@
         ]
       },
       "E": {
-        "text": "Astuto lanzamiento giratorio que hace volar a tu enemigo mientras le ayudas a caer al suelo. Cae inconsciente y queda desarmado."
+        "text": "Sly rolling throw sends foe into air. You guide foe to the ground. He is knocked unconscious and disarmed."
       }
     },
     {
       "lower": "96",
       "upper": "99",
       "A": {
-        "text": "En esta ocasión aterriza con la cabeza. No es nada bueno. Si no tiene yelmo, queda inconsciente.",
+        "text": "Excellent throw sends foe down on his head. If foe has no helm, he is knocked out.",
         "metadata": [
           {
             "STUN": {
@@ -1030,7 +1030,7 @@
         ]
       },
       "B": {
-        "text": "Con solo un golpe desarmas a tu enemigo, lo dejas inconsciente y le pateas la espalda. Una victoria exultante.",
+        "text": "With but one strike, you disarm foe , knock him out and kick him onto his back. You're not a dragon yet.",
         "metadata": [
           {
             "HP": 20
@@ -1038,13 +1038,13 @@
         ]
       },
       "C": {
-        "text": "Lanzas a tu enemigo contra la superficie sólida que desees. Fractura craneal. Si tiene yelmo cae en coma. Si no, muerte tras 1 asalto."
+        "text": "Throw foe against a hard surface of your choice. Crack skull. If foe has helm, he is in a coma. If no helm, he dies in 1 round."
       },
       "D": {
-        "text": "No tienes piedad. Tu ataque rompe las costillas de tu enemigo. Lo lanzas al suelo sobre su estómago y lo empalas con sus propias costillas fracturadas. Muere después de 6 asaltos."
+        "text": "Your attack breaks foe's ribs. You throw him down and impale him on his broken ribs. He dies in 6 rounds."
       },
       "E": {
-        "text": "Apresas a tu enemigo con firmeza, le barres los pies y entonces te dejas caer sobre él en el suelo. El impacto le rompe el cuello y ... muere en el acto.",
+        "text": "You grapple your foe firmly, sweep his feet out from under him and then throw him to the ground. The impact breaks his neck. He dies instantly.",
         "metadata": [
           {
             "BONUS": {
@@ -1059,19 +1059,19 @@
       "lower": "100",
       "upper": "100",
       "A": {
-        "text": "Lanzamiento primoroso. Tu enemigo cae inconsciente en la presa controlada. Puedes acabar con él o mantenerlo inmóvil e indefenso."
+        "text": "Snazzy throw. Foe is knocked down with a controlled grip. You may finish him or hold him immobile and helpless."
       },
       "B": {
-        "text": "Fabuloso lanzamiento que hace volar a tu enemigo. Se rompe el cuello en el impacto y muere. ¡Eres la muerte personificada!"
+        "text": "Fabulous throw sends foe flying. Foe's neck is broken on impact and he dies after rolling 15 feet. You are a mighty warrior to all who see your work."
       },
       "C": {
-        "text": "Haces caer a tu enemigo contra el suelo golpeando con tu rodilla su espalda. Le rompes la columna y lo dejas paralítico de hombros para abajo. La misericordia no tiene cabida en tu corazón."
+        "text": "Bring foe down with your knee under his back. You break his back and paralyze him from the shoulders down. You take a deadly looking stance."
       },
       "D": {
-        "text": "Conviertes su embestida en una presa brutal que le rompe la espalda. Paralizado de cuello para abajo."
+        "text": "Foe lunges toward you in a threatening move. A brutal grapple from below breaks foe's back, as you throw him. He is paralyzed from the neck down."
       },
       "E": {
-        "text": "Usando sólo la mitad del asalto, lanzas a tu enemigo volando contra la superficie sólida que desees. Muere en el acto debido a heridas múltiples. Quién sabe qué le mató.",
+        "text": "Using but half the round, you use a rolling throw to send foe against an available hard surface of your choice. Foe dies from many wounds instantly.",
         "metadata": [
           {
             "BONUS": {

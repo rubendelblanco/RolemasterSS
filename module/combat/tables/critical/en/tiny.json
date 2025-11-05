@@ -4,19 +4,19 @@
       "lower": "01",
       "upper": "05",
       "A": {
-        "text": "Se supone que quieres herirle, no abrazarle."
+        "text": "Dubious strike."
       },
       "B": {
-        "text": "Penoso.¿ No te enseño tu madre a no jugar  con la comida?"
+        "text": "You throw up some dust."
       },
       "C": {
-        "text": "Eso fue tan guuuaay ... Sigue así. Quizás te lleve a casa y te adopte."
+        "text": "You're not very good, are you?"
       },
       "D": {
-        "text": "Los golpes diminutos necesitan más precisión que los ataques ordinarios. No lo olvides."
+        "text": "Get it right next time!"
       },
       "E": {
-        "text": "Tu titánico esfuerzo de refleja en un escado resultado. No tardará en sucumbir al \"poder  de los pequeños\".",
+        "text": "You did very poorly.",
         "metadata": [
           {
             "HP": 1
@@ -28,16 +28,16 @@
       "lower": "06",
       "upper": "10",
       "A": {
-        "text": "Rodar por el suelo y dar golpes en el aire no va a causar mucho daño."
+        "text": "Zip. Less than effective."
       },
       "B": {
-        "text": "Magnífica demostración de acrobacias  por tu parte, pero no está allí cuando aterrizas."
+        "text": "You leap. Foe moves. You land. It had good form."
       },
       "C": {
-        "text": "¡Mira! ¡Un burro volando!"
+        "text": "Look over there! Baby eagles!"
       },
       "D": {
-        "text": "No le alcanzas, pero destrozas su ropa. ¿Sabes cuánto le había costado?",
+        "text": "Your slash tears off a piece of fur or cloth.",
         "metadata": [
           {
             "HP": 1
@@ -45,7 +45,7 @@
         ]
       },
       "E": {
-        "text": "Buen golpe, pero no tenía mucha fuerza y causa poco daño.",
+        "text": "Strike is not solid or well placed.",
         "metadata": [
           {
             "HP": 2
@@ -57,13 +57,13 @@
       "lower": "11",
       "upper": "15",
       "A": {
-        "text": "Seguro que terminarás por hacerle daño."
+        "text": "Feeble."
       },
       "B": {
-        "text": "Ni te acercas. Recuerda lo que significa \"diminuto\"."
+        "text": "You almost got a real grip."
       },
       "C": {
-        "text": "Una lluvia de golpes que sólo consigue destrozar su túnica, pero no su piel.",
+        "text": "You really tear up foe's garments. Try his skin next time.",
         "metadata": [
           {
             "HP": 1
@@ -71,7 +71,7 @@
         ]
       },
       "D": {
-        "text": "Corte en el cuello que rompe cualquier colgante de tu enemigo.",
+        "text": "Slash to neck, pulls off any necklaces foe is wearing.",
         "metadata": [
           {
             "HP": 1
@@ -79,7 +79,7 @@
         ]
       },
       "E": {
-        "text": "Hincas tus garras en las ropas de tu enemigo. Luchas por liberarte.",
+        "text": "Entangle your claws in foe's clothes. You struggle to pull free.",
         "metadata": [
           {
             "HP": 2
@@ -91,7 +91,7 @@
       "lower": "16",
       "upper": "20",
       "A": {
-        "text": "En este punto incluso un impacto pequeño no sirve de mucho, y éste ha sido uno. Solo está molesto.",
+        "text": "Victory to the oppressed!",
         "metadata": [
           {
             "HP": 1
@@ -99,7 +99,7 @@
         ]
       },
       "B": {
-        "text": "Tu intento de aferrarte a tu enemigo ha sido bloqueado por su brazo.",
+        "text": "Your lunge for foe's throat was blocked by his arm.",
         "metadata": [
           {
             "HP": 1
@@ -107,7 +107,7 @@
         ]
       },
       "C": {
-        "text": "Pensabas que lo tenías, pero sólo golpeas el aire. Se aparte de ti sin esfuerzo.",
+        "text": "Glance off foe and grip the air. He steps out of your strike.",
         "metadata": [
           {
             "HP": 1
@@ -115,7 +115,7 @@
         ]
       },
       "D": {
-        "text": "No alcanzas su garganta y sólo consigues aporrear su pecho. Ya verás cuando claves tus dientes en él.",
+        "text": "Solid chest strike yields a bruise.",
         "metadata": [
           {
             "HP": 2
@@ -123,7 +123,7 @@
         ]
       },
       "E": {
-        "text": "Corte ligero que tiene poco efecto aunque logras probar su sangre. Te está dando ideas.",
+        "text": "Light cutting strike. It has a little effect, but you taste blood.",
         "metadata": [
           {
             "HP": 1,
@@ -136,7 +136,7 @@
       "lower": "21",
       "upper": "35",
       "A": {
-        "text": "Es de los pequeños golpes de donde salen las heridas más grandes. Sigue insistiendo y terminarás por conseguirlo. La perseverancia es la clave.",
+        "text": "Jolly deadly attack.",
         "metadata": [
           {
             "HP": 1
@@ -144,7 +144,7 @@
         ]
       },
       "B": {
-        "text": "Estás cerca, pero tu enemigo te patea antes de que tu ataque sea mortal.",
+        "text": "You get in close, but foe kicks you clear before your strike turns deadly.",
         "metadata": [
           {
             "HP": 2
@@ -152,7 +152,7 @@
         ]
       },
       "C": {
-        "text": "El golpe en la cadera habría servido para algo si su armadura no se hubiera interpuesto en tu camino.",
+        "text": "Strike catches foe in waist. His equipment blocks some damage.",
         "metadata": [
           {
             "HP": 2
@@ -160,7 +160,7 @@
         ]
       },
       "D": {
-        "text": "No ha sido más que una cicatriz a su espalda. ¿Estás tratando de matarlo a cosquillas?",
+        "text": "The recoil from a missed strike lands against foe's back. It is a mild scratch.",
         "metadata": [
           {
             "HP": 3
@@ -168,7 +168,7 @@
         ]
       },
       "E": {
-        "text": "Arañas a tu enemigo en la pierna, que comienza a sangrar. Te abre el apetito.",
+        "text": "Scratch foe in calf. It turns into a bleeder and you are very pleased.",
         "metadata": [
           {
             "HP": 2,
@@ -181,7 +181,7 @@
       "lower": "36",
       "upper": "45",
       "A": {
-        "text": "Urg. Algo más que un golpe de poca importancia. Aunque tampoco mucho.",
+        "text": "Cruel blow for nature.",
         "metadata": [
           {
             "HP": 2
@@ -189,7 +189,7 @@
         ]
       },
       "B": {
-        "text": "Tu intento de destriparlo falla por poco. Estás acostumbrado a este tipo de frustraciones.",
+        "text": "Attempt to disembowel falls short. Foe guards his stomach well.",
         "metadata": [
           {
             "HP": 3
@@ -197,7 +197,7 @@
         ]
       },
       "C": {
-        "text": "Agarre débil. Tu enemigo se libera, haciéndose daño. Sonríes y te responde con una mueca de dolor.",
+        "text": "Light grip. Foe breaks free, damaging himself. You are pleased.",
         "metadata": [
           {
             "HP": 2,
@@ -206,17 +206,17 @@
         ]
       },
       "D": {
-        "text": "Golpe en la parte baja de la pierna. Si no tiene armadura allí le causas algo de daño.",
+        "text": "Strike to foe's lower leg. If foe has no leg armor, you cause him pain.",
         "metadata": [
           {
-            "DESC": "Sin grebas",
+            "DESC": "Without leg greaves",
             "HP": 5,
             "HPR": 1
           }
         ]
       },
       "E": {
-        "text": "Contempla la herida de su muslo como si fuera la primera vez que lo ve sangrar.",
+        "text": "Solid shot to leg. Foe watches you break the skin on his thigh.",
         "metadata": [
           {
             "HP": 3,
@@ -229,7 +229,7 @@
       "lower": "46",
       "upper": "50",
       "A": {
-        "text": "Tu ataque falla por poco y pierdes una uña, garra, o lo que sea. Necesitas ser más preciso.",
+        "text": "Poor follow through. You lose a claw. Your attack is dubious.",
         "metadata": [
           {
             "PE": {
@@ -241,7 +241,7 @@
         ]
       },
       "B": {
-        "text": "Corte poco profundo en un costado de tu enemigo. Logra esquivar lo peor. Sólo ha sido suerte.",
+        "text": "Slash to foe's side does no cut deep. He turns to avoid the worst.",
         "metadata": [
           {
             "HP": 3
@@ -249,7 +249,7 @@
         ]
       },
       "C": {
-        "text": "Golpe poderoso en el costado pero que no logra traspasar la piel. Tu enemigo se gira para verte mejor.",
+        "text": "Solid strike to side does not break the skin. Foe turns to face you better.",
         "metadata": [
           {
             "HP": 4
@@ -257,7 +257,7 @@
         ]
       },
       "D": {
-        "text": "Pinchazo inesperado en el costado. Estás tan sorprendido como él. Te encanta que los planes salgan bien.",
+        "text": "Unexpected puncture in foe's side. You are pleased. Foe grips his side.",
         "metadata": [
           {
             "HP": 3,
@@ -266,7 +266,7 @@
         ]
       },
       "E": {
-        "text": "Te revuelves para asestar un impacto fuerte en la espalda del enemigo. Hay más sorpresa que dolor en su rostro, cuando se aleja de ti.",
+        "text": "You bring a powerful blow around against foe's back. He leaps back away.",
         "metadata": [
           {
             "P": {
@@ -282,7 +282,7 @@
       "lower": "51",
       "upper": "55",
       "A": {
-        "text": "Patada voladora. Una lástima que se aparte con tanta facilidad.",
+        "text": "Leaping chest strike yields some measurable damage.",
         "metadata": [
           {
             "HP": 3
@@ -290,7 +290,7 @@
         ]
       },
       "B": {
-        "text": "Corte profundo que produce algo de daño. Eso le ensañará.",
+        "text": "Good little gash, produces an effective wound.",
         "metadata": [
           {
             "HP": 3,
@@ -299,7 +299,7 @@
         ]
       },
       "C": {
-        "text": "Golpe débil en el pecho que lo coge de improviso; comienza a sangrar. Bien hecho. Está sorprendido.",
+        "text": "Mild strike to chest catches in a soft spot. You are surprised at its effect.",
         "metadata": [
           {
             "HP": 4,
@@ -308,17 +308,17 @@
         ]
       },
       "D": {
-        "text": "Oh. Si no tiene armadura, le abres el estómago.",
+        "text": "Slash foe's stomach. If foe's has no metal armor, you tear him open badly",
         "metadata": [
           {
-            "DESC": "Sin armadura en el abdome",
+            "DESC": "Without abdomen armor",
             "HP": 5,
             "HPR": 3
           }
         ]
       },
       "E": {
-        "text": "Has conseguido que se enrede con su propio escudo. No será capaz de usarlo hasta el siguiente asalto.",
+        "text": "Grip to foe's shield arm garments. Foe is unable to use his shield arm for 1 round.",
         "metadata": [
           {
             "HP": 6,
@@ -331,7 +331,7 @@
       "lower": "56",
       "upper": "60",
       "A": {
-        "text": "Rompes sus ropas y le alcanzas en el muslo. Ey, hay sangre.",
+        "text": "Light wound to thigh. Garments are torn. Promises are made.",
         "metadata": [
           {
             "HP": 1,
@@ -340,7 +340,7 @@
         ]
       },
       "B": {
-        "text": "Arañas la piel de tu enemigo, pero no logras hendirla. Te mira y sacude la cabeza.",
+        "text": "Scratch foe's skin, but you do not break the skin.",
         "metadata": [
           {
             "HP": 6
@@ -348,7 +348,7 @@
         ]
       },
       "C": {
-        "text": "Estás cogiendo el ritmo; fintas a su garganta y alcanzas su muslo. Más sangre.",
+        "text": "Your original strike misses, but foe's thigh is available as a consolation.",
         "metadata": [
           {
             "HP": 4,
@@ -360,7 +360,7 @@
         ]
       },
       "D": {
-        "text": "Sangra y está desquilibrado. No se esperaba ese golpe en la rodilla.",
+        "text": "Your strike catches the back of foe's thigh. Foe is unbalanced for a moment.",
         "metadata": [
           {
             "HP": 6,
@@ -372,7 +372,7 @@
         ]
       },
       "E": {
-        "text": "Sabroso. Te diviertes rasgando su muslo. \"Sonríes\" al ver la expresión de su rostro.",
+        "text": "You rip open foe's thigh. The look on his face tells you victory is near.",
         "metadata": [
           {
             "HP": 7,
@@ -388,7 +388,7 @@
       "lower": "61",
       "upper": "65",
       "A": {
-        "text": "Leve herida en el antebrazo. Lo estás haciendo muy bien. Sigue así.",
+        "text": "Mild forearm wound. You are doing very well, keep it up.",
         "metadata": [
           {
             "HP": 2,
@@ -397,7 +397,7 @@
         ]
       },
       "B": {
-        "text": "Golpe inclinado en el antebrazo que deja una fea cicatriz (en caso de que no lo mates).",
+        "text": "Raking forearm strike leaves a nasty scar. It bites deep enough to bleed.",
         "metadata": [
           {
             "HP": 3,
@@ -406,7 +406,7 @@
         ]
       },
       "C": {
-        "text": "Tu enemigo bloquea el ataque con su brazo pero logras rasgárselo como pago. Todos esos rasguños comienzan a convertirse en algo más serio.",
+        "text": "Foe blocks you with his arm and you tear it up as payment. The damage is substantial, before foe breaks free.",
         "metadata": [
           {
             "P": {
@@ -418,7 +418,7 @@
         ]
       },
       "D": {
-        "text": "Tu intento de apresarle falla, pero lo mantiene ocupado.",
+        "text": "Grip to foe's forearm. Foe flails his arm around trying to shake you off. You let go and move to a better position.",
         "metadata": [
           {
             "P": {
@@ -433,7 +433,7 @@
         ]
       },
       "E": {
-        "text": "Golpe que atraviesa sus defensas y corta el brazo que sujeta el escudo. Causas una fea hemorragia.",
+        "text": "Slash across foe's chest and upper arm. Strike causes a bruise and then opens up a gaping wound on foe's shield arm.",
         "metadata": [
           {
             "HP": 6,
@@ -449,7 +449,7 @@
       "lower": "66",
       "upper": "66",
       "A": {
-        "text": "Su estómago está sangrando mientras se aparta de ti. Incluso se desequilibra.",
+        "text": "You find a nice vulnerable spot to rip open. Foe leaps back from your cluches. He unbalances himself to escape your assault.",
         "metadata": [
           {
             "HP": 4,
@@ -462,7 +462,7 @@
         ]
       },
       "B": {
-        "text": "Tu golpe alcanza la pantorrilla de tu enemigo. Se aleja de ti violentamente, hiriéndose un poco más.",
+        "text": "Your strike grips foe's calf. He pulls away from you violently. His actions further damage the wound. You do your best, before he breaks free.",
         "metadata": [
           {
             "PE": {
@@ -476,7 +476,7 @@
         ]
       },
       "C": {
-        "text": "Te agarras a él como si fueras una túnica barata. Deja caer su arma y salta 3 metros hacia atrás.",
+        "text": "Violent move assaults foe's arm, wrist and shoulder. Foe is shaken by the vicious strike. He drops his weapon and leaps back 10 feet. You stay with your quarry looking for an advantage.",
         "metadata": [
           {
             "HP": 4,
@@ -490,21 +490,21 @@
         ]
       },
       "D": {
-        "text": "Destruyes uno de sus ojos y dejas al otro cegado por 2 días.",
+        "text": "Astounding head strike. If foe has no helm, you make a bloody mess of foe's scalp. To further your advantage you push foe's head sideways.",
         "metadata": [
           {
-            "DESC": "Con yelmo",
+            "DESC": "With helm",
             "HP": 4
           },
           {
-            "DESC": "Sin yelmo",
+            "DESC": "Without helm",
             "HP": 7,
             "NP": 6
           }
         ]
       },
       "E": {
-        "text": "Le dejas retorciéndose en el suelo. Destruyes uno de sus ojos y dejas al otro cegado por 2 días.\r\nSu apariencia se modifica a -20.",
+        "text": "Bizarre strike to eyes destroys 1 eye and leaves the other blind for 2 days. Foe is down and helpless for an hour. He will need assistance to even stand. His Appearance is modified by -20.",
         "metadata": [
           {
             "PE": {
@@ -522,7 +522,7 @@
       "lower": "67",
       "upper": "70",
       "A": {
-        "text": "Su túnica queda rota a la altura del hombro y hay más sangre. Eso podría yudar.",
+        "text": "Slash to foe's shoulder. It's not deadly, but it is a start.",
         "metadata": [
           {
             "P": {
@@ -534,7 +534,7 @@
         ]
       },
       "B": {
-        "text": "Las uñas alcanzan un trozo de armadura en su recorrido. ¡Qué chirrido tan desagradable!",
+        "text": "Claw scratches acrossed a piece of metal. That screeching sound!",
         "metadata": [
           {
             "HP": 4,
@@ -546,7 +546,7 @@
         ]
       },
       "C": {
-        "text": "Te estás acostumbrando a atacar a sus miembros vulnerables. Debería no exponer tanto las manos.",
+        "text": "Pull foe off balance with a grasp to his shoulder. He steps away and stumbles.",
         "metadata": [
           {
             "PE": {
@@ -561,7 +561,7 @@
         ]
       },
       "D": {
-        "text": "La sangre que mana del tajo en su garganta le cubre la cara y le consigue desorientar.",
+        "text": "Graceful slash to foe's shoulder sweeps blood onto foe's face. Foe is unsteady.",
         "metadata": [
           {
             "HP": 6,
@@ -574,7 +574,7 @@
         ]
       },
       "E": {
-        "text": "Los tendones rotos hace que retroceda a causa del dolor. Eso le enseñará al capullo grandote.",
+        "text": "Inspired shoulder strike sends foe reeling. You tear tendons and cause pain.",
         "metadata": [
           {
             "PE": {
@@ -593,38 +593,38 @@
       "lower": "71",
       "upper": "75",
       "A": {
-        "text": "Tu arrementida alcanza la parte baja de la pierna. Obtienes la iniciativa.",
+        "text": "You attempt to assault foe's lower leg. You have the initiative.",
         "metadata": [
           {
-            "DESC": "Con armadura en la pierna",
+            "DESC": "With leg armor",
             "HP": 4
           },
           {
-            "DESC": "Sin armadura en la pierna",
+            "DESC": "Without leg armor",
             "HP": 1,
             "HPR": 2
           }
         ]
       },
       "B": {
-        "text": "No estás muy orgulloso de la forma que has tenido de agarrar la piel de tu enemigo. Tu oponente piensa que no peleas limpio.",
+        "text": "Assault foe's shin. If foe has no armor, you tear his shin up. Foe struggles to throw you off.",
         "metadata": [
           {
-            "DESC": "Con armadura en la pierna",
+            "DESC": "With leg armor",
             "HP": 6
           },
           {
             "P": {
               "ROUNDS": 2
             },
-            "DESC": "Sin armadura en la pierna",
+            "DESC": "Without leg armor",
             "HP": 3,
             "HPR": 2
           }
         ]
       },
       "C": {
-        "text": "Sajas un músculo de la pantorrilla de tu enemigo. Tienes la iniciativa del siguiente asalto. ¡El poder para los pequeños!",
+        "text": "You slash into a muscle on foe's calf. You have the initiative next round.",
         "metadata": [
           {
             "PE": {
@@ -638,17 +638,17 @@
         ]
       },
       "D": {
-        "text": "Golpe en la parte baja de la pierna. Retrocede con la intención de evitar tu próximo ataque \"diminuto\".",
+        "text": "Lower leg strike. If foe has no leg armor, heavy bruise. Foe stumbles back to avoid you.",
         "metadata": [
           {
-            "DESC": "Con armadura en la pierna",
+            "DESC": "With leg armor",
             "HP": 3,
             "STUN": {
               "ROUNDS": 1
             }
           },
           {
-            "DESC": "Sin armadura en la pierna",
+            "DESC": "Without leg armor",
             "STUN": {
               "ROUNDS": 2
             },
@@ -657,7 +657,7 @@
         ]
       },
       "E": {
-        "text": "Tu enemigo intenta parar la hemorragia de la herida de su pierna recogiendo la sangre con las manos. Solo consigue mancharlas de rojo.",
+        "text": "Vicious leg wound bleeds hard. Foe's attempt to stop the bleeding gets it all over his hands.",
         "metadata": [
           {
             "HP": 5,
@@ -673,7 +673,7 @@
       "lower": "76",
       "upper": "80",
       "A": {
-        "text": "Débil, pero preciso golpe en el brazo. Tu enemigo logra sacudírsete de encima pero aun así consigues hacerle daño.",
+        "text": "Weak, but precise strike to foe's arm. Foe shakes you off, but you do some damage anyway.",
         "metadata": [
           {
             "HP": 3,
@@ -685,7 +685,7 @@
         ]
       },
       "B": {
-        "text": "Golpe fuerte pero impreciso en el brazo que provoca una herida de tamaño respetable. Estás orgulloso de tu propia \"diminutez\".",
+        "text": "Strong, but imprecise arm strike. The wound is of moderate size. You are proud to have created it.",
         "metadata": [
           {
             "PE": {
@@ -697,7 +697,7 @@
         ]
       },
       "C": {
-        "text": "Ese corte se ha cargado las cosas que hacen que su brazo funcione, pero no está desarmado. (aún).",
+        "text": "You take a shot at foe's forearm. It lands well. A muscle and tendon are slashed. He holds on to his weapon.",
         "metadata": [
           {
             "PE": {
@@ -712,7 +712,7 @@
         ]
       },
       "D": {
-        "text": "Te agarras con fuerza al brazo del enemigo y se lo desgarras sin piedad. ¡Eres una bestia!",
+        "text": "Grab foe's arm. Foe struggles violently to make you let go. You rend his arm without mercy. He gets free and stumbles back. You win this round.",
         "metadata": [
           {
             "PE": {
@@ -727,7 +727,7 @@
         ]
       },
       "E": {
-        "text": "Presta más atención a la sangría del brazo que a ti.",
+        "text": "Sly arm strike gives foe a troublesome wound. What looks like a tiny wound is producing much blood. Foe does not fall down, but he stumbles much.",
         "metadata": [
           {
             "STUN": {
@@ -743,7 +743,7 @@
       "lower": "81",
       "upper": "85",
       "A": {
-        "text": "No puede creer que le hayas cortado la cara. Retrocede, preparado para tu siguiente ataque.",
+        "text": "Strike at foe's face. He panics and stumbles back 5 feet. You fall clear and prepare for another strike.",
         "metadata": [
           {
             "HP": 4,
@@ -755,17 +755,17 @@
         ]
       },
       "B": {
-        "text": "Encomendándote a los vientos te lanzas contra su cara.",
+        "text": "Flying face strike.",
         "metadata": [
           {
             "P": {
               "ROUNDS": 1
             },
-            "DESC": "Con armadura facial",
+            "DESC": "With facial armor",
             "HP": 3
           },
           {
-            "DESC": "Sin armadura facial",
+            "DESC": "Without facial armor",
             "STUN": {
               "ROUNDS": 3
             },
@@ -774,17 +774,17 @@
         ]
       },
       "C": {
-        "text": "Golpe en la cabeza. Logras quitarle el yelmo. Ahora está arrugado y húmedo.",
+        "text": "Head strike. Foe's helm is knocked off. If foe has no helm, he has a vicious cut to his scalp.",
         "metadata": [
           {
-            "DESC": "Con yelmo",
+            "DESC": "With helmet",
             "HP": 3
           },
           {
             "PE": {
               "VALUE": -40
             },
-            "DESC": " Sin yelmo",
+            "DESC": "Without helmet",
             "HP": 5,
             "STUN": {
               "ROUNDS": 1
@@ -794,17 +794,17 @@
         ]
       },
       "D": {
-        "text": "Golpe con fuerza en la cara. El daño causado depende de la armadura facial.",
+        "text": "Acrobatic face strike. If foe has no facial armor he will get some, when his nose heals.",
         "metadata": [
           {
-            "DESC": "Con armadura facial",
+            "DESC": "With facial armor",
             "HP": 5
           },
           {
             "PE": {
               "VALUE": -40
             },
-            "DESC": "Sin armadura facial",
+            "DESC": "Without facial armor",
             "STUN": {
               "ROUNDS": 3
             },
@@ -813,7 +813,7 @@
         ]
       },
       "E": {
-        "text": "A menos que tenga un guantelete metálico en la mano, cortas unos cuantos dedos. Le mantendrá ocupado cierto tiempo.",
+        "text": "Slash between foe's fingers. If foe has a metal gauntlet on, he is fine.",
         "metadata": [
           {
             "HP": 8,
@@ -829,7 +829,7 @@
       "lower": "86",
       "upper": "90",
       "A": {
-        "text": "Un corte de precisión a la altura del codo hace que tu enemigo comience a tomarte en serio.",
+        "text": "Sudden well placed blow makes you feel you are mighty in battle. Your foe is convinced.",
         "metadata": [
           {
             "HP": 6,
@@ -840,7 +840,7 @@
         ]
       },
       "B": {
-        "text": "Corte en el cuello. Piensa que acabas de matarle, aunque la herida no es mortal. Se tambalea, con las manos sujetándose el cuello.",
+        "text": "Slash foe's neck. He thinks you just killed him. The wound is not mortal. Foe stumbles away fearful of death.",
         "metadata": [
           {
             "HP": 5,
@@ -852,7 +852,7 @@
         ]
       },
       "C": {
-        "text": "Impacto que lo deja dando vueltas. Trazas círculos en torno a él.",
+        "text": "Shoulder strike unbalances foe and spins him around. He is frantic to turn around and face you. You move the other direction to prolong the effect.",
         "metadata": [
           {
             "HP": 6,
@@ -864,7 +864,7 @@
         ]
       },
       "D": {
-        "text": "Te agarras con fuerza al brazo del arma de tu enemigo, obligándole a soltarla. Has atraído su atención por el momento.",
+        "text": "Strong grip to foe's weapon arm. He tries to throw you clear, but cannot. He finally drops his weapon . You lose your grip on him at the same time.",
         "metadata": [
           {
             "HP": 5,
@@ -875,7 +875,7 @@
         ]
       },
       "E": {
-        "text": "Te deslizas a su espalda y se le rajas. Hay sangre por todas partes.",
+        "text": "Rend open foe's lower back with a quick double slash. Both wounds are deep and nasty. Blood pours out all over you and foe, making the combat seem brutal.",
         "metadata": [
           {
             "P": {
@@ -897,7 +897,7 @@
       "lower": "91",
       "upper": "95",
       "A": {
-        "text": "Saltas golpeando la cabeza. Si no tiene yelmo le haces un corte en la cara y la oreja.",
+        "text": "Leaping head stike. If foe has no helm, face and left ear is slashed.",
         "metadata": [
           {
             "PE": {
@@ -911,7 +911,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo bloquea el ataque con su brazo por lo que lo alcanzas allí en vez de tu destino original.",
+        "text": "Foe blocks your attack with his arm so you slash it in place of your original target. Foe realizes his mistake.",
         "metadata": [
           {
             "HP": 5,
@@ -924,7 +924,7 @@
         ]
       },
       "C": {
-        "text": "Tu golpe en su mejilla le desorienta. Recula, pensando en lo cerca que ha estado.",
+        "text": "Strike lands near neck and cheek. Foe is disoriented and recoils from your onslaught.",
         "metadata": [
           {
             "PE": {
@@ -940,7 +940,7 @@
         ]
       },
       "D": {
-        "text": "El dedo pulgar del brazo que sostiene el arma es reducido al pulpa. Has atraído su atención al completo.",
+        "text": "Clean strike, you cleave the thumb on foe's weapon arm. His arm is less than useful. Foe drops his weapon.",
         "metadata": [
           {
             "PE": {
@@ -954,7 +954,7 @@
         ]
       },
       "E": {
-        "text": "Deslumbrante salto que deja inconsciente a tu enemigo y le hace caer de espaldas. Queda desarmado.",
+        "text": "Dazzling leap knocks foe down. Foe hits on his back. Foe is disarmed and unconscious.",
         "metadata": [
           {
             "HP": 9
@@ -966,7 +966,7 @@
       "lower": "96",
       "upper": "99",
       "A": {
-        "text": "Sabedor de que la precisión  lo es todo, golpeas a tu oponente en la nariz, a menos que la tenga protegida.",
+        "text": "Insulting strike to foe's nose. If foe has no nose guard, his nose is shredded. Foe reels from your onslaught",
         "metadata": [
           {
             "STUN": {
@@ -977,7 +977,7 @@
         ]
       },
       "B": {
-        "text": "Queda cegado a causa de la sangre que mana de su frente. Tu enemigo queda con la guardia baja intentando parar la hemorragia. Ésta es tu oportunidad.",
+        "text": "Strike to foe's forehead. Foe is blinded, until the bleeding is stopped. Foe is off guard trying to stop the bleeding. Now is your chance.",
         "metadata": [
           {
             "PE": {
@@ -992,7 +992,7 @@
         ]
       },
       "C": {
-        "text": "Cae y trata de alejarse reptando. Es lo que tiene perder el tendón de Aquiles.",
+        "text": "Epic slash to foe's Achilles tendon. Foe falls down. He is almost helpless. His attempts to crawl away fail. You have him now",
         "metadata": [
           {
             "PE": {
@@ -1007,7 +1007,7 @@
         ]
       },
       "D": {
-        "text": "Colpe en la cara. Si tiene telmo con visor queda ciego e indefenso mientras dure la hinchazón. Si no tenía yelmo con visor, pierde un ojo y queda ciego el otro.",
+        "text": "Strike foe in face. If foe has a visored helm, he is blinded and helpless for a week while the swelling lasts. If foe does not have a visored helm, he loses 1 eye and is blind in the other.",
         "metadata": [
           {
             "PE": {
@@ -1017,14 +1017,14 @@
         ]
       },
       "E": {
-        "text": "Golpe mortal en la cabeza que lo derriba. Se parte la cabeza cuando cae al suelo. Muere después de 9 asaltos."
+        "text": "Head strike is deadly. Slash open foe's head and send him down. He hits hard. The shock of your strike and the concussion of the fall is too much for him to handle. He dies in 9 rounds"
       }
     },
     {
       "lower": "100",
       "upper": "100",
       "A": {
-        "text": "Bien hecho. Golpe en los ojos. Si no tiene un yelmo con visor, pierde uno de sus ojos.",
+        "text": "Strike at foe's eyes. Without a visored helm, foe loses one of his eyes.",
         "metadata": [
           {
             "PE": {
@@ -1039,7 +1039,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo salta hacia atrás para evitar un corte en la garganta. Cae derribado.",
+        "text": "Foe leaps back to avoid a slash to the throat, too late. He falls down. You expose some muscle and make a mess.",
         "metadata": [
           {
             "PE": {
@@ -1054,7 +1054,7 @@
         ]
       },
       "C": {
-        "text": "Impacto grave en la cabeza. Si tiene yelmo cae inconsciente durante 1-10 días. Sin yelmo, es caro data vermibus.",
+        "text": "Severe head strike. If foe has a helm he is unconscious for 1-10 days. Without a helm, foe is dead.",
         "metadata": [
           {
             "HP": 25,
@@ -1063,7 +1063,7 @@
         ]
       },
       "D": {
-        "text": "Pasas a formar parte de la cima de la cadena alimenticia y le ciegas para siempre. Está a tu merced.",
+        "text": "Strike to foe's eyes. Foe is blinded permanently. Foe is at your mercy.",
         "metadata": [
           {
             "PE": {
@@ -1079,7 +1079,7 @@
         ]
       },
       "E": {
-        "text": "Es tan fácil que no entiendes cómo no lo has hecho antes. Sajas la arteria de su cuello. Muerto en 6 asaltos.",
+        "text": "Unbelievable strike to foe's neck. Vein and artery severed. Foe dies after 6 rounds of inactivity.",
         "metadata": [
           {
             "HPR": 20
