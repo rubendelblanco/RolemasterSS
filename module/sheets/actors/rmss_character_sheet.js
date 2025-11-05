@@ -6,6 +6,7 @@ import ItemService from "../../actors/services/item_service.js";
 export default class RMSSCharacterSheet extends ActorSheet {
     activateListeners(html) {
         super.activateListeners(html);
+        this._registerItemListeners(html);
 
         // Equip/Unequip Weapon/Armor
         html.find(".equippable").click(ev => {
@@ -189,5 +190,41 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
         // Default behavior for non-stackable or unmatched items
         return super._onDropItem(event, data);
+    }
+
+    _registerItemListeners(html) {
+        html.find(".spell-favorite, .skill-favorite").click(ev => this._onItemFavoriteClick(ev));
+        html.find(".item-give").click(ev => this._onItemGiveClick(ev));
+        html.find(".split-stack").click(ev => this._onItemSplitClick(ev));
+        html.find(".wearable").click(ev => this._onItemWearableClick(ev));
+    }
+
+    async _onItemFavoriteClick(ev) {
+        const itemId = ev.currentTarget.dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        if (item) await ItemService.toggleFavorite(item);
+    }
+
+    async _onItemGiveClick(ev) {
+        ev.preventDefault();
+        const itemId = ev.currentTarget.dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        if (item) await ItemService.giveItem(this.actor, item);
+    }
+
+    async _onItemSplitClick(ev) {
+        ev.preventDefault();
+        const li = ev.currentTarget.closest("[data-item-id]");
+        const itemId = li.dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        if (!item) return;
+        await ItemService.splitStack(this.actor, item);
+    }
+
+    async _onItemWearableClick(ev) {
+        const itemId = ev.currentTarget.dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        if (!item) return;
+        await ItemService.toggleWorn(item);
     }
 }

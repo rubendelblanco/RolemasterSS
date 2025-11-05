@@ -1,4 +1,5 @@
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
+import ItemService from "../../actors/services/item_service.js";
 
 export default class RMSSCreatureSheet extends RMSSCharacterSheet {
     static get defaultOptions() {
@@ -72,46 +73,7 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
     }
 
     _prepareItems(context) {
-        // Initialize containers.
-        const gear = [];
-        const creatureAttack= [];
-        const weapons = [];
-        const armor = [];
-        const herbs = [];
-        const spells = [];
-
-        // Iterate through items, allocating to containers
-        for (let i of context.items) {
-            i.img = i.img || DEFAULT_TOKEN;
-            // Append to gear.
-            if (i.type === "item") {
-                gear.push(i);
-            }
-            else if (i.type === "weapon") {
-                weapons.push(i);
-            }
-            else if (i.type === "herb_or_poison") {
-                herbs.push(i);
-            }
-            // Append to playerskill
-            else if (i.type === "creature_attack") {
-                creatureAttack.push(i);
-            }
-            else if (i.type === "armor") {
-                armor.push(i);
-            }
-            else if (i.type === "spell") {
-                spells.push(i);
-            }
-        }
-
-        // Assign and return
-        context.gear = gear;
-        context.creature_attack = creatureAttack;
-        context.weapons = weapons;
-        context.armor = armor;
-        context.herbs = herbs;
-        context.spells = spells;
+        return ItemService.prepareItems(this.actor, context);
     }
 
     async _onItemCreate(event) {

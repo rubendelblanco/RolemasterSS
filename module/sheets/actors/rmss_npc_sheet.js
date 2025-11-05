@@ -1,4 +1,6 @@
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
+import ItemService from "../../actors/services/item_service.js";
+import SkillDropHandler from "../../actors/drop_handlers/skill_drop_handler.js";
 
 export default class RMSSNpcSheet extends RMSSCharacterSheet {
     static get defaultOptions() {
@@ -55,82 +57,19 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
     }
 
     async _onDropItem(event, data) {
-        // Reconstruct the item from the event
-        const newitem = await Item.implementation.fromDropData(data);
-        const itemData = newitem.toObject();
+        const newItem = await Item.implementation.fromDropData(data);
+        const itemData = newItem.toObject();
 
-       if ( itemData.type === "skill") {
-            // Get the already owned Items from the actor and push into an array
-            const owneditems = this.object.getOwnedItemsByType("skill");
-
-            let ownedskilllist = Object.values(owneditems);
-
-            // Check if the dragged item is not in the array and not owned
-            if (!ownedskilllist.includes(itemData.name)) {
-                console.log("Not Owned!");
-                super._onDropItem(event, data);
-            }
+        if (itemData.type === "skill") {
+            const handler = new SkillDropHandler(this.actor);
+            return handler.handle(itemData);
         }
-       else if (itemData.type === "spell_list"){
 
-       }
-        else {
-            super._onDropItem(event, data);
-        }
+        return super._onDropItem(event, data);
     }
 
     _prepareItems(context) {
-        // Initialize containers.
-        const gear = [];
-        const playerskill= [];
-        const weapons = [];
-        const armor = [];
-        const herbs = [];
-        const spells = [];
-
-        // Iterate through items, allocating to containers
-        for (let i of context.items) {
-            i.img = i.img || DEFAULT_TOKEN;
-            // Append to gear.
-            if (i.type === "item") {
-                gear.push(i);
-            }
-            else if (i.type === "weapon") {
-                weapons.push(i);
-            }
-            else if (i.type === "herb_or_poison") {
-                herbs.push(i);
-            }
-            // Append to playerskill
-            else if (i.type === "skill") {
-                playerskill.push(i);
-            }
-            else if (i.type === "armor") {
-                armor.push(i);
-            }
-            else if (i.type === "spell") {
-                spells.push(i);
-            }
-        }
-
-        // Sort Skill Arrays
-        playerskill.sort(function(a, b) {
-            if (a.name < b.name) {
-                return -1;
-            }
-            if (a.name > b.name) {
-                return 1;
-            }
-            return 0;
-        });
-
-        // Assign and return
-        context.gear = gear;
-        context.playerskill = playerskill;
-        context.weapons = weapons;
-        context.armor = armor;
-        context.herbs = herbs;
-        context.spells = spells;
+        return ItemService.prepareItems(this.actor, context);
     }
 
     async _onItemCreate(event) {
