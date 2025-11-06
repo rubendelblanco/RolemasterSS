@@ -4,13 +4,13 @@
       "lower": "01",
       "upper": "05",
       "A": {
-        "text": "Tu enemigo se escabulle como el viento. Es cuestión de tiempo."
+        "text": "Foe escapes like the wind."
       },
       "B": {
-        "text": "Tu ataque se queda corto. Aún no estás preparado."
+        "text": "Your attack falls short."
       },
       "C": {
-        "text": "Tus dedos dejan una fea herida. ¡No es un ataque afeminado! Ha funcionado, ¿no?",
+        "text": "Your fingernails deal a vicious wound.",
         "metadata": [
           {
             "HP": 1
@@ -18,7 +18,7 @@
         ]
       },
       "D": {
-        "text": "Le metes un poco el codo antes de que pierdas el agarre.",
+        "text": "A little elbow before you lose your grip.",
         "metadata": [
           {
             "HP": 2
@@ -26,7 +26,7 @@
         ]
       },
       "E": {
-        "text": "Le hubieras podido arrancar la cabeza si su cabello no se hubiera interpuesto.",
+        "text": "You grip strand of foe’s hair. It breaks.",
         "metadata": [
           {
             "HP": 3
@@ -38,10 +38,10 @@
       "lower": "06",
       "upper": "10",
       "A": {
-        "text": "Te quedas con cara de tonto cuando se deshace de tu presa. Otra vez será."
+        "text": "Grab foe’s arm. Oops. Try again."
       },
       "B": {
-        "text": "Lo tuviste y lo perdiste. Sigue así. Piensa a lo grande.",
+        "text": "Your grip fails.",
         "metadata": [
           {
             "HP": 2
@@ -49,7 +49,7 @@
         ]
       },
       "C": {
-        "text": "Intenta apresarte pero te escapas. Tienes la iniciativa. Aun no está listo.",
+        "text": "Foe grabs, misses. You have initiative.",
         "metadata": [
           {
             "HP": 3
@@ -57,7 +57,7 @@
         ]
       },
       "D": {
-        "text": "Tu momento de fama se retrasa una vez más.",
+        "text": "This was not a special moment.",
         "metadata": [
           {
             "HP": 4
@@ -65,7 +65,7 @@
         ]
       },
       "E": {
-        "text": "Tu prometedor ataque no ha funcionado. Ten paciencia. Aún tienes la iniciativa el siguiente asalto.",
+        "text": "You have initiative next round.",
         "metadata": [
           {
             "HP": 5
@@ -77,10 +77,10 @@
       "lower": "11",
       "upper": "15",
       "A": {
-        "text": "Impides que tu enemigo adopte posición de combate. Tienes la iniciativa."
+        "text": "You impede foe’s combat stance. You have the initiative."
       },
       "B": {
-        "text": "Pequeña magulladura. Choca contra ti antes de que puedas efectuar tu presa.",
+        "text": "Foe collides with your attack before you get a grip. Small bruise.",
         "metadata": [
           {
             "HP": 2
@@ -88,7 +88,7 @@
         ]
       },
       "C": {
-        "text": "Puedes coger bien a tu enemigo pero se escabulle, aunque al hacerlo se hiere. Tienes la iniciativa.",
+        "text": "You cannot get a good grip, foe hurts himself evading. You have initiative.",
         "metadata": [
           {
             "HP": 4
@@ -96,7 +96,7 @@
         ]
       },
       "D": {
-        "text": "Retuerces su casco, sin mencionar la cabeza que va dentro (si tiene). Ganas la iniciativa.",
+        "text": "Grab foe's head. If foe has helm, you twist it. Otherwise, you gain initiative.",
         "metadata": [
           {
             "DESC": "Con yelmo",
@@ -107,7 +107,7 @@
         ]
       },
       "E": {
-        "text": "Ataque poco convincente, tu enemigo se preocupa.",
+        "text": "Lame attack, but foe is concerned. He moves back.",
         "metadata": [
           {
             "HP": 6,
@@ -120,10 +120,10 @@
       "lower": "16",
       "upper": "20",
       "A": {
-        "text": "Tu enemigo se libera de un agarre débil. Tienes la iniciativa el próximo asalto. Esfuérzate."
+        "text": "Foe breaks free of a weak grip. You have the initiative next round."
       },
       "B": {
-        "text": "Agarras a tu enemigo y le propinas un leve puñetazo. Comienza a pensar que puedes ser peligroso.",
+        "text": "Grab foe and give him a weak punch. He thinks you are dangerous.",
         "metadata": [
           {
             "P": {
@@ -133,7 +133,7 @@
         ]
       },
       "C": {
-        "text": "Tu enemigo se recupera y continúa defendiéndose lanzando una estocada a tus pies.",
+        "text": "Foe recovers, continues his defense by sweeping his weapon at your feet.",
         "metadata": [
           {
             "P": {
@@ -143,10 +143,10 @@
         ]
       },
       "D": {
-        "text": "Empujas a tu enemigo, desquilibrándolo. Tienes la iniciativa los 2 asaltos siguientes."
+        "text": "Push foe, unbalancing him. You have initiative for 2 rounds."
       },
       "E": {
-        "text": "Esquiva tu abrazo con una maniobra evasiva.",
+        "text": "Strong passing blow near foe's head. His violent evasion is not productive.",
         "metadata": [
           {
             "HP": 3,
@@ -161,7 +161,7 @@
       "lower": "21",
       "upper": "35",
       "A": {
-        "text": "Casi logras agarrar el brazo de tu enemigo, pero evita su error. Obtienes la iniciativa del próximo asalto.",
+        "text": "Almost get a grip on foe's arm. He avoids his mistake. You gain the initiative next round.",
         "metadata": [
           {
             "HP": 3
@@ -169,7 +169,7 @@
         ]
       },
       "B": {
-        "text": "Agarras el brazo del escudo pero un ataque contra tu cabeza hace que te alejes de él. Tu enemigo mantiene las distancias.",
+        "text": "You grip foe's shield arm. Foe's strike toward your head makes you let go of him. He keeps a distance.",
         "metadata": [
           {
             "P": {
@@ -180,7 +180,7 @@
         ]
       },
       "C": {
-        "text": "Tropiezas con tu enemigo, enviándolo hacia atras 1,5 metros. Buen trabajo.",
+        "text": "Collide with foe. You push him away and he stumbles back 5 feet. It went better than you could have hoped.",
         "metadata": [
           {
             "HP": 2,
@@ -191,7 +191,7 @@
         ]
       },
       "D": {
-        "text": "Con fuerza pero mal situado. Tu enemigo se zafa.",
+        "text": "Hard, but poorly placed. Foe bounces back out of your grip. He looks like he does not recognize you.",
         "metadata": [
           {
             "HP": 3,
@@ -202,7 +202,7 @@
         ]
       },
       "E": {
-        "text": "Un ataque sin coordinación y con aún menos fortuna pero que tu enemigo escape de la presa. Aunque ganas la iniciativa los 2 próximos asaltos.",
+        "text": "Uncoordinated attack and a little luck, allows foe to escape your grasp. You have initiative for 2 rounds.",
         "metadata": [
           {
             "STUN": {
@@ -216,7 +216,7 @@
       "lower": "36",
       "upper": "45",
       "A": {
-        "text": "Agarras sus \"lóbulos\", pero se deshace de tu ataque. Obtienes iniciativa.",
+        "text": "Grip to lower back. Foe wards off your attack and prepares for your next move.",
         "metadata": [
           {
             "P": {
@@ -226,7 +226,7 @@
         ]
       },
       "B": {
-        "text": "Tu presa falla pero logras empujarle y desequilibrarle. Tienes la iniciativa.",
+        "text": "Grip fails, but bash does not. You unbalance your foe. You have the initiative.",
         "metadata": [
           {
             "P": {
@@ -237,7 +237,7 @@
         ]
       },
       "C": {
-        "text": "Tu movimientos y contras son casi divertidos, pero al final tienen efecto.",
+        "text": "Your attack is almost comical as you seek any little grip you can get. All the tiny tugs finally have an effect on foe.",
         "metadata": [
           {
             "P": {
@@ -250,7 +250,7 @@
         ]
       },
       "D": {
-        "text": "Golpe en el brazo del escudo, que lo inmoviliza durante 6 asaltos si no tiene escudo.",
+        "text": "Strike to foe's shield arm. If foe has no shield, you immobilize arm for 6 rounds.",
         "metadata": [
           {
             "DESC": "Con escudo",
@@ -259,7 +259,7 @@
         ]
       },
       "E": {
-        "text": "Ataque en la parte superior de la pierna. Tu enemigo gira para liberarse, desorientándose en el intento. Tarda un rato en localizarte.",
+        "text": "Attack to upper leg. Foe spins to break free. He is disoriented badly. It takes a moment for him to see you.",
         "metadata": [
           {
             "STUN": {
@@ -274,7 +274,7 @@
       "lower": "46",
       "upper": "50",
       "A": {
-        "text": "Inmovilizas el brazo del arma de tu enemigo. Tu enemigo se separa violentamente de ti y adopta una posición defensiva.",
+        "text": "Hinder foe’s weapon arm. Foe violently frees himself and takes a defensive stance.",
         "metadata": [
           {
             "P": {
@@ -284,7 +284,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo se libera de tu presa, aunque tiene problemas para recuperarse. Estuviste a punto. La vida no es justa. ¿Quizá la próxima vez?",
+        "text": "Pull foe over, he breaks free. He is having trouble recovering. Your heart is broken.",
         "metadata": [
           {
             "HP": 5,
@@ -295,7 +295,7 @@
         ]
       },
       "C": {
-        "text": "Le trabas por la cintura, pero poco a poco se libera.",
+        "text": "Grab foe's waist. Your grip appeared to be strong, but now it is losing its advantage. Your foe is working free.",
         "metadata": [
           {
             "PE": {
@@ -306,7 +306,7 @@
         ]
       },
       "D": {
-        "text": "Presa en la mano que le hace pensar que se la has roto. Tienes la iniciativa durante 4 asaltos.",
+        "text": "Painful grip on foe's hand. You do not break anything, but he thinks so. You have initiative for 4 rounds.",
         "metadata": [
           {
             "PE": {
@@ -317,7 +317,7 @@
         ]
       },
       "E": {
-        "text": "Chocas contra tu enemigo. Se deshace de tu presa y escapa a trompicones. Casi.",
+        "text": "You and foe collide. He breaks your grip and stumbles away. You bounce back and miss a good opportunity.",
         "metadata": [
           {
             "STUN": {
@@ -332,7 +332,7 @@
       "lower": "51",
       "upper": "55",
       "A": {
-        "text": "Te acercas y agarras del pelo a tu enemigo. No se lo esperaba y lucha para zafarse.",
+        "text": "You get in close and grab at foe's hair. He is daunted and steps back to escape your reach.",
         "metadata": [
           {
             "PE": {
@@ -345,7 +345,7 @@
         ]
       },
       "B": {
-        "text": "Se zafa pero te agarras a sus vestiduras. Retrocede.",
+        "text": "Grip to foe's garments. They rip and you lose a hopeful hold. Foe is carried back by his break-away.",
         "metadata": [
           {
             "HP": 7,
@@ -356,7 +356,7 @@
         ]
       },
       "C": {
-        "text": "Alzas la pierna que has apresado, pero de algún modo se zafa de ti. Se encuentra desquilibrado.",
+        "text": "Grapple foe's leg and try to lift it up off the ground. Foe slips away, but is off balance while recovering.",
         "metadata": [
           {
             "STUN": {
@@ -367,7 +367,7 @@
         ]
       },
       "D": {
-        "text": "Trata de deshacerse de tu presa de la cintura con desesperación. Sabe que esto pinta mal.",
+        "text": "Catch foe's waist garments and pull him in. He is in trouble. He seeks to strike your hand and break your hold.",
         "metadata": [
           {
             "PE": {
@@ -378,7 +378,7 @@
         ]
       },
       "E": {
-        "text": "Deja caer el escudo y grita de dolor cuando le retuerces el brazo. Trata de no reirte de él.",
+        "text": "Grip to shield arm. Foe drops his shield as he wails in pain. You try to stay serious.",
         "metadata": [
           {
             "HP": 5,
@@ -394,7 +394,7 @@
       "lower": "56",
       "upper": "60",
       "A": {
-        "text": "Tu enemigo da una vuelta revolviéndose para encararte. Queda desequilibrado.",
+        "text": "Foe spins away and comes back to face you. He is unbalanced.",
         "metadata": [
           {
             "HP": 3,
@@ -405,7 +405,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo se libera de tu presa. Sin embargo, al girar pierde la oportunidad para contraatacar.",
+        "text": "Foe spins out of your grasp. However, spin nullifies his conterattack.",
         "metadata": [
           {
             "P": {
@@ -418,7 +418,7 @@
         ]
       },
       "C": {
-        "text": "Estabas a punto de destrozar los músculos de su pierna cuando se libera. La próxima vez apunta más abajo...",
+        "text": "Short fingers render thigh hold ineffectual. Try lower next time.",
         "metadata": [
           {
             "HP": 3,
@@ -430,7 +430,7 @@
         ]
       },
       "D": {
-        "text": "Agarras a tu enemigo por un costado y lo sacudes cual maraca. Está mareado pero logra desasirse.",
+        "text": "Grip foe's side and shake him like a rattle. He is disoriented, but gets free.",
         "metadata": [
           {
             "HP": 6,
@@ -441,7 +441,7 @@
         ]
       },
       "E": {
-        "text": "Presa efectiva en la pierna de tu enemigo. Desea sacudírsete encima.",
+        "text": "Grasp around foe's leg proves effective. Foe is unbalanced for a moment.",
         "metadata": [
           {
             "PE": {
@@ -460,7 +460,7 @@
       "lower": "61",
       "upper": "65",
       "A": {
-        "text": "Agita tu brazo hasta quedar libre, y se prepara para tu ataque. Luce un bonito hematoma en su bíceps.",
+        "text": "Grip to arm gives foe a bruised bicep. Foe shakes free and prepares for your assault.",
         "metadata": [
           {
             "P": {
@@ -472,7 +472,7 @@
         ]
       },
       "B": {
-        "text": "Tu presa es débil y resbala por la cintura de tu enemigo, que se aleja tambaleándose de ti.",
+        "text": "Slipping grasp around foe’s waist is weak. He breaks your grip and stumbles out of your way.",
         "metadata": [
           {
             "STUN": {
@@ -482,7 +482,7 @@
         ]
       },
       "C": {
-        "text": "Presa en la cintura. Justo cuando piensas que estás apretando como unas tenazas comienza a liberarse. Aún puedes ganar.",
+        "text": "Grab foe around waist. Just when you think your grip is iron, he begins to break free. You might still prevail.",
         "metadata": [
           {
             "PE": {
@@ -494,7 +494,7 @@
         ]
       },
       "D": {
-        "text": "Tu \"abrazo de oso\" deja a tu enemigo indefenso. Tiene ambos  brazos inmovilizados.",
+        "text": "Clumsy bear hug around foe. Foe can do little to escape for the moment. Both his arms are pinned.",
         "metadata": [
           {
             "P": {
@@ -509,7 +509,7 @@
         ]
       },
       "E": {
-        "text": "Si tiene escudo, lo utiliza para mantenerte a raya. Si no, desearía haber tenido uno.",
+        "text": "You find yourself on foe’s shield side. If he has a shield, you are stymied.",
         "metadata": [
           {
             "DESC": "Sin escudo",
@@ -526,7 +526,7 @@
       "lower": "66",
       "upper": "66",
       "A": {
-        "text": "Agarras su arma y le obligas a soltarla. No consigue recuperarla, por lo que su situación se ha complicado.",
+        "text": "Strike foe’s weapon, disarming him. Foe fails to recover weapon. He has put himself in a bad spot.",
         "metadata": [
           {
             "HP": 3,
@@ -537,7 +537,7 @@
         ]
       },
       "B": {
-        "text": "Te agarras al brazo del arma de tu enemigo y se la haces soltar de una sacudida. Se luxa la muñeca intentando liberarse.",
+        "text": "You grab foe’s weapon arm and make him drop it with a violent shake. Foe strains wrist trying to break free.",
         "metadata": [
           {
             "PE": {
@@ -550,7 +550,7 @@
         ]
       },
       "C": {
-        "text": "Tu enemigo te tira con él. Tú te recuperas, pero el morderá el polvo 1 asalto más.",
+        "text": "Grab foe, he falls down and you follow. You knock him prone to stand back up. He is down for 1 round.",
         "metadata": [
           {
             "HP": 5
@@ -558,7 +558,7 @@
         ]
       },
       "D": {
-        "text": "Agarras la pierna de  tu oponente y lo lanzas al suelo, inmovilizándolo. Caído e inmóvil durante 2 asaltos.",
+        "text": "Grab leg and flip foe to ground, pinning him. Prone and immobile for 2 rounds, he might surrender.",
         "metadata": [
           {
             "HP": 6
@@ -566,7 +566,7 @@
         ]
       },
       "E": {
-        "text": "Agarras a tu enemigo del cuello y lo tiras al suelo. Desgarro en músculos y tendones. Caído durante 3 asaltos.",
+        "text": "Grasp foe around neck and bring him to ground. Muscles and tendons tear. Foe is prone and immobilized for 3 rounds.",
         "metadata": [
           {
             "HP": 3,
@@ -581,7 +581,7 @@
       "lower": "67",
       "upper": "70",
       "A": {
-        "text": "Golpeas su pecho, mas tu enemigo elude la presa, asumiendo una posición defensiva.",
+        "text": "Passing chest strike. Foe eludes grapple, keeps defensive stance.",
         "metadata": [
           {
             "P": {
@@ -592,30 +592,30 @@
         ]
       },
       "B": {
-        "text": "Agarras su cuello y le obligas a retroceder. Deberá hacer algo pronto, de lo contrario...\r\n* Revisar libro. -10 PE por asalto acumulativo *",
+        "text": "Grip foe's neck. Push foe's chin back steadily. He should act soon, or...",
         "metadata": [
           {
             "PE": {
               "VALUE": -10
             },
-            "DESC": "Y 10 de PE extra por cada asalto"
+            "DESC": "-20 next round, -30 on round after that"
           }
         ]
       },
       "C": {
-        "text": "Agarras el brazo del escudo. Si tiene escudo lo deja  caer. Hasta que no lo suelo tendrá -50 de penalización.",
+        "text": "Grab foe's shield arm. If foe has shield you grapple it. Until dropped: (-50)",
         "metadata": [
           {
             "PE": {
               "ROUNDS": 3,
               "VALUE": -40
             },
-            "DESC": "Sin escudo"
+            "DESC": "Without shield"
           }
         ]
       },
       "D": {
-        "text": "Tu enemigo escapa a duras penas de la inmovilización. Pero necesita tiempo para recuperarse de la experiencia.",
+        "text": "Foe barely escapes immobilization, but must recover from the ordeal.",
         "metadata": [
           {
             "HP": 7,
@@ -624,7 +624,7 @@
         ]
       },
       "E": {
-        "text": "Frustra tu presa arrojándose al suelo.",
+        "text": "You almost disarm foe and trip him. He uses weapon arm to prevent his fall.",
         "metadata": [
           {
             "PE": {
@@ -642,7 +642,7 @@
       "lower": "71",
       "upper": "75",
       "A": {
-        "text": "Al lograr agarrarlo de su ropaje impides que te ataque.",
+        "text": "Grab an exposed garment. Uneasy grip impedes foe's actions.",
         "metadata": [
           {
             "PE": {
@@ -654,7 +654,7 @@
         ]
       },
       "B": {
-        "text": "Un  rodillazo rompe tu presa, pero no recupera la iniciativa.",
+        "text": "Weak hold around foe's waist. He brings his knee up and you lose your grip. Foe does not recover quickly.",
         "metadata": [
           {
             "PE": {
@@ -666,7 +666,7 @@
         ]
       },
       "C": {
-        "text": "Presa muy potente en la cintura. Tu oponente, en desventaja, intentará zafarse.",
+        "text": "Very strong grip around foe's waist. Foe is held at a great disadvanatge. He might get free.",
         "metadata": [
           {
             "PE": {
@@ -680,7 +680,7 @@
         ]
       },
       "D": {
-        "text": "Agarras a un enemigo antes de que se de cuenta de  lo que ocurre y retuerces casi cada parte de su cuerpo. ¿Qué será lo siguiente que le hagas a ésta patética criatura?",
+        "text": "You grapple foe in a brutal way. Hold proves to be excellent. You have him. What next?",
         "metadata": [
           {
             "PE": {
@@ -695,7 +695,7 @@
         ]
       },
       "E": {
-        "text": "Tu enemigo evita tu presa pero cae a tus pies. Sonríes con indulgencia antes de propinarle daño de verdad.",
+        "text": "Foe evades your grasp by falling to the ground. A clever ploy. Smile at your good fortune.",
         "metadata": [
           {
             "HP": 9,
@@ -711,7 +711,7 @@
       "lower": "76",
       "upper": "80",
       "A": {
-        "text": "Presa en el brazo del escudo de tu enemigo. Si tiene escudo se lo tiras al suelo. Si no, le inmovilizas el brazo.",
+        "text": "Grapple foe's shield arm. If foe has a shield, you pull it down. If foe has no shield, you immobilize his arm.",
         "metadata": [
           {
             "PE": {
@@ -723,7 +723,7 @@
         ]
       },
       "B": {
-        "text": "Trabas el brazo del escudo. Si tiene escudo, hasta que no lo suelte estará a -30.",
+        "text": "Entangle foe's shield arm. If foe has shield, your grip makes it impossible to use. Until shield dropped: (-30) If no shield his arm is entangled.",
         "metadata": [
           {
             "PE": {
@@ -733,7 +733,7 @@
         ]
       },
       "C": {
-        "text": "Trabas el brazo de su arma, inmovilizándosela. No puede usarla pero intenta hincarte un rodillazo.",
+        "text": "Entangle foe's weapon arm. His weapon is held immobile. He cannot use it, but he will not drop it. He tries to knee you to escape, this fails.",
         "metadata": [
           {
             "PE": {
@@ -747,7 +747,7 @@
         ]
       },
       "D": {
-        "text": "Lo trabas e intentas emplear su arma para dejarle sin sentido.",
+        "text": "Entangle foe's weapon arm. Foe hangs onto his weapon, but the arm is immobilized. You try to make him strike himself. It fails.",
         "metadata": [
           {
             "HP": 4
@@ -755,7 +755,7 @@
         ]
       },
       "E": {
-        "text": "Presionas el brazo que sostiene el arma hasta que la suelte: Provocas daño interno.",
+        "text": "Grab foe's weapon arm and beat on it, without concern foe the rest of foe. Foe is disarmed. You tear ligaments and pull muscles.",
         "metadata": [
           {
             "PE": {
@@ -772,7 +772,7 @@
       "lower": "81",
       "upper": "85",
       "A": {
-        "text": "Rodeas su cuello con tus manos hasta tornarse tu cara roja. Lentamente intenta deshacerse de tu presa, pero le cuesta respirar.",
+        "text": "Useful grip on foe's neck. Foe's face turns red. He cannot breath easily. Slowly he breaks your grip.",
         "metadata": [
           {
             "PE": {
@@ -787,7 +787,7 @@
         ]
       },
       "B": {
-        "text": "Presa alrededor de la cintura que desesquilibra a tu enemigo. Su pericia en estas lides queda en entredicho y la iniativa es tuya.",
+        "text": "Grip around foe's waist unbalances him. You have the initiative. Foe shares much profanity with you.",
         "metadata": [
           {
             "PE": {
@@ -798,7 +798,7 @@
         ]
       },
       "C": {
-        "text": "Presa brutal en el pecho que siembra magulladuras por todo su plexo. Nunca había recibido una paliza así. ¿Qué sucederá ahora?",
+        "text": "Brutal grip around foe's chest, leaves bruises all over him. Your assault has created much confusion.",
         "metadata": [
           {
             "PE": {
@@ -813,7 +813,7 @@
         ]
       },
       "D": {
-        "text": "Presa en la rodilla que hace caer a tu enemigo. En la caída, su escudo y su brazo se fracturan.",
+        "text": "Grab knee and send foe down. He breaks his fall by breaking his shield arm. He is disarmed and prone.",
         "metadata": [
           {
             "PE": {
@@ -828,7 +828,7 @@
         ]
       },
       "E": {
-        "text": "Está indefenso bajo el yugo de tu potente presa. Parece que quiere rendirse.",
+        "text": "Entangle both of foe's arms and pin them to his body. Foe cannot move his arms and he looks ready to surrender.",
         "metadata": [
           {
             "PE": {
@@ -843,7 +843,7 @@
       "lower": "86",
       "upper": "90",
       "A": {
-        "text": "Te agarras a la pierna de tu enemigo cuando la tiene en el aire, lo derribas y ganas la iniciativa en los siguientes 6 asaltos. Una maniobra elegante.",
+        "text": "Grasp foe's leg, lifting it off the ground for a moment. You have the initiative for 6 rounds.",
         "metadata": [
           {
             "HP": 3,
@@ -854,7 +854,7 @@
         ]
       },
       "B": {
-        "text": "Trabas la pierna de tu enemigo haciéndole caer con dureza. Uno de los músculos de su pierna se resiente.",
+        "text": "Entangle foe's leg and send him down. He does not hit hard. He pulls a muscle in his leg struggling.",
         "metadata": [
           {
             "PE": {
@@ -868,7 +868,7 @@
         ]
       },
       "C": {
-        "text": "Lo inmovilizas y lo precipitas al duro suelo, donde se fractura el hombro.",
+        "text": "Your assault is strong and lucky. As you grapple foe, you stomp his foot. He falls hard, breaking his shoulder.",
         "metadata": [
           {
             "PE": {
@@ -882,7 +882,7 @@
         ]
       },
       "D": {
-        "text": "Inmovilizas ambos brazos. Queda estático y no puede moverse con efectividad. Castígalo a placer.",
+        "text": "Tie up both of foe's arms. He is immobile and cannot fight back effectively. You have him now.",
         "metadata": [
           {
             "HP": 10,
@@ -894,7 +894,7 @@
         ]
       },
       "E": {
-        "text": "El enemigo tropieza con tu ayuda, y cae. Su arma se rompe con el impacto. Si tiene armadura pectoral, recibe un crítico \"D\" de aplastamiento.",
+        "text": "Foe stumbles, with your assistance, and falls. His weapon breaks on impact. If foe has no chest armor, he takes a \"D\" Krush.",
         "metadata": [
           {
             "HP": 3,
@@ -909,7 +909,7 @@
       "lower": "91",
       "upper": "95",
       "A": {
-        "text": "Agarras su pierna y le haces besar el suelo. Cae sobre su arma, pero se libera.",
+        "text": "Entangle foe’s leg. Foe is knocked down. Foe lands on his weapon arm. He kicks and breaks free.",
         "metadata": [
           {
             "HP": 4,
@@ -921,7 +921,7 @@
         ]
       },
       "B": {
-        "text": "Returces sus piernas hasta que cae. Muerde el polvo y pierde todas su armas. Se arrastra por el suelo en su busca.",
+        "text": "Pull foe’s legs together. He goes down, hitting hard and dropping his weapon. He feebly attempts to crawl for it.",
         "metadata": [
           {
             "PE": {
@@ -936,7 +936,7 @@
         ]
       },
       "C": {
-        "text": "Agarras el brazo del arma y lo rompes sin dudar. Cae inconsciente del dolor.",
+        "text": "Painfully immobilize weapon arm. Foe cannot surrender quickly enough to avoid the damage and pain.",
         "metadata": [
           {
             "PE": {
@@ -952,7 +952,7 @@
         ]
       },
       "D": {
-        "text": "Presa en las piernas. Lo haces caer, golpeándose la cabeza contra el suelo. No opondrá mucha resistencia después de eso.",
+        "text": "Grapple foe’s legs and send him over. He hits his head in the fall. You get little resistance after that.",
         "metadata": [
           {
             "HP": 10,
@@ -964,7 +964,7 @@
         ]
       },
       "E": {
-        "text": "Tu enemigo se precipita contra el suelo cual muñeco de trapo rompiéndose ambos brazos y un tobillo en el acto. Por suerte para él, inconsciente.",
+        "text": "Wrap up foe’s legs. Foe tumbles to the ground like a ragdoll breaking both arms and an ankle. Foe is knocked out.",
         "metadata": [
           {
             "PE": {
@@ -979,7 +979,7 @@
       "lower": "96",
       "upper": "99",
       "A": {
-        "text": "Inmovilizas a tu enemigo durante 12 asaltos. Ambos estáis en el suelo, pero tú encima.",
+        "text": "Ride foe down and immobilize him. He can do nothing for 12 rounds. You are prone also, while holding him down.",
         "metadata": [
           {
             "HP": 6,
@@ -991,7 +991,7 @@
         ]
       },
       "B": {
-        "text": "Trabas el brazo de tu enemigo y lo lanzas contra el suelo, fracturándole un pierna. Lo inmovilizas completamente.",
+        "text": "Entangle foe’s arm and flip him to ground, fracturing his leg. You immobilize him completely. He is prone, face down and still conscious.",
         "metadata": [
           {
             "PE": {
@@ -1001,7 +1001,7 @@
         ]
       },
       "C": {
-        "text": "Trabas las piernas de tu enemigo, que besa el suelo. El brazo que sostiene el arma se rompe y queda inconsciente.",
+        "text": "Entangle foe's legs. Grapple weapon arm and break it on an available surface. You send foe to the ground. He falls very hard and is knocked out.",
         "metadata": [
           {
             "PE": {
@@ -1016,10 +1016,10 @@
         ]
       },
       "D": {
-        "text": "Presa aplastante en el cuello. Si no tiene armadura que proteja su cuello, muere en 6 asaltos debido a la presa mortal. Queda desarmado.",
+        "text": "Crushing grip around foe's neck. If no neck armor, foe dies in 6 rounds from your mortal grip. Foe is disarmed.",
         "metadata": [
           {
-            "DESC": "Con armadura en el cuello",
+            "DESC": "With neck armor",
             "STUN": {
               "ROUNDS": 3
             },
@@ -1028,7 +1028,7 @@
         ]
       },
       "E": {
-        "text": "El ataque resulta ser una presa estranguladora. Tu enemigo sacude las piernas desesperadamente. Es incapaz de liberarse y muere en 9 asaltos.",
+        "text": "Attack results in strangling hold. Foe flails legs in desperation. Foe is unable to break free and dies after 9 rounds of helpless struggling. Grim.",
         "metadata": [
           {
             "HP": 3,
@@ -1043,7 +1043,7 @@
       "lower": "100",
       "upper": "100",
       "A": {
-        "text": "Sostienes las piernas de tu enemigo lo suficiente como para hacerle caer. Queda inconsciente durante 5 asaltos.",
+        "text": "Foe’s legs are entangled long enough to make him fall. He is knocked out for 5 rounds.",
         "metadata": [
           {
             "HP": 9,
@@ -1054,7 +1054,7 @@
         ]
       },
       "B": {
-        "text": "Presa cruel en el cuello que lo dejará inconsciente en 4 asaltos a menos que...",
+        "text": "Grip foe’s neck in a vicious hold. If foe cannot break your grip in 4 rounds, he will begin to pass out from suffocation.",
         "metadata": [
           {
             "PE": {
@@ -1068,13 +1068,13 @@
         ]
       },
       "C": {
-        "text": "Presa en la cabeza. Luego le retuerces el cuello. Si no tiene armadura en el cuello, muere.",
+        "text": "Grip foe’s head and jerk it around. If foe has no neck armor, he dies.",
         "metadata": [
           {
             "PE": {
               "VALUE": -75
             },
-            "DESC": "Con armadura en el cuello",
+            "DESC": "With neck armor",
             "HP": 5,
             "STUN": {
               "ROUNDS": 5
@@ -1084,10 +1084,10 @@
         ]
       },
       "D": {
-        "text": "Presa en la cabeza que le fractura el cráneo. Sin yelmo, yacerá en coma 30 días.",
+        "text": "Grapple foe's head. His skull is fractured during this assault. If he has no helm, he is in a coma for 30 days.",
         "metadata": [
           {
-            "DESC": "Con yelmo",
+            "DESC": "With helmet",
             "HP": 3,
             "STUN": {
               "ROUNDS": 9
@@ -1097,7 +1097,7 @@
         ]
       },
       "E": {
-        "text": "Machacas la tráquea de tu enemigo y le arrancas la cabeza de su sitio. ¿Qué decir ante esto?",
+        "text": "Crush foe's windpipe and pull the head from his body. You are mighty.",
         "metadata": [
           {
             "BONUS": {

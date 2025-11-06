@@ -4,11 +4,11 @@
       "lower": "01",
       "upper": "05",
       "A": {
-        "text": "Tu karma no es lo suficientemente fuerte como para dañar a una bestia así.",
+        "text": "Your karma is not strong enough to damage such a beast.",
         "metadata": []
       },
       "B": {
-        "text": "Las chispas vuelan. El encantamiento falla. Deseabas hacer más daño.",
+        "text": "Sparks fly. The enchantment fails. You had hoped for more damage.",
         "metadata": [
           {
             "HP": "5"
@@ -32,7 +32,7 @@
       "lower": "06",
       "upper": "10",
       "A": {
-        "text": "Parecía poderoso, pero tu enemigo ni se ha inmutado",
+        "text": "It looked powerful but your foe did not even stumble.",
         "metadata": [
           {
             "HP": "1"
@@ -40,7 +40,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo se quita de encima la magia que ponía en peligro su existencia.",
+        "text": "Foe throws off the magic that threatens his very existance.",
         "metadata": [
           {
             "HP": "9"
@@ -64,7 +64,7 @@
       "lower": "11",
       "upper": "20",
       "A": {
-        "text": "Te desmoralizas ante la mirada de la bestia por lo que tu puntería se resiente.",
+        "text": "You are daunted by the beast's gaze and your aim fails.",
         "metadata": [
           {
             "HP": "3"
@@ -72,7 +72,7 @@
         ]
       },
       "B": {
-        "text": "El ataque impacta con fuerza. ¡Tu enemigo brama de dolor y rabia!",
+        "text": "Strike lands solid. Foe howls out in pain and anger!",
         "metadata": [
           {
             "HP": "12"
@@ -96,7 +96,7 @@
       "lower": "21",
       "upper": "30",
       "A": {
-        "text": "El golpe es poderoso pero no está bien dirigido. Recuerda, concentración.",
+        "text": "The strike is powerful, but poorly placed. Remember, Focus.",
         "metadata": [
           {
             "HP": "5"
@@ -104,7 +104,7 @@
         ]
       },
       "B": {
-        "text": "Impacto en el pecho. Tu enemigo intenta futilmente librarse de la herida.",
+        "text": "Chest strike leaves visible damage. Foe makes a futile attempt to brush it off.",
         "metadata": [
           {
             "HP": "15"
@@ -128,7 +128,7 @@
       "lower": "31",
       "upper": "40",
       "A": {
-        "text": "El ataque impacta en una buena zona pero parece que sólo has logrado chamuscar la piel.",
+        "text": "The attack lands well but seems only to scuff your foe's skin.",
         "metadata": [
           {
             "HP": "7"
@@ -136,7 +136,7 @@
         ]
       },
       "B": {
-        "text": "Impacto firme en la parte baja del abdomen. El daño es visible.",
+        "text": "Firm strike to foe's lower abdomen. Measurable damage has been done.",
         "metadata": [
           {
             "HP": "18"
@@ -160,7 +160,7 @@
       "lower": "41",
       "upper": "50",
       "A": {
-        "text": "Ataque con fundamento que inflige daño perceptible.",
+        "text": "Solid attack yields predictable damage.",
         "metadata": [
           {
             "HP": "10"
@@ -168,7 +168,7 @@
         ]
       },
       "B": {
-        "text": "Tu ataque inmoviliza por momento el brazo de tu enemigo, magullándolo.",
+        "text": "Your assault entangles foe's arm for an instant. Arm is bruised.",
         "metadata": [
           {
             "HP": "20"
@@ -192,7 +192,7 @@
       "lower": "51",
       "upper": "65",
       "A": {
-        "text": "Débil ataque en un lugar vulnerable. Tu enemigo se enrabia por lo cerca que has estado.",
+        "text": "Weak attack to a vulnerable spot. Foe is enraged by the close call.",
         "metadata": [
           {
             "HP": "13"
@@ -200,7 +200,7 @@
         ]
       },
       "B": {
-        "text": "Impacto en la espalda. Aunque la piel es dura logras hacerle daño.",
+        "text": "Blow to foe's back. Foe's hide is tough, but much damage is done.",
         "metadata": [
           {
             "HP": "25"
@@ -224,7 +224,7 @@
       "lower": "66",
       "upper": "66",
       "A": {
-        "text": "¡Zas! En toda la boca. El impacto lo deja inconsciente y en coma durante un mes.",
+        "text": "Blast drives into foe's mouth. The concussion knocks him down and puts him into a coma for a month.",
         "metadata": [
           {
             "HP": "30"
@@ -232,7 +232,7 @@
         ]
       },
       "B": {
-        "text": "Atacando con todas tus fuerzas logras impactar en la cabeza, La vida le abandona. Muere en el acto.",
+        "text": "Assaulting foe's very living essence, your strike lands upon his head. His life is stripped from him. He dies instantly.",
         "metadata": [
           {
             "BONUS": {
@@ -258,7 +258,7 @@
       "lower": "67",
       "upper": "70",
       "A": {
-        "text": "Golpe sólido en la pierna. Tu enemigo siente dolor.",
+        "text": "Solid strike on foe's leg. Foe feels the assault.",
         "metadata": [
           {
             "HP": "15"
@@ -266,7 +266,7 @@
         ]
       },
       "B": {
-        "text": "El ataque golpea en el costado del escudo con mucho dolor.",
+        "text": "Attack hammers foe in his shield side. He is in much pain .",
         "metadata": [
           {
             "HP": "30"
@@ -290,7 +290,7 @@
       "lower": "71",
       "upper": "80",
       "A": {
-        "text": "Golpe con fuerza en la cabeza que lo hiere. Si tiene protección en la cabeza cae inconsciente.",
+        "text": "Solid strike to foe's head hurts him, but he is still coming. If foe has head gear it is knocked off.",
         "metadata": [
           {
             "HP": "20"
@@ -298,7 +298,7 @@
         ]
       },
       "B": {
-        "text": "Grabas una fea herida en el pecho de tu enemigo, justo encima de sus órganos vitales. Tienes la iniciativa durante 6 asaltos.",
+        "text": "Etch a nasty wound in foe's chest over his vitals. He is upset greatly. You have initiative for 6 rounds.",
         "metadata": [
           {
             "HP": "12",
@@ -325,7 +325,7 @@
       "lower": "81",
       "upper": "90",
       "A": {
-        "text": "Impacto con fuerza que hace tambalearse a tu terrible enemigo. Se sorprende de tu éxito. Pierde la iniciativa durante 6 asaltos.",
+        "text": "Strong blast staggers your terrible foe. He is as surprised as you are at this success. He loses 6 rounds of initiative.",
         "metadata": [
           {
             "HP": 15,
@@ -336,7 +336,7 @@
         ]
       },
       "B": {
-        "text": "Impacto débil en la articulación del brazo que provocará una magulladura. Crees saber lo que ha ido mal.",
+        "text": "Blow to foe's arm joint lands poorly. Foe will have a bruise. You think you know what went wrong.",
         "metadata": [
           {
             "HP": "25",
@@ -363,7 +363,7 @@
       "lower": "91",
       "upper": "95",
       "A": {
-        "text": "Duro y efectivo, tu ataque casi hace caer a tu enemigo, que se tambalea.",
+        "text": "Hard and effective, your strike almost brings foe down. He stumbles, but does not fall.",
         "metadata": [
           {
             "HP": 20,
@@ -375,7 +375,7 @@
         ]
       },
       "B": {
-        "text": "Concentras la energía del golpe y logras fracturar el fémur una pierna.",
+        "text": "You concentrate the energy of the strike and fracture foe's leg bone.",
         "metadata": [
           {
             "STUN": {
@@ -407,11 +407,11 @@
       "lower": "96",
       "upper": "98",
       "A": {
-        "text": "El ataque impacta alcanzando el cuello de tu enemigo. Este ataque con mala intención aplasta el cuello y rompe la columna de tu enemigo. Cae inmóvil y muere después de 3 asaltos.",
+        "text": "Strike lands and tears down into foe's neck. This vicious blast crushes foe's neck and shatters his spine. He falls unmoving and dies in 3 rounds.",
         "metadata": []
       },
       "B": {
-        "text": "Eres un hechicero poderoso. Tu ataque impacta en el pecho y el cuello, rompiéndolo. Cae y muere.",
+        "text": "You are a mighty enchanter. Your strike hits foe's chest and neck. His neck is broken. Foe drops and dies.",
         "metadata": [
           {
             "BONUS": {
@@ -437,11 +437,11 @@
       "lower": "99",
       "upper": "100",
       "A": {
-        "text": "Te colocas a su derecha y desgarras todo su costado, rompiendo algunas costillas. Tu enemigo muere después de 6 dolorosos asaltos.",
+        "text": "You step into the right spot and rip open foe's side. Your blow shatters some ribs. Foe dies in 6 painful rounds.",
         "metadata": []
       },
       "B": {
-        "text": "Puntería perfecta. Seccionas la carótida y la yugular. Cae y muere después de 3 asaltos.",
+        "text": "Perfect aim. Foe's carotid artery and jugular vein are torn open. Foe drops and dies in 3 rounds.",
         "metadata": []
       },
       "C": {
@@ -461,7 +461,7 @@
       "lower": "101",
       "upper": "150",
       "A": {
-        "text": "Golpe oblicuo en el abdomen que pierde mucha de su potencia en la piel de tu enemigo.",
+        "text": "Glancing strike to foe's abdomen loses much of the impact on foe's hide.",
         "metadata": [
           {
             "STUN": {
@@ -473,7 +473,7 @@
         ]
       },
       "B": {
-        "text": "Golpe en el costado que hunde en el pecho y la pierna. La piel está en carne viva. Tu enemigo ruge un desafío.",
+        "text": "Side strike. Attack careens down foe's chest and leg. Skin is torn away. Foe roars his defiance.",
         "metadata": [
           {
             "HP": "35",
@@ -489,7 +489,7 @@
       "lower": "151",
       "upper": "175",
       "A": {
-        "text": "Tu hechizo hiende profundamente, sajando músculos y tendones.",
+        "text": "Your weapon wounds deep and cuts muscles and tendons.",
         "metadata": [
           {
             "HP": 30,
@@ -500,7 +500,7 @@
         ]
       },
       "B": {
-        "text": "Fracturas un hueso del antebrazo, retorciéndoselo en una dirección dolorosa. Tiene la guardia baja.",
+        "text": "Fracture a bone in foe's forearm. It twists in a painful direction. His guard is down.",
         "metadata": [
           {
             "HP": 35,
@@ -515,7 +515,7 @@
       "lower": "176",
       "upper": "200",
       "A": {
-        "text": "Tu enemigo presenta un punto débil. El ataque impacta en la base del cuello, dañando los tendones.",
+        "text": "Foe presents a weak spot and you strike. Blow lands at the base of the neck. Tendons are damaged.",
         "metadata": [
           {
             "P": {
@@ -525,7 +525,7 @@
         ]
       },
       "B": {
-        "text": "Cae inconsciente. Fractura en las costillas, El impacto causa una hemorragia interna.",
+        "text": "He is knocked down and out. Ribs are shattered. The concussion causes internal bleeding.",
         "metadata": [
           {
             "HP": 40,
@@ -541,7 +541,7 @@
       "lower": "201",
       "upper": "250",
       "A": {
-        "text": "Cuando el ataque impacta en la espalda de tu enemigo, los huesos crujen y estallan. Paralizado y en coma durante 3 meses.",
+        "text": "When your strike lands on foe's back, bones crackle and pop. Foe is paralyzed and in a 3 month coma.",
         "metadata": [
           {
             "HP": 35,
@@ -553,7 +553,7 @@
         ]
       },
       "B": {
-        "text": "El ataque produce un daño mortal. Los órganos de tu enemigo fallan. Inactivo y muere después de 3 asaltos.",
+        "text": "Assault causes mortal damage. Foe's organs fail. He is inacitve and dies after 3 rounds.",
         "metadata": [
           {
             "HP": 10,
@@ -568,11 +568,11 @@
       "lower": "251",
       "upper": "999",
       "A": {
-        "text": "Tu enemigo cierra los ojos cuando le golpeas con destreza y furia. Muere en el acto.",
+        "text": "Foe lowers his eyes within your reach and you strike with great skill and fury. Foe dies instantly.",
         "metadata": []
       },
       "B": {
-        "text": "Impacto que manda el contenido de su cráneo en todas direcciones. Cae y se convulsiona con violencia. Muere en el acto.",
+        "text": "Impact of blast drives content of skull in all directions. Foe falls and flails around violently. He dies instantly.",
         "metadata": [
           {
             "HP": 50
