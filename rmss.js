@@ -1,4 +1,4 @@
-// Import Configuration Object
+// Import Configuration Object//
 import { rmss } from "./module/config.js";
 // Import document classes.
 import { RMSSActor } from "./module/documents/actor.js";
