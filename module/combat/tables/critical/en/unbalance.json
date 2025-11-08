@@ -4,16 +4,16 @@
       "lower": "01",
       "upper": "05",
       "A": {
-        "text": "Deslumbrante. Trata de no herirte a ti mismo.\r\n"
+        "text": "You and your foe both stumble."
       },
       "B": {
-        "text": "¿De qué lado decías estar? Inténtalo con más ganas.\r\n"
+        "text": "You lunge 5 feet past your foe."
       },
       "C": {
-        "text": "Qué humillante. Confías en que nadie haya visto eso."
+        "text": "Try again. What will your friends say?"
       },
       "D": {
-        "text": "Se rie ante tu ataque inepto y mal ejecutado. Te ruega que lo intentes de nuevo.",
+        "text": "\"You're not very good, are you?\"",
         "metadata": [
           {
             "HP": 1
@@ -21,7 +21,7 @@
         ]
       },
       "E": {
-        "text": "El sonido que logra tu ataque es bastante mejor que el daño causado.",
+        "text": "You made a good sound effect.",
         "metadata": [
           {
             "HP": 2
@@ -33,10 +33,10 @@
       "lower": "06",
       "upper": "10",
       "A": {
-        "text": "Aprendió a esquivar ataques como ese en el jardín de infancia."
+        "text": "Foe recognizes this assault from grade school."
       },
       "B": {
-        "text": "Cuando le cargas, se mantiene firme y te quita de encima.",
+        "text": "Your opponent stands firmly in front of you.",
         "metadata": [
           {
             "HP": 1
@@ -44,7 +44,7 @@
         ]
       },
       "C": {
-        "text": "Lanzas un golpe de advertencia, con la intención de romper su guardia.",
+        "text": "When your attempt starts to fail, you slip in a punch.",
         "metadata": [
           {
             "HP": 2
@@ -52,7 +52,7 @@
         ]
       },
       "D": {
-        "text": "Se ríe mientras se zafa de tu presa. Te implora que lo intentes con más ganas.",
+        "text": "Your grip is neither firm or effective. Foe breaks free.",
         "metadata": [
           {
             "HP": 3
@@ -60,7 +60,7 @@
         ]
       },
       "E": {
-        "text": "Golpe fuerte y dirigido hacia su pecho, aunque no provocas mucho daño.",
+        "text": "It is solid, even if randomly placed.",
         "metadata": [
           {
             "HP": 5
@@ -72,7 +72,7 @@
       "lower": "11",
       "upper": "15",
       "A": {
-        "text": "Fallas en tu asalto, pero finalmente has atraído su atención.",
+        "text": "Powerful strike fails to land solid. It still does some damage.",
         "metadata": [
           {
             "HP": 3
@@ -80,7 +80,7 @@
         ]
       },
       "B": {
-        "text": "Golpe débil que impacta en los riñones, que podría haber sido mucho más efectivo de haber sido lanzado con más énfasis.",
+        "text": "Weak side strike glances off kidneys. It could have been great.",
         "metadata": [
           {
             "HP": 4
@@ -88,7 +88,7 @@
         ]
       },
       "C": {
-        "text": "Tus nudillos van a parar a los nervios de su brazo. Le distraes, pero lo que necesitas en proyectarlo.",
+        "text": "Knuckle foe's arm. You will need to do better than this.",
         "metadata": [
           {
             "HP": 5
@@ -96,7 +96,7 @@
         ]
       },
       "D": {
-        "text": "Se vuelve descuidado y deja que le golpees en la espalda.¿Eso en su cara es un gesto de descontento?",
+        "text": "Back strike. It has little imagination. You might as well punch.",
         "metadata": [
           {
             "HP": 6
@@ -104,7 +104,7 @@
         ]
       },
       "E": {
-        "text": "Solo daño \"táctico\". Necesitas que se sitúe en la posición idónea.",
+        "text": "Strike lands on shoulder blade.",
         "metadata": [
           {
             "HP": 7
@@ -116,7 +116,7 @@
       "lower": "16",
       "upper": "20",
       "A": {
-        "text": "Para de manera agresiva e intenta empujarte, pero has conseguido hacerle algo de daño.",
+        "text": "Foe seeks to push you away. He lashes out in defensive manner.",
         "metadata": [
           {
             "P": {
@@ -127,7 +127,7 @@
         ]
       },
       "B": {
-        "text": "Te para el golpe que iba a su costado, pero sabes que las tornas no tardarán en cambiar.",
+        "text": "Glancing side blow. You unbalance your foe. He recovers quickly.",
         "metadata": [
           {
             "P": {
@@ -138,7 +138,7 @@
         ]
       },
       "C": {
-        "text": "Golpe en el costado. Tu enemigo retrocede para evitar tu próximo ataque. Aprende a respetarte.",
+        "text": "Strike side. Foe moves back to block your next attack.",
         "metadata": [
           {
             "P": {
@@ -149,7 +149,7 @@
         ]
       },
       "D": {
-        "text": "Impacto en el costado que capta su atención. Se examina la herida. No se lo esperaba.",
+        "text": "Blow to foe's side sends him reeling. Foe checks wound for the damage.",
         "metadata": [
           {
             "PE": {
@@ -160,7 +160,7 @@
         ]
       },
       "E": {
-        "text": "Realmente no le has roto las costillas, pero se encuentra en desventaja durante unos instantes.",
+        "text": "Blow to foe's side unbalances him and destroys equipment there.",
         "metadata": [
           {
             "PE": {
@@ -175,7 +175,7 @@
       "lower": "21",
       "upper": "35",
       "A": {
-        "text": "Te para y te echa a un lado, para luego retroceder.",
+        "text": "On line strike, but weak. Foe steps back and feigns an attack to draw off your assault.",
         "metadata": [
           {
             "P": {
@@ -186,7 +186,7 @@
         ]
       },
       "B": {
-        "text": "Ese pisotón le deja tratando de recuperar el equilibrio.",
+        "text": "Your strike makes foe's footing uncertain. He pushes you clear and begins to right himself.",
         "metadata": [
           {
             "PE": {
@@ -197,7 +197,7 @@
         ]
       },
       "C": {
-        "text": "Golpe en el pecho que lo aturde. Sus pulmones sufren, tose y se prepara para lo peor.",
+        "text": "Shot to foe's chest. His lungs hesitate. He coughs it off and regains his footing.",
         "metadata": [
           {
             "HP": 6,
@@ -208,7 +208,7 @@
         ]
       },
       "D": {
-        "text": "Golpe rápido en el pecho que hace retorcerse a tu enemigo. Aún sabe dónde estás.",
+        "text": "Quick shot to chest causes foe to hesitate in pain. He still knows you're there.",
         "metadata": [
           {
             "HP": 8,
@@ -219,7 +219,7 @@
         ]
       },
       "E": {
-        "text": "Esta vez sí que le has roto las costillas. Oyes cómo crujen.",
+        "text": "Crack! Foe's rib reports damage to him in an unsubtle way. He is in pain.",
         "metadata": [
           {
             "PE": {
@@ -237,7 +237,7 @@
       "lower": "36",
       "upper": "45",
       "A": {
-        "text": "Empujón ligero que  rompe la concentración de tu enemigo. Tienes la iniciativa en el siguiente asalto.",
+        "text": "Light bash breaks foe's focus. You have the initiative next round.",
         "metadata": [
           {
             "HP": 4
@@ -245,7 +245,7 @@
         ]
       },
       "B": {
-        "text": "Salvas tu ataque haciendo tropezar a tu enemigo. Tienes la iniciativa en el siguiente asalto.",
+        "text": "You salvage your attack by tripping foe. You have the initiative next round.",
         "metadata": [
           {
             "PE": {
@@ -257,7 +257,7 @@
         ]
       },
       "C": {
-        "text": "Le atenazas por el hombro y luego usas tu rodilla para lanzarlo al suelo.",
+        "text": "Grab foe's shoulder, while you bring your knee up to knock him over.",
         "metadata": [
           {
             "PE": {
@@ -268,7 +268,7 @@
         ]
       },
       "D": {
-        "text": "Se contrae del dolor a causa del golpe en el pecho. Necesitará un momento para recuperarse.",
+        "text": "Strike to calf. Wound impairs foe's movements. You have the initiative.",
         "metadata": [
           {
             "PE": {
@@ -279,14 +279,14 @@
         ]
       },
       "E": {
-        "text": "Atacas su apoyo principal. Las piernas.",
+        "text": "Hard glancing blow to foe's leg.",
         "metadata": [
           {
-            "DESC": "Con armadura en la pierna",
+            "DESC": "With leg armor",
             "HP": 12
           },
           {
-            "DESC": "Sin armadura en la pierna",
+            "DESC": "Without leg armor",
             "HP": 8,
             "STUN": {
               "ROUNDS": 2
@@ -299,7 +299,7 @@
       "lower": "46",
       "upper": "50",
       "A": {
-        "text": "Tu intento de rodear a tu enemigo casi tiene éxito, pero necesitarás más fuerza en la presa.",
+        "text": "Attempt to spin foe's around almost succeeds. Weak grip to side.",
         "metadata": [
           {
             "P": {
@@ -311,7 +311,7 @@
         ]
       },
       "B": {
-        "text": "Si no estuviera a la defensiva lo habrías atrapado. El también lo sabe.",
+        "text": "Your assault threatens to succeed. Your foe goes defensive to avoid your attack.",
         "metadata": [
           {
             "P": {
@@ -323,7 +323,7 @@
         ]
       },
       "C": {
-        "text": "Le golpeas en la cara. Retrocede 1,5 metros intentando mantenerse en pie. Su guardia está baja.",
+        "text": "Boom! Foe is hit in the face. He reels back 5 feet trying to regain his footing. His guard is down.",
         "metadata": [
           {
             "HP": 6,
@@ -335,7 +335,7 @@
         ]
       },
       "D": {
-        "text": "Está aturdido, y se dedica a parar después de tu doble ataque a sus brazos.",
+        "text": "Double strike to both arms breaks foe's defense. He is open to attack and is having trouble recovering.",
         "metadata": [
           {
             "HP": 8,
@@ -347,7 +347,7 @@
         ]
       },
       "E": {
-        "text": "Lanzas una secuencia de golpes con la intentción de bajarle la guardia, y te preparas para colocarte en una posición de ventaja el próximo turno.",
+        "text": "Shot in back staggers foe for an instant. His guard drops and he is sadly unprotected.",
         "metadata": [
           {
             "HP": 12,
@@ -363,7 +363,7 @@
       "lower": "51",
       "upper": "55",
       "A": {
-        "text": "Se zafa de tu presa echándose hacia atrás. Está preparado para tu siguiente ataque.",
+        "text": "Firm press to foe's chest. He give ground happily. Watch his weapon.",
         "metadata": [
           {
             "P": {
@@ -375,7 +375,7 @@
         ]
       },
       "B": {
-        "text": "Agarras a tu enemigo y levantas una rodilla para golpearle. Incluso él se sorprende.",
+        "text": "Grab foe and bring knee up to cause damage. Foe blocks some of the force.",
         "metadata": [
           {
             "HP": 5,
@@ -386,7 +386,7 @@
         ]
       },
       "C": {
-        "text": "Impactas en la rodilla y se la hundes hacia dentro. Eso debe de doler.",
+        "text": "Push foe's knee backwards. Foe struggles to avoid the pain.",
         "metadata": [
           {
             "HP": 6,
@@ -398,7 +398,7 @@
         ]
       },
       "D": {
-        "text": "Golpe en el pecho que hace expulsar todo el aire a tu enemigo. Baja la guardia. Se prepara para lo que está por venir.",
+        "text": "Strike to chest takes wind out of foe. Foe's guard goes down.",
         "metadata": [
           {
             "HP": 10,
@@ -410,7 +410,7 @@
         ]
       },
       "E": {
-        "text": "Su pierna ha de estar lesionada. Se colapsa. Parece incapaz de ponerse en pie.",
+        "text": "Knock foe over as if he was a sack of beans. He hits and starts to stand up.",
         "metadata": [
           {
             "HP": 12,
@@ -426,14 +426,14 @@
       "lower": "56",
       "upper": "60",
       "A": {
-        "text": "Golpe en el muslo. Empujas a tu enemigo hacia atrás.",
+        "text": "Strike thigh. Foe is pushed back.",
         "metadata": [
           {
-            "DESC": "Con armadura en el muslo",
+            "DESC": "With thigh armor",
             "HP": 7
           },
           {
-            "DESC": "Sin armadura en el muslo",
+            "DESC": "Without thigh armor",
             "HP": 5,
             "STUN": {
               "ROUNDS": 1
@@ -442,7 +442,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo recibe un golpe en el muslo al intentar bloquearte. Retrocede.",
+        "text": "Foe bumps his thigh while blocking your attack. He steps back.",
         "metadata": [
           {
             "P": {
@@ -454,17 +454,17 @@
         ]
       },
       "C": {
-        "text": "Golpe de refilón en la pantorrilla. Tu enemigo no cae al suelo.",
+        "text": "Skipping calf strike. Foe does not give ground.",
         "metadata": [
           {
-            "DESC": "Con armadura en la pierna",
+            "DESC": "With leg armor",
             "HP": 9
           },
           {
             "PE": {
               "VALUE": -10
             },
-            "DESC": "Sin armadura en la pierna",
+            "DESC": "Without leg armor",
             "HP": 7,
             "STUN": {
               "ROUNDS": 2
@@ -473,7 +473,7 @@
         ]
       },
       "D": {
-        "text": "Fallas al golpear en el costado pero lo haces en el muslo. Tienes la iniciativa durante 3 asaltos.",
+        "text": "Miss foe's side and strike his thigh. You have initiative for 3 rounds.",
         "metadata": [
           {
             "HP": 12,
@@ -484,7 +484,7 @@
         ]
       },
       "E": {
-        "text": "La patada en la pierna casi le hace caer. Estará tambaleándose varios asaltos.",
+        "text": "Strike causes foe to fumble his stride. He almost falls down. Foe is recovering.",
         "metadata": [
           {
             "HP": 14,
@@ -499,7 +499,7 @@
       "lower": "61",
       "upper": "65",
       "A": {
-        "text": "Logras inmovilizar durante un instante los brazos de tu enemigo. Se escapa revolviéndose. Está aturdido.",
+        "text": "Foe's arm is pinned for a moment. He recovers by twisting you off.",
         "metadata": [
           {
             "HP": 6,
@@ -510,7 +510,7 @@
         ]
       },
       "B": {
-        "text": "Su brazo no debería poder doblarse de esa forma. Suelta su arma y te maldice.",
+        "text": "Bend weapon arm in the wrong direction. Foe drops his weapon.",
         "metadata": [
           {
             "HP": 6
@@ -518,7 +518,7 @@
         ]
       },
       "C": {
-        "text": "Bien colocado. Golpe al brazo del arma logra desarmarlo. Puede ver el final cerca.",
+        "text": "Excellent placement. Strike to weapon arm disarms foe. Foe is in great peril.",
         "metadata": [
           {
             "HP": 6,
@@ -529,7 +529,7 @@
         ]
       },
       "D": {
-        "text": "Bloqueas su brazo con tanta fuerza que lo desarmas. Aturdido, te contempla con incredulidad.",
+        "text": "You catch foe's counter thrust and disarm him with a bash to the arm.",
         "metadata": [
           {
             "HP": 7,
@@ -543,7 +543,7 @@
         ]
       },
       "E": {
-        "text": "Golpe en el hombro que le hace dar una vuelta. Estará tambaleándose unos cuantos asaltos.",
+        "text": "Bash foe in shoulder making him spin. You push him for good measure.",
         "metadata": [
           {
             "HP": 13,
@@ -559,7 +559,7 @@
       "lower": "66",
       "upper": "66",
       "A": {
-        "text": "Técnica superior. Golpe en el hombro que despide a tu enemigo hacia atrás dando vueltas. Está aturdido y mareado.",
+        "text": "Shoulder strike sends foe spinning. He comes all the way around before stopping. Well placed shot.",
         "metadata": [
           {
             "HP": 7,
@@ -571,7 +571,7 @@
         ]
       },
       "B": {
-        "text": "Golpe en el codo que lo disloca. Suelta el arma y se olvida de ti.",
+        "text": "Stirke to foe's elbow numbs it. He drops his weapon and grips his elbow. He forgets you are still attacking him.",
         "metadata": [
           {
             "HP": 8,
@@ -583,7 +583,7 @@
         ]
       },
       "C": {
-        "text": "Golpe en la pierna que lo envía al suelo indefenso. Se rompe la rodilla y tienes su destino en sus manos.",
+        "text": "Strike to foe's leg sends him down. Foe's knee is broken and his doom is at hand. He falls to the ground helpless.",
         "metadata": [
           {
             "HP": 9,
@@ -598,7 +598,7 @@
         ]
       },
       "D": {
-        "text": "Fuerte golpe en la cabeza que lo noquea durante 24 horas (si no tiene yelmo). Si tiene yelmo saldrá despedido 3 metros.",
+        "text": "Hard strike to head. If foe has no helm, he is knocked out for 24 hours. If he has a helm, he is knocked back 10 feet.",
         "metadata": [
           {
             "STUN": {
@@ -608,7 +608,7 @@
         ]
       },
       "E": {
-        "text": "Dejas inconsciente a tu enemigo con un golpe en la mandíbula. Pierde el equilibrio, cae, y se golpe la cabeza. Fuera de combate.",
+        "text": "Knock foe back with a blow to the jaw. Foe loses balance and falls. he hits his head and goes unconscious.",
         "metadata": [
           {
             "HP": 30
@@ -620,7 +620,7 @@
       "lower": "67",
       "upper": "70",
       "A": {
-        "text": "Era tan sencillo. Lanzas un puñetazo al pecho, que le coge desprevenido. Está más que desiquilibrado.",
+        "text": "Hasty press upon foe's chest produces excellent results. Foe is unbalanced.",
         "metadata": [
           {
             "PE": {
@@ -632,11 +632,19 @@
         ]
       },
       "B": {
-        "text": "No debería vestir ropa tan holgada. Lo agarras y lo zarandeas. Está confuso y se tambalea.",
-        "metadata": []
+        "text": "Grab loose piece of foe's garments and use it to throw him around. Foe is confused.",
+        "metadata": [
+		{
+			"HP": 7,
+			"STUN":{
+				"ROUNDS": 1
+			},
+			"NP": 1
+		}
+		]
       },
       "C": {
-        "text": "Golpe en las costillas que rompe unas cuantas.  No le ha hecho mucha gracia. Estaba en la cresta de la ola hasta que te conoció.",
+        "text": "Strike to foe's ribs. Foe's ribs crack and foe shows the pain. His war effort is impaired.",
         "metadata": [
           {
             "PE": {
@@ -650,7 +658,7 @@
         ]
       },
       "D": {
-        "text": "Rompes la clavícula de tu enemigo, desorientándolo. Lo tienes donde querías.",
+        "text": "Break foe's collar bone. Spin foe around. He is disoriented and out of position.",
         "metadata": [
           {
             "PE": {
@@ -665,7 +673,7 @@
         ]
       },
       "E": {
-        "text": "Golpeas con tu hombro en su estómago y lo haces levantarse. No sabe ni dónde está.",
+        "text": "Shoulder strike blasts foe down. He lands on his stomach and tries to roll over. Minor fracture.",
         "metadata": [
           {
             "PE": {
@@ -683,7 +691,7 @@
       "lower": "71",
       "upper": "75",
       "A": {
-        "text": "Martilleas la parte baja de la pierna. Se aturde.",
+        "text": "Hammer foe's lower leg. He has trouble standing, but manages.",
         "metadata": [
           {
             "HP": 7,
@@ -694,7 +702,7 @@
         ]
       },
       "B": {
-        "text": "Atáque sólido en la pantorrilla. Un feo calambre. Tienes la iniciativa.",
+        "text": "Solid damage to foe's calf. His attempts to avoid the pain make him an easier target.",
         "metadata": [
           {
             "PE": {
@@ -705,7 +713,7 @@
         ]
       },
       "C": {
-        "text": "Hieres la pierna de tu enemigo llegando incluso hasta el hueso. Pierde mucha movilidad.",
+        "text": "Bruise foe's leg. Muscles suffer damage and foe limps back from your reach.",
         "metadata": [
           {
             "PE": {
@@ -720,7 +728,7 @@
         ]
       },
       "D": {
-        "text": "Levantas a tu enemigo en el aire, mandándolo al suelo. Busca el arma a su alderededor.",
+        "text": "Lift foe up into the air. You send him sprawling on the ground. He drops his weapon.",
         "metadata": [
           {
             "PE": {
@@ -735,7 +743,7 @@
         ]
       },
       "E": {
-        "text": "Mala suerte para él. Cae sobre su arma. Tú también has tenido algo que ver en su desgracia.",
+        "text": "Knock foe down with a blow to the thigh. He lands on his wespon and takes some time to get off it.",
         "metadata": [
           {
             "HP": 15,
@@ -751,7 +759,7 @@
       "lower": "76",
       "upper": "80",
       "A": {
-        "text": "Golpe en el costado del escudo. Si tiene escudo se raja a la mitad. Si no, va a necesitar uno.",
+        "text": "Blow to foe's shield side. If foe has a shield, it is torn away.",
         "metadata": [
           {
             "HP": 12,
@@ -762,7 +770,7 @@
         ]
       },
       "B": {
-        "text": "Golpeas el brazo de tu enemigo haciendo palanca contra él. Lo desequilibras.",
+        "text": "Grab foe's shield arm for leverage. You treat it badly, trying to unbalance foe.",
         "metadata": [
           {
             "PE": {
@@ -776,7 +784,7 @@
         ]
       },
       "C": {
-        "text": "Retrocede 1,5 metros y se agarra el brazo fracturado. Su cara es una máscara de dolor.",
+        "text": "Heavy blow to foe's weapon arm. Mild fracture. Foe is knocked back 5 feet.",
         "metadata": [
           {
             "PE": {
@@ -790,7 +798,7 @@
         ]
       },
       "D": {
-        "text": "¿Ha sido tu barrido lo que le ha roto la rodilla o ha sido su pésimo aterrizaje? ¿Acaso importa?",
+        "text": "Sweep foe to the side and knock him over. He breaks his ankle.",
         "metadata": [
           {
             "PE": {
@@ -801,7 +809,7 @@
         ]
       },
       "E": {
-        "text": "Inmovilizas su brazo y lo proyectas al suelo. Está caído y desarmado.",
+        "text": "Strike to foe's shield arm. Foe stumbles 3 feet and falls down. Foe is disarmed.",
         "metadata": [
           {
             "HP": 15,
@@ -817,7 +825,7 @@
       "lower": "81",
       "upper": "85",
       "A": {
-        "text": "Lanza sus ataques hacia todas partes excepto donde te encuentras tú.",
+        "text": "Side strike. Disoriented foe strikes out for you in the wrong direction. You move to take advantage.",
         "metadata": [
           {
             "HP": 10,
@@ -832,7 +840,7 @@
         ]
       },
       "B": {
-        "text": "Buen golpe en el costado que lo envía tropezando 1 metro hacia tu derecha. Debería aprender a ignorar el dolor.",
+        "text": "Good shot to foe's side sends him stumble to the right 3 feet. It must have really hurt.",
         "metadata": [
           {
             "HP": 15,
@@ -843,7 +851,7 @@
         ]
       },
       "C": {
-        "text": "¡Qué fácil se rompen las costillas! Deja caer todo lo que tenía en el brazo del escudo y se abandona al dolor.",
+        "text": "Strike to foe's side. He almost goes down, but recovers by dropping everything in his shield arm.",
         "metadata": [
           {
             "STUN": {
@@ -853,7 +861,7 @@
         ]
       },
       "D": {
-        "text": "Tu carga con el hombro lo hace caer. Se levanta apoyándose en el brazo del arma.",
+        "text": "Brutal strike sends foe down. You step on his weapon arm and hold it down. Foe should surrender.",
         "metadata": [
           {
             "HP": 12,
@@ -865,7 +873,7 @@
         ]
       },
       "E": {
-        "text": "Te apartas cuando te carga y lo tiras al suelo. En el proceso se rompe una pierna.",
+        "text": "Awesome side shot sends foe tripping sideways. He goes down rolling and breaks a leg.",
         "metadata": [
           {
             "PE": {
@@ -883,7 +891,7 @@
       "lower": "86",
       "upper": "90",
       "A": {
-        "text": "Golpeas a un desorientado enemigo en la pierna. Se tambalea 1,5 metros hacia atrás.",
+        "text": "Elbow to the back. Foe stumbles 5 feet sideways. Foe cannot seem to get his head clear",
         "metadata": [
           {
             "HP": 13,
@@ -897,7 +905,7 @@
         ]
       },
       "B": {
-        "text": "Hueles la victoria. Tu golpe en el costado le hace retrodecer 3 metros. No te llevará mucho más tiempo.",
+        "text": "You really hammer foe. He reels back 10 feet. He almost went down. You move in to finish him.",
         "metadata": [
           {
             "HP": 12,
@@ -909,7 +917,7 @@
         ]
       },
       "C": {
-        "text": "Por fin ha llegado tu oportunidad. Un golpe a la cabeza y cae bocabajo, desarmado.",
+        "text": "Precise blow sends foe down. Foe is face down and disarmed.",
         "metadata": [
           {
             "HP": 14,
@@ -923,7 +931,7 @@
         ]
       },
       "D": {
-        "text": "Impacto en el brazo del escudo. Si tiene escudo se le rompe. Si no, se rompe el brazo. No se lo cree.",
+        "text": "Strike foe's shield arm. If foe has a shield it is broken. If not the arm is broken.",
         "metadata": [
           {
             "HP": 10,
@@ -934,7 +942,7 @@
         ]
       },
       "E": {
-        "text": "Estaba perfectamente situado para tu golpe en la cabeza. Queda de pie, pero inconsciente.",
+        "text": "Cruel blow to foe's head.... Foe sees stars. Foe is knocked back 10 feet, but remains standing.",
         "metadata": [
           {
             "HP": 20,
@@ -950,7 +958,7 @@
       "lower": "91",
       "upper": "95",
       "A": {
-        "text": "Le impactas en la cabeza. Si no tiene yelmo, cae inconsciente durante 2 horas.",
+        "text": "Head strike. If foe has no helm, he is knocked out for 2 hours. If foe has a helm, he is better off.",
         "metadata": [
           {
             "STUN": {
@@ -960,7 +968,7 @@
         ]
       },
       "B": {
-        "text": "Golpeas sus oídos al mismo tiempo, dañando su audición y su equilibrio 3 semanas. ¡Eso duele!",
+        "text": "Blow to side of foe's head. Strike damages his ear and balance. Foe is impaired for 3 weeks.",
         "metadata": [
           {
             "PE": {
@@ -974,10 +982,10 @@
         ]
       },
       "C": {
-        "text": "Volteas a tu enemigo. Pifia con su arma."
+        "text": "Spin foe around. He ends up 10 feet from you and facing the wrong direction. Foe fumbles his weapon."
       },
       "D": {
-        "text": "Te echas sobre él y lo arrojas al suelo. Te levantas con una sonrisa.",
+        "text": "Foe stumbles back from you 10 feet and takes a full round to fall. He hits hard and fractures an arm. He is down.",
         "metadata": [
           {
             "PE": {
@@ -992,7 +1000,7 @@
         ]
       },
       "E": {
-        "text": "A menos que tenga escudo, rompes su brazo. También está caído he inconsciente.",
+        "text": "Blow to foe's shield shoulder. If foe has no shield, he is knocked down,has a useless arm, and passes out.",
         "metadata": [
           {
             "STUN": {
@@ -1006,7 +1014,7 @@
       "lower": "96",
       "upper": "99",
       "A": {
-        "text": "Golpe en el estómago. Se dobla de dolor, momento en el que le tiras al suelo sin contemplaciones.",
+        "text": "Strike to foe's stomach. He bends down in pain and you send him sprawling on his face. He hits harder than you could have hoped.",
         "metadata": [
           {
             "HP": 10,
@@ -1015,7 +1023,7 @@
         ]
       },
       "B": {
-        "text": "Te mira mientras piensa cómo demonios ha acbado en el suelo. No parece que las cosas le vayan muy bien.",
+        "text": "Bash foe in his side. His legs forget to follow as he steps back. He falls in an embarrassing prone position. He has no clue to what happened.",
         "metadata": [
           {
             "STUN": {
@@ -1026,10 +1034,10 @@
         ]
       },
       "C": {
-        "text": "Elegante y pulido golpe que envía a tu enemigo al suelo sobre sus rodillas. Su arma sale despedida. Se le nubla la vista y queda mirando hacia delante sin parpadear.\r\n"
+        "text": "Smooth and snazzy strike sends foe down on his knees. His weapon goes flying. Foe has blacked out. He stares straight ahead without blinking."
       },
       "D": {
-        "text": "Golpe en la cabeza que rompe el yelmo. Los trozos vuelan en todas direcciones. Sin yelmo, cae en coma 4 semanas. No sabe muy bien lo que está pasando.",
+        "text": "Strike head and shatter foe's helm. Pieces fly in all diections. If foe has no helm he is in a coma foe 4 weeks.",
         "metadata": [
           {
             "HP": 9,
@@ -1040,14 +1048,14 @@
         ]
       },
       "E": {
-        "text": "Su cabeza no parece girar del todo bien. Le rompes el cuello. Cae y muere en 3 asaltos.\r\n"
+        "text": "Solid strike snaps foe's neck. He falls back 5 feet, spins, and tumbles to the ground. He dies of shock and suffocation in 3 rounds."
       }
     },
     {
       "lower": "100",
       "upper": "100",
       "A": {
-        "text": "Le golpeas su cadera con la tuya y le envías al suelo, con una pierna rota. Delira durante 9 horas.",
+        "text": "Brutal hip strike knocks foe down. Fall tears tendons, and fractures bone in leg. The pain his great. Foe is incoherent for 9 hours.",
         "metadata": [
           {
             "PE": {
@@ -1057,13 +1065,13 @@
         ]
       },
       "B": {
-        "text": "Aterriza sobre su cuello y no puede levantarse. En realidad, queda parapléjico de cabeza para abajo.\r\n"
+        "text": "Send foe flying 10 feet. He lands on his face. The twisting of his neck causes nerve damage. He is paralyzed from the waist down."
       },
       "C": {
-        "text": "¿Qué ha ocurrido? Se rompe los 2 brazos y la cabeza al aterrizar y entra en coma por 2 meses."
+        "text": "Powerful strike flips foe into the air before smashing him to the ground. Foe breaks both arms and hits his head. Foe is in a coma for 2 months."
       },
       "D": {
-        "text": "Impacto salvaje contra la cabeza. Cae en coma y muere después de 12 asaltos debido  a una arteria seccionada.",
+        "text": "Savage blow to foe's head. Foe is knocked down. He falls into a coma and dies in 12 rounds due to a severed vein.",
         "metadata": [
           {
             "BONUS": {
@@ -1073,7 +1081,7 @@
         ]
       },
       "E": {
-        "text": "¿Ha muerto a causa de una sien aplastada o un cuello roto? ¿Antes, o depués de caer? Ya no importa.",
+        "text": "Frightening strike to foe's head. Temple crushed, neck broken. Foe lands 20 feet away. He dies instantly.",
         "metadata": [
           {
             "BONUS": {

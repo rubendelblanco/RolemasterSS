@@ -7,17 +7,17 @@
       "lower": 1,
       "upper": 5,
       "A": {
-        "text": "Ligera brisa que produce poco daño",
+        "text": "Cold breeze yields little damage.",
         "metadata": []
       },
       "B": {
-        "text": "El ataque produce un corto cambio de clima",
+        "text": "Attack yields a brief climate change.",
         "metadata": [
           {}
         ]
       },
       "C": {
-        "text": "Haces que las mejillas de tu enemigo se sonrosen un poco.",
+        "text": "You give foe's cheeks a rosy hue.",
         "metadata": [
           {
             "HP": "1"
@@ -25,7 +25,7 @@
         ]
       },
       "D": {
-        "text": "Tu ataque parece potente, pero no ha funcionado bien.",
+        "text": "Your blast looks good, works poorly.",
         "metadata": [
           {
             "HP": "2"
@@ -33,7 +33,7 @@
         ]
       },
       "E": {
-        "text": "Un frío e incisivo aire recorre la piel de tu enemigo.",
+        "text": "Sharp and cold air assaults foe's skin.",
         "metadata": [
           {
             "HP": "3"
@@ -45,7 +45,7 @@
       "lower": 6,
       "upper": 10,
       "A": {
-        "text": "Débil y mal dirigido. Tu enemigo no tiene de qué preocuparse",
+        "text": "Feeble and poorly directed. Foe is not really concerned.",
         "metadata": [
           {
             "HP": "1"
@@ -53,7 +53,7 @@
         ]
       },
       "B": {
-        "text": "Una ráfaga de frío incomoda ligeramente a tu objetivo.",
+        "text": "Burst of cold causes target mild discomfort.",
         "metadata": [
           {
             "HP": "2"
@@ -61,7 +61,7 @@
         ]
       },
       "C": {
-        "text": "Tu ataque materializa un ligero viento ártico.\nTu enemigo no se deja impresionar.",
+        "text": "Your attack conjures a bitter arctic wind. Foe is not impressed.",
         "metadata": [
           {
             "HP": "3"
@@ -69,7 +69,7 @@
         ]
       },
       "D": {
-        "text": "Tu enemigo se protege con sus brazos.\nTu ataque pierde mucho de su efectividad.",
+        "text": "Foe shields himself. Your attack misses most of its mark.",
         "metadata": [
           {
             "HP": "4"
@@ -77,7 +77,7 @@
         ]
       },
       "E": {
-        "text": "El hielo cubre el suelo y los pies de tu enemigo, teniendo que estornudar. Tienes la iniciativa.",
+        "text": "Ice up the ground and foe's feet. He springs clear. You have initiative.",
         "metadata": [
           {
             "HP": "4"
@@ -89,7 +89,7 @@
       "lower": 11,
       "upper": 15,
       "A": {
-        "text": "El enemigo esquiva tu ataque con demasiado esfuerzo. Tienes la iniciativa.",
+        "text": "Foe dodges your attack with too much effort. You have initiative.",
         "metadata": [
           {
             "HP": "2"
@@ -97,7 +97,7 @@
         ]
       },
       "B": {
-        "text": "Tu enemigo se evade desesperadamente pero aun así está helado. Tienes la iniciativa.",
+        "text": "Foe evades frantically. He is still chilled. You have initiative next round.",
         "metadata": [
           {
             "HP": "3"
@@ -105,7 +105,7 @@
         ]
       },
       "C": {
-        "text": "Incrustas a tu enemigo con hielo. Se desequilibra intentando quitárselo. Ganas la iniciativa.",
+        "text": "Encrust foe with ice. He is unbalanced as he shakes it off. You gain initiative.",
         "metadata": [
           {
             "HP": "4"
@@ -113,7 +113,7 @@
         ]
       },
       "D": {
-        "text": "Una ligera escarcha deja tu enemigo indeciso. Puedes golpearle otra vez.",
+        "text": "Light frosting leaves foe unsteady. You must hit him again.",
         "metadata": [
           {
             "HP": "5",
@@ -124,7 +124,7 @@
         ]
       },
       "E": {
-        "text": "Golpe frío contra el pecho y la cara de tu enemigo. Tienes la iniciativa.",
+        "text": "Frigid strike to foe's torso and face. You have the initiative.",
         "metadata": [
           {
             "HP": "6",
@@ -139,7 +139,7 @@
       "lower": 16,
       "upper": 20,
       "A": {
-        "text": "El enemigo está espantado de tu ataque. Ganas la iniciativa.",
+        "text": "Foe is fearful of your assault. Your attack gives you the initiative.",
         "metadata": [
           {
             "HP": "3"
@@ -147,7 +147,7 @@
         ]
       },
       "B": {
-        "text": "El ataque ciega momentáneamente a tu enemigo. Tienes la iniciativa dos asaltos.",
+        "text": "Assault blinds foe for a moment. You have 2 rounds of initiative.",
         "metadata": [
           {
             "HP": "4"
@@ -155,7 +155,7 @@
         ]
       },
       "C": {
-        "text": "Un torbellino entumecedor envuelve a tu enemigo. Tienes 2 asaltos de iniciativa.",
+        "text": "Numbing whirlwind encircles foe. You have 2 rounds of initiative.",
         "metadata": [
           {
             "HP": "5"
@@ -163,7 +163,7 @@
         ]
       },
       "D": {
-        "text": "El enemigo intenta evitar el ataque golpeándose él solo. Intentas no carcajearte.",
+        "text": "Foe's attempts to evade and strikes himself. You try not to laugh.",
         "metadata": [
           {
             "HP": "6",
@@ -174,7 +174,7 @@
         ]
       },
       "E": {
-        "text": "Los fallidos intentos de tu enemigo de evitar tu ataque lo colocan en grave desventaja.",
+        "text": "Foe's failed efforts to avoid your attack puts him at a grave disadvantage.",
         "metadata": [
           {
             "HP": "7",
@@ -189,7 +189,7 @@
       "lower": 21,
       "upper": 35,
       "A": {
-        "text": "Un golpe de frío en la cara hace retroceder a tu enemigo. Tienes la iniciativa durante dos asaltos.",
+        "text": "Burst of cold to the face sends foe stumbling back. You have initiative for 2 rounds.",
         "metadata": [
           {
             "HP": "4"
@@ -197,7 +197,7 @@
         ]
       },
       "B": {
-        "text": "Un golpe cargado de hielo fuerza a tu enemigo a retroceder. Cualquier recipiente de agua se hiela y explota. Tienes 2 asaltos de iniciativa.",
+        "text": "Frost laden blast forces foe back. Any containers of water freeze and burst open. You have 2 rounds of initiative.",
         "metadata": [
           {
             "HP": "5"
@@ -205,7 +205,7 @@
         ]
       },
       "C": {
-        "text": "Desorientas a tu enemigo con un golpe certero. Sus ropajes no han evitado que se hiele. Presiónale mientras puedas.",
+        "text": "Disorient foe with a tricky shot. His garments have failed to keep out the chill. Press him while you can.",
         "metadata": [
           {
             "HP": "6",
@@ -216,7 +216,7 @@
         ]
       },
       "D": {
-        "text": "Con una explosión blanca, duchas a tu enemigo con cristales de hielo, teniendo que cerrar los ojos para evitar la acometida.",
+        "text": "With a burst of white, you shower foe with ice crystals. Foe closes his eyes to avoid the onslaught.",
         "metadata": [
           {
             "HP": "7",
@@ -231,7 +231,7 @@
         ]
       },
       "E": {
-        "text": "\"Hilas el pelo y el cuero cabelludo de tu enemigo. Si tiene el pelo largo, este se rompe. El enemigo se esfuerza en vano en reparar el daño.",
+        "text": "Freeze foe's hair and scalp. If foe has long hair, it breaks off! Foe struggles in vain to repair the damage.",
         "metadata": [
           {
             "HP": "8",
@@ -247,7 +247,7 @@
       "lower": 36,
       "upper": 45,
       "A": {
-        "text": "Tu ataque congela uno de los objetos metálicos de tu enemigo, haciéndole tomar una posición defensiva.",
+        "text": "Your attack freezes one of foe's metal items. Foe takes a defensive stance.",
         "metadata": [
           {
             "HP": "5",
@@ -258,7 +258,7 @@
         ]
       },
       "B": {
-        "text": "El enemigo hace un fútil intento de parar el ataque. Pierde 3 asaltos de iniciativa.",
+        "text": "Foe makes a futile attempt to parry the attack;. He loses 3 rounds of initiative.",
         "metadata": [
           {
             "HP": "5"
@@ -266,7 +266,7 @@
         ]
       },
       "C": {
-        "text": "Alcanzas a tu enemigo en la pantorilla. Ganas la iniciativa mientras intenta reestablecer la circulación.",
+        "text": "Catch foe in lower leg. You gain initiative while foe regains footing.",
         "metadata": [
           {
             "HP": "7",
@@ -278,7 +278,7 @@
         ]
       },
       "D": {
-        "text": "Tu enemigo se hiela, congelando toda la piel expuesta. El dolor es enorme.",
+        "text": "Foe ices down; freezing any exposed skin. The pain is great.",
         "metadata": [
           {
             "HP": "9",
@@ -293,7 +293,7 @@
         ]
       },
       "E": {
-        "text": "Aciertas en las piernas. Con hipotermia, tu enemigo intenta permanecer en pie.",
+        "text": "Assault to foe's legs. Hypothermic, he struggles to remain standing.",
         "metadata": [
           {
             "STUN": {
@@ -310,7 +310,7 @@
       "lower": 46,
       "upper": 50,
       "A": {
-        "text": "Concentras tu ataque contra el pecho de tu enemigo, cubriéndolo de escarcha. Bastante macabro.",
+        "text": "Scatter your attack all over foe's chest. Foe is covered with frost. He looks ghoulish.",
         "metadata": [
           {
             "HP": "6",
@@ -321,7 +321,7 @@
         ]
       },
       "B": {
-        "text": "El frío penetra el pecho de tu enemigo dejándolo congelado. El dolor será bastante grave. Retrocede.",
+        "text": "Cold penetrates foe's chest and gives him frostbite. The pain must be severe. He stumbles back.",
         "metadata": [
           {
             "HP": "7",
@@ -333,7 +333,7 @@
         ]
       },
       "C": {
-        "text": "La bola golpea en el pecho de tu enemigo, esparciéndose. El frío muerde en toda la piel expuesta, dejándole una expresión de sorpresa en la cara.",
+        "text": "Blast hits foe's chest and scatters. The cold stings all exposed skin. Foe has a shocked look on his face.",
         "metadata": [
           {
             "HP": "8",
@@ -344,7 +344,7 @@
         ]
       },
       "D": {
-        "text": "El ataque se concentra en el brazo del arma de tu enemigo. Tiene que hacer un gran esfuerzo para mantener cerca el arma, siendo incapaz de protegerse.",
+        "text": "Assault lands on foe's weapon arm. He makes a supreme effort to pull his arm away. Foe is unable to protect himself.",
         "metadata": [
           {
             "HP": "9",
@@ -359,7 +359,7 @@
         ]
       },
       "E": {
-        "text": "Ligero golpe en la baja espalda que hace girar a tu enemigo lanzando su arma lejos de él. Ya lo tienes.",
+        "text": "Glancing strike to lower back. Foe is spun about and slings his weapon away. You have him now.",
         "metadata": [
           {
             "HP": "10",
@@ -374,7 +374,7 @@
       "lower": 51,
       "upper": 55,
       "A": {
-        "text": "Golpe en el pecho. Tu ataque ha tenido fuerza por lo que hace tropezar al enemigo.",
+        "text": "Blow to foe's chest. Your attack has force and foe stumbles.",
         "metadata": [
           {
             "HP": "7",
@@ -385,7 +385,7 @@
         ]
       },
       "B": {
-        "text": "Un golpe fuerte no del todo centrado que golpea en el brazo, muñeca y costado del escudo.",
+        "text": "Strong off-center blast takes foe in his shield arm wrist and side.",
         "metadata": [
           {
             "HP": "8",
@@ -397,7 +397,7 @@
         ]
       },
       "C": {
-        "text": "Duro golpe contra el pecho, sin que la armadura proteja. La explosión deja su fría marca.",
+        "text": "Hard strike to chest, armor does not help. Blow leaves its frigid mark.",
         "metadata": [
           {
             "HP": "5",
@@ -411,7 +411,7 @@
         ]
       },
       "D": {
-        "text": "Potente golpe en el hombre del escudo. El enemigo cae hacia atrás 1,5 metros. Daño muscular.",
+        "text": "Heavy blow to shield shoulder. Foe is knocked back 5 feet. Muscle damage.",
         "metadata": [
           {
             "HP": "10",
@@ -423,7 +423,7 @@
         ]
       },
       "E": {
-        "text": "Golpe en el costado. El enemigo intenta recuperar el aliento y sobrevivir a tu siguiente acometida.",
+        "text": "Blow to side. Foe seeks to regain his wind and survive your next onslaught.",
         "metadata": [
           {
             "HP": "11",
@@ -442,7 +442,7 @@
       "lower": 56,
       "upper": 60,
       "A": {
-        "text": "La bola golpea en una zona expuesta. Está temblando pero su guardia aún está levantada.",
+        "text": "Strike falls on an exposed area. Foe gives ground. He is shaken but his guard is still up.",
         "metadata": [
           {
             "HP": "8",
@@ -453,7 +453,7 @@
         ]
       },
       "B": {
-        "text": "El enemigo se vuelve para evitar tu ataque, dejando sin protección su espalda. Toda la madera que tuviese en la espalda se congela y quiebra.",
+        "text": "Foe turns to avoid your attack and exposes his back. All wood on his back becomes frozen and brittle.",
         "metadata": [
           {
             "HP": "9",
@@ -465,17 +465,17 @@
         ]
       },
       "C": {
-        "text": "Tremendo golpe en la zona baja de tu enemigo; sus piernas soportan la peor parte. Retrocede 1,5 metros.",
+        "text": "Strong blast hits foe low. His legs almost give with the pain. Foe recoils 5 feet away from your assault.",
         "metadata": [
           {
-            "DESC": "Con armadura en la pierna",
+            "DESC": "With leg armor",
             "HP": "5",
             "P": {
               "ROUNDS": 2
             }
           },
           {
-            "DESC": "Sin armadura en la pierna",
+            "DESC": "Without leg armor",
             "HP": "9",
             "STUN": {
               "ROUNDS": 1
@@ -485,7 +485,7 @@
         ]
       },
       "D": {
-        "text": "Fallas el brazo de tu enemigo, golpeando en el muslo. Pierde el pie. Daño en piel y nervios que causan dolor al enemigo.",
+        "text": "Miss foe's arm and strike his thigh. He loses his footing. Skin and nerve damage causes foe pain.",
         "metadata": [
           {
             "STUN": {
@@ -500,7 +500,7 @@
         ]
       },
       "E": {
-        "text": "Tu explosión engulle el brazo del arma de tu enemigo atrayéndolo hacia su torso. Retrocede intentando evitar desesperadamente el dolor.",
+        "text": "Your blast engulfs foe's weapon arm and climbs toward his torso. He steps away frantic to evade the pain.",
         "metadata": [
           {
             "HP": "10",
@@ -522,17 +522,17 @@
       "lower": 61,
       "upper": 65,
       "A": {
-        "text": "Bien situado. Golpeas fuertemente el brazo del arma. El intento de evitarlo es cómico.",
+        "text": "Well placed. Strike slams into foe's weapon arm. Foe's evasion is comical.",
         "metadata": [
           {
-            "DESC": "Con brazales",
+            "DESC": "With arm greaves",
             "HP": "2",
             "P": {
               "ROUNDS": 1
             }
           },
           {
-            "DESC": "Sin brazales",
+            "DESC": "Without arm greaves",
             "HP": "9",
             "STUN": {
               "ROUNDS": 1
@@ -542,7 +542,7 @@
         ]
       },
       "B": {
-        "text": "Golpe sólido en el antebrazo. Pierde la sensibilidad de la mano durante 1 asalto.",
+        "text": "Solid strike to foe's forearm. Foe's hand frozen shut for 1 round.",
         "metadata": [
           {
             "HP": "10",
@@ -560,7 +560,7 @@
         ]
       },
       "C": {
-        "text": "La explosión reseca y hiela todo el material orgánico en la espalda de tu enemigo.",
+        "text": "Blast freeze dries organic material on foe's back.",
         "metadata": [
           {
             "HP": "11",
@@ -571,17 +571,17 @@
         ]
       },
       "D": {
-        "text": "La explosión hiela el brazo y escudo de tu enemigo; si no tiene escudo, el brazo queda inútil debido a daño en el sistema nervioso.",
+        "text": "Blast freezes foe's arm and shield. If no shield,arm useless from nerve damage.",
         "metadata": [
           {
-            "DESC": "Con escudo",
+            "DESC": "With shield",
             "HP": "20",
             "PE": {
               "VALUE": -20
             }
           },
           {
-            "DESC": "Sin escudo",
+            "DESC": "Without shield",
             "STUN": {
               "ROUNDS": 5
             },
@@ -592,7 +592,7 @@
         ]
       },
       "E": {
-        "text": "Golpeas la cintura de tu enemigo. Todo el equipo del cinturón se congela, rompiéndose si el enemigo se mueve.",
+        "text": "Strike to foe's waist. All equipment on belt freezes and breaks if foe moves.",
         "metadata": [
           {
             "HP": "13",
@@ -610,7 +610,7 @@
       "lower": 66,
       "upper": 66,
       "A": {
-        "text": "Robas todo el calor del cuello y pecho del enemigo, por lo que dejar caer todo lo que tenía agarrándose al cuello.",
+        "text": "Steal the heat from foe's neck and chest area. Foe drops anything he is holding and blocks his throat.",
         "metadata": [
           {
             "HP": "10",
@@ -622,7 +622,7 @@
         ]
       },
       "B": {
-        "text": "El enemigo está cubierto por la explosión, con todas sus extremidades dañadas. El dolor irá creciendo hasta que entre en calor.",
+        "text": "Foe is covered by the blast. All extremities are damaged. The pain grows until foe is warmed up.",
         "metadata": [
           {
             "STUN": {
@@ -634,7 +634,7 @@
         ]
       },
       "C": {
-        "text": "Tu enemigo responde a tu bola de frío cayendo al suelo, en medio de un tremendo dolor e intentando ponerse en pie.",
+        "text": "Foe's response to your burst of cold sends him to the ground hard. Foe jams his wrist into the ground.",
         "metadata": [
           {
             "STUN": {
@@ -648,7 +648,7 @@
         ]
       },
       "D": {
-        "text": "Una fría acometida llena los ojos y boca de tu enemigo con hielo, cegándole hasta que pueda limpiar sus ojos.",
+        "text": "Frigid onslaught fills foes eyes and mouth with ice. Foe is blinded for a moment until he can clear his eyes.",
         "metadata": [
           {
             "STUN": {
@@ -662,7 +662,7 @@
         ]
       },
       "E": {
-        "text": "Tu golpe roba todo el calor del cuello y el pecho de tu enemigo. Nervios y músculos dañados.",
+        "text": "Your strike steals the heat out of foe's neck and upper chest. Nerves and muscles are damaged.",
         "metadata": [
           {
             "HP": "15",
@@ -679,7 +679,7 @@
       "lower": 67,
       "upper": 70,
       "A": {
-        "text": "Anótate un golpe en el costado de tu enemigo que le produce una ligera congelación. Cualquier hierba que tuviera en el cinto se hecha a perder.",
+        "text": "Score a hit to foe's side. It produces mild frostbite. Any herbs on foe's belt are ruined.",
         "metadata": [
           {
             "HP": "10",
@@ -694,7 +694,7 @@
         ]
       },
       "B": {
-        "text": "Espolvoreas la cara de tu enemigo con un a lluvia de hielo. Intenta sin éxito evitar tu ataque. El daño le durará.",
+        "text": "Spray foe's face with a powerful chill. He tries without success to push your attack away . The damage endures.",
         "metadata": [
           {
             "HP": "11",
@@ -709,7 +709,7 @@
         ]
       },
       "C": {
-        "text": "Hiela el brazo del arma de tu enemigo, dejándolo inútil hasta que lo caliente. Sufre mucho e intenta mantenerse en pie.",
+        "text": "Freeze foe's weapon arm. It is useless until it is warmed up. Foe is in great pain and stuggles to stand.",
         "metadata": [
           {
             "HP": "12",
@@ -724,10 +724,10 @@
         ]
       },
       "D": {
-        "text": "Un viento polar se introduce en el pecho de tu enemigo dejándolo temblando. Estás cerca de la victoria. Tu enemigo ha encontrado su horma.",
+        "text": "Polar wind pierces deep into chest and leaves foe trembling. You are close to victory. Foe faces the wrong way",
         "metadata": [
           {
-            "DESC": "Con armadura pectoral",
+            "DESC": "With chest armor",
             "HP": "15",
             "STUN": {
               "ROUNDS": 1
@@ -738,7 +738,7 @@
             }
           },
           {
-            "DESC": "Sin armadura pectoral",
+            "DESC": "Without chest armor",
             "HP": "13",
             "STUN": {
               "ROUNDS": 3
@@ -751,16 +751,16 @@
         ]
       },
       "E": {
-        "text": "Golpe en el brazo del escudo. Cae al suelo. Si tiene escudo, se rompe. Si no, se rompe el brazo.",
+        "text": "Blow to foe's shield arm. He is knocked down. If foe has a shield, it is broken. If not, the arm is broken.",
         "metadata": [
           {
-            "DESC": "Con escudo",
+            "DESC": "With shield",
             "STUN": {
               "ROUNDS": 2
             }
           },
           {
-            "DESC": "Sin escudo",
+            "DESC": "Without shield",
             "STUN": {
               "ROUNDS": 6
             }
@@ -772,7 +772,7 @@
       "lower": 71,
       "upper": 75,
       "A": {
-        "text": "Tremendo golpe desequilibrante. La temperatura corporal de tu enemigo desciende.",
+        "text": "Strong unbalancing blast. Foe's body temperature drops.",
         "metadata": [
           {
             "HP": "11",
@@ -786,7 +786,7 @@
         ]
       },
       "B": {
-        "text": "El golpe se aposenta en las piernas de tu enemigo. El dolor y la descarga le hacen flaquear.",
+        "text": "Strike lands on foe's legs. The pain and shock cause him to falter.",
         "metadata": [
           {
             "HP": "12",
@@ -799,7 +799,7 @@
         ]
       },
       "C": {
-        "text": "Un golpe lateral impacta en tu enemigo con acierto. Todo el cuerpo o ropa se congela y se rompe.",
+        "text": "Side strike hits foe just right. Any leather or cloth freezes and shatters.",
         "metadata": [
           {
             "STUN": {
@@ -814,7 +814,7 @@
         ]
       },
       "D": {
-        "text": "La explosión drena el calor del brazo del arma de tu enemigo, dejando mano y brazo inútiles. La mano se congela cerrada. ",
+        "text": "Blast drains the heat from foe's weapon arm. Hand and arm are useless. The hand is frozen closed.",
         "metadata": [
           {
             "HP": "13",
@@ -829,7 +829,7 @@
         ]
       },
       "E": {
-        "text": "La explosión hiela la mano del arma, el hombro y la cara. El enemigo queda entumecido y necesita tiempo, aunque aún se mantiene en pie. ",
+        "text": "Blast freezes weapon hand, shoulder and face. Foe is numb and needs time to warm up. Foe is still standing.",
         "metadata": [
           {
             "HP": "15",
@@ -844,17 +844,17 @@
       "lower": 76,
       "upper": 80,
       "A": {
-        "text": "Golpe en el brazo del escudo. Si había visto el ataque puede rechazarlo con el escudo. Retrocede 1,5 metros de la explosión.",
+        "text": "Strike to foe's shield arm. If foe sees it he may block with a shield. Foe recoils 5 feet from the blast.",
         "metadata": [
           {
-            "DESC": "Con escudo",
+            "DESC": "With shield",
             "HP": "2",
             "P": {
               "ROUNDS": 2
             }
           },
           {
-            "DESC": "Sin escudo",
+            "DESC": "Without shield",
             "HP": "12",
             "STUN": {
               "ROUNDS": 2
@@ -864,10 +864,10 @@
         ]
       },
       "B": {
-        "text": "Golpe en el pecho que congela lo que toca, dañando el equipo. El dolor es persistente. La armadura pectoral está destrozada.",
+        "text": "Chest strike freezes what it touches. Equipment is damaged. The pain persists. Chest armor is destroyed.",
         "metadata": [
           {
-            "DESC": "Con armadura pectoral",
+            "DESC": "With chest armor",
             "HP": "13",
             "STUN": {
               "ROUNDS": 4
@@ -878,7 +878,7 @@
             "HPR": "3"
           },
           {
-            "DESC": "Sin armadura pectoral",
+            "DESC": "Without chest armor",
             "HP": "20",
             "P": {
               "ROUNDS": 4
@@ -890,17 +890,17 @@
         ]
       },
       "C": {
-        "text": "Golpe en los brazos. Cualquier protección metálica se congela, inmovilizando los brazos hasta que los pueda quitar o descongelar.",
+        "text": "Blow to foe's arms. Any metal armguards freeze, immobilizing arms until the armor is removed or unfrozen.",
         "metadata": [
           {
-            "DESC": "Con armadura pectoral",
+            "DESC": "With chest armor",
             "STUN": {
               "ROUNDS": 2
             },
             "HPR": "4"
           },
           {
-            "DESC": "Sin armadura pectoral",
+            "DESC": "Without chest armor",
             "PE": {
               "VALUE": -25
             },
@@ -909,7 +909,7 @@
         ]
       },
       "D": {
-        "text": "Golpe en el costado del enemigo que lo hace caer. Grave congelación que estorba todo movimiento. Cualquier líquido entre el equipo del enemigo se congela.",
+        "text": "Strike to foe's side downs him. Severe frostbite hampers movements. Any liquid among foe's equipment freezes.",
         "metadata": [
           {
             "HP": "15",
@@ -924,7 +924,7 @@
         ]
       },
       "E": {
-        "text": "Sólido golpe en el pecho. El enemigo voltea sobre su espalda, dejando caer todo lo que sostuviese. Lo tienes a tu merced.",
+        "text": "Solid chest strike. Foe flips onto his back , dropping all he holds. Foe is at your mercy.",
         "metadata": [
           {
             "STUN": {
@@ -941,7 +941,7 @@
       "lower": 81,
       "upper": 85,
       "A": {
-        "text": "Onda expansiva por la espalda. Todo el cristal que tuviese se rompe. Magulladura dolorosa.",
+        "text": "Back blast. Any glass on back is broken. Painful bruise.",
         "metadata": [
           {
             "HP": "13",
@@ -953,7 +953,7 @@
         ]
       },
       "B": {
-        "text": "Un duro y limpio golpe empuja al enemigo hacia atrás, rompiéndole las costillas. Su recuperación será lenta.",
+        "text": "Clean hard strike pushes foe over, cracking ribs. His recovery lacks grace.",
         "metadata": [
           {
             "HP": "12",
@@ -969,7 +969,7 @@
         ]
       },
       "C": {
-        "text": "Explosión ártica contra el torso de tu enemigo que se congela gravemente y cae de rodillas de dolor.",
+        "text": "Arctic blast to foe's torso. Foe is badly frostbitten and falls to knees in pain.",
         "metadata": [
           {
             "STUN": {
@@ -983,7 +983,7 @@
         ]
       },
       "D": {
-        "text": "Congelas las manos de tu enemigo, quedando los brazos inútiles y dejando caer todo lo que estuviese cargando.",
+        "text": "Freezes foe's hands. Arms are useless. Foe drops what he was carrying.",
         "metadata": [
           {
             "STUN": {
@@ -994,7 +994,7 @@
         ]
       },
       "E": {
-        "text": "El ataque a la cara y garganta es definitivo. El enemigo aun estará activo pero morirá en 12 asaltos.",
+        "text": "Assault to throat and face is terminal. Foe is still active but dies in 12 rounds.",
         "metadata": [
           {
             "HP": "17"
@@ -1006,10 +1006,10 @@
       "lower": 86,
       "upper": 90,
       "A": {
-        "text": "El ataque a la pantorrilla del enemigo congela parte de la pierna. Cae. Si no tiene armadura en la pierna, el pie tendrá que ser amputado.",
+        "text": "Assault to foe's lower leg freezes part of it. Foe falls down. Without leg armor, foot must be amputated.",
         "metadata": [
           {
-            "DESC": "Con armadura en la pierna",
+            "DESC": "With leg armor",
             "STUN": {
               "ROUNDS": 2
             },
@@ -1019,7 +1019,7 @@
             }
           },
           {
-            "DESC": "Sin armadura en la pierna",
+            "DESC": "Without leg armor",
             "PE": {
               "VALUE": -70
             }
@@ -1027,10 +1027,10 @@
         ]
       },
       "B": {
-        "text": "El golpe da en la pierna congelándola. Con armadura necesitará ayuda en 20 asaltos para conservar el pie. Sin armadura, ya se puede despedir del mismo.",
+        "text": "Strike lower leg and freeze it. With leg armor, he needs aid in 20 rnds to keep the foot. Without leg armor, it's gone.",
         "metadata": [
           {
-            "DESC": "Con armadura en la pierna",
+            "DESC": "With leg armor",
             "STUN": {
               "ROUNDS": 3
             },
@@ -1040,7 +1040,7 @@
             }
           },
           {
-            "DESC": "Sin armadura en la pierna",
+            "DESC": "Without leg armor",
             "PE": {
               "VALUE": -70
             }
@@ -1048,7 +1048,7 @@
         ]
       },
       "C": {
-        "text": "Golpe en las rodillas de tu enemigo, que se las congela y lo hace caer. Del impacto se fractura una. Su caída lo hace dos veces malo.",
+        "text": "Blow to foe's knees. They freeze up and foe falls. On impact, foe shatters a knee. His fall makes it twice as bad.",
         "metadata": [
           {
             "STUN": {
@@ -1062,7 +1062,7 @@
         ]
       },
       "D": {
-        "text": "El golpe en el pecho produce muchísimo dolor. Si tenía ropa de abrigo caerá inconsciente. Si no, morirá en 12 asaltos.",
+        "text": "Chest hit causes much pain. If foe is warmly clothed he is knocked out. If not he dies of shock in 12 rounds.",
         "metadata": [
           {
             "HP": "25",
@@ -1073,7 +1073,7 @@
         ]
       },
       "E": {
-        "text": "Tu cruel tormenta embrolla a tu enemigo y le roba todo el calor del cuerpo. Cae y muere después de 9 asaltos de inactividad.",
+        "text": "Your ruthless tempest entangles foe and steals the warmth from his body. He drops and dies in 9 inactive rounds",
         "metadata": []
       }
     },
@@ -1081,16 +1081,16 @@
       "lower": 91,
       "upper": 95,
       "A": {
-        "text": "El golpe impacta en la cara su nariz orejas y mejillas. Tu enemigo cae. Si no lleva yelmo pierde ambas orejas.",
+        "text": "Blow lands on foe's face. It freezes his nose, ears and cheeks. Foe collapses. Without helm, foe loses both ears.",
         "metadata": [
           {
-            "DESC": "Con yelmo",
+            "DESC": "With helmet",
             "STUN": {
               "ROUNDS": 3
             }
           },
           {
-            "DESC": "Sin yelmo",
+            "DESC": "Without helmet",
             "STUN": {
               "ROUNDS": 6
             },
@@ -1101,7 +1101,7 @@
         ]
       },
       "B": {
-        "text": "Impactas en la cadera de tu enemigo, fracturándola y haciéndole caer indefenso. La piel y músculos quedan congelados.\\r\\n\\r\\n[{\\\"PV\\\":17,\\\"AT\\\":3,\\\"SP\\\":3,\\\"B\\\":-75}]",
+        "text": "Connect with foe's hip. Hip is fractured. Skin and muscles are frostbitten. Foe falls down. He is almost helpless.",
         "metadata": [
           {
             "HP": "17",
@@ -1116,7 +1116,7 @@
         ]
       },
       "C": {
-        "text": "Congelas la sangre del muslo de tu enemigo. Al calentarse, los coágulos se mueven hacia el corazón, matándolo en 9 asaltos.",
+        "text": "Freeze the blood in foe's thigh. As it warms the clots move to his heart killing him in 9 rounds.",
         "metadata": [
           {
             "HP": "15",
@@ -1131,7 +1131,7 @@
         ]
       },
       "D": {
-        "text": "Eliminas el calor de toda la parte inferior del cuerpo de tu enemigo. Todos los órganos vitales son destruidos. Queda inmóvil y muere en 9 asaltos.",
+        "text": "All warmth is driven from foe's lower body. Vital organs are destroyed. Foe is immobile, and dies in 9 rounds.",
         "metadata": [
           {
             "HP": "18"
@@ -1139,7 +1139,7 @@
         ]
       },
       "E": {
-        "text": "Empujas hacia atrás y desequilibras a tu enemigo. La sangre de sus extremidades se congela. Muere después de 6 asaltos de agonía.",
+        "text": "Push foe backwards and off balance. The blood in foe's extremeties is frozen. He dies in 6 rounds of agony.",
         "metadata": [
           {
             "HP": "19"
@@ -1151,7 +1151,7 @@
       "lower": 96,
       "upper": 99,
       "A": {
-        "text": "Un golpe en el pecho manda a tu enemigo hacia atrás, dejándolo inconsciente. Sus labios se congelan y quedan abiertos. No podrá hablar en 2 semanas.",
+        "text": "Chest strike sends foe over hard. He is knocked out. His lips freeze and split open. He cannot speak for 2 weeks.",
         "metadata": [
           {
             "STUN": {
@@ -1161,11 +1161,11 @@
         ]
       },
       "B": {
-        "text": "La explosión golpe al cuello y la clavícula. Si tiene armadura en el cuello bloqueará el ataque pero quedará inconsciente. Si no tiene armadura, se le congelará y morirá en 9 asaltos.",
+        "text": "Blast foe's neck and collarbone. Neck armor will block the attack, but foe is knocked out. If the neck is exposed it freezes solid and foe dies in 9 rounds.",
         "metadata": []
       },
       "C": {
-        "text": "Tu acometida congela el torso y cabeza de tu enemigo que aunque permanece en pie durante un momento cae en shock y muere 6 asaltos después.",
+        "text": "Your onslaught freezes foe's torso and head. Foe remains standing for a moment. He goes into shock and dies 6 rounds later.",
         "metadata": [
           {
             "HP": "18"
@@ -1173,7 +1173,7 @@
         ]
       },
       "D": {
-        "text": "Los pulmones y corazón de tu enemigo son congelados en un instante por tu explosión ártica. Está acabado: muere de shock y asfixia después de 6 asaltos.\n",
+        "text": "Foe's heart and lungs are suddenly frozen by your arctic blast. Foe is finished. He dies of shock and suffocation in 6 rounds.",
         "metadata": [
           {
             "HP": "19"
@@ -1181,7 +1181,7 @@
         ]
       },
       "E": {
-        "text": "Tu enemigo se convierte en una estatua sin vida. Está muerto y bien preservado. Mantenlo en lugar fresco y seco.",
+        "text": "Foe is a lifeless frozen statue. He is quite dead and well preserved. Store in a cool dry place.",
         "metadata": [
           {
             "HP": "20",
@@ -1196,7 +1196,7 @@
       "lower": 100,
       "upper": 100,
       "A": {
-        "text": "Tu enemigo cae en coma durante un mes debido al ataque. Pierde la nariz por congelación.",
+        "text": "Foe is sent into a month long coma by the attack. He loses his nose to frostbite.",
         "metadata": [
           {
             "HP": "21"
@@ -1204,7 +1204,7 @@
         ]
       },
       "B": {
-        "text": "El asalto hace descender la temperatura de tu enemigo, parándole el corazón. Muere en 1 asalto, aunque bien conservado. Eres respetado por todos.",
+        "text": "Assault drops foe's body temperature; his heart stops. He dies in 1 round; well preserved. You are respected by all.",
         "metadata": [
           {
             "BONUS": {
@@ -1214,11 +1214,11 @@
         ]
       },
       "C": {
-        "text": "La explosión congela los ojos y el cuello de tu enemigo. Cae en coma durante 2 semanas, quedando paralizado de cuello para abajo",
+        "text": "Blast freezes foe's eyes, mouth, and neck. Foe falls down in a coma for 2 weeks and paralyzed from neck down.",
         "metadata": []
       },
       "D": {
-        "text": "El enorme ataque congela el cuerpo de tu enemigo por completo. Se mantiene en pie, pero si es golpeado saltará en pedazos.",
+        "text": "Massive assault freezes foe's body completely. He remains standing, but if knocked over he will shatter.",
         "metadata": [
           {
             "HP": "20"
@@ -1226,7 +1226,7 @@
         ]
       },
       "E": {
-        "text": "Tu enemigo se congela y explota en miles de pedazos, dejándolo todo alrededor de 6 metros lleno de trocitos.",
+        "text": "Foe freezes solid and shatters into a thousand pieces. Most land within 20 feet from where he was standing",
         "metadata": [
           {
             "BONUS": {
