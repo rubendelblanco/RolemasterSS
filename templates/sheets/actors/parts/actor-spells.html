@@ -33,7 +33,6 @@ placeholder="Search spell..."
     <!-- Column headings -->
     <div class="spell-grid-heading"></div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.favorite" }}</div>
-    <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.level" }}</div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.name" }}</div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.area_of_effect" }}</div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.duration" }}</div>
@@ -61,13 +60,11 @@ placeholder="Search spell..."
     </div>
     {{/if}}
 
-    <div data-search="{{spell.name}}">{{spell.system.level}}</div>
     <div data-search="{{spell.name}}" style="display: flex; align-items: center; gap: 0.5em;">
       <span>{{spell.name}}</span>
       {{#if spell.system.description}}
       <i class="fas fa-info-circle spell-info-icon" 
-         title="{{spell.system.description}}" 
-         style="cursor: pointer; color: #4b4a44; font-size: 0.9em;"></i>
+         data-tooltip="{{spell.system.description}}"></i>
       {{/if}}
     </div>
     <div data-search="{{spell.name}}">{{spell.system.area_of_effect}}</div>
