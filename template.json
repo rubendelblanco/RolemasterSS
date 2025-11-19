@@ -290,7 +290,7 @@
       "spell_list","language", "profession","creature_attack"],
     "templates": {
       "base": {
-        "description": "Description here."
+        "description": ""
       }
     },
     "item": {
@@ -425,7 +425,7 @@
       "duration": "",
       "range": "",
       "type": "",
-      "description": "Description here."
+      "description": ""
     },
     "spell_list": {
       "name": "",

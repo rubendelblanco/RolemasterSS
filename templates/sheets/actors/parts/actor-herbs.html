@@ -9,7 +9,6 @@
         <th>{{ localize "rmss.pc_sheet_items.weight" }}</th>
         <th>{{ localize "rmss.pc_sheet_items.cost" }}</th>
         <th>
-            <a class="item-control item-create" title="Create Item" data-type="herb_or_poison"><i class="fas fa-plus"></i>{{ localize "rmss.pc_sheet_items.add_item" }}</a>
         </th>
     </tr>
     </thead>
@@ -17,12 +16,15 @@
     {{#each herbs as |herb id|}}
     <tr draggable="true" data-type="Item" data-item-id="{{herb._id}}" data-uuid="Actor.{{herb.actorId}}.Item.{{herb._id}}">
       <td><img src="{{herb.img}}" alt="{{herb.name}}" width="32" height="32"/></td>
-      <td>{{herb.name}}</td>
+      <td>{{herb.name}}{{#if herb.system.description}}
+          <i class="fas fa-info-circle spell-info-icon"
+             data-tooltip="{{herb.system.description}}"></i>
+          {{/if}}</td>
       <td>{{herb.system.quantity}}</td>
       <td>{{herb.system.codes}}</td>
       <td>{{herb.system.af}}</td>
       <td>{{herb.system.weight}}</td>
-      <td>{{herb.system.cost}}</td>
+      <td>{{herb.system.cost}} <span>{{localize (concat "rmss.currency_type_abb." herb.system.currency_type)}}</span></td>
       <td>
           {{#if (gt system.quantity 1)}}
           <a class="item-control split-stack" data-item-id="{{herb._id}}" title="Split pile">

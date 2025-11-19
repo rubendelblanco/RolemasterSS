@@ -39,7 +39,7 @@
         <td>{{group.container.system.weight}}</td>
         <td>
             {{#if (gt group.container.system.cost 0)}}
-            {{group.container.system.cost}} {{group.container.system.currency_type}}
+            {{group.container.system.cost}} <span>{{localize (concat "rmss.currency_type_abb." group.container.system.currency_type)}}</span>
             {{else}}
             {{group.container.system.cost}}
             {{/if}}
@@ -83,7 +83,7 @@
         <td>{{item.system.weight}}</td>
         <td>
             {{#if (gt item.system.cost 0)}}
-            {{item.system.cost}} {{item.system.currency_type}}
+            {{item.system.cost}}
             {{else}}
             {{item.system.cost}}
             {{/if}}
@@ -128,7 +128,7 @@
         <td>{{item.system.weight}}</td>
         <td>
             {{#if (gt item.system.cost 0)}}
-            {{item.system.cost}} {{item.system.currency_type}}
+            {{item.system.cost}} <span>{{localize (concat "rmss.currency_type_abb." item.system.currency_type)}}</span>
             {{else}}
             {{item.system.cost}}
             {{/if}}

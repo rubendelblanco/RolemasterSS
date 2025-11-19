@@ -281,7 +281,15 @@
             "equipped": "Equipped",
             "attack_table": "Attack table",
             "skill": "Skill",
-            "default_critical": "Default critical"
+            "default_critical": "Default critical",
+            "type_cod": {
+                "1he": "1 hand edge",
+                "2h": "2 hands",
+                "1hc": "1 hand concussion",
+                "th": "throwable",
+                "pa": "pole arm",
+                "mis": "missile"
+            }
         },
         "herb_or_poison": {
             "codes": "Codes",

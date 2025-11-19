@@ -1,4 +1,4 @@
-// Import Configuration Object//
+// Import Configuration Object
 import { rmss } from "./module/config.js";
 // Import document classes.
 import { RMSSActor } from "./module/documents/actor.js";
@@ -155,6 +155,8 @@ Hooks.once("init", function () {
 
   // Make Config Data Available
   CONFIG.rmss = rmss;
+  CONFIG.weapons = CONFIG.weapons || {};
+  CONFIG.weapons.type = ["1he","2h","1hc","mis","pa","th"];
 
   //combat tracker
   CONFIG.Combat.initiative = {
@@ -255,6 +257,15 @@ Hooks.once("init", function () {
     return Math.round((a / b) * 100);
   });
 
+  // Register a Handlebars helper to concatenate strings
+  Handlebars.registerHelper("concat", function() {
+    // Convert arguments to an array and remove the last one (Handlebars options object)
+    const args = Array.from(arguments).slice(0, -1);
+    // Join all parts together and return the result
+    return args.join('');
+  });
+
+
   Hooks.on("renderTokenHUD", (app, html, data) => {
     console.log("[rmss] renderTokenHUD hook fired", { app, html, data, user: game.user });
 
@@ -312,8 +323,6 @@ Hooks.once("init", function () {
             parseInt(gmResponse.damage),
             gmResponse
         );
-
-        console.log("[rmss] Resultado de updateActorHits:", res);
 
         await RMSSWeaponCriticalManager.applyCriticalTo(
             res,

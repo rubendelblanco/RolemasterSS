@@ -8,9 +8,9 @@
             <table>
                 <tr>
                     <th>{{localize "rmss.item.equipped"}}</th>
-                    <th>{{localize "rmss.item.quantity"}}</th>
                     <th>{{localize "rmss.armor.weight"}}</th>
                     <th>{{localize "rmss.armor.cost"}}</th>
+                    <th>{{localize "rmss.item.currency"}}</th>
                     <th>{{localize "rmss.armor.prod_time"}}</th>
                     <th>{{localize "rmss.armor.at"}}</th>
                 </tr>
@@ -18,13 +18,19 @@
                     <input type="checkbox" name="system.equipped" {{checked system.equipped}}/>
                 </td>
                 <td>
-                    <input name="system.quantity" type="text" value="{{system.quantity}}" data-dtype="Number"/>
-                </td>
-                <td>
                     <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
                 </td>
                 <td>
-                    <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String"/>
+                    <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
+                </td>
+                <td>
+                    <select name="system.currency_type">
+                        {{#each config.currency_type_abb as |label key|}}
+                        <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
+                        {{localize label}}
+                        </option>
+                        {{/each}}
+                    </select>
                 </td>
                 <td>
                     <input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String"/>

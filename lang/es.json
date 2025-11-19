@@ -281,7 +281,15 @@
       "equipped": "Equipado",
       "attack_table": "Tabla de ataque",
       "skill": "Habilidad",
-      "default_critical": "Crítico por defecto"
+      "default_critical": "Crítico por defecto",
+      "type_cod": {
+        "1he": "1 mano de filo",
+        "2h": "2 manos",
+        "1hc": "1 mano contundente",
+        "th": "arrojadiza",
+        "pa": "asta",
+        "mis": "proyectil"
+      }
     },
     "herb_or_poison": {
       "codes": "Códigos",

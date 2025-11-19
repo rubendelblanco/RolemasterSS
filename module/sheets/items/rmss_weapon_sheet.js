@@ -35,7 +35,8 @@ export default class RMSSWeaponSheet extends ItemSheet {
       enrichedDescription: enrichedDescription,
       armsTables: await game.rmss?.attackTableIndex || [],
       criticalTables: await game.rmss?.criticalTableIndex || [],
-      offensiveSkills: await this.getOffensiveSkills()
+      offensiveSkills: await this.getOffensiveSkills(),
+      weaponTypes: CONFIG.weapons.type
     };
 
     console.log("------------------------------------------------------");

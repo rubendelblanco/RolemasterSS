@@ -17,7 +17,7 @@
                     {{/each}}
                 </select>
             </div>
-
+            {{#if (or (eq item.actor.type "npc") (eq item.actor.type "pc"))}}
             <!-- Columna 2 -->
             <div style="flex:1;">
                 <div>{{localize "rmss.weapon.skill"}}</div>
@@ -27,6 +27,7 @@
                     {{/each}}
                 </select>
             </div>
+            {{/if}}
 
             <!-- Columna 3 -->
             <div style="flex:1;">
@@ -45,39 +46,42 @@
             <table>
                 <tr>
                     <th>{{localize "rmss.weapon.equipped"}}</th>
-                    <th>{{localize "rmss.item.quantity"}}</th>
                     <th>{{localize "rmss.weapon.cost"}}</th>
+                    <th>{{localize "rmss.item.currency"}}</th>
                     <th>{{localize "rmss.weapon.type"}}</th>
                     <th>{{localize "rmss.weapon.prod_time"}}</th>
                     <th>{{localize "rmss.weapon.weight"}}</th>
-                    <th>{{localize "rmss.weapon.breakage_range"}}</th>
-                    <th>{{localize "rmss.weapon.strength"}}</th>
                     <th>{{localize "rmss.weapon.fumble_range"}}</th>
-
                 </tr>
                 <td>
                     <input type="checkbox" name="system.equipped" {{checked system.equipped}}/>
                 </td>
                 <td>
-                    <input name="system.quantity" type="text" value="{{system.quantity}}" data-dtype="Number"/>
+                    <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
                 </td>
                 <td>
-                    <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String"/>
+                    <select name="system.currency_type">
+                        {{#each config.currency_type_abb as |label key|}}
+                        <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
+                        {{localize label}}
+                        </option>
+                        {{/each}}
+                    </select>
                 </td>
                 <td>
-                    <input name="system.type" type="text" value="{{system.type}}" data-dtype="String"/>
-                </td>                
+                    <select name="system.type" data-dtype="String">
+                        {{#each weaponTypes as |wt|}}
+                        <option value="{{wt}}" {{#if (eq wt ../system.type)}}selected{{/if}}>
+                        {{localize (concat "rmss.weapon.type_cod." wt)}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </td>
                 <td>
                     <input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String"/>
                 </td>
                 <td>
                     <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
-                </td>
-                <td>
-                    <input name="system.breakage_range" type="text" value="{{system.breakage_range}}" data-dtype="String"/>
-                </td>
-                <td>
-                    <input name="system.strength" type="text" value="{{system.strength}}" data-dtype="String"/>
                 </td>
                 <td>
                     <input name="system.fumble_range" type="text" value="{{system.fumble_range}}" data-dtype="String"/>
