@@ -33,15 +33,13 @@ export default class SkillService {
         }
 
         // 3. Find the skill category item in the compendium by slug
-        const index = await pack.getIndex();
-        const entry = [...index].find(e => e.system?.slug === categorySlug);
+        const categories = CONFIG.rmss?.skillCategories ?? [];
+        const compendiumCategory = categories.find(c => c.system.slug === categorySlug);
 
-        if (!entry) {
-            ui.notifications.warn(`No se ha encontrado la categoría con slug: ${categorySlug}`);
+        if (!compendiumCategory) {
+            ui.notifications.warn(`Slug not found: ${categorySlug}`);
             return;
         }
-
-        const compendiumCategory = await pack.getDocument(entry._id);
 
         // 4. Find the actor's own category (by the same slug)
         const actorCategory = actor.items.find(i =>
