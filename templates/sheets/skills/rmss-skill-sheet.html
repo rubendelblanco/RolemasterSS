@@ -6,10 +6,10 @@
     <div class="sheet-content">
         <div>
             {{localize "rmss.skill.category"}}
-            <select name="system.category" class="app-stat-selector" value="{{system.category}}" itemid="{{ item._id }}">
+            <select name="system.categorySlug" class="app-stat-selector" value="{{system.categorySlug}}">
                 {{#each owned_skillcats}}
-                <option value="{{this.[0]}}" {{#if (eq ../system.category this.[0])}}selected{{/if}}>
-                {{this.[1]}}
+                <option value="{{this.system.slug}}" {{#if (eq ../system.categorySlug this.system.slug)}}selected{{/if}}>
+                {{localize (concat "rmss.skill_categories_names." this.system.slug)}}
                 </option>
                 {{/each}}
             </select>

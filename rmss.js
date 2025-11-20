@@ -265,7 +265,6 @@ Hooks.once("init", function () {
     return args.join('');
   });
 
-
   Hooks.on("renderTokenHUD", (app, html, data) => {
     console.log("[rmss] renderTokenHUD hook fired", { app, html, data, user: game.user });
 
@@ -346,13 +345,12 @@ Hooks.once("init", function () {
     }
   });
 
-
   //Combat hooks
  new CombatStartManager();
  new CombatEndManager();
 
   Hooks.once("ready", async function () {
-    const pack = game.packs.get("rmss.skill-categories-es");
+    const pack = game.packs.get("rmss.skill-categories");
     const documents = await pack?.getDocuments() ?? [];
     CONFIG.rmss = CONFIG.rmss || {};
     CONFIG.rmss.skillCategories = documents;

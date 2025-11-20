@@ -415,7 +415,8 @@
       "special_bonus_2": 0,
       "total_bonus": 0,
       "favorite": false,
-      "tab": "skills"
+      "tab": "skills",
+      "slug": ""
     },
     "spell": {
       "favorite": false,

@@ -31,10 +31,10 @@
   ],
   "packs": [
     {
-      "name": "skill_categories",
+      "name": "skill-categories",
       "label": "Skill Categories",
       "system": "rmss",
-      "path": "./packs/skill_categories.db",
+      "path": "./packs/skill-categories.db",
       "type": "Item"
     },
     {
@@ -45,10 +45,10 @@
       "system": "rmss"
     },
     {
-      "name": "skills",
-      "label": "Skills",
+      "name": "skills-es",
+      "label": "Skills (ES)",
       "system": "rmss",
-      "path": "./packs/skills.db",
+      "path": "./packs/skills-es.db",
       "type": "Item"
     }
   ],

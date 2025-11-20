@@ -21,12 +21,10 @@ export default class RMSSSkillSheet extends ItemSheet {
   // Make the data available to the sheet template
   async getData() {
     const baseData = await super.getData();
-
+    debugger;
     let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
-
     // Get a list of the parent item's skill categories for the dropdown
     let ownedSkillCategories = this.prepareSkillCategoryValues();
-
     // Figure out if a valid Skill Category is already selected
     let selectedSkillCategory = this.prepareSelectedSkillCategory(ownedSkillCategories, this.object.system.category);
 
@@ -48,6 +46,7 @@ export default class RMSSSkillSheet extends ItemSheet {
   activateListeners(html) {
     super.activateListeners(html);
     const actor = this.item.actor;
+    if (!actor) return;
     const category_skill = actor.items.get(this.item.system.category);
     let progression;
 
@@ -110,21 +109,16 @@ export default class RMSSSkillSheet extends ItemSheet {
   // If this Skill is owned then we will return a list of Skill Categories and allow them to choose
   // Otherwise we'll just return 'Skill has no owner'
   prepareSkillCategoryValues() {
-    let skillNoOwner = {None: "Skill Has No Owner"};
 
-    if (this.item.isEmbedded === null) {
-      return (skillNoOwner);
+    // CASE 1: Skill NOT embedded in actor → use compendium skill categories
+    if (!this.item?.parent) {
+      return CONFIG.rmss.skillCategories ?? [];
     }
-    else
-    {
-      if (!this.item.parent){
-        return CONFIG.rmss.skillCategories.map(cat => [cat.id, cat.name]);
-      }
-      const skillCategories = this.item.parent.getOwnedItemsByType("skill_category");
-      console.log(skillCategories);
-      return Object.entries(skillCategories)
-          .sort((a, b) => a[1].localeCompare(b[1]));
-    }
+
+    // CASE 2: Skill belongs to an actor → get actor categories
+    return this.item.parent.items
+        .filter(i => i.type === "skill_category")
+        .sort((a, b) => a.name.localeCompare(b.name));
   }
 
   // Determine which Skill Category is selected and test that it is in the current list of categories.

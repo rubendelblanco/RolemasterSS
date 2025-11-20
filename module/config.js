@@ -96,10 +96,12 @@ rmss.skill_progression = {
   },
   special: {
     name: "Special",
+    data: "special",
     progression: "0*6*5*4*3"
   },
   combined: {
     name: "Combined",
+    data: "combined",
     progression: "-30*5*3*1.5*0.5"
   }
 }

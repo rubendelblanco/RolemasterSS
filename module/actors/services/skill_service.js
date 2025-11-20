@@ -18,19 +18,34 @@ export default class SkillService {
      * @returns {Promise<void>} Resolves once the skill is created or exits early if validation fails.
      */
     static async createSkill(actor, itemData) {
-        const originalCategoryId = itemData.system.category;
-        const originalCategory =
-            game.items.get(originalCategoryId) ??
-            game.packs.get("rmss.skill-categories-es")?.index.get(originalCategoryId);
-
-        if (!originalCategory) {
-            ui.notifications.warn("No se ha podido encontrar la categoría original.");
+        // 1. Get the slug from the dropped item
+        const categorySlug = itemData.system.categorySlug;
+        if (!categorySlug) {
+            ui.notifications.warn("La skill no tiene slug de categoría.");
             return;
         }
 
-        const categoryName = originalCategory.name;
-        const actorCategory = actor.items.find(
-            i => i.type === "skill_category" && i.name === categoryName
+        // 2. Load the compendium of skill categories
+        const pack = game.packs.get("rmss.skill-categories");
+        if (!pack) {
+            ui.notifications.error("No se encuentra el compendio rmss.skill-categories.");
+            return;
+        }
+
+        // 3. Find the skill category item in the compendium by slug
+        const index = await pack.getIndex();
+        const entry = [...index].find(e => e.system?.slug === categorySlug);
+
+        if (!entry) {
+            ui.notifications.warn(`No se ha encontrado la categoría con slug: ${categorySlug}`);
+            return;
+        }
+
+        const compendiumCategory = await pack.getDocument(entry._id);
+
+        // 4. Find the actor's own category (by the same slug)
+        const actorCategory = actor.items.find(i =>
+            i.type === "skill_category" && i.system?.slug === categorySlug
         );
 
         if (!actorCategory) {
