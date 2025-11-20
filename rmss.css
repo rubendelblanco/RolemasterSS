@@ -227,12 +227,17 @@
     grid-template-columns: [image] 5% [favorite] 3% [skill-name] 11% [dev-cost] 5% [num-ranks] 8% [new-ranks] 9% [rank-bonus] 8% [category-bonus] 8% [item-bonus] 8% [special-bonus-1] 9% [special-bonus-2] 9% [total-bonus] 9% [controls] 8%;
 }
 
+.skills-grid-container-npc {
+    display: grid;
+    grid-template-columns: [image] 5% [skill-name] 35% [rank-bonus] 15% [item-bonus] 10% [special-bonus-1] 10% [total-bonus] 10% [controls] 15%;
+}
+
 .skills-grid-container-creature {
     display: grid;
     grid-template-columns: [attack-name] 19% [attack-bonus] 10% [attack-multiplier] 10% [attacks-number] 10% [attack-probability] 18% [special] 25% [controls] 8%;
 }
 
-.skills-grid-container > div, .skills-grid-container-creature > div {
+.skills-grid-container > div, .skills-grid-container-creature > div,.skills-grid-container-npc > div {
     font-family: Signika, sans-serif;
     font-size: 12px;
     text-align: center;

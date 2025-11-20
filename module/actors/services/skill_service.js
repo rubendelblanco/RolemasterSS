@@ -18,39 +18,51 @@ export default class SkillService {
      * @returns {Promise<void>} Resolves once the skill is created or exits early if validation fails.
      */
     static async createSkill(actor, itemData) {
-        // 1. Get the slug from the dropped item
+        // CASE 0 — CREATURES: ignore everything
+        if (actor.type === "creature") {
+            console.log("Skipping skill creation: creature actors do not use skills.");
+            return;
+        }
+
+        // CASE 1 — NPC: no category check
+        const isNPC = actor.type === "npc";
+
+        // CASE 2 — PC: must check category
+        const isPC = actor.type === "character";
+
+        // Extract slug
         const categorySlug = itemData.system.categorySlug;
         if (!categorySlug) {
-            ui.notifications.warn("La skill no tiene slug de categoría.");
+            ui.notifications.warn("The skill has no category slug.");
             return;
         }
 
-        // 2. Load the compendium of skill categories
-        const pack = game.packs.get("rmss.skill-categories");
-        if (!pack) {
-            ui.notifications.error("No se encuentra el compendio rmss.skill-categories.");
-            return;
-        }
-
-        // 3. Find the skill category item in the compendium by slug
+        // Load categories from CONFIG
         const categories = CONFIG.rmss?.skillCategories ?? [];
+
+        // Find matching category in compendium
         const compendiumCategory = categories.find(c => c.system.slug === categorySlug);
 
         if (!compendiumCategory) {
-            ui.notifications.warn(`Slug not found: ${categorySlug}`);
+            ui.notifications.warn(`Skill category slug not found in compendium: ${categorySlug}`);
             return;
         }
 
-        // 4. Find the actor's own category (by the same slug)
-        const actorCategory = actor.items.find(i =>
-            i.type === "skill_category" && i.system?.slug === categorySlug
-        );
+        // If PC → must check for actor-owned category
+        let actorCategory = null;
 
-        if (!actorCategory) {
-            ui.notifications.warn("El actor no tiene la categoría correspondiente.");
-            return;
+        if (isPC) {
+            actorCategory = actor.items.find(i =>
+                i.type === "skill_category" && i.system.slug === categorySlug
+            );
+
+            if (!actorCategory) {
+                ui.notifications.warn("This PC does not own the required skill category.");
+                return;
+            }
         }
 
+        // Prevent duplicate skills
         const alreadyOwned = actor.items.some(
             i => i.type === "skill" && i.name === itemData.name
         );
@@ -60,18 +72,24 @@ export default class SkillService {
             return;
         }
 
+        // Build new skill
         const skillToCreate = {
             name: itemData.name,
             img: itemData.img,
             type: "skill",
             system: {
                 ...foundry.utils.deepClone(itemData.system),
-                category: actorCategory.id
+                // PC: use actor category ID
+                // NPC: store slug directly (no category item)
+                category: isPC ? actorCategory.id : null,
+                categorySlug: categorySlug
             }
         };
 
+        // Create
         await actor.createEmbeddedDocuments("Item", [skillToCreate]);
     }
+
 
     /**
      * Handle a click on a skill's "new rank" button.

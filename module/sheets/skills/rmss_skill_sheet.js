@@ -21,7 +21,6 @@ export default class RMSSSkillSheet extends ItemSheet {
   // Make the data available to the sheet template
   async getData() {
     const baseData = await super.getData();
-    debugger;
     let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
     // Get a list of the parent item's skill categories for the dropdown
     let ownedSkillCategories = this.prepareSkillCategoryValues();
