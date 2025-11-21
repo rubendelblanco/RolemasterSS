@@ -24,7 +24,9 @@
             {{ localize "rmss.player_character.resources.power_points" }}
             <h4><input name="system.attributes.power_points.current" type="Number" value="{{system.attributes.power_points.current}}"/>/<input name="system.attributes.power_points.max" type="Number" value="{{system.attributes.power_points.max}}"/></h4>
           </div>
-            {{ localize "rmss.npc.movement_rate" }}
+            <label for="movement-rate-value"><a class="item-roll"> {{ localize "rmss.npc.movement_rate" }}
+                <i class="fa fa-refresh" aria-hidden="true"></i></a>
+            </label>
             <h4>
                 <input type="text" name="system.attributes.movement_rate.value" data-dtype="Number" value="{{system.attributes.movement_rate.value}}"/>/
                 <input id="movement-rate-current"
@@ -64,10 +66,10 @@
   </header>
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="Skills">{{ localize "rmss.pc_sheet_tabs.skills" }}</a>
-        <a class="item" data-tab="Equipment">{{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
-        <a class="item" data-tab="Spells">{{ localize "rmss.pc_sheet_tabs.spells" }}</a>
-        <a class="item" data-tab="StatusRecord">{{ localize "rmss.pc_sheet_tabs.status_record" }}</a>
+        <a class="item" data-tab="Skills"><i class="fa fa-cogs" aria-hidden="true"></i>{{ localize "rmss.pc_sheet_tabs.skills" }}</a>
+        <a class="item" data-tab="Equipment"><i class="fa-solid fa-backpack"></i>{{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
+        <a class="item" data-tab="Spells"><i class="fa-solid fa-scroll"></i>{{ localize "rmss.pc_sheet_tabs.spells" }}</a>
+        <a class="item" data-tab="StatusRecord"><i class="fa-solid fa-person-rays"></i>{{ localize "rmss.pc_sheet_tabs.status_record" }}</a>
     </nav>
     <section class="sheet-body">
         <div class="tab skills" data-group="primary" data-tab="Skills">

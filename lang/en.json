@@ -245,8 +245,33 @@
             "is_stackable": "Is stackable"
         },
         "creature": {
-            "bonus_experience": "Bonus experience",
-            "treasure": "Treasure"
+            "bonus_experience": "XP Bonus",
+            "treasure": "Treasure",
+
+            "critical_codes": {
+                "title": "Critical Codes",
+
+                "critical_procedure": {
+                    "title": "Critical Procedure",
+                    "normal": "Normal",
+                    "minus1": "Decrease critical severity by one",
+                    "minus2": "Decrease critical severity by two"
+                },
+
+                "critical_table": {
+                    "title": "Critical Table",
+                    "normal": "Normal",
+                    "large": "Large creatures",
+                    "superlarge": "Super large creatures"
+                },
+
+                "stun_bleeding": {
+                    "title": "Stun & Bleeding",
+                    "normal": "Normal",
+                    "ignore_stun": "Ignore stun",
+                    "ignore_both": "Ignore stun and bleeding"
+                }
+            }
         },
         "creature_attack": {
             "attack": "Attack",

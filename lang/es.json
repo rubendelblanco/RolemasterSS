@@ -246,7 +246,32 @@
     },
     "creature": {
       "bonus_experience": "PE Bonus",
-      "treasure": "Tesoro"
+      "treasure": "Tesoro",
+
+      "critical_codes": {
+        "title": "Códigos de Críticos",
+
+        "critical_procedure": {
+          "title": "Procedimiento de Crítico",
+          "normal": "Normal",
+          "minus1": "Reducir severidad en uno",
+          "minus2": "Reducir severidad en dos"
+        },
+
+        "critical_table": {
+          "title": "Tabla de Crítico",
+          "normal": "Normal",
+          "large": "Criaturas grandes",
+          "superlarge": "Criaturas enormes"
+        },
+
+        "stun_bleeding": {
+          "title": "Aturdimiento y Sangrado",
+          "normal": "Normal",
+          "ignore_stun": "Ignorar aturdimiento",
+          "ignore_both": "Ignorar aturdimiento y sangrado"
+        }
+      }
     },
     "creature_attack": {
       "attack": "Ataque",

@@ -1,57 +1,61 @@
 <div class="critical-codes">
-    <h2>Critical codes chart</h2>
-    <div class="critical-procedure">
-        <h3>Critical procedure</h3>
-        <div>
-            <input type="radio" id="normal" name="critical-procedure" value="-"
-                   {{#if (eq system.attributes.critical_codes.critical_procedure "-")}}checked{{/if}} />
-            <label for="normal">Normal</label>
+    <h2>{{localize "rmss.creature.critical_codes.title"}}</h2>
+
+    <div class="critical-row" style="display:flex; gap:1rem; justify-content:space-between;">
+
+        <!-- Critical Procedure -->
+        <div class="critical-column" style="flex:1;">
+            <h3 style="margin-bottom:4px;">
+                {{localize "rmss.creature.critical_codes.critical_procedure.title"}}
+            </h3>
+            <select name="system.attributes.critical_codes.critical_procedure" style="width:100%;">
+                <option value="-"  {{#if (eq system.attributes.critical_codes.critical_procedure "-")}}selected{{/if}}>
+                    {{localize "rmss.creature.critical_codes.critical_procedure.normal"}}
+                </option>
+                <option value="I"  {{#if (eq system.attributes.critical_codes.critical_procedure "I")}}selected{{/if}}>
+                    {{localize "rmss.creature.critical_codes.critical_procedure.minus1"}}
+                </option>
+                <option value="II" {{#if (eq system.attributes.critical_codes.critical_procedure "II")}}selected{{/if}}>
+                    {{localize "rmss.creature.critical_codes.critical_procedure.minus2"}}
+                </option>
+            </select>
         </div>
-        <div>
-            <input type="radio" id="I" name="critical-procedure" value="I"
-                   {{#if (eq system.attributes.critical_codes.critical_procedure "I")}}checked{{/if}} />
-            <label for="I">Decrease critical severity by one</label>
+
+        <!-- Critical Table -->
+        <div class="critical-column" style="flex:1;">
+            <h3 style="margin-bottom:4px;">
+                {{localize "rmss.creature.critical_codes.critical_table.title"}}
+            </h3>
+            <select name="system.attributes.critical_codes.critical_table" style="width:100%;">
+                <option value="-"  {{#if (eq system.attributes.critical_codes.critical_table "-")}}selected{{/if}}>
+                    {{localize "rmss.creature.critical_codes.critical_table.normal"}}
+                </option>
+                <option value="la" {{#if (eq system.attributes.critical_codes.critical_table "la")}}selected{{/if}}>
+                    {{localize "rmss.creature.critical_codes.critical_table.large"}}
+                </option>
+                <option value="sl" {{#if (eq system.attributes.critical_codes.critical_table "sl")}}selected{{/if}}>
+                    {{localize "rmss.creature.critical_codes.critical_table.superlarge"}}
+                </option>
+            </select>
         </div>
-        <div>
-            <input type="radio" id="II" name="critical-procedure" value="II"
-                   {{#if (eq system.attributes.critical_codes.critical_procedure "II")}}checked{{/if}} />
-            <label for="II">Decrease critical severity by two</label>
+
+        <!-- Stun & Bleeding -->
+        <div class="critical-column" style="flex:1;">
+            <h3 style="margin-bottom:4px;">
+                {{localize "rmss.creature.critical_codes.stun_bleeding.title"}}
+            </h3>
+            <select name="system.attributes.critical_codes.stun_bleeding" style="width:100%;">
+                <option value="-"       {{#if (eq system.attributes.critical_codes.stun_bleeding "-")}}selected{{/if}}>
+                    {{localize "rmss.creature.critical_codes.stun_bleeding.normal"}}
+                </option>
+                <option value="stun"    {{#if (eq system.attributes.critical_codes.stun_bleeding "stun")}}selected{{/if}}>
+                    {{localize "rmss.creature.critical_codes.stun_bleeding.ignore_stun"}}
+                </option>
+                <option value="bleeding" {{#if (eq system.attributes.critical_codes.stun_bleeding "bleeding")}}selected{{/if}}>
+                    {{localize "rmss.creature.critical_codes.stun_bleeding.ignore_both"}}
+                </option>
+            </select>
         </div>
-    </div>
-    <div class="critical-table">
-        <h3>Critical table</h3>
-        <div>
-            <input type="radio" id="normal-creature" name="critical-table" value="-"
-                   {{#if (eq system.attributes.critical_codes.critical_table "-")}}checked{{/if}} />
-            <label for="normal-creature">Normal</label>
-        </div>
-        <div>
-            <input type="radio" id="la" name="critical-table" value="la"
-                   {{#if (eq system.attributes.critical_codes.critical_table "la")}}checked{{/if}} />
-            <label for="la">Large creatures</label>
-        </div>
-        <div>
-            <input type="radio" id="sl" name="critical-table" value="sl"
-                   {{#if (eq system.attributes.critical_codes.critical_table "sl")}}checked{{/if}} />
-            <label for="sl">Super large creatures</label>
-        </div>
-    </div>
-    <div class="stun-bleeding">
-        <h3>Stun & bleeding</h3>
-        <div>
-            <input type="radio" id="no-ignore" name="stun-bleeding" value="-"
-                   {{#if (eq system.attributes.critical_codes.stun_bleeding "-")}}checked{{/if}} />
-            <label for="no-ignore">Normal</label>
-        </div>
-        <div>
-            <input type="radio" id="ignore-stun" name="stun-bleeding" value="stun"
-                   {{#if (eq system.attributes.critical_codes.stun_bleeding "stun")}}checked{{/if}} />
-            <label for="ignore-stun">Ignore stun</label>
-        </div>
-        <div>
-            <input type="radio" id="ignore-bleeding" name="stun-bleeding" value="bleeding"
-                   {{#if (eq system.attributes.critical_codes.stun_bleeding "bleeding")}}checked{{/if}} />
-            <label for="ignore-bleeding">Ignore stun and bleeding</label>
-        </div>
+
     </div>
 </div>
