@@ -31,7 +31,6 @@ export function registerCombatHooks() {
                     if (!effectInfo[iconPath]) effectInfo[iconPath] = [];
                     effectInfo[iconPath] = effect.duration.rounds + " (" + effect.flags.rmss.value + ")";
                 }
-
             }
 
             if (Object.keys(effectInfo).length > 0) {
