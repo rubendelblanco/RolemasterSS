@@ -55,8 +55,22 @@
                 <label>{{localize "rmss.item.is_stackable"}}</label>
                 <input type="checkbox" name="system.is_stackable" {{checked system.is_stackable}} />
             </div>
-                {{localize "rmss.item.description"}}
-                {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+            <label>{{localize "rmss.item.description"}}</label>
+            {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+            {{#if user.isGM}}
+            <h2>{{localize "rmss.item.secret_info"}}</h2>
+
+            {{editor secretDescription
+            target="system.description_secret"
+            button=true
+            owner=owner
+            editable=true}}
+
+            <div class="secret-block">
+                <p><strong>{{localize "rmss.item.secret_value"}}:</strong> {{system.value_identified}}</p>
+            </div>
+
+            {{/if}}
         </div>
     </div>
 </form>

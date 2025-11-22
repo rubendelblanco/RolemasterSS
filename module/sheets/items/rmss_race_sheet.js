@@ -16,8 +16,6 @@ export default class RMSSRaceSheet extends ItemSheet {
     async getData() {
         const baseData = await super.getData();
 
-        //let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
-
         let sheetData = {
             owner: this.item.isOwner,
             editable: this.isEditable,

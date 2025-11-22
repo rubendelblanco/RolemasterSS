@@ -291,10 +291,17 @@
     "templates": {
       "base": {
         "description": ""
+      },
+      "item": {
+        "description": "",
+        "description_secret": "",
+        "value_identified": 0,
+        "value_unidentified": 0,
+        "identified": false
       }
     },
     "item": {
-      "templates": ["base"],
+      "templates": ["item"],
       "worn": false,
       "quantity": 1,
       "weight": 0,
@@ -341,7 +348,7 @@
       "offensive_bonus": 0
     },
     "armor": {
-      "templates": ["base"],
+      "templates": ["item"],
       "equipped": false,
       "quantity": 1,
       "weight": 0,
@@ -350,7 +357,7 @@
       "at": 1
     },
     "weapon": {
-      "templates": ["base"],
+      "templates": ["item"],
       "equipped": false,
       "quantity": 1,
       "cost": 0,
@@ -366,7 +373,7 @@
       "offensive_skill": ""
     },
     "herb_or_poison": {
-      "templates": ["base"],
+      "templates": ["item"],
       "quantity": 1,
       "weight": 0,
       "codes": "",
