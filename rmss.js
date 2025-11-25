@@ -160,7 +160,7 @@ Hooks.once("init", function () {
 
   //combat tracker
   CONFIG.Combat.initiative = {
-    formula: "2d10+ @stats.quickness.stat_bonus",
+    formula: "2d10+ @stats.quickness.stat_bonus+ @attributes.initiative.value",
     decimals: 2
   };
   CONFIG.Combat.documentClass = RMSSCombat;

@@ -1,7 +1,9 @@
 {
   "rmss": {
     "initiative": {
-      "roll": "Tirando iniciativa"
+      "roll": "Tirando iniciativa",
+      "initiative": "Iniciativa",
+      "mod_initiative": "Mod.iniciativa"
     },
     "race": {
       "stat_bonuses": "Bonificaciones de atributos",
@@ -32,7 +34,7 @@
       "level": "Nivel:",
       "experience": "XP:",
       "resources": {
-        "hits": "Golpes",
+        "hits": "Puntos de vida",
         "exhaustion_points": "Puntos de agotamiento",
         "power_points": "Puntos de poder"
       },
@@ -247,6 +249,7 @@
     "creature": {
       "bonus_experience": "PE Bonus",
       "treasure": "Tesoro",
+      "speed": "Velocidad",
 
       "critical_codes": {
         "title": "Códigos de Críticos",

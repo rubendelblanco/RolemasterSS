@@ -32,6 +32,15 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
                 await item.update(data);
             }
         });
+
+        html.find('select[name="system.initiative_code"]').on("change", ev => {
+            const newValue = Number(ev.target.value);
+
+            this.actor.update({
+                "system.attributes.initiative.mod": newValue,
+                "system.attributes.initiative.value": newValue
+            });
+        });
     }
 
     async _onDropItem(event, data) {
@@ -62,6 +71,7 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
         context.system = actorData.system;
         context.flags = actorData.flags;
         context.enrichedDescription = enrichedDescription;
+        context.initiative_codes = CONFIG.rmss.creature_speed;
 
         //effects
         context.effects = this.actor.effects.contents;

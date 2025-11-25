@@ -1,7 +1,9 @@
 {
     "rmss": {
         "initiative": {
-            "roll": "Tirando iniciativa"
+            "roll": "Tirando iniciativa",
+            "initiative": "Initiative",
+            "mod_initiative": "Mod.initiative"
         },
         "race": {
             "stat_bonuses": "Stat Bonuses",
@@ -247,6 +249,7 @@
         "creature": {
             "bonus_experience": "XP Bonus",
             "treasure": "Treasure",
+            "speed": "Velocidad",
 
             "critical_codes": {
                 "title": "Critical Codes",

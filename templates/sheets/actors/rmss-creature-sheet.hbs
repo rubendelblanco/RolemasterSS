@@ -72,7 +72,23 @@
                     <input id="level" name="system.treasure" type="text" value="{{system.treasure}}" data-dtype="String"/>
                 </div>
             </div>
-
+            <div class="header-container">
+                <div class="header-text flexrow">
+                    <label>{{ localize "rmss.creature.speed" }}</label>
+                    <select name="system.initiative_code">
+                        {{#each initiative_codes}}
+                            <option value="{{this.value}}"
+                                    {{#if (eq ../system.attributes.initiative.mod this.value)}}selected{{/if}}>
+                                {{this.name}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="header-text flexrow">
+                    <label for="level">{{ localize "rmss.initiative.mod_initiative" }}</label>
+                    <input id="level" name="system.attributes.initiative.value" type="number" value="{{system.attributes.initiative.value}}" data-dtype="Number"/>
+                </div>
+            </div>
         </div>
     </header>
     {{!-- Sheet Tab Navigation --}}

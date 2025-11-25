@@ -182,3 +182,42 @@ rmss.skill_tab = {
   "spells": "Spells",
   "languages": "Languages"
 }
+
+rmss.creature_speed = {
+  "in": {
+    "name": "Inching",
+    "value": -16
+  },
+  "cr": {
+    "name": "Creeping",
+    "value": -12
+  },
+  "vs": {
+    "name": "Very Slow",
+    "value": -8
+  },
+  "sl": {
+    "name": "Slow",
+    "value": -4
+  },
+  "md": {
+    "name": "Medium",
+    "value": 0
+  },
+  "mf": {
+    "name": "Moderately Fast",
+    "value": 4
+  },
+  "fa": {
+    "name": "Fast",
+    "value": 8
+  },
+  "vf": {
+    "name": "Very Fast",
+    "value": 12
+  },
+  "bf": {
+    "name": "Blindingly Fast",
+    "value": 16
+  }
+};
