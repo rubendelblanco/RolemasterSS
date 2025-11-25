@@ -88,7 +88,6 @@ export default class RMSSSkillSheet extends ItemSheet {
     html.find('select[name="system.categorySlug"]').on("change", ev => {
       const newSlug = ev.target.value;
       this.prepareSelectedSkillCategoryBonus(newSlug);
-      this.render(false);  // optional: rerender sheet without resetting position
     });
 
     // Catch the event when the user clicks one of the New Ranks Checkboxes in a Skill.
