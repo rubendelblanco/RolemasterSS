@@ -74,7 +74,7 @@ export default class RMSSSkillSheet extends ItemSheet {
       progression = CONFIG.rmss.skill_progression?.[progKey]?.progression;
     }
 
-    html.find('input[name="system.ranks"]').blur(async ev => {
+    html.find('input[name="system.ranks"]').change(async ev => {
       // Ensure numeric value from the input
       const raw = ev.currentTarget.value;
       const total = Number(raw);
