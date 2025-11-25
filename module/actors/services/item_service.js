@@ -281,8 +281,11 @@ export default class ItemService {
     }
 
     static _classifySkill(actor, skill, playerskill, spellskill, languageskill) {
-        const skillCategoryId = skill.system.category;
-        const skillCategory = actor.items.get(skillCategoryId);
+        const skillCategorySlug = skill.system.categorySlug;
+        const skillCategory = actor.items.find(i =>
+            i.type === "skill_category" &&
+            i.system?.slug === skillCategorySlug
+        );
 
         if (!skillCategory) {
             playerskill.push(skill);

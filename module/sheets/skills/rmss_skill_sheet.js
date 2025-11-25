@@ -44,16 +44,34 @@ export default class RMSSSkillSheet extends ItemSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+
     const actor = this.item.actor;
+// If the skill is not owned by an actor (compendium, etc.), stop here
     if (!actor) return;
-    const category_skill = actor.items.get(this.item.system.category);
+
+// Get the category slug stored in the skill
+    const categorySlug = this.item.system.categorySlug;
+    if (!categorySlug) return;
+
+// Find the actor's skill category by slug
+    const category_skill = actor.items.find(i =>
+        i.type === "skill_category" &&
+        i.system?.slug === categorySlug
+    );
+
+// If the category is not found on the actor, stop here
+    if (!category_skill) return;
+
     let progression;
 
-    if (category_skill.system.skill_progression.split('*').length > 1) {
-      progression = category_skill.system.skill_progression //some special race value (PP development or body development)
-    }
-    else {
-      progression = CONFIG.rmss.skill_progression[category_skill.system.skill_progression].progression;
+// If the category has a custom skill progression string with '*'
+    if (category_skill.system.skill_progression?.split("*").length > 1) {
+      // Some special race value (PP development or body development)
+      progression = category_skill.system.skill_progression;
+    } else {
+      // Use default progression from CONFIG
+      const progKey = category_skill.system.skill_progression;
+      progression = CONFIG.rmss.skill_progression?.[progKey]?.progression;
     }
 
     html.find('input[name="system.ranks"]').blur(async ev => {
@@ -66,6 +84,12 @@ export default class RMSSSkillSheet extends ItemSheet {
 
       await RankCalculator.applyAbsoluteRanksAndBonus(this.item, total, progression);
     })
+
+    html.find('select[name="system.categorySlug"]').on("change", ev => {
+      const newSlug = ev.target.value;
+      this.prepareSelectedSkillCategoryBonus(newSlug);
+      this.render(false);  // optional: rerender sheet without resetting position
+    });
 
     // Catch the event when the user clicks one of the New Ranks Checkboxes in a Skill.
     // It will increment by one or wrap back to zero on a value of three
@@ -134,20 +158,29 @@ export default class RMSSSkillSheet extends ItemSheet {
   // Populate the Skill Category Bonus field on the Skill Sheet.
   // Iterate through the owned skill categories and if one of them matches the item id of currently
   // selected skill category then set the Skill Category Bonus field to the Total Bonus field of the Skill Category
-  prepareSelectedSkillCategoryBonus(selected_skillcat) {
-    if (this.item.isEmbedded === null) {
+  prepareSelectedSkillCategoryBonus(selected_skillCatSlug) {
+    // Si la skill no pertenece a un actor, salir
+    if (!this.item?.parent) {
       console.log("Skill has no owner");
+      return;
     }
-    else
-    {
-      const items = this.object.parent.items;
 
-      for (const item of items) {
-        if (item.type === "skill_category" && item._id === selected_skillcat) {
-          console.log(`rmss | rmss_skill_sheet | Calculating Skill Category bonus for skill: ${this.object.name}`);
-          this.object.system.category_bonus = item.system.total_bonus;
-        }
-      }
+    const actor = this.item.parent;
+
+    // Buscar categoría del actor por slug
+    const categoryItem = actor.items.find(i =>
+        i.type === "skill_category" &&
+        i.system?.slug === selected_skillCatSlug
+    );
+
+    if (!categoryItem) {
+      console.warn(`Skill category not found for slug: ${selected_skillCatSlug}`);
+      return;
     }
+
+    // Meter el bonus total en la skill
+    this.object.system.category_bonus = categoryItem.system.total_bonus;
+
+    console.log(`rmss | rmss_skill_sheet | Calculated category bonus for ${this.object.name}`);
   }
 }
