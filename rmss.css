@@ -967,7 +967,7 @@ select[name="system.special"] {
 }
 
 .sheet .editor-content {
-    min-height: 30px;
+    min-height: 100px;
     overflow-y: auto;
     word-break: break-word;
     background-color: #FFF8DCFF;
@@ -1228,6 +1228,139 @@ tr.container-row {
 .chat-critical-roll .crit-severity {
     color: #ffd;
 }
+
+/* ================================
+   RMSS – Header Layout
+   ================================ */
+.container {
+    width:100%;
+}
+/* Wrapper general */
+.sheet-header .container {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 0.8rem 1rem;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+    background: linear-gradient(180deg, rgba(200,200,200,0.25), rgba(0,0,0,0.25));
+    border-radius: 6px;
+}
+
+/* Icono del actor */
+.actor-icon img {
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 6px rgba(0,0,0,0.5);
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+}
+
+/* Columnas del header */
+.header-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+
+/* Entradas tipo “Hits / PP / Movement / …” */
+.header-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header-text label {
+    font-weight: 600;
+    color: var(--color-text-light-highlight, #eee);
+    text-shadow:
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            1px  1px 0 black;
+    margin-right: 0.4rem;
+    white-space: nowrap;
+}
+
+/* Inputs */
+.header-text input[type="text"],
+.header-text input[type="number"],
+.header-text input[type="Number"] {
+    width: 60px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.header-text input:hover,
+.header-text input:focus {
+    border-color: var(--color-accent, #66aaff);
+    box-shadow: 0 0 4px var(--color-accent, #66aaff);
+}
+
+/* Resource box estilo más bonito */
+.resource-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.resource-entry {
+    background: rgba(255,255,255,0.05);
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.resource-entry h4 {
+    margin: 0.25rem 0 0 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Fate Points */
+.fate-points-row label {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.fate-icons i {
+    margin-right: 0.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--color-text-light-highlight, #ddd);
+}
+
+.fate-icons i:hover {
+    color: var(--color-accent, #66aaff);
+    transform: scale(1.1);
+    transition: 0.15s;
+}
+
+/* Inputs de movement rate */
+.header-text input {
+    text-align: center;
+}
+
+.resource-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.resource-values {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+    justify-content: center;
+}
+
 
 
 
