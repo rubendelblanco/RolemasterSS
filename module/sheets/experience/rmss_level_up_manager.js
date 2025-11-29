@@ -149,7 +149,12 @@ export default class LevelUpManager {
 
     static endLevelUp(actor) {
         const currentLevel = parseInt(actor.system.attributes.level.value);
-        const currentLevelAbove = actor.system.levelUp.levelAbove -=1;
+        let currentLevelAbove = actor.system.levelUp.levelAbove -=1;
+
+        if (currentLevelAbove < 0) {
+            currentLevelAbove = 0;
+        }
+
         actor.update({
             system: {
                 'levelUp.levelAbove': currentLevelAbove,

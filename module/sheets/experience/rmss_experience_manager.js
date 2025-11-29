@@ -185,7 +185,7 @@ export default class ExperiencePointsCalculator {
         // Check for levels 1 through 20
         for (let i = experienceTable.length - 1; i >= 0; i--) {
             if (experiencePoints >= experienceTable[i].experience) {
-                return experienceTable[i].level;
+                return xperienceTable[i];
             }
         }
 
@@ -208,10 +208,15 @@ export default class ExperiencePointsCalculator {
             if (!actor) return;
             const experience = parseInt(ev.currentTarget.value);
             const level = parseInt(html.find("#level").val());
-            const calcLevel = this.getCharacterLevel(experience);
+            const calcLevel = this.getCharacterLevel(experience).level;
 
             if (!actor.system.levelUp.levelAbove) {
-                actor.update({ system: { 'levelUp.levelAbove': calcLevel - level } });
+                if (calcLevel - level < 0) {
+                    actor.update({ system: { 'levelUp.levelAbove': 0 } });
+                }
+                else {
+                    actor.update({ system: { 'levelUp.levelAbove': calcLevel - level } });
+                }
             }
 
             if (calcLevel > level && (calcLevel - level) > actor.system.levelUp.levelAbove) {

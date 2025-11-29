@@ -84,7 +84,7 @@
       </div>
 
       <div class="header-container">
-        <div class="header-text">
+        <div class="header-text flexrow">
           <label for="character-name">{{ localize "rmss.player_character.name" }}</label>
           <input id="character-name" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize Name }}" />
         </div>
@@ -94,14 +94,12 @@
           <input id="level" name="system.attributes.level.value" data-dtype="Number" type="text"
                  value="{{system.attributes.level.value}}" />
         </div>
-
         <div class="header-text flexrow">
           <label for="experience-points">{{ localize "rmss.player_character.experience" }}</label>
           <input id="experience-points" name="system.attributes.experience_points.value" data-dtype="Number" type="text"
                  value="{{system.attributes.experience_points.value}}" />
         </div>
       </div>
-
     </div>
   </header>
 
