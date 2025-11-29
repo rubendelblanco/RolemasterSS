@@ -78,7 +78,7 @@
     "pc_sheet_fixed_info": {
       "race": "Raza:",
       "profession": "Profesión:",
-      "training_packages": "Paquetes de entrenamiento:",
+      "training_packages": "Opciones de entrenamiento:",
       "realm": "Reino:",
       "movement_rate": "Movimiento base",
       "fate_points": "Ptos destino"
@@ -409,7 +409,7 @@
     "weapon-thown": "Armas • Arrojadizas",
     "spells-own-realm-closed-lists": "Hechizos • Propio Reino Listas Cerradas",
     "crafts": "Oficios",
-    "weapon-missile-artillery": "Armas • Artillería a Distancia",
+    "weapon-missile-artillery": "Armas • Artillería",
     "body-development": "Desarrollo Físico",
     "weapon-missile": "Armas • Proyectiles",
     "special-attacks": "Ataques Especiales",

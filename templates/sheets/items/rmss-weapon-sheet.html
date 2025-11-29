@@ -17,7 +17,7 @@
                     {{/each}}
                 </select>
             </div>
-            {{#if (or (eq item.actor.type "npc") (eq item.actor.type "pc"))}}
+            {{#if (or (eq item.actor.type "npc") (eq item.actor.type "character"))}}
             <!-- Columna 2 -->
             <div style="flex:1;">
                 <div>{{localize "rmss.weapon.skill"}}</div>

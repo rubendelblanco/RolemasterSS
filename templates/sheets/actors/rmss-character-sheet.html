@@ -14,7 +14,7 @@
 
       <!-- Resource Boxes Section-->
 
-      <div class="resource-container">
+      <div class="header-container">
         <div class="resource-entry">
           <div class="header-text flexrow">
             <label for="system.attributes.hits.current">
@@ -49,10 +49,7 @@
         <!-- Fate Points row -->
         {{#if fateIcons.length}}
         <div class="header-text flexrow fate-points-row">
-          <!-- Label column -->
           <label>{{ localize "rmss.pc_sheet_fixed_info.fate_points" }}</label>
-
-          <!-- Icon column -->
           <div class="fate-icons">
             {{#each fateIcons as |index|}}
             {{#unless (lt ../system.attributes.fate_points.value index)}}
@@ -81,6 +78,8 @@
         </div>
 
         <div class="header-text flexrow">
+          <label for="development-points">{{ localize "rmss.experience.dps" }} </label>
+          <input type="text" value="{{system.levelUp.developmentPoints}}" id="development-points" name="system.levelUp.developmentPoints" data-dtype="Number"/>
         </div>
       </div>
 

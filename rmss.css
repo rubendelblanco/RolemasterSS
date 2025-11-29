@@ -61,7 +61,7 @@
 
 .header-container {
     flex-grow: 2;
-    outline: 1px solid;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     /* use instead of border */
     margin-top: 1px;
     margin-left: 1px;
@@ -100,7 +100,6 @@
 }
 
 .resource-entry {
-    outline: 1px solid;
     /* use instead of border */
     margin-top: 1px;
     margin-left: 1px;
@@ -967,10 +966,11 @@ select[name="system.special"] {
 }
 
 .sheet .editor-content {
-    min-height: 100px;
+    min-height: 500px;
     overflow-y: auto;
     word-break: break-word;
     background-color: #FFF8DCFF;
+    color: black;
 }
 
 .drop-target {
@@ -1270,6 +1270,7 @@ tr.container-row {
     justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
+    text-align: center;
 }
 
 .header-text label {
