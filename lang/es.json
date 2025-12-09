@@ -555,6 +555,7 @@
     }
   },
   "attack_table": {
+    "bastard_sword": "Espada bastarda",
     "battle_axe": "Hacha de batalla",
     "beak_pincher_large": "Pico/Tenaza (Grande)",
     "beak_pincher_medium": "Pico/Tenaza (Mediano)",

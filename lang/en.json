@@ -554,6 +554,7 @@
             "profession": "Profession"
         },
         "attack_table": {
+            "bastard_sword": "Bastard Sword",
             "battle_axe": "Battle Axe",
             "beak_pincher_large": "Beak/Pincher (Large)",
             "beak_pincher_medium": "Beak/Pincher (Medium)",
