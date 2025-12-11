@@ -185,7 +185,7 @@ export default class ExperiencePointsCalculator {
         // Check for levels 1 through 20
         for (let i = experienceTable.length - 1; i >= 0; i--) {
             if (experiencePoints >= experienceTable[i].experience) {
-                return xperienceTable[i];
+                return experienceTable[i];
             }
         }
 
