@@ -123,6 +123,12 @@ export default class RMSSCharacterSheet extends ActorSheet {
         
         // Calculate recover_hits_per_hour_resting on initial load
         this._updateConstitutionRecovery(html);
+        
+        // Auto-calculate recover_pp_per_hour_resting when realm or relevant stats change
+        this._registerPowerPointRecoveryListener(html);
+        
+        // Calculate recover_pp_per_hour_resting on initial load
+        this._updatePowerPointRecovery(html);
     }
 
     /**
@@ -231,6 +237,78 @@ export default class RMSSCharacterSheet extends ActorSheet {
         await this.actor.update({ 
             "system.race_stat_fixed_info.recover_hits_per_hour_resting": recoverHitsPerHour,
             "system.race_stat_fixed_info.recover_hits_per_sleep_cycle": recoverHitsPerSleep
+        });
+    }
+
+    /**
+     * Registers listeners for realm and stat changes to automatically
+     * calculate and update recover_pp_per_hour_resting.
+     * @param {jQuery} html - The jQuery object containing the sheet HTML
+     */
+    _registerPowerPointRecoveryListener(html) {
+        // Listen to realm changes
+        html.find('select[name="system.fixed_info.realm"]').on("change", async (ev) => {
+            await this._updatePowerPointRecovery(html);
+        });
+        
+        // Listen to empathy, intuition, and presence basic_bonus and temp changes
+        const relevantStats = ['empathy', 'intuition', 'presence'];
+        relevantStats.forEach(statName => {
+            html.find(`input[name="system.stats.${statName}.basic_bonus"]`).on("change", async (ev) => {
+                await this._updatePowerPointRecovery(html);
+            });
+            
+            html.find(`input[name="system.stats.${statName}.temp"]`).on("change", async (ev) => {
+                await this._updatePowerPointRecovery(html);
+            });
+        });
+    }
+
+    /**
+     * Calculates the base stat bonus for power point recovery based on the character's realm.
+     * @returns {number} The base stat bonus value
+     */
+    _getPowerPointRecoveryBaseBonus() {
+        const realm = this.actor.system.fixed_info?.realm || "";
+        const stats = this.actor.system.stats || {};
+        
+        const empathyBonus = Number(stats.empathy?.basic_bonus) || 0;
+        const intuitionBonus = Number(stats.intuition?.basic_bonus) || 0;
+        const presenceBonus = Number(stats.presence?.basic_bonus) || 0;
+        
+        switch (realm) {
+            case "essence":
+                return empathyBonus;
+            case "channeling":
+                return intuitionBonus;
+            case "mentalism":
+                return presenceBonus;
+            case "essence/channeling":
+                return Math.ceil((empathyBonus + intuitionBonus) / 2);
+            case "essence/mentalism":
+                return Math.ceil((empathyBonus + presenceBonus) / 2);
+            case "channeling/mentalism":
+                return Math.ceil((intuitionBonus + presenceBonus) / 2);
+            case "arcane":
+                return Math.ceil((intuitionBonus + presenceBonus + empathyBonus) / 3);
+            default:
+                return 0;
+        }
+    }
+
+    /**
+     * Calculates and updates recover_pp_per_hour_resting and recover_pp_per_sleep_cycle
+     * based on the character's realm and relevant stat bonuses.
+     * @param {jQuery} html - The jQuery object containing the sheet HTML (optional)
+     */
+    async _updatePowerPointRecovery(html = null) {
+        const baseBonus = this._getPowerPointRecoveryBaseBonus();
+        const recoverPPPerHour = Math.ceil(baseBonus / 2);
+        const recoverPPPerSleep = baseBonus * 2;
+        
+        await this.actor.update({ 
+            "system.race_stat_fixed_info.recover_pp_per_hour_resting": recoverPPPerHour,
+            "system.race_stat_fixed_info.recover_pp_per_sleep_cycle": recoverPPPerSleep
         });
     }
 
