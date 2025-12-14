@@ -26,6 +26,22 @@ export default class RMSSWeaponSheet extends ItemSheet {
 
     let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, { async: true });
 
+    // Get arms tables and sort by translated name
+    let armsTables = await game.rmss?.attackTableIndex || [];
+    armsTables = armsTables.sort((a, b) => {
+      const nameA = game.i18n.localize(`rmss.attack_table.${a}`) || a;
+      const nameB = game.i18n.localize(`rmss.attack_table.${b}`) || b;
+      return nameA.localeCompare(nameB, game.i18n.lang);
+    });
+
+    // Get critical tables and sort by translated name
+    let criticalTables = await game.rmss?.criticalTableIndex || [];
+    criticalTables = criticalTables.sort((a, b) => {
+      const nameA = game.i18n.localize(`rmss.critical_table.${a}`) || a;
+      const nameB = game.i18n.localize(`rmss.critical_table.${b}`) || b;
+      return nameA.localeCompare(nameB, game.i18n.lang);
+    });
+
     let sheetData = {
       owner: this.item.isOwner,
       editable: this.isEditable,
@@ -33,8 +49,8 @@ export default class RMSSWeaponSheet extends ItemSheet {
       system: baseData.item.system,
       config: CONFIG.rmss,
       enrichedDescription: enrichedDescription,
-      armsTables: await game.rmss?.attackTableIndex || [],
-      criticalTables: await game.rmss?.criticalTableIndex || [],
+      armsTables: armsTables,
+      criticalTables: criticalTables,
       offensiveSkills: await this.getOffensiveSkills(),
       weaponTypes: CONFIG.weapons.type
     };

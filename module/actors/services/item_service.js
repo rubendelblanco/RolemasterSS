@@ -252,8 +252,12 @@ export default class ItemService {
             if (!w.flags?.rmss?.containerId) looseWeapons.push(w);
         }
 
-        // Sort skills alphabetically
-        skillcat.sort((a, b) => a.name.localeCompare(b.name));
+        // Sort skills alphabetically by translated name
+        skillcat.sort((a, b) => {
+            const nameA = game.i18n.localize(`rmss.skill_categories_names.${a.system.slug}`) || a.name;
+            const nameB = game.i18n.localize(`rmss.skill_categories_names.${b.system.slug}`) || b.name;
+            return nameA.localeCompare(nameB, game.i18n.lang);
+        });
         playerskill.sort((a, b) => a.name.localeCompare(b.name));
 
         // Map spells to lists

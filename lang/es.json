@@ -552,9 +552,8 @@
       "realm": "Reino",
       "type": "Tipo",
       "profession": "Profesión"
-    }
-  },
-  "attack_table": {
+    },
+    "attack_table": {
     "bastard_axe": "Hacha bastarda",
     "bastard_sword": "Espada bastarda",
     "battle_axe": "Hacha de batalla",
@@ -652,8 +651,8 @@
     "war_mattock": "Alabarda de guerra",
     "water_bolt": "Rayo de agua",
     "whip": "Látigo"
-  },
-  "critical_table": {
+    },
+    "critical_table": {
     "brawl": "Pelea",
     "cold": "Frío",
     "electricity": "Electricidad",
@@ -672,5 +671,6 @@
     "sweeps": "Artes marciales (Barridos)",
     "tiny": "Ataques diminutos",
     "unbalance": "Desequilibrio"
+    }
   }
 }

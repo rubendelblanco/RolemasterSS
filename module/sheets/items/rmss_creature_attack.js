@@ -21,6 +21,15 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
     // Make the data available to the sheet template
     async getData() {
         const baseData = await super.getData();
+        
+        // Get arms tables and sort by translated name
+        let armsTables = await game.rmss?.attackTableIndex || [];
+        armsTables = armsTables.sort((a, b) => {
+            const nameA = game.i18n.localize(`rmss.attack_table.${a}`) || a;
+            const nameB = game.i18n.localize(`rmss.attack_table.${b}`) || b;
+            return nameA.localeCompare(nameB, game.i18n.lang);
+        });
+        
         let sheetData = {
             owner: this.item.isOwner,
             editable: this.isEditable,
@@ -28,7 +37,7 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
             system: baseData.item.system,
             config: CONFIG.rmss,
             actorId: this.getActorId(),
-            armsTables: await game.rmss?.attackTableIndex || [],
+            armsTables: armsTables,
         };
 
         return sheetData;
