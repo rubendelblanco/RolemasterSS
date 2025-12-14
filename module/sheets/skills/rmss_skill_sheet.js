@@ -162,7 +162,6 @@ export default class RMSSSkillSheet extends ItemSheet {
       console.log("Skill has no owner");
       return;
     }
-    debugger;
     const actor = this.item.parent;
     const categoryItem = actor.items.find(i =>
         i.type === "skill_category" &&
@@ -175,9 +174,11 @@ export default class RMSSSkillSheet extends ItemSheet {
     }
 
     await this.object.update({
-      "system.category_bonus": categoryItem.system.total_bonus
+      "system.category_bonus": categoryItem.system.total_bonus,
+      "system.development_cost": categoryItem.system.development_cost,
+      "system.category": categoryItem.id
     });
 
-    console.log(`rmss | rmss_skill_sheet | Calculated category bonus for ${this.object.name}`);
+    console.log(`rmss | rmss_skill_sheet | Updated category bonus, development cost and category for ${this.object.name}`);
   }
 }
