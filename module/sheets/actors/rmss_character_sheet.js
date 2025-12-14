@@ -117,6 +117,12 @@ export default class RMSSCharacterSheet extends ActorSheet {
         
         // Calculate quickness_bonus on initial load
         this._updateQuicknessBonus(html);
+        
+        // Auto-calculate recover_hits_per_hour_resting when constitution.basic_bonus changes
+        this._registerConstitutionRecoveryListener(html);
+        
+        // Calculate recover_hits_per_hour_resting on initial load
+        this._updateConstitutionRecovery(html);
     }
 
     /**
@@ -197,6 +203,37 @@ export default class RMSSCharacterSheet extends ActorSheet {
      * @param {number} quicknessBonusOverride - Optional override for quickness_bonus value
      * @returns {number} The calculated total_db value
      */
+    /**
+     * Registers a listener for constitution.basic_bonus changes to automatically
+     * calculate and update recover_hits_per_hour_resting (basic_bonus / 2, rounded up).
+     * @param {jQuery} html - The jQuery object containing the sheet HTML
+     */
+    _registerConstitutionRecoveryListener(html) {
+        html.find('input[name="system.stats.constitution.basic_bonus"]').on("change", async (ev) => {
+            await this._updateConstitutionRecovery(html);
+        });
+        
+        html.find('input[name="system.stats.constitution.temp"]').on("change", async (ev) => {
+            await this._updateConstitutionRecovery(html);
+        });
+    }
+
+    /**
+     * Calculates and updates recover_hits_per_hour_resting and recover_hits_per_sleep_cycle
+     * based on constitution.basic_bonus.
+     * @param {jQuery} html - The jQuery object containing the sheet HTML (optional)
+     */
+    async _updateConstitutionRecovery(html = null) {
+        const basicBonus = Number(this.actor.system.stats?.constitution?.basic_bonus) || 0;
+        const recoverHitsPerHour = Math.ceil(basicBonus / 2);
+        const recoverHitsPerSleep = basicBonus * 2;
+        
+        await this.actor.update({ 
+            "system.race_stat_fixed_info.recover_hits_per_hour_resting": recoverHitsPerHour,
+            "system.race_stat_fixed_info.recover_hits_per_sleep_cycle": recoverHitsPerSleep
+        });
+    }
+
     _calculateTotalDB(html = null, quicknessBonusOverride = null) {
         // Parse values more carefully, handling empty strings and null/undefined
         const parseValue = (val) => {
