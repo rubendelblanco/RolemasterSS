@@ -133,9 +133,121 @@ export default class RMSSCharacterSheet extends ActorSheet {
                 }]);
             case "edit":
                 return effect.sheet.render(true);
+            case "edit-flags":
+                return this._onEditEffectFlags(effect);
             case "delete":
                 return effect.delete();
         }
+    }
+
+    async _onEditEffectFlags(effect) {
+        const currentFlags = foundry.utils.deepClone(effect.flags) || {};
+        const rmssFlags = currentFlags.rmss || {};
+        
+        // Build form content with common RMSS flags
+        const formContent = `
+            <form>
+                <div class="form-group">
+                    <label>Value (for Bonus/Penalty/Bleeding):</label>
+                    <input type="number" name="rmss.value" value="${rmssFlags.value || ''}" placeholder="Enter numeric value"/>
+                </div>
+                <div class="form-group">
+                    <label>Custom Flags (JSON):</label>
+                    <textarea name="customFlags" rows="15" style="font-family: monospace; width: 100%; min-height: 300px; resize: vertical;">${JSON.stringify(currentFlags, null, 2)}</textarea>
+                    <p class="notes">Edit the full flags object as JSON. Use the Value field above for common RMSS flags, or edit the JSON directly for advanced usage.</p>
+                </div>
+            </form>
+        `;
+
+        const dialog = new Dialog({
+            title: `Edit Flags: ${effect.name}`,
+            content: formContent,
+            buttons: {
+                save: {
+                    icon: '<i class="fas fa-save"></i>',
+                    label: "Save",
+                    callback: async (html) => {
+                        try {
+                            // Get value from input
+                            const valueInput = html.find('input[name="rmss.value"]').val();
+                            const customFlagsText = html.find('textarea[name="customFlags"]').val();
+                            
+                            let newFlags = {};
+                            
+                            // Try to parse custom flags JSON
+                            if (customFlagsText.trim()) {
+                                try {
+                                    newFlags = JSON.parse(customFlagsText);
+                                } catch (e) {
+                                    ui.notifications.error(`Invalid JSON: ${e.message}`);
+                                    return false;
+                                }
+                            }
+                            
+                            // Update rmss.value if provided
+                            if (valueInput !== '') {
+                                if (!newFlags.rmss) newFlags.rmss = {};
+                                newFlags.rmss.value = valueInput ? Number(valueInput) : undefined;
+                            } else if (newFlags.rmss?.value === undefined) {
+                                // Remove value if empty and not in JSON
+                                if (newFlags.rmss && Object.keys(newFlags.rmss).length === 0) {
+                                    delete newFlags.rmss;
+                                }
+                            }
+                            
+                            // Clean up empty objects
+                            if (newFlags.rmss && Object.keys(newFlags.rmss).length === 0) {
+                                delete newFlags.rmss;
+                            }
+                            if (Object.keys(newFlags).length === 0) {
+                                newFlags = null;
+                            }
+                            
+                            await effect.update({ flags: newFlags });
+                            ui.notifications.info(`Flags updated for ${effect.name}`);
+                        } catch (error) {
+                            ui.notifications.error(`Error updating flags: ${error.message}`);
+                            console.error(error);
+                        }
+                    }
+                },
+                cancel: {
+                    icon: '<i class="fas fa-times"></i>',
+                    label: "Cancel"
+                }
+            },
+            default: "save",
+            close: () => {}
+        });
+        
+        dialog.render(true);
+        
+        // After rendering, make the dialog larger and resizable
+        setTimeout(() => {
+            // Find the dialog window by title
+            const dialogWindows = $('.window-app.dialog');
+            const targetDialog = Array.from(dialogWindows).find(win => {
+                const title = $(win).find('.window-header h4').text();
+                return title === `Edit Flags: ${effect.name}`;
+            });
+            
+            if (targetDialog) {
+                const $dialog = $(targetDialog);
+                $dialog.css({
+                    width: '700px',
+                    minWidth: '500px',
+                    minHeight: '500px'
+                });
+                // Make dialog resizable using jQuery UI
+                if ($.fn.resizable) {
+                    $dialog.resizable({
+                        handles: 'all',
+                        minWidth: 500,
+                        minHeight: 400
+                    });
+                }
+            }
+        }, 100);
     }
 
     /** @override */

@@ -17,10 +17,13 @@
                     {{effect.duration.rounds}}
                 </div>
                 <div class="active-effect effect-controls">
-                    <a class="effect-control edit" data-effect-id="{{effect._id}}" data-action="edit">
+                    <a class="effect-control edit" data-effect-id="{{effect._id}}" data-action="edit" title="Edit Effect">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a class="effect-control delete" data-effect-id="{{effect._id}}" data-action="delete">
+                    <a class="effect-control edit-flags" data-effect-id="{{effect._id}}" data-action="edit-flags" title="Edit Flags">
+                        <i class="fas fa-flag"></i>
+                    </a>
+                    <a class="effect-control delete" data-effect-id="{{effect._id}}" data-action="delete" title="Delete Effect">
                         <i class="fas fa-trash"></i>
                     </a>
                 </div>
