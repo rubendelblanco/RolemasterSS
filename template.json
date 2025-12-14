@@ -40,7 +40,7 @@
           "quickness_bonus": 0,
           "adrenal_defense": 0,
           "shield_bonus": 0,
-          "magic": "",
+          "magic": 0,
           "total_db": 0
         }
       },

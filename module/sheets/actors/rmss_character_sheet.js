@@ -11,15 +11,11 @@ export default class RMSSCharacterSheet extends ActorSheet {
         // Equip/Unequip Weapon/Armor
         html.find(".equippable").click(ev => {
             const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-            console.log(`Before change: ${item.system.equipped}`);
             if (item.system.equipped === true) {
-                console.log("Setting False");
                 item.update({ system: { equipped: false } });
             } else {
-                console.log("Setting True");
                 item.update({ system: { equipped: true } });
             }
-            console.log(`After change: ${item.system.equipped}`);
         });
 
         html.find(".offensive-skill").click(async ev => {
@@ -109,10 +105,137 @@ export default class RMSSCharacterSheet extends ActorSheet {
             });
         });
 
-
         updateCriticalCodes(html, "critical-procedure", "system.attributes.critical_codes.critical_procedure");
         updateCriticalCodes(html, "critical-table", "system.attributes.critical_codes.critical_table");
         updateCriticalCodes(html, "stun-bleeding", "system.attributes.critical_codes.stun_bleeding");
+
+        // Auto-calculate total_db when armor_info values change
+        this._registerArmorInfoListeners(html);
+        
+        // Auto-calculate quickness_bonus when quickness.basic_bonus changes
+        this._registerQuicknessBonusListener(html);
+        
+        // Calculate quickness_bonus on initial load
+        this._updateQuicknessBonus(html);
+    }
+
+    /**
+     * Registers a listener for quickness.basic_bonus changes to automatically
+     * calculate and update quickness_bonus (basic_bonus * 3).
+     * @param {jQuery} html - The jQuery object containing the sheet HTML
+     */
+    _registerQuicknessBonusListener(html) {
+        html.find('input[name="system.stats.quickness.basic_bonus"]').on("change", async (ev) => {
+            await this._updateQuicknessBonus(html);
+        });
+        
+        html.find('input[name="system.stats.quickness.temp"]').on("change", async (ev) => {
+            await this._updateQuicknessBonus(html);
+        });
+    }
+
+    /**
+     * Calculates and updates quickness_bonus based on quickness.basic_bonus * 3.
+     * Also recalculates total_db in the same update to avoid flickering.
+     * @param {jQuery} html - The jQuery object containing the sheet HTML (optional)
+     */
+    async _updateQuicknessBonus(html = null) {
+        const basicBonus = Number(this.actor.system.stats?.quickness?.basic_bonus) || 0;
+        const quicknessBonus = basicBonus * 3;
+        
+        // Calculate total_db with the new quickness_bonus value
+        const totalDB = this._calculateTotalDB(html, quicknessBonus);
+        
+        // Update both values in a single actor update to prevent flickering
+        await this.actor.update({ 
+            "system.armor_info.quickness_bonus": quicknessBonus,
+            "system.armor_info.total_db": totalDB
+        });
+    }
+
+    _registerArmorInfoListeners(html) {
+        // Only fields from template.json lines 39-43 (excluding total_db and quickness_bonus which are calculated)
+        const armorInfoFields = [
+            "system.armor_info.quickness_penalty",
+            "system.armor_info.adrenal_defense",
+            "system.armor_info.shield_bonus",
+            "system.armor_info.magic"
+        ];
+
+        armorInfoFields.forEach(fieldName => {
+            html.find(`input[name="${fieldName}"]`).on("change", async (ev) => {
+                const updates = {};
+                
+                // Special handling for quickness_penalty: convert negative to positive
+                if (fieldName === "system.armor_info.quickness_penalty") {
+                    const value = Number(ev.currentTarget.value) || 0;
+                    if (value < 0) {
+                        const positiveValue = Math.abs(value);
+                        updates[fieldName] = positiveValue;
+                        ev.currentTarget.value = positiveValue;
+                    } else {
+                        updates[fieldName] = value;
+                    }
+                } else {
+                    updates[fieldName] = Number(ev.currentTarget.value) || 0;
+                }
+                
+                // Calculate total_db with the new values
+                const totalDB = this._calculateTotalDB(html);
+                updates["system.armor_info.total_db"] = totalDB;
+                
+                // Update all values in a single actor update to prevent flickering
+                await this.actor.update(updates);
+            });
+        });
+    }
+
+    /**
+     * Calculates the total_db value without updating the actor.
+     * Used internally to calculate the value before updating.
+     * @param {jQuery} html - The jQuery object containing the sheet HTML (optional, falls back to actor data)
+     * @param {number} quicknessBonusOverride - Optional override for quickness_bonus value
+     * @returns {number} The calculated total_db value
+     */
+    _calculateTotalDB(html = null, quicknessBonusOverride = null) {
+        // Parse values more carefully, handling empty strings and null/undefined
+        const parseValue = (val) => {
+            if (val === null || val === undefined || val === '') return 0;
+            const num = Number(val);
+            return isNaN(num) ? 0 : num;
+        };
+        
+        let quicknessBonus, adrenalDefense, magic, shieldBonus, quicknessPenalty;
+        
+        // Use override if provided, otherwise calculate from actor data
+        if (quicknessBonusOverride !== null) {
+            quicknessBonus = quicknessBonusOverride;
+        } else {
+            const basicBonus = Number(this.actor.system.stats?.quickness?.basic_bonus) || 0;
+            quicknessBonus = basicBonus * 3;
+        }
+        
+        if (html) {
+            // Read values directly from form inputs (current values before actor update)
+            adrenalDefense = parseValue(html.find('input[name="system.armor_info.adrenal_defense"]').val());
+            magic = parseValue(html.find('input[name="system.armor_info.magic"]').val());
+            shieldBonus = parseValue(html.find('input[name="system.armor_info.shield_bonus"]').val());
+            quicknessPenalty = parseValue(html.find('input[name="system.armor_info.quickness_penalty"]').val());
+        } else {
+            // Fallback to actor data if HTML not provided
+            const armorInfo = this.actor.system.armor_info || {};
+            adrenalDefense = parseValue(armorInfo.adrenal_defense);
+            magic = parseValue(armorInfo.magic);
+            shieldBonus = parseValue(armorInfo.shield_bonus);
+            quicknessPenalty = parseValue(armorInfo.quickness_penalty);
+        }
+        
+        // Sum only the fields from template.json lines 39-43
+        // quickness_penalty subtracts (not adds)
+        const total = quicknessBonus + adrenalDefense + magic + shieldBonus - quicknessPenalty;
+        
+        // Ensure total_db is never negative (minimum value is 0)
+        return Math.max(0, total);
     }
 
     _onEffectControl(event) {
