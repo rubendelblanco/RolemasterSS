@@ -631,11 +631,24 @@
 }
 
 .description-editor-wrapper.empty-description .editor-content {
-  min-height: 50px;
+  min-height: 80px;
+}
+
+.sheet .tab .description-editor-wrapper .editor-content {
+  min-height: 80px;
+}
+
+.sheet .tab .description-editor-wrapper .editor {
+  min-height: 80px;
 }
 
 .sheet .sheet-content .editor {
-    height: 100%;
+    height: auto;
+    min-height: 80px;
+}
+
+.sheet .tab .sheet-content .editor {
+    min-height: 80px;
 }
 
 /* Human Body */
