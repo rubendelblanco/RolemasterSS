@@ -41,10 +41,10 @@
         <td>{{group.container.system.quantity}}</td>
         <td>{{group.container.system.weight}}</td>
         <td>
-            {{#if (gt group.container.system.cost 0)}}
-            {{group.container.system.cost}} <span>{{localize (concat "rmss.currency_type_abb." group.container.system.currency_type)}}</span>
+            {{#if (gt group.container.system.unitCost 0)}}
+            {{group.container.system.unitCost}} <span>{{localize (concat "rmss.currency_type_abb." group.container.system.currency_type)}}</span>
             {{else}}
-            {{group.container.system.cost}}
+            {{group.container.system.unitCost}}
             {{/if}}
         </td>
         <td class="item-controls">
@@ -88,10 +88,18 @@
         <td>{{item.system.quantity}}</td>
         <td>{{item.system.weight}}</td>
         <td>
+            {{#if (or (eq item.type "weapon") (eq item.type "armor"))}}
+            {{#if (gt item.system.unitCost 0)}}
+            {{item.system.unitCost}} <span>{{localize (concat "rmss.currency_type_abb." item.system.currency_type)}}</span>
+            {{else}}
+            {{item.system.unitCost}}
+            {{/if}}
+            {{else}}
             {{#if (gt item.system.cost 0)}}
-            {{item.system.cost}}
+            {{item.system.cost}} <span>{{localize (concat "rmss.currency_type_abb." item.system.currency_type)}}</span>
             {{else}}
             {{item.system.cost}}
+            {{/if}}
             {{/if}}
         </td>
         <td class="item-controls">

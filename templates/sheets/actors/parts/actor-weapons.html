@@ -41,7 +41,12 @@
         <td>{{weapon.system.strength}}</td>
         <td>{{weapon.system.quantity}}</td>
         <td>{{weapon.system.weight}}</td>
-        <td>{{weapon.system.cost}}</td>
+        <td>{{#if (gt weapon.system.unitCost 0)}}
+            {{weapon.system.unitCost}} <span>{{localize (concat "rmss.currency_type_abb." weapon.system.currency_type)}}</span>
+            {{else}}
+            {{weapon.system.unitCost}}
+            {{/if}}
+        </td>
         <td class="item-controls">
             <a class="item-control item-edit" title="Edit Item" data-item-id="{{weapon._id}}">
                 <i class="fas fa-edit"></i>
