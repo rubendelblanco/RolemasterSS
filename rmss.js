@@ -49,6 +49,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-money.html",
     "systems/rmss/templates/sheets/actors/parts/actor-skill-categories.html",
     "systems/rmss/templates/sheets/actors/parts/actor-armor.html",
+    "systems/rmss/templates/sheets/actors/parts/actor-transport.html",
     "systems/rmss/templates/sheets/actors/parts/actor-herbs.html",
     "systems/rmss/templates/sheets/actors/parts/actor-spells.html",
     "systems/rmss/templates/sheets/actors/parts/actor-fav-spells.html",

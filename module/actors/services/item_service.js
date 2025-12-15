@@ -178,7 +178,7 @@ export default class ItemService {
     static prepareItems(actor, context) {
         const gear = [], playerskill = [], spellskill = [], skillcat = [];
         const languageskill = [], weapons = [], armor = [], herbs = [];
-        const spells = [], spellists = [], creature_attacks = [];
+        const spells = [], spellists = [], creature_attacks = [], transports = [];
 
         // Get maximum Fate Points from settings (world-level)
         const maxFate = game.settings.get("rmss", "maxFatePoints") ?? 3;
@@ -208,6 +208,7 @@ export default class ItemService {
                 case "armor":          armor.push(item); break;
                 case "spell":          spells.push(item); break;
                 case "creature_attack": creature_attacks.push(item); break;
+                case "transport":       transports.push(item); break;
             }
         }
 
@@ -220,6 +221,16 @@ export default class ItemService {
 
             if (!containersMap.has(containerId)) containersMap.set(containerId, []);
             containersMap.get(containerId).push(i);
+        }
+
+        // Process transports as containers
+        const transportContainers = [];
+        for (const transport of transports) {
+            const transportId = getId(transport);
+            transportContainers.push({
+                container: transport,
+                contents: containersMap.get(transportId) || []
+            });
         }
 
         // Pass 3: build final grouped structures
@@ -266,6 +277,7 @@ export default class ItemService {
         // Attach everything to context
         return Object.assign(context, {
             containers,
+            transportContainers,
             looseGear,
             looseHerbs,
             looseWeapons,
