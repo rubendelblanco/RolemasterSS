@@ -19,6 +19,22 @@ export class RMSSItem extends Item {
     const systemData = itemData.system;
     const flags = itemData.flags.rmss || {};
 
+    // Transport items are always containers
+    if (itemData.type === "transport") {
+      if (!systemData.is_container) {
+        systemData.is_container = true;
+      }
+      // Ensure container structure exists
+      if (!systemData.container) {
+        systemData.container = {
+          maxCapacity: systemData.capacity || 0,
+          usedCapacity: 0,
+          capacityType: "weight",
+          allowedTags: null
+        };
+      }
+    }
+
     // Make separate methods for each item type to keep things organized.
 
     if (itemData.type === "skill") {
