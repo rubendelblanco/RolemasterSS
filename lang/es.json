@@ -178,7 +178,7 @@
     },
     "pc_sheet_items": {
       "equipped": "Equipado",
-      "worn": "Vestido",
+      "worn": "Equipado",
       "favorite": "Favorito",
       "quantity": "Cantidad",
       "item_name": "Nombre de ítem",
