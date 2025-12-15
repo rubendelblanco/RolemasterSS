@@ -92,12 +92,13 @@
                 {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
             {{#if user.isGM}}
             <h2>{{localize "rmss.item.secret_info"}}</h2>
-
+            <div class="description-editor-wrapper {{#unless system.description_secret}}empty-description{{/unless}}">
             {{editor secretDescription
             target="system.description_secret"
             button=true
             owner=owner
             editable=true}}
+            </div>
             {{/if}}
         </div>
     </div>
