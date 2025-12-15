@@ -50,6 +50,10 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       context = this._prepareItems(context);
     }
 
+    // Calculate experience progress percentage
+    const experiencePoints = parseInt(context.system?.attributes?.experience_points?.value) || 0;
+    context.experienceProgress = ExperiencePointsCalculator.getExperienceProgress(experiencePoints);
+
     // Return the enriched context to the template
     return context;
   }

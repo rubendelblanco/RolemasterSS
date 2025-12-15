@@ -193,6 +193,79 @@ export default class ExperiencePointsCalculator {
         return 1;
     }
 
+    /**
+     * Calculates the progress percentage towards the next level based on experience points.
+     * @param {number} experiencePoints - Current experience points
+     * @returns {number} Percentage (0-100) of progress towards next level
+     */
+    static getExperienceProgress(experiencePoints) {
+        const experienceTable = [
+            { level: 1, experience: 10000 },
+            { level: 2, experience: 20000 },
+            { level: 3, experience: 30000 },
+            { level: 4, experience: 40000 },
+            { level: 5, experience: 50000 },
+            { level: 6, experience: 70000 },
+            { level: 7, experience: 90000 },
+            { level: 8, experience: 110000 },
+            { level: 9, experience: 130000 },
+            { level: 10, experience: 150000 },
+            { level: 11, experience: 180000 },
+            { level: 12, experience: 210000 },
+            { level: 13, experience: 240000 },
+            { level: 14, experience: 270000 },
+            { level: 15, experience: 300000 },
+            { level: 16, experience: 340000 },
+            { level: 17, experience: 380000 },
+            { level: 18, experience: 420000 },
+            { level: 19, experience: 460000 },
+            { level: 20, experience: 500000 }
+        ];
+
+        const baseExperience = 500000;
+        const incrementPerLevel = 50000;
+
+        // Handle levels above 20
+        if (experiencePoints >= baseExperience) {
+            const currentLevel = 20 + Math.floor((experiencePoints - baseExperience) / incrementPerLevel);
+            const currentLevelExp = baseExperience + ((currentLevel - 20) * incrementPerLevel);
+            const nextLevelExp = currentLevelExp + incrementPerLevel;
+            const progress = ((experiencePoints - currentLevelExp) / (nextLevelExp - currentLevelExp)) * 100;
+            return Math.min(100, Math.max(0, Math.round(progress)));
+        }
+
+        // Handle levels 1-20
+        let currentLevelExp = 0;
+        let nextLevelExp = experienceTable[0].experience; // Level 1 requirement
+
+        // Find current level
+        for (let i = experienceTable.length - 1; i >= 0; i--) {
+            if (experiencePoints >= experienceTable[i].experience) {
+                currentLevelExp = experienceTable[i].experience;
+                // Get next level requirement
+                if (i < experienceTable.length - 1) {
+                    nextLevelExp = experienceTable[i + 1].experience;
+                } else {
+                    // Level 20, next is level 21 (baseExperience)
+                    nextLevelExp = baseExperience;
+                }
+                break;
+            }
+            // Update next level as we go backwards
+            if (i > 0) {
+                nextLevelExp = experienceTable[i].experience;
+            }
+        }
+
+        // Calculate percentage
+        if (nextLevelExp === currentLevelExp) {
+            return 100; // Max level reached
+        }
+
+        const progress = ((experiencePoints - currentLevelExp) / (nextLevelExp - currentLevelExp)) * 100;
+        return Math.min(100, Math.max(0, Math.round(progress)));
+    }
+
     static loadListeners(html, actor = null) {
         //level up button
         html.find("#level-up").click(async (ev) => {
@@ -239,7 +312,14 @@ export default class ExperiencePointsCalculator {
                 })
                 actor.update({ system: { 'levelUp.levelAbove': calcLevel - level } });
             }
+
+            // Update experience progress bar
+            ExperiencePointsCalculator._updateExperienceProgressBar(html, experience);
         });
+
+        // Initialize experience progress bar on load
+        const initialExp = parseInt(html.find("#experience-points").val()) || 0;
+        ExperiencePointsCalculator._updateExperienceProgressBar(html, initialExp);
 
         //Calculate maneuver experience points
         html.find("#maneuver-exp, #maneuver-exp-mult").change(ev => {
@@ -380,6 +460,8 @@ export default class ExperiencePointsCalculator {
             console.log(experienceBreakdown);
             await actor.update({ "system.attributes.experience_points.value": totalExpActor });
             await sendExpMessage(actor, experienceBreakdown, totalExp);
+            // Update experience progress bar after adding experience
+            ExperiencePointsCalculator._updateExperienceProgressBar(html, totalExpActor);
         })
 
         html.find("#reset-exp").click(async ev => {
@@ -387,5 +469,21 @@ export default class ExperiencePointsCalculator {
                 actor.sheet.render(true);
             }
         });
+    }
+
+    /**
+     * Updates the experience progress bar with the current progress percentage.
+     * @param {jQuery} html - The jQuery object containing the sheet HTML
+     * @param {number} experiencePoints - Current experience points
+     */
+    static _updateExperienceProgressBar(html, experiencePoints) {
+        const progress = ExperiencePointsCalculator.getExperienceProgress(experiencePoints);
+        const progressBar = html.find(".rmss-progress-bar");
+        const progressBarText = html.find(".rmss-progress-bar-text");
+        
+        if (progressBar.length && progressBarText.length) {
+            progressBar.css("width", `${progress}%`);
+            progressBarText.text(`${progress}%`);
+        }
     }
 }

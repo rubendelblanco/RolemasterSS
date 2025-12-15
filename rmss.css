@@ -997,6 +997,15 @@ li.item.contained span.description {
     margin-bottom: 15px;
 }
 
+.rmss-progress-thin {
+    height: 5px;
+    width: 80%;
+    border: 1px solid #428bca;
+    border-radius: 5px;
+    background-color: #e6f3fa;
+    margin-bottom: 15px;
+}
+
 .rmss-progress-bar {
     height: 100%;
     background: #428bca;
