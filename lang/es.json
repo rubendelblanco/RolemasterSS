@@ -73,7 +73,13 @@
       "spells": "Hechizos",
       "status_record": "Registro de estado",
       "experience_points": "Puntos de experiencia",
-      "attacks": "Ataques"
+      "attacks": "Ataques",
+      "weapons": "Armas",
+      "items": "Objetos",
+      "armor": "Armaduras",
+      "herbs": "Hierbas y Venenos",
+      "transports": "Transportes",
+      "wealth": "Dinero"
     },
     "pc_sheet_fixed_info": {
       "race": "Raza:",
@@ -245,7 +251,8 @@
       "capacity": "Capacidad",
       "container": "Contenedor",
       "details": "Detalles",
-      "is_stackable": "Es apilable"
+      "is_stackable": "Es apilable",
+      "secret_info": "Información secreta"
     },
     "creature": {
       "bonus_experience": "PE Bonus",

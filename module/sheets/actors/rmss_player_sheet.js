@@ -20,7 +20,8 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       classes: ["rmss", "sheet", "actor"],
       tabs: [
           { navSelector: ".sheet-tabs", contentSelector: ".sheet-body" },
-          { navSelector: ".sub-tabs", contentSelector: ".sub-tab-content" }
+          { navSelector: ".sub-tabs[data-group='skills-tabs']", contentSelector: ".tab.skills .sub-tab-content" },
+          { navSelector: ".sub-tabs[data-group='equipment-tabs']", contentSelector: ".tab.equipment .sub-tab-content" }
       ]
     });
   }

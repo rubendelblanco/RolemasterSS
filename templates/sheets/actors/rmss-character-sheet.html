@@ -188,25 +188,46 @@
     </div>
 
     <div class="tab equipment" data-group="primary" data-tab="Equipment">
-      <div class="container">
-        <div class="equipment-container">
-          <h2>Weapons</h2>
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-weapons.html" }}
-          <h2>Items</h2>
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-items.html" }}
-          <h2>Armor and Equipables</h2>
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-armor.html" }}
-          <h2>Herbs and Poisons</h2>
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-herbs.html" }}
-          <h2>Transports</h2>
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-transport.html" }}
+      <nav class="sub-tabs tabs" data-group="equipment-tabs">
+        <a class="item" data-tab="equipment-weapons"><i class="fa-solid fa-sword"></i> {{ localize "rmss.pc_sheet_tabs.weapons" }}</a>
+        <a class="item" data-tab="equipment-items"><i class="fa-solid fa-box"></i> {{ localize "rmss.pc_sheet_tabs.items" }}</a>
+        <a class="item" data-tab="equipment-armor"><i class="fa-solid fa-shield"></i> {{ localize "rmss.pc_sheet_tabs.armor" }}</a>
+        <a class="item" data-tab="equipment-herbs"><i class="fa-solid fa-flask"></i> {{ localize "rmss.pc_sheet_tabs.herbs" }}</a>
+        <a class="item" data-tab="equipment-transports"><i class="fa-solid fa-horse"></i> {{ localize "rmss.pc_sheet_tabs.transports" }}</a>
+        <a class="item" data-tab="equipment-wealth"><i class="fa-solid fa-coins"></i> {{ localize "rmss.pc_sheet_tabs.wealth" }}</a>
+      </nav>
+      <section class="sub-tab-content">
+        <div class="tab" data-group="equipment-tabs" data-tab="equipment-weapons">
+          <div class="equipment-container">
+            {{> "systems/rmss/templates/sheets/actors/parts/actor-weapons.html" }}
+          </div>
         </div>
-
-        <div class="money-container">
-          <h2>Wealth</h2>
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-money.html" }}
+        <div class="tab" data-group="equipment-tabs" data-tab="equipment-items">
+          <div class="equipment-container">
+            {{> "systems/rmss/templates/sheets/actors/parts/actor-items.html" }}
+          </div>
         </div>
-      </div>
+        <div class="tab" data-group="equipment-tabs" data-tab="equipment-armor">
+          <div class="equipment-container">
+            {{> "systems/rmss/templates/sheets/actors/parts/actor-armor.html" }}
+          </div>
+        </div>
+        <div class="tab" data-group="equipment-tabs" data-tab="equipment-herbs">
+          <div class="equipment-container">
+            {{> "systems/rmss/templates/sheets/actors/parts/actor-herbs.html" }}
+          </div>
+        </div>
+        <div class="tab" data-group="equipment-tabs" data-tab="equipment-transports">
+          <div class="equipment-container">
+            {{> "systems/rmss/templates/sheets/actors/parts/actor-transport.html" }}
+          </div>
+        </div>
+        <div class="tab" data-group="equipment-tabs" data-tab="equipment-wealth">
+          <div class="money-container">
+            {{> "systems/rmss/templates/sheets/actors/parts/actor-money.html" }}
+          </div>
+        </div>
+      </section>
     </div>
     <div class="tab spells" data-group="primary" data-tab="Spells">
       <div class="spell-container">

@@ -73,7 +73,13 @@
             "spells": "Spells",
             "status_record": "Status Record",
             "experience_points": "Experience Points",
-            "attacks": "Attacks"
+            "attacks": "Attacks",
+            "weapons": "Weapons",
+            "items": "Items",
+            "armor": "Armor",
+            "herbs": "Herbs and Poisons",
+            "transports": "Transports",
+            "wealth": "Wealth"
         },
         "pc_sheet_fixed_info": {
             "race": "Race:",
@@ -245,7 +251,8 @@
             "capacity": "Capacity",
             "container": "Container",
             "details": "Details",
-            "is_stackable": "Is stackable"
+            "is_stackable": "Is stackable",
+            "secret_info": "Secret Info"	
         },
         "creature": {
             "bonus_experience": "XP Bonus",

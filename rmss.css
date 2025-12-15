@@ -966,7 +966,6 @@ select[name="system.special"] {
 }
 
 .sheet .editor-content {
-    min-height: 500px;
     overflow-y: auto;
     word-break: break-word;
     background-color: #FFF8DCFF;
@@ -1370,6 +1369,37 @@ tr.container-row {
     font-weight: 600;
     justify-content: center;
 }
+
+.money-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(4, auto);   /* 4 rows */
+    gap: 6px 12px;
+}
+  
+.money-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.money-field label {
+    font-size: 0.8em;
+    line-height: 1.1;
+    min-height: 2.2em; /* keeps inputs aligned even if label wraps */
+}
+
+.money-field input {
+    text-align: right;
+}
+
+.currency-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: cover; /* keeps aspect ratio without distortion */
+  }
+  
+  
+  
 
 
 
