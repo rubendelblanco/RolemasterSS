@@ -23,6 +23,7 @@ export default class RMSSArmorSheet extends ItemSheet {
     const baseData = await super.getData();
 
     let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
+    let secretDescription = await TextEditor.enrichHTML(this.item.system.description_secret, {async: true});
 
     let sheetData = {
       owner: this.item.isOwner,
@@ -30,7 +31,9 @@ export default class RMSSArmorSheet extends ItemSheet {
       item: baseData.item,
       system: baseData.item.system,
       config: CONFIG.rmss,
-      enrichedDescription: enrichedDescription
+      user: game.user,
+      enrichedDescription: enrichedDescription,
+      secretDescription: secretDescription
     };
 
     return sheetData;

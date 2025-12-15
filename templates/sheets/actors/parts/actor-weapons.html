@@ -21,7 +21,10 @@
     {{#each weapons as |weapon id|}}
     <tr draggable="true" data-type="Item" data-item-id="{{weapon._id}}" data-uuid="Actor.{{weapon.actorId}}.Item.{{weapon._id}}">
         <td><img src="{{weapon.img}}" alt="{{weapon.name}}" width="32" height="32"/></td>
-        <td class="clickable offensive-skill" data-item-id="{{weapon._id}}">{{weapon.name}} <i class="fa-solid fa-sword"></i></td>
+        <td class="clickable offensive-skill" data-item-id="{{weapon._id}}">{{weapon.name}}{{#if weapon.system.description}}
+          <i class="fas fa-info-circle spell-info-icon"
+             data-tooltip="{{weapon.system.description}}"></i>
+          {{/if}} <i class="fa-solid fa-sword"></i></td>
         <td>
             {{#if weapon.system.equipped}}
             <a class="equippable" data-item-id="{{weapon._id}}">

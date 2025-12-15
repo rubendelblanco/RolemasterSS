@@ -41,6 +41,15 @@
             </table>
                 {{localize "rmss.item.description"}}
                 {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+            {{#if user.isGM}}
+            <h2>{{localize "rmss.item.secret_info"}}</h2>
+
+            {{editor secretDescription
+            target="system.description_secret"
+            button=true
+            owner=owner
+            editable=true}}
+            {{/if}}
         </div>
     </div>
 </form>

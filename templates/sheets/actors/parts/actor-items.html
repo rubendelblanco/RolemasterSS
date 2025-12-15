@@ -23,7 +23,10 @@
     <tr class="container-row" data-item-id="{{group.container._id}}" draggable="true"
         data-type="Item" data-uuid="Actor.{{group.container.actorId}}.Item.{{group.container._id}}">
         <td><img src="{{group.container.img}}" alt="{{group.container.name}}" width="32" height="32"/></td>
-        <td><strong>{{group.container.name}}</strong></td>
+        <td><strong>{{group.container.name}}{{#if group.container.system.description}}
+          <i class="fas fa-info-circle spell-info-icon"
+             data-tooltip="{{group.container.system.description}}"></i>
+          {{/if}}</strong></td>
         <td>
             {{#if group.container.system.worn}}
             <a class="equippable" data-item-id="{{group.container._id}}">
@@ -67,7 +70,10 @@
     <tr class="contained-item" data-item-id="{{item._id}}" draggable="true"
         data-type="Item" data-uuid="Actor.{{item.actorId}}.Item.{{item._id}}">
         <td class="indent"><img src="{{item.img}}" alt="{{item.name}}" width="32" height="32"/></td>
-        <td class="indent">{{item.name}}</td>
+        <td class="indent">{{item.name}}{{#if item.system.description}}
+          <i class="fas fa-info-circle spell-info-icon"
+             data-tooltip="{{item.system.description}}"></i>
+          {{/if}}</td>
         <td>
             {{#if item.system.worn}}
             <a class="equippable" data-item-id="{{item._id}}">
@@ -112,7 +118,10 @@
     {{#each looseGear as |item|}}
     <tr draggable="true" data-type="Item" data-item-id="{{item._id}}" data-uuid="Actor.{{item.actorId}}.Item.{{item._id}}">
         <td><img src="{{item.img}}" alt="{{item.name}}" width="32" height="32"/></td>
-        <td>{{item.name}}</td>
+        <td>{{item.name}}{{#if item.system.description}}
+          <i class="fas fa-info-circle spell-info-icon"
+             data-tooltip="{{item.system.description}}"></i>
+          {{/if}}</td>
         <td>
             {{#if item.system.worn}}
             <a class="equippable" data-item-id="{{item._id}}">

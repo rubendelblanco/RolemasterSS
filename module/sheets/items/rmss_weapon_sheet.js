@@ -25,6 +25,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
     const baseData = await super.getData();
 
     let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, { async: true });
+    let secretDescription = await TextEditor.enrichHTML(this.item.system.description_secret, { async: true });
 
     // Get arms tables and sort by translated name
     let armsTables = await game.rmss?.attackTableIndex || [];
@@ -48,7 +49,9 @@ export default class RMSSWeaponSheet extends ItemSheet {
       item: baseData.item,
       system: baseData.item.system,
       config: CONFIG.rmss,
+      user: game.user,
       enrichedDescription: enrichedDescription,
+      secretDescription: secretDescription,
       armsTables: armsTables,
       criticalTables: criticalTables,
       offensiveSkills: await this.getOffensiveSkills(),

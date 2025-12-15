@@ -20,6 +20,7 @@ export default class RMSSItemSheet extends ItemSheet {
     const item = base.item;
 
     const enrichedDescription = await TextEditor.enrichHTML(item.system.description, { async: true });
+    const secretDescription = await TextEditor.enrichHTML(item.system.description_secret, { async: true });
     const handler = ContainerHandler.for(item);
     const contents = handler ? handler.contents : [];
 
@@ -29,8 +30,10 @@ export default class RMSSItemSheet extends ItemSheet {
       item,
       system: item.system,
       config: CONFIG.rmss,
+      user: game.user,
       effects: item.getEmbeddedCollection("ActiveEffect").contents,
       enrichedDescription,
+      secretDescription,
       contents
     };
   }
