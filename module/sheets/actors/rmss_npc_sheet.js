@@ -14,7 +14,7 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('.npc-skill-calc').on('blur', '[contenteditable="true"]', async (event) => {
+        html.find('.npc-skill-calc').on('change', '[contenteditable="true"]', async (event) => {
             const skillCalc = $(event.currentTarget).closest('.npc-skill-calc');
             const rankBonus = parseInt(skillCalc.find('[class="npc-item-rank-bonus"]').text()) || 0;
             const itemBonus = parseInt(skillCalc.find('[class="npc-item-bonus"]').text()) || 0;

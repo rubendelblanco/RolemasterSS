@@ -420,6 +420,16 @@ Hooks.once("init", function () {
     item.updateSource({ name: `${padded}. ${baseName}` });
   });
 
+  // Hook to calculate skill category bonuses when created (including from folder drops)
+  Hooks.on("createItem", async (item, options, userId) => {
+    // Only process if it's a skill category with standard progression
+    if (item.type === "skill_category" && item.actor && item.system.progression?.toLowerCase() === "standard") {
+      const RankCalculator = (await import("./module/core/skills/rmss_rank_calculator.js")).default;
+      const initialRanks = Number(item.system.ranks) || 0;
+      await RankCalculator.applyAbsoluteRanksAndBonus(item, initialRanks, "-15*2*1*0.5*0");
+    }
+  });
+
   Hooks.on("preUpdateItem", (item, update, options, userId) => {
     if (item.type !== "spell") return;
 

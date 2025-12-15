@@ -161,7 +161,7 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
     if (!this.isEditable) return;
 
     //Calculate rank bonus if ranks field change
-    html.find('input[name="system.ranks"]').blur(async ev => {
+    html.find('input[name="system.ranks"]').change(async ev => {
       const raw = ev.currentTarget.value;
       const total = Number(raw);
 

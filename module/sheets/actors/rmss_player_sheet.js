@@ -6,6 +6,7 @@ import ItemService from "../../actors/services/item_service.js";
 import StatService from "../../actors/services/stat_service.js";
 import SkillCategoryService from "../../actors/services/skill_category_service.js";
 import SkillDropHandler from "../../actors/drop_handlers/skill_drop_handler.js";
+import SkillCategoryDropHandler from "../../actors/drop_handlers/skill_category_drop_handler.js";
 import RaceDropHandler from "../../actors/drop_handlers/race_drop_handler.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
@@ -62,12 +63,48 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   // Override this method to check for duplicates when things are dragged to the sheet
   // We don't want duplicate skills and skill categories.
   async _onDropItem(event, data) {
+    // Handle folder drop (multiple items)
+    // Check if data.type is Folder, or parse from event if needed
+    let dropData = data;
+    if (!dropData && event?.dataTransfer) {
+      try {
+        dropData = JSON.parse(event.dataTransfer.getData("text/plain"));
+      } catch (err) {
+        // Ignore parse errors
+      }
+    }
+
+    if (dropData?.type === "Folder") {
+      const folder = await fromUuid(dropData.uuid);
+      if (!folder || folder.type !== "Item") {
+        return super._onDropItem(event, data);
+      }
+
+      const skillCategoriesInFolder = folder.contents.filter(i => i.type === "skill_category");
+      if (skillCategoriesInFolder.length > 0) {
+        const handler = new SkillCategoryDropHandler(this.actor);
+        for (const skillCategory of skillCategoriesInFolder) {
+          const itemData = skillCategory.toObject();
+          // Create a synthetic event/data for each item
+          const syntheticData = { type: "Item", uuid: skillCategory.uuid };
+          await handler.handle(itemData, event, syntheticData);
+        }
+        ui.notifications.info(`${skillCategoriesInFolder.length} skill categories added from folder "${folder.name}".`);
+        return;
+      }
+    }
+
     const newItem = await Item.implementation.fromDropData(data);
     const itemData = newItem.toObject();
 
     if (itemData.type === "skill") {
       const handler = new SkillDropHandler(this.actor);
       return handler.handle(itemData);
+    }
+
+    if (itemData.type === "skill_category") {
+      const handler = new SkillCategoryDropHandler(this.actor);
+      return handler.handle(itemData, event, data);
     }
 
     if (itemData.type === "race") {

@@ -13,7 +13,7 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('.creature-attack-calc').on('blur', '[contenteditable="true"]', async (event) => {
+        html.find('.creature-attack-calc').on('change', '[contenteditable="true"]', async (event) => {
             const attackCalc = $(event.currentTarget).closest('.creature-attack-calc');
             const attackBonus = parseInt(attackCalc.find('[class="creature-attack-bonus"]').text()) || 0;
             const attackMult = parseInt(attackCalc.find('[class="creature-attack-multiplier"] select').val()) || 1;

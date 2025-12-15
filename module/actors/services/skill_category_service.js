@@ -16,14 +16,15 @@ export default class SkillCategoryService {
             return;
         }
 
-        // Let Foundry create the item
-        await actor.sheet.constructor.prototype._onDropItem.call(actor.sheet, event, data);
+        // Let Foundry create the item - call the parent class method to avoid infinite loop
+        await ActorSheet.prototype._onDropItem.call(actor.sheet, event, data);
 
-        // Handle standard progression
+        // Handle standard progression - calculate initial bonus based on initial ranks
         if (itemData.system.progression?.toLowerCase() === "standard") {
             const item = actor.items.find(i => i.name === itemData.name);
             if (item) {
-                RankCalculator.applyRanksAndBonus(item, 0, "-15*2*1*0.5*0");
+                const initialRanks = Number(item.system.ranks) || 0;
+                await RankCalculator.applyAbsoluteRanksAndBonus(item, initialRanks, "-15*2*1*0.5*0");
             }
         }
     }
