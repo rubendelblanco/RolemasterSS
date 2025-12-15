@@ -630,6 +630,10 @@
     flex-direction: column;
 }
 
+.description-editor-wrapper.empty-description .editor-content {
+  min-height: 50px;
+}
+
 .sheet .sheet-content .editor {
     height: 100%;
 }
