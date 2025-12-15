@@ -103,7 +103,8 @@
             "chann_ment": "Chann/Ment",
             "ess_ment": "Ess/Ment",
             "arcane": "Arcane",
-            "poison_disease": "Poison/Disease",
+            "poison": "Poison",
+            "disease": "Disease",
             "fear": "Fear"
         },
         "pc_sheet_race_stat_fixed_info": {

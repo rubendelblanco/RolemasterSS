@@ -29,7 +29,9 @@ export default class RaceService {
             "system.resistance_rolls.chann_es.race_mod": itemData.system.rr_mods.chan + itemData.system.rr_mods.ess,
             "system.resistance_rolls.ess_ment.race_mod": itemData.system.rr_mods.ess + itemData.system.rr_mods.ment,
             "system.resistance_rolls.arcane.race_mod":
-                itemData.system.rr_mods.chan + itemData.system.rr_mods.ment + itemData.system.rr_mods.chan
+                itemData.system.rr_mods.chan + itemData.system.rr_mods.ment + itemData.system.rr_mods.chan,
+            "system.resistance_rolls.poison.race_mod": itemData.system.rr_mods.poison,
+            "system.resistance_rolls.disease.race_mod": itemData.system.rr_mods.disease
         };
 
         return actor.update(updates);

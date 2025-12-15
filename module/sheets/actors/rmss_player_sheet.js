@@ -72,7 +72,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
     if (itemData.type === "race") {
       const handler = new RaceDropHandler(this.actor).handle(itemData, event, data);
-      return handler.handle(itemData);
+      return handler;
     }
 
     return super._onDropItem(event, data);

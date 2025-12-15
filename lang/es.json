@@ -103,7 +103,8 @@
       "chann_ment": "Canal/Ment",
       "ess_ment": "Esen/Ment",
       "arcane": "Arcano",
-      "poison_disease": "Veneno/Enfermedad",
+      "poison": "Veneno",
+      "disease": "Enfermedad",
       "fear": "Miedo"
     },
     "pc_sheet_race_stat_fixed_info": {

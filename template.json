@@ -89,7 +89,12 @@
             "race_mod": 0,
             "total": 0
           },
-          "poison_disease": {
+          "poison": {
+            "value": 0,
+            "race_mod": 0,
+            "total": 0
+          },
+          "disease": {
             "value": 0,
             "race_mod": 0,
             "total": 0
