@@ -4,6 +4,11 @@ import {RMSSWeaponSkillManager} from "./rmss_weapon_skill_manager.js";
 export function registerCombatHooks() {
     Hooks.on("hoverToken", (token, hovered) => {
         if (hovered) {
+            // Safety check: ensure token has an actor with effects initialized
+            if (!token?.actor || token.actor.effects === undefined) {
+                return;
+            }
+            
             let effectInfo = {};
 
             for (let effect of token.actor.effects) {
