@@ -270,10 +270,22 @@
       "description": ""
     },
     "npc":{
+      "templates": ["armor_info", "fixed_info"],
       "attributes": {
         "initiative": {
           "value": 0,
           "mod": 0
+        },
+        "level": {
+          "value": 0
+        },
+        "hits": {
+          "current": 1,
+          "max": 1
+        },
+        "power_points": {
+          "current": 1,
+          "max": 1
         },
         "critical_codes" : {
           "critical_procedure": "-",
@@ -283,10 +295,19 @@
       }
     },
     "creature":{
+      "templates": ["armor_info"],
       "attributes": {
         "initiative": {
           "value": 0,
           "mod": 0
+        },
+        "hits": {
+          "current": 1,
+          "max": 1
+        },
+        "power_points": {
+          "current": 1,
+          "max": 1
         },
         "critical_codes" : {
           "critical_procedure": "-",
@@ -377,7 +398,6 @@
       "weight": 0,
       "type" : "",
       "prod_time": 0,
-      "at": 0,
       "breakage_range": "",
       "strength": "",
       "fumble_range": "",

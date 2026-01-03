@@ -14,23 +14,25 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('.npc-skill-calc').on('change', '[contenteditable="true"]', async (event) => {
+        html.find('.npc-skill-calc').on('blur', '[contenteditable="true"]', async (event) => {
             const skillCalc = $(event.currentTarget).closest('.npc-skill-calc');
-            const rankBonus = parseInt(skillCalc.find('[class="npc-item-rank-bonus"]').text()) || 0;
-            const itemBonus = parseInt(skillCalc.find('[class="npc-item-bonus"]').text()) || 0;
-            const specialBonus = parseInt(skillCalc.find('[class="npc-item-special-bonus-1"]').text()) || 0;
+            const rankBonus = parseInt(skillCalc.find('.npc-item-rank-bonus').text()) || 0;
+            const itemBonus = parseInt(skillCalc.find('.npc-item-bonus').text()) || 0;
+            const specialBonus = parseInt(skillCalc.find('.npc-item-special-bonus-1').text()) || 0;
             const total = rankBonus + itemBonus + specialBonus;
-            const totalBonus = skillCalc.find('[class="npc-item-total-bonus"]').text(total);
-            const data = {
-                "system.rank_bonus": rankBonus,
-                "system.item_bonus": itemBonus,
-                "system.special_bonus_1": specialBonus,
-                "system.total_bonus": totalBonus,
-            }
-            const itemId = totalBonus.data('item-id');
+            skillCalc.find('.npc-item-total-bonus').text(total);
+            
+            const itemIdElement = skillCalc.find('[data-item-id]').first();
+            const itemId = itemIdElement.data('item-id');
             const item = this.actor.items.get(itemId);
 
             if (item) {
+                const data = {
+                    "system.rank_bonus": rankBonus,
+                    "system.item_bonus": itemBonus,
+                    "system.special_bonus_1": specialBonus,
+                    "system.total_bonus": total,
+                };
                 await item.update(data);
             }
         });
