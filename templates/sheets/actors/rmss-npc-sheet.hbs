@@ -30,6 +30,16 @@
                 <input type="text" name="system.armor_info.total_db" data-dtype="Number" value="{{system.armor_info.total_db}}"/>
             </div>
         </div>
+        <div class="header-text flexrow">
+              <label><a class="item-roll">{{ localize "rmss.npc.movement_rate" }} <i class="fa fa-refresh" aria-hidden="true"></i></a></label>
+              <input type="text" name="system.attributes.movement_rate.value" data-dtype="Number" value="{{system.attributes.movement_rate.value}}"/>/
+              <input id="movement-rate-current"
+                      name="system.attributes.movement_rate.current"
+                      data-dtype="Number"
+                      type="text"
+                      value="{{system.attributes.movement_rate.current}}"
+              />
+          </div>
       </div>
 
       <!-- Name, XP and Level Section-->
