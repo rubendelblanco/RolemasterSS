@@ -192,14 +192,23 @@ export class RMSSWeaponSkillManager {
     }
 
     static _getOffensiveBonusFromWeapon(weapon, actor) {
+        // Handle creature_attack: they have bonus directly in system.bonus
+        if (weapon.type === "creature_attack") {
+            return weapon.system.bonus ?? 0;
+        }
+        
+        // Handle weapon: they use offensive_skill to get bonus from a skill item
         const skillId = weapon.system.offensive_skill;
-        const skillItem = game.actors.get(actor._id).items.get(skillId);
-
+        if (!skillId) {
+            return 0;
+        }
+        
+        const skillItem = actor.items.get(skillId);
         if (!skillItem) {
             return 0;
-        } else {
-            return skillItem.system.total_bonus ?? 0;
         }
+        
+        return skillItem.system.total_bonus ?? 0;
     }
 
     static _getHitsPenalty(actor) {
