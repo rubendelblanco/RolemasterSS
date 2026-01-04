@@ -567,6 +567,10 @@
             "type": "Type",
             "profession": "Profession"
         },
+        "spells": {
+            "select_armor_type": "Select Armor Type",
+            "select_armor_type_prompt": "Select the armor type:"
+        },
         "attack_table": {
             "bastard_axe": "Bastard Axe",
             "bastard_sword": "Bastard Sword",

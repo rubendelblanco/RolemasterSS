@@ -567,6 +567,10 @@
       "type": "Tipo",
       "profession": "Profesión"
     },
+    "spells": {
+      "select_armor_type": "Seleccionar Tipo de Armadura",
+      "select_armor_type_prompt": "Selecciona el tipo de armadura:"
+    },
     "attack_table": {
     "bastard_axe": "Hacha bastarda",
     "bastard_sword": "Espada bastarda",
