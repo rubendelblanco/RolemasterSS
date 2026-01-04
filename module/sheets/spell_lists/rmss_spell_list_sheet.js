@@ -30,9 +30,17 @@ export default class RMSSSpellListSheet extends ItemSheet {
             const spell = this.item.parent?.items.get(itemId);
             if (!spell) return;
 
-            await spell.unsetFlag("rmss", "containerId");
-            const handler = ContainerHandler.for(this.item);
-            if (handler) await handler.recalc();
+            const confirmed = await Dialog.confirm({
+                title: game.i18n.localize("rmss.dialogs.confirm_delete_title"),
+                content: game.i18n.format("rmss.dialogs.confirm_delete_spell_from_list", { name: spell.name }),
+                defaultYes: false
+            });
+
+            if (confirmed) {
+                await spell.unsetFlag("rmss", "containerId");
+                const handler = ContainerHandler.for(this.item);
+                if (handler) await handler.recalc();
+            }
         });
 
         // Edit spell

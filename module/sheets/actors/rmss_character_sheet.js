@@ -38,11 +38,20 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
         html.find(".item-delete").click(async ev => {
             const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-            if (item.system.is_container) {
-                await ItemService.deleteContainer(this.actor, item);
-            }
-            else {
-                item.delete();
+            
+            const confirmed = await Dialog.confirm({
+                title: game.i18n.localize("rmss.dialogs.confirm_delete_title"),
+                content: game.i18n.format("rmss.dialogs.confirm_delete_item", { name: item.name }),
+                defaultYes: false
+            });
+
+            if (confirmed) {
+                if (item.system.is_container) {
+                    await ItemService.deleteContainer(this.actor, item);
+                }
+                else {
+                    item.delete();
+                }
             }
         });
 

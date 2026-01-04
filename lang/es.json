@@ -556,6 +556,11 @@
     "effects": {
       "effects": "Efectos activos"
     },
+    "dialogs": {
+      "confirm_delete_title": "Confirmar eliminación",
+      "confirm_delete_item": "¿Estás seguro de que deseas eliminar \"{name}\"?",
+      "confirm_delete_spell_from_list": "¿Estás seguro de que deseas eliminar \"{name}\" de esta lista de hechizos?"
+    },
     "spell_lists": {
       "realm": "Reino",
       "type": "Tipo",
