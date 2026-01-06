@@ -30,34 +30,52 @@ export default class BaseSpellService {
     }
     
     /**
+     * Normalize realm name. Converts "arcane" to "essence".
+     * @param {string} realm - The spell realm
+     * @returns {string} Normalized realm name
+     */
+    static normalizeRealm(realm) {
+        return realm === "arcane" ? "essence" : realm;
+    }
+    
+    /**
      * Get available subindices (options) for a given realm.
-     * @param {string} realm - The spell realm ("essence", "channeling", "mentalism")
+     * @param {string} realm - The spell realm ("essence", "channeling", "mentalism", "arcane")
      * @returns {Promise<string[]>} Array of subindex keys
      */
     static async getRealmSubindices(realm) {
+        const normalizedRealm = this.normalizeRealm(realm);
         const baseSpells = await this.loadBaseSpells();
-        if (!baseSpells[realm]) {
+        if (!baseSpells[normalizedRealm]) {
             throw new Error(`Realm "${realm}" not found in base spells`);
         }
-        return Object.keys(baseSpells[realm]);
+        return Object.keys(baseSpells[normalizedRealm]);
+    }
+    
+    /**
+     * Format subindex name for display (e.g., "metalArmor" -> "Metal Armor").
+     * @param {string} subindex - The subindex key
+     * @returns {string} Formatted display name
+     */
+    static formatSubindexName(subindex) {
+        return subindex
+            .replace(/([A-Z])/g, ' $1')
+            .replace(/^./, str => str.toUpperCase())
+            .trim();
     }
     
     /**
      * Show dialog to select a subindex from available options.
      * @param {string[]} subindices - Array of subindex keys to choose from
+     * @param {string} realmName - The realm name for display (optional)
      * @returns {Promise<string|null>} Selected subindex or null if cancelled
      */
-    static async selectSubindex(subindices) {
+    static async selectSubindex(subindices, realmName = null) {
         return new Promise((resolve) => {
             const buttons = {};
             
             subindices.forEach((subindex) => {
-                // Format subindex name for display (e.g., "metalArmor" -> "Metal Armor")
-                const displayName = subindex
-                    .replace(/([A-Z])/g, ' $1')
-                    .replace(/^./, str => str.toUpperCase())
-                    .trim();
-                
+                const displayName = this.formatSubindexName(subindex);
                 buttons[subindex] = {
                     label: displayName,
                     callback: () => resolve(subindex)
@@ -69,13 +87,97 @@ export default class BaseSpellService {
                 callback: () => resolve(null)
             };
             
+            const title = realmName 
+                ? `${game.i18n.localize("rmss.spells.select_armor_type") || "Select Armor Type"} (${realmName})`
+                : game.i18n.localize("rmss.spells.select_armor_type") || "Select Armor Type";
+            
             new Dialog({
-                title: game.i18n.localize("rmss.spells.select_armor_type") || "Select Armor Type",
+                title: title,
                 content: `<p>${game.i18n.localize("rmss.spells.select_armor_type_prompt") || "Select the armor type:"}</p>`,
                 buttons: buttons,
                 default: subindices[0]
             }).render(true);
         });
+    }
+    
+    /**
+     * Show dialog to select subindices for multiple realms (hybrid spells).
+     * @param {string[]} realms - Array of realm names
+     * @returns {Promise<Object|null>} Object with realm as key and selected subindex as value, or null if cancelled
+     */
+    static async selectSubindicesForRealms(realms) {
+        const selected = {};
+        
+        for (const realm of realms) {
+            const normalizedRealm = this.normalizeRealm(realm);
+            const subindices = await this.getRealmSubindices(normalizedRealm);
+            const selectedSubindex = await this.selectSubindex(subindices, normalizedRealm);
+            
+            if (!selectedSubindex) {
+                return null; // User cancelled
+            }
+            
+            selected[normalizedRealm] = selectedSubindex;
+        }
+        
+        return selected;
+    }
+    
+    /**
+     * Compare two spell results and return the "best" one.
+     * Rules: "F" (Fumble) takes precedence over any numeric value.
+     * If both are numeric, return the higher value.
+     * @param {number|string} result1 - First result
+     * @param {number|string} result2 - Second result
+     * @returns {number|string} The best result
+     */
+    static compareSpellResults(result1, result2) {
+        // If either result is "F", return "F"
+        if (result1 === "F" || result2 === "F") {
+            return "F";
+        }
+        
+        // Both are numeric, return the higher value
+        const num1 = typeof result1 === "number" ? result1 : parseFloat(result1);
+        const num2 = typeof result2 === "number" ? result2 : parseFloat(result2);
+        
+        return Math.max(num1, num2);
+    }
+    
+    /**
+     * Check if a natural roll result is in an unmodified range.
+     * Unmodified ranges are: 100, 98-99, 96-97, 01-02
+     * @param {number} naturalRoll - The natural roll result (1-100)
+     * @returns {boolean} True if the roll is in an unmodified range
+     */
+    static isUnmodifiedRoll(naturalRoll) {
+        // Unmodified ranges: 100, 98-99, 96-97, 01-02
+        return (naturalRoll >= 96 && naturalRoll <= 100) || (naturalRoll >= 1 && naturalRoll <= 2);
+    }
+    
+    /**
+     * Normalize spell roll result according to unmodified roll rules.
+     * - If naturalRoll is in unmodified ranges (100, 98-99, 96-97, 01-02), 
+     *   return it without modification.
+     * - Otherwise, apply modifier and limit to 3-95 range.
+     * 
+     * @param {number} naturalRoll - The natural roll result (1-100)
+     * @param {number} modifier - The modifier to apply (can be negative)
+     * @returns {number} The normalized result to look up in the table
+     */
+    static normalizeSpellRollResult(naturalRoll, modifier) {
+        // Check if roll is unmodified
+        if (this.isUnmodifiedRoll(naturalRoll)) {
+            // Unmodified rolls use the natural result directly
+            return naturalRoll;
+        }
+        
+        // Apply modifier to non-unmodified rolls
+        const modifiedResult = naturalRoll + modifier;
+        
+        // Limit to valid range for modified rolls (3-95)
+        // Note: 96-100 are reserved for unmodified natural rolls
+        return Math.max(3, Math.min(95, modifiedResult));
     }
     
     /**
@@ -115,46 +217,107 @@ export default class BaseSpellService {
     }
     
     /**
-     * Get base spell result by realm, roll result, and selected subindex.
+     * Get base spell result by realm(s), natural roll, modifier, and selected subindex(es).
+     * Supports single realm or hybrid realms (array of 2 realms).
+     * 
      * @param {Object} params - Parameters
-     * @param {string} params.realm - The spell realm ("essence", "channeling", "mentalism")
-     * @param {number} params.rollResult - The roll result (can be negative or >100)
-     * @param {string} params.subindex - The selected subindex (optional, will prompt if not provided)
-     * @returns {Promise<number|string|null>} The result from the table or null
+     * @param {string|string[]} params.realm - The spell realm(s): single realm string or array of 2 realms for hybrids
+     *                                          Valid values: "essence", "channeling", "mentalism", "arcane"
+     *                                          Hybrid examples: ["essence", "channeling"], ["channeling", "mentalism"]
+     * @param {number} params.naturalRoll - The natural roll result (1-100)
+     * @param {number} params.modifier - The modifier to apply (can be negative)
+     * @param {string|Object} params.subindex - For single realm: subindex string (optional, will prompt if not provided)
+     *                                          For hybrid realms: Object with realm as key and subindex as value (optional, will prompt if not provided)
+     * @returns {Promise<number|string|null>} The result from the table(s) or null
      */
-    static async getBaseSpellResult({ realm, rollResult, subindex = null }) {
-        // Normalize roll result: clamp between 1 and 100
-        const normalizedResult = Math.max(1, Math.min(100, rollResult));
+    static async getBaseSpellResult({ realm, naturalRoll, modifier, subindex = null }) {
+        // Normalize roll result according to unmodified roll rules
+        const normalizedResult = this.normalizeSpellRollResult(naturalRoll, modifier);
+        
+        // Handle single realm vs hybrid realms
+        const realms = Array.isArray(realm) ? realm : [realm];
+        
+        // Validate: hybrid can only have 2 realms
+        if (realms.length > 2) {
+            ui.notifications.error("Hybrid spells can only combine 2 realms");
+            return null;
+        }
+        
+        // Normalize all realms (arcane -> essence)
+        const normalizedRealms = realms.map(r => this.normalizeRealm(r));
         
         // Load base spells data
         const baseSpells = await this.loadBaseSpells();
         
-        if (!baseSpells[realm]) {
-            ui.notifications.error(`Realm "${realm}" not found in base spells`);
-            return null;
-        }
-        
-        const realmData = baseSpells[realm];
-        
-        // Get subindex (prompt if not provided)
-        if (!subindex) {
-            const subindices = Object.keys(realmData);
-            subindex = await this.selectSubindex(subindices);
-            
-            if (!subindex) {
-                return null; // User cancelled
+        // Validate all realms exist
+        for (const normalizedRealm of normalizedRealms) {
+            if (!baseSpells[normalizedRealm]) {
+                ui.notifications.error(`Realm "${normalizedRealm}" not found in base spells`);
+                return null;
             }
         }
         
-        if (!realmData[subindex]) {
-            ui.notifications.error(`Subindex "${subindex}" not found for realm "${realm}"`);
-            return null;
+        // Handle subindex selection
+        let selectedSubindices = {};
+        
+        if (realms.length === 1) {
+            // Single realm
+            const normalizedRealm = normalizedRealms[0];
+            const realmData = baseSpells[normalizedRealm];
+            
+            if (subindex === null || typeof subindex === "string") {
+                // Prompt for subindex if not provided
+                if (!subindex) {
+                    const subindices = Object.keys(realmData);
+                    subindex = await this.selectSubindex(subindices, normalizedRealm);
+                    if (!subindex) return null;
+                }
+                selectedSubindices[normalizedRealm] = subindex;
+            } else {
+                // subindex is an object (shouldn't happen for single realm, but handle it)
+                selectedSubindices[normalizedRealm] = subindex[normalizedRealm] || Object.keys(realmData)[0];
+            }
+        } else {
+            // Hybrid realms (2 realms)
+            if (subindex === null || typeof subindex === "object") {
+                // Prompt for both subindices if not provided or incomplete
+                if (!subindex || Object.keys(subindex).length !== 2) {
+                    selectedSubindices = await this.selectSubindicesForRealms(normalizedRealms);
+                    if (!selectedSubindices) return null;
+                } else {
+                    selectedSubindices = subindex;
+                }
+            } else {
+                // Invalid: subindex should be object for hybrid realms
+                ui.notifications.error("For hybrid realms, subindex must be an object");
+                return null;
+            }
         }
         
-        const subindexTable = realmData[subindex];
-        const result = this.findValueInSubindex(subindexTable, normalizedResult);
+        // Get results from all realms
+        const results = [];
         
-        return result;
+        for (const normalizedRealm of normalizedRealms) {
+            const realmData = baseSpells[normalizedRealm];
+            const selectedSubindex = selectedSubindices[normalizedRealm];
+            
+            if (!realmData[selectedSubindex]) {
+                ui.notifications.error(`Subindex "${selectedSubindex}" not found for realm "${normalizedRealm}"`);
+                return null;
+            }
+            
+            const subindexTable = realmData[selectedSubindex];
+            const result = this.findValueInSubindex(subindexTable, normalizedResult);
+            results.push(result);
+        }
+        
+        // For single realm, return the result directly
+        if (results.length === 1) {
+            return results[0];
+        }
+        
+        // For hybrid realms, compare results (F takes precedence, otherwise highest value)
+        return this.compareSpellResults(results[0], results[1]);
     }
 }
 
