@@ -167,7 +167,9 @@ export class RMSSActor extends Actor {
 
     actorData.system.resistance_rolls.fear.value = Number(systemData.stats.self_discipline.stat_bonus * 3);
 
-    actorData.system.resistance_rolls.poison_disease.value = Number(systemData.stats.constitution.stat_bonus * 3);
+    actorData.system.resistance_rolls.poison.value = Number(systemData.stats.constitution.stat_bonus * 3);
+
+    actorData.system.resistance_rolls.disease.value = Number(systemData.stats.constitution.stat_bonus * 3);
 
     actorData.system.resistance_rolls.chann_ess.value = Number(systemData.stats.intuition.stat_bonus)
                                                       + Number(systemData.stats.empathy.stat_bonus);
@@ -194,8 +196,8 @@ export class RMSSActor extends Actor {
     actorData.system.resistance_rolls.fear.total = actorData.system.resistance_rolls.fear.value
                                                  + actorData.system.resistance_rolls.fear.race_mod;
 
-    actorData.system.resistance_rolls.poison_disease.total = actorData.system.resistance_rolls.poison_disease.value
-                                                           + actorData.system.resistance_rolls.poison_disease.race_mod;
+    actorData.system.resistance_rolls.poison.total = actorData.system.resistance_rolls.poison.value;
+    actorData.system.resistance_rolls.disease.total = actorData.system.resistance_rolls.disease.value;
 
     actorData.system.resistance_rolls.chann_ess.total = actorData.system.resistance_rolls.chann_ess.value
                                                       + actorData.system.resistance_rolls.chann_ess.race_mod;
