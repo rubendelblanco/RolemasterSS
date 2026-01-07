@@ -65,11 +65,11 @@ export class RMSSWeaponSkillManager {
     }
 
     static async attackMessagePopup(actor, enemy, weapon) {
-        // Obtener el actor real desde el juego si se pasó a través de socketlib
-        // (socketlib serializa objetos, perdiendo la estructura de Collection)
+        // Get the real actor from the game if passed through socketlib
+        // (socketlib serializes objects, losing the Collection structure)
         const realActor = (actor.id && game.actors) ? game.actors.get(actor.id) : actor;
         if (!realActor) {
-            console.error("[RMSS] No se pudo obtener el actor real", actor);
+            console.error("[RMSS] Could not get the real actor", actor);
             return;
         }
 
@@ -214,13 +214,13 @@ export class RMSSWeaponSkillManager {
         // Handle both Collection (with .get()) and Array (with .find())
         let skillItem;
         if (typeof actor.items.get === 'function') {
-            // Es una Collection
+            // It's a Collection
             skillItem = actor.items.get(skillId);
         } else if (Array.isArray(actor.items)) {
-            // Es un array
+            // It's an array
             skillItem = actor.items.find(item => item._id === skillId || item.id === skillId);
         } else {
-            console.warn("[RMSS] actor.items no es una Collection ni un Array", actor.items);
+            console.warn("[RMSS] actor.items is neither a Collection nor an Array", actor.items);
             return 0;
         }
         

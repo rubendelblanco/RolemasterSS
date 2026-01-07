@@ -536,7 +536,8 @@
             "critical_modifier": "Critical roll modifier (+/-)",
             "penalty": "Wound penalties",
             "attacks": "attacks!",
-            "fumble": "FUMBLES!"
+            "fumble": "FUMBLES!",
+            "cooldown": "Waiting for GM confirmation"
         },
         "level_up": {
             "ranks_reset": "New ranks reset"

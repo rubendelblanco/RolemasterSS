@@ -536,7 +536,8 @@
       "critical_modifier": "Modificador de tirada crítico (+/-)",
       "penalty": "Penalización heridas",
       "attacks": "ataca!",
-      "fumble": "¡PIFIA!"
+      "fumble": "¡PIFIA!",
+      "cooldown": "Esperando confirmación del GM"
     },
     "level_up": {
       "ranks_reset": "Nuevos rangos reinicializados"
