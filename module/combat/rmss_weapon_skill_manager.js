@@ -65,17 +65,25 @@ export class RMSSWeaponSkillManager {
     }
 
     static async attackMessagePopup(actor, enemy, weapon) {
-        const moveRatio = (actor.system.attributes.movement_rate.current / actor.system.attributes.movement_rate.value);
+        // Obtener el actor real desde el juego si se pasó a través de socketlib
+        // (socketlib serializa objetos, perdiendo la estructura de Collection)
+        const realActor = (actor.id && game.actors) ? game.actors.get(actor.id) : actor;
+        if (!realActor) {
+            console.error("[RMSS] No se pudo obtener el actor real", actor);
+            return;
+        }
+
+        const moveRatio = (realActor.system.attributes.movement_rate.current / realActor.system.attributes.movement_rate.value);
 
         if (moveRatio < 0.5) {
             ui.notifications.warn("Unable to attack (activity behind 50%)", {localize: true});
             return;
         }
 
-        const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, actor);
-        const hitsTakenPenalty = RMSSWeaponSkillManager._getHitsPenalty(actor);
-        const penaltyEffects = Utils.getEffectByName(actor, "Penalty");
-        const bonusEffects = Utils.getEffectByName(actor, "Bonus");
+        const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor);
+        const hitsTakenPenalty = RMSSWeaponSkillManager._getHitsPenalty(realActor);
+        const penaltyEffects = Utils.getEffectByName(realActor, "Penalty");
+        const bonusEffects = Utils.getEffectByName(realActor, "Bonus");
         const stunEffect = Utils.getEffectByName(enemy, "Stunned");
         let bonusValue = 0;
         let stunnedValue = false;
@@ -100,7 +108,7 @@ export class RMSSWeaponSkillManager {
         }
 
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
-            actor: actor,
+            actor: realActor,
             enemy: enemy,
             weapon: weapon,
             ob: ob,
@@ -199,11 +207,23 @@ export class RMSSWeaponSkillManager {
         
         // Handle weapon: they use offensive_skill to get bonus from a skill item
         const skillId = weapon.system.offensive_skill;
-        if (!skillId) {
+        if (!skillId || !actor.items) {
             return 0;
         }
         
-        const skillItem = actor.items.get(skillId);
+        // Handle both Collection (with .get()) and Array (with .find())
+        let skillItem;
+        if (typeof actor.items.get === 'function') {
+            // Es una Collection
+            skillItem = actor.items.get(skillId);
+        } else if (Array.isArray(actor.items)) {
+            // Es un array
+            skillItem = actor.items.find(item => item._id === skillId || item.id === skillId);
+        } else {
+            console.warn("[RMSS] actor.items no es una Collection ni un Array", actor.items);
+            return 0;
+        }
+        
         if (!skillItem) {
             return 0;
         }
