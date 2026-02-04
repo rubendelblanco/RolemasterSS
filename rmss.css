@@ -41,8 +41,8 @@
 }
 
 .skillcat-grid-container > div {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -65,8 +65,8 @@
 .skillcat-grid-container > div:nth-child(24n+10),
 .skillcat-grid-container > div:nth-child(24n+11),
 .skillcat-grid-container > div:nth-child(24n+12) {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -75,13 +75,13 @@
     justify-content: flex-end;
     flex-direction: column;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .skillcat-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .container {
@@ -120,8 +120,8 @@
 
 .settings-button,
 .playersheet-settings {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     margin-right: 6px;
 }
 
@@ -174,8 +174,8 @@
 .money-name {
     width: 100px;
     border: none;
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
 }
 
 .stat-name input {
@@ -183,15 +183,15 @@
 }
 
 .stat-header {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
 }
 
 .fixed-info-container {
     flex-grow: 3;
     flex-direction: row;
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
 }
 
 .fixed-info-section {
@@ -274,8 +274,8 @@
 }
 
 .skills-grid-container > div, .skills-grid-container-creature > div,.skills-grid-container-npc > div {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -298,8 +298,8 @@
 .skills-grid-container > div:nth-child(26n+10),
 .skills-grid-container > div:nth-child(26n+11),
 .skills-grid-container > div:nth-child(26n+12) {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -308,13 +308,13 @@
     justify-content: flex-end;
     flex-direction: column;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .skills-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .money-column {
@@ -333,8 +333,8 @@
 }
 
 .items-grid-container > div {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -351,8 +351,8 @@
 .items-grid-container > div:nth-child(14n+4),
 .items-grid-container > div:nth-child(14n+5),
 .items-grid-container > div:nth-child(14n+6) {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -361,13 +361,13 @@
     justify-content: flex-end;
     flex-direction: row;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .items-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .weapons-grid-container {
@@ -376,8 +376,8 @@
 }
 
 .weapons-grid-container > div {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -397,8 +397,8 @@
 .weapons-grid-container > div:nth-child(18n+7),
 .weapons-grid-container > div:nth-child(18n+8),
 .weapons-grid-container > div:nth-child(18n+9) {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -407,13 +407,13 @@
     justify-content: flex-end;
     flex-direction: row;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .weapons-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .armor-grid-container {
@@ -422,8 +422,8 @@
 }
 
 .armor-grid-container > div {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -441,8 +441,8 @@
 .armor-grid-container > div:nth-child(16n+5),
 .armor-grid-container > div:nth-child(16n+6),
 .armor-grid-container > div:nth-child(16n+7) {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -451,13 +451,13 @@
     justify-content: flex-end;
     flex-direction: row;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .armor-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .herbs-grid-container {
@@ -466,8 +466,8 @@
 }
 
 .herbs-grid-container > div {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -485,8 +485,8 @@
 .herbs-grid-container > div:nth-child(16n+5),
 .herbs-grid-container > div:nth-child(16n+6),
 .herbs-grid-container > div:nth-child(16n+7) {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -495,13 +495,13 @@
     justify-content: flex-end;
     flex-direction: row;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .herbs-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .spell-grid-container {
@@ -510,8 +510,8 @@
 }
 
 .spell-grid-container > div {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -530,8 +530,8 @@
 .spell-grid-container > div:nth-child(16n+6),
 .spell-grid-container > div:nth-child(16n+7),
 .spell-grid-container > div:nth-child(16n+8){
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -540,7 +540,7 @@
     justify-content: flex-end;
     flex-direction: row;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .spell-grid-container > div:nth-child(16n+9),
@@ -562,7 +562,7 @@
 .spell-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .spell-grid-container > div {
@@ -593,7 +593,7 @@
 .resistances-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    background-image: var(--rmss-row-highlight);
 }
 
 .resistance-input {
@@ -605,8 +605,8 @@
 .item-name,
 .spell-name,
 .equipable-name {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     font-weight: bold;
     text-align: center;
 }
@@ -616,8 +616,8 @@
 .item-entry,
 .spell-entry,
 .equipable-entry {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
 }
 
@@ -633,8 +633,8 @@
 .skillcat-controls,
 .skill-controls,
 .item-controls {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
 }
 
@@ -644,8 +644,8 @@
 }
 
 .applicable-stats-grid-container > div {
-    font-family: Signika, sans-serif;
-    font-size: 12px;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
     text-align: center;
     border-bottom: 1px solid;
     padding-top: 3px;
@@ -798,25 +798,25 @@
 }
 
 .info-tip {
-    font-size: 12px;
+    font-size: var(--rmss-font-size-sm);
 }
 
 .level-up-enabled, #add-exp {
-    background-color: #04AA6D;
+    background-color: var(--rmss-btn-success);
     color: white !important;
 }
 
 .level-up-enabled:hover, #add-exp:hover {
-    background-color: #46a049;
+    background-color: var(--rmss-btn-success-hover);
 }
 
 .end-level-up, #reset-exp {
-    background-color: #f44336;
+    background-color: var(--rmss-btn-danger);
     color: white;
 }
 
 .end-level-up:hover, #reset-exp:hover {
-    background-color: #da190b;
+    background-color: var(--rmss-btn-danger-hover);
 }
 
 table.weapons tr td {
@@ -1044,24 +1044,24 @@ li.item.contained span.description {
 .rmss-progress {
     height: 15px;
     width: 100%;
-    border: 1px solid #428bca;
+    border: 1px solid var(--rmss-progress-fill);
     border-radius: 5px;
-    background-color: #e6f3fa;
+    background-color: var(--rmss-progress-bg);
     margin-bottom: 15px;
 }
 
 .rmss-progress-thin {
     height: 5px;
     width: 80%;
-    border: 1px solid #428bca;
+    border: 1px solid var(--rmss-progress-fill);
     border-radius: 5px;
-    background-color: #e6f3fa;
+    background-color: var(--rmss-progress-bg);
     margin-bottom: 15px;
 }
 
 .rmss-progress-bar {
     height: 100%;
-    background: #428bca;
+    background: var(--rmss-progress-fill);
     display: flex;
     align-items: center;
     transition: width 0.25s;
@@ -1071,7 +1071,7 @@ li.item.contained span.description {
 .rmss-progress-bar-text {
     margin-left: 10px;
     font-weight: bold;
-    color: #cce7f5;
+    color: var(--rmss-progress-text);
 }
 
 tr.contained-item td.indent {
@@ -1098,13 +1098,13 @@ tr.container-row {
 
 /* --- Optional: make icons interactive or indicate remaining points --- */
 .fate-points-row .fa-skull {
-    color: #428bca;
+    color: var(--rmss-progress-fill);
     cursor: pointer;
     transition: color 0.2s;
 }
 
 .fate-points-row .fa-skull.spent {
-    color: #cce7f5; /* Grayed out when spent */
+    color: var(--rmss-progress-text); /* Grayed out when spent */
 }
 
 /* ================================
@@ -1141,25 +1141,25 @@ tr.container-row {
     margin-right: 6px;
     font-size: 1.1rem;
     vertical-align: middle;
-    color: #c8a861; /* tono dorado clásico */
+    color: var(--rmss-tab-gold); /* tono dorado clásico */
     transition: color 0.2s ease-in-out;
 }
 
 /* Hover */
 .sheet-tabs .item:hover {
     color: #fff;
-    border-bottom: 2px solid #c8a861;
+    border-bottom: 2px solid var(--rmss-tab-gold);
     background: rgba(200, 168, 97, 0.1);
 }
 
 .sheet-tabs .item:hover i {
-    color: #ffd87b;
+    color: var(--rmss-tab-gold-hover);
 }
 
 .sheet-tabs .item.active {
     color: #fff;
     background: linear-gradient(180deg, #47433b 0%, #2e2b26 100%);
-    border-bottom: 2px solid #e3c978;
+    border-bottom: 2px solid var(--rmss-tab-gold-active);
     box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.3);
 }
 
@@ -1210,13 +1210,13 @@ tr.container-row {
 .sub-tabs .item:hover {
     color: #fff;
     background: rgba(200, 168, 97, 0.08);
-    border-bottom: 2px solid #c8a861;
+    border-bottom: 2px solid var(--rmss-tab-gold);
 }
 
 .sub-tabs .item.active {
     color: #fff;
     background: rgba(200, 168, 97, 0.15);
-    border-bottom: 2px solid #e3c978;
+    border-bottom: 2px solid var(--rmss-tab-gold-active);
     font-weight: 600;
 }
 
