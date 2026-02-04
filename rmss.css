@@ -1,3 +1,40 @@
+/* ================================
+   RMSS CSS Variables
+   ================================ */
+:root {
+  /* Tipografía */
+  --rmss-font-main: 'Signika', sans-serif;
+  --rmss-font-size-sm: 12px;
+  --rmss-font-size-md: 14px;
+  
+  /* Colores - Grids (fondo alternante) */
+  --rmss-row-highlight: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+  
+  /* Colores - Progress bars */
+  --rmss-progress-bg: #e6f3fa;
+  --rmss-progress-fill: #428bca;
+  --rmss-progress-text: #cce7f5;
+  
+  /* Colores - Tabs (dorados estilo Rolemaster) */
+  --rmss-tab-gold: #c8a861;
+  --rmss-tab-gold-active: #e3c978;
+  --rmss-tab-gold-hover: #ffd87b;
+  
+  /* Colores - Botones de acción */
+  --rmss-btn-success: #04AA6D;
+  --rmss-btn-success-hover: #46a049;
+  --rmss-btn-danger: #f44336;
+  --rmss-btn-danger-hover: #da190b;
+  
+  /* Espaciado */
+  --rmss-padding-xs: 3px;
+  --rmss-padding-sm: 5px;
+  --rmss-padding-md: 8px;
+}
+
+/* ================================
+   SKILL CATEGORIES GRID
+   ================================ */
 .skillcat-grid-container {
     display: grid;
     grid-template-columns: [skill-category-name] 10% [applicable-stats] 10% [dev-cost] 8% [num-ranks] 8% [new-ranks] 8% [rank-bonus] 8% [stat-bonus] 8% [prof-bonus] 8% [special-bonus-1] 8% [special-bonus-2] 8% [total-bonus] 8% [controls] 8%;
