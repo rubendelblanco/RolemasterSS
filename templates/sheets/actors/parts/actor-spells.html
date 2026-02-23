@@ -61,6 +61,11 @@ placeholder="Search spell..."
     {{/if}}
 
     <div data-search="{{spell.name}}" style="display: flex; align-items: center; gap: 0.5em;">
+      {{#if (eq spell.system.type "F")}}
+      <a class="spell-cast" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}">
+        <i class="fas fa-hand-sparkles"></i>
+      </a>
+      {{/if}}
       <span>{{spell.name}}</span>
       {{#if spell.system.description}}
       <i class="fas fa-info-circle spell-info-icon" 
@@ -72,11 +77,6 @@ placeholder="Search spell..."
     <div data-search="{{spell.name}}">{{spell.system.range}}</div>
     <div data-search="{{spell.name}}">{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</div>
     <div data-search="{{spell.name}}">
-      {{#if (eq spell.system.type "F")}}
-      <a class="spell-cast" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}">
-        <i class="fas fa-hand-sparkles"></i>
-      </a>
-      {{/if}}
       <a class="item-edit" title="Edit Spell" data-item-id="{{spell._id}}">
         <i class="fas fa-edit"></i>
       </a>

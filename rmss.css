@@ -575,6 +575,13 @@
     filter: drop-shadow(0 0 3px rgba(255, 217, 102, 0.5));
 }
 
+.spell-cast i {
+    color: rgb(0, 149, 199);
+    border: 1px solid rgb(0, 149, 199);
+    border-radius: 3px;
+    padding: 2px;
+}
+
 .spell-info-icon {
     position: relative;
     cursor: pointer; color: #4b4a44; font-size: 0.9em;

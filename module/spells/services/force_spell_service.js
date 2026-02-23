@@ -116,6 +116,45 @@ export default class ForceSpellService {
             targetRRs,
             casterLevel: actor.system.attributes?.level?.value ?? 1
         });
+
+        // Execute spell macro if exists
+        await this._executeSpellMacro({
+            spell,
+            actor,
+            targets,
+            naturalRoll,
+            finalResult,
+            isFumble,
+            targetRRs
+        });
+    }
+
+    /**
+     * Execute the macro attached to the spell if it exists.
+     * @param {Object} params
+     * @param {Item} params.spell - The spell item
+     * @param {Actor} params.actor - The caster actor
+     * @param {Array} params.targets - Array of targeted tokens
+     * @param {number} params.naturalRoll - The natural d100 roll
+     * @param {number} params.finalResult - The final roll result (with modifiers)
+     * @param {boolean} params.isFumble - Whether the roll was a fumble
+     * @param {Array} params.targetRRs - Array of target RR data
+     */
+    static async _executeSpellMacro({ spell, actor, targets, naturalRoll, finalResult, isFumble, targetRRs }) {
+        const macroData = spell.getFlag("rmss", "macro");
+        if (!macroData || !macroData.command?.trim()) return;
+
+        try {
+            const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+            const fn = new AsyncFunction(
+                'spell', 'actor', 'targets', 'naturalRoll', 'finalResult', 'isFumble', 'targetRRs',
+                macroData.command
+            );
+            await fn(spell, actor, targets, naturalRoll, finalResult, isFumble, targetRRs);
+        } catch (err) {
+            console.error("Error executing spell macro:", err);
+            ui.notifications.error(`Spell macro error: ${err.message}`);
+        }
     }
 
     /**
