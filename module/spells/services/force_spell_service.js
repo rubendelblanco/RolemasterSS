@@ -1,9 +1,10 @@
 import BaseSpellService from "./base_spell_service.js";
 import SpellCalculationService from "./spell_calculation_service.js";
+import CastingOptionsService from "./casting_options_service.js";
 
 /**
  * Service to handle Force (F) type spell casting.
- * Manages the flow: skill lookup -> roll -> Basic Spell Attack Table -> RR modifier -> RR calculation
+ * Manages the flow: casting options -> skill lookup -> roll -> Basic Spell Attack Table -> RR modifier -> RR calculation
  */
 export default class ForceSpellService {
 
@@ -16,6 +17,23 @@ export default class ForceSpellService {
      * @param {string} params.spellListRealm - Realm of the spell list
      */
     static async castForceSpell({ actor, spell, spellListName, spellListRealm }) {
+        // Determine realm for casting options
+        const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
+        
+        // Show casting options dialog first
+        const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
+            realm: effectiveRealm,
+            spellType: spell.system.type,
+            spellName: spell.name
+        });
+
+        // If user cancelled the dialog, abort
+        if (castingOptions === null) {
+            return;
+        }
+
+        const castingModifier = castingOptions.totalModifier;
+
         // Find the skill with the same name as the spell list
         const skill = actor.items.find(i => 
             i.type === "skill" && i.name === spellListName
@@ -41,10 +59,11 @@ export default class ForceSpellService {
             await game.dice3d.showForRoll(roll, game.user, true);
         }
         
-        // Unmodified rolls: 01-02 and 96-100 (don't add skill bonus)
-        // Modified rolls: 03-95 (add skill bonus)
+        // Unmodified rolls: 01-02 and 96-100 (don't add skill bonus or casting modifiers)
+        // Modified rolls: 03-95 (add skill bonus and casting modifiers)
         const isUnmodified = naturalRoll <= 2 || naturalRoll >= 96;
-        const finalResult = isUnmodified ? naturalRoll : naturalRoll + skillBonus;
+        const totalBonus = skillBonus + castingModifier;
+        const finalResult = isUnmodified ? naturalRoll : naturalRoll + totalBonus;
 
         // If there are targets, get the RR modifier from Basic Spell Attack Table for EACH target
         let isFumble = false;
@@ -63,17 +82,19 @@ export default class ForceSpellService {
                 
                 // Get the RR modifier from the table for THIS target
                 // Each target may have different armor/helmet type
-                const result = await BaseSpellService.getBaseSpellResult({
+                const spellResult = await BaseSpellService.getBaseSpellResult({
                     realm: realm,
                     naturalRoll: naturalRoll,
-                    modifier: isUnmodified ? 0 : skillBonus,
+                    modifier: isUnmodified ? 0 : totalBonus,
                     targetName: target.name
                 });
 
                 // If user cancelled the dialog, skip this target
-                if (result === null) {
+                if (spellResult === null) {
                     continue;
                 }
+
+                const { result, subindices } = spellResult;
 
                 if (result === "F") {
                     // Fumble affects the caster, not individual targets
@@ -92,12 +113,16 @@ export default class ForceSpellService {
                 // Apply modifier: RR final = max(0, baseRR - modifier)
                 const finalRR = Math.max(0, baseRR - rrModifier);
                 
+                // Format subindices for display
+                const subindexDisplay = Object.values(subindices).join(" / ");
+                
                 targetRRs.push({
                     name: target.name,
                     baseRR: baseRR,
                     finalRR: finalRR,
                     targetLevel: targetLevel,
-                    rrModifier: rrModifier
+                    rrModifier: rrModifier,
+                    subindex: subindexDisplay
                 });
             }
         }
@@ -108,6 +133,7 @@ export default class ForceSpellService {
             spell,
             spellListName,
             skillBonus,
+            castingModifier,
             naturalRoll,
             finalResult,
             isUnmodified,
@@ -232,6 +258,7 @@ export default class ForceSpellService {
         spell,
         spellListName,
         skillBonus,
+        castingModifier = 0,
         naturalRoll,
         finalResult,
         isUnmodified = false,
@@ -241,6 +268,8 @@ export default class ForceSpellService {
         casterLevel = 1
     }) {
         const hasTargets = targets.length > 0;
+        const totalBonus = skillBonus + castingModifier;
+        const formatMod = (n) => n >= 0 ? `+${n}` : `${n}`;
         
         let content = `
             <div class="rmss-spell-cast">
@@ -248,7 +277,10 @@ export default class ForceSpellService {
                 <p><strong>${spellListName}</strong> (${game.i18n.localize("rmss.spells.cast_result")})</p>
                 <div class="spell-cast-details">
                     <p>🎲 Roll: <strong>${naturalRoll}</strong>${isUnmodified ? ' <em>(Unmodified)</em>' : ''}</p>
-                    ${!isUnmodified ? `<p>📊 Bonus: <strong>${skillBonus >= 0 ? '+' : ''}${skillBonus}</strong></p>` : ''}
+                    ${!isUnmodified ? `
+                    <p>📊 Skill: <strong>${formatMod(skillBonus)}</strong></p>
+                    ${castingModifier !== 0 ? `<p>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></p>` : ''}
+                    ` : ''}
                     <p>📈 Total: <strong>${finalResult}</strong></p>
                 </div>
         `;
@@ -280,7 +312,10 @@ export default class ForceSpellService {
                     const modDisplay = targetRR.rrModifier >= 0 ? `+${targetRR.rrModifier}` : targetRR.rrModifier;
                     content += `
                                 <tr>
-                                    <td>${targetRR.name}</td>
+                                    <td>
+                                        ${targetRR.name}
+                                        <div class="spell-rr-subindex">${targetRR.subindex}</div>
+                                    </td>
                                     <td>${targetRR.targetLevel}</td>
                                     <td>${modDisplay}</td>
                                     <td><strong>${targetRR.finalRR}</strong></td>

@@ -576,7 +576,17 @@
             "rr_modifier": "RR Modifier",
             "no_skill_found": "No skill found for spell list",
             "spell_fumble": "Spell Fumble!",
-            "targets_must_roll": "Targets must roll above"
+            "targets_must_roll": "Targets must roll above",
+            "casting_options": "Casting Options",
+            "subtlety": "Subtlety",
+            "hands": "Hands",
+            "voice": "Voice",
+            "preparation": "Preparation",
+            "other_mods": "Other Modifiers",
+            "total_modifier": "Total Modifier"
+        },
+        "dialog": {
+            "cancel": "Cancel"
         },
         "attack_table": {
             "bastard_axe": "Bastard Axe",

@@ -576,7 +576,17 @@
       "rr_modifier": "Modificador de RR",
       "no_skill_found": "No se encontró la habilidad para la lista de hechizos",
       "spell_fumble": "¡Pifió el hechizo!",
-      "targets_must_roll": "Objetivos deben superar"
+      "targets_must_roll": "Objetivos deben superar",
+      "casting_options": "Opciones de Lanzamiento",
+      "subtlety": "Sutileza",
+      "hands": "Manos",
+      "voice": "Voz",
+      "preparation": "Preparación",
+      "other_mods": "Otros Modificadores",
+      "total_modifier": "Modificador Total"
+    },
+    "dialog": {
+      "cancel": "Cancelar"
     },
     "attack_table": {
     "bastard_axe": "Hacha bastarda",

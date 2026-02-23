@@ -1457,10 +1457,87 @@ tr.container-row {
     width: 48px;
     height: 48px;
     object-fit: cover; /* keeps aspect ratio without distortion */
-  }
-  
-  
-  
+}
+
+/* Casting Options Dialog */
+.casting-options-dialog .casting-options-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.casting-options-dialog .form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25em 0;
+}
+
+.casting-options-dialog .form-group label {
+    font-weight: bold;
+    min-width: 120px;
+}
+
+.casting-options-dialog .form-group select {
+    flex: 1;
+    max-width: 200px;
+}
+
+.casting-options-dialog .fast-casting-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.casting-options-dialog .total-modifier {
+    background: rgba(0, 149, 199, 0.2);
+    border-radius: 4px;
+    padding: 0.5em;
+    margin-top: 0.5em;
+}
+
+.casting-options-dialog .total-modifier label,
+.casting-options-dialog .total-modifier span {
+    font-size: 1.1em;
+}
+
+/* Spell RR Results Table in Chat */
+.spell-rr-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5em 0;
+    font-size: 0.9em;
+}
+
+.spell-rr-table th,
+.spell-rr-table td {
+    padding: 0.3em 0.5em;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.spell-rr-table th {
+    background: rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+.spell-rr-table td:first-child,
+.spell-rr-table th:first-child {
+    text-align: left;
+}
+
+.spell-rr-table td:last-child {
+    font-weight: bold;
+}
+
+.spell-rr-subindex {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #666;
+    margin-top: 2px;
+}
+
+
 
 
 

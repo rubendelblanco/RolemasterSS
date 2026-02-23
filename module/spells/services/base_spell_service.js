@@ -328,11 +328,17 @@ export default class BaseSpellService {
         
         // For single realm, return the result directly
         if (results.length === 1) {
-            return results[0];
+            return {
+                result: results[0],
+                subindices: selectedSubindices
+            };
         }
         
-        // For hybrid realms, compare results (F takes precedence, otherwise highest value)
-        return this.compareSpellResults(results[0], results[1]);
+        // For hybrid realms, compare results (F takes precedence, otherwise lowest value = worst)
+        return {
+            result: this.compareSpellResults(results[0], results[1]),
+            subindices: selectedSubindices
+        };
     }
 }
 
