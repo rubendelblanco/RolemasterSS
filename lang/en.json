@@ -355,6 +355,7 @@
             "duration": "Duration",
             "range": "Range",
             "type": "Type",
+            "subType": "Subtype",
             "description": "Description"
         },
         "skill_category": {

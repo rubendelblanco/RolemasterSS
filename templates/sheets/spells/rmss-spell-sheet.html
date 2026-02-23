@@ -13,6 +13,7 @@
                     <th>{{localize "rmss.spell.duration"}}</th>
                     <th>{{localize "rmss.spell.range"}}</th>
                     <th>{{localize "rmss.spell.type"}}</th>
+                    <th>{{localize "rmss.spell.subType"}}</th>
                 </tr>
                 <td>
                     <input type="checkbox" name="system.favorite" {{checked system.favorite}}/>
@@ -30,7 +31,22 @@
                     <input name="system.range" type="text" value="{{system.range}}" data-dtype="String"/>
                 </td>
                 <td>
-                    <input name="system.type" type="text" value="{{system.type}}" data-dtype="String"/>
+                    <select name="system.type">
+                        <option value="E" {{#if (eq system.type "E")}}selected{{/if}}>E</option>
+                        <option value="BE" {{#if (eq system.type "BE")}}selected{{/if}}>BE</option>
+                        <option value="DE" {{#if (eq system.type "DE")}}selected{{/if}}>DE</option>
+                        <option value="F" {{#if (eq system.type "F")}}selected{{/if}}>F</option>
+                        <option value="P" {{#if (eq system.type "P")}}selected{{/if}}>P</option>
+                        <option value="U" {{#if (eq system.type "U")}}selected{{/if}}>U</option>
+                        <option value="I" {{#if (eq system.type "I")}}selected{{/if}}>I</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="system.subType">
+                        <option value="-" {{#if (eq system.subType "-")}}selected{{/if}}>-</option>
+                        <option value="s" {{#if (eq system.subType "s")}}selected{{/if}}>s</option>
+                        <option value="m" {{#if (eq system.subType "m")}}selected{{/if}}>m</option>
+                    </select>
                 </td>
 
             </table>

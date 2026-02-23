@@ -70,7 +70,7 @@ placeholder="Search spell..."
     <div data-search="{{spell.name}}">{{spell.system.area_of_effect}}</div>
     <div data-search="{{spell.name}}">{{spell.system.duration}}</div>
     <div data-search="{{spell.name}}">{{spell.system.range}}</div>
-    <div data-search="{{spell.name}}">{{spell.system.type}}</div>
+    <div data-search="{{spell.name}}">{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</div>
     <div data-search="{{spell.name}}">
       <a class="item-edit" title="Edit Spell" data-item-id="{{spell._id}}">
         <i class="fas fa-edit"></i>
