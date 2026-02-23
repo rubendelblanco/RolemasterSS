@@ -1,0 +1,269 @@
+import BaseSpellService from "./base_spell_service.js";
+import SpellCalculationService from "./spell_calculation_service.js";
+
+/**
+ * Service to handle Force (F) type spell casting.
+ * Manages the flow: skill lookup -> roll -> Basic Spell Attack Table -> RR modifier -> RR calculation
+ */
+export default class ForceSpellService {
+
+    /**
+     * Cast a Force type spell.
+     * @param {Object} params
+     * @param {Actor} params.actor - The caster actor
+     * @param {Item} params.spell - The spell being cast
+     * @param {string} params.spellListName - Name of the spell list (to find matching skill)
+     * @param {string} params.spellListRealm - Realm of the spell list
+     */
+    static async castForceSpell({ actor, spell, spellListName, spellListRealm }) {
+        // Find the skill with the same name as the spell list
+        const skill = actor.items.find(i => 
+            i.type === "skill" && i.name === spellListName
+        );
+
+        if (!skill) {
+            ui.notifications.warn(game.i18n.localize("rmss.spells.no_skill_found") + `: ${spellListName}`);
+            return;
+        }
+
+        const skillBonus = skill.system.total_bonus ?? 0;
+
+        // Get targets
+        const targets = Array.from(game.user.targets);
+        const hasTargets = targets.length > 0;
+
+        // Roll the dice (NOT open-ended for base spell attacks)
+        const roll = await new Roll("1d100").evaluate();
+        const naturalRoll = roll.total;
+        
+        // Show dice animation if Dice So Nice is active
+        if (game.dice3d) {
+            await game.dice3d.showForRoll(roll, game.user, true);
+        }
+        
+        // Unmodified rolls: 01-02 and 96-100 (don't add skill bonus)
+        // Modified rolls: 03-95 (add skill bonus)
+        const isUnmodified = naturalRoll <= 2 || naturalRoll >= 96;
+        const finalResult = isUnmodified ? naturalRoll : naturalRoll + skillBonus;
+
+        // If there are targets, get the RR modifier from Basic Spell Attack Table for EACH target
+        let isFumble = false;
+        let targetRRs = [];
+
+        if (hasTargets) {
+            // Determine realm: use spell list realm, or fall back to actor's realm for base lists
+            const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
+            const realm = this._normalizeRealm(effectiveRealm);
+            const casterLevel = actor.system.attributes?.level?.value ?? 1;
+            
+            // Process each target separately (different armor types)
+            for (const target of targets) {
+                const targetActor = target.actor;
+                const targetLevel = targetActor?.system?.attributes?.level?.value ?? 1;
+                
+                // Get the RR modifier from the table for THIS target
+                // Each target may have different armor/helmet type
+                const result = await BaseSpellService.getBaseSpellResult({
+                    realm: realm,
+                    naturalRoll: naturalRoll,
+                    modifier: isUnmodified ? 0 : skillBonus,
+                    targetName: target.name
+                });
+
+                // If user cancelled the dialog, skip this target
+                if (result === null) {
+                    continue;
+                }
+
+                if (result === "F") {
+                    // Fumble affects the caster, not individual targets
+                    isFumble = true;
+                    break; // Stop processing targets on fumble
+                }
+                
+                const rrModifier = result;
+                
+                // Calculate base RR from level difference
+                const baseRR = SpellCalculationService.calculateResistanceRoll({
+                    casterLevel: casterLevel,
+                    targetLevel: targetLevel
+                });
+                
+                // Apply modifier: RR final = max(0, baseRR - modifier)
+                const finalRR = Math.max(0, baseRR - rrModifier);
+                
+                targetRRs.push({
+                    name: target.name,
+                    baseRR: baseRR,
+                    finalRR: finalRR,
+                    targetLevel: targetLevel,
+                    rrModifier: rrModifier
+                });
+            }
+        }
+
+        // Create chat message
+        await this._createChatMessage({
+            actor,
+            spell,
+            spellListName,
+            skillBonus,
+            naturalRoll,
+            finalResult,
+            isUnmodified,
+            targets,
+            isFumble,
+            targetRRs,
+            casterLevel: actor.system.attributes?.level?.value ?? 1
+        });
+    }
+
+    /**
+     * Perform an open-ended roll (exploding on 96+ and 01-05).
+     * @returns {Promise<{naturalRoll: number, total: number}>}
+     */
+    static async _rollOpenEnded() {
+        let total = 0;
+        let naturalRoll = 0;
+        let isFirst = true;
+        let keepRolling = true;
+        let direction = 0; // 0 = undetermined, 1 = high, -1 = low
+
+        while (keepRolling) {
+            const roll = await new Roll("1d100").evaluate();
+            const result = roll.total;
+
+            if (isFirst) {
+                naturalRoll = result;
+                total = result;
+                isFirst = false;
+
+                // Determine direction
+                if (result >= 96) {
+                    direction = 1; // High open-ended
+                } else if (result <= 5) {
+                    direction = -1; // Low open-ended
+                } else {
+                    keepRolling = false;
+                }
+            } else {
+                // Subsequent rolls
+                if (direction === 1) {
+                    total += result;
+                    keepRolling = result >= 96;
+                } else if (direction === -1) {
+                    total -= result;
+                    keepRolling = result <= 5;
+                }
+            }
+        }
+
+        return { naturalRoll, total };
+    }
+
+    /**
+     * Normalize realm string for hybrid realms.
+     * Converts "essence/channeling" to ["essence", "channeling"], etc.
+     * Also handles "arcane" -> "essence" conversion.
+     * @param {string} realm
+     * @returns {string|string[]}
+     */
+    static _normalizeRealm(realm) {
+        if (!realm) return "essence";
+        
+        const lowerRealm = realm.toLowerCase().trim();
+        
+        // Handle hybrid realms (e.g., "essence/channeling")
+        if (lowerRealm.includes("/")) {
+            return lowerRealm.split("/").map(r => {
+                const trimmed = r.trim();
+                return trimmed === "arcane" ? "essence" : trimmed;
+            });
+        }
+        
+        // Single realm - convert arcane to essence
+        return lowerRealm === "arcane" ? "essence" : lowerRealm;
+    }
+
+    /**
+     * Create the chat message with the spell cast results.
+     */
+    static async _createChatMessage({
+        actor,
+        spell,
+        spellListName,
+        skillBonus,
+        naturalRoll,
+        finalResult,
+        isUnmodified = false,
+        targets,
+        isFumble,
+        targetRRs = [],
+        casterLevel = 1
+    }) {
+        const hasTargets = targets.length > 0;
+        
+        let content = `
+            <div class="rmss-spell-cast">
+                <h3>${spell.name}</h3>
+                <p><strong>${spellListName}</strong> (${game.i18n.localize("rmss.spells.cast_result")})</p>
+                <div class="spell-cast-details">
+                    <p>🎲 Roll: <strong>${naturalRoll}</strong>${isUnmodified ? ' <em>(Unmodified)</em>' : ''}</p>
+                    ${!isUnmodified ? `<p>📊 Bonus: <strong>${skillBonus >= 0 ? '+' : ''}${skillBonus}</strong></p>` : ''}
+                    <p>📈 Total: <strong>${finalResult}</strong></p>
+                </div>
+        `;
+
+        if (hasTargets) {
+            if (isFumble) {
+                content += `
+                    <div class="spell-fumble">
+                        <p>💥 <strong>${game.i18n.localize("rmss.spells.spell_fumble")}</strong></p>
+                    </div>
+                `;
+            } else if (targetRRs.length > 0) {
+                content += `
+                    <div class="spell-rr-results">
+                        <p><strong>${game.i18n.localize("rmss.spells.targets_must_roll")}:</strong></p>
+                        <table class="spell-rr-table">
+                            <thead>
+                                <tr>
+                                    <th>Target</th>
+                                    <th>Lvl</th>
+                                    <th>Mod</th>
+                                    <th>RR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                for (const targetRR of targetRRs) {
+                    const modDisplay = targetRR.rrModifier >= 0 ? `+${targetRR.rrModifier}` : targetRR.rrModifier;
+                    content += `
+                                <tr>
+                                    <td>${targetRR.name}</td>
+                                    <td>${targetRR.targetLevel}</td>
+                                    <td>${modDisplay}</td>
+                                    <td><strong>${targetRR.finalRR}</strong></td>
+                                </tr>
+                    `;
+                }
+                
+                content += `
+                            </tbody>
+                        </table>
+                        <p class="spell-rr-note">(Caster Lvl: ${casterLevel})</p>
+                    </div>
+                `;
+            }
+        }
+
+        content += `</div>`;
+
+        await ChatMessage.create({
+            speaker: ChatMessage.getSpeaker({ actor }),
+            content: content,
+            type: CONST.CHAT_MESSAGE_TYPES.OTHER
+        });
+    }
+}

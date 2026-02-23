@@ -570,7 +570,13 @@
         },
         "spells": {
             "select_armor_type": "Select Armor Type",
-            "select_armor_type_prompt": "Select the armor type:"
+            "select_armor_type_prompt": "Select the armor type:",
+            "cast": "Cast spell",
+            "cast_result": "Cast Result",
+            "rr_modifier": "RR Modifier",
+            "no_skill_found": "No skill found for spell list",
+            "spell_fumble": "Spell Fumble!",
+            "targets_must_roll": "Targets must roll above"
         },
         "attack_table": {
             "bastard_axe": "Bastard Axe",

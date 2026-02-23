@@ -570,7 +570,13 @@
     },
     "spells": {
       "select_armor_type": "Seleccionar Tipo de Armadura",
-      "select_armor_type_prompt": "Selecciona el tipo de armadura:"
+      "select_armor_type_prompt": "Selecciona el tipo de armadura:",
+      "cast": "Lanzar hechizo",
+      "cast_result": "Resultado de lanzamiento",
+      "rr_modifier": "Modificador de RR",
+      "no_skill_found": "No se encontró la habilidad para la lista de hechizos",
+      "spell_fumble": "¡Pifió el hechizo!",
+      "targets_must_roll": "Objetivos deben superar"
     },
     "attack_table": {
     "bastard_axe": "Hacha bastarda",

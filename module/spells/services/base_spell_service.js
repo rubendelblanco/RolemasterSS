@@ -35,7 +35,9 @@ export default class BaseSpellService {
      * @returns {string} Normalized realm name
      */
     static normalizeRealm(realm) {
-        return realm === "arcane" ? "essence" : realm;
+        if (!realm) return "essence";
+        const lowerRealm = realm.toLowerCase().trim();
+        return lowerRealm === "arcane" ? "essence" : lowerRealm;
     }
     
     /**
@@ -68,9 +70,10 @@ export default class BaseSpellService {
      * Show dialog to select a subindex from available options.
      * @param {string[]} subindices - Array of subindex keys to choose from
      * @param {string} realmName - The realm name for display (optional)
+     * @param {string} targetName - The target name for display (optional)
      * @returns {Promise<string|null>} Selected subindex or null if cancelled
      */
-    static async selectSubindex(subindices, realmName = null) {
+    static async selectSubindex(subindices, realmName = null, targetName = null) {
         return new Promise((resolve) => {
             const buttons = {};
             
@@ -87,13 +90,22 @@ export default class BaseSpellService {
                 callback: () => resolve(null)
             };
             
-            const title = realmName 
-                ? `${game.i18n.localize("rmss.spells.select_armor_type") || "Select Armor Type"} (${realmName})`
-                : game.i18n.localize("rmss.spells.select_armor_type") || "Select Armor Type";
+            let title = game.i18n.localize("rmss.spells.select_armor_type") || "Select Armor Type";
+            if (targetName) {
+                title = `${targetName}: ${title}`;
+            }
+            if (realmName) {
+                title += ` (${realmName})`;
+            }
+            
+            const prompt = game.i18n.localize("rmss.spells.select_armor_type_prompt") || "Select the armor type:";
+            const content = targetName 
+                ? `<p><strong>${targetName}</strong> - ${prompt}</p>`
+                : `<p>${prompt}</p>`;
             
             new Dialog({
                 title: title,
-                content: `<p>${game.i18n.localize("rmss.spells.select_armor_type_prompt") || "Select the armor type:"}</p>`,
+                content: content,
                 buttons: buttons,
                 default: subindices[0]
             }).render(true);
@@ -103,15 +115,16 @@ export default class BaseSpellService {
     /**
      * Show dialog to select subindices for multiple realms (hybrid spells).
      * @param {string[]} realms - Array of realm names
+     * @param {string} targetName - The target name for display (optional)
      * @returns {Promise<Object|null>} Object with realm as key and selected subindex as value, or null if cancelled
      */
-    static async selectSubindicesForRealms(realms) {
+    static async selectSubindicesForRealms(realms, targetName = null) {
         const selected = {};
         
         for (const realm of realms) {
             const normalizedRealm = this.normalizeRealm(realm);
             const subindices = await this.getRealmSubindices(normalizedRealm);
-            const selectedSubindex = await this.selectSubindex(subindices, normalizedRealm);
+            const selectedSubindex = await this.selectSubindex(subindices, normalizedRealm, targetName);
             
             if (!selectedSubindex) {
                 return null; // User cancelled
@@ -124,35 +137,36 @@ export default class BaseSpellService {
     }
     
     /**
-     * Compare two spell results and return the "best" one.
-     * Rules: "F" (Fumble) takes precedence over any numeric value.
-     * If both are numeric, return the higher value.
+     * Compare two spell results and return the WORST one (for hybrid realms).
+     * Rules: "F" (Fumble) is always the worst result.
+     * If both are numeric, return the LOWER value (worse for the caster).
      * @param {number|string} result1 - First result
      * @param {number|string} result2 - Second result
-     * @returns {number|string} The best result
+     * @returns {number|string} The worst result
      */
     static compareSpellResults(result1, result2) {
-        // If either result is "F", return "F"
+        // If either result is "F", return "F" (worst possible)
         if (result1 === "F" || result2 === "F") {
             return "F";
         }
         
-        // Both are numeric, return the higher value
+        // Both are numeric, return the LOWER value (worse for caster)
         const num1 = typeof result1 === "number" ? result1 : parseFloat(result1);
         const num2 = typeof result2 === "number" ? result2 : parseFloat(result2);
         
-        return Math.max(num1, num2);
+        return Math.min(num1, num2);
     }
     
     /**
      * Check if a natural roll result is in an unmodified range.
-     * Unmodified ranges are: 100, 98-99, 96-97, 01-02
+     * Unmodified ranges: 01-02 and 96-100
+     * Modified range: 03-95
      * @param {number} naturalRoll - The natural roll result (1-100)
      * @returns {boolean} True if the roll is in an unmodified range
      */
     static isUnmodifiedRoll(naturalRoll) {
-        // Unmodified ranges: 100, 98-99, 96-97, 01-02
-        return (naturalRoll >= 96 && naturalRoll <= 100) || (naturalRoll >= 1 && naturalRoll <= 2);
+        // Unmodified ranges: 01-02 and 96-100
+        return naturalRoll <= 2 || naturalRoll >= 96;
     }
     
     /**
@@ -228,9 +242,10 @@ export default class BaseSpellService {
      * @param {number} params.modifier - The modifier to apply (can be negative)
      * @param {string|Object} params.subindex - For single realm: subindex string (optional, will prompt if not provided)
      *                                          For hybrid realms: Object with realm as key and subindex as value (optional, will prompt if not provided)
+     * @param {string} params.targetName - The target name for display in dialogs (optional)
      * @returns {Promise<number|string|null>} The result from the table(s) or null
      */
-    static async getBaseSpellResult({ realm, naturalRoll, modifier, subindex = null }) {
+    static async getBaseSpellResult({ realm, naturalRoll, modifier, subindex = null, targetName = null }) {
         // Normalize roll result according to unmodified roll rules
         const normalizedResult = this.normalizeSpellRollResult(naturalRoll, modifier);
         
@@ -269,7 +284,7 @@ export default class BaseSpellService {
                 // Prompt for subindex if not provided
                 if (!subindex) {
                     const subindices = Object.keys(realmData);
-                    subindex = await this.selectSubindex(subindices, normalizedRealm);
+                    subindex = await this.selectSubindex(subindices, normalizedRealm, targetName);
                     if (!subindex) return null;
                 }
                 selectedSubindices[normalizedRealm] = subindex;
@@ -282,7 +297,7 @@ export default class BaseSpellService {
             if (subindex === null || typeof subindex === "object") {
                 // Prompt for both subindices if not provided or incomplete
                 if (!subindex || Object.keys(subindex).length !== 2) {
-                    selectedSubindices = await this.selectSubindicesForRealms(normalizedRealms);
+                    selectedSubindices = await this.selectSubindicesForRealms(normalizedRealms, targetName);
                     if (!selectedSubindices) return null;
                 } else {
                     selectedSubindices = subindex;
