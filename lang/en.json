@@ -355,6 +355,7 @@
             "duration": "Duration",
             "range": "Range",
             "type": "Type",
+            "subType": "Subtype",
             "description": "Description"
         },
         "skill_category": {
@@ -566,6 +567,29 @@
             "realm": "Realm",
             "type": "Type",
             "profession": "Profession"
+        },
+        "spells": {
+            "select_armor_type": "Select Armor Type",
+            "select_armor_type_prompt": "Select the armor type:",
+            "cast": "Cast spell",
+            "cast_result": "Cast Result",
+            "rr_modifier": "RR Modifier",
+            "no_skill_found": "No skill found for spell list",
+            "spell_fumble": "Spell Fumble!",
+            "targets_must_roll": "Targets must roll above",
+            "casting_options": "Casting Options",
+            "subtlety": "Subtlety",
+            "hands": "Hands",
+            "voice": "Voice",
+            "preparation": "Preparation",
+            "other_mods": "Other Modifiers",
+            "total_modifier": "Total Modifier",
+            "spell_failure_roll": "Spell Failure Roll",
+            "roll": "Roll",
+            "casting_penalty": "Casting Penalty"
+        },
+        "dialog": {
+            "cancel": "Cancel"
         },
         "attack_table": {
             "bastard_axe": "Bastard Axe",

@@ -61,6 +61,31 @@ placeholder="Search spell..."
     {{/if}}
 
     <div data-search="{{spell.name}}" style="display: flex; align-items: center; gap: 0.5em;">
+      {{#if (eq spell.system.type "F")}}
+      <a class="spell-cast spell-cast-force" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
+        <i class="fas fa-hand-sparkles"></i>
+      </a>
+      {{/if}}
+      {{#if (eq spell.system.type "E")}}
+      <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
+        <i class="fas fa-magic"></i>
+      </a>
+      {{/if}}
+      {{#if (eq spell.system.type "P")}}
+      <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
+        <i class="fas fa-magic"></i>
+      </a>
+      {{/if}}
+      {{#if (eq spell.system.type "U")}}
+      <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
+        <i class="fas fa-magic"></i>
+      </a>
+      {{/if}}
+      {{#if (eq spell.system.type "I")}}
+      <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
+        <i class="fas fa-magic"></i>
+      </a>
+      {{/if}}
       <span>{{spell.name}}</span>
       {{#if spell.system.description}}
       <i class="fas fa-info-circle spell-info-icon" 
@@ -70,7 +95,7 @@ placeholder="Search spell..."
     <div data-search="{{spell.name}}">{{spell.system.area_of_effect}}</div>
     <div data-search="{{spell.name}}">{{spell.system.duration}}</div>
     <div data-search="{{spell.name}}">{{spell.system.range}}</div>
-    <div data-search="{{spell.name}}">{{spell.system.type}}</div>
+    <div data-search="{{spell.name}}">{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</div>
     <div data-search="{{spell.name}}">
       <a class="item-edit" title="Edit Spell" data-item-id="{{spell._id}}">
         <i class="fas fa-edit"></i>

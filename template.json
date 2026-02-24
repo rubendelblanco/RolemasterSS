@@ -465,7 +465,8 @@
       "area_of_effect": "",
       "duration": "",
       "range": "",
-      "type": "",
+      "type": "U",
+      "subType": "-",
       "description": ""
     },
     "spell_list": {

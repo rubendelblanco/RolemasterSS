@@ -1,0 +1,133 @@
+{
+  "columns": ["elemental", "force", "informational", "other"],
+  "attackSpells": ["elemental", "force"],
+  "nonAttackSpells": ["informational", "other"],
+  "ranges": [
+    {
+      "min": 1, "max": 20,
+      "elemental": "Ese mosquito acaba de posarse en tu oreja. Debes comenzar a lanzar el hechizo de nuevo (pero no pierdes los puntos de poder).",
+      "force": "La gracia de tu objetivo te distrae. Pierdes el hechizo (y un punto de poder).",
+      "informational": "Un lapso momentáneo de concentración retrasa el lanzamiento del hechizo un asalto.",
+      "other": "Tropiezas con la invocación y retrasas el lanzamiento del hechizo un asalto."
+    },
+    {
+      "min": 21, "max": 30,
+      "elemental": "Tus dedos chispean y te sorprenden. Pierdes el hechizo (y un punto de poder). Operas con un modificador de -50 el siguiente asalto.",
+      "force": "Recuerdas un incidente traumático de tu infancia. Pierdes el hechizo (pero no los puntos de poder). Operas a -10 durante cinco asaltos.",
+      "informational": "Solo obtienes un pequeño fragmento de información. Desafortunadamente, esa información está desactualizada (o es incorrecta).",
+      "other": "No puedes recordar las palabras finales del hechizo. Pierdes el hechizo (pero no los puntos de poder)."
+    },
+    {
+      "min": 31, "max": 40,
+      "elemental": "Retroceso menor de poder. Pierdes el hechizo (y la mitad de los puntos de poder –redondeado hacia abajo). Aturdido durante 1 asalto.",
+      "force": "La magia nubla tu visión. Pierdes el hechizo (y la mitad de los puntos de poder –redondeado hacia abajo). Aturdido durante 1 asalto.",
+      "informational": "Obtienes la mitad de la información deseada; pero es incorrecta.",
+      "other": "Tu cabeza palpita. Tienes que dejar de lanzar (pierdes el hechizo, pero no los puntos de poder)."
+    },
+    {
+      "min": 41, "max": 60,
+      "elemental": "Te das cuenta de que estás lanzando el hechizo equivocado. Debes empezar de nuevo. Pierdes los puntos de poder y el hechizo.",
+      "force": "¡Los planetas no están alineados correctamente! Tu hechizo no tiene absolutamente ningún efecto (y pierdes los puntos de poder).",
+      "informational": "La información que obtienes es correcta, ¡pero no tienes idea de cuál era el tema!",
+      "other": "Un lapso mental momentáneo te hace olvidar tu lugar en el hechizo (pierdes el hechizo, pero no los puntos de poder)."
+    },
+    {
+      "min": 61, "max": 75,
+      "elemental": "¡Sientes una araña subiendo por tu espalda! Pierdes el hechizo y los puntos de poder.",
+      "force": "¡Tu objetivo debe estar bendecido! Tu hechizo no tiene efecto y pierdes el doble del número normal de puntos de poder.",
+      "informational": "Obtienes información correcta sobre un tema similar al que buscabas. Estás tan sorprendido que quedas aturdido 1 asalto.",
+      "other": "Mientras lanzas, notas que las sombras comienzan a moverse. Inmediatamente dejas de lanzar (pierdes el hechizo y 1 punto de poder)."
+    },
+    {
+      "min": 76, "max": 90,
+      "elemental": "¡El hechizo falla! Las llamas recorren tu brazo. Recibes 5 puntos de daño y quedas aturdido durante 3 asaltos.",
+      "force": "¡Retroceso de poder! El hechizo falla por completo. Quedas aturdido durante 8 asaltos.",
+      "informational": "No puedes distinguir la información debido a retroalimentación extraña.",
+      "other": "Un calambre muscular en tu mandíbula hace que tu hechizo falle. Pierdes el hechizo y la mitad de los puntos normales (redondeado hacia abajo). Quedas aturdido durante dos asaltos."
+    },
+    {
+      "min": 91, "max": 95,
+      "elemental": "¡Los elementos rechazan tu llamada! Eres lanzado hacia atrás 1 metro (recibiendo 2d10 de daño) y quedas aturdido durante seis asaltos.",
+      "force": "¡La voluntad del objetivo es más fuerte que la tuya! Te derrumbas en el suelo (recibiendo d10 de daño) y quedas aturdido durante 9 asaltos.",
+      "informational": "¡Obtienes un fragmento de información ominosa sobre tu propia muerte! Quedas aturdido durante un asalto.",
+      "other": "Estás viendo estrellas. Debes cancelar el hechizo. Pierdes el hechizo y la mitad de los puntos de poder normales (redondeado hacia abajo). Quedas aturdido durante un asalto."
+    },
+    {
+      "min": 96, "max": 100,
+      "elemental": "En lugar de lanzarse, los elementos te envuelven. Recibes 20 de daño y un golpe crítico 'B'.",
+      "force": "El hechizo se internaliza. Recibes 4d10 de daño y quedas inconsciente durante 12 horas.",
+      "informational": "Obtienes una pieza de información muy específica e incorrecta. Sin embargo, experimentas retroalimentación de poder (recibes d10 de daño).",
+      "other": "Internalizas el hechizo. Recibes 2d10 de daño y quedas aturdido durante 2d10 asaltos."
+    },
+    {
+      "min": 101, "max": 125,
+      "elemental": "El ataque elemental se desvía a la derecha del objetivo previsto. Quedas aturdido durante tres asaltos.",
+      "force": "El hechizo afecta a un objetivo aleatorio a la derecha del objetivo previsto. Quedas aturdido durante un asalto y recibes d10 de daño (por el esfuerzo mental).",
+      "informational": "La retroalimentación de poder causa que la información sea confusa. Quedas aturdido durante dos asaltos.",
+      "other": "El hechizo se desvía a puntos desconocidos. Quedas aturdido durante tres asaltos."
+    },
+    {
+      "min": 126, "max": 150,
+      "elemental": "Un cambio cósmico imprevisto hace que el hechizo se desvíe a la izquierda del objetivo (golpeando al objetivo más cercano). Este cambio repentino causa tensión mental; recibes 5 de daño y quedas aturdido durante un asalto.",
+      "force": "Pierdes el control y el hechizo golpea a un objetivo a la izquierda del objetivo previsto. Haz otro ataque contra un objetivo aleatorio dentro del alcance. Quedas aturdido durante un asalto y recibes d10 de daño por el ataque salvaje.",
+      "informational": "Obtienes información inútil sobre un objetivo desconocido. Además, hay tanta información que quedas aturdido durante tres asaltos.",
+      "other": "¡Por alguna razón, el hechizo no funciona! Quedas aturdido durante cuatro asaltos mientras intentas descubrir por qué."
+    },
+    {
+      "min": 151, "max": 175,
+      "elemental": "¡Inviertes la polaridad! Los elementos viajan 180° de la dirección prevista (golpeando cualquier objetivo disponible). A su paso, recibes 5d10 de daño y un golpe crítico 'C'.",
+      "force": "El hechizo apunta a una víctima aleatoria que puede estar en cualquier lugar dentro de 150 metros. El retroceso de poder cortocircuita tu cerebro. Recibes 25 de daño y eres incapaz de funcionar durante d10 horas.",
+      "informational": "Te esfuerzas demasiado para obtener la información. Tu hechizo falla por completo y recibes 3 de daño (y quedas aturdido durante 5 asaltos).",
+      "other": "Has estado trabajando demasiado. El hechizo falla gravemente. Recibes d10 de daño y quedas aturdido durante d10 asaltos."
+    },
+    {
+      "min": 176, "max": 185,
+      "elemental": "¡Los elementos no pueden ser controlados! Tu cerebro se fríe (pierdes toda capacidad de lanzar hechizos durante 1 semana). Operas a -50 durante 3 meses (o hasta que el cerebro sea reparado).",
+      "force": "El hechizo se aloja en tu cabeza. Sufres daño cerebral; operas con un modificador de -75 durante d10 meses (o hasta que el cerebro sea reparado). Pierdes toda capacidad de lanzar hechizos durante 1 semana.",
+      "informational": "Algo simplemente no está bien aquí. La sobrecarga masiva en tu cabeza te derriba (recibes cinco de daño). Pasa 5d10 minutos recuperándote (no se permiten otras acciones).",
+      "other": "El hechizo falla en tu cabeza. Recibes 2d10 de daño mientras caes al suelo. Eres incapaz de funcionar durante una hora."
+    },
+    {
+      "min": 186, "max": 191,
+      "elemental": "¡El hechizo explota inmediatamente mientras lo lanzas! Haz un ataque a quemarropa contra ti mismo. Entras en coma durante 1 semana (y pierdes la capacidad de lanzar hechizos durante 2 semanas).",
+      "force": "El hechizo falla y se internaliza dentro de tu cabeza. Recibes 35 de daño. Pierdes la capacidad de lanzar hechizos durante d10 semanas. Hay un 40% de probabilidad de entrar en coma durante d10 días.",
+      "informational": "La nada absoluta que discierces te acerca a la muerte. Recibes 2d10 de daño y un crítico 'A' de Impacto mientras te recuperas. Debes pasar una hora sin hacer nada.",
+      "other": "La retroalimentación severa de poder te derriba. Recibes 1d10 de daño y un crítico 'A' de Impacto. Eres incapaz de funcionar durante d10 horas."
+    },
+    {
+      "min": 192, "max": 195,
+      "elemental": "Los elementos te atacan. Todo lo que queda es una masa carbonizada de carne.",
+      "force": "¡Sufres un derrame cerebral masivo! Recibes 10d10 de daño y entras en coma durante un mes. Al final del coma, parecerás estar bien; pero morirás d10 horas después.",
+      "informational": "¡Has visto tu propia muerte! Te derrumbas en el suelo (recibes 3d10 de daño y quedas inconsciente durante d10 horas). Ahora sufres de Paranoia.",
+      "other": "Acabas de adquirir un trastorno nervioso (a discreción del DJ). Pierdes toda capacidad de lanzar hechizos durante d10 semanas. Te golpeas contra el objeto sólido más cercano (recibes 5d10 de daño) y te noqueas (durante 12 horas)."
+    },
+    {
+      "min": 196, "max": 200,
+      "elemental": "El poder es demasiado para controlar. Los elementos se niegan a responder a tu llamada. El hechizo se internaliza y paraliza tu torso.",
+      "force": "El hechizo cortocircuita completamente tu sistema nervioso. Quedas paralizado de la cintura para abajo.",
+      "informational": "Eres víctima de un derrame cerebral leve. Recibes 4d10 de daño y pierdes toda capacidad de lanzar hechizos durante una semana. Además, tendrás una penalización de -40 durante d10 días.",
+      "other": "Sufres un derrame cerebral leve. Recibes 20 de daño y pierdes toda capacidad de lanzar hechizos durante dos semanas. Además, tendrás una penalización de -50 durante d10 días."
+    },
+    {
+      "min": 201, "max": 250,
+      "elemental": "¡Los elementos te controlan! Recibes 8d10 de daño de concusión y d10 golpes críticos 'E'. Después de mostrar tu fracaso, entrarás en coma durante 3 semanas (y perderás la capacidad de lanzar hechizos durante d10 semanas).",
+      "force": "El hechizo se internaliza completamente. Pierdes toda capacidad de lanzar hechizos durante d10 semanas y estarás en coma durante d10 semanas. Recibes 8d10 de daño.",
+      "informational": "El hechizo cortocircuita. Recibes 20 de daño y te noqueas durante 9 horas. Pierdes toda capacidad de lanzar hechizos durante 4 semanas.",
+      "other": "Internalizas el hechizo. Recibes 4d10 de daño y quedas noqueado durante 2d10 horas. Has perdido toda capacidad de lanzar hechizos durante d10 semanas."
+    },
+    {
+      "min": 251, "max": 300,
+      "elemental": "Te deslizas a los planos elementales durante d10 asaltos. Cuando regresas, te das cuenta de que has perdido toda tu capacidad de lanzar hechizos durante d10 meses.",
+      "force": "Un trastorno nervioso severo te hace perder toda tu capacidad de lanzar hechizos durante d10 meses.",
+      "informational": "Ahora tienes un tic nervioso. Quedas aturdido durante d10 asaltos. Cada vez que intentes lanzar este hechizo en el futuro resultará en deterioro del tic nervioso (eventualmente, te convertirás en una masa temblorosa).",
+      "other": "Ahora sufres de un trastorno nervioso (a discreción del DJ). Quedas aturdido durante 2d10 asaltos y ya no puedes lanzar este hechizo."
+    },
+    {
+      "min": 301, "max": null,
+      "elemental": "Todos los elementos te visitan a la vez. Todo lo que queda es una masa carbonizada de carne.",
+      "force": "Internalización masiva del hechizo. Muerte cerebral instantánea.",
+      "informational": "Has visto el Armagedón. Esto resulta en apagado cerebral. Estás en coma durante 3 meses.",
+      "other": "Sufres un derrame cerebral severo. Caes en coma durante d10 meses."
+    }
+  ]
+}

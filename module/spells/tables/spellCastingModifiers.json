@@ -1,0 +1,27 @@
+{
+  "subtlety": {
+    "E": { "channeling": -40, "essence": -60, "mentalism": -30, "essence/channeling": -60, "channeling/mentalism": -40, "essence/mentalism": -60 },
+    "BE": { "channeling": -40, "essence": -60, "mentalism": -30, "essence/channeling": -60, "channeling/mentalism": -40, "essence/mentalism": -60 },
+    "DE": { "channeling": -40, "essence": -60, "mentalism": -30, "essence/channeling": -60, "channeling/mentalism": -40, "essence/mentalism": -60 },
+    "F": { "channeling": -25, "essence": -50, "mentalism": -20, "essence/channeling": -50, "channeling/mentalism": -25, "essence/mentalism": -50 },
+    "I": { "channeling": -5, "essence": -10, "mentalism": 0, "essence/channeling": -10, "channeling/mentalism": -5, "essence/mentalism": -10 },
+    "U": { "channeling": -15, "essence": -30, "mentalism": -5, "essence/channeling": -30, "channeling/mentalism": -15, "essence/mentalism": -30 },
+    "P": { "channeling": -5, "essence": -10, "mentalism": 0, "essence/channeling": -10, "channeling/mentalism": -5, "essence/mentalism": -10 }
+  },
+  "hands": {
+    "none": { "channeling": -20, "essence": -40, "mentalism": 0, "essence/channeling": -40, "channeling/mentalism": -20, "essence/mentalism": -40 },
+    "one": { "channeling": 0, "essence": -10, "mentalism": 0, "essence/channeling": -10, "channeling/mentalism": 0, "essence/mentalism": -10 },
+    "two": { "channeling": 5, "essence": 0, "mentalism": 0, "essence/channeling": 0, "channeling/mentalism": 0, "essence/mentalism": 0 }
+  },
+  "voice": {
+    "none": { "channeling": -15, "essence": -25, "mentalism": 0, "essence/channeling": -25, "channeling/mentalism": -15, "essence/mentalism": -25 },
+    "whisper": { "channeling": -5, "essence": -10, "mentalism": 0, "essence/channeling": -10, "channeling/mentalism": -5, "essence/mentalism": -10 },
+    "normal": { "channeling": 0, "essence": 0, "mentalism": 0, "essence/channeling": 0, "channeling/mentalism": 0, "essence/mentalism": 0 },
+    "shout": { "channeling": 10, "essence": 5, "mentalism": 0, "essence/channeling": 5, "channeling/mentalism": 0, "essence/mentalism": 0 }
+  },
+  "preparation": {
+    "0": 0,
+    "1": 10,
+    "2": 20
+  }
+}

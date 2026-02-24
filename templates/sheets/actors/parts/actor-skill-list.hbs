@@ -27,17 +27,17 @@
                 (eq skill.system.designation "Everyman" )}} style="color:green;" {{else if (eq skill.system.designation "Restricted"
         )}} style="color:red;" {{/if}}>
             {{#if (eq skill.system.offensive_skill "none" )}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-id="{{skill._id}}">{{skill.name}}<i class="fas fa-dice"></i></a></div>
+                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="none" data-item-id="{{skill._id}}">{{skill.name}}<i class="fas fa-dice"></i></a></div>
             {{else if (eq skill.system.offensive_skill "melee")}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-sword"></i></a></div>
+                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="melee" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-sword"></i></a></div>
             {{else if (eq skill.system.offensive_skill "missile")}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-bow-arrow"></i></a></div>
+                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="missile" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-bow-arrow"></i></a></div>
             {{else if (eq skill.system.offensive_skill "spell")}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-wand-sparkles"></i></a></div>
+                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="spell" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-wand-sparkles"></i></a></div>
             {{else if (eq skill.system.offensive_skill "area")}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-explosion"></i></a></div>
+                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="area" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-explosion"></i></a></div>
             {{else if (eq skill.system.offensive_skill "base")}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-hand-sparkles"></i></a></div>
+                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="base" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-hand-sparkles"></i></a></div>
             {{else}}
                 {{skill.name}}
             {{/if}}

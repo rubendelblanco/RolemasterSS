@@ -8,6 +8,7 @@ import SkillCategoryService from "../../actors/services/skill_category_service.j
 import SkillDropHandler from "../../actors/drop_handlers/skill_drop_handler.js";
 import SkillCategoryDropHandler from "../../actors/drop_handlers/skill_category_drop_handler.js";
 import RaceDropHandler from "../../actors/drop_handlers/race_drop_handler.js";
+import ForceSpellService from "../../spells/services/force_spell_service.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -135,7 +136,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     });
 
     this._registerSkillListeners(html);
-    this._registerItemListeners(html);
     this._registerStatListeners(html);
 
     // PC-specific auto-calculations (only for playable characters)
@@ -192,10 +192,25 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   }
 
   _registerItemListeners(html) {
-    html.find(".spell-favorite, .skill-favorite").click(ev => this._onItemFavoriteClick(ev));
-    html.find(".item-give").click(ev => this._onItemGiveClick(ev));
-    html.find(".split-stack").click(ev => this._onItemSplitClick(ev));
-    html.find(".wearable").click(ev => this._onItemWearableClick(ev));
+    super._registerItemListeners(html);
+    html.find(".spell-cast").click(ev => this._onSpellCastClick(ev));
+  }
+
+  async _onSpellCastClick(ev) {
+    ev.preventDefault();
+    const spellId = ev.currentTarget.dataset.itemId;
+    const spellListName = ev.currentTarget.dataset.spellListName;
+    const spellListRealm = ev.currentTarget.dataset.spellListRealm;
+    
+    const spell = this.actor.items.get(spellId);
+    if (!spell) return;
+    
+    await ForceSpellService.castForceSpell({
+      actor: this.actor,
+      spell: spell,
+      spellListName: spellListName,
+      spellListRealm: spellListRealm
+    });
   }
 
   _registerStatListeners(html) {

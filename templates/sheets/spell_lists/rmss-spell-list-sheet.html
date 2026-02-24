@@ -54,7 +54,7 @@
                 <td>{{spell.system.area_of_effect}}</td>
                 <td>{{spell.system.duration}}</td>
                 <td>{{spell.system.range}}</td>
-                <td>{{spell.system.type}}</td>
+                <td>{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</td>
                 <td>
                     <a class="item-edit" title="Edit Spell" data-item-id="{{spell.id}}">
                         <i class="fas fa-edit"></i>
