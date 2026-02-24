@@ -583,7 +583,10 @@
             "voice": "Voice",
             "preparation": "Preparation",
             "other_mods": "Other Modifiers",
-            "total_modifier": "Total Modifier"
+            "total_modifier": "Total Modifier",
+            "spell_failure_roll": "Spell Failure Roll",
+            "roll": "Roll",
+            "casting_penalty": "Casting Penalty"
         },
         "dialog": {
             "cancel": "Cancel"

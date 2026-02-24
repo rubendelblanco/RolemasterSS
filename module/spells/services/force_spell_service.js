@@ -2,6 +2,7 @@ import BaseSpellService from "./base_spell_service.js";
 import SpellCalculationService from "./spell_calculation_service.js";
 import CastingOptionsService from "./casting_options_service.js";
 import StaticManeuverService from "./static_maneuver_service.js";
+import SpellFailureService from "./spell_failure_service.js";
 
 /**
  * Service to handle spell casting for non-elemental spells (F, P, U, I, E types).
@@ -132,8 +133,18 @@ export default class ForceSpellService {
 
         // For non-Force spells (or Force without targets), get Static Maneuver result
         let maneuverResult = null;
+        let failureResult = null;
         if (!isForceSpell || !hasTargets) {
             maneuverResult = await StaticManeuverService.getResult(finalResult, naturalRoll);
+            
+            // If result is a failure, roll on Spell Failure Table
+            if (maneuverResult && SpellFailureService.isFailureResult(maneuverResult.code)) {
+                failureResult = await SpellFailureService.rollFailure(
+                    spell.system.type,
+                    maneuverResult.code,
+                    castingModifier
+                );
+            }
         }
 
         // Create chat message
@@ -150,6 +161,7 @@ export default class ForceSpellService {
             isFumble,
             targetRRs,
             maneuverResult,
+            failureResult,
             casterLevel: actor.system.attributes?.level?.value ?? 1
         });
 
@@ -276,6 +288,7 @@ export default class ForceSpellService {
         isFumble,
         targetRRs = [],
         maneuverResult = null,
+        failureResult = null,
         casterLevel = 1
     }) {
         const hasTargets = targets.length > 0;
@@ -303,6 +316,24 @@ export default class ForceSpellService {
                 <div class="spell-maneuver-result ${resultClass}">
                     <p class="maneuver-name"><strong>${maneuverResult.name}</strong></p>
                     <p class="maneuver-description">${maneuverResult.description}</p>
+                </div>
+            `;
+        }
+
+        // Show Spell Failure result if there was a failure
+        if (failureResult) {
+            const multiplierText = failureResult.multiplier > 1 ? ` (×${failureResult.multiplier})` : '';
+            content += `
+                <div class="spell-failure-result">
+                    <h4>⚠️ ${game.i18n.localize("rmss.spells.spell_failure_roll")}</h4>
+                    <div class="failure-roll-details">
+                        <p>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${failureResult.naturalRoll}</strong></p>
+                        <p>📊 ${game.i18n.localize("rmss.spells.casting_penalty")}: <strong>+${failureResult.modifierPenalty}</strong>${multiplierText}</p>
+                        <p>📈 Total: <strong>${failureResult.finalResult}</strong></p>
+                    </div>
+                    <div class="failure-description">
+                        <p>${failureResult.description}</p>
+                    </div>
                 </div>
             `;
         }

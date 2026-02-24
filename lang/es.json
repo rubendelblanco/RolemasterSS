@@ -583,7 +583,10 @@
       "voice": "Voz",
       "preparation": "Preparación",
       "other_mods": "Otros Modificadores",
-      "total_modifier": "Modificador Total"
+      "total_modifier": "Modificador Total",
+      "spell_failure_roll": "Tirada de Fallo de Hechizo",
+      "roll": "Tirada",
+      "casting_penalty": "Penalización de lanzamiento"
     },
     "dialog": {
       "cancel": "Cancelar"

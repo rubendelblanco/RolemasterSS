@@ -1594,9 +1594,39 @@ tr.container-row {
     background: rgba(139, 0, 139, 0.1);
 }
 
+/* Spell Failure Result */
+.spell-failure-result {
+    margin-top: 0.75em;
+    padding: 0.75em;
+    border-radius: 4px;
+    border: 2px solid #8b0000;
+    background: rgba(139, 0, 0, 0.15);
+}
 
+.spell-failure-result h4 {
+    margin: 0 0 0.5em 0;
+    color: #8b0000;
+    font-size: 1.1em;
+}
 
+.spell-failure-result .failure-roll-details {
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+}
 
+.spell-failure-result .failure-roll-details p {
+    margin: 0.25em 0;
+}
+
+.spell-failure-result .failure-description {
+    font-style: italic;
+    color: #660000;
+}
+
+.spell-failure-result .failure-description p {
+    margin: 0;
+}
 
 
 
