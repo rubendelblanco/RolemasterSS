@@ -29,6 +29,7 @@ import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 import utils from "./module/utils.js";
 import {ContainerHandler} from "./module/actors/utils/container_handler.js";
+import EffectsPopupService from "./module/core/rolls/effects_popup_service.js";
 
 export let socket;
 
@@ -276,52 +277,48 @@ Hooks.once("init", function () {
     }
 
     // 2. Creamos el botón manualmente.
-    const critButton = document.createElement("div");
-    critButton.classList.add("control-icon");
-    critButton.title = "Forzar Crítico (RMSS)";
-    critButton.innerHTML = `<i class="fas fa-skull-crossbones"></i>`;
+    const effectsButton = document.createElement("div");
+    effectsButton.classList.add("control-icon");
+    effectsButton.title = game.i18n.localize("rmss.combat.effects_title");
+    effectsButton.innerHTML = `<i class="fas fa-skull-crossbones"></i>`;
 
     // 3. Añadimos el listener.
-    critButton.addEventListener('click', async (event) => {
+    effectsButton.addEventListener('click', async (event) => {
       event.preventDefault();
-      console.log("[rmss] Botón de crítico pulsado", { app, html, data });
+      console.log("[rmss] Botón de efectos pulsado", { app, html, data });
 
-      // Obtenemos el actor del token sobre el que hemos abierto el HUD.
+      // Obtenemos el token sobre el que hemos abierto el HUD.
       const targetToken = app.object;
       if (!targetToken?.actor) {
         console.warn("[rmss] Token sin actor", targetToken);
         return;
       }
 
-      // Valores iniciales que el GM puede modificar.
-      const initialDamage = 0;
-      const initialSeverity = 'A';
-      const initialCritType = 'K';
+      // Valores iniciales para el crítico.
+      const criticalOptions = {
+        damage: 0,
+        severity: 'A',
+        critType: 'K',
+        modifier: 0
+      };
 
-      // Mostrar pop-up al GM.
-      console.log("[rmss] Llamando a criticalMessagePopup", {
-        actor: targetToken.actor,
-        initialDamage,
-        initialSeverity,
-        initialCritType
-      });
+      // Mostrar popup con tabs (Crítico / RR).
+      const response = await EffectsPopupService.showPopup(targetToken, criticalOptions);
 
-      const gmResponse = await RMSSWeaponCriticalManager.criticalMessagePopup(
-          targetToken.actor,
-          initialDamage,
-          initialSeverity,
-          initialCritType
-      );
+      if (!response) {
+        console.log("[rmss] Popup cancelado");
+        return;
+      }
 
-      // Si el GM confirmó, aplicamos el resultado.
-      if (gmResponse && gmResponse.confirmed) {
-        console.log("[rmss] Crítico confirmado por el GM", gmResponse);
+      // Si fue acción de crítico
+      if (response.action === "critical" && response.confirmed) {
+        console.log("[rmss] Crítico confirmado por el GM", response);
 
         const res = await RMSSWeaponCriticalManager.updateActorHits(
             targetToken.id,
             targetToken instanceof Token,
-            parseInt(gmResponse.damage),
-            gmResponse
+            parseInt(response.damage),
+            response
         );
 
         await RMSSWeaponCriticalManager.applyCriticalTo(
@@ -330,17 +327,18 @@ Hooks.once("init", function () {
             null
         );
 
-        ui.notifications.info(`Crítico aplicado a ${targetToken.name} según lo confirmado por el GM.`);
-      } else {
-        console.log("[rmss] Acción de crítico cancelada o no confirmada", gmResponse);
-        ui.notifications.warn("Acción de crítico cancelada.");
+        ui.notifications.info(`Crítico aplicado a ${targetToken.name}`);
+      }
+      // Si fue acción de RR, el mensaje ya se envió al chat desde el servicio
+      else if (response.action === "rr") {
+        console.log("[rmss] Tirada de RR completada", response);
       }
     });
 
     // 4. Añadimos el botón al HUD.
     const colRight = html.querySelector('.col.right');
     if (colRight) {
-      colRight.appendChild(critButton);
+      colRight.appendChild(effectsButton);
     } else {
       console.warn("[rmss] No se encontró '.col.right' en el HUD");
     }
@@ -356,6 +354,49 @@ Hooks.once("init", function () {
     CONFIG.rmss = CONFIG.rmss || {};
     CONFIG.rmss.skillCategories = documents;
     CONFIG.rmss.skillCategories.sort((a, b) => a.name.localeCompare(b.name));
+  });
+
+  // Hook: renderChatMessage - Handle RR roll buttons
+  Hooks.on("renderChatMessage", (message, html, data) => {
+    const rrButton = html.find(".rr-roll-button");
+    if (!rrButton.length) return;
+
+    const ownerIds = (rrButton.data("owner-ids") || "").split(",").filter(id => id);
+    const isOwner = ownerIds.includes(game.user.id);
+    const isGM = game.user.isGM;
+
+    // Hide button if user is not owner or GM
+    if (!isOwner && !isGM) {
+      rrButton.hide();
+      return;
+    }
+
+    // Add click listener
+    rrButton.on("click", async (event) => {
+      event.preventDefault();
+      const button = event.currentTarget;
+      
+      const tokenId = button.dataset.tokenId;
+      const attackerLevel = parseInt(button.dataset.attackerLevel);
+      const defenderLevel = parseInt(button.dataset.defenderLevel);
+      const modifier = parseInt(button.dataset.modifier);
+      const rrTarget = parseInt(button.dataset.rrTarget);
+
+      // Disable button to prevent double clicks
+      button.disabled = true;
+      button.textContent = "⏳...";
+
+      await EffectsPopupService.executeResistanceRoll(
+        tokenId,
+        attackerLevel,
+        defenderLevel,
+        modifier,
+        rrTarget
+      );
+
+      // Remove the button after rolling
+      $(button).remove();
+    });
   });
 
   // Hook: updateItem

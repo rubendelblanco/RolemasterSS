@@ -1,5 +1,5 @@
 import BaseSpellService from "./base_spell_service.js";
-import SpellCalculationService from "./spell_calculation_service.js";
+import ResistanceRollService from "../../core/rolls/resistance_roll_service.js";
 import CastingOptionsService from "./casting_options_service.js";
 import StaticManeuverService from "./static_maneuver_service.js";
 import SpellFailureService from "./spell_failure_service.js";
@@ -116,21 +116,18 @@ export default class ForceSpellService {
                 
                 const rrModifier = result;
                 
-                // Calculate base RR from level difference
-                const baseRR = SpellCalculationService.calculateResistanceRoll({
-                    casterLevel: casterLevel,
-                    targetLevel: targetLevel
-                });
-                
-                // Apply modifier: RR final = max(0, baseRR - modifier)
-                const finalRR = Math.max(0, baseRR - rrModifier);
+                // Calculate final RR using the unified method
+                const finalRR = ResistanceRollService.getFinalRR(
+                    casterLevel,
+                    targetLevel,
+                    rrModifier
+                );
                 
                 // Format subindices for display
                 const subindexDisplay = Object.values(subindices).join(" / ");
                 
                 targetRRs.push({
                     name: target.name,
-                    baseRR: baseRR,
                     finalRR: finalRR,
                     targetLevel: targetLevel,
                     rrModifier: rrModifier,

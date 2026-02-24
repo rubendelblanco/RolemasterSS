@@ -538,7 +538,19 @@
             "penalty": "Wound penalties",
             "attacks": "attacks!",
             "fumble": "FUMBLES!",
-            "cooldown": "Waiting for GM confirmation"
+            "cooldown": "Waiting for GM confirmation",
+            "critical": "Critical",
+            "critical_subtype": "Subtype",
+            "resistance_roll": "Resistance Roll",
+            "attacker_level": "Attacker Level",
+            "defender_level": "Defender Level",
+            "rr_modifier": "Modifier",
+            "rr_target": "RR to beat",
+            "rr_success": "RESISTED!",
+            "rr_failed": "FAILED!",
+            "roll_rr": "Roll RR",
+            "must_roll_rr": "must make a resistance roll",
+            "effects_title": "RMSS Effects"
         },
         "level_up": {
             "ranks_reset": "New ranks reset"

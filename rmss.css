@@ -1633,3 +1633,133 @@ tr.container-row {
     color: #ff6600;
     text-shadow: 0 0 3px rgba(255, 102, 0, 0.5);
 }
+
+/* RMSS Effects Popup Tabs */
+#rmss-effects-popup {
+    min-width: 350px;
+}
+
+.rmss-tabs {
+    display: flex;
+    border-bottom: 2px solid #782e22;
+    margin-bottom: 1em;
+}
+
+.rmss-tab {
+    flex: 1;
+    padding: 0.5em 1em;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-size: 1em;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+.rmss-tab:hover {
+    color: #782e22;
+    background: rgba(120, 46, 34, 0.1);
+}
+
+.rmss-tab.active {
+    color: #782e22;
+    border-bottom-color: #782e22;
+    font-weight: bold;
+}
+
+.rmss-tab-content {
+    display: none;
+}
+
+.rmss-tab-content.active {
+    display: block;
+}
+
+.rr-calculated {
+    text-align: center;
+    font-size: 1.1em;
+}
+
+/* RR Chat Message */
+.rmss-rr-result {
+    padding: 0.5em;
+}
+
+.rmss-rr-result .rr-details p,
+.rmss-rr-result .rr-roll p {
+    margin: 0.25em 0;
+}
+
+.rmss-rr-result hr {
+    margin: 0.5em 0;
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.rr-outcome {
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border-radius: 4px;
+    border-left: 4px solid #888;
+    background: rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.rr-outcome.result-success {
+    border-left-color: #228b22;
+    background: rgba(34, 139, 34, 0.15);
+}
+
+.rr-outcome.result-failure {
+    border-left-color: #cc0000;
+    background: rgba(204, 0, 0, 0.15);
+}
+
+.rr-outcome .rr-outcome-text {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.rr-outcome.result-success .rr-outcome-text {
+    color: #228b22;
+}
+
+.rr-outcome.result-failure .rr-outcome-text {
+    color: #cc0000;
+}
+
+/* RR Roll Button - same style as critical roll button but blue */
+.rr-roll-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(180deg, #0077b6, #023e8a);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 3px #000;
+    white-space: normal;
+    word-break: break-word;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.6);
+    line-height: 1.4;
+    padding: 6px 8px;
+    margin: 4px 0;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+}
+
+.rr-roll-button:hover {
+    background: linear-gradient(180deg, #0096c7, #0077b6);
+    transform: scale(1.03);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+.rr-roll-button:disabled {
+    background: linear-gradient(180deg, #6c757d, #495057);
+    cursor: not-allowed;
+    transform: none;
+}

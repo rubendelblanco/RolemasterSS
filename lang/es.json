@@ -538,7 +538,19 @@
       "penalty": "Penalización heridas",
       "attacks": "ataca!",
       "fumble": "¡PIFIA!",
-      "cooldown": "Esperando confirmación del GM"
+      "cooldown": "Esperando confirmación del GM",
+      "critical": "Crítico",
+      "critical_subtype": "Subtipo",
+      "resistance_roll": "Tirada de Resistencia",
+      "attacker_level": "Nivel Atacante",
+      "defender_level": "Nivel Defensor",
+      "rr_modifier": "Modificador",
+      "rr_target": "RR a superar",
+      "rr_success": "¡RESISTIDO!",
+      "rr_failed": "¡FALLADO!",
+      "roll_rr": "Tirar RR",
+      "must_roll_rr": "debe hacer una tirada de resistencia",
+      "effects_title": "Efectos RMSS"
     },
     "level_up": {
       "ranks_reset": "Nuevos rangos reinicializados"
