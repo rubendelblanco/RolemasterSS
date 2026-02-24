@@ -53,9 +53,15 @@ export default class ForceSpellService {
         const targets = Array.from(game.user.targets);
         const hasTargets = targets.length > 0;
 
-        // Roll the dice (NOT open-ended for base spell attacks)
-        const roll = await new Roll("1d100").evaluate();
-        const naturalRoll = roll.total;
+        // Roll the dice - open-ended upward (explodes on 96+)
+        const roll = await new Roll("1d100x>95").evaluate();
+        
+        // Natural roll is the FIRST die result (before explosions)
+        const naturalRoll = roll.dice[0].results[0].result;
+        
+        // 100 is special (UM 100) - don't use explosive total, only the natural 100
+        // 96-99 explode normally
+        const rollTotal = naturalRoll === 100 ? 100 : roll.total;
         
         // Show dice animation if Dice So Nice is active
         if (game.dice3d) {
@@ -63,10 +69,12 @@ export default class ForceSpellService {
         }
         
         // Unmodified rolls: 01-02 and 96-100 (don't add skill bonus or casting modifiers)
-        // Modified rolls: 03-95 (add skill bonus and casting modifiers)
+        // For unmodified high rolls (96-99), use the explosive total
+        // For 100, use just 100 (special result UM 100)
+        // Modified rolls: 03-95 (add skill bonus and casting modifiers to first roll only)
         const isUnmodified = naturalRoll <= 2 || naturalRoll >= 96;
         const totalBonus = skillBonus + castingModifier;
-        const finalResult = isUnmodified ? naturalRoll : naturalRoll + totalBonus;
+        const finalResult = isUnmodified ? rollTotal : naturalRoll + totalBonus;
 
         // Only process RR for Force (F) type spells with targets
         const isForceSpell = spell.system.type === "F";
@@ -155,6 +163,7 @@ export default class ForceSpellService {
             skillBonus,
             castingModifier,
             naturalRoll,
+            rollTotal,
             finalResult,
             isUnmodified,
             targets,
@@ -165,16 +174,19 @@ export default class ForceSpellService {
             casterLevel: actor.system.attributes?.level?.value ?? 1
         });
 
-        // Execute spell macro if exists
-        await this._executeSpellMacro({
-            spell,
-            actor,
-            targets,
-            naturalRoll,
-            finalResult,
-            isFumble,
-            targetRRs
-        });
+        // Execute spell macro only on success (no failure, no fumble)
+        const isSuccess = !failureResult && !isFumble;
+        if (isSuccess) {
+            await this._executeSpellMacro({
+                spell,
+                actor,
+                targets,
+                naturalRoll,
+                finalResult,
+                isFumble,
+                targetRRs
+            });
+        }
     }
 
     /**
@@ -282,6 +294,7 @@ export default class ForceSpellService {
         skillBonus,
         castingModifier = 0,
         naturalRoll,
+        rollTotal = null,
         finalResult,
         isUnmodified = false,
         targets,
@@ -294,13 +307,14 @@ export default class ForceSpellService {
         const hasTargets = targets.length > 0;
         const totalBonus = skillBonus + castingModifier;
         const formatMod = (n) => n >= 0 ? `+${n}` : `${n}`;
+        const isExplosive = rollTotal && rollTotal !== naturalRoll;
         
         let content = `
             <div class="rmss-spell-cast">
                 <h3>${spell.name}</h3>
                 <p><strong>${spellListName}</strong> (${game.i18n.localize("rmss.spells.cast_result")})</p>
                 <div class="spell-cast-details">
-                    <p>🎲 Roll: <strong>${naturalRoll}</strong>${isUnmodified ? ' <em>(Unmodified)</em>' : ''}</p>
+                    <p>🎲 Roll: <strong>${naturalRoll}</strong>${isExplosive ? ` → <strong class="explosive-roll">${rollTotal}</strong> 💥` : ''}${isUnmodified ? ' <em>(Unmodified)</em>' : ''}</p>
                     ${!isUnmodified ? `
                     <p>📊 Skill: <strong>${formatMod(skillBonus)}</strong></p>
                     ${castingModifier !== 0 ? `<p>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></p>` : ''}

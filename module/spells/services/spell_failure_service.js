@@ -30,12 +30,13 @@ export default class SpellFailureService {
 
     /**
      * Determine which column to use based on spell type.
+     * Attack spells: DE, BE (elemental attacks), F (force)
+     * Non-attack spells: I (informational), E, P, U, and others (other)
      * @param {string} spellType - The spell type (E, BE, DE, F, P, U, I)
      * @returns {string} The column name in the failure table
      */
     static getColumnForSpellType(spellType) {
         switch (spellType) {
-            case "E":
             case "BE":
             case "DE":
                 return "elemental";
@@ -43,9 +44,8 @@ export default class SpellFailureService {
                 return "force";
             case "I":
                 return "informational";
-            case "P":
-            case "U":
             default:
+                // E, P, U and any other type are non-attack spells
                 return "other";
         }
     }

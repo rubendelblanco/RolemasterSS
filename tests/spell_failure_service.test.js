@@ -6,35 +6,37 @@ import SpellFailureService from '../module/spells/services/spell_failure_service
 describe('SpellFailureService', () => {
     
     describe('getColumnForSpellType', () => {
-        test('E type returns elemental', () => {
-            expect(SpellFailureService.getColumnForSpellType('E')).toBe('elemental');
-        });
-
-        test('BE type returns elemental', () => {
+        // Attack spells
+        test('BE type returns elemental (attack)', () => {
             expect(SpellFailureService.getColumnForSpellType('BE')).toBe('elemental');
         });
 
-        test('DE type returns elemental', () => {
+        test('DE type returns elemental (attack)', () => {
             expect(SpellFailureService.getColumnForSpellType('DE')).toBe('elemental');
         });
 
-        test('F type returns force', () => {
+        test('F type returns force (attack)', () => {
             expect(SpellFailureService.getColumnForSpellType('F')).toBe('force');
         });
 
-        test('I type returns informational', () => {
+        // Non-attack spells
+        test('I type returns informational (non-attack)', () => {
             expect(SpellFailureService.getColumnForSpellType('I')).toBe('informational');
         });
 
-        test('P type returns other', () => {
+        test('E type returns other (non-attack)', () => {
+            expect(SpellFailureService.getColumnForSpellType('E')).toBe('other');
+        });
+
+        test('P type returns other (non-attack)', () => {
             expect(SpellFailureService.getColumnForSpellType('P')).toBe('other');
         });
 
-        test('U type returns other', () => {
+        test('U type returns other (non-attack)', () => {
             expect(SpellFailureService.getColumnForSpellType('U')).toBe('other');
         });
 
-        test('unknown type returns other', () => {
+        test('unknown type returns other (non-attack)', () => {
             expect(SpellFailureService.getColumnForSpellType('X')).toBe('other');
         });
     });

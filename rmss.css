@@ -1628,6 +1628,8 @@ tr.container-row {
     margin: 0;
 }
 
-
-
-
+/* Explosive Roll Highlight */
+.explosive-roll {
+    color: #ff6600;
+    text-shadow: 0 0 3px rgba(255, 102, 0, 0.5);
+}
