@@ -1,0 +1,65 @@
+{
+  "ranges": [
+    {
+      "min": null,
+      "max": -76,
+      "code": "spectacular_failure",
+      "name": "Fallo Espectacular",
+      "description": "Tu hechizo falla; tira en la Tabla de Fallo de Hechizos A-10.11.2 y resta el triple del total de todas las modificaciones aplicables de la Tabla de Modificaciones de Lanzamiento T-4.6."
+    },
+    {
+      "min": -75,
+      "max": 1,
+      "code": "absolute_failure",
+      "name": "Fallo Absoluto",
+      "description": "Tu hechizo falla; tira en la Tabla de Fallo de Hechizos A-10.11.2 y resta el doble del total de todas las modificaciones aplicables de la Tabla de Modificaciones de Lanzamiento T-4.6."
+    },
+    {
+      "min": 2,
+      "max": 25,
+      "code": "failure",
+      "name": "Fallo",
+      "description": "Tu hechizo falla; tira en la Tabla de Fallo de Hechizos A-10.11.2 y resta el total de todas las modificaciones aplicables de la Tabla de Modificaciones de Lanzamiento T-4.6."
+    },
+    {
+      "min": 26,
+      "max": 40,
+      "code": "partial_success",
+      "name": "Éxito Parcial",
+      "description": "Completas parte del lanzamiento del hechizo. Puedes lanzar el hechizo normalmente en el siguiente asalto como una acción de 50% de actividad (no se requiere maniobra estática)."
+    },
+    {
+      "min": 41,
+      "max": 60,
+      "code": "near_success",
+      "name": "Casi Éxito",
+      "description": "Lanzas tu hechizo normalmente al final de la fase de acción deliberada del asalto actual."
+    },
+    {
+      "min": 61,
+      "max": 125,
+      "code": "success",
+      "name": "Éxito",
+      "description": "Tu hechizo se lanza normalmente."
+    },
+    {
+      "min": 126,
+      "max": null,
+      "code": "absolute_success",
+      "name": "Éxito Absoluto",
+      "description": "Tu hechizo se lanza y obtienes un bonificador de +10 (no acumulativo) a tu próxima maniobra estática de lanzamiento de hechizos (si ocurre en los próximos 10 minutos)."
+    }
+  ],
+  "special": {
+    "um_66": {
+      "code": "unusual_event",
+      "name": "Evento Inusual",
+      "description": "Te confundes y de alguna manera lanzas el hechizo equivocado. El DJ debe seleccionar aleatoriamente uno de tus otros hechizos. Los resultados se aplican al objetivo de tu hechizo original (el DJ puede ignorar las limitaciones de alcance normales)."
+    },
+    "um_100": {
+      "code": "unusual_success",
+      "name": "Éxito Inusual",
+      "description": "Tu hechizo se lanza y obtienes un bonificador de +30 (no acumulativo) a tu próxima maniobra estática de lanzamiento de hechizos (si ocurre en los próximos 10 minutos)."
+    }
+  }
+}

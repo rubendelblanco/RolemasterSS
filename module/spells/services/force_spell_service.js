@@ -1,15 +1,17 @@
 import BaseSpellService from "./base_spell_service.js";
 import SpellCalculationService from "./spell_calculation_service.js";
 import CastingOptionsService from "./casting_options_service.js";
+import StaticManeuverService from "./static_maneuver_service.js";
 
 /**
- * Service to handle Force (F) type spell casting.
- * Manages the flow: casting options -> skill lookup -> roll -> Basic Spell Attack Table -> RR modifier -> RR calculation
+ * Service to handle spell casting for non-elemental spells (F, P, U, I, E types).
+ * For F type with targets: casting options -> skill lookup -> roll -> Basic Spell Attack Table -> RR modifier -> RR calculation
+ * For other types (E, P, U, I) or F without targets: casting options -> skill lookup -> roll -> Static Maneuver Table result
  */
 export default class ForceSpellService {
 
     /**
-     * Cast a Force type spell.
+     * Cast a spell (F, P, U, I types).
      * @param {Object} params
      * @param {Actor} params.actor - The caster actor
      * @param {Item} params.spell - The spell being cast
@@ -65,11 +67,12 @@ export default class ForceSpellService {
         const totalBonus = skillBonus + castingModifier;
         const finalResult = isUnmodified ? naturalRoll : naturalRoll + totalBonus;
 
-        // If there are targets, get the RR modifier from Basic Spell Attack Table for EACH target
+        // Only process RR for Force (F) type spells with targets
+        const isForceSpell = spell.system.type === "F";
         let isFumble = false;
         let targetRRs = [];
 
-        if (hasTargets) {
+        if (isForceSpell && hasTargets) {
             // Determine realm: use spell list realm, or fall back to actor's realm for base lists
             const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
             const realm = this._normalizeRealm(effectiveRealm);
@@ -127,6 +130,12 @@ export default class ForceSpellService {
             }
         }
 
+        // For non-Force spells (or Force without targets), get Static Maneuver result
+        let maneuverResult = null;
+        if (!isForceSpell || !hasTargets) {
+            maneuverResult = await StaticManeuverService.getResult(finalResult, naturalRoll);
+        }
+
         // Create chat message
         await this._createChatMessage({
             actor,
@@ -140,6 +149,7 @@ export default class ForceSpellService {
             targets,
             isFumble,
             targetRRs,
+            maneuverResult,
             casterLevel: actor.system.attributes?.level?.value ?? 1
         });
 
@@ -265,6 +275,7 @@ export default class ForceSpellService {
         targets,
         isFumble,
         targetRRs = [],
+        maneuverResult = null,
         casterLevel = 1
     }) {
         const hasTargets = targets.length > 0;
@@ -284,6 +295,17 @@ export default class ForceSpellService {
                     <p>📈 Total: <strong>${finalResult}</strong></p>
                 </div>
         `;
+
+        // Show Static Maneuver result for non-Force spells
+        if (maneuverResult) {
+            const resultClass = StaticManeuverService.getResultClass(maneuverResult.code);
+            content += `
+                <div class="spell-maneuver-result ${resultClass}">
+                    <p class="maneuver-name"><strong>${maneuverResult.name}</strong></p>
+                    <p class="maneuver-description">${maneuverResult.description}</p>
+                </div>
+            `;
+        }
 
         if (hasTargets) {
             if (isFumble) {

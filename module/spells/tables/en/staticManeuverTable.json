@@ -1,0 +1,65 @@
+{
+  "ranges": [
+    {
+      "min": null,
+      "max": -76,
+      "code": "spectacular_failure",
+      "name": "Spectacular Failure",
+      "description": "Your spell fails; roll on the Spell Failure Table A-10.11.2 and subtract triple the total of all applicable modifications from the Spell Casting Modifications Table T-4.6."
+    },
+    {
+      "min": -75,
+      "max": 1,
+      "code": "absolute_failure",
+      "name": "Absolute Failure",
+      "description": "Your spell fails; roll on the Spell Failure Table A-10.11.2 and subtract twice the total of all applicable modifications from the Spell Casting Modifications Table T-4.6."
+    },
+    {
+      "min": 2,
+      "max": 25,
+      "code": "failure",
+      "name": "Failure",
+      "description": "Your spell fails; roll on the Spell Failure Table A-10.11.2 and subtract the total of all applicable modifications from the Spell Casting Modifications Table T-4.6."
+    },
+    {
+      "min": 26,
+      "max": 40,
+      "code": "partial_success",
+      "name": "Partial Success",
+      "description": "You complete part of the spell casting. You may cast the spell normally next round as a 50% activity action (i.e., no static maneuver is required)."
+    },
+    {
+      "min": 41,
+      "max": 60,
+      "code": "near_success",
+      "name": "Near Success",
+      "description": "You cast your spell normally at the end of the deliberate action phase of the current round."
+    },
+    {
+      "min": 61,
+      "max": 125,
+      "code": "success",
+      "name": "Success",
+      "description": "Your spell is cast normally."
+    },
+    {
+      "min": 126,
+      "max": null,
+      "code": "absolute_success",
+      "name": "Absolute Success",
+      "description": "Your spell is cast and you get a +10 bonus (non-cumulative) to your next spell casting static maneuver (if it occurs in the next 10 minutes)."
+    }
+  ],
+  "special": {
+    "um_66": {
+      "code": "unusual_event",
+      "name": "Unusual Event",
+      "description": "You become confused and somehow cast the wrong spell. The GM should randomly select one of your other spells. Any results are applied to the target of your original spell (a GM may choose to ignore normal range limitations)."
+    },
+    "um_100": {
+      "code": "unusual_success",
+      "name": "Unusual Success",
+      "description": "Your spell is cast and you get a +30 bonus (non-cumulative) to your next spell casting static maneuver (if it occurs in the next 10 minutes)."
+    }
+  }
+}
