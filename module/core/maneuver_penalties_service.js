@@ -15,7 +15,7 @@ export default class ManeuverPenaltiesService {
      * Get all 4 maneuver penalties for an actor.
      * @param {Actor} actor
      * @param {Object} [options]
-     * @param {string} [options.spellType] - "BE" for Base Elemental (uses -5/-10/-20 instead of -10/-20/-30)
+     * @param {string} [options.spellType] - "BE" or "DE" for elemental spells (uses -5/-10/-20 instead of -10/-20/-30)
      * @returns {{ hitsTaken: number, bleeding: number, stunned: number, penaltyEffect: number }}
      */
     static getManeuverPenalties(actor, options = {}) {
@@ -23,7 +23,7 @@ export default class ManeuverPenaltiesService {
             return { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0 };
         }
 
-        const hitsTaken = options.spellType === "BE"
+        const hitsTaken = (options.spellType === "BE" || options.spellType === "DE")
             ? this._getBEHitsPenalty(actor)
             : RMSSWeaponSkillManager._getHitsPenalty(actor);
 

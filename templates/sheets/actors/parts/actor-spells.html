@@ -91,6 +91,11 @@ placeholder="Search spell..."
         <i class="fa-solid fa-meteor"></i>
       </a>
       {{/if}}
+      {{#if (eq spell.system.type "DE")}}
+      <a class="spell-cast spell-cast-directed" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
+        <i class="fa-solid fa-bolt"></i>
+      </a>
+      {{/if}}
       <span>{{spell.name}}</span>
       {{#if spell.system.description}}
       <i class="fas fa-info-circle spell-info-icon" 

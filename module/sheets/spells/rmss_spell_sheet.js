@@ -32,7 +32,31 @@ export default class RMSSSpellSheet extends ItemSheet {
       enrichedDescription: enrichedDescription
     };
 
+    if (this.item.system.type === "BE") {
+      const balls = CONFIG.rmss?.ballTables ?? [];
+      const bolts = CONFIG.rmss?.boltTables ?? [];
+      sheetData.beAttackTables = [...balls, ...bolts];
+    }
+    if (this.item.system.type === "DE") {
+      sheetData.directedSpellSkills = this._getDirectedSpellSkills();
+      sheetData.boltTables = CONFIG.rmss?.boltTables ?? [];
+    }
+
     return sheetData;
+  }
+
+  /**
+   * Get skills from the actor whose category has slug "directed-spells".
+   * Used for DE spell skill selection. Returns empty array if no actor.
+   * @returns {Array<{name: string}>}
+   */
+  _getDirectedSpellSkills() {
+    const actor = this.item.actor;
+    if (!actor?.items) return [];
+    return actor.items
+      .filter(i => i.type === "skill" && i.system?.categorySlug === "directed-spells")
+      .map(s => ({ name: s.name }))
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 
   /** @override */

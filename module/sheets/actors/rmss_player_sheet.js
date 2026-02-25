@@ -213,6 +213,14 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         spellListName,
         spellListRealm
       });
+    } else if (spell.system?.type === "DE") {
+      const DirectedElementalSpellService = (await import("../../spells/services/directed_elemental_spell_service.js")).default;
+      await DirectedElementalSpellService.castDirectedElementalSpell({
+        actor: this.actor,
+        spell,
+        spellListName,
+        spellListRealm
+      });
     } else {
       await ForceSpellService.castForceSpell({
         actor: this.actor,

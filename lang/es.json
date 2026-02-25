@@ -357,6 +357,7 @@
       "type": "Tipo",
       "subType": "Subtipo",
       "attack_table": "Tabla de ataque (BE)",
+      "skill": "Habilidad",
       "description": "Descripción"
     },
     "skill_category": {
@@ -639,6 +640,9 @@
       "insufficient_power": "{actorName} no tiene puntos de poder suficientes para lanzar {spellName}.",
       "be_no_attack_table": "El hechizo BE no tiene tabla de ataque configurada. Edita el hechizo y selecciona una tabla.",
       "be_no_targets": "Selecciona al menos un objetivo para el ataque elemental.",
+      "de_no_attack_table": "El hechizo DE no tiene tabla de ataque configurada. Edita el hechizo y selecciona una tabla bolt.",
+      "de_no_skill": "El hechizo DE no tiene habilidad configurada. Edita el hechizo y selecciona una habilidad de hechizos dirigidos.",
+      "de_no_targets": "Selecciona al menos un objetivo para el ataque elemental dirigido.",
       "be_attack_resolved": "Ataque resuelto.",
       "skill": "Habilidad",
       "table_result": "Resultado tabla",

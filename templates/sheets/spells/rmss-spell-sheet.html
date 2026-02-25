@@ -54,14 +54,33 @@
                     <td colspan="6">
                         <select name="system.attack_table">
                             <option value="">—</option>
-                            <option value="bola" {{#if (eq system.attack_table "bola")}}selected{{/if}}>Bola</option>
-                            <option value="fire_ball" {{#if (eq system.attack_table "fire_ball")}}selected{{/if}}>Fire Ball</option>
-                            <option value="fire_bolt" {{#if (eq system.attack_table "fire_bolt")}}selected{{/if}}>Fire Bolt</option>
-                            <option value="ice_ball" {{#if (eq system.attack_table "ice_ball")}}selected{{/if}}>Ice Ball</option>
-                            <option value="ice_bolt" {{#if (eq system.attack_table "ice_bolt")}}selected{{/if}}>Ice Bolt</option>
-                            <option value="lighting_bolt" {{#if (eq system.attack_table "lighting_bolt")}}selected{{/if}}>Lighting Bolt</option>
-                            <option value="shock_bolt" {{#if (eq system.attack_table "shock_bolt")}}selected{{/if}}>Shock Bolt</option>
-                            <option value="water_bolt" {{#if (eq system.attack_table "water_bolt")}}selected{{/if}}>Water Bolt</option>
+                            {{#each beAttackTables as |tableKey|}}
+                            <option value="{{tableKey}}" {{#if (eq tableKey ../system.attack_table)}}selected{{/if}}>{{localize (concat "rmss.attack_table." tableKey)}}</option>
+                            {{/each}}
+                        </select>
+                    </td>
+                </tr>
+                {{/if}}
+                {{#if (eq system.type "DE")}}
+                <tr>
+                    <th>{{localize "rmss.spell.attack_table"}}</th>
+                    <td colspan="6">
+                        <select name="system.attack_table">
+                            <option value="">—</option>
+                            {{#each boltTables as |tableKey|}}
+                            <option value="{{tableKey}}" {{#if (eq tableKey ../system.attack_table)}}selected{{/if}}>{{localize (concat "rmss.attack_table." tableKey)}}</option>
+                            {{/each}}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{localize "rmss.spell.skill"}}</th>
+                    <td colspan="6">
+                        <select name="system.skillName">
+                            <option value="">—</option>
+                            {{#each directedSpellSkills as |skill|}}
+                            <option value="{{skill.name}}" {{#if (eq ../system.skillName skill.name)}}selected{{/if}}>{{skill.name}}</option>
+                            {{/each}}
                         </select>
                     </td>
                 </tr>

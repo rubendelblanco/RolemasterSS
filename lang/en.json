@@ -357,6 +357,7 @@
             "type": "Type",
             "subType": "Subtype",
             "attack_table": "Attack Table (BE)",
+            "skill": "Skill",
             "description": "Description"
         },
         "skill_category": {
@@ -639,6 +640,9 @@
             "insufficient_power": "{actorName} does not have enough power points to cast {spellName}.",
             "be_no_attack_table": "BE spell has no attack table configured. Edit the spell and select an attack table.",
             "be_no_targets": "Select at least one target for the elemental attack.",
+            "de_no_attack_table": "DE spell has no attack table configured. Edit the spell and select a bolt table.",
+            "de_no_skill": "DE spell has no skill configured. Edit the spell and select a directed spell skill.",
+            "de_no_targets": "Select at least one target for the directed elemental attack.",
             "be_attack_resolved": "Attack resolved.",
             "skill": "Skill",
             "table_result": "Table result",

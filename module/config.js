@@ -106,6 +106,11 @@ rmss.skill_progression = {
   }
 }
 
+/** Attack tables of type ball (BE spells, area). Add new ball tables here when extending. */
+rmss.ballTables = ["fire_ball", "ice_ball"];
+/** Attack tables of type bolt (BE and DE spells). Add new bolt tables here when extending. */
+rmss.boltTables = ["fire_bolt", "ice_bolt", "lighting_bolt", "shock_bolt", "water_bolt"];
+
 rmss.paths = {
   arms_tables: "systems/rmss/module/combat/tables/arms/",
   critical_tables: "systems/rmss/module/combat/tables/critical/",

@@ -468,6 +468,7 @@
       "type": "U",
       "subType": "-",
       "attack_table": "",
+      "skillName": "",
       "description": ""
     },
     "spell_list": {
