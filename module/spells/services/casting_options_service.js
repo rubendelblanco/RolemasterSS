@@ -172,6 +172,7 @@ export default class CastingOptionsService {
                     
                     form.querySelectorAll('select, input').forEach(el => el.addEventListener('change', updateTotal));
                     form.querySelector('[name="otherMods"]').addEventListener('input', updateTotal);
+                    updateTotal();
                 })();
             </script>
         `;

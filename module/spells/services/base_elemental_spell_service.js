@@ -10,6 +10,7 @@ import { sendExpMessage } from "../../chat/chatMessages.js";
 import RMSSTableManager from "../../combat/rmss_table_manager.js";
 import { RMSSWeaponCriticalManager } from "../../combat/rmss_weapon_critical_manager.js";
 import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
+import { socket } from "../../../rmss.js";
 
 export default class BaseElementalSpellService {
 
@@ -51,6 +52,12 @@ export default class BaseElementalSpellService {
 
         if (castingOptions === null) return;
 
+        const targets = Array.from(game.user.targets);
+        if (targets.length === 0) {
+            ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_targets"));
+            return;
+        }
+
         const skill = actor.items.find(i => i.type === "skill" && i.name === spellListName);
         if (!skill) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.no_skill_found") + `: ${spellListName}`);
@@ -61,6 +68,29 @@ export default class BaseElementalSpellService {
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
         const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0 } = castingOptions;
         const totalCastingModifier = castingOptions.totalModifier;
+
+        const penaltyValue = Math.min(0, penaltyEffect);
+        const restModifier = totalCastingModifier - hitsTaken - bleeding - penaltyValue;
+        const virtualWeapon = { type: "spell", system: { attack_table: spell.system?.attack_table } };
+        const firstTarget = targets[0];
+        const enemyActor = firstTarget.actor;
+        if (!enemyActor?.system?.armor_info) {
+            ui.notifications.warn("Target must have armor info for attack confirmation.");
+            return;
+        }
+
+        const spellOptions = {
+            ob: skillBonus,
+            hitsTaken,
+            bleeding,
+            penaltyValue,
+            bonusValue: restModifier
+        };
+
+        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemyActor, virtualWeapon, spellOptions);
+        if (!gmResponse?.confirmed) return;
+
+        const diff = gmResponse.diff ?? 0;
 
         const roll = await new Roll("1d100x>95").evaluate();
         const naturalRoll = roll.dice[0].results[0].result;
@@ -73,19 +103,7 @@ export default class BaseElementalSpellService {
         const newPP = Math.max(0, currentPP - spellLevel);
         await actor.update({ "system.attributes.power_points.current": newPP });
 
-        const totalBonus = skillBonus + totalCastingModifier;
-        const finalResult = naturalRoll + totalBonus;
-
-        const targets = Array.from(game.user.targets);
-        if (targets.length === 0) {
-            ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_targets"));
-            return;
-        }
-
-        const virtualWeapon = {
-            type: "spell",
-            system: { attack_table: attackTableName }
-        };
+        const finalResult = naturalRoll + diff;
 
         const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
         if (!attackTable) {

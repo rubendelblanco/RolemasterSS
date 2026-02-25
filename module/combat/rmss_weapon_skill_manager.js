@@ -65,52 +65,60 @@ export class RMSSWeaponSkillManager {
         await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor);
     }
 
-    static async attackMessagePopup(actor, enemy, weapon) {
+    /**
+     * Show confirm-attack modal. When spellOptions is provided (from BE spell), use pre-filled values instead of calculating.
+     * @param {Actor} actor
+     * @param {Actor} enemy
+     * @param {Item} weapon
+     * @param {Object} [spellOptions] - Pre-filled values from casting options: { ob, hitsTaken, bleeding, stunnedPenalty, penaltyValue, bonusValue }
+     */
+    static async attackMessagePopup(actor, enemy, weapon, spellOptions = null) {
         // Get the real actor from the game if passed through socketlib
-        // (socketlib serializes objects, losing the Collection structure)
         const realActor = (actor.id && game.actors) ? game.actors.get(actor.id) : actor;
         if (!realActor) {
             console.error("[RMSS] Could not get the real actor", actor);
-            return;
+            return null;
         }
 
-        const moveRatio = (realActor.system.attributes.movement_rate.current / realActor.system.attributes.movement_rate.value);
+        let ob, hitsTaken, bleeding, penaltyValue, bonusValue, stunnedValue;
 
-        if (moveRatio < 0.5) {
-            ui.notifications.warn("Unable to attack (activity behind 50%)", {localize: true});
-            return;
+        const realEnemy = (enemy?.id && game.actors) ? game.actors.get(enemy.id) : enemy;
+
+        if (spellOptions) {
+            ob = spellOptions.ob ?? 0;
+            hitsTaken = spellOptions.hitsTaken ?? 0;
+            bleeding = spellOptions.bleeding ?? 0;
+            penaltyValue = spellOptions.penaltyValue ?? 0;
+            bonusValue = spellOptions.bonusValue ?? 0;
+            const stunEffect = realEnemy ? Utils.getEffectByName(realEnemy, "Stunned") : [];
+            stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
+        } else {
+            const moveRatio = (realActor.system.attributes.movement_rate.current / realActor.system.attributes.movement_rate.value);
+            if (moveRatio < 0.5) {
+                ui.notifications.warn("Unable to attack (activity behind 50%)", {localize: true});
+                return null;
+            }
+            ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor);
+            const maneuverPenalties = ManeuverPenaltiesService.getManeuverPenalties(realActor);
+            const { hitsTaken: ht, bleeding: bl, penaltyEffect } = maneuverPenalties;
+            hitsTaken = ht;
+            bleeding = bl;
+            penaltyValue = Math.min(0, penaltyEffect);
+            const bonusEffects = Utils.getEffectByName(realActor, "Bonus");
+            const stunEffect = Utils.getEffectByName(enemy, "Stunned");
+            bonusValue = 0;
+            bonusEffects.forEach((bonus) => { bonusValue += bonus.flags.rmss.value; });
+            bonusValue -= Math.round((1 - (realActor.system.attributes.movement_rate.current / realActor.system.attributes.movement_rate.value)) * 100);
+            stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
         }
-
-        const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor);
-        const maneuverPenalties = ManeuverPenaltiesService.getManeuverPenalties(realActor);
-        const { hitsTaken, bleeding, stunned: stunnedPenalty, penaltyEffect } = maneuverPenalties;
-        const bonusEffects = Utils.getEffectByName(realActor, "Bonus");
-        const stunEffect = Utils.getEffectByName(enemy, "Stunned");
-        let bonusValue = 0;
-        let stunnedValue = false;
-        const movePenalty = Math.round(
-            (1 - (moveRatio)) * 100
-        );
-
-        bonusEffects.forEach((bonus) => {
-            bonusValue += bonus.flags.rmss.value;
-        });
-        bonusValue = bonusValue - movePenalty;
-
-        if (stunEffect.length > 0 && stunEffect[0].duration.rounds > 0) {
-            stunnedValue = true;
-        }
-
-        const penaltyValue = Math.min(0, penaltyEffect);
 
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: realActor,
-            enemy: enemy,
+            enemy: realEnemy ?? enemy,
             weapon: weapon,
             ob: ob,
             hitsTaken,
             bleeding,
-            stunnedPenalty,
             bonusValue,
             stunnedValue,
             penaltyValue,
