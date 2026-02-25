@@ -42,7 +42,8 @@ export default class ForceSpellService {
         const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
             realm: effectiveRealm,
             spellType: spell.system.type,
-            spellName: spell.name
+            spellName: spell.name,
+            actor
         });
 
         // If user cancelled the dialog, abort
@@ -50,7 +51,9 @@ export default class ForceSpellService {
             return;
         }
 
-        const castingModifier = castingOptions.totalModifier;
+        const totalCastingModifier = castingOptions.totalModifier;
+        const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
+        const hitsTakenPenalty = castingOptions.hitsTakenPenalty ?? 0;
 
         // Find the skill with the same name as the spell list
         const skill = actor.items.find(i => 
@@ -92,7 +95,7 @@ export default class ForceSpellService {
         // For 100, use just 100 (special result UM 100)
         // Modified rolls: 03-95 (add skill bonus and casting modifiers to first roll only)
         const isUnmodified = naturalRoll <= 2 || naturalRoll >= 96;
-        const totalBonus = skillBonus + castingModifier;
+        const totalBonus = skillBonus + totalCastingModifier;
         const finalResult = isUnmodified ? rollTotal : naturalRoll + totalBonus;
 
         // Only process RR for Force (F) type spells with targets
@@ -183,6 +186,7 @@ export default class ForceSpellService {
             spellListName,
             skillBonus,
             castingModifier,
+            hitsTakenPenalty,
             naturalRoll,
             rollTotal,
             finalResult,
@@ -219,43 +223,7 @@ export default class ForceSpellService {
                 }
             }
 
-            await this._executeSpellMacro({
-                spell,
-                actor,
-                targets,
-                naturalRoll,
-                finalResult,
-                isFumble,
-                targetRRs
-            });
-        }
-    }
-
-    /**
-     * Execute the macro attached to the spell if it exists.
-     * @param {Object} params
-     * @param {Item} params.spell - The spell item
-     * @param {Actor} params.actor - The caster actor
-     * @param {Array} params.targets - Array of targeted tokens
-     * @param {number} params.naturalRoll - The natural d100 roll
-     * @param {number} params.finalResult - The final roll result (with modifiers)
-     * @param {boolean} params.isFumble - Whether the roll was a fumble
-     * @param {Array} params.targetRRs - Array of target RR data
-     */
-    static async _executeSpellMacro({ spell, actor, targets, naturalRoll, finalResult, isFumble, targetRRs }) {
-        const macroData = spell.getFlag("rmss", "macro");
-        if (!macroData || !macroData.command?.trim()) return;
-
-        try {
-            const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
-            const fn = new AsyncFunction(
-                'spell', 'actor', 'targets', 'naturalRoll', 'finalResult', 'isFumble', 'targetRRs',
-                macroData.command
-            );
-            await fn(spell, actor, targets, naturalRoll, finalResult, isFumble, targetRRs);
-        } catch (err) {
-            console.error("Error executing spell macro:", err);
-            ui.notifications.error(`Spell macro error: ${err.message}`);
+            await spell.use();
         }
     }
 
@@ -335,6 +303,7 @@ export default class ForceSpellService {
         spellListName,
         skillBonus,
         castingModifier = 0,
+        hitsTakenPenalty = 0,
         naturalRoll,
         rollTotal = null,
         finalResult,
@@ -370,6 +339,7 @@ export default class ForceSpellService {
                     ${!isUnmodified ? `
                     <div>📊 Skill: <strong>${formatMod(skillBonus)}</strong></div>
                     ${castingModifier !== 0 ? `<div>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></div>` : ''}
+                    ${hitsTakenPenalty !== 0 ? `<div>${game.i18n.localize("rmss.combat.hits_taken")}: <strong>${formatMod(hitsTakenPenalty)}</strong></div>` : ''}
                     ` : ''}
                     <div>📈 Total: <strong>${finalResult}</strong></div>
                 </div>

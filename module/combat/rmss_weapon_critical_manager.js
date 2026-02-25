@@ -112,8 +112,12 @@ class BaseCriticalStrategy {
             await sendExpMessage(attackerActor, breakDown, totalExp);
         }
 
-        const target = RMSSCombat.getTargets()[0].id;
-        return await socket.executeAsGM("updateActorHits", target, undefined, parseInt(data.damage), data);
+        const targetId = data.targetTokenId ?? RMSSCombat.getTargets()?.[0]?.id;
+        if (!targetId) {
+            ui.notifications.error("No target token found.");
+            return;
+        }
+        return await socket.executeAsGM("updateActorHits", targetId, true, parseInt(data.damage), data);
     }
 }
 
@@ -199,7 +203,7 @@ export class RMSSWeaponCriticalManager {
         );
     }
 
-    static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId,) {
+    static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId) {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType);
 
         if (!gmResponse["confirmed"]) {
@@ -222,8 +226,9 @@ export class RMSSWeaponCriticalManager {
         } = gmResponse;
 
         let strategy = RMSSWeaponCriticalManager.criticalCalculatorStrategy(critType);
+        const targetTokenId = target?.id ?? target?.document?.id;
 
-        return await strategy.apply(actor, target.actor,  { damage, severity, critType, subCritType, modifier, metadata });
+        return await strategy.apply(actor, target.actor,  { damage, severity, critType, subCritType, modifier, metadata, targetTokenId });
     }
 
     static async criticalMessagePopup(enemy, damage, severity, critType) {

@@ -45,12 +45,11 @@ export default class BaseElementalSpellService {
         const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
             realm: effectiveRealm,
             spellType: "BE",
-            spellName: spell.name
+            spellName: spell.name,
+            actor
         });
 
         if (castingOptions === null) return;
-
-        const castingModifier = castingOptions.totalModifier;
 
         const skill = actor.items.find(i => i.type === "skill" && i.name === spellListName);
         if (!skill) {
@@ -59,7 +58,9 @@ export default class BaseElementalSpellService {
         }
 
         const skillBonus = skill.system.total_bonus ?? 0;
-        const hitsTakenPenalty = this._getBEHitsPenalty(actor);
+        const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
+        const hitsTakenPenalty = castingOptions.hitsTakenPenalty ?? 0;
+        const totalCastingModifier = castingOptions.totalModifier;
 
         const roll = await new Roll("1d100x>95").evaluate();
         const naturalRoll = roll.dice[0].results[0].result;
@@ -72,7 +73,7 @@ export default class BaseElementalSpellService {
         const newPP = Math.max(0, currentPP - spellLevel);
         await actor.update({ "system.attributes.power_points.current": newPP });
 
-        const totalBonus = skillBonus + castingModifier + hitsTakenPenalty;
+        const totalBonus = skillBonus + totalCastingModifier;
         const finalResult = naturalRoll + totalBonus;
 
         const targets = Array.from(game.user.targets);
@@ -106,7 +107,7 @@ export default class BaseElementalSpellService {
         const isGlobalFumble = fCheckDamage === "F";
 
         if (isGlobalFumble) {
-            const failureResult = await SpellFailureService.rollFailure("BE", "spectacular_failure", castingModifier + hitsTakenPenalty);
+            const failureResult = await SpellFailureService.rollFailure("BE", "spectacular_failure", totalCastingModifier);
             await this._createChatMessage({
                 actor,
                 spell,
@@ -196,21 +197,9 @@ export default class BaseElementalSpellService {
                 await sendExpMessage(actor, breakDown, xp);
             }
         }
-    }
 
-    /**
-     * BE-specific hits taken penalty: -5 (26-50%), -10 (51-75%), -20 (76%+).
-     * Different from normal spells/melee which use -10, -20, -30.
-     */
-    static _getBEHitsPenalty(actor) {
-        const current = parseInt(actor.system?.attributes?.hits?.current ?? 0) || 0;
-        const max = parseInt(actor.system?.attributes?.hits?.max ?? 1) || 1;
-        if (max <= 0) return 0;
-        const pctTaken = ((max - current) / max) * 100;
-        if (pctTaken >= 76) return -20;
-        if (pctTaken >= 51) return -10;
-        if (pctTaken >= 26) return -5;
-        return 0;
+        // Execute spell macro on success (via item.use: item, actor, token)
+        await spell.use();
     }
 
     static async _createChatMessage({

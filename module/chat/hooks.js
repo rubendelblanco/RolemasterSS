@@ -75,7 +75,9 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         const critType = ev.currentTarget.dataset.crittype;
         const attackerId = ev.currentTarget.dataset.attacker;
         const criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(token, damage, severity, critType, attackerId);
-        await socket.executeAsGM("applyCriticalToEnemy", criticalResult, token.id, attackerId, token instanceof Token);
+        if (criticalResult) {
+            await socket.executeAsGM("applyCriticalToEnemy", criticalResult, token.id, attackerId, true);
+        }
     });
 
     html.find('.click-to-toggle').on('click', (event) => {

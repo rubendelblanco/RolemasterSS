@@ -1,6 +1,8 @@
 /**
  * Service to handle spell casting options dialog and modifier calculations.
  */
+import { RMSSWeaponSkillManager } from "../../combat/rmss_weapon_skill_manager.js";
+
 export default class CastingOptionsService {
 
     static _modifiersCache = null;
@@ -31,9 +33,10 @@ export default class CastingOptionsService {
      * @param {string} params.realm - The spell's realm (essence, channeling, mentalism, or hybrid)
      * @param {string} params.spellType - The spell type (E, BE, DE, F, P, U, I)
      * @param {string} params.spellName - The spell name for display
+     * @param {Actor} [params.actor] - The caster (required for BE: hits taken penalty)
      * @returns {Promise<{totalModifier: number, options: Object}|null>} The total modifier and selected options, or null if cancelled
      */
-    static async showCastingOptionsDialog({ realm, spellType, spellName }) {
+    static async showCastingOptionsDialog({ realm, spellType, spellName, actor = null }) {
         const modifiers = await this.loadModifiers();
         if (!modifiers) {
             ui.notifications.error("Failed to load casting modifiers");
@@ -41,7 +44,9 @@ export default class CastingOptionsService {
         }
 
         const normalizedRealm = this._normalizeRealm(realm);
-        const content = this._buildDialogContent(normalizedRealm, spellType, modifiers);
+        const hitsTakenPenalty = (actor != null) ? this._getHitsPenaltyForSpell(actor, spellType) : 0;
+        const showHitsTaken = actor != null;
+        const content = this._buildDialogContent(normalizedRealm, spellType, modifiers, hitsTakenPenalty, showHitsTaken);
         
         return new Promise((resolve) => {
             new Dialog({
@@ -52,7 +57,7 @@ export default class CastingOptionsService {
                         icon: '<i class="fas fa-magic"></i>',
                         label: game.i18n.localize("rmss.spells.cast"),
                         callback: (html) => {
-                            const result = this._calculateModifiers(html, normalizedRealm, spellType, modifiers);
+                            const result = this._calculateModifiers(html, normalizedRealm, spellType, modifiers, hitsTakenPenalty);
                             resolve(result);
                         }
                     },
@@ -74,13 +79,20 @@ export default class CastingOptionsService {
     /**
      * Build the HTML content for the casting options dialog.
      */
-    static _buildDialogContent(realm, spellType, modifiers) {
+    static _buildDialogContent(realm, spellType, modifiers, hitsTakenPenalty = 0, showHitsTaken = false) {
         const subtletyPenalty = this._getSubtletyPenalty(realm, spellType, modifiers);
         const handsModifiers = this._getHandsModifiers(realm, modifiers);
         const voiceModifiers = this._getVoiceModifiers(realm, modifiers);
+        const fmt = (n) => (n >= 0 ? `+${n}` : `${n}`);
+        const hitsTakenBlock = showHitsTaken ? `
+                <div class="form-group" style="font-size:0.9em; color:#555;">
+                    <div>${game.i18n.localize("rmss.combat.hits_taken")}: ${fmt(hitsTakenPenalty)}</div>
+                </div>
+` : "";
 
         return `
             <form class="casting-options-form">
+                ${hitsTakenBlock}
                 <div class="form-group">
                     <label>${game.i18n.localize("rmss.spells.subtlety")}</label>
                     <select name="subtlety">
@@ -143,8 +155,9 @@ export default class CastingOptionsService {
                         const handsMod = ${JSON.stringify(handsModifiers)}[hands];
                         const voiceMod = ${JSON.stringify(voiceModifiers)}[voice];
                         const prepMod = [0, 10, 20][parseInt(prep)];
+                        const hitsTakenMod = ${hitsTakenPenalty};
                         
-                        const total = subtletyMod + handsMod + voiceMod + prepMod + otherMods;
+                        const total = subtletyMod + handsMod + voiceMod + prepMod + otherMods + hitsTakenMod;
                         const sign = total >= 0 ? '+' : '';
                         document.getElementById('casting-total-modifier').innerHTML = '<strong>' + sign + total + '</strong>';
                     };
@@ -159,7 +172,7 @@ export default class CastingOptionsService {
     /**
      * Calculate the total modifier from the dialog selections.
      */
-    static _calculateModifiers(html, realm, spellType, modifiers) {
+    static _calculateModifiers(html, realm, spellType, modifiers, hitsTakenPenalty = 0) {
         const form = html.find('form')[0];
         const formData = new FormData(form);
         
@@ -174,10 +187,13 @@ export default class CastingOptionsService {
         const voiceMod = this._getVoiceModifiers(realm, modifiers)[voice];
         const prepMod = modifiers.preparation[preparation];
 
-        const totalModifier = subtletyMod + handsMod + voiceMod + prepMod + otherMods;
+        const castingModifier = subtletyMod + handsMod + voiceMod + prepMod + otherMods;
+        const totalModifier = castingModifier + hitsTakenPenalty;
 
         return {
             totalModifier,
+            castingModifier,
+            hitsTakenPenalty,
             options: {
                 subtlety,
                 hands,
@@ -228,6 +244,30 @@ export default class CastingOptionsService {
     static _formatModifier(num) {
         if (num >= 0) return `+${num}`;
         return `${num}`;
+    }
+
+    /**
+     * Hits taken penalty: BE uses -5/-10/-20; Force and others use -10/-20/-30 (like maneuvers).
+     */
+    static _getHitsPenaltyForSpell(actor, spellType) {
+        if (spellType === "BE") {
+            return this._getBEHitsPenalty(actor);
+        }
+        return RMSSWeaponSkillManager._getHitsPenalty(actor);
+    }
+
+    /**
+     * BE-specific hits taken penalty: -5 (26-50%), -10 (51-75%), -20 (76%+).
+     */
+    static _getBEHitsPenalty(actor) {
+        const current = parseInt(actor?.system?.attributes?.hits?.current ?? 0) || 0;
+        const max = parseInt(actor?.system?.attributes?.hits?.max ?? 1) || 1;
+        if (max <= 0) return 0;
+        const pctTaken = ((max - current) / max) * 100;
+        if (pctTaken >= 76) return -20;
+        if (pctTaken >= 51) return -10;
+        if (pctTaken >= 26) return -5;
+        return 0;
     }
 
     /**
