@@ -1,6 +1,7 @@
 import {socket} from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
 import Utils from "../utils.js";
+import ManeuverPenaltiesService from "../core/maneuver_penalties_service.js";
 import RollService from "./services/roll_service.js";
 import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
 
@@ -81,41 +82,38 @@ export class RMSSWeaponSkillManager {
         }
 
         const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor);
-        const hitsTakenPenalty = RMSSWeaponSkillManager._getHitsPenalty(realActor);
-        const penaltyEffects = Utils.getEffectByName(realActor, "Penalty");
+        const maneuverPenalties = ManeuverPenaltiesService.getManeuverPenalties(realActor);
+        const { hitsTaken, bleeding, stunned: stunnedPenalty, penaltyEffect } = maneuverPenalties;
         const bonusEffects = Utils.getEffectByName(realActor, "Bonus");
         const stunEffect = Utils.getEffectByName(enemy, "Stunned");
         let bonusValue = 0;
         let stunnedValue = false;
-        let penaltyValue = 0;
         const movePenalty = Math.round(
             (1 - (moveRatio)) * 100
         );
 
-        penaltyEffects.forEach( (penalty) => {
-            penaltyValue += penalty.flags.rmss.value;
-        })
-
-        //bonus - movement used in the round
         bonusEffects.forEach((bonus) => {
             bonusValue += bonus.flags.rmss.value;
-        })
-
+        });
         bonusValue = bonusValue - movePenalty;
 
         if (stunEffect.length > 0 && stunEffect[0].duration.rounds > 0) {
             stunnedValue = true;
         }
 
+        const penaltyValue = Math.min(0, penaltyEffect);
+
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: realActor,
             enemy: enemy,
             weapon: weapon,
             ob: ob,
-            hitsTaken: hitsTakenPenalty,
-            bonusValue: bonusValue,
-            stunnedValue: stunnedValue,
-            penaltyValue: penaltyValue,
+            hitsTaken,
+            bleeding,
+            stunnedPenalty,
+            bonusValue,
+            stunnedValue,
+            penaltyValue,
         });
 
         let confirmed = await new Promise((resolve) => {
