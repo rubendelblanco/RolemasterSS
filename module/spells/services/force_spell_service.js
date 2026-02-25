@@ -53,7 +53,7 @@ export default class ForceSpellService {
 
         const totalCastingModifier = castingOptions.totalModifier;
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
-        const hitsTakenPenalty = castingOptions.hitsTakenPenalty ?? 0;
+        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0 } = castingOptions;
 
         // Find the skill with the same name as the spell list
         const skill = actor.items.find(i => 
@@ -186,7 +186,10 @@ export default class ForceSpellService {
             spellListName,
             skillBonus,
             castingModifier,
-            hitsTakenPenalty,
+            hitsTaken,
+            bleeding,
+            stunned,
+            penaltyEffect,
             naturalRoll,
             rollTotal,
             finalResult,
@@ -303,7 +306,10 @@ export default class ForceSpellService {
         spellListName,
         skillBonus,
         castingModifier = 0,
-        hitsTakenPenalty = 0,
+        hitsTaken = 0,
+        bleeding = 0,
+        stunned = 0,
+        penaltyEffect = 0,
         naturalRoll,
         rollTotal = null,
         finalResult,
@@ -339,7 +345,10 @@ export default class ForceSpellService {
                     ${!isUnmodified ? `
                     <div>📊 Skill: <strong>${formatMod(skillBonus)}</strong></div>
                     ${castingModifier !== 0 ? `<div>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></div>` : ''}
-                    ${hitsTakenPenalty !== 0 ? `<div>${game.i18n.localize("rmss.combat.hits_taken")}: <strong>${formatMod(hitsTakenPenalty)}</strong></div>` : ''}
+                    ${hitsTaken !== 0 ? `<div>💔 ${game.i18n.localize("rmss.combat.hits_taken")}: <strong>${formatMod(hitsTaken)}</strong></div>` : ''}
+                    ${bleeding !== 0 ? `<div>🩸 ${game.i18n.localize("rmss.maneuvers.bleeding")}: <strong>${formatMod(bleeding)}</strong></div>` : ''}
+                    ${stunned !== 0 ? `<div>😵 ${game.i18n.localize("rmss.maneuvers.stunned")}: <strong>${formatMod(stunned)}</strong></div>` : ''}
+                    ${penaltyEffect !== 0 ? `<div>🩹 ${game.i18n.localize("rmss.combat.penalty")}: <strong>${formatMod(Math.min(0, penaltyEffect))}</strong></div>` : ''}
                     ` : ''}
                     <div>📈 Total: <strong>${finalResult}</strong></div>
                 </div>
