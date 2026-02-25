@@ -59,8 +59,17 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         // Start cooldown
         updateCooldown();
         
-        // Execute the action
-        const token = RMSSCombat.getTargets()[0];
+        // Execute the action - use stored target for area spells, else current selection
+        const targetId = ev.currentTarget.dataset.targetId;
+        let token = targetId ? canvas.scene?.tokens?.get(targetId) : null;
+        if (!token) {
+            const targets = RMSSCombat.getTargets();
+            token = targets?.[0];
+        }
+        if (!token) {
+            ui.notifications.warn(game.i18n.localize("rmss.combat.select_target") || "Please select a target.");
+            return;
+        }
         const damage = ev.currentTarget.dataset.damage;
         const severity = ev.currentTarget.dataset.severity;
         const critType = ev.currentTarget.dataset.crittype;

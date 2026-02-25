@@ -23,7 +23,8 @@
                         data-attacker="{{../attacker.id}}"
                         data-damage="{{damage}}"
                         data-severity="{{severity}}"
-                        data-crittype="{{critType}}">
+                        data-crittype="{{critType}}"
+                        {{#if ../target}}data-target-id="{{../target.id}}"{{/if}}>
                     <div style="display:inline-block; align-items:center; gap:4px;">
                         <span style="font-size:1.1em;">⚔️</span>
                         <span>{{localize "rmss.combat.critical_roll"}} {{inc @index}}</span>

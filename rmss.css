@@ -589,6 +589,13 @@
     padding: 2px;
 }
 
+.spell-cast-elemental i {
+    color: #c45c26;
+    border: 1px solid #c45c26;
+    border-radius: 3px;
+    padding: 2px;
+}
+
 .spell-info-icon {
     position: relative;
     cursor: pointer; color: #4b4a44; font-size: 0.9em;

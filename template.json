@@ -467,6 +467,7 @@
       "range": "",
       "type": "U",
       "subType": "-",
+      "attack_table": "",
       "description": ""
     },
     "spell_list": {

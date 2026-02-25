@@ -205,12 +205,22 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const spell = this.actor.items.get(spellId);
     if (!spell) return;
     
-    await ForceSpellService.castForceSpell({
-      actor: this.actor,
-      spell: spell,
-      spellListName: spellListName,
-      spellListRealm: spellListRealm
-    });
+    if (spell.system?.type === "BE") {
+      const BaseElementalSpellService = (await import("../../spells/services/base_elemental_spell_service.js")).default;
+      await BaseElementalSpellService.castBaseElementalSpell({
+        actor: this.actor,
+        spell,
+        spellListName,
+        spellListRealm
+      });
+    } else {
+      await ForceSpellService.castForceSpell({
+        actor: this.actor,
+        spell,
+        spellListName,
+        spellListRealm
+      });
+    }
   }
 
   _registerStatListeners(html) {

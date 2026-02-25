@@ -379,12 +379,13 @@ export class RMSSWeaponCriticalManager {
         });
     }
 
-    static async getCriticalMessage(damage, criticalResult, attacker) {
+    static async getCriticalMessage(damage, criticalResult, attacker, target = null) {
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
             damageStr: damage,
             damage: criticalResult.damage,
             criticals: criticalResult.criticals,
-            attacker: attacker
+            attacker: attacker,
+            target: target
         });
         const speaker = "Game Master";
 

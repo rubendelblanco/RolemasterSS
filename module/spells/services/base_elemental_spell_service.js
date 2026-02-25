@@ -1,0 +1,286 @@
+/**
+ * Service for Base Elemental (BE) spell casting.
+ * BE spells use the spell list bonus, different modifiers, and resolve as attacks
+ * using the attack tables (fire_ball, ice_bolt, etc.) instead of Static Maneuver.
+ */
+import CastingOptionsService from "./casting_options_service.js";
+import SpellFailureService from "./spell_failure_service.js";
+import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
+import { sendExpMessage } from "../../chat/chatMessages.js";
+import RMSSTableManager from "../../combat/rmss_table_manager.js";
+import { RMSSWeaponCriticalManager } from "../../combat/rmss_weapon_critical_manager.js";
+import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
+
+export default class BaseElementalSpellService {
+
+    /**
+     * Cast a BE (Base Elemental) spell.
+     * Flow: PP check → casting options → roll → resolve attack table (with UM) → if result F: Spell Failure | else: attack resolution per target
+     * @param {Object} params
+     * @param {Actor} params.actor - The caster
+     * @param {Item} params.spell - The BE spell
+     * @param {string} params.spellListName - Name of the spell list (for skill bonus)
+     * @param {string} params.spellListRealm - Realm of the spell list
+     */
+    static async castBaseElementalSpell({ actor, spell, spellListName, spellListRealm }) {
+        const attackTableName = spell.system?.attack_table;
+        if (!attackTableName) {
+            ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_attack_table"));
+            return;
+        }
+
+        const spellLevel = spell.system?.level ?? 1;
+        const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
+        if (currentPP < spellLevel) {
+            ui.notifications.warn(
+                game.i18n.format("rmss.spells.insufficient_power", {
+                    actorName: actor.name,
+                    spellName: spell.name
+                })
+            );
+            return;
+        }
+
+        const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
+        const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
+            realm: effectiveRealm,
+            spellType: "BE",
+            spellName: spell.name
+        });
+
+        if (castingOptions === null) return;
+
+        const castingModifier = castingOptions.totalModifier;
+
+        const skill = actor.items.find(i => i.type === "skill" && i.name === spellListName);
+        if (!skill) {
+            ui.notifications.warn(game.i18n.localize("rmss.spells.no_skill_found") + `: ${spellListName}`);
+            return;
+        }
+
+        const skillBonus = skill.system.total_bonus ?? 0;
+        const hitsTakenPenalty = this._getBEHitsPenalty(actor);
+
+        const roll = await new Roll("1d100x>95").evaluate();
+        const naturalRoll = roll.dice[0].results[0].result;
+        const rollTotal = naturalRoll === 100 ? 100 : roll.total;
+
+        if (game.dice3d) {
+            await game.dice3d.showForRoll(roll, game.user, true);
+        }
+
+        const newPP = Math.max(0, currentPP - spellLevel);
+        await actor.update({ "system.attributes.power_points.current": newPP });
+
+        const totalBonus = skillBonus + castingModifier + hitsTakenPenalty;
+        const finalResult = naturalRoll + totalBonus;
+
+        const targets = Array.from(game.user.targets);
+        if (targets.length === 0) {
+            ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_targets"));
+            return;
+        }
+
+        const virtualWeapon = {
+            type: "spell",
+            system: { attack_table: attackTableName }
+        };
+
+        const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
+        if (!attackTable) {
+            ui.notifications.error(`Attack table not found: ${attackTableName}`);
+            return;
+        }
+
+        // Apply UM from attack table (01-04, 96-97, 98-99, 100-100 in fire_ball, etc.)
+        // This is the "Energy Potential" - single roll for all targets
+        const maximum = await RMSSTableManager.getAttackTableMaxResult(virtualWeapon);
+        const umResult = RMSSTableManager.findUnmodifiedAttack(attackTableName, naturalRoll, attackTable);
+        const isUm = umResult != null;
+        const baseEnergy = isUm ? umResult.attack : Math.min(Math.max(finalResult, 1), maximum);
+
+        // Check for global Fumble (F): only when base roll is in F range - affects everyone
+        const armorTypeForFCheck = 1;
+        const fCheckRow = RMSSTableManager.findAttackTableRow(attackTableName, attackTable, baseEnergy);
+        const fCheckDamage = fCheckRow?.[String(armorTypeForFCheck)];
+        const isGlobalFumble = fCheckDamage === "F";
+
+        if (isGlobalFumble) {
+            const failureResult = await SpellFailureService.rollFailure("BE", "spectacular_failure", castingModifier + hitsTakenPenalty);
+            await this._createChatMessage({
+                actor,
+                spell,
+                spellListName,
+                skillBonus,
+                castingModifier,
+                hitsTakenPenalty,
+                naturalRoll,
+                rollTotal,
+                finalResult,
+                baseEnergy,
+                isUm,
+                failureResult,
+                isSpellFailure: true
+            });
+            return;
+        }
+
+        await this._createChatMessage({
+            actor,
+            spell,
+            spellListName,
+            skillBonus,
+            castingModifier,
+            hitsTakenPenalty,
+            naturalRoll,
+            rollTotal,
+            finalResult,
+            baseEnergy,
+            isUm,
+            failureResult: null,
+            isSpellFailure: false
+        });
+
+        // Per-target resolution: baseEnergy - (target defense) - 20 for non-central targets
+        const CENTRAL_TARGET_PENALTY = 0;
+        const AREA_TARGET_PENALTY = 20;
+
+        for (let i = 0; i < targets.length; i++) {
+            const target = targets[i];
+            const enemyActor = target.actor;
+            if (!enemyActor?.system?.armor_info) continue;
+
+            const targetDefense = parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0;
+            const areaPenalty = i === 0 ? CENTRAL_TARGET_PENALTY : AREA_TARGET_PENALTY;
+            let finalForTarget = baseEnergy - targetDefense - areaPenalty;
+            finalForTarget = Math.max(1, Math.min(finalForTarget, maximum));
+
+            const attackResult = await RMSSTableManager.getAttackTableResult(
+                virtualWeapon,
+                attackTable,
+                finalForTarget,
+                enemyActor,
+                actor
+            );
+
+            if (!attackResult.damage) continue;
+
+            const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
+                attackResult.damage,
+                attackTable.critical_severity || null
+            );
+
+            // Per-target F (high defense): spell had no effect on this target, skip
+            if (criticalResult.criticals === "fumble") continue;
+
+            if (criticalResult.criticals.length === 0) {
+                const critType = attackTable.critical_severity?.default || "heat";
+                criticalResult.criticals = [{ severity: null, critType, damage: 0 }];
+                await RMSSWeaponCriticalManager.updateTokenOrActorHits(target.actor ?? target, parseInt(criticalResult.damage));
+                if (actor.type === "character") {
+                    await ExperienceManager.applyExperience(actor, criticalResult.damage);
+                }
+            }
+
+            await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, target);
+        }
+
+        // Award spell XP on success
+        if (actor.type === "character") {
+            const casterLevel = actor.system.attributes?.level?.value ?? 1;
+            const xp = ExperiencePointsCalculator.calculateSpellExpPoints(casterLevel, spellLevel);
+            if (xp > 0) {
+                const totalExpActor = parseInt(actor.system.attributes.experience_points.value) + xp;
+                await actor.update({ "system.attributes.experience_points.value": totalExpActor });
+                const breakDown = { maneuver: 0, spell: xp, critical: 0, kill: 0, bonus: 0, misc: 0 };
+                await sendExpMessage(actor, breakDown, xp);
+            }
+        }
+    }
+
+    /**
+     * BE-specific hits taken penalty: -5 (26-50%), -10 (51-75%), -20 (76%+).
+     * Different from normal spells/melee which use -10, -20, -30.
+     */
+    static _getBEHitsPenalty(actor) {
+        const current = parseInt(actor.system?.attributes?.hits?.current ?? 0) || 0;
+        const max = parseInt(actor.system?.attributes?.hits?.max ?? 1) || 1;
+        if (max <= 0) return 0;
+        const pctTaken = ((max - current) / max) * 100;
+        if (pctTaken >= 76) return -20;
+        if (pctTaken >= 51) return -10;
+        if (pctTaken >= 26) return -5;
+        return 0;
+    }
+
+    static async _createChatMessage({
+        actor,
+        spell,
+        spellListName,
+        skillBonus,
+        castingModifier,
+        hitsTakenPenalty = 0,
+        naturalRoll,
+        rollTotal,
+        finalResult,
+        baseEnergy,
+        isUm,
+        failureResult,
+        isSpellFailure
+    }) {
+        const formatMod = (n) => (n >= 0 ? `+${n}` : `${n}`);
+        const isExplosive = rollTotal !== naturalRoll;
+
+        let content = `
+            <div style="border: 1px solid #555; border-radius: 8px; padding: 8px 10px; background: rgba(0,0,0,0.25); box-shadow: 0 0 6px rgba(0,0,0,0.4);">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                    <img src="${actor.img}" alt="${actor.name}" width="48" height="48" style="border-radius: 6px; border: 1px solid #333;">
+                    <div>
+                        <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000;">
+                            ⚡ ${spell.name} (BE)
+                        </h4>
+                        <div style="font-size: 0.9em; color: #ccc;">
+                            ${spellListName} — ${game.i18n.localize("rmss.spells.cast_result")}
+                        </div>
+                    </div>
+                </div>
+                <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
+                <div style="font-size: 0.9em; color: #ddd;">
+                    <div>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${naturalRoll}</strong>${isExplosive ? ` → <strong style="color: orange;">${rollTotal}</strong> 💥` : ""}</div>
+                    ${!isUm ? `<div>📊 ${game.i18n.localize("rmss.spells.skill")}: <strong>${formatMod(skillBonus)}</strong></div><div>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></div>${hitsTakenPenalty !== 0 ? `<div>${game.i18n.localize("rmss.combat.hits_taken")}: <strong>${formatMod(hitsTakenPenalty)}</strong></div>` : ""}<div>📈 Total: <strong>${finalResult}</strong></div>` : `<div><em style="color:#aaa;">${game.i18n.localize("rmss.spells.unmodified")}</em></div>`}
+                    <div>📊 ${game.i18n.localize("rmss.spells.table_result")}: <strong>${baseEnergy}</strong></div>
+                </div>
+        `;
+
+        if (isSpellFailure && failureResult) {
+            const multiplierText = failureResult.multiplier > 1 ? ` (×${failureResult.multiplier})` : "";
+            content += `
+                <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
+                <div class="spell-failure-result">
+                    <h4>⚠️ ${game.i18n.localize("rmss.spells.spell_failure_roll")}</h4>
+                    <div class="failure-roll-details">
+                        <p>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${failureResult.naturalRoll}</strong></p>
+                        <p>📊 ${game.i18n.localize("rmss.spells.casting_penalty")}: <strong>${formatMod(failureResult.modifierPenalty)}</strong>${multiplierText}</p>
+                        <p>📈 Total: <strong>${failureResult.finalResult}</strong></p>
+                    </div>
+                    <div class="failure-description"><p>${failureResult.description}</p></div>
+                </div>
+            `;
+        } else if (!isSpellFailure) {
+            content += `
+                <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
+                <div class="spell-maneuver-result result-success">
+                    <p class="maneuver-name"><strong>${game.i18n.localize("rmss.spells.be_attack_resolved")}</strong></p>
+                </div>
+            `;
+        }
+
+        content += `</div>`;
+
+        await ChatMessage.create({
+            speaker: ChatMessage.getSpeaker({ actor }),
+            content,
+            type: CONST.CHAT_MESSAGE_TYPES.OTHER
+        });
+    }
+}
