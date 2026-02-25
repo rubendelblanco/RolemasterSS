@@ -150,6 +150,32 @@ export default class ExperiencePointsCalculator {
         return Number.isNaN(expPoints) ? 0 : expPoints;
     }
 
+    /**
+     * Calcula los puntos de experiencia por lanzar un hechizo con éxito.
+     * @param {number} spellCaster - Nivel del lanzador
+     * @param {number} spellLevel - Nivel del hechizo
+     * @returns {number} Puntos de experiencia (0-200)
+     */
+    static calculateSpellExpPoints(spellCaster, spellLevel) {
+        const caster = parseInt(spellCaster);
+        const level = parseInt(spellLevel);
+
+        if (Number.isNaN(caster) || caster === null || Number.isNaN(level) || level === null) {
+            return 0;
+        }
+
+        let expPoints = 100 - (10 * (caster - level));
+
+        if (expPoints > 200) {
+            return 200;
+        }
+        if (expPoints < 0) {
+            return 0;
+        }
+
+        return expPoints;
+    }
+
     static getCharacterLevel(experiencePoints) {
         const experienceTable = [
             { level: 1, experience: 10000 },
@@ -332,30 +358,12 @@ export default class ExperiencePointsCalculator {
         });
 
         function calculateSpellExpPoints() {
-            const spellLevel = parseInt(html.find("#spell-level-exp").val());
-            const spellCaster = parseInt(html.find("#spell-level-caster").val());
-            const multiplier = parseInt(html.find("#spell-exp-mult").val());
-            let expPoints;
+            const spellLevel = html.find("#spell-level-exp").val();
+            const spellCaster = html.find("#spell-level-caster").val();
+            const multiplier = parseInt(html.find("#spell-exp-mult").val()) || 1;
+            const expPoints = ExperiencePointsCalculator.calculateSpellExpPoints(spellCaster, spellLevel);
 
-            if (isNaN(spellCaster) || spellCaster === null || isNaN(spellLevel) || spellLevel === null) {
-                expPoints = 0;
-            } else {
-                expPoints = 100 - (10 * (spellCaster - spellLevel));
-
-                if (expPoints > 200) {
-                    expPoints = 200;
-                } else if (expPoints < 0) {
-                    expPoints = 0;
-                }
-            }
-
-            if (!isNaN(expPoints)) {
-                html.find('.spell-exp-total').text(expPoints*multiplier);
-            }
-            else {
-                html.find('.spell-exp-total').text(0);
-            }
-
+            html.find('.spell-exp-total').text(expPoints * multiplier);
             calculateTotalExpPoints();
         }
 

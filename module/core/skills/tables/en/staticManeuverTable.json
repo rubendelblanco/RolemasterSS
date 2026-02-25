@@ -1,0 +1,70 @@
+{
+  "ranges": [
+    {
+      "min": null,
+      "max": -26,
+      "code": "spectacular_failure",
+      "name": "Spectacular Failure",
+      "description": "You make a thorough mess of your attempt as you forget even the most basic principles of this maneuver. You are at -20 modification to your next two actions while you recover from your stunning failure."
+    },
+    {
+      "min": -25,
+      "max": 4,
+      "code": "absolute_failure",
+      "name": "Absolute Failure",
+      "description": "Your remarkable failure marks you for ridicule. Hope your parents weren't watching..."
+    },
+    {
+      "min": 5,
+      "max": 75,
+      "code": "failure",
+      "name": "Failure",
+      "description": "You fail. Your skill is not up to the task. Maybe next time."
+    },
+    {
+      "min": 76,
+      "max": 90,
+      "code": "partial_success",
+      "name": "Partial Success",
+      "description": "Your attempt bears little fruit, but you appear to be on the right track. Perhaps more attention to detail will improve your chances.",
+      "percentage": 20
+    },
+    {
+      "min": 91,
+      "max": 110,
+      "code": "near_success",
+      "name": "Near Success",
+      "description": "You are within sight of your goal! If appropriate, you may attempt to complete your maneuver with another roll with a modification of +10.",
+      "percentage": 80
+    },
+    {
+      "min": 111,
+      "max": 175,
+      "code": "success",
+      "name": "Success",
+      "description": "Congratulations! You are completely successful in your attempt. Carry on.",
+      "percentage": 100
+    },
+    {
+      "min": 176,
+      "max": null,
+      "code": "absolute_success",
+      "name": "Absolute Success",
+      "description": "Zounds! Your masterful performance has stretched the boundaries of your own abilities! You operate at +10 (non-cumulative) to all future attempts to use this skill, until you receive a result of Absolute Failure or Spectacular Failure.",
+      "percentage": 120
+    }
+  ],
+  "special": {
+    "um_66": {
+      "code": "unusual_event",
+      "name": "Unusual Event",
+      "description": "Your maneuver is beset by an unusual event. It may or may not be a beneficial occurrence (GM should choose or determine randomly)."
+    },
+    "um_100": {
+      "code": "unusual_success",
+      "name": "Unusual Success",
+      "description": "You have achieved a remarkable success in an unusual fashion. The GM should determine the details; this result may occur because of an unexpected extraneous event or because of a remarkable personal effort.",
+      "percentage": 125
+    }
+  }
+}

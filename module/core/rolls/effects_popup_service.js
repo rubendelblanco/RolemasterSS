@@ -20,6 +20,7 @@ export default class EffectsPopupService {
 
         const context = {
             token: token.document,
+            actorImg: actor.img,
             defenderLevel: defenderLevel,
             damage: criticalOptions.damage ?? 0,
             severity: criticalOptions.severity ?? 'A',
@@ -143,11 +144,12 @@ export default class EffectsPopupService {
         const updateRRDisplay = () => {
             const attackerLevel = parseInt(html.find("#rr-attacker-level").val()) || 1;
             const defenderLevel = parseInt(html.find("#rr-defender-level").val()) || 1;
-            const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, defenderLevel, 0);
+            const modifier = parseInt(html.find("#rr-modifier").val()) || 0;
+            const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, defenderLevel, modifier);
             html.find("#rr-target-display").text(rrTarget);
         };
 
-        html.find("#rr-attacker-level, #rr-defender-level").on("input", updateRRDisplay);
+        html.find("#rr-attacker-level, #rr-defender-level, #rr-modifier").on("input", updateRRDisplay);
         
         // Initial calculation
         updateRRDisplay();
@@ -162,7 +164,7 @@ export default class EffectsPopupService {
      * @param {number} modifier - Modifier to add to the roll
      */
     static async createRRPromptMessage(token, attackerLevel, defenderLevel, modifier) {
-        const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, defenderLevel, 0);
+        const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, defenderLevel, modifier);
         const actor = token.actor;
         
         // Get owners of the token (player IDs)

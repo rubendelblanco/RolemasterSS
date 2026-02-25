@@ -3,6 +3,8 @@ import ResistanceRollService from "../../core/rolls/resistance_roll_service.js";
 import CastingOptionsService from "./casting_options_service.js";
 import StaticManeuverService from "./static_maneuver_service.js";
 import SpellFailureService from "./spell_failure_service.js";
+import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
+import { sendExpMessage } from "../../chat/chatMessages.js";
 
 /**
  * Service to handle spell casting for non-elemental spells (F, P, U, I, E types).
@@ -80,6 +82,7 @@ export default class ForceSpellService {
         const isForceSpell = spell.system.type === "F";
         let isFumble = false;
         let targetRRs = [];
+        let failureResult = null;
 
         if (isForceSpell && hasTargets) {
             // Determine realm: use spell list realm, or fall back to actor's realm for base lists
@@ -109,8 +112,13 @@ export default class ForceSpellService {
                 const { result, subindices } = spellResult;
 
                 if (result === "F") {
-                    // Fumble affects the caster, not individual targets
+                    // Base spell fumble: roll on Spell Failure Table (same as normal spell failure)
                     isFumble = true;
+                    failureResult = await SpellFailureService.rollFailure(
+                        spell.system.type,
+                        "spectacular_failure", // Base spell fumble = worst case (×3 modifier)
+                        castingModifier
+                    );
                     break; // Stop processing targets on fumble
                 }
                 
@@ -138,7 +146,6 @@ export default class ForceSpellService {
 
         // For non-Force spells (or Force without targets), get Static Maneuver result
         let maneuverResult = null;
-        let failureResult = null;
         if (!isForceSpell || !hasTargets) {
             maneuverResult = await StaticManeuverService.getResult(finalResult, naturalRoll);
             
@@ -174,6 +181,27 @@ export default class ForceSpellService {
         // Execute spell macro only on success (no failure, no fumble)
         const isSuccess = !failureResult && !isFumble;
         if (isSuccess) {
+            // Award spell experience for characters (same criteria as skill maneuvers)
+            // Static Maneuver spells: only Success, Unusual Success, Absolute Success
+            // Force spells with targets (Basic Spell Attack): award when no fumble
+            const spellSuccessCodes = ["success", "unusual_success", "absolute_success"];
+            const shouldAwardSpellXp = actor.type === "character" && (
+                !maneuverResult
+                    ? true  // Force with targets: no maneuver table, award on success
+                    : spellSuccessCodes.includes(maneuverResult.code)
+            );
+            if (shouldAwardSpellXp) {
+                const casterLevel = actor.system.attributes?.level?.value ?? 1;
+                const spellLevel = spell.system?.level ?? 1;
+                const xp = ExperiencePointsCalculator.calculateSpellExpPoints(casterLevel, spellLevel);
+                if (xp > 0) {
+                    const totalExpActor = parseInt(actor.system.attributes.experience_points.value) + xp;
+                    await actor.update({ "system.attributes.experience_points.value": totalExpActor });
+                    const breakDown = { maneuver: 0, spell: xp, critical: 0, kill: 0, bonus: 0, misc: 0 };
+                    await sendExpMessage(actor, breakDown, xp);
+                }
+            }
+
             await this._executeSpellMacro({
                 spell,
                 actor,
@@ -307,16 +335,26 @@ export default class ForceSpellService {
         const isExplosive = rollTotal && rollTotal !== naturalRoll;
         
         let content = `
-            <div class="rmss-spell-cast">
-                <h3>${spell.name}</h3>
-                <p><strong>${spellListName}</strong> (${game.i18n.localize("rmss.spells.cast_result")})</p>
-                <div class="spell-cast-details">
-                    <p>🎲 Roll: <strong>${naturalRoll}</strong>${isExplosive ? ` → <strong class="explosive-roll">${rollTotal}</strong> 💥` : ''}${isUnmodified ? ' <em>(Unmodified)</em>' : ''}</p>
+            <div style="border: 1px solid #555; border-radius: 8px; padding: 8px 10px; background: rgba(0,0,0,0.25); box-shadow: 0 0 6px rgba(0,0,0,0.4);">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                    <img src="${actor.img}" alt="${actor.name}" width="48" height="48" style="border-radius: 6px; border: 1px solid #333;">
+                    <div>
+                        <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000;">
+                            ✨ ${spell.name}
+                        </h4>
+                        <div style="font-size: 0.9em; color: #ccc;">
+                            ${spellListName} — ${game.i18n.localize("rmss.spells.cast_result")}
+                        </div>
+                    </div>
+                </div>
+                <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
+                <div style="font-size: 0.9em; color: #ddd;">
+                    <div>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${naturalRoll}</strong>${isExplosive ? ` → <strong style="color: orange;">${rollTotal}</strong> 💥` : ''}${isUnmodified ? ` <em style="color:#aaa;">(${game.i18n.localize("rmss.spells.unmodified")})</em>` : ''}</div>
                     ${!isUnmodified ? `
-                    <p>📊 Skill: <strong>${formatMod(skillBonus)}</strong></p>
-                    ${castingModifier !== 0 ? `<p>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></p>` : ''}
+                    <div>📊 Skill: <strong>${formatMod(skillBonus)}</strong></div>
+                    ${castingModifier !== 0 ? `<div>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></div>` : ''}
                     ` : ''}
-                    <p>📈 Total: <strong>${finalResult}</strong></p>
+                    <div>📈 Total: <strong>${finalResult}</strong></div>
                 </div>
         `;
 
@@ -324,6 +362,7 @@ export default class ForceSpellService {
         if (maneuverResult) {
             const resultClass = StaticManeuverService.getResultClass(maneuverResult.code);
             content += `
+                <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
                 <div class="spell-maneuver-result ${resultClass}">
                     <p class="maneuver-name"><strong>${maneuverResult.name}</strong></p>
                     <p class="maneuver-description">${maneuverResult.description}</p>
@@ -335,11 +374,12 @@ export default class ForceSpellService {
         if (failureResult) {
             const multiplierText = failureResult.multiplier > 1 ? ` (×${failureResult.multiplier})` : '';
             content += `
+                <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
                 <div class="spell-failure-result">
                     <h4>⚠️ ${game.i18n.localize("rmss.spells.spell_failure_roll")}</h4>
                     <div class="failure-roll-details">
                         <p>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${failureResult.naturalRoll}</strong></p>
-                        <p>📊 ${game.i18n.localize("rmss.spells.casting_penalty")}: <strong>+${failureResult.modifierPenalty}</strong>${multiplierText}</p>
+                        <p>📊 ${game.i18n.localize("rmss.spells.casting_penalty")}: <strong>${formatMod(failureResult.modifierPenalty)}</strong>${multiplierText}</p>
                         <p>📈 Total: <strong>${failureResult.finalResult}</strong></p>
                     </div>
                     <div class="failure-description">
@@ -350,14 +390,16 @@ export default class ForceSpellService {
         }
 
         if (hasTargets) {
-            if (isFumble) {
+            if (isFumble && !failureResult) {
                 content += `
+                    <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
                     <div class="spell-fumble">
                         <p>💥 <strong>${game.i18n.localize("rmss.spells.spell_fumble")}</strong></p>
                     </div>
                 `;
             } else if (targetRRs.length > 0) {
                 content += `
+                    <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
                     <div class="spell-rr-results">
                         <p><strong>${game.i18n.localize("rmss.spells.targets_must_roll")}:</strong></p>
                         <table class="spell-rr-table">

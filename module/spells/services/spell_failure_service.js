@@ -105,12 +105,13 @@ export default class SpellFailureService {
             modifierPenalty: modifierPenalty,
             finalResult: finalResult,
             column: column,
-            description: result
+            description: result ?? game.i18n.localize("rmss.spells.failure_unknown")
         };
     }
 
     /**
      * Find the result in the table for the given value and column.
+     * Values below the table minimum use the first range (best failure outcome).
      * @private
      */
     static _findResult(table, value, column) {
@@ -119,10 +120,12 @@ export default class SpellFailureService {
             const maxOk = range.max === null || value <= range.max;
             
             if (minOk && maxOk) {
-                return range[column] || null;
+                return range[column] ?? null;
             }
         }
-        return null;
+        // Result below table range (e.g. negative from heavy casting bonuses): use first range
+        const firstRange = table.ranges[0];
+        return firstRange ? (firstRange[column] ?? null) : null;
     }
 
     /**

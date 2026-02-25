@@ -552,6 +552,54 @@
             "must_roll_rr": "must make a resistance roll",
             "effects_title": "RMSS Effects"
         },
+        "maneuvers": {
+            "options_title": "Maneuver Roll Options",
+            "roll": "Roll",
+            "skill_bonus": "Skill bonus",
+            "hits_taken": "% Hits taken",
+            "bleeding": "Bleeding (hits/rnd)",
+            "stunned": "Stunned",
+            "difficulty_label": "Difficulty",
+            "combat_label": "Combat situation",
+            "lighting_label": "Lighting (if required)",
+            "darkness_label": "Darkness (if advantageous)",
+            "other_mods": "Other modifiers",
+            "total_modifier": "Total modifier",
+            "modifier": "Modifier",
+            "static_maneuver": "Static Maneuver",
+            "difficulty": {
+                "routine": "Routine",
+                "easy": "Easy",
+                "light": "Light",
+                "medium": "Medium",
+                "hard": "Hard",
+                "very_hard": "Very Hard",
+                "extremely_hard": "Extremely Hard",
+                "sheer_folly": "Sheer Folly",
+                "absurd": "Absurd"
+            },
+            "combat": {
+                "none": "None",
+                "melee": "In a melee environment",
+                "missile_fire": "Under missile fire"
+            },
+            "lighting": {
+                "no_shadows": "No Shadows",
+                "light_shadows": "Light Shadows",
+                "medium_shadows": "Medium Shadows",
+                "heavy_shadows": "Heavy Shadows",
+                "dark": "Dark",
+                "pitch_black": "Pitch Black"
+            },
+            "darkness": {
+                "no_shadows": "No Shadows",
+                "light_shadows": "Light Shadows",
+                "medium_shadows": "Medium Shadows",
+                "heavy_shadows": "Heavy Shadows",
+                "dark": "Dark",
+                "pitch_black": "Pitch Black"
+            }
+        },
         "level_up": {
             "ranks_reset": "New ranks reset"
         },
@@ -597,8 +645,10 @@
             "other_mods": "Other Modifiers",
             "total_modifier": "Total Modifier",
             "spell_failure_roll": "Spell Failure Roll",
+            "failure_unknown": "The spell fails. (Result outside table range—modifiers may have reduced the failure severity.)",
             "roll": "Roll",
-            "casting_penalty": "Casting Penalty"
+            "casting_penalty": "Casting Penalty",
+            "unmodified": "Unmodified"
         },
         "dialog": {
             "cancel": "Cancel"

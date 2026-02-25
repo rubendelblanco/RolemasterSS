@@ -552,6 +552,54 @@
       "must_roll_rr": "debe hacer una tirada de resistencia",
       "effects_title": "Efectos RMSS"
     },
+    "maneuvers": {
+      "options_title": "Opciones de tirada de maniobra",
+      "roll": "Tirar",
+      "skill_bonus": "Bonus habilidad",
+      "hits_taken": "% PV perdidos",
+      "bleeding": "Sangrado (hits/rnd)",
+      "stunned": "Aturdido",
+      "difficulty_label": "Dificultad",
+      "combat_label": "Situación de combate",
+      "lighting_label": "Iluminación (si requerida)",
+      "darkness_label": "Oscuridad (si ventajosa)",
+      "other_mods": "Otros modificadores",
+      "total_modifier": "Modificador total",
+      "modifier": "Modificador",
+      "static_maneuver": "Maniobra estática",
+      "difficulty": {
+        "routine": "Rutinario",
+        "easy": "Fácil",
+        "light": "Ligero",
+        "medium": "Medio",
+        "hard": "Difícil",
+        "very_hard": "Muy difícil",
+        "extremely_hard": "Extremadamente difícil",
+        "sheer_folly": "Locura",
+        "absurd": "Absurdo"
+      },
+      "combat": {
+        "none": "Ninguna",
+        "melee": "En melé",
+        "missile_fire": "Bajo fuego de proyectiles"
+      },
+      "lighting": {
+        "no_shadows": "Sin sombras",
+        "light_shadows": "Sombras ligeras",
+        "medium_shadows": "Sombras medias",
+        "heavy_shadows": "Sombras densas",
+        "dark": "Oscuro",
+        "pitch_black": "Negro total"
+      },
+      "darkness": {
+        "no_shadows": "Sin sombras",
+        "light_shadows": "Sombras ligeras",
+        "medium_shadows": "Sombras medias",
+        "heavy_shadows": "Sombras densas",
+        "dark": "Oscuro",
+        "pitch_black": "Negro total"
+      }
+    },
     "level_up": {
       "ranks_reset": "Nuevos rangos reinicializados"
     },
@@ -597,8 +645,10 @@
       "other_mods": "Otros Modificadores",
       "total_modifier": "Modificador Total",
       "spell_failure_roll": "Tirada de Fallo de Hechizo",
+      "failure_unknown": "El hechizo falla. (Resultado fuera del rango de la tabla—los modificadores pueden haber reducido la severidad del fallo.)",
       "roll": "Tirada",
-      "casting_penalty": "Penalización de lanzamiento"
+      "casting_penalty": "Penalización de lanzamiento",
+      "unmodified": "Sin modificar"
     },
     "dialog": {
       "cancel": "Cancelar"

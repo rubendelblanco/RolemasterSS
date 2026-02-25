@@ -1,0 +1,70 @@
+{
+  "ranges": [
+    {
+      "min": null,
+      "max": -26,
+      "code": "spectacular_failure",
+      "name": "Fallo Espectacular",
+      "description": "Haces un desastre total de tu intento al olvidar incluso los principios más básicos de esta maniobra. Tienes -20 de modificación en tus dos próximas acciones mientras te recuperas de tu estrepitoso fracaso."
+    },
+    {
+      "min": -25,
+      "max": 4,
+      "code": "absolute_failure",
+      "name": "Fallo Absoluto",
+      "description": "Tu notable fracaso te marca para el ridículo. Espera que tus padres no estuvieran mirando..."
+    },
+    {
+      "min": 5,
+      "max": 75,
+      "code": "failure",
+      "name": "Fallo",
+      "description": "Fallas. Tu habilidad no está a la altura de la tarea. Quizá la próxima vez."
+    },
+    {
+      "min": 76,
+      "max": 90,
+      "code": "partial_success",
+      "name": "Éxito Parcial",
+      "description": "Tu intento da pocos frutos, pero parece que vas por buen camino. Quizá prestar más atención a los detalles mejorará tus posibilidades.",
+      "percentage": 20
+    },
+    {
+      "min": 91,
+      "max": 110,
+      "code": "near_success",
+      "name": "Casi Éxito",
+      "description": "¡Estás a la vista de tu objetivo! Si procede, puedes intentar completar tu maniobra con otra tirada con una modificación de +10.",
+      "percentage": 80
+    },
+    {
+      "min": 111,
+      "max": 175,
+      "code": "success",
+      "name": "Éxito",
+      "description": "¡Enhorabuena! Has tenido un éxito completo en tu intento. Continúa.",
+      "percentage": 100
+    },
+    {
+      "min": 176,
+      "max": null,
+      "code": "absolute_success",
+      "name": "Éxito Absoluto",
+      "description": "¡Cielos! ¡Tu magistral actuación ha ampliado los límites de tus propias capacidades! Operas con +10 (no acumulativo) en todos los intentos futuros de usar esta habilidad, hasta que obtengas un resultado de Fallo Absoluto o Fallo Espectacular.",
+      "percentage": 120
+    }
+  ],
+  "special": {
+    "um_66": {
+      "code": "unusual_event",
+      "name": "Suceso Inusual",
+      "description": "Tu maniobra se ve afectada por un suceso inusual. Puede ser beneficioso o no (el DJ debe elegir o determinar aleatoriamente)."
+    },
+    "um_100": {
+      "code": "unusual_success",
+      "name": "Éxito Inusual",
+      "description": "Has logrado un éxito notable de forma inusual. El DJ debe determinar los detalles; este resultado puede deberse a un suceso externo inesperado o a un esfuerzo personal extraordinario.",
+      "percentage": 125
+    }
+  }
+}

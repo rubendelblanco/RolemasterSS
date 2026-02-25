@@ -25,6 +25,15 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
         html.find("a.item-roll").on("click", async ev => {
             ev.preventDefault();
+            const target = ev.currentTarget;
+            if (target.dataset.itemType === "none" && target.dataset.itemId) {
+                const skill = this.actor.items.get(target.dataset.itemId);
+                if (skill) {
+                    const ManeuverService = (await import("../../core/skills/maneuver_service.js")).default;
+                    await ManeuverService.rollManeuver(this.actor, skill);
+                }
+                return;
+            }
             await this.actor.update({"system.attributes.movement_rate.current": this.actor.system.attributes.movement_rate.value});
         });
 
