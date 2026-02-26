@@ -1,75 +1,70 @@
-
-<div class="skills-grid-container">
-    <div class="skills-grid-heading"></div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.favorite" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.skill_name" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skill_categories.dev_cost" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.ranks" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.new_ranks" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.rank_bonus" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.category_bonus" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.item_bonus" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.special_bonus" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.special_bonus" }}</div>
-    <div class="skills-grid-heading">{{ localize "rmss.pc_sheet_skills.total_bonus" }}</div>
-    <div class="skills-grid-heading">
-    </div>
-    {{#each skills as |skill id|}}
-    <div data-search="{{skill.name}}"><img src="{{skill.img}}" alt="{{skill.name}}" width="32" height="32"/></div>
-        {{#if skill.system.favorite}}
-            <div data-search="{{skill.name}}"><a class="skill-favorite" data-item-id="{{skill._id}}"><i
-                    class="fa-regular fa-square-check"></i></a></div>
-        {{else}}
-            <div data-search="{{skill.name}}"><a class="skill-favorite" data-item-id="{{skill._id}}"><i
-                    class="fa-regular fa-square"></i></a></div>
-        {{/if}}
-        <div data-search="{{skill.name}}" {{#if (eq skill.system.designation "Occupational" )}} style="color:blue;" {{else if
-                (eq skill.system.designation "Everyman" )}} style="color:green;" {{else if (eq skill.system.designation "Restricted"
-        )}} style="color:red;" {{/if}}>
-            {{#if (eq skill.system.offensive_skill "none" )}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="none" data-item-id="{{skill._id}}">{{skill.name}}<i class="fas fa-dice"></i></a></div>
-            {{else if (eq skill.system.offensive_skill "melee")}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="melee" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-sword"></i></a></div>
-            {{else if (eq skill.system.offensive_skill "missile")}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="missile" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-bow-arrow"></i></a></div>
-            {{else if (eq skill.system.offensive_skill "spell")}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="spell" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-wand-sparkles"></i></a></div>
-            {{else if (eq skill.system.offensive_skill "area")}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="area" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-explosion"></i></a></div>
-            {{else if (eq skill.system.offensive_skill "base")}}
-                <div class="skills-name-left-align"><a class="item-roll" title="Roll Check" data-item-type="base" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-hand-sparkles"></i></a></div>
-            {{else}}
+<table class="skills-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>{{ localize "rmss.pc_sheet_skills.favorite" }}</th>
+            <th>{{ localize "rmss.pc_sheet_skills.skill_name" }}</th>
+            <th>{{ localize "rmss.pc_sheet_skill_categories.dev_cost" }}</th>
+            <th>{{ localize "rmss.pc_sheet_skills.ranks" }}</th>
+            <th>{{ localize "rmss.pc_sheet_skills.new_ranks" }}</th>
+            <th>{{ localize "rmss.pc_sheet_skills.rank_bonus" }}</th>
+            <th>{{ localize "rmss.pc_sheet_skills.category_bonus" }}</th>
+            <th>{{ localize "rmss.pc_sheet_skills.item_bonus" }}</th>
+            <th>{{ localize "rmss.pc_sheet_skills.special_bonus" }}</th>
+            <th>{{ localize "rmss.pc_sheet_skills.special_bonus" }}</th>
+            <th>{{ localize "rmss.pc_sheet_skills.total_bonus" }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each skills as |skill id|}}
+        <tr class="skill-row" draggable="true" data-type="Item" data-uuid="Actor.{{skill.actorId}}.Item.{{skill._id}}" data-item-id="{{skill._id}}">
+            <td data-search="{{skill.name}}"><img src="{{skill.img}}" alt="{{skill.name}}" width="32" height="32"/></td>
+            <td data-search="{{skill.name}}">
+                {{#if skill.system.favorite}}
+            <a class="skill-favorite" data-item-id="{{skill._id}}"><i class="fa-regular fa-square-check"></i></a>
+                {{else}}
+            <a class="skill-favorite" data-item-id="{{skill._id}}"><i class="fa-regular fa-square"></i></a>
+                {{/if}}
+            </td>
+            <td class="skill-name-cell" data-search="{{skill.name}}" {{#if (eq skill.system.designation "Occupational" )}} style="color:blue;" {{else if (eq skill.system.designation "Everyman" )}} style="color:green;" {{else if (eq skill.system.designation "Restricted" )}} style="color:red;" {{/if}}>
+                {{#if (eq skill.system.offensive_skill "none" )}}
+                <a class="item-roll" title="Roll Check" data-item-type="none" data-item-id="{{skill._id}}">{{skill.name}}<i class="fas fa-dice"></i></a>
+                {{else if (eq skill.system.offensive_skill "melee")}}
+                <a class="item-roll" title="Roll Check" data-item-type="melee" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-sword"></i></a>
+                {{else if (eq skill.system.offensive_skill "missile")}}
+                <a class="item-roll" title="Roll Check" data-item-type="missile" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-bow-arrow"></i></a>
+                {{else if (eq skill.system.offensive_skill "spell")}}
+                <a class="item-roll" title="Roll Check" data-item-type="spell" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-wand-sparkles"></i></a>
+                {{else if (eq skill.system.offensive_skill "area")}}
+                <a class="item-roll" title="Roll Check" data-item-type="area" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-explosion"></i></a>
+                {{else if (eq skill.system.offensive_skill "base")}}
+                <a class="item-roll" title="Roll Check" data-item-type="base" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-hand-sparkles"></i></a>
+                {{else}}
                 {{skill.name}}
-            {{/if}}
-        </div>
-
-        <div data-search="{{skill.name}}">{{skill.system.development_cost}}</div>
-        <div data-search="{{skill.name}}">{{skill.system.ranks}}</div>
-        <div data-search="{{skill.name}}">
-            {{#switch skill.system.new_ranks.value}}
-                {{#case 0}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}"
-                               value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i>
-                    <i class="fa-regular fa-square"></i></a> {{/case}}
-                {{#case 1}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}"
-                               value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i
-                        class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
-                {{#case 2}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}"
-                               value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i
-                        class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
-                {{#case 3}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}"
-                               value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i
-                        class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}}
-            {{/switch}}
-        </div>
-        <div data-search="{{skill.name}}">{{skill.system.rank_bonus}}</div>
-        <div data-search="{{skill.name}}">{{skill.system.category_bonus}}</div>
-        <div data-search="{{skill.name}}">{{skill.system.item_bonus}}</div>
-        <div data-search="{{skill.name}}">{{skill.system.special_bonus_1}}</div>
-        <div data-search="{{skill.name}}">{{skill.system.special_bonus_2}}</div>
-        <div data-search="{{skill.name}}">{{skill.system.total_bonus}}</div>
-        <div data-search="{{skill.name}}">
-            <a class="item-edit" title="Edit Skill" data-item-id="{{skill._id}}"><i class="fas fa-edit"></i></a>
-            <a class="item-delete" title="Delete Skill" data-item-id="{{skill._id}}"><i class="fas fa-trash"></i></a>
-        </div>
-    {{/each}}
-</div>
+                {{/if}}
+            </td>
+            <td data-search="{{skill.name}}">{{skill.system.development_cost}}</td>
+            <td data-search="{{skill.name}}">{{skill.system.ranks}}</td>
+            <td data-search="{{skill.name}}">
+                {{#switch skill.system.new_ranks.value}}
+                    {{#case 0}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}" value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+                    {{#case 1}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}" value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+                    {{#case 2}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}" value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+                    {{#case 3}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}" value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}}
+                {{/switch}}
+            </td>
+            <td data-search="{{skill.name}}">{{skill.system.rank_bonus}}</td>
+            <td data-search="{{skill.name}}">{{skill.system.category_bonus}}</td>
+            <td data-search="{{skill.name}}">{{skill.system.item_bonus}}</td>
+            <td data-search="{{skill.name}}">{{skill.system.special_bonus_1}}</td>
+            <td data-search="{{skill.name}}">{{skill.system.special_bonus_2}}</td>
+            <td data-search="{{skill.name}}">{{skill.system.total_bonus}}</td>
+            <td data-search="{{skill.name}}">
+                <a class="item-edit" title="Edit Skill" data-item-id="{{skill._id}}"><i class="fas fa-edit"></i></a>
+                <a class="item-delete" title="Delete Skill" data-item-id="{{skill._id}}"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

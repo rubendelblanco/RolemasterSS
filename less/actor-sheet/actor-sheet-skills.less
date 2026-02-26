@@ -41,6 +41,52 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
 }
 
+/* Skills table: filas arrastrables */
+.skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Signika, sans-serif;
+    font-size: 12px;
+
+    th, td {
+        text-align: center;
+        border-bottom: 1px solid;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        vertical-align: middle;
+    }
+
+    th {
+        font-weight: bold;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    }
+
+    .skill-row {
+        cursor: grab;
+
+        &:active {
+            cursor: grabbing;
+        }
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        &:nth-child(odd) {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+        }
+
+        &:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    .skill-name-cell {
+        text-align: left;
+    }
+}
+
 .skills-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;

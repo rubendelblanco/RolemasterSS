@@ -311,6 +311,67 @@
     background-image: var(--rmss-row-highlight);
 }
 
+/* Skills table: tabla con filas arrastrables (reemplaza grid legacy) */
+.skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
+}
+
+.skills-table th,
+.skills-table td {
+    text-align: center;
+    border-bottom: 1px solid;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    vertical-align: middle;
+}
+
+.skills-table th {
+    font-weight: bold;
+    background-image: var(--rmss-row-highlight);
+}
+
+.skills-table th:nth-child(1) { width: 5%; }
+.skills-table th:nth-child(2) { width: 3%; }
+.skills-table th:nth-child(3) { width: 11%; }
+.skills-table th:nth-child(4) { width: 5%; }
+.skills-table th:nth-child(5) { width: 8%; }
+.skills-table th:nth-child(6) { width: 9%; }
+.skills-table th:nth-child(7) { width: 8%; }
+.skills-table th:nth-child(8) { width: 8%; }
+.skills-table th:nth-child(9) { width: 8%; }
+.skills-table th:nth-child(10) { width: 9%; }
+.skills-table th:nth-child(11) { width: 9%; }
+.skills-table th:nth-child(12) { width: 9%; }
+.skills-table th:nth-child(13) { width: 8%; }
+
+.skills-table .skill-row {
+    cursor: grab;
+}
+
+.skills-table .skill-row:active {
+    cursor: grabbing;
+}
+
+.skills-table .skill-row:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.skills-table tbody tr.skill-row:nth-child(odd) {
+    background-image: var(--rmss-row-highlight);
+}
+
+.skills-table tbody tr.skill-row:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.skills-table .skill-name-cell {
+    text-align: left;
+}
+
 .skills-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;

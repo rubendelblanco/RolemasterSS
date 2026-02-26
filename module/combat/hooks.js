@@ -119,6 +119,11 @@ export function registerCombatHooks() {
     });
 
     Hooks.on("rmssItemUsed", async (item) => {
+        if (item.type === "skill") {
+            const ManeuverService = (await import("../core/skills/maneuver_service.js")).default;
+            await ManeuverService.rollManeuver(item.actor, item);
+            return;
+        }
         if (!["weapon", "creature_attack"].includes(item.type)) return;
 
         const targets = RMSSCombat?.getTargets();
