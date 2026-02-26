@@ -509,80 +509,59 @@
     grid-template-columns: [img] 9% [favorite] 3% [name] 38% [area_of_effect] 10% [duration] 10% [range] 10% [type] 10% [controls] 10%;
 }
 
+/* Headings: first 8 direct children */
+.spell-grid-container > .spell-grid-heading {
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
+    text-align: center;
+    border-bottom: 1px solid;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-image: var(--rmss-row-highlight);
+}
+
+/* Spell rows: draggable, subgrid to align cells with headings */
 .spell-row {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: subgrid;
     cursor: grab;
-    background-image: var(--rmss-row-highlight);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .spell-row:active {
     cursor: grabbing;
 }
+
 .spell-row:hover {
     background-color: rgba(255, 255, 255, 0.15);
     transition: background-color 0.2s ease-in-out;
 }
+
+/* Alternating rows: spell-row at odd (9,11,13...) vs even (10,12,14...) positions */
+.spell-grid-container > .spell-row:nth-child(odd) {
+    background-image: var(--rmss-row-highlight);
+}
+
+.spell-grid-container > .spell-row:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Cells within each spell row */
 .spell-row > div {
     font-family: var(--rmss-font-main);
     font-size: var(--rmss-font-size-sm);
     text-align: center;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 3px;
     padding-bottom: 3px;
     display: flex;
     justify-content: center;
     flex-direction: row;
-}
-
-.spell-grid-container > div {
-    font-family: var(--rmss-font-main);
-    font-size: var(--rmss-font-size-sm);
-    text-align: center;
-    border-bottom: 1px solid;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.spell-grid-container > div:nth-child(16n+1),
-.spell-grid-container > div:nth-child(16n+2),
-.spell-grid-container > div:nth-child(16n+3),
-.spell-grid-container > div:nth-child(16n+4),
-.spell-grid-container > div:nth-child(16n+5),
-.spell-grid-container > div:nth-child(16n+6),
-.spell-grid-container > div:nth-child(16n+7),
-.spell-grid-container > div:nth-child(16n+8){
-    font-family: var(--rmss-font-main);
-    font-size: var(--rmss-font-size-sm);
-    text-align: center;
-    border-bottom: 1px solid;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
-    justify-content: center;
-    background-image: var(--rmss-row-highlight);
-}
-
-.spell-grid-container > div:nth-child(16n+9),
-.spell-grid-container > div:nth-child(16n+10),
-.spell-grid-container > div:nth-child(16n+11),
-.spell-grid-container > div:nth-child(16n+12),
-.spell-grid-container > div:nth-child(16n+13),
-.spell-grid-container > div:nth-child(16n+14),
-.spell-grid-container > div:nth-child(16n+15),
-.spell-grid-container > div:nth-child(16n+16) {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.spell-grid-container > div:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    transition: background-color 0.2s ease-in-out;
+    align-items: center;
 }
 
 .spell-grid-heading {
@@ -591,7 +570,8 @@
     background-image: var(--rmss-row-highlight);
 }
 
-.spell-grid-container > div {
+.spell-grid-container > .spell-grid-heading,
+.spell-row > div {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
 }
