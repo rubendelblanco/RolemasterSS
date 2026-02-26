@@ -48,15 +48,13 @@ export default class DirectedElementalSpellService {
             return;
         }
 
+        // If no skill associated with spell, use 0
         const skill = actor.items.find(i =>
             i.type === "skill" &&
             i.system?.categorySlug === "directed-spells" &&
             i.name === skillName
         );
-        if (!skill) {
-            ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_skill"));
-            return;
-        }
+        const skillBonus = skill?.system?.total_bonus ?? 0;
 
         const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
         const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
@@ -74,7 +72,6 @@ export default class DirectedElementalSpellService {
             return;
         }
 
-        const skillBonus = skill.system.total_bonus ?? 0;
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
         const { hitsTaken = 0, bleeding = 0, penaltyEffect = 0 } = castingOptions;
         const totalCastingModifier = castingOptions.totalModifier;

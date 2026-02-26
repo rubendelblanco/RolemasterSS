@@ -55,17 +55,11 @@ export default class ForceSpellService {
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
         const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0 } = castingOptions;
 
-        // Find the skill with the same name as the spell list
-        const skill = actor.items.find(i => 
+        // Find the skill with the same name as the spell list; if none, use 0
+        const skill = actor.items.find(i =>
             i.type === "skill" && i.name === spellListName
         );
-
-        if (!skill) {
-            ui.notifications.warn(game.i18n.localize("rmss.spells.no_skill_found") + `: ${spellListName}`);
-            return;
-        }
-
-        const skillBonus = skill.system.total_bonus ?? 0;
+        const skillBonus = skill?.system?.total_bonus ?? 0;
 
         // Get targets
         const targets = Array.from(game.user.targets);

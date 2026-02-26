@@ -58,13 +58,9 @@ export default class BaseElementalSpellService {
             return;
         }
 
+        // If no skill associated with spell list, use 0
         const skill = actor.items.find(i => i.type === "skill" && i.name === spellListName);
-        if (!skill) {
-            ui.notifications.warn(game.i18n.localize("rmss.spells.no_skill_found") + `: ${spellListName}`);
-            return;
-        }
-
-        const skillBonus = skill.system.total_bonus ?? 0;
+        const skillBonus = skill?.system?.total_bonus ?? 0;
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
         const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0 } = castingOptions;
         const totalCastingModifier = castingOptions.totalModifier;
