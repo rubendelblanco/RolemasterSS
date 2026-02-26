@@ -273,7 +273,10 @@
     grid-template-columns: [attack-name] 19% [attack-bonus] 10% [attack-multiplier] 10% [attacks-number] 10% [attack-probability] 18% [special] 25% [controls] 8%;
 }
 
-.skills-grid-container > div, .skills-grid-container-creature > div,.skills-grid-container-npc > div {
+.skills-grid-container > div,
+.skills-grid-container > .skill-row > div,
+.skills-grid-container-creature > div,
+.skills-grid-container-npc > div {
     font-family: var(--rmss-font-main);
     font-size: var(--rmss-font-size-sm);
     text-align: center;
@@ -286,29 +289,29 @@
     justify-content: center;
 }
 
-.skills-grid-container > div:nth-child(26n+1),
-.skills-grid-container > div:nth-child(26n+2),
-.skills-grid-container > div:nth-child(26n+3),
-.skills-grid-container > div:nth-child(26n+4),
-.skills-grid-container > div:nth-child(26n+5),
-.skills-grid-container > div:nth-child(26n+6),
-.skills-grid-container > div:nth-child(26n+7),
-.skills-grid-container > div:nth-child(26n+8),
-.skills-grid-container > div:nth-child(26n+9),
-.skills-grid-container > div:nth-child(26n+10),
-.skills-grid-container > div:nth-child(26n+11),
-.skills-grid-container > div:nth-child(26n+12) {
-    font-family: var(--rmss-font-main);
-    font-size: var(--rmss-font-size-sm);
-    text-align: center;
-    border-bottom: 1px solid;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    justify-content: center;
+.skill-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 5% 3% 11% 5% 8% 9% 8% 8% 8% 9% 9% 9% 8%;
+    cursor: grab;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skill-row:active {
+    cursor: grabbing;
+}
+
+.skill-row:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.skills-grid-container > .skill-row:nth-child(odd) {
     background-image: var(--rmss-row-highlight);
+}
+
+.skills-grid-container > .skill-row:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .skills-grid-heading {
