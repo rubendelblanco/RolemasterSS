@@ -9,6 +9,7 @@ import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_
 import { sendExpMessage } from "../../chat/chatMessages.js";
 import RMSSTableManager from "../../combat/rmss_table_manager.js";
 import { RMSSWeaponCriticalManager } from "../../combat/rmss_weapon_critical_manager.js";
+import FacingService from "../../combat/services/facing_service.js";
 import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
 import { socket } from "../../../rmss.js";
 
@@ -86,12 +87,17 @@ export default class DirectedElementalSpellService {
             return;
         }
 
+        const casterToken = canvas.tokens.controlled.find(t => t.actor?.id === actor.id) ?? actor.getActiveTokens?.()?.[0];
+        const defenderToken = firstTarget;
+        const facingValue = (casterToken && defenderToken) ? FacingService.calculateFacing(casterToken, defenderToken) : null;
+
         const spellOptions = {
             ob: skillBonus,
             hitsTaken,
             bleeding,
             penaltyValue,
-            bonusValue: restModifier
+            bonusValue: restModifier,
+            ...(facingValue !== null && { facingValue })
         };
 
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemyActor, virtualWeapon, spellOptions);

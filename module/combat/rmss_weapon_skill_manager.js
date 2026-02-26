@@ -1,15 +1,20 @@
-import {socket} from "../../rmss.js";
+import { socket } from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
 import Utils from "../utils.js";
 import ManeuverPenaltiesService from "../core/maneuver_penalties_service.js";
 import RollService from "./services/roll_service.js";
 import WeaponFumbleService from "./services/weapon_fumble_service.js";
-import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
+import FacingService from "./services/facing_service.js";
+import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 
 export class RMSSWeaponSkillManager {
 
-    static async handleAttack(actor, enemy, weapon) {
-        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon);
+    static async handleAttack(actor, enemy, weapon, attackerToken = null, defenderToken = null) {
+        const facingValue = (attackerToken && defenderToken)
+            ? FacingService.calculateFacing(attackerToken, defenderToken)
+            : null;
+        const tokenData = facingValue !== null ? { facingValue } : null;
+        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, tokenData);
         if (!gmResponse.confirmed) return;
         const rollData = await RollService.highOpenEndedD100();
         const baseAttack = rollData.roll.terms[0].results[0].result;
@@ -85,7 +90,7 @@ export class RMSSWeaponSkillManager {
      * @param {Item} weapon
      * @param {Object} [spellOptions] - Pre-filled values from casting options: { ob, hitsTaken, bleeding, stunnedPenalty, penaltyValue, bonusValue }
      */
-    static async attackMessagePopup(actor, enemy, weapon, spellOptions = null) {
+    static async attackMessagePopup(actor, enemy, weapon, spellOptionsOrTokenData = null) {
         // Get the real actor from the game if passed through socketlib
         const realActor = (actor.id && game.actors) ? game.actors.get(actor.id) : actor;
         if (!realActor) {
@@ -94,8 +99,12 @@ export class RMSSWeaponSkillManager {
         }
 
         let ob, hitsTaken, bleeding, penaltyValue, bonusValue, stunnedValue;
+        const spellOptions = spellOptionsOrTokenData?.ob !== undefined ? spellOptionsOrTokenData : null;
+        const tokenData = spellOptionsOrTokenData?.facingValue !== undefined ? spellOptionsOrTokenData : null;
 
         const realEnemy = (enemy?.id && game.actors) ? game.actors.get(enemy.id) : enemy;
+
+        const facingValue = (tokenData?.facingValue ?? FacingService.FACING.FRONT) || "";
 
         if (spellOptions) {
             ob = spellOptions.ob ?? 0;
@@ -135,6 +144,7 @@ export class RMSSWeaponSkillManager {
             bonusValue,
             stunnedValue,
             penaltyValue,
+            facingValue,
         });
 
         let confirmed = await new Promise((resolve) => {

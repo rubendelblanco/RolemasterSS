@@ -32,10 +32,10 @@
         <label for="facing">{{ localize "rmss.combat.facing" }}</label>
         <select class="calculable" id="facing"
                 style="width:110px; border:1px solid #666; background:#fafafa;">
-            <option selected>{{ localize "rmss.combat.front" }}</option>
-            <option value="15">{{ localize "rmss.combat.flank" }} (+15)</option>
-            <option value="25">{{ localize "rmss.combat.rear_flank" }} (+25)</option>
-            <option value="35">{{ localize "rmss.combat.rear" }} (+35)</option>
+            <option value="" {{#if (eq facingValue "")}}selected{{/if}}>{{ localize "rmss.combat.front" }}</option>
+            <option value="15" {{#if (eq facingValue "15")}}selected{{/if}}>{{ localize "rmss.combat.flank" }} (+15)</option>
+            <option value="25" {{#if (eq facingValue "25")}}selected{{/if}}>{{ localize "rmss.combat.rear_flank" }} (+25)</option>
+            <option value="35" {{#if (eq facingValue "35")}}selected{{/if}}>{{ localize "rmss.combat.rear" }} (+35)</option>
         </select>
     </div>
 

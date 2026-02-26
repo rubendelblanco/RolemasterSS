@@ -121,9 +121,13 @@ export function registerCombatHooks() {
     Hooks.on("rmssItemUsed", async (item) => {
         if (!["weapon", "creature_attack"].includes(item.type)) return;
 
-        const enemy = RMSSCombat?.getTargets()?.[0];
+        const targets = RMSSCombat?.getTargets();
+        const enemy = targets?.[0];
         if (!enemy) return ui.notifications.warn("No target selected.");
-        await RMSSWeaponSkillManager.handleAttack(item.actor, enemy.actor, item);
+
+        const attackerToken = canvas.tokens.controlled.length === 1 ? canvas.tokens.controlled[0] : null;
+        const defenderToken = enemy;
+        await RMSSWeaponSkillManager.handleAttack(item.actor, enemy.actor, item, attackerToken, defenderToken);
     });
 
     Hooks.on("updateCombat", async (combat, update) => {
