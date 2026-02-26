@@ -50,3 +50,20 @@ global.ui = {
 
 // Mock fetch for loading JSON tables
 global.fetch = jest.fn();
+
+// Mock Hooks and socketlib (needed if rmss.js loads)
+global.Hooks = { once: jest.fn(), on: jest.fn() };
+global.socketlib = { registerSystem: jest.fn().mockReturnValue({ register: jest.fn() }) };
+
+// Mock Foundry Document/Application classes (needed by various modules)
+global.Actor = class Actor {};
+global.Item = class Item {};
+global.Document = class Document {};
+global.Combatant = class Combatant {};
+global.Combat = class Combat {};
+global.Application = class Application {};
+global.ItemSheet = class ItemSheet {};
+global.ActorSheet = class ActorSheet {};
+global.FormApplication = global.Application;
+global.foundry = global.foundry || {};
+global.foundry.utils = global.foundry.utils || { mergeObject: (a, b) => ({ ...a, ...b }) };
