@@ -1,0 +1,131 @@
+{
+  "columns": ["1he", "2h", "pa", "mounted", "th", "mis"],
+  "ranges": [
+    {
+      "min": 1, "max": 25,
+      "1he": "Tienes la palma sudorosa. Quizá mejorarás.",
+      "2h": "¡Sí que pesa ese arma! Pierdes la oportunidad de asestar el golpe.",
+      "pa": "Enredas tu propia ropa y pierdes la oportunidad de asestar el golpe.",
+      "mounted": "Los arreos de tu montura enredan tu arma. Pierdes la oportunidad de atacar.",
+      "th": "Tu agarre es débil. Decides no atacar por falta de control.",
+      "mis": "El sudor te cae en el ojo. Decides no atacar. Buena elección."
+    },
+    {
+      "min": 26, "max": 30,
+      "1he": "Torpe. Sueltas tu arma. Pasa dos asaltos recuperándola o desenvaina una nueva el próximo asalto.",
+      "2h": "Tu arma sale volando. Tarda cuatro asaltos en recuperarla o desenvaina una nueva el próximo asalto.",
+      "pa": "Pifias el golpe y tu arma queda fuera de posición. Pierdes la opción de atacar.",
+      "mounted": "No encuentras el ángulo adecuado. Pierdes 2 asaltos de ataque (pero puedes seguir parando).",
+      "th": "Pifias el lanzamiento pero conservas el arma. Tienes -10 en tu próximo ataque.",
+      "mis": "Tus diez pulgares no pueden con la carga. Debes recargar tu arma."
+    },
+    {
+      "min": 31, "max": 40,
+      "1he": "Se te enredan los pies. Pierdes la oportunidad de asestar ese golpe vital.",
+      "2h": "Tu mente divaga. Pasa el resto del asalto aclarándote la cabeza.",
+      "pa": "Simplemente pareces torpe. Tus pies resbalan. Quedas aturdido durante un asalto.",
+      "mounted": "Resbalas en la silla. Pierdes 2 asaltos de ataque (pero puedes seguir parando).",
+      "th": "Tus pies están realmente enredados. Pierdes 2 asaltos de ataque, pero puedes seguir parando.",
+      "mis": "Tu munición se te escapa. Debes recargar."
+    },
+    {
+      "min": 41, "max": 50,
+      "1he": "Te extiendes en exceso y te distiendes un músculo. Recibes 1d5 de daño.",
+      "2h": "Tropezaste con una tortuga muerta imaginaria. Pierdes 2 asaltos de ataque, pero puedes seguir parando.",
+      "pa": "Tu arma da vueltas durante dos asaltos. Puedes seguir parando a -10.",
+      "mounted": "Tu montura esquiva un enemigo invisible. Quedas aturdido durante 2 asaltos.",
+      "th": "Empiezas a hacer malabares con tu arma por un mal agarre. Tu falta de control te aturde durante 3 asaltos.",
+      "mis": "Notas que tu munición está defectuosa. Tras retirarla descubres que estabas equivocado. Recárgala."
+    },
+    {
+      "min": 51, "max": 60,
+      "1he": "Intentas impresionar a tu oponente con un giro. Lástima. Pierdes dos asaltos mientras te recuperas.",
+      "2h": "Tu combinación de acrobacias y ataques es poco impresionante. Pierdes dos asaltos de ataques, pero puedes seguir parando.",
+      "pa": "Te tambaleas contra un objeto fijo cercano. Quedas aturdido e incapaz de parar durante dos asaltos.",
+      "mounted": "Pierdes el agarre de tu arma. Por suerte, queda enredada en los arreos de tu montura. Tu falta de gracia te aturde durante tres asaltos.",
+      "th": "Mal lanzamiento. El arma recorre 2d10 pies a la izquierda del objetivo.",
+      "mis": "¡Tu munición no para de saltar del arma! Prueba el cuerpo a cuerpo la próxima vez."
+    },
+    {
+      "min": 61, "max": 65,
+      "1he": "Enredas tu ropa con el arma, haciendo que se te escape de la mano. Pasa dos asaltos haciendo malabares con ella.",
+      "2h": "Tu arma sale volando de tus manos, pero logras atraparla antes de que se vaya del todo. Pierdes dos asaltos de ataque.",
+      "pa": "El asta se te enreda en las piernas. Casi te caes en una impresionante hazaña de enredos. Tu próximo ataque es a -20.",
+      "mounted": "Tu pobre montura tropieza. Quedas aturdido durante dos asaltos.",
+      "th": "¡Un pésimo lanzamiento envía tu arma hacia arriba! Te agachas buscando cobijo mientras tu arma comprueba si se rompe.",
+      "mis": "Tu arma se te escapa de las manos. Pasa dos asaltos recuperándola; o desenvaina un arma nueva."
+    },
+    {
+      "min": 66, "max": 66,
+      "1he": "Ejecutas un ataque perfecto—contra el aliado más cercano (tú mismo si no hay nadie más). El aliado recibe 1d10 de daño y un crítico 'B'.",
+      "2h": "Una maniobra acrobática te deja de espaldas en el suelo. Recibes 2d10 de daño y un crítico 'E' de Krush.",
+      "pa": "¡Tu arma debe comprobar si se rompe al estrellarla contra el suelo! Quedas aturdido durante seis asaltos por el impacto.",
+      "mounted": "Tu golpe corta los arreos de tu montura. Tú y tu silla os despedís de la pobre bestia. Recibe un crítico 'A' de Krush.",
+      "th": "Tu grito feroz es seguido por el silencio al golpearte a ti mismo. Recibe un crítico 'D' de Krush.",
+      "mis": "Recibe un crítico 'A' de Krush por la liberación repentina. Tu arma se parte limpiamente en dos."
+    },
+    {
+      "min": 67, "max": 70,
+      "1he": "Tropezaste con esa superficie irregular. Pasa dos asaltos tambaleándote. Puedes seguir parando.",
+      "2h": "Dejas caer tu arma al suelo con gracia. Logras devolverla a tu mano de un puntapié, pero pierdes dos asaltos haciéndolo.",
+      "pa": "¡Tu arma parece tener mente propia! Tu próximo ataque es a -50 mientras intentas controlarla.",
+      "mounted": "¡Tus arreos se han aflojado! De repente resbalas de lado. Quedas aturdido durante dos asaltos.",
+      "th": "No puedes controlar la puntería—tu arma vuela 2d10 pies a la derecha del objetivo previsto.",
+      "mis": "Tu agarre falla y tu arma sale volando de tus manos. Pasa dos asaltos recuperándola; o desenvaina un arma nueva."
+    },
+    {
+      "min": 71, "max": 80,
+      "1he": "Te distrae ese duendecillo en la esquina. Pierdes 2 asaltos de ataques.",
+      "2h": "Te tensas los hombros en un poderoso golpe (que falla). Quedas aturdido durante dos asaltos.",
+      "pa": "Tu ineptitud es obvia para todos. Pierdes 3 asaltos de ataques y quedas aturdido durante 2 asaltos.",
+      "mounted": "Tu arma se clava directamente en el suelo (comprueba si se rompe).",
+      "th": "Justo cuando vas a soltar, pisas un agujero imaginario en el suelo. Pierdes 3 asaltos levantándote del suelo.",
+      "mis": "¡Se te rompe la cuerda del arco! Desenvaina un arma nueva o pon una cuerda nueva en esta."
+    },
+    {
+      "min": 81, "max": 85,
+      "1he": "De repente te quedas sin aliento. Tómate dos asaltos para relajarte.",
+      "2h": "Pierdes el agarre al comenzar el golpe. Tu arma intenta escaparse. Pasa tres asaltos recuperando el control. Puedes seguir parando.",
+      "pa": "Un movimiento torpe casi te alcanza tu propia cabeza. Quedas aturdido e incapaz de parar durante tres asaltos (prueba un arco la próxima vez).",
+      "mounted": "¡Tu arma sale volando de tu mano! Desenvaina una nueva.",
+      "th": "Tu arma cae al suelo al comenzar a apuntar. Tarda cuatro asaltos en recuperarla; o desenvaina una nueva.",
+      "mis": "Tu arma te muerde al disparar. Tu disparo no acierta nada, pero quedas aturdido e incapaz de parar durante tres asaltos."
+    },
+    {
+      "min": 86, "max": 90,
+      "1he": "Con suerte aprenderás que bailar no es apropiado en combate. Quedas aturdido durante dos asaltos por tu falta de habilidad.",
+      "2h": "¡Te has hecho algo en el último golpe y ahora empieza a doler! Quedas aturdido durante tres asaltos mientras te recuperas.",
+      "pa": "¡Ahí va! Tu arma se desliza lejos. Tarda seis asaltos en recuperarla; o desenvaina una nueva.",
+      "mounted": "Tu arma debe comprobar si se rompe al golpear la parte más dura de tu enemigo. Recibes 2d10 de daño por el impacto.",
+      "th": "Tu pobre y débil lanzamiento envía el arma dos pies hacia arriba. Inmediatamente baja y te golpea. No recibes daño, pero quedas aturdido durante seis asaltos.",
+      "mis": "¡Suelta demasiado pronto! Tu flecha cae 3d10 pies antes del objetivo. Además, pasas dos asaltos buscando más munición."
+    },
+    {
+      "min": 91, "max": 95,
+      "1he": "Te caes cuando tu golpe se va de largo. Quedas aturdido durante tres asaltos.",
+      "2h": "Te caes y por poco evitas destriparte. Quedas aturdido durante cuatro asaltos.",
+      "pa": "Te caes y te das un golpe en la cabeza contra el suelo. Estás en el suelo durante cuatro asaltos y aturdido durante tres.",
+      "mounted": "Tu montura se encabrita inesperadamente justo cuando ibas a golpear. Te encuentras aturdido e incapaz de parar durante tres asaltos.",
+      "th": "Tu arma vuela detrás de ti, recorriendo 4d10 pies antes de aterrizar.",
+      "mis": "Tu disparo se desvía al resbalar y caer durante el lanzamiento. Quedas aturdido durante seis asaltos e incapaz de parar durante dos asaltos."
+    },
+    {
+      "min": 96, "max": 99,
+      "1he": "¡La emoción es demasiada! Tu frenesí momentáneo te deja aturdido e incapaz de parar durante tres asaltos.",
+      "2h": "Te tropiezas y te caes. Estás en el suelo durante cuatro asaltos e incapaz de parar durante tres.",
+      "pa": "¡Tu hombro no se dobla de esa manera! Quedas aturdido e incapaz de parar durante tres asaltos. Ahora luchas a -25.",
+      "mounted": "Tu montura salta salvajemente. Recibes 4d10 de daño por el impacto y quedas aturdido e incapaz de parar durante seis asaltos.",
+      "th": "Te tropiezas al soltar. Tu disparo sale descontrolado y quedas aturdido durante doce asaltos.",
+      "mis": "¡Tu arma se hace añicos (¡no te das cuenta de tu propia fuerza)! Quedas aturdido durante 4 asaltos."
+    },
+    {
+      "min": 100, "max": 100,
+      "1he": "Intentas mutilarte. Recibe un crítico 'D'.",
+      "2h": "¡La peor jugada vista en años! Estás fuera de combate 2 días por una lesión en la ingle. Hay un 50% de probabilidad de que tus enemigos estén fuera 3 asaltos, riéndose.",
+      "pa": "Tu arma se rompe y un extremo te golpea en la cabeza. Quedas aturdido e incapaz de parar durante seis asaltos.",
+      "mounted": "¡No puedes mantenerte en tu montura! Te caes y recibes un crítico 'D' de aplastamiento.",
+      "th": "Te golpeas accidentalmente al lanzar. Recibe un crítico 'D' de Krush.",
+      "mis": "Mala ejecución. Recibes 5 de daño cuando el arma te golpea. Quedas permanentemente mutilado y sangrando 2 de daño por asalto."
+    }
+  ]
+}
