@@ -3,6 +3,16 @@
     grid-template-columns: [favorite] 9% [level] 8% [name] 30% [spell_list] 9% [area_of_effect] 9% [duration] 9% [range] 9% [type] 9% [controls] 8%;
 }
 
+.spell-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    cursor: grab;
+    &:active {
+        cursor: grabbing;
+    }
+}
+
 .spell-grid-container > div {
     font-family: Signika, sans-serif;
     font-size: 12px;

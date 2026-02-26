@@ -509,6 +509,32 @@
     grid-template-columns: [img] 9% [favorite] 3% [name] 38% [area_of_effect] 10% [duration] 10% [range] 10% [type] 10% [controls] 10%;
 }
 
+.spell-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    cursor: grab;
+    background-image: var(--rmss-row-highlight);
+}
+.spell-row:active {
+    cursor: grabbing;
+}
+.spell-row:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: background-color 0.2s ease-in-out;
+}
+.spell-row > div {
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
+    text-align: center;
+    border-bottom: 1px solid;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
 .spell-grid-container > div {
     font-family: var(--rmss-font-main);
     font-size: var(--rmss-font-size-sm);
