@@ -159,7 +159,9 @@ export default class ForceSpellService {
                     finalRR: finalRR,
                     targetLevel: targetLevel,
                     rrModifier: rrModifier,
-                    subindex: subindexDisplay
+                    subindex: subindexDisplay,
+                    tokenId: target.id,
+                    tokenUuid: target.uuid ?? target.document?.uuid ?? null
                 });
             }
         }
@@ -225,6 +227,12 @@ export default class ForceSpellService {
                     await sendExpMessage(actor, breakDown, xp);
                 }
             }
+
+            // Store RR context for item macro (see Item._executeItemMacro JSDoc; e.g. Dormir V: roll RR per target, apply sleep if failed)
+            game.rmss = game.rmss || {};
+            game.rmss.lastSpellContext = targetRRs.length > 0
+                ? { targetRRs, casterLevel: actor.system.attributes?.level?.value ?? 1 }
+                : null;
 
             await spell.use();
         }

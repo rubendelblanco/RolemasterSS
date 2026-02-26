@@ -116,7 +116,30 @@ export class RMSSItem extends Item {
 
   /**
    * Execute an embedded macro if the item defines one.
+   * The macro receives: item, actor, token (caster), and optionally spellContext.
+   *
    * @private
+   *
+   * @typedef {Object} SpellContextTargetRR
+   * @property {string} name - Target name
+   * @property {number} finalRR - RR value the target must roll above to resist
+   * @property {number} targetLevel - Target level
+   * @property {number} rrModifier - RR modifier from spell attack table
+   * @property {string} subindex - Subindex display
+   * @property {string} tokenId - Token document id
+   * @property {string|null} tokenUuid - Token UUID for cross-scene lookup
+   *
+   * @typedef {Object} SpellContext
+   * @property {SpellContextTargetRR[]} targetRRs - Targets with their RR values
+   * @property {number} casterLevel - Caster level
+   *
+   * Macro variables:
+   * - item: this Item
+   * - actor: owner actor
+   * - token: caster's active token
+   * - spellContext: {SpellContext|null} Set by Force (F) spells with targets before use().
+   *   Use spellContext?.targetRRs to roll RR per target and apply effects (e.g. Sleep).
+   *   null for non-Force spells or when no targets. Safe to ignore.
    */
   async _executeItemMacro() {
     const macroData = this.getFlag("rmss", "macro");
@@ -129,11 +152,14 @@ export class RMSSItem extends Item {
         command: macroData.command
       });
 
+      const spellContext = game.rmss?.lastSpellContext ?? null;
       await macro.execute({
         item: this,
         actor: this.actor,
-        token: this.actor?.getActiveTokens()?.[0]
+        token: this.actor?.getActiveTokens()?.[0],
+        spellContext
       });
+      if (game.rmss?.lastSpellContext) game.rmss.lastSpellContext = null;
     } catch (err) {
       console.error("Error executing item macro:", err);
       ui.notifications.error(`Macro error: ${err.message}`);
