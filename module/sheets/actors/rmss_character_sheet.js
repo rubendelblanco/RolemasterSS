@@ -106,8 +106,8 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
         });
 
-        // Hotbar drag & drop (tr for items/weapons/armor, .spell-row for spells, .skill-row for skills)
-        html.find("tr[draggable='true'], .spell-row[draggable='true'], .skill-row[draggable='true']").each((i, el) => {
+        // Hotbar drag & drop (tr for items/weapons/armor/skills, .spell-row for spells)
+        html.find("tr[draggable='true'], .spell-row[draggable='true']").each((i, el) => {
             el.addEventListener("dragstart", event => {
                 const itemId = event.currentTarget.getAttribute("data-item-id");
                 const uuid = event.currentTarget.getAttribute("data-uuid");
@@ -119,7 +119,9 @@ export default class RMSSCharacterSheet extends ActorSheet {
                     uuid: uuid
                 };
 
-                event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+                const json = JSON.stringify(dragData);
+                event.dataTransfer.setData("text/plain", json);
+                event.dataTransfer.setData("application/json", json);
             });
         });
 
