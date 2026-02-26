@@ -32,7 +32,9 @@ export default class DirectedElementalSpellService {
         }
 
         const skillName = spell.system?.skillName;
-        if (!skillName) {
+        const isCreature = actor.type === "creature";
+        // Characters and NPCs need a skill; creatures don't have skills, so skillName is optional for them
+        if (!isCreature && !skillName) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_skill"));
             return;
         }
@@ -49,13 +51,24 @@ export default class DirectedElementalSpellService {
             return;
         }
 
-        // If no skill associated with spell, use 0
-        const skill = actor.items.find(i =>
-            i.type === "skill" &&
-            i.system?.categorySlug === "directed-spells" &&
-            i.name === skillName
-        );
-        const skillBonus = skill?.system?.total_bonus ?? 0;
+        // OB: skill bonus for characters, creature_attack bonus for creatures
+        let skillBonus;
+        let displaySkillName;
+        if (isCreature && skillName) {
+            const creatureAttack = actor.items.find(i =>
+                i.type === "creature_attack" && i.name === skillName
+            );
+            skillBonus = creatureAttack ? parseInt(creatureAttack.system?.bonus ?? 0, 10) : 0;
+            displaySkillName = skillName;
+        } else {
+            const skill = skillName ? actor.items.find(i =>
+                i.type === "skill" &&
+                i.system?.categorySlug === "directed-spells" &&
+                i.name === skillName
+            ) : null;
+            skillBonus = skill?.system?.total_bonus ?? 0;
+            displaySkillName = skillName || (isCreature ? game.i18n.localize("rmss.spells.de_creature_cast") : "");
+        }
 
         const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
         const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
@@ -139,7 +152,7 @@ export default class DirectedElementalSpellService {
             await this._createChatMessage({
                 actor,
                 spell,
-                skillName,
+                skillName: displaySkillName,
                 skillBonus,
                 castingModifier,
                 hitsTaken,
@@ -159,7 +172,7 @@ export default class DirectedElementalSpellService {
         await this._createChatMessage({
             actor,
             spell,
-            skillName,
+            skillName: displaySkillName,
             skillBonus,
             castingModifier,
             hitsTaken,

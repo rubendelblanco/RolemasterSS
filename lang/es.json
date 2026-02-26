@@ -650,6 +650,7 @@
       "de_no_attack_table": "El hechizo DE no tiene tabla de ataque configurada. Edita el hechizo y selecciona una tabla bolt.",
       "de_no_skill": "El hechizo DE no tiene habilidad configurada. Edita el hechizo y selecciona una habilidad de hechizos dirigidos.",
       "de_no_targets": "Selecciona al menos un objetivo para el ataque elemental dirigido.",
+      "de_creature_cast": "Criatura (sin habilidad)",
       "be_attack_resolved": "Ataque resuelto.",
       "skill": "Habilidad",
       "table_result": "Resultado tabla",

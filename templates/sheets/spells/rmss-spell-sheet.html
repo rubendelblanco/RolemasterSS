@@ -74,14 +74,23 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>{{localize "rmss.spell.skill"}}</th>
+                    <th>{{#if isCreatureActor}}{{localize "rmss.creature_attack.attack"}}{{else}}{{localize "rmss.spell.skill"}}{{/if}}</th>
                     <td colspan="6">
+                        {{#if isCreatureActor}}
+                        <select name="system.skillName">
+                            <option value="">—</option>
+                            {{#each creatureAttacks as |attack|}}
+                            <option value="{{attack.name}}" {{#if (eq ../system.skillName attack.name)}}selected{{/if}}>{{attack.name}}</option>
+                            {{/each}}
+                        </select>
+                        {{else}}
                         <select name="system.skillName">
                             <option value="">—</option>
                             {{#each directedSpellSkills as |skill|}}
                             <option value="{{skill.name}}" {{#if (eq ../system.skillName skill.name)}}selected{{/if}}>{{skill.name}}</option>
                             {{/each}}
                         </select>
+                        {{/if}}
                     </td>
                 </tr>
                 {{/if}}

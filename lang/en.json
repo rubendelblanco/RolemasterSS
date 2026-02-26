@@ -650,6 +650,7 @@
             "de_no_attack_table": "DE spell has no attack table configured. Edit the spell and select a bolt table.",
             "de_no_skill": "DE spell has no skill configured. Edit the spell and select a directed spell skill.",
             "de_no_targets": "Select at least one target for the directed elemental attack.",
+            "de_creature_cast": "Creature (no skill)",
             "be_attack_resolved": "Attack resolved.",
             "skill": "Skill",
             "table_result": "Table result",

@@ -38,8 +38,15 @@ export default class RMSSSpellSheet extends ItemSheet {
       sheetData.beAttackTables = [...balls, ...bolts];
     }
     if (this.item.system.type === "DE") {
-      sheetData.directedSpellSkills = this._getDirectedSpellSkills();
+      const actor = this.item.actor;
+      const isCreature = actor?.type === "creature";
+      sheetData.isCreatureActor = isCreature;
       sheetData.boltTables = CONFIG.rmss?.boltTables ?? [];
+      if (isCreature) {
+        sheetData.creatureAttacks = this._getCreatureAttacks();
+      } else {
+        sheetData.directedSpellSkills = this._getDirectedSpellSkills();
+      }
     }
 
     return sheetData;
@@ -56,6 +63,19 @@ export default class RMSSSpellSheet extends ItemSheet {
     return actor.items
       .filter(i => i.type === "skill" && i.system?.categorySlug === "directed-spells")
       .map(s => ({ name: s.name }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  /**
+   * Get creature_attacks from the actor. Used for DE spell on creatures (no skills).
+   * @returns {Array<{name: string}>}
+   */
+  _getCreatureAttacks() {
+    const actor = this.item.actor;
+    if (!actor?.items) return [];
+    return actor.items
+      .filter(i => i.type === "creature_attack")
+      .map(a => ({ name: a.name }))
       .sort((a, b) => a.name.localeCompare(b.name));
   }
 
