@@ -1,0 +1,35 @@
+<div class="weapon-fumble-result">
+    <div style="border: 1px solid #700; border-radius: 8px; padding: 10px; background: linear-gradient(180deg, #300, #100); box-shadow: 0 0 8px rgba(0,0,0,0.5);">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <img src="{{attacker.img}}" alt="{{attacker.name}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #900;">
+            <div>
+                <h4 style="margin: 0; color: #ff4444; text-shadow: 0 0 6px #000;">
+                    😱 {{attacker.name}} {{ localize "rmss.combat.fumble" }}
+                </h4>
+                <div style="font-size: 0.9em; color: #ddd;">
+                    {{ localize "rmss.combat.weapon_fumble_message" }}
+                </div>
+            </div>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid #500; margin: 8px 0;">
+
+        <div style="padding: 6px;">
+            <p style="margin: 0 0 4px 0; font-size: 0.9em; color: #aaa;">
+                {{ localize "rmss.combat.weapon_fumble_roll" }}: <strong>{{roll}}</strong>
+                {{#if weapon}} · {{weapon.name}}{{/if}}
+            </p>
+            <p style="margin: 8px 0 0 0; font-size: 1.05em; color: #ff8888; line-height: 1.4;">
+                {{#if useMounted}}{{mountedDescription}}{{else}}{{description}}{{/if}}
+            </p>
+            {{#if hasMountedOption}}
+            <div style="margin-top: 10px;">
+                <label class="weapon-fumble-mounted-check" style="cursor: pointer; display: inline-flex; align-items: center; gap: 6px; color: #ccc;">
+                    <input type="checkbox" {{#if useMounted}}checked{{/if}} data-action="toggle-mounted">
+                    {{ localize "rmss.combat.weapon_fumble_mounted" }}
+                </label>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

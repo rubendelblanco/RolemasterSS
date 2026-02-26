@@ -4,8 +4,9 @@ import CombatExperience from "../sheets/experience/rmss_combat_experience.js";
 import { sendExpMessage } from "../chat/chatMessages.js";
 import Utils from "../utils.js";
 import { rmss } from "../config.js";
-import {RMSSCombat} from "./rmss_combat.js";
-import {RMSSEffectApplier} from "./rmss_effect_applier.js";
+import { RMSSCombat } from "./rmss_combat.js";
+import { RMSSEffectApplier } from "./rmss_effect_applier.js";
+import WeaponFumbleService from "./services/weapon_fumble_service.js";
 
 
 /* ---------------------------------------------
@@ -372,7 +373,7 @@ export class RMSSWeaponCriticalManager {
         return option;
     }
 
-    static async getFumbleMessage(attacker){
+    static async getFumbleMessage(attacker) {
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/fumble-result.hbs", {
             attacker: attacker
         });
@@ -382,6 +383,42 @@ export class RMSSWeaponCriticalManager {
             content: htmlContent,
             speaker: speaker
         });
+    }
+
+    /**
+     * Show weapon fumble result with Mounted? checkbox to toggle column.
+     * @param {Actor} actor - The attacker
+     * @param {Item} weapon - The weapon used
+     * @param {number} roll - d100 roll for fumble table (1-100)
+     * @param {Roll} [rollObj] - Optional Roll for Dice So Nice display
+     */
+    static async getWeaponFumbleMessage(actor, weapon, roll, rollObj = null) {
+        const column = WeaponFumbleService.getColumnForWeaponType(weapon?.system?.type ?? "1he");
+        const { description, mountedDescription } = await WeaponFumbleService.getFumbleResult(roll, column);
+
+        const templateData = {
+            attacker: { img: actor.img, name: actor.name },
+            weapon: weapon ? { name: weapon.name } : null,
+            roll,
+            description,
+            mountedDescription,
+            useMounted: false,
+            hasMountedOption: !!mountedDescription
+        };
+
+        const htmlContent = await renderTemplate("systems/rmss/templates/chat/weapon-fumble-result.hbs", templateData);
+
+        const msgData = {
+            content: htmlContent,
+            speaker: { alias: "Game Master" },
+            flags: {
+                rmss: {
+                    weaponFumble: templateData
+                }
+            }
+        };
+        if (rollObj) msgData.rolls = [rollObj];
+        await ChatMessage.create(msgData);
     }
 
     static async getCriticalMessage(damage, criticalResult, attacker, target = null) {

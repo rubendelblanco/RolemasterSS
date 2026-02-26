@@ -3,6 +3,7 @@ import RMSSTableManager from "./rmss_table_manager.js";
 import Utils from "../utils.js";
 import ManeuverPenaltiesService from "../core/maneuver_penalties_service.js";
 import RollService from "./services/roll_service.js";
+import WeaponFumbleService from "./services/weapon_fumble_service.js";
 import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
 
 export class RMSSWeaponSkillManager {
@@ -11,6 +12,15 @@ export class RMSSWeaponSkillManager {
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon);
         if (!gmResponse.confirmed) return;
         const rollData = await RollService.highOpenEndedD100();
+        const baseAttack = rollData.roll.terms[0].results[0].result;
+
+        // Fumble check FIRST: if roll <= fumble_range, it's a fumble (weapon fumble table)
+        const fumbleRange = weapon.type === "weapon" ? weapon.system.fumble_range : null;
+        if (WeaponFumbleService.isFumble(baseAttack, fumbleRange ?? "")) {
+            await RMSSWeaponCriticalManager.getWeaponFumbleMessage(actor, weapon, baseAttack, rollData.roll);
+            return;
+        }
+
         let total = rollData.total + gmResponse.diff;
         const text = `${rollData.details} → +${gmResponse.diff} = <b>${total}</b>`;
         const flavor = await renderTemplate("systems/rmss/templates/chat/attack-result.hbs", {
@@ -27,7 +37,6 @@ export class RMSSWeaponSkillManager {
             speaker: "Game master"
         });
 
-        const baseAttack = rollData.roll.terms[0].results[0].result;
         const tableName = weapon.system.attack_table;
         const attackTable = await RMSSTableManager.loadAttackTable(tableName);
         const um = RMSSTableManager.findUnmodifiedAttack(tableName, baseAttack, attackTable) != null;
@@ -41,24 +50,28 @@ export class RMSSWeaponSkillManager {
         }
 
         const attackResult = await RMSSTableManager.getAttackTableResult(weapon, attackTable, total, enemy, actor);
-        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage,attackTable.critical_severity||null);
-        //fumble!
-        if (criticalResult.criticals === "fumble"){
-            await RMSSWeaponCriticalManager.getFumbleMessage(attacker);
+        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage, attackTable.critical_severity || null);
+        // Fumble from attack table (result "F")
+        if (criticalResult.criticals === "fumble") {
+            const fumbleRoll = new Roll("1d100");
+            await fumbleRoll.evaluate();
+            if (game.dice3d) await game.dice3d.showForRoll(fumbleRoll, game.user, true);
+            await RMSSWeaponCriticalManager.getWeaponFumbleMessage(actor, weapon, fumbleRoll.total, fumbleRoll);
             return;
         }
 
-        //critical not exists
+        // Critical not exists
         if (criticalResult.criticals.length === 0) {
             criticalResult.criticals = [
-                {'severity': null, 'critType': weapon.system.critical_type, damage: 0}
+                { severity: null, critType: weapon.system.critical_type, damage: 0 }
             ];
             await RMSSWeaponCriticalManager.updateTokenOrActorHits(
                 enemy,
                 parseInt(criticalResult.damage)
             );
-            if (attacker.type === "character") {
-                await ExperienceManager.applyExperience(attacker, criticalResult.damage);
+            if (actor.type === "character") {
+                const { ExperienceManager } = await import("../sheets/experience/rmss_experience_manager.js");
+                await ExperienceManager.applyExperience(actor, criticalResult.damage);
             }
         }
 
