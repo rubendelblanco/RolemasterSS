@@ -20,12 +20,21 @@ Hooks.on("hotbarDrop", async (bar, data, slot) => {
         return ui.notifications.warn("No puedes asignar una habilidad sin un actor.");
     }
 
-    let command = `
-        let actor = game.actors.get("${actorId}");
+    const isSpell = item.type === "spell";
+    const command = isSpell
+      ? `
+        const actor = game.actors.get("${actorId}");
         if (!actor) return;
-        let item = actor.items.get("${item.id}");
+        const item = actor.items.get("${item.id}");
         if (!item) return;
-        item.use();
+        await game.rmss.castSpellFromHotbar(actor.id, item.id);
+    `
+      : `
+        const actor = game.actors.get("${actorId}");
+        if (!actor) return;
+        const item = actor.items.get("${item.id}");
+        if (!item) return;
+        await item.use();
     `;
 
     console.log("Comando del macro:", command);

@@ -146,8 +146,39 @@ Hooks.once("init", function () {
   game.rmss = {
     RMSSActor,
     RMSSItem,
+    lastSpellContext: null, // Set by ForceSpellService before spell.use(); used by item macros
     applications: {
       RMSSActorSheetConfig
+    },
+    /**
+     * Cast a spell from hotbar/macro context. Finds spell list from spell's containerId and routes to the correct service.
+     * Use this when invoking spells outside the character sheet (e.g. hotbar) so lastSpellContext is set for F-type spells with targets.
+     * @param {string} actorId - Actor ID
+     * @param {string} itemId - Spell item ID
+     * @returns {Promise<void>}
+     */
+    async castSpellFromHotbar(actorId, itemId) {
+      const actor = game.actors.get(actorId);
+      const spell = actor?.items.get(itemId);
+      if (!actor || !spell || spell.type !== "spell") {
+        ui.notifications.warn("Hechizo no encontrado.");
+        return;
+      }
+      const spellListId = spell.getFlag("rmss", "containerId");
+      const spellList = spellListId ? actor.items.get(spellListId) : null;
+      const spellListName = spellList?.name ?? spell.name;
+      const spellListRealm = spellList?.system?.realm ?? actor.system.fixed_info?.realm ?? "essence";
+
+      if (spell.system?.type === "BE") {
+        const BaseElementalSpellService = (await import("./module/spells/services/base_elemental_spell_service.js")).default;
+        await BaseElementalSpellService.castBaseElementalSpell({ actor, spell, spellListName, spellListRealm });
+      } else if (spell.system?.type === "DE") {
+        const DirectedElementalSpellService = (await import("./module/spells/services/directed_elemental_spell_service.js")).default;
+        await DirectedElementalSpellService.castDirectedElementalSpell({ actor, spell, spellListName, spellListRealm });
+      } else {
+        const ForceSpellService = (await import("./module/spells/services/force_spell_service.js")).default;
+        await ForceSpellService.castForceSpell({ actor, spell, spellListName, spellListRealm });
+      }
     }
   };
 

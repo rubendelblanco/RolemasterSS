@@ -106,15 +106,15 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
         });
 
-        // Hotbar drag & drop
-        document.querySelectorAll("tr[draggable='true']").forEach(el => {
+        // Hotbar drag & drop (tr for items/weapons/armor, .spell-row for spells)
+        html.find("tr[draggable='true'], .spell-row[draggable='true']").each((i, el) => {
             el.addEventListener("dragstart", event => {
-                let itemId = event.currentTarget.getAttribute("data-item-id");
-                let uuid = event.currentTarget.getAttribute("data-uuid");
+                const itemId = event.currentTarget.getAttribute("data-item-id");
+                const uuid = event.currentTarget.getAttribute("data-uuid");
 
                 if (!itemId || !uuid) return;
 
-                let dragData = {
+                const dragData = {
                     type: "Item",
                     uuid: uuid
                 };

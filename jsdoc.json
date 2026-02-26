@@ -1,0 +1,19 @@
+{
+  "source": {
+    "include": ["./module"],
+    "exclude": ["./tests", "./module/combat/services/attack_resolution_service.js", "./module/combat/services/combat_service.js", "./module/combat/services/weapon_service.js"],
+    "includePattern": ".+\\.js$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "sourceType": "module",
+  "opts": {
+    "destination": "./docs",
+    "recurse": true,
+    "encoding": "utf8"
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": false
+  }
+}

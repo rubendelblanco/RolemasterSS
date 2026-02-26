@@ -1,3 +1,20 @@
+/**
+ * @typedef {Object} SpellContextTargetRR
+ * @property {string} name - Target name
+ * @property {number} finalRR - RR value the target must roll above to resist
+ * @property {number} targetLevel - Target level
+ * @property {number} rrModifier - RR modifier from spell attack table
+ * @property {string} subindex - Subindex display
+ * @property {string} tokenId - Token document id
+ * @property {string|null} tokenUuid - Token UUID for cross-scene lookup
+ */
+
+/**
+ * @typedef {Object} SpellContext
+ * @property {SpellContextTargetRR[]} targetRRs - Targets with their RR values
+ * @property {number} casterLevel - Caster level
+ */
+
 export class RMSSItem extends Item {
 
   /** @override */
@@ -119,19 +136,6 @@ export class RMSSItem extends Item {
    * The macro receives: item, actor, token (caster), and optionally spellContext.
    *
    * @private
-   *
-   * @typedef {Object} SpellContextTargetRR
-   * @property {string} name - Target name
-   * @property {number} finalRR - RR value the target must roll above to resist
-   * @property {number} targetLevel - Target level
-   * @property {number} rrModifier - RR modifier from spell attack table
-   * @property {string} subindex - Subindex display
-   * @property {string} tokenId - Token document id
-   * @property {string|null} tokenUuid - Token UUID for cross-scene lookup
-   *
-   * @typedef {Object} SpellContext
-   * @property {SpellContextTargetRR[]} targetRRs - Targets with their RR values
-   * @property {number} casterLevel - Caster level
    *
    * Macro variables:
    * - item: this Item

@@ -42,6 +42,7 @@ placeholder="Search spell..."
 
     <!-- Spells inside the list -->
     {{#each list.contents as |spell|}}
+    <div class="spell-row" draggable="true" data-type="Item" data-uuid="Actor.{{list.actorId}}.Item.{{spell._id}}" data-item-id="{{spell._id}}">
     <div data-search="{{spell.name}}">
       <img src="{{spell.img}}" alt="{{spell.name}}" width="32" height="32"/>
     </div>
@@ -113,6 +114,7 @@ placeholder="Search spell..."
       <a class="item-delete" title="Delete Spell" data-item-id="{{spell._id}}">
         <i class="fas fa-trash"></i>
       </a>
+    </div>
     </div>
     {{/each}}
   </div>
