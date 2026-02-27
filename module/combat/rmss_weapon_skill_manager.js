@@ -6,6 +6,9 @@ import RollService from "./services/roll_service.js";
 import WeaponFumbleService from "./services/weapon_fumble_service.js";
 import FacingService from "./services/facing_service.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
+import OBPersistenceService from "./services/ob_persistence_service.js";
+
+const OB_STEP = 5;
 
 export class RMSSWeaponSkillManager {
 
@@ -13,7 +16,7 @@ export class RMSSWeaponSkillManager {
         const facingValue = (attackerToken && defenderToken)
             ? FacingService.calculateFacing(attackerToken, defenderToken)
             : null;
-        const tokenData = facingValue !== null ? { facingValue } : null;
+        let tokenData = facingValue !== null ? { facingValue } : {};
 
         // Rotate attacker token to face the defender
         if (attackerToken && defenderToken) {
@@ -26,6 +29,24 @@ export class RMSSWeaponSkillManager {
                     console.warn("[RMSS] Could not rotate attacker token:", e);
                 }
             }
+        }
+
+        let attackerObUsed = null;
+        const attackerHasPlayer = game.users.some(u => !u.isGM && actor.testUserPermission?.(u, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER));
+        if (attackerHasPlayer) {
+            const fullOB = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, actor);
+            const combat = game.combat;
+            const attackerCombatantId = combat ? OBPersistenceService.getCombatantIdForActor(combat, actor) : null;
+            const obUsed = attackerCombatantId ? OBPersistenceService.getObUsed(combat, attackerCombatantId) : 0;
+            const availableOB = Math.max(0, fullOB - obUsed);
+            if (availableOB > 0) {
+                attackerObUsed = await RMSSWeaponSkillManager._showAttackerOBModal(availableOB, fullOB, obUsed);
+                if (attackerObUsed === null) return;
+                if (combat && attackerCombatantId) {
+                    await OBPersistenceService.addObUsed(combat, attackerCombatantId, attackerObUsed);
+                }
+            }
+            tokenData = { ...tokenData, attackerObUsed: attackerObUsed ?? 0 };
         }
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, tokenData);
         if (!gmResponse.confirmed) return;
@@ -113,11 +134,38 @@ export class RMSSWeaponSkillManager {
 
         let ob, hitsTaken, bleeding, penaltyValue, bonusValue, stunnedValue;
         const spellOptions = spellOptionsOrTokenData?.ob !== undefined ? spellOptionsOrTokenData : null;
-        const tokenData = spellOptionsOrTokenData?.facingValue !== undefined ? spellOptionsOrTokenData : null;
+        const tokenData = !spellOptions && spellOptionsOrTokenData ? spellOptionsOrTokenData : null;
 
         const realEnemy = (enemy?.id && game.actors) ? game.actors.get(enemy.id) : enemy;
 
-        const facingValue = (tokenData?.facingValue ?? FacingService.FACING.FRONT) || "";
+        const facingValue = (tokenData?.facingValue ?? FacingService.FACING.FRONT) ?? "";
+
+        let attackerParryValue = 0;
+        let targetParryValue = 0;
+
+        if (tokenData?.attackerObUsed !== undefined && tokenData.attackerObUsed > 0) {
+            attackerParryValue = -tokenData.attackerObUsed;
+        }
+
+        const defenderHasPlayer = realEnemy && game.users.some(u => !u.isGM && realEnemy.testUserPermission?.(u, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER));
+        const combat = game.combat;
+        const defenderCombatantId = combat && realEnemy ? OBPersistenceService.getCombatantIdForActor(combat, realEnemy) : null;
+        let defenderParryAlreadyPersisted = false;
+
+        if (defenderHasPlayer && !spellOptions) {
+            const defenderObUsed = defenderCombatantId ? OBPersistenceService.getObUsed(combat, defenderCombatantId) : 0;
+            const maxParryOB = RMSSWeaponSkillManager._getMaxParryOB(realEnemy);
+            const availableParry = Math.max(0, maxParryOB - defenderObUsed);
+            const defenderUser = game.users.find(u => !u.isGM && realEnemy.testUserPermission?.(u, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER));
+            if (defenderUser?.active && availableParry > 0) {
+                targetParryValue = await socket.executeAsUser("showParryModal", defenderUser.id, availableParry);
+                if (targetParryValue === null) return null;
+                if (combat && defenderCombatantId) {
+                    await OBPersistenceService.addObUsed(combat, defenderCombatantId, targetParryValue);
+                    defenderParryAlreadyPersisted = true;
+                }
+            }
+        }
 
         if (spellOptions) {
             ob = spellOptions.ob ?? 0;
@@ -133,7 +181,9 @@ export class RMSSWeaponSkillManager {
                 ui.notifications.warn("Unable to attack (activity behind 50%)", {localize: true});
                 return null;
             }
-            ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor);
+            ob = tokenData?.attackerObUsed !== undefined
+                ? tokenData.attackerObUsed
+                : RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor);
             const maneuverPenalties = ManeuverPenaltiesService.getManeuverPenalties(realActor);
             const { hitsTaken: ht, bleeding: bl, penaltyEffect } = maneuverPenalties;
             hitsTaken = ht;
@@ -158,6 +208,8 @@ export class RMSSWeaponSkillManager {
             stunnedValue,
             penaltyValue,
             facingValue,
+            attackerParryValue: attackerParryValue ?? 0,
+            targetParryValue: targetParryValue ?? 0,
         });
 
         let confirmed = await new Promise((resolve) => {
@@ -167,10 +219,14 @@ export class RMSSWeaponSkillManager {
                 buttons: {
                     confirm: {
                         label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
-                        callback: (html) => {
+                        callback: async (html) => {
                             const attackTotal = parseInt(html.find("#attack-total").val());
                             const defenseTotal = parseInt(html.find("#defense-total").val());
                             const diff = parseInt(html.find("#difference").val());
+                            const targetParryFromForm = parseInt(html.find("#target-parry").val()) || 0;
+                            if (!defenderParryAlreadyPersisted && combat && defenderCombatantId && targetParryFromForm > 0) {
+                                await OBPersistenceService.addObUsed(combat, defenderCombatantId, targetParryFromForm);
+                            }
                             resolve({confirmed: true, attackTotal, defenseTotal, diff});
                         }
                     },
@@ -241,6 +297,103 @@ export class RMSSWeaponSkillManager {
         return confirmed;
     }
 
+    /**
+     * Modal para que el atacante (jugador) elija cuánto OB usar en el ataque.
+     * @param {number} availableOB - OB disponible (fullOB - obUsed)
+     * @param {number} fullOB - OB total del arma
+     * @param {number} obUsed - OB ya gastado este round
+     * @returns {Promise<number|null>} OB usado o null si cancela
+     */
+    static async _showAttackerOBModal(availableOB, fullOB, obUsed) {
+        const step = OB_STEP;
+        const maxVal = Math.floor(availableOB / step) * step;
+        const options = [];
+        for (let v = 0; v <= maxVal; v += step) options.push(v);
+        const defaultVal = Math.min(availableOB, Math.max(0, options[options.length - 1] ?? 0));
+
+        const content = `
+            <div class="form-group">
+                <label>${game.i18n.localize("rmss.combat.ob_available")}: <strong>${availableOB}</strong></label>
+                <p>${game.i18n.localize("rmss.combat.ob_for_attack")}:</p>
+                <input type="range" id="ob-attack-slider" min="0" max="${maxVal}" step="${step}" value="${defaultVal}" 
+                       style="width:100%;">
+                <div style="text-align:center; margin-top:8px;">
+                    <strong id="ob-attack-value">${defaultVal}</strong>
+                </div>
+            </div>
+        `;
+
+        return new Promise((resolve) => {
+            new Dialog({
+                title: game.i18n.localize("rmss.combat.ob_for_attack"),
+                content,
+                buttons: {
+                    confirm: {
+                        label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
+                        callback: (html) => resolve(parseInt(html.find("#ob-attack-slider").val()) || 0)
+                    },
+                    cancel: {
+                        label: `❌ ${game.i18n.localize("rmss.combat.cancel")}`,
+                        callback: () => resolve(null)
+                    }
+                },
+                default: "confirm",
+                render: (html) => {
+                    const slider = html.find("#ob-attack-slider");
+                    const display = html.find("#ob-attack-value");
+                    slider.on("input", () => display.text(parseInt(slider.val()) || 0));
+                }
+            }).render(true);
+        });
+    }
+
+    /**
+     * Modal para que el defensor (jugador) elija cuánto OB usar para parar.
+     * Se ejecuta en el cliente del defensor vía socket.executeAsUser.
+     * @param {number} maxParryOB - OB máximo disponible para parar
+     * @returns {Promise<number|null>} OB para parar o null si cancela
+     */
+    static async showParryModal(maxParryOB) {
+        const step = OB_STEP;
+        const maxVal = Math.max(0, Math.floor(maxParryOB / step) * step);
+        const defaultVal = Math.min(maxParryOB, maxVal);
+
+        const content = `
+            <div class="form-group">
+                <label>${game.i18n.localize("rmss.combat.ob_available")}: <strong>${maxParryOB}</strong></label>
+                <p>${game.i18n.localize("rmss.combat.ob_parry_defender")}:</p>
+                <input type="range" id="ob-parry-slider" min="0" max="${maxVal}" step="${step}" value="${defaultVal}" 
+                       style="width:100%;">
+                <div style="text-align:center; margin-top:8px;">
+                    <strong id="ob-parry-value">${defaultVal}</strong>
+                </div>
+            </div>
+        `;
+
+        return new Promise((resolve) => {
+            new Dialog({
+                title: game.i18n.localize("rmss.combat.ob_parry_defender"),
+                content,
+                buttons: {
+                    confirm: {
+                        label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
+                        callback: (html) => resolve(parseInt(html.find("#ob-parry-slider").val()) || 0)
+                    },
+                    cancel: {
+                        label: `❌ ${game.i18n.localize("rmss.combat.cancel")}`,
+                        callback: () => resolve(null)
+                    }
+                },
+                default: "confirm",
+                render: (html) => {
+                    const slider = html.find("#ob-parry-slider");
+                    const display = html.find("#ob-parry-value");
+                    slider.on("input", () => display.text(parseInt(slider.val()) || 0));
+                }
+            }).render(true);
+        });
+    }
+
     static _getOffensiveBonusFromWeapon(weapon, actor) {
         // Handle creature_attack: they have bonus directly in system.bonus
         if (weapon.type === "creature_attack") {
@@ -271,6 +424,20 @@ export class RMSSWeaponSkillManager {
         }
         
         return skillItem.system.total_bonus ?? 0;
+    }
+
+    /** Obtiene el OB máximo para parar (mayor OB de armas del actor). */
+    static _getMaxParryOB(actor) {
+        if (!actor?.items) return 0;
+        let max = 0;
+        const items = Array.isArray(actor.items) ? actor.items : Array.from(actor.items ?? []);
+        for (const item of items) {
+            if (["weapon", "creature_attack"].includes(item.type)) {
+                const ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(item, actor);
+                if (ob > max) max = ob;
+            }
+        }
+        return max;
     }
 
     static _getHitsPenalty(actor) {

@@ -72,6 +72,7 @@ async function preloadHandlebarsTemplates() {
 Hooks.once("socketlib.ready", () => {
   socket = socketlib.registerSystem("rmss");
   socket.register("confirmWeaponAttack", RMSSWeaponSkillManager.attackMessagePopup);
+  socket.register("showParryModal", RMSSWeaponSkillManager.showParryModal);
   socket.register("confirmWeaponCritical", RMSSWeaponCriticalManager.criticalMessagePopup);
   socket.register("chooseCriticalOption", RMSSWeaponCriticalManager.chooseCriticalOption);
   socket.register("updateActorHits", RMSSWeaponCriticalManager.updateActorHits);

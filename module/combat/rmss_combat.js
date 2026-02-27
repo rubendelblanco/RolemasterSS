@@ -1,5 +1,6 @@
 import {RMSSCombatant} from "./rmss_combatant.js";
 import { registerCombatHooks } from "./hooks.js";
+import OBPersistenceService from "./services/ob_persistence_service.js";
 
 /**
  * Custom Combat class for RMSS system.
@@ -50,7 +51,8 @@ export class RMSSCombat extends Combat {
 
     /** @override */
     async nextRound(){
-        super.nextRound();
+        await OBPersistenceService.resetObUsed(this);
+        await super.nextRound();
 
         for (let combatant of this.combatants) {
             const actor = combatant.actor;
