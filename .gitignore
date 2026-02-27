@@ -3,6 +3,7 @@ node_modules/
 .eslintrc
 .vscode/
 .idea/
-packs/
+packs/*
+!packs/skill-categories.db
 .cursorrules
 docs/
