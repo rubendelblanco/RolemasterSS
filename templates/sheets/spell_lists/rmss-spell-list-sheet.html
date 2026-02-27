@@ -50,7 +50,7 @@
             {{#each spells as |spell|}}
             <tr class="spell" data-item-id="{{spell.id}}">
                 <td>{{spell.system.level}}</td>
-                <td>{{spell.name}}</td>
+                <td>{{spell.name}}{{#if spell.system.instant}}*{{/if}}</td>
                 <td>{{spell.system.area_of_effect}}</td>
                 <td>{{spell.system.duration}}</td>
                 <td>{{spell.system.range}}</td>

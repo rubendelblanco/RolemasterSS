@@ -8,7 +8,7 @@
     {{#if spell.system.favorite}}  
         <tr class="item" data-item-id="{{spell._id}}">
             <td><div class="spell-name">
-                <h4>{{spell.name}}</h4>
+                <h4>{{spell.name}}{{#if spell.system.instant}}*{{/if}}</h4>
             </div></td>
             <td><div class="spell-entry item-prop">{{spell.system.area_of_effect}}</div></td>
             <td><div class="spell-entry item-prop">{{spell.system.duration}}</div></td>

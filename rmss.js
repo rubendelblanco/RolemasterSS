@@ -164,6 +164,12 @@ Hooks.once("init", function () {
         ui.notifications.warn("Hechizo no encontrado.");
         return;
       }
+      if (spell.system?.instant) {
+        const InstantSpellService = (await import("./module/spells/services/instant_spell_service.js")).default;
+        await InstantSpellService.castInstantSpell({ actor, spell });
+        return;
+      }
+
       const spellListId = spell.getFlag("rmss", "containerId");
       const spellList = spellListId ? actor.items.get(spellListId) : null;
       const spellListName = spellList?.name ?? spell.name;

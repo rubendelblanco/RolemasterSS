@@ -26,6 +26,12 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
         const spell = this.actor.items.get(spellId);
         if (!spell) return;
 
+        if (spell.system?.instant) {
+            const InstantSpellService = (await import("../../spells/services/instant_spell_service.js")).default;
+            await InstantSpellService.castInstantSpell({ actor: this.actor, spell });
+            return;
+        }
+
         if (spell.system?.type === "BE") {
             const BaseElementalSpellService = (await import("../../spells/services/base_elemental_spell_service.js")).default;
             await BaseElementalSpellService.castBaseElementalSpell({

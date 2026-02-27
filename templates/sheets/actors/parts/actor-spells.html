@@ -64,37 +64,37 @@ placeholder="Search spell..."
     <div data-search="{{spell.name}}" style="display: flex; align-items: center; gap: 0.5em;">
       {{#if (eq spell.system.type "F")}}
       <a class="spell-cast spell-cast-force" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
-        <i class="fas fa-hand-sparkles"></i> {{spell.name}}
+        <i class="fas fa-hand-sparkles"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}
       </a>
       {{/if}}
       {{#if (eq spell.system.type "E")}}
       <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
-        <i class="fas fa-magic"></i> {{spell.name}}
+        <i class="fas fa-magic"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}
       </a>
       {{/if}}
       {{#if (eq spell.system.type "P")}}
       <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
-        <i class="fas fa-magic"></i> {{spell.name}}
+        <i class="fas fa-magic"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}
       </a>
       {{/if}}
       {{#if (eq spell.system.type "U")}}
       <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
-        <i class="fas fa-magic"></i> {{spell.name}}
+        <i class="fas fa-magic"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}
       </a>
       {{/if}}
       {{#if (eq spell.system.type "I")}}
       <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
-        <i class="fas fa-magic"></i> {{spell.name}}
+        <i class="fas fa-magic"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}
       </a>
       {{/if}}
       {{#if (eq spell.system.type "BE")}}
       <a class="spell-cast spell-cast-elemental" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
-        <i class="fa-solid fa-meteor"></i> {{spell.name}}
+        <i class="fa-solid fa-meteor"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}
       </a>
       {{/if}}
       {{#if (eq spell.system.type "DE")}}
       <a class="spell-cast spell-cast-directed" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{../name}}" data-spell-list-realm="{{../system.realm}}" data-spell-type="{{spell.system.type}}">
-        <i class="fa-solid fa-bolt"></i> {{spell.name}}
+        <i class="fa-solid fa-bolt"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}
       </a>
       {{/if}}
       {{#if spell.system.description}}

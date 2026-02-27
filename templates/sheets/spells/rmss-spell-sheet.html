@@ -8,6 +8,7 @@
             <table>
                 <tr>
                     <th>{{localize "rmss.spell.favorite"}}</th>
+                    <th>{{localize "rmss.spell.instant"}}</th>
                     <th>{{localize "rmss.spell.level"}}</th>
                     <th>{{localize "rmss.spell.area_of_effect"}}</th>
                     <th>{{localize "rmss.spell.duration"}}</th>
@@ -15,8 +16,12 @@
                     <th>{{localize "rmss.spell.type"}}</th>
                     <th>{{localize "rmss.spell.subType"}}</th>
                 </tr>
+                <tr>
                 <td>
                     <input type="checkbox" name="system.favorite" {{checked system.favorite}}/>
+                </td>
+                <td>
+                    <input type="checkbox" name="system.instant" {{checked system.instant}}/>
                 </td>
                 <td>
                     <input name="system.level" type="text" value="{{system.level}}" data-dtype="Number"/>
@@ -48,10 +53,11 @@
                         <option value="m" {{#if (eq system.subType "m")}}selected{{/if}}>m</option>
                     </select>
                 </td>
+                </tr>
                 {{#if (eq system.type "BE")}}
                 <tr>
                     <th>{{localize "rmss.spell.attack_table"}}</th>
-                    <td colspan="6">
+                    <td colspan="7">
                         <select name="system.attack_table">
                             <option value="">—</option>
                             {{#each beAttackTables as |tableKey|}}
@@ -64,7 +70,7 @@
                 {{#if (eq system.type "DE")}}
                 <tr>
                     <th>{{localize "rmss.spell.attack_table"}}</th>
-                    <td colspan="6">
+                    <td colspan="7">
                         <select name="system.attack_table">
                             <option value="">—</option>
                             {{#each boltTables as |tableKey|}}
@@ -75,7 +81,7 @@
                 </tr>
                 <tr>
                     <th>{{#if isCreatureActor}}{{localize "rmss.creature_attack.attack"}}{{else}}{{localize "rmss.spell.skill"}}{{/if}}</th>
-                    <td colspan="6">
+                    <td colspan="7">
                         {{#if isCreatureActor}}
                         <select name="system.skillName">
                             <option value="">—</option>

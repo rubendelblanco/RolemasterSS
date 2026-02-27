@@ -460,6 +460,7 @@
     },
     "spell": {
       "favorite": false,
+      "instant": false,
       "spell_list": "",
       "level": 1,
       "area_of_effect": "",

@@ -349,6 +349,7 @@
         },
         "spell": {
             "favorite": "Favorite",
+            "instant": "Instant",
             "spell_list": "Spell List",
             "level": "Level",
             "area_of_effect": "Area of Effect",
@@ -651,6 +652,7 @@
             "de_no_skill": "DE spell has no skill configured. Edit the spell and select a directed spell skill.",
             "de_no_targets": "Select at least one target for the directed elemental attack.",
             "de_creature_cast": "Creature (no skill)",
+            "instant_cast": "Instant spell — success",
             "be_attack_resolved": "Attack resolved.",
             "skill": "Skill",
             "table_result": "Table result",
