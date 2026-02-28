@@ -68,7 +68,7 @@ export class RMSSWeaponSkillManager {
         }
 
         const attackResult = await RMSSTableManager.getAttackTableResult(weapon, attackTable, total, enemy, actor);
-        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage, attackTable.critical_severity || null);
+        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage, attackTable.critical_severity || null, weapon.system.critical_type);
         // Fumble from attack table (result "F")
         if (criticalResult.criticals === "fumble") {
             const fumbleRoll = new Roll("1d100");

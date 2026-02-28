@@ -135,7 +135,7 @@ export class RMSSWeaponCriticalManager {
         }
     }
 
-    static decomposeCriticalResult(result, criticalSeverity = null) {
+    static decomposeCriticalResult(result, criticalSeverity = null, weaponCriticalType = null) {
         // e.g result is "10A", "20B", "30C", "-", "F" or 50
         if (result === "-") { //nothing
             return { criticals: [] };
@@ -168,6 +168,7 @@ export class RMSSWeaponCriticalManager {
             } else if (critType == null && !!criticalSeverity) {
                 return { damage, criticals: [{ 'severity': severity, 'critType': criticalSeverity.default, damage }] };
             }
+            if (critType == null && weaponCriticalType) critType = weaponCriticalType;
             return { 'damage': damage, 'criticals': [{ 'severity': severity, 'critType': critType, damage }] };
         }
         else {
