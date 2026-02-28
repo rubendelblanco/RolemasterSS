@@ -59,11 +59,11 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         // Start cooldown
         updateCooldown();
         
-        // Execute the action - use stored target for area spells, else current selection
+        // Execute the action - use stored target from button (embedded at attack time), else current user's targets
         const targetId = ev.currentTarget.dataset.targetId;
         let token = targetId ? canvas.scene?.tokens?.get(targetId) : null;
         if (!token) {
-            const targets = RMSSCombat.getTargets();
+            const targets = Array.from(game.user.targets);
             token = targets?.[0];
         }
         if (!token) {
