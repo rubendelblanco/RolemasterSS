@@ -42,9 +42,7 @@ export class RMSSWeaponSkillManager {
             if (availableOB > 0) {
                 attackerObUsed = await RMSSWeaponSkillManager._showAttackerOBModal(availableOB, fullOB, obUsed);
                 if (attackerObUsed === null) return;
-                if (combat && attackerCombatantId) {
-                    await OBPersistenceService.addObUsed(combat, attackerCombatantId, attackerObUsed);
-                }
+                // addObUsed is done on GM side in attackMessagePopup (player lacks Combat update permission)
             }
             tokenData = { ...tokenData, attackerObUsed: attackerObUsed ?? 0 };
         }
@@ -143,12 +141,23 @@ export class RMSSWeaponSkillManager {
         let attackerParryValue = 0;
         let targetParryValue = 0;
 
+        const combat = game.combat;
+
+        // Persist attacker OB used (runs on GM; player lacks Combat update permission)
+        if (tokenData?.attackerObUsed !== undefined && tokenData.attackerObUsed > 0 && combat) {
+            const attackerCombatantId = OBPersistenceService.getCombatantIdForActor(combat, realActor);
+            if (attackerCombatantId) {
+                await OBPersistenceService.addObUsed(combat, attackerCombatantId, tokenData.attackerObUsed);
+            }
+        }
+
+        // When attacker chose OB: show full OB and parry reserved (fullOB - used). Parry subtracts from total.
         if (tokenData?.attackerObUsed !== undefined && tokenData.attackerObUsed > 0) {
-            attackerParryValue = -tokenData.attackerObUsed;
+            const fullOB = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor);
+            attackerParryValue = Math.max(0, fullOB - tokenData.attackerObUsed); // reserved for parry (positive for display)
         }
 
         const defenderHasPlayer = realEnemy && game.users.some(u => !u.isGM && realEnemy.testUserPermission?.(u, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER));
-        const combat = game.combat;
         const defenderCombatantId = combat && realEnemy ? OBPersistenceService.getCombatantIdForActor(combat, realEnemy) : null;
         let defenderParryAlreadyPersisted = false;
 
@@ -182,7 +191,7 @@ export class RMSSWeaponSkillManager {
                 return null;
             }
             ob = tokenData?.attackerObUsed !== undefined
-                ? tokenData.attackerObUsed
+                ? RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor) // full OB; parry reserved subtracts
                 : RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor);
             const maneuverPenalties = ManeuverPenaltiesService.getManeuverPenalties(realActor);
             const { hitsTaken: ht, bleeding: bl, penaltyEffect } = maneuverPenalties;
@@ -241,13 +250,10 @@ export class RMSSWeaponSkillManager {
                         let total = 0;
 
                         html.find(".attacker .calculable").each(function() {
-                            if (this.type === "checkbox") {
-                                total += this.checked ? parseInt(this.value) || 0 : 0;
-                            } else if (this.type === "select-one") {
-                                total += parseInt(this.value) || 0;
-                            } else {
-                                total += parseInt(this.value) || 0;
-                            }
+                            const val = this.type === "checkbox"
+                                ? (this.checked ? parseInt(this.value) || 0 : 0)
+                                : (this.type === "select-one" ? parseInt(this.value) || 0 : parseInt(this.value) || 0);
+                            total += this.dataset.subtract === "true" ? -val : val;
                         });
 
                         html.find("#attack-total").val(total);
@@ -278,6 +284,10 @@ export class RMSSWeaponSkillManager {
                     });
                     html.find(".is-positive").on("change", (event) => {
                         event.target.value = parseInt(event.target.value) < 0 ? -event.target.value : event.target.value;
+                    });
+                    html.find("#attacker-parry[data-subtract]").on("change", (event) => {
+                        const v = parseInt(event.target.value) || 0;
+                        if (v < 0) event.target.value = 0;
                     });
                     html.find("#target-at").on("change", (event) => {
                         if (event.target.value < 1) {

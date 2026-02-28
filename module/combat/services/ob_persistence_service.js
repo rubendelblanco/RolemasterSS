@@ -12,8 +12,8 @@ export default class OBPersistenceService {
      * @returns {number}
      */
     static getObUsed(combat, combatantId) {
-        if (!combat) return 0;
-        const data = combat.flags?.rmss?.[OBPersistenceService.FLAG_OB_USED] ?? {};
+        if (!combat || !combatantId) return 0;
+        const data = combat.getFlag?.("rmss", OBPersistenceService.FLAG_OB_USED) ?? combat.flags?.rmss?.[OBPersistenceService.FLAG_OB_USED] ?? {};
         return data[combatantId] ?? 0;
     }
 
@@ -25,8 +25,9 @@ export default class OBPersistenceService {
      */
     static async addObUsed(combat, combatantId, amount) {
         if (!combat || !combatantId) return;
-        const current = OBPersistenceService.getObUsed(combat, combatantId);
-        const updated = { ...(combat.flags?.rmss?.[OBPersistenceService.FLAG_OB_USED] ?? {}), [combatantId]: current + amount };
+        const existing = combat.getFlag?.("rmss", OBPersistenceService.FLAG_OB_USED) ?? combat.flags?.rmss?.[OBPersistenceService.FLAG_OB_USED] ?? {};
+        const current = existing[combatantId] ?? 0;
+        const updated = { ...existing, [combatantId]: current + amount };
         await combat.setFlag("rmss", OBPersistenceService.FLAG_OB_USED, updated);
     }
 
@@ -47,7 +48,8 @@ export default class OBPersistenceService {
      */
     static getCombatantIdForActor(combat, actor) {
         if (!combat || !actor) return null;
-        const combatant = combat.combatants.find(c => c.actorId === actor.id);
+        const actorId = actor.id ?? actor._id;
+        const combatant = Array.from(combat.combatants ?? []).find(c => (c.actorId ?? c.actor?.id) === actorId);
         return combatant?.id ?? null;
     }
 }

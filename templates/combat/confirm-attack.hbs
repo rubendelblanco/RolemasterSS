@@ -25,7 +25,7 @@
 
     <div class="form-group attacker" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
         <label for="attacker-parry">{{ localize "rmss.combat.parry" }}</label>
-        <input class="calculable is-negative" type="number" id="attacker-parry" value="{{attackerParryValue}}"
+        <input class="calculable" type="number" id="attacker-parry" value="{{attackerParryValue}}" data-subtract="true"
                style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
         <label for="surprised">{{ localize "rmss.combat.surprised" }}</label>
         <input type="checkbox" class="calculable" id="surprised" value="20">
