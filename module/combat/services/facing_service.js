@@ -48,6 +48,27 @@ export default class FacingService {
     }
 
     /**
+     * Get Foundry rotation (0-360°) for attacker token to face the defender.
+     * Foundry: rotation 0 = south. Uses canvas math: 0°=east, 90°=south.
+     * @param {Token} attackerToken - Attacker's token
+     * @param {Token} defenderToken - Defender's token
+     * @returns {number|null} Rotation in degrees, or null if tokens invalid
+     */
+    static getRotationToFaceTarget(attackerToken, defenderToken) {
+        if (!attackerToken || !defenderToken) return null;
+
+        const attCenter = this._getTokenCenter(attackerToken);
+        const defCenter = this._getTokenCenter(defenderToken);
+
+        const dx = defCenter.x - attCenter.x;
+        const dy = defCenter.y - attCenter.y;
+        const angleToDefender = (Math.atan2(dy, dx) * 180 / Math.PI + 360) % 360;
+
+        // Foundry rotation 0 = south (90° in math). rotation = angleToDefender - 90
+        return (angleToDefender - 90 + 360) % 360;
+    }
+
+    /**
      * Get token center coordinates. Handles both Token (PlaceableObject) and TokenDocument.
      * @private
      */

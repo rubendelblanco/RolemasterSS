@@ -14,6 +14,19 @@ export class RMSSWeaponSkillManager {
             ? FacingService.calculateFacing(attackerToken, defenderToken)
             : null;
         const tokenData = facingValue !== null ? { facingValue } : null;
+
+        // Rotate attacker token to face the defender
+        if (attackerToken && defenderToken) {
+            const rotation = FacingService.getRotationToFaceTarget(attackerToken, defenderToken);
+            if (rotation !== null) {
+                const doc = attackerToken.document ?? attackerToken;
+                try {
+                    await doc.update({ rotation });
+                } catch (e) {
+                    console.warn("[RMSS] Could not rotate attacker token:", e);
+                }
+            }
+        }
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, tokenData);
         if (!gmResponse.confirmed) return;
         const rollData = await RollService.highOpenEndedD100();

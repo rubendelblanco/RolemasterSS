@@ -104,6 +104,19 @@ export default class DirectedElementalSpellService {
         const defenderToken = firstTarget;
         const facingValue = (casterToken && defenderToken) ? FacingService.calculateFacing(casterToken, defenderToken) : null;
 
+        // Rotate caster token to face the target
+        if (casterToken && defenderToken) {
+            const rotation = FacingService.getRotationToFaceTarget(casterToken, defenderToken);
+            if (rotation !== null) {
+                const doc = casterToken.document ?? casterToken;
+                try {
+                    await doc.update({ rotation });
+                } catch (e) {
+                    console.warn("[RMSS] Could not rotate caster token:", e);
+                }
+            }
+        }
+
         const spellOptions = {
             ob: skillBonus,
             hitsTaken,
