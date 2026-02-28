@@ -142,19 +142,20 @@ export class RMSSWeaponSkillManager {
         let targetParryValue = 0;
 
         const combat = game.combat;
+        const attackerCombatantId = combat ? OBPersistenceService.getCombatantIdForActor(combat, realActor) : null;
 
         // Persist attacker OB used (runs on GM; player lacks Combat update permission)
-        if (tokenData?.attackerObUsed !== undefined && tokenData.attackerObUsed > 0 && combat) {
-            const attackerCombatantId = OBPersistenceService.getCombatantIdForActor(combat, realActor);
-            if (attackerCombatantId) {
-                await OBPersistenceService.addObUsed(combat, attackerCombatantId, tokenData.attackerObUsed);
-            }
+        if (tokenData?.attackerObUsed !== undefined && tokenData.attackerObUsed > 0 && combat && attackerCombatantId) {
+            await OBPersistenceService.addObUsed(combat, attackerCombatantId, tokenData.attackerObUsed);
         }
 
-        // When attacker chose OB: show full OB and parry reserved (fullOB - used). Parry subtracts from total.
+        // Attacker Parry: OB ya gastado en defensa este round (resta del ataque)
         if (tokenData?.attackerObUsed !== undefined && tokenData.attackerObUsed > 0) {
             const fullOB = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor);
-            attackerParryValue = Math.max(0, fullOB - tokenData.attackerObUsed); // reserved for parry (positive for display)
+            attackerParryValue = Math.max(0, fullOB - tokenData.attackerObUsed); // jugador: reservado para parry
+        } else if (combat && attackerCombatantId) {
+            const obUsed = OBPersistenceService.getObUsed(combat, attackerCombatantId);
+            attackerParryValue = obUsed > 0 ? -obUsed : 0; // NPC: -40 para mostrar OB gastado en parry
         }
 
         const defenderHasPlayer = realEnemy && game.users.some(u => !u.isGM && realEnemy.testUserPermission?.(u, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER));
@@ -253,7 +254,7 @@ export class RMSSWeaponSkillManager {
                             const val = this.type === "checkbox"
                                 ? (this.checked ? parseInt(this.value) || 0 : 0)
                                 : (this.type === "select-one" ? parseInt(this.value) || 0 : parseInt(this.value) || 0);
-                            total += this.dataset.subtract === "true" ? -val : val;
+                            total += this.dataset.subtract === "true" ? -Math.abs(val) : val;
                         });
 
                         html.find("#attack-total").val(total);
@@ -285,10 +286,6 @@ export class RMSSWeaponSkillManager {
                     html.find(".is-positive").on("change", (event) => {
                         event.target.value = parseInt(event.target.value) < 0 ? -event.target.value : event.target.value;
                     });
-                    html.find("#attacker-parry[data-subtract]").on("change", (event) => {
-                        const v = parseInt(event.target.value) || 0;
-                        if (v < 0) event.target.value = 0;
-                    });
                     html.find("#target-at").on("change", (event) => {
                         if (event.target.value < 1) {
                             event.target.value = 1;
@@ -316,16 +313,17 @@ export class RMSSWeaponSkillManager {
      */
     static async _showAttackerOBModal(availableOB, fullOB, obUsed) {
         const step = OB_STEP;
-        const maxVal = Math.floor(availableOB / step) * step;
         const options = [];
-        for (let v = 0; v <= maxVal; v += step) options.push(v);
-        const defaultVal = Math.min(availableOB, Math.max(0, options[options.length - 1] ?? 0));
+        for (let v = 0; v < availableOB; v += step) options.push(v);
+        if (availableOB % step !== 0) options.push(availableOB); // resto: 99 → [..., 95, 99]
+        const defaultIdx = Math.min(options.length - 1, Math.floor(availableOB / step));
+        const defaultVal = options[defaultIdx] ?? 0;
 
         const content = `
             <div class="form-group">
                 <label>${game.i18n.localize("rmss.combat.ob_available")}: <strong>${availableOB}</strong></label>
                 <p>${game.i18n.localize("rmss.combat.ob_for_attack")}:</p>
-                <input type="range" id="ob-attack-slider" min="0" max="${maxVal}" step="${step}" value="${defaultVal}" 
+                <input type="range" id="ob-attack-slider" min="0" max="${options.length - 1}" step="1" value="${defaultIdx}" 
                        style="width:100%;">
                 <div style="text-align:center; margin-top:8px;">
                     <strong id="ob-attack-value">${defaultVal}</strong>
@@ -340,7 +338,10 @@ export class RMSSWeaponSkillManager {
                 buttons: {
                     confirm: {
                         label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
-                        callback: (html) => resolve(parseInt(html.find("#ob-attack-slider").val()) || 0)
+                        callback: (html) => {
+                            const idx = parseInt(html.find("#ob-attack-slider").val()) || 0;
+                            resolve(options[idx] ?? 0);
+                        }
                     },
                     cancel: {
                         label: `❌ ${game.i18n.localize("rmss.combat.cancel")}`,
@@ -351,7 +352,7 @@ export class RMSSWeaponSkillManager {
                 render: (html) => {
                     const slider = html.find("#ob-attack-slider");
                     const display = html.find("#ob-attack-value");
-                    slider.on("input", () => display.text(parseInt(slider.val()) || 0));
+                    slider.on("input", () => display.text(options[parseInt(slider.val()) || 0] ?? 0));
                 }
             }).render(true);
         });
@@ -365,14 +366,17 @@ export class RMSSWeaponSkillManager {
      */
     static async showParryModal(maxParryOB) {
         const step = OB_STEP;
-        const maxVal = Math.max(0, Math.floor(maxParryOB / step) * step);
-        const defaultVal = Math.min(maxParryOB, maxVal);
+        const options = [];
+        for (let v = 0; v < maxParryOB; v += step) options.push(v);
+        if (maxParryOB % step !== 0) options.push(maxParryOB);
+        const defaultIdx = Math.min(options.length - 1, Math.max(0, Math.floor(maxParryOB / step)));
+        const defaultVal = options[defaultIdx] ?? 0;
 
         const content = `
             <div class="form-group">
                 <label>${game.i18n.localize("rmss.combat.ob_available")}: <strong>${maxParryOB}</strong></label>
                 <p>${game.i18n.localize("rmss.combat.ob_parry_defender")}:</p>
-                <input type="range" id="ob-parry-slider" min="0" max="${maxVal}" step="${step}" value="${defaultVal}" 
+                <input type="range" id="ob-parry-slider" min="0" max="${options.length - 1}" step="1" value="${defaultIdx}" 
                        style="width:100%;">
                 <div style="text-align:center; margin-top:8px;">
                     <strong id="ob-parry-value">${defaultVal}</strong>
@@ -387,7 +391,10 @@ export class RMSSWeaponSkillManager {
                 buttons: {
                     confirm: {
                         label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
-                        callback: (html) => resolve(parseInt(html.find("#ob-parry-slider").val()) || 0)
+                        callback: (html) => {
+                            const idx = parseInt(html.find("#ob-parry-slider").val()) || 0;
+                            resolve(options[idx] ?? 0);
+                        }
                     },
                     cancel: {
                         label: `❌ ${game.i18n.localize("rmss.combat.cancel")}`,
@@ -398,7 +405,7 @@ export class RMSSWeaponSkillManager {
                 render: (html) => {
                     const slider = html.find("#ob-parry-slider");
                     const display = html.find("#ob-parry-value");
-                    slider.on("input", () => display.text(parseInt(slider.val()) || 0));
+                    slider.on("input", () => display.text(options[parseInt(slider.val()) || 0] ?? 0));
                 }
             }).render(true);
         });
