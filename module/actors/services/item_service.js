@@ -308,11 +308,8 @@ export default class ItemService {
             return;
         }
 
-        if (!skillCategory.system.hasOwnProperty("skill_tab")) {
-            skillCategory.system.skill_tab = "skills";
-        }
-
-        switch (skillCategory.system.skill_tab) {
+        const tab = CONFIG.rmss.skill_tab_by_slug?.[skillCategorySlug] ?? "skills";
+        switch (tab) {
             case "spells": spellskill.push(skill); break;
             case "languages": languageskill.push(skill); break;
             default: playerskill.push(skill);

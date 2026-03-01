@@ -386,11 +386,29 @@ Hooks.once("init", function () {
  new CombatEndManager();
 
   Hooks.once("ready", async function () {
-    const pack = game.packs.get("rmss.skill-categories");
-    const documents = await pack?.getDocuments() ?? [];
     CONFIG.rmss = CONFIG.rmss || {};
-    CONFIG.rmss.skillCategories = documents;
-    CONFIG.rmss.skillCategories.sort((a, b) => a.name.localeCompare(b.name));
+    // Build skillCategories from config (slug, name) for skill sheet dropdown when skill has no owner
+    const categories = CONFIG.rmss.skill_categories ?? {};
+    CONFIG.rmss.skillCategories = Object.entries(categories)
+      .map(([slug, data]) => ({ system: { slug }, name: data.name }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  });
+
+  // Ensure skill_category has slug when created (e.g. from compendium without slug)
+  Hooks.on("preCreateItem", (item, data, options) => {
+    if (item.type !== "skill_category") return;
+    const existingSlug = item.system?.slug ?? data.system?.slug;
+    if (existingSlug) return;
+    const slug = (name) =>
+      String(name || "")
+        .toLowerCase()
+        .replace(/\s*[•·]\s*/g, "-")
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "");
+    const derivedSlug = slug(item.name || data.name);
+    if (derivedSlug) {
+      item.updateSource({ "system.slug": derivedSlug });
+    }
   });
 
   // Hook: renderChatMessage - Handle RR roll buttons

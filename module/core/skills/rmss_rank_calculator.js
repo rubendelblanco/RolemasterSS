@@ -110,6 +110,88 @@ export default class RankCalculator {
     // RankCalculator.js
 
     /**
+     * Get effective development cost string. For spell lists:
+     * - none (non-spellcaster): base * multiplier per T-2.4
+     * - pure/semi/hybrid: lookup in spell_list_dp_costs table per T-2.4
+     * @param {Actor} actor
+     * @param {Item} item - Skill category
+     * @returns {string} Cost string (e.g. "4/4/4/4/4/8/8/8/8/8/...")
+     */
+    static getEffectiveDevelopmentCost(actor, item) {
+        const baseCost = item.system.development_cost;
+        const slug = item.system?.slug;
+        const tab = CONFIG.rmss?.skill_tab_by_slug?.[slug];
+        if (tab !== "spells") return baseCost;
+
+        const profession = actor.items?.find(i => i.type === "profession");
+        if (!profession) return baseCost;
+
+        const spellUserType = profession.system?.spellUserType;
+
+        // Non-spellcaster: base * rank multiplier
+        if (spellUserType === "none") {
+            const mults = CONFIG.rmss?.non_spellcaster_spell_list_rank_multipliers;
+            if (!mults) return baseCost;
+            const base = Number(String(baseCost).split("/")[0]) || 0;
+            const getMult = (rank) => {
+                if (rank <= 5) return mults["1-5"] ?? 1;
+                if (rank <= 10) return mults["6-10"] ?? 2;
+                if (rank <= 15) return mults["11-15"] ?? 3;
+                if (rank <= 20) return mults["16-20"] ?? 4;
+                return mults["21+"] ?? 5;
+            };
+            const maxRanks = 50;
+            const parts = [];
+            for (let r = 1; r <= maxRanks; r++) parts.push(String(base * getMult(r)));
+            return parts.join("/");
+        }
+
+        // Pure/Semi/Hybrid or Arcane Pure/Semi: lookup T-2.4 / Arcane Companion table
+        const spellcasterTypes = ["pure", "semi", "hybrid", "arcane_pure", "arcane_semi"];
+        if (!spellcasterTypes.includes(spellUserType)) return baseCost;
+
+        const mapping = CONFIG.rmss?.spell_list_slug_to_table?.[slug];
+        const costsTable = CONFIG.rmss?.spell_list_dp_costs;
+        if (!mapping || !costsTable) return baseCost;
+
+        const { realm, listType } = mapping;
+        const realmTable = costsTable[realm]?.[listType];
+        if (!realmTable) return baseCost;
+
+        const getTierAndIndex = (rank) => {
+            if (rank <= 5) return { tier: "1-5", index: rank - 1 };
+            if (rank <= 10) return { tier: "6-10", index: rank - 6 };
+            if (rank <= 15) return { tier: "11-15", index: rank - 11 };
+            if (rank <= 20) return { tier: "16-20", index: rank - 16 };
+            return { tier: "21+", index: rank - 21 };
+        };
+
+        const maxRanks = 50;
+        const parts = [];
+        for (let r = 1; r <= maxRanks; r++) {
+            const { tier, index } = getTierAndIndex(r);
+            const tierData = realmTable[tier] ?? realmTable["1+"];
+            if (!tierData) {
+                parts.push(String(baseCost).split("/")[0] || "0");
+                continue;
+            }
+            const raw = tierData[spellUserType];
+            if (raw === undefined || raw === null) {
+                parts.push(String(baseCost).split("/")[0] || "0");
+                continue;
+            }
+            if (typeof raw === "number") {
+                parts.push(String(raw));
+            } else {
+                const arr = String(raw).split("/");
+                const cost = arr[Math.min(index, arr.length - 1)] ?? arr[0] ?? "0";
+                parts.push(cost);
+            }
+        }
+        return parts.join("/");
+    }
+
+    /**
      * Pay or refund development points based on the intended nextRanks.
      * @param {Actor} actor
      * @param {Item} item
@@ -120,10 +202,11 @@ export default class RankCalculator {
      *  - false: not enough DP to pay
      */
     static async payDevelopmentCost(actor, item, nextRanks) {
+        const costString = this.getEffectiveDevelopmentCost(actor, item);
         const devCost = this.isPayable(
             actor.system.levelUp.developmentPoints,
             nextRanks,
-            item.system.development_cost
+            costString
         );
         if (devCost === false) return false;
 

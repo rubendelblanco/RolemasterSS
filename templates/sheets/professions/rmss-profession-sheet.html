@@ -3,31 +3,61 @@
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
-    <div class="sheet-content sheet-body" id="profession-sheet">
-        <div class="container">
-            {{ localize 'Prime stats'}}
-            <select name="prime-stats" id="prime-stats" multiple>
-                <option value="Ag">{{ localize 'Agility' }}</option>
-                <option value="Co">{{ localize 'Constitution' }}</option>
-                <option value="Me">{{ localize 'Memory' }}</option>
-                <option value="Re">{{ localize 'Reason' }}</option>
-                <option value="SD">{{ localize 'Self discipline' }}</option>
-                <option value="Em">{{ localize 'Empathy' }}</option>
-                <option value="In">{{ localize 'Intuition' }}</option>
-                <option value="Pr">{{ localize 'Presence' }}</option>
-                <option value="Qu">{{ localize 'Quickness' }}</option>
-                <option value="St">{{ localize 'Strength' }}</option>
-            </select>
-            <div id="prime-stats-selected"></div>
-        </div>
+    <div class="sheet-content sheet-body profession-sheet">
         <div class="form-group">
-            {{editor
-            enrichedBiography
-            target="system.details.biography.value"
-            button=true
-            editable=editable
-            }}
+            <label>{{ localize "rmss.profession.description" }}</label>
+            {{editor system.description target="system.description" button=true owner=owner editable=editable}}
         </div>
 
+        <div class="form-group">
+            <label>{{ localize "rmss.profession.spell_user_type" }}</label>
+            <select name="system.spellUserType">
+                {{#each config.spellUserTypes as |label key|}}
+                <option value="{{key}}" {{#if (eq ../system.spellUserType key)}}selected{{/if}}>{{label}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>{{ localize "rmss.profession.prime_stats" }}</label>
+            <div class="prime-stats-grid">
+                {{#each primeStatsSelects as |select idx|}}
+                <select name="system.primeStats.{{idx}}">
+                    {{#each select.options as |opt|}}
+                    <option value="{{opt.key}}" {{#if opt.selected}}selected{{/if}}>{{opt.label}}</option>
+                    {{/each}}
+                </select>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>{{ localize "rmss.profession.skill_category_costs" }}</label>
+            <div class="skill-costs-table-container">
+                <table class="skill-costs-table">
+                    <thead>
+                        <tr>
+                            <th>{{ localize "rmss.profession.skill_category" }}</th>
+                            <th>{{ localize "rmss.profession.development_cost" }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each skillCategories as |cat|}}
+                        <tr>
+                            <td>{{cat.name}}</td>
+                            <td>
+                                <input type="text" name="system.skillCategoryCosts.{{cat.slug}}" value="{{cat.cost}}" placeholder="0" data-dtype="String"/>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>{{ localize "rmss.profession.special_note" }}</label>
+            <textarea name="system.specialNote" rows="2">{{system.specialNote}}</textarea>
+        </div>
     </div>
 </form>

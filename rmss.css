@@ -1885,3 +1885,35 @@ tr.container-row {
     cursor: not-allowed;
     transform: none;
 }
+
+/* ================================
+   PROFESSION SHEET
+   ================================ */
+.profession-sheet .prime-stats-grid {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.profession-sheet .prime-stats-grid select {
+    min-width: 120px;
+}
+
+.profession-sheet .skill-costs-table-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.profession-sheet .skill-costs-table {
+    width: 100%;
+}
+
+.profession-sheet .skill-costs-table th,
+.profession-sheet .skill-costs-table td {
+    padding: 4px 8px;
+    text-align: left;
+}
+
+.profession-sheet .skill-costs-table input {
+    width: 80px;
+}

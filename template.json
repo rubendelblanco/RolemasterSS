@@ -515,11 +515,14 @@
       "special_skills": []
     },
     "profession": {
-      "skills_category":[],
-      "skills":[],
+      "description": "",
+      "spellUserType": "none",
+      "primeStats": ["", "", "", ""],
+      "skillCategoryCosts": {},
+      "professionBonuses": [],
+      "specialNote": "",
       "spells": {
-        "lists": [],
-        "development": []
+        "lists": []
       },
       "training_packages": []
     }
