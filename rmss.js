@@ -28,6 +28,7 @@ import RMSSNpcSheet from "./module/sheets/actors/rmss_npc_sheet.js";
 import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 import utils from "./module/utils.js";
+import { createProfession, createProfessionDialog } from "./module/tools/profession_creator.js";
 import {ContainerHandler} from "./module/actors/utils/container_handler.js";
 import EffectsPopupService from "./module/core/rolls/effects_popup_service.js";
 
@@ -186,7 +187,11 @@ Hooks.once("init", function () {
         const ForceSpellService = (await import("./module/spells/services/force_spell_service.js")).default;
         await ForceSpellService.castForceSpell({ actor, spell, spellListName, spellListRealm });
       }
-    }
+    },
+    /** Create a profession item from predefined data. Run from macro: await game.rmss.createProfession("Cleric"); */
+    createProfession,
+    /** Show dialog to pick profession and create it. Run from macro: await game.rmss.createProfessionDialog(); */
+    createProfessionDialog
   };
 
   // Define custom Document classes
