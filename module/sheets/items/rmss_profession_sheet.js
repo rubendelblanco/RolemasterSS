@@ -150,8 +150,10 @@ export default class RMSSProfessionSheet extends ItemSheet {
 
     /**
      * Handles spell user type or realm change. For semi + realm, auto-assigns required prime stats to empty slots.
+     * Stops propagation to prevent Foundry's form submit from overwriting our calculated primeStats.
      */
     async _onSpellUserTypeOrRealmChange(ev) {
+        ev.stopImmediatePropagation();
         const form = ev.currentTarget?.form;
         if (!form) return;
 
