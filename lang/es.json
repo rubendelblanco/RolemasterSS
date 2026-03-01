@@ -32,6 +32,7 @@
     "player_character": {
       "name": "Nombre",
       "level": "Nivel",
+      "level_readonly_hint": "El nivel cambia automáticamente al ganar experiencia y subir de nivel.",
       "experience": "XP",
       "resources": {
         "hits": "Puntos de vida",
@@ -646,7 +647,11 @@
       "skill_category_costs": "Costes por categoría",
       "skill_category": "Categoría de habilidad",
       "development_cost": "Coste de desarrollo",
-      "special_note": "Nota especial"
+      "special_note": "Nota especial",
+      "applied_categories": "Aplicadas {count} categorías de habilidad de {name}.",
+      "drop_only_level_zero": "La profesión solo puede asignarse cuando el personaje es nivel 0.",
+      "replace_confirm_title": "¿Reemplazar profesión?",
+      "replace_confirm_content": "El personaje ya tiene \"{current}\". ¿Reemplazar por \"{incoming}\"? Esto sobrescribirá todas las categorías de habilidad y sus costes."
     },
     "spell_lists": {
       "realm": "Reino",

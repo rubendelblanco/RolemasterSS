@@ -92,7 +92,8 @@
         <div class="header-text flexrow">
           <label for="level">{{ localize "rmss.player_character.level" }}</label>
           <input id="level" name="system.attributes.level.value" data-dtype="Number" type="text"
-                 value="{{system.attributes.level.value}}" />
+                 value="{{system.attributes.level.value}}" readonly
+                 title="{{ localize 'rmss.player_character.level_readonly_hint' }}" />
         </div>
         <div class="header-text flexrow">
           <label for="experience-points">{{ localize "rmss.player_character.experience" }}</label>

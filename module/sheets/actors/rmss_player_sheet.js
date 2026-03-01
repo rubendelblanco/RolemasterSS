@@ -8,6 +8,7 @@ import SkillCategoryService from "../../actors/services/skill_category_service.j
 import SkillDropHandler from "../../actors/drop_handlers/skill_drop_handler.js";
 import SkillCategoryDropHandler from "../../actors/drop_handlers/skill_category_drop_handler.js";
 import RaceDropHandler from "../../actors/drop_handlers/race_drop_handler.js";
+import ProfessionDropHandler from "../../actors/drop_handlers/profession_drop_handler.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
@@ -112,6 +113,11 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     if (itemData.type === "race") {
       const handler = new RaceDropHandler(this.actor).handle(itemData, event, data);
       return handler;
+    }
+
+    if (itemData.type === "profession") {
+      const handler = new ProfessionDropHandler(this.actor);
+      return handler.handle(itemData, event, data);
     }
 
     return super._onDropItem(event, data);

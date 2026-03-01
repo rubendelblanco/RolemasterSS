@@ -32,6 +32,7 @@
         "player_character": {
             "name": "Name",
             "level": "Level",
+            "level_readonly_hint": "Level changes automatically when you gain experience and level up.",
             "experience": "XP",
             "resources": {
                 "hits": "Hits",
@@ -646,7 +647,11 @@
             "skill_category_costs": "Skill Category Costs",
             "skill_category": "Skill Category",
             "development_cost": "Development Cost",
-            "special_note": "Special Note"
+            "special_note": "Special Note",
+            "applied_categories": "Applied {count} skill categories from {name}.",
+            "drop_only_level_zero": "Profession can only be assigned when the character is level 0.",
+            "replace_confirm_title": "Replace profession?",
+            "replace_confirm_content": "The character already has \"{current}\". Replace with \"{incoming}\"? This will overwrite all skill categories and their costs."
         },
         "spell_lists": {
             "realm": "Realm",
