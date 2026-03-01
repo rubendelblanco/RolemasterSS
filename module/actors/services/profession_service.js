@@ -89,10 +89,17 @@ export default class ProfessionService {
         const updateData = { "system.fixed_info.profession": professionData.name };
         const spellUserType = professionData.system?.spellUserType;
         const spellRealm = professionData.system?.spellRealm;
-        if ((spellUserType === "semi" || spellUserType === "pure" || spellUserType === "hybrid") && spellRealm) {
+        const spellRealm2 = professionData.system?.spellRealm2;
+        if (spellUserType === "none") {
+            updateData["system.fixed_info.realm"] = "";
+        } else if ((spellUserType === "semi" || spellUserType === "pure") && spellRealm) {
             updateData["system.fixed_info.realm"] = spellRealm;
+        } else if (spellUserType === "hybrid" && spellRealm && spellRealm2 && spellRealm !== spellRealm2) {
+            updateData["system.fixed_info.realm"] = [spellRealm, spellRealm2].sort().join("/");
         } else if (spellUserType === "arcane_pure" || spellUserType === "arcane_semi") {
             updateData["system.fixed_info.realm"] = "arcane";
+        } else {
+            updateData["system.fixed_info.realm"] = "";
         }
         await actor.update(updateData);
 

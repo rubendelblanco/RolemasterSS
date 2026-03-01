@@ -321,7 +321,7 @@
   },
   "Item": {
     "types": ["item", "race", "skill_category", "skill", "armor", "weapon", "transport", "herb_or_poison", "spell",
-      "spell_list","language", "profession","creature_attack"],
+      "spell_list", "profession", "creature_attack"],
     "templates": {
       "base": {
         "description": ""
@@ -518,6 +518,7 @@
       "description": "",
       "spellUserType": "none",
       "spellRealm": "",
+      "spellRealm2": "",
       "primeStats": ["", "", "", ""],
       "skillCategoryCosts": {},
       "professionBonuses": [],

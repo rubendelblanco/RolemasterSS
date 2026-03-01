@@ -209,11 +209,6 @@
             "range": "Range",
             "type": "Type"
         },
-        "pc_sheet_language": {
-            "name": "Name",
-            "spoken": "Spoken",
-            "written": "Written"
-        },
         "entity_sheet": {
             "spell": "RMSS Spell",
             "weapon": "RMSS Weapon",
@@ -475,11 +470,6 @@
             "spells": "Spells",
             "languages": "Languages"
         },
-        "language": {
-            "spoken": "Spoken",
-            "written": "Written",
-            "description": "Description"
-        },
         "maneuver": {
             "routine": "Routine",
             "easy": "Easy",
@@ -661,6 +651,7 @@
             "spell_user_arcane_semi": "Arcane Semi-spell user",
             "spell_realm": "Realm of Power",
             "spell_realm_none": "---",
+            "spell_realm_and": "and",
             "prime_stats": "Prime Stats",
             "skill_category_costs": "Skill Category Costs",
             "skill_category": "Skill Category",

@@ -209,11 +209,6 @@
       "range": "Rango",
       "type": "Tipo"
     },
-    "pc_sheet_language": {
-      "name": "Nombre",
-      "spoken": "Hablado",
-      "written": "Escrito"
-    },
     "entity_sheet": {
       "spell": "Hechizo de RMSS",
       "weapon": "Arma de RMSS",
@@ -475,11 +470,6 @@
       "spells": "Hechizos",
       "languages": "Idiomas"
     },
-    "language": {
-      "spoken": "Hablado",
-      "written": "Escrito",
-      "description": "Descripción"
-    },
     "maneuver": {
       "routine": "Rutina",
       "easy": "Muy fácil",
@@ -661,6 +651,7 @@
       "spell_user_arcane_semi": "Semihechicero arcano",
       "spell_realm": "Reino de poder",
       "spell_realm_none": "---",
+      "spell_realm_and": "y",
       "prime_stats": "Stats principales",
       "skill_category_costs": "Costes por categoría",
       "skill_category": "Categoría de habilidad",

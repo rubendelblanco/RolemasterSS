@@ -2022,6 +2022,23 @@ tr.container-row {
     flex: 1;
 }
 
+.profession-sheet .profession-hybrid-realms {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.profession-sheet .profession-hybrid-realms select {
+    flex: 1;
+    min-width: 120px;
+}
+
+.profession-sheet .profession-realm-separator {
+    flex-shrink: 0;
+    color: rgba(0, 0, 0, 0.6);
+}
+
 .profession-sheet .profession-basic-spell-lists-wrapper {
     display: flex;
     flex-direction: column;

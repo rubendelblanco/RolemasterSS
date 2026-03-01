@@ -155,6 +155,7 @@ export default class RMSSProfessionSheet extends ItemSheet {
     _setupSpellUserTypeAndRealmListeners(html) {
         html.find(".profession-spell-user-type").on("change", ev => this._onSpellUserTypeOrRealmChange(ev));
         html.find(".profession-spell-realm").on("change", ev => this._onSpellUserTypeOrRealmChange(ev));
+        html.find("[name='system.spellRealm2']").on("change", ev => this._onSpellUserTypeOrRealmChange(ev));
     }
 
     /**
@@ -168,12 +169,21 @@ export default class RMSSProfessionSheet extends ItemSheet {
 
         const spellUserType = form.querySelector("[name='system.spellUserType']")?.value ?? this.item.system.spellUserType;
         const spellRealm = form.querySelector("[name='system.spellRealm']")?.value ?? this.item.system.spellRealm;
+        const spellRealm2 = form.querySelector("[name='system.spellRealm2']")?.value ?? this.item.system.spellRealm2;
 
         const update = { "system.spellUserType": spellUserType };
-        if (spellUserType === "semi" || spellUserType === "pure" || spellUserType === "hybrid") {
+        if (spellUserType === "semi" || spellUserType === "pure") {
             update["system.spellRealm"] = spellRealm || "";
+            update["system.spellRealm2"] = "";
+        } else if (spellUserType === "hybrid") {
+            let r1 = spellRealm || "";
+            let r2 = spellRealm2 || "";
+            if (r1 && r2 && r1 === r2) r2 = "";
+            update["system.spellRealm"] = r1;
+            update["system.spellRealm2"] = r2;
         } else {
             update["system.spellRealm"] = "";
+            update["system.spellRealm2"] = "";
         }
 
         const raw = this.item.system.primeStats ?? ["", "", "", ""];
@@ -186,8 +196,8 @@ export default class RMSSProfessionSheet extends ItemSheet {
         let requiredStats = [];
         if ((spellUserType === "semi" || spellUserType === "pure") && spellRealm) {
             requiredStats = this._getRequiredStatsForRealm(spellRealm);
-        } else if (spellUserType === "hybrid" && spellRealm) {
-            requiredStats = this._getRequiredStatsForRealmHybrid(spellRealm);
+        } else if (spellUserType === "hybrid" && (spellRealm || spellRealm2)) {
+            requiredStats = this._getRequiredStatsForHybridTwoRealms(spellRealm, spellRealm2);
         } else if (spellUserType === "arcane_pure" || spellUserType === "arcane_semi") {
             requiredStats = arcaneStats;
         }
@@ -223,16 +233,20 @@ export default class RMSSProfessionSheet extends ItemSheet {
     }
 
     /**
-     * Returns the two prime stats required for a hybrid spell user by realm.
-     * @param {string} realm - essence, channeling, or mentalism
+     * Returns the prime stats required for a hybrid spell user with two realms.
+     * Union of stats from both realms: Essence->empathy+intuition, Channeling->intuition+presence, Mentalism->presence+empathy.
+     * @param {string} realm1 - essence, channeling, or mentalism
+     * @param {string} realm2 - essence, channeling, or mentalism (different from realm1)
      * @returns {string[]}
      */
-    _getRequiredStatsForRealmHybrid(realm) {
-        const r = (realm || "").toLowerCase();
-        if (r === "essence") return ["empathy", "intuition"];
-        if (r === "channeling") return ["intuition", "presence"];
-        if (r === "mentalism") return ["presence", "empathy"];
-        return [];
+    _getRequiredStatsForHybridTwoRealms(realm1, realm2) {
+        const stats = new Set();
+        for (const r of [realm1, realm2].map(x => (x || "").toLowerCase())) {
+            if (r === "essence") { stats.add("empathy"); stats.add("intuition"); }
+            else if (r === "channeling") { stats.add("intuition"); stats.add("presence"); }
+            else if (r === "mentalism") { stats.add("presence"); stats.add("empathy"); }
+        }
+        return [...stats];
     }
 
     /**
