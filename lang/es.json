@@ -661,7 +661,18 @@
       "applied_categories": "Aplicadas {count} categorías de habilidad de {name}.",
       "drop_only_level_zero": "La profesión solo puede asignarse cuando el personaje es nivel 0.",
       "replace_confirm_title": "¿Reemplazar profesión?",
-      "replace_confirm_content": "El personaje ya tiene \"{current}\". ¿Reemplazar por \"{incoming}\"? Esto sobrescribirá todas las categorías de habilidad y sus costes."
+      "replace_confirm_content": "El personaje ya tiene \"{current}\". ¿Reemplazar por \"{incoming}\"? Esto sobrescribirá todas las categorías de habilidad y sus costes.",
+      "profession_bonuses": "Bonificaciones de profesión",
+      "profession_bonuses_hint": "Arrastra categorías de habilidad o habilidades aquí. El bono de categoría se aplica a todas las habilidades de esa categoría; el bono de habilidad a esa habilidad concreta.",
+      "drop_skill_or_category": "Suelta aquí una habilidad o categoría de habilidad",
+      "bonus_type_category": "Categoría",
+      "bonus_type_skill": "Habilidad",
+      "bonus_drop_only": "Solo se pueden soltar categorías de habilidad o habilidades aquí.",
+      "bonus_slug_unknown": "No se pudo determinar el slug de este elemento.",
+      "bonus_already_added": "Esta bonificación ya está en la lista.",
+      "tab_description": "Descripción",
+      "tab_costs": "Costes de habilidades",
+      "tab_options": "Opciones"
     },
     "spell_lists": {
       "realm": "Reino",

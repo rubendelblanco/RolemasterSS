@@ -1899,11 +1899,6 @@ tr.container-row {
     min-width: 120px;
 }
 
-.profession-sheet .skill-costs-table-container {
-    max-height: 300px;
-    overflow-y: auto;
-}
-
 .profession-sheet .skill-costs-table {
     width: 100%;
 }
@@ -1916,6 +1911,59 @@ tr.container-row {
 
 .profession-sheet .skill-costs-table input {
     width: 80px;
+}
+
+.profession-sheet .profession-bonuses-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profession-sheet .profession-bonuses-drop-zone {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px;
+}
+
+.profession-sheet .profession-bonuses-drop-zone:hover {
+    border-color: var(--rmss-tab-gold, #c8a861);
+    background: rgba(200, 168, 97, 0.08);
+}
+
+.profession-sheet .profession-bonuses-drop-zone i {
+    margin-right: 6px;
+}
+
+.profession-sheet .profession-bonuses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.profession-sheet .profession-bonus-row {
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+}
+
+.profession-sheet .profession-bonus-name {
+    flex: 1;
+}
+
+.profession-sheet .profession-bonus-type {
+    font-size: 0.9em;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.profession-sheet .profession-bonus-value {
+    width: 60px;
+    text-align: center;
 }
 
 /* ================================

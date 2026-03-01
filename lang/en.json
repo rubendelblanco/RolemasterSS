@@ -661,7 +661,18 @@
             "applied_categories": "Applied {count} skill categories from {name}.",
             "drop_only_level_zero": "Profession can only be assigned when the character is level 0.",
             "replace_confirm_title": "Replace profession?",
-            "replace_confirm_content": "The character already has \"{current}\". Replace with \"{incoming}\"? This will overwrite all skill categories and their costs."
+            "replace_confirm_content": "The character already has \"{current}\". Replace with \"{incoming}\"? This will overwrite all skill categories and their costs.",
+            "profession_bonuses": "Profession Bonuses",
+            "profession_bonuses_hint": "Drag skill categories or skills here. Category bonus applies to all skills in that category; skill bonus applies to that specific skill.",
+            "drop_skill_or_category": "Drop skill or skill category here",
+            "bonus_type_category": "Category",
+            "bonus_type_skill": "Skill",
+            "bonus_drop_only": "Only skill categories or skills can be dropped here.",
+            "bonus_slug_unknown": "Could not determine slug for this item.",
+            "bonus_already_added": "This bonus is already in the list.",
+            "tab_description": "Description",
+            "tab_costs": "Skill Costs",
+            "tab_options": "Options"
         },
         "spell_lists": {
             "realm": "Realm",

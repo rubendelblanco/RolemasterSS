@@ -12,6 +12,12 @@ export default class ProfessionService {
      */
     static async applyProfession(actor, professionData) {
         const costs = professionData.system?.skillCategoryCosts ?? {};
+        const professionBonuses = professionData.system?.professionBonuses ?? [];
+        const categoryBonuses = Object.fromEntries(
+            professionBonuses
+                .filter(b => b.type === "category")
+                .map(b => [b.slug, Number(b.bonus) || 0])
+        );
         const categories = CONFIG.rmss?.skill_categories ?? {};
         const pack = game.packs.get("rmss.skill-categories") ?? game.packs.find(p => p.collection === "rmss.skill-categories");
         if (!pack) {
@@ -33,6 +39,7 @@ export default class ProfessionService {
             delete itemData._id;
             foundry.utils.setProperty(itemData, "system.slug", slug);
             foundry.utils.setProperty(itemData, "system.development_cost", String(cost || "0"));
+            foundry.utils.setProperty(itemData, "system.prof_bonus", categoryBonuses[slug] ?? 0);
             toCreate.push(itemData);
         }
 
@@ -50,8 +57,11 @@ export default class ProfessionService {
             const cost = String(costs[slug] || "0");
             const existingItem = existingBySlug.get(slug);
             if (existingItem) {
-                if (existingItem.system.development_cost !== cost) {
-                    toUpdate.push({ item: existingItem, cost });
+                const profBonus = categoryBonuses[slug] ?? 0;
+                const needsUpdate = existingItem.system.development_cost !== cost
+                    || existingItem.system.prof_bonus !== profBonus;
+                if (needsUpdate) {
+                    toUpdate.push({ item: existingItem, cost, profBonus });
                 }
             } else {
                 newItems.push(itemData);
@@ -61,8 +71,11 @@ export default class ProfessionService {
         if (newItems.length > 0) {
             await actor.createEmbeddedDocuments("Item", newItems);
         }
-        for (const { item, cost } of toUpdate) {
-            await item.update({ "system.development_cost": cost });
+        for (const { item, cost, profBonus } of toUpdate) {
+            await item.update({
+                "system.development_cost": cost,
+                "system.prof_bonus": profBonus ?? categoryBonuses[item.system?.slug] ?? 0
+            });
         }
 
         const oldProfession = actor.items.find(i => i.type === "profession");

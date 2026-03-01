@@ -157,64 +157,39 @@ export class RMSSActor extends Actor {
 
   // Calculate each Resistance Roll with the formula on the character sheet.
   calculateResistanceRolls(actorData) {
-    const systemData = actorData.system;
+    const stats = actorData.system.stats;
+    const rolls = actorData.system.resistance_rolls;
 
-    actorData.system.resistance_rolls.essence.value = Number(systemData.stats.empathy.stat_bonus * 3);
+    const configs = [
+      { key: "essence", value: () => stats.empathy.stat_bonus * 3 },
+      { key: "channeling", value: () => stats.intuition.stat_bonus * 3 },
+      { key: "mentalism", value: () => stats.presence.stat_bonus * 3 },
+      { key: "fear", value: () => stats.self_discipline.stat_bonus * 3 },
+      { key: "poison", value: () => stats.constitution.stat_bonus * 3, noRaceMod: true },
+      { key: "disease", value: () => stats.constitution.stat_bonus * 3, noRaceMod: true },
+      { key: "chann_ess", value: () => stats.intuition.stat_bonus + stats.empathy.stat_bonus },
+      { key: "chann_ment", value: () => stats.intuition.stat_bonus + stats.presence.stat_bonus },
+      { key: "ess_ment", value: () => stats.empathy.stat_bonus + stats.presence.stat_bonus },
+      { key: "arcane", value: () => stats.empathy.stat_bonus + stats.intuition.stat_bonus + stats.presence.stat_bonus },
+    ];
 
-    actorData.system.resistance_rolls.channeling.value = Number(systemData.stats.intuition.stat_bonus * 3);
-
-    actorData.system.resistance_rolls.mentalism.value = Number(systemData.stats.presence.stat_bonus * 3);
-
-    actorData.system.resistance_rolls.fear.value = Number(systemData.stats.self_discipline.stat_bonus * 3);
-
-    actorData.system.resistance_rolls.poison.value = Number(systemData.stats.constitution.stat_bonus * 3);
-
-    actorData.system.resistance_rolls.disease.value = Number(systemData.stats.constitution.stat_bonus * 3);
-
-    actorData.system.resistance_rolls.chann_ess.value = Number(systemData.stats.intuition.stat_bonus)
-                                                      + Number(systemData.stats.empathy.stat_bonus);
-
-    actorData.system.resistance_rolls.chann_ment.value = Number(systemData.stats.intuition.stat_bonus)
-                                                       + Number(systemData.stats.presence.stat_bonus);
-
-    actorData.system.resistance_rolls.ess_ment.value = Number(systemData.stats.empathy.stat_bonus)
-                                                     + Number(systemData.stats.presence.stat_bonus);
-
-    actorData.system.resistance_rolls.arcane.value = Number(systemData.stats.empathy.stat_bonus)
-                                                   + Number(systemData.stats.intuition.stat_bonus)
-                                                   + Number(systemData.stats.presence.stat_bonus);
-
-    actorData.system.resistance_rolls.essence.total = actorData.system.resistance_rolls.essence.value
-                                                    + actorData.system.resistance_rolls.essence.race_mod;
-
-    actorData.system.resistance_rolls.channeling.total = actorData.system.resistance_rolls.channeling.value
-                                                       + actorData.system.resistance_rolls.channeling.race_mod;
-
-    actorData.system.resistance_rolls.mentalism.total = actorData.system.resistance_rolls.mentalism.value
-                                                      + actorData.system.resistance_rolls.mentalism.race_mod;
-
-    actorData.system.resistance_rolls.fear.total = actorData.system.resistance_rolls.fear.value
-                                                 + actorData.system.resistance_rolls.fear.race_mod;
-
-    actorData.system.resistance_rolls.poison.total = actorData.system.resistance_rolls.poison.value;
-    actorData.system.resistance_rolls.disease.total = actorData.system.resistance_rolls.disease.value;
-
-    actorData.system.resistance_rolls.chann_ess.total = actorData.system.resistance_rolls.chann_ess.value
-                                                      + actorData.system.resistance_rolls.chann_ess.race_mod;
-
-    actorData.system.resistance_rolls.chann_ment.total = actorData.system.resistance_rolls.chann_ment.value
-                                                       + actorData.system.resistance_rolls.chann_ment.race_mod;
-
-    actorData.system.resistance_rolls.ess_ment.total = actorData.system.resistance_rolls.ess_ment.value
-                                                     + actorData.system.resistance_rolls.ess_ment.race_mod;
-
-    actorData.system.resistance_rolls.arcane.total = actorData.system.resistance_rolls.arcane.value
-                                                   + actorData.system.resistance_rolls.arcane.race_mod;
+    for (const { key, value, noRaceMod } of configs) {
+      const val = Number(value());
+      rolls[key].value = val;
+      rolls[key].total = val + (noRaceMod ? 0 : rolls[key].race_mod);
+    }
   }
 
   calculateSkillBonuses() {
+    const profession = this.items.find(i => i.type === "profession");
+    const skillBonuses = (profession?.system?.professionBonuses ?? []).filter(b => b.type === "skill");
+    const bonusBySkillName = Object.fromEntries(skillBonuses.map(b => [b.slug, Number(b.bonus) || 0]));
+
     for (const item of this.items) {
       if (item.type === "skill") {
+        const baseItemBonus = Number(item.system.item_bonus) || 0;
+        const profBonus = bonusBySkillName[item.name] ?? 0;
+        item.system.item_bonus = baseItemBonus + profBonus;
         item.calculateSelectedSkillCategoryBonus(item);
         item.calculateSkillTotalBonus(item);
       }
@@ -235,53 +210,31 @@ export class RMSSActor extends Actor {
         if (app_stat_1 === "None") {
           continue;
         }
-        else
-        {
-          let applicable_stat_bonus = 0;
 
-          let app_stat_1_found = false;
-          let app_stat_2_found = false;
-          let app_stat_3_found = false;
+        let applicable_stat_bonus = 0;
+        let app_stat_1_found = false;
+        let app_stat_2_found = false;
+        let app_stat_3_found = false;
 
-          // Iterate through the applicable stats and find their full names
-          for (const stat in CONFIG.rmss.stats) {
-            // If the configured App Stat matches the one of the stats in config
-            if (app_stat_1 === CONFIG.rmss.stats[stat].shortname) {
-              app_stat_1_found = true;
-              // Get the Stat Bonus
-              applicable_stat_bonus = applicable_stat_bonus + this.system.stats[stat].stat_bonus;
-            }
-            if (app_stat_2 === CONFIG.rmss.stats[stat].shortname) {
-              app_stat_2_found = true;
-              applicable_stat_bonus = applicable_stat_bonus + this.system.stats[stat].stat_bonus;
-            }
-            if (app_stat_3 === CONFIG.rmss.stats[stat].shortname) {
-              app_stat_3_found = true;
-              applicable_stat_bonus = applicable_stat_bonus + this.system.stats[stat].stat_bonus;
-            }
+        // Iterate through the applicable stats and find their full names
+        for (const stat in CONFIG.rmss.stats) {
+          if (app_stat_1 === CONFIG.rmss.stats[stat].shortname) {
+            app_stat_1_found = true;
+            applicable_stat_bonus = applicable_stat_bonus + this.system.stats[stat].stat_bonus;
           }
-
-          if (app_stat_1_found === true && app_stat_2_found === true && app_stat_3_found === true) {
-            // Apply the update if we found stat bonuses for every applicable stat
-            item.system.stat_bonus = applicable_stat_bonus;
-
-            // Update the total in the Item
-            item.calculateSkillCategoryTotalBonus(item);
+          if (app_stat_2 === CONFIG.rmss.stats[stat].shortname) {
+            app_stat_2_found = true;
+            applicable_stat_bonus = applicable_stat_bonus + this.system.stats[stat].stat_bonus;
           }
-          else if (app_stat_1_found === true && app_stat_2_found === true && app_stat_3_found === false) {
-            // Apply the update if we found stat bonuses for the first two applicable stats
-            item.system.stat_bonus = applicable_stat_bonus;
-
-            // Update the total in the Item
-            item.calculateSkillCategoryTotalBonus(item);
+          if (app_stat_3 === CONFIG.rmss.stats[stat].shortname) {
+            app_stat_3_found = true;
+            applicable_stat_bonus = applicable_stat_bonus + this.system.stats[stat].stat_bonus;
           }
-          else if (app_stat_1_found === true && app_stat_2_found === false && app_stat_3_found === false) {
-            // Apply the update if we found stat bonuses for the first applicable stat
-            item.system.stat_bonus = applicable_stat_bonus;
+        }
 
-            // Update the total in the Item
-            item.calculateSkillCategoryTotalBonus(item);
-          }
+        if (app_stat_1_found && (!app_stat_3_found || app_stat_2_found)) {
+          item.system.stat_bonus = applicable_stat_bonus;
+          item.calculateSkillCategoryTotalBonus(item);
         }
       }
     }
