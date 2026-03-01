@@ -1,5 +1,10 @@
+/**
+ * Sheet for editing profession items. Handles description, skill category costs,
+ * prime stats, spell user type, and profession bonuses (skills/categories with numeric bonuses).
+ */
 export default class RMSSProfessionSheet extends ItemSheet {
 
+    /** @returns {Object} Sheet dimensions, template path, and tab configuration. */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             width: 620,
@@ -10,10 +15,16 @@ export default class RMSSProfessionSheet extends ItemSheet {
         });
     }
 
+    /** @returns {string} Path to the HTML template. */
     get template() {
         return "systems/rmss/templates/sheets/professions/rmss-profession-sheet.html";
     }
 
+    /**
+     * Prepares data for the template: skill categories with costs, prime stats selects,
+     * profession bonuses, and spell user type options.
+     * @returns {Promise<Object>} Sheet data for rendering.
+     */
     async getData() {
         const baseData = await super.getData();
         const system = baseData.item.system;
@@ -58,6 +69,13 @@ export default class RMSSProfessionSheet extends ItemSheet {
         return sheetData;
     }
 
+    /**
+     * Builds the skill categories list for the Costs tab: each category gets its localized name,
+     * slug, and development cost from the profession. Sorted alphabetically by name.
+     * @param {Object} costs - Stored costs keyed by category slug (system.skillCategoryCosts).
+     * @param {Object} categoriesConfig - CONFIG.rmss.skill_categories.
+     * @returns {Array<{slug: string, name: string, cost: string|number}>}
+     */
     _buildSkillCategories(costs, categoriesConfig) {
         return Object.entries(categoriesConfig)
             .map(([slug, data]) => ({
@@ -68,6 +86,13 @@ export default class RMSSProfessionSheet extends ItemSheet {
             .sort((a, b) => a.name.localeCompare(b.name));
     }
 
+    /**
+     * Builds the four prime stats dropdowns. Each select excludes stats already chosen in the others
+     * to avoid duplicates. Includes an empty "---" option for unset slots.
+     * @param {string[]} primeStats - Current selections (e.g. ["agility", "constitution", "", ""]).
+     * @param {Object} statsConfig - CONFIG.rmss.stats.
+     * @returns {Array<{options: Array<{key: string, label: string, selected: boolean}>}>}
+     */
     _buildPrimeStatsSelects(primeStats, statsConfig) {
         const statKeys = Object.keys(statsConfig);
         return [0, 1, 2, 3].map(idx => {
@@ -86,6 +111,10 @@ export default class RMSSProfessionSheet extends ItemSheet {
         });
     }
 
+    /**
+     * Binds event handlers: drop zone for adding bonuses, remove button, and bonus value input.
+     * @param {jQuery} html - The rendered sheet HTML.
+     */
     activateListeners(html) {
         super.activateListeners(html);
         this._setupBonusDropZone(html);
@@ -93,6 +122,10 @@ export default class RMSSProfessionSheet extends ItemSheet {
         html.find(".profession-bonus-value").on("change", ev => this._onBonusValueChange(ev));
     }
 
+    /**
+     * Updates the numeric bonus value when the user changes the input for a profession bonus.
+     * @param {Event} ev - Change event on the bonus value input.
+     */
     async _onBonusValueChange(ev) {
         const idx = parseInt(ev.currentTarget.dataset.idx, 10);
         const val = parseInt(ev.currentTarget.value, 10) || 0;
@@ -102,6 +135,11 @@ export default class RMSSProfessionSheet extends ItemSheet {
         await this.item.update({ "system.professionBonuses": bonuses });
     }
 
+    /**
+     * Enables drag-and-drop on the profession bonuses zone. Accepts skills and skill categories
+     * dragged from the character sheet or item directory.
+     * @param {jQuery} html - The rendered sheet HTML.
+     */
     _setupBonusDropZone(html) {
         const zone = html.find(".profession-bonuses-drop-zone")[0];
         if (!zone) return;
@@ -114,6 +152,11 @@ export default class RMSSProfessionSheet extends ItemSheet {
         zone.addEventListener("drop", ev => this._onDropBonus(ev));
     }
 
+    /**
+     * Handles dropping a skill or skill category onto the bonuses zone. Extracts slug from the
+     * dropped item, adds it to professionBonuses with default bonus 5, and prevents duplicates.
+     * @param {DragEvent} event - The drop event.
+     */
     async _onDropBonus(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -157,6 +200,10 @@ export default class RMSSProfessionSheet extends ItemSheet {
         this.render(false);
     }
 
+    /**
+     * Removes a profession bonus from the list when the user clicks the trash button.
+     * @param {Event} ev - Click event on the remove button.
+     */
     async _onRemoveBonus(ev) {
         ev.preventDefault();
         const idx = parseInt(ev.currentTarget.dataset.idx, 10);
