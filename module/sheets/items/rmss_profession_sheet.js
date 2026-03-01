@@ -52,6 +52,12 @@ export default class RMSSProfessionSheet extends ItemSheet {
             designationLabel: game.i18n.localize(`rmss.skill_designations.${sd.designation}`) || sd.designation
         }));
 
+        const basicSpellLists = (system.basicSpellLists ?? []).map((entry, idx) => ({
+            ...entry,
+            idx,
+            name: entry.name ?? entry.uuid ?? "?"
+        }));
+
         const sheetData = {
             owner: this.item.isOwner,
             editable: this.isEditable,
@@ -59,6 +65,7 @@ export default class RMSSProfessionSheet extends ItemSheet {
             system,
             professionBonuses,
             skillDesignations,
+            basicSpellLists,
             config: {
                 ...config,
                 spellUserTypes: {
@@ -132,8 +139,10 @@ export default class RMSSProfessionSheet extends ItemSheet {
         super.activateListeners(html);
         this._setupBonusDropZone(html);
         this._setupSkillDesignationDropZone(html);
+        this._setupBasicSpellListsDropZone(html);
         this._setupSpellUserTypeAndRealmListeners(html);
         html.find(".profession-bonus-remove").click(ev => this._onRemoveBonus(ev));
+        html.find(".profession-basic-spell-list-remove").click(ev => this._onRemoveBasicSpellList(ev));
         html.find(".profession-bonus-value").on("change", ev => this._onBonusValueChange(ev));
         html.find(".profession-skill-designation-remove").click(ev => this._onRemoveSkillDesignation(ev));
     }
@@ -332,6 +341,72 @@ export default class RMSSProfessionSheet extends ItemSheet {
             ev.dataTransfer.dropEffect = "copy";
         });
         zone.addEventListener("drop", ev => this._onDropSkillDesignation(ev));
+    }
+
+    /**
+     * Sets up the drop zone for basic spell lists (spell lists from compendium).
+     * @param {jQuery} html - The rendered sheet HTML.
+     */
+    _setupBasicSpellListsDropZone(html) {
+        const zone = html.find(".profession-basic-spell-lists-drop-zone")[0];
+        if (!zone) return;
+
+        zone.addEventListener("dragover", ev => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            ev.dataTransfer.dropEffect = "copy";
+        });
+        zone.addEventListener("drop", ev => this._onDropBasicSpellList(ev));
+    }
+
+    /**
+     * Handles dropping a spell list onto the basic spell lists zone. Accepts spell lists from compendium.
+     * @param {DragEvent} event - The drop event.
+     */
+    async _onDropBasicSpellList(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        let data;
+        try {
+            data = JSON.parse(event.dataTransfer.getData("text/plain"));
+        } catch {
+            return;
+        }
+        if (!data?.uuid) return;
+
+        const dropped = await fromUuid(data.uuid);
+        if (!dropped) return;
+
+        if (dropped.type !== "spell_list") {
+            ui.notifications.warn(game.i18n.localize("rmss.profession.basic_spell_list_only"));
+            return;
+        }
+
+        const uuid = dropped.uuid ?? data.uuid;
+        const name = dropped.name ?? "?";
+        const lists = [...(this.item.system.basicSpellLists ?? [])];
+        if (lists.some(l => l.uuid === uuid)) {
+            ui.notifications.warn(game.i18n.localize("rmss.profession.basic_spell_list_already_added"));
+            return;
+        }
+
+        lists.push({ uuid, name });
+        await this.item.update({ "system.basicSpellLists": lists });
+        this.render(false);
+    }
+
+    /**
+     * Removes a basic spell list from the profession.
+     * @param {Event} ev - Click event on the remove button.
+     */
+    async _onRemoveBasicSpellList(ev) {
+        ev.preventDefault();
+        const idx = parseInt(ev.currentTarget.dataset.idx, 10);
+        const lists = [...(this.item.system.basicSpellLists ?? [])];
+        if (idx < 0 || idx >= lists.length) return;
+        lists.splice(idx, 1);
+        await this.item.update({ "system.basicSpellLists": lists });
+        this.render(false);
     }
 
     /**

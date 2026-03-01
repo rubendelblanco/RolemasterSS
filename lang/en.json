@@ -687,7 +687,14 @@
             "designation": "Designation",
             "tab_description": "Description",
             "tab_costs": "Skill Costs",
-            "tab_options": "Options"
+            "tab_options": "Options",
+            "tab_basic_spell_lists": "Basic Spell Lists",
+            "basic_spell_lists": "Basic Spell Lists",
+            "basic_spell_lists_hint": "Drag spell lists from the compendium here. These will be added to the character when the profession is applied.",
+            "drop_spell_list_here": "Drop spell list here",
+            "basic_spell_list_only": "Only spell lists can be dropped here.",
+            "basic_spell_list_already_added": "This spell list is already in the list.",
+            "applied_spell_lists": "Imported {count} spell list(s) from {name}."
         },
         "spell_lists": {
             "realm": "Realm",

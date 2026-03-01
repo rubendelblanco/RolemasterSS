@@ -7,6 +7,9 @@
         <a class="item" data-tab="description"><i class="fas fa-book"></i> {{ localize "rmss.profession.tab_description" }}</a>
         <a class="item" data-tab="costs"><i class="fas fa-coins"></i> {{ localize "rmss.profession.tab_costs" }}</a>
         <a class="item" data-tab="options"><i class="fas fa-sliders"></i> {{ localize "rmss.profession.tab_options" }}</a>
+        {{#unless (eq system.spellUserType "none")}}
+        <a class="item" data-tab="basic-spell-lists"><i class="fas fa-scroll"></i> {{ localize "rmss.profession.tab_basic_spell_lists" }}</a>
+        {{/unless}}
     </nav>
     <div class="sheet-content sheet-body profession-sheet">
         <div class="tab profession-tab-description" data-group="primary" data-tab="description">
@@ -116,5 +119,27 @@
                 </div>
             </div>
         </div>
+        {{#unless (eq system.spellUserType "none")}}
+        <div class="tab profession-tab-basic-spell-lists" data-group="primary" data-tab="basic-spell-lists">
+            <div class="form-group">
+                <label>{{ localize "rmss.profession.basic_spell_lists" }}</label>
+                <p class="notes">{{ localize "rmss.profession.basic_spell_lists_hint" }}</p>
+                <div class="profession-basic-spell-lists-wrapper">
+                    <div class="profession-basic-spell-lists-drop-zone" data-drop-type="basicSpellList">
+                        <i class="fas fa-hand-holding"></i>
+                        {{ localize "rmss.profession.drop_spell_list_here" }}
+                    </div>
+                    <div class="profession-basic-spell-lists-list">
+                        {{#each basicSpellLists as |entry idx|}}
+                        <div class="profession-basic-spell-list-row flexrow" data-idx="{{idx}}">
+                            <span class="profession-basic-spell-list-name">{{entry.name}}</span>
+                            <button type="button" class="profession-basic-spell-list-remove" data-idx="{{idx}}" title="{{ localize 'Remove' }}"><i class="fas fa-trash"></i></button>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/unless}}
     </div>
 </form>

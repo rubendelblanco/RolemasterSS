@@ -2022,6 +2022,50 @@ tr.container-row {
     flex: 1;
 }
 
+.profession-sheet .profession-basic-spell-lists-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profession-sheet .profession-basic-spell-lists-drop-zone {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px;
+}
+
+.profession-sheet .profession-basic-spell-lists-drop-zone:hover {
+    border-color: var(--rmss-tab-gold, #c8a861);
+    background: rgba(200, 168, 97, 0.08);
+}
+
+.profession-sheet .profession-basic-spell-lists-drop-zone i {
+    margin-right: 6px;
+}
+
+.profession-sheet .profession-basic-spell-lists-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.profession-sheet .profession-basic-spell-list-row {
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.profession-sheet .profession-basic-spell-list-name {
+    flex: 1;
+}
+
 .profession-sheet .profession-skill-designation-type {
     font-size: 0.9em;
     opacity: 0.8;

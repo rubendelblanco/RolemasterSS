@@ -687,7 +687,14 @@
       "designation": "Designación",
       "tab_description": "Descripción",
       "tab_costs": "Costes de habilidades",
-      "tab_options": "Opciones"
+      "tab_options": "Opciones",
+      "tab_basic_spell_lists": "Listas base de hechizos",
+      "basic_spell_lists": "Listas base de hechizos",
+      "basic_spell_lists_hint": "Arrastra listas de hechizos desde el catálogo aquí. Se añadirán al personaje cuando se aplique la profesión.",
+      "drop_spell_list_here": "Suelta aquí una lista de hechizos",
+      "basic_spell_list_only": "Solo se pueden soltar listas de hechizos aquí.",
+      "basic_spell_list_already_added": "Esta lista de hechizos ya está en la lista.",
+      "applied_spell_lists": "Importadas {count} lista(s) de hechizos de {name}."
     },
     "spell_lists": {
       "realm": "Reino",

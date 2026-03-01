@@ -105,6 +105,32 @@ export default class ProfessionService {
             await skill.update({ "system.designation": designationBySkillName[skill.name] });
         }
 
+        // Import basic spell lists from compendium to actor (for non-none spell users)
+        const basicSpellLists = professionData.system?.basicSpellLists ?? [];
+        let spellListsImported = 0;
+        for (const entry of basicSpellLists) {
+            const uuid = entry?.uuid;
+            if (!uuid) continue;
+            try {
+                const doc = await fromUuid(uuid);
+                if (!doc || doc.type !== "spell_list") continue;
+                const itemData = doc.toObject();
+                delete itemData._id;
+                await actor.createEmbeddedDocuments("Item", [itemData]);
+                spellListsImported++;
+            } catch (err) {
+                console.warn(`RMSS: Could not import spell list ${entry?.name ?? uuid}:`, err);
+            }
+        }
+        if (spellListsImported > 0) {
+            ui.notifications.info(
+                game.i18n.format("rmss.profession.applied_spell_lists", {
+                    count: spellListsImported,
+                    name: professionData.name
+                })
+            );
+        }
+
         const total = newItems.length + toUpdate.length;
         if (total > 0) {
             ui.notifications.info(
