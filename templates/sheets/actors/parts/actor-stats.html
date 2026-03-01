@@ -1,4 +1,11 @@
 <section class="stat-block">
+    {{#if (eq system.attributes.level.value 0)}}
+    <div class="stat-assignment-button-row">
+        <button type="button" class="stat-assignment-open" title="{{ localize 'rmss.stat_assignment.title' }}">
+            <i class="fas fa-calculator"></i> {{ localize "rmss.stat_assignment.assign_button" }}
+        </button>
+    </div>
+    {{/if}}
     <ol>
         <li class="flexrow stat-row">
             <div class="stat-header">{{ localize "rmss.player_character.attribute_headers.stat" }}</div>

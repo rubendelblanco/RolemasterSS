@@ -1,0 +1,42 @@
+<p class="notes">{{ localize "rmss.stat_assignment.hint" }}</p>
+
+<div class="stat-assignment-total">
+  <label>{{ localize "rmss.stat_assignment.total_points" }}</label>
+  {{#if totalPoints}}
+  <span class="stat-assignment-total-value">{{totalPoints}}</span>
+  {{else}}
+  <div class="stat-assignment-roll-buttons">
+    <button type="button" class="stat-assignment-roll-10d10"><i class="fas fa-dice-d10"></i> {{ localize "rmss.stat_assignment.roll_10d10" }}</button>
+    <button type="button" class="stat-assignment-take-660">{{ localize "rmss.stat_assignment.take_660" }}</button>
+  </div>
+  {{/if}}
+</div>
+
+{{#if totalPoints}}
+<div class="stat-assignment-grid">
+  <div class="stat-assignment-header stat-name">{{ localize "rmss.stat_assignment.stat" }}</div>
+  <div class="stat-assignment-header stat-points">{{ localize "rmss.stat_assignment.points" }}</div>
+  <div class="stat-assignment-header stat-value">{{ localize "rmss.stat_assignment.value" }}</div>
+  {{#each rows as |row|}}
+  <div class="stat-assignment-row">
+    <span class="stat-assignment-name {{#if row.isPrime}}stat-prime{{/if}}">{{row.label}}</span>
+    <input type="number" class="stat-assignment-points" data-stat="{{row.key}}" value="{{row.points}}" min="{{row.minPoints}}" max="190" data-dtype="Number"/>
+    <span class="stat-assignment-value">{{row.statValue}}</span>
+  </div>
+  {{/each}}
+</div>
+<div class="stat-assignment-summary">
+  <span>{{ localize "rmss.stat_assignment.used" }}: <strong id="stat-assignment-used">{{used}}</strong></span>
+  <span>{{ localize "rmss.stat_assignment.remaining" }}: <strong id="stat-assignment-remaining">{{remaining}}</strong></span>
+</div>
+<div class="stat-assignment-errors" id="stat-assignment-errors"></div>
+{{/if}}
+
+<footer class="sheet-footer flexrow">
+  <button type="button" class="stat-assignment-apply" {{#unless totalPoints}}disabled{{/unless}}>
+    <i class="fas fa-check"></i> {{ localize "rmss.stat_assignment.apply" }}
+  </button>
+  <button type="button" data-action="cancel">
+    <i class="fas fa-times"></i> {{ localize "rmss.stat_assignment.cancel" }}
+  </button>
+</footer>

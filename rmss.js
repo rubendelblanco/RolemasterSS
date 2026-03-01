@@ -66,6 +66,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/actor-skill-list.hbs",
     "systems/rmss/templates/sheets/items/rmss-macro-editor.hbs",
     "systems/rmss/templates/sheets/actors/dialogs/weapon_preference_dialog.html",
+    "systems/rmss/templates/sheets/actors/dialogs/stat_assignment_dialog.html",
   ];
   return loadTemplates(templatePaths);
 }

@@ -187,6 +187,24 @@
       "cancel": "Cancelar",
       "applied": "Preferencias de armas aplicadas."
     },
+    "stat_assignment": {
+      "title": "Asignar atributos (T-1.2)",
+      "hint": "Asigna puntos de atributos en creación de personaje. 600 + 10d10 o 660 fijos. Prime stats mín 90, resto mín 20.",
+      "total_points": "Puntos totales",
+      "roll_10d10": "Tirar 10d10",
+      "take_660": "Usar 660",
+      "stat": "Atributo",
+      "points": "Puntos",
+      "value": "Valor",
+      "used": "Usados",
+      "remaining": "Restantes",
+      "assign_button": "Asignar atributos",
+      "apply": "Aplicar",
+      "cancel": "Cancelar",
+      "applied": "Atributos asignados correctamente.",
+      "min_points": "{stat} requiere mínimo {min} puntos",
+      "total_mismatch": "Total usado {used} debe ser {available}"
+    },
     "pc_sheet_items": {
       "equipped": "Equipado",
       "worn": "Equipado",
@@ -622,6 +640,11 @@
     },
     "chat":{
       "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})",
+      "potential_rolls_title": "Tiradas de atributos potenciales",
+      "potential_rolls_stat": "Atributo",
+      "potential_rolls_temp": "Temp",
+      "potential_rolls_roll": "Tirada",
+      "potential_rolls_potential": "Potencial",
       "slain": "ha sido <span style='color:#ff4444;'>AJUSTICIADO</span>!",
       "restInPeace": "Descanse en paz",
       "gmAlias": "Game Master",

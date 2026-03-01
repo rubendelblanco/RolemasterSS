@@ -60,6 +60,125 @@ export default class StatService {
     }
 
     /**
+     * Roll potential from a temp value (same logic as dice click).
+     * @param {number} tempValue - The temp stat value.
+     * @param {string} [statName] - Optional stat name for chat context.
+     * @param {Actor} [actor] - Optional actor for chat header.
+     * @returns {Promise<number>} The potential value (max of temp and roll).
+     */
+    static async rollPotentialFromTemp(tempValue, statName = "", actor = null) {
+        const formula = this.getRollFormulaForPotential(tempValue);
+        if (!formula) return tempValue;
+
+        const roll = new Roll(formula);
+        await roll.evaluate();
+
+        const statLabel = statName ? ` - ${game.i18n.localize(`rmss.player_character.attribute.${statName}`) || statName}` : "";
+        const actorName = actor?.name || "";
+        const actorImg = actor?.img || "";
+
+        const content = `
+            <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+                ${actorImg ? `<img src="${actorImg}" style="width: 48px; height: 48px; border-radius: 4px; object-fit: cover;" />` : ""}
+                <div>
+                  <p style="color: #333; font-size: 16px; margin: 0;">
+                    ${game.i18n.format("rmss.chat.potential_roll", {
+                        total: roll.total,
+                        result: roll.result
+                    })}${statLabel}
+                  </p>
+                  ${actorName ? `<p style="color: #555; font-size: 14px; margin: 4px 0 0 0;">${actorName}</p>` : ""}
+                </div>
+              </div>
+            </div>
+        `;
+        await ChatMessage.create({
+            user: game.user.id,
+            speaker: actor ? ChatMessage.getSpeaker({ actor }) : ChatMessage.getSpeaker(),
+            content,
+            roll
+        });
+
+        return roll.total < tempValue ? tempValue : roll.total;
+    }
+
+    /**
+     * Roll potential for all stats and create a single chat message.
+     * @param {Object.<string, number>} stats - { statName: tempValue }
+     * @param {Actor} actor - The actor these rolls belong to.
+     * @returns {Promise<Object.<string, number>>} { statName: potentialValue }
+     */
+    static async rollAllPotentialsFromTemps(stats, actor) {
+        const results = [];
+        const potentials = {};
+
+        for (const [statName, tempValue] of Object.entries(stats)) {
+            const formula = this.getRollFormulaForPotential(tempValue);
+            let potential = tempValue;
+            let rollResult = "-";
+
+            if (formula) {
+                const roll = new Roll(formula);
+                await roll.evaluate();
+                potential = roll.total < tempValue ? tempValue : roll.total;
+                rollResult = roll.result;
+            }
+
+            potentials[statName] = potential;
+            results.push({
+                statName,
+                label: game.i18n.localize(`rmss.player_character.attribute.${statName}`) || statName,
+                temp: tempValue,
+                roll: rollResult,
+                potential
+            });
+        }
+
+        const rows = results.map(r =>
+            `<tr style="border-bottom: 1px solid #e0e0e0;"><td style="padding: 4px 8px;">${r.label}</td><td style="text-align: center; padding: 4px 8px;">${r.temp}</td><td style="text-align: center; padding: 4px 8px;">${r.roll}</td><td style="text-align: center; padding: 4px 8px;"><strong>${r.potential}</strong></td></tr>`
+        ).join("");
+
+        const actorName = actor?.name || "";
+        const actorImg = actor?.img || "";
+
+        const content = `
+            <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                ${actorImg ? `<img src="${actorImg}" style="width: 48px; height: 48px; border-radius: 4px; object-fit: cover;" />` : ""}
+                <div>
+                  <p style="color: #333; font-size: 16px; margin: 0;">
+                    <b>${game.i18n.localize("rmss.chat.potential_rolls_title")}</b>
+                  </p>
+                  ${actorName ? `<p style="color: #555; font-size: 14px; margin: 4px 0 0 0;">${actorName}</p>` : ""}
+                </div>
+              </div>
+              <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                <thead>
+                  <tr style="border-bottom: 1px solid #ccc;">
+                    <th style="text-align: left; padding: 4px 8px;">${game.i18n.localize("rmss.chat.potential_rolls_stat")}</th>
+                    <th style="text-align: center; padding: 4px 8px;">${game.i18n.localize("rmss.chat.potential_rolls_temp")}</th>
+                    <th style="text-align: center; padding: 4px 8px;">${game.i18n.localize("rmss.chat.potential_rolls_roll")}</th>
+                    <th style="text-align: center; padding: 4px 8px;">${game.i18n.localize("rmss.chat.potential_rolls_potential")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${rows}
+                </tbody>
+              </table>
+            </div>
+        `;
+
+        await ChatMessage.create({
+            user: game.user.id,
+            speaker: actor ? ChatMessage.getSpeaker({ actor }) : ChatMessage.getSpeaker(),
+            content
+        });
+
+        return potentials;
+    }
+
+    /**
      * Internal: handle potential stat roll (level 0 only).
      */
     static async _handlePotentialRoll(actor, tempElement, potentialInput) {
@@ -70,22 +189,9 @@ export default class StatService {
             return;
         }
 
-        const roll = new Roll(formula);
-        await roll.evaluate();
-
-        await ChatMessage.create({
-            user: game.user.id,
-            speaker: ChatMessage.getSpeaker(),
-            content: game.i18n.format("rmss.chat.potential_roll", {
-                total: roll.total,
-                result: roll.result
-            }),
-            roll
-        });
-
-        const finalValue = roll.total < inputValue ? inputValue : roll.total;
+        const statName = potentialInput?.name?.match(/stats\.(\w+)\.potential/)?.[1] || "";
+        const finalValue = await this.rollPotentialFromTemp(inputValue, statName, actor);
         potentialInput.value = finalValue;
-
         await actor.update({ [potentialInput.name]: finalValue });
     }
 

@@ -10,6 +10,7 @@ import SkillCategoryDropHandler from "../../actors/drop_handlers/skill_category_
 import RaceDropHandler from "../../actors/drop_handlers/race_drop_handler.js";
 import ProfessionDropHandler from "../../actors/drop_handlers/profession_drop_handler.js";
 import WeaponPreferenceDialog from "../../actors/dialogs/weapon_preference_dialog.js";
+import StatAssignmentDialog from "../../actors/dialogs/stat_assignment_dialog.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
@@ -144,6 +145,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
     this._registerSkillListeners(html);
     this._registerWeaponPreferenceListener(html);
+    this._registerStatAssignmentListener(html);
     this._registerStatListeners(html);
 
     // PC-specific auto-calculations (only for playable characters)
@@ -203,6 +205,13 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     html.find(".weapon-pref-assign").click(ev => {
       ev.preventDefault();
       new WeaponPreferenceDialog(this.actor).render(true);
+    });
+  }
+
+  _registerStatAssignmentListener(html) {
+    html.find(".stat-assignment-open").click(ev => {
+      ev.preventDefault();
+      new StatAssignmentDialog(this.actor).render(true);
     });
   }
 

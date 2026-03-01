@@ -187,6 +187,24 @@
             "cancel": "Cancel",
             "applied": "Weapon preferences applied."
         },
+        "stat_assignment": {
+            "title": "Assign Stats (T-1.2)",
+            "hint": "Assign stat points at character creation. 600 + 10d10 or fixed 660. Prime stats min 90, others min 20.",
+            "total_points": "Total Points",
+            "roll_10d10": "Roll 10d10",
+            "take_660": "Use 660",
+            "stat": "Stat",
+            "points": "Points",
+            "value": "Value",
+            "used": "Used",
+            "remaining": "Remaining",
+            "assign_button": "Assign Stats",
+            "apply": "Apply",
+            "cancel": "Cancel",
+            "applied": "Stats assigned successfully.",
+            "min_points": "{stat} requires minimum {min} points",
+            "total_mismatch": "Total used {used} must equal {available}"
+        },
         "pc_sheet_items": {
             "equipped": "Equipped",
             "worn": "Worn",
@@ -622,6 +640,11 @@
         },
         "chat":{
             "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})",
+            "potential_rolls_title": "Potential Stat Rolls",
+            "potential_rolls_stat": "Stat",
+            "potential_rolls_temp": "Temp",
+            "potential_rolls_roll": "Roll",
+            "potential_rolls_potential": "Potential",
             "slain": "has been <span style='color:#ff4444;'>SLAIN</span>!",
             "restInPeace": "Rest in Peace",
             "gmAlias": "Game Master",
