@@ -525,6 +525,15 @@ Hooks.once("init", function () {
       const initialRanks = Number(item.system.ranks) || 0;
       await RankCalculator.applyAbsoluteRanksAndBonus(item, initialRanks, "-15*2*1*0.5*0");
     }
+    // Apply profession skill designation when a skill is added to an actor with a profession
+    if (item.type === "skill" && item.actor) {
+      const profession = item.actor.items.find(i => i.type === "profession");
+      const designations = profession?.system?.skillDesignations ?? [];
+      const match = designations.find(d => d.slug === item.name);
+      if (match) {
+        await item.update({ "system.designation": match.designation });
+      }
+    }
   });
 
   Hooks.on("preUpdateItem", (item, update, options, userId) => {

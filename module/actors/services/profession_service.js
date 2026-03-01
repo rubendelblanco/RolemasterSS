@@ -86,7 +86,24 @@ export default class ProfessionService {
         delete profData.flags?.core?.sourceId;
         await actor.createEmbeddedDocuments("Item", [profData]);
 
-        await actor.update({ "system.fixed_info.profession": professionData.name });
+        const updateData = { "system.fixed_info.profession": professionData.name };
+        const spellUserType = professionData.system?.spellUserType;
+        const spellRealm = professionData.system?.spellRealm;
+        if ((spellUserType === "semi" || spellUserType === "pure" || spellUserType === "hybrid") && spellRealm) {
+            updateData["system.fixed_info.realm"] = spellRealm;
+        } else if (spellUserType === "arcane_pure" || spellUserType === "arcane_semi") {
+            updateData["system.fixed_info.realm"] = "arcane";
+        }
+        await actor.update(updateData);
+
+        // Apply skill designations to matching skills
+        const skillDesignations = professionData.system?.skillDesignations ?? [];
+        const designationBySkillName = Object.fromEntries(skillDesignations.map(d => [d.slug, d.designation]));
+        const actorSkills = actor.items.filter(i => i.type === "skill");
+        const skillsToUpdate = actorSkills.filter(s => designationBySkillName[s.name]);
+        for (const skill of skillsToUpdate) {
+            await skill.update({ "system.designation": designationBySkillName[skill.name] });
+        }
 
         const total = newItems.length + toUpdate.length;
         if (total > 0) {

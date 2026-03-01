@@ -517,10 +517,11 @@
     "profession": {
       "description": "",
       "spellUserType": "none",
+      "spellRealm": "",
       "primeStats": ["", "", "", ""],
       "skillCategoryCosts": {},
       "professionBonuses": [],
-      "specialNote": "",
+      "skillDesignations": [],
       "spells": {
         "lists": []
       },

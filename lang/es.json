@@ -404,6 +404,12 @@
       "category": "Categoría",
       "offensive": "¿Ofensiva?"
     },
+  "skill_designations": {
+    "None": "Ninguna",
+    "Occupational": "Ocupacional",
+    "Everyman": "Everyman",
+    "Restricted": "Restringida"
+  },
   "skill_categories_names":{
     "armor-light": "Armadura • Ligera",
     "subterfuge-mechanics": "Subterfugio • Mecánica",
@@ -653,11 +659,12 @@
       "spell_user_hybrid": "Hechicero híbrido",
       "spell_user_arcane_pure": "Hechicero arcano puro",
       "spell_user_arcane_semi": "Semihechicero arcano",
+      "spell_realm": "Reino de poder",
+      "spell_realm_none": "---",
       "prime_stats": "Stats principales",
       "skill_category_costs": "Costes por categoría",
       "skill_category": "Categoría de habilidad",
       "development_cost": "Coste de desarrollo",
-      "special_note": "Nota especial",
       "applied_categories": "Aplicadas {count} categorías de habilidad de {name}.",
       "drop_only_level_zero": "La profesión solo puede asignarse cuando el personaje es nivel 0.",
       "replace_confirm_title": "¿Reemplazar profesión?",
@@ -670,6 +677,14 @@
       "bonus_drop_only": "Solo se pueden soltar categorías de habilidad o habilidades aquí.",
       "bonus_slug_unknown": "No se pudo determinar el slug de este elemento.",
       "bonus_already_added": "Esta bonificación ya está en la lista.",
+      "skill_designations": "Designaciones de habilidades",
+      "skill_designations_hint": "Arrastra habilidades aquí para asignar su designación (Everyman, Ocupacional, Restringida) en esta profesión.",
+      "drop_skill_for_designation": "Suelta habilidad aquí",
+      "designation_skill_only": "Solo se pueden soltar habilidades aquí.",
+      "designation_already_added": "Esta habilidad ya tiene designación.",
+      "select_designation_title": "Seleccionar designación",
+      "select_designation_content": "¿Qué designación debe tener \"{skill}\" en esta profesión?",
+      "designation": "Designación",
       "tab_description": "Descripción",
       "tab_costs": "Costes de habilidades",
       "tab_options": "Opciones"

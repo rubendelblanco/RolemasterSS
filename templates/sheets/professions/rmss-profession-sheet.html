@@ -43,12 +43,24 @@
         <div class="tab profession-tab-options" data-group="primary" data-tab="options">
             <div class="form-group">
                 <label>{{ localize "rmss.profession.spell_user_type" }}</label>
-                <select name="system.spellUserType">
+                <select name="system.spellUserType" class="profession-spell-user-type">
                     {{#each config.spellUserTypes as |label key|}}
                     <option value="{{key}}" {{#if (eq ../system.spellUserType key)}}selected{{/if}}>{{label}}</option>
                     {{/each}}
                 </select>
             </div>
+
+            {{#if (or (or (eq system.spellUserType "semi") (eq system.spellUserType "pure")) (eq system.spellUserType "hybrid"))}}
+            <div class="form-group profession-spell-realm-group">
+                <label>{{ localize "rmss.profession.spell_realm" }}</label>
+                <select name="system.spellRealm" class="profession-spell-realm">
+                    <option value="">{{ localize "rmss.profession.spell_realm_none" }}</option>
+                    {{#each config.spellRealmOptions as |label key|}}
+                    <option value="{{key}}" {{#if (eq ../system.spellRealm key)}}selected{{/if}}>{{label}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            {{/if}}
 
             <div class="form-group">
                 <label>{{ localize "rmss.profession.prime_stats" }}</label>
@@ -85,8 +97,23 @@
             </div>
 
             <div class="form-group">
-                <label>{{ localize "rmss.profession.special_note" }}</label>
-                <textarea name="system.specialNote" rows="2">{{system.specialNote}}</textarea>
+                <label>{{ localize "rmss.profession.skill_designations" }}</label>
+                <p class="notes">{{ localize "rmss.profession.skill_designations_hint" }}</p>
+                <div class="profession-skill-designations-wrapper">
+                    <div class="profession-skill-designations-drop-zone" data-drop-type="skillDesignation">
+                        <i class="fas fa-hand-holding"></i>
+                        {{ localize "rmss.profession.drop_skill_for_designation" }}
+                    </div>
+                    <div class="profession-skill-designations-list">
+                        {{#each skillDesignations as |sd|}}
+                        <div class="profession-skill-designation-row flexrow profession-designation-{{sd.designation}}" data-idx="{{sd.idx}}">
+                            <span class="profession-skill-designation-name">{{sd.displayName}}</span>
+                            <span class="profession-skill-designation-type">({{sd.designationLabel}})</span>
+                            <button type="button" class="profession-skill-designation-remove" data-idx="{{sd.idx}}" title="{{ localize 'Remove' }}"><i class="fas fa-trash"></i></button>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

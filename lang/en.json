@@ -404,6 +404,12 @@
             "category": "Category",
             "offensive": "Offensive?"
         },
+    "skill_designations": {
+        "None": "None",
+        "Occupational": "Occupational",
+        "Everyman": "Everyman",
+        "Restricted": "Restricted"
+    },
     "skill_categories_names": {
         "armor-light": "Armor • Light",
         "subterfuge-mechanics": "Subterfuge • Mechanics",
@@ -653,11 +659,12 @@
             "spell_user_hybrid": "Hybrid spell user",
             "spell_user_arcane_pure": "Arcane Pure spell user",
             "spell_user_arcane_semi": "Arcane Semi-spell user",
+            "spell_realm": "Realm of Power",
+            "spell_realm_none": "---",
             "prime_stats": "Prime Stats",
             "skill_category_costs": "Skill Category Costs",
             "skill_category": "Skill Category",
             "development_cost": "Development Cost",
-            "special_note": "Special Note",
             "applied_categories": "Applied {count} skill categories from {name}.",
             "drop_only_level_zero": "Profession can only be assigned when the character is level 0.",
             "replace_confirm_title": "Replace profession?",
@@ -670,6 +677,14 @@
             "bonus_drop_only": "Only skill categories or skills can be dropped here.",
             "bonus_slug_unknown": "Could not determine slug for this item.",
             "bonus_already_added": "This bonus is already in the list.",
+            "skill_designations": "Skill Designations",
+            "skill_designations_hint": "Drag skills here to set their designation (Everyman, Occupational, Restricted) for this profession.",
+            "drop_skill_for_designation": "Drop skill here",
+            "designation_skill_only": "Only skills can be dropped here.",
+            "designation_already_added": "This skill already has a designation.",
+            "select_designation_title": "Select Designation",
+            "select_designation_content": "What designation should \"{skill}\" have for this profession?",
+            "designation": "Designation",
             "tab_description": "Description",
             "tab_costs": "Skill Costs",
             "tab_options": "Options"

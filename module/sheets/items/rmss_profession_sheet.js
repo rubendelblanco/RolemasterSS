@@ -45,12 +45,20 @@ export default class RMSSProfessionSheet extends ItemSheet {
                 : b.slug
         }));
 
+        const skillDesignations = (system.skillDesignations ?? []).map((sd, idx) => ({
+            ...sd,
+            idx,
+            displayName: sd.slug,
+            designationLabel: game.i18n.localize(`rmss.skill_designations.${sd.designation}`) || sd.designation
+        }));
+
         const sheetData = {
             owner: this.item.isOwner,
             editable: this.isEditable,
             item: baseData.item,
             system,
             professionBonuses,
+            skillDesignations,
             config: {
                 ...config,
                 spellUserTypes: {
@@ -60,6 +68,11 @@ export default class RMSSProfessionSheet extends ItemSheet {
                     hybrid: game.i18n.localize("rmss.profession.spell_user_hybrid"),
                     arcane_pure: game.i18n.localize("rmss.profession.spell_user_arcane_pure"),
                     arcane_semi: game.i18n.localize("rmss.profession.spell_user_arcane_semi")
+                },
+                spellRealmOptions: {
+                    essence: game.i18n.localize("rmss.race.resistances.essence") || "Essence",
+                    channeling: game.i18n.localize("rmss.race.resistances.channeling") || "Channeling",
+                    mentalism: game.i18n.localize("rmss.race.resistances.mentalism") || "Mentalism"
                 }
             },
             skillCategories,
@@ -118,8 +131,97 @@ export default class RMSSProfessionSheet extends ItemSheet {
     activateListeners(html) {
         super.activateListeners(html);
         this._setupBonusDropZone(html);
+        this._setupSkillDesignationDropZone(html);
+        this._setupSpellUserTypeAndRealmListeners(html);
         html.find(".profession-bonus-remove").click(ev => this._onRemoveBonus(ev));
         html.find(".profession-bonus-value").on("change", ev => this._onBonusValueChange(ev));
+        html.find(".profession-skill-designation-remove").click(ev => this._onRemoveSkillDesignation(ev));
+    }
+
+    /**
+     * When spell user type or spell realm changes, auto-assign required prime stats for semi spell-users.
+     * Essence -> empathy, Channeling -> intuition, Mentalism -> presence, Arcane -> all three.
+     * @param {jQuery} html - The rendered sheet HTML.
+     */
+    _setupSpellUserTypeAndRealmListeners(html) {
+        html.find(".profession-spell-user-type").on("change", ev => this._onSpellUserTypeOrRealmChange(ev));
+        html.find(".profession-spell-realm").on("change", ev => this._onSpellUserTypeOrRealmChange(ev));
+    }
+
+    /**
+     * Handles spell user type or realm change. For semi + realm, auto-assigns required prime stats to empty slots.
+     */
+    async _onSpellUserTypeOrRealmChange(ev) {
+        const form = ev.currentTarget?.form;
+        if (!form) return;
+
+        const spellUserType = form.querySelector("[name='system.spellUserType']")?.value ?? this.item.system.spellUserType;
+        const spellRealm = form.querySelector("[name='system.spellRealm']")?.value ?? this.item.system.spellRealm;
+
+        const update = { "system.spellUserType": spellUserType };
+        if (spellUserType === "semi" || spellUserType === "pure" || spellUserType === "hybrid") {
+            update["system.spellRealm"] = spellRealm || "";
+        } else {
+            update["system.spellRealm"] = "";
+        }
+
+        const raw = this.item.system.primeStats ?? ["", "", "", ""];
+        let primeStats = Array.isArray(raw)
+            ? [...raw]
+            : [0, 1, 2, 3].map(i => raw?.[i] ?? "");
+        while (primeStats.length < 4) primeStats.push("");
+
+        const arcaneStats = ["empathy", "intuition", "presence"];
+        let requiredStats = [];
+        if ((spellUserType === "semi" || spellUserType === "pure") && spellRealm) {
+            requiredStats = this._getRequiredStatsForRealm(spellRealm);
+        } else if (spellUserType === "hybrid" && spellRealm) {
+            requiredStats = this._getRequiredStatsForRealmHybrid(spellRealm);
+        } else if (spellUserType === "arcane_pure" || spellUserType === "arcane_semi") {
+            requiredStats = arcaneStats;
+        }
+
+        if (requiredStats.length > 0) {
+            let slotIdx = 0;
+            for (const stat of requiredStats) {
+                if (primeStats.includes(stat)) continue;
+                while (slotIdx < 4 && primeStats[slotIdx]) slotIdx++;
+                if (slotIdx >= 4) break;
+                primeStats[slotIdx] = stat;
+                slotIdx++;
+            }
+        }
+
+        update["system.primeStats"] = primeStats;
+        await this.item.update(update);
+        this.render(false);
+    }
+
+    /**
+     * Returns the prime stats required for a spell realm (semi/pure: one stat).
+     * @param {string} realm - essence, channeling, mentalism, or arcane
+     * @returns {string[]}
+     */
+    _getRequiredStatsForRealm(realm) {
+        const r = (realm || "").toLowerCase();
+        if (r === "essence") return ["empathy"];
+        if (r === "channeling") return ["intuition"];
+        if (r === "mentalism") return ["presence"];
+        if (r === "arcane") return ["empathy", "intuition", "presence"];
+        return [];
+    }
+
+    /**
+     * Returns the two prime stats required for a hybrid spell user by realm.
+     * @param {string} realm - essence, channeling, or mentalism
+     * @returns {string[]}
+     */
+    _getRequiredStatsForRealmHybrid(realm) {
+        const r = (realm || "").toLowerCase();
+        if (r === "essence") return ["empathy", "intuition"];
+        if (r === "channeling") return ["intuition", "presence"];
+        if (r === "mentalism") return ["presence", "empathy"];
+        return [];
     }
 
     /**
@@ -211,6 +313,118 @@ export default class RMSSProfessionSheet extends ItemSheet {
         if (idx < 0 || idx >= bonuses.length) return;
         bonuses.splice(idx, 1);
         await this.item.update({ "system.professionBonuses": bonuses });
+        this.render(false);
+    }
+
+    /**
+     * Sets up the drop zone for skill designations (Everyman, Occupational, Restricted).
+     * @param {jQuery} html - The rendered sheet HTML.
+     */
+    _setupSkillDesignationDropZone(html) {
+        const zone = html.find(".profession-skill-designations-drop-zone")[0];
+        if (!zone) return;
+
+        zone.addEventListener("dragover", ev => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            ev.dataTransfer.dropEffect = "copy";
+        });
+        zone.addEventListener("drop", ev => this._onDropSkillDesignation(ev));
+    }
+
+    /**
+     * Handles dropping a skill onto the designations zone. Shows a modal to pick designation
+     * (Everyman, Occupational, Restricted) and adds it to skillDesignations.
+     * @param {DragEvent} event - The drop event.
+     */
+    async _onDropSkillDesignation(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        let data;
+        try {
+            data = JSON.parse(event.dataTransfer.getData("text/plain"));
+        } catch {
+            return;
+        }
+        if (!data?.uuid) return;
+
+        const dropped = await fromUuid(data.uuid);
+        if (!dropped) return;
+
+        if (dropped.type !== "skill") {
+            ui.notifications.warn(game.i18n.localize("rmss.profession.designation_skill_only"));
+            return;
+        }
+
+        const slug = dropped.name;
+        const designations = [...(this.item.system.skillDesignations ?? [])];
+        if (designations.some(d => d.slug === slug)) {
+            ui.notifications.warn(game.i18n.localize("rmss.profession.designation_already_added"));
+            return;
+        }
+
+        const designation = await this._showDesignationDialog(slug);
+        if (!designation) return;
+
+        designations.push({ slug, designation });
+        await this.item.update({ "system.skillDesignations": designations });
+        this.render(false);
+    }
+
+    /**
+     * Shows a dialog to select designation (Everyman, Occupational, Restricted).
+     * @param {string} skillName - Name of the skill being configured.
+     * @returns {Promise<string|null>} Selected designation or null if cancelled.
+     */
+    async _showDesignationDialog(skillName) {
+        const designations = ["Everyman", "Occupational", "Restricted"];
+        const options = designations.map(d => ({
+            value: d,
+            label: game.i18n.localize(`rmss.skill_designations.${d}`) || d
+        }));
+
+        return new Promise((resolve) => {
+            new Dialog({
+                title: game.i18n.localize("rmss.profession.select_designation_title"),
+                content: `
+                    <form>
+                        <p>${game.i18n.format("rmss.profession.select_designation_content", { skill: skillName })}</p>
+                        <div class="form-group">
+                            <label>${game.i18n.localize("rmss.profession.designation")}</label>
+                            <select name="designation">
+                                ${options.map(o => `<option value="${o.value}">${o.label}</option>`).join("")}
+                            </select>
+                        </div>
+                    </form>
+                `,
+                buttons: {
+                    ok: {
+                        icon: "<i class='fas fa-check'></i>",
+                        label: game.i18n.localize("OK"),
+                        callback: (html) => resolve(html.find("[name=designation]").val())
+                    },
+                    cancel: {
+                        icon: "<i class='fas fa-times'></i>",
+                        label: game.i18n.localize("Cancel"),
+                        callback: () => resolve(null)
+                    }
+                },
+                default: "ok"
+            }).render(true);
+        });
+    }
+
+    /**
+     * Removes a skill designation from the list.
+     * @param {Event} ev - Click event on the remove button.
+     */
+    async _onRemoveSkillDesignation(ev) {
+        ev.preventDefault();
+        const idx = parseInt(ev.currentTarget.dataset.idx, 10);
+        const designations = [...(this.item.system.skillDesignations ?? [])];
+        if (idx < 0 || idx >= designations.length) return;
+        designations.splice(idx, 1);
+        await this.item.update({ "system.skillDesignations": designations });
         this.render(false);
     }
 }
