@@ -177,6 +177,16 @@
       "total_bonus": "Bono total",
       "import_skillcat": "Importar categorías de habilidades"
     },
+    "weapon_preference": {
+      "title": "Asignar preferencias de armas",
+      "assign": "Asignar preferencias de armas",
+      "hint": "Ordena las categorías de armas por preferencia. Posición 1 = 1/5, 2 = 2/5, 3-5 = 2/7, 6-7 = 5 DP.",
+      "move_up": "Subir",
+      "move_down": "Bajar",
+      "apply": "Aplicar",
+      "cancel": "Cancelar",
+      "applied": "Preferencias de armas aplicadas."
+    },
     "pc_sheet_items": {
       "equipped": "Equipado",
       "worn": "Equipado",

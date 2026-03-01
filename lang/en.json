@@ -175,7 +175,17 @@
             "prof_bonus": "Prof Bonus",
             "special_bonus": "Special Bonus",
             "total_bonus": "Total Bonus",
-            "import_skillcat": "Import Skill Categories" 
+            "import_skillcat": "Import Skill Categories"
+        },
+        "weapon_preference": {
+            "title": "Assign Weapon Preferences",
+            "assign": "Assign Weapon Preferences",
+            "hint": "Order weapon categories by preference. Position 1 = 1/5, 2 = 2/5, 3-5 = 2/7, 6-7 = 5 DP.",
+            "move_up": "Move up",
+            "move_down": "Move down",
+            "apply": "Apply",
+            "cancel": "Cancel",
+            "applied": "Weapon preferences applied."
         },
         "pc_sheet_items": {
             "equipped": "Equipped",

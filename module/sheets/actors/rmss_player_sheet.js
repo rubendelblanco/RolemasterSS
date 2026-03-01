@@ -9,6 +9,7 @@ import SkillDropHandler from "../../actors/drop_handlers/skill_drop_handler.js";
 import SkillCategoryDropHandler from "../../actors/drop_handlers/skill_category_drop_handler.js";
 import RaceDropHandler from "../../actors/drop_handlers/race_drop_handler.js";
 import ProfessionDropHandler from "../../actors/drop_handlers/profession_drop_handler.js";
+import WeaponPreferenceDialog from "../../actors/dialogs/weapon_preference_dialog.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
@@ -142,6 +143,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     });
 
     this._registerSkillListeners(html);
+    this._registerWeaponPreferenceListener(html);
     this._registerStatListeners(html);
 
     // PC-specific auto-calculations (only for playable characters)
@@ -195,6 +197,13 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   _registerSkillListeners(html) {
     html.find(".skill-newrank").click(ev => this._onSkillRankClick(ev));
     html.find(".skillcategory-newrank").click(ev => this._onSkillCategoryRankClick(ev));
+  }
+
+  _registerWeaponPreferenceListener(html) {
+    html.find(".weapon-pref-assign").click(ev => {
+      ev.preventDefault();
+      new WeaponPreferenceDialog(this.actor).render(true);
+    });
   }
 
   _registerItemListeners(html) {

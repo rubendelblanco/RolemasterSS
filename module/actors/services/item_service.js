@@ -274,6 +274,11 @@ export default class ItemService {
         // Map spells to lists
         const spellistsWithContents = this._mapSpellsToLists(spellists, spells);
 
+        const weaponSlugs = CONFIG.rmss.weapon_category_slugs || [];
+        const hasWeaponCategories = skillcat.some(s => weaponSlugs.includes(s.system?.slug));
+        const level = Number(actor.system?.attributes?.level?.value ?? 0);
+        const showWeaponPrefAssign = hasWeaponCategories && level === 0;
+
         // Attach everything to context
         return Object.assign(context, {
             containers,
@@ -282,6 +287,8 @@ export default class ItemService {
             looseHerbs,
             looseWeapons,
             skillcat,
+            hasWeaponCategories,
+            showWeaponPrefAssign,
             playerskill,
             weapons,
             armor,

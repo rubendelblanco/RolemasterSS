@@ -254,6 +254,15 @@ rmss.skill_categories = {
   "weapon-thrown": { name: "Weapon • Thrown", tab: "skills" }
 }
 
+/** Weapon category slugs (for preference assignment). */
+rmss.weapon_category_slugs = [
+  "weapon-1-h-edged", "weapon-1-h-concussion", "weapon-2-handed",
+  "weapon-missile", "weapon-missile-artillery", "weapon-pole-arms", "weapon-thrown"
+]
+
+/** Cost per preference position (1st=1/5, 2nd=2/5, 3rd-5th=2/7, 6th-7th=5). */
+rmss.weapon_preference_costs = ["1/5", "2/5", "2/7", "2/7", "2/7", "5", "5"]
+
 /** Slug -> tab, derived from skill_categories. Fallback: "skills". */
 rmss.skill_tab_by_slug = Object.fromEntries(
   Object.entries(rmss.skill_categories).map(([slug, data]) => [slug, data.tab])
