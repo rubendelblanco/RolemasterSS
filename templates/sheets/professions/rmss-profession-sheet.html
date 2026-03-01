@@ -3,31 +3,165 @@
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
-    <div class="sheet-content sheet-body" id="profession-sheet">
-        <div class="container">
-            {{ localize 'Prime stats'}}
-            <select name="prime-stats" id="prime-stats" multiple>
-                <option value="Ag">{{ localize 'Agility' }}</option>
-                <option value="Co">{{ localize 'Constitution' }}</option>
-                <option value="Me">{{ localize 'Memory' }}</option>
-                <option value="Re">{{ localize 'Reason' }}</option>
-                <option value="SD">{{ localize 'Self discipline' }}</option>
-                <option value="Em">{{ localize 'Empathy' }}</option>
-                <option value="In">{{ localize 'Intuition' }}</option>
-                <option value="Pr">{{ localize 'Presence' }}</option>
-                <option value="Qu">{{ localize 'Quickness' }}</option>
-                <option value="St">{{ localize 'Strength' }}</option>
-            </select>
-            <div id="prime-stats-selected"></div>
-        </div>
-        <div class="form-group">
-            {{editor
-            enrichedBiography
-            target="system.details.biography.value"
-            button=true
-            editable=editable
-            }}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description"><i class="fas fa-book"></i> {{ localize "rmss.profession.tab_description" }}</a>
+        <a class="item" data-tab="costs"><i class="fas fa-coins"></i> {{ localize "rmss.profession.tab_costs" }}</a>
+        <a class="item" data-tab="options"><i class="fas fa-sliders"></i> {{ localize "rmss.profession.tab_options" }}</a>
+        {{#unless (eq system.spellUserType "none")}}
+        <a class="item" data-tab="basic-spell-lists"><i class="fas fa-scroll"></i> {{ localize "rmss.profession.tab_basic_spell_lists" }}</a>
+        {{/unless}}
+    </nav>
+    <div class="sheet-content sheet-body profession-sheet">
+        <div class="tab profession-tab-description" data-group="primary" data-tab="description">
+            <div class="form-group">
+                {{editor system.description target="system.description" button=false owner=owner editable=editable}}
+            </div>
         </div>
 
+        <div class="tab profession-tab-costs" data-group="primary" data-tab="costs">
+            <div class="form-group">
+                <div class="skill-costs-table-container">
+                    <table class="skill-costs-table">
+                        <thead>
+                            <tr>
+                                <th>{{ localize "rmss.profession.skill_category" }}</th>
+                                <th>{{ localize "rmss.profession.development_cost" }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each skillCategories as |cat|}}
+                            <tr>
+                                <td>{{cat.name}}</td>
+                                <td>
+                                    <input type="text" name="system.skillCategoryCosts.{{cat.slug}}" value="{{cat.cost}}" placeholder="0" data-dtype="String"/>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab profession-tab-options" data-group="primary" data-tab="options">
+            <div class="form-group">
+                <label>{{ localize "rmss.profession.spell_user_type" }}</label>
+                <select name="system.spellUserType" class="profession-spell-user-type">
+                    {{#each config.spellUserTypes as |label key|}}
+                    <option value="{{key}}" {{#if (eq ../system.spellUserType key)}}selected{{/if}}>{{label}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            {{#if (or (eq system.spellUserType "semi") (eq system.spellUserType "pure"))}}
+            <div class="form-group profession-spell-realm-group">
+                <label>{{ localize "rmss.profession.spell_realm" }}</label>
+                <select name="system.spellRealm" class="profession-spell-realm">
+                    <option value="">{{ localize "rmss.profession.spell_realm_none" }}</option>
+                    {{#each config.spellRealmOptions as |label key|}}
+                    <option value="{{key}}" {{#if (eq ../system.spellRealm key)}}selected{{/if}}>{{label}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            {{/if}}
+            {{#if (eq system.spellUserType "hybrid")}}
+            <div class="form-group profession-spell-realm-group">
+                <label>{{ localize "rmss.profession.spell_realm" }}</label>
+                <div class="profession-hybrid-realms">
+                    <select name="system.spellRealm" class="profession-spell-realm">
+                        <option value="">{{ localize "rmss.profession.spell_realm_none" }}</option>
+                        {{#each config.spellRealmOptions as |label key|}}
+                        <option value="{{key}}" {{#if (eq ../system.spellRealm key)}}selected{{/if}}>{{label}}</option>
+                        {{/each}}
+                    </select>
+                    <span class="profession-realm-separator">{{ localize "rmss.profession.spell_realm_and" }}</span>
+                    <select name="system.spellRealm2" class="profession-spell-realm">
+                        <option value="">{{ localize "rmss.profession.spell_realm_none" }}</option>
+                        {{#each config.spellRealmOptions as |label key|}}
+                        {{#unless (eq key ../system.spellRealm)}}
+                        <option value="{{key}}" {{#if (eq ../system.spellRealm2 key)}}selected{{/if}}>{{label}}</option>
+                        {{/unless}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            {{/if}}
+
+            <div class="form-group">
+                <label>{{ localize "rmss.profession.prime_stats" }}</label>
+                <div class="prime-stats-grid">
+                    {{#each primeStatsSelects as |select idx|}}
+                    <select name="system.primeStats.{{idx}}">
+                        {{#each select.options as |opt|}}
+                        <option value="{{opt.key}}" {{#if opt.selected}}selected{{/if}}>{{opt.label}}</option>
+                        {{/each}}
+                    </select>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{ localize "rmss.profession.profession_bonuses" }}</label>
+                <p class="notes">{{ localize "rmss.profession.profession_bonuses_hint" }}</p>
+                <div class="profession-bonuses-wrapper">
+                <div class="profession-bonuses-drop-zone" data-drop-type="professionBonus">
+                    <i class="fas fa-hand-holding"></i>
+                    {{ localize "rmss.profession.drop_skill_or_category" }}
+                </div>
+                <div class="profession-bonuses-list">
+                    {{#each professionBonuses as |bonus|}}
+                    <div class="profession-bonus-row flexrow" data-idx="{{bonus.idx}}">
+                        <span class="profession-bonus-name">{{bonus.displayName}}</span>
+                        <span class="profession-bonus-type">({{#if (eq bonus.type "category")}}{{ localize "rmss.profession.bonus_type_category" }}{{else}}{{ localize "rmss.profession.bonus_type_skill" }}{{/if}})</span>
+                        <input type="number" class="profession-bonus-value" data-idx="{{bonus.idx}}" value="{{bonus.bonus}}" min="-50" max="50" data-dtype="Number"/>
+                        <button type="button" class="profession-bonus-remove" data-idx="{{bonus.idx}}" title="{{ localize 'Remove' }}"><i class="fas fa-trash"></i></button>
+                    </div>
+                    {{/each}}
+                </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{ localize "rmss.profession.skill_designations" }}</label>
+                <p class="notes">{{ localize "rmss.profession.skill_designations_hint" }}</p>
+                <div class="profession-skill-designations-wrapper">
+                    <div class="profession-skill-designations-drop-zone" data-drop-type="skillDesignation">
+                        <i class="fas fa-hand-holding"></i>
+                        {{ localize "rmss.profession.drop_skill_for_designation" }}
+                    </div>
+                    <div class="profession-skill-designations-list">
+                        {{#each skillDesignations as |sd|}}
+                        <div class="profession-skill-designation-row flexrow profession-designation-{{sd.designation}}" data-idx="{{sd.idx}}">
+                            <span class="profession-skill-designation-name">{{sd.displayName}}</span>
+                            <span class="profession-skill-designation-type">({{sd.designationLabel}})</span>
+                            <button type="button" class="profession-skill-designation-remove" data-idx="{{sd.idx}}" title="{{ localize 'Remove' }}"><i class="fas fa-trash"></i></button>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#unless (eq system.spellUserType "none")}}
+        <div class="tab profession-tab-basic-spell-lists" data-group="primary" data-tab="basic-spell-lists">
+            <div class="form-group">
+                <label>{{ localize "rmss.profession.basic_spell_lists" }}</label>
+                <p class="notes">{{ localize "rmss.profession.basic_spell_lists_hint" }}</p>
+                <div class="profession-basic-spell-lists-wrapper">
+                    <div class="profession-basic-spell-lists-drop-zone" data-drop-type="basicSpellList">
+                        <i class="fas fa-hand-holding"></i>
+                        {{ localize "rmss.profession.drop_spell_list_here" }}
+                    </div>
+                    <div class="profession-basic-spell-lists-list">
+                        {{#each basicSpellLists as |entry idx|}}
+                        <div class="profession-basic-spell-list-row flexrow" data-idx="{{idx}}">
+                            <span class="profession-basic-spell-list-name">{{entry.name}}</span>
+                            <button type="button" class="profession-basic-spell-list-remove" data-idx="{{idx}}" title="{{ localize 'Remove' }}"><i class="fas fa-trash"></i></button>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/unless}}
     </div>
 </form>

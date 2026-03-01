@@ -1,3 +1,10 @@
+{{#if showWeaponPrefAssign}}
+<div class="weapon-pref-header flexrow">
+  <button type="button" class="weapon-pref-assign" title="{{ localize 'rmss.weapon_preference.title' }}">
+    <i class="fas fa-swords"></i> {{ localize "rmss.weapon_preference.assign" }}
+  </button>
+</div>
+{{/if}}
 {{> "systems/rmss/templates/sheets/actors/parts/search-text.hbs"
 id="mod-search-form-actor-skill-categories"
 targetSelector=".skillcat-grid-container [data-search]"

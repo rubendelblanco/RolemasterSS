@@ -1,0 +1,23 @@
+<p class="notes">{{ localize "rmss.weapon_preference.hint" }}</p>
+<div class="weapon-pref-list flexcol">
+  {{#each rows as |row idx|}}
+  <div class="weapon-pref-row flexrow" data-slug="{{row.slug}}" data-idx="{{idx}}">
+    <span class="weapon-pref-name">{{row.name}}</span>
+    <span class="weapon-pref-cost">{{row.cost}}</span>
+    {{#if ../canReorder}}
+    <div class="weapon-pref-controls">
+      <button type="button" class="weapon-pref-move-up" data-idx="{{idx}}" title="{{ localize 'rmss.weapon_preference.move_up' }}"><i class="fas fa-chevron-up"></i></button>
+      <button type="button" class="weapon-pref-move-down" data-idx="{{idx}}" title="{{ localize 'rmss.weapon_preference.move_down' }}"><i class="fas fa-chevron-down"></i></button>
+    </div>
+    {{/if}}
+  </div>
+  {{/each}}
+</div>
+<footer class="sheet-footer flexrow">
+  <button type="button" class="weapon-pref-apply">
+    <i class="fas fa-check"></i> {{ localize "rmss.weapon_preference.apply" }}
+  </button>
+  <button type="button" data-action="cancel">
+    <i class="fas fa-times"></i> {{ localize "rmss.weapon_preference.cancel" }}
+  </button>
+</footer>

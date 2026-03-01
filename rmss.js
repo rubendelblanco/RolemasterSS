@@ -28,6 +28,7 @@ import RMSSNpcSheet from "./module/sheets/actors/rmss_npc_sheet.js";
 import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 import utils from "./module/utils.js";
+import { createProfession, createProfessionDialog } from "./module/tools/profession_creator.js";
 import {ContainerHandler} from "./module/actors/utils/container_handler.js";
 import EffectsPopupService from "./module/core/rolls/effects_popup_service.js";
 
@@ -64,6 +65,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/parts/search-text.hbs",
     "systems/rmss/templates/sheets/actors/parts/actor-skill-list.hbs",
     "systems/rmss/templates/sheets/items/rmss-macro-editor.hbs",
+    "systems/rmss/templates/sheets/actors/dialogs/weapon_preference_dialog.html",
   ];
   return loadTemplates(templatePaths);
 }
@@ -185,7 +187,11 @@ Hooks.once("init", function () {
         const ForceSpellService = (await import("./module/spells/services/force_spell_service.js")).default;
         await ForceSpellService.castForceSpell({ actor, spell, spellListName, spellListRealm });
       }
-    }
+    },
+    /** Create a profession item from predefined data. Run from macro: await game.rmss.createProfession("Cleric"); */
+    createProfession,
+    /** Show dialog to pick profession and create it. Run from macro: await game.rmss.createProfessionDialog(); */
+    createProfessionDialog
   };
 
   // Define custom Document classes
@@ -386,11 +392,29 @@ Hooks.once("init", function () {
  new CombatEndManager();
 
   Hooks.once("ready", async function () {
-    const pack = game.packs.get("rmss.skill-categories");
-    const documents = await pack?.getDocuments() ?? [];
     CONFIG.rmss = CONFIG.rmss || {};
-    CONFIG.rmss.skillCategories = documents;
-    CONFIG.rmss.skillCategories.sort((a, b) => a.name.localeCompare(b.name));
+    // Build skillCategories from config (slug, name) for skill sheet dropdown when skill has no owner
+    const categories = CONFIG.rmss.skill_categories ?? {};
+    CONFIG.rmss.skillCategories = Object.entries(categories)
+      .map(([slug, data]) => ({ system: { slug }, name: data.name }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  });
+
+  // Ensure skill_category has slug when created (e.g. from compendium without slug)
+  Hooks.on("preCreateItem", (item, data, options) => {
+    if (item.type !== "skill_category") return;
+    const existingSlug = item.system?.slug ?? data.system?.slug;
+    if (existingSlug) return;
+    const slug = (name) =>
+      String(name || "")
+        .toLowerCase()
+        .replace(/\s*[•·]\s*/g, "-")
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "");
+    const derivedSlug = slug(item.name || data.name);
+    if (derivedSlug) {
+      item.updateSource({ "system.slug": derivedSlug });
+    }
   });
 
   // Hook: renderChatMessage - Handle RR roll buttons
@@ -505,6 +529,15 @@ Hooks.once("init", function () {
       const RankCalculator = (await import("./module/core/skills/rmss_rank_calculator.js")).default;
       const initialRanks = Number(item.system.ranks) || 0;
       await RankCalculator.applyAbsoluteRanksAndBonus(item, initialRanks, "-15*2*1*0.5*0");
+    }
+    // Apply profession skill designation when a skill is added to an actor with a profession
+    if (item.type === "skill" && item.actor) {
+      const profession = item.actor.items.find(i => i.type === "profession");
+      const designations = profession?.system?.skillDesignations ?? [];
+      const match = designations.find(d => d.slug === item.name);
+      if (match) {
+        await item.update({ "system.designation": match.designation });
+      }
     }
   });
 

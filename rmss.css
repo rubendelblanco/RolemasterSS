@@ -1885,3 +1885,277 @@ tr.container-row {
     cursor: not-allowed;
     transform: none;
 }
+
+/* ================================
+   PROFESSION SHEET
+   ================================ */
+.profession-sheet .prime-stats-grid {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.profession-sheet .prime-stats-grid select {
+    min-width: 120px;
+}
+
+.profession-sheet .skill-costs-table {
+    width: 100%;
+}
+
+.profession-sheet .skill-costs-table th,
+.profession-sheet .skill-costs-table td {
+    padding: 4px 8px;
+    text-align: left;
+}
+
+.profession-sheet .skill-costs-table input {
+    width: 80px;
+}
+
+.profession-sheet .profession-bonuses-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profession-sheet .profession-bonuses-drop-zone {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px;
+}
+
+.profession-sheet .profession-bonuses-drop-zone:hover {
+    border-color: var(--rmss-tab-gold, #c8a861);
+    background: rgba(200, 168, 97, 0.08);
+}
+
+.profession-sheet .profession-bonuses-drop-zone i {
+    margin-right: 6px;
+}
+
+.profession-sheet .profession-bonuses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.profession-sheet .profession-bonus-row {
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+}
+
+.profession-sheet .profession-bonus-name {
+    flex: 1;
+}
+
+.profession-sheet .profession-bonus-type {
+    font-size: 0.9em;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.profession-sheet .profession-bonus-value {
+    width: 60px;
+    text-align: center;
+}
+
+.profession-sheet .profession-skill-designations-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profession-sheet .profession-skill-designations-drop-zone {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px;
+}
+
+.profession-sheet .profession-skill-designations-drop-zone:hover {
+    border-color: var(--rmss-tab-gold, #c8a861);
+    background: rgba(200, 168, 97, 0.08);
+}
+
+.profession-sheet .profession-skill-designations-drop-zone i {
+    margin-right: 6px;
+}
+
+.profession-sheet .profession-skill-designations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.profession-sheet .profession-skill-designation-row {
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.profession-sheet .profession-designation-Everyman {
+    color: green;
+}
+
+.profession-sheet .profession-designation-Occupational {
+    color: blue;
+}
+
+.profession-sheet .profession-designation-Restricted {
+    color: red;
+}
+
+.profession-sheet .profession-skill-designation-name {
+    flex: 1;
+}
+
+.profession-sheet .profession-hybrid-realms {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.profession-sheet .profession-hybrid-realms select {
+    flex: 1;
+    min-width: 120px;
+}
+
+.profession-sheet .profession-realm-separator {
+    flex-shrink: 0;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.profession-sheet .profession-basic-spell-lists-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profession-sheet .profession-basic-spell-lists-drop-zone {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px;
+}
+
+.profession-sheet .profession-basic-spell-lists-drop-zone:hover {
+    border-color: var(--rmss-tab-gold, #c8a861);
+    background: rgba(200, 168, 97, 0.08);
+}
+
+.profession-sheet .profession-basic-spell-lists-drop-zone i {
+    margin-right: 6px;
+}
+
+.profession-sheet .profession-basic-spell-lists-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.profession-sheet .profession-basic-spell-list-row {
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.profession-sheet .profession-basic-spell-list-name {
+    flex: 1;
+}
+
+.profession-sheet .profession-skill-designation-type {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* ================================
+   WEAPON PREFERENCE DIALOG
+   ================================ */
+.weapon-pref-assign {
+  flex: 0 0 auto;
+  padding: 10px 18px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: var(--rmss-progress-text);
+  background: var(--rmss-progress-fill);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.weapon-pref-assign:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  transform: translateY(-1px);
+}
+
+.weapon-pref-assign:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.weapon-pref-assign i {
+  margin-right: 6px;
+}
+
+.weapon-preference-dialog .weapon-pref-list {
+  gap: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.weapon-preference-dialog .weapon-pref-row {
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  margin: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+  cursor: default;
+  min-height: 2.5rem;
+}
+
+.weapon-preference-dialog .weapon-pref-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.weapon-preference-dialog .weapon-pref-controls button {
+  padding: 2px 6px;
+}
+
+.weapon-preference-dialog .weapon-pref-name {
+  flex: 1;
+}
+
+.weapon-preference-dialog .weapon-pref-cost {
+  min-width: 2.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.weapon-preference-dialog .weapon-pref-header {
+  margin-bottom: 0.5rem;
+}

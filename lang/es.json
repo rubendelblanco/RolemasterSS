@@ -32,6 +32,7 @@
     "player_character": {
       "name": "Nombre",
       "level": "Nivel",
+      "level_readonly_hint": "El nivel cambia automáticamente al ganar experiencia y subir de nivel.",
       "experience": "XP",
       "resources": {
         "hits": "Puntos de vida",
@@ -176,6 +177,16 @@
       "total_bonus": "Bono total",
       "import_skillcat": "Importar categorías de habilidades"
     },
+    "weapon_preference": {
+      "title": "Asignar preferencias de armas",
+      "assign": "Asignar preferencias de armas",
+      "hint": "Ordena las categorías de armas por preferencia. Posición 1 = 1/5, 2 = 2/5, 3-5 = 2/7, 6-7 = 5 DP.",
+      "move_up": "Subir",
+      "move_down": "Bajar",
+      "apply": "Aplicar",
+      "cancel": "Cancelar",
+      "applied": "Preferencias de armas aplicadas."
+    },
     "pc_sheet_items": {
       "equipped": "Equipado",
       "worn": "Equipado",
@@ -197,11 +208,6 @@
       "duration": "Duración",
       "range": "Rango",
       "type": "Tipo"
-    },
-    "pc_sheet_language": {
-      "name": "Nombre",
-      "spoken": "Hablado",
-      "written": "Escrito"
     },
     "entity_sheet": {
       "spell": "Hechizo de RMSS",
@@ -393,14 +399,21 @@
       "category": "Categoría",
       "offensive": "¿Ofensiva?"
     },
+  "skill_designations": {
+    "None": "Ninguna",
+    "Occupational": "Ocupacional",
+    "Everyman": "Everyman",
+    "Restricted": "Restringida"
+  },
   "skill_categories_names":{
     "armor-light": "Armadura • Ligera",
     "subterfuge-mechanics": "Subterfugio • Mecánica",
     "lore-magical": "Conocimiento • Mágico",
     "outdoor-environmental": "Exteriores • Entorno",
+    "spells-arcane-base-lists": "Hechizos • Arcano Listas Base",
     "spells-arcane-closed-lists": "Hechizos • Arcano Listas Cerradas",
     "martial-arts-sweeps": "Artes Marciales • Barridos",
-    "communcations": "Comunicaciones",
+    "communications": "Comunicaciones",
     "scienceanalytic-specialized": "Ciencia/Analítica • Especializada",
     "armor-heavy": "Armadura • Pesada",
     "weapon-1-h-concussion": "Armas • Contundente 1M",
@@ -418,7 +431,7 @@
     "directed-spells": "Hechizos Dirigidos",
     "power-point-development": "Desarrollo de Puntos de Poder",
     "scienceanalytic-basic": "Ciencia/Analítica • Básica",
-    "weapon-thown": "Armas • Arrojadizas",
+    "weapon-thrown": "Armas • Arrojadizas",
     "spells-own-realm-closed-lists": "Hechizos • Propio Reino Listas Cerradas",
     "crafts": "Oficios",
     "weapon-missile-artillery": "Armas • Artillería",
@@ -439,7 +452,6 @@
     "technicaltrade-professional": "Técnico/Profesional • Profesional",
     "power-awareness": "Percepción del Poder",
     "technicaltrade-general": "Técnico/Profesional • General",
-    "lore-academic": "Conocimiento • Académico",
     "athletic-brawn": "Atletismo • Potencia",
     "spells-arcane-open-lists": "Hechizos • Arcano Listas Abiertas",
     "spells-other-realm-open-lists": "Hechizos • Otro Reino Listas Abiertas",
@@ -457,11 +469,6 @@
       "skills": "Habilidades",
       "spells": "Hechizos",
       "languages": "Idiomas"
-    },
-    "language": {
-      "spoken": "Hablado",
-      "written": "Escrito",
-      "description": "Descripción"
     },
     "maneuver": {
       "routine": "Rutina",
@@ -632,6 +639,53 @@
       "confirm_delete_title": "Confirmar eliminación",
       "confirm_delete_item": "¿Estás seguro de que deseas eliminar \"{name}\"?",
       "confirm_delete_spell_from_list": "¿Estás seguro de que deseas eliminar \"{name}\" de esta lista de hechizos?"
+    },
+    "profession": {
+      "description": "Descripción",
+      "spell_user_type": "Tipo de hechicero",
+      "spell_user_none": "No hechicero",
+      "spell_user_semi": "Semihechicero",
+      "spell_user_pure": "Hechicero puro",
+      "spell_user_hybrid": "Hechicero híbrido",
+      "spell_user_arcane_pure": "Hechicero arcano puro",
+      "spell_user_arcane_semi": "Semihechicero arcano",
+      "spell_realm": "Reino de poder",
+      "spell_realm_none": "---",
+      "spell_realm_and": "y",
+      "prime_stats": "Stats principales",
+      "skill_category_costs": "Costes por categoría",
+      "skill_category": "Categoría de habilidad",
+      "development_cost": "Coste de desarrollo",
+      "applied_categories": "Aplicadas {count} categorías de habilidad de {name}.",
+      "drop_only_level_zero": "La profesión solo puede asignarse cuando el personaje es nivel 0.",
+      "replace_confirm_title": "¿Reemplazar profesión?",
+      "replace_confirm_content": "El personaje ya tiene \"{current}\". ¿Reemplazar por \"{incoming}\"? Esto sobrescribirá todas las categorías de habilidad y sus costes.",
+      "profession_bonuses": "Bonificaciones de profesión",
+      "profession_bonuses_hint": "Arrastra categorías de habilidad o habilidades aquí. El bono de categoría se aplica a todas las habilidades de esa categoría; el bono de habilidad a esa habilidad concreta.",
+      "drop_skill_or_category": "Suelta aquí una habilidad o categoría de habilidad",
+      "bonus_type_category": "Categoría",
+      "bonus_type_skill": "Habilidad",
+      "bonus_drop_only": "Solo se pueden soltar categorías de habilidad o habilidades aquí.",
+      "bonus_slug_unknown": "No se pudo determinar el slug de este elemento.",
+      "bonus_already_added": "Esta bonificación ya está en la lista.",
+      "skill_designations": "Designaciones de habilidades",
+      "skill_designations_hint": "Arrastra habilidades aquí para asignar su designación (Everyman, Ocupacional, Restringida) en esta profesión.",
+      "drop_skill_for_designation": "Suelta habilidad aquí",
+      "designation_skill_only": "Solo se pueden soltar habilidades aquí.",
+      "designation_already_added": "Esta habilidad ya tiene designación.",
+      "select_designation_title": "Seleccionar designación",
+      "select_designation_content": "¿Qué designación debe tener \"{skill}\" en esta profesión?",
+      "designation": "Designación",
+      "tab_description": "Descripción",
+      "tab_costs": "Costes de habilidades",
+      "tab_options": "Opciones",
+      "tab_basic_spell_lists": "Listas base de hechizos",
+      "basic_spell_lists": "Listas base de hechizos",
+      "basic_spell_lists_hint": "Arrastra listas de hechizos desde el catálogo aquí. Se añadirán al personaje cuando se aplique la profesión.",
+      "drop_spell_list_here": "Suelta aquí una lista de hechizos",
+      "basic_spell_list_only": "Solo se pueden soltar listas de hechizos aquí.",
+      "basic_spell_list_already_added": "Esta lista de hechizos ya está en la lista.",
+      "applied_spell_lists": "Importadas {count} lista(s) de hechizos de {name}."
     },
     "spell_lists": {
       "realm": "Reino",

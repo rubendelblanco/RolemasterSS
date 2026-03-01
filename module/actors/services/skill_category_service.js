@@ -44,7 +44,8 @@ export default class SkillCategoryService {
     static async handleSkillCategoryRankClick(actor, item, clickedValue) {
         const progressionValue = "-15*2*1*0.5*0";
         const current = Number(item.system.new_ranks?.value || 0);
-        const available = String(item.system.development_cost).split("/").length;
+        const costString = RankCalculator.getEffectiveDevelopmentCost(actor, item);
+        const available = String(costString).split("/").length;
 
         switch (clickedValue) {
             case "0":

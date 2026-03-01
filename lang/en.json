@@ -32,6 +32,7 @@
         "player_character": {
             "name": "Name",
             "level": "Level",
+            "level_readonly_hint": "Level changes automatically when you gain experience and level up.",
             "experience": "XP",
             "resources": {
                 "hits": "Hits",
@@ -174,7 +175,17 @@
             "prof_bonus": "Prof Bonus",
             "special_bonus": "Special Bonus",
             "total_bonus": "Total Bonus",
-            "import_skillcat": "Import Skill Categories" 
+            "import_skillcat": "Import Skill Categories"
+        },
+        "weapon_preference": {
+            "title": "Assign Weapon Preferences",
+            "assign": "Assign Weapon Preferences",
+            "hint": "Order weapon categories by preference. Position 1 = 1/5, 2 = 2/5, 3-5 = 2/7, 6-7 = 5 DP.",
+            "move_up": "Move up",
+            "move_down": "Move down",
+            "apply": "Apply",
+            "cancel": "Cancel",
+            "applied": "Weapon preferences applied."
         },
         "pc_sheet_items": {
             "equipped": "Equipped",
@@ -197,11 +208,6 @@
             "duration": "Duration",
             "range": "Range",
             "type": "Type"
-        },
-        "pc_sheet_language": {
-            "name": "Name",
-            "spoken": "Spoken",
-            "written": "Written"
         },
         "entity_sheet": {
             "spell": "RMSS Spell",
@@ -393,14 +399,21 @@
             "category": "Category",
             "offensive": "Offensive?"
         },
+    "skill_designations": {
+        "None": "None",
+        "Occupational": "Occupational",
+        "Everyman": "Everyman",
+        "Restricted": "Restricted"
+    },
     "skill_categories_names": {
         "armor-light": "Armor • Light",
         "subterfuge-mechanics": "Subterfuge • Mechanics",
         "lore-magical": "Lore • Magical",
         "outdoor-environmental": "Outdoor • Environmental",
+        "spells-arcane-base-lists": "Spells • Arcane Base Lists",
         "spells-arcane-closed-lists": "Spells • Arcane Closed Lists",
         "martial-arts-sweeps": "Martial Arts • Sweeps",
-        "communcations": "Communications",
+        "communications": "Communications",
         "scienceanalytic-specialized": "Science/Analytic • Specialized",
         "armor-heavy": "Armor • Heavy",
         "weapon-1-h-concussion": "Weapon • 1-H Concussion",
@@ -418,7 +431,7 @@
         "directed-spells": "Directed Spells",
         "power-point-development": "Power Point Development",
         "scienceanalytic-basic": "Science/Analytic • Basic",
-        "weapon-thown": "Weapon • Thrown",
+        "weapon-thrown": "Weapon • Thrown",
         "spells-own-realm-closed-lists": "Spells • Own Realm Closed Lists",
         "crafts": "Crafts",
         "weapon-missile-artillery": "Weapon • Missile Artillery",
@@ -439,7 +452,6 @@
         "technicaltrade-professional": "Technical/Trade • Professional",
         "power-awareness": "Power Awareness",
         "technicaltrade-general": "Technical/Trade • General",
-        "lore-academic": "Lore • Academic",
         "athletic-brawn": "Athletic • Brawn",
         "spells-arcane-open-lists": "Spells • Arcane Open Lists",
         "spells-other-realm-open-lists": "Spells • Other Realm Open Lists",
@@ -457,11 +469,6 @@
             "skills": "Skills",
             "spells": "Spells",
             "languages": "Languages"
-        },
-        "language": {
-            "spoken": "Spoken",
-            "written": "Written",
-            "description": "Description"
         },
         "maneuver": {
             "routine": "Routine",
@@ -632,6 +639,53 @@
             "confirm_delete_title": "Confirm Deletion",
             "confirm_delete_item": "Are you sure you want to delete \"{name}\"?",
             "confirm_delete_spell_from_list": "Are you sure you want to remove \"{name}\" from this spell list?"
+        },
+        "profession": {
+            "description": "Description",
+            "spell_user_type": "Spell User Type",
+            "spell_user_none": "Non-spell user",
+            "spell_user_semi": "Semi-spell user",
+            "spell_user_pure": "Pure spell user",
+            "spell_user_hybrid": "Hybrid spell user",
+            "spell_user_arcane_pure": "Arcane Pure spell user",
+            "spell_user_arcane_semi": "Arcane Semi-spell user",
+            "spell_realm": "Realm of Power",
+            "spell_realm_none": "---",
+            "spell_realm_and": "and",
+            "prime_stats": "Prime Stats",
+            "skill_category_costs": "Skill Category Costs",
+            "skill_category": "Skill Category",
+            "development_cost": "Development Cost",
+            "applied_categories": "Applied {count} skill categories from {name}.",
+            "drop_only_level_zero": "Profession can only be assigned when the character is level 0.",
+            "replace_confirm_title": "Replace profession?",
+            "replace_confirm_content": "The character already has \"{current}\". Replace with \"{incoming}\"? This will overwrite all skill categories and their costs.",
+            "profession_bonuses": "Profession Bonuses",
+            "profession_bonuses_hint": "Drag skill categories or skills here. Category bonus applies to all skills in that category; skill bonus applies to that specific skill.",
+            "drop_skill_or_category": "Drop skill or skill category here",
+            "bonus_type_category": "Category",
+            "bonus_type_skill": "Skill",
+            "bonus_drop_only": "Only skill categories or skills can be dropped here.",
+            "bonus_slug_unknown": "Could not determine slug for this item.",
+            "bonus_already_added": "This bonus is already in the list.",
+            "skill_designations": "Skill Designations",
+            "skill_designations_hint": "Drag skills here to set their designation (Everyman, Occupational, Restricted) for this profession.",
+            "drop_skill_for_designation": "Drop skill here",
+            "designation_skill_only": "Only skills can be dropped here.",
+            "designation_already_added": "This skill already has a designation.",
+            "select_designation_title": "Select Designation",
+            "select_designation_content": "What designation should \"{skill}\" have for this profession?",
+            "designation": "Designation",
+            "tab_description": "Description",
+            "tab_costs": "Skill Costs",
+            "tab_options": "Options",
+            "tab_basic_spell_lists": "Basic Spell Lists",
+            "basic_spell_lists": "Basic Spell Lists",
+            "basic_spell_lists_hint": "Drag spell lists from the compendium here. These will be added to the character when the profession is applied.",
+            "drop_spell_list_here": "Drop spell list here",
+            "basic_spell_list_only": "Only spell lists can be dropped here.",
+            "basic_spell_list_already_added": "This spell list is already in the list.",
+            "applied_spell_lists": "Imported {count} spell list(s) from {name}."
         },
         "spell_lists": {
             "realm": "Realm",
