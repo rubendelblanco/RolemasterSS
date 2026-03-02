@@ -478,7 +478,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
    * @param {jQuery} html - The jQuery object containing the sheet HTML
    */
   _registerPowerPointRecoveryListener(html) {
-    // Listen to realm changes
     html.find('select[name="system.fixed_info.realm"]').on("change", async (ev) => {
       await this._updatePowerPointRecovery(html);
     });
