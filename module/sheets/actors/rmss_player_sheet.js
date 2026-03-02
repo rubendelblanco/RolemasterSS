@@ -130,6 +130,21 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     return ItemService.prepareItems(this.actor, context);
   }
 
+  /** @override - Inject pp_development_progression when realm changes (single update, no flicker) */
+  async _updateObject(event, formData) {
+    const realm = formData["system.fixed_info.realm"];
+    if (realm != null) {
+      const progressions = foundry.utils.getProperty(this.actor.system, "race_stat_fixed_info.race_pp_progressions")
+        ?? foundry.utils.getProperty(this.actor.system, "race_stat_fixed_info.race_stat_fixed_info.race_pp_progressions");
+      if (progressions) {
+        const source = { system: { progression: progressions } };
+        const ppProg = RaceService.computePPDevelopmentProgression(source, realm);
+        if (ppProg) formData["system.race_stat_fixed_info.pp_development_progression"] = ppProg;
+      }
+    }
+    return super._updateObject(event, formData);
+  }
+
   activateListeners(html) {
     super.activateListeners(html);
     ExperiencePointsCalculator.loadListeners(html, this.actor);
@@ -164,7 +179,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     
     // Calculate recover_hits_per_hour_resting on initial load
     this._updateConstitutionRecovery(html);
-    
+
     // Auto-calculate recover_pp_per_hour_resting when realm or relevant stats change
     this._registerPowerPointRecoveryListener(html);
     
@@ -474,33 +489,11 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   }
 
   /**
-   * Hook called when the realm selector (system.fixed_info.realm) changes.
-   * Updates pp_development_progression from the race item based on the selected realm.
-   * @param {Event} ev - The change event
-   * @param {jQuery} html - The sheet HTML
-   */
-  async _onRealmChange(ev, html) {
-    debugger;
-    const realm = ev.currentTarget?.value ?? "";
-    const raceItem = this.actor.items.find(i => i.type === "race");
-    const progressions = this.actor.system.race_stat_fixed_info?.race_pp_progressions;
-    const source = raceItem ?? (progressions ? { system: { progression: progressions } } : null);
-    if (!source) return;
-
-    const progression = RaceService.computePPDevelopmentProgression(source, realm);
-    if (progression != null) {
-      await this.actor.update({ "system.race_stat_fixed_info.pp_development_progression": progression });
-    }
-  }
-
-  /**
    * Registers listeners for realm and stat changes to automatically
    * calculate and update recover_pp_per_hour_resting (recovery PP, not development).
    * @param {jQuery} html - The jQuery object containing the sheet HTML
    */
   _registerPowerPointRecoveryListener(html) {
-    debugger;
-    html.find('select[name="system.fixed_info.realm"]').on("change", (ev) => this._onRealmChange(ev, html));
     
     // Listen to empathy, intuition, and presence basic_bonus and temp changes
     const relevantStats = ['empathy', 'intuition', 'presence'];

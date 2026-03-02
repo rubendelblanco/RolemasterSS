@@ -1,4 +1,5 @@
 // module/actors/services/profession_service.js
+import RaceService from "./race_service.js";
 
 /**
  * Apply profession to actor: add profession item and create skill categories with costs.
@@ -101,6 +102,18 @@ export default class ProfessionService {
         } else {
             updateData["system.fixed_info.realm"] = "";
         }
+
+        const realm = updateData["system.fixed_info.realm"];
+        if (realm) {
+            const progressions = foundry.utils.getProperty(actor.system, "race_stat_fixed_info.race_pp_progressions")
+                ?? foundry.utils.getProperty(actor.system, "race_stat_fixed_info.race_stat_fixed_info.race_pp_progressions");
+            if (progressions) {
+                const source = { system: { progression: progressions } };
+                const ppProg = RaceService.computePPDevelopmentProgression(source, realm);
+                if (ppProg) updateData["system.race_stat_fixed_info.pp_development_progression"] = ppProg;
+            }
+        }
+
         await actor.update(updateData);
 
         // Apply skill designations to matching skills
