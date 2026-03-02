@@ -12,6 +12,7 @@ import ProfessionDropHandler from "../../actors/drop_handlers/profession_drop_ha
 import WeaponPreferenceDialog from "../../actors/dialogs/weapon_preference_dialog.js";
 import StatAssignmentDialog from "../../actors/dialogs/stat_assignment_dialog.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
+import RaceService from "../../actors/services/race_service.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -473,14 +474,33 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   }
 
   /**
+   * Hook called when the realm selector (system.fixed_info.realm) changes.
+   * Updates pp_development_progression from the race item based on the selected realm.
+   * @param {Event} ev - The change event
+   * @param {jQuery} html - The sheet HTML
+   */
+  async _onRealmChange(ev, html) {
+    debugger;
+    const realm = ev.currentTarget?.value ?? "";
+    const raceItem = this.actor.items.find(i => i.type === "race");
+    const progressions = this.actor.system.race_stat_fixed_info?.race_pp_progressions;
+    const source = raceItem ?? (progressions ? { system: { progression: progressions } } : null);
+    if (!source) return;
+
+    const progression = RaceService.computePPDevelopmentProgression(source, realm);
+    if (progression != null) {
+      await this.actor.update({ "system.race_stat_fixed_info.pp_development_progression": progression });
+    }
+  }
+
+  /**
    * Registers listeners for realm and stat changes to automatically
-   * calculate and update recover_pp_per_hour_resting.
+   * calculate and update recover_pp_per_hour_resting (recovery PP, not development).
    * @param {jQuery} html - The jQuery object containing the sheet HTML
    */
   _registerPowerPointRecoveryListener(html) {
-    html.find('select[name="system.fixed_info.realm"]').on("change", async (ev) => {
-      await this._updatePowerPointRecovery(html);
-    });
+    debugger;
+    html.find('select[name="system.fixed_info.realm"]').on("change", (ev) => this._onRealmChange(ev, html));
     
     // Listen to empathy, intuition, and presence basic_bonus and temp changes
     const relevantStats = ['empathy', 'intuition', 'presence'];

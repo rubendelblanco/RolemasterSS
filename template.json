@@ -23,6 +23,12 @@
           "soul_departure_rounds": 0,
           "recovery_multiplier": 0,
           "body_development_progression": "",
+          "race_pp_progressions": {
+            "ess_dev": "",
+            "chan_dev": "",
+            "ment_dev": "",
+            "arcane_dev": ""
+          },
           "pp_development_progression": "",
           "recover_hits_per_hour_resting": 0,
           "recover_hits_per_sleep_cycle": 0,
