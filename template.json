@@ -519,7 +519,10 @@
         "arcane_dev": ""
       },
       "hobby_skills": [],
-      "special_skills": []
+      "special_skills": [],
+      "background_options": 0,
+      "languages": [],
+      "skillDesignations": []
     },
     "profession": {
       "description": "",

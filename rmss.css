@@ -2022,6 +2022,88 @@ tr.container-row {
     flex: 1;
 }
 
+/* Race sheet - General tab */
+.race-sheet .race-tab-general .form-group label {
+    font-weight: bold;
+}
+
+.race-sheet .race-stat-list {
+    list-style: none;
+    margin: 0.25em 0 0 0;
+    padding: 0;
+}
+
+/* Race sheet - Other factors tab */
+.race-sheet .race-hobby-skills-wrapper,
+.race-sheet .race-languages-wrapper,
+.race-sheet .race-skill-designations-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.race-sheet .race-hobby-skills-drop-zone,
+.race-sheet .race-languages-drop-zone,
+.race-sheet .race-skill-designations-drop-zone {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px;
+}
+
+.race-sheet .race-hobby-skills-drop-zone:hover,
+.race-sheet .race-languages-drop-zone:hover,
+.race-sheet .race-skill-designations-drop-zone:hover {
+    border-color: var(--rmss-tab-gold, #c8a861);
+    background: rgba(200, 168, 97, 0.08);
+}
+
+.race-sheet .race-hobby-skills-drop-zone i,
+.race-sheet .race-languages-drop-zone i,
+.race-sheet .race-skill-designations-drop-zone i {
+    margin-right: 6px;
+}
+
+.race-sheet .race-hobby-skills-list,
+.race-sheet .race-languages-list,
+.race-sheet .race-skill-designations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.race-sheet .race-hobby-skill-row,
+.race-sheet .race-language-row,
+.race-sheet .race-skill-designation-row {
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.race-sheet .race-designation-Everyman {
+    color: green;
+}
+
+.race-sheet .race-designation-Occupational {
+    color: blue;
+}
+
+.race-sheet .race-designation-Restricted {
+    color: red;
+}
+
+.race-sheet .race-hobby-skill-name,
+.race-sheet .race-language-name,
+.race-sheet .race-skill-designation-name {
+    flex: 1;
+}
+
 .profession-sheet .profession-hybrid-realms {
     display: flex;
     flex-wrap: wrap;
