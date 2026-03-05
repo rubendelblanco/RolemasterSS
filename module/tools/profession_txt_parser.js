@@ -244,7 +244,103 @@ Subterfugio·Sigilo	3
 Técnica/Comercio·General	3/7
 Técnica/Comercio·Profesional	8
 Técnica/Comercio·Vocacional	5/12
-Urbana	4`
+Urbana	4`,
+  Paladin: `Armadura·Ligera	1/1/1
+Armadura·Media	2/2/2
+Armadura·Pesada	3/3/3
+Armas·Categoría1	2/5
+Armas·Categoría2	3/8
+Armas·Categoría3	4
+Armas·Categoría4	4
+Armas·Categoría5	4
+Armas·Categoría6	6
+Armas·Categoría7	6
+Arte·Activo	2/5
+Arte·Pasivo	2/5
+Artes Marciales·Golpes	6
+Artes Marciales·Barridos	6
+Artes Marciales·Maniobras de Combate	12
+Ataques Especiales	2/8
+Atletismo·Gimnasia	3/7
+Atletismo·Potencia	3/7
+Atletismo·Resistencia	2/7
+Autocontrol	2/7
+Ciencia/Analítica·Básica	2/5
+Ciencia/Analítica·Especializada	8
+Comunicación	3/3/3
+Conocimiento·General	1/3
+Conocimiento·Mágico	3/6
+Conocimiento·Oscuro	3/7
+Conocimiento·Técnico	2/6
+Defensas Especiales	30
+Desarrollo de Puntos de Poder	8
+Desarrollo Físico	4/10
+Exteriores·Animales	2/6
+Exteriores·Entorno	2/6
+Hechizos Dirigidos	20
+Influencia	1/5
+Maniobras de Combate	4/10
+Manipulación del Poder	6/12
+Oficios	4/10
+Percepción·Búsqueda	2/6
+Percepción·Perspicacia	5/14
+Percepción·Sentidos	3/7
+Percepción de Poder	6
+Subterfugio·Ataque	15
+Subterfugio·Mecánica	7
+Subterfugio·Sigilo	5
+Técnica/Comercio·General	3/7
+Técnica/Comercio·Profesional	8
+Técnica/Comercio·Vocacional	5/12
+Urbana	4`,
+  Monk: `Armadura·Ligera	9
+Armadura·Media	10
+Armadura·Pesada	11
+Armas·Categoría1	5
+Armas·Categoría2	8
+Armas·Categoría3	8
+Armas·Categoría4	8
+Armas·Categoría5	15
+Armas·Categoría6	15
+Armas·Categoría7	15
+Arte·Activo	2/5
+Arte·Pasivo	2/5
+Artes Marciales·Golpes	2/5
+Artes Marciales·Barridos	2/5
+Artes Marciales·Maniobras de Combate	4/9
+Ataques Especiales	5
+Atletismo·Gimnasia	1/5
+Atletismo·Potencia	3/7
+Atletismo·Resistencia	2/7
+Autocontrol	2/4
+Ciencia/Analítica·Básica	2/5
+Ciencia/Analítica·Especializada	8
+Comunicación	3/3/3
+Conocimiento·General	1/3
+Conocimiento·Mágico	3/6
+Conocimiento·Oscuro	3/7
+Conocimiento·Técnico	2/6
+Defensas Especiales	10
+Desarrollo de Puntos de Poder	8
+Desarrollo Físico	6/14
+Exteriores·Animales	2/7
+Exteriores·Entorno	2/6
+Hechizos Dirigidos	9
+Influencia	2/6
+Maniobras de Combate	5/12
+Manipulación del Poder	6/12
+Oficios	4/10
+Percepción·Búsqueda	2/6
+Percepción·Perspicacia	4/14
+Percepción·Sentidos	3/7
+Percepción de Poder	3/7
+Subterfugio·Ataque	8
+Subterfugio·Mecánica	4
+Subterfugio·Sigilo	2/7
+Técnica/Comercio·General	3/7
+Técnica/Comercio·Profesional	8
+Técnica/Comercio·Vocacional	5/12
+Urbana	3`
 };
 
 /** Profession metadata: spellUserType, spellRealm, spellRealm2, img. */
@@ -266,11 +362,59 @@ export const PROFESSION_DEFINITIONS = {
     spellRealm: "channeling",
     spellRealm2: "",
     img: "systems/rmss/assets/default/bonus.svg"
+  },
+  Paladin: {
+    spellUserType: "pure",
+    spellRealm: "channeling",
+    spellRealm2: "",
+    img: "systems/rmss/assets/default/bonus.svg"
+  },
+  Monk: {
+    spellUserType: "none",
+    spellRealm: "",
+    spellRealm2: "",
+    img: "systems/rmss/assets/default/bonus.svg"
   }
 };
 
 /**
+ * Computes spell category costs from T-2.4 table based on spellUserType.
+ * Returns only the first tier cost (e.g. "3/3/3"); the rest is computed at runtime.
+ * Used for pure, semi, hybrid, arcane_pure, arcane_semi. Returns {} for "none".
+ * @param {string} spellUserType - pure, semi, hybrid, arcane_pure, arcane_semi, or none
+ * @param {Object} [config] - CONFIG.rmss (uses global if not provided, for Foundry)
+ * @returns {Object} costs keyed by spell category slug
+ */
+export function getSpellCategoryCosts(spellUserType, config) {
+  const cfg = config ?? globalThis.CONFIG?.rmss;
+  const costsTable = cfg?.spell_list_dp_costs;
+  const slugToTable = cfg?.spell_list_slug_to_table;
+  if (!costsTable || !slugToTable) return {};
+
+  const spellcasterTypes = ["pure", "semi", "hybrid", "arcane_pure", "arcane_semi"];
+  if (!spellcasterTypes.includes(spellUserType)) return {};
+
+  const result = {};
+  for (const [slug, mapping] of Object.entries(slugToTable)) {
+    const { realm, listType } = mapping;
+    const realmTable = costsTable[realm]?.[listType];
+    if (!realmTable) continue;
+
+    let tierData = realmTable["1-5"] ?? realmTable["1+"];
+    let raw = tierData?.[spellUserType];
+    if (raw === undefined && realmTable["1+"]) {
+      raw = realmTable["1+"][spellUserType];
+    }
+    if (raw === undefined || raw === null) continue;
+
+    result[slug] = String(raw);
+  }
+  return result;
+}
+
+/**
  * Returns skillCategoryCosts for a profession by key.
+ * Includes spell category costs (from T-2.4) when spellUserType is not "none".
  * @param {string} professionKey - Key from PROFESSION_COSTS (e.g. "Cleric").
  * @returns {Object|null} costs keyed by slug, or null if unknown.
  */
@@ -281,7 +425,10 @@ export function getProfessionCosts(professionKey) {
   if (unmapped.length > 0) {
     console.warn(`[RMSS] Profession "${professionKey}" - unmapped lines:`, unmapped);
   }
-  return costs;
+  const def = PROFESSION_DEFINITIONS[professionKey];
+  const spellUserType = def?.spellUserType ?? "none";
+  const spellCosts = getSpellCategoryCosts(spellUserType);
+  return { ...costs, ...spellCosts };
 }
 
 /** @returns {string[]} Keys of available professions. */
