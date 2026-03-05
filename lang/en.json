@@ -226,6 +226,10 @@
             "min_points": "{stat} requires minimum {min} points",
             "total_mismatch": "Total used {used} must equal {available}"
         },
+        "equipment": {
+            "hands_limit_exceeded": "Hand limit reached ({current} + {adding} > {max}). Equip fewer items.",
+            "weapon_not_equipped": "You must equip the weapon before using it."
+        },
         "pc_sheet_items": {
             "equipped": "Equipped",
             "worn": "Worn",
@@ -346,6 +350,7 @@
         },
         "armor": {
             "at": "AT",
+            "is_shield": "Shield",
             "weight": "Weight",
             "cost": "Cost",
             "prod_time": "Production Time"
@@ -360,6 +365,10 @@
             "strength": "Str",
             "fumble_range": "Fumble",
             "equipped": "Equipped",
+            "hands": "Hands",
+            "is_natural_weapon": "Natural weapon",
+            "natural_always_equipped": "Natural weapons are always equipped",
+            "natural_no_hands": "Natural weapons do not occupy hands",
             "attack_table": "Attack table",
             "skill": "Skill",
             "default_critical": "Default critical",
@@ -759,6 +768,7 @@
             "casting_options": "Casting Options",
             "subtlety": "Subtlety",
             "hands": "Hands",
+            "hands_occupied": "Hands occupied: {current} / {max}",
             "voice": "Voice",
             "preparation": "Preparation",
             "other_mods": "Other Modifiers",

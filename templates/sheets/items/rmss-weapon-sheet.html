@@ -46,6 +46,8 @@
             <table>
                 <tr>
                     <th>{{localize "rmss.weapon.equipped"}}</th>
+                    <th>{{localize "rmss.weapon.hands"}}</th>
+                    <th>{{localize "rmss.weapon.is_natural_weapon"}}</th>
                     <th>{{localize "rmss.weapon.cost"}}</th>
                     <th>{{localize "rmss.item.currency"}}</th>
                     <th>{{localize "rmss.weapon.type"}}</th>
@@ -53,8 +55,26 @@
                     <th>{{localize "rmss.weapon.weight"}}</th>
                     <th>{{localize "rmss.weapon.fumble_range"}}</th>
                 </tr>
+                <tr>
                 <td>
+                    {{#if system.isNaturalWeapon}}
+                    <span title="{{localize "rmss.weapon.natural_always_equipped"}}">—</span>
+                    {{else}}
                     <input type="checkbox" name="system.equipped" {{checked system.equipped}}/>
+                    {{/if}}
+                </td>
+                <td>
+                    {{#if system.isNaturalWeapon}}
+                    <span title="{{localize "rmss.weapon.natural_no_hands"}}">0</span>
+                    {{else}}
+                    <select name="system.hands" data-dtype="Number">
+                        <option value="1" {{#if (eq system.hands 1)}}selected{{/if}}>1</option>
+                        <option value="2" {{#if (eq system.hands 2)}}selected{{/if}}>2</option>
+                    </select>
+                    {{/if}}
+                </td>
+                <td>
+                    <input type="checkbox" name="system.isNaturalWeapon" {{checked system.isNaturalWeapon}}/>
                 </td>
                 <td>
                     <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
@@ -86,7 +106,7 @@
                 <td>
                     <input name="system.fumble_range" type="text" value="{{system.fumble_range}}" data-dtype="String"/>
                 </td>
-
+                </tr>
             </table>
                 {{localize "rmss.item.description"}}
                 {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}

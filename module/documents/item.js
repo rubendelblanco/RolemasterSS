@@ -122,8 +122,17 @@ export class RMSSItem extends Item {
   /**
    * Main entry point when the item is used.
    * Executes any assigned macro and triggers system hooks.
+   * For weapons: blocks use (including macro) if not equipped.
    */
   async use() {
+    if (["weapon", "creature_attack"].includes(this.type)) {
+      const EquipmentService = (await import("../actors/services/equipment_service.js")).default;
+      if (!EquipmentService.isWeaponEquipped(this)) {
+        ui.notifications.warn(game.i18n.localize("rmss.equipment.weapon_not_equipped"));
+        return;
+      }
+    }
+
     // 1. Execute custom macro if present
     await this._executeItemMacro();
 

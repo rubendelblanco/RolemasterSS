@@ -394,7 +394,8 @@
       "weight": 0,
       "cost": 0,
       "prod_time": 0,
-      "at": 1
+      "at": 1,
+      "isShield": false
     },
     "weapon": {
       "templates": ["item"],
@@ -403,6 +404,8 @@
       "cost": 0,
       "weight": 0,
       "type" : "",
+      "hands": 1,
+      "isNaturalWeapon": false,
       "prod_time": 0,
       "breakage_range": "",
       "strength": "",

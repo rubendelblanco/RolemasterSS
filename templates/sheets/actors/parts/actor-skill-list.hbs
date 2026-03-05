@@ -28,21 +28,7 @@
                 {{/if}}
             </td>
             <td class="skill-name-cell" data-search="{{skill.name}}" {{#if (eq skill.system.designation "Occupational" )}} style="color:blue;" {{else if (eq skill.system.designation "Everyman" )}} style="color:green;" {{else if (eq skill.system.designation "Restricted" )}} style="color:red;" {{/if}}>
-                {{#if (eq skill.system.offensive_skill "none" )}}
-                <a class="item-roll" title="Roll Check" data-item-type="none" data-item-id="{{skill._id}}">{{skill.name}}<i class="fas fa-dice"></i></a>
-                {{else if (eq skill.system.offensive_skill "melee")}}
-                <a class="item-roll" title="Roll Check" data-item-type="melee" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-sword"></i></a>
-                {{else if (eq skill.system.offensive_skill "missile")}}
-                <a class="item-roll" title="Roll Check" data-item-type="missile" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-bow-arrow"></i></a>
-                {{else if (eq skill.system.offensive_skill "spell")}}
-                <a class="item-roll" title="Roll Check" data-item-type="spell" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-wand-sparkles"></i></a>
-                {{else if (eq skill.system.offensive_skill "area")}}
-                <a class="item-roll" title="Roll Check" data-item-type="area" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-explosion"></i></a>
-                {{else if (eq skill.system.offensive_skill "base")}}
-                <a class="item-roll" title="Roll Check" data-item-type="base" data-item-id="{{skill._id}}">{{skill.name}}<i class="fa-solid fa-hand-sparkles"></i></a>
-                {{else}}
-                {{skill.name}}
-                {{/if}}
+                <a class="item-roll" title="Roll Check" data-item-id="{{skill._id}}">{{skill.name}}<i class="fas fa-dice"></i></a>
             </td>
             <td data-search="{{skill.name}}">{{skill.system.development_cost}}</td>
             <td data-search="{{skill.name}}">{{skill.system.ranks}}</td>

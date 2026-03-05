@@ -1,5 +1,5 @@
 import { RMSSCombat } from "./rmss_combat.js";
-import {RMSSWeaponSkillManager} from "./rmss_weapon_skill_manager.js";
+import { RMSSWeaponSkillManager } from "./rmss_weapon_skill_manager.js";
 
 export function registerCombatHooks() {
     Hooks.on("hoverToken", (token, hovered) => {

@@ -1,4 +1,5 @@
 import ItemService from "../../actors/services/item_service.js";
+import EquipmentService from "../../actors/services/equipment_service.js";
 
 /**
  * All the actions and feats in common for characters (PCs, NPCs, Creatures & Monsters)
@@ -8,13 +9,24 @@ export default class RMSSCharacterSheet extends ActorSheet {
         super.activateListeners(html);
         this._registerItemListeners(html);
 
-        // Equip/Unequip Weapon/Armor
-        html.find(".equippable").click(ev => {
+        // Equip/Unequip Weapon/Armor (Issue #94: validate hands limit)
+        html.find(".equippable").click(async ev => {
             const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
             if (item.system.equipped === true) {
-                item.update({ system: { equipped: false } });
+                await item.update({ system: { equipped: false } });
             } else {
-                item.update({ system: { equipped: true } });
+                const { valid, currentHands, itemHands } = EquipmentService.canEquip(this.actor, item);
+                if (!valid) {
+                    ui.notifications.warn(
+                        game.i18n.format("rmss.equipment.hands_limit_exceeded", {
+                            current: currentHands,
+                            adding: itemHands,
+                            max: EquipmentService.MAX_HANDS
+                        })
+                    );
+                    return;
+                }
+                await item.update({ system: { equipped: true } });
             }
         });
 
@@ -26,13 +38,13 @@ export default class RMSSCharacterSheet extends ActorSheet {
         html.find("a.item-roll").on("click", async ev => {
             ev.preventDefault();
             const target = ev.currentTarget;
-            if (target.dataset.itemType === "none" && target.dataset.itemId) {
-                const skill = this.actor.items.get(target.dataset.itemId);
-                if (skill) {
+            if (target.dataset.itemId) {
+                const item = this.actor.items.get(target.dataset.itemId);
+                if (item?.type === "skill") {
                     const ManeuverService = (await import("../../core/skills/maneuver_service.js")).default;
-                    await ManeuverService.rollManeuver(this.actor, skill);
+                    await ManeuverService.rollManeuver(this.actor, item);
+                    return;
                 }
-                return;
             }
             await this.actor.update({"system.attributes.movement_rate.current": this.actor.system.attributes.movement_rate.value});
         });

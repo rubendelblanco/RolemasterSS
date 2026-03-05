@@ -8,14 +8,19 @@
             <table>
                 <tr>
                     <th>{{localize "rmss.item.equipped"}}</th>
+                    <th>{{localize "rmss.armor.is_shield"}}</th>
                     <th>{{localize "rmss.armor.weight"}}</th>
                     <th>{{localize "rmss.armor.cost"}}</th>
                     <th>{{localize "rmss.item.currency"}}</th>
                     <th>{{localize "rmss.armor.prod_time"}}</th>
                     <th>{{localize "rmss.armor.at"}}</th>
                 </tr>
+                <tr>
                 <td>
                     <input type="checkbox" name="system.equipped" {{checked system.equipped}}/>
+                </td>
+                <td>
+                    <input type="checkbox" name="system.isShield" {{checked system.isShield}}/>
                 </td>
                 <td>
                     <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
@@ -38,6 +43,7 @@
                 <td>
                     <input name="system.at" type="text" value="{{system.at}}" data-dtype="Number"/>
                 </td>
+                </tr>
             </table>
                 {{localize "rmss.item.description"}}
                 {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}

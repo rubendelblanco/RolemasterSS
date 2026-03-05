@@ -2,6 +2,7 @@
  * Service to handle spell casting options dialog and modifier calculations.
  */
 import ManeuverPenaltiesService from "../../core/maneuver_penalties_service.js";
+import EquipmentService from "../../actors/services/equipment_service.js";
 
 export default class CastingOptionsService {
 
@@ -46,7 +47,8 @@ export default class CastingOptionsService {
         const normalizedRealm = this._normalizeRealm(realm);
         const autoPenalties = (actor != null) ? ManeuverPenaltiesService.getManeuverPenalties(actor, { spellType: spellType }) : { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0 };
         const showAutoPenalties = actor != null;
-        const content = this._buildDialogContent(normalizedRealm, spellType, modifiers, autoPenalties, showAutoPenalties);
+        const handsOccupied = (actor != null) ? EquipmentService.getHandsOccupied(actor) : 0;
+        const content = this._buildDialogContent(normalizedRealm, spellType, modifiers, autoPenalties, showAutoPenalties, handsOccupied);
         
         return new Promise((resolve) => {
             new Dialog({
@@ -78,8 +80,9 @@ export default class CastingOptionsService {
 
     /**
      * Build the HTML content for the casting options dialog.
+     * @param {number} [handsOccupied] - Actor's occupied hands (0-2) for pre-selecting hands option
      */
-    static _buildDialogContent(realm, spellType, modifiers, autoPenalties = {}, showAutoPenalties = false) {
+    static _buildDialogContent(realm, spellType, modifiers, autoPenalties = {}, showAutoPenalties = false, handsOccupied = 0) {
         const subtletyPenalty = this._getSubtletyPenalty(realm, spellType, modifiers);
         const handsModifiers = this._getHandsModifiers(realm, modifiers);
         const voiceModifiers = this._getVoiceModifiers(realm, modifiers);
@@ -94,10 +97,20 @@ export default class CastingOptionsService {
                     ${penaltyEffect !== 0 ? `<div>${game.i18n.localize("rmss.combat.penalty")}: ${fmt(penaltyDisplay)}</div>` : ""}
                 </div>
 ` : "";
+        const handsHintBlock = showAutoPenalties ? `
+                <div class="form-group" style="font-size:0.9em; color:#555;">
+                    <div>${game.i18n.format("rmss.spells.hands_occupied", { current: handsOccupied, max: 2 })}</div>
+                </div>
+` : "";
+        const defaultHands = handsOccupied >= 2 ? "none" : (handsOccupied === 1 ? "one" : "two");
+        const handsTwoSelected = defaultHands === "two" ? " selected" : "";
+        const handsOneSelected = defaultHands === "one" ? " selected" : "";
+        const handsNoneSelected = defaultHands === "none" ? " selected" : "";
 
         return `
             <form class="casting-options-form">
                 ${autoPenaltiesBlock}
+                ${handsHintBlock}
                 <div class="form-group">
                     <label>${game.i18n.localize("rmss.spells.subtlety")}</label>
                     <select name="subtlety">
@@ -109,9 +122,9 @@ export default class CastingOptionsService {
                 <div class="form-group">
                     <label>${game.i18n.localize("rmss.spells.hands")}</label>
                     <select name="hands">
-                        <option value="two" selected>Two Hands (${this._formatModifier(handsModifiers.two)})</option>
-                        <option value="one">One Hand (${this._formatModifier(handsModifiers.one)})</option>
-                        <option value="none">No Hands (${this._formatModifier(handsModifiers.none)})</option>
+                        <option value="two"${handsTwoSelected}>Two Hands (${this._formatModifier(handsModifiers.two)})</option>
+                        <option value="one"${handsOneSelected}>One Hand (${this._formatModifier(handsModifiers.one)})</option>
+                        <option value="none"${handsNoneSelected}>No Hands (${this._formatModifier(handsModifiers.none)})</option>
                     </select>
                 </div>
                 

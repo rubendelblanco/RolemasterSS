@@ -226,6 +226,10 @@
       "min_points": "{stat} requiere mínimo {min} puntos",
       "total_mismatch": "Total usado {used} debe ser {available}"
     },
+    "equipment": {
+      "hands_limit_exceeded": "Límite de manos alcanzado ({current} + {adding} > {max}). Equipa menos objetos.",
+      "weapon_not_equipped": "Debes equipar el arma antes de usarla."
+    },
     "pc_sheet_items": {
       "equipped": "Equipado",
       "worn": "Equipado",
@@ -346,6 +350,7 @@
     },
     "armor": {
       "at": "AT",
+      "is_shield": "Escudo",
       "weight": "Peso",
       "cost": "Costo",
       "prod_time": "Tiempo de producción"
@@ -360,6 +365,10 @@
       "strength": "Fuerza",
       "fumble_range": "Rango de fallo",
       "equipped": "Equipado",
+      "hands": "Manos",
+      "is_natural_weapon": "Arma natural",
+      "natural_always_equipped": "Las armas naturales están siempre equipadas",
+      "natural_no_hands": "Las armas naturales no ocupan manos",
       "attack_table": "Tabla de ataque",
       "skill": "Habilidad",
       "default_critical": "Crítico por defecto",
@@ -759,6 +768,7 @@
       "casting_options": "Opciones de Lanzamiento",
       "subtlety": "Sutileza",
       "hands": "Manos",
+      "hands_occupied": "Manos ocupadas: {current} / {max}",
       "voice": "Voz",
       "preparation": "Preparación",
       "other_mods": "Otros Modificadores",

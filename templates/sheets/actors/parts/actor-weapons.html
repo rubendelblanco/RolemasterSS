@@ -26,6 +26,9 @@
              data-tooltip="{{weapon.system.description}}"></i>
           {{/if}} <i class="fa-solid fa-sword"></i></td>
         <td>
+            {{#if weapon.system.isNaturalWeapon}}
+            <span title="{{localize "rmss.weapon.natural_always_equipped"}}">—</span>
+            {{else}}
             {{#if weapon.system.equipped}}
             <a class="equippable" data-item-id="{{weapon._id}}">
                 <i class="fa-regular fa-square-check"></i>
@@ -34,6 +37,7 @@
             <a class="equippable" data-item-id="{{weapon._id}}">
                 <i class="fa-regular fa-square"></i>
             </a>
+            {{/if}}
             {{/if}}
         </td>
         <td>{{weapon.system.breakage_range}}</td>
