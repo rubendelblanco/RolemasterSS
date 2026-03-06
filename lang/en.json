@@ -377,7 +377,8 @@
                 "2h": "2 hands",
                 "1hc": "1 hand concussion",
                 "th": "throwable",
-                "pa": "pole arm",
+                "pa1h": "pole arm (1h)",
+                "pa2h": "pole arm (2h)",
                 "mis": "missile"
             }
         },

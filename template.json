@@ -404,7 +404,6 @@
       "cost": 0,
       "weight": 0,
       "type" : "",
-      "hands": 1,
       "isNaturalWeapon": false,
       "prod_time": 0,
       "breakage_range": "",

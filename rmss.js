@@ -202,7 +202,7 @@ Hooks.once("init", function () {
   // Make Config Data Available
   CONFIG.rmss = rmss;
   CONFIG.weapons = CONFIG.weapons || {};
-  CONFIG.weapons.type = ["1he","2h","1hc","mis","pa","th"];
+  CONFIG.weapons.type = ["1he","2h","1hc","mis","pa1h","pa2h","th"];
 
   //combat tracker
   CONFIG.Combat.initiative = {

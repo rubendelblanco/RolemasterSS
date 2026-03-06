@@ -377,7 +377,8 @@
         "2h": "2 manos",
         "1hc": "1 mano contundente",
         "th": "arrojadiza",
-        "pa": "asta",
+        "pa1h": "asta (1 mano)",
+        "pa2h": "asta (2 manos)",
         "mis": "proyectil"
       }
     },
