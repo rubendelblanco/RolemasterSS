@@ -16,6 +16,11 @@ export default class RMSSSpellListSheet extends ItemSheet {
         return "systems/rmss/templates/sheets/spell_lists/rmss-spell-list-sheet.html";
     }
 
+    /** Whether this spell list is in compendium (no actor parent) - uses embedded spells */
+    get isEmbeddedMode() {
+        return !this.item.parent?.items;
+    }
+
     /** Activate listeners */
     activateListeners(html) {
         super.activateListeners(html);
@@ -27,6 +32,13 @@ export default class RMSSSpellListSheet extends ItemSheet {
         html.find(".item-delete").click(async ev => {
             ev.preventDefault();
             const itemId = ev.currentTarget.dataset.itemId;
+            const spellIdx = ev.currentTarget.dataset.spellIdx;
+
+            if (this.isEmbeddedMode && spellIdx !== undefined) {
+                await this._deleteEmbeddedSpell(parseInt(spellIdx, 10));
+                return;
+            }
+
             const spell = this.item.parent?.items.get(itemId);
             if (!spell) return;
 
@@ -47,8 +59,21 @@ export default class RMSSSpellListSheet extends ItemSheet {
         html.find(".item-edit").click(ev => {
             ev.preventDefault();
             const itemId = ev.currentTarget.dataset.itemId;
+            const spellIdx = ev.currentTarget.dataset.spellIdx;
+
+            if (this.isEmbeddedMode && spellIdx !== undefined) {
+                this._editEmbeddedSpell(parseInt(spellIdx, 10));
+                return;
+            }
+
             const spell = this.item.parent?.items.get(itemId);
             if (spell) spell.sheet.render(true);
+        });
+
+        // Create spell (embedded mode only)
+        html.find(".create-spell").click(ev => {
+            ev.preventDefault();
+            if (this.isEmbeddedMode) this._createEmbeddedSpell();
         });
     }
 
@@ -57,12 +82,18 @@ export default class RMSSSpellListSheet extends ItemSheet {
         const baseData = await super.getData();
         let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, { async: true });
 
-        // Use ContainerHandler to gather contents
         let spells = [];
-        const handler = ContainerHandler.for(this.item);
-        if (handler) {
-            spells = handler.contents;
-            spells.sort((a, b) => (a.system.level || 0) - (b.system.level || 0));
+        if (this.isEmbeddedMode) {
+            // Compendium: use embedded system.spells
+            spells = [...(this.item.system.spells ?? [])];
+            spells.sort((a, b) => ((a.system?.level ?? 0) - (b.system?.level ?? 0)));
+        } else {
+            // Actor: use ContainerHandler
+            const handler = ContainerHandler.for(this.item);
+            if (handler) {
+                spells = handler.contents;
+                spells.sort((a, b) => (a.system.level || 0) - (b.system.level || 0));
+            }
         }
 
         return {
@@ -72,7 +103,8 @@ export default class RMSSSpellListSheet extends ItemSheet {
             system: baseData.item.system,
             config: CONFIG.rmss,
             enrichedDescription,
-            spells
+            spells,
+            embeddedMode: this.isEmbeddedMode
         };
     }
 
@@ -91,6 +123,13 @@ export default class RMSSSpellListSheet extends ItemSheet {
         if (!data || !data.uuid) return;
 
         const spellList = this.item;
+
+        // Embedded mode: add to system.spells
+        if (this.isEmbeddedMode) {
+            await this._addSpellToEmbedded(data);
+            return;
+        }
+
         const handler = ContainerHandler.for(spellList);
         if (!handler) return;
 
@@ -121,6 +160,116 @@ export default class RMSSSpellListSheet extends ItemSheet {
         }
 
         await this._addSpellToList(droppedSpell, spellList, handler);
+    }
+
+    /** Add spell to embedded system.spells (compendium) */
+    async _addSpellToEmbedded(data) {
+        let spellsToAdd = [];
+        if (data.type === "Folder") {
+            const folder = await fromUuid(data.uuid);
+            if (!folder || folder.type !== "Item") return;
+            spellsToAdd = folder.contents.filter(i => i.type === "spell");
+        } else {
+            const doc = await fromUuid(data.uuid);
+            if (doc?.type === "spell") spellsToAdd = [doc];
+        }
+        if (!spellsToAdd.length) {
+            ui.notifications.warn("No spells to add.");
+            return;
+        }
+        const spells = [...(this.item.system.spells ?? [])];
+        for (const spell of spellsToAdd) {
+            spells.push(this._spellItemToEmbedded(spell));
+        }
+        await this.item.update({ "system.spells": spells });
+        ui.notifications.info(`${spellsToAdd.length} spell(s) added to ${this.item.name}.`);
+    }
+
+    /** Convert spell Item to embedded object */
+    _spellItemToEmbedded(spell) {
+        return {
+            name: spell.name,
+            img: spell.img ?? "",
+            system: foundry.utils.duplicate(spell.system ?? {})
+        };
+    }
+
+    /** Create new embedded spell - opens full spell sheet (same as spell from actor list) */
+    async _createEmbeddedSpell() {
+        const spells = this.item.system.spells ?? [];
+        const maxLevel = spells.length > 0
+            ? Math.max(...spells.map(s => parseInt(s.system?.level, 10) || 0))
+            : 0;
+        const defaultLevel = maxLevel + 1;
+
+        const defaultSpell = {
+            name: game.i18n.localize("rmss.spell.new_spell"),
+            type: "spell",
+            img: "systems/rmss/assets/default/spell.svg",
+            system: {
+                favorite: false,
+                instant: false,
+                level: defaultLevel,
+                area_of_effect: "",
+                duration: "",
+                range: "",
+                type: "U",
+                subType: "-",
+                attack_table: "",
+                skillName: "",
+                description: ""
+            }
+        };
+        await this._openEmbeddedSpellSheet(defaultSpell, -1);
+    }
+
+    /** Edit embedded spell - opens full spell sheet (same as spell from actor list) */
+    async _editEmbeddedSpell(idx) {
+        const spells = this.item.system.spells ?? [];
+        const spell = spells[idx];
+        if (!spell) return;
+        const spellData = {
+            name: spell.name,
+            type: "spell",
+            img: spell.img ?? "icons/svg/mystery-man.svg",
+            system: foundry.utils.duplicate(spell.system ?? {})
+        };
+        await this._openEmbeddedSpellSheet(spellData, idx);
+    }
+
+    /** Open the full spell sheet for create/edit embedded spell. Syncs back on save, cleans up on close. */
+    async _openEmbeddedSpellSheet(spellData, idx) {
+        const isCreate = idx < 0;
+        const spellListUuid = this.item.uuid;
+
+        const createData = foundry.utils.mergeObject(spellData, {
+            flags: {
+                rmss: {
+                    embeddedSpellEdit: { spellListUuid, spellIndex: idx, isCreate }
+                }
+            }
+        });
+        const tempItem = await Item.create(createData);
+
+        tempItem.sheet.render(true);
+        this.render(false);
+    }
+
+    /** Delete embedded spell at index */
+    async _deleteEmbeddedSpell(idx) {
+        const spells = [...(this.item.system.spells ?? [])];
+        const spell = spells[idx];
+        if (!spell) return;
+        const confirmed = await Dialog.confirm({
+            title: game.i18n.localize("rmss.dialogs.confirm_delete_title"),
+            content: game.i18n.format("rmss.dialogs.confirm_delete_spell_from_list", { name: spell.name }),
+            defaultYes: false
+        });
+        if (confirmed) {
+            spells.splice(idx, 1);
+            await this.item.update({ "system.spells": spells });
+            this.render(false);
+        }
     }
 
     async _addSpellToList(spell, spellList, handler) {

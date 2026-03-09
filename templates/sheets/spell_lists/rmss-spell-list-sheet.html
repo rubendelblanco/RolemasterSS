@@ -34,6 +34,12 @@
     </div>
 
     <div class="sheet-content spell-list">
+        {{#if embeddedMode}}
+        <div class="spell-list-actions">
+            <button type="button" class="create-spell"><i class="fas fa-plus"></i> {{localize "rmss.spell.create_spell"}}</button>
+            <span class="spell-list-hint">{{localize "rmss.spell_lists.drop_spells_hint"}}</span>
+        </div>
+        {{/if}}
         <table>
             <thead>
             <tr>
@@ -47,8 +53,8 @@
             </tr>
             </thead>
             <tbody>
-            {{#each spells as |spell|}}
-            <tr class="spell" data-item-id="{{spell.id}}">
+            {{#each spells as |spell idx|}}
+            <tr class="spell" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
                 <td>{{spell.system.level}}</td>
                 <td>{{spell.name}}{{#if spell.system.instant}}*{{/if}}</td>
                 <td>{{spell.system.area_of_effect}}</td>
@@ -56,10 +62,10 @@
                 <td>{{spell.system.range}}</td>
                 <td>{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</td>
                 <td>
-                    <a class="item-edit" title="Edit Spell" data-item-id="{{spell.id}}">
+                    <a class="item-edit" title="Edit Spell" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a class="item-delete" title="Delete Spell" data-item-id="{{spell.id}}">
+                    <a class="item-delete" title="Delete Spell" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>

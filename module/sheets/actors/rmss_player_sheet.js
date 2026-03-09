@@ -9,6 +9,7 @@ import SkillDropHandler from "../../actors/drop_handlers/skill_drop_handler.js";
 import SkillCategoryDropHandler from "../../actors/drop_handlers/skill_category_drop_handler.js";
 import RaceDropHandler from "../../actors/drop_handlers/race_drop_handler.js";
 import ProfessionDropHandler from "../../actors/drop_handlers/profession_drop_handler.js";
+import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
 import WeaponPreferenceDialog from "../../actors/dialogs/weapon_preference_dialog.js";
 import StatAssignmentDialog from "../../actors/dialogs/stat_assignment_dialog.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
@@ -121,6 +122,20 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     if (itemData.type === "profession") {
       const handler = new ProfessionDropHandler(this.actor);
       return handler.handle(itemData, event, data);
+    }
+
+    if (itemData.type === "spell_list") {
+      const spellListData = foundry.utils.duplicate(itemData);
+      delete spellListData._id;
+      const created = await this.actor.createEmbeddedDocuments("Item", [spellListData]);
+      const spellList = created[0];
+      const count = await expandSpellListEmbeddedSpells(this.actor, spellList);
+      ui.notifications.info(
+        count > 0
+          ? game.i18n.format("rmss.spell_lists.imported_with_spells", { name: spellList.name, count })
+          : game.i18n.format("rmss.spell_lists.imported", { name: spellList.name })
+      );
+      return;
     }
 
     return super._onDropItem(event, data);

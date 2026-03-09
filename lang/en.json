@@ -412,9 +412,13 @@
             "range": "Range",
             "type": "Type",
             "subType": "Subtype",
-            "attack_table": "Attack Table (BE)",
+            "attack_table": "Attack Table",
+            "attack_table_hint": "For BE/DE spells only. Determines the elemental damage table (e.g. Fire Ball, Ice Bolt). BE: ball or bolt; DE: bolt only.",
             "skill": "Skill",
-            "description": "Description"
+            "description": "Description",
+            "create_spell": "Create Spell",
+            "edit_spell": "Edit Spell",
+            "new_spell": "New Spell"
         },
         "skill_category": {
             "applicable_stats": "Applicable Stats",
@@ -744,7 +748,10 @@
         "spell_lists": {
             "realm": "Realm",
             "type": "Type",
-            "profession": "Profession"
+            "profession": "Profession",
+            "imported": "Spell list \"{name}\" added.",
+            "imported_with_spells": "Spell list \"{name}\" added with {count} spell(s).",
+            "drop_spells_hint": "Drop spells here or create new."
         },
         "spells": {
             "select_armor_type": "Select Armor Type",

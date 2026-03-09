@@ -412,9 +412,13 @@
       "range": "Rango",
       "type": "Tipo",
       "subType": "Subtipo",
-      "attack_table": "Tabla de ataque (BE)",
+      "attack_table": "Tabla de ataque",
+      "attack_table_hint": "Solo para hechizos BE y DE. Determina la tabla de daño elemental (ej. Bola de Fuego, Rayo de Hielo). BE: bola o rayo; DE: solo rayo.",
       "skill": "Habilidad",
-      "description": "Descripción"
+      "description": "Descripción",
+      "create_spell": "Crear hechizo",
+      "edit_spell": "Editar hechizo",
+      "new_spell": "Nuevo hechizo"
     },
     "skill_category": {
       "applicable_stats": "Atributos aplicables",
@@ -744,7 +748,10 @@
     "spell_lists": {
       "realm": "Reino",
       "type": "Tipo",
-      "profession": "Profesión"
+      "profession": "Profesión",
+      "imported": "Lista de hechizos \"{name}\" añadida.",
+      "imported_with_spells": "Lista de hechizos \"{name}\" añadida con {count} hechizo(s).",
+      "drop_spells_hint": "Suelta hechizos aquí o crea nuevos."
     },
     "spells": {
       "select_armor_type": "Seleccionar Tipo de Armadura",
