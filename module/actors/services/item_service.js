@@ -271,8 +271,8 @@ export default class ItemService {
         });
         playerskill.sort((a, b) => a.name.localeCompare(b.name));
 
-        // Map spells to lists
-        const spellistsWithContents = this._mapSpellsToLists(spellists, spells);
+        // Map spells to lists (filter by skill rank: only show spells up to level = skill ranks)
+        const spellistsWithContents = this._mapSpellsToLists(actor, spellists, spells);
 
         const weaponSlugs = CONFIG.rmss.weapon_category_slugs || [];
         const hasWeaponCategories = skillcat.some(s => weaponSlugs.includes(s.system?.slug));
@@ -323,7 +323,7 @@ export default class ItemService {
         }
     }
 
-    static _mapSpellsToLists(spellists, spells) {
+    static _mapSpellsToLists(actor, spellists, spells) {
         const spellsByList = {};
 
         for (const spell of spells) {
@@ -336,9 +336,14 @@ export default class ItemService {
         return spellists
             .map(list => {
                 const listId = list.id || list._id;
-                const contents = (spellsByList[listId] || []).sort(
+                let contents = (spellsByList[listId] || []).sort(
                     (a, b) => (a.system.level || 0) - (b.system.level || 0)
                 );
+                const skill = actor?.items?.find(i => i.type === "skill" && i.name === list.name);
+                const maxLevel = skill ? (parseInt(skill.system?.ranks, 10) || 0) : 0;
+                if (maxLevel >= 0) {
+                    contents = contents.filter(s => (parseInt(s.system?.level, 10) || 0) <= maxLevel);
+                }
                 return { ...list, contents };
             })
             .sort((a, b) => a.name.localeCompare(b.name));
