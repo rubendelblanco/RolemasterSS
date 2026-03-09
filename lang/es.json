@@ -751,7 +751,7 @@
       "profession": "Profesión",
       "imported": "Lista de hechizos \"{name}\" añadida.",
       "imported_with_spells": "Lista de hechizos \"{name}\" añadida con {count} hechizo(s).",
-      "drop_spells_hint": "Suelta hechizos aquí o crea nuevos.",
+      "drop_spells_hint": "Suelta hechizos aquí, arrastra desde otras listas o crea nuevos.",
       "no_skill_categories": "El personaje no tiene categorías de habilidad. Aplica una profesión primero.",
       "create_skill_title": "Crear habilidad para \"{name}\"",
       "create_skill_prompt": "La lista de hechizos \"{name}\" requiere una habilidad con el mismo nombre. No se encontró. Elige una categoría de habilidad para crearla:",

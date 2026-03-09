@@ -25,8 +25,20 @@ export default class RMSSSpellListSheet extends ItemSheet {
     activateListeners(html) {
         super.activateListeners(html);
 
+        // Allow drop zone
+        const dropZone = html[0].querySelector(".sheet-content.spell-list") || html[0];
+        dropZone.addEventListener("dragover", ev => {
+            ev.preventDefault();
+            ev.dataTransfer.dropEffect = "copy";
+        });
+
         // Handle drop
         html[0].addEventListener("drop", this._onDropSpell.bind(this));
+
+        // Drag spell from list (embedded: spellData; actor: uuid)
+        html.find(".spell-draggable").each((i, el) => {
+            el.addEventListener("dragstart", ev => this._onDragSpell(ev));
+        });
 
         // Delete spell
         html.find(".item-delete").click(async ev => {
@@ -108,6 +120,32 @@ export default class RMSSSpellListSheet extends ItemSheet {
         };
     }
 
+    /** Start dragging a spell from the list */
+    _onDragSpell(ev) {
+        const spellIdx = ev.currentTarget.dataset.spellIdx;
+        const uuid = ev.currentTarget.dataset.uuid;
+
+        let dragData;
+        if (this.isEmbeddedMode && spellIdx !== undefined) {
+            const spells = this.item.system.spells ?? [];
+            const spell = spells[parseInt(spellIdx, 10)];
+            if (!spell) return;
+            dragData = {
+                type: "EmbeddedSpell",
+                spellData: this._spellItemToEmbedded(spell)
+            };
+        } else if (uuid) {
+            dragData = { type: "Item", uuid };
+        } else {
+            return;
+        }
+
+        const json = JSON.stringify(dragData);
+        ev.dataTransfer.setData("text/plain", json);
+        ev.dataTransfer.setData("application/json", json);
+        ev.dataTransfer.effectAllowed = "copy";
+    }
+
     /** Handle dropping a spell onto the spell list */
     async _onDropSpell(event) {
         event.preventDefault();
@@ -120,9 +158,20 @@ export default class RMSSSpellListSheet extends ItemSheet {
             return console.warn("Error reading data", err);
         }
 
-        if (!data || !data.uuid) return;
+        if (!data) return;
 
         const spellList = this.item;
+
+        // Embedded spell from another spell list (no uuid)
+        if (data.type === "EmbeddedSpell" && data.spellData) {
+            if (this.isEmbeddedMode) {
+                await this._addSpellToEmbedded(data);
+                return;
+            }
+            return ui.notifications.warn("Can only drop embedded spells onto compendium spell lists.");
+        }
+
+        if (!data.uuid) return;
 
         // Embedded mode: add to system.spells
         if (this.isEmbeddedMode) {
@@ -165,21 +214,29 @@ export default class RMSSSpellListSheet extends ItemSheet {
     /** Add spell to embedded system.spells (compendium) */
     async _addSpellToEmbedded(data) {
         let spellsToAdd = [];
-        if (data.type === "Folder") {
+
+        if (data.type === "EmbeddedSpell" && data.spellData) {
+            spellsToAdd = [data.spellData];
+        } else if (data.type === "Folder") {
             const folder = await fromUuid(data.uuid);
             if (!folder || folder.type !== "Item") return;
             spellsToAdd = folder.contents.filter(i => i.type === "spell");
-        } else {
+        } else if (data.uuid) {
             const doc = await fromUuid(data.uuid);
             if (doc?.type === "spell") spellsToAdd = [doc];
         }
+
         if (!spellsToAdd.length) {
             ui.notifications.warn("No spells to add.");
             return;
         }
+
         const spells = [...(this.item.system.spells ?? [])];
         for (const spell of spellsToAdd) {
-            spells.push(this._spellItemToEmbedded(spell));
+            const embedded = spell.system && !spell.uuid
+                ? foundry.utils.duplicate(spell)
+                : this._spellItemToEmbedded(spell);
+            spells.push(embedded);
         }
         await this.item.update({ "system.spells": spells });
         ui.notifications.info(`${spellsToAdd.length} spell(s) added to ${this.item.name}.`);

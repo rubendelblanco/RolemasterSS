@@ -751,7 +751,7 @@
             "profession": "Profession",
             "imported": "Spell list \"{name}\" added.",
             "imported_with_spells": "Spell list \"{name}\" added with {count} spell(s).",
-            "drop_spells_hint": "Drop spells here or create new.",
+            "drop_spells_hint": "Drop spells here, drag from other lists, or create new.",
             "no_skill_categories": "The character has no skill categories. Apply a profession first.",
             "create_skill_title": "Create skill for \"{name}\"",
             "create_skill_prompt": "The spell list \"{name}\" requires a skill with the same name. No matching skill found. Choose a skill category to create it:",

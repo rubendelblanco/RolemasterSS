@@ -54,7 +54,7 @@
             </thead>
             <tbody>
             {{#each spells as |spell idx|}}
-            <tr class="spell" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
+            <tr class="spell spell-draggable" draggable="true" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}" data-uuid="{{spell.uuid}}">
                 <td>{{spell.system.level}}</td>
                 <td>{{spell.name}}{{#if spell.system.instant}}*{{/if}}</td>
                 <td>{{spell.system.area_of_effect}}</td>
