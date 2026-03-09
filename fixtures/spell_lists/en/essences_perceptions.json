@@ -1,0 +1,292 @@
+{
+  "name": "Essence's Perceptions",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Essence 2.5 - Essence's Perceptions. Spells for sensing presence, listening at a distance, watching from a point, long ear, long eye, and telepathy.",
+    "spells": [
+      {
+        "name": "02. Presence",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "20'R",
+          "duration": "1 rnd/lvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is aware of the presence of all sentient/thinking beings within 20'."
+        }
+      },
+      {
+        "name": "03. Listen I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can pick a point up to 10' away and he will hear as if he were at that point."
+        }
+      },
+      {
+        "name": "05. Long Ear I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster's point of hearing may be moved independently up to 100' away (moves at the rate of 10' per round). He must physically be able to go there (e.g., he could not send his point of hearing through walls or closed doors)."
+        }
+      },
+      {
+        "name": "06. Watch I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Listen I, except the caster sees from the fixed point (it can rotate)."
+        }
+      },
+      {
+        "name": "07. Long Eye I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Ear I, except the caster sees from the moving point (it can rotate)."
+        }
+      },
+      {
+        "name": "08. Listen II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Listen I, except the range is 100'."
+        }
+      },
+      {
+        "name": "10. Telepathy",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl (C)",
+          "range": "10'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster receives surface thoughts from target. If target makes his RR by more than 25 he realizes that someone is trying to read his thoughts."
+        }
+      },
+      {
+        "name": "11. Watch II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Watch I, except the range is 100'."
+        }
+      },
+      {
+        "name": "12. Long Ear II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl (C)",
+          "range": "300'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Ear I, except the range is 300'."
+        }
+      },
+      {
+        "name": "14. Listen III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl (C)",
+          "range": "500'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Listen I, except the range is 500'."
+        }
+      },
+      {
+        "name": "15. Long Eye II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl (C)",
+          "range": "300'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Eye I, except the range is 300'."
+        }
+      },
+      {
+        "name": "18. Watch III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl (C)",
+          "range": "500'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Watch I, except range is 500'."
+        }
+      },
+      {
+        "name": "20. Listen IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl (C)",
+          "range": "1 mi/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Listen I, except the range is 1 mile/level."
+        }
+      },
+      {
+        "name": "25. Watch IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl (C)",
+          "range": "1 mi/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Watch I, except the range is 1 mile/level."
+        }
+      },
+      {
+        "name": "30. Listen True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl (C)",
+          "range": "unlimited",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Listen I, except the range is unlimited (the caster must be able to locate the desired point in terms of direction and distance)."
+        }
+      },
+      {
+        "name": "50. Watch True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl (C)",
+          "range": "unlimited",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Listen True, except the caster sees instead of hearing."
+        }
+      }
+    ]
+  }
+}

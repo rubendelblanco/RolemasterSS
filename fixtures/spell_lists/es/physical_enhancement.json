@@ -1,0 +1,360 @@
+{
+  "name": "Mejora Física",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Abierta 2.7 - Mejora Física. Hechizos de detección de escala/peso, sentidos mejorados (oído, visión, equilibrio), respiración acuática/gaseosa y resistencia al veneno.",
+    "spells": [
+      {
+        "name": "01. Escala Humana",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "1'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede determinar las dimensiones exactas, masa y/o peso de un objeto."
+        }
+      },
+      {
+        "name": "02. Oídos Agudos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo obtiene el doble de audición normal. Da un bonus especial de +50 a habilidades de Conciencia • Búsqueda y Conciencia • Sentidos que impliquen solo oído (o +5 para Alerta). El bonus es +25 para habilidades que impliquen oído y otros sentidos (o +3 para Alerta)."
+        }
+      },
+      {
+        "name": "03. Equilibrio",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo obtiene un bonus especial de +50 para tiradas de maniobra lentas que requieran equilibrio (p. ej. caminar por una viga de 3\")."
+        }
+      },
+      {
+        "name": "04. Visión Nocturna",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo puede ver 100' en una noche normal como si fuera de día."
+        }
+      },
+      {
+        "name": "05. Visión Lateral",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo tiene un campo de visión de 300°. El bonus de flanco contra el objetivo se reduce a +5 y el bonus trasero a +15."
+        }
+      },
+      {
+        "name": "06. Sonoridad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La voz del objetivo triplica su volumen. No afecta a la capacidad de lanzar hechizos (solo permite hacerse oír sin dificultad a larga distancia)."
+        }
+      },
+      {
+        "name": "07. Visión Acuática",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión Nocturna, excepto que el objetivo puede ver 100' en cualquier agua; incluso agua turbia o lodosa."
+        }
+      },
+      {
+        "name": "08. Pulmones Acuáticos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo puede respirar agua pero no aire."
+        }
+      },
+      {
+        "name": "09. Visión Térmica",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión Nocturna, excepto que el objetivo puede ver distintos grados de calor en las superficies de los objetos. No permite ver \"a través\" de las cosas. Esta visión no basta para acciones detalladas como leer o cartografiar."
+        }
+      },
+      {
+        "name": "10. Pulmones Gaseosos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pulmones Acuáticos, excepto que el objetivo puede respirar cualquier gas como aire normal."
+        }
+      },
+      {
+        "name": "11. Resistir Veneno",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 hora/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Retrasa el efecto de un veneno en el objetivo. Si el veneno no se elimina antes de que expire el hechizo, el objetivo sufrirá sus efectos en ese momento."
+        }
+      },
+      {
+        "name": "12. Visión en la Oscuridad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión Nocturna, excepto que puede ver a través de cualquier oscuridad. Además, no se necesita luz para que funcione este hechizo."
+        }
+      },
+      {
+        "name": "15. Pulmones Cambiantes",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pulmones Acuáticos, excepto que el objetivo puede respirar agua, aire y/o cualquier gas a voluntad."
+        }
+      },
+      {
+        "name": "16. Equilibrio Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 obj/nvl",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Equilibrio, excepto que puede afectar a un objetivo por nivel del lanzador."
+        }
+      },
+      {
+        "name": "18. Visión Nocturna Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 obj/nvl",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión Nocturna, excepto que puede afectar a un objetivo por nivel del lanzador."
+        }
+      },
+      {
+        "name": "19. Visión Acuática Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 obj/nvl",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión Acuática, excepto que puede afectar a un objetivo por nivel del lanzador."
+        }
+      },
+      {
+        "name": "20. Visión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como todos los hechizos de \"visión\" de nivel inferior a 15 funcionando al mismo tiempo."
+        }
+      },
+      {
+        "name": "25. Pulmones Acuáticos Masivos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 obj/nvl",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pulmones Acuáticos, excepto que puede afectar a 1 objetivo por nivel del lanzador."
+        }
+      },
+      {
+        "name": "30. Pulmones Gaseosos Masivos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 obj/nvl",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pulmones Gaseosos, excepto que puede afectar a 1 objetivo por nivel del lanzador."
+        }
+      },
+      {
+        "name": "50. Visión Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 obj/nvl",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión, excepto que puede afectar a 1 objetivo por nivel del lanzador."
+        }
+      }
+    ]
+  }
+}

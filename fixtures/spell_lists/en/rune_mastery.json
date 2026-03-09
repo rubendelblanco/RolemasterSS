@@ -1,0 +1,326 @@
+{
+  "name": "Rune Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Essence 2.8 - Rune Mastery. Spells for storing spells, inscribing runes on paper, and Signs (shock, fear, sleep, blinding, paralysis). Rune paper is specially prepared to hold enchantments.",
+    "spells": [
+      {
+        "name": "02. Spell Store",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may cast this spell with any spell he wants to store. The spell to be stored must be cast within one minute after the Spell Store is cast. The stored spell may then be cast later as an instantaneous spell. The Spell Store spell costs the same number of PPs as the spell that is stored. No other spell may be cast while a spell is stored."
+        }
+      },
+      {
+        "name": "03. Rune I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "This spell inscribes a spell on a specially prepared piece of paper. The rune can then be used to cast the inscribed spell once. The spell to be inscribed must be cast within one minute after the Rune spell is cast. Rune I can only inscribe 1st level spells. The rune can be set to affect the reader. The attack level of a rune is the level of the spell put into it."
+        }
+      },
+      {
+        "name": "06. Rune II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Rune I, except up to 2nd level spells can be inscribed."
+        }
+      },
+      {
+        "name": "08. Rune III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Rune I, except up to 3rd level spells can be inscribed."
+        }
+      },
+      {
+        "name": "10. Rune V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Rune I, except up to 5th level spells can be inscribed."
+        }
+      },
+      {
+        "name": "11. Sign of Shock",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -20] A Sign can be inscribed on any \"non-mobile\" surface and affects the triggering being. A Sign can be triggered by: a) specified time has passed, b) specified movements within 20', c) specified sounds within 20', d) touch, or e) reading. The Sign is cancelled when a being fails a RR against it. Sign of Shock puts the target in a state of shock for 10 minutes per 10 failure (treat as if target is stunned, except target will never pass out due to this shock)."
+        }
+      },
+      {
+        "name": "12. Rune VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Rune I, except up to 6th level spells can be inscribed."
+        }
+      },
+      {
+        "name": "13. Sign of Fear",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sign of Shock, except target will flee the location of the Sign for 1 minute per 5 failure. The target must make his RR based upon his resistance to Essence, not his resistance to Fear."
+        }
+      },
+      {
+        "name": "14. Rune VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Rune I, except up to 7th level spells can be inscribed."
+        }
+      },
+      {
+        "name": "15. Sign of Sleep",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sign of Shock, except target falls into a magical sleep from which he cannot be awakened for 10 minutes per 10 failure."
+        }
+      },
+      {
+        "name": "16. Rune VIII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Rune I, except up to 8th level spells can be inscribed."
+        }
+      },
+      {
+        "name": "17. Sign of Blinding",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sign of Shock, except target is blinded for 1 hour per 10 failure."
+        }
+      },
+      {
+        "name": "18. Rune IX",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Rune I, except up to 9th level spells can be inscribed."
+        }
+      },
+      {
+        "name": "19. Sign of Paralysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sign of Shock, except target is paralyzed for 1 hour per 10 failure."
+        }
+      },
+      {
+        "name": "20. Rune X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Rune I, except up to 10th level spells can be inscribed."
+        }
+      },
+      {
+        "name": "25. Lord Research",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Research spell — see Spell Law Section 15.0 for full details."
+        }
+      },
+      {
+        "name": "30. Lord Rune",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Rune I, except up to 20th level spells can be inscribed."
+        }
+      },
+      {
+        "name": "50. Mass Sign",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As any Sign spell desired, except that it can affect a number of targets up to the level of the caster before it is cancelled."
+        }
+      }
+    ]
+  }
+}

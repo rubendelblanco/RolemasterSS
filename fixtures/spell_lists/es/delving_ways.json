@@ -1,0 +1,309 @@
+{
+  "name": "Caminos de Exploración",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Abierta 2.2 - Caminos de Exploración. Hechizos para analizar texto, piedra, metal, gas, líquido, objetos, hechizos, cadáveres, y para proyección astral (conveyance).",
+    "spells": [
+      {
+        "name": "02. Análisis de Texto I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede leer texto escrito en un idioma desconocido, pero solo comprender conceptos básicos. Este hechizo otorga el equivalente a rango 2 de conocimiento en un idioma escrito."
+        }
+      },
+      {
+        "name": "03. Análisis de Piedra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da la naturaleza y origen de la piedra natural, y cuándo y cómo se obtuvo y trabajó la piedra labrada."
+        }
+      },
+      {
+        "name": "04. Análisis de Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis de Piedra, excepto que puede examinarse metal."
+        }
+      },
+      {
+        "name": "05. Análisis de Gas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis de Piedra, excepto que puede examinarse gas."
+        }
+      },
+      {
+        "name": "07. Análisis de Texto II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis de Texto I, excepto que da un análisis técnico completo (vocabulario y sintaxis) pero no comprensión de modismos (jerga), implicaciones o referencias culturales. Este hechizo otorga el equivalente a rango 5 de conocimiento en un idioma escrito."
+        }
+      },
+      {
+        "name": "08. Análisis de Líquido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis de Piedra, excepto que puede examinarse líquido."
+        }
+      },
+      {
+        "name": "10. Exploración",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "toque",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da detalles significativos sobre la construcción y propósito de un objeto (no poderes específicos)."
+        }
+      },
+      {
+        "name": "11. Análisis de Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Proporciona análisis de un hechizo activo; da su duración, la lista de la que se lanzó y su tipo (no su nivel ni exactamente qué hechizo es)."
+        }
+      },
+      {
+        "name": "14. Análisis de Muerte",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 cadáver",
+          "duration": "—",
+          "range": "toque",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da información sobre la muerte de un ser (arma, hechizo, tiempo transcurrido, etc.); debe lanzarse en el lugar de la muerte (dentro de 24 horas) o en presencia del cuerpo (sin límite de tiempo)."
+        }
+      },
+      {
+        "name": "15. Análisis de Texto III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis de Texto II, excepto que se conoce todo excepto las implicaciones (p. ej. las respuestas a acertijos no se conocen automáticamente). Este hechizo otorga el equivalente a rango 8 de conocimiento en un idioma escrito."
+        }
+      },
+      {
+        "name": "16. Análisis de Poder",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis de Hechizo, excepto que funciona con habilidades/poderes que no están actualmente activos. Se puede examinar un objeto, persona o lugar para ver si tiene poder, de qué reino es el poder, una idea general de su origen y su configuración básica."
+        }
+      },
+      {
+        "name": "17. Proyección",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La consciencia del lanzador abandona su cuerpo (que queda inactivo durante la duración del hechizo) y puede viajar a 1 milla por minuto. Sin embargo, solo puede viajar 10' por ronda al moverse por material sólido o al observar el mundo. Si el hechizo expira antes de que el lanzador regrese a su cuerpo, volverá a una tasa fija de 500' por ronda, y al regresar debe superar una TR con modificador -50 o morir (el nivel de ataque es igual al número de rondas de exceso)."
+        }
+      },
+      {
+        "name": "18. Exploración de la Muerte",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 cadáver",
+          "duration": "—",
+          "range": "toque",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis de Muerte, excepto que da una imagen visual del asesino y una razón vaga de la muerte (p. ej. venganza, robo, accidente, etc.)."
+        }
+      },
+      {
+        "name": "20. Análisis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquiera de los hechizos de nivel inferior puede usarse junto en un objeto, persona o lugar (Proyección no está incluida)."
+        }
+      },
+      {
+        "name": "25. Análisis Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 obj/rnd",
+          "duration": "1 rnd/nvl",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis, excepto que puede examinarse un objeto por ronda."
+        }
+      },
+      {
+        "name": "30. Análisis de Poder Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis de Poder, excepto que se da el origen exacto, creador y propósito detallado; esto incluye el hechizo exacto (cuando aplique)."
+        }
+      },
+      {
+        "name": "50. Proyección Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Proyección, excepto que la velocidad es 10 millas por minuto (50' por ronda a través de material sólido y mientras observa)."
+        }
+      }
+    ]
+  }
+}

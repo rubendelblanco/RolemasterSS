@@ -1,0 +1,360 @@
+{
+  "name": "Riendas de Hechizos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Cerrada 3.9 - Riendas de Hechizos. Hechizos para almacenar hechizos, identificar lanzamiento, Retener Hechizo, Desviar Hechizo, Invertir Hechizo, Préstamo de Poder y versiones verdaderas.",
+    "spells": [
+      {
+        "name": "01. Almacenar Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede lanzar este hechizo con cualquier hechizo que quiera almacenar. El hechizo a almacenar debe lanzarse en el minuto siguiente. El hechizo almacenado puede lanzarse después como hechizo instantáneo. Cuesta los mismos PP que el hechizo almacenado. No puede lanzarse otro hechizo mientras uno está almacenado."
+        }
+      },
+      {
+        "name": "02. Identificar Lanzamiento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "self",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Si el objetivo está lanzando un hechizo, el lanzador sabrá de qué reino es y qué tipo de hechizo está lanzando."
+        }
+      },
+      {
+        "name": "03. Retener Hechizo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 hechizo",
+          "duration": "1 asalto",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El hechizo de ataque objetivo debe superar una TR (usando el nivel de su lanzador). Si la TR tiene éxito, ataca a su objetivo original; si no, los efectos se retrasan 1 asalto. Tras 1 asalto, si el objetivo se ha movido más de 20', el hechizo retenido puede afectar aleatoriamente a otro objetivo a 10' del punto original. Si no se lanza sobre el objetivo original, hechizos Básicos sufren -20 y Elementales -30."
+        }
+      },
+      {
+        "name": "05. Desviar Hechizo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede desviar 1 hechizo de ataque elemental. El hechizo entrante debe superar una TR. Si tiene éxito, ataca normalmente; si no, su tirada de ataque se modifica -10 por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "06. Retener Hechizo II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 hechizo",
+          "duration": "2 asaltos",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Hechizo I, excepto que los hechizos de ataque pueden retenerse hasta 2 asaltos."
+        }
+      },
+      {
+        "name": "08. Desviar Hechizo II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hechizo I, excepto que la tirada de ataque se modifica -20 por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "09. Retener Hechizo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 hechizo",
+          "duration": "3 asaltos",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Hechizo I, excepto que los hechizos de ataque pueden retenerse hasta 3 asaltos."
+        }
+      },
+      {
+        "name": "10. Invertir Hechizo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El hechizo elemental objetivo debe superar una TR con modificación +20 (a favor del hechizo elemental). Si tiene éxito, ataca normalmente; si no, el hechizo se invierte contra su lanzador. Resolver el ataque con BO +0."
+        }
+      },
+      {
+        "name": "11. Desviar Hechizo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hechizo I, excepto que la tirada de ataque se modifica -30 por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "12. Retener Hechizo IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 hechizo",
+          "duration": "4 asaltos",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Hechizo I, excepto que los hechizos de ataque pueden retenerse hasta 4 asaltos."
+        }
+      },
+      {
+        "name": "13. Préstamo de Poder",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede \"pedir prestados\" puntos de poder de días futuros. Al lanzar, recupera todos sus PP (hasta el máximo). El coste de PP puede salir de los PP \"prestados\". Cada vez que lo lance, pierde todos los PP durante los dos días siguientes. También recibe daño igual al 10% de sus golpes máximos. Además, durante la duración lanzará hechizos como si fuera 1 nivel más bajo. Puede lanzarse múltiples veces (los efectos se acumulan). Al final de la duración, debe dormir 10 horas consecutivas por cada vez que lo lanzó."
+        }
+      },
+      {
+        "name": "14. Desviar Hechizo IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hechizo I, excepto que la tirada de ataque se modifica -40 por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "15. Retener Hechizo V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 hechizo",
+          "duration": "5 asaltos",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Hechizo I, excepto que el hechizo se retiene hasta 5 asaltos."
+        }
+      },
+      {
+        "name": "16. Invertir Hechizo II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invertir Hechizo I, excepto que se usa un BO igual a la mitad del BO original."
+        }
+      },
+      {
+        "name": "17. Desviar Hechizo V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hechizo I, excepto que la tirada de ataque se modifica -50 por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "18. Retener Hechizo X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 hechizo",
+          "duration": "10 asaltos",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Hechizo I, excepto que el hechizo se retiene hasta 10 asaltos."
+        }
+      },
+      {
+        "name": "20. Retener Hechizo de Señor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 hechizo",
+          "duration": "20 asaltos",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Hechizo I, excepto que el hechizo se retiene hasta 20 asaltos."
+        }
+      },
+      {
+        "name": "25. Desviar Hechizo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hechizo I, excepto que el hechizo puede desviarse hasta 90° en cualquier dirección (el lanzador puede designar otro objetivo, usar la mitad de su BO apropiado)."
+        }
+      },
+      {
+        "name": "30. Retener Hechizo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 hechizo",
+          "duration": "1 asalto/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Hechizo I, excepto que el hechizo se retiene hasta 1 asalto por nivel."
+        }
+      },
+      {
+        "name": "50. Inversión Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "100'R",
+          "duration": "—",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invertir Hechizo I, excepto que todos los hechizos dentro de un radio de 100' del lanzador se invierten."
+        }
+      }
+    ]
+  }
+}

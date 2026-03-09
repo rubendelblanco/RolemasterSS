@@ -1,0 +1,343 @@
+{
+  "name": "Maestría de Escudos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Cerrada 3.7 - Maestría de Escudos. Hechizos de armadura encantada (escudo, túnicas, cuero), Escudo, Desenfoque, Deflexiones, Desviar Hoja, Apuntar Falso, Reapuntar y versiones masivas.",
+    "spells": [
+      {
+        "name": "01. Escudo Encantado",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 escudo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador encanta temporalmente un escudo no mágico y no metálico con un bonus especial de +10 al bonus defensivo (BD)."
+        }
+      },
+      {
+        "name": "02. Escudo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un escudo de fuerza invisible delante del lanzador. Funciona como un escudo normal (resta 25 de los ataques apropiados, etc.), excepto que no ocupa una mano. No puede combinarse con un escudo \"real\"."
+        }
+      },
+      {
+        "name": "03. Desenfoque",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que el objetivo parezca borroso a los atacantes. Resta 10 de todos los ataques dirigidos al objetivo."
+        }
+      },
+      {
+        "name": "04. Túnicas Encantadas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 túnica",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador encanta temporalmente una túnica para conferir un bonus especial de +10 al BD."
+        }
+      },
+      {
+        "name": "05. Deflexiones I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 proyectil",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede desviar cualquier proyectil que pase a 100' de él (debe poder verlo). Resta 100 del ataque del proyectil."
+        }
+      },
+      {
+        "name": "06. Cuero Encantado",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 cuero",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador encanta temporalmente un traje de cuero no mágico (normalmente una camisa) con un bonus especial de +10 al BD."
+        }
+      },
+      {
+        "name": "07. Desviar Hoja I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 ataque",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede desviar cualquier ataque cuerpo a cuerpo que pueda ver (y esté a alcance). Resta 50 del ataque."
+        }
+      },
+      {
+        "name": "09. Deflexiones II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "2 proyectiles",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Deflexiones I, excepto que pueden afectarse 2 proyectiles."
+        }
+      },
+      {
+        "name": "10. Apuntar Falso I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 proyectil",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede desviar cualquier proyectil que pase a 100' de él (debe poder verlo). El proyectil falla automáticamente a su objetivo."
+        }
+      },
+      {
+        "name": "11. Desviar Hoja II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "2 ataques",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hoja I, excepto que pueden afectarse 2 ataques cuerpo a cuerpo."
+        }
+      },
+      {
+        "name": "13. Deflexiones III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "3 proyectiles",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Deflexiones I, excepto que pueden afectarse 3 proyectiles."
+        }
+      },
+      {
+        "name": "15. Apuntar Falso II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "2 proyectiles",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Apuntar Falso I, excepto que pueden afectarse 2 proyectiles."
+        }
+      },
+      {
+        "name": "17. Desviar Hoja III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "3 ataques",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hoja I, excepto que pueden afectarse 3 ataques cuerpo a cuerpo."
+        }
+      },
+      {
+        "name": "18. Reapuntar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 proyectil",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un proyectil que pase a 100' del lanzador se invierte y ataca a su origen. Para el ataque al origen del proyectil, usar BO de +5 (no aplican otros modificadores de BO o BD)."
+        }
+      },
+      {
+        "name": "19. Apuntar Falso III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "3 proyectiles",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Apuntar Falso I, excepto que pueden afectarse 3 proyectiles."
+        }
+      },
+      {
+        "name": "20. Deflexiones Masivas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Deflexiones I, excepto que pueden afectarse tantos proyectiles como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "25. Desviar Hoja Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hoja I, excepto que pueden afectarse tantos ataques cuerpo a cuerpo como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "30. Apuntar Falso Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Deflexiones Masivas, excepto que los proyectiles fallan automáticamente."
+        }
+      },
+      {
+        "name": "50. Reapuntar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "100'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reapuntar, excepto que todos los proyectiles que pasen a 100' del lanzador se invierten. Cada proyectil ataca a su lanzador con BO +20."
+        }
+      }
+    ]
+  }
+}

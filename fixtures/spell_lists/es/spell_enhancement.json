@@ -1,0 +1,394 @@
+{
+  "name": "Mejora de Hechizos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Cerrada 3.8 - Mejora de Hechizos. Hechizos para modificar el siguiente hechizo lanzado: Efectos Especiales, Extensión, Alcance, Alcance Instantáneo, Radio Aumentado, Extensión Mayor, Extensión Verdadera y Permanente.",
+    "spells": [
+      {
+        "name": "01. Efectos Especiales",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede añadir un aspecto menor de olor, visual o sonido al siguiente hechizo que lance. Este efecto menor no puede aumentar ni cambiar los efectos del hechizo de ninguna forma."
+        }
+      },
+      {
+        "name": "02. Extensión II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que el siguiente hechizo que el lanzador lance (en 1 minuto) tenga el doble de duración normal. No es acumulativo con otros hechizos de Extensión."
+        }
+      },
+      {
+        "name": "04. Alcance I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que el siguiente hechizo que el lanzador lance (en 1 minuto) tenga su alcance aumentado en 50'. No es acumulativo con otros hechizos de Alcance."
+        }
+      },
+      {
+        "name": "05. Extensión III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Extensión II, excepto que la duración es 3 veces la normal."
+        }
+      },
+      {
+        "name": "06. Alcance Instantáneo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alcance I, excepto que el tiempo de lanzamiento es instantáneo."
+        }
+      },
+      {
+        "name": "07. Radio Aumentado I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que el siguiente hechizo que el lanzador lance (en 1 minuto) tenga su área de efecto aumentada en 5'. No es acumulativo con otros hechizos de Radio Aumentado."
+        }
+      },
+      {
+        "name": "08. Alcance II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alcance I, excepto que el aumento de alcance es 100'."
+        }
+      },
+      {
+        "name": "09. Extensión IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Extensión II, excepto que la duración es 4 veces la normal."
+        }
+      },
+      {
+        "name": "10. Alcance Instantáneo II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alcance Instantáneo I, excepto que el alcance se aumenta en 100'."
+        }
+      },
+      {
+        "name": "11. Radio Aumentado II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Radio Aumentado I, excepto que el área de efecto se aumenta en 10'."
+        }
+      },
+      {
+        "name": "12. Alcance III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alcance I, excepto que el aumento de alcance es 200'."
+        }
+      },
+      {
+        "name": "13. Extensión V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Extensión II, excepto que la duración es 5 veces la normal."
+        }
+      },
+      {
+        "name": "14. Alcance Instantáneo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alcance Instantáneo I, excepto que el alcance se aumenta en 200'."
+        }
+      },
+      {
+        "name": "15. Radio Aumentado III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Radio Aumentado II, excepto que el área de efecto se aumenta en 15'."
+        }
+      },
+      {
+        "name": "16. Alcance IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alcance I, excepto que el aumento de alcance es 300'."
+        }
+      },
+      {
+        "name": "17. Extensión X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Extensión II, excepto que la duración es 10 veces la normal."
+        }
+      },
+      {
+        "name": "18. Alcance Instantáneo IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alcance Instantáneo I, excepto que el alcance se aumenta en 300'."
+        }
+      },
+      {
+        "name": "19. Radio Aumentado IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Radio Aumentado II, excepto que el área de efecto se aumenta en 20'."
+        }
+      },
+      {
+        "name": "20. Alcance V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alcance I, excepto que el aumento de alcance es 500'."
+        }
+      },
+      {
+        "name": "25. Extensión Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Extensión II, excepto que la duración se aumenta en 12 horas."
+        }
+      },
+      {
+        "name": "30. Extensión Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Extensión II, excepto que la duración se aumenta en 24 horas."
+        }
+      },
+      {
+        "name": "50. Permanente",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Extensión II, excepto que la duración es permanente. Solo un hechizo permanente puede estar activo a la vez por cada lanzador."
+        }
+      }
+    ]
+  }
+}

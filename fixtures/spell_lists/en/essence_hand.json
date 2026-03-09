@@ -1,0 +1,394 @@
+{
+  "name": "Essence Hand",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Essence 2.4 - Essence Hand. Spells for vibrations, staying (pressure), telekinesis, aiming missiles, and hurling objects.",
+    "spells": [
+      {
+        "name": "01. Vibrations I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target, 1 lb",
+          "duration": "1 rnd/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes an object of up to 1 pound mass to vibrate rapidly; if fragile it may break (roll a RR). If it is an object held by a being the being must make a RR or fumble it (each round)."
+        }
+      },
+      {
+        "name": "02. Staying I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target, 1 lb",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Exerts 1 pound of pressure on a person or object. Object cannot be moved by staying alone, and pressure can only be in one direction."
+        }
+      },
+      {
+        "name": "03. Telekinesis I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target, 1 lb",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Can move one object, up to 1 pound in mass, up to 1' per second (with no acceleration). If the caster stops concentration before the duration is up, the object remains stationary as if it had a Staying spell of an equal weight limit cast upon it."
+        }
+      },
+      {
+        "name": "04. Vibrations II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target, 5 lbs",
+          "duration": "1 rnd/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Vibrations I, except mass limit is 5 pounds."
+        }
+      },
+      {
+        "name": "05. Staying II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target, 5 lbs",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying I, except mass limit is 5 pounds."
+        }
+      },
+      {
+        "name": "06. Telekinesis II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target, 5 lbs",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except mass limit is 5 pounds."
+        }
+      },
+      {
+        "name": "07. Vibrations III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target, 25 lbs",
+          "duration": "1 rnd/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Vibrations I, except mass limit is 25 pounds."
+        }
+      },
+      {
+        "name": "08. Staying III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target, 25 lbs",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying I, except mass limit is 25 pounds."
+        }
+      },
+      {
+        "name": "09. Vibrations IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target, 50 lbs",
+          "duration": "1 rnd/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Vibrations I, except mass limit is 50 pounds."
+        }
+      },
+      {
+        "name": "10. Aiming",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd (C)",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "By concentrating on the mind of a missile firer (the firer cannot be the caster) and the flight of the missile, the caster causes +50 to be added to the attack roll of the missile. The caster must concentrate, touch the firer and see the missile for the entire round that the missile is fired."
+        }
+      },
+      {
+        "name": "11. Telekinesis III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target, 25 lbs",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except the mass limit is 25 pounds."
+        }
+      },
+      {
+        "name": "12. Staying IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target, 50 lbs",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying I, except the mass limit is 50 pounds."
+        }
+      },
+      {
+        "name": "13. Mass Vibrations I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Vibrations I, except as many objects (up to 5 pounds each) as the caster's level can be vibrated (they must all be within the field of vision of the caster)."
+        }
+      },
+      {
+        "name": "14. Telekinesis IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target, 50 lbs",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except mass limit is 50 pounds."
+        }
+      },
+      {
+        "name": "15. Staying V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target, 100 lbs",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying I, except mass limit is 100 pounds."
+        }
+      },
+      {
+        "name": "16. Hurling I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target, 1 lb",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may \"hurl\" one object (that starts within 10' of him) of 1 pound or less with sufficient force to deliver an attack. Attacks are resolved on the Sling Attack Table with a maximum range of 300'. The OB of the attack is the caster's directed spell skill with this spell. If Arms Law is not available, use the Shock Bolt Attack Table (with a maximum range of 300') delivering Impact criticals."
+        }
+      },
+      {
+        "name": "17. Telekinesis V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target, 100 lbs",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except mass limit is 100 pounds."
+        }
+      },
+      {
+        "name": "19. Mass Vibrations III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mass Vibrations I, except objects may be up to 25 pounds in mass."
+        }
+      },
+      {
+        "name": "20. Lord Aim",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd (C)",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Aiming, except missile attack bonus is 100."
+        }
+      },
+      {
+        "name": "25. Staying True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target, 10 lb/lvl",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying I, except mass limit is 10 pounds per level."
+        }
+      },
+      {
+        "name": "30. Great Telekinesis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target, 10 lb/lvl",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except mass limit is 10 pounds per level."
+        }
+      },
+      {
+        "name": "50. Aim True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd (C)",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Aiming, except missile attack automatically does maximum damage. If the target is a Large or Super Large creature, the attack is treated as a Slaying attack."
+        }
+      }
+    ]
+  }
+}

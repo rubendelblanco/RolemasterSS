@@ -1,0 +1,258 @@
+{
+  "name": "Invisible Ways",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Essence 3.3 - Invisible Ways. Spells for invisibility: Unseen, Invisibility, Invisibility Sphere, Invisibility Split, Mass Unseen, Mass Invisibility, and True Invisibility.",
+    "spells": [
+      {
+        "name": "02. Unseen I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A single object is made invisible (1 garment, 1 naked body, etc.); until 24 hours pass or the object is struck by a violent blow (being hit by a weapon, falling, etc.) or the object makes a violent move (i.e., an attack)."
+        }
+      },
+      {
+        "name": "04. Invisibility I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unseen I, except everything within 1' of the target is invisible as long as it is within 1' and as long as none of the Unseen I termination conditions occur."
+        }
+      },
+      {
+        "name": "06. Invisibility II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Invisibility I, except the radius can vary up to 1' (chosen at the time of casting). This makes the invisible target harder to see."
+        }
+      },
+      {
+        "name": "08. Invisibility Sphere I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Invisibility I, except the radius is 10'."
+        }
+      },
+      {
+        "name": "10. Unseen III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "3 targets",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unseen I, except 3 objects can be affected."
+        }
+      },
+      {
+        "name": "11. Invisibility Sphere II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Invisibility Sphere I, except the radius can vary up to 10' (chosen at the time of casting)."
+        }
+      },
+      {
+        "name": "13. Unseen V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "5 targets",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unseen I, except 5 objects can be affected."
+        }
+      },
+      {
+        "name": "15. Invisibility Split",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "2 targets",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Invisibility I, except two targets can be affected (with a separate radius for each)."
+        }
+      },
+      {
+        "name": "17. Unseen X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "10 targets",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unseen I, except up to 10 objects can be affected."
+        }
+      },
+      {
+        "name": "18. Invisibility Split Sphere",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "2 targets",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Invisibility Split, except the two radii can vary up to 10' (chosen at the time of casting)."
+        }
+      },
+      {
+        "name": "20. Invisibility Sphere III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Invisibility I, except radius can vary up to 20' (chosen at the time of casting)."
+        }
+      },
+      {
+        "name": "25. Mass Unseen",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target/lvl",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unseen I, except as many objects as the caster's level may be affected."
+        }
+      },
+      {
+        "name": "30. Mass Invisibility",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target/lvl",
+          "duration": "24 hours",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Invisibility I, except as many targets as the caster's level can be affected. Each target gets its own radius."
+        }
+      },
+      {
+        "name": "50. True Invisibility",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "24 hours",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Invisibility II, except only affects the caster. If he attacks he is only visible for the round immediately following the attack. Violent blows do not affect this spell."
+        }
+      }
+    ]
+  }
+}

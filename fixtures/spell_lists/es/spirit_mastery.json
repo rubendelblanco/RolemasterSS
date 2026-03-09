@@ -1,0 +1,411 @@
+{
+  "name": "Maestría del Espíritu",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Cerrada 3.10 - Maestría del Espíritu. Hechizos de sueño, encantamiento, confusión, sugerencia, retener, dominio, búsqueda, Palabras (Aturdir, Dolor, Sueño, Discordia, Llamar, Muerte), Frase, Palabra Masiva y Maestría del Espíritu.",
+    "spells": [
+      {
+        "name": "01. Sueño V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que los objetivos caigan en un sueño natural. Puede afectar a objetivos cuyos niveles sumen hasta 5. El lanzador debe poder verlos. Al lanzar, designa prioridad de objetivos. Los primeros 2 asaltos de sueño son mágicos (no pueden despertarse por medios normales)."
+        }
+      },
+      {
+        "name": "02. Encantar Raza",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 hora/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El humanoide objetivo cree que el lanzador es un buen amigo."
+        }
+      },
+      {
+        "name": "03. Sueño VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sueño V, excepto que pueden afectarse 7 niveles."
+        }
+      },
+      {
+        "name": "04. Confusión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo es incapaz de tomar decisiones o iniciar acciones. Sin embargo, puede seguir luchando si ya estaba en combate o en defensa propia."
+        }
+      },
+      {
+        "name": "05. Sugerencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo seguirá un único acto sugerido que no sea completamente ajeno a él (p. ej. sin sugerencias de suicidio, cegarse, etc.)."
+        }
+      },
+      {
+        "name": "06. Sueño X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sueño V, excepto que pueden afectarse 10 niveles."
+        }
+      },
+      {
+        "name": "07. Retener Raza",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El humanoide objetivo queda limitado al 25% de actividad por asalto."
+        }
+      },
+      {
+        "name": "08. Maestro de Raza",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El humanoide objetivo debe obedecer al lanzador. Sin embargo, no realizará actos completamente ajenos a él (p. ej. suicidio, cegarse, etc.)."
+        }
+      },
+      {
+        "name": "09. Sueño de Señor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sueño V, excepto que pueden afectarse un total de 20 niveles."
+        }
+      },
+      {
+        "name": "10. Encantar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 hora/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encantar Raza, excepto que puede afectarse cualquier criatura sensible."
+        }
+      },
+      {
+        "name": "11. Búsqueda",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Se asigna una tarea al objetivo; el fallo conlleva una penalización determinada por el DJ (la tarea debe estar dentro de sus capacidades). Si ignora la búsqueda, sufre los mismos efectos que por fallo."
+        }
+      },
+      {
+        "name": "12. Palabra de Aturdir",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -10] El objetivo queda aturdido 1 asalto por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "13. Palabra de Dolor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -10] Como Palabra de Aturdir, excepto que el objetivo recibe el 50% de sus golpes restantes al fallar."
+        }
+      },
+      {
+        "name": "14. Retener Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Raza, excepto que puede afectarse cualquier ser sensible."
+        }
+      },
+      {
+        "name": "15. Palabra de Sueño",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -10] Como Palabra de Aturdir, excepto que el objetivo cae en sueño natural. El primer minuto es mágico; no puede despertarse por medios normales."
+        }
+      },
+      {
+        "name": "16. Palabra de Discordia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/10 fallo",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -10] Como Palabra de Aturdir, excepto que el objetivo no cooperará ni estará de acuerdo con nadie durante 1 día por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "17. Palabra de Llamar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto/10 fallo",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -10] El objetivo es forzado a acudir y enfrentarse al lanzador (luchando si es necesario). Una vez frente a él, debe permanecer inmóvil 1 asalto por cada 10 de fallo. Durante la duración, el lanzador debe permanecer inmóvil o el hechizo se disipa."
+        }
+      },
+      {
+        "name": "18. Palabra en Espera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/nvl",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -10] Cualquiera de las \"Palabras\" anteriores puede activarse en un momento especificado o si hay movimiento dentro de un radio de 10' designado."
+        }
+      },
+      {
+        "name": "19. Palabra de Muerte",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -10] El objetivo sufre los resultados de un crítico 'E'; el lanzador elige el tipo de crítico."
+        }
+      },
+      {
+        "name": "20. Búsqueda Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Búsqueda, excepto que el fallo se castiga con cinco críticos 'E' (elegir tipos aleatoriamente)."
+        }
+      },
+      {
+        "name": "25. Frase",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -10] Como Palabra de Aturdir, excepto que pueden usarse tres \"Palabras\" diferentes en el mismo asalto (cada una requiere su propia TR). Si las tres son iguales y las tres TR fallan, el efecto es permanente."
+        }
+      },
+      {
+        "name": "30. Palabra Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -10] Como Palabra de Aturdir, excepto que puede usarse cualquier \"Palabra\" y afecta un número de niveles igual al nivel del lanzador (como Sueño)."
+        }
+      },
+      {
+        "name": "50. Maestría del Espíritu",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "1 asalto/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede ejercer maestría sobre múltiples seres sensibles. Duración 1 asalto por nivel. Afecta a objetivos cuyos niveles sumen hasta el nivel del lanzador (como Sueño). Los afectados deben obedecer las órdenes del lanzador, con las mismas limitaciones que Maestro de Raza."
+        }
+      }
+    ]
+  }
+}

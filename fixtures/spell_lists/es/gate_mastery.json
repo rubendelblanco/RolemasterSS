@@ -1,0 +1,394 @@
+{
+  "name": "Maestría de Portales",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Cerrada 3.2 - Maestría de Portales. Hechizos de familiares, compañeros, invocación de criaturas, portales demoníacos y control de demonios.",
+    "spells": [
+      {
+        "name": "01. Familiar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede sintonizar con una criatura (de inteligencia animal y no más del 10% de la masa del lanzador) para que le sirva como familiar. Debe obtener la criatura por medios normales y lanzar este hechizo sobre ella una vez al día durante 1 semana (concentrándose 2 horas/día). Luego puede controlar al familiar y ver el mundo a través de sus sentidos concentrándose en él si está a 50' por nivel. Si la criatura muere, el lanzador tendrá -25 a todas las acciones durante 2 semanas."
+        }
+      },
+      {
+        "name": "02. Invocación I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede invocar instantáneamente una criatura de primer nivel y no inteligente que puede controlar. Si puede comunicarse con ella, seguirá órdenes. Si no, el control se mantiene solo por concentración. El tipo general puede especificarse pero la criatura exacta la determina el DJ (de las comunes en la zona). Si la tarea no es peligrosa, duración 10 min/nivel; si entra en situación peligrosa, 1 asalto/nivel."
+        }
+      },
+      {
+        "name": "03. Compañero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede hacer de un ser semi-inteligente un compañero. No puede superar el 50% de su masa ni ser más inteligente que él. La relación no es mágica (debe mantener buenas relaciones o lo abandonará). Se trata como relación padre/hijo. Casi siempre obedece órdenes \"no hagas\"; puede hacer TR para resistir órdenes \"haz\"."
+        }
+      },
+      {
+        "name": "05. Invocación II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación I, excepto que el lanzador puede elegir una opción: a) nivel de la criatura +1, b) invocar una criatura extra de primer nivel, o c) duplicar la duración."
+        }
+      },
+      {
+        "name": "06. Controlar Demonio I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 demonio",
+          "duration": "C",
+          "range": "10'/nvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador controlar un demonio Tipo I durante la duración. Al lanzar, hay un 2% de probabilidad por Tipo de que el demonio ignore el control."
+        }
+      },
+      {
+        "name": "07. Invocación III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación II, excepto que pueden elegirse 2 opciones."
+        }
+      },
+      {
+        "name": "08. Portal Demoníaco Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 demonio",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador invoca un demonio que aparece gradualmente en d10+1 asaltos. El DJ tira d100 (no abierto) para el tipo: 1-60 Tipo I, 61-90 Tipo II, 91-100 Tipo III. Si no se controla o domina antes de aparecer por completo, atacará. Ver notas especiales p. 168."
+        }
+      },
+      {
+        "name": "09. Invocación V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación III, excepto que pueden elegirse 4 opciones."
+        }
+      },
+      {
+        "name": "10. Controlar Demonio II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 demonio",
+          "duration": "C",
+          "range": "10'/nvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar Demonio I, excepto que pueden controlarse demonios Tipo I y Tipo II."
+        }
+      },
+      {
+        "name": "11. Invocación X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación III, excepto que pueden elegirse 9 opciones."
+        }
+      },
+      {
+        "name": "12. Invocar Pueblo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Tras lanzar este hechizo, espíritus rurales u ocupacionales cercanos visitarán al lanzador (el momento exacto varía). Los invocados tendrán la misma naturaleza que el lanzador. Los resultados exactos varían (criterio del DJ)."
+        }
+      },
+      {
+        "name": "13. Controlar Demonio III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 demonio",
+          "duration": "C",
+          "range": "10'/nvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar Demonio I, excepto que pueden controlarse demonios Tipo I, II y III."
+        }
+      },
+      {
+        "name": "14. Compañero Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Compañero, excepto que no hay límite de tamaño para el compañero."
+        }
+      },
+      {
+        "name": "15. Invocación en Espera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación X, excepto que la llegada puede retrasarse hasta 1 día por nivel o hasta activarse por: movimientos especificados, toque o acción concreta (decidido al lanzar). El lanzador puede especificar una tarea única para las criaturas al llegar."
+        }
+      },
+      {
+        "name": "16. Invocación de Señor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación III, excepto que pueden elegirse 19 opciones."
+        }
+      },
+      {
+        "name": "17. Portal en Espera Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 demonio",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación en Espera, excepto que funciona como Portal Demoníaco Menor."
+        }
+      },
+      {
+        "name": "18. Portal Demoníaco Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 demonio",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Portal Demoníaco Menor, excepto que pueden invocarse Tipos III, IV, V y VI. Tirar d100: 1-60 Tipo III, 61-85 Tipo IV, 86-95 Tipo V, 96-100 Tipo VI."
+        }
+      },
+      {
+        "name": "19. Controlar Demonio IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 demonio",
+          "duration": "C",
+          "range": "10'/nvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar Demonio I, excepto que pueden controlarse demonios Tipo I, II, III y IV."
+        }
+      },
+      {
+        "name": "20. Invocación Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación III, excepto que el lanzador puede tomar tantas opciones como niveles tenga."
+        }
+      },
+      {
+        "name": "25. Maestría Demoníaca II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 demonio",
+          "duration": "varía",
+          "range": "10'/nvl",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar Demonio II, excepto que no requiere concentración. Hay un 5% de probabilidad por Tipo de que el demonio ignore la maestría."
+        }
+      },
+      {
+        "name": "30. Portal en Espera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 demonio",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación en Espera, excepto que funciona como Portal Demoníaco Mayor."
+        }
+      },
+      {
+        "name": "50. Controlar Demonio V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 demonio",
+          "duration": "C",
+          "range": "10'/nvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar Demonio I, excepto que pueden controlarse demonios Tipo I, II, III, IV y V."
+        }
+      }
+    ]
+  }
+}

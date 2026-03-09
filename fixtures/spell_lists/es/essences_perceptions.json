@@ -1,0 +1,292 @@
+{
+  "name": "Percepciones de la Esencia",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Abierta 2.5 - Percepciones de la Esencia. Hechizos para detectar presencia, escuchar a distancia, ver desde un punto, oído lejano, ojo lejano y telepatía.",
+    "spells": [
+      {
+        "name": "02. Presencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "20'R",
+          "duration": "1 rnd/nvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador es consciente de la presencia de todos los seres sensibles/pensantes dentro de 20'."
+        }
+      },
+      {
+        "name": "03. Escuchar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede elegir un punto hasta 10' de distancia y oirá como si estuviera en ese punto."
+        }
+      },
+      {
+        "name": "05. Oído Lejano I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El punto de audición del lanzador puede moverse independientemente hasta 100' de distancia (se mueve a 10' por ronda). Debe poder llegar físicamente allí (p. ej. no podría enviar su punto de audición a través de paredes o puertas cerradas)."
+        }
+      },
+      {
+        "name": "06. Observar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escuchar I, excepto que el lanzador ve desde el punto fijo (puede rotar)."
+        }
+      },
+      {
+        "name": "07. Ojo Lejano I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oído Lejano I, excepto que el lanzador ve desde el punto móvil (puede rotar)."
+        }
+      },
+      {
+        "name": "08. Escuchar II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escuchar I, excepto que el alcance es 100'."
+        }
+      },
+      {
+        "name": "10. Telepatía",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/nvl (C)",
+          "range": "10'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador recibe los pensamientos superficiales del objetivo. Si el objetivo supera su TR por más de 25, se da cuenta de que alguien intenta leer sus pensamientos."
+        }
+      },
+      {
+        "name": "11. Observar II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Observar I, excepto que el alcance es 100'."
+        }
+      },
+      {
+        "name": "12. Oído Lejano II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl (C)",
+          "range": "300'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oído Lejano I, excepto que el alcance es 300'."
+        }
+      },
+      {
+        "name": "14. Escuchar III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl (C)",
+          "range": "500'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escuchar I, excepto que el alcance es 500'."
+        }
+      },
+      {
+        "name": "15. Ojo Lejano II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl (C)",
+          "range": "300'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ojo Lejano I, excepto que el alcance es 300'."
+        }
+      },
+      {
+        "name": "18. Observar III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl (C)",
+          "range": "500'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Observar I, excepto que el alcance es 500'."
+        }
+      },
+      {
+        "name": "20. Escuchar IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl (C)",
+          "range": "1 milla/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escuchar I, excepto que el alcance es 1 milla por nivel."
+        }
+      },
+      {
+        "name": "25. Observar IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl (C)",
+          "range": "1 milla/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Observar I, excepto que el alcance es 1 milla por nivel."
+        }
+      },
+      {
+        "name": "30. Escuchar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl (C)",
+          "range": "ilimitado",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escuchar I, excepto que el alcance es ilimitado (el lanzador debe poder localizar el punto deseado en términos de dirección y distancia)."
+        }
+      },
+      {
+        "name": "50. Observar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl (C)",
+          "range": "ilimitado",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escuchar Verdadero, excepto que el lanzador ve en lugar de oír."
+        }
+      }
+    ]
+  }
+}

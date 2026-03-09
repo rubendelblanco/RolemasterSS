@@ -1,0 +1,411 @@
+{
+  "name": "Unbarring Ways",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Essence 2.10 - Unbarring Ways. Spells for locking, magic locks, locklore, opening locks, traplore, disarming traps, jamming/weakening doors, open prison, undoor, new gate, and mastery.",
+    "spells": [
+      {
+        "name": "01. Lock",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 lock",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can cause any lock he can see within 100' to be locked (the lock is just normally locked and can be opened normally)."
+        }
+      },
+      {
+        "name": "02. Magic Lock",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 door",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A door (or container) can be magically \"locked.\" The door can be broken down normally or the spell can be dispelled. Otherwise, the door cannot be opened for the duration of the spell."
+        }
+      },
+      {
+        "name": "03. Locklore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 lock",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives the caster a special bonus of +20 for picking the lock analyzed. If the caster describes the information gained from this spell, the listener will get a special bonus of +10 to picking the lock analyzed."
+        }
+      },
+      {
+        "name": "04. Opening I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 lock",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When cast upon a lock, there is a 20% chance a normal lock will open, and a 45% chance that a Magic Lock will open. There is a 10% chance that any associated traps are set off. Rolls are open-ended, and the sophistication of the lock may modify the roll."
+        }
+      },
+      {
+        "name": "05. Traplore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 trap",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Locklore, except applies to disarming traps."
+        }
+      },
+      {
+        "name": "06. Disarm I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 trap",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Opening I, except its chances concern disarming traps. There is a 10% chance that the trap being disarmed is set off."
+        }
+      },
+      {
+        "name": "07. Jamming",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 door",
+          "duration": "P",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes a door to expand and jam into its frame. Roll d100 to determine the severity of the jam (a 01 means the door is only slightly stuck; a 100 means that the door is unopenable)."
+        }
+      },
+      {
+        "name": "08. Weakening",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 door",
+          "duration": "P",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Reduces the inherent strength of a door by 50%. All maneuvers to break down the door get a special bonus of +50."
+        }
+      },
+      {
+        "name": "09. Open Prison I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "5'R/lvl",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When cast, there is a 20% chance that all locks within the area of effect are unlocked (45% chance for Magic Locks). Roll separately for each lock in the area of effect. Rolls are open-ended, and the sophistication of the lock may modify the roll."
+        }
+      },
+      {
+        "name": "10. Opening II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 lock",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Opening I, except chance is 40% (90% for Magic Locks)."
+        }
+      },
+      {
+        "name": "11. Undoor I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "6\"x10'x10'",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Will vaporize a nonmagic door up to 6\" thick, 10' high and 10' wide (if the door is thicker than 6\" it will vaporize the closest 6 inches). This will only work on an object that is used as a door (i.e., a caster cannot Undoor a section of wall)."
+        }
+      },
+      {
+        "name": "12. Disarm II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 trap",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disarm I, except chance is 40% (90% for magical traps)."
+        }
+      },
+      {
+        "name": "13. Greater Magic Lock",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 door",
+          "duration": "1 hr/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Magic Lock, except duration is 1 hour per level and the chance that an Opening spell (or Open Prison) will work is reduced by 20%."
+        }
+      },
+      {
+        "name": "14. True Lock",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 door",
+          "duration": "1 hr/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Magic Lock, except door is unbreakable by normal means."
+        }
+      },
+      {
+        "name": "15. Undoor II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "2'x20'x20'",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Undoor I, except door can be up to 2'x20'x20'."
+        }
+      },
+      {
+        "name": "16. Open Prison II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "5'R/lvl",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Open Prison I, except chance is 40% (90% for Magic Locks)."
+        }
+      },
+      {
+        "name": "17. Undoor III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "3'x50'x50'",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Undoor I, except door can be up to 3'x50'x50'."
+        }
+      },
+      {
+        "name": "18. Magic Lock True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 lock",
+          "duration": "1 day/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Magic Lock, except duration is 1 day per level and the chance that an Opening spell (or Open Prison) will work is reduced by 40%."
+        }
+      },
+      {
+        "name": "19. Undoor True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 door",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Undoor I, except any single door is vaporized."
+        }
+      },
+      {
+        "name": "20. New Gate",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "8'x5'x6\"/lvl",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A doorway (8'x5') is created in any wall up to 6\" deep per level of the caster."
+        }
+      },
+      {
+        "name": "25. Lock Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 lock",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives the caster a 90% chance of opening a lock. The roll is open-ended and the sophistication of the lock may modify the roll."
+        }
+      },
+      {
+        "name": "30. Trap Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 trap",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lock Mastery, except its chances concern disarming traps."
+        }
+      },
+      {
+        "name": "50. Gate Cleaver",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can utilize any one of the lower level spells on this list each round."
+        }
+      }
+    ]
+  }
+}

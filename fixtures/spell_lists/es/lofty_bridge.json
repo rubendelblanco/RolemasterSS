@@ -1,0 +1,411 @@
+{
+  "name": "Puente Elevado",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Cerrada 3.5 - Puente Elevado. Hechizos de movimiento: Salto, Aterrizaje, Levitación, Volar, Partir, Puerta Larga, Teletransporte, Portal y versiones masivas.",
+    "spells": [
+      {
+        "name": "01. Salto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al objetivo saltar 50' lateralmente o 20' verticalmente en el asalto en que se lanza el hechizo."
+        }
+      },
+      {
+        "name": "02. Aterrizaje",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al objetivo aterrizar con seguridad tras una caída de hasta 20' por nivel del lanzador. Además, puede restar esa distancia a la severidad de cualquier caída mayor."
+        }
+      },
+      {
+        "name": "03. Partir I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador teletransporta al objetivo a un punto hasta 100' de distancia. No puede haber \"barreras\" interpuestas en línea directa. Una \"barrera\" es cualquier cosa que el objetivo no podría atravesar físicamente (p. ej. una puerta cerrada sí, un pozo no)."
+        }
+      },
+      {
+        "name": "04. Levitación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al objetivo moverse verticalmente arriba y abajo a 10' por asalto. No confiere control del movimiento horizontal."
+        }
+      },
+      {
+        "name": "05. Volar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo puede volar a 75' por asalto (aprox. 5 mph). Mientras Volar está activo, no se permite movimiento normal (caminar, correr, etc.)."
+        }
+      },
+      {
+        "name": "06. Portal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "3'x6'x3'",
+          "duration": "1 asalto/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Abre un portal de 3'x6'x3' en cualquier superficie sólida. Al terminar la duración, la superficie vuelve a su estado anterior. Si alguien está en el área cuando termina, es expulsado a su punto de entrada."
+        }
+      },
+      {
+        "name": "07. Volar II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Volar I, excepto que la velocidad es 150' por asalto."
+        }
+      },
+      {
+        "name": "08. Puerta Larga I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Partir I, excepto que el objetivo puede atravesar barreras especificando distancias exactas. Si el punto de llegada coincide con material sólido o líquido, no se mueve; en su lugar queda aturdido 1d10 asaltos (el lanzador igual gasta los PP)."
+        }
+      },
+      {
+        "name": "09. Partir III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Partir I, excepto que el alcance de movimiento es 300'."
+        }
+      },
+      {
+        "name": "10. Teletransporte I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga I, excepto que el alcance es 10 millas por nivel. Muy arriesgado según la familiaridad con el destino. Probabilidades de fallo: Lugar nunca visto (pero descrito) = 50%; Brevemente (1 h o menos) = 25%; Estudiado (24 h) = 10%; Estudiado cuidadosamente (7 días) = 1%; Vivido (1 año+) = 0.01%. En fallo, se determina la dirección del error (aleatorio) y 1d100 abierto para la distancia en pies."
+        }
+      },
+      {
+        "name": "11. Volar III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Volar I, excepto que la velocidad es 300' por asalto."
+        }
+      },
+      {
+        "name": "12. Puerta Larga III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga I, excepto que el alcance de movimiento es 300'."
+        }
+      },
+      {
+        "name": "13. Teletransporte III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "3 objetivos",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Teletransporte I, excepto que hasta 3 objetivos pueden ser trasladados al mismo lugar."
+        }
+      },
+      {
+        "name": "14. Portal Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "3'x6'x5'/nvl",
+          "duration": "1 asalto/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Portal, excepto que el portal es 3'x6' y hasta 5' por nivel de profundidad."
+        }
+      },
+      {
+        "name": "15. Puerta Larga V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga I, excepto que el alcance de movimiento es 500'."
+        }
+      },
+      {
+        "name": "16. Teletransporte V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "5 objetivos",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Teletransporte III, excepto que pueden trasladarse 5 objetivos."
+        }
+      },
+      {
+        "name": "17. Volar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Volar I, excepto que la velocidad es 450' por asalto."
+        }
+      },
+      {
+        "name": "18. Teletransporte X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "10 objetivos",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Teletransporte III, excepto que pueden trasladarse 10 objetivos."
+        }
+      },
+      {
+        "name": "19. Partir Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Partir I, excepto que pueden trasladarse tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "20. Teletransporte de Señor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "20 objetivos",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Teletransporte III, excepto que pueden trasladarse 20 objetivos."
+        }
+      },
+      {
+        "name": "25. Puerta Larga Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga I, excepto que pueden trasladarse tantos objetivos como el nivel del lanzador, hasta 300'."
+        }
+      },
+      {
+        "name": "30. Teletransporte Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Teletransporte III, excepto que pueden trasladarse tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "50. Teletransporte Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Teletransporte I, excepto que el alcance de movimiento es ilimitado."
+        }
+      }
+    ]
+  }
+}

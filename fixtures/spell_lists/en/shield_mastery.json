@@ -1,0 +1,343 @@
+{
+  "name": "Shield Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Essence 3.7 - Shield Mastery. Spells for enchanted armor (shield, robes, leather), Shield, Blur, Deflections, Bladeturn, Aim Untrue, Re-aiming, and mass versions.",
+    "spells": [
+      {
+        "name": "01. Enchanted Shield",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 shield",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster temporarily enchants a non-magic, non-metal shield with a special bonus of +10 to defensive bonus (DB)."
+        }
+      },
+      {
+        "name": "02. Shield",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates an invisible force shield in front of the caster. This functions as a normal shield (subtracting 25 from appropriate attacks, etc.), except it does not occupy a hand. This spell cannot be combined with a \"real\" shield."
+        }
+      },
+      {
+        "name": "03. Blur",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes target to appear blurred to attackers. This subtracts 10 from all attacks directed at the target."
+        }
+      },
+      {
+        "name": "04. Enchanted Robes",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 robe",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster temporarily enchants one robe to confer a special bonus of +10 to DB."
+        }
+      },
+      {
+        "name": "05. Deflections I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 missile",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can deflect any one missile that passes within 100' of him (caster must be able to see the missile). This causes 100 to be subtracted from the missile's attack."
+        }
+      },
+      {
+        "name": "06. Enchanted Leather",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 leather",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster temporarily enchants one non-magic suit of leather (usually a shirt) with a special bonus of +10 to DB."
+        }
+      },
+      {
+        "name": "07. Bladeturn I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 attack",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can deflect any one melee attack that he can see (and is within range). This causes 50 to be subtracted from the attack."
+        }
+      },
+      {
+        "name": "09. Deflections II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "2 missiles",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Deflections I, except 2 missiles may be affected."
+        }
+      },
+      {
+        "name": "10. Aim Untrue I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 missile",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can deflect any one missile that passes within 100' of him (caster must be able to see the missile). This causes the missile to automatically miss its target."
+        }
+      },
+      {
+        "name": "11. Bladeturn II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "2 attacks",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Bladeturn I, except 2 melee attacks may be affected."
+        }
+      },
+      {
+        "name": "13. Deflections III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "3 missiles",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Deflections I, except 3 missiles may be affected."
+        }
+      },
+      {
+        "name": "15. Aim Untrue II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "2 missiles",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Aim Untrue I, except 2 missiles may be affected."
+        }
+      },
+      {
+        "name": "17. Bladeturn III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "3 attacks",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Bladeturn I, except 3 melee attacks may be affected."
+        }
+      },
+      {
+        "name": "18. Re-aiming",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 missile",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "One missile passing within 100' of caster is reversed and makes an attack on its source. For the attack on the missile's source, use an OB of +5 (no other OB or DB modifiers apply)."
+        }
+      },
+      {
+        "name": "19. Aim Untrue III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "3 missiles",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Aim Untrue I, except 3 missiles may be affected."
+        }
+      },
+      {
+        "name": "20. Mass Deflections",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Deflections I, except as many missiles as the caster's level may be affected."
+        }
+      },
+      {
+        "name": "25. Mass Bladeturn",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Bladeturn I, except as many melee attacks as the caster's level may be affected."
+        }
+      },
+      {
+        "name": "30. Mass Aim Untrue",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mass Deflections, except missiles automatically miss."
+        }
+      },
+      {
+        "name": "50. Re-aiming True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "100'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Re-aiming, except all missiles passing within 100' of caster are reversed. Each missile attacks its firer with a +20 OB."
+        }
+      }
+    ]
+  }
+}

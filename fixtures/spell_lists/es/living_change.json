@@ -1,0 +1,275 @@
+{
+  "name": "Cambio Viviente",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Cerrada 3.4 - Cambio Viviente. Hechizos de encoger, agrandar, cambiar forma (Cambiar a Raza, Cambio, Cambio Verdadero, Cambiante), Conocimiento de Forma, Fusión, Invulnerabilidad, Traspasar y versiones masivas.",
+    "spells": [
+      {
+        "name": "01. Encoger Yo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede encogerse hasta un 50% de su masa normal (altura en la mayoría de situaciones). Conserva su fuerza anterior."
+        }
+      },
+      {
+        "name": "02. Agrandar Yo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encoger Yo, excepto que el lanzador puede aumentar su masa un 50% (altura en la mayoría de situaciones); no hay aumento de fuerza (excepto para movimiento)."
+        }
+      },
+      {
+        "name": "03. Conocimiento de Forma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador analizar la forma de otro ser para uso futuro con Cambio Verdadero."
+        }
+      },
+      {
+        "name": "05. Cambiar a Raza",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede alterar la forma del objetivo a la de cualquier raza humanoide deseada. La forma no puede ser específica (p. ej. Enano sí, el rey enano no). Solo se gana la forma física (el objetivo que se convierte en Enano no obtiene la visión en la oscuridad)."
+        }
+      },
+      {
+        "name": "07. Encoger",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encoger Yo, excepto que la disminución máxima es 10% de la masa del lanzador por nivel (hasta 90% de la masa del objetivo) y puede lanzarse sobre cualquier material vivo o que alguna vez estuvo vivo."
+        }
+      },
+      {
+        "name": "10. Agrandar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encoger, excepto que aumenta la masa del objetivo hasta 10% de la masa del lanzador por nivel."
+        }
+      },
+      {
+        "name": "11. Cambio",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cambiar a Raza, excepto que la alteración puede ser a cualquier forma orgánica entre 50% y 200% de la masa actual del objetivo. El objetivo no gana habilidades especiales del cambio."
+        }
+      },
+      {
+        "name": "13. Cambio Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cambio, excepto que la forma alterada puede ser la de un ser específico analizado con Conocimiento de Forma."
+        }
+      },
+      {
+        "name": "15. Cambiante",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cambio Verdadero, excepto que el lanzador puede asumir una forma diferente en cualquier momento durante el hechizo, concentrándose un asalto por cambio."
+        }
+      },
+      {
+        "name": "17. Fusión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo puede fusionarse con cualquier material sólido e inanimado. Mientras está fusionado, no puede moverse ni percibir. Al emerger, puede hacerlo por cualquier cara del material. No puede atravesar material más ancho que su cuerpo más 2 pies. El lanzador puede salir en cualquier momento hasta 1 hora por nivel; los demás deben salir tras un tiempo especificado (menor a 1 hora/nivel)."
+        }
+      },
+      {
+        "name": "19. Invulnerabilidad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo reduce la severidad de todos los críticos en uno (un crítico 'A' se trata como 'A' con modificación -20)."
+        }
+      },
+      {
+        "name": "20. Traspasar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo puede atravesar cualquier material inanimado hasta 1' por nivel; tarda un asalto en atravesar 2'."
+        }
+      },
+      {
+        "name": "25. Agrandar Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Agrandar, excepto que agranda simultáneamente (hasta 50% de la masa del lanzador) tantos objetivos como el nivel del lanzador. Todos deben agrandarse el mismo porcentaje."
+        }
+      },
+      {
+        "name": "30. Cambio Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cambio, excepto que afecta hasta el nivel del lanzador en objetivos (todos deben tomar el mismo tipo de forma)."
+        }
+      },
+      {
+        "name": "50. Fusión Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fusión, excepto que afecta hasta el nivel del lanzador en objetivos. Todos deben salir tras un tiempo fijado. Si el lanzador es uno de los objetivos, puede salir en cualquier momento y los demás pueden salir con él."
+        }
+      }
+    ]
+  }
+}

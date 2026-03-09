@@ -1,0 +1,258 @@
+{
+  "name": "Caminos Invisibles",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Cerrada 3.3 - Caminos Invisibles. Hechizos de invisibilidad: Invisible, Invisibilidad, Esfera de Invisibilidad, Invisibilidad Dividida, Invisible Masivo, Invisibilidad Masiva e Invisibilidad Verdadera.",
+    "spells": [
+      {
+        "name": "02. Invisible I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un único objeto se vuelve invisible (1 prenda, 1 cuerpo desnudo, etc.); hasta que pasen 24 horas, reciba un golpe violento (arma, caída, etc.) o realice un movimiento violento (p. ej. atacar)."
+        }
+      },
+      {
+        "name": "04. Invisibilidad I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisible I, excepto que todo lo que esté a 1' del objetivo se vuelve invisible mientras permanezca dentro y no se cumplan las condiciones de terminación de Invisible I."
+        }
+      },
+      {
+        "name": "06. Invisibilidad II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisibilidad I, excepto que el radio puede variar hasta 1' (elegido al lanzar). Esto hace más difícil ver al objetivo invisible."
+        }
+      },
+      {
+        "name": "08. Esfera de Invisibilidad I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisibilidad I, excepto que el radio es 10'."
+        }
+      },
+      {
+        "name": "10. Invisible III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "3 objetivos",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisible I, excepto que pueden afectarse 3 objetos."
+        }
+      },
+      {
+        "name": "11. Esfera de Invisibilidad II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Esfera de Invisibilidad I, excepto que el radio puede variar hasta 10' (elegido al lanzar)."
+        }
+      },
+      {
+        "name": "13. Invisible V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "5 objetivos",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisible I, excepto que pueden afectarse 5 objetos."
+        }
+      },
+      {
+        "name": "15. Invisibilidad Dividida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "2 objetivos",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisibilidad I, excepto que pueden afectarse dos objetivos (con un radio separado para cada uno)."
+        }
+      },
+      {
+        "name": "17. Invisible X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "10 objetivos",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisible I, excepto que pueden afectarse hasta 10 objetos."
+        }
+      },
+      {
+        "name": "18. Esfera de Invisibilidad Dividida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "2 objetivos",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisibilidad Dividida, excepto que los dos radios pueden variar hasta 10' (elegido al lanzar)."
+        }
+      },
+      {
+        "name": "20. Esfera de Invisibilidad III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisibilidad I, excepto que el radio puede variar hasta 20' (elegido al lanzar)."
+        }
+      },
+      {
+        "name": "25. Invisible Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisible I, excepto que pueden afectarse tantos objetos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "30. Invisibilidad Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "24 horas",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisibilidad I, excepto que pueden afectarse tantos objetivos como el nivel del lanzador. Cada objetivo tiene su propio radio."
+        }
+      },
+      {
+        "name": "50. Invisibilidad Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "24 horas",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invisibilidad II, excepto que solo afecta al lanzador. Si ataca, solo es visible durante el asalto inmediatamente posterior al ataque. Los golpes violentos no afectan este hechizo."
+        }
+      }
+    ]
+  }
+}
