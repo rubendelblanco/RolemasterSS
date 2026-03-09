@@ -53,9 +53,10 @@ describe('WeaponFumbleService', () => {
             expect(WeaponFumbleService.getColumnForWeaponType("1hc")).toBe("1he");
         });
 
-        test('2h, pa, th, mis, mounted map to themselves', () => {
+        test('2h, th, mis, mounted map to themselves; pa1h/pa2h map to pa', () => {
             expect(WeaponFumbleService.getColumnForWeaponType("2h")).toBe("2h");
-            expect(WeaponFumbleService.getColumnForWeaponType("pa")).toBe("pa");
+            expect(WeaponFumbleService.getColumnForWeaponType("pa1h")).toBe("pa");
+            expect(WeaponFumbleService.getColumnForWeaponType("pa2h")).toBe("pa");
             expect(WeaponFumbleService.getColumnForWeaponType("th")).toBe("th");
             expect(WeaponFumbleService.getColumnForWeaponType("mis")).toBe("mis");
             expect(WeaponFumbleService.getColumnForWeaponType("mounted")).toBe("mounted");

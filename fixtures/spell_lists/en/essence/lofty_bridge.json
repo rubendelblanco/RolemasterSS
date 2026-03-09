@@ -1,0 +1,411 @@
+{
+  "name": "Lofty Bridge",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Essence 3.5 - Lofty Bridge. Spells for movement: Leaping, Landing, Levitation, Fly, Leaving, Long Door, Teleport, Portal, and mass versions.",
+    "spells": [
+      {
+        "name": "01. Leaping",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows the target to leap 50' laterally or 20' vertically in the round that the spell is cast."
+        }
+      },
+      {
+        "name": "02. Landing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows the target to land safely after a fall up to 20' per level of the caster. In addition, the target may take that distance off the severity of any longer fall."
+        }
+      },
+      {
+        "name": "03. Leaving I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster teleports the target to a point up to 100' away. There can be no intervening \"barriers\" in a direct line between the target and the point. A \"barrier\" is defined as anything the target could not physically go through (e.g., a closed door is a barrier, a pit is not)."
+        }
+      },
+      {
+        "name": "04. Levitation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows target to move up and down vertically at a rate of 10' per round. The spell does not confer any ability to control horizontal movement."
+        }
+      },
+      {
+        "name": "05. Fly I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target can fly at a rate of 75' per round (approximately 5 mph). While Fly is active, normal movement (e.g., walking, running, etc.) is not allowed."
+        }
+      },
+      {
+        "name": "06. Portal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "3'x6'x3'",
+          "duration": "1 rnd/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Opens a 3'x6'x3' portal in any solid surface. When the duration ends, the surface is returned to its previous state. If anyone is in the area of effect when the spell ends, he is forced back to his point of entry."
+        }
+      },
+      {
+        "name": "07. Fly II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fly I, except rate is 150' per round."
+        }
+      },
+      {
+        "name": "08. Long Door I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leaving I, except target can pass through barriers by specifying exact distances. If the arrival point coincides with solid or liquid material, the target does not move; instead, he is stunned 1d10 rounds (the caster still expends the PPs for this spell)."
+        }
+      },
+      {
+        "name": "09. Leaving III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leaving I, except movement range is 300'."
+        }
+      },
+      {
+        "name": "10. Teleport I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Door I, except movement range is 10 miles per level. This can be very risky depending upon the caster's familiarity with the destination's locale. The following chances for failure exist: Never seen place (but has had described) = 50%; Been briefly (one hour or less) = 25%; Studied (been in for 24 hours) = 10%; Studied carefully (7 days) = 1%; Lived in (for at least one year) = 0.01%. In the case of failure, first determine the direction of the error (randomly). The amount of error is then determined by making a 1d100 (open-ended) to determine the distance of the error in feet."
+        }
+      },
+      {
+        "name": "11. Fly III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fly I, except rate is 300' per round."
+        }
+      },
+      {
+        "name": "12. Long Door III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Door I, except movement range is 300'."
+        }
+      },
+      {
+        "name": "13. Teleport III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "3 targets",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Teleport I, except up to 3 targets may be moved to same place."
+        }
+      },
+      {
+        "name": "14. Portal True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "3'x6'x5'/lvl",
+          "duration": "1 rnd/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Portal, except portal is 3'x6' and up to 5' per level deep."
+        }
+      },
+      {
+        "name": "15. Long Door V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Door I, except movement range is 500'."
+        }
+      },
+      {
+        "name": "16. Teleport V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "5 targets",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Teleport III, except 5 targets may be moved."
+        }
+      },
+      {
+        "name": "17. Fly True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fly I, except rate is 450' per round."
+        }
+      },
+      {
+        "name": "18. Teleport X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "10 targets",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Teleport III, except 10 targets may be moved."
+        }
+      },
+      {
+        "name": "19. Mass Leaving",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target/lvl",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leaving I, except as many targets as the caster's level may be moved."
+        }
+      },
+      {
+        "name": "20. Lord Teleport",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "20 targets",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Teleport III, except 20 targets can be moved."
+        }
+      },
+      {
+        "name": "25. Mass Long Door",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target/lvl",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Door I, except as many targets as the caster's level may be moved up to 300'."
+        }
+      },
+      {
+        "name": "30. Mass Teleport",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target/lvl",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Teleport III, except as many targets as the caster's level may be moved."
+        }
+      },
+      {
+        "name": "50. Teleport True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Teleport I, except with an unlimited movement range."
+        }
+      }
+    ]
+  }
+}

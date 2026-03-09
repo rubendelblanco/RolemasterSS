@@ -1,0 +1,309 @@
+{
+  "name": "Delving Ways",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Essence 2.2 - Delving Ways. Spells for analyzing text, stone, metal, gas, liquid, items, spells, corpses, and for conveyance (astral travel).",
+    "spells": [
+      {
+        "name": "02. Text Analysis I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can read text written in an unknown language, but only understand basic concepts of it. This spell gives the caster the equivalent of rank 2 knowledge in a written language."
+        }
+      },
+      {
+        "name": "03. Stone Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives nature and origin of natural stone, and when and how worked stone was obtained and worked."
+        }
+      },
+      {
+        "name": "04. Metal Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stone Analysis, except metal may be examined."
+        }
+      },
+      {
+        "name": "05. Gas Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stone Analysis, except gas may be examined."
+        }
+      },
+      {
+        "name": "07. Text Analysis II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Text Analysis I, except gives a complete technical analysis (vocabulary and syntax) but not an understanding of idioms (jargon), implications, or cultural references. This spell gives the caster the equivalent of rank 5 knowledge in a written language."
+        }
+      },
+      {
+        "name": "08. Liquid Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stone Analysis, except liquid may be examined."
+        }
+      },
+      {
+        "name": "10. Delving",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 item",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives significant details about an item's construction and purpose (not specific powers)."
+        }
+      },
+      {
+        "name": "11. Spell Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Provides analysis of an active spell; giving its duration, the list it was cast from, and its type (not its level or exactly what spell it is)."
+        }
+      },
+      {
+        "name": "14. Death Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 corpse",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives information concerning a being's death (weapon, spell, time since, etc.); must be cast in place of death (within 24 hours) or in the presence of body (no time limit)."
+        }
+      },
+      {
+        "name": "15. Text Analysis III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Text Analysis II, except everything but implications is known (e.g., answers to riddles are not known automatically). This spell gives the caster the equivalent of rank 8 knowledge in a written language."
+        }
+      },
+      {
+        "name": "16. Power Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Analysis, except will work on abilities/powers that are not currently active. One item, person, or place may be examined to see if it has power, which realm the power is from, a general idea of its origin, and its basic configuration."
+        }
+      },
+      {
+        "name": "17. Conveyance",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster's awareness leaves his body (which is inactive for the duration of the spell) and may travel at 1 mile per minute. However, it can only travel 10' per round when moving through solid material or when observing the world. If the spell expires before the caster returns to his body, he will return to his body at the fixed rate of 500' per round, and upon returning to his body, he must make a RR modified by -50 or die (the attack level is equal to the number of rounds overstayed)."
+        }
+      },
+      {
+        "name": "18. Death's Delving",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 corpse",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Death Analysis, except gives a visual image of the killer, and a vague reason for death (e.g., revenge, robbery, accident, etc.)."
+        }
+      },
+      {
+        "name": "20. Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any of the lower level spells may be used together on one item, person, or place (Conveyance is not included)."
+        }
+      },
+      {
+        "name": "25. Mass Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 tgt/rnd",
+          "duration": "1 rnd/lvl",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Analysis, except one item per round may be examined."
+        }
+      },
+      {
+        "name": "30. Power Analysis True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Power Analysis, except exact origin, creator, and detailed purpose are given; this includes exact spell (when appropriate)."
+        }
+      },
+      {
+        "name": "50. Conveyance True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Conveyance, except rate is 10 miles per minute (50' per round through solid material and while observing)."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,411 @@
+{
+  "name": "Spirit Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Essence 3.10 - Spirit Mastery. Spells for sleep, charm, confusion, suggestion, hold, mastery, quest, Words (Stunning, Pain, Sleep, Discord, Calling, Death), Phrase, Mass Word, and Spirit Mastery.",
+    "spells": [
+      {
+        "name": "01. Sleep V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes target(s) to fall into a natural sleep. This spell can affect a number of targets whose levels total up to 5. The caster must be able to see all the targets. At the time of casting, the caster should designate target priority (e.g., affect 1st target; if levels are left, affect 2nd target; etc.). The first 2 rounds of sleep are magical (target cannot be awakened through normal means)."
+        }
+      },
+      {
+        "name": "02. Charm Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "1 hour/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target humanoid believes the caster is a good friend."
+        }
+      },
+      {
+        "name": "03. Sleep VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sleep V, except 7 levels can be affected."
+        }
+      },
+      {
+        "name": "04. Confusion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/5 failure",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is incapable of making decisions or initiating action. However, the target may continue to fight if already engaged; he may also fight in self defense."
+        }
+      },
+      {
+        "name": "05. Suggestion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target will follow a single suggested act that is not completely alien to him (e.g., no suicide suggestions, no blinding himself suggestions, etc.)."
+        }
+      },
+      {
+        "name": "06. Sleep X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sleep V, except 10 levels may be affected."
+        }
+      },
+      {
+        "name": "07. Hold Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target humanoid is held to 25% activity per round."
+        }
+      },
+      {
+        "name": "08. Master of Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target humanoid must obey caster. However, he will not perform any act that is completely alien to him (e.g., no suicide suggestions, no blinding himself, etc.)."
+        }
+      },
+      {
+        "name": "09. Lord Sleep",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sleep V, except a total of 20 levels may be affected."
+        }
+      },
+      {
+        "name": "10. True Charm",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "1 hour/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Charm Kind, except any sentient creature may be affected."
+        }
+      },
+      {
+        "name": "11. Quest",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is given one task, failure results in a penalty determined by the Gamemaster (task must be within capabilities of target). If the target ignores the quest, he will suffer the same effects as for failure."
+        }
+      },
+      {
+        "name": "12. Word of Stunning",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] Target is stunned for 1 round per 10 failure."
+        }
+      },
+      {
+        "name": "13. Word of Pain",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] As Word of Stunning, except target takes 50% of remaining hits upon failure."
+        }
+      },
+      {
+        "name": "14. Hold True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hold Kind, except any sentient being can be affected."
+        }
+      },
+      {
+        "name": "15. Word of Sleep",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] As Word of Stunning, except target falls into a natural sleep. The first minute of sleep is magical; the target cannot be awakened through normal means."
+        }
+      },
+      {
+        "name": "16. Word of Discord",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "1 day/10 fail",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] As Word of Stunning, except target will not cooperate or agree with anyone for 1 day per 10 failure."
+        }
+      },
+      {
+        "name": "17. Word of Calling",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/10 fail",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] Target is forced to come and face the caster (fighting to get there if necessary). Once he faces the caster, he must remain immobile for 1 round per 10 failure. For the duration of this spell, the caster must remain immobile, or the spell is dispelled."
+        }
+      },
+      {
+        "name": "18. Waiting Word",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "1 day/lvl",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] Any of the \"Words\" above can be set to go off at a specified time or if there is movement within a designated 10' radius."
+        }
+      },
+      {
+        "name": "19. Word of Death",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] Target suffers the results of an 'E' critical strike; caster chooses critical type."
+        }
+      },
+      {
+        "name": "20. True Quest",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Quest, except failure is punished by the target suffering five 'E' critical strikes (choose which critical types randomly)."
+        }
+      },
+      {
+        "name": "25. Phrase",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] As Word of Stunning, except any three different \"Words\" may be used on the same round (a separate RR roll must be made for each one). If all three words are the same, and all three RR's fail, the effect is permanent."
+        }
+      },
+      {
+        "name": "30. Mass Word",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] As Word of Stunning, except any \"Word\" may be used and it will affect a number of levels equal to the level of the caster (as Sleep)."
+        }
+      },
+      {
+        "name": "50. Spirit Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can exercise mastery over multiple sentient beings. Duration is 1 round per level. Affects a number of targets whose levels total up to the caster's level (as with Sleep spells). Affected targets must obey the caster's commands, subject to the same limitations as Master of Kind."
+        }
+      }
+    ]
+  }
+}

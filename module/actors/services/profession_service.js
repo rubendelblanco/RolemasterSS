@@ -1,5 +1,6 @@
 // module/actors/services/profession_service.js
 import RaceService from "./race_service.js";
+import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
 
 /**
  * Apply profession to actor: add profession item and create skill categories with costs.
@@ -126,6 +127,7 @@ export default class ProfessionService {
         }
 
         // Import basic spell lists from compendium to actor (for non-none spell users)
+        // Spells embedded in system.spells are expanded into spell Items for hotbar/casting
         const basicSpellLists = professionData.system?.basicSpellLists ?? [];
         let spellListsImported = 0;
         for (const entry of basicSpellLists) {
@@ -136,7 +138,9 @@ export default class ProfessionService {
                 if (!doc || doc.type !== "spell_list") continue;
                 const itemData = doc.toObject();
                 delete itemData._id;
-                await actor.createEmbeddedDocuments("Item", [itemData]);
+                const created = await actor.createEmbeddedDocuments("Item", [itemData]);
+                const spellList = created[0];
+                await expandSpellListEmbeddedSpells(actor, spellList);
                 spellListsImported++;
             } catch (err) {
                 console.warn(`RMSS: Could not import spell list ${entry?.name ?? uuid}:`, err);

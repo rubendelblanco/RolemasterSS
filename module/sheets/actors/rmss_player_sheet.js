@@ -9,6 +9,7 @@ import SkillDropHandler from "../../actors/drop_handlers/skill_drop_handler.js";
 import SkillCategoryDropHandler from "../../actors/drop_handlers/skill_category_drop_handler.js";
 import RaceDropHandler from "../../actors/drop_handlers/race_drop_handler.js";
 import ProfessionDropHandler from "../../actors/drop_handlers/profession_drop_handler.js";
+import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
 import WeaponPreferenceDialog from "../../actors/dialogs/weapon_preference_dialog.js";
 import StatAssignmentDialog from "../../actors/dialogs/stat_assignment_dialog.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
@@ -123,11 +124,112 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       return handler.handle(itemData, event, data);
     }
 
+    if (itemData.type === "spell_list") {
+      const spellListName = itemData.name;
+      if (!this.actor.items.find(i => i.type === "skill" && i.name === spellListName)) {
+        const created = await this._createSkillForSpellList(spellListName);
+        if (!created) return;
+      }
+      const spellListData = foundry.utils.duplicate(itemData);
+      delete spellListData._id;
+      const created = await this.actor.createEmbeddedDocuments("Item", [spellListData]);
+      const spellList = created[0];
+      const count = await expandSpellListEmbeddedSpells(this.actor, spellList);
+      ui.notifications.info(
+        count > 0
+          ? game.i18n.format("rmss.spell_lists.imported_with_spells", { name: spellList.name, count })
+          : game.i18n.format("rmss.spell_lists.imported", { name: spellList.name })
+      );
+      return;
+    }
+
     return super._onDropItem(event, data);
   }
 
   _prepareItems(context) {
     return ItemService.prepareItems(this.actor, context);
+  }
+
+  /**
+   * When dropping a spell list without a matching skill, show dialog to create skill.
+   * Returns the created skill or null if cancelled.
+   */
+  async _createSkillForSpellList(spellListName) {
+    const actor = this.actor;
+    const categories = actor.items.filter(i =>
+      i.type === "skill_category" && i.system?.slug
+    );
+    if (categories.length === 0) {
+      ui.notifications.warn(game.i18n.localize("rmss.spell_lists.no_skill_categories"));
+      return null;
+    }
+    const spellCategories = categories.filter(c =>
+      CONFIG.rmss?.skill_tab_by_slug?.[c.system.slug] === "spells"
+    );
+    const options = (spellCategories.length > 0 ? spellCategories : categories)
+      .map(c => ({
+        value: c.id,
+        slug: c.system.slug,
+        label: c.name
+      }));
+
+    return new Promise((resolve) => {
+      new Dialog({
+        title: game.i18n.format("rmss.spell_lists.create_skill_title", { name: spellListName }),
+        content: `
+          <form>
+            <p>${game.i18n.format("rmss.spell_lists.create_skill_prompt", { name: spellListName })}</p>
+            <div class="form-group">
+              <label>${game.i18n.localize("rmss.spell_lists.skill_category")}</label>
+              <select name="categoryId">
+                ${options.map(o => `<option value="${o.value}" data-slug="${o.slug}">${o.label}</option>`).join("")}
+              </select>
+            </div>
+          </form>`,
+        buttons: {
+          create: {
+            icon: "<i class='fas fa-check'></i>",
+            label: game.i18n.localize("Create"),
+            callback: async (html) => {
+              const categoryId = html.find("[name=categoryId]").val();
+              const category = actor.items.get(categoryId);
+              if (!category) {
+                resolve(null);
+                return;
+              }
+              const skillData = {
+                name: spellListName,
+                type: "skill",
+                system: {
+                  category: category.id,
+                  categorySlug: category.system.slug,
+                  ranks: 0,
+                  development_cost: category.system.development_cost ?? "0",
+                  new_ranks: { value: 0, max: 3, max_default: 3 },
+                  rank_bonus: -15,
+                  category_bonus: 0,
+                  item_bonus: 0,
+                  special_bonus_1: 0,
+                  special_bonus_2: 0,
+                  total_bonus: 0,
+                  favorite: false,
+                  designation: "None",
+                  offensive_skill: "none"
+                }
+              };
+              const created = await actor.createEmbeddedDocuments("Item", [skillData]);
+              resolve(created[0]);
+            }
+          },
+          cancel: {
+            icon: "<i class='fas fa-times'></i>",
+            label: game.i18n.localize("Cancel"),
+            callback: () => resolve(null)
+          }
+        },
+        default: "create"
+      }).render(true);
+    });
   }
 
   /** @override - Inject pp_development_progression when realm changes (single update, no flicker) */

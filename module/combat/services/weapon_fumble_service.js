@@ -65,7 +65,8 @@ export default class WeaponFumbleService {
                 return "1he";
             case "2h":
                 return "2h";
-            case "pa":
+            case "pa1h":
+            case "pa2h":
                 return "pa";
             case "th":
                 return "th";

@@ -1,0 +1,343 @@
+{
+  "name": "Elemental Shields",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Essence 2.2 - Elemental Shields. Spells for resisting and armoring against light, heat, cold, lightning, fire, and ice. No spells on this list are cumulative with each other.",
+    "spells": [
+      {
+        "name": "01. Resist Light",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is totally protected from all natural light (includes glare, sunburn, and temporary blinding; but not lightning). This also gives a special modification of +10 to RRs versus light (electricity), and a special modification of +10 to target's DB against elemental electricity attacks."
+        }
+      },
+      {
+        "name": "02. Resist Heat",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Resist Light, except protects against natural heat to 200°F and the modifications apply to heat."
+        }
+      },
+      {
+        "name": "03. Resist Cold",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Resist Light, except protects against natural cold to -20°F and the modifications apply to cold."
+        }
+      },
+      {
+        "name": "04. Resist Light Sphere",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Resist Light, except all beings within a 10' radius of target are protected."
+        }
+      },
+      {
+        "name": "05. Resist Heat Sphere",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Resist Heat, except all beings within a 10' radius of target are protected."
+        }
+      },
+      {
+        "name": "06. Resist Cold Sphere",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Resist Cold, except all beings within a 10' radius of target are protected."
+        }
+      },
+      {
+        "name": "08. Lightarmor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Resist Light, except protects against all natural light and electricity and the modifications are +20 for RRs and +20 for DB against attacks."
+        }
+      },
+      {
+        "name": "09. Heatarmor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lightarmor, except protects against heat."
+        }
+      },
+      {
+        "name": "10. Coldarmor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lightarmor, except protects against cold."
+        }
+      },
+      {
+        "name": "11. Lightarmor Sphere",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lightarmor, except protects all beings within 10'R."
+        }
+      },
+      {
+        "name": "12. Heatarmor Sphere",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Heatarmor, except protects all beings within 10'R."
+        }
+      },
+      {
+        "name": "13. Coldarmor Sphere",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Coldarmor, except protects all beings within 10'R."
+        }
+      },
+      {
+        "name": "15. Lightning Armor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lightarmor, except it also decreases all electrical concussion hits (e.g., from shock bolts and lightning bolts) by half, and decreases electrical critical strikes by one level (e.g., 'A's are ignored, 'B's become 'A's, 'C's become 'B's, etc.)."
+        }
+      },
+      {
+        "name": "17. Fire Armor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lightning Armor, except fire and heat spells are affected (e.g., fire bolts and fireballs)."
+        }
+      },
+      {
+        "name": "19. Ice Armor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lightning Armor, except cold and ice spells are affected (e.g., ice bolts and coldballs)."
+        }
+      },
+      {
+        "name": "20. Mass Lightarmor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 tgt/lvl",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lightarmor, except as many targets as the caster's level can be affected."
+        }
+      },
+      {
+        "name": "25. Mass Heatarmor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 tgt/lvl",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Heatarmor, except as many targets as the caster's level can be affected."
+        }
+      },
+      {
+        "name": "30. Mass Coldarmor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 tgt/lvl",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Coldarmor, except as many targets as the caster's level can be affected."
+        }
+      },
+      {
+        "name": "50. True Armor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Acts as Lightning Armor, Fire Armor, and Ice Armor all at the same time."
+        }
+      }
+    ]
+  }
+}

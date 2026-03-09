@@ -4,8 +4,8 @@
 import EquipmentService from "../module/actors/services/equipment_service.js";
 
 describe("EquipmentService", () => {
-  const mockWeapon1H = { type: "weapon", system: { equipped: true, hands: 1, isNaturalWeapon: false } };
-  const mockWeapon2H = { type: "weapon", system: { equipped: true, hands: 2, isNaturalWeapon: false } };
+  const mockWeapon1H = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false } };
+  const mockWeapon2H = { type: "weapon", system: { equipped: true, type: "2h", isNaturalWeapon: false } };
   const mockNaturalWeapon = { type: "weapon", system: { equipped: false, hands: 1, isNaturalWeapon: true } };
   const mockCreatureAttack = { type: "creature_attack", system: {} };
   const mockShield = { type: "armor", system: { equipped: true, isShield: true } };
@@ -17,6 +17,18 @@ describe("EquipmentService", () => {
     });
     test("2H weapon returns 2", () => {
       expect(EquipmentService.getWeaponHands(mockWeapon2H)).toBe(2);
+    });
+    test("pole arm 1h (pa1h) returns 1", () => {
+      const paWeapon = { type: "weapon", system: { type: "pa1h", isNaturalWeapon: false } };
+      expect(EquipmentService.getWeaponHands(paWeapon)).toBe(1);
+    });
+    test("pole arm 2h (pa2h) returns 2", () => {
+      const paWeapon = { type: "weapon", system: { type: "pa2h", isNaturalWeapon: false } };
+      expect(EquipmentService.getWeaponHands(paWeapon)).toBe(2);
+    });
+    test("missile (mis) returns 2", () => {
+      const misWeapon = { type: "weapon", system: { type: "mis", isNaturalWeapon: false } };
+      expect(EquipmentService.getWeaponHands(misWeapon)).toBe(2);
     });
     test("natural weapon returns 0", () => {
       expect(EquipmentService.getWeaponHands(mockNaturalWeapon)).toBe(0);
@@ -82,13 +94,13 @@ describe("EquipmentService", () => {
   describe("canEquip", () => {
     test("can equip when under limit", () => {
       const actor = { items: [] };
-      const weapon = { type: "weapon", system: { hands: 1, isNaturalWeapon: false } };
+      const weapon = { type: "weapon", system: { type: "1he", isNaturalWeapon: false } };
       const result = EquipmentService.canEquip(actor, weapon);
       expect(result.valid).toBe(true);
     });
     test("cannot equip when would exceed 2 hands", () => {
       const actor = { items: [mockWeapon1H, mockShield] };
-      const newWeapon = { type: "weapon", system: { hands: 1, isNaturalWeapon: false } };
+      const newWeapon = { type: "weapon", system: { type: "1he", isNaturalWeapon: false } };
       const result = EquipmentService.canEquip(actor, newWeapon);
       expect(result.valid).toBe(false);
       expect(result.currentHands).toBe(2);

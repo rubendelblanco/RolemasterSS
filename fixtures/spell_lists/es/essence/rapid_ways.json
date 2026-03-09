@@ -1,0 +1,377 @@
+{
+  "name": "Caminos Rápidos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Cerrada 3.6 - Caminos Rápidos. Hechizos de movimiento y tasa de acción mejorados: Correr, Velocidad, Lectura Rápida, Esprintar, Esprintar Rápido, Prisa y versiones masivas.",
+    "spells": [
+      {
+        "name": "01. Correr I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo puede correr al doble de su ritmo normal de marcha; gasta puntos de agotamiento como si caminara. Al detenerse o realizar otra acción, el hechizo se cancela."
+        }
+      },
+      {
+        "name": "02. Velocidad I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo actúa al doble de su ritmo normal (200% de actividad por asalto), pero después debe pasar tantos asaltos como los acelerados a mitad de ritmo (solo 50% de actividad normal por asalto)."
+        }
+      },
+      {
+        "name": "03. Lectura Rápida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo lee a un ritmo de 10 páginas por minuto."
+        }
+      },
+      {
+        "name": "04. Velocidad II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad I, excepto que la duración es 2 asaltos para un objetivo o 1 asalto para cada uno de 2 objetivos."
+        }
+      },
+      {
+        "name": "05. Esprintar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo puede correr al triple de su ritmo normal de marcha y solo gasta puntos de agotamiento como si caminara. Al detenerse o realizar otra acción, el hechizo se cancela."
+        }
+      },
+      {
+        "name": "06. Prisa I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo actúa al doble de su ritmo normal (200% de actividad)."
+        }
+      },
+      {
+        "name": "07. Velocidad III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad I, excepto que la duración es 3 asaltos repartidos entre uno y tres objetivos (en cualquier combinación)."
+        }
+      },
+      {
+        "name": "08. Prisa II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prisa I, excepto que la duración es 2 asaltos para un objetivo o 1 asalto para cada uno de 2 objetivos."
+        }
+      },
+      {
+        "name": "09. Esprintar Rápido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo puede correr a cuatro veces su ritmo normal de marcha y solo gasta puntos de agotamiento como si caminara, pero al detenerse o realizar otra acción el hechizo se cancela."
+        }
+      },
+      {
+        "name": "10. Velocidad V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad III, excepto que la duración es 5 asaltos repartidos entre uno y cinco objetivos (en cualquier combinación)."
+        }
+      },
+      {
+        "name": "11. Correr III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "3 objetivos",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Correr I, excepto que pueden afectarse 3 objetivos."
+        }
+      },
+      {
+        "name": "12. Prisa III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prisa I, excepto que la duración es 3 asaltos repartidos entre uno y tres objetivos (en cualquier combinación)."
+        }
+      },
+      {
+        "name": "14. Esprintar III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "3 objetivos",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Esprintar I, excepto que pueden afectarse 3 objetivos."
+        }
+      },
+      {
+        "name": "15. Prisa V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prisa III, excepto que la duración es 5 asaltos repartidos entre uno y cinco objetivos (en cualquier combinación)."
+        }
+      },
+      {
+        "name": "16. Correr V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "5 objetivos",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Correr I, excepto que pueden afectarse 5 objetivos."
+        }
+      },
+      {
+        "name": "17. Velocidad X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad III, excepto que la duración es 10 asaltos repartidos entre uno y diez objetivos (en cualquier combinación)."
+        }
+      },
+      {
+        "name": "18. Esprintar V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "5 objetivos",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Esprintar I, excepto que pueden afectarse 5 objetivos."
+        }
+      },
+      {
+        "name": "20. Prisa X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prisa III, excepto que la duración es 10 asaltos repartidos entre uno y diez objetivos (en cualquier combinación)."
+        }
+      },
+      {
+        "name": "25. Correr Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Correr I, excepto que pueden afectarse tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "30. Velocidad Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad III, excepto que la duración es un número de asaltos igual al nivel del lanzador, repartidos entre cualquier número de objetivos hasta el nivel del lanzador (en cualquier combinación)."
+        }
+      },
+      {
+        "name": "50. Prisa Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prisa III, excepto que la duración es un número de asaltos igual al nivel del lanzador, repartidos entre cualquier número de objetivos hasta el nivel del lanzador (en cualquier combinación)."
+        }
+      }
+    ]
+  }
+}

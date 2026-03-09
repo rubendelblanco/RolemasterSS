@@ -1,0 +1,411 @@
+{
+  "name": "Ilusiones Menores",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Abierta 2.6 - Ilusiones Menores. Hechizos de ventriloquia, espejismos (sonido/luz, sabor/olor), ilusiones, fantasmas, glamour de luz e ilusiones en espera (retardadas).",
+    "spells": [
+      {
+        "name": "01. Ventriloquia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 punto",
+          "duration": "C",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede hablar y su voz parecerá provenir de cualquier punto que desee dentro de 100' (el punto debe estar en su campo de visión)."
+        }
+      },
+      {
+        "name": "02. Espejismo Sonido/Luz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "10'R",
+          "duration": "10 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea cualquier imagen, escena o sonidos simples e inmóviles en un área de hasta 10' de radio, o un conjunto de sonidos inmóviles en un área de hasta 10' de radio."
+        }
+      },
+      {
+        "name": "03. Espejismo Sabor/Olor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "10 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Espejismo Sonido/Luz, excepto que crea un conjunto de olores inmóviles en el área de efecto, o un conjunto de sabores inmóviles en el área de efecto."
+        }
+      },
+      {
+        "name": "04. Ilusiones II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea una imagen o escena simple e inmóvil en un área de hasta 10' de radio. También puede elegirse una opción: a) añadir un sentido extra (no táctil ni Presencia), b) duplicar la duración, c) duplicar el alcance, o d) duplicar el radio del área de efecto. Toda el área debe estar dentro del alcance y en el campo de visión del lanzador."
+        }
+      },
+      {
+        "name": "05. Fantasma I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea la imagen de un objeto o ser que se moverá como el lanzador quiera (mientras se concentre). Al dejar de concentrarse, la imagen permanece pero deja de moverse. Puede retomar la concentración más tarde para moverla de nuevo (si la duración no ha expirado). La imagen puede ser de cualquier tamaño que quepa en el radio."
+        }
+      },
+      {
+        "name": "06. Glamour de Luz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objeto",
+          "duration": "1 día/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cambia la apariencia visual de un objeto. El objetivo no puede ser mayor de 10 libras por nivel."
+        }
+      },
+      {
+        "name": "07. Ilusión en Espera II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusiones II, excepto que puede retrasarse hasta 24 horas. Al lanzar, el lanzador debe decidir el disparador: a) período de tiempo, b) movimientos específicos, c) sonidos específicos, d) olores específicos, e) sabores específicos. Si un sentido activa el hechizo, debe incluirse en la ilusión."
+        }
+      },
+      {
+        "name": "08. Ilusiones III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusiones II, excepto que pueden elegirse dos opciones. La misma opción puede elegirse más de una vez."
+        }
+      },
+      {
+        "name": "09. Fantasma II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma I, excepto que puede elegirse una opción: a) añadir sentido extra, b) duplicar duración, c) duplicar alcance, d) duplicar radio, e) crear otra imagen que se mueva independientemente, o f) añadir sonidos/movimientos repetitivos limitados que no requieren concentración."
+        }
+      },
+      {
+        "name": "10. Fantasma en Espera II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma II, excepto que puede retrasarse como Ilusión en Espera II. El fantasma se moverá y actuará con un comando simple (al lanzar), o puede dar un breve discurso (si el sonido era uno de los sentidos incluidos)."
+        }
+      },
+      {
+        "name": "11. Ilusión en Espera III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión en Espera II, excepto que pueden elegirse dos opciones."
+        }
+      },
+      {
+        "name": "12. Fantasma III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma II, excepto que pueden elegirse dos opciones."
+        }
+      },
+      {
+        "name": "13. Ilusiones V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusiones III, excepto que pueden elegirse cuatro opciones."
+        }
+      },
+      {
+        "name": "14. Ilusión en Espera IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión en Espera III, excepto que pueden elegirse tres opciones."
+        }
+      },
+      {
+        "name": "15. Fantasma en Espera III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma en Espera II, excepto que pueden elegirse dos opciones."
+        }
+      },
+      {
+        "name": "16. Ilusión en Espera V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión en Espera III, excepto que pueden elegirse cuatro opciones."
+        }
+      },
+      {
+        "name": "17. Fantasma IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma III, excepto que pueden elegirse tres opciones."
+        }
+      },
+      {
+        "name": "18. Fantasma en Espera IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma en Espera III, excepto que pueden elegirse tres opciones."
+        }
+      },
+      {
+        "name": "19. Ilusiones VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusiones III, excepto que pueden elegirse seis opciones."
+        }
+      },
+      {
+        "name": "20. Ilusión en Espera VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión en Espera III, excepto que pueden elegirse cinco opciones."
+        }
+      },
+      {
+        "name": "25. Fantasma V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma III, excepto que pueden elegirse cuatro opciones."
+        }
+      },
+      {
+        "name": "30. Ilusiones X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusiones III, excepto que pueden elegirse nueve opciones."
+        }
+      },
+      {
+        "name": "50. Fantasma X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma III, excepto que pueden elegirse nueve opciones."
+        }
+      }
+    ]
+  }
+}

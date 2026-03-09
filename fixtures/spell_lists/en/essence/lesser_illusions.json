@@ -1,0 +1,411 @@
+{
+  "name": "Lesser Illusions",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Essence 2.6 - Lesser Illusions. Spells for ventriloquism, mirages (sound/light, taste/smell), illusions, phantasms, light glamour, and waiting (delayed) illusions.",
+    "spells": [
+      {
+        "name": "01. Ventriloquism",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 point",
+          "duration": "C",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can speak and his voice will appear to come from any point that he wants within 100' (point must be in his field of vision)."
+        }
+      },
+      {
+        "name": "02. Sound/Light Mirage",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "10'R",
+          "duration": "10 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates any simple, immobile image, scene, or sounds in an area up to 10' radius, or creates a set of immobile sounds in an area up to 10' radius."
+        }
+      },
+      {
+        "name": "03. Taste/Smell Mirage",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "10 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sound/Light Mirage, except creates a set of immobile smells in the area of effect, or a set of immobile tastes in the area of effect."
+        }
+      },
+      {
+        "name": "04. Illusions II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a simple, immobile image or scene up to an area of 10' radius. One of the following options may also be chosen: a) an extra sense can be added (not the tactile or Presence senses), b) the duration can be doubled, c) the range can be doubled, or d) the radius of the area of effect can be doubled. All parts of the area of effect must be within the range of the spell (and all of the area of effect must be in the caster's field of vision)."
+        }
+      },
+      {
+        "name": "05. Phantasm I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates the image of one object or being that will move however the caster wants (as long as the caster concentrates). When the caster stops concentrating, the image remains but stops moving. The caster may resume concentration again later and make the image move again (presuming that the duration has not expired). The image can be of any size that would fit in the radius."
+        }
+      },
+      {
+        "name": "06. Light Glamour",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 object",
+          "duration": "1 day/lvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Changes the visual appearance of one object. The target can be no larger than 10 pounds per level."
+        }
+      },
+      {
+        "name": "07. Waiting Illusion II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "10'R",
+          "duration": "varies",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Illusion II, except it can be delayed up to 24 hours. At the time of casting, the caster must decide upon the trigger for the spell. The caster can choose one of the following: a) time period, b) specified movements, c) specified sounds, d) specified smells, e) specified tastes. If a sense is used to trigger the spell, that sense must be included in the illusion."
+        }
+      },
+      {
+        "name": "08. Illusions III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Illusion II, except two options may be chosen. The same option may be chosen more than once (e.g., range doubled twice)."
+        }
+      },
+      {
+        "name": "09. Phantasm II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Phantasm I, except one of the following options may also be chosen: a) an extra sense can be added (not the tactile or Presence senses), b) the duration can be doubled, c) the range can be doubled, d) the radius of the area of effect can be doubled, e) another image can be created and moved independently of the first, or f) limited repetitious sounds, movements, etc. can be added that do not require concentration of the caster."
+        }
+      },
+      {
+        "name": "10. Waiting Phantasm II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10'R",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Phantasm II, except it can be delayed as in Waiting Illusion II. The phantasm will move and act if given a simple command (at the time of casting), or it can deliver a short speech (if sound was one of the included senses)."
+        }
+      },
+      {
+        "name": "11. Waiting Illusion III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10'R",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waiting Illusion II, except two options may be chosen."
+        }
+      },
+      {
+        "name": "12. Phantasm III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Phantasm II, except two options may be chosen."
+        }
+      },
+      {
+        "name": "13. Illusions V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Illusions III, except four options may be chosen."
+        }
+      },
+      {
+        "name": "14. Waiting Illusion IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "10'R",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waiting Illusion III, except three options may be chosen."
+        }
+      },
+      {
+        "name": "15. Waiting Phantasm III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "10'R",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waiting Phantasm II, except two options may be chosen."
+        }
+      },
+      {
+        "name": "16. Waiting Illusion V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "10'R",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waiting Illusion III, except four options may be chosen."
+        }
+      },
+      {
+        "name": "17. Phantasm IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Phantasm III, except three options may be chosen."
+        }
+      },
+      {
+        "name": "18. Waiting Phantasm IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "10'R",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waiting Phantasm III, except three options may be chosen."
+        }
+      },
+      {
+        "name": "19. Illusions VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Illusions III, except six options may be chosen."
+        }
+      },
+      {
+        "name": "20. Waiting Illusion VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "10'R",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waiting Illusion III, except five options may be chosen."
+        }
+      },
+      {
+        "name": "25. Phantasm V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Phantasm III, except four options may be chosen."
+        }
+      },
+      {
+        "name": "30. Illusions X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Illusion III, except nine options may be chosen."
+        }
+      },
+      {
+        "name": "50. Phantasm X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Phantasm III, except nine options may be chosen."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "name": "Spell Reins",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Essence 3.9 - Spell Reins. Spells for storing spells, identifying casting, Spell Hold, Spell Bending, Reverse Spell, Power Loan, and true versions.",
+    "spells": [
+      {
+        "name": "01. Spell Store",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may cast this spell with any spell he wants to store. The spell to be stored must be cast within one minute after the Spell Store is cast. The stored spell may then be cast later as an instantaneous spell. The Spell Store costs the same number of PPs as the spell that is stored. No other spell may be cast while a spell is stored."
+        }
+      },
+      {
+        "name": "02. Identify Casting",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "self",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "If the target of this spell is casting a spell, the caster will know what realm the spell is from and what type of spell the target is casting."
+        }
+      },
+      {
+        "name": "03. Spell Hold I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 spell",
+          "duration": "1 rnd",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The attack spell that is targeted with this spell must make an RR (using its caster's level as its level). If the RR succeeds, it will attack its original target as intended; otherwise, the effects of that spell are delayed for 1 round. After 1 round, if the target of the held spell has moved more than 20', the held spell may randomly affect another target within 10' of the original target point. If not cast upon the original target, Basic attack spells will suffer a special modification of -20 and Elemental attack spells suffer a special modification of -30."
+        }
+      },
+      {
+        "name": "05. Spell Bending I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can deflect 1 elemental attack spell. The incoming spell must make an RR (using its caster's level as its level). If the RR succeeds, it will attack its target normally; otherwise, its attack roll is modified by -10 per 10 failure."
+        }
+      },
+      {
+        "name": "06. Spell Hold II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 spell",
+          "duration": "2 rnds",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Hold I, except attack spells can be held up to 2 rounds."
+        }
+      },
+      {
+        "name": "08. Spell Bending II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Bending I, except attack roll is modified by -20 per 10 failure."
+        }
+      },
+      {
+        "name": "09. Spell Hold III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 spell",
+          "duration": "3 rnds",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Hold I, except attack spells can be held up to 3 rounds."
+        }
+      },
+      {
+        "name": "10. Reverse Spell I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target elemental attack spell must make an RR (using its caster's level as its level) with a modification of +20 (in favor of the elemental attack spell). If the RR succeeds, it makes its attack as normal; otherwise, the attack spell is reversed back on its caster. Resolve the attack with only a +0 OB."
+        }
+      },
+      {
+        "name": "11. Spell Bending III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Bending I, except attack roll is modified by -30 per 10 failure."
+        }
+      },
+      {
+        "name": "12. Spell Hold IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 spell",
+          "duration": "4 rnds",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Hold I, except attack spells can be held up to 4 rounds."
+        }
+      },
+      {
+        "name": "13. Power Loan",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster may \"borrow\" power points from the days to come. When this spell is cast, the caster regains all of his power points (up to his maximum). The PP cost for casting this spell may come from the \"borrowed\" PPs. Every time the caster casts this spell, he loses all PPs for the next two days (the normal duration of this spell). He also takes hits equal to 10% of his normal maximum hits. In addition, for the duration of this spell, he will cast spells as if he were one level lower than he actually is. This spell may be cast multiple times (borrowing PPs from many days to come), but all the effects are cumulative. For example, if cast twice, the caster will lose all PPs for the next 4 days, take 20% of his hits, and cast spells at 2 levels lower than normal. All penalties will remain in effect until the duration of the spell lapses. At the end of this spell's duration, the caster must sleep for a consecutive 10 hours for each time this spell was cast."
+        }
+      },
+      {
+        "name": "14. Spell Bending IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Bending I, except attack roll is modified by -40 per 10 failure."
+        }
+      },
+      {
+        "name": "15. Spell Hold V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 spell",
+          "duration": "5 rnds",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Hold I, except attack spell is held up to 5 rounds."
+        }
+      },
+      {
+        "name": "16. Reverse Spell II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Reverse Spell I, except use an OB equal to half the original OB."
+        }
+      },
+      {
+        "name": "17. Spell Bending V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Bending I, except attack roll is modified by -50 per 10 failure."
+        }
+      },
+      {
+        "name": "18. Spell Hold X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 spell",
+          "duration": "10 rnds",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Hold I, except attack spell is held up to 10 rounds."
+        }
+      },
+      {
+        "name": "20. Lord Spell Hold",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 spell",
+          "duration": "20 rnds",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Hold I, except attack spell is held for up to 20 rounds."
+        }
+      },
+      {
+        "name": "25. Spell Bending True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Bending I, except spell can be deflected up to 90° in any direction (caster of this spell may designate another target for the spell, use half of his appropriate OB)."
+        }
+      },
+      {
+        "name": "30. Spell Hold True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 spell",
+          "duration": "1 rnd/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Hold I, except attack spell is held up to 1 round per level."
+        }
+      },
+      {
+        "name": "50. Reversal True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "100'R",
+          "duration": "—",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Reverse Spell I, except all spells within a 100' radius of the caster are reversed."
+        }
+      }
+    ]
+  }
+}

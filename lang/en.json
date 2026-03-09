@@ -377,7 +377,8 @@
                 "2h": "2 hands",
                 "1hc": "1 hand concussion",
                 "th": "throwable",
-                "pa": "pole arm",
+                "pa1h": "pole arm (1h)",
+                "pa2h": "pole arm (2h)",
                 "mis": "missile"
             }
         },
@@ -411,9 +412,13 @@
             "range": "Range",
             "type": "Type",
             "subType": "Subtype",
-            "attack_table": "Attack Table (BE)",
+            "attack_table": "Attack Table",
+            "attack_table_hint": "For BE/DE spells only. Determines the elemental damage table (e.g. Fire Ball, Ice Bolt). BE: ball or bolt; DE: bolt only.",
             "skill": "Skill",
-            "description": "Description"
+            "description": "Description",
+            "create_spell": "Create Spell",
+            "edit_spell": "Edit Spell",
+            "new_spell": "New Spell"
         },
         "skill_category": {
             "applicable_stats": "Applicable Stats",
@@ -743,7 +748,14 @@
         "spell_lists": {
             "realm": "Realm",
             "type": "Type",
-            "profession": "Profession"
+            "profession": "Profession",
+            "imported": "Spell list \"{name}\" added.",
+            "imported_with_spells": "Spell list \"{name}\" added with {count} spell(s).",
+            "drop_spells_hint": "Drop spells here, drag from other lists, or create new.",
+            "no_skill_categories": "The character has no skill categories. Apply a profession first.",
+            "create_skill_title": "Create skill for \"{name}\"",
+            "create_skill_prompt": "The spell list \"{name}\" requires a skill with the same name. No matching skill found. Choose a skill category to create it:",
+            "skill_category": "Skill category"
         },
         "spells": {
             "select_armor_type": "Select Armor Type",

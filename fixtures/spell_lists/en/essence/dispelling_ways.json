@@ -1,0 +1,394 @@
+{
+  "name": "Dispelling Ways",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Essence 3.1 - Dispelling Ways. Spells for canceling and dispelling spells by realm (Essence, Mentalism, Channeling), sphere dispels, Unessence/Unmentalism/Unchanneling, and true dispels.",
+    "spells": [
+      {
+        "name": "01. Cancel Essence I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When the caster of this spell is a target of a spell from the realm of Essence, the \"incoming\" spell must first make an RR before the caster makes an RR. For RR purposes, each spell uses a level equal to the level of its caster. If the \"incoming\" spell passes the RR, it may target the caster normally; otherwise, the incoming spell has no effect on this target."
+        }
+      },
+      {
+        "name": "02. Cancel Mentalism I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cancel Essence I, except affects spells from the realm of Mentalism."
+        }
+      },
+      {
+        "name": "03. Cancel Channeling I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cancel Essence I, except affects spells from the realm of Channeling."
+        }
+      },
+      {
+        "name": "04. Dispel Essence I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any active spell from the realm of Essence that is on the target must make an RR (use the level of that spell's caster as the spell's level). If the spell fails its RR, it is dispelled."
+        }
+      },
+      {
+        "name": "05. Dispel Mentalism I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Essence I, except affects spells from the realm of Mentalism."
+        }
+      },
+      {
+        "name": "06. Dispel Channeling I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Essence I, except affects spells from the realm of Channeling."
+        }
+      },
+      {
+        "name": "07. Dispel Essence Sphere I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Essence I, except for the area of effect (centered on the caster). If the radius encounters an already existing spell, the spell must make an RR (with a special modifier of +30) or be cancelled (not dispelled) for as long as the active spell is inside the radius."
+        }
+      },
+      {
+        "name": "08. Dispel Mentalism Sphere I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Essence Sphere I, except only Mentalism spells are affected."
+        }
+      },
+      {
+        "name": "09. Dispel Channeling Sphere I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Essence Sphere I, except only Channeling spells are affected."
+        }
+      },
+      {
+        "name": "10. Dispel Essence Sphere V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Essence Sphere I, except radius is 50'."
+        }
+      },
+      {
+        "name": "11. Dispel Mentalism Sphere V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Mentalism Sphere I, except radius is 50'."
+        }
+      },
+      {
+        "name": "12. Dispel Channeling Sphere V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Channeling Sphere I, except radius is 50'."
+        }
+      },
+      {
+        "name": "14. Dispel Essence Sphere X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Essence Sphere I, except radius is 100'."
+        }
+      },
+      {
+        "name": "15. Dispel Mentalism Sphere X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Mentalism Sphere I, except radius is 100'."
+        }
+      },
+      {
+        "name": "16. Dispel Channeling Sphere X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Channeling Sphere I, except radius is 100'."
+        }
+      },
+      {
+        "name": "17. Unessence",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "1 day",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target has no Essence power points (and thus can throw no Essence spells) for 24 hours (this includes spells cast using spell bonus items). This can also be cast against items which could normally cast spells. Hybrid spell casters who have Essence as one of their realms only have access to half their normal power points."
+        }
+      },
+      {
+        "name": "18. Unmentalism",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "1 day",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unessence, except Mentalism is affected."
+        }
+      },
+      {
+        "name": "19. Unchanneling",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "1 day",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unessence, except Channeling is affected."
+        }
+      },
+      {
+        "name": "20. Cancel True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cancel Essence I, except all 3 realms are affected."
+        }
+      },
+      {
+        "name": "25. Dispel Essence True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "300'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Essence Sphere I, except radius is 300'."
+        }
+      },
+      {
+        "name": "30. Dispel True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Essence I, except all 3 realms are affected."
+        }
+      },
+      {
+        "name": "50. Dispel Sphere True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dispel Essence Sphere V, except all 3 realms are affected."
+        }
+      }
+    ]
+  }
+}

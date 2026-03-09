@@ -1,0 +1,377 @@
+{
+  "name": "Rapid Ways",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Essence 3.6 - Rapid Ways. Spells for enhanced movement and action rate: Run, Speed, Speed Reading, Sprint, Fast Sprint, Haste, and mass versions.",
+    "spells": [
+      {
+        "name": "01. Run I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target may run at double his normal walking pace; he expends exhaustion points at the same rate he would if he were walking, once he stops or performs some other action the spell is canceled."
+        }
+      },
+      {
+        "name": "02. Speed I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target may act at twice his normal rate (i.e., 200% activity per round), but immediately afterwards must spend a number of rounds equal to the rounds speeded at half rate— only 50% normal activity per round."
+        }
+      },
+      {
+        "name": "03. Speed Reading",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target reads at a rate of 10 pages per minute."
+        }
+      },
+      {
+        "name": "04. Speed II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Speed I, except duration is 2 rounds for one target or 1 round for each of 2 targets."
+        }
+      },
+      {
+        "name": "05. Sprint I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target may run at triple his normal walking pace and only expends exhaustion points at the same rate he would if he were walking. Once he stops or performs some other action the spell is canceled."
+        }
+      },
+      {
+        "name": "06. Haste I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target may act at twice his normal rate (i.e., 200% activity)."
+        }
+      },
+      {
+        "name": "07. Speed III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Speed I, except duration is 3 rounds split among one to three targets (in any combination)."
+        }
+      },
+      {
+        "name": "08. Haste II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Haste I, except duration is 2 rounds for one target or 1 round for each of 2 targets."
+        }
+      },
+      {
+        "name": "09. Fast Sprint",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target may run at four times his normal walking pace and only expend exhaustion points at the same rate he would if he were walking, but once he stops or performs some other action the spell is canceled."
+        }
+      },
+      {
+        "name": "10. Speed V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Speed III, except duration is 5 rounds split among one to five targets (in any combination)."
+        }
+      },
+      {
+        "name": "11. Run III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "3 targets",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Run I, except 3 targets may be affected."
+        }
+      },
+      {
+        "name": "12. Haste III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Haste I, except duration is 3 rounds split among one to three targets (in any combination)."
+        }
+      },
+      {
+        "name": "14. Sprint III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "3 targets",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sprint I, except 3 targets may be affected."
+        }
+      },
+      {
+        "name": "15. Haste V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Haste III, except duration is 5 rounds split among one to five targets (in any combination)."
+        }
+      },
+      {
+        "name": "16. Run V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "5 targets",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Run I, except 5 targets may be affected."
+        }
+      },
+      {
+        "name": "17. Speed X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Speed III, except duration is 10 rounds split among one to ten targets (in any combination)."
+        }
+      },
+      {
+        "name": "18. Sprint V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "5 targets",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sprint I, except 5 targets may be affected."
+        }
+      },
+      {
+        "name": "20. Haste X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Haste III, except duration is 10 rounds split among one to ten targets (in any combination)."
+        }
+      },
+      {
+        "name": "25. Mass Run",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target/lvl",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Run I, except as many targets as the caster's level may be affected."
+        }
+      },
+      {
+        "name": "30. Mass Speed",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Speed III, except duration is a number of rounds equal to the caster's level, split among any number of targets up to the caster's level (in any combination)."
+        }
+      },
+      {
+        "name": "50. Mass Haste",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Haste III, except duration is a number of rounds equal to the caster's level, split among any number of targets up to the caster's level (in any combination)."
+        }
+      }
+    ]
+  }
+}

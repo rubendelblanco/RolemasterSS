@@ -1,0 +1,343 @@
+{
+  "name": "Escudos Elementales",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Abierta 2.2 - Escudos Elementales. Hechizos para resistir y protegerse contra luz, calor, frío, rayos, fuego e hielo. Ningún hechizo de esta lista es acumulativo con otro.",
+    "spells": [
+      {
+        "name": "01. Resistir Luz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo está totalmente protegido de toda luz natural (incluye deslumbramiento, quemaduras solares y ceguera temporal; pero no rayos). También da una modificación especial de +10 a las TR contra luz (electricidad), y +10 a la DB del objetivo contra ataques elementales de electricidad."
+        }
+      },
+      {
+        "name": "02. Resistir Calor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistir Luz, excepto que protege contra calor natural hasta 200°F y las modificaciones aplican al calor."
+        }
+      },
+      {
+        "name": "03. Resistir Frío",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistir Luz, excepto que protege contra frío natural hasta -20°F y las modificaciones aplican al frío."
+        }
+      },
+      {
+        "name": "04. Resistir Luz Esfera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistir Luz, excepto que todos los seres dentro de un radio de 10' del objetivo están protegidos."
+        }
+      },
+      {
+        "name": "05. Resistir Calor Esfera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistir Calor, excepto que todos los seres dentro de un radio de 10' del objetivo están protegidos."
+        }
+      },
+      {
+        "name": "06. Resistir Frío Esfera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistir Frío, excepto que todos los seres dentro de un radio de 10' del objetivo están protegidos."
+        }
+      },
+      {
+        "name": "08. Armadura de Luz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistir Luz, excepto que protege contra toda luz natural y electricidad, y las modificaciones son +20 para TR y +20 para DB contra ataques."
+        }
+      },
+      {
+        "name": "09. Armadura de Calor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Luz, excepto que protege contra calor."
+        }
+      },
+      {
+        "name": "10. Armadura de Frío",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Luz, excepto que protege contra frío."
+        }
+      },
+      {
+        "name": "11. Armadura de Luz Esfera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Luz, excepto que protege a todos los seres dentro de 10'R."
+        }
+      },
+      {
+        "name": "12. Armadura de Calor Esfera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Calor, excepto que protege a todos los seres dentro de 10'R."
+        }
+      },
+      {
+        "name": "13. Armadura de Frío Esfera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Frío, excepto que protege a todos los seres dentro de 10'R."
+        }
+      },
+      {
+        "name": "15. Armadura de Rayos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Luz, excepto que también reduce a la mitad todos los impactos por concusión eléctrica (p. ej. de rayos de choque y rayos), y reduce los críticos eléctricos un nivel (p. ej. las 'A' se ignoran, las 'B' pasan a 'A', las 'C' a 'B', etc.)."
+        }
+      },
+      {
+        "name": "17. Armadura de Fuego",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Rayos, excepto que afecta a hechizos de fuego y calor (p. ej. rayos de fuego y bolas de fuego)."
+        }
+      },
+      {
+        "name": "19. Armadura de Hielo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Rayos, excepto que afecta a hechizos de frío e hielo (p. ej. rayos de hielo y bolas de frío)."
+        }
+      },
+      {
+        "name": "20. Armadura de Luz Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 obj/nvl",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Luz, excepto que pueden afectarse tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "25. Armadura de Calor Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 obj/nvl",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Calor, excepto que pueden afectarse tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "30. Armadura de Frío Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 obj/nvl",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armadura de Frío, excepto que pueden afectarse tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "50. Armadura Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Actúa como Armadura de Rayos, Armadura de Fuego y Armadura de Hielo al mismo tiempo."
+        }
+      }
+    ]
+  }
+}

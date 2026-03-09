@@ -1,0 +1,275 @@
+{
+  "name": "Living Change",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Essence 3.4 - Living Change. Spells for shrinking, enlarging, changing form (Change to Kind, Change, True Change, Changing), Change Lore, Merging, Invulnerability, Passing, and mass versions.",
+    "spells": [
+      {
+        "name": "01. Shrink Self",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may shrink by up to 50% his normal mass (height in most situations). The caster retains his previous strength."
+        }
+      },
+      {
+        "name": "02. Enlarge Self",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shrink Self, except caster may increase his mass by 50% (height in most situations); there is no increase in his strength (except for movement purposes)."
+        }
+      },
+      {
+        "name": "03. Change Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to analyze the form of another being for future use with True Change (see below)."
+        }
+      },
+      {
+        "name": "05. Change to Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can alter the target's form to the form of any desired humanoid race. The form cannot be a specific form. For example, the target could take on the form of a Dwarf, but not the Dwarven king. Only physical form is gained (e.g., the target who becomes a Dwarf would not receive the dwarves ability to see in the dark)."
+        }
+      },
+      {
+        "name": "07. Shrink",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shrink Self, except the maximum decrease is 10% of caster's mass per level (to a maximum of 90% of the target's mass) and it can be cast on any material that is living or was once living."
+        }
+      },
+      {
+        "name": "10. Enlarge",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shrink, except it increases target's mass up to 10% of caster's mass per level."
+        }
+      },
+      {
+        "name": "11. Change",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Change to Kind, except alteration can be to any organic form within 50% to 200% target's current mass. Target gains no special abilities from the change."
+        }
+      },
+      {
+        "name": "13. True Change",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Change, except altered form can be that of a specific being analyzed by Change Lore."
+        }
+      },
+      {
+        "name": "15. Changing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As True Change, except caster may assume a different form anytime during the spell, by concentrating for one round per change."
+        }
+      },
+      {
+        "name": "17. Merging",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target can merge into any solid, inanimate material. While merged, the target cannot move or perceive. When the target emerges from the material, he can emerge from any side or face of the material. The target cannot move \"through\" material greater in width than his own body size plus 2 feet. The caster can exit at any time up to 1 hour per level; all other targets must emerge after a specified time (the caster specifies the time when the spell is cast, must be less than 1 hour per level)."
+        }
+      },
+      {
+        "name": "19. Invulnerability",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target has all critical hits lowered by one in severity (an 'A' critical is treated as an 'A' critical with a -20 modification)."
+        }
+      },
+      {
+        "name": "20. Passing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target may pass through any inanimate material up to 1' per level; it takes one round to pass through 2'."
+        }
+      },
+      {
+        "name": "25. Mass Enlarge",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Enlarge, except it simultaneously enlarges (by up to 50% of caster's mass) as many targets as the caster's level. All objects must enlarge the same percentage amount."
+        }
+      },
+      {
+        "name": "30. Mass Change",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target/lvl",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Change, except affects up to the caster's level in targets (all targets must take the same type of form)."
+        }
+      },
+      {
+        "name": "50. Mass Merging",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target/lvl",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Merging, except affects up to the caster's level in targets. All targets must exit after a set time. If the caster is one of the targets, he may exit at any time and all other targets can exit with him."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "name": "Physical Enhancement",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Essence 2.7 - Physical Enhancement. Spells for scale/weight detection, enhanced senses (hearing, vision, balance), water/gas breathing, and poison resistance.",
+    "spells": [
+      {
+        "name": "01. Mannish Scale",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "1'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can tell the exact dimensions, mass, and/or weight of one object."
+        }
+      },
+      {
+        "name": "02. Sly Ears",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target gains double normal hearing. This results in a special bonus of +50 to Awareness • Searching and Awareness • Senses skills involving only hearing (or +5 for Alertness skill). This bonus is +25 to such skills involving hearing and other senses (or +3 for Alertness skill)."
+        }
+      },
+      {
+        "name": "03. Balance",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target gets a special bonus of +50 for maneuver rolls for a slow maneuver requiring balance (e.g., walking a 3\" beam)."
+        }
+      },
+      {
+        "name": "04. Nightvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target can see 100' on a normal night as if it were daylight."
+        }
+      },
+      {
+        "name": "05. Sidevision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target has a 300° field of vision. The flank bonus for attacks against the target is lowered to +5 and the rear bonus is lowered to +15."
+        }
+      },
+      {
+        "name": "06. Sounding",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target's voice has its loudness tripled. This has no effect on spell casting capabilities (it simply allows the caster to make himself heard without difficulty over long distances)."
+        }
+      },
+      {
+        "name": "07. Watervision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nightvision, except target can see 100' in any water; even muddy, murky water."
+        }
+      },
+      {
+        "name": "08. Waterlungs",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target can breathe water but not air."
+        }
+      },
+      {
+        "name": "09. Heatvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nightvision, except target can see varying degrees of heat on the surfaces of objects. This spell does not allow the caster to see \"through\" things. This vision is not sufficient for detailed actions like reading or mapping."
+        }
+      },
+      {
+        "name": "10. Gaslungs",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waterlungs, except target can breathe any gas as normal air."
+        }
+      },
+      {
+        "name": "11. Resist Poison",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "1 hr/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Delays the effect of a poison on a target. If poison is not eliminated before the spell expires, the target will be affected by the poison at that time."
+        }
+      },
+      {
+        "name": "12. Darkvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nightvision, except any darkness can be seen through. Also, no light is needed at all for this spell to work."
+        }
+      },
+      {
+        "name": "15. Changing Lungs",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waterlungs, except target can breathe water, air, and/or any gas at will."
+        }
+      },
+      {
+        "name": "16. Mass Balance",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 tgt/lvl",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Balance, except can affect one target per level of caster."
+        }
+      },
+      {
+        "name": "18. Mass Nightvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 tgt/lvl",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nightvision, except can affect one target per level of caster."
+        }
+      },
+      {
+        "name": "19. Mass Watervision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 tgt/lvl",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Watervision, except can affect one target per level of caster."
+        }
+      },
+      {
+        "name": "20. Vision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As all \"vision\" spells below 15th level functioning at the same time."
+        }
+      },
+      {
+        "name": "25. Mass Waterlungs",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 tgt/lvl",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waterlungs, except can affect 1 target per level of caster."
+        }
+      },
+      {
+        "name": "30. Mass Gaslungs",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 tgt/lvl",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Gaslungs, except can affect 1 target per level of caster."
+        }
+      },
+      {
+        "name": "50. Mass Vision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 tgt/lvl",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Vision, except can affect 1 target per level of caster."
+        }
+      }
+    ]
+  }
+}

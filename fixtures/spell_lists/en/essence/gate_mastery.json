@@ -1,0 +1,394 @@
+{
+  "name": "Gate Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Essence 3.2 - Gate Mastery. Spells for familiars, companions, summoning creatures, demon gates, and controlling demons.",
+    "spells": [
+      {
+        "name": "01. Familiar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can attune to a creature (of animal intelligence and no more than 10% of caster's mass) to serve as his familiar. The caster must obtain the creature through normal means and cast this spell on the creature once per day for 1 week (concentrating for 2 hours/day). The caster can then control the familiar and view the world through its senses by concentrating on it if the familiar is within 50' per level. If the creature is killed, the caster will have a -25 modification to all actions for 2 weeks."
+        }
+      },
+      {
+        "name": "02. Summons I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can instantly summon a first level, non-intelligent creature that he can control. If the caster can communicate with the creature, it will follow orders. Otherwise, control is only maintained through concentration of the caster. The general type of the creature can be specified by the caster but exactly what the creature is should be determined by the GM (selected from creatures commonly found in the area). If the creature was summoned for a task that is not dangerous to it, the duration is 10 minutes per level. However, if the creature is ever put into a dangerous situation, the duration drops to 1 round per level."
+        }
+      },
+      {
+        "name": "03. Companion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can make a semi-intelligent being a companion. The companion can be no more than 50% of the caster's mass. The companion cannot be more intelligent than the caster. The relationship between the caster and the companion is not magical (and the caster must strive to maintain good relations with the companion or it will leave him). The relationship should be treated as a parent/child relationship. The companion will almost always obey a \"do not\" command (e.g., \"Do not drink that potion\"); but the companion may make an RR to resist a \"do\" command (e.g., \"Go steal the eggs from the chickens\")."
+        }
+      },
+      {
+        "name": "05. Summons II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons I, except caster can also choose one of the following options: a) the level of a summoned creature is increased by one, b) an extra first level creature can be summoned, or c) the duration can be doubled."
+        }
+      },
+      {
+        "name": "06. Control Demon I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 demon",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows the caster to control a Type I demon for the duration of the spell. At the time of casting, there is a 2% chance per Type of the demon that the demon can ignore the control."
+        }
+      },
+      {
+        "name": "07. Summons III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons II, except 2 options can be chosen."
+        }
+      },
+      {
+        "name": "08. Lesser Demonic Gate",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 demon",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster summons a demon who gradually appears over the course of d10+1 rounds. The GM should roll d100 (not open-ended) to determine the type of the demon. A result of 1-60 summons a Type I demon. A result of 61-90 summons a Type II demon. A result of 91-100 summons a Type III demon. If demon is not \"controlled\" or \"mastered\" before it fully appears, it will attack. See special notes on p. 168 for more details."
+        }
+      },
+      {
+        "name": "09. Summons V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons III, except 4 options can be chosen."
+        }
+      },
+      {
+        "name": "10. Control Demon II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 demon",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Demon I, except Type I and Type II demons can be controlled."
+        }
+      },
+      {
+        "name": "11. Summons X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons III, except 9 options can be chosen."
+        }
+      },
+      {
+        "name": "12. Summon Folk",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "After casting this spell, any nearby rural spirits or occupational spirits will visit the caster (exact time before the visit occurs may vary). The summoned folk will have the same nature as the caster. The exact results of their visit will vary (GM's discretion)."
+        }
+      },
+      {
+        "name": "13. Control Demon III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 demon",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Demon I, except Type I, Type II, and Type III demons can be controlled."
+        }
+      },
+      {
+        "name": "14. Companion True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Companion, except there is no size limitation on the companion."
+        }
+      },
+      {
+        "name": "15. Waiting Summons",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons X, except the arrival of the summoned creature(s) can be delayed up to 1 day per level of the caster or until triggered by one of the following (decided at the time of casting): specified movements, touch, or a specific action. The caster may specify (at the time of casting) a single task for the creature(s) to perform when it (they) arrives."
+        }
+      },
+      {
+        "name": "16. Lord Summons",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons III, except 19 options may be chosen."
+        }
+      },
+      {
+        "name": "17. Lesser Waiting Gate",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 demon",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waiting Summons, except it functions as Lesser Demonic Gate."
+        }
+      },
+      {
+        "name": "18. Greater Demonic Gate",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 demon",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Demonic Gate, except Types III, IV, V, and VI can be summoned. Roll d100 (not open-ended) to determine the type: 1-60 results in a Type III demon, 61-85 results in a Type IV demon, 86-95 results in a Type V demon, and 96-100 results in a Type VI demon."
+        }
+      },
+      {
+        "name": "19. Control Demon IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 demon",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Demon I, except Type I, Type II, Type III, and Type IV demons can be controlled."
+        }
+      },
+      {
+        "name": "20. Mass Summons",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons III, except the caster can take as many options as he has levels."
+        }
+      },
+      {
+        "name": "25. Demon Mastery II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 demon",
+          "duration": "varies",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Demon II, except concentration is not required. There is a 5% chance per Type of the demon that the demon can ignore the mastery."
+        }
+      },
+      {
+        "name": "30. Waiting Gate",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 demon",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waiting Summons, except it functions as Greater Demonic Gate."
+        }
+      },
+      {
+        "name": "50. Control Demon V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 demon",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Demon I, except Type I, Type II, Type III, Type IV, and Type V demons can be controlled."
+        }
+      }
+    ]
+  }
+}

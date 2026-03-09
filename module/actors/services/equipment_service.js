@@ -10,6 +10,7 @@ export default class EquipmentService {
 
   /**
    * Returns hands used by a weapon (0 for natural weapons and creature_attack).
+   * Derived from type: 1he/1hc/th/pa1h→1, 2h/mis/pa2h→2.
    * @param {Item} weapon - Weapon or creature_attack item
    * @returns {number} 0, 1, or 2
    */
@@ -17,9 +18,9 @@ export default class EquipmentService {
     if (!weapon) return 0;
     if (weapon.type === "creature_attack") return 0;
     if (weapon.system?.isNaturalWeapon === true) return 0;
-    const hands = weapon.system?.hands;
-    if (hands === 2) return 2;
-    return 1; // default 1 for 1he, 1hc, mis, th, etc.
+    const type = weapon.system?.type || "";
+    if (["2h", "mis", "pa2h"].includes(type)) return 2;
+    return 1; // 1he, 1hc, th, pa1h
   }
 
   /**

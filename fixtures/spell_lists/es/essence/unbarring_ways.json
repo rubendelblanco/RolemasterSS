@@ -1,0 +1,411 @@
+{
+  "name": "Caminos de Desbloqueo",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Abierta 2.10 - Caminos de Desbloqueo. Hechizos para cerrar cerraduras, cerraduras mágicas, conocimiento de cerraduras, abrir cerraduras, conocimiento de trampas, desactivar trampas, atascar/debilitar puertas, abrir prisión, eliminar puertas, crear portales y maestría.",
+    "spells": [
+      {
+        "name": "01. Cerrar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 cerradura",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede hacer que cualquier cerradura que vea dentro de 100' se cierre (queda normalmente cerrada y puede abrirse normalmente)."
+        }
+      },
+      {
+        "name": "02. Cerradura Mágica",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 puerta",
+          "duration": "1 min/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Una puerta (o contenedor) puede \"cerrarse\" mágicamente. La puerta puede derribarse normalmente o el hechizo puede disiparse. De lo contrario, la puerta no puede abrirse durante la duración del hechizo."
+        }
+      },
+      {
+        "name": "03. Conocimiento de Cerraduras",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 cerradura",
+          "duration": "—",
+          "range": "toque",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da al lanzador un bonus especial de +20 para forzar la cerradura analizada. Si el lanzador describe la información obtenida, el oyente obtendrá +10 para forzar esa cerradura."
+        }
+      },
+      {
+        "name": "04. Abrir I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 cerradura",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Al lanzarse sobre una cerradura, hay un 20% de probabilidad de que una cerradura normal se abra, y 45% para Cerradura Mágica. Hay un 10% de que se activen trampas asociadas. Las tiradas son abiertas y la sofisticación de la cerradura puede modificar."
+        }
+      },
+      {
+        "name": "05. Conocimiento de Trampas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 trampa",
+          "duration": "—",
+          "range": "toque",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Conocimiento de Cerraduras, excepto que aplica a desactivar trampas."
+        }
+      },
+      {
+        "name": "06. Desactivar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 trampa",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Abrir I, excepto que las probabilidades aplican a desactivar trampas. Hay un 10% de que la trampa se active al desactivarla."
+        }
+      },
+      {
+        "name": "07. Atascar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 puerta",
+          "duration": "P",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que una puerta se expanda y atasque en su marco. Tirar d100 para la severidad del atasco (01 = ligeramente atascada; 100 = imposible de abrir)."
+        }
+      },
+      {
+        "name": "08. Debilitar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 puerta",
+          "duration": "P",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Reduce la resistencia inherente de una puerta en un 50%. Todas las maniobras para derribarla obtienen un bonus especial de +50."
+        }
+      },
+      {
+        "name": "09. Abrir Prisión I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "5'R/nvl",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Al lanzarse, hay un 20% de que todas las cerraduras en el área se abran (45% para Cerraduras Mágicas). Tirar por separado para cada cerradura. Las tiradas son abiertas."
+        }
+      },
+      {
+        "name": "10. Abrir II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 cerradura",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Abrir I, excepto que la probabilidad es 40% (90% para Cerraduras Mágicas)."
+        }
+      },
+      {
+        "name": "11. Eliminar Puerta I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "6\"x10'x10'",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Vaporiza una puerta no mágica de hasta 6\" de grosor, 10' de alto y 10' de ancho (si es más gruesa, vaporiza los 6\" más cercanos). Solo funciona en objetos usados como puerta (no en secciones de pared)."
+        }
+      },
+      {
+        "name": "12. Desactivar II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 trampa",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desactivar I, excepto que la probabilidad es 40% (90% para trampas mágicas)."
+        }
+      },
+      {
+        "name": "13. Cerradura Mágica Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 puerta",
+          "duration": "1 hora/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cerradura Mágica, excepto que la duración es 1 hora por nivel y la probabilidad de que Abrir o Abrir Prisión funcione se reduce un 20%."
+        }
+      },
+      {
+        "name": "14. Cerradura Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 puerta",
+          "duration": "1 hora/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cerradura Mágica, excepto que la puerta es indestructible por medios normales."
+        }
+      },
+      {
+        "name": "15. Eliminar Puerta II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "2'x20'x20'",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Eliminar Puerta I, excepto que la puerta puede ser de hasta 2'x20'x20'."
+        }
+      },
+      {
+        "name": "16. Abrir Prisión II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "5'R/nvl",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Abrir Prisión I, excepto que la probabilidad es 40% (90% para Cerraduras Mágicas)."
+        }
+      },
+      {
+        "name": "17. Eliminar Puerta III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "3'x50'x50'",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Eliminar Puerta I, excepto que la puerta puede ser de hasta 3'x50'x50'."
+        }
+      },
+      {
+        "name": "18. Cerradura Mágica Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 cerradura",
+          "duration": "1 día/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cerradura Mágica, excepto que la duración es 1 día por nivel y la probabilidad de que Abrir o Abrir Prisión funcione se reduce un 40%."
+        }
+      },
+      {
+        "name": "19. Eliminar Puerta Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 puerta",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Eliminar Puerta I, excepto que cualquier puerta individual se vaporiza."
+        }
+      },
+      {
+        "name": "20. Nuevo Portal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "8'x5'x6\"/nvl",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Se crea una abertura (8'x5') en cualquier pared de hasta 6\" de profundidad por nivel del lanzador."
+        }
+      },
+      {
+        "name": "25. Maestría de Cerraduras",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 cerradura",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da al lanzador un 90% de probabilidad de abrir una cerradura. La tirada es abierta y la sofisticación de la cerradura puede modificar."
+        }
+      },
+      {
+        "name": "30. Maestría de Trampas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 trampa",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Maestría de Cerraduras, excepto que las probabilidades aplican a desactivar trampas."
+        }
+      },
+      {
+        "name": "50. Destructor de Portales",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede usar cualquiera de los hechizos de nivel inferior de esta lista cada ronda."
+        }
+      }
+    ]
+  }
+}

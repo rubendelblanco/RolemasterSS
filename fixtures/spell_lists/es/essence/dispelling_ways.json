@@ -1,0 +1,394 @@
+{
+  "name": "Caminos de Disipación",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Cerrada 3.1 - Caminos de Disipación. Hechizos para cancelar y disipar hechizos por reino (Esencia, Mentalismo, Canalización), disipación en esfera, Sin Esencia/Sin Mentalismo/Sin Canalización y disipación verdadera.",
+    "spells": [
+      {
+        "name": "01. Cancelar Esencia I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cuando el lanzador de este hechizo es objetivo de un hechizo del reino de la Esencia, el hechizo \"entrante\" debe superar primero una TR antes de que el lanzador haga la suya. Para las TR, cada hechizo usa un nivel igual al de su lanzador. Si el hechizo entrante supera la TR, puede afectar al lanzador normalmente; si no, no tiene efecto."
+        }
+      },
+      {
+        "name": "02. Cancelar Mentalismo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cancelar Esencia I, excepto que afecta a hechizos del reino del Mentalismo."
+        }
+      },
+      {
+        "name": "03. Cancelar Canalización I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cancelar Esencia I, excepto que afecta a hechizos del reino de la Canalización."
+        }
+      },
+      {
+        "name": "04. Disipar Esencia I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquier hechizo activo del reino de la Esencia que esté sobre el objetivo debe superar una TR (usar el nivel del lanzador de ese hechizo). Si falla la TR, se disipa."
+        }
+      },
+      {
+        "name": "05. Disipar Mentalismo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Esencia I, excepto que afecta a hechizos del reino del Mentalismo."
+        }
+      },
+      {
+        "name": "06. Disipar Canalización I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Esencia I, excepto que afecta a hechizos del reino de la Canalización."
+        }
+      },
+      {
+        "name": "07. Disipar Esencia Esfera I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Esencia I, excepto para el área de efecto (centrada en el lanzador). Si el radio encuentra un hechizo existente, ese hechizo debe superar una TR (modificador +30) o ser cancelado (no disipado) mientras esté dentro del radio."
+        }
+      },
+      {
+        "name": "08. Disipar Mentalismo Esfera I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Esencia Esfera I, excepto que solo afecta a hechizos de Mentalismo."
+        }
+      },
+      {
+        "name": "09. Disipar Canalización Esfera I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Esencia Esfera I, excepto que solo afecta a hechizos de Canalización."
+        }
+      },
+      {
+        "name": "10. Disipar Esencia Esfera V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Esencia Esfera I, excepto que el radio es 50'."
+        }
+      },
+      {
+        "name": "11. Disipar Mentalismo Esfera V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Mentalismo Esfera I, excepto que el radio es 50'."
+        }
+      },
+      {
+        "name": "12. Disipar Canalización Esfera V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Canalización Esfera I, excepto que el radio es 50'."
+        }
+      },
+      {
+        "name": "14. Disipar Esencia Esfera X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Esencia Esfera I, excepto que el radio es 100'."
+        }
+      },
+      {
+        "name": "15. Disipar Mentalismo Esfera X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Mentalismo Esfera I, excepto que el radio es 100'."
+        }
+      },
+      {
+        "name": "16. Disipar Canalización Esfera X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Canalización Esfera I, excepto que el radio es 100'."
+        }
+      },
+      {
+        "name": "17. Sin Esencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo no tiene puntos de poder de Esencia (y por tanto no puede lanzar hechizos de Esencia) durante 24 horas (incluye hechizos lanzados con objetos de bonus). También puede lanzarse contra objetos que normalmente podrían lanzar hechizos. Los lanzadores híbridos con Esencia como uno de sus reinos solo tienen acceso a la mitad de sus PP normales."
+        }
+      },
+      {
+        "name": "18. Sin Mentalismo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sin Esencia, excepto que afecta al Mentalismo."
+        }
+      },
+      {
+        "name": "19. Sin Canalización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sin Esencia, excepto que afecta a la Canalización."
+        }
+      },
+      {
+        "name": "20. Cancelar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cancelar Esencia I, excepto que afecta a los tres reinos."
+        }
+      },
+      {
+        "name": "25. Disipar Esencia Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "300'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Esencia Esfera I, excepto que el radio es 300'."
+        }
+      },
+      {
+        "name": "30. Disipar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Esencia I, excepto que afecta a los tres reinos."
+        }
+      },
+      {
+        "name": "50. Disipar Esfera Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Esencia Esfera V, excepto que afecta a los tres reinos."
+        }
+      }
+    ]
+  }
+}

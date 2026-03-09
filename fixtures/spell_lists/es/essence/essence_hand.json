@@ -1,0 +1,394 @@
+{
+  "name": "Mano de Esencia",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Abierta 2.4 - Mano de Esencia. Hechizos de vibraciones, presión (staying), telequinesis, puntería de proyectiles y lanzamiento de objetos.",
+    "spells": [
+      {
+        "name": "01. Vibraciones I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo, 1 lb",
+          "duration": "1 rnd/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que un objeto de hasta 1 libra de masa vibre rápidamente; si es frágil puede romperse (tirar TR). Si es un objeto sostenido por un ser, este debe superar una TR o soltarlo (cada ronda)."
+        }
+      },
+      {
+        "name": "02. Presión I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo, 1 lb",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Ejerce 1 libra de presión sobre una persona u objeto. El objeto no puede moverse solo con este hechizo, y la presión solo puede ir en una dirección."
+        }
+      },
+      {
+        "name": "03. Telequinesis I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo, 1 lb",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Puede mover un objeto de hasta 1 libra de masa, hasta 1' por segundo (sin aceleración). Si el lanzador deja de concentrarse antes de que termine la duración, el objeto permanece estacionario como si tuviera un hechizo Presión de límite de peso igual."
+        }
+      },
+      {
+        "name": "04. Vibraciones II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo, 5 lbs",
+          "duration": "1 rnd/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Vibraciones I, excepto que el límite de masa es 5 libras."
+        }
+      },
+      {
+        "name": "05. Presión II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo, 5 lbs",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Presión I, excepto que el límite de masa es 5 libras."
+        }
+      },
+      {
+        "name": "06. Telequinesis II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo, 5 lbs",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telequinesis I, excepto que el límite de masa es 5 libras."
+        }
+      },
+      {
+        "name": "07. Vibraciones III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo, 25 lbs",
+          "duration": "1 rnd/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Vibraciones I, excepto que el límite de masa es 25 libras."
+        }
+      },
+      {
+        "name": "08. Presión III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo, 25 lbs",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Presión I, excepto que el límite de masa es 25 libras."
+        }
+      },
+      {
+        "name": "09. Vibraciones IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo, 50 lbs",
+          "duration": "1 rnd/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Vibraciones I, excepto que el límite de masa es 50 libras."
+        }
+      },
+      {
+        "name": "10. Puntería",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd (C)",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Al concentrarse en la mente del lanzador del proyectil (el lanzador no puede ser el hechicero) y en la trayectoria del proyectil, el lanzador hace que se añada +50 a la tirada de ataque del proyectil. Debe concentrarse, tocar al lanzador y ver el proyectil durante toda la ronda en que se dispara."
+        }
+      },
+      {
+        "name": "11. Telequinesis III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo, 25 lbs",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telequinesis I, excepto que el límite de masa es 25 libras."
+        }
+      },
+      {
+        "name": "12. Presión IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo, 50 lbs",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Presión I, excepto que el límite de masa es 50 libras."
+        }
+      },
+      {
+        "name": "13. Vibraciones Masivas I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Vibraciones I, excepto que tantos objetos (hasta 5 libras cada uno) como el nivel del lanzador pueden vibrarse (todos deben estar en su campo de visión)."
+        }
+      },
+      {
+        "name": "14. Telequinesis IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo, 50 lbs",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telequinesis I, excepto que el límite de masa es 50 libras."
+        }
+      },
+      {
+        "name": "15. Presión V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo, 100 lbs",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Presión I, excepto que el límite de masa es 100 libras."
+        }
+      },
+      {
+        "name": "16. Lanzamiento I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo, 1 lb",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede \"lanzar\" un objeto (que empiece a 10' de él) de 1 libra o menos con fuerza suficiente para realizar un ataque. Los ataques se resuelven en la Tabla de Ataque de Honda con alcance máximo de 300'. El OB del ataque es la habilidad de hechizo dirigido del lanzador con este hechizo. Si Arms Law no está disponible, usar la Tabla de Ataque de Rayo de Choque (alcance máximo 300') con críticos de Impacto."
+        }
+      },
+      {
+        "name": "17. Telequinesis V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo, 100 lbs",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telequinesis I, excepto que el límite de masa es 100 libras."
+        }
+      },
+      {
+        "name": "19. Vibraciones Masivas III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Vibraciones Masivas I, excepto que los objetos pueden tener hasta 25 libras de masa."
+        }
+      },
+      {
+        "name": "20. Puntería Superior",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd (C)",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puntería, excepto que el bonus de ataque del proyectil es 100."
+        }
+      },
+      {
+        "name": "25. Presión Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo, 10 lb/nvl",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Presión I, excepto que el límite de masa es 10 libras por nivel."
+        }
+      },
+      {
+        "name": "30. Gran Telequinesis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo, 10 lb/nvl",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telequinesis I, excepto que el límite de masa es 10 libras por nivel."
+        }
+      },
+      {
+        "name": "50. Puntería Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd (C)",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puntería, excepto que el ataque del proyectil hace automáticamente el daño máximo. Si el objetivo es una criatura Grande o Súper Grande, el ataque se trata como ataque de Destrucción."
+        }
+      }
+    ]
+  }
+}

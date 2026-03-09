@@ -202,7 +202,7 @@ Hooks.once("init", function () {
   // Make Config Data Available
   CONFIG.rmss = rmss;
   CONFIG.weapons = CONFIG.weapons || {};
-  CONFIG.weapons.type = ["1he","2h","1hc","mis","pa","th"];
+  CONFIG.weapons.type = ["1he","2h","1hc","mis","pa1h","pa2h","th"];
 
   //combat tracker
   CONFIG.Combat.initiative = {
@@ -461,11 +461,31 @@ Hooks.once("init", function () {
     });
   });
 
-  // Hook: updateItem
-  // This hook triggers whenever an item is updated.
-  // We only care about changes to weight or quantity, because they affect container capacity.
-  // If the updated item is inside a container, we enforce the capacity limit (eject if exceeded)
-  // and recalculate the container's used capacity to keep it in sync.
+  // Hook: updateItem - sync embedded spell from temp item back to spell list
+  Hooks.on("updateItem", async (item, update, options, userId) => {
+    const editCtx = item.getFlag("rmss", "embeddedSpellEdit");
+    if (editCtx) {
+      try {
+        const spellList = await fromUuid(editCtx.spellListUuid);
+        if (spellList) {
+          const spell = { name: item.name, img: item.img, system: foundry.utils.duplicate(item.system) };
+          const spells = [...(spellList.system.spells ?? [])];
+          if (editCtx.isCreate) {
+            spells.push(spell);
+          } else {
+            spells[editCtx.spellIndex] = spell;
+          }
+          await spellList.update({ "system.spells": spells });
+          if (spellList.sheet?.rendered) spellList.sheet.render(false);
+        }
+      } finally {
+        await item.delete();
+      }
+      return;
+    }
+  });
+
+  // Hook: updateItem - container capacity (original logic)
   Hooks.on("updateItem", async (item, update, options, userId) => {
     if (!(
         "system.weight" in update ||
@@ -489,6 +509,15 @@ Hooks.once("init", function () {
     // Check capacity and recalculate
     await handler.enforceCapacity(item);
     await handler.recalc();
+  });
+
+  // Hook: closeApplication - delete temp spell item when sheet closed without saving
+  Hooks.on("closeApplication", (app, html) => {
+    if (app.constructor?.name !== "ItemSheet") return;
+    const item = app.item ?? app.object;
+    if (item?.getFlag("rmss", "embeddedSpellEdit")) {
+      item.delete().catch(() => {});
+    }
   });
 
   // Hook: deleteItem

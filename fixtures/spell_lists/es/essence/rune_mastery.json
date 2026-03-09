@@ -1,0 +1,326 @@
+{
+  "name": "Maestría Rúnica",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Abierta 2.8 - Maestría Rúnica. Hechizos para almacenar hechizos, inscribir runas en papel y Signos (choque, miedo, sueño, ceguera, parálisis). El papel rúnico está especialmente preparado para contener encantamientos.",
+    "spells": [
+      {
+        "name": "02. Almacenar Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede lanzar este hechizo con cualquier hechizo que quiera almacenar. El hechizo a almacenar debe lanzarse dentro del minuto siguiente. El hechizo almacenado puede lanzarse después como hechizo instantáneo. Almacenar Hechizo cuesta los mismos PP que el hechizo almacenado. No puede lanzarse otro hechizo mientras uno está almacenado."
+        }
+      },
+      {
+        "name": "03. Runa I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Inscribe un hechizo en un papel especialmente preparado. La runa puede usarse para lanzar el hechizo inscrito una vez. El hechizo a inscribir debe lanzarse dentro del minuto siguiente. Runa I solo puede inscribir hechizos de 1er nivel. La runa puede configurarse para afectar al lector. El nivel de ataque de una runa es el nivel del hechizo inscrito."
+        }
+      },
+      {
+        "name": "06. Runa II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Runa I, excepto que pueden inscribirse hechizos de hasta 2º nivel."
+        }
+      },
+      {
+        "name": "08. Runa III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Runa I, excepto que pueden inscribirse hechizos de hasta 3er nivel."
+        }
+      },
+      {
+        "name": "10. Runa V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Runa I, excepto que pueden inscribirse hechizos de hasta 5º nivel."
+        }
+      },
+      {
+        "name": "11. Signo de Choque",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "toque",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -20] Un Signo puede inscribirse en cualquier superficie \"no móvil\" y afecta al ser que lo activa. Puede activarse por: a) tiempo especificado, b) movimientos especificados dentro de 20', c) sonidos especificados dentro de 20', d) toque, o e) lectura. El Signo se cancela cuando un ser falla la TR. Signo de Choque deja al objetivo en estado de shock 10 minutos por cada 10 de fallo (tratar como aturdido, pero nunca pierde el conocimiento)."
+        }
+      },
+      {
+        "name": "12. Runa VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Runa I, excepto que pueden inscribirse hechizos de hasta 6º nivel."
+        }
+      },
+      {
+        "name": "13. Signo de Miedo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "toque",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Signo de Choque, excepto que el objetivo huye del lugar del Signo 1 minuto por cada 5 de fallo. La TR se basa en resistencia a Esencia, no a Miedo."
+        }
+      },
+      {
+        "name": "14. Runa VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Runa I, excepto que pueden inscribirse hechizos de hasta 7º nivel."
+        }
+      },
+      {
+        "name": "15. Signo de Sueño",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "toque",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Signo de Choque, excepto que el objetivo cae en un sueño mágico del que no puede despertarse durante 10 minutos por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "16. Runa VIII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Runa I, excepto que pueden inscribirse hechizos de hasta 8º nivel."
+        }
+      },
+      {
+        "name": "17. Signo de Ceguera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "toque",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Signo de Choque, excepto que el objetivo queda ciego 1 hora por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "18. Runa IX",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Runa I, excepto que pueden inscribirse hechizos de hasta 9º nivel."
+        }
+      },
+      {
+        "name": "19. Signo de Parálisis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "toque",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Signo de Choque, excepto que el objetivo queda paralizado 1 hora por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "20. Runa X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Runa I, excepto que pueden inscribirse hechizos de hasta 10º nivel."
+        }
+      },
+      {
+        "name": "25. Señor Investigación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hechizo de investigación — ver Spell Law Sección 15.0 para detalles completos."
+        }
+      },
+      {
+        "name": "30. Señor Runa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Runa I, excepto que pueden inscribirse hechizos de hasta 20º nivel."
+        }
+      },
+      {
+        "name": "50. Signo Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "toque",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como cualquier hechizo Signo deseado, excepto que puede afectar a un número de objetivos hasta el nivel del lanzador antes de cancelarse."
+        }
+      }
+    ]
+  }
+}

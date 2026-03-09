@@ -8,7 +8,9 @@ export default class RMSSSpellSheet extends ItemSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       width: 530,
       height: 440,
-      classes: ["rmss", "sheet", "item"]
+      classes: ["rmss", "sheet", "item"],
+      submitOnChange: false,
+      closeOnSubmit: false
     });
   }
 
