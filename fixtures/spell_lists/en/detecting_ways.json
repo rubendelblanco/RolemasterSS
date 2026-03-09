@@ -1,0 +1,309 @@
+{
+  "name": "Detecting Ways",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Essence 2.2 - Detecting Ways. Spells for detecting essence, mentalism, channeling, invisible things, traps, evil, death, spells, and for locating objects.",
+    "spells": [
+      {
+        "name": "01. Detect Essence",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detects any active spell or item from the Essence realm. Caster can concentrate on a 5' radius area each round."
+        }
+      },
+      {
+        "name": "02. Detect Mentalism",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Essence, except the realm is Mentalism."
+        }
+      },
+      {
+        "name": "03. Detect Channeling",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Essence, except the realm is Channeling."
+        }
+      },
+      {
+        "name": "05. Detect Invisible",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Essence, except detects invisible things. All attacks against something so detected receive a special modification of -50."
+        }
+      },
+      {
+        "name": "06. Detect Traps",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Essence, except it gives a 75% chance of detecting a trap (trap sophistication may modify this chance)."
+        }
+      },
+      {
+        "name": "07. Detect Evil",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Essence, except detects if a being is evil or an item created by evil or long used by a very evil person. For spells on this list, \"evil\" is defined as something that causes (or is a source of) intentional suffering, injury, or destruction."
+        }
+      },
+      {
+        "name": "08. Location I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives the direction and distance to any specific object or place that the caster is familiar with or has had described in detail. The caster must provide an unambiguous description including: the item's dimensions (within 10% of actual size) and at least two other identifying attributes (e.g., color, weight, shape, texture). In many cases it will take more than two attributes to make the description unique."
+        }
+      },
+      {
+        "name": "10. Perceive Power I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Essence, except it will give an estimate of the power of the person (level) or item or spell examined."
+        }
+      },
+      {
+        "name": "11. Detect Death",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Essence, except detects dead bodies and whether anything has died in the radius in the last 24 hours."
+        }
+      },
+      {
+        "name": "12. Location III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "300'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Location I, except range is 300'."
+        }
+      },
+      {
+        "name": "15. Detect Spell",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Essence, except detects any spell that has been cast in the area examined. Gives exact spell that was cast."
+        }
+      },
+      {
+        "name": "16. Location V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "500'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Location I, except range is 500'."
+        }
+      },
+      {
+        "name": "18. Perceive Power III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl (C)",
+          "range": "300'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Perceive Power I, except range is 300'."
+        }
+      },
+      {
+        "name": "20. Greater Location",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "1 mile",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Location I, except range is 1 mile."
+        }
+      },
+      {
+        "name": "25. Detect Detections",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Essence, except detects any type of detection spell that is operating in the area examined (gives exact spell detected)."
+        }
+      },
+      {
+        "name": "30. Detect True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "5'R",
+          "duration": "1 rnd/lvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any of the lower level Detect spells can be used once per round."
+        }
+      },
+      {
+        "name": "50. Location True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "1 mi/lvl",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Location I, except range is 1 mile per level."
+        }
+      }
+    ]
+  }
+}

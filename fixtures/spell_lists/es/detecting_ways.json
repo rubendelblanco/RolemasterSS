@@ -1,0 +1,309 @@
+{
+  "name": "Caminos de Detección",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Abierta 2.2 - Caminos de Detección. Hechizos para detectar esencia, mentalismo, canalización, cosas invisibles, trampas, maldad, muerte, hechizos, y para localizar objetos.",
+    "spells": [
+      {
+        "name": "01. Detectar Esencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detecta cualquier hechizo activo u objeto del reino de la Esencia. El lanzador puede concentrarse en un área de 5' de radio cada ronda."
+        }
+      },
+      {
+        "name": "02. Detectar Mentalismo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Esencia, excepto que el reino es Mentalismo."
+        }
+      },
+      {
+        "name": "03. Detectar Canalización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Esencia, excepto que el reino es Canalización."
+        }
+      },
+      {
+        "name": "05. Detectar Invisible",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Esencia, excepto que detecta cosas invisibles. Todos los ataques contra algo así detectado reciben una modificación especial de -50."
+        }
+      },
+      {
+        "name": "06. Detectar Trampas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Esencia, excepto que da un 75% de probabilidad de detectar una trampa (la sofisticación de la trampa puede modificar esta probabilidad)."
+        }
+      },
+      {
+        "name": "07. Detectar Maldad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Esencia, excepto que detecta si un ser es malvado o un objeto creado por el mal o usado durante mucho tiempo por una persona muy malvada. Para los hechizos de esta lista, \"maldad\" se define como algo que causa (o es fuente de) sufrimiento, daño o destrucción intencionales."
+        }
+      },
+      {
+        "name": "08. Localización I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da la dirección y distancia a cualquier objeto o lugar específico que el lanzador conozca o le hayan descrito en detalle. El lanzador debe proporcionar una descripción inequívoca que incluya: las dimensiones del objeto (dentro del 10% del tamaño real) y al menos otros dos atributos identificativos (p. ej. color, peso, forma, textura). En muchos casos harán falta más de dos atributos para que la descripción sea única."
+        }
+      },
+      {
+        "name": "10. Percibir Poder I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Esencia, excepto que dará una estimación del poder de la persona (nivel) u objeto o hechizo examinado."
+        }
+      },
+      {
+        "name": "11. Detectar Muerte",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Esencia, excepto que detecta cadáveres y si algo ha muerto en el radio en las últimas 24 horas."
+        }
+      },
+      {
+        "name": "12. Localización III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "300'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Localización I, excepto que el alcance es 300'."
+        }
+      },
+      {
+        "name": "15. Detectar Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Esencia, excepto que detecta cualquier hechizo que se haya lanzado en el área examinada. Da el hechizo exacto que se lanzó."
+        }
+      },
+      {
+        "name": "16. Localización V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "500'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Localización I, excepto que el alcance es 500'."
+        }
+      },
+      {
+        "name": "18. Percibir Poder III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl (C)",
+          "range": "300'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir Poder I, excepto que el alcance es 300'."
+        }
+      },
+      {
+        "name": "20. Localización Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "1 milla",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Localización I, excepto que el alcance es 1 milla."
+        }
+      },
+      {
+        "name": "25. Detectar Detecciones",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Esencia, excepto que detecta cualquier tipo de hechizo de detección que esté operando en el área examinada (da el hechizo exacto detectado)."
+        }
+      },
+      {
+        "name": "30. Detectar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "5'R",
+          "duration": "1 rnd/nvl (C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquiera de los hechizos Detectar de nivel inferior puede usarse una vez por ronda."
+        }
+      },
+      {
+        "name": "50. Localización Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "1 milla/nvl",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Localización I, excepto que el alcance es 1 milla por nivel."
+        }
+      }
+    ]
+  }
+}
