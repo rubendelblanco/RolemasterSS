@@ -485,6 +485,18 @@ Hooks.once("init", function () {
     }
   });
 
+  // Hook: updateItem - refresh actor armor_info when armor item changes
+  Hooks.on("updateItem", async (item, update, options, userId) => {
+    if (item.type !== "armor") return;
+    const actor = item.parent;
+    if (!actor?.system?.armor_info) return;
+    const armorRelevant = "system.equipped" in update || "system.bonus" in update || "system.at" in update || "system.armorSlot" in update ||
+      update.system?.equipped !== undefined || update.system?.bonus !== undefined || update.system?.at !== undefined || update.system?.armorSlot !== undefined;
+    if (!armorRelevant) return;
+    const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
+    await ArmorInfoService.updateActorArmorInfo(actor);
+  });
+
   // Hook: updateItem - container capacity (original logic)
   Hooks.on("updateItem", async (item, update, options, userId) => {
     if (!(

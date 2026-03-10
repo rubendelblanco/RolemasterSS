@@ -162,7 +162,7 @@
                     <span>{{localize "rmss.item.enchantments_realm"}}</span>
                     <span>{{localize "rmss.item.enchantments_list_type"}}</span>
                     <span>{{localize "rmss.item.enchantments_spell_list"}}</span>
-                    <span>{{localize "rmss.item.enchantments_effect"}}</span>
+                    <span>{{localize "rmss.item.enchantments_view_spell"}}</span>
                     <span></span>
                 </div>
                 {{#each enchantmentList as |enchantment idx|}}
@@ -172,7 +172,7 @@
                     <span>{{enchantment.realmLabel}}</span>
                     <span>{{enchantment.listTypeLabel}}</span>
                     <span>{{enchantment.spellListName}}</span>
-                    <span>{{enchantment.bonus}}</span>
+                    <span>{{#if enchantment.spellLinkUuid}}<a class="spell-link" data-action="open-spell-link" data-uuid="{{enchantment.spellLinkUuid}}" title="{{localize "rmss.item.enchantments_view_spell"}}"><i class="fas fa-external-link-alt"></i></a>{{else}}—{{/if}}</span>
                     <button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}">
                         <i class="fas fa-trash"></i>
                     </button>

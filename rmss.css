@@ -2443,6 +2443,15 @@ tr.container-row {
   color: var(--rmss-btn-danger-hover);
 }
 
+.rmss-enchantment-row .spell-link {
+  color: var(--color-text-hyperlink);
+  cursor: pointer;
+}
+
+.rmss-enchantment-row .spell-link:hover {
+  text-decoration: underline;
+}
+
 .rmss-enchantments-hint {
   font-size: 0.85em;
   color: var(--color-text-dark-inactive);

@@ -231,7 +231,8 @@
             "weapon_not_equipped": "You must equip the weapon before using it.",
             "weapon_bonus_no_second_weapon": "Weapon skill bonus only applies when exactly one weapon is equipped. With multiple weapons, no bonus is added to the skill.",
             "dual_wield_same_skill": "Dual wielding requires two one-handed weapons with different skills. This weapon uses the same skill as the one already equipped.",
-            "dual_wield_both_one_handed": "Dual wielding requires both weapons to be one-handed."
+            "dual_wield_both_one_handed": "Dual wielding requires both weapons to be one-handed.",
+            "armor_slot_occupied": "That slot already has armor equipped. Only one armor per slot (body, helmet, shield)."
         },
         "pc_sheet_items": {
             "equipped": "Equipped",
@@ -323,6 +324,7 @@
             "enchantments_list_type": "List Type",
             "enchantments_spell_list": "Spell List",
             "enchantments_effect": "Effect",
+            "enchantments_view_spell": "View",
             "enchantment_delete": "Remove enchantment",
             "enchantments_hint": "Drag spells here to add enchantments. Use the delete button to remove.",
             "enchantments_spell_only": "Only spells can be dropped here.",
@@ -390,6 +392,7 @@
         },
         "armor": {
             "at": "AT",
+            "armor_slot": "Slot",
             "is_shield": "Shield",
             "weight": "Weight",
             "cost": "Cost",

@@ -136,7 +136,8 @@ export default class RMSSSpellListSheet extends ItemSheet {
                 spellListName: this.item.name,
                 realm: this.item.system?.realm ?? "",
                 listType: this.item.system?.type ?? "",
-                profession: this.item.system?.profession ?? ""
+                profession: this.item.system?.profession ?? "",
+                spellListUuid: this.item.uuid ?? ""
             };
         } else if (uuid) {
             dragData = {

@@ -64,14 +64,15 @@ export default class RMSSArmorSheet extends ItemSheet {
         const label = isBase ? (CONFIG.rmss?.spell_list_type?.base || "Base") : (CONFIG.rmss?.spell_list_type?.[listType] || listType);
         listTypeLabel = (isBase && profession) ? `${label} (${profession})` : label;
       }
+      const spellLinkUuid = e.spellUuid || e.spellListUuid || "";
       return {
         ...e,
         spell: e.spell ?? "",
         level: e.level ?? "",
-        bonus: e.bonus ?? "",
         realmLabel: realm ? (CONFIG.rmss?.spell_realm?.[realm] || realm) : "—",
         listTypeLabel,
-        spellListName: e.spellListName ?? "—"
+        spellListName: e.spellListName ?? "—",
+        spellLinkUuid
       };
     });
 
@@ -97,7 +98,16 @@ export default class RMSSArmorSheet extends ItemSheet {
   activateListeners(html) {
     super.activateListeners(html);
     html.find("[data-action='delete-enchantment']").on("click", this._onDeleteEnchantment.bind(this));
+    html.find("[data-action='open-spell-link']").on("click", this._onOpenSpellLink.bind(this));
     this._setupEnchantmentsDropZone(html);
+  }
+
+  async _onOpenSpellLink(event) {
+    event.preventDefault();
+    const uuid = event.currentTarget.dataset.uuid;
+    if (!uuid) return;
+    const doc = await fromUuid(uuid);
+    if (doc?.sheet) doc.sheet.render(true);
   }
 
   _setupEnchantmentsDropZone(html) {
@@ -128,6 +138,8 @@ export default class RMSSArmorSheet extends ItemSheet {
     let listType = "";
     let spellListName = "";
     let profession = "";
+    let spellUuid = "";
+    let spellListUuid = "";
 
     if (data.type === "EmbeddedSpell" && data.spellData) {
       const sd = data.spellData;
@@ -137,6 +149,7 @@ export default class RMSSArmorSheet extends ItemSheet {
       listType = data.listType ?? "";
       spellListName = data.spellListName ?? "";
       profession = data.profession ?? "";
+      spellListUuid = data.spellListUuid ?? "";
     } else if (data.uuid) {
       const doc = await fromUuid(data.uuid);
       if (!doc || doc.type !== "spell") {
@@ -145,6 +158,7 @@ export default class RMSSArmorSheet extends ItemSheet {
       }
       spellName = doc.name ?? "";
       level = doc.system?.level ?? "";
+      spellUuid = data.uuid ?? "";
       const containerId = doc.flags?.rmss?.containerId;
       if (containerId && doc.parent?.items) {
         const spellList = doc.parent.items.get(containerId);
@@ -165,11 +179,12 @@ export default class RMSSArmorSheet extends ItemSheet {
     enchantments.push({
       spell: spellName,
       level: String(level),
-      bonus: "",
       realm,
       listType,
       spellListName,
-      profession
+      profession,
+      spellUuid: spellUuid || undefined,
+      spellListUuid: spellListUuid || undefined
     });
     await this.item.update({ "system.magic.enchantments": enchantments });
     this.render(false);
@@ -182,7 +197,12 @@ export default class RMSSArmorSheet extends ItemSheet {
       if (matDef) {
         formData["system.bonus"] = matDef.bonus;
         formData["system.magical"] = matDef.magical;
+        formData["system.quality"] = null;
       }
+    }
+    const armorSlot = formData["system.armorSlot"];
+    if (armorSlot !== undefined) {
+      formData["system.isShield"] = armorSlot === "shield";
     }
     return super._updateObject(event, formData);
   }

@@ -231,7 +231,8 @@
             "weapon_not_equipped": "Debes equipar el arma antes de usarla.",
             "weapon_bonus_no_second_weapon": "El bonus del arma a la habilidad solo se aplica cuando hay exactamente un arma equipada. Con varias armas, no se añade bonus.",
             "dual_wield_same_skill": "Doble empuñadura requiere dos armas de una mano con habilidades distintas. Esta arma usa la misma habilidad que la ya equipada.",
-            "dual_wield_both_one_handed": "Doble empuñadura requiere que ambas armas sean de una mano."
+            "dual_wield_both_one_handed": "Doble empuñadura requiere que ambas armas sean de una mano.",
+            "armor_slot_occupied": "Esa ranura ya tiene armadura equipada. Solo una armadura por ranura (cuerpo, yelmo, escudo)."
         },
     "pc_sheet_items": {
       "equipped": "Equipado",
@@ -323,6 +324,7 @@
       "enchantments_list_type": "Tipo lista",
       "enchantments_spell_list": "Lista de hechizos",
       "enchantments_effect": "Efecto",
+      "enchantments_view_spell": "Ver",
       "enchantment_delete": "Eliminar encantamiento",
       "enchantments_hint": "Arrastra hechizos aquí para añadir encantamientos. Usa el botón eliminar para quitar.",
       "enchantments_spell_only": "Solo se pueden soltar hechizos aquí.",
@@ -390,6 +392,7 @@
     },
     "armor": {
       "at": "AT",
+      "armor_slot": "Ranura",
       "is_shield": "Escudo",
       "weight": "Peso",
       "cost": "Costo",

@@ -13,7 +13,7 @@
             <table>
                 <tr>
                     <th>{{localize "rmss.item.equipped"}}</th>
-                    <th>{{localize "rmss.armor.is_shield"}}</th>
+                    <th>{{localize "rmss.armor.armor_slot"}}</th>
                     <th>{{localize "rmss.armor.weight"}}</th>
                     <th>{{localize "rmss.armor.cost"}}</th>
                     <th>{{localize "rmss.item.currency"}}</th>
@@ -25,7 +25,11 @@
                     <input type="checkbox" name="system.equipped" {{checked system.equipped}}/>
                 </td>
                 <td>
-                    <input type="checkbox" name="system.isShield" {{checked system.isShield}}/>
+                    <select name="system.armorSlot">
+                        {{#each config.armor_slot as |label key|}}
+                        <option value="{{key}}" {{#if (eq ../system.armorSlot key)}}selected{{/if}}>{{label}}</option>
+                        {{/each}}
+                    </select>
                 </td>
                 <td>
                     <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
@@ -106,7 +110,7 @@
                     <span>{{localize "rmss.item.enchantments_realm"}}</span>
                     <span>{{localize "rmss.item.enchantments_list_type"}}</span>
                     <span>{{localize "rmss.item.enchantments_spell_list"}}</span>
-                    <span>{{localize "rmss.item.enchantments_effect"}}</span>
+                    <span>{{localize "rmss.item.enchantments_view_spell"}}</span>
                     <span></span>
                 </div>
                 {{#each enchantmentList as |enchantment idx|}}
@@ -116,7 +120,7 @@
                     <span>{{enchantment.realmLabel}}</span>
                     <span>{{enchantment.listTypeLabel}}</span>
                     <span>{{enchantment.spellListName}}</span>
-                    <span>{{enchantment.bonus}}</span>
+                    <span>{{#if enchantment.spellLinkUuid}}<a class="spell-link" data-action="open-spell-link" data-uuid="{{enchantment.spellLinkUuid}}" title="{{localize "rmss.item.enchantments_view_spell"}}"><i class="fas fa-external-link-alt"></i></a>{{else}}—{{/if}}</span>
                     <button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}">
                         <i class="fas fa-trash"></i>
                     </button>
