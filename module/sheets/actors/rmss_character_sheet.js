@@ -26,6 +26,12 @@ export default class RMSSCharacterSheet extends ActorSheet {
                     );
                     return;
                 }
+                if (item.type === "weapon" && item.system?.isNaturalWeapon !== true) {
+                    const equippedWeapons = EquipmentService.getEquippedWeapons(this.actor);
+                    if (equippedWeapons.length >= 1) {
+                        ui.notifications.warn(game.i18n.localize("rmss.equipment.weapon_bonus_no_second_weapon"));
+                    }
+                }
                 await item.update({ system: { equipped: true } });
             }
         });

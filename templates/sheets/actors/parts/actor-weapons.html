@@ -45,10 +45,10 @@
         <td>{{weapon.system.strength}}</td>
         <td>{{weapon.system.quantity}}</td>
         <td>{{weapon.system.weight}}</td>
-        <td>{{#if (gt weapon.system.unitCost 0)}}
-            {{weapon.system.unitCost}} <span>{{localize (concat "rmss.currency_type_abb." weapon.system.currency_type)}}</span>
+        <td>{{#if (gt weapon.effectiveUnitCost 0)}}
+            {{weapon.effectiveUnitCost}} <span>{{localize (concat "rmss.currency_type_abb." weapon.system.currency_type)}}</span>
             {{else}}
-            {{weapon.system.unitCost}}
+            {{weapon.effectiveUnitCost}}
             {{/if}}
         </td>
         <td class="item-controls">

@@ -17,6 +17,17 @@
 
 export class RMSSItem extends Item {
 
+  /**
+   * Effective unit cost = unitCost × material baseCostModifier (Arms Law table 08-02).
+   * For custom material, modifier is 1.
+   */
+  get effectiveUnitCost() {
+    if (!["armor", "weapon"].includes(this.type)) return Number(this.system.unitCost) || 0;
+    const mat = CONFIG.rmss?.materials?.[this.system.material];
+    const mod = mat?.baseCostModifier ?? 1;
+    return (Number(this.system.unitCost) || 0) * mod;
+  }
+
   /** @override */
   prepareData() {
     // Prepare data for the item. Calling the super version of this executes

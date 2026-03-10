@@ -29,10 +29,10 @@
         <td>{{equipable.system.at}}</td>
         <td>{{equipable.system.quantity}}</td>
         <td>{{equipable.system.weight}}</td>
-        <td>{{#if (gt equipable.system.unitCost 0)}}
-          {{equipable.system.unitCost}} <span>{{localize (concat "rmss.currency_type_abb." equipable.system.currency_type)}}</span>
+        <td>{{#if (gt equipable.effectiveUnitCost 0)}}
+          {{equipable.effectiveUnitCost}} <span>{{localize (concat "rmss.currency_type_abb." equipable.system.currency_type)}}</span>
           {{else}}
-          {{equipable.system.unitCost}}
+          {{equipable.effectiveUnitCost}}
           {{/if}}</td>
         <td class="item-controls">
           <a class="item-control item-edit" title="Edit Item" data-item-id="{{equipable._id}}"><i class="fas fa-edit"></i></a>

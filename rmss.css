@@ -2345,3 +2345,106 @@ tr.container-row {
   color: var(--color-error);
   margin: 0;
 }
+
+/* ================================
+   ITEM SHEET TABS (Armor, Weapon)
+   ================================ */
+.rmss-item-tabs {
+  flex: 0 0 0;
+  border-bottom: 1px solid var(--color-border-light-primary);
+  margin-bottom: 0.5rem;
+}
+
+.rmss-item-tabs .item {
+  padding: 0.25rem 0.75rem;
+}
+
+.rmss-item-tabs .item.active {
+  border-bottom: 2px solid var(--rmss-tab-gold-active);
+  color: var(--rmss-tab-gold-active);
+}
+
+/* Modifiers grid */
+.rmss-modifiers-grid {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto;
+  gap: 0.25rem 0.5rem;
+  align-items: center;
+  max-width: 450px;
+  margin-bottom: 1rem;
+}
+
+.rmss-modifiers-grid.rmss-modifiers-grid-weapon {
+  grid-template-columns: 1fr auto auto auto auto auto;
+}
+
+.rmss-modifiers-header {
+  font-weight: bold;
+  font-size: var(--rmss-font-size-sm);
+}
+
+.rmss-modifiers-label {
+  font-size: var(--rmss-font-size-sm);
+}
+
+.rmss-modifiers-cell select {
+  min-width: 10rem;
+  max-width: 14rem;
+}
+
+.rmss-modifiers-cell input[type="number"] {
+  width: 4rem;
+  text-align: center;
+}
+
+.rmss-bonus-readonly {
+  font-weight: 500;
+}
+
+.rmss-text-center {
+  text-align: center;
+}
+
+.rmss-text-strong {
+  font-weight: bold;
+}
+
+/* Enchantments */
+.rmss-enchantments-header {
+  display: grid;
+  grid-template-columns: 4rem 1fr 1fr 2rem;
+  gap: 0.5rem;
+  font-weight: bold;
+  font-size: var(--rmss-font-size-sm);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--color-border-light-primary);
+}
+
+.rmss-enchantment-row {
+  display: grid;
+  grid-template-columns: 4rem 1fr 1fr 2rem;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: var(--rmss-font-size-sm);
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.rmss-enchantment-delete {
+  padding: 0.2rem;
+  color: var(--rmss-btn-danger);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.rmss-enchantment-delete:hover {
+  color: var(--rmss-btn-danger-hover);
+}
+
+.rmss-enchantments-hint {
+  font-size: 0.85em;
+  color: var(--color-text-dark-inactive);
+  margin-top: 1rem;
+}
