@@ -155,23 +155,31 @@
             </div>
         </div>
         <div class="tab rmss-tab-magic" data-tab="magic" data-group="primary">
-            <div class="rmss-enchantments-header">
-                <span>{{localize "rmss.item.enchantments_level"}}</span>
-                <span>{{localize "rmss.item.enchantments_spell"}}</span>
-                <span>{{localize "rmss.item.enchantments_effect"}}</span>
-                <span></span>
+            <div class="rmss-enchantments-drop-zone drop-target" data-drop-zone="enchantments">
+                <div class="rmss-enchantments-header">
+                    <span>{{localize "rmss.item.enchantments_level"}}</span>
+                    <span>{{localize "rmss.item.enchantments_spell"}}</span>
+                    <span>{{localize "rmss.item.enchantments_realm"}}</span>
+                    <span>{{localize "rmss.item.enchantments_list_type"}}</span>
+                    <span>{{localize "rmss.item.enchantments_spell_list"}}</span>
+                    <span>{{localize "rmss.item.enchantments_effect"}}</span>
+                    <span></span>
+                </div>
+                {{#each enchantmentList as |enchantment idx|}}
+                <div class="rmss-enchantment-row" data-enchantment-index="{{idx}}">
+                    <span class="rmss-text-center">{{enchantment.level}}</span>
+                    <span>{{enchantment.spell}}</span>
+                    <span>{{enchantment.realmLabel}}</span>
+                    <span>{{enchantment.listTypeLabel}}</span>
+                    <span>{{enchantment.spellListName}}</span>
+                    <span>{{enchantment.bonus}}</span>
+                    <button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                {{/each}}
+                <p class="rmss-enchantments-hint">{{localize "rmss.item.enchantments_hint"}}</p>
             </div>
-            {{#each enchantmentList as |enchantment idx|}}
-            <div class="rmss-enchantment-row" data-enchantment-index="{{idx}}">
-                <span class="rmss-text-center">{{enchantment.level}}</span>
-                <span>{{enchantment.spell}}</span>
-                <span>{{enchantment.bonus}}</span>
-                <button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-            {{/each}}
-            <p class="rmss-enchantments-hint">{{localize "rmss.item.enchantments_hint"}}</p>
         </div>
     </div>
 </form>

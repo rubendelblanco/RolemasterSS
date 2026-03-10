@@ -2412,7 +2412,7 @@ tr.container-row {
 /* Enchantments */
 .rmss-enchantments-header {
   display: grid;
-  grid-template-columns: 4rem 1fr 1fr 2rem;
+  grid-template-columns: 4rem 1.2fr 0.8fr 0.8fr 1.2fr 1fr 2rem;
   gap: 0.5rem;
   font-weight: bold;
   font-size: var(--rmss-font-size-sm);
@@ -2423,7 +2423,7 @@ tr.container-row {
 
 .rmss-enchantment-row {
   display: grid;
-  grid-template-columns: 4rem 1fr 1fr 2rem;
+  grid-template-columns: 4rem 1.2fr 0.8fr 0.8fr 1.2fr 1fr 2rem;
   gap: 0.5rem;
   align-items: center;
   font-size: var(--rmss-font-size-sm);
