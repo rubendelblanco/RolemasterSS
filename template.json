@@ -396,6 +396,7 @@
       "cost": 0,
       "prod_time": 0,
       "at": 1,
+      "armorSlot": "body",
       "isShield": false,
       "material": "iron",
       "bonus": 0,

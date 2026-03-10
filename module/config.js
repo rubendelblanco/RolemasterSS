@@ -182,6 +182,12 @@ rmss.spell_list_type = {
   "base": "Base"
 }
 
+rmss.armor_slot = {
+  "body": "Body",
+  "helmet": "Helmet",
+  "shield": "Shield"
+}
+
 rmss.skill_tab = {
   "skills": "Skills",
   "spells": "Spells",

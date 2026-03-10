@@ -72,6 +72,19 @@ export class RMSSItem extends Item {
     if (itemData.type === "skill") {
       this._prepareSkillData(itemData);
     }
+
+    if (itemData.type === "armor") {
+      this._prepareArmorData(itemData);
+    }
+  }
+
+  _prepareArmorData(itemData) {
+    if (itemData.type !== "armor") return;
+    const sys = itemData.system;
+    if (sys.armorSlot === undefined) {
+      sys.armorSlot = sys.isShield === true ? "shield" : "body";
+    }
+    sys.isShield = sys.armorSlot === "shield";
   }
 
   _prepareSkillCategoryData(itemData) {

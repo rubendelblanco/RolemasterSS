@@ -24,13 +24,23 @@ export default class EquipmentService {
   }
 
   /**
+   * Get armor slot (body, helmet, shield). Uses armorSlot, falls back to isShield.
+   * @param {Item} armor - Armor item
+   * @returns {string} "body" | "helmet" | "shield"
+   */
+  static getArmorSlot(armor) {
+    if (!armor || armor.type !== "armor") return "body";
+    return armor.system?.armorSlot || (armor.system?.isShield ? "shield" : "body");
+  }
+
+  /**
    * Returns hands used by equipped armor (shield = 1).
    * @param {Item} armor - Armor item
    * @returns {number} 0 or 1
    */
   static getArmorHands(armor) {
     if (!armor || armor.type !== "armor") return 0;
-    if (armor.system?.isShield === true && armor.system?.equipped === true) return 1;
+    if (this.getArmorSlot(armor) === "shield" && armor.system?.equipped === true) return 1;
     return 0;
   }
 
@@ -96,8 +106,28 @@ export default class EquipmentService {
   static getItemHandsIfEquipped(item) {
     if (!item) return 0;
     if (item.type === "weapon") return this.getWeaponHands(item);
-    if (item.type === "armor" && item.system?.isShield === true) return 1;
+    if (item.type === "armor" && this.getArmorSlot(item) === "shield") return 1;
     return 0;
+  }
+
+  /**
+   * Check if equipping this armor would conflict with another equipped armor in the same slot.
+   * Only one armor per slot (body, helmet, shield) can be equipped.
+   * @param {Actor} actor
+   * @param {Item} item - armor item to equip
+   * @returns {{ valid: boolean, reason?: string }}
+   */
+  static canEquipArmor(actor, item) {
+    if (!actor?.items || item?.type !== "armor") return { valid: true };
+    const slot = this.getArmorSlot(item);
+    const itemId = item.id ?? item._id;
+    const equippedInSlot = actor.items.find(
+      (i) => i.type === "armor" && (i.id ?? i._id) !== itemId && i.system?.equipped && this.getArmorSlot(i) === slot
+    );
+    if (equippedInSlot) {
+      return { valid: false, reason: "armor_slot_occupied" };
+    }
+    return { valid: true };
   }
 
   /**

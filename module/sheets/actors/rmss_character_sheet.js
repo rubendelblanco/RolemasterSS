@@ -2,6 +2,7 @@ import ItemService from "../../actors/services/item_service.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
+import ArmorInfoService from "../../actors/services/armor_info_service.js";
 
 /**
  * All the actions and feats in common for characters (PCs, NPCs, Creatures & Monsters)
@@ -21,7 +22,15 @@ export default class RMSSCharacterSheet extends ActorSheet {
             } else {
                 if (item.system.equipped === true) {
                     await item.update({ system: { equipped: false } });
+                    if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(this.actor);
                 } else {
+                    if (item.type === "armor") {
+                        const armorCheck = EquipmentService.canEquipArmor(this.actor, item);
+                        if (!armorCheck.valid) {
+                            ui.notifications.warn(game.i18n.localize("rmss.equipment.armor_slot_occupied"));
+                            return;
+                        }
+                    }
                     const { valid, currentHands, itemHands, reason } = EquipmentService.canEquip(this.actor, item);
                     if (!valid) {
                         const msg = reason === "dual_wield_same_skill"
@@ -43,6 +52,7 @@ export default class RMSSCharacterSheet extends ActorSheet {
                         }
                     }
                     await item.update({ system: { equipped: true } });
+                    if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(this.actor);
                 }
             }
         });
