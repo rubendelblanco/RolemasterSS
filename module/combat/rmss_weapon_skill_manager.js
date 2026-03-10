@@ -68,7 +68,7 @@ export class RMSSWeaponSkillManager {
         }
 
         const attackResult = await RMSSTableManager.getAttackTableResult(weapon, attackTable, total, enemy, actor);
-        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage, attackTable.critical_severity || null, weapon.system.critical_type);
+        let criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage, attackTable.critical_severity || null, weapon.system.critical_type);
         // Fumble from attack table (result "F")
         if (criticalResult.criticals === "fumble") {
             const fumbleRoll = new Roll("1d100");
@@ -78,11 +78,15 @@ export class RMSSWeaponSkillManager {
             return;
         }
 
-        // Critical not exists
+        // No critical from table (e.g. "36" damage only): add synthetic for chat
         if (criticalResult.criticals.length === 0) {
-            criticalResult.criticals = [
-                { severity: null, critType: weapon.system.critical_type, damage: 0 }
-            ];
+            criticalResult.criticals = [{ severity: null, critType: weapon.system.critical_type, damage: criticalResult.damage }];
+        }
+
+        criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemy);
+
+        // Critical not exists (or filtered out for large/superlarge: A or A-B = no critical)
+        if (criticalResult.criticals.length === 0) {
             await RMSSWeaponCriticalManager.updateTokenOrActorHits(
                 enemy,
                 parseInt(criticalResult.damage)
@@ -91,6 +95,7 @@ export class RMSSWeaponSkillManager {
                 const { ExperienceManager } = await import("../sheets/experience/rmss_experience_manager.js");
                 await ExperienceManager.applyExperience(actor, criticalResult.damage);
             }
+            return;
         }
 
         await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken);

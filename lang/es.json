@@ -229,7 +229,9 @@
         "equipment": {
             "hands_limit_exceeded": "Límite de manos alcanzado ({current} + {adding} > {max}). Equipa menos objetos.",
             "weapon_not_equipped": "Debes equipar el arma antes de usarla.",
-            "weapon_bonus_no_second_weapon": "El bonus del arma a la habilidad solo se aplica cuando hay exactamente un arma equipada. Con varias armas, no se añade bonus."
+            "weapon_bonus_no_second_weapon": "El bonus del arma a la habilidad solo se aplica cuando hay exactamente un arma equipada. Con varias armas, no se añade bonus.",
+            "dual_wield_same_skill": "Doble empuñadura requiere dos armas de una mano con habilidades distintas. Esta arma usa la misma habilidad que la ya equipada.",
+            "dual_wield_both_one_handed": "Doble empuñadura requiere que ambas armas sean de una mano."
         },
     "pc_sheet_items": {
       "equipped": "Equipado",
@@ -645,6 +647,11 @@
       "cooldown": "Esperando confirmación del GM",
       "critical": "Crítico",
       "critical_subtype": "Subtipo",
+      "severity_normal": "Normal",
+      "severity_magical": "Mágico",
+      "severity_mithril": "Mithril",
+      "severity_sacred": "Sagrado",
+      "severity_slaying": "Slaying",
       "resistance_roll": "Tirada de Resistencia",
       "attacker_level": "Nivel Atacante",
       "defender_level": "Nivel Defensor",

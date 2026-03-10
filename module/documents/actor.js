@@ -196,6 +196,18 @@ export class RMSSActor extends Actor {
       if (skillId && bonus !== 0) {
         weaponBonusBySkillId[skillId] = bonus;
       }
+    } else if (equippedWeapons.length === 2) {
+      const skills = equippedWeapons.map(w => (w.system?.offensive_skill || "").trim()).filter(Boolean);
+      const uniqueSkills = [...new Set(skills)];
+      if (uniqueSkills.length === 2) {
+        equippedWeapons.forEach(weapon => {
+          const skillId = weapon.system?.offensive_skill;
+          const bonus = Number(weapon.system?.bonus) || 0;
+          if (skillId && bonus !== 0) {
+            weaponBonusBySkillId[skillId] = (weaponBonusBySkillId[skillId] || 0) + bonus;
+          }
+        });
+      }
     }
 
     for (const item of this.items) {
