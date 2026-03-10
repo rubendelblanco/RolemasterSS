@@ -7,6 +7,7 @@ import { RMSSCombat } from "./rmss_combat.js";
 import { RMSSEffectApplier } from "./rmss_effect_applier.js";
 import WeaponFumbleService from "./services/weapon_fumble_service.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
+import EquipmentService from "../actors/services/equipment_service.js";
 
 
 /* ---------------------------------------------
@@ -252,8 +253,29 @@ export class RMSSWeaponCriticalManager {
         );
     }
 
+    /**
+     * Returns the default critical subtype for large/superlarge melee based on the attacker's equipped weapon.
+     * Priority: Sacred > Mithril > Magical > Normal. Slaying is not auto-selected (creature-dependent).
+     * @param {string|null} attackerId - Actor ID (or token document id)
+     * @param {string} critType - e.g. large_melee, superlarge_melee
+     * @returns {string} - One of: normal, magic, mithril, sacred
+     */
+    static getDefaultCriticalSubtype(attackerId, critType) {
+        const subtypes = rmss.large_critical_types[critType];
+        if (!subtypes || subtypes.length === 0) return "normal";
+        const actor = Utils.getActor(attackerId);
+        if (!actor?.items) return "normal";
+        const weapons = EquipmentService.getEquippedWeapons(actor);
+        const weapon = weapons[0];
+        if (!weapon?.system) return "normal";
+        if (weapon.system.sacred === true) return subtypes.includes("sacred") ? "sacred" : "normal";
+        if (weapon.system.material === "mithril_alloy") return subtypes.includes("mithril") ? "mithril" : "normal";
+        if (weapon.system.magical === true) return subtypes.includes("magic") ? "magic" : "normal";
+        return "normal";
+    }
+
     static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId) {
-        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType);
+        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType, attackerId);
 
         if (!gmResponse["confirmed"]) {
             return
@@ -280,7 +302,7 @@ export class RMSSWeaponCriticalManager {
         return await strategy.apply(actor, target.actor,  { damage, severity, critType, subCritType, modifier, metadata, targetTokenId });
     }
 
-    static async criticalMessagePopup(enemy, damage, severity, critType) {
+    static async criticalMessagePopup(enemy, damage, severity, critType, attackerId = null) {
         let modifier = 0;
         if (enemy.type === "creature" || enemy.type === "npc") {
             if (enemy.system.attributes.critical_codes.critical_procedure === "I") {
@@ -313,7 +335,8 @@ export class RMSSWeaponCriticalManager {
             ? Object.fromEntries(largeSubtypes.map(s => [s, s]))
             : (CONFIG.rmss.criticalSubtypes ?? {});
         const subCritType = largeSubtypes.length > 0 && largeSubtypes.includes("normal") ? "normal" : (Object.keys(subcritdict)[0] ?? "");
-
+        const criticalHasSubtypes = largeSubtypes.length > 0;
+        const defaultSubtype = criticalHasSubtypes ? RMSSWeaponCriticalManager.getDefaultCriticalSubtype(attackerId, critType) : "normal";
         const initialContext = {
             enemy: enemy,
             damage: damage,
@@ -324,7 +347,8 @@ export class RMSSWeaponCriticalManager {
             subcritdict,
             critDict: CONFIG.rmss.criticalDictionary,
             modifier: modifier,
-            criticalHasSubtypes: largeSubtypes.length > 0,
+            criticalHasSubtypes,
+            defaultSubtype,
         };
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-critical.hbs", initialContext);
 
@@ -360,19 +384,23 @@ export class RMSSWeaponCriticalManager {
                         html.find("#damage").val(damage);
                     });
 
-                    html.find("#critical-type").on("change", (event) => {
-                        const tableName = (event.target.value);
-                        // Display block subtype if 
+                    const populateSubtypeSelect = (tableName, selectedSubtype) => {
                         const criticalSubtypes = rmss.large_critical_types[tableName] || [];
                         if (criticalSubtypes.length > 0) {
                             html.find("#critical-subtype").empty();
                             criticalSubtypes.forEach((subtype) => {
-                                html.find("#critical-subtype").append(`<option value="${subtype}">${subtype}</option>`);
+                                const sel = subtype === selectedSubtype ? ' selected' : '';
+                                html.find("#critical-subtype").append(`<option value="${subtype}"${sel}>${subtype}</option>`);
                             });
                             html.find("#critical-subtype-container").show();
                         } else {
                             html.find("#critical-subtype-container").hide();
                         }
+                    };
+
+                    html.find("#critical-type").on("change", (event) => {
+                        const tableName = event.target.value;
+                        populateSubtypeSelect(tableName, "normal");
                     });
 
                     html.find(".is-positive").on("change", (event) => {
@@ -383,7 +411,7 @@ export class RMSSWeaponCriticalManager {
                     if (!initialContext.criticalHasSubtypes) {
                         html.find("#critical-subtype-container").hide();
                     } else {
-                        html.find("#critical-subtype-container").show();
+                        populateSubtypeSelect(initialContext.critType, initialContext.defaultSubtype);
                     }
                 }
             }).render(true);

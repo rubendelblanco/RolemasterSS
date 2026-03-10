@@ -89,10 +89,10 @@
         <td>{{formatNumber item.system.weight}}</td>
         <td>
             {{#if (or (eq item.type "weapon") (eq item.type "armor"))}}
-            {{#if (gt item.system.unitCost 0)}}
-            {{item.system.unitCost}} <span>{{localize (concat "rmss.currency_type_abb." item.system.currency_type)}}</span>
+            {{#if (gt item.effectiveUnitCost 0)}}
+            {{item.effectiveUnitCost}} <span>{{localize (concat "rmss.currency_type_abb." item.system.currency_type)}}</span>
             {{else}}
-            {{item.system.unitCost}}
+            {{item.effectiveUnitCost}}
             {{/if}}
             {{else}}
             {{#if (gt item.system.cost 0)}}

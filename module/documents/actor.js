@@ -1,3 +1,5 @@
+import EquipmentService from "../actors/services/equipment_service.js";
+
 export class RMSSActor extends Actor {
 
   /** @override */
@@ -185,11 +187,23 @@ export class RMSSActor extends Actor {
     const skillBonuses = (profession?.system?.professionBonuses ?? []).filter(b => b.type === "skill");
     const bonusBySkillName = Object.fromEntries(skillBonuses.map(b => [b.slug, Number(b.bonus) || 0]));
 
+    const equippedWeapons = EquipmentService.getEquippedWeapons(this);
+    const weaponBonusBySkillId = {};
+    if (equippedWeapons.length === 1) {
+      const weapon = equippedWeapons[0];
+      const skillId = weapon.system?.offensive_skill;
+      const bonus = Number(weapon.system?.bonus) || 0;
+      if (skillId && bonus !== 0) {
+        weaponBonusBySkillId[skillId] = bonus;
+      }
+    }
+
     for (const item of this.items) {
       if (item.type === "skill") {
         const baseItemBonus = Number(item.system.item_bonus) || 0;
         const profBonus = bonusBySkillName[item.name] ?? 0;
-        item.system.item_bonus = baseItemBonus + profBonus;
+        const weaponBonus = weaponBonusBySkillId[item.id ?? item._id] ?? 0;
+        item.system.item_bonus = baseItemBonus + profBonus + weaponBonus;
         item.calculateSelectedSkillCategoryBonus(item);
         item.calculateSkillTotalBonus(item);
       }

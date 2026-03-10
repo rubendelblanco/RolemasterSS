@@ -3,7 +3,13 @@
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
+    <nav class="sheet-tabs tabs rmss-item-tabs" data-group="primary">
+        <a class="item active" data-tab="details">{{localize "rmss.item.tab_details"}}</a>
+        <a class="item" data-tab="modifiers">{{localize "rmss.item.tab_modifiers"}}</a>
+        <a class="item" data-tab="magic">{{localize "rmss.item.tab_magic"}}</a>
+    </nav>
     <div class="sheet-content">
+        <div class="tab rmss-tab-details" data-tab="details" data-group="primary">
         <!-- Contenedor general -->
         <div style="display:flex; justify-content:center; text-align:center; gap:8px;">
             <!-- Columna 1 -->
@@ -109,6 +115,63 @@
             editable=true}}
             </div>
             {{/if}}
+        </div>
+        </div>
+        <div class="tab rmss-tab-modifiers" data-tab="modifiers" data-group="primary">
+            <div class="rmss-modifiers-grid rmss-modifiers-grid-weapon">
+                <div class="rmss-modifiers-header">{{localize "rmss.item.modifiers_material"}}</div>
+                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_bonus"}}</div>
+                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_breakage"}}</div>
+                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_magical"}}</div>
+                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_sacred"}}</div>
+                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_total"}}</div>
+                <div class="rmss-modifiers-cell">
+                    <select name="system.material">
+                        {{#each materialsOptions as |opt|}}
+                        <option value="{{opt.key}}" {{#if opt.selected}}selected{{/if}}>{{opt.label}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="rmss-modifiers-cell rmss-text-center">
+                    {{#if bonusEditable}}
+                    <input type="number" name="system.bonus" value="{{or system.bonus 0}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
+                    {{else}}
+                    <span class="rmss-bonus-readonly">{{or system.bonus 0}}</span>
+                    {{/if}}
+                </div>
+                <div class="rmss-modifiers-cell rmss-text-center">{{system.breakage_range}}</div>
+                <div class="rmss-modifiers-cell rmss-text-center">
+                    {{#if magicalEditable}}
+                    <input type="checkbox" name="system.magical" {{checked system.magical}}/>
+                    {{else}}
+                    <input type="hidden" name="system.magical" value="{{#if system.magical}}true{{else}}false{{/if}}" data-dtype="Boolean"/>
+                    <input type="checkbox" {{checked system.magical}} disabled title="{{#if system.magical}}{{localize "rmss.item.modifiers_magical"}}{{/if}}"/>
+                    {{/if}}
+                </div>
+                <div class="rmss-modifiers-cell rmss-text-center">
+                    <input type="checkbox" name="system.sacred" {{checked system.sacred}}/>
+                </div>
+                <div class="rmss-modifiers-cell rmss-text-center rmss-text-strong">{{rmss_weapon_total}}</div>
+            </div>
+        </div>
+        <div class="tab rmss-tab-magic" data-tab="magic" data-group="primary">
+            <div class="rmss-enchantments-header">
+                <span>{{localize "rmss.item.enchantments_level"}}</span>
+                <span>{{localize "rmss.item.enchantments_spell"}}</span>
+                <span>{{localize "rmss.item.enchantments_effect"}}</span>
+                <span></span>
+            </div>
+            {{#each enchantmentList as |enchantment idx|}}
+            <div class="rmss-enchantment-row" data-enchantment-index="{{idx}}">
+                <span class="rmss-text-center">{{enchantment.level}}</span>
+                <span>{{enchantment.spell}}</span>
+                <span>{{enchantment.bonus}}</span>
+                <button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            {{/each}}
+            <p class="rmss-enchantments-hint">{{localize "rmss.item.enchantments_hint"}}</p>
         </div>
     </div>
 </form>

@@ -396,7 +396,12 @@
       "cost": 0,
       "prod_time": 0,
       "at": 1,
-      "isShield": false
+      "isShield": false,
+      "material": "iron",
+      "bonus": 0,
+      "magical": false,
+      "sacred": false,
+      "magic": { "enchantments": [] }
     },
     "weapon": {
       "templates": ["item"],
@@ -412,7 +417,12 @@
       "fumble_range": "",
       "attack_table": "",
       "critical_type": "",
-      "offensive_skill": ""
+      "offensive_skill": "",
+      "material": "iron",
+      "bonus": 0,
+      "magical": false,
+      "sacred": false,
+      "magic": { "enchantments": [] }
     },
     "herb_or_poison": {
       "templates": ["item"],

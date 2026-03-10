@@ -381,6 +381,26 @@ rmss.spell_list_dp_costs = {
   }
 }
 
+/** Materials from Arms Law table 08-02 (Bonuses Due to Special Material and Magic). */
+rmss.materials = {
+  custom: { label: "rmss.item.material_custom", bonus: null, magical: null, baseCostModifier: 1 },
+  stone: { label: "rmss.item.material_stone", bonus: -50, magical: false, baseCostModifier: 0.1 },
+  wood: { label: "rmss.item.material_wood", bonus: -30, magical: false, baseCostModifier: 0.1 },
+  bone: { label: "rmss.item.material_bone", bonus: -20, magical: false, baseCostModifier: 0.25 },
+  bronze: { label: "rmss.item.material_bronze", bonus: -10, magical: false, baseCostModifier: 0.5 },
+  iron: { label: "rmss.item.material_iron", bonus: 0, magical: false, baseCostModifier: 1 },
+  low_steel: { label: "rmss.item.material_low_steel", bonus: 5, magical: false, baseCostModifier: 5 },
+  high_steel: { label: "rmss.item.material_high_steel", bonus: 10, magical: false, baseCostModifier: 20 },
+  white_alloy: { label: "rmss.item.material_white_alloy", bonus: 15, magical: false, baseCostModifier: 100 },
+  black_alloy: { label: "rmss.item.material_black_alloy", bonus: 20, magical: false, baseCostModifier: 500 },
+  enchanted_iron: { label: "rmss.item.material_enchanted_iron", bonus: 5, magical: true, baseCostModifier: 10 },
+  enchanted_steel_i: { label: "rmss.item.material_enchanted_steel_i", bonus: 10, magical: true, baseCostModifier: 40 },
+  enchanted_steel_ii: { label: "rmss.item.material_enchanted_steel_ii", bonus: 15, magical: true, baseCostModifier: 200 },
+  mithril_alloy: { label: "rmss.item.material_mithril_alloy", bonus: 20, magical: true, baseCostModifier: 1000 },
+  laen: { label: "rmss.item.material_laen", bonus: 25, magical: true, baseCostModifier: 5000 },
+  eog: { label: "rmss.item.material_eog", bonus: 30, magical: true, baseCostModifier: 10000 }
+};
+
 rmss.creature_speed = {
   "in": {
     "name": "Inching",

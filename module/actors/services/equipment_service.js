@@ -101,6 +101,19 @@ export default class EquipmentService {
   }
 
   /**
+   * Equipped weapons only (weapon type, equipped=true). Excludes natural weapons and creature_attack.
+   * Used to determine if weapon skill bonus applies (only when exactly one weapon equipped).
+   * @param {Actor} actor
+   * @returns {Item[]}
+   */
+  static getEquippedWeapons(actor) {
+    if (!actor?.items) return [];
+    return actor.items.filter(
+      (i) => i.type === "weapon" && i.system?.equipped === true && i.system?.isNaturalWeapon !== true
+    );
+  }
+
+  /**
    * Check if equipping this item would exceed MAX_HANDS.
    * @param {Actor} actor
    * @param {Item} item - The item to equip
