@@ -22,15 +22,18 @@ export default class RMSSCharacterSheet extends ActorSheet {
                 if (item.system.equipped === true) {
                     await item.update({ system: { equipped: false } });
                 } else {
-                    const { valid, currentHands, itemHands } = EquipmentService.canEquip(this.actor, item);
+                    const { valid, currentHands, itemHands, reason } = EquipmentService.canEquip(this.actor, item);
                     if (!valid) {
-                        ui.notifications.warn(
-                            game.i18n.format("rmss.equipment.hands_limit_exceeded", {
-                                current: currentHands,
-                                adding: itemHands,
-                                max: EquipmentService.MAX_HANDS
-                            })
-                        );
+                        const msg = reason === "dual_wield_same_skill"
+                            ? game.i18n.localize("rmss.equipment.dual_wield_same_skill")
+                            : reason === "dual_wield_both_one_handed"
+                                ? game.i18n.localize("rmss.equipment.dual_wield_both_one_handed")
+                                : game.i18n.format("rmss.equipment.hands_limit_exceeded", {
+                                    current: currentHands,
+                                    adding: itemHands,
+                                    max: EquipmentService.MAX_HANDS
+                                });
+                        ui.notifications.warn(msg);
                         return;
                     }
                     if (item.type === "weapon" && item.system?.isNaturalWeapon !== true) {

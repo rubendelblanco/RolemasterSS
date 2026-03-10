@@ -115,18 +115,38 @@ export default class EquipmentService {
 
   /**
    * Check if equipping this item would exceed MAX_HANDS.
+   * For weapons: allows 2 weapons only when both are 1-handed AND have different offensive_skill.
    * @param {Actor} actor
    * @param {Item} item - The item to equip
-   * @returns {{ valid: boolean, currentHands: number, itemHands: number }}
+   * @returns {{ valid: boolean, currentHands: number, itemHands: number, reason?: string }}
    */
   static canEquip(actor, item) {
     const currentHands = this.getHandsOccupied(actor);
     const itemHands = this.getItemHandsIfEquipped(item);
     const wouldExceed = (currentHands + itemHands) > this.MAX_HANDS;
-    return {
-      valid: !wouldExceed,
-      currentHands,
-      itemHands
-    };
+    if (wouldExceed) {
+      return { valid: false, currentHands, itemHands, reason: "hands_limit_exceeded" };
+    }
+
+    if (item.type === "weapon" && item.system?.isNaturalWeapon !== true) {
+      const equippedWeapons = this.getEquippedWeapons(actor);
+      if (equippedWeapons.length >= 1) {
+        const newWeaponHands = this.getWeaponHands(item);
+        const existingWeapon = equippedWeapons[0];
+        const existingHands = this.getWeaponHands(existingWeapon);
+        const bothOneHanded = newWeaponHands === 1 && existingHands === 1;
+        const newSkill = (item.system?.offensive_skill || "").trim();
+        const existingSkill = (existingWeapon.system?.offensive_skill || "").trim();
+        const sameSkill = newSkill && existingSkill && newSkill === existingSkill;
+        if (!bothOneHanded) {
+          return { valid: false, currentHands, itemHands, reason: "dual_wield_both_one_handed" };
+        }
+        if (sameSkill) {
+          return { valid: false, currentHands, itemHands, reason: "dual_wield_same_skill" };
+        }
+      }
+    }
+
+    return { valid: true, currentHands, itemHands };
   }
 }

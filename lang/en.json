@@ -237,7 +237,9 @@
         "equipment": {
             "hands_limit_exceeded": "Hand limit reached ({current} + {adding} > {max}). Equip fewer items.",
             "weapon_not_equipped": "You must equip the weapon before using it.",
-            "weapon_bonus_no_second_weapon": "Weapon skill bonus only applies when exactly one weapon is equipped. With multiple weapons, no bonus is added to the skill."
+            "weapon_bonus_no_second_weapon": "Weapon skill bonus only applies when exactly one weapon is equipped. With multiple weapons, no bonus is added to the skill.",
+            "dual_wield_same_skill": "Dual wielding requires two one-handed weapons with different skills. This weapon uses the same skill as the one already equipped.",
+            "dual_wield_both_one_handed": "Dual wielding requires both weapons to be one-handed."
         },
         "pc_sheet_items": {
             "equipped": "Equipped",
@@ -671,6 +673,11 @@
             "cooldown": "Waiting for GM confirmation",
             "critical": "Critical",
             "critical_subtype": "Subtype",
+            "severity_normal": "Normal",
+            "severity_magical": "Magical",
+            "severity_mithril": "Mithril",
+            "severity_sacred": "Sacred",
+            "severity_slaying": "Slaying",
             "resistance_roll": "Resistance Roll",
             "attacker_level": "Attacker Level",
             "defender_level": "Defender Level",

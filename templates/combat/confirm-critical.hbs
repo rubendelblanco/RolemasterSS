@@ -24,12 +24,20 @@
         <div style="flex-direction: row; align-items: center; gap: 0.5em;">
             <label for="severity">{{ localize "rmss.combat.critical_severity" }}</label>
             <select name="severity" id="severity">
+                {{#if useLargeCreatureSeverityLabels}}
+                <option value="normal" {{#if (eq severity "normal" )}}selected{{/if}}>{{ localize "rmss.combat.severity_normal" }}</option>
+                <option value="magic" {{#if (eq severity "magic" )}}selected{{/if}}>{{ localize "rmss.combat.severity_magical" }}</option>
+                <option value="mithril" {{#if (eq severity "mithril" )}}selected{{/if}}>{{ localize "rmss.combat.severity_mithril" }}</option>
+                <option value="sacred" {{#if (eq severity "sacred" )}}selected{{/if}}>{{ localize "rmss.combat.severity_sacred" }}</option>
+                <option value="slaying" {{#if (eq severity "slaying" )}}selected{{/if}}>{{ localize "rmss.combat.severity_slaying" }}</option>
+                {{else}}
                 <option value="null" {{#if (eq severity "null" )}}selected{{/if}}>-</option>
                 <option value="A" {{#if (eq severity "A" )}}selected{{/if}}>A</option>
                 <option value="B" {{#if (eq severity "B" )}}selected{{/if}}>B</option>
                 <option value="C" {{#if (eq severity "C" )}}selected{{/if}}>C</option>
                 <option value="D" {{#if (eq severity "D" )}}selected{{/if}}>D</option>
                 <option value="E" {{#if (eq severity "E" )}}selected{{/if}}>E</option>
+                {{/if}}
             </select>
         </div>
 

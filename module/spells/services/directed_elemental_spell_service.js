@@ -232,10 +232,12 @@ export default class DirectedElementalSpellService {
             const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
             if (isNullResult) continue;
 
-            const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
+            let criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
                 attackResult.damage,
                 attackTable.critical_severity || null
             );
+            const enemyActor = target.actor ?? target;
+            criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemyActor);
 
             if (criticalResult.criticals === "fumble") continue;
 
@@ -244,7 +246,7 @@ export default class DirectedElementalSpellService {
                 criticalResult.criticals = [{ severity: null, critType, damage: criticalResult.damage ?? 0 }];
                 const damageToApply = parseInt(criticalResult.damage);
                 if (!isNaN(damageToApply) && damageToApply > 0) {
-                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(target.actor ?? target, damageToApply, actor.id);
+                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(enemyActor, damageToApply, actor.id);
                     if (actor.type === "character") {
                         await ExperienceManager.applyExperience(actor, criticalResult.damage);
                     }

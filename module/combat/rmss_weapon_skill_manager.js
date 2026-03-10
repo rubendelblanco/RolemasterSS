@@ -80,7 +80,7 @@ export class RMSSWeaponSkillManager {
             ui.notifications.warn(game.i18n.localize("rmss.combat.no_attack_result"));
             return;
         }
-        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage, attackTable.critical_severity || null, weapon.system.critical_type);
+        let criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage, attackTable.critical_severity || null, weapon.system.critical_type);
         // Fumble from attack table (result "F")
         if (criticalResult.criticals === "fumble") {
             const fumbleRoll = new Roll("1d100");
@@ -90,26 +90,28 @@ export class RMSSWeaponSkillManager {
             return;
         }
 
-        // Critical not exists
+        // No critical from table (e.g. "36" damage only): add synthetic for chat
+        if (criticalResult.criticals.length === 0) {
+            criticalResult.criticals = [{ severity: null, critType: weapon.system.critical_type, damage: criticalResult.damage ?? 0 }];
+        }
+
+        criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemy);
+
         const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
+
+        // Critical not exists (or filtered out for large/superlarge: A or A-B = no critical)
         if (criticalResult.criticals.length === 0) {
             if (!isNullResult) {
-                criticalResult.criticals = [
-                    { severity: null, critType: weapon.system.critical_type, damage: criticalResult.damage ?? 0 }
-                ];
                 const damageToApply = parseInt(criticalResult.damage);
                 if (!isNaN(damageToApply) && damageToApply > 0) {
-                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(
-                        enemy,
-                        damageToApply,
-                        actor.id
-                    );
+                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(enemy, damageToApply, actor.id);
                     if (actor.type === "character") {
                         const { ExperienceManager } = await import("../sheets/experience/rmss_experience_manager.js");
                         await ExperienceManager.applyExperience(actor, criticalResult.damage);
                     }
                 }
             }
+            return;
         }
 
         await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken, isNullResult);

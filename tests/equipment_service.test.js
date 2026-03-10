@@ -120,5 +120,20 @@ describe("EquipmentService", () => {
       expect(result.valid).toBe(false);
       expect(result.currentHands).toBe(2);
     });
+    test("can equip 2 one-handed weapons with different skills", () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } };
+      const actor = { items: [weapon1] };
+      const weapon2 = { type: "weapon", system: { type: "1he", isNaturalWeapon: false, offensive_skill: "skill-shortsword" } };
+      const result = EquipmentService.canEquip(actor, weapon2);
+      expect(result.valid).toBe(true);
+    });
+    test("cannot equip 2 one-handed weapons with same skill", () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } };
+      const actor = { items: [weapon1] };
+      const weapon2 = { type: "weapon", system: { type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } };
+      const result = EquipmentService.canEquip(actor, weapon2);
+      expect(result.valid).toBe(false);
+      expect(result.reason).toBe("dual_wield_same_skill");
+    });
   });
 });

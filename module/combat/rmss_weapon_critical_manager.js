@@ -260,6 +260,25 @@ export class RMSSWeaponCriticalManager {
      * @param {string} critType - e.g. large_melee, superlarge_melee
      * @returns {string} - One of: normal, magic, mithril, sacred
      */
+    /**
+     * Filter criticals for large/superlarge creatures: A is ignored (large), A-B ignored (superlarge).
+     * For remaining criticals, set critType to large_melee or superlarge_melee.
+     * @param {Object} criticalResult - { damage, criticals }
+     * @param {Actor} enemy - Target actor
+     * @returns {Object} - Filtered criticalResult; criticals may be empty
+     */
+    static filterCriticalResultForLargeCreatures(criticalResult, enemy) {
+        const ct = enemy?.system?.attributes?.critical_codes?.critical_table;
+        if (!ct || !["la", "sl"].includes(ct)) return criticalResult;
+        const critType = ct === "la" ? "large_melee" : "superlarge_melee";
+        const ignoreSeverities = ct === "la" ? ["A"] : ["A", "B"];
+        const filtered = (criticalResult.criticals || []).filter(
+            (c) => !c.severity || !ignoreSeverities.includes(c.severity)
+        );
+        filtered.forEach((c) => { c.critType = critType; });
+        return { ...criticalResult, criticals: filtered };
+    }
+
     static getDefaultCriticalSubtype(attackerId, critType) {
         const subtypes = rmss.large_critical_types[critType];
         if (!subtypes || subtypes.length === 0) return "normal";
@@ -304,7 +323,7 @@ export class RMSSWeaponCriticalManager {
 
     static async criticalMessagePopup(enemy, damage, severity, critType, attackerId = null) {
         let modifier = 0;
-        if (enemy.type === "creature" || enemy.type === "npc") {
+        if ((enemy.type === "creature" || enemy.type === "npc") && severity != null && severity !== "null") {
             if (enemy.system.attributes.critical_codes.critical_procedure === "I") {
                 const S = ["A","B","C","D","E"];
                 if (severity === "A") modifier -= 25;
@@ -329,6 +348,7 @@ export class RMSSWeaponCriticalManager {
                 }
             }
         }
+        const severityForModifier = severity;
 
         const largeSubtypes = rmss.large_critical_types[critType] || [];
         const subcritdict = largeSubtypes.length > 0
@@ -337,10 +357,13 @@ export class RMSSWeaponCriticalManager {
         const subCritType = largeSubtypes.length > 0 && largeSubtypes.includes("normal") ? "normal" : (Object.keys(subcritdict)[0] ?? "");
         const criticalHasSubtypes = largeSubtypes.length > 0;
         const defaultSubtype = criticalHasSubtypes ? RMSSWeaponCriticalManager.getDefaultCriticalSubtype(attackerId, critType) : "normal";
+        const enemyCriticalTable = enemy?.system?.attributes?.critical_codes?.critical_table;
+        const useLargeCreatureSeverityLabels = ["la", "sl"].includes(enemyCriticalTable);
         const initialContext = {
             enemy: enemy,
             damage: damage,
-            severity: severity,
+            severity: useLargeCreatureSeverityLabels ? defaultSubtype : severity,
+            originalSeverity: severityForModifier,
             critType: critType,
             subCritType,
             critTables: await game.rmss?.attackTableIndex || [],
@@ -349,6 +372,7 @@ export class RMSSWeaponCriticalManager {
             modifier: modifier,
             criticalHasSubtypes,
             defaultSubtype,
+            useLargeCreatureSeverityLabels,
         };
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-critical.hbs", initialContext);
 
@@ -361,10 +385,14 @@ export class RMSSWeaponCriticalManager {
                         label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
                         callback: (html) => {
                             const damage = parseInt(html.find("#damage").val());
-                            const severity = html.find("#severity").val();
+                            let severity = html.find("#severity").val();
                             const critType = html.find("#critical-type").val();
-                            const subCritType = html.find("#critical-subtype").val();
+                            let subCritType = html.find("#critical-subtype").val();
                             const modifier = html.find("#modifier").val();
+                            if (initialContext.useLargeCreatureSeverityLabels) {
+                                subCritType = severity;
+                                severity = initialContext.originalSeverity ?? "null";
+                            }
                             resolve({ confirmed: true, damage, severity, critType, subCritType, modifier });
                         }
                     },
@@ -408,7 +436,10 @@ export class RMSSWeaponCriticalManager {
                     });
 
                     // En funcion del tipo de critico inicial, se muestra o no el selector de subtipos.
-                    if (!initialContext.criticalHasSubtypes) {
+                    // Para large/superlarge, severity YA es el subtipo (Normal, Magical...), ocultar selector duplicado.
+                    if (initialContext.useLargeCreatureSeverityLabels) {
+                        html.find("#critical-subtype-container").hide();
+                    } else if (!initialContext.criticalHasSubtypes) {
                         html.find("#critical-subtype-container").hide();
                     } else {
                         populateSubtypeSelect(initialContext.critType, initialContext.defaultSubtype);
