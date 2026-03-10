@@ -145,10 +145,21 @@ export default class RMSSSpellListSheet extends ItemSheet {
             if (!spell) return;
             dragData = {
                 type: "EmbeddedSpell",
-                spellData: this._spellItemToEmbedded(spell)
+                spellData: this._spellItemToEmbedded(spell),
+                spellListName: this.item.name,
+                realm: this.item.system?.realm ?? "",
+                listType: this.item.system?.type ?? "",
+                profession: this.item.system?.profession ?? ""
             };
         } else if (uuid) {
-            dragData = { type: "Item", uuid };
+            dragData = {
+                type: "Item",
+                uuid,
+                spellListName: this.item.name,
+                realm: this.item.system?.realm ?? "",
+                listType: this.item.system?.type ?? "",
+                profession: this.item.system?.profession ?? ""
+            };
         } else {
             return;
         }
