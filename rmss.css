@@ -2785,15 +2785,87 @@ tr.container-row.over-capacity {
 /* Modifiers grid */
 .rmss-modifiers-grid {
   display: grid;
-  grid-template-columns: 1fr auto auto auto auto;
+  grid-template-columns: 1fr auto auto;
   gap: 0.25rem 0.5rem;
   align-items: center;
   max-width: 450px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .rmss-modifiers-grid.rmss-modifiers-grid-weapon {
-  grid-template-columns: 1fr auto auto auto auto auto;
+  grid-template-columns: 1fr auto auto auto;
+}
+
+.rmss-modifiers-grid.rmss-modifiers-grid-row2 {
+  grid-template-columns: 1fr auto auto;
+  margin-bottom: 1rem;
+}
+
+.rmss-modifiers-grid.rmss-modifiers-grid-weapon + .rmss-modifiers-grid-row2 {
+  grid-template-columns: 1fr auto auto;
+}
+
+.rmss-modifiers-grid.rmss-modifiers-row1 {
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 1rem;
+}
+
+.rmss-item-bonus-skills {
+  margin-top: 0.5rem;
+}
+
+.rmss-item-bonus-skills .rmss-modifiers-header {
+  margin-bottom: 0.35rem;
+}
+
+.rmss-bonus-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rmss-bonus-skill-row {
+  display: grid;
+  grid-template-columns: 1fr 4rem 2rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rmss-bonus-skill-row .rmss-bonus-skill-drop-zone {
+  min-width: 0;
+}
+
+.rmss-bonus-skill-row .rmss-bonus-skill-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rmss-bonus-skill-row input[type="number"] {
+  width: 100%;
+  min-width: 3rem;
+  text-align: center;
+}
+
+.rmss-bonus-skill-remove {
+  padding: 0.2rem;
+  color: var(--rmss-btn-danger);
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.rmss-bonus-skill-remove:hover {
+  color: var(--rmss-btn-danger-hover);
+}
+
+.rmss-bonus-skill-remove i {
+  pointer-events: none;
+}
+
+.rmss-bonus-skill-add-row .rmss-bonus-skill-add-zone {
+  justify-content: center;
 }
 
 .rmss-modifiers-header {
@@ -2815,6 +2887,25 @@ tr.container-row.over-capacity {
   text-align: center;
 }
 
+.rmss-effective-cost {
+  font-size: 0.85em;
+  color: var(--color-text-dark-inactive);
+  margin-top: 0.15rem;
+}
+
+.rmss-cost-row {
+  border-top: 1px solid var(--color-border-light-tertiary);
+}
+.rmss-cost-row th,
+.rmss-cost-row td {
+  text-align: left;
+  vertical-align: middle;
+}
+.rmss-cost-row th {
+  font-weight: 600;
+  font-size: var(--rmss-font-size-sm);
+}
+
 .rmss-bonus-readonly {
   font-weight: 500;
 }
@@ -2825,6 +2916,40 @@ tr.container-row.over-capacity {
 
 .rmss-text-strong {
   font-weight: bold;
+}
+
+/* Item bonus skill drop zone */
+.rmss-bonus-skill-drop-zone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px dashed var(--color-border-dark-ternary);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.02);
+}
+.rmss-bonus-skill-drop-zone:hover {
+  border-color: var(--color-border-dark-secondary);
+  background: rgba(0, 0, 0, 0.04);
+}
+.rmss-bonus-skill-name {
+  flex: 1;
+  font-weight: 500;
+}
+.rmss-bonus-skill-clear {
+  padding: 0.2rem;
+  color: var(--rmss-btn-danger);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.rmss-bonus-skill-clear:hover {
+  color: var(--rmss-btn-danger-hover);
+}
+.rmss-drop-hint {
+  font-size: 0.9em;
+  color: var(--color-text-dark-inactive);
 }
 
 /* Enchantments */

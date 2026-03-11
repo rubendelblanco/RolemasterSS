@@ -53,6 +53,17 @@ export default class RMSSArmorSheet extends ItemSheet {
       selected: material === key
     }));
 
+    const wr = CONFIG.rmss?.weight_reduction ?? {};
+    const weightPercent = Number(system.weight_percent) || 100;
+    const weightReductionOptions = Object.entries(wr).map(([key, def]) => {
+      const inRange = weightPercent >= def.min && weightPercent <= def.max;
+      return {
+        key,
+        label: game.i18n.localize(def.label),
+        selected: inRange
+      };
+    });
+
     const enchantments = system.magic?.enchantments ?? [];
     const enchantmentList = enchantments.map((e) => {
       const realm = e.realm ?? "";
@@ -86,6 +97,7 @@ export default class RMSSArmorSheet extends ItemSheet {
       enrichedDescription: enrichedDescription,
       secretDescription: secretDescription,
       materialsOptions,
+      weightReductionOptions,
       bonusEditable,
       magicalEditable,
       rmss_armor_total,

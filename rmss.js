@@ -498,6 +498,20 @@ Hooks.once("init", function () {
       .sort((a, b) => a.name.localeCompare(b.name));
   });
 
+  /** Generate slug from name: lowercase, normalize accents, replace spaces/special chars with hyphens. */
+  const slugFromName = (name) => {
+    if (!name || typeof name !== "string") return "";
+    return String(name)
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .toLowerCase()
+      .replace(/\s*[•·]\s*/g, "-")
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "");
+  };
+
   // Ensure skill_category has slug when created (e.g. from compendium without slug)
   Hooks.on("preCreateItem", (item, data, options) => {
     if (item.type !== "skill_category") return;
@@ -513,6 +527,34 @@ Hooks.once("init", function () {
     if (derivedSlug) {
       item.updateSource({ "system.slug": derivedSlug });
     }
+  });
+
+  // Ensure skill has slug when created or when name changes
+  Hooks.on("preCreateItem", (item, data, options) => {
+    if (item.type !== "skill") return;
+    const name = item.name ?? data.name ?? "";
+    const derivedSlug = slugFromName(name);
+    if (derivedSlug) {
+      item.updateSource({ "system.slug": derivedSlug });
+    }
+  });
+
+  Hooks.on("preUpdateItem", (item, update, options, userId) => {
+    if (item.type !== "skill") return;
+    const nameChanged = "name" in update;
+    if (!nameChanged) return;
+    const newName = update.name ?? item.name ?? "";
+    const derivedSlug = slugFromName(newName);
+    if (derivedSlug) {
+      update.system = foundry.utils.mergeObject(update.system ?? {}, { slug: derivedSlug });
+    }
+  });
+
+  // Items dropped onto an actor are worn by default (character is carrying them)
+  Hooks.on("preCreateItem", (item, data, options, userId) => {
+    if (item.type !== "item") return;
+    if (!(item.parent instanceof Actor)) return;
+    item.updateSource({ "system.worn": true });
   });
 
   // Hook: renderChatMessage - Handle RR roll buttons

@@ -2,7 +2,6 @@
 
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 
-
 export default class RMSSWeaponSheet extends ItemSheet {
 
   // Set the height and width
@@ -71,6 +70,17 @@ export default class RMSSWeaponSheet extends ItemSheet {
       selected: material === key
     }));
 
+    const wr = CONFIG.rmss?.weight_reduction ?? {};
+    const weightPercent = Number(system.weight_percent) || 100;
+    const weightReductionOptions = Object.entries(wr).map(([key, def]) => {
+      const inRange = weightPercent >= def.min && weightPercent <= def.max;
+      return {
+        key,
+        label: game.i18n.localize(def.label),
+        selected: inRange
+      };
+    });
+
     const enchantments = system.magic?.enchantments ?? [];
     const enchantmentList = enchantments.map((e) => {
       const realm = e.realm ?? "";
@@ -108,6 +118,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
       offensiveSkills: await this.getOffensiveSkills(),
       weaponTypes: CONFIG.weapons.type,
       materialsOptions,
+      weightReductionOptions,
       bonusEditable,
       magicalEditable,
       rmss_weapon_total,

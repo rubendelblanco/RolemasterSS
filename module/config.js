@@ -387,6 +387,20 @@ rmss.spell_list_dp_costs = {
   }
 }
 
+/**
+ * Weight reduction due to material and design (Arms Law table 08-02).
+ * % of Min Normal Weight → Base Cost Modifier.
+ * Used when item weighs less than normal (e.g. mithril design).
+ */
+rmss.weight_reduction = {
+  "100": { min: 95, max: 100, modifier: 1.5, label: "rmss.weight_reduction.p95_100" },
+  "94": { min: 80, max: 94, modifier: 4, label: "rmss.weight_reduction.p80_94" },
+  "79": { min: 60, max: 79, modifier: 8, label: "rmss.weight_reduction.p60_79" },
+  "59": { min: 40, max: 59, modifier: 20, label: "rmss.weight_reduction.p40_59" },
+  "39": { min: 20, max: 39, modifier: 100, label: "rmss.weight_reduction.p20_39" },
+  "19": { min: 0, max: 19, modifier: 500, label: "rmss.weight_reduction.p0_19" }
+};
+
 /** Materials from Arms Law table 08-02 (Bonuses Due to Special Material and Magic). */
 rmss.materials = {
   custom: { label: "rmss.item.material_custom", bonus: null, magical: null, baseCostModifier: 1 },

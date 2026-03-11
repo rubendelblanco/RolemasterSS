@@ -18,14 +18,26 @@
 export class RMSSItem extends Item {
 
   /**
-   * Effective unit cost = unitCost × material baseCostModifier (Arms Law table 08-02).
-   * For custom material, modifier is 1.
+   * Effective unit cost = unitCost × material baseCostModifier × weight reduction modifier (Arms Law table 08-02).
+   * For custom material, modifier is 1. Weight reduction uses % of min normal weight.
    */
   get effectiveUnitCost() {
     if (!["armor", "weapon"].includes(this.type)) return Number(this.system.unitCost) || 0;
     const mat = CONFIG.rmss?.materials?.[this.system.material];
-    const mod = mat?.baseCostModifier ?? 1;
-    return (Number(this.system.unitCost) || 0) * mod;
+    const matMod = mat?.baseCostModifier ?? 1;
+    const weightMod = this._getWeightReductionModifier();
+    return (Number(this.system.unitCost) || 0) * matMod * weightMod;
+  }
+
+  /** Get weight reduction cost modifier from table 08-02 (Weight Decreases Due to Material and Design). */
+  _getWeightReductionModifier() {
+    const wr = CONFIG.rmss?.weight_reduction;
+    if (!wr) return 1;
+    const percent = Number(this.system.weight_percent) || 100;
+    for (const entry of Object.values(wr)) {
+      if (percent >= entry.min && percent <= entry.max) return entry.modifier;
+    }
+    return percent >= 95 ? 1.5 : 500;
   }
 
   /** @override */

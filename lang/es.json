@@ -307,9 +307,17 @@
       "modifiers_magical": "Mágico",
       "modifiers_sacred": "Sagrado",
       "modifiers_breakage": "Rotura",
+      "modifiers_weight_reduction": "Peso %",
       "modifiers_total": "Total",
       "modifiers_bonus": "Bonus",
+      "modifiers_bonus_skill": "Habilidad del bonus",
+      "modifiers_bonus_skills": "Bonus a habilidades",
+      "add_bonus_skill": "Añadir bonus",
+      "drop_skill_for_bonus": "Suelta aquí una habilidad (del personaje o compendio)",
+      "drop_skill_only": "Solo se pueden soltar habilidades aquí.",
       "effective_cost": "Coste efectivo: {value}",
+      "effective_cost_label": "Coste efectivo",
+      "base_cost": "Coste base",
       "material_custom": "Personalizado",
       "material_stone": "Piedra",
       "material_wood": "Madera",
@@ -1022,6 +1030,14 @@
     "sweeps": "Artes marciales (Barridos)",
     "tiny": "Ataques diminutos",
     "unbalance": "Desequilibrio"
+    },
+    "weight_reduction": {
+      "p95_100": "95%-100% (1,5×)",
+      "p80_94": "80%-94% (4×)",
+      "p60_79": "60%-79% (8×)",
+      "p40_59": "40%-59% (20×)",
+      "p20_39": "20%-39% (100×)",
+      "p0_19": "0%-19% (500×)"
     }
   }
 }

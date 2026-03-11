@@ -15,43 +15,51 @@
                     <th>{{localize "rmss.item.equipped"}}</th>
                     <th>{{localize "rmss.armor.armor_slot"}}</th>
                     <th>{{localize "rmss.armor.weight"}}</th>
-                    <th>{{localize "rmss.armor.cost"}}</th>
-                    <th>{{localize "rmss.item.currency"}}</th>
-                    <th>{{localize "rmss.armor.prod_time"}}</th>
                     <th>{{localize "rmss.armor.at"}}</th>
                 </tr>
                 <tr>
-                <td>
-                    <input type="checkbox" name="system.equipped" {{checked system.equipped}}/>
-                </td>
-                <td>
-                    <select name="system.armorSlot">
-                        {{#each config.armor_slot as |label key|}}
-                        <option value="{{key}}" {{#if (eq ../system.armorSlot key)}}selected{{/if}}>{{label}}</option>
-                        {{/each}}
-                    </select>
-                </td>
-                <td>
-                    <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
-                </td>
-                <td>
-                    <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
-                </td>
-                <td>
-                    <select name="system.currency_type">
-                        {{#each config.currency_type_abb as |label key|}}
-                        <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
-                        {{localize label}}
-                        </option>
-                        {{/each}}
-                    </select>
-                </td>
-                <td>
-                    <input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String"/>
-                </td>
-                <td>
-                    <input name="system.at" type="text" value="{{system.at}}" data-dtype="Number"/>
-                </td>
+                    <td>
+                        <input type="checkbox" name="system.equipped" {{checked system.equipped}}/>
+                    </td>
+                    <td>
+                        <select name="system.armorSlot">
+                            {{#each config.armor_slot as |label key|}}
+                            <option value="{{key}}" {{#if (eq ../system.armorSlot key)}}selected{{/if}}>{{label}}</option>
+                            {{/each}}
+                        </select>
+                    </td>
+                    <td>
+                        <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
+                    </td>
+                    <td>
+                        <input name="system.at" type="text" value="{{system.at}}" data-dtype="Number"/>
+                    </td>
+                </tr>
+                <tr class="rmss-cost-row">
+                    <th>{{localize "rmss.armor.cost"}}</th>
+                    <th>{{localize "rmss.item.currency"}}</th>
+                    <th colspan="2">{{localize "rmss.item.effective_cost_label"}}</th>
+                </tr>
+                <tr class="rmss-cost-row">
+                    <td>
+                        <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
+                    </td>
+                    <td>
+                        <select name="system.currency_type">
+                            {{#each config.currency_type_abb as |label key|}}
+                            <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
+                            {{localize label}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </td>
+                    <td colspan="2">
+                        {{#if (and item.effectiveUnitCost (gt item.effectiveUnitCost 0))}}
+                        {{item.effectiveUnitCost}} {{localize (concat "rmss.currency_type_abb." system.currency_type)}}
+                        {{else}}
+                        —
+                        {{/if}}
+                    </td>
                 </tr>
             </table>
                 {{localize "rmss.item.description"}}
@@ -71,8 +79,6 @@
             <div class="rmss-modifiers-grid">
                 <div class="rmss-modifiers-header">{{localize "rmss.item.modifiers_material"}}</div>
                 <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_bonus"}}</div>
-                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_magical"}}</div>
-                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_sacred"}}</div>
                 <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_total"}}</div>
                 <div class="rmss-modifiers-cell">
                     <select name="system.material">
@@ -88,6 +94,19 @@
                     <span class="rmss-bonus-readonly">{{or system.bonus 0}}</span>
                     {{/if}}
                 </div>
+                <div class="rmss-modifiers-cell rmss-text-center rmss-text-strong">{{rmss_armor_total}}</div>
+            </div>
+            <div class="rmss-modifiers-grid rmss-modifiers-grid-row2">
+                <div class="rmss-modifiers-header">{{localize "rmss.item.modifiers_weight_reduction"}}</div>
+                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_magical"}}</div>
+                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_sacred"}}</div>
+                <div class="rmss-modifiers-cell">
+                    <select name="system.weight_percent">
+                        {{#each weightReductionOptions as |opt|}}
+                        <option value="{{opt.key}}" {{#if opt.selected}}selected{{/if}}>{{opt.label}}</option>
+                        {{/each}}
+                    </select>
+                </div>
                 <div class="rmss-modifiers-cell rmss-text-center">
                     {{#if magicalEditable}}
                     <input type="checkbox" name="system.magical" {{checked system.magical}}/>
@@ -99,7 +118,6 @@
                 <div class="rmss-modifiers-cell rmss-text-center">
                     <input type="checkbox" name="system.sacred" {{checked system.sacred}}/>
                 </div>
-                <div class="rmss-modifiers-cell rmss-text-center rmss-text-strong">{{rmss_armor_total}}</div>
             </div>
         </div>
         <div class="tab rmss-tab-magic" data-tab="magic" data-group="primary">

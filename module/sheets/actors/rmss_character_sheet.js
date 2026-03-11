@@ -12,48 +12,48 @@ export default class RMSSCharacterSheet extends ActorSheet {
         super.activateListeners(html);
         this._registerItemListeners(html);
 
-        // Equip/Unequip: items use "worn", weapons/armor use "equipped"
+        // Equip/Unequip Weapon/Armor, or toggle Worn for items
         html.find(".equippable").click(async ev => {
             const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
             if (!item) return;
-
-            if (item.type === "item") {
+            // Items, herbs, transports use "worn"; weapons and armor use "equipped"
+            if (["item", "herb_or_poison", "transport"].includes(item.type)) {
                 await ItemService.toggleWorn(item);
+                return;
+            }
+            if (item.system.equipped === true) {
+                await item.update({ system: { equipped: false } });
+                if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(this.actor);
             } else {
-                if (item.system.equipped === true) {
-                    await item.update({ system: { equipped: false } });
-                    if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(this.actor);
-                } else {
-                    if (item.type === "armor") {
-                        const armorCheck = EquipmentService.canEquipArmor(this.actor, item);
-                        if (!armorCheck.valid) {
-                            ui.notifications.warn(game.i18n.localize("rmss.equipment.armor_slot_occupied"));
-                            return;
-                        }
-                    }
-                    const { valid, currentHands, itemHands, reason } = EquipmentService.canEquip(this.actor, item);
-                    if (!valid) {
-                        const msg = reason === "dual_wield_same_skill"
-                            ? game.i18n.localize("rmss.equipment.dual_wield_same_skill")
-                            : reason === "dual_wield_both_one_handed"
-                                ? game.i18n.localize("rmss.equipment.dual_wield_both_one_handed")
-                                : game.i18n.format("rmss.equipment.hands_limit_exceeded", {
-                                    current: currentHands,
-                                    adding: itemHands,
-                                    max: EquipmentService.MAX_HANDS
-                                });
-                        ui.notifications.warn(msg);
+                if (item.type === "armor") {
+                    const armorCheck = EquipmentService.canEquipArmor(this.actor, item);
+                    if (!armorCheck.valid) {
+                        ui.notifications.warn(game.i18n.localize("rmss.equipment.armor_slot_occupied"));
                         return;
                     }
-                    if (item.type === "weapon" && item.system?.isNaturalWeapon !== true) {
-                        const equippedWeapons = EquipmentService.getEquippedWeapons(this.actor);
-                        if (equippedWeapons.length >= 1) {
-                            ui.notifications.warn(game.i18n.localize("rmss.equipment.weapon_bonus_no_second_weapon"));
-                        }
-                    }
-                    await item.update({ system: { equipped: true } });
-                    if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(this.actor);
                 }
+                const { valid, currentHands, itemHands, reason } = EquipmentService.canEquip(this.actor, item);
+                if (!valid) {
+                    const msg = reason === "dual_wield_same_skill"
+                        ? game.i18n.localize("rmss.equipment.dual_wield_same_skill")
+                        : reason === "dual_wield_both_one_handed"
+                            ? game.i18n.localize("rmss.equipment.dual_wield_both_one_handed")
+                            : game.i18n.format("rmss.equipment.hands_limit_exceeded", {
+                                current: currentHands,
+                                adding: itemHands,
+                                max: EquipmentService.MAX_HANDS
+                            });
+                    ui.notifications.warn(msg);
+                    return;
+                }
+                if (item.type === "weapon" && item.system?.isNaturalWeapon !== true) {
+                    const equippedWeapons = EquipmentService.getEquippedWeapons(this.actor);
+                    if (equippedWeapons.length >= 1) {
+                        ui.notifications.warn(game.i18n.localize("rmss.equipment.weapon_bonus_no_second_weapon"));
+                    }
+                }
+                await item.update({ system: { equipped: true } });
+                if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(this.actor);
             }
         });
 

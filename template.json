@@ -363,7 +363,11 @@
         "type": "string",
         "default": "gp",
         "label": "RMSS.CurrencyType"
-      }
+      },
+      "magical": false,
+      "sacred": false,
+      "bonus_skills": [],
+      "magic": { "enchantments": [] }
     },
     "creature_attack": {
       "templates": ["base"],
@@ -398,6 +402,7 @@
       "at": 1,
       "armorSlot": "body",
       "isShield": false,
+      "weight_percent": 100,
       "material": "iron",
       "bonus": 0,
       "magical": false,
@@ -419,6 +424,7 @@
       "attack_table": "",
       "critical_type": "",
       "offensive_skill": "",
+      "weight_percent": 100,
       "material": "iron",
       "bonus": 0,
       "magical": false,
@@ -437,6 +443,7 @@
     },
     "skill": {
       "templates": ["base"],
+      "slug": "",
       "category": "",
       "ranks": 0,
       "new_ranks": {
