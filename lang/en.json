@@ -312,7 +312,7 @@
             "modifiers_bonus": "Bonus",
             "modifiers_bonus_skill": "Bonus skill",
             "modifiers_bonus_skills": "Bonus to skills",
-            "add_bonus_skill": "Add bonus",
+            "add_bonus_skill": "Drag skill bonus here",
             "drop_skill_for_bonus": "Drop skill here (from character or compendium)",
             "drop_skill_only": "Only skills can be dropped here.",
             "effective_cost": "Effective cost: {value}",

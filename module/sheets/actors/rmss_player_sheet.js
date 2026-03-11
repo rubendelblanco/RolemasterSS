@@ -34,6 +34,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
   // Make the data available to the sheet template
   async getData() {
+    // Forzar preparación del actor para que calculateSkillBonuses (y otros) se ejecute
+    // al abrir la hoja, no solo al cargar el mundo (F5)
+    this.actor.prepareData();
     // Retrieve base data from Foundry's ActorSheet
     let context = await super.getData();
 
