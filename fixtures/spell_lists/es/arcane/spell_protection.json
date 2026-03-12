@@ -1,0 +1,309 @@
+{
+  "name": "Protección contra Hechizos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "arcane",
+    "profession": "Cazador de Magos",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base Cazador de Magos 13.6.5 - Protección contra Hechizos. Hechizos para protegerse y parar ataques de hechizos.",
+    "spells": [
+      {
+        "name": "01. Proteger I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene +5 a todas las TR (Tiradas de Resistencia) contra hechizos de todos los reinos."
+        }
+      },
+      {
+        "name": "02. Resistir Calor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador está totalmente protegido contra todo calor natural (hasta 200°F) y modifica los hechizos que involucran calor en 10."
+        }
+      },
+      {
+        "name": "03. Resistir Frío",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistir Calor, pero protege contra frío natural hasta -20°F y modifica los hechizos que involucran frío en 10."
+        }
+      },
+      {
+        "name": "05. Escudo de Hechizos I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene +10 en TR y DB (Bonificación Defensiva) contra todos los ataques de hechizos frontales, requiriendo que el lanzador sea consciente del ataque para la bonificación."
+        }
+      },
+      {
+        "name": "06. Proteger II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Proteger I, pero la bonificación es +10."
+        }
+      },
+      {
+        "name": "08. Parada de Hechizo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "lanzador",
+          "duration": "1 asalto/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede parar cualquier ataque de hechizo dirigido, obteniendo +1 DB por cada 5 puntos de BO (Bonificación Ofensiva) usados en la parada. Además, el lanzador puede parar hechizos contra los que normalmente tendría TR si el origen del hechizo está a más de 5', obteniendo +1 bonificación a TR por cada 5 puntos de BO usados en la parada."
+        }
+      },
+      {
+        "name": "10. Escudo de Hechizos II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo de Hechizos I, pero la bonificación es +20."
+        }
+      },
+      {
+        "name": "11. Proteger III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Proteger I, pero la bonificación es +15."
+        }
+      },
+      {
+        "name": "13. Escudo de Luz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "lanzador",
+          "duration": "1 asalto/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene +20 a TR y DB contra ataques basados en electricidad."
+        }
+      },
+      {
+        "name": "14. Escudo de Calor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "lanzador",
+          "duration": "1 asalto/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo de Luz, pero aplica a ataques de calor/fuego."
+        }
+      },
+      {
+        "name": "15. Escudo de Frío",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "lanzador",
+          "duration": "1 asalto/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo de Luz, pero aplica a ataques de frío."
+        }
+      },
+      {
+        "name": "16. Parada de Hechizo II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "lanzador",
+          "duration": "1 asalto/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Parada de Hechizo I, pero la bonificación se obtiene por cada 3 puntos de BO."
+        }
+      },
+      {
+        "name": "18. Invertir Hechizos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: +20] El hechizo objetivo se invierte de vuelta hacia su lanzador. Si es necesario, el hechizo se trata como si tuviera una modificación de ataque de +0."
+        }
+      },
+      {
+        "name": "20. Parada de Hechizo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "lanzador",
+          "duration": "1 asalto/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Parada de Hechizo I, pero la bonificación se obtiene por cada punto de BO."
+        }
+      },
+      {
+        "name": "25. Escudo Elemental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "lanzador",
+          "duration": "1 asalto/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como cualquiera de Escudo de Calor, Escudo de Luz o Escudo de Frío (elegido al lanzar). El daño del elemento seleccionado se reduce a la mitad, y todos los críticos de ese elemento se reducen una severidad (\"D\" se convierte en \"C\", crítico \"A\" modificado por -50)."
+        }
+      },
+      {
+        "name": "30. Invertir Hechizos Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "lanzador",
+          "duration": "1 asalto/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invertir Hechizos, pero durante la duración, cualquier hechizo que tenga como objetivo al lanzador se refleja de vuelta hacia su origen."
+        }
+      },
+      {
+        "name": "50. Protección Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "lanzador",
+          "duration": "1 asalto/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como las tres variantes de Escudo Elemental (calor, frío y luz) simultáneamente. Además, el lanzador obtiene una bonificación de +20 a todas las TR contra esos elementos."
+        }
+      }
+    ]
+  }
+}

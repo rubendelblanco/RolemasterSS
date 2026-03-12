@@ -1,0 +1,309 @@
+{
+  "name": "Spell Protection",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "arcane",
+    "profession": "Magehunter",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Magehunter Base List 13.6.5 - Spell Protection. Spells for protecting against and parrying spell attacks.",
+    "spells": [
+      {
+        "name": "01. Protect I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains +5 to all RRs (Resistance Rolls) versus spells of all realms."
+        }
+      },
+      {
+        "name": "02. Resist Heat",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is totally protected against all natural heat (up to 200°F) and modifies spells involving heat by 10."
+        }
+      },
+      {
+        "name": "03. Resist Cold",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Resist Heat, but protects against natural cold to -20°F and modifies spells involving cold by 10."
+        }
+      },
+      {
+        "name": "05. Spellshielding I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains +10 on RRs and DB (Defensive Bonus) versus all frontal spell attacks, requiring the caster to be aware of the attack(s) for the bonus."
+        }
+      },
+      {
+        "name": "06. Protect II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Protect I, but the bonus is +10."
+        }
+      },
+      {
+        "name": "08. Spell Parry I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can parry any directed spell attack, gaining a +1 DB for every 5 points of OB (Offensive Bonus) used in the parry. Additionally, the caster can parry spells they would normally get an RR against if the spell's origin is more than 5' away, gaining a +1 RR bonus for every 5 points of OB put into the parry."
+        }
+      },
+      {
+        "name": "10. Spellshielding II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spellshielding I, but the bonus is +20."
+        }
+      },
+      {
+        "name": "11. Protect III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Protect I, but the bonus is +15."
+        }
+      },
+      {
+        "name": "13. Light Shield",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains +20 to RRs and DB versus electricity-based attacks."
+        }
+      },
+      {
+        "name": "14. Heat Shield",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Light Shield, but applies to heat/fire-based attacks."
+        }
+      },
+      {
+        "name": "15. Cold Shield",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Light Shield, but applies to cold-based attacks."
+        }
+      },
+      {
+        "name": "16. Spell Parry II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Parry I, but the bonus is gained for every 3 points of OB."
+        }
+      },
+      {
+        "name": "18. Reverse Spells",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: +20] The target spell is reversed back upon its caster. If necessary, the spell is treated as having a +0 attack modification."
+        }
+      },
+      {
+        "name": "20. Spell Parry III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Parry I, but the bonus is gained for every point of OB."
+        }
+      },
+      {
+        "name": "25. Elemental Shield",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As any one of Heat Shield, Light Shield, or Cold Shield (chosen at casting). Damage from the selected element is halved, and all criticals from that element are reduced by one severity (\"D\" becomes \"C\", \"A\" critical modified by -50)."
+        }
+      },
+      {
+        "name": "30. Reverse Spells True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Reverse Spells, but for the duration, any spells targeting the caster are reflected back upon their origin."
+        }
+      },
+      {
+        "name": "50. True Protection",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As all three variants of Elemental Shield (heat, cold, and light) simultaneous. Additionally, the caster gains a +20 bonus to all RRs versus those elements."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "name": "Llamada del Cazador",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "arcane",
+    "profession": "Cazador de Magos",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base Cazador de Magos 13.6.3 - Llamada del Cazador. Hechizos de interrogación, encanto, sugestión, telepatía y dominación mental.",
+    "spells": [
+      {
+        "name": "01. Pregunta",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "variable",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo debe responder con verdad a una única pregunta conceptual (asumiendo que la comprende)."
+        }
+      },
+      {
+        "name": "02. Detectar Mentira",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador sabe si el objetivo está mintiendo."
+        }
+      },
+      {
+        "name": "03. Encantar Humanoide",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El humanoide objetivo cree que el lanzador es un buen amigo."
+        }
+      },
+      {
+        "name": "04. Pregunta V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "variable",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pregunta, pero el objetivo responde hasta 5 preguntas conceptuales."
+        }
+      },
+      {
+        "name": "05. Sugestión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "variable",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo seguirá una única sugestión, siempre que no sea completamente ajena (p. ej. sin actos suicidas u obviamente dañinos)."
+        }
+      },
+      {
+        "name": "06. Hechizo Fallido I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "variable",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El próximo hechizo que el objetivo intente lanzar requiere una Maniobra Estática de Lanzamiento con un modificador de -10."
+        }
+      },
+      {
+        "name": "07. Pregunta X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "variable",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pregunta, pero el objetivo responde hasta 10 preguntas conceptuales."
+        }
+      },
+      {
+        "name": "08. Sugestión II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "2 objetivos",
+          "duration": "variable",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sugestión, pero dos objetivos reciben la misma sugestión."
+        }
+      },
+      {
+        "name": "10. Telepatía",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto/nvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede leer los pensamientos superficiales de un objetivo."
+        }
+      },
+      {
+        "name": "11. Amo del Humanoide",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El humanoide objetivo debe obedecer al lanzador. Las órdenes no deben ser completamente ajenas."
+        }
+      },
+      {
+        "name": "12. Pregunta del Señor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "variable",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pregunta, pero el objetivo responde hasta 20 preguntas conceptuales."
+        }
+      },
+      {
+        "name": "13. Hechizo Fallido III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "variable",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Hechizo Fallido I, afecta a los próximos tres hechizos que el objetivo intente lanzar."
+        }
+      },
+      {
+        "name": "14. Telepatía II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto/nvl (C)",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telepatía, excepto por el alcance."
+        }
+      },
+      {
+        "name": "15. Olvidar Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/10 fallo",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo olvida el hechizo lanzado más recientemente y no puede lanzarlo de nuevo durante la duración. Todas las versiones de nivel inferior y superior (p. ej. Sueño V, Sueño X) también se olvidan."
+        }
+      },
+      {
+        "name": "16. Escaneo Mental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto/nvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede leer los recuerdos conscientes del objetivo a un ritmo de 1 escena por asalto."
+        }
+      },
+      {
+        "name": "18. Hechizo Fallido V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "variable",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Hechizo Fallido I, afecta a los próximos cinco hechizos que el objetivo intente lanzar."
+        }
+      },
+      {
+        "name": "20. Sonda Mental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto/nvl (C)",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede leer los recuerdos subconscientes profundos del objetivo a un ritmo de 1 escena por asalto."
+        }
+      },
+      {
+        "name": "25. Escaneo Mental II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto/nvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escaneo Mental, excepto que el lanzador puede escanear un objetivo diferente cada asalto."
+        }
+      },
+      {
+        "name": "30. Robar Pensamiento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto/nvl (C)",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede leer un único recuerdo de la mente del objetivo cada asalto."
+        }
+      },
+      {
+        "name": "50. Sonda Mental Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 asalto/nvl (C)",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sonda Mental, excepto que el lanzador puede escanear un objetivo diferente cada asalto. Además, el número de escenas escaneadas por asalto equivale al nivel del lanzador."
+        }
+      }
+    ]
+  }
+}

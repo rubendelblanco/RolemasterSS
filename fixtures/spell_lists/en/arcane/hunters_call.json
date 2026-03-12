@@ -1,0 +1,360 @@
+{
+  "name": "Hunter's Call",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "arcane",
+    "profession": "Magehunter",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Magehunter Base List 13.6.3 - Hunter's Call. Spells for interrogation, charm, suggestion, telepathy, and mental domination.",
+    "spells": [
+      {
+        "name": "01. Question",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target must truthfully answer a single concept question (presuming understanding)."
+        }
+      },
+      {
+        "name": "02. Detect Lie",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster knows if the target is lying."
+        }
+      },
+      {
+        "name": "03. Charm Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target humanoid believes the caster is a good friend."
+        }
+      },
+      {
+        "name": "04. Question V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Question, but target responds to up to 5 single concept questions."
+        }
+      },
+      {
+        "name": "05. Suggestion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target will follow a single suggestion, provided it's not completely alien (e.g., no suicidal or obviously harmful acts)."
+        }
+      },
+      {
+        "name": "06. Fumble Spell I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The next spell the target attempts to cast requires a Spell Casting Static Maneuver with a -10 modifier."
+        }
+      },
+      {
+        "name": "07. Question X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Question, but target responds to up to 10 single concept questions."
+        }
+      },
+      {
+        "name": "08. Suggestion II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "2 targets",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Suggestion, but two targets receive the same suggestion."
+        }
+      },
+      {
+        "name": "10. Telepathy",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can read the surface thoughts of one target."
+        }
+      },
+      {
+        "name": "11. Master of Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target humanoid must obey caster. Commands must not be completely alien."
+        }
+      },
+      {
+        "name": "12. Lord Question",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Question, but target responds to up to 20 single concept questions."
+        }
+      },
+      {
+        "name": "13. Fumble Spell III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fumble Spell I, affects the next three spells the target attempts to cast."
+        }
+      },
+      {
+        "name": "14. Telepathy II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl (C)",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telepathy, except for the range."
+        }
+      },
+      {
+        "name": "15. Forget Spell",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "1 day/10 fail",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target forgets the spell most recently cast and cannot cast it again for the duration. All lower- and higher-level versions (e.g., Sleep V, Sleep X) are also forgotten."
+        }
+      },
+      {
+        "name": "16. Mind Scan",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may read target's conscious memories at a rate of 1 scene per round."
+        }
+      },
+      {
+        "name": "18. Fumble Spell V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fumble Spell I, affects the next five spells the target attempts to cast."
+        }
+      },
+      {
+        "name": "20. Mind Probe",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl (C)",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may read target's deep subconscious memories at a rate of 1 scene per round."
+        }
+      },
+      {
+        "name": "25. Mind Scan II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl (C)",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Scan, except caster may scan a different target each round."
+        }
+      },
+      {
+        "name": "30. Thought Steal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl (C)",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may read a single memory from target's mind each round."
+        }
+      },
+      {
+        "name": "50. Mind Probe True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl (C)",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Probe, except caster may scan a different target each round. Additionally, the number of scenes scanned per round equals the caster's level."
+        }
+      }
+    ]
+  }
+}

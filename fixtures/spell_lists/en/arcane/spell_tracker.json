@@ -1,0 +1,275 @@
+{
+  "name": "Spell Tracker",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "arcane",
+    "profession": "Magehunter",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Magehunter Base List 13.6.6 - Spell Tracker. Spells for storing spell signals, sensing spell users, locating spells, and shadow projection.",
+    "spells": [
+      {
+        "name": "01. Store Spell Signal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster \"stores\" the signal from a specific spell. This spell can only be cast on an active spell. The caster can only have as many spell signals stored as he has levels."
+        }
+      },
+      {
+        "name": "03. Sense I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster learns the direction and distance to the currently stored spell user (i.e., whose signature has been stored with a Spell Signature spell, see the Power Lore spell list). The spell user must be within the area of effect."
+        }
+      },
+      {
+        "name": "05. Tracker",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "All of the caster's Tracking maneuvers receive a bonus of +50."
+        }
+      },
+      {
+        "name": "06. Locate Spell I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "100'R",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster learns the direction and distance to any spell that he has currently stored the signal for. The spell must be active and must be in the area of effect."
+        }
+      },
+      {
+        "name": "08. Sense II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "100'R",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sense I, except for the area of effect."
+        }
+      },
+      {
+        "name": "10. Shadow Mage I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may project his consciousness to follow the spell user that the caster currently has stored (i.e., whose signature has been stored with a Spell Signature spell, see the Power Lore spell list). The caster must know (exactly) the location of the target spell user. The caster's consciousness leaves his body and follows the target for the duration of this spell. While the consciousness is out of the caster's body, the caster feels nothing and is completely unaware of the environment surrounding the body. The consciousness can only see events around the target (no hearing)."
+        }
+      },
+      {
+        "name": "12. Locate Spell V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "500'R",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Locate Spell I, except for the area of effect."
+        }
+      },
+      {
+        "name": "14. Direction",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster receives the direction and distance to the caster of any one currently stored spell (signal). The spell caster must currently be involved in spell casting or this spell will reveal nothing."
+        }
+      },
+      {
+        "name": "15. Shadow Mage II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shadow Mage I, except the consciousness can hear as well as see."
+        }
+      },
+      {
+        "name": "16. Locate Spell X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1000'R",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Locate Spell I, except for the area of effect."
+        }
+      },
+      {
+        "name": "18. Sense III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1000'R",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sense I, except for the area of effect."
+        }
+      },
+      {
+        "name": "20. Shadow Mage III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shadow Mage II, except for the duration."
+        }
+      },
+      {
+        "name": "25. Locate Spell True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1000'R/lvl",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Locate Spell I, except for the area of effect."
+        }
+      },
+      {
+        "name": "30. Sense True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "100'R/lvl",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sense I, except for the area of effect."
+        }
+      },
+      {
+        "name": "50. Spell Tracker",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can cast any lower level spell on this list, once per round."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "name": "Containing Ways",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "arcane",
+    "profession": "Magehunter",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Magehunter Base List 13.6.2 - Containing Ways. Spells for containing, binding, and holding spell users.",
+    "spells": [
+      {
+        "name": "01. Containment Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains insight into the best way to hold a particular spell user so as to most impair his spell casting. If the caster follows this spell's advice to the letter (which may take some time), every spell casting attempt will require a Spell Casting Static Maneuver with a special modifier of -50."
+        }
+      },
+      {
+        "name": "03. Impair Limb",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "One of target's limbs (chosen randomly) is impaired and useless."
+        }
+      },
+      {
+        "name": "05. Sound Binding",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target may not make any sounds."
+        }
+      },
+      {
+        "name": "06. Binds I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "10 min/10 fail",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is wrapped in magical bonds. If the target struggles, he suffers a 'B' Electricity."
+        }
+      },
+      {
+        "name": "08. Hold Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target humanoid is reduced to 25% activity."
+        }
+      },
+      {
+        "name": "10. Create Cell",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 room",
+          "duration": "1 day/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster converts a room into a cell for holding spell users. The room can only contain one spell user (more than that dispels this spell). While in the cell, all spell casting attempts require a Spell Casting Static Maneuver with a special -100 modifier."
+        }
+      },
+      {
+        "name": "12. Binds II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "1 hr/10 fail",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Binds I, except for the duration."
+        }
+      },
+      {
+        "name": "14. Hold True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hold Kind, except that any being may be held."
+        }
+      },
+      {
+        "name": "15. Remove Power I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "1 hr/5 fail",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target loses all PPs for the duration. The caster must know the target's realm of power, and the target must be from a single realm (i.e., not a hybrid spell user)."
+        }
+      },
+      {
+        "name": "17. Binds III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "1 day/10 fail",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Binds I, except for the duration."
+        }
+      },
+      {
+        "name": "19. Create Prison",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 room",
+          "duration": "1 day/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Create Cell, except room may hold 1 spell user for every 10 square feet in the room. In addition, spell users will suffer a \"D\" Void critical when they enter the room."
+        }
+      },
+      {
+        "name": "20. Holding",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "1 min/10 fail",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hold Kind, except for the duration."
+        }
+      },
+      {
+        "name": "25. Remove Power II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "1 hr/5 fail",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Remove Power I, except that any hybrid spell user may be targeted."
+        }
+      },
+      {
+        "name": "30. Mass Hold",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target/5 lvls",
+          "duration": "C",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hold Kind, except for the number of targets."
+        }
+      },
+      {
+        "name": "50. Greater Remove Power",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "1 day/5 fail",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Remove Power I, except for the duration."
+        }
+      }
+    ]
+  }
+}

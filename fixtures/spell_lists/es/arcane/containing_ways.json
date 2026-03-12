@@ -1,0 +1,275 @@
+{
+  "name": "Vías del Contenimiento",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "arcane",
+    "profession": "Cazador de Magos",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base Cazador de Magos 13.6.2 - Vías del Contenimiento. Hechizos para contener, atar y retener a usuarios de magia.",
+    "spells": [
+      {
+        "name": "01. Saber del Contenimiento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "lanzador",
+          "duration": "",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene conocimiento sobre la mejor forma de retener a un usuario de magia para impedir su lanzamiento de hechizos. Si el lanzador sigue el consejo del hechizo al pie de la letra (lo cual puede llevar tiempo), cada intento de lanzar hechizos requerirá una Maniobra Estática de Lanzamiento con un modificador especial de -50."
+        }
+      },
+      {
+        "name": "03. Miembro Deteriorado",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Uno de los miembros del objetivo (elegido al azar) queda deteriorado e inútil."
+        }
+      },
+      {
+        "name": "05. Atadura de Sonido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo no puede emitir ningún sonido."
+        }
+      },
+      {
+        "name": "06. Ataduras I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/10 fallo",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo queda envuelto en ataduras mágicas. Si el objetivo forcejea, sufre un crítico 'B' de Electricidad."
+        }
+      },
+      {
+        "name": "08. Retener Humanoide",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El humanoide objetivo queda reducido a un 25% de actividad."
+        }
+      },
+      {
+        "name": "10. Crear Celda",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 habitación",
+          "duration": "1 día/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador convierte una habitación en una celda para retener usuarios de magia. La habitación solo puede contener un usuario de magia (más de uno disipa este hechizo). Mientras esté en la celda, todos los intentos de lanzar hechizos requieren una Maniobra Estática de Lanzamiento con un modificador especial de -100."
+        }
+      },
+      {
+        "name": "12. Ataduras II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 h/10 fallo",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ataduras I, excepto por la duración."
+        }
+      },
+      {
+        "name": "14. Retener Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Humanoide, excepto que cualquier ser puede ser retenido."
+        }
+      },
+      {
+        "name": "15. Quitar Poder I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 h/5 fallo",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo pierde todos los PP durante la duración. El lanzador debe conocer el reino de poder del objetivo, y el objetivo debe ser de un solo reino (es decir, no un usuario híbrido)."
+        }
+      },
+      {
+        "name": "17. Ataduras III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/10 fallo",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ataduras I, excepto por la duración."
+        }
+      },
+      {
+        "name": "19. Crear Prisión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 habitación",
+          "duration": "1 día/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Crear Celda, excepto que la habitación puede retener 1 usuario de magia por cada 10 pies cuadrados. Además, los usuarios de magia sufrirán un crítico \"D\" de Vacío al entrar en la habitación."
+        }
+      },
+      {
+        "name": "20. Retención",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/10 fallo",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Humanoide, excepto por la duración."
+        }
+      },
+      {
+        "name": "25. Quitar Poder II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 h/5 fallo",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Quitar Poder I, excepto que cualquier usuario híbrido puede ser objetivo."
+        }
+      },
+      {
+        "name": "30. Retención Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo/5 nvls",
+          "duration": "C",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Humanoide, excepto por el número de objetivos."
+        }
+      },
+      {
+        "name": "50. Quitar Poder Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/5 fallo",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Quitar Poder I, excepto por la duración."
+        }
+      }
+    ]
+  }
+}

@@ -216,3 +216,8 @@ Los archivos siguen la estructura de Item de Foundry para `spell_list`:
 - **Spell Enhancement**: Spell Law, Closed Essence 3.8
 - **Spell Reins**: Spell Law, Closed Essence 3.9
 - **Spirit Mastery**: Spell Law, Closed Essence 3.10
+- **Containing Ways**: Magehunter Base List 13.6.2
+- **Hunter's Call**: Magehunter Base List 13.6.3
+- **Power Lore**: Magehunter Base List 13.6.4
+- **Spell Protection**: Magehunter Base List 13.6.5
+- **Spell Tracker**: Magehunter Base List 13.6.6

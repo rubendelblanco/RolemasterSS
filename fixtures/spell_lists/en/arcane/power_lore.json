@@ -1,0 +1,292 @@
+{
+  "name": "Power Lore",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "arcane",
+    "profession": "Magehunter",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Magehunter Base List 13.6.4 - Power Lore. Spells for detecting, analyzing, and identifying spells, magic items, and curses.",
+    "spells": [
+      {
+        "name": "01. Spell Signature",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster memorizes a signature of a spell user (the target), losing previous signatures when a new one is cast."
+        }
+      },
+      {
+        "name": "02. Type Spell",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "This spell is cast upon an active spell, allowing the caster to identify if it was cast by a memorized signature user, or if the caster has ever memorized that signature."
+        }
+      },
+      {
+        "name": "03. Spell Detection",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster learns about active spells in an area, with the area of effect being movable."
+        }
+      },
+      {
+        "name": "05. Detect Past Spell",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Similar to Spell Detection, but allows the caster to learn about spells cast in the area within one day per caster level."
+        }
+      },
+      {
+        "name": "07. Spell Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Provides an analysis of an active spell, including its duration, origin list, and type, but not its exact level."
+        }
+      },
+      {
+        "name": "09. Recall Spell",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 spell",
+          "duration": "1 md/lvl",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "One random past spell in the area (up to 1 hour per caster level) becomes \"active\" for the spell's duration, treated as active for other spells on this list (e.g., Spell Analysis). If Detect Past Spell was cast in the area, the caster can select a past spell to recall."
+        }
+      },
+      {
+        "name": "10. Name Spell",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows the caster to learn the name of a single active spell (e.g., \"Sleep,\" not \"Sleep X\")."
+        }
+      },
+      {
+        "name": "11. Power Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Examine an item, person, or place to determine if it has power, its realm of origin, a general idea of its origin, and basic configuration."
+        }
+      },
+      {
+        "name": "13. Magic Item Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 item",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster learns the purpose, origin, construction, and age of a single magical object."
+        }
+      },
+      {
+        "name": "15. Past Spell Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Analysis, except that the spell need not be active any longer. Maximum time elapsed may only be 1 day per level of the caster. The spell must have been detected with Detect Past Spell."
+        }
+      },
+      {
+        "name": "16. Spell Typing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "10'R",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Will detect the type (Force, Information, Passive, etc.) of all active spells in the area."
+        }
+      },
+      {
+        "name": "18. Analyze Curse",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 curse",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster learns the nature, origin, and possible cures of a single curse on a person or place."
+        }
+      },
+      {
+        "name": "20. Name Past Spell",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Name Spell, except that the spell need not be active any longer. Maximum time elapsed may only be 1 hour per level of the caster. The spell must have been detected with Detect Past Spell."
+        }
+      },
+      {
+        "name": "25. Reveal Target",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster receives a vision of the target of a detected, past spell (e.g., a spell detected with Detect Past Spell)."
+        }
+      },
+      {
+        "name": "30. Power Analysis True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Power Analysis, except that caster also learns the origin, nature, and the exact amount of power in all objects and persons within the area."
+        }
+      },
+      {
+        "name": "50. Spell History",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster detects all spells that have ever been cast in the area (up to 1 day in the past per level of experience). The caster gets a vision of the spells, their targets, and their effects (though not necessarily the caster). This spell takes up to 30 minutes to cast (depending on how many spells were cast in the area)."
+        }
+      }
+    ]
+  }
+}

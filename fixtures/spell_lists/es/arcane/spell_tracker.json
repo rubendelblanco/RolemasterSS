@@ -1,0 +1,275 @@
+{
+  "name": "Rastreador de Hechizos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "arcane",
+    "profession": "Cazador de Magos",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base Cazador de Magos 13.6.6 - Rastreador de Hechizos. Hechizos para almacenar señales de hechizos, detectar usuarios de magia, localizar hechizos y proyección sombría.",
+    "spells": [
+      {
+        "name": "01. Almacenar Señal de Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador \"almacena\" la señal de un hechizo específico. Este hechizo solo puede lanzarse sobre un hechizo activo. El lanzador solo puede tener tantas señales de hechizos almacenadas como niveles tenga."
+        }
+      },
+      {
+        "name": "03. Sentir I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "—",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador aprende la dirección y distancia al usuario de magia actualmente almacenado (es decir, cuya firma ha sido almacenada con un hechizo Firma de Hechizo, ver la lista Saber del Poder). El usuario de magia debe estar dentro del área de efecto."
+        }
+      },
+      {
+        "name": "05. Rastreador",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "lanzador",
+          "duration": "C",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Todas las maniobras de Rastreo del lanzador reciben una bonificación de +50."
+        }
+      },
+      {
+        "name": "06. Localizar Hechizo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "100'R",
+          "duration": "—",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador aprende la dirección y distancia a cualquier hechizo del que tenga actualmente almacenada la señal. El hechizo debe estar activo y debe estar en el área de efecto."
+        }
+      },
+      {
+        "name": "08. Sentir II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "100'R",
+          "duration": "—",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir I, excepto por el área de efecto."
+        }
+      },
+      {
+        "name": "10. Mago Sombra I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "variable",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede proyectar su consciencia para seguir al usuario de magia que tiene actualmente almacenado (es decir, cuya firma ha sido almacenada con un hechizo Firma de Hechizo, ver la lista Saber del Poder). El lanzador debe conocer (exactamente) la ubicación del usuario de magia objetivo. La consciencia del lanzador abandona su cuerpo y sigue al objetivo durante la duración de este hechizo. Mientras la consciencia está fuera del cuerpo del lanzador, el lanzador no siente nada y es completamente inconsciente del entorno que rodea el cuerpo. La consciencia solo puede ver los eventos alrededor del objetivo (sin oír)."
+        }
+      },
+      {
+        "name": "12. Localizar Hechizo V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "500'R",
+          "duration": "—",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Localizar Hechizo I, excepto por el área de efecto."
+        }
+      },
+      {
+        "name": "14. Dirección",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "lanzador",
+          "duration": "—",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador recibe la dirección y distancia al lanzador de cualquier hechizo actualmente almacenado (señal). El lanzador del hechizo debe estar actualmente involucrado en el lanzamiento de hechizos o este hechizo no revelará nada."
+        }
+      },
+      {
+        "name": "15. Mago Sombra II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "variable",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Mago Sombra I, excepto que la consciencia puede oír además de ver."
+        }
+      },
+      {
+        "name": "16. Localizar Hechizo X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1000'R",
+          "duration": "—",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Localizar Hechizo I, excepto por el área de efecto."
+        }
+      },
+      {
+        "name": "18. Sentir III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1000'R",
+          "duration": "—",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir I, excepto por el área de efecto."
+        }
+      },
+      {
+        "name": "20. Mago Sombra III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl",
+          "range": "variable",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Mago Sombra II, excepto por la duración."
+        }
+      },
+      {
+        "name": "25. Localizar Hechizo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1000'R/nvl",
+          "duration": "—",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Localizar Hechizo I, excepto por el área de efecto."
+        }
+      },
+      {
+        "name": "30. Sentir Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "100'R/nvl",
+          "duration": "—",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir I, excepto por el área de efecto."
+        }
+      },
+      {
+        "name": "50. Rastreador de Hechizos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "variable",
+          "duration": "1 asalto/nvl",
+          "range": "uno mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede lanzar cualquier hechizo de nivel inferior de esta lista, una vez por asalto."
+        }
+      }
+    ]
+  }
+}

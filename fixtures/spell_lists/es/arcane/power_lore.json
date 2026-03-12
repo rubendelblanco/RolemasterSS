@@ -1,0 +1,292 @@
+{
+  "name": "Saber del Poder",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "arcane",
+    "profession": "Cazador de Magos",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base Cazador de Magos 13.6.4 - Saber del Poder. Hechizos para detectar, analizar e identificar hechizos, objetos mágicos y maldiciones.",
+    "spells": [
+      {
+        "name": "01. Firma de Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador memoriza la firma de un usuario de magia (el objetivo), perdiendo firmas anteriores cuando se lanza una nueva."
+        }
+      },
+      {
+        "name": "02. Tipar Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Este hechizo se lanza sobre un hechizo activo, permitiendo al lanzador identificar si fue lanzado por un usuario de firma memorizada, o si el lanzador ha memorizado alguna vez esa firma."
+        }
+      },
+      {
+        "name": "03. Detección de Hechizos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador aprende sobre hechizos activos en un área, siendo el área de efecto móvil."
+        }
+      },
+      {
+        "name": "05. Detectar Hechizo Pasado",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Similar a Detección de Hechizos, pero permite al lanzador aprender sobre hechizos lanzados en el área dentro de un día por nivel de lanzador."
+        }
+      },
+      {
+        "name": "07. Análisis de Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Proporciona un análisis de un hechizo activo, incluyendo su duración, lista de origen y tipo, pero no su nivel exacto."
+        }
+      },
+      {
+        "name": "09. Recordar Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 hechizo",
+          "duration": "1 md/nvl",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un hechizo pasado aleatorio en el área (hasta 1 hora por nivel de lanzador) se vuelve \"activo\" durante la duración del hechizo, tratado como activo para otros hechizos de esta lista (p. ej. Análisis de Hechizo). Si Detectar Hechizo Pasado fue lanzado en el área, el lanzador puede seleccionar un hechizo pasado para recordar."
+        }
+      },
+      {
+        "name": "10. Nombrar Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador aprender el nombre de un único hechizo activo (p. ej. \"Sueño\", no \"Sueño X\")."
+        }
+      },
+      {
+        "name": "11. Análisis de Poder",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Examina un objeto, persona o lugar para determinar si tiene poder, su reino de origen, una idea general de su origen y configuración básica."
+        }
+      },
+      {
+        "name": "13. Saber de Objeto Mágico",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador aprende el propósito, origen, construcción y antigüedad de un único objeto mágico."
+        }
+      },
+      {
+        "name": "15. Análisis de Hechizo Pasado",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis de Hechizo, excepto que el hechizo no necesita estar activo. El tiempo máximo transcurrido solo puede ser 1 día por nivel del lanzador. El hechizo debe haber sido detectado con Detectar Hechizo Pasado."
+        }
+      },
+      {
+        "name": "16. Tipado de Hechizos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "10'R",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detecta el tipo (Fuerza, Información, Pasivo, etc.) de todos los hechizos activos en el área."
+        }
+      },
+      {
+        "name": "18. Analizar Maldición",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 maldición",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador aprende la naturaleza, origen y posibles curas de una única maldición sobre una persona o lugar."
+        }
+      },
+      {
+        "name": "20. Nombrar Hechizo Pasado",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Nombrar Hechizo, excepto que el hechizo no necesita estar activo. El tiempo máximo transcurrido solo puede ser 1 hora por nivel del lanzador. El hechizo debe haber sido detectado con Detectar Hechizo Pasado."
+        }
+      },
+      {
+        "name": "25. Revelar Objetivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador recibe una visión del objetivo de un hechizo pasado detectado (p. ej. un hechizo detectado con Detectar Hechizo Pasado)."
+        }
+      },
+      {
+        "name": "30. Análisis de Poder Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis de Poder, excepto que el lanzador también aprende el origen, naturaleza y la cantidad exacta de poder en todos los objetos y personas dentro del área."
+        }
+      },
+      {
+        "name": "50. Historia de Hechizos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador detecta todos los hechizos que se han lanzado alguna vez en el área (hasta 1 día en el pasado por nivel de experiencia). El lanzador obtiene una visión de los hechizos, sus objetivos y sus efectos (aunque no necesariamente del lanzador). Este hechizo tarda hasta 30 minutos en lanzarse (dependiendo de cuántos hechizos se lanzaron en el área)."
+        }
+      }
+    ]
+  }
+}
