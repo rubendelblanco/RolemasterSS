@@ -107,7 +107,11 @@ export default class RMSSSpellListSheet extends ItemSheet {
             }
         }
 
-        const canEditSpellsAndLists = game.user.isGM || game.user.role === CONST.USER_ROLES.ASSISTANT;
+        // En compendio/mundo: siempre mostrar (Foundry impide guardar sin permiso).
+        // En actor: solo GM/Asistente.
+        const canEditSpellsAndLists = this.isEmbeddedMode
+            ? true
+            : (game.user.isGM || game.user.role === CONST.USER_ROLES.ASSISTANT);
 
         return {
             owner: this.item.isOwner,

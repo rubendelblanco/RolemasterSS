@@ -61,12 +61,17 @@
             {{#each spells as |spell idx|}}
             <tr class="spell spell-draggable" draggable="true" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}" data-uuid="{{spell.uuid}}">
                 <td>{{spell.system.level}}</td>
-                <td>{{spell.name}}{{#if spell.system.instant}}*{{/if}}</td>
+                <td>
+                    {{spell.name}}{{#if spell.system.instant}}*{{/if}}
+                    {{#if (and ../embeddedMode spell.system.description)}}
+                    <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{spell.system.description}}"></i>
+                    {{/if}}
+                </td>
                 <td>{{spell.system.area_of_effect}}</td>
                 <td>{{spell.system.duration}}</td>
                 <td>{{spell.system.range}}</td>
                 <td>{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</td>
-                {{#if canEditSpellsAndLists}}
+                {{#if ../canEditSpellsAndLists}}
                 <td>
                     <a class="item-edit" title="Edit Spell" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
                         <i class="fas fa-edit"></i>

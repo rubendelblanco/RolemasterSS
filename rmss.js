@@ -298,6 +298,10 @@ Hooks.once("init", function () {
     return a || b;
   });
 
+  Handlebars.registerHelper("and", function (a, b) {
+    return a && b;
+  });
+
   Handlebars.registerHelper("percentage", function (a, b) {
     if (typeof a !== "number" || typeof b !== "number" || b === 0) return 0;
     return Math.round((a / b) * 100);
