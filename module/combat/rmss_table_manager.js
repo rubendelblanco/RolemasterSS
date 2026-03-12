@@ -97,7 +97,8 @@ export default class RMSSTableManager {
     }
 
     static async getAttackTableResult(weapon, attackTable, totalAttack, enemy, attacker){
-        const AT = enemy.system.armor_info.armor_type;
+        const armorInfo = enemy.system.armor_info ?? {};
+        const AT = armorInfo.armor_type ?? armorInfo.armor_info?.armor_type ?? 1;
         let resultRow = findAttackTableRow(weapon.system.attack_table, attackTable, totalAttack);
         const damage = resultRow[AT];
 

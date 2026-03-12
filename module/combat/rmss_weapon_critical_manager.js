@@ -137,6 +137,9 @@ export class RMSSWeaponCriticalManager {
 
     static decomposeCriticalResult(result, criticalSeverity = null, weaponCriticalType = null) {
         // e.g result is "10A", "20B", "30C", "-", "F" or 50
+        if (result == null || result === "") {
+            return { damage: null, criticals: [] };
+        }
         if (result === "-") { //nothing
             return { criticals: [] };
         }

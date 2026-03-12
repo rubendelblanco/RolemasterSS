@@ -559,6 +559,7 @@
             "misc_description": "Miscellaneous (travel, ideas, other...)"
         },
         "combat": {
+            "no_attack_result": "No attack table result found. Check the target's armor type.",
             "confirm_attack": "Confirm attack",
             "confirm_critical": "Confirm critical",
             "confirm": "Confirm",

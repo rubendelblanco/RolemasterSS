@@ -57,17 +57,21 @@ export class RMSSWeaponSkillManager {
 
         const tableName = weapon.system.attack_table;
         const attackTable = await RMSSTableManager.loadAttackTable(tableName);
-        const um = RMSSTableManager.findUnmodifiedAttack(tableName, baseAttack, attackTable) != null;
+        const umResult = RMSSTableManager.findUnmodifiedAttack(tableName, baseAttack, attackTable);
         const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
 
-        if (um) {
-            total = um;
+        if (umResult) {
+            total = umResult.attack;
         }
         else {
             total = (total > maximum) ? maximum : total;
         }
 
         const attackResult = await RMSSTableManager.getAttackTableResult(weapon, attackTable, total, enemy, actor);
+        if (attackResult.damage == null) {
+            ui.notifications.warn(game.i18n.localize("rmss.combat.no_attack_result"));
+            return;
+        }
         const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage, attackTable.critical_severity || null, weapon.system.critical_type);
         // Fumble from attack table (result "F")
         if (criticalResult.criticals === "fumble") {
@@ -83,10 +87,13 @@ export class RMSSWeaponSkillManager {
             criticalResult.criticals = [
                 { severity: null, critType: weapon.system.critical_type, damage: 0 }
             ];
-            await RMSSWeaponCriticalManager.updateTokenOrActorHits(
-                enemy,
-                parseInt(criticalResult.damage)
-            );
+            const damageToApply = parseInt(criticalResult.damage);
+            if (!isNaN(damageToApply)) {
+                await RMSSWeaponCriticalManager.updateTokenOrActorHits(
+                    enemy,
+                    damageToApply
+                );
+            }
             if (actor.type === "character") {
                 const { ExperienceManager } = await import("../sheets/experience/rmss_experience_manager.js");
                 await ExperienceManager.applyExperience(actor, criticalResult.damage);
