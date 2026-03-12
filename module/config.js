@@ -393,7 +393,7 @@ rmss.spell_list_dp_costs = {
  * Used when item weighs less than normal (e.g. mithril design).
  */
 rmss.weight_reduction = {
-  "100": { min: 95, max: 100, modifier: 1.5, label: "rmss.weight_reduction.p95_100" },
+  "100": { min: 95, max: 100, modifier: 1, label: "rmss.weight_reduction.p95_100" },
   "94": { min: 80, max: 94, modifier: 4, label: "rmss.weight_reduction.p80_94" },
   "79": { min: 60, max: 79, modifier: 8, label: "rmss.weight_reduction.p60_79" },
   "59": { min: 40, max: 59, modifier: 20, label: "rmss.weight_reduction.p40_59" },

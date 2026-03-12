@@ -70,17 +70,6 @@ export default class RMSSWeaponSheet extends ItemSheet {
       selected: material === key
     }));
 
-    const wr = CONFIG.rmss?.weight_reduction ?? {};
-    const weightPercent = Number(system.weight_percent) || 100;
-    const weightReductionOptions = Object.entries(wr).map(([key, def]) => {
-      const inRange = weightPercent >= def.min && weightPercent <= def.max;
-      return {
-        key,
-        label: game.i18n.localize(def.label),
-        selected: inRange
-      };
-    });
-
     const enchantments = system.magic?.enchantments ?? [];
     const enchantmentList = enchantments.map((e) => {
       const realm = e.realm ?? "";
@@ -118,10 +107,10 @@ export default class RMSSWeaponSheet extends ItemSheet {
       offensiveSkills: await this.getOffensiveSkills(),
       weaponTypes: CONFIG.weapons.type,
       materialsOptions,
-      weightReductionOptions,
       bonusEditable,
       magicalEditable,
       rmss_weapon_total,
+      weightCostMultiplier: this.item._getWeightReductionModifier?.() ?? 1,
       enchantmentList
     };
 
@@ -132,7 +121,16 @@ export default class RMSSWeaponSheet extends ItemSheet {
     super.activateListeners(html);
     html.find("[data-action='delete-enchantment']").on("click", this._onDeleteEnchantment.bind(this));
     html.find("[data-action='open-spell-link']").on("click", this._onOpenSpellLink.bind(this));
+    html.find('input[name="system.weight_percent"]').on("input", this._onWeightPercentInput.bind(this));
     this._setupEnchantmentsDropZone(html);
+  }
+
+  _onWeightPercentInput(event) {
+    const input = event.currentTarget;
+    const percent = input.value;
+    const modifier = this.item.constructor.getWeightModifierFromPercent(percent);
+    const span = input.closest(".rmss-modifiers-cell")?.querySelector(".rmss-weight-multiplier");
+    if (span) span.textContent = `${modifier}×`;
   }
 
   async _onOpenSpellLink(event) {

@@ -100,12 +100,9 @@
                 <div class="rmss-modifiers-header">{{localize "rmss.item.modifiers_weight_reduction"}}</div>
                 <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_magical"}}</div>
                 <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_sacred"}}</div>
-                <div class="rmss-modifiers-cell">
-                    <select name="system.weight_percent">
-                        {{#each weightReductionOptions as |opt|}}
-                        <option value="{{opt.key}}" {{#if opt.selected}}selected{{/if}}>{{opt.label}}</option>
-                        {{/each}}
-                    </select>
+                <div class="rmss-modifiers-cell" style="display:flex; align-items:center; gap:0.5rem;">
+                    <input type="number" name="system.weight_percent" value="{{or system.weight_percent 100}}" min="0" max="100" step="1" data-dtype="Number" title="0-19: 500× | 20-39: 100× | 40-59: 20× | 60-79: 8× | 80-94: 4× | 95-100: 1×"/>
+                    <span class="rmss-weight-multiplier">{{weightCostMultiplier}}×</span>
                 </div>
                 <div class="rmss-modifiers-cell rmss-text-center">
                     {{#if magicalEditable}}
