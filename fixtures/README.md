@@ -12,7 +12,7 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 ### Concussion's Ways (Open Channeling 2.2)
 
 - `spell_lists/en/channeling/concussion_ways.json` – 20 hechizos de curación de golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración (inglés)
-- `spell_lists/es/channeling/concussion_ways.json` – Misma lista traducida al español
+- `spell_lists/es/channeling/concussion_ways.json` – Vías de la conmoción, traducida al español
 
 ### Detecting Ways (Open Essence 2.2)
 

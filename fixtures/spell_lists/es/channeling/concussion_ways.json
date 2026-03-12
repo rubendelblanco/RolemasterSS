@@ -1,5 +1,5 @@
 {
-  "name": "Caminos de Conmoción",
+  "name": "Vías de la conmoción",
   "type": "spell_list",
   "img": "systems/rmss/assets/default/spell.svg",
   "system": {
@@ -13,7 +13,7 @@
       "capacityType": "quantity",
       "allowedTags": ["spell"]
     },
-    "description": "Canalización Abierta 2.2 - Caminos de Conmoción. Hechizos para curar golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración.",
+    "description": "Canalización Abierta 2.2 - Vías de la conmoción. Hechizos para curar puntos de vida, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración.",
     "spells": [
       {
         "name": "01. Curación I",
@@ -29,7 +29,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "El objetivo cura d10 golpes de conmoción."
+          "description": "El objetivo recupera d10 puntos de vida."
         }
       },
       {
@@ -80,7 +80,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Como Curación I, excepto que el objetivo cura 3d10 golpes de conmoción."
+          "description": "Como Curación I, excepto que el objetivo recupera 3d10 puntos de vida."
         }
       },
       {
@@ -131,7 +131,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Reduce el daño del objetivo en 1 golpe cada minuto mientras el lanzador concentra. Si el lanzador está inconsciente, este hechizo operará sobre él sin concentración."
+          "description": "Reduce el daño del objetivo en 1 punto de vida cada minuto mientras el lanzador concentra. Si el lanzador está inconsciente, este hechizo operará sobre él sin concentración."
         }
       },
       {
@@ -148,7 +148,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Como Curación I, excepto que el objetivo cura 5d10 golpes de conmoción."
+          "description": "Como Curación I, excepto que el objetivo recupera 5d10 puntos de vida."
         }
       },
       {
@@ -199,7 +199,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Como Curación I, excepto que el objetivo cura 7d10 golpes de conmoción."
+          "description": "Como Curación I, excepto que el objetivo recupera 7d10 puntos de vida."
         }
       },
       {
@@ -216,7 +216,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Como Regeneración I, excepto que el daño del objetivo se reduce en 2 golpes por minuto de concentración."
+          "description": "Como Regeneración I, excepto que el daño del objetivo se reduce en 2 puntos de vida por minuto de concentración."
         }
       },
       {
@@ -250,7 +250,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Como Curación I, excepto que el objetivo cura 10d10 golpes de conmoción."
+          "description": "Como Curación I, excepto que el objetivo recupera 10d10 puntos de vida."
         }
       },
       {
@@ -284,7 +284,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Como Regeneración I, excepto que el daño del objetivo se reduce en 3 golpes por minuto."
+          "description": "Como Regeneración I, excepto que el daño del objetivo se reduce en 3 puntos de vida por minuto."
         }
       },
       {
@@ -301,7 +301,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Como Curación I, excepto que el objetivo cura 15d10 golpes de conmoción."
+          "description": "Como Curación I, excepto que el objetivo recupera 15d10 puntos de vida."
         }
       },
       {
@@ -318,7 +318,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Como Regeneración I, excepto que el daño del objetivo se reduce en 5 golpes por minuto."
+          "description": "Como Regeneración I, excepto que el daño del objetivo se reduce en 5 puntos de vida por minuto."
         }
       },
       {
@@ -335,7 +335,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Como Curación I, excepto que el objetivo cura todos los golpes de conmoción."
+          "description": "Como Curación I, excepto que el objetivo recupera todos los puntos de vida."
         }
       },
       {
@@ -352,7 +352,7 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Permite al lanzador curar todos los golpes de conmoción en un número de objetivos igual al nivel del lanzador."
+          "description": "Permite al lanzador recuperar todos los puntos de vida en un número de objetivos igual al nivel del lanzador."
         }
       }
     ]
