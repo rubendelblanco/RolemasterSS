@@ -165,7 +165,7 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
       const raw = ev.currentTarget.value;
       const total = Number(raw);
 
-      if (this.item.system.progression.toLowerCase() === "standard") {
+      if (this.item.system.progression?.toLowerCase() === "standard") {
         if (Number.isNaN(total)) return;
         RankCalculator.applyAbsoluteRanksAndBonus(this.item, total, "-15*2*1*0.5*0");
       }
