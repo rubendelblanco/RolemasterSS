@@ -1038,6 +1038,29 @@ table.rwd-table td img {
     margin-bottom: 5%;
 }
 
+.spell-list-description {
+    margin-top: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.spell-list-description label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.spell-list-description textarea {
+    width: 100%;
+    min-height: 4em;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    font-family: inherit;
+    font-size: 0.9em;
+    resize: vertical;
+}
+
 form .spell-list tr.spell td {
     text-align: center;
 }

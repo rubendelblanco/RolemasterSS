@@ -278,9 +278,11 @@ export default class ItemService {
         const hasWeaponCategories = skillcat.some(s => weaponSlugs.includes(s.system?.slug));
         const level = Number(actor.system?.attributes?.level?.value ?? 0);
         const showWeaponPrefAssign = hasWeaponCategories && level === 0;
+        const canEditSpellsAndLists = game.user.isGM || game.user.role === CONST.USER_ROLES.ASSISTANT;
 
         // Attach everything to context
         return Object.assign(context, {
+            canEditSpellsAndLists,
             containers,
             transportContainers,
             looseGear,

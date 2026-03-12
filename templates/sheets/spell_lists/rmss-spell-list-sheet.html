@@ -33,6 +33,11 @@
         {{/if}}
     </div>
 
+    <div class="spell-list-description">
+        <label>{{ localize "rmss.item.description" }}</label>
+        <textarea name="system.description" rows="3" placeholder="{{ localize 'rmss.spell_lists.description_placeholder' }}">{{system.description}}</textarea>
+    </div>
+
     <div class="sheet-content spell-list">
         {{#if embeddedMode}}
         <div class="spell-list-actions">
@@ -49,7 +54,7 @@
                 <th scope="col">Duration</th>
                 <th scope="col">Range</th>
                 <th scope="col">Type</th>
-                <th scope="col">Actions</th>
+                {{#if canEditSpellsAndLists}}<th scope="col">Actions</th>{{/if}}
             </tr>
             </thead>
             <tbody>
@@ -61,6 +66,7 @@
                 <td>{{spell.system.duration}}</td>
                 <td>{{spell.system.range}}</td>
                 <td>{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</td>
+                {{#if canEditSpellsAndLists}}
                 <td>
                     <a class="item-edit" title="Edit Spell" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
                         <i class="fas fa-edit"></i>
@@ -69,6 +75,7 @@
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>
+                {{/if}}
             </tr>
             {{/each}}
             </tbody>

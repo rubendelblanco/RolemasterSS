@@ -17,15 +17,20 @@ placeholder="Search spell..."
       {{else}}
       {{list.system.spell_list_type}} {{list.system.realm}}
       {{/if}}
-      )
+      ){{#if list.system.description}}
+      <i class="fas fa-info-circle spell-info-icon"
+         data-tooltip="{{list.system.description}}"></i>
+      {{/if}}
     </div>
     <span class="spell-list-actions">
+      {{#if ../canEditSpellsAndLists}}
       <a class="item-edit" title="Edit Spell List" data-item-id="{{list._id}}">
         <i class="fas fa-edit"></i>
       </a>
       <a class="item-delete" title="Delete Spell List" data-item-id="{{list._id}}">
         <i class="fas fa-trash"></i>
       </a>
+      {{/if}}
     </span>
   </div>
 
@@ -107,12 +112,14 @@ placeholder="Search spell..."
     <div data-search="{{spell.name}}">{{spell.system.range}}</div>
     <div data-search="{{spell.name}}">{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</div>
     <div data-search="{{spell.name}}">
+      {{#if ../../canEditSpellsAndLists}}
       <a class="item-edit" title="Edit Spell" data-item-id="{{spell._id}}">
         <i class="fas fa-edit"></i>
       </a>
       <a class="item-delete" title="Delete Spell" data-item-id="{{spell._id}}">
         <i class="fas fa-trash"></i>
       </a>
+      {{/if}}
     </div>
     </div>
     {{/each}}

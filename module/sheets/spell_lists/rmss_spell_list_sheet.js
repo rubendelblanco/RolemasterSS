@@ -92,7 +92,6 @@ export default class RMSSSpellListSheet extends ItemSheet {
     /** Prepare data for the sheet */
     async getData() {
         const baseData = await super.getData();
-        let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, { async: true });
 
         let spells = [];
         if (this.isEmbeddedMode) {
@@ -108,13 +107,15 @@ export default class RMSSSpellListSheet extends ItemSheet {
             }
         }
 
+        const canEditSpellsAndLists = game.user.isGM || game.user.role === CONST.USER_ROLES.ASSISTANT;
+
         return {
             owner: this.item.isOwner,
             editable: this.isEditable,
+            canEditSpellsAndLists,
             item: baseData.item,
             system: baseData.item.system,
             config: CONFIG.rmss,
-            enrichedDescription,
             spells,
             embeddedMode: this.isEmbeddedMode
         };

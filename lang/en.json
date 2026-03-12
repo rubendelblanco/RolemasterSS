@@ -746,6 +746,7 @@
             "applied_spell_lists": "Imported {count} spell list(s) from {name}."
         },
         "spell_lists": {
+            "description_placeholder": "Brief description of this spell list...",
             "realm": "Realm",
             "type": "Type",
             "profession": "Profession",

@@ -6,6 +6,13 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 
 - **spell_lists/en/essence/** – Spell lists en inglés (Esencia)
 - **spell_lists/es/essence/** – Spell lists en español (Esencia)
+- **spell_lists/en/channeling/** – Spell lists en inglés (Canalización)
+- **spell_lists/es/channeling/** – Spell lists en español (Canalización)
+
+### Concussion's Ways (Open Channeling 2.2)
+
+- `spell_lists/en/channeling/concussion_ways.json` – 20 hechizos de curación de golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración (inglés)
+- `spell_lists/es/channeling/concussion_ways.json` – Misma lista traducida al español
 
 ### Detecting Ways (Open Essence 2.2)
 
@@ -197,6 +204,7 @@ Los archivos siguen la estructura de Item de Foundry para `spell_list`:
 
 ## Fuente
 
+- **Concussion's Ways**: Spell Law, Open Channeling 2.2
 - **Detecting Ways**: Spell Law, Open Essence 2.2
 - **Dispelling Ways**: Spell Law, Closed Essence 3.1
 - **Gate Mastery**: Spell Law, Closed Essence 3.2

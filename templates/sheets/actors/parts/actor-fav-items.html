@@ -8,7 +8,10 @@
     {{#if equipable.system.equipped}}  
         <tr class="item" data-item-id="{{equipable._id}}">
             <td><div class="equipable-name">
-                <h4>{{equipable.name}}</h4>
+                <h4>{{equipable.name}}{{#if equipable.system.description}}
+                <i class="fas fa-info-circle spell-info-icon"
+                   data-tooltip="{{equipable.system.description}}"></i>
+                {{/if}}</h4>
             </div></td>
             <td><div class="equipable-entry item-prop"><div>{{equipable.system.at}}</div></div></td>
             <td><div class="equipable-entry item-prop"> - </div></td>
@@ -21,7 +24,10 @@
   {{#if weapon.system.equipped}}  
       <tr class="item" data-item-id="{{weapon._id}}">
           <td><div class="equipable-name">
-              <h4>{{weapon.name}}</h4>
+              <h4>{{weapon.name}}{{#if weapon.system.description}}
+              <i class="fas fa-info-circle spell-info-icon"
+                 data-tooltip="{{weapon.system.description}}"></i>
+              {{/if}}</h4>
           </div></td>
           <td><div class="equipable-entry item-prop"><div> - </div></div></td>
           <td><div class="equipable-entry item-prop">{{weapon.system.breakage_range}}</div></td>

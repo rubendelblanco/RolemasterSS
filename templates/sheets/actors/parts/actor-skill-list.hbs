@@ -28,7 +28,10 @@
                 {{/if}}
             </td>
             <td class="skill-name-cell" data-search="{{skill.name}}" {{#if (eq skill.system.designation "Occupational" )}} style="color:blue;" {{else if (eq skill.system.designation "Everyman" )}} style="color:green;" {{else if (eq skill.system.designation "Restricted" )}} style="color:red;" {{/if}}>
-                <a class="item-roll" title="Roll Check" data-item-id="{{skill._id}}">{{skill.name}}<i class="fas fa-dice"></i></a>
+                <a class="item-roll" title="Roll Check" data-item-id="{{skill._id}}">{{skill.name}}<i class="fas fa-dice"></i></a>{{#if skill.system.description}}
+                <i class="fas fa-info-circle spell-info-icon"
+                   data-tooltip="{{skill.system.description}}"></i>
+                {{/if}}
             </td>
             <td data-search="{{skill.name}}">{{skill.system.development_cost}}</td>
             <td data-search="{{skill.name}}">{{skill.system.ranks}}</td>

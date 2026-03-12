@@ -482,6 +482,7 @@
     },
     "spell_list": {
       "name": "",
+      "description": "",
       "realm": "",
       "type": "",
       "profession": "",

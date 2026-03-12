@@ -746,6 +746,7 @@
       "applied_spell_lists": "Importadas {count} lista(s) de hechizos de {name}."
     },
     "spell_lists": {
+      "description_placeholder": "Breve descripción de esta lista de hechizos...",
       "realm": "Reino",
       "type": "Tipo",
       "profession": "Profesión",
