@@ -8,7 +8,7 @@
     {{#if spell.system.favorite}}  
         <tr class="item" data-item-id="{{spell._id}}">
             <td><div class="spell-name">
-                <h4>{{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.description}}
+                <h4>{{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}{{#if spell.system.description}}
                 <i class="fas fa-info-circle spell-info-icon"
                    data-tooltip="{{spell.system.description}}"></i>
                 {{/if}}</h4>

@@ -656,6 +656,13 @@
     padding: 2px;
 }
 
+.spell-cast-utility .spell-no-pp-marker{
+    color: #000000!important;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+}
+
 .spell-cast-elemental i {
     color: #c45c26;
     border: 1px solid #c45c26;
@@ -673,6 +680,15 @@
 .spell-info-icon {
     position: relative;
     cursor: pointer; color: #4b4a44; font-size: 0.9em;
+}
+
+.spell-no-pp-marker {
+    font-size: 0.75em;
+    line-height: 1;
+    margin-left: 0.15em;
+    vertical-align: middle;
+    color: inherit;
+    opacity: 0.9;
 }
 
 .resistances-grid-container {

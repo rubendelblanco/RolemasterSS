@@ -302,6 +302,10 @@ Hooks.once("init", function () {
     return a && b;
   });
 
+  Handlebars.registerHelper("noPpMarker", function () {
+    return new Handlebars.SafeString('<i class="fa-solid fa-circle spell-no-pp-marker"></i>');
+  });
+
   Handlebars.registerHelper("percentage", function (a, b) {
     if (typeof a !== "number" || typeof b !== "number" || b === 0) return 0;
     return Math.round((a / b) * 100);

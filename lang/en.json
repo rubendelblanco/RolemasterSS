@@ -405,6 +405,8 @@
         "spell": {
             "favorite": "Favorite",
             "instant": "Instant",
+            "no_pp": "No PPs",
+            "no_pp_hint": "This spell does not consume power points when cast",
             "spell_list": "Spell List",
             "level": "Level",
             "area_of_effect": "Area of Effect",

@@ -9,6 +9,7 @@
                 <tr>
                     <th>{{localize "rmss.spell.favorite"}}</th>
                     <th>{{localize "rmss.spell.instant"}}</th>
+                    <th>{{localize "rmss.spell.no_pp"}}</th>
                     <th>{{localize "rmss.spell.level"}}</th>
                     <th>{{localize "rmss.spell.area_of_effect"}}</th>
                     <th>{{localize "rmss.spell.duration"}}</th>
@@ -22,6 +23,9 @@
                 </td>
                 <td>
                     <input type="checkbox" name="system.instant" {{checked system.instant}}/>
+                </td>
+                <td>
+                    <input type="checkbox" name="system.no_pp" {{checked system.no_pp}} title="{{localize 'rmss.spell.no_pp_hint'}}"/>
                 </td>
                 <td>
                     <input name="system.level" type="text" value="{{system.level}}" data-dtype="Number"/>

@@ -22,17 +22,20 @@ export default class ForceSpellService {
      * @param {string} params.spellListRealm - Realm of the spell list
      */
     static async castForceSpell({ actor, spell, spellListName, spellListRealm }) {
-        // Check power points before casting (spell level = PP cost)
+        // Check power points before casting (spell level = PP cost), unless spell has no_pp
         const spellLevel = spell.system?.level ?? 1;
-        const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
-        if (currentPP < spellLevel) {
-            ui.notifications.warn(
-                game.i18n.format("rmss.spells.insufficient_power", {
-                    actorName: actor.name,
-                    spellName: spell.name
-                })
-            );
-            return;
+        const noPP = spell.system?.no_pp === true;
+        if (!noPP) {
+            const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
+            if (currentPP < spellLevel) {
+                ui.notifications.warn(
+                    game.i18n.format("rmss.spells.insufficient_power", {
+                        actorName: actor.name,
+                        spellName: spell.name
+                    })
+                );
+                return;
+            }
         }
 
         // Determine realm for casting options
@@ -80,9 +83,12 @@ export default class ForceSpellService {
             await game.dice3d.showForRoll(roll, game.user, true);
         }
 
-        // Deduct power points (spell level = PP cost)
-        const newPP = Math.max(0, currentPP - spellLevel);
-        await actor.update({ "system.attributes.power_points.current": newPP });
+        // Deduct power points (spell level = PP cost), unless spell has no_pp
+        if (!noPP) {
+            const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
+            const newPP = Math.max(0, currentPP - spellLevel);
+            await actor.update({ "system.attributes.power_points.current": newPP });
+        }
         
         // Unmodified rolls: 01-02 and 96-100 (don't add skill bonus or casting modifiers)
         // For unmodified high rolls (96-99), use the explosive total

@@ -271,6 +271,7 @@ export default class RMSSSpellListSheet extends ItemSheet {
             system: {
                 favorite: false,
                 instant: false,
+                no_pp: false,
                 level: defaultLevel,
                 area_of_effect: "",
                 duration: "",

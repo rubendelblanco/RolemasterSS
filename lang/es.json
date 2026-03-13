@@ -405,6 +405,8 @@
     "spell": {
       "favorite": "Favorito",
       "instant": "Instantáneo",
+      "no_pp": "Sin PPs",
+      "no_pp_hint": "Este hechizo no consume puntos de poder al lanzarse",
       "spell_list": "Lista de hechizos",
       "level": "Nivel",
       "area_of_effect": "Área de efecto",

@@ -62,7 +62,7 @@
             <tr class="spell spell-draggable" draggable="true" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}" data-uuid="{{spell.uuid}}">
                 <td>{{spell.system.level}}</td>
                 <td>
-                    {{spell.name}}{{#if spell.system.instant}}*{{/if}}
+                    {{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}
                     {{#if (and ../embeddedMode spell.system.description)}}
                     <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{spell.system.description}}"></i>
                     {{/if}}

@@ -469,6 +469,7 @@
     "spell": {
       "favorite": false,
       "instant": false,
+      "no_pp": false,
       "spell_list": "",
       "level": 1,
       "area_of_effect": "",

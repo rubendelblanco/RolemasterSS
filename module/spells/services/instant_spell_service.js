@@ -19,19 +19,21 @@ export default class InstantSpellService {
         if (!spell?.system?.instant) return false;
 
         const spellLevel = spell.system?.level ?? 1;
-        const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
-        if (currentPP < spellLevel) {
-            ui.notifications.warn(
-                game.i18n.format("rmss.spells.insufficient_power", {
-                    actorName: actor.name,
-                    spellName: spell.name
-                })
-            );
-            return false;
+        const noPP = spell.system?.no_pp === true;
+        if (!noPP) {
+            const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
+            if (currentPP < spellLevel) {
+                ui.notifications.warn(
+                    game.i18n.format("rmss.spells.insufficient_power", {
+                        actorName: actor.name,
+                        spellName: spell.name
+                    })
+                );
+                return false;
+            }
+            const newPP = Math.max(0, currentPP - spellLevel);
+            await actor.update({ "system.attributes.power_points.current": newPP });
         }
-
-        const newPP = Math.max(0, currentPP - spellLevel);
-        await actor.update({ "system.attributes.power_points.current": newPP });
 
         await this._createChatMessage({ actor, spell, spellLevel });
 
