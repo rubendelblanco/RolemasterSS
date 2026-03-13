@@ -127,7 +127,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     if (itemData.type === "spell_list") {
       const spellListName = itemData.name;
       if (!this.actor.items.find(i => i.type === "skill" && i.name === spellListName)) {
-        const created = await this._createSkillForSpellList(spellListName);
+        const created = await this._createSkillForSpellList(spellListName, itemData);
         if (!created) return;
       }
       const spellListData = foundry.utils.duplicate(itemData);
@@ -152,9 +152,12 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
   /**
    * When dropping a spell list without a matching skill, show dialog to create skill.
+   * Uses the spell list's img and description for the new skill.
    * Returns the created skill or null if cancelled.
+   * @param {string} spellListName
+   * @param {Object} [spellListData] - The dropped spell list item data (for img, description)
    */
-  async _createSkillForSpellList(spellListName) {
+  async _createSkillForSpellList(spellListName, spellListData = null) {
     const actor = this.actor;
     const categories = actor.items.filter(i =>
       i.type === "skill_category" && i.system?.slug
@@ -200,6 +203,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
               const skillData = {
                 name: spellListName,
                 type: "skill",
+                img: spellListData?.img ?? "systems/rmss/assets/default/skill.svg",
                 system: {
                   category: category.id,
                   categorySlug: category.system.slug,
@@ -214,7 +218,8 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
                   total_bonus: 0,
                   favorite: false,
                   designation: "None",
-                  offensive_skill: "none"
+                  offensive_skill: "none",
+                  description: spellListData?.system?.description ?? ""
                 }
               };
               const created = await actor.createEmbeddedDocuments("Item", [skillData]);
