@@ -8,6 +8,8 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 - **spell_lists/es/essence/** – Spell lists en español (Esencia)
 - **spell_lists/en/channeling/** – Spell lists en inglés (Canalización)
 - **spell_lists/es/channeling/** – Spell lists en español (Canalización)
+- **spell_lists/en/arcane/** – Spell lists en inglés (Arcano, Magehunter)
+- **spell_lists/es/arcane/** – Spell lists en español (Arcano, Magehunter)
 
 ### Concussion's Ways (Open Channeling 2.2)
 
@@ -114,6 +116,35 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 - `spell_lists/en/essence/spirit_mastery.json` – 23 hechizos de sueño, encantamiento, confusión, sugerencia, retener, dominio, búsqueda, Palabras y Maestría del Espíritu (inglés)
 - `spell_lists/es/essence/spirit_mastery.json` – Misma lista traducida al español
 
+### Magehunter Base Lists (Arcane)
+
+Listas base para la profesión Cazador de Magos (Arcane Companion).
+
+#### Containing Ways (13.6.2)
+
+- `spell_lists/en/arcane/containing_ways.json` – 15 hechizos de contención, ataduras, retención y quitar poder (inglés)
+- `spell_lists/es/arcane/containing_ways.json` – Vías del Contenimiento, traducida al español
+
+#### Hunter's Call (13.6.3)
+
+- `spell_lists/en/arcane/hunters_call.json` – 20 hechizos de interrogación, encanto, sugestión, telepatía y dominación mental (inglés)
+- `spell_lists/es/arcane/hunters_call.json` – Llamada del Cazador, traducida al español
+
+#### Power Lore (13.6.4)
+
+- `spell_lists/en/arcane/power_lore.json` – 16 hechizos de detección, análisis e identificación de hechizos, objetos mágicos y maldiciones (inglés)
+- `spell_lists/es/arcane/power_lore.json` – Saber del Poder, traducida al español
+
+#### Spell Protection (13.6.5)
+
+- `spell_lists/en/arcane/spell_protection.json` – 17 hechizos de protección y parada contra ataques de hechizos (inglés)
+- `spell_lists/es/arcane/spell_protection.json` – Protección contra Hechizos, traducida al español
+
+#### Spell Tracker (13.6.6)
+
+- `spell_lists/en/arcane/spell_tracker.json` – 15 hechizos de señales de hechizos, detección de usuarios, localización y proyección sombría (inglés)
+- `spell_lists/es/arcane/spell_tracker.json` – Rastreador de Hechizos, traducida al español
+
 ## Cómo importar
 
 ### Opción 1: Macro simple (recomendado)
@@ -154,20 +185,25 @@ if (!pack) {
 
 ```javascript
 // Crea todos los spell lists de una carpeta en el mundo (o en un compendio).
-// Los archivos están en spell_lists/{LANG}/essence/
+// Cambia FOLDER por: essence, channeling o arcane según la carpeta que quieras.
 const LANG = "es";
-const FOLDER = `spell_lists/${LANG}/essence`;
+const FOLDER = `spell_lists/${LANG}/essence`;  // essence | channeling | arcane
 const PACK_ID = null;  // "world.spell-lists" para importar en compendio; null para crear en Items
 
-const FILES = [
-  "detecting_ways", "delving_ways", "elemental_shields", "essence_hand",
-  "essences_perceptions", "lesser_illusions", "physical_enhancement",
-  "rune_mastery", "spell_wall", "unbarring_ways",
-  "dispelling_ways", "gate_mastery", "invisible_ways", "living_change",
-  "lofty_bridge", "rapid_ways", "shield_mastery", "spell_enhancement",
-  "spell_reins", "spirit_mastery"
-];
+const FILES_BY_FOLDER = {
+  essence: [
+    "detecting_ways", "delving_ways", "elemental_shields", "essence_hand",
+    "essences_perceptions", "lesser_illusions", "physical_enhancement",
+    "rune_mastery", "spell_wall", "unbarring_ways",
+    "dispelling_ways", "gate_mastery", "invisible_ways", "living_change",
+    "lofty_bridge", "rapid_ways", "shield_mastery", "spell_enhancement",
+    "spell_reins", "spirit_mastery"
+  ],
+  channeling: ["concussion_ways"],
+  arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"]
+};
 
+const FILES = FILES_BY_FOLDER[FOLDER.split("/").pop()] || FILES_BY_FOLDER.essence;
 const base = `/systems/rmss/fixtures/${FOLDER}/`;
 let created = 0, failed = [];
 for (const f of FILES) {
