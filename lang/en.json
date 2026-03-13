@@ -201,7 +201,7 @@
         "weapon_preference": {
             "title": "Assign Weapon Preferences",
             "assign": "Assign Weapon Preferences",
-            "hint": "Order weapon categories by preference. Position 1 = 1/5, 2 = 2/5, 3-5 = 2/7, 6-7 = 5 DP.",
+            "hint": "Order categories by preference. Top = lowest cost (fewer DP). Bottom = highest cost. Costs come from your profession.",
             "move_up": "Move up",
             "move_down": "Move down",
             "apply": "Apply",

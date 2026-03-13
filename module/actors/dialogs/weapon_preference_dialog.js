@@ -1,6 +1,7 @@
 /**
  * Dialog to assign weapon preference order and development costs.
- * Uses costs from the actor's current profession (skillCategoryCosts).
+ * Costs come from the profession (skillCategoryCosts). They are sorted ascending
+ * and assigned by position: top = lowest cost, bottom = highest cost.
  */
 export default class WeaponPreferenceDialog extends Application {
 
@@ -20,7 +21,16 @@ export default class WeaponPreferenceDialog extends Application {
         });
     }
 
-    /** Get profession costs for weapon categories from actor's current profession. Returns { slug -> cost }. */
+    /** Parse cost string to numeric value for sorting. "1/5"=0.2, "5"=5. Lower = cheaper. */
+    _parseCost(costStr) {
+        if (typeof costStr === "number") return costStr;
+        const s = String(costStr ?? "").trim();
+        const m = s.match(/^(\d+)\/(\d+)$/);
+        if (m) return parseInt(m[1], 10) / parseInt(m[2], 10);
+        return parseFloat(s) || 5;
+    }
+
+    /** Get profession costs for weapon categories. Returns { slug -> cost }. */
     _getProfessionWeaponCosts() {
         const profession = this.actor.items.find(i => i.type === "profession");
         const costs = profession?.system?.skillCategoryCosts ?? {};
@@ -33,9 +43,17 @@ export default class WeaponPreferenceDialog extends Application {
         return result;
     }
 
+    /** Get costs sorted ascending (cheapest first). Returns array of cost strings. */
+    _getSortedCosts() {
+        const costsBySlug = this._getProfessionWeaponCosts();
+        const costs = Object.values(costsBySlug);
+        return [...costs].sort((a, b) => this._parseCost(a) - this._parseCost(b));
+    }
+
     getData() {
         const slugs = CONFIG.rmss.weapon_category_slugs || [];
         const costsBySlug = this._getProfessionWeaponCosts();
+        const sortedCosts = this._getSortedCosts();
 
         const weaponItems = this.actor.items.filter(i =>
             i.type === "skill_category" && slugs.includes(i.system?.slug)
@@ -45,12 +63,12 @@ export default class WeaponPreferenceDialog extends Application {
             .map(slug => weaponItems.find(i => i.system?.slug === slug))
             .filter(Boolean);
 
-        const rows = ordered.map((item) => ({
+        const rows = ordered.map((item, idx) => ({
             item,
             slug: item.system.slug,
             name: game.i18n.localize(`rmss.skill_categories_names.${item.system.slug}`) || item.name,
-            cost: costsBySlug[item.system.slug] ?? item.system?.development_cost ?? "5",
-            position: 0
+            cost: sortedCosts[idx] ?? costsBySlug[item.system.slug] ?? "5",
+            position: idx
         }));
 
         return {
@@ -104,12 +122,11 @@ export default class WeaponPreferenceDialog extends Application {
     _syncOrderFromDom(listEl = null) {
         if (!listEl) listEl = this.element?.[0]?.querySelector?.(".weapon-pref-list");
         if (!listEl) return;
-        const costsBySlug = this._getProfessionWeaponCosts();
+        const sortedCosts = this._getSortedCosts();
 
-        [...listEl.querySelectorAll(".weapon-pref-row")].forEach((row) => {
-            const slug = row.dataset.slug;
+        [...listEl.querySelectorAll(".weapon-pref-row")].forEach((row, idx) => {
             const costEl = row.querySelector(".weapon-pref-cost");
-            if (costEl && slug) costEl.textContent = costsBySlug[slug] ?? "5";
+            if (costEl) costEl.textContent = sortedCosts[idx] ?? "5";
         });
     }
 
@@ -118,15 +135,15 @@ export default class WeaponPreferenceDialog extends Application {
         const list = this.element?.[0]?.querySelector?.(".weapon-pref-list");
         if (!list) return this.close();
 
-        const costsBySlug = this._getProfessionWeaponCosts();
+        const sortedCosts = this._getSortedCosts();
         const ordered = [...list.querySelectorAll("[data-slug]")].map(el => el.dataset.slug);
 
-        const updates = ordered.map((slug) => {
+        const updates = ordered.map((slug, idx) => {
             const item = this.actor.items.find(i =>
                 i.type === "skill_category" && i.system?.slug === slug
             );
             if (!item) return null;
-            const cost = costsBySlug[slug] ?? "5";
+            const cost = sortedCosts[idx] ?? "5";
             return { item, cost };
         }).filter(Boolean);
 

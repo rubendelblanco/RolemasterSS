@@ -201,7 +201,7 @@
     "weapon_preference": {
       "title": "Asignar preferencias de armas",
       "assign": "Asignar preferencias de armas",
-      "hint": "Ordena las categorías de armas por preferencia. Posición 1 = 1/5, 2 = 2/5, 3-5 = 2/7, 6-7 = 5 DP.",
+      "hint": "Ordena las categorías por preferencia. Arriba = coste más bajo (menor DP). Abajo = coste más alto. Los costes vienen de la profesión.",
       "move_up": "Subir",
       "move_down": "Bajar",
       "apply": "Aplicar",
