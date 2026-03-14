@@ -220,6 +220,8 @@
       "used": "Usados",
       "remaining": "Restantes",
       "assign_button": "Asignar atributos",
+      "confirm_title": "¿Estás seguro?",
+      "confirm_content": "Esta asignación no se podrá deshacer.",
       "apply": "Aplicar",
       "cancel": "Cancelar",
       "applied": "Atributos asignados correctamente.",
@@ -674,7 +676,8 @@
       }
     },
     "level_up": {
-      "ranks_reset": "Nuevos rangos reinicializados"
+      "ranks_reset": "Nuevos rangos reinicializados",
+      "must_assign_stats_first": "Debes asignar los atributos antes de subir de nivel 0 a 1."
     },
     "chat":{
       "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})",

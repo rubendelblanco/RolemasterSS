@@ -1,6 +1,12 @@
 export default class LevelUpManager {
 
     static async levelUp(actor){
+        const level = parseInt(actor.system.attributes?.level?.value ?? 0);
+        if (level === 0 && !actor.system.statAssignment?.completed) {
+            ui.notifications.warn(game.i18n.localize("rmss.level_up.must_assign_stats_first"));
+            return;
+        }
+
         const skills = actor.items.filter(item => item.type === "skill");
         const categories = actor.items.filter(item => item.type === "skill_category");
         const message = game.i18n.localize("rmss.level_up.ranks_reset");

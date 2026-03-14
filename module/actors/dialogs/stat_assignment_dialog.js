@@ -223,6 +223,13 @@ export default class StatAssignmentDialog extends Application {
             return;
         }
 
+        const confirmed = await Dialog.confirm({
+            title: game.i18n.localize("rmss.stat_assignment.confirm_title"),
+            content: game.i18n.localize("rmss.stat_assignment.confirm_content"),
+            defaultYes: false
+        });
+        if (!confirmed) return;
+
         const statsToRoll = {};
         for (const key of StatAssignmentDialog.STAT_KEYS) {
             const pts = Number(this.pointsAssigned[key]) || 0;

@@ -220,6 +220,8 @@
             "used": "Used",
             "remaining": "Remaining",
             "assign_button": "Assign Stats",
+            "confirm_title": "Are you sure?",
+            "confirm_content": "This assignment cannot be undone.",
             "apply": "Apply",
             "cancel": "Cancel",
             "applied": "Stats assigned successfully.",
@@ -674,7 +676,8 @@
             }
         },
         "level_up": {
-            "ranks_reset": "New ranks reset"
+            "ranks_reset": "New ranks reset",
+            "must_assign_stats_first": "You must assign attributes (stats) before leveling up from level 0."
         },
         "chat":{
             "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})",
