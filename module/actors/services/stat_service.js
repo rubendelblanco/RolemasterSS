@@ -2,6 +2,8 @@
 /**
  * Service to handle stat-related operations (potential and level-up rolls).
  */
+import LevelUpManager from "../../sheets/experience/rmss_level_up_manager.js";
+
 export default class StatService {
     /**
      * Determine the roll formula based on a potential stat value.
