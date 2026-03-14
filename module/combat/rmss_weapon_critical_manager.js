@@ -7,6 +7,7 @@ import { rmss } from "../config.js";
 import { RMSSCombat } from "./rmss_combat.js";
 import { RMSSEffectApplier } from "./rmss_effect_applier.js";
 import WeaponFumbleService from "./services/weapon_fumble_service.js";
+import { CombatHistoryTracker } from "./combat_history_tracker.js";
 
 
 /* ---------------------------------------------
@@ -80,6 +81,11 @@ class LargeCreatureCriticalStrategy {
 
         let newHits = defenderActor.system.attributes.hits.current - parseInt(damage);
         await defenderActor.update({ "system.attributes.hits.current": newHits });
+
+        const tracker = CombatHistoryTracker.get();
+        tracker.recordDamage(attackerActor.id, defenderActor.id, parseInt(damage), newHits <= 0);
+        tracker.recordCritical(attackerActor.id, defenderActor.id);
+
         if (severity === "null") return;
 
         let result = Math.min(Math.max(parseInt(roll.total) + parseInt(modifier), 1), 999);
@@ -118,6 +124,8 @@ class BaseCriticalStrategy {
             ui.notifications.error("No target token found.");
             return;
         }
+        data.attackerId = attackerActor.id;
+        data.defenderId = defenderActor.id;
         return await socket.executeAsGM("updateActorHits", targetId, true, parseInt(data.damage), data);
     }
 }
@@ -180,11 +188,17 @@ export class RMSSWeaponCriticalManager {
         }
     }
 
-    static async updateTokenOrActorHits(token, damage) {
+    static async updateTokenOrActorHits(token, damage, attackerId = null) {
         const actor = Utils.getActor(token);
         if (!actor) return;
-        let newHits = actor.system.attributes.hits.current - parseInt(damage);
+        const dmg = parseInt(damage);
+        let newHits = actor.system.attributes.hits.current - dmg;
         await actor.update({ "system.attributes.hits.current": newHits });
+
+        if (attackerId && game.combat?.id) {
+            const tracker = CombatHistoryTracker.get();
+            tracker.recordDamage(attackerId, actor.id, dmg, newHits <= 0);
+        }
     }
 
     static async updateActorHits(targetId, isToken, damage, gmResponse) {
@@ -192,8 +206,17 @@ export class RMSSWeaponCriticalManager {
         if (!token) return;
         if (isNaN(damage)) return;
         const target = token.actor;
-        let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
+        const dmg = parseInt(damage);
+        let newHits = target.system.attributes.hits.current - dmg;
         await target.update({ "system.attributes.hits.current": newHits });
+
+        const attackerId = gmResponse?.attackerId;
+        if (attackerId && game.combat?.id) {
+            const tracker = CombatHistoryTracker.get();
+            tracker.recordDamage(attackerId, target.id, dmg, newHits <= 0);
+            tracker.recordCritical(attackerId, target.id);
+        }
+
         if (gmResponse.severity === "null") return;
         let roll = new Roll(`(1d100)`);
         await roll.toMessage(undefined, { create: true });

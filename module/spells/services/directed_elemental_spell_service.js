@@ -236,7 +236,7 @@ export default class DirectedElementalSpellService {
             if (criticalResult.criticals.length === 0) {
                 const critType = attackTable.critical_severity?.default || "heat";
                 criticalResult.criticals = [{ severity: null, critType, damage: 0 }];
-                await RMSSWeaponCriticalManager.updateTokenOrActorHits(target.actor ?? target, parseInt(criticalResult.damage));
+                await RMSSWeaponCriticalManager.updateTokenOrActorHits(target.actor ?? target, parseInt(criticalResult.damage), actor.id);
                 if (actor.type === "character") {
                     await ExperienceManager.applyExperience(actor, criticalResult.damage);
                 }

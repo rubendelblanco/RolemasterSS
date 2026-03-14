@@ -640,7 +640,17 @@
             "rr_failed": "FAILED!",
             "roll_rr": "Roll RR",
             "must_roll_rr": "must make a resistance roll",
-            "effects_title": "RMSS Effects"
+            "effects_title": "RMSS Effects",
+            "history": {
+                "title": "Combat Summary",
+                "character": "Character",
+                "crits_inflicted": "Crits inflicted",
+                "crits_received": "Crits received",
+                "hp_inflicted": "HP inflicted",
+                "hp_received": "HP received",
+                "kills": "Kills",
+                "close": "Close"
+            }
         },
         "maneuvers": {
             "options_title": "Maneuver Roll Options",

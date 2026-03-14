@@ -1,6 +1,7 @@
 import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_manager.js";
 import Utils from "../utils.js";
 import {sendExpMessage} from "../chat/chatMessages.js";
+import { CombatHistoryTracker } from "./combat_history_tracker.js";
 
 /**
  * @class RMSSEffectApplier
@@ -46,11 +47,17 @@ export class RMSSEffectApplier {
         const entity = actor;
         const stun_bleeding = entity.system.attributes.critical_codes?.stun_bleeding ?? "-";
 
-        if (critical.metadata.HP){
-            const isDead = await this._applyHPDamage(entity, critical.metadata.HP);
+        // When GM applies critical from effects HUD, originId may be null; use last attacker if available
+        let effectiveOriginId = originId;
+        if (!effectiveOriginId && game.combat?.id) {
+            effectiveOriginId = CombatHistoryTracker.get().getLastAttacker(entity.id);
+        }
 
-            if (isDead && Utils.isAPC(originId)) {
-                const killer = Utils.getActor(originId)
+        if (critical.metadata.HP){
+            const isDead = await this._applyHPDamage(entity, critical.metadata.HP, effectiveOriginId);
+
+            if (isDead && Utils.isAPC(effectiveOriginId)) {
+                const killer = Utils.getActor(effectiveOriginId)
                 const killExp = ExperiencePointsCalculator.calculateKillExpPoints(entity.system.attributes.level.value,
                     killer.system.attributes.level.value);
                 const code = entity.system?.bonus_experience ?? null;
@@ -70,15 +77,19 @@ export class RMSSEffectApplier {
                 case "PE": await this._applyPenalty(entity, value, critical.text); break;
                 case "P": await this._applyParry(entity, value); break;
                 case "NP": await this._applyNoParry(entity, value); break;
-                case "BONUS": await this._applyBonus(entity, value, critical.text, originId); break;
+                case "BONUS": await this._applyBonus(entity, value, critical.text, effectiveOriginId); break;
             }
         }
     }
 
-    static async _applyHPDamage(entity, hp) {
+    static async _applyHPDamage(entity, hp, originId = null) {
         const dmg = parseInt(hp) || 0;
         const newHits = entity.system.attributes.hits.current - dmg;
         await entity.update({ "system.attributes.hits.current": newHits });
+
+        if (originId && game.combat?.id) {
+            CombatHistoryTracker.get().recordDamage(originId, entity.id, dmg, newHits <= 0);
+        }
 
         if (entity.system.attributes.hits.current <= 0) {
             const tokens = entity.getActiveTokens(true);

@@ -640,7 +640,17 @@
       "rr_failed": "¡FALLADO!",
       "roll_rr": "Tirar RR",
       "must_roll_rr": "debe hacer una tirada de resistencia",
-      "effects_title": "Efectos RMSS"
+      "effects_title": "Efectos RMSS",
+      "history": {
+        "title": "Resumen del combate",
+        "character": "Personaje",
+        "crits_inflicted": "Críticos infligidos",
+        "crits_received": "Críticos recibidos",
+        "hp_inflicted": "PV infligidos",
+        "hp_received": "PV recibidos",
+        "kills": "Bajas",
+        "close": "Cerrar"
+      }
     },
     "maneuvers": {
       "options_title": "Opciones de tirada de maniobra",

@@ -2440,3 +2440,39 @@ tr.container-row.over-capacity {
   color: var(--color-error);
   margin: 0;
 }
+
+/* Combat history dialog */
+.combat-history-dialog {
+  min-width: 680px;
+}
+
+.combat-history-dialog .character-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.combat-history-dialog .character-portrait {
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.combat-history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.combat-history-table th,
+.combat-history-table td {
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.combat-history-table th {
+  font-weight: bold;
+}
+
+.combat-history-table td:nth-child(n+2) {
+  text-align: center;
+}

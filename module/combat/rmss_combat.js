@@ -1,5 +1,6 @@
 import {RMSSCombatant} from "./rmss_combatant.js";
 import { registerCombatHooks } from "./hooks.js";
+import { CombatHistoryTracker } from "./combat_history_tracker.js";
 
 /**
  * Custom Combat class for RMSS system.
@@ -125,6 +126,7 @@ export class CombatStartManager {
     }
 
     handleCombatStart(combat) {
+        CombatHistoryTracker.get().onCombatStart(combat);
         this.playCombatSound();
         this.showCombatImage();
     }
@@ -196,8 +198,39 @@ export class CombatEndManager {
         }
     }
 
-    handleCombatEnd(combat) {
+    async handleCombatEnd(combat) {
         this.playCombatEndSound();
+        await this._showCombatHistory(combat);
+    }
+
+    async _showCombatHistory(combat) {
+        const tracker = CombatHistoryTracker.get();
+        const statsMap = tracker.getAndClearStats(combat.id);
+        const pcCombatants = combat.combatants.filter(c => c.actor?.type === "character");
+        if (pcCombatants.length === 0) return;
+
+        const rows = [];
+        for (const combatant of pcCombatants) {
+            const actorId = combatant.actor?.id;
+            if (!actorId) continue;
+            const stats = statsMap.get(actorId) || {
+                critsInflicted: 0, critsReceived: 0, hpInflicted: 0, hpReceived: 0, kills: 0
+            };
+            rows.push({
+                name: combatant.actor?.name ?? combatant.name ?? "—",
+                img: combatant.actor?.img ?? null,
+                ...stats
+            });
+        }
+
+        const html = await renderTemplate("systems/rmss/templates/combat/combat-history-dialog.hbs", { rows });
+        const d = new Dialog({
+            title: game.i18n.localize("rmss.combat.history.title"),
+            content: html,
+            default: "ok",
+            buttons: { ok: { icon: "fas fa-check", label: game.i18n.localize("rmss.combat.history.close") } }
+        }, { width: 720 });
+        await d.render(true);
     }
 
     playCombatEndSound() {

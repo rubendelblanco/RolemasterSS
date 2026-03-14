@@ -96,7 +96,8 @@ export class RMSSWeaponSkillManager {
             if (!isNaN(damageToApply)) {
                 await RMSSWeaponCriticalManager.updateTokenOrActorHits(
                     enemy,
-                    damageToApply
+                    damageToApply,
+                    actor.id
                 );
             }
             if (actor.type === "character") {
