@@ -1,5 +1,6 @@
 import ItemService from "../../actors/services/item_service.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
+import { ContainerHandler } from "../../actors/utils/container_handler.js";
 
 /**
  * All the actions and feats in common for characters (PCs, NPCs, Creatures & Monsters)
@@ -116,6 +117,25 @@ export default class RMSSCharacterSheet extends ActorSheet {
             // Update actor data
             await actor.update({ "system.attributes.fate_points.value": newValue });
 
+        });
+
+        // Remove from container: click box-open icon on contained items
+        html.find(".remove-from-container").click(ev => this._onRemoveFromContainer(ev));
+
+        // Container drop target: drag items onto container rows to store inside
+        html.find(".container-drop-target").each((i, el) => {
+            el.addEventListener("dragover", ev => {
+                ev.preventDefault();
+                ev.dataTransfer.dropEffect = "move";
+                el.classList.add("container-drag-over");
+            });
+            el.addEventListener("dragleave", ev => {
+                if (!el.contains(ev.relatedTarget)) el.classList.remove("container-drag-over");
+            });
+            el.addEventListener("drop", ev => {
+                el.classList.remove("container-drag-over");
+                this._onContainerRowDrop(ev);
+            });
         });
 
         // Hotbar drag & drop (tr for items/weapons/armor/skills, .spell-row for spells)
@@ -329,6 +349,70 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
         // Default behavior for non-stackable or unmatched items
         return super._onDropItem(event, data);
+    }
+
+    async _onContainerRowDrop(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        let data;
+        try {
+            data = JSON.parse(event.dataTransfer.getData("text/plain"));
+        } catch {
+            return;
+        }
+        if (data.type !== "Item") return;
+
+        const containerId = event.currentTarget.getAttribute("data-item-id");
+        const container = this.actor.items.get(containerId);
+        if (!container) return;
+
+        const sourceItem = await fromUuid(data.uuid);
+        if (!sourceItem) return;
+
+        const handler = ContainerHandler.for(container);
+        if (!handler) return;
+
+        if (!handler.canAccept(sourceItem)) {
+            return ui.notifications.warn(
+                game.i18n.format("rmss.container.cannot_accept", { container: container.name, item: sourceItem.name })
+            );
+        }
+
+        if (!handler.canFit(sourceItem)) {
+            return ui.notifications.error(
+                game.i18n.format("rmss.container.full", { container: container.name, item: sourceItem.name })
+            );
+        }
+
+        if (sourceItem.parent?.id === this.actor.id) {
+            await sourceItem.setFlag("rmss", "containerId", container.id);
+        } else {
+            const newItem = await this.actor.createEmbeddedDocuments("Item", [sourceItem.toObject()]);
+            await newItem[0].setFlag("rmss", "containerId", container.id);
+        }
+
+        await handler.recalc();
+        this.render(false);
+    }
+
+    async _onRemoveFromContainer(ev) {
+        ev.preventDefault();
+        const itemId = ev.currentTarget.dataset.itemId;
+        const containedItem = this.actor.items.get(itemId);
+        if (!containedItem) return;
+
+        const containerId = containedItem.getFlag("rmss", "containerId");
+        if (!containerId) return;
+
+        await containedItem.unsetFlag("rmss", "containerId");
+
+        const container = this.actor.items.get(containerId);
+        if (container) {
+            const handler = ContainerHandler.for(container);
+            if (handler) await handler.recalc();
+        }
+
+        this.render(false);
     }
 
     _registerItemListeners(html) {

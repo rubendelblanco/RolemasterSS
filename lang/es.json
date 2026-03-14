@@ -1,7 +1,10 @@
 {
   "rmss": {
     "container": {
-      "ejected_over_capacity": "{item} fue sacado de {container} (excede la capacidad)."
+      "ejected_over_capacity": "{item} fue sacado de {container} (excede la capacidad).",
+      "cannot_accept": "{container} no puede contener {item}.",
+      "full": "{container} está lleno y no puede contener {item}.",
+      "remove_from_container": "Sacar del contenedor"
     },
     "initiative": {
       "roll": "Tirando iniciativa",
