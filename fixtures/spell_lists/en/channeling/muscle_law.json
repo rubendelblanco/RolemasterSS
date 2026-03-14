@@ -1,0 +1,309 @@
+{
+  "name": "Muscle Law",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.7 - Muscle Law. Spells for understanding and repairing muscle and tendon damage: sprains, limb preservation, and rejoining. Works in conjunction with Nerve Law, Bone Law, and Blood Law for full limb restoration.",
+    "spells": [
+      {
+        "name": "01. Muscle Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster acquires a complete understanding of any muscle damage, including the tools and methods required for healing; caster does not receive the skill or power to perform the cure."
+        }
+      },
+      {
+        "name": "02. Tendon Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Muscle Lore, except the knowledge obtained concerns the healing of tendon damage."
+        }
+      },
+      {
+        "name": "03. Sprain Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair (not replace) 1 sprain; recovery time: 1 hour."
+        }
+      },
+      {
+        "name": "04. Muscle Repair I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair, but not replace, 1 damaged muscle. Recovery time is 1 hour."
+        }
+      },
+      {
+        "name": "05. Limb Preservation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 day/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to prevent the deterioration of 1 limb (even while severed). Also requires use of same spells from Nerve Law, Bone Law, and Blood Law."
+        }
+      },
+      {
+        "name": "06. Tendon Repair I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair one damaged tendon; recovery time: 1 hour."
+        }
+      },
+      {
+        "name": "09. Muscle Repair III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Muscle Repair I, except caster can repair 3 damaged muscles."
+        }
+      },
+      {
+        "name": "10. Tendon Repair III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Tendon Repair I, except caster can repair 3 damaged tendons."
+        }
+      },
+      {
+        "name": "12. Joining",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to reattach limb, but requires use of Bone Law, Blood Law, and Nerve Law Joining spells in order to restore functional status; limb is fully functional in 1-10 days."
+        }
+      },
+      {
+        "name": "13. Muscle Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Muscle Repair I, except recovery is instantaneous and requires 1 minute \"operation\" (concentration by caster)."
+        }
+      },
+      {
+        "name": "15. Tendon Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Tendon Repair I, except recovery is instantaneous and requires 1 minute \"operation\" (concentration by caster)."
+        }
+      },
+      {
+        "name": "17. Mass Muscle Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows repair of 1 muscle per level of the caster (e.g., a 17th level caster can repair 17 muscles); spell can be used as long as caster concentrates (i.e., caster can move from target to target until he has healed a number of muscles equal to his level); recovery time: 1 hour."
+        }
+      },
+      {
+        "name": "19. Mass Tendon Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mass Muscle Repair, except caster heals tendons."
+        }
+      },
+      {
+        "name": "20. Muscle Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to regenerate 1 muscle; regrowth takes 1-10 hrs, depending on extent of loss."
+        }
+      },
+      {
+        "name": "25. Joining True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Joining, except limb is fully functional in 10 minutes (provided caster also uses the other three Joining True spells)."
+        }
+      },
+      {
+        "name": "30. Tendon Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to regenerate 1 tendon; regrowth takes 1-10 hrs, depending on extent of loss."
+        }
+      },
+      {
+        "name": "50. Mass Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mass Muscle Repair, except any combination of muscles and tendons may be healed, the range is 100', and recovery is instantaneous."
+        }
+      }
+    ]
+  }
+}

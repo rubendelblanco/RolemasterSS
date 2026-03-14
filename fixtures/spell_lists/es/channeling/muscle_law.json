@@ -1,0 +1,309 @@
+{
+  "name": "Ley del Músculo",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.7 - Ley del Músculo. Hechizos para entender y reparar daño muscular y tendinoso: esguinces, preservación de miembros y reimplantación. Funciona en conjunción con Ley del Nervio, Ley del Hueso y Ley de la Sangre para restauración completa de miembros.",
+    "spells": [
+      {
+        "name": "01. Saber del Músculo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador adquiere comprensión completa de cualquier daño muscular, incluyendo herramientas y métodos para curar; no recibe la habilidad ni el poder para realizar la cura."
+        }
+      },
+      {
+        "name": "02. Saber del Tendón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber del Músculo, excepto que el conocimiento obtenido concierne la curación de daño tendinoso."
+        }
+      },
+      {
+        "name": "03. Reparar Esguince",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar (no reemplazar) 1 esguince; tiempo de recuperación: 1 hora."
+        }
+      },
+      {
+        "name": "04. Reparar Músculo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar, pero no reemplazar, 1 músculo dañado. Tiempo de recuperación: 1 hora."
+        }
+      },
+      {
+        "name": "05. Preservación de Miembro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador prevenir el deterioro de 1 miembro (incluso si está amputado). También requiere el uso de los mismos hechizos de Ley del Nervio, Ley del Hueso y Ley de la Sangre."
+        }
+      },
+      {
+        "name": "06. Reparar Tendón I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar un tendón dañado; tiempo de recuperación: 1 hora."
+        }
+      },
+      {
+        "name": "09. Reparar Músculo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Músculo I, excepto que el lanzador puede reparar 3 músculos dañados."
+        }
+      },
+      {
+        "name": "10. Reparar Tendón III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Tendón I, excepto que el lanzador puede reparar 3 tendones dañados."
+        }
+      },
+      {
+        "name": "12. Reimplantación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reimplantar un miembro, pero requiere el uso de los hechizos Reimplantación de Ley del Hueso, Ley de la Sangre y Ley del Nervio para restaurar funcionalidad; el miembro es totalmente funcional en 1-10 días."
+        }
+      },
+      {
+        "name": "13. Reparar Músculo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Músculo I, excepto que la recuperación es instantánea y requiere 1 minuto de \"operación\" (concentración del lanzador)."
+        }
+      },
+      {
+        "name": "15. Reparar Tendón Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Tendón I, excepto que la recuperación es instantánea y requiere 1 minuto de \"operación\" (concentración del lanzador)."
+        }
+      },
+      {
+        "name": "17. Reparar Músculo Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite reparar 1 músculo por nivel del lanzador (ej: nivel 17 = 17 músculos); el hechizo puede usarse mientras el lanzador concentra (puede moverse de objetivo a objetivo hasta curar un número de músculos igual a su nivel); tiempo de recuperación: 1 hora."
+        }
+      },
+      {
+        "name": "19. Reparar Tendón Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Músculo Masivo, excepto que el lanzador cura tendones."
+        }
+      },
+      {
+        "name": "20. Regeneración Muscular",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar 1 músculo; el recrecimiento toma 1-10 horas según la extensión de la pérdida."
+        }
+      },
+      {
+        "name": "25. Reimplantación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reimplantación, excepto que el miembro es totalmente funcional en 10 minutos (si el lanzador también usa los otros tres hechizos Reimplantación Verdadera)."
+        }
+      },
+      {
+        "name": "30. Regeneración Tendinosa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar 1 tendón; el recrecimiento toma 1-10 horas según la extensión de la pérdida."
+        }
+      },
+      {
+        "name": "50. Reparación Masiva Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "30m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Músculo Masivo, excepto que puede curar cualquier combinación de músculos y tendones, el alcance es 30m y la recuperación es instantánea."
+        }
+      }
+    ]
+  }
+}

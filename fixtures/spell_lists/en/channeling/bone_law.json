@@ -1,0 +1,343 @@
+{
+  "name": "Bone Law",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.2 - Bone Law. Spells for understanding and repairing bone damage: fractures, cartilage, skull, joints, shatters, limb preservation, and rejoining. Works in conjunction with Muscle Law, Blood Law, and Nerve Law for full limb restoration.",
+    "spells": [
+      {
+        "name": "01. Bone Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster acquires complete understanding of any bone damage, including the tools and methods required for healing. Caster does not receive the skill or power to perform the cure."
+        }
+      },
+      {
+        "name": "03. Minor Fracture Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to mend one simple fracture (not compound fractures, shatters, joint damage, etc.). Recovery time is one day."
+        }
+      },
+      {
+        "name": "04. Cartilage Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair all cartilage damage around one joint. Recovery time is one day."
+        }
+      },
+      {
+        "name": "05. Limb Preservation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 day/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to prevent the deterioration of one limb (even if severed). Also requires the use of the same spell from Nerve Law, Muscle Law, and Blood Law."
+        }
+      },
+      {
+        "name": "06. Major Fracture Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Fracture Repair, except that the caster can also repair compound fractures. Recovery time is one day."
+        }
+      },
+      {
+        "name": "08. Skull Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to mend one fracture in a skull (but not a shattered area). Recovery time is 1d10 days (depending on the damage)."
+        }
+      },
+      {
+        "name": "10. Joint Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair one broken (but not shattered) joint. Recovery time is 1d10 days."
+        }
+      },
+      {
+        "name": "11. Minor Fracture Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Fracture Repair, except recovery is instantaneous."
+        }
+      },
+      {
+        "name": "12. Joining",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to reattach a limb. Requires the use of Muscle Law, Blood Law, and Nerve Law Joining spells to restore functional status. Limb is fully functional in 10-100 days."
+        }
+      },
+      {
+        "name": "13. Cartilage Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cartilage Repair, except recovery time is instantaneous."
+        }
+      },
+      {
+        "name": "14. Major Fracture Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Major Fracture Repair, except recovery time is instantaneous."
+        }
+      },
+      {
+        "name": "15. Skull Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Skull Repair, except recovery time is instantaneous."
+        }
+      },
+      {
+        "name": "16. Joint Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Joint Repair, except recovery time is instantaneous."
+        }
+      },
+      {
+        "name": "17. Shatter Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair any broken or shattered bone. Requires a 10 minute operation and 1-10 days recovery time."
+        }
+      },
+      {
+        "name": "18. Mass Minor Fracture Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Fracture Repair, except it repairs one minor fracture per level of the caster. Spell operates as long as caster concentrates; each mended fracture requires a one day recovery period."
+        }
+      },
+      {
+        "name": "20. Mass Cartilage Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mass Minor Fracture Repair, except it repairs cartilage (as in Cartilage Repair)."
+        }
+      },
+      {
+        "name": "25. Joining True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Joining, except that the limb is fully functional in 10 minutes (provided that the caster also uses the other three Joining True spells)."
+        }
+      },
+      {
+        "name": "30. Mass Major Fracture Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mass Minor Fracture Repair, except for the range and it repairs major fractures (as in Major Fracture Repair)."
+        }
+      },
+      {
+        "name": "50. Mass Shatter Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mass Minor Fracture Repair, except for the range and it repairs any broken or shattered bone (as in Shatter Repair)."
+        }
+      }
+    ]
+  }
+}

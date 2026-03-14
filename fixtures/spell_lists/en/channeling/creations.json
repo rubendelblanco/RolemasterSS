@@ -1,0 +1,343 @@
+{
+  "name": "Creations",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.4 - Creations. Spells for sustaining the caster, producing water, food, fire, waybread, enhancing herbs, and creating plants and animals.\n\nSPECIAL NOTES: The Herb Enhancement spell increases the potency (e.g., 2x, 3x, etc.) of herbs; this normally increases the effects of a dose of the herb (e.g., 2x potency for a \"Heal 1-10\" herb would give a \"Heal 2-20\" herb). However, a GM may wish to have this spell increase the number of doses of an herb (e.g., 2x potency cast on 2 doses of a \"Heal 1-10\" herb would result in 4 doses). In either case, only one of these spells may be cast upon a specific herb. Plant growth spells do not work on herbs. See RMFRP Section 24.1 (p. 75) for more information on the effects of herbs.",
+    "spells": [
+      {
+        "name": "02. Sustain Self",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 day",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to go without food or water and not suffer damage (i.e., provides nutrition and water for 1 day)."
+        }
+      },
+      {
+        "name": "03. Water Production I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can produce sufficient water in any available receptacle to supply a normal, human-sized being for one day."
+        }
+      },
+      {
+        "name": "04. Food Production I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can produce sufficient food from the surrounding area to feed 1 hearty appetite for 1 day."
+        }
+      },
+      {
+        "name": "05. Fire Starting",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1'R",
+          "duration": "—",
+          "range": "1'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to set a fire of 1 foot radius; fire will then last as long as there is fuel. A target in the 1 foot radius will take an 'A' Heat critical."
+        }
+      },
+      {
+        "name": "06. Nutrient Conjures I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can produce 1 loaf of bread that weighs 0.5 lb. and will nutritionally support 1 being for 1 day; the loaf will lose potency in 1 month."
+        }
+      },
+      {
+        "name": "07. Water Production III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Water Production I, except caster can produce 3 days of water."
+        }
+      },
+      {
+        "name": "08. Food Production III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Food Production I, except caster can produce sufficient food to feed 3 beings for 1 day."
+        }
+      },
+      {
+        "name": "09. Herb Enhancement",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 herb",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to enhance the potency of any 1 growing herb by 100% (i.e., by 2x); spell may be employed only once per herb."
+        }
+      },
+      {
+        "name": "10. Water Production V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Water Production I, except caster can produce 5 days of water."
+        }
+      },
+      {
+        "name": "11. Food Production V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Food Production I, except caster can produce sufficient food to feed 5 beings for 1 day."
+        }
+      },
+      {
+        "name": "12. Nutrient Conjures III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nutrient Conjures I, except caster can produce 3 loaves of waybread."
+        }
+      },
+      {
+        "name": "13. Herb Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 herb",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can double the potency of any 1 herb (growing or dead); spell may be employed only once per herb. May not be combined with Herb Enhancement."
+        }
+      },
+      {
+        "name": "15. Lesser Plant Production",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 plant",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can produce a plant up to 10' in height and/or width; plant must be commonly found in the region."
+        }
+      },
+      {
+        "name": "16. Mass Water Production",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Water Production I, except caster can create 1 day of water per level (e.g., a 17th level caster could create 17 days of water)."
+        }
+      },
+      {
+        "name": "17. Food Production True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Food Production I, except caster can produce sufficient food to feed a number of beings equal to his level."
+        }
+      },
+      {
+        "name": "20. Lesser Animal Production",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can create an animal representative of the surrounding region and weighing no more than 10 pounds; animal will be friendly to caster."
+        }
+      },
+      {
+        "name": "25. Nutrient Conjures True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nutrient Conjures I, except caster can produce loaves of waybread equal to his level."
+        }
+      },
+      {
+        "name": "30. Greater Plant Production",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 plant",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Plant Production, except that caster can create 1 plant with a height and/or width of 1' per level (e.g., a 30th level caster could produce a 30' high tree with a 30' maximum width); plant must be commonly found in the local area."
+        }
+      },
+      {
+        "name": "50. Greater Animal Production",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Animal Production, except that caster can produce an animal with a maximum weight of 1 pound per level; the animal must be a native of the area."
+        }
+      }
+    ]
+  }
+}

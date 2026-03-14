@@ -1,0 +1,275 @@
+{
+  "name": "Ley del Nervio",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.8 - Ley del Nervio. Hechizos para entender y reparar daño nervioso y cerebral: parálisis, psicosis, preservación de miembros y reimplantación. Funciona en conjunción con Ley del Músculo, Ley del Hueso y Ley de la Sangre para restauración completa de miembros.",
+    "spells": [
+      {
+        "name": "01. Saber del Nervio",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador adquiere comprensión completa de cualquier daño nervioso, incluyendo herramientas y métodos para curar; no recibe la habilidad ni el poder para realizar la cura."
+        }
+      },
+      {
+        "name": "04. Reparar Nervio Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar daño menor en 1 nervio; requiere 1 día de recuperación. Daño menor: penalizaciones hasta -20."
+        }
+      },
+      {
+        "name": "05. Preservación de Miembro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 miembro",
+          "duration": "1 día/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador prevenir el deterioro de 1 miembro (incluso si está amputado). También requiere el uso de los mismos hechizos de Ley del Músculo, Ley del Hueso y Ley de la Sangre."
+        }
+      },
+      {
+        "name": "09. Reparar Nervio Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Nervio Menor, excepto que cura cualquier daño nervioso. No cura nervios totalmente destruidos."
+        }
+      },
+      {
+        "name": "10. Antiparálisis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede curar cualquier problema de parálisis."
+        }
+      },
+      {
+        "name": "11. Reparar Nervio Menor Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Nervio Menor, excepto que no hay tiempo de recuperación."
+        }
+      },
+      {
+        "name": "12. Reimplantación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reimplantar un miembro, pero requiere el uso de los hechizos Reimplantación de Ley del Hueso, Ley del Músculo y Ley de la Sangre para restaurar funcionalidad; el miembro es totalmente funcional en 10-100 días."
+        }
+      },
+      {
+        "name": "15. Reparar Cerebro Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar daño cerebral menor (incluyendo recuperación de coma); la experiencia perdida no se restaura (% perdido permanentemente según severidad); requiere operación de 1 hora; recuperación: 1-10 días."
+        }
+      },
+      {
+        "name": "16. Reparar Nervio Mayor Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Nervio Mayor, excepto que no hay período de recuperación."
+        }
+      },
+      {
+        "name": "18. Curar Parálisis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador curar parálisis en 1 objetivo (recuperación 1-10 días); la parálisis debe provenir de hechizo o enfermedad (no veneno)."
+        }
+      },
+      {
+        "name": "19. Antipsicosis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar una psicosis menor en 1 objetivo (recuperación 1-10 días). Psicosis menores incluyen fobias leves a moderadas (ver GM Law para enfermedades mentales)."
+        }
+      },
+      {
+        "name": "20. Reparar Nervio Masivo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Nervio Menor Verdadero, excepto que cada lanzamiento afecta 1 nervio por nivel del lanzador."
+        }
+      },
+      {
+        "name": "25. Reimplantación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reimplantación, excepto que el miembro es totalmente funcional en solo 10 minutos (si el lanzador también usa los otros tres hechizos Reimplantación Verdadera)."
+        }
+      },
+      {
+        "name": "30. Regeneración Nerviosa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar nervio perdido; el recrecimiento toma 1-10 días según la extensión de la pérdida."
+        }
+      },
+      {
+        "name": "50. Regeneración Cerebral",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar material cerebral perdido; el recrecimiento toma 10-100 días según el daño; el objetivo está en coma durante la recuperación; la experiencia perdida no se restaura (cantidad perdida permanentemente según severidad)."
+        }
+      }
+    ]
+  }
+}

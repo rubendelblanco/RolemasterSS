@@ -1,0 +1,394 @@
+{
+  "name": "Defensa contra Hechizos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Channeling 2.9 - Defensa contra Hechizos. Hechizos de protección, cancelación, disipación y resistencia contra hechizos por reino (Canalización, Esencia, Mentalismo).",
+    "spells": [
+      {
+        "name": "01. Protección I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "3m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Resta 5 a las tiradas de ataque elemental contra el objetivo y añade 5 a todas las TR del objetivo contra hechizos."
+        }
+      },
+      {
+        "name": "02. Cancelar Canalización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "lanzador",
+          "duration": "C",
+          "range": "sí mismo",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cuando el lanzador de este hechizo es objetivo de un hechizo del reino de Canalización, el hechizo \"entrante\" debe hacer primero una TR antes de que el lanzador haga la suya. Para TR, cada hechizo usa un nivel igual al de su lanzador. Si el hechizo entrante supera la TR, puede afectar al lanzador normalmente; si no, no tiene efecto."
+        }
+      },
+      {
+        "name": "03. Esfera de Protección I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "varía",
+          "duration": "C",
+          "range": "3m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Protección I, excepto en duración y todos los seres dentro de 3m del objetivo reciben los beneficios."
+        }
+      },
+      {
+        "name": "04. Cancelar Esencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "lanzador",
+          "duration": "C",
+          "range": "sí mismo",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cancelar Canalización, excepto que el lanzador está protegido de hechizos del reino de Esencia."
+        }
+      },
+      {
+        "name": "05. Protección II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "3m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Protección I, excepto que los bonos son 10."
+        }
+      },
+      {
+        "name": "06. Cancelar Mentalismo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "lanzador",
+          "duration": "C",
+          "range": "sí mismo",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cancelar Canalización, excepto que el lanzador está protegido de hechizos del reino de Mentalismo."
+        }
+      },
+      {
+        "name": "07. Esfera de Protección II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varía",
+          "duration": "C",
+          "range": "3m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Esfera de Protección I, excepto que los bonos son 10."
+        }
+      },
+      {
+        "name": "08. Disipar Canalización I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "3m",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquier hechizo activo del reino de Canalización sobre el objetivo debe hacer una TR (usar el nivel del lanzador de ese hechizo). Si falla la TR, se disipa."
+        }
+      },
+      {
+        "name": "09. Escudo de Canalización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un escudo brillante frente al lanzador. Resta 10 a todas las tiradas de ataque de Canalización frontales (base y elemental). Además, si el lanzador no realiza otras acciones en un asalto, puede \"parar\" (como con escudo normal) un ataque de hechizo. El bono de parada es 10 más el rango de habilidad del lanzador con esta lista."
+        }
+      },
+      {
+        "name": "10. Protección III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "3m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Protección I, excepto que los bonos son 15."
+        }
+      },
+      {
+        "name": "11. Escudo de Esencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo de Canalización, excepto que solo es efectivo contra hechizos de Esencia."
+        }
+      },
+      {
+        "name": "12. Disipar Esencia I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "3m",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Canalización I, excepto que afecta hechizos del reino de Esencia."
+        }
+      },
+      {
+        "name": "13. Escudo Mental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo de Canalización, excepto que solo es efectivo contra hechizos de Mentalismo."
+        }
+      },
+      {
+        "name": "14. Protección IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "3m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Protección I, excepto que los bonos son 20."
+        }
+      },
+      {
+        "name": "15. Escudo de Hechizos II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo de Canalización, excepto que es efectivo contra dos reinos a elección del lanzador."
+        }
+      },
+      {
+        "name": "16. Disipar Mentalismo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "3m",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Canalización I, excepto que afecta hechizos del reino de Mentalismo."
+        }
+      },
+      {
+        "name": "17. Protección V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "3m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Protección I, excepto que los bonos son 25."
+        }
+      },
+      {
+        "name": "19. Escudo de Hechizos Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo de Canalización, excepto que afecta a los tres reinos."
+        }
+      },
+      {
+        "name": "20. Resistencia a Canalización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "30m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo recibe +50 a todas las TR contra hechizos de Canalización."
+        }
+      },
+      {
+        "name": "25. Resistencia a Esencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "30m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistencia a Canalización, excepto que solo es efectiva contra hechizos de Esencia."
+        }
+      },
+      {
+        "name": "30. Resistencia a Mentalismo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "30m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistencia a Canalización, excepto que solo es efectiva contra hechizos de Mentalismo."
+        }
+      },
+      {
+        "name": "50. Resistencia Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "30m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistencia a Canalización, excepto que es efectiva contra los tres reinos."
+        }
+      }
+    ]
+  }
+}

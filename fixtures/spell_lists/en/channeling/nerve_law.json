@@ -1,0 +1,275 @@
+{
+  "name": "Nerve Law",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.8 - Nerve Law. Spells for understanding and repairing nerve and brain damage: paralysis, psychosis, limb preservation, and rejoining. Works in conjunction with Muscle Law, Bone Law, and Blood Law for full limb restoration.",
+    "spells": [
+      {
+        "name": "01. Nerve Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster acquires complete understanding of any nerve damage, including the tools and methods required for healing; caster does not receive the skill or power to perform the cure."
+        }
+      },
+      {
+        "name": "04. Minor Nerve Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair minor damage to 1 nerve; requires 1 day recovery period. Minor damage is defined as any nerve damage that results in penalties up to -20."
+        }
+      },
+      {
+        "name": "05. Limb Preservation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 limb",
+          "duration": "1 day/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to prevent the deterioration of 1 limb (even while severed). Also requires use of same spells from Muscle Law, Bone Law, and Blood Law."
+        }
+      },
+      {
+        "name": "09. Major Nerve Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Nerve Repair, except will heal any nerve damage. This will not heal nerves that are totally destroyed."
+        }
+      },
+      {
+        "name": "10. Unparalysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can cure any 1 paralysis problem."
+        }
+      },
+      {
+        "name": "11. Minor Nerve Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Nerve Repair, except there is no recovery time."
+        }
+      },
+      {
+        "name": "12. Joining",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to reattach limb, but requires use of Bone Law, Muscle Law, and Blood Law Joining spells in order to restore functional status; limb is fully functional in 10-100 days."
+        }
+      },
+      {
+        "name": "15. Minor Brain Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair minor brain damage (including recovery from coma); note that experience lost is not restored (% lost permanently dependent on severity of damage); requires a 1 hour operation; recovery time: 1-10 days."
+        }
+      },
+      {
+        "name": "16. Major Nerve Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Major Nerve Repair, except that there is no recovery period required."
+        }
+      },
+      {
+        "name": "18. Paralysis Cures",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to cure paralysis in 1 target (recovery time of 1-10 days); paralysis must have resulted from a spell or disease (not a poison)."
+        }
+      },
+      {
+        "name": "19. Unpsychosis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair a minor psychosis in 1 target (recovery time of 1-10 days). Minor psychoses include mild to moderate phobias (see GM Law for more on mind diseases)."
+        }
+      },
+      {
+        "name": "20. Mass Nerve Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Nerve Repair True, except that each spell cast affects 1 nerve per level of caster."
+        }
+      },
+      {
+        "name": "25. Joining True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Joining, except that limb is fully functional in only 10 minutes (provided caster also uses the other three Joining True spells)."
+        }
+      },
+      {
+        "name": "30. Nerve Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to regenerate lost nerve; regrowth takes 1-10 days, depending on extent of loss."
+        }
+      },
+      {
+        "name": "50. Brain Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to regenerate lost brain material; regrowth takes 10-100 days, depending on extent of damage; target is in coma during recovery; note that experience lost is not restored (amount lost permanently is dependent on severity of damage)."
+        }
+      }
+    ]
+  }
+}

@@ -16,6 +16,36 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 - `spell_lists/en/channeling/concussion_ways.json` – 20 hechizos de curación de golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración (inglés)
 - `spell_lists/es/channeling/concussion_ways.json` – Vías de la conmoción, traducida al español
 
+### Spell Defense (Open Channeling 2.9)
+
+- `spell_lists/en/channeling/spell_defense.json` – 22 hechizos de protección, cancelación, disipación y resistencia por reino (inglés)
+- `spell_lists/es/channeling/spell_defense.json` – Defensa contra Hechizos, traducida al español
+
+### Blood Law (Closed Channeling 3.1)
+
+- `spell_lists/en/channeling/blood_law.json` – 21 hechizos de hemorragias, coagulación, reparación de vasos y heridas, preservación y reimplantación de miembros (inglés)
+- `spell_lists/es/channeling/blood_law.json` – Ley de la Sangre, traducida al español
+
+### Bone Law (Closed Channeling 3.2)
+
+- `spell_lists/en/channeling/bone_law.json` – 22 hechizos de fracturas, cartílago, cráneo, articulaciones, astillamientos, preservación y reimplantación de miembros (inglés)
+- `spell_lists/es/channeling/bone_law.json` – Ley del Hueso, traducida al español
+
+### Creations (Closed Channeling 3.4)
+
+- `spell_lists/en/channeling/creations.json` – 21 hechizos de sustento, agua, comida, fuego, pan de camino, hierbas, plantas y animales (inglés)
+- `spell_lists/es/channeling/creations.json` – Creaciones, traducida al español
+
+### Muscle Law (Closed Channeling 3.7)
+
+- `spell_lists/en/channeling/muscle_law.json` – 19 hechizos de músculos, tendones, esguinces, preservación y reimplantación de miembros (inglés)
+- `spell_lists/es/channeling/muscle_law.json` – Ley del Músculo, traducida al español
+
+### Nerve Law (Closed Channeling 3.8)
+
+- `spell_lists/en/channeling/nerve_law.json` – 18 hechizos de nervios, cerebro, parálisis, psicosis, preservación y reimplantación de miembros (inglés)
+- `spell_lists/es/channeling/nerve_law.json` – Ley del Nervio, traducida al español
+
 ### Druidstaff (Druid Base List 3.23)
 
 - `spell_lists/en/channeling/druidstaff.json` – 23 hechizos para crear y mejorar el Bastón del Druida, armas orgánicas y habilidades druídicas (inglés)

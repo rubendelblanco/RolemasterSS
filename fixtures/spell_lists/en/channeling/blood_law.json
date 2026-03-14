@@ -1,0 +1,343 @@
+{
+  "name": "Blood Law",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.1 - Blood Law. Spells for stopping bleeding, clotting, repairing blood vessels and wounds, limb preservation, and rejoining severed limbs. Works in conjunction with Muscle Law, Bone Law, and Nerve Law for full limb restoration.",
+    "spells": [
+      {
+        "name": "01. Flowstop I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to stop bleeding on a wound that is bleeding 1 hit per round; target may not be moved, or bleeding will resume at prior rate."
+        }
+      },
+      {
+        "name": "02. Flowstop III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Flowstop I, except that caster can stop up to 3 hits per round (total) bleeding on a wound."
+        }
+      },
+      {
+        "name": "03. Clotting I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to stop bleeding on a wound that is bleeding 1 hit per round; for 1 hour, target can move at no more than a walking pace, or bleeding will resume at prior rate."
+        }
+      },
+      {
+        "name": "04. Flowstop V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Flowstop I, except that caster can stop up to 5 hits per round (total) bleeding on a wound."
+        }
+      },
+      {
+        "name": "05. Limb Preservation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 limb",
+          "duration": "1 day/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to prevent the deterioration of 1 limb (even while severed). Also requires use of same spells from Muscle Law, Bone Law, and Nerve Law."
+        }
+      },
+      {
+        "name": "06. Cut Repair I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to stop bleeding from 1 wound that is bleeding 1 hit per round."
+        }
+      },
+      {
+        "name": "07. Clotting III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Clotting I, except that caster can stop bleeding in a wound that is bleeding up to 3 hits per round (total)."
+        }
+      },
+      {
+        "name": "08. Minor Vessel Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to completely mend a damaged minor blood vessel (a vessel that bleeds at up to 4 hits per round, not major arteries or veins)."
+        }
+      },
+      {
+        "name": "09. Cut Repair III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cut Repair I, except that caster can repair wound(s) that bleed(s) up to 3 hits per round (total); three 1 hit per round wounds or one 3 hit per round wound or one 2 hit per round and one 1 hit per round wound can be healed."
+        }
+      },
+      {
+        "name": "10. Major Vessel Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair 1 damaged blood vessel of any size, including severed veins and arteries; recovery time: 1d10 days, depending on size of vessel and severity of damage. A major vessel is one that bleeds at 5 hits per round or more when severed."
+        }
+      },
+      {
+        "name": "12. Joining",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to reattach severed limb; also requires use of Bone Law, Muscle Law, and Nerve Law Joining spells in order to restore functional status; limb is fully functional in 10-100 days."
+        }
+      },
+      {
+        "name": "13. Flowstop True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Flowstop I, except that all blood loss (i.e., hits per round) from one wound is stopped."
+        }
+      },
+      {
+        "name": "14. Clotting True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Clotting I, except that blood loss (i.e., hits per round) from one wound is stopped."
+        }
+      },
+      {
+        "name": "16. Unclotting",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to remove any one blood clot; will counter Clotting Curse (on the Curses list, p. 62). This spell has no effect on bleeding wounds that have clotted (i.e., \"clots\" in this sense apply only to internal blood clotting)."
+        }
+      },
+      {
+        "name": "18. Cut Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cut Repair I, except that it will stop bleeding and close any one wound."
+        }
+      },
+      {
+        "name": "20. Mass Flowstop",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Flowstop True, except that caster may stop bleeding from a number of wounds equal to his level (e.g., a 20th level caster can stop bleeding from 20 wounds)."
+        }
+      },
+      {
+        "name": "25. Joining True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Joining, except that limb is fully functional in 10 minutes (provided caster also uses the other three Joining True spells)."
+        }
+      },
+      {
+        "name": "30. Mass Clotting",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mass Flowstop, except that bleeding is stopped as in Clotting True."
+        }
+      },
+      {
+        "name": "50. Mass Blood Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to stop bleeding in, and fully repair, 1 wound per level (e.g., a 50th level caster can fully repair a total of 50 wounds per spell cast)."
+        }
+      }
+    ]
+  }
+}

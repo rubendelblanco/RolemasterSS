@@ -1,0 +1,343 @@
+{
+  "name": "Creaciones",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.4 - Creaciones. Hechizos para sustentar al lanzador, producir agua, comida, fuego, pan de camino, mejorar hierbas y crear plantas y animales.\n\nNOTAS ESPECIALES: El hechizo Mejorar Hierba aumenta la potencia de las hierbas (ej. 2x, 3x); normalmente aumenta los efectos de una dosis (ej. 2x en hierba \"Curar 1-10\" daría \"Curar 2-20\"). Un DJ puede hacer que aumente el número de dosis. En cualquier caso, solo uno de estos hechizos puede lanzarse sobre una hierba específica. Los hechizos de crecimiento vegetal no funcionan en hierbas. Ver RMFRP Sección 24.1 (p. 75) para más información.",
+    "spells": [
+      {
+        "name": "02. Sustentarse",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "lanzador",
+          "duration": "1 día",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador prescindir de comida y agua sin sufrir daño (proporciona nutrición y agua durante 1 día)."
+        }
+      },
+      {
+        "name": "03. Producción de Agua I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede producir agua suficiente en cualquier receptáculo disponible para abastecer a un ser humano normal durante un día."
+        }
+      },
+      {
+        "name": "04. Producción de Comida I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede producir comida suficiente del área circundante para alimentar 1 apetito abundante durante 1 día."
+        }
+      },
+      {
+        "name": "05. Encender Fuego",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "30cmR",
+          "duration": "—",
+          "range": "30cm",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador encender un fuego de 30 cm de radio; el fuego durará mientras haya combustible. Un objetivo en el radio recibe un crítico de Calor 'A'."
+        }
+      },
+      {
+        "name": "06. Conjurar Nutrientes I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede producir 1 barra de pan de 0,25 kg que nutre a 1 ser durante 1 día; pierde potencia en 1 mes."
+        }
+      },
+      {
+        "name": "07. Producción de Agua III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Producción de Agua I, excepto que el lanzador puede producir agua para 3 días."
+        }
+      },
+      {
+        "name": "08. Producción de Comida III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Producción de Comida I, excepto que el lanzador puede producir comida suficiente para alimentar a 3 seres durante 1 día."
+        }
+      },
+      {
+        "name": "09. Mejorar Hierba",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 hierba",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador aumentar la potencia de cualquier hierba en crecimiento un 100% (x2); solo puede usarse una vez por hierba."
+        }
+      },
+      {
+        "name": "10. Producción de Agua V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Producción de Agua I, excepto que el lanzador puede producir agua para 5 días."
+        }
+      },
+      {
+        "name": "11. Producción de Comida V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Producción de Comida I, excepto que el lanzador puede producir comida suficiente para alimentar a 5 seres durante 1 día."
+        }
+      },
+      {
+        "name": "12. Conjurar Nutrientes III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Conjurar Nutrientes I, excepto que el lanzador puede producir 3 barras de pan de camino."
+        }
+      },
+      {
+        "name": "13. Dominio de Hierbas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 hierba",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede duplicar la potencia de cualquier hierba (viva o muerta); solo puede usarse una vez por hierba. No puede combinarse con Mejorar Hierba."
+        }
+      },
+      {
+        "name": "15. Producción Vegetal Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 planta",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede producir una planta de hasta 3m de altura y/o anchura; debe ser común en la región."
+        }
+      },
+      {
+        "name": "16. Producción de Agua Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Producción de Agua I, excepto que el lanzador puede crear 1 día de agua por nivel (ej: nivel 17 = 17 días de agua)."
+        }
+      },
+      {
+        "name": "17. Producción de Comida Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Producción de Comida I, excepto que el lanzador puede producir comida suficiente para alimentar a un número de seres igual a su nivel."
+        }
+      },
+      {
+        "name": "20. Producción Animal Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede crear un animal representativo de la región circundante de no más de 4,5 kg; será amigable con el lanzador."
+        }
+      },
+      {
+        "name": "25. Conjurar Nutrientes Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Conjurar Nutrientes I, excepto que el lanzador puede producir barras de pan de camino igual a su nivel."
+        }
+      },
+      {
+        "name": "30. Producción Vegetal Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 planta",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Producción Vegetal Menor, excepto que el lanzador puede crear 1 planta con altura y/o anchura de 30 cm por nivel; debe ser común en el área local."
+        }
+      },
+      {
+        "name": "50. Producción Animal Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "3m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Producción Animal Menor, excepto que el lanzador puede producir un animal con peso máximo de 0,45 kg por nivel; debe ser nativo del área."
+        }
+      }
+    ]
+  }
+}

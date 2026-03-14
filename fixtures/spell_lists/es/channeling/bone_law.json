@@ -1,0 +1,343 @@
+{
+  "name": "Ley del Hueso",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.2 - Ley del Hueso. Hechizos para entender y reparar daño óseo: fracturas, cartílago, cráneo, articulaciones, astillamientos, preservación de miembros y reimplantación. Funciona en conjunción con Ley del Músculo, Ley de la Sangre y Ley del Nervio para restauración completa de miembros.",
+    "spells": [
+      {
+        "name": "01. Saber del Hueso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador adquiere comprensión completa de cualquier daño óseo, incluyendo herramientas y métodos para curar. No recibe la habilidad ni el poder para realizar la cura."
+        }
+      },
+      {
+        "name": "03. Reparar Fractura Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar una fractura simple (no fracturas compuestas, astillamientos, daño articular, etc.). Tiempo de recuperación: un día."
+        }
+      },
+      {
+        "name": "04. Reparar Cartílago",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar todo el daño de cartílago alrededor de una articulación. Tiempo de recuperación: un día."
+        }
+      },
+      {
+        "name": "05. Preservación de Miembro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador prevenir el deterioro de un miembro (incluso si está amputado). También requiere el uso del mismo hechizo de Ley del Nervio, Ley del Músculo y Ley de la Sangre."
+        }
+      },
+      {
+        "name": "06. Reparar Fractura Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Fractura Menor, excepto que el lanzador también puede reparar fracturas compuestas. Tiempo de recuperación: un día."
+        }
+      },
+      {
+        "name": "08. Reparar Cráneo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar una fractura en el cráneo (pero no un área astillada). Tiempo de recuperación: 1d10 días (según el daño)."
+        }
+      },
+      {
+        "name": "10. Reparar Articulación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar una articulación rota (pero no astillada). Tiempo de recuperación: 1d10 días."
+        }
+      },
+      {
+        "name": "11. Reparar Fractura Menor Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Fractura Menor, excepto que la recuperación es instantánea."
+        }
+      },
+      {
+        "name": "12. Reimplantación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reimplantar un miembro. Requiere el uso de los hechizos Reimplantación de Ley del Músculo, Ley de la Sangre y Ley del Nervio para restaurar funcionalidad. El miembro es totalmente funcional en 10-100 días."
+        }
+      },
+      {
+        "name": "13. Reparar Cartílago Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Cartílago, excepto que el tiempo de recuperación es instantáneo."
+        }
+      },
+      {
+        "name": "14. Reparar Fractura Mayor Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Fractura Mayor, excepto que el tiempo de recuperación es instantáneo."
+        }
+      },
+      {
+        "name": "15. Reparar Cráneo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Cráneo, excepto que el tiempo de recuperación es instantáneo."
+        }
+      },
+      {
+        "name": "16. Reparar Articulación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Articulación, excepto que el tiempo de recuperación es instantáneo."
+        }
+      },
+      {
+        "name": "17. Reparar Astillamiento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar cualquier hueso roto o astillado. Requiere una operación de 10 minutos y 1-10 días de recuperación."
+        }
+      },
+      {
+        "name": "18. Reparar Fractura Menor Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Fractura Menor, excepto que repara una fractura menor por nivel del lanzador. El hechizo opera mientras el lanzador concentra; cada fractura reparada requiere un día de recuperación."
+        }
+      },
+      {
+        "name": "20. Reparar Cartílago Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Fractura Menor Masiva, excepto que repara cartílago (como en Reparar Cartílago)."
+        }
+      },
+      {
+        "name": "25. Reimplantación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reimplantación, excepto que el miembro es totalmente funcional en 10 minutos (si el lanzador también usa los otros tres hechizos Reimplantación Verdadera)."
+        }
+      },
+      {
+        "name": "30. Reparar Fractura Mayor Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "30m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Fractura Menor Masiva, excepto en alcance y repara fracturas mayores (como en Reparar Fractura Mayor)."
+        }
+      },
+      {
+        "name": "50. Reparar Astillamiento Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "30m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Fractura Menor Masiva, excepto en alcance y repara cualquier hueso roto o astillado (como en Reparar Astillamiento)."
+        }
+      }
+    ]
+  }
+}

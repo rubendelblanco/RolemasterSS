@@ -1,0 +1,343 @@
+{
+  "name": "Ley de la Sangre",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.1 - Ley de la Sangre. Hechizos para detener hemorragias, coagulación, reparar vasos sanguíneos y heridas, preservación de miembros y reimplantación de extremidades. Funciona en conjunción con Ley del Músculo, Ley del Hueso y Ley del Nervio para restauración completa de miembros.",
+    "spells": [
+      {
+        "name": "01. Detener Flujo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador detener la hemorragia de una herida que sangra 1 golpe por asalto; el objetivo no puede moverse o la hemorragia se reanudará al ritmo anterior."
+        }
+      },
+      {
+        "name": "02. Detener Flujo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detener Flujo I, excepto que el lanzador puede detener hasta 3 golpes por asalto (total) de hemorragia en una herida."
+        }
+      },
+      {
+        "name": "03. Coagulación I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador detener la hemorragia de una herida que sangra 1 golpe por asalto; durante 1 hora el objetivo puede moverse a no más que ritmo de marcha, o la hemorragia se reanudará al ritmo anterior."
+        }
+      },
+      {
+        "name": "04. Detener Flujo V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detener Flujo I, excepto que el lanzador puede detener hasta 5 golpes por asalto (total) de hemorragia en una herida."
+        }
+      },
+      {
+        "name": "05. Preservación de Miembro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 miembro",
+          "duration": "1 día/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador prevenir el deterioro de 1 miembro (incluso si está amputado). También requiere el uso de los mismos hechizos de Ley del Músculo, Ley del Hueso y Ley del Nervio."
+        }
+      },
+      {
+        "name": "06. Reparar Corte I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador detener la hemorragia de 1 herida que sangra 1 golpe por asalto."
+        }
+      },
+      {
+        "name": "07. Coagulación III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Coagulación I, excepto que el lanzador puede detener la hemorragia en una herida que sangra hasta 3 golpes por asalto (total)."
+        }
+      },
+      {
+        "name": "08. Reparar Vaso Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar completamente un vaso sanguíneo menor dañado (vaso que sangra hasta 4 golpes por asalto, no arterias ni venas mayores)."
+        }
+      },
+      {
+        "name": "09. Reparar Corte III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Corte I, excepto que el lanzador puede reparar herida(s) que sangra(n) hasta 3 golpes por asalto (total); tres heridas de 1 golpe, o una de 3 golpes, o una de 2 y una de 1 pueden curarse."
+        }
+      },
+      {
+        "name": "10. Reparar Vaso Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar 1 vaso sanguíneo dañado de cualquier tamaño, incluyendo venas y arterias seccionadas; tiempo de recuperación: 1d10 días según tamaño del vaso y severidad del daño. Un vaso mayor sangra 5 golpes por asalto o más cuando está seccionado."
+        }
+      },
+      {
+        "name": "12. Reimplantación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reimplantar un miembro amputado; también requiere el uso de los hechizos Reimplantación de Ley del Hueso, Ley del Músculo y Ley del Nervio para restaurar funcionalidad; el miembro es totalmente funcional en 10-100 días."
+        }
+      },
+      {
+        "name": "13. Detener Flujo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detener Flujo I, excepto que toda la pérdida de sangre (golpes por asalto) de una herida se detiene."
+        }
+      },
+      {
+        "name": "14. Coagulación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Coagulación I, excepto que la pérdida de sangre (golpes por asalto) de una herida se detiene."
+        }
+      },
+      {
+        "name": "16. Disolver Coágulo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador eliminar cualquier coágulo de sangre; contrarresta Maldición de Coagulación (lista Maldiciones, p. 62). Este hechizo no afecta a heridas sangrantes que han coagulado (los \"coágulos\" aquí se refieren solo a coagulación interna)."
+        }
+      },
+      {
+        "name": "18. Reparar Corte Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Corte I, excepto que detiene la hemorragia y cierra cualquier herida."
+        }
+      },
+      {
+        "name": "20. Detener Flujo Masivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detener Flujo Verdadero, excepto que el lanzador puede detener la hemorragia de un número de heridas igual a su nivel (ej: un lanzador de nivel 20 puede detener 20 heridas)."
+        }
+      },
+      {
+        "name": "25. Reimplantación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reimplantación, excepto que el miembro es totalmente funcional en 10 minutos (si el lanzador también usa los otros tres hechizos Reimplantación Verdadera)."
+        }
+      },
+      {
+        "name": "30. Coagulación Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detener Flujo Masivo, excepto que la hemorragia se detiene como en Coagulación Verdadera."
+        }
+      },
+      {
+        "name": "50. Reparación Sanguínea Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "30m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador detener la hemorragia y reparar completamente 1 herida por nivel (ej: un lanzador de nivel 50 puede reparar un total de 50 heridas por lanzamiento)."
+        }
+      }
+    ]
+  }
+}
