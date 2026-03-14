@@ -1,5 +1,24 @@
 <div class="combat-history-dialog">
+    <div class="combat-history-summary">
+        <div class="combat-history-meta">
+            <span class="combat-history-rounds">{{ localize "rmss.combat.history.rounds" }}: {{ rounds }}</span>
+        </div>
+        {{#if defeatedEnemies.length}}
+        <div class="combat-history-defeated">
+            <strong>{{ localize "rmss.combat.history.defeated_enemies" }}:</strong>
+            {{#each defeatedEnemies as |enemy|}}
+            <span class="defeated-badge" title="{{ enemy.label }}">
+                {{#if enemy.img}}<img src="{{ enemy.img }}" alt="{{ enemy.name }}" class="defeated-portrait"/>{{/if}}
+                {{#unless enemy.img}}{{ enemy.label }}{{/unless}}
+            </span>{{#unless @last}} {{/unless}}
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
     <table class="combat-history-table">
+        <colgroup>
+            <col/><col/><col/><col/><col/><col/>
+        </colgroup>
         <thead>
             <tr>
                 <th>{{ localize "rmss.combat.history.character" }}</th>
@@ -17,11 +36,22 @@
                     {{#if row.img}}<img src="{{row.img}}" alt="{{row.name}}" width="32" height="32" class="character-portrait"/>{{/if}}
                     <span>{{ row.name }}</span>
                 </td>
-                <td>{{ row.critsInflicted }}</td>
-                <td>{{ row.critsReceived }}</td>
-                <td>{{ row.hpInflicted }}</td>
-                <td>{{ row.hpReceived }}</td>
-                <td>{{ row.kills }}</td>
+                <td class="cell-with-detail">
+                    <span class="cell-main">{{ row.critsInflicted }}{{#if row.critsInflictedBySev}} <span class="cell-breakdown">({{ row.critsInflictedBySev }})</span>{{/if}}</span>
+                </td>
+                <td class="cell-with-detail">
+                    <span class="cell-main">{{ row.critsReceived }}{{#if row.critsReceivedBySev}} <span class="cell-breakdown">({{ row.critsReceivedBySev }})</span>{{/if}}</span>
+                </td>
+                <td class="cell-simple">{{ row.hpInflicted }}</td>
+                <td class="cell-simple">{{ row.hpReceived }}</td>
+                <td class="cell-with-detail kills-cell">
+                    {{#if row.killsGrouped.length}}
+                    <span class="kills-portraits">{{#each row.killsGrouped as |k|}}
+                        <span class="kill-item">{{#if k.defenderImg}}<img src="{{ k.defenderImg }}" alt="{{ k.defenderName }}" title="{{ k.tooltip }}" class="kill-portrait"/>{{#if k.countBadge}}<span class="kill-count">{{ k.countBadge }}</span>{{/if}}{{else}}<span class="kill-fallback" title="{{ k.tooltip }}">{{ k.tooltip }}</span>{{/if}}</span>
+                    {{/each}}</span>
+                    {{/if}}
+                    <span class="kills-total"><strong>{{ localize "rmss.combat.history.total" }}:</strong> {{ row.kills }}</span>
+                </td>
             </tr>
             {{/each}}
         </tbody>

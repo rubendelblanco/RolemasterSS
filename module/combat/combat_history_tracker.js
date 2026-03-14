@@ -38,7 +38,12 @@ export class CombatHistoryTracker {
                 critsReceived: 0,
                 hpInflicted: 0,
                 hpReceived: 0,
-                kills: 0
+                kills: 0,
+                hpByDefender: {},      // defenderId -> total HP inflicted
+                hpFromAttacker: {},    // attackerId -> total HP received
+                critsBySeverityInflicted: {},  // E -> 2, A -> 1
+                critsBySeverityReceived: {},
+                killsList: []          // { defenderId, defenderName, attackerId }
             });
         }
         return combatMap.get(actorId);
@@ -68,37 +73,50 @@ export class CombatHistoryTracker {
 
         if (this._isPC(attackerId)) {
             attackerStats.hpInflicted += amount;
+            attackerStats.hpByDefender[defenderId] = (attackerStats.hpByDefender[defenderId] || 0) + amount;
         }
         if (this._isPC(defenderId)) {
             defenderStats.hpReceived += amount;
+            defenderStats.hpFromAttacker[attackerId] = (defenderStats.hpFromAttacker[attackerId] || 0) + amount;
         }
 
         if (defenderDied && this._isPC(attackerId)) {
             attackerStats.kills += 1;
+            const defenderName = game.actors.get(defenderId)?.name ?? "?";
+            attackerStats.killsList.push({ defenderId, defenderName, attackerId });
             this._defendersKilledByDamage.add(defenderId); // avoid double-count when updateCombatant fires
         }
     }
 
     /**
      * Record a critical hit dealt/received.
+     * @param {string} [severity] - A, B, C, D, E (null/undefined = HP-only, not counted in severity breakdown)
      */
-    recordCritical(attackerId, defenderId) {
+    recordCritical(attackerId, defenderId, severity = null) {
         if (!game.combat?.id) return;
         const combatMap = this._ensureCombat(game.combat.id);
 
         const attackerStats = this._ensureActorStats(combatMap, attackerId);
         const defenderStats = this._ensureActorStats(combatMap, defenderId);
 
+        const sev = severity && /^[A-E]$/i.test(severity) ? severity.toUpperCase() : null;
+
         if (this._isPC(attackerId)) {
             attackerStats.critsInflicted += 1;
+            if (sev) {
+                attackerStats.critsBySeverityInflicted[sev] = (attackerStats.critsBySeverityInflicted[sev] || 0) + 1;
+            }
         }
         if (this._isPC(defenderId)) {
             defenderStats.critsReceived += 1;
+            if (sev) {
+                defenderStats.critsBySeverityReceived[sev] = (defenderStats.critsBySeverityReceived[sev] || 0) + 1;
+            }
         }
     }
 
     /**
-     * Record a kill. Used when death is detected elsewhere (e.g. _applyHPDamage).
+     * Record a kill. Used when death is detected elsewhere (e.g. manual GM toggle).
      */
     recordKill(attackerId, defenderId) {
         if (!game.combat?.id) return;
@@ -106,6 +124,8 @@ export class CombatHistoryTracker {
         const attackerStats = this._ensureActorStats(combatMap, attackerId);
         if (this._isPC(attackerId)) {
             attackerStats.kills += 1;
+            const defenderName = game.actors.get(defenderId)?.name ?? "?";
+            attackerStats.killsList.push({ defenderId, defenderName, attackerId });
         }
         this._lastAttackerByDefender.delete(defenderId);
     }

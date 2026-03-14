@@ -84,7 +84,7 @@ class LargeCreatureCriticalStrategy {
 
         const tracker = CombatHistoryTracker.get();
         tracker.recordDamage(attackerActor.id, defenderActor.id, parseInt(damage), newHits <= 0);
-        tracker.recordCritical(attackerActor.id, defenderActor.id);
+        tracker.recordCritical(attackerActor.id, defenderActor.id, data.severity);
 
         if (severity === "null") return;
 
@@ -214,7 +214,7 @@ export class RMSSWeaponCriticalManager {
         if (attackerId && game.combat?.id) {
             const tracker = CombatHistoryTracker.get();
             tracker.recordDamage(attackerId, target.id, dmg, newHits <= 0);
-            tracker.recordCritical(attackerId, target.id);
+            tracker.recordCritical(attackerId, target.id, gmResponse?.severity);
         }
 
         if (gmResponse.severity === "null") return;

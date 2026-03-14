@@ -84,11 +84,13 @@ export class RMSSEffectApplier {
 
     static async _applyHPDamage(entity, hp, originId = null) {
         const dmg = parseInt(hp) || 0;
-        const newHits = entity.system.attributes.hits.current - dmg;
+        const currentHits = entity.system.attributes.hits.current;
+        const newHits = currentHits - dmg;
         await entity.update({ "system.attributes.hits.current": newHits });
 
+        const wasAlreadyDead = currentHits <= 0;
         if (originId && game.combat?.id) {
-            CombatHistoryTracker.get().recordDamage(originId, entity.id, dmg, newHits <= 0);
+            CombatHistoryTracker.get().recordDamage(originId, entity.id, dmg, newHits <= 0 && !wasAlreadyDead);
         }
 
         if (entity.system.attributes.hits.current <= 0) {

@@ -649,6 +649,9 @@
         "hp_inflicted": "PV infligidos",
         "hp_received": "PV recibidos",
         "kills": "Bajas",
+        "rounds": "Rondas",
+        "defeated_enemies": "Enemigos derrotados",
+        "total": "Total",
         "close": "Cerrar",
         "attacker_for_kill": "Atacante (para adjudicar la baja)",
         "no_attacker": "— Ninguno —"

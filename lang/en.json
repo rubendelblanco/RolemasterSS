@@ -649,6 +649,9 @@
                 "hp_inflicted": "HP inflicted",
                 "hp_received": "HP received",
                 "kills": "Kills",
+                "rounds": "Rounds",
+                "defeated_enemies": "Defeated enemies",
+                "total": "Total",
                 "close": "Close",
                 "attacker_for_kill": "Attacker (for kill credit)",
                 "no_attacker": "— None —"
