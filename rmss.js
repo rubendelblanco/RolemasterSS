@@ -85,7 +85,6 @@ Hooks.once("ready", async function() {
   console.log("RMSS | Loading arms table index...");
   const indexPath = `${CONFIG.rmss.paths.arms_tables.replace(/\/?$/, "/")}index.json`;
   const response = await fetch(indexPath);
-  console.log(response);
   if (response.ok) {
     const tablesIndex = await response.json();
     game.rmss = game.rmss || {};

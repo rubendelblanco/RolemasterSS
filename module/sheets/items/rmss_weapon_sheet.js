@@ -58,9 +58,6 @@ export default class RMSSWeaponSheet extends ItemSheet {
       weaponTypes: CONFIG.weapons.type
     };
 
-    console.log("------------------------------------------------------");
-    console.log (sheetData);
-
     return sheetData;
   }
 

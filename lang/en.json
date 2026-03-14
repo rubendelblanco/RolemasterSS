@@ -564,6 +564,7 @@
         },
         "combat": {
             "no_attack_result": "No attack table result found. Check the target's armor type.",
+            "attack_table_load_failed": "Failed to load attack table: {table}",
             "confirm_attack": "Confirm attack",
             "confirm_critical": "Confirm critical",
             "confirm": "Confirm",

@@ -160,7 +160,7 @@ export class RMSSWeaponCriticalManager {
         if (match) {
             const damage = match[1] || null; // e.g. "10"
             const severity = match[2] || null; // A, B, C...
-            const critType = match[3] || null; // S=slash, K=krush
+            let critType = match[3] || null; // S=slash, K=krush
             if (!!severity && severity >= "F" && !!criticalSeverity) {
                 let criticalsRaw = criticalSeverity[severity];
                 const criticals = Array.from(Object.entries(criticalsRaw)).map(([key, value], idx) => {
