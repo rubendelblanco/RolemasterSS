@@ -19,10 +19,12 @@ export class ContainerHandler {
     }
 
     canAccept(item) {
-        const acceptedTags = this.item.system.acceptedItemTags ?? [];
-        const itemTags = item.system.tags ?? [];
+        const raw = this.item.system?.container?.allowedTags;
+        const acceptedTags = Array.isArray(raw) ? raw : (typeof raw === "string" ? raw.split(",").map(s => s.trim()).filter(Boolean) : []);
         if (acceptedTags.length === 0) return true;
-        return itemTags.some(tag => acceptedTags.includes(tag));
+        const itemTags = item.system?.tags ?? [];
+        const itemType = item.type ?? "";
+        return acceptedTags.some(tag => itemType === tag || (Array.isArray(itemTags) && itemTags.includes(tag)));
     }
 
     getTotalWeight() {
@@ -111,5 +113,32 @@ export class ContainerHandler {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Eject items until container is under capacity.
+     * Used when maxCapacity is reduced or to fix existing over-capacity state.
+     * Ejects heaviest items first (weight) or by count (quantity).
+     */
+    async enforceCapacityByEjectingUntilUnder() {
+        while (this.usedValue > this.maxCapacity && this.contents.length > 0) {
+            let toEject;
+            if (this.capacityType === "weight") {
+                toEject = this.contents.reduce((heaviest, i) => {
+                    const w = Number(i.system?.weight) || 0;
+                    return w > (Number(heaviest?.system?.weight) || 0) ? i : heaviest;
+                });
+            } else {
+                toEject = this.contents[0];
+            }
+            await toEject.unsetFlag("rmss", "containerId");
+            ui.notifications.warn(
+                game.i18n.format("rmss.container.ejected_over_capacity", {
+                    item: toEject.name,
+                    container: this.item.name
+                })
+            );
+        }
+        await this.recalc();
     }
 }

@@ -1,4 +1,5 @@
 import { socket } from "../../../rmss.js";
+import { ContainerHandler } from "../utils/container_handler.js";
 
 /**
  * Service to handle skill-related operations on items.
@@ -227,9 +228,16 @@ export default class ItemService {
         const transportContainers = [];
         for (const transport of transports) {
             const transportId = getId(transport);
+            const handler = ContainerHandler.for(transport);
+            const contents = containersMap.get(transportId) || [];
             transportContainers.push({
                 container: transport,
-                contents: containersMap.get(transportId) || []
+                contents,
+                capacityUsed: handler?.usedValue ?? 0,
+                capacityMax: handler?.maxCapacity ?? 0,
+                capacityPercent: handler?.usedPercent ?? 0,
+                isOverCapacity: handler?.isOverCapacity() ?? false,
+                capacityType: handler?.capacityType ?? "weight"
             });
         }
 
@@ -244,9 +252,19 @@ export default class ItemService {
             const itemId = getId(i);
 
             if (isContainer) {
+                const handler = ContainerHandler.for(i);
+                const contents = containersMap.get(itemId) || [];
+                if (handler?.isOverCapacity()) {
+                    handler.enforceCapacityByEjectingUntilUnder().catch(console.error);
+                }
                 containers.push({
                     container: i,
-                    contents: containersMap.get(itemId) || []
+                    contents,
+                    capacityUsed: handler?.usedValue ?? 0,
+                    capacityMax: handler?.maxCapacity ?? 0,
+                    capacityPercent: handler?.usedPercent ?? 0,
+                    isOverCapacity: handler?.isOverCapacity() ?? false,
+                    capacityType: handler?.capacityType ?? "weight"
                 });
             } else if (!i.flags?.rmss?.containerId) {
                 looseGear.push(i);
@@ -372,6 +390,15 @@ export default class ItemService {
         formData["system.weight"]     = totalWeight;
         formData["system.unitCost"]   = unitCost;
         formData["system.cost"]       = totalCost;
+
+        // --- Container: parse allowedTags from comma-separated string to array ---
+        const atKey = "system.container.allowedTags";
+        if (formData[atKey] !== undefined) {
+            const raw = formData[atKey];
+            formData[atKey] = typeof raw === "string"
+                ? raw.split(",").map(s => s.trim()).filter(Boolean)
+                : (Array.isArray(raw) ? raw : null);
+        }
 
         return formData;
     }

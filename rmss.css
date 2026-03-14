@@ -1216,6 +1216,14 @@ li.item.contained span.description {
     color: var(--rmss-progress-text);
 }
 
+.rmss-progress.over-capacity .rmss-progress-bar {
+    background: #c0392b;
+}
+
+.rmss-progress.over-capacity {
+    border-color: #c0392b;
+}
+
 tr.contained-item td.indent {
     padding-left: 1.5em;
     opacity: 0.9;
@@ -1223,6 +1231,16 @@ tr.contained-item td.indent {
 
 tr.container-row {
     background-color: rgba(0, 135, 245, 0.15);
+}
+
+tr.container-row.over-capacity {
+    background-color: rgba(192, 57, 43, 0.2);
+}
+
+.container-capacity-badge {
+    font-size: 0.85em;
+    font-weight: normal;
+    opacity: 0.9;
 }
 
 /* --- Align Fate Points row just like other header-text rows --- */

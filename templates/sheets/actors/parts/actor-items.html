@@ -20,10 +20,10 @@
     {{!-- ==================== CONTAINERS ==================== --}}
     {{#each containers as |group|}}
     {{!-- Container row --}}
-    <tr class="container-row" data-item-id="{{group.container._id}}" draggable="true"
+    <tr class="container-row {{#if group.isOverCapacity}}over-capacity{{/if}}" data-item-id="{{group.container._id}}" draggable="true"
         data-type="Item" data-uuid="Actor.{{group.container.actorId}}.Item.{{group.container._id}}">
         <td><img src="{{group.container.img}}" alt="{{group.container.name}}" width="32" height="32"/></td>
-        <td><strong>{{group.container.name}}{{#if group.container.system.description}}
+        <td><strong>{{group.container.name}}{{#if group.capacityMax}} <span class="container-capacity-badge">({{group.capacityUsed}}/{{group.capacityMax}}{{#if (eq group.capacityType "weight")}} kg{{else}}{{/if}})</span>{{/if}}{{#if group.container.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{group.container.system.description}}"></i>
           {{/if}}</strong></td>

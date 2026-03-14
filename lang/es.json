@@ -1,5 +1,8 @@
 {
   "rmss": {
+    "container": {
+      "ejected_over_capacity": "{item} fue sacado de {container} (excede la capacidad)."
+    },
     "initiative": {
       "roll": "Tirando iniciativa",
       "initiative": "Iniciativa",
@@ -300,6 +303,14 @@
       "equipped": "Equipado",
       "is_container": "¿Es un contenedor?",
       "capacity": "Capacidad",
+      "capacity_type": "Tipo de capacidad",
+      "capacity_type_weight": "Peso",
+      "capacity_type_quantity": "Cantidad",
+      "capacity_kg": "Capacidad (kg)",
+      "capacity_items": "Capacidad (objetos)",
+      "allowed_tags": "Tags permitidos (separados por coma)",
+      "container_contents": "Contenido de",
+      "container_empty": "El contenedor está vacío.",
       "container": "Contenedor",
       "details": "Detalles",
       "is_stackable": "Es apilable",

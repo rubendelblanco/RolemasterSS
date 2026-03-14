@@ -492,30 +492,34 @@ Hooks.once("init", function () {
     }
   });
 
-  // Hook: updateItem - container capacity (original logic)
+  // Hook: updateItem - container capacity
   Hooks.on("updateItem", async (item, update, options, userId) => {
-    if (!(
-        "system.weight" in update ||
-        "system.quantity" in update ||
-        update.system?.weight !== undefined ||
-        update.system?.quantity !== undefined
-    )) return;
-
-    const containerId = item.getFlag("rmss", "containerId");
-    if (!containerId) return;
-
     const actor = item.parent;
     if (!actor) return;
 
-    const container = actor.items.get(containerId);
-    if (!container) return;
+    // Case 1: A contained item's weight/quantity changed
+    if ("system.weight" in update || "system.quantity" in update ||
+        update.system?.weight !== undefined || update.system?.quantity !== undefined) {
+      const containerId = item.getFlag("rmss", "containerId");
+      if (!containerId) return;
+      const container = actor.items.get(containerId);
+      if (!container) return;
+      const handler = ContainerHandler.for(container);
+      if (!handler) return;
+      await handler.enforceCapacity(item);
+      await handler.recalc();
+      return;
+    }
 
-    const handler = ContainerHandler.for(container);
-    if (!handler) return;
-
-    // Check capacity and recalculate
-    await handler.enforceCapacity(item);
-    await handler.recalc();
+    // Case 2: The container itself was updated (maxCapacity reduced) — eject items until under capacity
+    if (ContainerHandler.isContainer(item) && update.system?.container?.maxCapacity !== undefined) {
+      const handler = ContainerHandler.for(item);
+      if (handler?.isOverCapacity()) {
+        await handler.enforceCapacityByEjectingUntilUnder();
+      } else if (handler) {
+        await handler.recalc();
+      }
+    }
   });
 
   // Hook: closeApplication - delete temp spell item when sheet closed without saving

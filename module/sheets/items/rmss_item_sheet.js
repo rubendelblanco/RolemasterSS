@@ -23,6 +23,12 @@ export default class RMSSItemSheet extends ItemSheet {
     const secretDescription = await TextEditor.enrichHTML(item.system.description_secret, { async: true });
     const handler = ContainerHandler.for(item);
     const contents = handler ? handler.contents : [];
+    const containerStats = handler ? {
+      usedValue: handler.usedValue,
+      maxCapacity: handler.maxCapacity,
+      usedPercent: handler.usedPercent,
+      isOverCapacity: handler.isOverCapacity()
+    } : null;
 
     return {
       owner: item.isOwner,
@@ -34,7 +40,8 @@ export default class RMSSItemSheet extends ItemSheet {
       effects: item.getEmbeddedCollection("ActiveEffect").contents,
       enrichedDescription,
       secretDescription,
-      contents
+      contents,
+      containerStats
     };
   }
 
@@ -69,7 +76,7 @@ export default class RMSSItemSheet extends ItemSheet {
 
     const handler = ContainerHandler.for(this.item);
     if (handler) {
-      await this.item.update({ "system.container.usedCapacity": handler.usedValue });
+      await handler.recalc();
     }
 
     this.render(false);
@@ -104,7 +111,7 @@ export default class RMSSItemSheet extends ItemSheet {
       await newItem[0].setFlag("rmss", "containerId", this.item.id);
     }
 
-    await this.item.update({ "system.container.usedCapacity": handler.usedValue });
+    await handler.recalc();
     this.render(false);
   }
 
