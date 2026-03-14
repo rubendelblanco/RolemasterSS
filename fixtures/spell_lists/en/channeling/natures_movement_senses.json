@@ -1,0 +1,411 @@
+{
+  "name": "Nature's Movement/Senses",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Animist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Spell Law 4.4 - Animist Base List. Spells that grant the caster animal-like movement, senses, and physical attributes.\n\nSPECIAL NOTES: With the exception of Chameleon Skin, Lion Claws, and Viperfang, the caster does not physically change with any of the spells on this list.",
+    "spells": [
+      {
+        "name": "01. Cat Step",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster moves as quietly as a cat. Adds +20 to all Stalking maneuvers."
+        }
+      },
+      {
+        "name": "02. Chameleon Skin",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster's skin takes on the coloration of the surrounding terrain. Adds +10 to +50 to all Stalking/Hiding maneuvers. As caster moves, coloration changes to match the surrounding terrain. This spell does not affect gear or clothing."
+        }
+      },
+      {
+        "name": "03. Wolf Sense",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains an increased sense of smell and hearing (subtle smells and higher sonic ranges included). Adds +50 to Perceptions with only these senses; +20 to Perceptions using these senses combined with others."
+        }
+      },
+      {
+        "name": "04. Deer Speed I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can run at two times normal pace (i.e., Run pace) and expend exhaustion points as if only walking."
+        }
+      },
+      {
+        "name": "05. Bat Sense",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Increases caster's ability to maneuver without his sight. When blinded or otherwise without sight, this spell adds +10 to +50 to maneuver rolls in the dark. Note that this spell does not negate penalties for blindness; it simply decreases them."
+        }
+      },
+      {
+        "name": "06. Otterlungs",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can safely hold his breath for the duration of this spell."
+        }
+      },
+      {
+        "name": "07. Glide I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can glide like a bird. The product of the caster's altitude and horizontal speed cannot exceed 100' per round. For example, a caster can glide along at a rate of 5' per round if he were 20' off the ground; or he could glide at the rate of 50' per round if he were 2' off the ground. Note that the total must equal 100' (i.e., the caster cannot choose to have a total less than or more than 100')."
+        }
+      },
+      {
+        "name": "08. Hawk Sense",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains the visual acuity of a hawk. Adds +50 to all Perceptions involving only sight; +20 to all Perceptions involving this sense combined with others."
+        }
+      },
+      {
+        "name": "09. Tiger Skin",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster's skin has the resilience of a large cat (effective AT of 3)."
+        }
+      },
+      {
+        "name": "10. Boar Strength",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains the ferocity of a wild boar. He gains +20 to his melee OB, but cannot parry or use missiles for the duration of the spell."
+        }
+      },
+      {
+        "name": "11. Lion Claws",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains the ability to make claw attacks as a lion. He may attack using the Claw Attack Table (from Arms Law), with a maximum of Medium results. The caster must develop skill (i.e., an OB) with these claws (cost to develop is the same as Martial Arts Striking; stat modifiers are St/St/Ag)."
+        }
+      },
+      {
+        "name": "12. Insect Sense",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "10'R/lvl",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains the vibratory sensitivity of an insect. He can sense vibrations in the ground (or other solid material) up to the area of effect. He will gain information indicating general movements and number of targets (±10%). Treat as a special bonus of +25 to +100 to Perception (depending on the type of activity)."
+        }
+      },
+      {
+        "name": "13. Deer Speed II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Deer Speed I, except the speed increase is three times (i.e., Sprint pace)."
+        }
+      },
+      {
+        "name": "14. Bear Skin",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster's skin has the resilience of a bear (effective AT of 8)."
+        }
+      },
+      {
+        "name": "15. Bear Arms",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains the ability to make grapple attacks as a bear. He may attack using the Grapple Attack Table (from Arms Law), with a maximum of Medium results. The caster must develop skill (i.e., an OB) with this attack (cost to develop is the same as Martial Arts Sweeps/Throws; stat modifiers are St/Ag/Ag)."
+        }
+      },
+      {
+        "name": "16. Glide III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Glide I, except product must equal 300'."
+        }
+      },
+      {
+        "name": "17. Viperfang",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains the ability to make bite attacks as a serpent. He may attack using the Bite Attack Table (from Arms Law), with a maximum of Medium results. The caster must develop skill (i.e., an OB) with this attack (cost to develop is the same as Martial Arts Striking; stat modifiers are St/St/Ag)."
+        }
+      },
+      {
+        "name": "18. Wyvern Skin",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster's skin has the resilience of a minor drake (effective AT of 12)."
+        }
+      },
+      {
+        "name": "19. Deer Speed III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Deer Speed I, except the speed increase is four times (i.e., Fast Sprint pace)."
+        }
+      },
+      {
+        "name": "20. Ox Strength",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains the strength of an ox. He gains a special bonus of +40 to his melee OB, but cannot parry or use missiles for the duration of the spell."
+        }
+      },
+      {
+        "name": "25. Glide True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Glide I, except product must be 500'."
+        }
+      },
+      {
+        "name": "30. Deer Speed True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Deer Speed I, except speed increase is five times (i.e., Dash pace)."
+        }
+      },
+      {
+        "name": "50. Dragon Skin",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster's skin takes on the resilience of a lesser drake (effective AT of 20)."
+        }
+      }
+    ]
+  }
+}

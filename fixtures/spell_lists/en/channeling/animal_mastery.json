@@ -1,0 +1,411 @@
+{
+  "name": "Animal Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Animist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Spell Law 4.1 - Animist Base List. Spells for controlling, healing, summoning, and communicating with animals.\n\nSPECIAL NOTES: When allowed to choose more than one option on summoning spells, the same option may be chosen more than once. For example, with Animal Summons III, two options are available. This means that if both options are used for the same thing: three first-level creatures could be summoned, or one third-level creature could be summoned, or one first-level creature could be summoned for four times as long.",
+    "spells": [
+      {
+        "name": "01. Animal Sleep I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 animal",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Puts any animal (i.e., non-humanoid) to sleep. Will not affect enchanted creatures or creatures with greater than animal intelligence."
+        }
+      },
+      {
+        "name": "02. Animal Restoration I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may heal any non-fatal damage in any animal up to 10 pounds in weight. Healing takes 6-600 minutes."
+        }
+      },
+      {
+        "name": "03. Animal Tongues",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to understand and \"speak\" the language of any 1 animal species."
+        }
+      },
+      {
+        "name": "04. Animal Sleep III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "3 animals",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Sleep I, except can put up to 3 animals to sleep."
+        }
+      },
+      {
+        "name": "05. Animal Mastery I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 animal",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to control the actions of any 1 animal."
+        }
+      },
+      {
+        "name": "06. Animal Location",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "-",
+          "range": "1 mile R",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can locate members of any 1 species of animal or he can find out what species are in the area."
+        }
+      },
+      {
+        "name": "07. Befriending",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "all animals C",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "All animals within 10' will act friendly toward caster. This spell does not control the animals."
+        }
+      },
+      {
+        "name": "08. Animal Restoration II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Restoration I, except will affect an animal up to 150 pounds in weight, or an animal up to 10 pounds in weight can be healed of fatal damage (though not brought back from the dead)."
+        }
+      },
+      {
+        "name": "09. Animal Empathy",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 animal",
+          "duration": "C",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can understand and/or visualize the thoughts and emotions of any 1 animal."
+        }
+      },
+      {
+        "name": "10. Animal Summons I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 animal",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster magically summons a 1st-level, non-intelligent creature from the surrounding area. The caster can specify the type of creature, but the GM should determine the type of creature that answers the summons. If the animal can understand the caster (e.g., Animal Tongues), the creature can be controlled through normal communication. Otherwise, control is maintained only through concentration of the caster. If the animal summoned is used for a task that is not dangerous (in its own perception), the duration for this spell is 10 minutes per level. However, if the animal is ever put into a dangerous situation, the duration immediately drops to 1 round per level."
+        }
+      },
+      {
+        "name": "11. Animal Mastery III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "3 animals",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Mastery I, except caster can control 3 animals."
+        }
+      },
+      {
+        "name": "12. Animal Summons III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Summons I, except caster can also choose two of the following options: a) the level of the summoned creature is increased by one, b) an extra 1st level creature can be summoned, or c) the duration can be doubled."
+        }
+      },
+      {
+        "name": "13. Animal Call",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 animal",
+          "duration": "-",
+          "range": "1 mile/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can \"call\" any 1 known, specific animal. If it is physically possible, the animal will come to him."
+        }
+      },
+      {
+        "name": "14. Animal Reviving I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Will return any animal up to 10 pounds in weight from the dead. The dead animal must make a roll (d100, open-ended) and add 2 times its previous level. There is an additional modifier of -2 per day that the animal was dead. If the result is over 100, the animal is returned from the dead. If the result is less than 100, the animal may not be returned from the dead by this caster (until the caster gains another level). The animal will be at -100 to all actions for a number of days equal to 20 days per day dead."
+        }
+      },
+      {
+        "name": "15. Call of the Wild",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When cast upon any domesticated animal, that animal will return to its \"wild\" state. The animal will have no difficulty adapting to the harsh requirements of the wilderness (and will not want to return to domestication)."
+        }
+      },
+      {
+        "name": "16. Animal Mastery V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "5 animals",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Mastery I, except caster can control 5 animals."
+        }
+      },
+      {
+        "name": "17. Animal Restoration III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Restoration I, except will affect an animal up to 3,000 pounds in weight, or an animal up to 150 pounds in weight may be healed of fatal damage (though not brought back from the dead)."
+        }
+      },
+      {
+        "name": "18. Animal Summons V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Summons III, except four options can be chosen."
+        }
+      },
+      {
+        "name": "19. Animal Reviving II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Reviving I, except modifier is -1 for every two days dead and there is no recovery time."
+        }
+      },
+      {
+        "name": "20. Animal Summons X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Summons III, except nine options may be chosen."
+        }
+      },
+      {
+        "name": "25. Animal Master True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varies",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Mastery I, except caster can control all animals of a given species within 10' radius per level."
+        }
+      },
+      {
+        "name": "30. Animal Reviving III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 animal",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Reviving II, except target is automatically brought back from the dead and there is no recovery period; and the range is 100'."
+        }
+      },
+      {
+        "name": "50. Animal Summons True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Summons I, except caster can select one option for every two levels of experience."
+        }
+      }
+    ]
+  }
+}

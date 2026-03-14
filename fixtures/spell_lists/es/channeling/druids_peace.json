@@ -1,0 +1,360 @@
+{
+  "name": "Paz del Druida",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Druida",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Spell Law 3.22 - Lista base de Druida. Hechizos para calmar, hacer amistad, sujetar y persuadir objetivos, así como calmar animales y fenómenos naturales.",
+    "spells": [
+      {
+        "name": "01. Calma I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo no tomará acciones agresivas/ofensivas y solo luchará si es atacado."
+        }
+      },
+      {
+        "name": "02. Pregunta",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "3m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo debe responder una única pregunta conceptual."
+        }
+      },
+      {
+        "name": "03. Calma II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "2 objetivos",
+          "duration": "1 min/nvl",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Calma I, excepto que pueden afectarse 2 objetivos."
+        }
+      },
+      {
+        "name": "04. Sujeción Amable",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo humanoide queda reducido al 25% de sus acciones normales."
+        }
+      },
+      {
+        "name": "05. Calma III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "3 objetivos",
+          "duration": "1 min/nvl",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Calma I, excepto que pueden afectarse 3 objetivos."
+        }
+      },
+      {
+        "name": "06. Amistad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 h/nvl",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo cree que el lanzador es un buen amigo."
+        }
+      },
+      {
+        "name": "07. Calma V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "5 objetivos",
+          "duration": "1 min/nvl",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Calma I, excepto que pueden afectarse 5 objetivos."
+        }
+      },
+      {
+        "name": "08. Calma Animal Masiva I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varía",
+          "duration": "2 min/nvl",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede calmar un número de animales igual a su nivel."
+        }
+      },
+      {
+        "name": "09. Sujeción Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sujeción Amable, excepto que afecta a cualquier objetivo."
+        }
+      },
+      {
+        "name": "10. Calma X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10 objetivos",
+          "duration": "1 min/nvl",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Calma I, excepto que pueden afectarse 10 objetivos."
+        }
+      },
+      {
+        "name": "12. Persuasión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/nvl",
+          "range": "30 cm/nvl",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo queda convencido de un único hecho expresado por el lanzador (a menos que se presente evidencia contraria irrefutable)."
+        }
+      },
+      {
+        "name": "14. Grito de Calma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl",
+          "range": "15m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Todos los objetivos en el radio deben resistir o quedan calmados."
+        }
+      },
+      {
+        "name": "15. Calma Animal Masiva II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl",
+          "range": "3m/nvl",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Calma Animal Masiva I, excepto que las TR se modifican en -20 y el alcance es 3m/nvl."
+        }
+      },
+      {
+        "name": "17. Calma Señorial",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl",
+          "range": "3m/nvl",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -20] Permite al lanzador calmar hasta 20 objetivos."
+        }
+      },
+      {
+        "name": "18. Persuasión Señorial",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varía",
+          "duration": "1 día/nvl",
+          "range": "15m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Persuasión, excepto que el lanzador puede persuadir hasta 20 objetivos."
+        }
+      },
+      {
+        "name": "19. Calma Prolongada",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/nvl",
+          "range": "90m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod TR: -20] El lanzador puede calmar cualquier objetivo."
+        }
+      },
+      {
+        "name": "20. Calma Masiva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede calmar un número de objetivos igual a su nivel."
+        }
+      },
+      {
+        "name": "25. Calma Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "30m",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede calmar cualquier objetivo."
+        }
+      },
+      {
+        "name": "30. Calma Terrenal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "3mR/nvl",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Dentro del radio, el lanzador puede \"calmar\" un fenómeno natural (terremotos, tormentas, vientos, etc.) o cancelar un fenómeno natural creado mágicamente."
+        }
+      },
+      {
+        "name": "50. Calma de Batalla",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "15mR/nvl",
+          "duration": "1 h/nvl",
+          "range": "sí mismo",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador calma a todos dentro del radio."
+        }
+      }
+    ]
+  }
+}

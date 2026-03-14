@@ -1,0 +1,411 @@
+{
+  "name": "Druidstaff",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Druid",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Spell Law 3.23 - Druid Base List. Spells for creating and enhancing the Druidstaff, organic weapons, and related druidic abilities.",
+    "spells": [
+      {
+        "name": "01. Minor Druidstaff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "piece of wood",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows the caster to take a suitable piece of oak, ash, yew, elm, linden, or mallorn and form a Druidstaff with these characteristics: +1 spell adder, +5 quarterstaff, and it can be thrown as a spear (treat all criticals as Krush critical)."
+        }
+      },
+      {
+        "name": "02. Organic Weapons I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 hr",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "With proper materials the caster may create 1 short bow, 1/2 long bow, 1/3 composite bow or crossbow, 1 spear or javelin, 2 arrows or bolts, 1/3 of a shield, 1 weapon haft, etc. The process takes 1 hour. The weapon's basic OB bonus is -5 (nonmagical). The spell may be cast additional times to either finish a partially completed item and/or to increase the weapon's OB bonus by +5 per casting (to a maximum of +5). Remember: the weapon's OB bonus is not magical."
+        }
+      },
+      {
+        "name": "03. Warp Wood",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "piece of wood up to 1 lb/lvl",
+          "duration": "-",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Destroys the straightness, strength, and form of a piece of wood up to 1 lb/lvl."
+        }
+      },
+      {
+        "name": "04. Lesser Druidstaff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "staff",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Druidstaff, except that it turns the Druid's Minor Druidstaff into a +10 quarterstaff that is a +2 spell adder. It can be thrown as a spear (use Krush criticals) using the range and range modifications of a javelin."
+        }
+      },
+      {
+        "name": "05. Hammerstaff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "druidstaff",
+          "duration": "1 rnd/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Doubles concussion hits given with the Druidstaff in melee."
+        }
+      },
+      {
+        "name": "06. Organic Weapons II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "1 hr",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Organic Weapons I, except that the basic OB bonus is 0 and it may be increased to a max of +10."
+        }
+      },
+      {
+        "name": "07. Druid Symbol",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "druidstaff",
+          "duration": "varies",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may store one spell on his Druidstaff to cast later with no preparation (only one such stored spell at a time)."
+        }
+      },
+      {
+        "name": "08. Greater Druidstaff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "staff",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Druidstaff, except that it turns the Druid's Lesser Druidstaff into a +15 quarterstaff that is a +3 spell adder or a x2 multiplier (caster chooses when it is created). It can be thrown as a spear using the range and range modifications of a javelin, but attacks are resolved using the attack table for a War Mattock."
+        }
+      },
+      {
+        "name": "09. Recall Staff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "druidstaff",
+          "duration": "-",
+          "range": "50'/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Will return the caster's Druidstaff to his outstretched hand at a rate of 1,000'/rnd."
+        }
+      },
+      {
+        "name": "10. Animal Staff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "druidstaff",
+          "duration": "1 min/lvl (C)",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Transforms caster's Druidstaff into an animal no larger than 200% of the caster's mass that is treated as a familiar. Animal cannot be a flying creature."
+        }
+      },
+      {
+        "name": "11. Bridge",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "druidstaff",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When the caster's Druidstaff is placed on the ground (usually at the edge of a chasm), this spell will cause it to expand and change into a 2' wide wooden bridge (length of no more than 5'/lvl) with no railings. It will only bear 1000 lb/lvl. Caster may return the Druidstaff to normal and pick it up at either end."
+        }
+      },
+      {
+        "name": "12. Lesser Holy Symbol",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When cast on a Druidstaff, this spell works as a Protections Sphere I (on Cleric Base list: Protections) except that it is mobile and the bonus is +10."
+        }
+      },
+      {
+        "name": "13. Organic Weapons III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "1 hr",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Organic Weapons I, except that the basic OB bonus is +5 and it may be increased to a max of +15."
+        }
+      },
+      {
+        "name": "14. Silver Druidstaff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "staff",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Druidstaff except that it turns the Druid's Greater Druidstaff into a +20 quarterstaff that is a +4 spell adder or a x3 multiplier (caster chooses when it is created). It can be thrown as a spear using the range and range modifications of a sling, but attacks are resolved using the attack table for a War Mattock."
+        }
+      },
+      {
+        "name": "15. Birdstaff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "druidstaff",
+          "duration": "1 min/lvl (C)",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Staff except that the Druidstaff may be transformed into a flying animal of up to 50% of the caster's mass."
+        }
+      },
+      {
+        "name": "16. Greater Holy Symbol",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Holy Symbol except that the bonus is +15."
+        }
+      },
+      {
+        "name": "17. Thunderstaff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "druidstaff",
+          "duration": "1 rnd/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster's Druidstaff delivers an electrical critical in addition to a normal critical delivered by the Druidstaff (severity is equal to the normal critical's)."
+        }
+      },
+      {
+        "name": "18. Great Hammerstaff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "staff",
+          "duration": "1 rnd/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hammerstaff except that concussion hits are tripled."
+        }
+      },
+      {
+        "name": "19. Beast Staff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "druidstaff",
+          "duration": "1 min/lvl (C)",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animal Staff or Bird Staff except that the creature may be an animal or a legendary creature of animal intelligence (no magical abilities except perhaps flight). The creature mass may not exceed 50%/lvl of the caster's mass."
+        }
+      },
+      {
+        "name": "20. Golden Druidstaff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "staff",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Druidstaff except that it turns the Druid's Silver Druidstaff into a +25 quarterstaff that is a +5 spell adder or a x3 multiplier (caster chooses when it is created). It can be thrown as a spear using the range and range modifications of a shortbow, but attacks are resolved using the attack table for a War Mattock."
+        }
+      },
+      {
+        "name": "25. Organic Weapons IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 hr",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Organic Weapons I, except that the basic OB bonus is +10 and it may be increased to a max of +20."
+        }
+      },
+      {
+        "name": "30. Lord Druidstaff",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "druidstaff",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Druidstaff except that it turns the Druid's Golden Druidstaff into a +30 quarterstaff that is a +6 spell adder or a x4 multiplier (caster chooses when it is created). It can be thrown as a spear using the range and range modifications of a composite bow, but attacks are resolved using the attack table for a War Mattock."
+        }
+      },
+      {
+        "name": "50. Druidstaff True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "druidstaff",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Druidstaff above except that it turns the Druid's Lord Druidstaff into a +40 quarterstaff that is a +7 spell adder or a x5 multiplier (caster chooses when it is created). It can be thrown as a spear using the range and range modifications of a long bow, but attacks are resolved using the attack table for a War Mattock."
+        }
+      }
+    ]
+  }
+}

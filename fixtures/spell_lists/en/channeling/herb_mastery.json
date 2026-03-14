@@ -1,0 +1,343 @@
+{
+  "name": "Herb Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Animist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Animist Base List - Herb Mastery. Spells for understanding, enhancing, locating, and preparing herbs.\n\nSPECIAL NOTES: An herb is defined as a plant that, when specially prepared, provides some unusual benefit to the user. This does not apply to poisons. The Herb Enhancement spell increases the potency (e.g., 2x, 3x, etc.) of herbs; this normally increases the effects of a dose of the herb (e.g., 2x potency for a \"Heal 1-10\" herb would give a \"Heal 2-20\" herb). However, a GM may wish to have this spell increase the number of doses of an herb (e.g., 2x potency cast on 2 doses of a \"Heal 1-10\" herb would result in 4 doses). In either case, only one of these spells may be cast upon a specific herb. Plant growth spells do not work on herbs.",
+    "spells": [
+      {
+        "name": "01. Herb Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 herb",
+          "duration": "-",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can understand the nature, origin, and value of any 1 herb. If the plant is not an herb, no information will be gained."
+        }
+      },
+      {
+        "name": "02. Enhancement",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 herb",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to enhance the potency of any 1 growing herb by 100% (i.e., x2). This spell may be used only once per herb."
+        }
+      },
+      {
+        "name": "03. Herb Finding I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to locate any 1 specific variety of herb that is sought, regardless of physical obstacles (gives exact direction, distance, and quantity)."
+        }
+      },
+      {
+        "name": "04. Instant Herbal Cures",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 herb",
+          "duration": "1 day/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to make any 1 herb capable of being instantly effective. When the herb is subsequently used, its benefits/dangers will be immediately felt. The herb will keep for 1 day per level of the caster."
+        }
+      },
+      {
+        "name": "05. Herb Mastery II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 herb",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can double the potency of any 1 herb (growing or dead). This spell may be employed only once per herb. May not be combined with Herb Enhancement."
+        }
+      },
+      {
+        "name": "06. Herb Finding III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "300'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Herb Finding I, except that the range is 300'."
+        }
+      },
+      {
+        "name": "07. Herb Production",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 seed",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can grow an herb by planting the proper seed. The herb is sterile and the growth takes 1-10 rounds."
+        }
+      },
+      {
+        "name": "08. Herb Mastery III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 herb",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Herb Mastery II, except potency is 3 times."
+        }
+      },
+      {
+        "name": "09. Herb Finding V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "500'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Herb Finding I, except range is 500'."
+        }
+      },
+      {
+        "name": "10. Herb Cleansing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to remove any harmful poisons, by-products, or side effects from all herbs within range."
+        }
+      },
+      {
+        "name": "11. Herb Mastery V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 herb",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Herb Mastery II, except potency is 5x."
+        }
+      },
+      {
+        "name": "13. Herb Finding X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "1 mile",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Herb Finding I, except range is 1 mile. Location is known within 10' radius."
+        }
+      },
+      {
+        "name": "15. Herb Mastery X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 herb",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Herb Mastery II, except potency is 10x."
+        }
+      },
+      {
+        "name": "17. Preserved Instant Herbal Cures",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 herb",
+          "duration": "1 week/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Instant Herbal Cures, except herb will keep for 1 week per level of the caster."
+        }
+      },
+      {
+        "name": "18. Herb Finding XX",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "5 miles",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Herb Finding I, except range is 5 miles. Location is known within 25' radius."
+        }
+      },
+      {
+        "name": "20. Lord Herb Finding",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "20 miles",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Herb Finding I, except range is 20 miles; location is known within 100' radius."
+        }
+      },
+      {
+        "name": "25. Enhancement True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 herb",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Enhancement, except that potency of 1 growing herb is increased 100% x level of caster (e.g., a 30th level caster could increase the potency of a growing herb by 3000% or 30 times its normal potency)."
+        }
+      },
+      {
+        "name": "30. Herb Mastery True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 herb",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Herb Mastery II, except that the potency of 1 herb can be increased by 100% x level of caster (e.g., a 50th level caster could increase the potency of any herb by 5000% or 50 times its normal potency)."
+        }
+      },
+      {
+        "name": "50. Herb Finding True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "1 mile/lvl",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Herb Finding I, except that caster can locate any 1 herb variety within a range of 1 mile per level of caster (e.g., 50 miles for a 50th level caster). Location is known within 100' radius."
+        }
+      }
+    ]
+  }
+}

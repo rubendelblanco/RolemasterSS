@@ -16,6 +16,36 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 - `spell_lists/en/channeling/concussion_ways.json` – 20 hechizos de curación de golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración (inglés)
 - `spell_lists/es/channeling/concussion_ways.json` – Vías de la conmoción, traducida al español
 
+### Druidstaff (Druid Base List 3.23)
+
+- `spell_lists/en/channeling/druidstaff.json` – 23 hechizos para crear y mejorar el Bastón del Druida, armas orgánicas y habilidades druídicas (inglés)
+- `spell_lists/es/channeling/druidstaff.json` – Bastón del Druida, traducida al español
+
+### Druid's Peace (Druid Base List 3.22)
+
+- `spell_lists/en/channeling/druids_peace.json` – 21 hechizos de calma, amistad, sujeción, persuasión y calma de animales/fenómenos (inglés)
+- `spell_lists/es/channeling/druids_peace.json` – Paz del Druida, traducida al español
+
+### Animal Mastery (Animist Base List 4.1)
+
+- `spell_lists/en/channeling/animal_mastery.json` – 23 hechizos para controlar, curar, invocar y comunicarse con animales (inglés)
+- `spell_lists/es/channeling/animal_mastery.json` – Dominio Animal, traducida al español
+
+### Herb Mastery (Animist Base List)
+
+- `spell_lists/en/channeling/herb_mastery.json` – 19 hechizos para entender, mejorar, localizar y preparar hierbas (inglés)
+- `spell_lists/es/channeling/herb_mastery.json` – Dominio de Hierbas, traducida al español
+
+### Nature's Movement/Senses (Animist Base List 4.4)
+
+- `spell_lists/en/channeling/natures_movement_senses.json` – 23 hechizos de movimiento, sentidos y atributos físicos animales (inglés)
+- `spell_lists/es/channeling/natures_movement_senses.json` – Movimiento/Sentidos de la Naturaleza, traducida al español
+
+### Nature's Protection (Animist Base List 4.5)
+
+- `spell_lists/en/channeling/natures_protection.json` – 23 hechizos de protección, resistencia elemental, ilusiones, cambio de forma y escudo orgánico (inglés)
+- `spell_lists/es/channeling/natures_protection.json` – Protección de la Naturaleza, traducida al español
+
 ### Detecting Ways (Open Essence 2.2)
 
 - `spell_lists/en/essence/detecting_ways.json` – 17 hechizos de detección y localización (inglés)

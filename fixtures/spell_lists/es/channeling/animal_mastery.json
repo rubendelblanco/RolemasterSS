@@ -1,0 +1,411 @@
+{
+  "name": "Dominio Animal",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Animista",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Spell Law 4.1 - Lista base de Animista. Hechizos para controlar, curar, invocar y comunicarse con animales.\n\nNOTAS ESPECIALES: Cuando se permite elegir más de una opción en hechizos de invocación, la misma opción puede elegirse más de una vez. Por ejemplo, con Invocación Animal III hay dos opciones disponibles. Esto significa que si ambas opciones se usan para lo mismo: se podrían invocar tres criaturas de 1er nivel, o una criatura de 3er nivel, o una criatura de 1er nivel durante cuatro veces más tiempo.",
+    "spells": [
+      {
+        "name": "01. Sueño Animal I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 animal",
+          "duration": "1 min/nvl",
+          "range": "30m",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Duerme a cualquier animal (no humanoide). No afecta a criaturas encantadas ni a criaturas con inteligencia mayor que animal."
+        }
+      },
+      {
+        "name": "02. Restauración Animal I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede curar cualquier daño no fatal en cualquier animal de hasta 4,5 kg. La curación toma 6-600 minutos."
+        }
+      },
+      {
+        "name": "03. Lenguas Animales",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador entender y \"hablar\" el lenguaje de cualquier especie animal."
+        }
+      },
+      {
+        "name": "04. Sueño Animal III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "3 animales",
+          "duration": "1 min/nvl",
+          "range": "30m",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sueño Animal I, excepto que puede dormir hasta 3 animales."
+        }
+      },
+      {
+        "name": "05. Dominio Animal I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 animal",
+          "duration": "C",
+          "range": "30m",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador controlar las acciones de cualquier animal."
+        }
+      },
+      {
+        "name": "06. Localizar Animal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "lanzador",
+          "duration": "-",
+          "range": "1 milla R",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede localizar miembros de cualquier especie animal o descubrir qué especies hay en el área."
+        }
+      },
+      {
+        "name": "07. Amistad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "todos los animales C",
+          "duration": "C",
+          "range": "3m",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Todos los animales dentro de 3m actuarán de forma amigable hacia el lanzador. Este hechizo no controla a los animales."
+        }
+      },
+      {
+        "name": "08. Restauración Animal II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Restauración Animal I, excepto que afecta a animales de hasta 68 kg, o un animal de hasta 4,5 kg puede curarse de daño fatal (aunque no resucitar de la muerte)."
+        }
+      },
+      {
+        "name": "09. Empatía Animal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 animal",
+          "duration": "C",
+          "range": "30m",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede entender y/o visualizar los pensamientos y emociones de cualquier animal."
+        }
+      },
+      {
+        "name": "10. Invocación Animal I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 animal",
+          "duration": "varía",
+          "range": "30m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador invoca mágicamente una criatura de 1er nivel y no inteligente del área circundante. El lanzador puede especificar el tipo de criatura, pero el DJ determina qué criatura responde. Si el animal puede entender al lanzador (ej. Lenguas Animales), la criatura puede controlarse por comunicación normal. Si no, el control se mantiene solo por concentración. Si el animal invocado se usa para una tarea no peligrosa (en su percepción), la duración es 10 min/nvl. Si se pone en situación peligrosa, la duración baja a 1 asalto/nvl."
+        }
+      },
+      {
+        "name": "11. Dominio Animal III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "3 animales",
+          "duration": "C",
+          "range": "30m",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dominio Animal I, excepto que el lanzador puede controlar 3 animales."
+        }
+      },
+      {
+        "name": "12. Invocación Animal III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "30m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación Animal I, excepto que el lanzador puede elegir dos opciones: a) el nivel de la criatura invocada aumenta en uno, b) se puede invocar una criatura de 1er nivel extra, o c) la duración puede duplicarse."
+        }
+      },
+      {
+        "name": "13. Llamada Animal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 animal",
+          "duration": "-",
+          "range": "1 milla/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede \"llamar\" a cualquier animal conocido y específico. Si es físicamente posible, el animal acudirá a él."
+        }
+      },
+      {
+        "name": "14. Revivir Animal I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Devuelve de la muerte a cualquier animal de hasta 4,5 kg. El animal muerto debe tirar d100 (abierto) y sumar 2 veces su nivel anterior. Modificador adicional de -2 por día que llevaba muerto. Si el resultado es >100, el animal resucita. Si <100, este lanzador no puede resucitarlo (hasta subir de nivel). El animal tendrá -100 a todas las acciones durante 20 días por cada día muerto."
+        }
+      },
+      {
+        "name": "15. Llamada de la Naturaleza",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cuando se lanza sobre un animal domesticado, ese animal volverá a su estado \"salvaje\". El animal se adaptará sin dificultad a los rigores de la naturaleza (y no querrá volver a la domesticación)."
+        }
+      },
+      {
+        "name": "16. Dominio Animal V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "5 animales",
+          "duration": "C",
+          "range": "30m",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dominio Animal I, excepto que el lanzador puede controlar 5 animales."
+        }
+      },
+      {
+        "name": "17. Restauración Animal III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Restauración Animal I, excepto que afecta a animales de hasta 1.360 kg, o un animal de hasta 68 kg puede curarse de daño fatal (aunque no resucitar de la muerte)."
+        }
+      },
+      {
+        "name": "18. Invocación Animal V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "30m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación Animal III, excepto que pueden elegirse cuatro opciones."
+        }
+      },
+      {
+        "name": "19. Revivir Animal II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Revivir Animal I, excepto que el modificador es -1 por cada dos días muerto y no hay tiempo de recuperación."
+        }
+      },
+      {
+        "name": "20. Invocación Animal X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "30m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación Animal III, excepto que pueden elegirse nueve opciones."
+        }
+      },
+      {
+        "name": "25. Dominio Animal Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varía",
+          "duration": "C",
+          "range": "3m/nvl",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dominio Animal I, excepto que el lanzador puede controlar todos los animales de una especie dada dentro de un radio de 3m por nivel."
+        }
+      },
+      {
+        "name": "30. Revivir Animal III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 animal",
+          "duration": "varía",
+          "range": "30m",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Revivir Animal II, excepto que el objetivo se devuelve automáticamente de la muerte y no hay período de recuperación; el alcance es 30m."
+        }
+      },
+      {
+        "name": "50. Invocación Animal Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "30m",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación Animal I, excepto que el lanzador puede seleccionar una opción por cada dos niveles de experiencia."
+        }
+      }
+    ]
+  }
+}

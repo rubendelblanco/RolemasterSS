@@ -1,0 +1,411 @@
+{
+  "name": "Bastón del Druida",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Druida",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Spell Law 3.23 - Lista base de Druida. Hechizos para crear y mejorar el Bastón del Druida, armas orgánicas y habilidades druídicas relacionadas.",
+    "spells": [
+      {
+        "name": "01. Bastón Menor del Druida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "trozo de madera",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador tomar un trozo adecuado de roble, fresno, tejo, olmo, tilo o mallorn y formar un Bastón del Druida con estas características: +1 sumador de hechizos, +5 bastón de cuarto, y puede lanzarse como lanza (tratar todos los críticos como Krush)."
+        }
+      },
+      {
+        "name": "02. Armas Orgánicas I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "lanzador",
+          "duration": "1 h",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Con los materiales adecuados el lanzador puede crear 1 arco corto, 1/2 arco largo, 1/3 arco compuesto o ballesta, 1 lanza o jabalina, 2 flechas o virotes, 1/3 de escudo, 1 asta de arma, etc. El proceso toma 1 hora. El bono OB básico del arma es -5 (no mágico). El hechizo puede lanzarse veces adicionales para terminar un objeto parcialmente completado y/o aumentar el bono OB del arma +5 por lanzamiento (máximo +5). Recuerda: el bono OB del arma no es mágico."
+        }
+      },
+      {
+        "name": "03. Deformar Madera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "trozo de madera hasta 1 lb/nvl",
+          "duration": "-",
+          "range": "toque",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Destruye la rectitud, fuerza y forma de un trozo de madera de hasta 1 lb/nvl."
+        }
+      },
+      {
+        "name": "04. Bastón Menor del Druida (Mejorado)",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "bastón",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Bastón Menor, excepto que convierte el Bastón Menor del Druida en un bastón de cuarto +10 que es un sumador de hechizos +2. Puede lanzarse como lanza (usar críticos Krush) con el alcance y modificadores de jabalina."
+        }
+      },
+      {
+        "name": "05. Bastón Martillo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "bastón del druida",
+          "duration": "1 asalto/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Duplica los golpes contundentes dados con el Bastón del Druida en melé."
+        }
+      },
+      {
+        "name": "06. Armas Orgánicas II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "lanzador",
+          "duration": "1 h",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armas Orgánicas I, excepto que el bono OB básico es 0 y puede aumentarse hasta un máx. de +10."
+        }
+      },
+      {
+        "name": "07. Símbolo del Druida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "bastón del druida",
+          "duration": "varía",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede almacenar un hechizo en su Bastón del Druida para lanzarlo después sin preparación (solo un hechizo almacenado a la vez)."
+        }
+      },
+      {
+        "name": "08. Bastón Mayor del Druida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "bastón",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Bastón Menor Mejorado, excepto que convierte el Bastón Menor del Druida en un bastón de cuarto +15 que es un sumador de hechizos +3 o multiplicador x2 (el lanzador elige al crearlo). Puede lanzarse como lanza con alcance y modificadores de jabalina, pero los ataques se resuelven con la tabla de Pico de Guerra."
+        }
+      },
+      {
+        "name": "09. Recuperar Bastón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "bastón del druida",
+          "duration": "-",
+          "range": "50'/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Devolverá el Bastón del Druida del lanzador a su mano extendida a una velocidad de 1.000'/asalto."
+        }
+      },
+      {
+        "name": "10. Bastón Animal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "bastón del druida",
+          "duration": "1 min/nvl (C)",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Transforma el Bastón del Druida del lanzador en un animal no mayor del 200% de la masa del lanzador, tratado como familiar. El animal no puede ser volador."
+        }
+      },
+      {
+        "name": "11. Puente",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "bastón del druida",
+          "duration": "1 min/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cuando el Bastón del Druida del lanzador se coloca en el suelo (normalmente al borde de un abismo), este hechizo lo hace expandirse y convertirse en un puente de madera de 2' de ancho (longitud máx. 5'/nvl) sin barandillas. Solo soporta 1000 lb/nvl. El lanzador puede devolver el Bastón a la normalidad y recogerlo por cualquier extremo."
+        }
+      },
+      {
+        "name": "12. Símbolo Sagrado Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "3mR",
+          "duration": "C",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cuando se lanza sobre un Bastón del Druida, funciona como Esfera de Protecciones I (lista base Clérigo: Protecciones) excepto que es móvil y el bono es +10."
+        }
+      },
+      {
+        "name": "13. Armas Orgánicas III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "lanzador",
+          "duration": "1 h",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armas Orgánicas I, excepto que el bono OB básico es +5 y puede aumentarse hasta un máx. de +15."
+        }
+      },
+      {
+        "name": "14. Bastón de Plata del Druida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "bastón",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Bastón Menor Mejorado excepto que convierte el Bastón Mayor del Druida en un bastón de cuarto +20 que es un sumador de hechizos +4 o multiplicador x3 (el lanzador elige al crearlo). Puede lanzarse como lanza con alcance y modificadores de honda, pero los ataques se resuelven con la tabla de Pico de Guerra."
+        }
+      },
+      {
+        "name": "15. Bastón Ave",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "bastón del druida",
+          "duration": "1 min/nvl (C)",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Bastón Animal excepto que el Bastón del Druida puede transformarse en un animal volador de hasta el 50% de la masa del lanzador."
+        }
+      },
+      {
+        "name": "16. Símbolo Sagrado Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "3mR",
+          "duration": "C",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Símbolo Sagrado Menor excepto que el bono es +15."
+        }
+      },
+      {
+        "name": "17. Bastón Trueno",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "bastón del druida",
+          "duration": "1 asalto/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El Bastón del Druida del lanzador inflige un crítico eléctrico además del crítico normal del Bastón (la severidad es igual a la del crítico normal)."
+        }
+      },
+      {
+        "name": "18. Gran Bastón Martillo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "bastón",
+          "duration": "1 asalto/nvl",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Bastón Martillo excepto que los golpes contundentes se triplican."
+        }
+      },
+      {
+        "name": "19. Bastón Bestia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "bastón del druida",
+          "duration": "1 min/nvl (C)",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Bastón Animal o Bastón Ave excepto que la criatura puede ser un animal o criatura legendaria de inteligencia animal (sin habilidades mágicas excepto quizás vuelo). La masa de la criatura no puede exceder el 50%/nvl de la masa del lanzador."
+        }
+      },
+      {
+        "name": "20. Bastón Dorado del Druida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "bastón",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Bastón Menor Mejorado excepto que convierte el Bastón de Plata del Druida en un bastón de cuarto +25 que es un sumador de hechizos +5 o multiplicador x3 (el lanzador elige al crearlo). Puede lanzarse como lanza con alcance y modificadores de arco corto, pero los ataques se resuelven con la tabla de Pico de Guerra."
+        }
+      },
+      {
+        "name": "25. Armas Orgánicas IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "lanzador",
+          "duration": "1 h",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Armas Orgánicas I, excepto que el bono OB básico es +10 y puede aumentarse hasta un máx. de +20."
+        }
+      },
+      {
+        "name": "30. Bastón Señor del Druida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "bastón del druida",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Bastón Menor Mejorado excepto que convierte el Bastón Dorado del Druida en un bastón de cuarto +30 que es un sumador de hechizos +6 o multiplicador x4 (el lanzador elige al crearlo). Puede lanzarse como lanza con alcance y modificadores de arco compuesto, pero los ataques se resuelven con la tabla de Pico de Guerra."
+        }
+      },
+      {
+        "name": "50. Bastón Verdadero del Druida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "bastón del druida",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Bastón Menor Mejorado excepto que convierte el Bastón Señor del Druida en un bastón de cuarto +40 que es un sumador de hechizos +7 o multiplicador x5 (el lanzador elige al crearlo). Puede lanzarse como lanza con alcance y modificadores de arco largo, pero los ataques se resuelven con la tabla de Pico de Guerra."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "name": "Druid's Peace",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Druid",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Spell Law 3.22 - Druid Base List. Spells for calming, befriending, holding, and persuading targets, as well as calming animals and natural phenomena.",
+    "spells": [
+      {
+        "name": "01. Calm I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target will take no aggressive/offensive action, and will fight only if attacked."
+        }
+      },
+      {
+        "name": "02. Question",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target must answer one single concept question."
+        }
+      },
+      {
+        "name": "03. Calm II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "2 targets",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm I, except 2 targets may be affected."
+        }
+      },
+      {
+        "name": "04. Hold Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Humanoid target is held to 25% of normal action."
+        }
+      },
+      {
+        "name": "05. Calm III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "3 targets",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm I, except 3 targets may be affected."
+        }
+      },
+      {
+        "name": "06. Befriend",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "1 hr/lvl",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target believes caster is a good friend."
+        }
+      },
+      {
+        "name": "07. Calm V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "5 targets",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm I, except 5 targets may be affected."
+        }
+      },
+      {
+        "name": "08. Mass Animal Calming I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varies",
+          "duration": "2 min/lvl",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can calm a number of animals equal to their level."
+        }
+      },
+      {
+        "name": "09. True Hold",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hold Kind, except it will affect any target."
+        }
+      },
+      {
+        "name": "10. Calm X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10 targets",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm I, except that 10 targets may be affected."
+        }
+      },
+      {
+        "name": "12. Persuasion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "1 day/lvl",
+          "range": "1'/lvl",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is convinced of a single fact expressed by the caster (unless irrefutable counter evidence is given)."
+        }
+      },
+      {
+        "name": "14. Shout Of Calming",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "50'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "All targets in radius must resist or they are calmed."
+        }
+      },
+      {
+        "name": "15. Mass Animal Calming II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "10'/lvl",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mass Animal Calming I, except RRs are modified by -20 and the range is 10'/lvl."
+        }
+      },
+      {
+        "name": "17. Lord Calm",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "10'/lvl",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -20] Allows Caster to calm up to 20 targets."
+        }
+      },
+      {
+        "name": "18. Lord Persuasion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varies",
+          "duration": "1 day/lvl",
+          "range": "50'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Persuasion, except that caster may persuade up to 20 targets."
+        }
+      },
+      {
+        "name": "19. Long Calm",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "1 day/lvl",
+          "range": "300'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -20] Caster can calm any 1 target."
+        }
+      },
+      {
+        "name": "20. Mass Calm",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can calm a number of targets equal to their level."
+        }
+      },
+      {
+        "name": "25. Calm True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can calm any 1 target."
+        }
+      },
+      {
+        "name": "30. Earth Calm",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "10'R/lvl",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Within the radius, caster may \"calm\" a natural phenomena (quakes, storms, winds, etc) or he may cancel a magically created natural phenomena."
+        }
+      },
+      {
+        "name": "50. Battle Calm",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "50'R/lvl",
+          "duration": "1 hr/lvl",
+          "range": "self",
+          "type": "Fm",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster calms everyone within the radius."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,411 @@
+{
+  "name": "Protección de la Naturaleza",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Animista",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Spell Law 4.5 - Lista base de Animista. Hechizos de protección, resistencia elemental, ilusiones, cambio de forma y escudo orgánico.\n\nNOTAS ESPECIALES: 1) Ver Sección 15.14 (p. 98) para limitaciones específicas de ilusiones (fachadas). 2) Ver Sección 15.20 (p. 100) para reglas de cambio de forma. 3) Para los hechizos de esta lista, un animal es una criatura con inteligencia no mayor que animal.",
+    "spells": [
+      {
+        "name": "01. Estudiar Forma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "90m",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador estudia y memoriza la forma de un tipo de animal o planta para usar con hechizos posteriores de esta lista. Solo puede tener tantas formas estudiadas como niveles tenga."
+        }
+      },
+      {
+        "name": "02. Resistir Elementos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador está protegido del calor natural hasta 77°C y del frío natural hasta -7°C (tratar como si estuviera a 21°C). Por encima de 77°C, restar 38°C para la temperatura efectiva. Por debajo de -7°C, sumar 10°C. También recibe +20 a todas las TR contra hechizos y ataques de calor (+20 DB contra fuego y calor elemental); y +20 a TR contra hechizos de frío y ataques de hielo (+20 DB contra frío e hielo elemental). Duración: 10 min/nvl si no se mueve; si se mueve, dura mientras concentre."
+        }
+      },
+      {
+        "name": "03. Matices",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador adoptar la coloración física de cualquier objeto orgánico. Debe estar en contacto con el objeto al lanzar. En muchas situaciones otorga bonificación especial de +10 a +50 (criterio del DJ) a maniobras de Ocultación (y quizá Acecho)."
+        }
+      },
+      {
+        "name": "04. Fachada Vegetal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador parecer cualquier tipo de planta que haya estudiado. Conserva su tamaño y no olerá ni se sentirá como la planta (es puramente una ilusión visual; ver Sección 15.14, p. 98)."
+        }
+      },
+      {
+        "name": "05. Movimiento Silencioso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede moverse en silencio mientras no genere sonidos que se originen a más de 30 cm de su cuerpo."
+        }
+      },
+      {
+        "name": "06. Respiración Subacuática",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede respirar normalmente bajo el agua. Este hechizo solo funciona con agua, no con otros líquidos."
+        }
+      },
+      {
+        "name": "07. Fachada Animal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador parecer cualquier tipo de animal que haya estudiado. Conserva su tamaño y no olerá ni se sentirá como el animal (es puramente una ilusión visual; ver Sección 15.14, p. 98)."
+        }
+      },
+      {
+        "name": "08. Sombra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador y los objetos que lleve parecen una sombra; son casi invisibles en zonas oscuras (bonificación especial de +25 a +75 a Acecho/Ocultación según situación)."
+        }
+      },
+      {
+        "name": "09. Escudo Orgánico I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 ataque",
+          "duration": "—",
+          "range": "sí mismo",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquier ataque único contra el lanzador este asalto sufre modificador -50. El arma u objeto debe ser de fuente orgánica (animal) o al menos parcialmente orgánico (p. ej. flecha)."
+        }
+      },
+      {
+        "name": "10. Forma Vegetal I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador tomar la forma de cualquier planta que haya estudiado. Se verá y sentirá como la planta. Puede variar su tamaño del 75% al 200% de lo normal. No gana las habilidades físicas de la planta. Ver Sección 15.20 (p. 100)."
+        }
+      },
+      {
+        "name": "11. Protección contra Elementos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "lanzador",
+          "duration": "varía",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador está protegido de cualquier calor y frío natural (tratar como 21°C). Recibe +40 a TR contra hechizos de fuego/hielo y ataques de calor/frío (+40 DB contra ataques elementales). Duración: 10 min/nvl si no se mueve; si se mueve, dura mientras concentre."
+        }
+      },
+      {
+        "name": "12. Pensamientos Animales",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "lanzador",
+          "duration": "C",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Durante la duración, los patrones mentales del lanzador parecerán los de cualquier animal que haya estudiado. El lanzador no puede moverse mientras el hechizo esté activo."
+        }
+      },
+      {
+        "name": "13. Escudo Orgánico II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 ataque",
+          "duration": "—",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo Orgánico I, excepto que la penalización es -100."
+        }
+      },
+      {
+        "name": "14. Forma Animal I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador tomar la forma de cualquier animal que haya estudiado. Se verá y sentirá como el animal. Puede variar su tamaño del 75% al 200% de lo normal. No gana las habilidades físicas del animal. Ver Sección 15.20 (p. 100)."
+        }
+      },
+      {
+        "name": "15. Pensamientos Animales Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "lanzador",
+          "duration": "C",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pensamientos Animales, excepto que el lanzador puede moverse (debe mantener concentración)."
+        }
+      },
+      {
+        "name": "16. Forma Animal II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma Animal I, excepto que gana las habilidades de movimiento del animal elegido. Puede variar su tamaño del 50% al 400% de lo normal."
+        }
+      },
+      {
+        "name": "17. Forma Vegetal II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma Vegetal I, excepto que también puede asumir el olor y las habilidades físicas de la planta. Puede variar su tamaño del 50% al 400% de lo normal."
+        }
+      },
+      {
+        "name": "18. Escudo Orgánico III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 ataque",
+          "duration": "—",
+          "range": "sí mismo",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo Orgánico I, excepto que el ataque falla automáticamente."
+        }
+      },
+      {
+        "name": "19. Forma Animal III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma Animal II, excepto que gana los ataques físicos del animal. Puede variar su tamaño del 5% al 4000% de lo normal."
+        }
+      },
+      {
+        "name": "20. Forma Vegetal Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma Vegetal II, excepto que puede cambiar a cualquier otra planta que haya estudiado en cualquier momento durante la duración."
+        }
+      },
+      {
+        "name": "25. Forma Animal Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma Animal III, excepto que puede cambiar a cualquier otro animal que haya estudiado en cualquier momento durante la duración."
+        }
+      },
+      {
+        "name": "30. Forma de la Naturaleza Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma Vegetal II y Forma Animal III operando al mismo tiempo."
+        }
+      },
+      {
+        "name": "50. Escudo Orgánico Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "lanzador",
+          "duration": "1 asalto/nvl",
+          "range": "sí mismo",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cada asalto durante la duración, el lanzador puede anular (hacer fallar) un ataque dirigido contra él. El arma debe ser al menos parcialmente orgánica y debe poder ver el ataque."
+        }
+      }
+    ]
+  }
+}

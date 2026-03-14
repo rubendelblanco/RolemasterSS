@@ -1,0 +1,411 @@
+{
+  "name": "Movimiento/Sentidos de la Naturaleza",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Animista",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Spell Law 4.4 - Lista base de Animista. Hechizos que otorgan al lanzador movimiento, sentidos y atributos físicos similares a los animales.\n\nNOTAS ESPECIALES: Con la excepción de Piel de Camaleón, Garras de León y Colmillo de Víbora, el lanzador no cambia físicamente con ninguno de los hechizos de esta lista.",
+    "spells": [
+      {
+        "name": "01. Paso de Gato",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador se mueve tan silenciosamente como un gato. Añade +20 a todas las maniobras de Acecho."
+        }
+      },
+      {
+        "name": "02. Piel de Camaleón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La piel del lanzador adopta la coloración del terreno circundante. Añade +10 a +50 a todas las maniobras de Acecho/Ocultación. Al moverse el lanzador, la coloración cambia para coincidir con el terreno. Este hechizo no afecta al equipo ni a la ropa."
+        }
+      },
+      {
+        "name": "03. Sentido del Lobo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador gana un sentido del olfato y oído aumentados (incluye olores sutiles y rangos sónicos más altos). Añade +50 a Percepciones solo con estos sentidos; +20 a Percepciones usando estos sentidos combinados con otros."
+        }
+      },
+      {
+        "name": "04. Velocidad del Ciervo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede correr al doble del ritmo normal (es decir, ritmo de Carrera) y gastar puntos de agotamiento como si solo caminara."
+        }
+      },
+      {
+        "name": "05. Sentido del Murciélago",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Aumenta la capacidad del lanzador para maniobrar sin su vista. Cuando está ciego o sin vista, este hechizo añade +10 a +50 a las tiradas de maniobra en la oscuridad. Nota: este hechizo no elimina las penalizaciones por ceguera; simplemente las reduce."
+        }
+      },
+      {
+        "name": "06. Pulmones de Nutria",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede contener la respiración de forma segura durante la duración de este hechizo."
+        }
+      },
+      {
+        "name": "07. Planeo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede planear como un pájaro. El producto de la altitud del lanzador y la velocidad horizontal no puede exceder 30m por asalto. Por ejemplo, puede planear a 1,5m por asalto si está a 20m del suelo; o a 15m por asalto si está a 2m del suelo. El total debe ser 30m (el lanzador no puede elegir un total menor o mayor)."
+        }
+      },
+      {
+        "name": "08. Sentido del Halcón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador gana la agudeza visual de un halcón. Añade +50 a todas las Percepciones que involucren solo la vista; +20 a todas las Percepciones que involucren este sentido combinado con otros."
+        }
+      },
+      {
+        "name": "09. Piel de Tigre",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La piel del lanzador tiene la resistencia de un gran felino (AT efectivo de 3)."
+        }
+      },
+      {
+        "name": "10. Fuerza del Jabalí",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador gana la ferocidad de un jabalí salvaje. Gana +20 a su OB cuerpo a cuerpo, pero no puede parar ni usar proyectiles durante la duración del hechizo."
+        }
+      },
+      {
+        "name": "11. Garras de León",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador gana la capacidad de realizar ataques con garras como un león. Puede atacar usando la Tabla de Ataque con Garras (de Arms Law), con un máximo de resultados Medios. El lanzador debe desarrollar habilidad (OB) con estas garras (coste igual que Artes Marciales Golpes; modificadores de estadísticas St/St/Ag)."
+        }
+      },
+      {
+        "name": "12. Sentido del Insecto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "3mR/nvl",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador gana la sensibilidad vibratoria de un insecto. Puede sentir vibraciones en el suelo (u otro material sólido) hasta el área de efecto. Obtendrá información sobre movimientos generales y número de objetivos (±10%). Tratar como bonificación especial de +25 a +100 a Percepción (según el tipo de actividad)."
+        }
+      },
+      {
+        "name": "13. Velocidad del Ciervo II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad del Ciervo I, excepto que el aumento de velocidad es el triple (es decir, ritmo de Sprint)."
+        }
+      },
+      {
+        "name": "14. Piel de Oso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La piel del lanzador tiene la resistencia de un oso (AT efectivo de 8)."
+        }
+      },
+      {
+        "name": "15. Brazos de Oso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador gana la capacidad de realizar ataques de agarre como un oso. Puede atacar usando la Tabla de Ataque de Agarre (de Arms Law), con un máximo de resultados Medios. El lanzador debe desarrollar habilidad (OB) con este ataque (coste igual que Artes Marciales Barridos/Lanzamientos; modificadores St/Ag/Ag)."
+        }
+      },
+      {
+        "name": "16. Planeo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Planeo I, excepto que el producto debe ser 90m."
+        }
+      },
+      {
+        "name": "17. Colmillo de Víbora",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador gana la capacidad de realizar ataques de mordisco como una serpiente. Puede atacar usando la Tabla de Ataque de Mordisco (de Arms Law), con un máximo de resultados Medios. El lanzador debe desarrollar habilidad (OB) con este ataque (coste igual que Artes Marciales Golpes; modificadores St/St/Ag)."
+        }
+      },
+      {
+        "name": "18. Piel de Wyvern",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La piel del lanzador tiene la resistencia de un drake menor (AT efectivo de 12)."
+        }
+      },
+      {
+        "name": "19. Velocidad del Ciervo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad del Ciervo I, excepto que el aumento de velocidad es el cuádruple (es decir, ritmo de Sprint Rápido)."
+        }
+      },
+      {
+        "name": "20. Fuerza del Buey",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador gana la fuerza de un buey. Gana una bonificación especial de +40 a su OB cuerpo a cuerpo, pero no puede parar ni usar proyectiles durante la duración del hechizo."
+        }
+      },
+      {
+        "name": "25. Planeo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Planeo I, excepto que el producto debe ser 150m."
+        }
+      },
+      {
+        "name": "30. Velocidad del Ciervo Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad del Ciervo I, excepto que el aumento de velocidad es el quíntuple (es decir, ritmo de Carrera Máxima)."
+        }
+      },
+      {
+        "name": "50. Piel de Dragón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La piel del lanzador adopta la resistencia de un drake inferior (AT efectivo de 20)."
+        }
+      }
+    ]
+  }
+}
