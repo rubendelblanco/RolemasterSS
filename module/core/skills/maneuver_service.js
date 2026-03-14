@@ -247,8 +247,10 @@ export default class ManeuverService {
         const roll = await new Roll("1d100x>95").evaluate();
         const naturalRoll = roll.dice[0].results[0].result;
         const rollTotal = naturalRoll === 100 ? 100 : roll.total;
-        const isUnmodified = naturalRoll <= 2 || naturalRoll >= 96;
-        const finalResult = isUnmodified ? rollTotal : naturalRoll + totalModifier;
+        // RMSS: 01-02 and 100 are unmodified (no skill bonus). 96-99 explosive DO get bonus added to rollTotal.
+        const isUnmodified = naturalRoll <= 2 || naturalRoll === 100;
+        // Use rollTotal (includes explosion for 96-99) and add modifier when not unmodified
+        const finalResult = isUnmodified ? rollTotal : rollTotal + totalModifier;
 
         if (game.dice3d) {
             await game.dice3d.showForRoll(roll, game.user, true);
