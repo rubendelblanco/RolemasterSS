@@ -96,13 +96,17 @@ export default class RMSSTableManager {
         return maximum;
     }
 
-    static async getAttackTableResult(weapon, attackTable, totalAttack, enemy, attacker){
+    static async getAttackTableResult(weapon, attackTable, totalAttack, enemy, attacker, armorTypeOverride = null){
         const armorInfo = enemy.system.armor_info ?? {};
-        const AT = armorInfo.armor_type ?? armorInfo.armor_info?.armor_type ?? 1;
+        const storedAt = armorInfo.armor_type ?? armorInfo.armor_info?.armor_type ?? 1;
+        const AT = (armorTypeOverride != null && armorTypeOverride >= 1 && armorTypeOverride <= 20)
+            ? armorTypeOverride
+            : Math.max(1, Math.min(20, storedAt));
         let resultRow = findAttackTableRow(weapon.system.attack_table, attackTable, totalAttack);
         const damage = resultRow[AT];
 
-        if (isNaN(parseInt(damage))) {
+        // Only return null when the cell is missing (undefined). "-" and "F" are valid results.
+        if (damage === undefined || damage === null) {
             return { damage: null, criticalSeverity: null };
         }
 

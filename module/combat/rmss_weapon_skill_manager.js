@@ -57,6 +57,10 @@ export class RMSSWeaponSkillManager {
 
         const tableName = weapon.system.attack_table;
         const attackTable = await RMSSTableManager.loadAttackTable(tableName);
+        if (!attackTable?.rows) {
+            ui.notifications.error(game.i18n.format("rmss.combat.attack_table_load_failed", { table: tableName }));
+            return;
+        }
         const umResult = RMSSTableManager.findUnmodifiedAttack(tableName, baseAttack, attackTable);
         const maximum = await RMSSTableManager.getAttackTableMaxResult(weapon);
 
@@ -67,7 +71,8 @@ export class RMSSWeaponSkillManager {
             total = (total > maximum) ? maximum : total;
         }
 
-        const attackResult = await RMSSTableManager.getAttackTableResult(weapon, attackTable, total, enemy, actor);
+        const armorTypeOverride = gmResponse.targetAt ?? null;
+        const attackResult = await RMSSTableManager.getAttackTableResult(weapon, attackTable, total, enemy, actor, armorTypeOverride);
         if (attackResult.damage == null) {
             ui.notifications.warn(game.i18n.localize("rmss.combat.no_attack_result"));
             return;
@@ -154,9 +159,13 @@ export class RMSSWeaponSkillManager {
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
         }
 
+        const enemyForTemplate = realEnemy ?? enemy;
+        const armorInfo = enemyForTemplate?.system?.armor_info ?? {};
+        const targetArmorType = armorInfo.armor_type ?? armorInfo.armor_info?.armor_type ?? 1;
+
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: realActor,
-            enemy: realEnemy ?? enemy,
+            enemy: enemyForTemplate,
             weapon: weapon,
             ob: ob,
             hitsTaken,
@@ -165,6 +174,7 @@ export class RMSSWeaponSkillManager {
             stunnedValue,
             penaltyValue,
             facingValue,
+            targetArmorType: Math.max(1, Math.min(20, targetArmorType)),
         });
 
         let confirmed = await new Promise((resolve) => {
@@ -178,7 +188,11 @@ export class RMSSWeaponSkillManager {
                             const attackTotal = parseInt(html.find("#attack-total").val());
                             const defenseTotal = parseInt(html.find("#defense-total").val());
                             const diff = parseInt(html.find("#difference").val());
-                            resolve({confirmed: true, attackTotal, defenseTotal, diff});
+                            const armorInfo = realEnemy?.system?.armor_info ?? {};
+                            const defaultAt = armorInfo.armor_type ?? armorInfo.armor_info?.armor_type ?? 1;
+                            const at = parseInt(html.find("#target-at").val());
+                            const targetAt = (isNaN(at) || at < 1 || at > 20) ? Math.max(1, Math.min(20, defaultAt)) : Math.max(1, Math.min(20, at));
+                            resolve({confirmed: true, attackTotal, defenseTotal, diff, targetAt});
                         }
                     },
                     cancel: {
