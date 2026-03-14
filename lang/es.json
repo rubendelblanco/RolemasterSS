@@ -649,7 +649,9 @@
         "hp_inflicted": "PV infligidos",
         "hp_received": "PV recibidos",
         "kills": "Bajas",
-        "close": "Cerrar"
+        "close": "Cerrar",
+        "attacker_for_kill": "Atacante (para adjudicar la baja)",
+        "no_attacker": "— Ninguno —"
       }
     },
     "maneuvers": {

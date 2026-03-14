@@ -1,5 +1,6 @@
 import { RMSSCombat } from "./rmss_combat.js";
 import { RMSSWeaponSkillManager } from "./rmss_weapon_skill_manager.js";
+import { CombatHistoryTracker } from "./combat_history_tracker.js";
 
 export function registerCombatHooks() {
     Hooks.on("hoverToken", (token, hovered) => {
@@ -133,6 +134,24 @@ export function registerCombatHooks() {
         const attackerToken = canvas.tokens.controlled.length === 1 ? canvas.tokens.controlled[0] : null;
         const defenderToken = enemy;
         await RMSSWeaponSkillManager.handleAttack(item.actor, enemy.actor, item, attackerToken, defenderToken);
+    });
+
+    // When GM manually toggles Defeated on a combatant, record the kill for combat history
+    Hooks.on("updateCombatant", (combatant, change) => {
+        if (!("defeated" in change) || !change.defeated) return;
+        if (!game.combat?.id || combatant.parent?.id !== game.combat.id) return;
+
+        const defenderId = combatant.actorId;
+        if (!defenderId) return;
+
+        const tracker = CombatHistoryTracker.get();
+        if (tracker._defendersKilledByDamage.has(defenderId)) {
+            tracker._defendersKilledByDamage.delete(defenderId);
+            return; // already counted via recordDamage
+        }
+
+        const attackerId = tracker.getLastAttacker(defenderId);
+        if (attackerId) tracker.recordKill(attackerId, defenderId);
     });
 
     Hooks.on("updateCombat", async (combat, update) => {

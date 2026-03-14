@@ -375,7 +375,7 @@ Hooks.once("init", function () {
         await RMSSWeaponCriticalManager.applyCriticalTo(
             res,
             utils.getActor(targetToken.id),
-            null
+            response.attackerId ?? null
         );
 
         ui.notifications.info(`Crítico aplicado a ${targetToken.name}`);

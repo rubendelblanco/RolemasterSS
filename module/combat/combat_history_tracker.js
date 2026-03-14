@@ -13,6 +13,7 @@ export class CombatHistoryTracker {
         if (CombatHistoryTracker.instance) return CombatHistoryTracker.instance;
         this._combatStats = new Map(); // combatId -> Map<actorId, Stats>
         this._lastAttackerByDefender = new Map(); // defenderId -> attackerId (for kill attribution)
+        this._defendersKilledByDamage = new Set(); // defenderIds already counted via recordDamage (avoid double-count in hook)
         CombatHistoryTracker.instance = this;
     }
 
@@ -74,6 +75,7 @@ export class CombatHistoryTracker {
 
         if (defenderDied && this._isPC(attackerId)) {
             attackerStats.kills += 1;
+            this._defendersKilledByDamage.add(defenderId); // avoid double-count when updateCombatant fires
         }
     }
 
@@ -130,6 +132,7 @@ export class CombatHistoryTracker {
         const combatMap = this._combatStats.get(combatId);
         this._combatStats.delete(combatId);
         this._lastAttackerByDefender.clear();
+        this._defendersKilledByDamage.clear();
         return combatMap ?? new Map();
     }
 }

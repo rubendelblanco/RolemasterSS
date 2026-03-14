@@ -18,6 +18,10 @@ export default class EffectsPopupService {
 
         const defenderLevel = actor.system?.attributes?.level?.value ?? 1;
 
+        const pcCombatants = (game.combat?.combatants ?? [])
+            .filter(c => c.actor?.type === "character")
+            .map(c => ({ id: c.actor.id, name: c.actor.name }));
+
         const context = {
             token: token.document,
             actorImg: actor.img,
@@ -28,7 +32,8 @@ export default class EffectsPopupService {
             critDict: CONFIG.rmss.criticalDictionary,
             subcritdict: CONFIG.rmss.criticalSubtypes,
             critModifier: criticalOptions.modifier ?? 0,
-            criticalHasSubtypes: (rmss.large_critical_types[criticalOptions.critType ?? 'K'] || []).length > 0
+            criticalHasSubtypes: (rmss.large_critical_types[criticalOptions.critType ?? 'K'] || []).length > 0,
+            pcCombatants
         };
 
         const htmlContent = await renderTemplate(
@@ -52,6 +57,7 @@ export default class EffectsPopupService {
                                 const critType = html.find("#critical-type").val();
                                 const subCritType = html.find("#critical-subtype").val();
                                 const modifier = html.find("#modifier").val();
+                                const attackerId = html.find("#critical-attacker").val() || null;
                                 resolve({ 
                                     action: "critical",
                                     confirmed: true, 
@@ -59,7 +65,8 @@ export default class EffectsPopupService {
                                     severity, 
                                     critType, 
                                     subCritType, 
-                                    modifier 
+                                    modifier,
+                                    attackerId
                                 });
                             } else if (activeTab === "resistance") {
                                 const attackerLevel = parseInt(html.find("#rr-attacker-level").val()) || 1;

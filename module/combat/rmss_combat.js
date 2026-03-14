@@ -228,7 +228,7 @@ export class CombatEndManager {
             title: game.i18n.localize("rmss.combat.history.title"),
             content: html,
             default: "ok",
-            buttons: { ok: { icon: "fas fa-check", label: game.i18n.localize("rmss.combat.history.close") } }
+            buttons: { ok: { icon: "<i class='fas fa-check'></i>", label: game.i18n.localize("rmss.combat.history.close") } }
         }, { width: 720 });
         await d.render(true);
     }
