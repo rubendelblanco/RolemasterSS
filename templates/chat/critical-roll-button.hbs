@@ -12,7 +12,12 @@
         </div>
     </div>
 
-    {{#if criticals.length}}
+    {{#if isNullResult}}
+        <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
+        <p style="text-align: center; margin: 0; color: #999; font-style: italic;">
+            {{localize "rmss.combat.attack_no_result"}} 😢
+        </p>
+    {{else if criticals.length}}
         <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
 
         <div style="display: flex; gap: 6px;">

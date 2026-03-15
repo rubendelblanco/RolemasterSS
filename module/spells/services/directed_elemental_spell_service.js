@@ -225,7 +225,8 @@ export default class DirectedElementalSpellService {
                 actor
             );
 
-            if (!attackResult.damage) continue;
+            const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
+            if (isNullResult) continue;
 
             const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
                 attackResult.damage,
@@ -236,14 +237,17 @@ export default class DirectedElementalSpellService {
 
             if (criticalResult.criticals.length === 0) {
                 const critType = attackTable.critical_severity?.default || "heat";
-                criticalResult.criticals = [{ severity: null, critType, damage: 0 }];
-                await RMSSWeaponCriticalManager.updateTokenOrActorHits(target.actor ?? target, parseInt(criticalResult.damage), actor.id);
-                if (actor.type === "character") {
-                    await ExperienceManager.applyExperience(actor, criticalResult.damage);
+                criticalResult.criticals = [{ severity: null, critType, damage: criticalResult.damage ?? 0 }];
+                const damageToApply = parseInt(criticalResult.damage);
+                if (!isNaN(damageToApply) && damageToApply > 0) {
+                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(target.actor ?? target, damageToApply, actor.id);
+                    if (actor.type === "character") {
+                        await ExperienceManager.applyExperience(actor, criticalResult.damage);
+                    }
                 }
             }
 
-            await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, target);
+            await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, target, false);
         }
 
         let spellXp = 0;

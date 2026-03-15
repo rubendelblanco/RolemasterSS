@@ -1,7 +1,6 @@
 import { socket } from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
 import CombatExperience from "../sheets/experience/rmss_combat_experience.js";
-import { sendExpMessage } from "../chat/chatMessages.js";
 import Utils from "../utils.js";
 import { rmss } from "../config.js";
 import { RMSSCombat } from "./rmss_combat.js";
@@ -88,13 +87,10 @@ class LargeCreatureCriticalStrategy {
         if (severity === "null") return;
 
         let result = Math.min(Math.max(parseInt(roll.total) + parseInt(modifier), 1), 999);
-        const criticalResult = await RMSSTableManager.getCriticalTableResult(result, defenderActor, column, tableName, roll);
-
-        if (expBreakDown && totalExp > 0) {
-            await sendExpMessage(attackerActor, expBreakDown, totalExp);
-        }
-
-        return criticalResult;
+        const expData = (expBreakDown && totalExp > 0)
+            ? { actorName: attackerActor.name, actorId: attackerActor.id, expBreakdown: expBreakDown, expGained: totalExp }
+            : null;
+        return await RMSSTableManager.getCriticalTableResult(result, defenderActor, column, tableName, roll, expData);
     }
 }
 
@@ -130,13 +126,9 @@ class BaseCriticalStrategy {
         }
         data.attackerId = attackerActor.id;
         data.defenderId = defenderActor.id;
-        const criticalResult = await socket.executeAsGM("updateActorHits", targetId, true, parseInt(data.damage), data);
-
-        if (expBreakDown && totalExp > 0) {
-            await sendExpMessage(attackerActor, expBreakDown, totalExp);
-        }
-
-        return criticalResult;
+        data.expBreakDown = expBreakDown;
+        data.totalExp = totalExp;
+        return await socket.executeAsGM("updateActorHits", targetId, true, parseInt(data.damage), data);
     }
 }
 
@@ -233,12 +225,25 @@ export class RMSSWeaponCriticalManager {
         let result = (parseInt(roll.total) + parseInt(gmResponse.modifier));
         if (result < 1) result = 1;
         if (result > 100) result = 100;
+        let expData = null;
+        if (gmResponse.expBreakDown && gmResponse.totalExp > 0 && gmResponse.attackerId) {
+            const attacker = game.actors.get(gmResponse.attackerId);
+            if (attacker) {
+                expData = {
+                    actorName: attacker.name,
+                    actorId: attacker.id,
+                    expBreakdown: gmResponse.expBreakDown,
+                    expGained: gmResponse.totalExp
+                };
+            }
+        }
         return await RMSSTableManager.getCriticalTableResult(
             result,
             target,
             gmResponse.severity,
             gmResponse.critType,
             roll,
+            expData,
         );
     }
 
@@ -459,13 +464,14 @@ export class RMSSWeaponCriticalManager {
         await ChatMessage.create(msgData);
     }
 
-    static async getCriticalMessage(damage, criticalResult, attacker, target = null) {
+    static async getCriticalMessage(damage, criticalResult, attacker, target = null, isNullResult = false) {
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
             damageStr: damage,
             damage: criticalResult.damage,
             criticals: criticalResult.criticals,
             attacker: attacker,
-            target: target
+            target: target,
+            isNullResult: isNullResult
         });
         const speaker = "Game Master";
 

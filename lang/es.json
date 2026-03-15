@@ -578,6 +578,7 @@
     },
     "combat": {
       "no_attack_result": "No se encontró resultado en la tabla de ataque. Verifica el tipo de armadura del objetivo.",
+      "attack_no_result": "El ataque no tuvo efecto.",
       "attack_table_load_failed": "Error al cargar la tabla de ataque: {table}",
       "confirm_attack": "Confirmar ataque",
       "confirm": "Confirmar",
