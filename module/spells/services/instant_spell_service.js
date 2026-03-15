@@ -1,5 +1,6 @@
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
 import { sendExpMessage } from "../../chat/chatMessages.js";
+import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 
 /**
  * Service for casting instant spells.
@@ -39,15 +40,21 @@ export default class InstantSpellService {
 
         await spell.use();
 
+        let spellXp = 0;
         if (actor.type === "character") {
             const casterLevel = actor.system.attributes?.level?.value ?? 1;
             const xp = ExperiencePointsCalculator.calculateSpellExpPoints(casterLevel, spellLevel);
             if (xp > 0) {
+                spellXp = xp;
                 const totalExpActor = parseInt(actor.system.attributes.experience_points.value) + xp;
                 await actor.update({ "system.attributes.experience_points.value": totalExpActor });
                 const breakDown = { maneuver: 0, spell: xp, critical: 0, kill: 0, bonus: 0, misc: 0 };
                 await sendExpMessage(actor, breakDown, xp);
             }
+        }
+
+        if (game.combat?.started) {
+            CombatHistoryTracker.get().recordSpellCast(actor.id, spellLevel, spellXp);
         }
 
         return true;

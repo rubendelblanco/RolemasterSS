@@ -1,5 +1,6 @@
 import {RMSSCombatant} from "./rmss_combatant.js";
 import { registerCombatHooks } from "./hooks.js";
+import { CombatHistoryTracker } from "./combat_history_tracker.js";
 
 /**
  * Custom Combat class for RMSS system.
@@ -125,6 +126,7 @@ export class CombatStartManager {
     }
 
     handleCombatStart(combat) {
+        CombatHistoryTracker.get().onCombatStart(combat);
         this.playCombatSound();
         this.showCombatImage();
     }
@@ -196,15 +198,110 @@ export class CombatEndManager {
         }
     }
 
-    handleCombatEnd(combat) {
+    async handleCombatEnd(combat) {
         this.playCombatEndSound();
+        await this._showCombatHistory(combat);
+    }
+
+    async _showCombatHistory(combat) {
+        const tracker = CombatHistoryTracker.get();
+        const statsMap = tracker.getAndClearStats(combat.id);
+        const pcCombatants = combat.combatants.filter(c => c.actor?.type === "character");
+        if (pcCombatants.length === 0) return;
+
+        const rounds = combat.round ?? 0;
+        const defeatedMap = {};
+        (combat.combatants || [])
+            .filter(c => c.defeated && c.actor?.type !== "character")
+            .forEach(c => {
+                const name = c.actor?.name ?? c.name ?? "?";
+                if (!defeatedMap[name]) defeatedMap[name] = { name, count: 0, img: c.actor?.img };
+                defeatedMap[name].count += 1;
+            });
+        const defeatedEnemies = Object.values(defeatedMap).map(d =>
+            ({ ...d, label: d.count > 1 ? `${d.name} (×${d.count})` : d.name }));
+
+        const defaultStats = () => ({
+            critsInflicted: 0, critsReceived: 0, hpInflicted: 0, hpReceived: 0, kills: 0,
+            hpByDefender: {}, hpFromAttacker: {}, critsBySeverityInflicted: {}, critsBySeverityReceived: {}, killsList: [],
+            spellsCast: 0, ppSpent: 0, spellXpGained: 0
+        });
+
+        const formatCritsBySeverity = (sevMap) => {
+            if (!sevMap || Object.keys(sevMap).length === 0) return "—";
+            return ["A", "B", "C", "D", "E"].filter(s => sevMap[s]).map(s => `${s}:${sevMap[s]}`).join(" ");
+        };
+
+        const rows = [];
+        for (const combatant of pcCombatants) {
+            const actorId = combatant.actor?.id;
+            if (!actorId) continue;
+            const stats = statsMap.get(actorId) || defaultStats();
+            const killsWithData = (stats.killsList || []).map(k => ({
+                ...k,
+                attackerName: game.actors.get(k.attackerId)?.name ?? "?",
+                defenderImg: game.actors.get(k.defenderId)?.img
+            }));
+            const killsGrouped = [];
+            const killsKey = (k) => `${k.defenderName}|${k.attackerName}`;
+            const killsMap = {};
+            killsWithData.forEach(k => {
+                const key = killsKey(k);
+                if (!killsMap[key]) {
+                    killsMap[key] = { defenderName: k.defenderName, defenderImg: k.defenderImg, attackerName: k.attackerName, count: 0 };
+                    killsGrouped.push(killsMap[key]);
+                }
+                killsMap[key].count += 1;
+            });
+            killsGrouped.forEach(g => {
+                const by = g.attackerName ? ` (${g.attackerName})` : "";
+                g.tooltip = g.count > 1 ? `${g.count}× ${g.defenderName}${by}` : `${g.defenderName}${by}`;
+                g.countBadge = g.count > 1 ? `×${g.count}` : null;
+            });
+            const spellsCast = stats.spellsCast || 0;
+            const spellsLabel = spellsCast > 0
+                ? `${spellsCast} (${stats.ppSpent || 0} PP / ${stats.spellXpGained || 0} XP)`
+                : "—";
+
+            rows.push({
+                name: combatant.actor?.name ?? combatant.name ?? "—",
+                img: combatant.actor?.img ?? null,
+                critsInflicted: stats.critsInflicted,
+                critsReceived: stats.critsReceived,
+                hpInflicted: stats.hpInflicted,
+                hpReceived: stats.hpReceived,
+                kills: stats.kills,
+                critsInflictedBySev: formatCritsBySeverity(stats.critsBySeverityInflicted),
+                critsReceivedBySev: formatCritsBySeverity(stats.critsBySeverityReceived),
+                killsGrouped,
+                spellsLabel
+            });
+        }
+
+        const html = await renderTemplate("systems/rmss/templates/combat/combat-history-dialog.hbs", {
+            rows,
+            rounds,
+            defeatedEnemies
+        });
+        const d = new Dialog({
+            title: game.i18n.localize("rmss.combat.history.title"),
+            content: html,
+            default: "ok",
+            buttons: { ok: { icon: "<i class='fas fa-check'></i>", label: game.i18n.localize("rmss.combat.history.close") } }
+        }, { width: 800, resizable: true });
+        await d.render(true);
     }
 
     playCombatEndSound() {
-        // Define the exact path to the end combat sound
-        const soundPath = CONFIG.rmss.paths.sounds_folder+"combat/end_combat.ogg";
+        const basePath = CONFIG.rmss.paths.sounds_folder + "combat/end_combat/";
+        const soundFiles = [
+            "end-combat-1.ogg",
+            "end-combat-2.ogg",
+            "end-combat-3.ogg"
+        ];
+        const randomIndex = Math.floor(Math.random() * soundFiles.length);
+        const soundPath = basePath + soundFiles[randomIndex];
 
-        // Play the sound once, no loop
         foundry.audio.AudioHelper.play({
             src: soundPath,
             volume: 0.8,

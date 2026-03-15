@@ -12,6 +12,7 @@ import { RMSSWeaponCriticalManager } from "../../combat/rmss_weapon_critical_man
 import FacingService from "../../combat/services/facing_service.js";
 import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
 import { socket } from "../../../rmss.js";
+import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 
 export default class DirectedElementalSpellService {
 
@@ -224,7 +225,8 @@ export default class DirectedElementalSpellService {
                 actor
             );
 
-            if (!attackResult.damage) continue;
+            const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
+            if (isNullResult) continue;
 
             const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
                 attackResult.damage,
@@ -235,25 +237,34 @@ export default class DirectedElementalSpellService {
 
             if (criticalResult.criticals.length === 0) {
                 const critType = attackTable.critical_severity?.default || "heat";
-                criticalResult.criticals = [{ severity: null, critType, damage: 0 }];
-                await RMSSWeaponCriticalManager.updateTokenOrActorHits(target.actor ?? target, parseInt(criticalResult.damage));
-                if (actor.type === "character") {
-                    await ExperienceManager.applyExperience(actor, criticalResult.damage);
+                criticalResult.criticals = [{ severity: null, critType, damage: criticalResult.damage ?? 0 }];
+                const damageToApply = parseInt(criticalResult.damage);
+                if (!isNaN(damageToApply) && damageToApply > 0) {
+                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(target.actor ?? target, damageToApply, actor.id);
+                    if (actor.type === "character") {
+                        await ExperienceManager.applyExperience(actor, criticalResult.damage);
+                    }
                 }
             }
 
-            await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, target);
+            await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, target, false);
         }
 
+        let spellXp = 0;
         if (actor.type === "character") {
             const casterLevel = actor.system.attributes?.level?.value ?? 1;
             const xp = ExperiencePointsCalculator.calculateSpellExpPoints(casterLevel, spellLevel);
             if (xp > 0) {
+                spellXp = xp;
                 const totalExpActor = parseInt(actor.system.attributes.experience_points.value) + xp;
                 await actor.update({ "system.attributes.experience_points.value": totalExpActor });
                 const breakDown = { maneuver: 0, spell: xp, critical: 0, kill: 0, bonus: 0, misc: 0 };
                 await sendExpMessage(actor, breakDown, xp);
             }
+        }
+
+        if (game.combat?.started) {
+            CombatHistoryTracker.get().recordSpellCast(actor.id, spellLevel, spellXp);
         }
 
         await spell.use();

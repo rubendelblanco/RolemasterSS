@@ -1,3 +1,6 @@
+{{#if rollTotal}}
+<p class="critical-roll-result"><i class="fas fa-dice"></i> <span class="critical-roll-value">{{rollTotal}}</span></p>
+{{/if}}
 <p class="critical-description">{{result.text}}</p>
 <table class="rwd-table">
     <tr>
@@ -38,3 +41,61 @@
 {{/if}}
     </tr>
 </table>
+{{#if expData}}
+<div class="critical-exp-section chat-exp-message" style="
+    background: linear-gradient(145deg, #1f1f1f, #272727);
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: #ddd;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    margin-top: 8px;
+">
+    <h3 style="
+      margin: 0 0 4px 0;
+      font-size: 1.1em;
+      color: #58a6ff;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+  ">
+        {{localize "rmss.experience.experience_gained"}}
+    </h3>
+
+    <p style="text-align:center; margin:4px 0;">
+        <strong style="color:#fff;">{{expData.actorName}}</strong>
+        {{localize "rmss.experience.has_gained"}}
+        <strong style="color:#6cf;">{{expData.expGained}}</strong>
+        {{localize "rmss.experience.experience_points"}}
+    </p>
+
+    <p class="click-to-toggle" style="
+      text-align:center;
+      font-size:0.85em;
+      color:#aaa;
+      margin:4px 0;
+      cursor:pointer;
+  ">
+        + Info
+    </p>
+
+    <div class="breakdown-details" style="
+      display:none;
+      font-size:0.85em;
+      background:#181818;
+      border-radius:6px;
+      padding:6px 10px;
+      margin-top:6px;
+      text-align:left;
+  ">
+        <ol style="margin:0; padding-left:18px;">
+            {{#each expData.expBreakdown}}
+                {{#if this}}
+                    <li><span style="color:#58a6ff;">{{localizeKey @key}}</span>: {{this}}</li>
+                {{/if}}
+            {{/each}}
+        </ol>
+    </div>
+</div>
+{{/if}}

@@ -59,6 +59,18 @@
                 <label>{{ localize "rmss.combat.critical_modifier" }}</label>
                 <input type="number" id="modifier" data-dtype="Number" name="modifier" value="{{critModifier}}">
             </div>
+
+            {{#if pcCombatants.length}}
+            <div style="flex-direction: row; align-items: center; gap: 0.5em;">
+                <label for="critical-attacker">{{ localize "rmss.combat.history.attacker_for_kill" }}</label>
+                <select id="critical-attacker">
+                    <option value="">{{ localize "rmss.combat.history.no_attacker" }}</option>
+                    {{#each pcCombatants}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            {{/if}}
         </div>
     </div>
 

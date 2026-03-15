@@ -578,6 +578,7 @@
     },
     "combat": {
       "no_attack_result": "No se encontró resultado en la tabla de ataque. Verifica el tipo de armadura del objetivo.",
+      "attack_no_result": "El ataque no tuvo efecto.",
       "attack_table_load_failed": "Error al cargar la tabla de ataque: {table}",
       "confirm_attack": "Confirmar ataque",
       "confirm": "Confirmar",
@@ -640,7 +641,23 @@
       "rr_failed": "¡FALLADO!",
       "roll_rr": "Tirar RR",
       "must_roll_rr": "debe hacer una tirada de resistencia",
-      "effects_title": "Efectos RMSS"
+      "effects_title": "Efectos RMSS",
+      "history": {
+        "title": "Resumen del combate",
+        "character": "Personaje",
+        "crits_inflicted": "Críticos infligidos",
+        "crits_received": "Críticos recibidos",
+        "hp_inflicted": "PV infligidos",
+        "hp_received": "PV recibidos",
+        "kills": "Bajas",
+        "spells": "Hechizos",
+        "rounds": "Rondas",
+        "defeated_enemies": "Enemigos derrotados",
+        "total": "Total",
+        "close": "Cerrar",
+        "attacker_for_kill": "Atacante (para adjudicar la baja)",
+        "no_attacker": "— Ninguno —"
+      }
     },
     "maneuvers": {
       "options_title": "Opciones de tirada de maniobra",

@@ -49,9 +49,9 @@ export class RMSSWeaponSkillManager {
             text
         });
 
+        if (game.dice3d) await game.dice3d.showForRoll(rollData.roll, game.user, true);
         await ChatMessage.create({
-            rolls: rollData.roll,
-            flavor: flavor,
+            content: flavor,
             speaker: "Game master"
         });
 
@@ -88,24 +88,28 @@ export class RMSSWeaponSkillManager {
         }
 
         // Critical not exists
+        const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
         if (criticalResult.criticals.length === 0) {
-            criticalResult.criticals = [
-                { severity: null, critType: weapon.system.critical_type, damage: 0 }
-            ];
-            const damageToApply = parseInt(criticalResult.damage);
-            if (!isNaN(damageToApply)) {
-                await RMSSWeaponCriticalManager.updateTokenOrActorHits(
-                    enemy,
-                    damageToApply
-                );
-            }
-            if (actor.type === "character") {
-                const { ExperienceManager } = await import("../sheets/experience/rmss_experience_manager.js");
-                await ExperienceManager.applyExperience(actor, criticalResult.damage);
+            if (!isNullResult) {
+                criticalResult.criticals = [
+                    { severity: null, critType: weapon.system.critical_type, damage: criticalResult.damage ?? 0 }
+                ];
+                const damageToApply = parseInt(criticalResult.damage);
+                if (!isNaN(damageToApply) && damageToApply > 0) {
+                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(
+                        enemy,
+                        damageToApply,
+                        actor.id
+                    );
+                    if (actor.type === "character") {
+                        const { ExperienceManager } = await import("../sheets/experience/rmss_experience_manager.js");
+                        await ExperienceManager.applyExperience(actor, criticalResult.damage);
+                    }
+                }
             }
         }
 
-        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken);
+        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken, isNullResult);
     }
 
     /**

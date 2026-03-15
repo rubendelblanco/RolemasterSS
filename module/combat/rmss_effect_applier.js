@@ -1,6 +1,6 @@
 import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_manager.js";
 import Utils from "../utils.js";
-import {sendExpMessage} from "../chat/chatMessages.js";
+import { CombatHistoryTracker } from "./combat_history_tracker.js";
 
 /**
  * @class RMSSEffectApplier
@@ -46,21 +46,16 @@ export class RMSSEffectApplier {
         const entity = actor;
         const stun_bleeding = entity.system.attributes.critical_codes?.stun_bleeding ?? "-";
 
-        if (critical.metadata.HP){
-            const isDead = await this._applyHPDamage(entity, critical.metadata.HP);
+        // When GM applies critical from effects HUD, originId may be null; use last attacker if available
+        let effectiveOriginId = originId;
+        if (!effectiveOriginId && game.combat?.id) {
+            effectiveOriginId = CombatHistoryTracker.get().getLastAttacker(entity.id);
+        }
 
-            if (isDead && Utils.isAPC(originId)) {
-                const killer = Utils.getActor(originId)
-                const killExp = ExperiencePointsCalculator.calculateKillExpPoints(entity.system.attributes.level.value,
-                    killer.system.attributes.level.value);
-                const code = entity.system?.bonus_experience ?? null;
-                const bonusExp = ExperiencePointsCalculator.calculateBonusExpPoints(killer.system.attributes.level.value, code);
-                const breakDown =  { kill: killExp, bonus: bonusExp };
-                const totalAmountExp = killExp+bonusExp;
-                const totalExpActor = parseInt(killer.system.attributes.experience_points.value || 0) + totalAmountExp;
-                await killer.update({ "system.attributes.experience_points.value": totalExpActor });
-                await sendExpMessage(killer, breakDown, totalAmountExp);
-            }
+        if (critical.metadata.HP){
+            const isDead = await this._applyHPDamage(entity, critical.metadata.HP, effectiveOriginId);
+
+            // XP for kill is now included in the dead announcement message
         }
 
         for (const [key, value] of Object.entries(critical.metadata)) {
@@ -70,20 +65,44 @@ export class RMSSEffectApplier {
                 case "PE": await this._applyPenalty(entity, value, critical.text); break;
                 case "P": await this._applyParry(entity, value); break;
                 case "NP": await this._applyNoParry(entity, value); break;
-                case "BONUS": await this._applyBonus(entity, value, critical.text, originId); break;
+                case "BONUS": await this._applyBonus(entity, value, critical.text, effectiveOriginId); break;
             }
         }
     }
 
-    static async _applyHPDamage(entity, hp) {
+    static async _applyHPDamage(entity, hp, originId = null) {
         const dmg = parseInt(hp) || 0;
-        const newHits = entity.system.attributes.hits.current - dmg;
+        const currentHits = entity.system.attributes.hits.current;
+        const newHits = currentHits - dmg;
         await entity.update({ "system.attributes.hits.current": newHits });
+
+        const wasAlreadyDead = currentHits <= 0;
+        if (originId && game.combat?.id) {
+            CombatHistoryTracker.get().recordDamage(originId, entity.id, dmg, newHits <= 0 && !wasAlreadyDead);
+        }
 
         if (entity.system.attributes.hits.current <= 0) {
             const tokens = entity.getActiveTokens(true);
             const selected = tokens.find(t => t.controlled) || tokens[0];
-            if (selected) await RMSSEffectApplier._markTokenAsDead(selected);
+            let expData = null;
+            if (selected && Utils.isAPC(originId)) {
+                const killer = Utils.getActor(originId);
+                if (killer) {
+                    const killExp = ExperiencePointsCalculator.calculateKillExpPoints(entity.system.attributes.level.value, killer.system.attributes.level.value);
+                    const code = entity.system?.bonus_experience ?? null;
+                    const bonusExp = ExperiencePointsCalculator.calculateBonusExpPoints(killer.system.attributes.level.value, code);
+                    const totalAmountExp = killExp + bonusExp;
+                    const totalExpActor = parseInt(killer.system.attributes.experience_points.value || 0) + totalAmountExp;
+                    await killer.update({ "system.attributes.experience_points.value": totalExpActor });
+                    expData = {
+                        actorName: killer.name,
+                        actorId: killer.id,
+                        expBreakdown: { kill: killExp, bonus: bonusExp },
+                        expGained: totalAmountExp
+                    };
+                }
+            }
+            if (selected) await RMSSEffectApplier._markTokenAsDead(selected, expData);
             return true;
         }
 
@@ -195,7 +214,7 @@ export class RMSSEffectApplier {
      * Works both in and out of combat.
      * @param {Token} token - The target token object.
      */
-    static async _markTokenAsDead(token) {
+    static async _markTokenAsDead(token, expData = null) {
         if (!token) return ui.notifications.error("No token provided.");
 
         const actor = token.actor;
@@ -221,19 +240,30 @@ export class RMSSEffectApplier {
             await combatant.update({ defeated: true });
         }
 
-        //chat dead announcement
+        //chat dead announcement (with optional XP section when killer is APC)
         const templatePath = "systems/rmss/templates/chat/dead-announcement.hbs";
         const templateData = {
             name: actor.name,
             slain: game.i18n.localize("rmss.chat.slain"),
-            restInPeace: game.i18n.localize("rmss.chat.restInPeace")
+            restInPeace: game.i18n.localize("rmss.chat.restInPeace"),
+            expData: expData ?? null
         };
 
         const content = await renderTemplate(templatePath, templateData);
 
-        await ChatMessage.create({
+        const msgData = {
             speaker: 'Game Master',
             content
-        });
+        };
+        if (expData?.actorId) {
+            const killerActor = game.actors.get(expData.actorId);
+            if (killerActor) {
+                const whispers = new Set();
+                game.users.filter(u => killerActor.testUserPermission(u, "OWNER")).forEach(u => whispers.add(u.id));
+                game.users.filter(u => u.isGM).forEach(u => whispers.add(u.id));
+                msgData.whisper = Array.from(whispers);
+            }
+        }
+        await ChatMessage.create(msgData);
     }
 }

@@ -1,12 +1,12 @@
 import { socket } from "../../rmss.js";
 import RMSSTableManager from "./rmss_table_manager.js";
 import CombatExperience from "../sheets/experience/rmss_combat_experience.js";
-import { sendExpMessage } from "../chat/chatMessages.js";
 import Utils from "../utils.js";
 import { rmss } from "../config.js";
 import { RMSSCombat } from "./rmss_combat.js";
 import { RMSSEffectApplier } from "./rmss_effect_applier.js";
 import WeaponFumbleService from "./services/weapon_fumble_service.js";
+import { CombatHistoryTracker } from "./combat_history_tracker.js";
 
 
 /* ---------------------------------------------
@@ -58,32 +58,39 @@ class LargeCreatureCriticalStrategy {
         } = data;
         const tableName = this.criticalType;
 
-        // Apply XP for player characters
+        // Apply XP for player characters (message sent after critical so order is natural)
+        let expBreakDown = null;
+        let totalExp = 0;
         if (Utils.isAPC(attackerActor.id)) {
             const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
             const hpExp = parseInt(data.damage);
-            const breakDown = isNaN(criticalExp)
+            expBreakDown = isNaN(criticalExp)
                 ? { hp: hpExp }
                 : { critical: criticalExp, hp: hpExp };
-            const totalExp = Object.values(breakDown).reduce((a, b) => a + b, 0);
+            totalExp = Object.values(expBreakDown).reduce((a, b) => a + b, 0);
             const totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0) + totalExp;
-
             await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
-            await sendExpMessage(attackerActor, breakDown, totalExp);
         }
 
         // Roll for the critical
         const column = this.getColumForCriticalSubtype(subCritType);
         const roll = new Roll(`1d100x>95`);
         await roll.evaluate({ async: true });
-        await roll.toMessage(undefined, { create: true });
 
         let newHits = defenderActor.system.attributes.hits.current - parseInt(damage);
         await defenderActor.update({ "system.attributes.hits.current": newHits });
+
+        const tracker = CombatHistoryTracker.get();
+        tracker.recordDamage(attackerActor.id, defenderActor.id, parseInt(damage), newHits <= 0);
+        tracker.recordCritical(attackerActor.id, defenderActor.id, data.severity);
+
         if (severity === "null") return;
 
         let result = Math.min(Math.max(parseInt(roll.total) + parseInt(modifier), 1), 999);
-        return await RMSSTableManager.getCriticalTableResult(result, defenderActor, column, tableName);
+        const expData = (expBreakDown && totalExp > 0)
+            ? { actorName: attackerActor.name, actorId: attackerActor.id, expBreakdown: expBreakDown, expGained: totalExp }
+            : null;
+        return await RMSSTableManager.getCriticalTableResult(result, defenderActor, column, tableName, roll, expData);
     }
 }
 
@@ -93,24 +100,23 @@ class BaseCriticalStrategy {
     }
 
     async apply(attackerActor, defenderActor, data = {}) {
+        let expBreakDown = null;
+        let totalExp = 0;
         if (Utils.isAPC(attackerActor.id)) {
             const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
             const hpExp = parseInt(data.damage);
-            let breakDown = {};
-            let totalExp = 0;
 
             if (criticalExp === "null" || isNaN(criticalExp)) {
-                breakDown = { hp: hpExp };
+                expBreakDown = { hp: hpExp };
                 totalExp = hpExp;
             } else {
-                breakDown = { critical: criticalExp, hp: hpExp };
+                expBreakDown = { critical: criticalExp, hp: hpExp };
                 totalExp = criticalExp + hpExp;
             }
 
             let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
             totalExpActor = totalExpActor + totalExp;
             await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
-            await sendExpMessage(attackerActor, breakDown, totalExp);
         }
 
         const targetId = data.targetTokenId ?? RMSSCombat.getTargets()?.[0]?.id;
@@ -118,6 +124,10 @@ class BaseCriticalStrategy {
             ui.notifications.error("No target token found.");
             return;
         }
+        data.attackerId = attackerActor.id;
+        data.defenderId = defenderActor.id;
+        data.expBreakDown = expBreakDown;
+        data.totalExp = totalExp;
         return await socket.executeAsGM("updateActorHits", targetId, true, parseInt(data.damage), data);
     }
 }
@@ -180,11 +190,17 @@ export class RMSSWeaponCriticalManager {
         }
     }
 
-    static async updateTokenOrActorHits(token, damage) {
+    static async updateTokenOrActorHits(token, damage, attackerId = null) {
         const actor = Utils.getActor(token);
         if (!actor) return;
-        let newHits = actor.system.attributes.hits.current - parseInt(damage);
+        const dmg = parseInt(damage);
+        let newHits = actor.system.attributes.hits.current - dmg;
         await actor.update({ "system.attributes.hits.current": newHits });
+
+        if (attackerId && game.combat?.id) {
+            const tracker = CombatHistoryTracker.get();
+            tracker.recordDamage(attackerId, actor.id, dmg, newHits <= 0);
+        }
     }
 
     static async updateActorHits(targetId, isToken, damage, gmResponse) {
@@ -192,19 +208,42 @@ export class RMSSWeaponCriticalManager {
         if (!token) return;
         if (isNaN(damage)) return;
         const target = token.actor;
-        let newHits = target.system.attributes.hits.current - parseInt(gmResponse.damage);
+        const dmg = parseInt(damage);
+        let newHits = target.system.attributes.hits.current - dmg;
         await target.update({ "system.attributes.hits.current": newHits });
+
+        const attackerId = gmResponse?.attackerId;
+        if (attackerId && game.combat?.id) {
+            const tracker = CombatHistoryTracker.get();
+            tracker.recordDamage(attackerId, target.id, dmg, newHits <= 0);
+            tracker.recordCritical(attackerId, target.id, gmResponse?.severity);
+        }
+
         if (gmResponse.severity === "null") return;
         let roll = new Roll(`(1d100)`);
-        await roll.toMessage(undefined, { create: true });
+        await roll.evaluate({ async: true });
         let result = (parseInt(roll.total) + parseInt(gmResponse.modifier));
         if (result < 1) result = 1;
         if (result > 100) result = 100;
+        let expData = null;
+        if (gmResponse.expBreakDown && gmResponse.totalExp > 0 && gmResponse.attackerId) {
+            const attacker = game.actors.get(gmResponse.attackerId);
+            if (attacker) {
+                expData = {
+                    actorName: attacker.name,
+                    actorId: attacker.id,
+                    expBreakdown: gmResponse.expBreakDown,
+                    expGained: gmResponse.totalExp
+                };
+            }
+        }
         return await RMSSTableManager.getCriticalTableResult(
             result,
             target,
             gmResponse.severity,
             gmResponse.critType,
+            roll,
+            expData,
         );
     }
 
@@ -425,13 +464,14 @@ export class RMSSWeaponCriticalManager {
         await ChatMessage.create(msgData);
     }
 
-    static async getCriticalMessage(damage, criticalResult, attacker, target = null) {
+    static async getCriticalMessage(damage, criticalResult, attacker, target = null, isNullResult = false) {
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
             damageStr: damage,
             damage: criticalResult.damage,
             criticals: criticalResult.criticals,
             attacker: attacker,
-            target: target
+            target: target,
+            isNullResult: isNullResult
         });
         const speaker = "Game Master";
 

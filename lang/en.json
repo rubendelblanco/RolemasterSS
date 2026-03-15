@@ -578,6 +578,7 @@
         },
         "combat": {
             "no_attack_result": "No attack table result found. Check the target's armor type.",
+            "attack_no_result": "The attack had no effect.",
             "attack_table_load_failed": "Failed to load attack table: {table}",
             "confirm_attack": "Confirm attack",
             "confirm_critical": "Confirm critical",
@@ -640,7 +641,23 @@
             "rr_failed": "FAILED!",
             "roll_rr": "Roll RR",
             "must_roll_rr": "must make a resistance roll",
-            "effects_title": "RMSS Effects"
+            "effects_title": "RMSS Effects",
+            "history": {
+                "title": "Combat Summary",
+                "character": "Character",
+                "crits_inflicted": "Crits inflicted",
+                "crits_received": "Crits received",
+                "hp_inflicted": "HP inflicted",
+                "hp_received": "HP received",
+                "kills": "Kills",
+                "spells": "Spells",
+                "rounds": "Rounds",
+                "defeated_enemies": "Defeated enemies",
+                "total": "Total",
+                "close": "Close",
+                "attacker_for_kill": "Attacker (for kill credit)",
+                "no_attacker": "— None —"
+            }
         },
         "maneuvers": {
             "options_title": "Maneuver Roll Options",
