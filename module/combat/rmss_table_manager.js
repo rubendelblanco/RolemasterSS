@@ -153,21 +153,11 @@ export default class RMSSTableManager {
                     expData: expData
                 });
                 const speaker = "Game Master";
-                const msgData = {
+                await ChatMessage.create({
                     content: htmlContent,
                     speaker: speaker,
                     rolls: roll ? [roll] : undefined
-                };
-                if (expData?.actorId) {
-                    const actor = game.actors.get(expData.actorId);
-                    if (actor) {
-                        const whispers = new Set();
-                        game.users.filter(u => actor.testUserPermission(u, "OWNER")).forEach(u => whispers.add(u.id));
-                        game.users.filter(u => u.isGM).forEach(u => whispers.add(u.id));
-                        msgData.whisper = Array.from(whispers);
-                    }
-                }
-                await ChatMessage.create(msgData);
+                });
 
                 return criticalResult;
             }
