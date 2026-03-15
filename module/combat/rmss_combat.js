@@ -293,10 +293,15 @@ export class CombatEndManager {
     }
 
     playCombatEndSound() {
-        // Define the exact path to the end combat sound
-        const soundPath = CONFIG.rmss.paths.sounds_folder+"combat/end_combat.ogg";
+        const basePath = CONFIG.rmss.paths.sounds_folder + "combat/end_combat/";
+        const soundFiles = [
+            "end-combat-1.ogg",
+            "end-combat-2.ogg",
+            "end-combat-3.ogg"
+        ];
+        const randomIndex = Math.floor(Math.random() * soundFiles.length);
+        const soundPath = basePath + soundFiles[randomIndex];
 
-        // Play the sound once, no loop
         foundry.audio.AudioHelper.play({
             src: soundPath,
             volume: 0.8,
