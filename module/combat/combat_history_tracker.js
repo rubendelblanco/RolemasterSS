@@ -43,7 +43,10 @@ export class CombatHistoryTracker {
                 hpFromAttacker: {},    // attackerId -> total HP received
                 critsBySeverityInflicted: {},  // E -> 2, A -> 1
                 critsBySeverityReceived: {},
-                killsList: []          // { defenderId, defenderName, attackerId }
+                killsList: [],         // { defenderId, defenderName, attackerId }
+                spellsCast: 0,
+                ppSpent: 0,
+                spellXpGained: 0
             });
         }
         return combatMap.get(actorId);
@@ -128,6 +131,21 @@ export class CombatHistoryTracker {
             attackerStats.killsList.push({ defenderId, defenderName, attackerId });
         }
         this._lastAttackerByDefender.delete(defenderId);
+    }
+
+    /**
+     * Record a spell cast during combat.
+     * @param {string} actorId - Actor ID of caster
+     * @param {number} spellLevel - Spell level (PP cost)
+     * @param {number} [xpAwarded=0] - XP awarded for this spell (0 if failed/no XP)
+     */
+    recordSpellCast(actorId, spellLevel, xpAwarded = 0) {
+        if (!game.combat?.id || !this._isPC(actorId)) return;
+        const combatMap = this._ensureCombat(game.combat.id);
+        const stats = this._ensureActorStats(combatMap, actorId);
+        stats.spellsCast = (stats.spellsCast || 0) + 1;
+        stats.ppSpent = (stats.ppSpent || 0) + (spellLevel || 0);
+        stats.spellXpGained = (stats.spellXpGained || 0) + (xpAwarded || 0);
     }
 
     /**

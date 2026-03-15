@@ -223,7 +223,8 @@ export class CombatEndManager {
 
         const defaultStats = () => ({
             critsInflicted: 0, critsReceived: 0, hpInflicted: 0, hpReceived: 0, kills: 0,
-            hpByDefender: {}, hpFromAttacker: {}, critsBySeverityInflicted: {}, critsBySeverityReceived: {}, killsList: []
+            hpByDefender: {}, hpFromAttacker: {}, critsBySeverityInflicted: {}, critsBySeverityReceived: {}, killsList: [],
+            spellsCast: 0, ppSpent: 0, spellXpGained: 0
         });
 
         const formatCritsBySeverity = (sevMap) => {
@@ -257,6 +258,11 @@ export class CombatEndManager {
                 g.tooltip = g.count > 1 ? `${g.count}× ${g.defenderName}${by}` : `${g.defenderName}${by}`;
                 g.countBadge = g.count > 1 ? `×${g.count}` : null;
             });
+            const spellsCast = stats.spellsCast || 0;
+            const spellsLabel = spellsCast > 0
+                ? `${spellsCast} (${stats.ppSpent || 0} PP / ${stats.spellXpGained || 0} XP)`
+                : "—";
+
             rows.push({
                 name: combatant.actor?.name ?? combatant.name ?? "—",
                 img: combatant.actor?.img ?? null,
@@ -267,7 +273,8 @@ export class CombatEndManager {
                 kills: stats.kills,
                 critsInflictedBySev: formatCritsBySeverity(stats.critsBySeverityInflicted),
                 critsReceivedBySev: formatCritsBySeverity(stats.critsBySeverityReceived),
-                killsGrouped
+                killsGrouped,
+                spellsLabel
             });
         }
 

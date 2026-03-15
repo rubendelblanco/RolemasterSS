@@ -59,25 +59,24 @@ class LargeCreatureCriticalStrategy {
         } = data;
         const tableName = this.criticalType;
 
-        // Apply XP for player characters
+        // Apply XP for player characters (message sent after critical so order is natural)
+        let expBreakDown = null;
+        let totalExp = 0;
         if (Utils.isAPC(attackerActor.id)) {
             const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
             const hpExp = parseInt(data.damage);
-            const breakDown = isNaN(criticalExp)
+            expBreakDown = isNaN(criticalExp)
                 ? { hp: hpExp }
                 : { critical: criticalExp, hp: hpExp };
-            const totalExp = Object.values(breakDown).reduce((a, b) => a + b, 0);
+            totalExp = Object.values(expBreakDown).reduce((a, b) => a + b, 0);
             const totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0) + totalExp;
-
             await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
-            await sendExpMessage(attackerActor, breakDown, totalExp);
         }
 
         // Roll for the critical
         const column = this.getColumForCriticalSubtype(subCritType);
         const roll = new Roll(`1d100x>95`);
         await roll.evaluate({ async: true });
-        await roll.toMessage(undefined, { create: true });
 
         let newHits = defenderActor.system.attributes.hits.current - parseInt(damage);
         await defenderActor.update({ "system.attributes.hits.current": newHits });
@@ -89,7 +88,13 @@ class LargeCreatureCriticalStrategy {
         if (severity === "null") return;
 
         let result = Math.min(Math.max(parseInt(roll.total) + parseInt(modifier), 1), 999);
-        return await RMSSTableManager.getCriticalTableResult(result, defenderActor, column, tableName);
+        const criticalResult = await RMSSTableManager.getCriticalTableResult(result, defenderActor, column, tableName, roll);
+
+        if (expBreakDown && totalExp > 0) {
+            await sendExpMessage(attackerActor, expBreakDown, totalExp);
+        }
+
+        return criticalResult;
     }
 }
 
@@ -99,24 +104,23 @@ class BaseCriticalStrategy {
     }
 
     async apply(attackerActor, defenderActor, data = {}) {
+        let expBreakDown = null;
+        let totalExp = 0;
         if (Utils.isAPC(attackerActor.id)) {
             const criticalExp = parseInt(CombatExperience.calculateCriticalExperience(defenderActor, data.severity));
             const hpExp = parseInt(data.damage);
-            let breakDown = {};
-            let totalExp = 0;
 
             if (criticalExp === "null" || isNaN(criticalExp)) {
-                breakDown = { hp: hpExp };
+                expBreakDown = { hp: hpExp };
                 totalExp = hpExp;
             } else {
-                breakDown = { critical: criticalExp, hp: hpExp };
+                expBreakDown = { critical: criticalExp, hp: hpExp };
                 totalExp = criticalExp + hpExp;
             }
 
             let totalExpActor = parseInt(attackerActor.system.attributes.experience_points.value || 0);
             totalExpActor = totalExpActor + totalExp;
             await attackerActor.update({ "system.attributes.experience_points.value": totalExpActor });
-            await sendExpMessage(attackerActor, breakDown, totalExp);
         }
 
         const targetId = data.targetTokenId ?? RMSSCombat.getTargets()?.[0]?.id;
@@ -126,7 +130,13 @@ class BaseCriticalStrategy {
         }
         data.attackerId = attackerActor.id;
         data.defenderId = defenderActor.id;
-        return await socket.executeAsGM("updateActorHits", targetId, true, parseInt(data.damage), data);
+        const criticalResult = await socket.executeAsGM("updateActorHits", targetId, true, parseInt(data.damage), data);
+
+        if (expBreakDown && totalExp > 0) {
+            await sendExpMessage(attackerActor, expBreakDown, totalExp);
+        }
+
+        return criticalResult;
     }
 }
 
@@ -219,7 +229,7 @@ export class RMSSWeaponCriticalManager {
 
         if (gmResponse.severity === "null") return;
         let roll = new Roll(`(1d100)`);
-        await roll.toMessage(undefined, { create: true });
+        await roll.evaluate({ async: true });
         let result = (parseInt(roll.total) + parseInt(gmResponse.modifier));
         if (result < 1) result = 1;
         if (result > 100) result = 100;
@@ -228,6 +238,7 @@ export class RMSSWeaponCriticalManager {
             target,
             gmResponse.severity,
             gmResponse.critType,
+            roll,
         );
     }
 

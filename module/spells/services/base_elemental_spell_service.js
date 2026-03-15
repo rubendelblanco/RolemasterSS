@@ -12,6 +12,7 @@ import { RMSSWeaponCriticalManager } from "../../combat/rmss_weapon_critical_man
 import FacingService from "../../combat/services/facing_service.js";
 import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
 import { socket } from "../../../rmss.js";
+import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 
 export default class BaseElementalSpellService {
 
@@ -232,15 +233,21 @@ export default class BaseElementalSpellService {
         }
 
         // Award spell XP on success
+        let spellXp = 0;
         if (actor.type === "character") {
             const casterLevel = actor.system.attributes?.level?.value ?? 1;
             const xp = ExperiencePointsCalculator.calculateSpellExpPoints(casterLevel, spellLevel);
             if (xp > 0) {
+                spellXp = xp;
                 const totalExpActor = parseInt(actor.system.attributes.experience_points.value) + xp;
                 await actor.update({ "system.attributes.experience_points.value": totalExpActor });
                 const breakDown = { maneuver: 0, spell: xp, critical: 0, kill: 0, bonus: 0, misc: 0 };
                 await sendExpMessage(actor, breakDown, xp);
             }
+        }
+
+        if (game.combat?.started) {
+            CombatHistoryTracker.get().recordSpellCast(actor.id, spellLevel, spellXp);
         }
 
         // Execute spell macro on success (via item.use: item, actor, token)

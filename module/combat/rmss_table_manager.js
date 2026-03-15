@@ -130,7 +130,7 @@ export default class RMSSTableManager {
         }
     }
 
-    static async getCriticalTableResult(result, enemy, severity, critType){
+    static async getCriticalTableResult(result, enemy, severity, critType, roll = null){
         const criticalTable = await RMSSTableManager.loadCriticalTable(critType);
         for (const element of criticalTable.rows) {
             let criticalResult = element[severity];
@@ -147,12 +147,15 @@ export default class RMSSTableManager {
                     criticalResult["metadata"] = element[severity]["metadata"][0];
                 }
                 const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-result.hbs", {
-                    result: criticalResult
+                    result: criticalResult,
+                    rollTotal: roll?.total,
+                    rollFormula: roll?.formula
                 });
                 const speaker = "Game Master";
                 await ChatMessage.create({
                     content: htmlContent,
-                    speaker: speaker
+                    speaker: speaker,
+                    rolls: roll ? [roll] : undefined
                 });
 
                 return criticalResult;

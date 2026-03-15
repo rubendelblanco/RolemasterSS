@@ -17,7 +17,7 @@
     </div>
     <table class="combat-history-table">
         <colgroup>
-            <col/><col/><col/><col/><col/><col/>
+            <col/><col/><col/><col/><col/><col/><col/>
         </colgroup>
         <thead>
             <tr>
@@ -27,6 +27,7 @@
                 <th>{{ localize "rmss.combat.history.hp_inflicted" }}</th>
                 <th>{{ localize "rmss.combat.history.hp_received" }}</th>
                 <th>{{ localize "rmss.combat.history.kills" }}</th>
+                <th>{{ localize "rmss.combat.history.spells" }}</th>
             </tr>
         </thead>
         <tbody>
@@ -45,13 +46,18 @@
                 <td class="cell-simple">{{ row.hpInflicted }}</td>
                 <td class="cell-simple">{{ row.hpReceived }}</td>
                 <td class="cell-with-detail kills-cell">
+                    {{#if row.kills}}
                     {{#if row.killsGrouped.length}}
                     <span class="kills-portraits">{{#each row.killsGrouped as |k|}}
                         <span class="kill-item">{{#if k.defenderImg}}<img src="{{ k.defenderImg }}" alt="{{ k.defenderName }}" title="{{ k.tooltip }}" class="kill-portrait"/>{{#if k.countBadge}}<span class="kill-count">{{ k.countBadge }}</span>{{/if}}{{else}}<span class="kill-fallback" title="{{ k.tooltip }}">{{ k.tooltip }}</span>{{/if}}</span>
                     {{/each}}</span>
                     {{/if}}
-                    <span class="kills-total"><strong>{{ localize "rmss.combat.history.total" }}:</strong> {{ row.kills }}</span>
+                    <span class="kills-total">{{#if row.kills}}<strong>{{ localize "rmss.combat.history.total" }}:</strong> {{ row.kills }}{{else}}—{{/if}}</span>
+                    {{else}}
+                    —
+                    {{/if}}
                 </td>
+                <td class="cell-simple">{{ row.spellsLabel }}</td>
             </tr>
             {{/each}}
         </tbody>

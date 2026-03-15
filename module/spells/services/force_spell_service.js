@@ -5,6 +5,7 @@ import StaticManeuverService from "./static_maneuver_service.js";
 import SpellFailureService from "./spell_failure_service.js";
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
 import { sendExpMessage } from "../../chat/chatMessages.js";
+import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 
 /**
  * Service to handle spell casting for non-elemental spells (F, P, U, I, E types).
@@ -216,16 +217,22 @@ export default class ForceSpellService {
                     ? true  // Force with targets: no maneuver table, award on success
                     : spellSuccessCodes.includes(maneuverResult.code)
             );
+            let spellXp = 0;
             if (shouldAwardSpellXp) {
                 const casterLevel = actor.system.attributes?.level?.value ?? 1;
                 const spellLevel = spell.system?.level ?? 1;
                 const xp = ExperiencePointsCalculator.calculateSpellExpPoints(casterLevel, spellLevel);
                 if (xp > 0) {
+                    spellXp = xp;
                     const totalExpActor = parseInt(actor.system.attributes.experience_points.value) + xp;
                     await actor.update({ "system.attributes.experience_points.value": totalExpActor });
                     const breakDown = { maneuver: 0, spell: xp, critical: 0, kill: 0, bonus: 0, misc: 0 };
                     await sendExpMessage(actor, breakDown, xp);
                 }
+            }
+
+            if (game.combat?.started) {
+                CombatHistoryTracker.get().recordSpellCast(actor.id, spell.system?.level ?? 1, spellXp);
             }
 
             // Store RR context for item macro (see Item._executeItemMacro JSDoc; e.g. Dormir V: roll RR per target, apply sleep if failed)

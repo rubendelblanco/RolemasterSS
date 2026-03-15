@@ -649,6 +649,7 @@
         "hp_inflicted": "PV infligidos",
         "hp_received": "PV recibidos",
         "kills": "Bajas",
+        "spells": "Hechizos",
         "rounds": "Rondas",
         "defeated_enemies": "Enemigos derrotados",
         "total": "Total",

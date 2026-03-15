@@ -1000,6 +1000,25 @@ form#rmss-attack-melee-confirmation hr {
     color: #dd5;
 }
 
+.critical-roll-result {
+    margin: 0 0 0.5em 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+}
+
+.critical-roll-result .fa-dice {
+    color: #c41e3a;
+    font-size: 1.2em;
+}
+
+.critical-roll-value {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #c41e3a;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
 .critical-description {
     font-weight: bold;
     font-style: italic;
@@ -2454,12 +2473,13 @@ tr.container-row.over-capacity {
   table-layout: fixed;
 }
 
-.combat-history-table colgroup col:nth-child(1) { width: 22%; }
-.combat-history-table colgroup col:nth-child(2) { width: 14%; }
-.combat-history-table colgroup col:nth-child(3) { width: 14%; }
-.combat-history-table colgroup col:nth-child(4) { width: 12%; }
-.combat-history-table colgroup col:nth-child(5) { width: 12%; }
-.combat-history-table colgroup col:nth-child(6) { width: 26%; }
+.combat-history-table colgroup col:nth-child(1) { width: 18%; }
+.combat-history-table colgroup col:nth-child(2) { width: 12%; }
+.combat-history-table colgroup col:nth-child(3) { width: 12%; }
+.combat-history-table colgroup col:nth-child(4) { width: 10%; }
+.combat-history-table colgroup col:nth-child(5) { width: 10%; }
+.combat-history-table colgroup col:nth-child(6) { width: 22%; }
+.combat-history-table colgroup col:nth-child(7) { width: 16%; }
 
 .combat-history-dialog .character-cell {
   display: flex;
