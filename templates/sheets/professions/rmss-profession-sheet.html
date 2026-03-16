@@ -14,7 +14,9 @@
     <div class="sheet-content sheet-body profession-sheet">
         <div class="tab profession-tab-description" data-group="primary" data-tab="description">
             <div class="form-group">
-                {{editor system.description target="system.description" button=false owner=owner editable=editable}}
+                <div class="description-editor-wrapper {{#unless system.description}}empty-description{{/unless}}">
+                    {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+                </div>
             </div>
         </div>
 

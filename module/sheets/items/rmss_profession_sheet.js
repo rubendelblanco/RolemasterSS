@@ -29,6 +29,7 @@ export default class RMSSProfessionSheet extends ItemSheet {
         const baseData = await super.getData();
         const system = baseData.item.system;
         const config = CONFIG.rmss;
+        const enrichedDescription = await TextEditor.enrichHTML(system.description ?? "", { async: true });
 
         const skillCategories = this._buildSkillCategories(system.skillCategoryCosts || {}, config.skill_categories || {});
         const primeStatsRaw = system.primeStats ?? ["", "", "", ""];
@@ -63,6 +64,7 @@ export default class RMSSProfessionSheet extends ItemSheet {
             editable: this.isEditable,
             item: baseData.item,
             system,
+            enrichedDescription,
             professionBonuses,
             skillDesignations,
             basicSpellLists,
