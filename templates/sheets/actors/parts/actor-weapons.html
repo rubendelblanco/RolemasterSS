@@ -52,6 +52,11 @@
             {{/if}}
         </td>
         <td class="item-controls">
+            {{#unless weapon.system.isNaturalWeapon}}
+            <a class="item-give" title="Give item" data-item-id="{{weapon._id}}">
+                <i class="fas fa-hands-helping"></i>
+            </a>
+            {{/unless}}
             <a class="item-control item-edit" title="Edit Item" data-item-id="{{weapon._id}}">
                 <i class="fas fa-edit"></i>
             </a>
