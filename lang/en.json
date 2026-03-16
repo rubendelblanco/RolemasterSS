@@ -816,6 +816,8 @@
             "table_result": "Table result",
             "spell_fumble": "Spell Fumble!",
             "targets_must_roll": "Targets must roll above",
+            "defender_stunned_rr": "Defender stunned: +20 to RR",
+            "movement_penalty": "Movement penalty",
             "casting_options": "Casting Options",
             "subtlety": "Subtlety",
             "hands": "Hands",

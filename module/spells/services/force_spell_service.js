@@ -6,6 +6,7 @@ import SpellFailureService from "./spell_failure_service.js";
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
 import { sendExpMessage } from "../../chat/chatMessages.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
+import Utils from "../../utils.js";
 
 /**
  * Service to handle spell casting for non-elemental spells (F, P, U, I, E types).
@@ -55,9 +56,22 @@ export default class ForceSpellService {
             return;
         }
 
-        const totalCastingModifier = castingOptions.totalModifier;
+        let totalCastingModifier = castingOptions.totalModifier;
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
         const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0 } = castingOptions;
+
+        // Movement penalty in combat: -1 per 1% of activity dedicated to movement (applies to non-BE, non-DE, non-instant spells)
+        let movementPenalty = 0;
+        const spellType = spell.system?.type ?? "";
+        const needsManeuverRoll = !["BE", "DE", "I"].includes(spellType);
+        if (game.combat?.started && needsManeuverRoll) {
+            const movement = actor.system.attributes?.movement_rate;
+            if (movement?.value > 0) {
+                const moveRatio = movement.current / movement.value;
+                movementPenalty = -Math.round((1 - moveRatio) * 100);
+                totalCastingModifier += movementPenalty;
+            }
+        }
 
         // Find the skill with the same name as the spell list; if none, use 0
         const skill = actor.items.find(i =>
@@ -138,28 +152,34 @@ export default class ForceSpellService {
                     failureResult = await SpellFailureService.rollFailure(
                         spell.system.type,
                         "spectacular_failure", // Base spell fumble = worst case (×3 modifier)
-                        castingModifier
+                        totalCastingModifier
                     );
                     break; // Stop processing targets on fumble
                 }
                 
                 const rrModifier = result;
-                
+
+                // Defender stunned: +20 to RR (target must roll 20 higher to resist)
+                const stunEffect = targetActor ? Utils.getEffectByName(targetActor, "Stunned") : [];
+                const defenderStunned = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
+                const effectiveRRModifier = defenderStunned ? rrModifier - 20 : rrModifier;
+
                 // Calculate final RR using the unified method
                 const finalRR = ResistanceRollService.getFinalRR(
                     casterLevel,
                     targetLevel,
-                    rrModifier
+                    effectiveRRModifier
                 );
-                
+
                 // Format subindices for display
                 const subindexDisplay = Object.values(subindices).join(" / ");
-                
+
                 targetRRs.push({
                     name: target.name,
                     finalRR: finalRR,
                     targetLevel: targetLevel,
                     rrModifier: rrModifier,
+                    defenderStunned,
                     subindex: subindexDisplay,
                     tokenId: target.id,
                     tokenUuid: target.uuid ?? target.document?.uuid ?? null
@@ -177,22 +197,23 @@ export default class ForceSpellService {
                 failureResult = await SpellFailureService.rollFailure(
                     spell.system.type,
                     maneuverResult.code,
-                    castingModifier
+                    totalCastingModifier
                 );
             }
         }
 
-        // Create chat message
+        // Create chat message (use totalCastingModifier so movement penalty is reflected)
         await this._createChatMessage({
             actor,
             spell,
             spellListName,
             skillBonus,
-            castingModifier,
+            castingModifier: totalCastingModifier,
             hitsTaken,
             bleeding,
             stunned,
             penaltyEffect,
+            movementPenalty,
             naturalRoll,
             rollTotal,
             finalResult,
@@ -325,6 +346,7 @@ export default class ForceSpellService {
         bleeding = 0,
         stunned = 0,
         penaltyEffect = 0,
+        movementPenalty = 0,
         naturalRoll,
         rollTotal = null,
         finalResult,
@@ -364,6 +386,7 @@ export default class ForceSpellService {
                     ${bleeding !== 0 ? `<div>🩸 ${game.i18n.localize("rmss.maneuvers.bleeding")}: <strong>${formatMod(bleeding)}</strong></div>` : ''}
                     ${stunned !== 0 ? `<div>😵 ${game.i18n.localize("rmss.maneuvers.stunned")}: <strong>${formatMod(stunned)}</strong></div>` : ''}
                     ${penaltyEffect !== 0 ? `<div>🩹 ${game.i18n.localize("rmss.combat.penalty")}: <strong>${formatMod(Math.min(0, penaltyEffect))}</strong></div>` : ''}
+                    ${movementPenalty !== 0 ? `<div>🏃 ${game.i18n.localize("rmss.spells.movement_penalty")}: <strong>${formatMod(movementPenalty)}</strong></div>` : ''}
                     ` : ''}
                     <div>📈 Total: <strong>${finalResult}</strong></div>
                 </div>
@@ -427,6 +450,9 @@ export default class ForceSpellService {
                 
                 for (const targetRR of targetRRs) {
                     const modDisplay = targetRR.rrModifier >= 0 ? `+${targetRR.rrModifier}` : targetRR.rrModifier;
+                    const stunnedNote = targetRR.defenderStunned
+                        ? ` <span class="spell-rr-stunned">(${game.i18n.localize("rmss.spells.defender_stunned_rr")})</span>`
+                        : "";
                     content += `
                                 <tr>
                                     <td>
@@ -435,7 +461,7 @@ export default class ForceSpellService {
                                     </td>
                                     <td>${targetRR.targetLevel}</td>
                                     <td>${modDisplay}</td>
-                                    <td><strong>${targetRR.finalRR}</strong></td>
+                                    <td><strong>${targetRR.finalRR}</strong>${stunnedNote}</td>
                                 </tr>
                     `;
                 }

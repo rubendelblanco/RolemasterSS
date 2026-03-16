@@ -816,6 +816,8 @@
       "table_result": "Resultado tabla",
       "spell_fumble": "¡Pifió el hechizo!",
       "targets_must_roll": "Objetivos deben superar",
+      "defender_stunned_rr": "Defensor aturdido: +20 a RR",
+      "movement_penalty": "Penalización por movimiento",
       "casting_options": "Opciones de Lanzamiento",
       "subtlety": "Sutileza",
       "hands": "Manos",
