@@ -340,7 +340,55 @@ Subterfugio·Sigilo	2/7
 Técnica/Comercio·General	3/7
 Técnica/Comercio·Profesional	8
 Técnica/Comercio·Vocacional	5/12
-Urbana	3`
+Urbana	3`,
+  Rogue: `Armadura·Ligera	1/1/1
+Armadura·Media	2/2/2
+Armadura·Pesada	3/3/3
+Armas·Categoría1	2/5
+Armas·Categoría2	3/8
+Armas·Categoría3	3/9
+Armas·Categoría4	3/9
+Armas·Categoría5	3/9
+Armas·Categoría6	6
+Armas·Categoría7	6
+Arte·Activo	2/5
+Arte·Pasivo	2/6
+Artes Marciales·Golpes	3/7
+Artes Marciales·Barridos	3/7
+Artes Marciales·Maniobras de Combate	5
+Ataques Especiales	2/7
+Atletismo·Gimnasia	1/5
+Atletismo·Potencia	2/6
+Atletismo·Resistencia	2/5
+Autocontrol	2/9
+Ciencia/Analítica·Básica	3/6
+Ciencia/Analítica·Especializada	12
+Comunicación	3/3/3
+Conocimiento·General	1/3
+Conocimiento·Mágico	4
+Conocimiento·Oscuro	3/7
+Conocimiento·Técnico	2/5
+Defensas Especiales	25
+Desarrollo de Puntos de Poder	12
+Desarrollo Físico	3/9
+Exteriores·Animales	1/5
+Exteriores·Entorno	2/4
+Hechizos Dirigidos	20
+Influencia	2/5
+Maniobras de Combate	4/10
+Manipulación del Poder	12
+Oficios	4/10
+Percepción·Búsqueda	1/5
+Percepción·Perspicacia	2/6
+Percepción·Sentidos	2/6
+Percepción de Poder	7
+Subterfugio·Ataque	4/8
+Subterfugio·Mecánica	2/5
+Subterfugio·Sigilo	1/3
+Técnica/Comercio·General	3/7
+Técnica/Comercio·Profesional	8
+Técnica/Comercio·Vocacional	5/12
+Urbana	1/3`
 };
 
 /** Profession metadata: spellUserType, spellRealm, spellRealm2, img. */
@@ -370,6 +418,12 @@ export const PROFESSION_DEFINITIONS = {
     img: "systems/rmss/assets/default/bonus.svg"
   },
   Monk: {
+    spellUserType: "none",
+    spellRealm: "",
+    spellRealm2: "",
+    img: "systems/rmss/assets/default/bonus.svg"
+  },
+  Rogue: {
     spellUserType: "none",
     spellRealm: "",
     spellRealm2: "",
