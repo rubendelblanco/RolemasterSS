@@ -12,6 +12,11 @@ import { CombatHistoryTracker } from "./combat_history_tracker.js";
 /* ---------------------------------------------
  * Mapping of column results for large creature criticals
  * --------------------------------------------- */
+/** Spell critical types (use large_spell / superlarge_spell for large creatures). */
+const SPELL_CRIT_TYPES = new Set(["heat", "cold", "electricity", "impact", "strikes", "large_spell", "superlarge_spell"]);
+/** Melee critical types (use large_melee / superlarge_melee for large creatures). */
+const MELEE_CRIT_TYPES = new Set(["S", "K", "P", "U", "G", "T", "slash", "krush", "puncture", "unbalance", "grappling", "tiny", "brawl", "subdue", "sweeps", "large_melee", "superlarge_melee"]);
+
 const CRITICAL_COLUMN_MAP = {
     large_spell: { normal: "A", default: "B" },
     superlarge_spell: { normal: "A", default: "B" },
@@ -289,18 +294,37 @@ export class RMSSWeaponCriticalManager {
                 else if (severity === "B") modifier -= 25;
                 else severity = S[Math.max(0, S.indexOf(severity) - 1)];
             }
+
+            // Default critical table from defender: la → large, sl → superlarge
+            const criticalTable = enemy.system.attributes.critical_codes?.critical_table ?? "-";
+            if (criticalTable === "la" || criticalTable === "sl") {
+                const isSpell = SPELL_CRIT_TYPES.has(critType);
+                const isMelee = MELEE_CRIT_TYPES.has(critType);
+                if (isSpell) {
+                    critType = criticalTable === "la" ? "large_spell" : "superlarge_spell";
+                } else if (isMelee) {
+                    critType = criticalTable === "la" ? "large_melee" : "superlarge_melee";
+                }
+            }
         }
+
+        const largeSubtypes = rmss.large_critical_types[critType] || [];
+        const subcritdict = largeSubtypes.length > 0
+            ? Object.fromEntries(largeSubtypes.map(s => [s, s]))
+            : (CONFIG.rmss.criticalSubtypes ?? {});
+        const subCritType = largeSubtypes.length > 0 && largeSubtypes.includes("normal") ? "normal" : (Object.keys(subcritdict)[0] ?? "");
 
         const initialContext = {
             enemy: enemy,
             damage: damage,
             severity: severity,
             critType: critType,
+            subCritType,
             critTables: await game.rmss?.attackTableIndex || [],
-            subcritdict: CONFIG.rmss.criticalSubtypes,
+            subcritdict,
             critDict: CONFIG.rmss.criticalDictionary,
             modifier: modifier,
-            criticalHasSubtypes: (rmss.large_critical_types[critType] || []).length > 0,
+            criticalHasSubtypes: largeSubtypes.length > 0,
         };
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-critical.hbs", initialContext);
 

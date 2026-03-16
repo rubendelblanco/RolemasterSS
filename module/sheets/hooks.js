@@ -6,7 +6,7 @@ Hooks.on("createToken", async (tokenDocument) => {
 
 Hooks.on("createActor", async (actor) => {
     if (actor.type === "character") {
-        await actor.update({ "token.actorLink": true });
+        await actor.update({ prototypeToken: { actorLink: true } });
     }
 });
 

@@ -46,7 +46,7 @@
             <label>{{ localize "rmss.combat.critical_subtype" }}</label>
             <select id="critical-subtype">
                 {{#each subcritdict}}
-                <option value="{{@key}}" {{#if (eq @key ../crittype)}}selected{{/if}}>{{this}}</option>
+                <option value="{{@key}}" {{#if (eq @key ../subCritType)}}selected{{/if}}>{{this}}</option>
                 {{/each}}
             </select>
         </div>

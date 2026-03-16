@@ -2011,6 +2011,15 @@ tr.container-row.over-capacity {
 /* ================================
    PROFESSION SHEET
    ================================ */
+/* Icon zoom: expand downward, stay above other content */
+.sheet.profession .sheet-header .actor-icon img {
+    transform-origin: left top;
+}
+.sheet.profession .sheet-header .actor-icon:hover {
+    z-index: 10000;
+    position: relative;
+}
+
 .profession-sheet .prime-stats-grid {
     display: flex;
     gap: 8px;
