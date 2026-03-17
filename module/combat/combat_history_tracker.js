@@ -1,17 +1,18 @@
 /**
  * Tracks combat statistics per player character during an encounter.
  * On combat end, shows a summary: crits inflicted/received, HP inflicted/received, kills.
+ * Stats are persisted in combat flags for multiplayer sync.
  *
  * @author RMSS
  */
 import Utils from "../utils.js";
+import { socket } from "../../rmss.js";
 
 export class CombatHistoryTracker {
     static instance = null;
 
     constructor() {
         if (CombatHistoryTracker.instance) return CombatHistoryTracker.instance;
-        this._combatStats = new Map(); // combatId -> Map<actorId, Stats>
         this._lastAttackerByDefender = new Map(); // defenderId -> attackerId (for kill attribution)
         this._defendersKilledByDamage = new Set(); // defenderIds already counted via recordDamage (avoid double-count in hook)
         CombatHistoryTracker.instance = this;
@@ -24,36 +25,17 @@ export class CombatHistoryTracker {
         return CombatHistoryTracker.instance;
     }
 
-    _ensureCombat(combatId) {
-        if (!this._combatStats.has(combatId)) {
-            this._combatStats.set(combatId, new Map());
-        }
-        return this._combatStats.get(combatId);
-    }
-
-    _ensureActorStats(combatMap, actorId) {
-        if (!combatMap.has(actorId)) {
-            combatMap.set(actorId, {
-                critsInflicted: 0,
-                critsReceived: 0,
-                hpInflicted: 0,
-                hpReceived: 0,
-                kills: 0,
-                hpByDefender: {},      // defenderId -> total HP inflicted
-                hpFromAttacker: {},    // attackerId -> total HP received
-                critsBySeverityInflicted: {},  // E -> 2, A -> 1
-                critsBySeverityReceived: {},
-                killsList: [],         // { defenderId, defenderName, attackerId }
-                spellsCast: 0,
-                ppSpent: 0,
-                spellXpGained: 0
-            });
-        }
-        return combatMap.get(actorId);
+    _isEnabled() {
+        return game.settings.get("rmss", "enableCombatHistoryTracker") === true;
     }
 
     _isPC(actorId) {
         return !!Utils.isAPC(actorId);
+    }
+
+    _record(op, payload) {
+        if (!this._isEnabled() || !game.combat?.id) return;
+        socket.executeAsGM("recordCombatStat", game.combat.id, op, payload).catch(() => {});
     }
 
     /**
@@ -66,28 +48,15 @@ export class CombatHistoryTracker {
      */
     recordDamage(attackerId, defenderId, amount, defenderDied = false) {
         if (!game.combat?.id) return;
-        const combatId = game.combat.id;
-        const combatMap = this._ensureCombat(combatId);
 
         this._lastAttackerByDefender.set(defenderId, attackerId);
 
-        const attackerStats = this._ensureActorStats(combatMap, attackerId);
-        const defenderStats = this._ensureActorStats(combatMap, defenderId);
-
-        if (this._isPC(attackerId)) {
-            attackerStats.hpInflicted += amount;
-            attackerStats.hpByDefender[defenderId] = (attackerStats.hpByDefender[defenderId] || 0) + amount;
-        }
-        if (this._isPC(defenderId)) {
-            defenderStats.hpReceived += amount;
-            defenderStats.hpFromAttacker[attackerId] = (defenderStats.hpFromAttacker[attackerId] || 0) + amount;
+        if (this._isPC(attackerId) || this._isPC(defenderId)) {
+            this._record("damage", { attackerId, defenderId, amount, defenderDied });
         }
 
         if (defenderDied && this._isPC(attackerId)) {
-            attackerStats.kills += 1;
-            const defenderName = game.actors.get(defenderId)?.name ?? "?";
-            attackerStats.killsList.push({ defenderId, defenderName, attackerId });
-            this._defendersKilledByDamage.add(defenderId); // avoid double-count when updateCombatant fires
+            this._defendersKilledByDamage.add(defenderId);
         }
     }
 
@@ -97,24 +66,9 @@ export class CombatHistoryTracker {
      */
     recordCritical(attackerId, defenderId, severity = null) {
         if (!game.combat?.id) return;
-        const combatMap = this._ensureCombat(game.combat.id);
 
-        const attackerStats = this._ensureActorStats(combatMap, attackerId);
-        const defenderStats = this._ensureActorStats(combatMap, defenderId);
-
-        const sev = severity && /^[A-E]$/i.test(severity) ? severity.toUpperCase() : null;
-
-        if (this._isPC(attackerId)) {
-            attackerStats.critsInflicted += 1;
-            if (sev) {
-                attackerStats.critsBySeverityInflicted[sev] = (attackerStats.critsBySeverityInflicted[sev] || 0) + 1;
-            }
-        }
-        if (this._isPC(defenderId)) {
-            defenderStats.critsReceived += 1;
-            if (sev) {
-                defenderStats.critsBySeverityReceived[sev] = (defenderStats.critsBySeverityReceived[sev] || 0) + 1;
-            }
+        if (this._isPC(attackerId) || this._isPC(defenderId)) {
+            this._record("critical", { attackerId, defenderId, severity });
         }
     }
 
@@ -123,12 +77,9 @@ export class CombatHistoryTracker {
      */
     recordKill(attackerId, defenderId) {
         if (!game.combat?.id) return;
-        const combatMap = this._ensureCombat(game.combat.id);
-        const attackerStats = this._ensureActorStats(combatMap, attackerId);
+
         if (this._isPC(attackerId)) {
-            attackerStats.kills += 1;
-            const defenderName = game.actors.get(defenderId)?.name ?? "?";
-            attackerStats.killsList.push({ defenderId, defenderName, attackerId });
+            this._record("kill", { attackerId, defenderId });
         }
         this._lastAttackerByDefender.delete(defenderId);
     }
@@ -141,11 +92,8 @@ export class CombatHistoryTracker {
      */
     recordSpellCast(actorId, spellLevel, xpAwarded = 0) {
         if (!game.combat?.id || !this._isPC(actorId)) return;
-        const combatMap = this._ensureCombat(game.combat.id);
-        const stats = this._ensureActorStats(combatMap, actorId);
-        stats.spellsCast = (stats.spellsCast || 0) + 1;
-        stats.ppSpent = (stats.ppSpent || 0) + (spellLevel || 0);
-        stats.spellXpGained = (stats.spellXpGained || 0) + (xpAwarded || 0);
+
+        this._record("spell", { actorId, spellLevel, xpAwarded: xpAwarded || 0 });
     }
 
     /**
@@ -160,17 +108,16 @@ export class CombatHistoryTracker {
      */
     onCombatStart(combat) {
         if (!combat?.id) return;
-        this._ensureCombat(combat.id);
+        // No-op: stats are now in combat flags
     }
 
     /**
-     * Get stats for combat and clear. Returns Map<actorId, Stats> for PC combatants.
+     * Get stats from combat flags. Returns Map<actorId, Stats> for display.
+     * @param {Combat} combat - The combat document (before it is deleted)
+     * @returns {Map<string, object>}
      */
-    getAndClearStats(combatId) {
-        const combatMap = this._combatStats.get(combatId);
-        this._combatStats.delete(combatId);
-        this._lastAttackerByDefender.clear();
-        this._defendersKilledByDamage.clear();
-        return combatMap ?? new Map();
+    getStatsFromCombat(combat) {
+        const raw = combat?.getFlag("rmss", "combatStats") || {};
+        return new Map(Object.entries(raw));
     }
 }

@@ -80,6 +80,77 @@ Hooks.once("socketlib.ready", () => {
   socket.register("chooseCriticalOption", RMSSWeaponCriticalManager.chooseCriticalOption);
   socket.register("updateActorHits", RMSSWeaponCriticalManager.updateActorHits);
   socket.register("applyCriticalToEnemy", RMSSWeaponCriticalManager.applyCriticalToEnemy);
+  socket.register("recordCombatStat", async (combatId, op, payload) => {
+    const combat = game.combats.get(combatId);
+    if (!combat) return;
+    const current = combat.getFlag("rmss", "combatStats") || {};
+    const ensure = (id) => {
+      if (!current[id]) {
+        current[id] = {
+          critsInflicted: 0, critsReceived: 0, hpInflicted: 0, hpReceived: 0, kills: 0,
+          hpByDefender: {}, hpFromAttacker: {}, critsBySeverityInflicted: {}, critsBySeverityReceived: {},
+          killsList: [], spellsCast: 0, ppSpent: 0, spellXpGained: 0
+        };
+      }
+      return current[id];
+    };
+    if (op === "damage") {
+      const { attackerId, defenderId, amount, defenderDied } = payload;
+      if (attackerId) {
+        const s = ensure(attackerId);
+        s.hpInflicted = (s.hpInflicted || 0) + amount;
+        s.hpByDefender = s.hpByDefender || {};
+        s.hpByDefender[defenderId] = (s.hpByDefender[defenderId] || 0) + amount;
+        if (defenderDied) {
+          s.kills = (s.kills || 0) + 1;
+          s.killsList = s.killsList || [];
+          s.killsList.push({ defenderId, defenderName: game.actors.get(defenderId)?.name ?? "?", attackerId });
+        }
+      }
+      if (defenderId) {
+        const s = ensure(defenderId);
+        s.hpReceived = (s.hpReceived || 0) + amount;
+        s.hpFromAttacker = s.hpFromAttacker || {};
+        s.hpFromAttacker[attackerId] = (s.hpFromAttacker[attackerId] || 0) + amount;
+      }
+    } else if (op === "critical") {
+      const { attackerId, defenderId, severity } = payload;
+      const sev = severity && /^[A-E]$/i.test(severity) ? severity.toUpperCase() : null;
+      if (attackerId) {
+        const s = ensure(attackerId);
+        s.critsInflicted = (s.critsInflicted || 0) + 1;
+        if (sev) {
+          s.critsBySeverityInflicted = s.critsBySeverityInflicted || {};
+          s.critsBySeverityInflicted[sev] = (s.critsBySeverityInflicted[sev] || 0) + 1;
+        }
+      }
+      if (defenderId) {
+        const s = ensure(defenderId);
+        s.critsReceived = (s.critsReceived || 0) + 1;
+        if (sev) {
+          s.critsBySeverityReceived = s.critsBySeverityReceived || {};
+          s.critsBySeverityReceived[sev] = (s.critsBySeverityReceived[sev] || 0) + 1;
+        }
+      }
+    } else if (op === "kill") {
+      const { attackerId, defenderId } = payload;
+      if (attackerId) {
+        const s = ensure(attackerId);
+        s.kills = (s.kills || 0) + 1;
+        s.killsList = s.killsList || [];
+        s.killsList.push({ defenderId, defenderName: game.actors.get(defenderId)?.name ?? "?", attackerId });
+      }
+    } else if (op === "spell") {
+      const { actorId, spellLevel, xpAwarded } = payload;
+      if (actorId) {
+        const s = ensure(actorId);
+        s.spellsCast = (s.spellsCast || 0) + 1;
+        s.ppSpent = (s.ppSpent || 0) + (spellLevel || 0);
+        s.spellXpGained = (s.spellXpGained || 0) + (xpAwarded || 0);
+      }
+    }
+    await combat.setFlag("rmss", "combatStats", foundry.utils.deepClone(current));
+  });
 });
 
 Hooks.once("ready", async function() {
@@ -123,6 +194,15 @@ Hooks.once("init", function () {
       console.log(`Critical table language changed to: ${value}`);
       ui.notifications.info(`Critical table language changed to: ${value.toUpperCase()}.`);
     }
+  });
+
+  game.settings.register("rmss", "enableCombatHistoryTracker", {
+    name: "Enable Combat History Tracker",
+    hint: "Show combat statistics (crits, HP, kills, spells) at the end of each encounter.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: true
   });
 
   // --- Register the system setting for maximum Fate Points ---

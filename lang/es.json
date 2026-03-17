@@ -642,6 +642,13 @@
       "roll_rr": "Tirar RR",
       "must_roll_rr": "debe hacer una tirada de resistencia",
       "effects_title": "Efectos RMSS",
+      "who_defeated": {
+        "dialog_title": "¿Quién derrotó?",
+        "title": "¿Quién derrotó a {name}?",
+        "label": "Derrotado por",
+        "other": "Otro",
+        "confirm": "Confirmar"
+      },
       "history": {
         "title": "Resumen del combate",
         "character": "Personaje",

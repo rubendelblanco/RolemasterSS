@@ -642,6 +642,13 @@
             "roll_rr": "Roll RR",
             "must_roll_rr": "must make a resistance roll",
             "effects_title": "RMSS Effects",
+            "who_defeated": {
+                "dialog_title": "Who defeated?",
+                "title": "Who defeated {name}?",
+                "label": "Defeated by",
+                "other": "Other",
+                "confirm": "Confirm"
+            },
             "history": {
                 "title": "Combat Summary",
                 "character": "Character",

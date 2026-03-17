@@ -204,8 +204,10 @@ export class CombatEndManager {
     }
 
     async _showCombatHistory(combat) {
+        if (!game.settings.get("rmss", "enableCombatHistoryTracker")) return;
+
         const tracker = CombatHistoryTracker.get();
-        const statsMap = tracker.getAndClearStats(combat.id);
+        const statsMap = tracker.getStatsFromCombat(combat);
         const pcCombatants = combat.combatants.filter(c => c.actor?.type === "character");
         if (pcCombatants.length === 0) return;
 

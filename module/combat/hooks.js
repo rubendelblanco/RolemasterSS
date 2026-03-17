@@ -1,6 +1,8 @@
 import { RMSSCombat } from "./rmss_combat.js";
 import { RMSSWeaponSkillManager } from "./rmss_weapon_skill_manager.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
+import { RMSSEffectApplier } from "./rmss_effect_applier.js";
+import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_manager.js";
 
 export function registerCombatHooks() {
     Hooks.on("hoverToken", (token, hovered) => {
@@ -136,8 +138,8 @@ export function registerCombatHooks() {
         await RMSSWeaponSkillManager.handleAttack(item.actor, enemy.actor, item, attackerToken, defenderToken);
     });
 
-    // When GM manually toggles Defeated on a combatant, record the kill for combat history
-    Hooks.on("updateCombatant", (combatant, change) => {
+    // When GM manually toggles Defeated on a combatant, show "Who defeated?" dialog
+    Hooks.on("updateCombatant", async (combatant, change) => {
         if (!("defeated" in change) || !change.defeated) return;
         if (!game.combat?.id || combatant.parent?.id !== game.combat.id) return;
 
@@ -147,11 +149,99 @@ export function registerCombatHooks() {
         const tracker = CombatHistoryTracker.get();
         if (tracker._defendersKilledByDamage.has(defenderId)) {
             tracker._defendersKilledByDamage.delete(defenderId);
-            return; // already counted via recordDamage
+            return; // already counted via recordDamage, XP already awarded
         }
 
-        const attackerId = tracker.getLastAttacker(defenderId);
-        if (attackerId) tracker.recordKill(attackerId, defenderId);
+        const defenderActor = combatant.actor;
+        const defenderName = defenderActor?.name ?? "?";
+        const token = combatant.token;
+        if (!token) return;
+
+        const combat = combatant.parent;
+        const pcCombatants = combat.combatants.filter(c => c.actor?.type === "character");
+        const options = pcCombatants.map(c => ({
+            value: c.actor?.id ?? "",
+            label: c.actor?.name ?? c.name ?? "?"
+        })).filter(o => o.value);
+        options.push({ value: "__other__", label: game.i18n.localize("rmss.combat.who_defeated.other") });
+
+        const lastAttackerId = tracker.getLastAttacker(defenderId);
+        const defaultVal = (lastAttackerId && options.some(o => o.value === lastAttackerId))
+            ? lastAttackerId
+            : (options[0]?.value ?? "__other__");
+
+        const content = `
+            <form class="who-defeated-dialog">
+                <p>${game.i18n.format("rmss.combat.who_defeated.title", { name: defenderName })}</p>
+                <div class="form-group">
+                    <label>${game.i18n.localize("rmss.combat.who_defeated.label")}</label>
+                    <select name="defeater" data-dtype="String">
+                        ${options.map(o => `<option value="${o.value}" ${o.value === defaultVal ? "selected" : ""}>${o.label}</option>`).join("")}
+                    </select>
+                </div>
+            </form>
+        `;
+
+        const doMarkAsDead = async (expData) => {
+            await RMSSEffectApplier._markTokenAsDead(token, expData);
+        };
+
+        return new Promise((resolve) => {
+            new Dialog({
+                title: game.i18n.localize("rmss.combat.who_defeated.dialog_title"),
+                content,
+                default: "confirm",
+                buttons: {
+                    confirm: {
+                        icon: "<i class='fas fa-check'></i>",
+                        label: game.i18n.localize("rmss.combat.who_defeated.confirm"),
+                        callback: async (html) => {
+                            const selected = html.find("[name=defeater]").val();
+                            if (selected && selected !== "__other__") {
+                                const killer = game.actors.get(selected);
+                                if (killer) {
+                                    if (game.settings.get("rmss", "enableCombatHistoryTracker")) {
+                                        tracker.recordKill(selected, defenderId);
+                                    }
+                                    const killExp = ExperiencePointsCalculator.calculateKillExpPoints(
+                                        defenderActor?.system?.attributes?.level?.value ?? 0,
+                                        killer.system?.attributes?.level?.value ?? 1
+                                    );
+                                    const code = defenderActor?.system?.bonus_experience ?? null;
+                                    const bonusExp = ExperiencePointsCalculator.calculateBonusExpPoints(
+                                        killer.system?.attributes?.level?.value ?? 1,
+                                        code
+                                    );
+                                    const totalAmountExp = killExp + bonusExp;
+                                    const totalExpActor = parseInt(killer.system?.attributes?.experience_points?.value || 0) + totalAmountExp;
+                                    await killer.update({ "system.attributes.experience_points.value": totalExpActor });
+                                    const expData = {
+                                        actorName: killer.name,
+                                        actorId: killer.id,
+                                        expBreakdown: { kill: killExp, bonus: bonusExp },
+                                        expGained: totalAmountExp
+                                    };
+                                    await doMarkAsDead(expData);
+                                } else {
+                                    await doMarkAsDead(null);
+                                }
+                            } else {
+                                await doMarkAsDead(null);
+                            }
+                            resolve();
+                        }
+                    },
+                    cancel: {
+                        icon: "<i class='fas fa-times'></i>",
+                        label: game.i18n.localize("rmss.combat.cancel"),
+                        callback: async () => {
+                            await doMarkAsDead(null);
+                            resolve();
+                        }
+                    }
+                }
+            }, { width: 400 }).render(true);
+        });
     });
 
     Hooks.on("updateCombat", async (combat, update) => {
