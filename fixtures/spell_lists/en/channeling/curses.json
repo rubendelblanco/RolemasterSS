@@ -1,0 +1,377 @@
+{
+  "name": "Curses",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Evil Channeling 10.1 - Curses. Spells for detecting and inflicting various curses upon targets. See Spell Law Section 15.21 (dispelling curses), 15.24 (Evil spell lists).",
+    "spells": [
+      {
+        "name": "01. Detect Curse",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detects a curse on an item or person."
+        }
+      },
+      {
+        "name": "02. Nightvision Curse",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target can see at night as if it were day, but he can only see in the day as if it were the darkest night."
+        }
+      },
+      {
+        "name": "04. Ulcer Curse",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target can only eat bread or dairy products. Anything else will aggravate his ulcer (unless he makes an RR) and he will be incapacitated for 1-10 hours."
+        }
+      },
+      {
+        "name": "05. Curse of Dake",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target cannot move faster than a walking pace on his own (he may be carried or ride at a faster pace)."
+        }
+      },
+      {
+        "name": "06. Green Tongue",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target can only eat green leaves. Eating other food incapacitates him (if he fails a RR) for 1-10 hrs."
+        }
+      },
+      {
+        "name": "07. Sea Curse",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target will never voluntarily swim, enter any water (even a bath), or get into a boat."
+        }
+      },
+      {
+        "name": "08. Curse of Furd",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "All of target's fumble/failure ranges (weapon attacks, spell casting, and skill resolution) are doubled."
+        }
+      },
+      {
+        "name": "09. Excommunication",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "1 day/10 fail",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target loses all Channeling power points (PPs). He cannot cast any Channeling spells (even through bonus items). A hybrid spell user of Channeling (e.g., Sorcerer or Healer) would only lose half his PPs. A character suffering from this curse suffers no exhaustion for the lost PPs."
+        }
+      },
+      {
+        "name": "10. Learning of Mins",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target can only speak and write his native language."
+        }
+      },
+      {
+        "name": "11. Curse of Shar Bu",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is sterile and impotent."
+        }
+      },
+      {
+        "name": "12. Power Leech",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target loses 1 power point every 10 min. Power points are recovered in a normal fashion (usually a sleep period), but begin to leak away as soon as they are regained."
+        }
+      },
+      {
+        "name": "13. Beauty of Arraer",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target's appearance is raised to the maximum possible (and then some). If anyone sees the uncovered face of the target or gets within 3' (and is of the opposite sexual persuasion and fails a RR), they will attempt to possess and carry off the target (they will fight if necessary). Certain persons will get modifications to their RRs (eunuchs, hedonists, curties, morawoses, essceecees, icers, etc.)."
+        }
+      },
+      {
+        "name": "14. Clotting Curse",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target's blood will coagulate and create a blood clot around the area of any cut or wound (bleeding at least one hit per round). The clot will cut off circulation to the area fed by the given vessel and target will lose the affected body section after 2-20 minutes due to system damage (e.g., a thigh wound might ultimately mean loss of leg; a neck wound would be fatal)."
+        }
+      },
+      {
+        "name": "15. Ugliness of Orn",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target's appearance is lowered to 1. If a person sees the uncovered face of the target (or gets within 3'), he must make a RR. If he fails by 51 or more, he attacks the target. Even if the viewer is successful in his RR, he will experience extreme distaste (i.e., disdain) for the target."
+        }
+      },
+      {
+        "name": "16. Curse of Oli",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target will lie 50% of the time, regardless of the topic."
+        }
+      },
+      {
+        "name": "18. Curse of Penth",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target may only speak the truth."
+        }
+      },
+      {
+        "name": "19. Rewounding",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Once per day (at a random time), the target will experience the pain from an old wound. For new characters, treat this as an 'A' Krush critical strike 50% of the time and a d10 concussion hits the other 50% of the time. Alternatively, the GM can re-open a specific old wound."
+        }
+      },
+      {
+        "name": "20. Running Death",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target will move at fastest possible pace until he dies of exhaustion. He may be restrained, but whenever freed, he will begin to run again."
+        }
+      },
+      {
+        "name": "25. Friendslayer",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Every time the target is in a combat situation near friend(s) who are within 10', there is a 10% chance each round (non-cumulative) that he will attack one of his friends (random determination) and attempt to kill him. For these purposes a \"friend\" is any companion or associate."
+        }
+      },
+      {
+        "name": "30. Excommunication True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Excommunication except effect is permanent until removed."
+        }
+      },
+      {
+        "name": "50. Dark Thoughts",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "special",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target may not attack any \"evil\" creature and the target learns all evil languages and the target will obey the commands of any evil person who is 10 or more levels higher than himself."
+        }
+      }
+    ]
+  }
+}

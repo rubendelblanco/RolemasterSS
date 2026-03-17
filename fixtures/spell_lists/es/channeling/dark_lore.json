@@ -1,0 +1,343 @@
+{
+  "name": "Saber Oscuro",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Canalización Malvada 10.3 - Saber Oscuro. Hechizos de detección de bondad, bendiciones, emociones, y conocimiento sobre objetos de oscuridad, mal, luz y bondad. Ver Spell Law Sección 15.2 (Bendición, Mal, Bien, Sagrado, De Oscuridad, De Luz), 15.16 (sueños y simbología), 15.21 (maldiciones), 15.24 (listas de hechizos malvados).",
+    "spells": [
+      {
+        "name": "01. Pensamientos Posteriores",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "lanzador",
+          "duration": "—",
+          "range": "sí mismo",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador un recuerdo prácticamente total de cualquier conversación o escrito que encontró en un período de días igual a su nivel."
+        }
+      },
+      {
+        "name": "02. Detectar Bien",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detecta el \"bien verdadero\" en un objetivo animado o inanimado. El lanzador puede concentrarse en un área de 5' de radio cada ronda."
+        }
+      },
+      {
+        "name": "03. Detectar Bendición",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Bien, excepto que detecta bendiciones en un objetivo animado o inanimado."
+        }
+      },
+      {
+        "name": "04. Detectar Emoción",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detecta emociones extremas en la mente viva de un objetivo, o en un objeto forjado bajo emoción extrema. El lanzador puede concentrarse en un área de 5' de radio cada ronda."
+        }
+      },
+      {
+        "name": "05. Saber Oscuro I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede determinar el punto de origen y naturaleza de cualquier objeto \"de oscuridad\" o \"de mal.\" El lanzador no aprenderá capacidades específicas."
+        }
+      },
+      {
+        "name": "06. Detecciones Sagradas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Bien, excepto que detecta objetos \"sagrados\" y el área de detección es de 10' de radio."
+        }
+      },
+      {
+        "name": "08. Sueño I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "lanzador",
+          "duration": "sueño",
+          "range": "sí mismo",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador tiene un sueño relacionado con un tema decidido justo antes de retirarse; limitado a una vez por noche. El lanzador debe dormir un mínimo de cuatro horas."
+        }
+      },
+      {
+        "name": "10. Relatos de Bendición",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 bendición",
+          "duration": "—",
+          "range": "sí mismo",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede determinar el autor, origen e historia completa de una bendición dada. También aprende la naturaleza y poderes específicos."
+        }
+      },
+      {
+        "name": "11. Saber Oscuro II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber Oscuro I, excepto que el lanzador puede determinar el punto de origen y naturaleza de 2 objetos de oscuridad o mal, o puede determinar la naturaleza, punto de origen y significado exacto de 1 objeto de oscuridad o mal."
+        }
+      },
+      {
+        "name": "12. Sueños II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "lanzador",
+          "duration": "sueño",
+          "range": "sí mismo",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sueño I, excepto que el límite es 2 sueños por noche sobre temas diferentes."
+        }
+      },
+      {
+        "name": "13. Análisis de Emoción",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede determinar la naturaleza y origen de extremos activos de emoción encontrados en cualquier objetivo (inanimado o animado). El grado y otros detalles de dicha emoción también pueden obtenerse."
+        }
+      },
+      {
+        "name": "14. Saber Oscuro III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber Oscuro I, excepto que el lanzador puede determinar el punto de origen y naturaleza de 3 objetos de mal u oscuridad, o puede determinar la edad, punto de origen, naturaleza, capacidades específicas y el nombre del creador de 1 objeto de mal u oscuridad. El lanzador también aprende las capacidades específicas del objeto."
+        }
+      },
+      {
+        "name": "15. Sueños III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "lanzador",
+          "duration": "sueño",
+          "range": "sí mismo",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sueño I, excepto que el límite es 3 sueños por noche sobre temas diferentes."
+        }
+      },
+      {
+        "name": "16. Saber de Luz I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber Oscuro I, excepto que el lanzador puede determinar el punto de origen y naturaleza de cualquier objeto \"de luz\" o \"de bien.\""
+        }
+      },
+      {
+        "name": "19. Saber de Luz II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber de Luz I, excepto que el lanzador puede determinar el punto de origen y naturaleza de 2 objetos de bien o luz, o puede determinar la naturaleza, punto de origen y significado exacto de 1 objeto de luz o bien."
+        }
+      },
+      {
+        "name": "20. Saber Negro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede determinar la naturaleza exacta, origen, propósito e historia de cualquier objeto de mal u oscuridad; permite al lanzador visualizar a todos los que han poseído el objeto."
+        }
+      },
+      {
+        "name": "25. Saber de Luz III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber de Luz I, excepto que el lanzador puede determinar el punto de origen y naturaleza de 3 objetos de bien o luz, o puede determinar la edad, punto de origen, naturaleza, capacidades específicas y el nombre del creador de 1 objeto de bien o luz. El lanzador también aprende las capacidades específicas del objeto."
+        }
+      },
+      {
+        "name": "30. Saber Blanco",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber Negro, excepto que solo puede usarse en un objeto \"de oscuridad\" o \"de mal.\""
+        }
+      },
+      {
+        "name": "50. Maestría del Saber Negro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber Negro, excepto que el lanzador puede obtener la información de todos los objetos de mal u oscuridad dentro de 100'."
+        }
+      }
+    ]
+  }
+}

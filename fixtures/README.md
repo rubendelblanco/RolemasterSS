@@ -46,6 +46,36 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 - `spell_lists/en/channeling/nerve_law.json` – 18 hechizos de nervios, cerebro, parálisis, psicosis, preservación y reimplantación de miembros (inglés)
 - `spell_lists/es/channeling/nerve_law.json` – Ley del Nervio, traducida al español
 
+### Dark Channels (Closed Channeling, Evil)
+
+- `spell_lists/en/channeling/dark_channels.json` – 17 hechizos de aturdimiento, sueño, ceguera, canalización de hechizos a otros, destrucción del alma y comunión con deidades malvadas (inglés)
+- `spell_lists/es/channeling/dark_channels.json` – Canales Oscuros, traducida al español
+
+### Curses (Evil Channeling 10.1)
+
+- `spell_lists/en/channeling/curses.json` – 22 hechizos de maldiciones: detección, visión nocturna invertida, úlcera, restricciones de movimiento/alimentación, excomunión, esterilidad, sangría de PP, belleza/fealdad extrema, coagulación, mentiras/verdad, reabrir heridas, muerte por agotamiento, matar amigos, pensamientos oscuros (inglés)
+- `spell_lists/es/channeling/curses.json` – Maldiciones, traducida al español
+
+### Dark Lore (Evil Channeling 10.3)
+
+- `spell_lists/en/channeling/dark_lore.json` – 19 hechizos de detección (bien, bendiciones, emociones, sagrado), saber sobre objetos de oscuridad/luz, sueños proféticos y análisis de bendiciones (inglés)
+- `spell_lists/es/channeling/dark_lore.json` – Saber Oscuro, traducida al español
+
+### Disease (Evil Channeling 10.4)
+
+- `spell_lists/en/channeling/disease.json` – 22 hechizos de enfermedades: resfriado, daltonismo, pérdida de sentidos, pudrición de lengua, asma, lepra, alergias, hemofilia, malaria, epilepsia, neumonía, portadores contagiosos, elefantiasis, leucemia, rabia, peste (inglés)
+- `spell_lists/es/channeling/disease.json` – Enfermedad, traducida al español
+
+### Necromancy (Evil Channeling 10.5)
+
+- `spell_lists/en/channeling/necromancy.json` – 21 hechizos de animar cadáveres, crear no muertos (Clase I–V), controlar no muertos, maestría, ordenar, y Ritual de la Eternidad Negra (Lich) (inglés)
+- `spell_lists/es/channeling/necromancy.json` – Nigromancia, traducida al español
+
+### Wounding (Evil Channeling 10.6)
+
+- `spell_lists/en/channeling/wounding.json` – 21 hechizos táctiles (2'): heridas, calambres, sangrado, daño sensorial, fracturas, parálisis, drenar alma y energía (inglés)
+- `spell_lists/es/channeling/wounding.json` – Heridas, traducida al español
+
 ### Druidstaff (Druid Base List 3.23)
 
 - `spell_lists/en/channeling/druidstaff.json` – 23 hechizos para crear y mejorar el Bastón del Druida, armas orgánicas y habilidades druídicas (inglés)
@@ -259,7 +289,7 @@ const FILES_BY_FOLDER = {
     "lofty_bridge", "rapid_ways", "shield_mastery", "spell_enhancement",
     "spell_reins", "spirit_mastery"
   ],
-  channeling: ["concussion_ways"],
+  channeling: ["concussion_ways", "dark_channels", "curses", "dark_lore", "disease", "necromancy", "wounding"],
   arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"]
 };
 
@@ -317,3 +347,9 @@ Los archivos siguen la estructura de Item de Foundry para `spell_list`:
 - **Power Lore**: Magehunter Base List 13.6.4
 - **Spell Protection**: Magehunter Base List 13.6.5
 - **Spell Tracker**: Magehunter Base List 13.6.6
+- **Dark Channels**: Spell Law, Closed Channeling (Evil), Section 15.23 (Black Channels), 15.24 (Evil spell lists)
+- **Curses**: Spell Law, Evil Channeling 10.1, Section 15.21 (dispelling curses), 15.24 (Evil spell lists)
+- **Dark Lore**: Spell Law, Evil Channeling 10.3, Section 15.2, 15.16 (dreams), 15.21, 15.24 (Evil spell lists)
+- **Disease**: Spell Law, Evil Channeling 10.4, Section 15.24 (Evil spell lists)
+- **Necromancy**: Spell Law, Evil Channeling 10.5, Section 15.24 (Evil spell lists)
+- **Wounding**: Spell Law, Evil Channeling 10.6, Section 15.24 (Evil spell lists)

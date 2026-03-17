@@ -1,0 +1,377 @@
+{
+  "name": "Nigromancia",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Canalización Malvada 10.5 - Nigromancia. Hechizos para animar cadáveres, crear no muertos, controlar no muertos y el Ritual de la Eternidad Negra (transformación en Lich). Los no muertos se clasifican I–V y por encima de V. Ver Criaturas y Monstruos para la clasificación. Ver Spell Law Sección 15.24 (listas de hechizos malvados).",
+    "spells": [
+      {
+        "name": "01. Animar Muerto I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 cadáver",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede hacer que cualquier cadáver (dentro del 50% de su propia masa) se levante y se mueva. Debe concentrarse para que el cuerpo actúe; si deja de concentrarse, el cuerpo quedará inmóvil. El cuerpo puede maniobrarse con modificador -25 y puede hacer melé con OB -20. El cuerpo no puede llevar muerto más de 1 día. Usar estadísticas de No Muerto Creado de Criaturas y Monstruos excepto que tendrá Movimiento 25 y OB -20."
+        }
+      },
+      {
+        "name": "02. Controlar No Muerto I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 no muerto",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede controlar un No Muerto de Clase I. Cuando se lanza este hechizo, hay un 2% fijo por Clase del No Muerto de que el No Muerto resista el hechizo."
+        }
+      },
+      {
+        "name": "03. Maestría de No Muertos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 no muerto",
+          "duration": "P",
+          "range": "10'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod RR: -25] El lanzador puede dominar 1 nivel de No Muerto por nivel del lanzador. Este hechizo debe lanzarse por separado sobre cada No Muerto. Un No Muerto dominado permite al lanzador controlarlo sin concentración. Si el No Muerto está a más de 10' por nivel del maestro, el hechizo se disipa. Al lanzar este hechizo, hay un 5% fijo por Clase de No Muerto de que el No Muerto resista."
+        }
+      },
+      {
+        "name": "04. Animar Muerto II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animar Muerto I, excepto que el lanzador puede controlar 2 cuerpos (con las restricciones anteriores) o un cuerpo con modificador -15 a maniobras y OB -10."
+        }
+      },
+      {
+        "name": "05. Crear No Muerto I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 cadáver",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Con un cuerpo muerto hace menos de 1 semana, el lanzador puede convertirlo en un No Muerto de Clase I. El No Muerto intentará atacar al ser vivo más cercano (si no está controlado), pero no puede hacer otra actividad que moverse y atacar. Si está controlado, hará lo que el lanzador ordene (dentro de sus capacidades). El No Muerto puede ser Disipado, Repelido o destrozado."
+        }
+      },
+      {
+        "name": "06. Controlar No Muerto II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varía",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar No Muerto I, excepto que puede controlarse 1 No Muerto de Clase II o 2 de Clase I."
+        }
+      },
+      {
+        "name": "07. Animar Muerto III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animar Muerto I, excepto que pueden controlarse 3 cuerpos o un cuerpo con -5 a maniobras y OB de melé +0."
+        }
+      },
+      {
+        "name": "08. Crear No Muerto II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Crear No Muerto I, excepto que puede crearse 1 No Muerto de Clase II o 2 de Clase I."
+        }
+      },
+      {
+        "name": "09. Controlar No Muerto III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "varía",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar No Muerto I, excepto que puede controlarse 1 No Muerto de Clase III o 3 de Clase I o 1 de Clase II y 1 de Clase I."
+        }
+      },
+      {
+        "name": "10. Animar Muerto IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animar Muerto I, excepto que pueden controlarse 4 cuerpos con las penalizaciones básicas o 1 cuerpo con +5 a maniobras y OB de melé +10."
+        }
+      },
+      {
+        "name": "11. Crear No Muerto III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Crear No Muerto I, excepto que puede crearse 1 No Muerto de Clase III o 3 de Clase I o 1 de Clase II y 1 de Clase I."
+        }
+      },
+      {
+        "name": "12. Animar Muerto V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animar Muerto I, excepto que pueden controlarse 5 cuerpos con las penalizaciones básicas o 1 cuerpo con +10 a maniobras y OB de melé +20."
+        }
+      },
+      {
+        "name": "13. Controlar No Muerto IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "varía",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar No Muerto I, excepto que el lanzador puede controlar 1 No Muerto de Clase IV o 4 de Clase I o 2 de Clase II o 1 de Clase III y 1 de Clase I o 1 de Clase II y 2 de Clase I."
+        }
+      },
+      {
+        "name": "14. Animar Muerto VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animar Muerto I, excepto que pueden controlarse 6 cuerpos con las penalizaciones básicas o 1 cuerpo con +15 a maniobras y OB de melé +30."
+        }
+      },
+      {
+        "name": "15. Crear No Muerto IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Crear No Muerto I, excepto que el lanzador puede crear 1 No Muerto de Clase IV o 4 de Clase I o 2 de Clase II o 1 de Clase III y 1 de Clase I o 1 de Clase II y 2 de Clase I."
+        }
+      },
+      {
+        "name": "17. Ordenar No Muerto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 no muerto",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquier no muerto actualmente dominado (con el hechizo Maestría de No Muertos) seguirá órdenes simples y directas. Esto cancela el hechizo Maestría de No Muertos. Tras completar las órdenes (que intentará cumplir hasta 1 día por nivel del lanzador), el No Muerto vuelve a su estado normal (ataca al ser vivo más cercano)."
+        }
+      },
+      {
+        "name": "19. Controlar No Muerto V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "varía",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar No Muerto I, excepto que el lanzador puede controlar 1 No Muerto de Clase V o 5 de Clase I, etc."
+        }
+      },
+      {
+        "name": "20. Crear No Muerto V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Crear No Muerto I, excepto que el lanzador puede crear 1 No Muerto de Clase V o 5 de Clase I o 1 de Clase IV y 1 de Clase I, etc."
+        }
+      },
+      {
+        "name": "25. Controlar No Muerto Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varía",
+          "duration": "C",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar No Muerto I, excepto que el lanzador puede controlar cualquier No Muerto (Clase V o inferior) sin concentración, o todos los No Muertos de Clase III o inferior dentro de un radio de 100'. El alcance para controlar un solo No Muerto se extiende a 300'."
+        }
+      },
+      {
+        "name": "30. Ritual de la Eternidad Negra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "lanzador",
+          "duration": "P",
+          "range": "sí mismo",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Este ritual se considera uno de los más malvados de todas las magias. Con él, el lanzador se transforma en un Lich, uno de los más malvados de los No Muertos. Durante el ritual, los órganos vitales del lanzador se \"transfieren\" a un recipiente preparado (tarro, caja, objeto, etc.). Si el hechizo tiene éxito (el fallo resulta en muerte definitiva), el lanzador será sostenido totalmente por la magia y habrá pasado entre los reinos de la vida y la no-vida. Solo puede ser destruido irrevocablemente con la destrucción del recipiente y sus órganos. Ver Criaturas y Monstruos para estadísticas típicas de un Lich."
+        }
+      },
+      {
+        "name": "50. Crear No Muerto Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 cadáver",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Crear No Muerto I, excepto que el lanzador puede crear cualquier No Muerto que exista en el sistema de mundo en uso (p. ej. Espectros del Anillo, Vampiros, etc.)."
+        }
+      }
+    ]
+  }
+}

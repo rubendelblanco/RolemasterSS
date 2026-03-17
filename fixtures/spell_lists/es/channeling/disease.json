@@ -1,0 +1,394 @@
+{
+  "name": "Enfermedad",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Canalización Malvada 10.4 - Enfermedad. Hechizos para infligir diversas enfermedades sobre objetivos. Las enfermedades no pueden disiparse con hechizos de Disipación pero pueden curarse con hechizos de Curar Enfermedad o Eliminar Enfermedad. Salvo que se indique lo contrario, las enfermedades de esta lista no son contagiosas. Ver Spell Law Sección 15.24 (listas de hechizos malvados).",
+    "spells": [
+      {
+        "name": "01. Escalofríos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo contrae un resfriado. Tira d100 para severidad (alto es malo para el objetivo)."
+        }
+      },
+      {
+        "name": "02. Visión Gris",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo es daltónico. Tratar como -10 a todas las maniobras de Percepción que involucren visión."
+        }
+      },
+      {
+        "name": "03. Pérdida de Olfato",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo no tiene sentido del olfato. Nunca percibe solo por olfato; y sufre una modificación especial de -25 a todas las maniobras de Percepción que involucren olfato y otros sentidos (solo -3 a Alerta)."
+        }
+      },
+      {
+        "name": "04. Pérdida de Audición",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo no tiene sentido del oído. Nunca percibe solo por audición; y sufre una modificación especial de -25 a todas las maniobras de Percepción que involucren audición y otros sentidos (solo -3 a Alerta)."
+        }
+      },
+      {
+        "name": "05. Pudrición de Lengua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "En el transcurso de 1 semana la lengua del objetivo se pudrirá. Cuando la lengua desaparezca por completo, no podrá hablar."
+        }
+      },
+      {
+        "name": "06. Asma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo contrae asma severa. Por cada ronda de esfuerzo físico (melé, correr, disparar arco, remar, etc.), el objetivo tendrá un modificador de -5 (acumulativo) a cualquier acción que involucre esfuerzo físico. Cuando este modificador llegue a -100 el objetivo cae inconsciente. Cada modificador de -5 requiere 3 rondas de descanso para eliminarse."
+        }
+      },
+      {
+        "name": "07. Lepra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo contrae lepra. Esto causa una pérdida gradual de sensibilidad en las extremidades (y flujo sanguíneo). Cada día, el objetivo sufre una modificación especial de -1 (acumulativa) a todas las maniobras de Percepción que involucren tacto (máximo de -25). Además, el objetivo sufre -1 a su apariencia por día (hasta un mínimo de 1). Después de una semana de lepra, todo el daño de conmoción contra el objetivo se reduce a la mitad."
+        }
+      },
+      {
+        "name": "08. Alergia Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo se vuelve ligeramente alérgico a una sustancia (no a sí mismo) elegida por el lanzador. Cuando esté en presencia de esta sustancia, el objetivo solo podrá realizar 80% de actividad cada ronda."
+        }
+      },
+      {
+        "name": "09. Pudrición de Raíces",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 planta",
+          "duration": "P",
+          "range": "toque",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Las raíces de cualquier planta se marchitan y mueren y no pueden crecer nuevas raíces. La planta eventualmente morirá."
+        }
+      },
+      {
+        "name": "10. Hemofilia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo se vuelve hemofílico. Todas las heridas sangrantes (p. ej. \"golpes/rnd\") y golpes de conmoción se duplican. Todos los ataques críticos contra el objetivo tienen un 50% de probabilidad de añadir 1 golpe por ronda adicional. Curar golpes requiere el doble del gasto normal."
+        }
+      },
+      {
+        "name": "11. Malaria",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo contrae malaria. Tras el episodio inicial de fiebre alta, delirio, coma e incapacitación (duración 1+2d10 días), el objetivo estará sujeto a \"recaídas\" aleatorias similares al episodio inicial (5% de probabilidad por mes). Si el objetivo no recibe cuidados durante el episodio inicial, hay 99% de probabilidad de muerte (solo 1% si se cuida correctamente)."
+        }
+      },
+      {
+        "name": "12. Mano Marchita",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "toque",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede matar instantáneamente cualquier planta que toque."
+        }
+      },
+      {
+        "name": "13. Epilepsia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo se vuelve epiléptico. En una situación de tensión, hay un 5% de probabilidad de que tenga un ataque epiléptico. Si alguien lo trata (sujetándolo y colocando un objeto apropiado en su boca), solo tiene 1% de probabilidad de morir; si no, tiene 5% de probabilidad de morir."
+        }
+      },
+      {
+        "name": "14. Neumonía",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo contrae neumonía. Si el objetivo se mantiene caliente y completamente inmóvil durante 2 semanas, solo tendrá 25% de probabilidad de morir (50% si no se trata). La probabilidad de muerte se reduce 5% por cada 10 puntos que la Constitución del lanzador supere 50 (hasta un mínimo de 1%)."
+        }
+      },
+      {
+        "name": "15. Alergia Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alergia Menor, excepto que el objetivo solo obtiene 60% de actividad cada ronda."
+        }
+      },
+      {
+        "name": "16. Portador I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo sufre cualquiera de las enfermedades de esta lista (nivel 5 o inferior) elegida por el lanzador. Además, el objetivo es contagioso. Todos los que entren en contacto (radio 5') con el objetivo hacen una RR (con modificador especial +25; +0 con contacto; -25 con contacto íntimo). Si el objetivo original supera su RR, no sufre los efectos pero sigue siendo portador. Los que contraigan la enfermedad del objetivo no son contagiosos."
+        }
+      },
+      {
+        "name": "17. Elefantiasis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo contrae elefantiasis. Una de sus extremidades (no la cabeza) se hincha y crece hasta 5 veces su tamaño normal. El efecto exacto debe determinarlo el DJ (pero la extremidad debe ser completamente inútil)."
+        }
+      },
+      {
+        "name": "19. Portador II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Portador I, excepto que el lanzador puede seleccionar cualquier enfermedad de esta lista (nivel 10 o inferior)."
+        }
+      },
+      {
+        "name": "20. Leucemia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo contrae leucemia. Se debilitará a un ritmo del 2% por día (-2/día, acumulativo, a la actividad cada ronda); cuando el total llegue al 100%, el objetivo muere."
+        }
+      },
+      {
+        "name": "25. Portador III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Portador I, excepto que el lanzador puede seleccionar cualquier enfermedad de esta lista (nivel 15 o inferior)."
+        }
+      },
+      {
+        "name": "30. Rabia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo contrae rabia. Tras 21 días sin efecto visible, la enfermedad se manifiesta. Los órganos del objetivo se contraen; echa espuma por la boca, se vuelve muy sediento y violento; y cualquiera a quien muerda o arañe debe resistir o contraer la enfermedad. El objetivo muere 5-7 días después del inicio de la enfermedad."
+        }
+      },
+      {
+        "name": "50. Peste",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo contrae una \"peste.\" Si falla su RR, morirá el 95% de las veces (en 10 minutos). El otro 5% de las veces, cree que resistió (y no sufre efectos) pero se convierte en portador. Cualquiera que se acerque a 5' de un portador debe resistir (+25 RR; +0 RR si toca; -25 RR si contacto íntimo) o enfrentar las mismas probabilidades que el objetivo original. Solo el objetivo original es contagioso."
+        }
+      }
+    ]
+  }
+}

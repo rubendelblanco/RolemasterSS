@@ -1,0 +1,377 @@
+{
+  "name": "Heridas",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Canalización Malvada 10.6 - Heridas. Hechizos de alcance táctil (2') para infligir heridas, sangrado, daño sensorial, parálisis, drenaje de alma y drenaje de energía. En melé se presume que estás a 2' del oponente cada ronda. Ver Spell Law Sección 15.24 (listas de hechizos malvados).",
+    "spells": [
+      {
+        "name": "01. Herida I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causa d10 golpes de conmoción de daño."
+        }
+      },
+      {
+        "name": "02. Calambre",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causa que un músculo del objetivo sufra un calambre. El objetivo tendrá -10% de actividad por cada 10 de fallo."
+        }
+      },
+      {
+        "name": "03. Sangrado I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo sangrará a razón de 1 golpe por ronda."
+        }
+      },
+      {
+        "name": "04. Herida III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Herida I, excepto que causa 3d10 golpes de conmoción de daño."
+        }
+      },
+      {
+        "name": "05. Daño Sensorial I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un órgano sensorial externo (ojo, nariz, oído, etc.) se daña. El enemigo operará sin ese órgano hasta curarse. Además, tendrá un modificador de -10 por cada 10 de fallo a todas las acciones que usen parcialmente ese órgano (-100 para acciones que involucren ese órgano directamente)."
+        }
+      },
+      {
+        "name": "06. Fractura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Una de las extremidades del objetivo sufre una fractura menor."
+        }
+      },
+      {
+        "name": "07. Sangrado III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sangrado I, excepto que el objetivo sangra 3 golpes por ronda."
+        }
+      },
+      {
+        "name": "08. Herida V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Herida I, excepto que causa 5d10 golpes de conmoción de daño."
+        }
+      },
+      {
+        "name": "09. Daño Sensorial II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Daño Sensorial I, excepto que 2 órganos se ven afectados."
+        }
+      },
+      {
+        "name": "10. Parálisis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El área tocada por el lanzador en el objetivo queda paralizada."
+        }
+      },
+      {
+        "name": "11. Herida VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Herida I, excepto que causa 7d10 golpes de conmoción de daño."
+        }
+      },
+      {
+        "name": "12. Drenar Alma I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo pierde d10 puntos de Constitución Temporal. Si la Constitución del objetivo baja a 0 o menos, se convierte en un No Muerto Creado de Clase I."
+        }
+      },
+      {
+        "name": "13. Drenar Energía I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo pierde 1 golpe por ronda mientras el lanzador se concentra (y permanece a 2' del objetivo). Por cada punto drenado, el lanzador recupera 1 punto (hasta su máximo)."
+        }
+      },
+      {
+        "name": "14. Sangrado V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sangrado I, excepto que el objetivo sangra 5 golpes por ronda."
+        }
+      },
+      {
+        "name": "15. Herida X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Herida I, excepto que causa 10d10 golpes de conmoción de daño."
+        }
+      },
+      {
+        "name": "16. Drenar Energía II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Drenar Energía I, excepto que drena 2 golpes por ronda."
+        }
+      },
+      {
+        "name": "18. Drenar Alma II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Drenar Alma I, excepto que drena 2d10 puntos y el objetivo se convierte en No Muerto Creado de Clase II si su Constitución baja a 0 (o menos)."
+        }
+      },
+      {
+        "name": "20. Herida XV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Herida I, excepto que causa 15d10 golpes de conmoción de daño."
+        }
+      },
+      {
+        "name": "25. Drenar Alma Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Drenar Alma I, excepto que drena 1 punto por nivel del lanzador y el objetivo se convierte en No Muerto Creado de Clase III si su Constitución baja a 0 (o menos)."
+        }
+      },
+      {
+        "name": "30. Sangrado Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sangrado I, excepto que el objetivo sangra 1 golpe por cada 5 niveles del lanzador."
+        }
+      },
+      {
+        "name": "50. Herida Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Herida I, excepto que el objetivo pierde todos sus golpes y recibe 1 golpe adicional por cada nivel del lanzador."
+        }
+      }
+    ]
+  }
+}

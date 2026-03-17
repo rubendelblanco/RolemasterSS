@@ -1,0 +1,309 @@
+{
+  "name": "Canales Oscuros",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Canalización Cerrada (Malvada) - Canales Oscuros. Hechizos de aturdimiento, sueño, ceguera, canalización de hechizos a otros, destrucción del alma y comunión con deidades malvadas. Ver Spell Law Sección 15.23 (Canales Negros), 15.24 (listas de hechizos malvados), 24.1 (destrucción del alma).",
+    "spells": [
+      {
+        "name": "02. Aturdimiento Oscuro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/5 fallo",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod RR: -10] El lanzador apunta su brazo (codo bloqueado y puño cerrado) al objetivo y canaliza la fuente de poder crudo (normalmente una deidad). El objetivo queda aturdido."
+        }
+      },
+      {
+        "name": "03. Canalizar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cuando se lanza este hechizo, el hechizo de primer nivel que el lanzador comience a lanzar la siguiente ronda será \"canalizado\" a otro usuario de hechizos del reino de Canalización. El hechizo \"canalizado\" se transmite al otro usuario cuando normalmente tendría efecto, y debe ser usado por el receptor inmediatamente (es decir, el receptor es tratado como el lanzador del hechizo). Todas las restricciones normales aplican al hechizo transmitido. El lanzador del hechizo Canalizar debe poder ver al receptor o conocer exactamente dónde está (dirección y distancia, o ubicación específica). El receptor debe saber exactamente cuándo llega el hechizo (aunque no necesita saber exactamente qué hechizo llega)."
+        }
+      },
+      {
+        "name": "05. Sueño Oscuro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/5 fallo",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod RR: -10] El lanzador apunta su brazo (codo bloqueado y puño cerrado) al objetivo y canaliza la fuente de poder crudo (normalmente una deidad). El objetivo cae en un sueño mágico profundo."
+        }
+      },
+      {
+        "name": "06. Canalizar III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canalizar I, excepto que puede transmitirse un hechizo de hasta tercer nivel."
+        }
+      },
+      {
+        "name": "07. Apertura de Canal I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 ser",
+          "duration": "C",
+          "range": "1 milla/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede establecer contacto con cualquier objetivo conocido con el que esté familiarizado. Este hechizo permite al lanzador conocer la ubicación específica (solo dirección y distancia) del otro ser. Este hechizo se usa a menudo con el hechizo Canalizar."
+        }
+      },
+      {
+        "name": "08. Ceguera Oscura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 hr/10 fallo",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod RR: -10] El lanzador apunta su brazo (codo bloqueado y puño cerrado) al objetivo y canaliza la fuente de poder crudo (normalmente una deidad). El objetivo queda ciego."
+        }
+      },
+      {
+        "name": "10. Canal Negro I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "varía",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede lanzar uno de los hechizos de Canal Negro I (ver Sección 15.23, p. 101)."
+        }
+      },
+      {
+        "name": "11. Canalizar V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canalizar I, excepto que puede transmitirse un hechizo de hasta quinto nivel."
+        }
+      },
+      {
+        "name": "13. Absolución",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 semana/10 fallo",
+          "range": "50'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod RR: -20] El \"alma\" del objetivo es arrancada de su cuerpo. El alma permanece en el lugar al que van las \"almas\" durante la duración. El alma solo puede devolverse antes mediante Dar Vida. El objetivo está inconsciente hasta que el alma sea restaurada. Incluso la actividad subconsciente (curación, etc.) se realiza con penalización de -75."
+        }
+      },
+      {
+        "name": "15. Canal Negro II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "varía",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canal Negro I, excepto que puede lanzarse un hechizo de Canal Negro II (ver Sección 15.23, p. 101)."
+        }
+      },
+      {
+        "name": "16. Apertura de Canal II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 ser",
+          "duration": "C",
+          "range": "10 millas/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Apertura de Canal I, excepto por el alcance."
+        }
+      },
+      {
+        "name": "17. Canalizar VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canalizar I, excepto que puede transmitirse un hechizo de hasta séptimo nivel."
+        }
+      },
+      {
+        "name": "19. Canalizar X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canalizar I, excepto que puede transmitirse un hechizo de hasta décimo nivel."
+        }
+      },
+      {
+        "name": "20. Absolución Pura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "50'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Absolución, excepto que el \"alma\" solo puede devolverse mediante Dar Vida."
+        }
+      },
+      {
+        "name": "25. Canal Negro III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "varía",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canal Negro I, excepto que puede lanzarse un hechizo de Canal Negro III (ver Sección 15.23, p. 101)."
+        }
+      },
+      {
+        "name": "30. Absolución Oscura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "50'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Absolución Pura, excepto que el \"alma\" es destruida por completo."
+        }
+      },
+      {
+        "name": "50. Portal Impío",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "—",
+          "duration": "1 rnd",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Abre un canal directo con la deidad del clérigo malvado; los resultados dependen de la personalidad, motivos y poderes de la deidad. Cualquier hechizo que la deidad pueda lanzar puede transmitirse a través del portal."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "name": "Dark Lore",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Evil Channeling 10.3 - Dark Lore. Spells for detection of good, blessings, emotions, and lore about items of darkness, evil, light, and good. See Spell Law Section 15.2 (Blessing, Evil, Good, Holy, Of Darkness, Of Light), 15.16 (dreams and symbology), 15.21 (curses), 15.24 (Evil spell lists).",
+    "spells": [
+      {
+        "name": "01. Afterthoughts",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster virtually total recall of any conversation or writing he encountered within a period of days equal to his level."
+        }
+      },
+      {
+        "name": "02. Detect Good",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detects \"true good\" in an animate or inanimate target. Caster can concentrate on a 5' radius area each round."
+        }
+      },
+      {
+        "name": "03. Detect Blessing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Good, except detects blessings in an animate or inanimate target."
+        }
+      },
+      {
+        "name": "04. Detect Emotion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detects extreme emotions in the living mind of a target, or in an object forged under extreme emotion. Caster can concentrate on a 5' radius area each round."
+        }
+      },
+      {
+        "name": "05. Dark Lore I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 item",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can ascertain the origin point and nature of any 1 item \"of darkness\" or \"of evil.\" The caster will not learn specific capabilities."
+        }
+      },
+      {
+        "name": "06. Detections Holy",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Good, except detects \"holy\" items and detection area is 10' radius."
+        }
+      },
+      {
+        "name": "08. Dream I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "sleep",
+          "range": "self",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster has a dream relating to a topic decided upon just before retiring; limited to once per night. The caster must sleep a minimum of four hours."
+        }
+      },
+      {
+        "name": "10. Bless Tales",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 blessing",
+          "duration": "—",
+          "range": "self",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can determine the author, origin, and complete history of a given blessing. He also learns the nature and specific powers."
+        }
+      },
+      {
+        "name": "11. Dark Lore II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dark Lore I, except caster can ascertain the origin point and nature of any 2 items of darkness or evil or caster can determine the nature, origin point, and the exact significance of any 1 item of darkness or evil."
+        }
+      },
+      {
+        "name": "12. Dreams II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "sleep",
+          "range": "self",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dream I, except limit is 2 dreams per night on different topics."
+        }
+      },
+      {
+        "name": "13. Emotion Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can determine the nature and origin of active extremes in emotion found within any 1 target (inanimate or animate). The degree and other details of such emotion can also be acquired."
+        }
+      },
+      {
+        "name": "14. Dark Lore III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dark Lore I, except caster can ascertain the origin point and nature of any 3 items of evil or darkness or caster can determine the age, origin point, nature, specific capabilities, and the name of the creator of any 1 item of evil or darkness. Caster also learns item's specific capabilities."
+        }
+      },
+      {
+        "name": "15. Dreams III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "sleep",
+          "range": "self",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dream I, except limit is 3 dreams per night on different topics."
+        }
+      },
+      {
+        "name": "16. Light Lore I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 item",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dark Lore I, except caster can ascertain the origin point and nature of any 1 item \"of light\" or \"of good.\""
+        }
+      },
+      {
+        "name": "19. Light Lore II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Light Lore I, except caster can ascertain the origin point and nature of any 2 items of good or light or caster can determine the nature, origin point, and the exact significance of any 1 item of light or good."
+        }
+      },
+      {
+        "name": "20. Black Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 item",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can ascertain the exact nature, origin, purpose, and history of any 1 item of evil or darkness; it allows caster to visualize all who have possessed the item."
+        }
+      },
+      {
+        "name": "25. Light Lore III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Light Lore I, except caster can ascertain the origin point and nature of any 3 items of good or light or caster can determine the age, origin point, nature, specific capabilities, and the name of the creator of any 1 item of good or light. Caster also learns item's specific capabilities."
+        }
+      },
+      {
+        "name": "30. White Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 item",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Black Lore, except it can only be used on an item \"of darkness\" or \"of evil.\""
+        }
+      },
+      {
+        "name": "50. Black Lore Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Black Lore, except caster can acquire the information on all items of evil or darkness within 100'."
+        }
+      }
+    ]
+  }
+}

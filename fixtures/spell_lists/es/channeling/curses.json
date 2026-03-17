@@ -1,0 +1,377 @@
+{
+  "name": "Maldiciones",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Canalización Malvada 10.1 - Maldiciones. Hechizos para detectar e infligir diversas maldiciones sobre objetivos. Ver Spell Law Sección 15.21 (disipar maldiciones), 15.24 (listas de hechizos malvados).",
+    "spells": [
+      {
+        "name": "01. Detectar Maldición",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detecta una maldición en un objeto o persona."
+        }
+      },
+      {
+        "name": "02. Maldición de Visión Nocturna",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo puede ver de noche como si fuera de día, pero solo puede ver de día como si fuera la noche más oscura."
+        }
+      },
+      {
+        "name": "04. Maldición de Úlcera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo solo puede comer pan o productos lácteos. Cualquier otra cosa agravará su úlcera (a menos que supere una RR) y quedará incapacitado durante 1-10 horas."
+        }
+      },
+      {
+        "name": "05. Maldición de Dake",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo no puede moverse más rápido que al paso andando por sí mismo (puede ser transportado o montar a mayor velocidad)."
+        }
+      },
+      {
+        "name": "06. Lengua Verde",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo solo puede comer hojas verdes. Comer otra comida lo incapacita (si falla una RR) durante 1-10 horas."
+        }
+      },
+      {
+        "name": "07. Maldición del Mar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo nunca nadará voluntariamente, entrará en agua (ni siquiera para bañarse) ni subirá a un barco."
+        }
+      },
+      {
+        "name": "08. Maldición de Furd",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Todos los rangos de pifia/fallo del objetivo (ataques con armas, lanzamiento de hechizos y resolución de habilidades) se duplican."
+        }
+      },
+      {
+        "name": "09. Excomunión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/10 fallo",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo pierde todos los puntos de poder (PP) de Canalización. No puede lanzar hechizos de Canalización (ni siquiera mediante objetos de bonificación). Un usuario híbrido de Canalización (p. ej. Hechicero o Sanador) solo pierde la mitad de sus PP. Un personaje que sufra esta maldición no sufre agotamiento por los PP perdidos."
+        }
+      },
+      {
+        "name": "10. Aprendizaje de Mins",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo solo puede hablar y escribir su idioma nativo."
+        }
+      },
+      {
+        "name": "11. Maldición de Shar Bu",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo es estéril e impotente."
+        }
+      },
+      {
+        "name": "12. Sanguijuela de Poder",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo pierde 1 punto de poder cada 10 min. Los puntos de poder se recuperan normalmente (generalmente con el sueño), pero empiezan a filtrarse en cuanto se recuperan."
+        }
+      },
+      {
+        "name": "13. Belleza de Arraer",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La apariencia del objetivo se eleva al máximo posible (y más). Si alguien ve el rostro descubierto del objetivo o se acerca a 3' (y es del sexo opuesto y falla una RR), intentará poseer y llevarse al objetivo (luchará si es necesario). Ciertas personas recibirán modificadores a sus RR (eunucos, hedonistas, curties, morawoses, essceecees, icers, etc.)."
+        }
+      },
+      {
+        "name": "14. Maldición de Coagulación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La sangre del objetivo se coagulará y creará un coágulo alrededor de cualquier corte o herida (que sangre al menos 1 golpe por ronda). El coágulo cortará la circulación al área alimentada por el vaso y el objetivo perderá la sección corporal afectada tras 2-20 minutos por daño sistémico (p. ej. una herida en el muslo podría significar pérdida de la pierna; una herida en el cuello sería fatal)."
+        }
+      },
+      {
+        "name": "15. Fealdad de Orn",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La apariencia del objetivo se reduce a 1. Si alguien ve el rostro descubierto del objetivo (o se acerca a 3'), debe hacer una RR. Si falla por 51 o más, ataca al objetivo. Incluso si el espectador supera su RR, experimentará un disgusto extremo hacia el objetivo."
+        }
+      },
+      {
+        "name": "16. Maldición de Oli",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo mentirá el 50% del tiempo, sin importar el tema."
+        }
+      },
+      {
+        "name": "18. Maldición de Penth",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo solo puede decir la verdad."
+        }
+      },
+      {
+        "name": "19. Reabrir Herida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Una vez al día (en un momento aleatorio), el objetivo experimentará el dolor de una herida antigua. Para personajes nuevos, tratar como un crítico Krush 'A' el 50% del tiempo y d10 golpes de conmoción el otro 50%. Alternativamente, el DJ puede reabrir una herida antigua específica."
+        }
+      },
+      {
+        "name": "20. Muerte Corriendo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo se moverá a la máxima velocidad posible hasta morir de agotamiento. Puede ser restringido, pero cuando sea liberado, volverá a correr."
+        }
+      },
+      {
+        "name": "25. Matador de Amigos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cada vez que el objetivo esté en combate cerca de amigo(s) dentro de 10', hay un 10% de probabilidad cada ronda (no acumulativa) de que ataque a uno de sus amigos (determinación aleatoria) e intente matarlo. Para estos efectos, \"amigo\" es cualquier compañero o asociado."
+        }
+      },
+      {
+        "name": "30. Excomunión Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Excomunión excepto que el efecto es permanente hasta que se elimine."
+        }
+      },
+      {
+        "name": "50. Pensamientos Oscuros",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "especial",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo no puede atacar a ninguna criatura \"malvada\" y aprende todos los idiomas malvados y obedecerá las órdenes de cualquier persona malvada que sea 10 o más niveles superior a él."
+        }
+      }
+    ]
+  }
+}

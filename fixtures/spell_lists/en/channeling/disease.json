@@ -1,0 +1,394 @@
+{
+  "name": "Disease",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Evil Channeling 10.4 - Disease. Spells for inflicting various diseases upon targets. Diseases cannot be dispelled with Dispelling spells but can be cured by Undisease or Remove Disease spells. Unless stated otherwise, diseases from this list are not contagious. See Spell Law Section 15.24 (Evil spell lists).",
+    "spells": [
+      {
+        "name": "01. Chills",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target gets a cold. Roll d100 for severity (high is bad for target)."
+        }
+      },
+      {
+        "name": "02. Grey Vision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is color-blind. Treat as a -10 to all Awareness maneuvers involving vision."
+        }
+      },
+      {
+        "name": "03. Smelling Loss",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target has no sense of smell. Target never perceives by smell alone; and suffers a special modification of -25 to all Awareness maneuvers involving smell and other senses (only -3 to Alertness)."
+        }
+      },
+      {
+        "name": "04. Hearing Loss",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target has no sense of hearing. Target never perceives by hearing alone; and suffers a special modification of -25 to all Awareness maneuvers involving hearing and other senses (only -3 to Alertness)."
+        }
+      },
+      {
+        "name": "05. Tongue Rot",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Over the course of 1 week the target's tongue will rot away. When tongue is fully gone, he will not be able to speak."
+        }
+      },
+      {
+        "name": "06. Asthma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target gets severe asthma. For every round of physical exertion (melee, running, firing a bow, rowing, etc.), the target will have a -5 modifier (cumulative) to any action involving physical exertion. When this modifier reaches -100 the target lapses into unconsciousness. Each -5 modifier requires 3 rounds of rest to eradicate."
+        }
+      },
+      {
+        "name": "07. Leprosy",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target gets leprosy. This causes a gradual loss of feeling in the extremities (and blood flow). Every day, the target suffers a special modification of -1 (cumulative) to all Awareness maneuvers involving touch (maximum of -25). Also, target suffers a -1 to his appearance per day (down to a minimum of 1). After one week of leprosy, all concussion damage against the target is halved (this represents the loss of feeling in certain areas of the body)."
+        }
+      },
+      {
+        "name": "08. Minor Allergy",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target becomes slightly allergic to a substance (not himself) of the caster's choosing. When in the presence of this substance, the target will only be able to take 80% activity each round."
+        }
+      },
+      {
+        "name": "09. Root Rot",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 plant",
+          "duration": "P",
+          "range": "touch",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The roots of any one plant wither and die and no new roots can be grown. The plant will eventually die."
+        }
+      },
+      {
+        "name": "10. Hemophilia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target becomes a hemophiliac. All bleeding wounds (i.e., \"hits/rnd\") and concussion hits are doubled. All critical strikes against the target have a 50% chance of giving an additional 1 hit per round. Healing hits requires double the normal expenditure."
+        }
+      },
+      {
+        "name": "11. Malaria",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target contracts malaria. After the initial bout of high fever, delirium, coma, and incapacitation (lasting 1+2d10 days), the target will be subject to random \"relapses\" similar to the initial bout (5% chance per month). If the target receives no care during the initial bout, there is a 99% chance of death (only 1% chance if properly cared for during this time)."
+        }
+      },
+      {
+        "name": "12. Withering Hand",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may instantly kill any one plant he touches."
+        }
+      },
+      {
+        "name": "13. Epilepsy",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target becomes an epileptic. In a tension situation, there is a 5% chance he will go into an epileptic fit. If someone treats them (i.e., holds them down and places an appropriate object in his mouth), he has only a 1% chance of dying; if not, he has a 5% chance of dying."
+        }
+      },
+      {
+        "name": "14. Pneumonia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target gets pneumonia. If the target is kept warm and completely immobile for 2 weeks, he will have only a 25% chance of dying (50% chance if not treated). The chance of dying is lowered by 5% for every 10 points by which caster's Constitution exceeds 50 (down to a minimum of 1%)."
+        }
+      },
+      {
+        "name": "15. Major Allergy",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Allergy, except target only gets 60% activity each round."
+        }
+      },
+      {
+        "name": "16. Carrier I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target suffers any one of the diseases from this list (fifth level or lower) chosen by the caster. In addition, the target is contagious. All who come into contact (5' radius) of the target make an RR (with a special +25 modifier; modifier drops to +0 with touching the target; drops to -25 with intimate contact with the target). If the original target makes his RR, he does not suffer the effects, but is still a carrier of the disease. All people who catch the disease from the target are not contagious."
+        }
+      },
+      {
+        "name": "17. Elephantiasis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target gets elephantiasis. One of his extremities (not his head) swells and grows up to 5x normal size. Exact effect should be determined by the GM (but the extremity should be completely useless)."
+        }
+      },
+      {
+        "name": "19. Carrier II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Carrier I, except caster may select any disease from this list (10th level or lower)."
+        }
+      },
+      {
+        "name": "20. Leukemia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target gets leukemia. He will weaken at a rate of 2% per day (-2/day, cumulative, to activity in each round); when the total reaches 100%, the target is dead."
+        }
+      },
+      {
+        "name": "25. Carrier III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Carrier I, except caster may select any disease from this list (15th level or lower)."
+        }
+      },
+      {
+        "name": "30. Rabies",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target gets rabies. After 21 days of no visible effect, the disease sets in. The target's organs contract; he foams at the mouth, becomes very thirsty and violent; and any one he bites or scratches must resist or catch the disease. The target dies 5-7 days after disease's onset."
+        }
+      },
+      {
+        "name": "50. Plague",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target gets a \"plague.\" If he fails his RR, he will die 95% of the time (in 10 minutes). The other 5% of the time, he believes that he resisted (and suffers no effects), but becomes a carrier instead. Anyone coming within 5' of a carrier must resist (+25 RR; +0 RR if touching the target; -25 RR if in intimate contact with the target) or face the same chances as the original target. Only the original target is contagious."
+        }
+      }
+    ]
+  }
+}

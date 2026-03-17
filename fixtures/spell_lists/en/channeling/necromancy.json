@@ -1,0 +1,377 @@
+{
+  "name": "Necromancy",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Evil Channeling 10.5 - Necromancy. Spells for animating corpses, creating undead, controlling undead, and the Ritual of Black Eternity (Lich transformation). Undead are classified I–V and above V. See Creatures & Monsters for Undead classification. See Spell Law Section 15.24 (Evil spell lists).",
+    "spells": [
+      {
+        "name": "01. Animate Dead I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 corpse",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can cause any dead body (within 50% of his own mass) to rise up and move. The caster must concentrate for the body to perform action; if he stops concentration, the body will stand motionless. The body can be maneuvered with a -25 modifier, and can melee with a -20 OB. Body cannot have been dead more than 1 day. Use Created Undead stats from Creatures & Monsters except the Undead will have a Move Rate of 25 and an OB of -20."
+        }
+      },
+      {
+        "name": "02. Control Undead I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 undead",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can control one Class I Undead. When this spell is cast, there is a flat 2% per Class of the Undead that the Undead will resist the spell."
+        }
+      },
+      {
+        "name": "03. Undead Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 undead",
+          "duration": "P",
+          "range": "10'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -25] Caster may master 1 level of Undead per level of the caster. This spell must be cast separately on each Undead. A mastered Undead allows the caster to control this specific undead without concentration. If the Undead is ever more than 10' per level from the master, this spell is dispelled. When this spell is cast, there is a flat 5% chance per Class of Undead that the Undead will resist the spell."
+        }
+      },
+      {
+        "name": "04. Animate Dead II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animate Dead I, except caster can control 2 bodies (within the restrictions above) or one body with -15 modifier to maneuvers and an OB of -10."
+        }
+      },
+      {
+        "name": "05. Create Undead I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 corpse",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Given a body that has been dead less than 1 week, the caster can turn the body into a Class I Undead. The Undead will attempt to attack the closest living being (if uncontrolled), but can take no other activity other than moving to the being and attacking. If controlled, the Undead will do anything (within its capabilities) that the caster commands. The Undead can be Dispelled, Repelled, or just smashed into little pieces."
+        }
+      },
+      {
+        "name": "06. Control Undead II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varies",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Undead I, except 1 Class II Undead or 2 Class I's can be controlled."
+        }
+      },
+      {
+        "name": "07. Animate Dead III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animate Dead I, except 3 bodies can be controlled or one body with -5 to maneuvers and a +0 melee OB."
+        }
+      },
+      {
+        "name": "08. Create Undead II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Create Undead I, except 1 Class II Undead or 2 Class I Undead can be created."
+        }
+      },
+      {
+        "name": "09. Control Undead III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "varies",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Undead I, except 1 Class III Undead or 3 Class I's or 1 Class II and 1 Class I can be controlled."
+        }
+      },
+      {
+        "name": "10. Animate Dead IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animate Dead I, except 4 bodies can be controlled at the basic penalties or 1 body with +5 to maneuvers and a +10 melee OB."
+        }
+      },
+      {
+        "name": "11. Create Undead III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Create Undead I, except can create 1 Class III Undead or 3 Class I or 1 Class II and 1 Class I."
+        }
+      },
+      {
+        "name": "12. Animate Dead V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animate Dead I, except 5 bodies can be controlled at the basic penalties or 1 body with +10 to maneuvers and a +20 melee OB."
+        }
+      },
+      {
+        "name": "13. Control Undead IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "varies",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Undead I, except caster can control 1 Class IV Undead or 4 Class I's or 2 Class II's or 1 Class III and 1 Class I or 1 Class II and 2 Class I's."
+        }
+      },
+      {
+        "name": "14. Animate Dead VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl (C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animate Dead I, except 6 bodies can be controlled at the basic penalties or 1 body with +15 to maneuvers and a +30 melee OB."
+        }
+      },
+      {
+        "name": "15. Create Undead IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Create Undead I, except caster can create 1 Class IV Undead or 4 Class I's or 2 Class II's or 1 Class III and 1 Class I or 1 Class II and 2 Class I's."
+        }
+      },
+      {
+        "name": "17. Order Undead",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 undead",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any undead that is currently mastered (with the Undead Mastery spell) will follow simple, straightforward orders. This cancels the Undead Mastery spell. After completing the orders (which it will attempt to do for up to 1 day per level of the caster), the Undead returns to normal Undead status (i.e., it attacks closest living being)."
+        }
+      },
+      {
+        "name": "19. Control Undead V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "varies",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Undead I, except caster can control 1 Class V Undead or 5 Class I or etc."
+        }
+      },
+      {
+        "name": "20. Create Undead V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Create Undead I, except caster can create 1 Class V Undead or 5 Class I's or 1 Class IV and 1 Class I or etc."
+        }
+      },
+      {
+        "name": "25. Control Undead True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varies",
+          "duration": "C",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Undead I, except caster can control any one Undead (Class V or lower) without concentration or all Class III or lower Undead within a 100' radius. Range for controlling a single Undead is extended to 300'."
+        }
+      },
+      {
+        "name": "30. Ritual of Black Eternity",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "This ritual is considered to be one of the most evil of all magics. Using it, the caster transforms himself into a Lich, one of the most evil of the Undead. During the ritual, the caster's vital organs are \"transferred\" into a ready container (jar, box, item, etc.). If the spell succeeds (failure results in final death), the caster will be totally sustained by magic and will have slipped between the realms of life and unlife. He can only be irrevocably destroyed by the destruction of the container and his organs. See Creatures & Monsters for typical statistics of a Lich."
+        }
+      },
+      {
+        "name": "50. Create Undead True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 corpse",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Create Undead I, except caster can create any Undead that exists in the world system in use (e.g., Ring Wraiths, Vampires, etc.)."
+        }
+      }
+    ]
+  }
+}

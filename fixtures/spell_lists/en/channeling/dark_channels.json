@@ -1,0 +1,309 @@
+{
+  "name": "Dark Channels",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling (Evil) - Dark Channels. Spells for stunning, sleep, blinding, channeling spells to others, soul destruction, and communion with evil deities. See Spell Law Section 15.23 (Black Channels), 15.24 (Evil spell lists), 24.1 (soul destruction).",
+    "spells": [
+      {
+        "name": "02. Dark Stunning",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/5 fail",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] Caster points his arm (elbow locked and fist clenched) at the target and channels raw power source (usually a deity). The target is stunned."
+        }
+      },
+      {
+        "name": "03. Channels I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When this spell is cast, the first level spell that the caster begins to cast the next round will be \"channeled\" to another spell user of the Channeling realm. The \"channeled\" spell is transmitted to the other spell user when it would normally take effect, and must be used by the receiving spell user immediately (i.e., the receiving spell user is now treated as the caster of the spell). All normal restrictions apply to the transmitted spell. The caster of the Channels spell must be able to see the receiver of the spell or know exactly where he is (direction and distance, or specific location). The receiver must know exactly when the spell is coming (though he need not know exactly what spell is coming)."
+        }
+      },
+      {
+        "name": "05. Dark Sleep",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/5 fail",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] Caster points his arm (elbow locked and fist clenched) at the target and channels raw power source (usually a deity). The target falls into a deep, magical sleep."
+        }
+      },
+      {
+        "name": "06. Channels III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Channels I, except up to a third level spell may be transmitted."
+        }
+      },
+      {
+        "name": "07. Channel Opening I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 being",
+          "duration": "C",
+          "range": "1 mile/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can make contact with any 1 known target he is acquainted with. This spell will enable the caster to learn the specific location (direction and distance only) of the other being. This spell is often used with Channels spell."
+        }
+      },
+      {
+        "name": "08. Dark Blinding",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "1 hr/10 fail",
+          "range": "100'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] Caster points his arm (elbow locked and fist clenched) at the target and channels raw power source (usually a deity). The target is blinded."
+        }
+      },
+      {
+        "name": "10. Black Channel I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "varies",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may cast one of the Black Channel I spells (see Section 15.23, p. 101)."
+        }
+      },
+      {
+        "name": "11. Channels V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Channels I, except up to a fifth level spell may be transmitted."
+        }
+      },
+      {
+        "name": "13. Absolution",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "1 week/10 fail",
+          "range": "50'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -20] Target's \"soul\" is torn from his body. The soul remains in whatever place \"souls\" go for the duration. The soul can be returned early only through Lifegiving. Target is unconscious until soul is restored. Even subconscious activity (healing, etc.) is performed with a -75 penalty."
+        }
+      },
+      {
+        "name": "15. Black Channel II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "varies",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Black Channel I, except a Black Channel II spell can be cast (see Section 15.23, p. 101)."
+        }
+      },
+      {
+        "name": "16. Channel Opening II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 being",
+          "duration": "C",
+          "range": "10 mile/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Channel Opening I, except for range."
+        }
+      },
+      {
+        "name": "17. Channels VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Channels I, except up to a seventh level spell may be transmitted."
+        }
+      },
+      {
+        "name": "19. Channels X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Channels I, except up to a tenth level spell may be transmitted."
+        }
+      },
+      {
+        "name": "20. Absolution Pure",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "50'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Absolution, except \"soul\" can only be brought back through Lifegiving."
+        }
+      },
+      {
+        "name": "25. Black Channel III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "varies",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Black Channel I, except a Black Channel III spell can be cast (see Section 15.23, p. 101)."
+        }
+      },
+      {
+        "name": "30. Dark Absolution",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "50'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Absolution Pure, except the \"soul\" is utterly destroyed."
+        }
+      },
+      {
+        "name": "50. Unholy Gate",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "—",
+          "duration": "1 rnd",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Opens a direct channel to the evil cleric's deity; results depend on the deity's personality, motives and powers. Any spell the deity can cast can be transmitted through the gate."
+        }
+      }
+    ]
+  }
+}

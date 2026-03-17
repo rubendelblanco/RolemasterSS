@@ -1,0 +1,377 @@
+{
+  "name": "Wounding",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Evil Channeling 10.6 - Wounding. Touch-range (2') spells for inflicting wounds, bleeding, sensory damage, paralysis, soul drain, and energy drain. In melee, it is presumed you are within 2' of your opponent every round. See Spell Law Section 15.24 (Evil spell lists).",
+    "spells": [
+      {
+        "name": "01. Wounding I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes d10 concussion hits of damage."
+        }
+      },
+      {
+        "name": "02. Cramp",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes one muscle to cramp in the target. Target will be at -10% to activity per 10 failure."
+        }
+      },
+      {
+        "name": "03. Bleeding I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target will bleed at the rate of 1 hit per round."
+        }
+      },
+      {
+        "name": "04. Wounding III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Wounding I, except does 3d10 concussion hits of damage."
+        }
+      },
+      {
+        "name": "05. Sensory Damage I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "One external sensory organ (eye, nose, ear, etc.) is damaged. Foe will operate without that organ until healed. In addition, he will have a -10 modification per 10 failure to all actions that partially use that organ (-100 for all actions involving that organ directly)."
+        }
+      },
+      {
+        "name": "06. Fracture",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "One of target's limbs suffers a minor fracture."
+        }
+      },
+      {
+        "name": "07. Bleeding III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Bleeding I, except target bleeds for 3 hits per round."
+        }
+      },
+      {
+        "name": "08. Wounding V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Wounding I, except does 5d10 concussion hits of damage."
+        }
+      },
+      {
+        "name": "09. Sensory Damage II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sensory Damage I, except 2 organs are affected."
+        }
+      },
+      {
+        "name": "10. Paralysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The area touched by the caster on the target is paralyzed."
+        }
+      },
+      {
+        "name": "11. Wounding VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Wounding I, except does 7d10 concussion hits of damage."
+        }
+      },
+      {
+        "name": "12. Drain Soul I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is drained of d10 Temporary Constitution points. If target's Constitution drops to 0 or below, he becomes a Class I Created Undead."
+        }
+      },
+      {
+        "name": "13. Energy Drain I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target loses 1 hit per round that the caster concentrates (and remains within 2' of the target). As each point is drained, the caster is restored 1 point (up to his maximum)."
+        }
+      },
+      {
+        "name": "14. Bleeding V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Bleeding I, except target bleeds for 5 hits per round."
+        }
+      },
+      {
+        "name": "15. Wounding X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Wounding I, except does 10d10 concussion hits of damage."
+        }
+      },
+      {
+        "name": "16. Energy Drain II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Energy Drain I, except drains 2 hits per round."
+        }
+      },
+      {
+        "name": "18. Drain Soul II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Drain Soul I, except drains 2d10 points and target becomes a Class II Created Undead if Constitution drops to 0 (or below)."
+        }
+      },
+      {
+        "name": "20. Wounding XV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Wounding I, except does 15d10 concussion hits of damage."
+        }
+      },
+      {
+        "name": "25. Drain Soul True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Drain Soul I, except drains 1 point per level of the caster and target becomes a Class III Created Undead if Constitution drops to 0 (or below)."
+        }
+      },
+      {
+        "name": "30. Bleeding True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Bleeding I, except target bleeds for 1 hit for every 5 levels of the caster."
+        }
+      },
+      {
+        "name": "50. Wounding True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "2'",
+          "type": "D",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Wounding I, except target loses all his hits and takes an additional 1 hit for each level of the caster."
+        }
+      }
+    ]
+  }
+}
