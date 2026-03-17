@@ -28,10 +28,11 @@ export class ContainerHandler {
     }
 
     getTotalWeight() {
-        return this.contents.reduce(
+        const total = this.contents.reduce(
             (sum, i) => sum + ((Number(i.system.weight) || 0)),
             0
         );
+        return Number(total.toFixed(2));
     }
 
     getTotalCount() {

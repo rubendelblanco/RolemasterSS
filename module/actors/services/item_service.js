@@ -113,11 +113,11 @@ export default class ItemService {
         // Abort if user cancels or enters an invalid amount
         if (!quantity || quantity <= 0 || quantity >= totalQty) return;
 
-        // --- Calculate accurate unit values before splitting ---
+        // --- Calculate accurate unit values before splitting (round to 2 decimals to avoid float noise) ---
         const totalCost   = Number(item.system.cost || 0);
         const totalWeight = Number(item.system.weight || 0);
-        const unitCost    = totalQty > 0 ? totalCost / totalQty : 0;
-        const unitWeight  = totalQty > 0 ? totalWeight / totalQty : 0;
+        const unitCost    = totalQty > 0 ? Number((totalCost / totalQty).toFixed(2)) : 0;
+        const unitWeight  = totalQty > 0 ? Number((totalWeight / totalQty).toFixed(2)) : 0;
         const remaining   = totalQty - quantity;
 
         // --- Update the original item with remaining quantity and totals ---
@@ -125,8 +125,8 @@ export default class ItemService {
             "system.quantity":   remaining,
             "system.unitCost":   unitCost,
             "system.unitWeight": unitWeight,
-            "system.cost":       unitCost * remaining,
-            "system.weight":     unitWeight * remaining
+            "system.cost":       Number((unitCost * remaining).toFixed(2)),
+            "system.weight":     Number((unitWeight * remaining).toFixed(2))
         });
 
         // --- Duplicate the item and create a new one with the split quantity ---
@@ -135,8 +135,8 @@ export default class ItemService {
         newItemData.system.quantity   = quantity;
         newItemData.system.unitCost   = unitCost;
         newItemData.system.unitWeight = unitWeight;
-        newItemData.system.cost       = unitCost * quantity;
-        newItemData.system.weight     = unitWeight * quantity;
+        newItemData.system.cost       = Number((unitCost * quantity).toFixed(2));
+        newItemData.system.weight     = Number((unitWeight * quantity).toFixed(2));
 
         // --- Preserve currency type if defined ---
         if (item.system.currency_type)
@@ -228,7 +228,8 @@ export default class ItemService {
         const transportContainers = [];
         for (const transport of transports) {
             const transportId = getId(transport);
-            const handler = ContainerHandler.for(transport);
+            const transportDoc = actor.items.get(transportId) ?? transport;
+            const handler = ContainerHandler.for(transportDoc);
             const contents = containersMap.get(transportId) || [];
             transportContainers.push({
                 container: transport,
@@ -252,7 +253,8 @@ export default class ItemService {
             const itemId = getId(i);
 
             if (isContainer) {
-                const handler = ContainerHandler.for(i);
+                const containerDoc = actor.items.get(itemId) ?? i;
+                const handler = ContainerHandler.for(containerDoc);
                 const contents = containersMap.get(itemId) || [];
                 if (handler?.isOverCapacity()) {
                     handler.enforceCapacityByEjectingUntilUnder().catch(console.error);
@@ -379,10 +381,10 @@ export default class ItemService {
     static normalizeItemFormData(item, formData) {
         // --- Read current values from form ---
         let qty         = Math.max(formData["system.quantity"], 1);
-        let unitWeight  = formData["system.unitWeight"];
-        let unitCost    = formData["system.unitCost"];
-        const totalWeight = unitWeight * qty;
-        const totalCost = unitCost * qty;
+        let unitWeight  = Number((formData["system.unitWeight"] ?? 0).toFixed(2));
+        let unitCost    = Number((formData["system.unitCost"] ?? 0).toFixed(2));
+        const totalWeight = Number((unitWeight * qty).toFixed(2));
+        const totalCost = Number((unitCost * qty).toFixed(2));
 
         // --- Write normalized values ---
         formData["system.quantity"]   = qty;

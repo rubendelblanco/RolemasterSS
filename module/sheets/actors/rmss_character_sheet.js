@@ -324,18 +324,18 @@ export default class RMSSCharacterSheet extends ActorSheet {
         );
 
         if (existing) {
-            // Combine stack quantities
+            // Combine stack quantities (round to 2 decimals to avoid float noise)
             const addQty = itemData.system.quantity || 1;
             const oldQty = existing.system.quantity || 1;
-            const newQty = Number(Number(oldQty + addQty).toFixed(2));
+            const newQty = Number((oldQty + addQty).toFixed(2));
 
-            const unitWeight = (existing.system.unitWeight ?? (existing.system.weight / oldQty)) || 0;
-            const unitCost   = (existing.system.unitCost   ?? (existing.system.cost / oldQty))   || 0;
+            const unitWeight = Number(((existing.system.unitWeight ?? (existing.system.weight / oldQty)) || 0).toFixed(2));
+            const unitCost   = Number(((existing.system.unitCost   ?? (existing.system.cost / oldQty))   || 0).toFixed(2));
 
             await existing.update({
                 "system.quantity": newQty,
-                "system.weight": Number(Number(unitWeight * newQty).toFixed(2)),
-                "system.cost": Number(Number(unitCost * newQty).toFixed(2))
+                "system.weight": Number((unitWeight * newQty).toFixed(2)),
+                "system.cost": Number((unitCost * newQty).toFixed(2))
             });
 
             // Delete the dragged item if it belongs to the same actor
