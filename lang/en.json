@@ -709,7 +709,11 @@
         },
         "level_up": {
             "ranks_reset": "New ranks reset",
-            "must_assign_stats_first": "You must assign attributes (stats) before leveling up from level 0."
+            "must_assign_stats_first": "You must assign attributes (stats) before leveling up from level 0.",
+            "require_stats": "assign stats",
+            "require_profession": "assign profession",
+            "require_race": "assign race",
+            "cannot_level_zero_to_one": "Cannot level up from 0 to 1. Missing: {missing}."
         },
         "chat":{
             "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})",

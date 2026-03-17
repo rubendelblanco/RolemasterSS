@@ -709,7 +709,11 @@
     },
     "level_up": {
       "ranks_reset": "Nuevos rangos reinicializados",
-      "must_assign_stats_first": "Debes asignar los atributos antes de subir de nivel 0 a 1."
+      "must_assign_stats_first": "Debes asignar los atributos antes de subir de nivel 0 a 1.",
+      "require_stats": "asignar atributos",
+      "require_profession": "asignar profesión",
+      "require_race": "asignar raza",
+      "cannot_level_zero_to_one": "No se puede subir de nivel 0 a 1. Falta: {missing}."
     },
     "chat":{
       "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})",

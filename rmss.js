@@ -30,6 +30,7 @@ import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.
 import utils from "./module/utils.js";
 import { createProfession, createProfessionDialog } from "./module/tools/profession_creator.js";
 import {ContainerHandler} from "./module/actors/utils/container_handler.js";
+import { syncHitsAndPowerPointsFromSkills } from "./module/actors/utils/hits_pp_sync.js";
 import EffectsPopupService from "./module/core/rolls/effects_popup_service.js";
 
 export let socket;
@@ -522,6 +523,23 @@ Hooks.once("init", function () {
     }
   });
 
+  // Hook: updateItem - sync Body Development / Power Point Development skills to actor hits.max / power_points.max
+  Hooks.on("updateItem", async (item, update, options, userId) => {
+    const actor = item.parent;
+    if (!actor) return;
+    if (item.type !== "skill" && item.type !== "skill_category") return;
+
+    await syncHitsAndPowerPointsFromSkills(actor);
+  });
+
+  // Hook: createItem - sync Body Development / Power Point Development skills to actor hits.max / power_points.max
+  Hooks.on("createItem", async (item, options, userId) => {
+    const actor = item.parent;
+    if (!actor || item.type !== "skill") return;
+
+    await syncHitsAndPowerPointsFromSkills(actor);
+  });
+
   // Hook: closeApplication - delete temp spell item when sheet closed without saving
   Hooks.on("closeApplication", (app, html) => {
     if (app.constructor?.name !== "ItemSheet") return;
@@ -536,19 +554,29 @@ Hooks.once("init", function () {
   // If the item was inside a container, we recalculate the container's used capacity.
   // This ensures the container updates correctly when items are removed from the actor.
   Hooks.on("deleteItem", async (item, options, userId) => {
-    const containerId = item.getFlag("rmss", "containerId");
-    if (!containerId) return;
-
     const actor = item.parent;
     if (!actor) return;
 
-    const container = actor.items.get(containerId);
-    if (!container) return;
+    const containerId = item.getFlag("rmss", "containerId");
+    if (containerId) {
+      const container = actor.items.get(containerId);
+      if (container) {
+        const handler = ContainerHandler.for(container);
+        if (handler) await handler.recalc();
+      }
+    }
 
-    const handler = ContainerHandler.for(container);
-    if (!handler) return;
+    if (item.type === "skill") {
+      await syncHitsAndPowerPointsFromSkills(actor);
+    }
+  });
 
-    await handler.recalc();
+  // Hook: updateActor - sync hits.max / power_points.max when stats change (affects skill total_bonus)
+  Hooks.on("updateActor", async (actor, update, options, userId) => {
+    if (!actor) return;
+    if (!("system" in update)) return;
+
+    await syncHitsAndPowerPointsFromSkills(actor);
   });
 
   // Auto-prefix spell names with their level

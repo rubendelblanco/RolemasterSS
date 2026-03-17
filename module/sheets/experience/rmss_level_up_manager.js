@@ -2,9 +2,25 @@ export default class LevelUpManager {
 
     static async levelUp(actor){
         const level = parseInt(actor.system.attributes?.level?.value ?? 0);
-        if (level === 0 && !actor.system.statAssignment?.completed) {
-            ui.notifications.warn(game.i18n.localize("rmss.level_up.must_assign_stats_first"));
-            return;
+        if (level === 0) {
+            const missing = [];
+            if (!actor.system.statAssignment?.completed) {
+                missing.push(game.i18n.localize("rmss.level_up.require_stats"));
+            }
+            const hasProfession = actor.items?.some(i => i.type === "profession") || actor.system.fixed_info?.profession;
+            if (!hasProfession) {
+                missing.push(game.i18n.localize("rmss.level_up.require_profession"));
+            }
+            const hasRace = !!actor.system.fixed_info?.race;
+            if (!hasRace) {
+                missing.push(game.i18n.localize("rmss.level_up.require_race"));
+            }
+            if (missing.length > 0) {
+                ui.notifications.warn(
+                    game.i18n.format("rmss.level_up.cannot_level_zero_to_one", { missing: missing.join(", ") })
+                );
+                return;
+            }
         }
 
         const skills = actor.items.filter(item => item.type === "skill");
