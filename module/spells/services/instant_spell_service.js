@@ -77,13 +77,13 @@ export default class InstantSpellService {
                             <img src="${spell.img || 'icons/svg/dice-target.svg'}" alt="" width="24" height="24" style="border-radius: 4px; flex-shrink: 0;">
                             ${spell.name}*
                         </h4>
-                        <div style="font-size: 0.9em; color: #ccc;">
+                        <div style="font-size: 0.9em; color: #fff;">
                             ${game.i18n.localize("rmss.spells.instant_cast")}
                         </div>
                     </div>
                 </div>
                 <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
-                <div style="font-size: 0.9em; color: #ddd;">
+                <div style="font-size: 0.9em; color: #fff;">
                     <div>📊 ${game.i18n.localize("rmss.spell.level")}: <strong>${spellLevel}</strong></div>
                 </div>
             </div>

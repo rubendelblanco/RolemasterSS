@@ -187,13 +187,13 @@ export default class EffectsPopupService {
                         <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000;">
                             🛡️ ${game.i18n.localize("rmss.combat.resistance_roll")}
                         </h4>
-                        <div style="font-size: 0.9em; color: #ccc;">
+                        <div style="font-size: 0.9em; color: #fff;">
                             ${token.name} ${game.i18n.localize("rmss.combat.must_roll_rr")}
                         </div>
                     </div>
                 </div>
                 <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
-                <div style="font-size: 0.9em; color: #ddd; margin-bottom: 8px;">
+                <div style="font-size: 0.9em; color: #fff; margin-bottom: 8px;">
                     <div>⚔️ ${game.i18n.localize("rmss.combat.attacker_level")}: <strong>${attackerLevel}</strong></div>
                     <div>🛡️ ${game.i18n.localize("rmss.combat.defender_level")}: <strong>${defenderLevel}</strong></div>
                     ${modifier !== 0 ? `<div>📊 ${game.i18n.localize("rmss.combat.rr_modifier")}: <strong>${modifier >= 0 ? '+' : ''}${modifier}</strong></div>` : ''}
@@ -298,19 +298,19 @@ export default class EffectsPopupService {
                         <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000;">
                             🛡️ ${game.i18n.localize("rmss.combat.resistance_roll")}
                         </h4>
-                        <div style="font-size: 0.9em; color: #ccc;">
+                        <div style="font-size: 0.9em; color: #fff;">
                             ${token.name}
                         </div>
                     </div>
                 </div>
                 <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
-                <div style="font-size: 0.9em; color: #ddd; margin-bottom: 8px;">
+                <div style="font-size: 0.9em; color: #fff; margin-bottom: 8px;">
                     <div>⚔️ ${game.i18n.localize("rmss.combat.attacker_level")}: <strong>${attackerLevel}</strong></div>
                     <div>🛡️ ${game.i18n.localize("rmss.combat.defender_level")}: <strong>${defenderLevel}</strong></div>
                     <div>🎯 ${game.i18n.localize("rmss.combat.rr_target")}: <strong style="color: #ffd700;">${rrTarget}</strong></div>
                 </div>
                 <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
-                <div style="font-size: 0.9em; color: #ddd;">
+                <div style="font-size: 0.9em; color: #fff;">
                     <div>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${naturalRoll}</strong>${isExplosive ? ` → <strong style="color: orange;">${rollTotal}</strong> 💥` : ''}</div>
                     ${modifier !== 0 ? `<div>📊 ${game.i18n.localize("rmss.combat.rr_modifier")}: <strong>${modifier >= 0 ? '+' : ''}${modifier}</strong></div>` : ''}
                     <div>📈 Total: <strong>${finalRoll}</strong></div>

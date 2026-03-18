@@ -291,13 +291,13 @@ export default class BaseElementalSpellService {
                             <img src="${spell.img || 'icons/svg/dice-target.svg'}" alt="" width="24" height="24" style="border-radius: 4px; flex-shrink: 0;">
                             ${spell.name} (BE)
                         </h4>
-                        <div style="font-size: 0.9em; color: #ccc;">
+                        <div style="font-size: 0.9em; color: #fff;">
                             ${spellListName} — ${game.i18n.localize("rmss.spells.cast_result")}
                         </div>
                     </div>
                 </div>
                 <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
-                <div style="font-size: 0.9em; color: #ddd;">
+                <div style="font-size: 0.9em; color: #fff;">
                     <div>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${naturalRoll}</strong>${isExplosive ? ` → <strong style="color: orange;">${rollTotal}</strong> 💥` : ""}</div>
                     ${!isUm ? `<div>📊 ${game.i18n.localize("rmss.spells.skill")}: <strong>${formatMod(skillBonus)}</strong></div><div>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></div>${hitsTaken !== 0 ? `<div>💔 ${game.i18n.localize("rmss.combat.hits_taken")}: <strong>${formatMod(hitsTaken)}</strong></div>` : ""}${bleeding !== 0 ? `<div>🩸 ${game.i18n.localize("rmss.maneuvers.bleeding")}: <strong>${formatMod(bleeding)}</strong></div>` : ""}${stunned !== 0 ? `<div>😵 ${game.i18n.localize("rmss.maneuvers.stunned")}: <strong>${formatMod(stunned)}</strong></div>` : ""}${penaltyEffect !== 0 ? `<div>🩹 ${game.i18n.localize("rmss.combat.penalty")}: <strong>${formatMod(Math.min(0, penaltyEffect))}</strong></div>` : ""}<div>📈 Total: <strong>${finalResult}</strong></div>` : `<div><em style="color:#aaa;">${game.i18n.localize("rmss.spells.unmodified")}</em></div>`}
                     <div>📊 ${game.i18n.localize("rmss.spells.table_result")}: <strong>${baseEnergy}</strong></div>

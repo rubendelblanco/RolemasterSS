@@ -289,13 +289,13 @@ export default class ManeuverService {
                             <img src="${skill.img || 'icons/svg/dice-target.svg'}" alt="" width="24" height="24" style="border-radius: 4px; flex-shrink: 0;">
                             ${game.i18n.localize("rmss.maneuvers.static_maneuver")}
                         </h4>
-                        <div style="font-size: 0.9em; color: #ccc;">
+                        <div style="font-size: 0.9em; color: #fff;">
                             ${actor.name} — ${skill.name}
                         </div>
                     </div>
                 </div>
                 <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
-                <div style="font-size: 0.9em; color: #ddd;">
+                <div style="font-size: 0.9em; color: #fff;">
                     <div>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${naturalRoll}</strong>${isExplosive ? ` → <strong style="color: orange;">${rollTotal}</strong> 💥` : ""}${isUnmodified ? ` <em style="color:#aaa;">(${game.i18n.localize("rmss.spells.unmodified")})</em>` : ""}</div>
                     <div>📊 ${game.i18n.localize("rmss.maneuvers.modifier")}: ${totalModifier >= 0 ? "+" : ""}${totalModifier}</div>
                     ${penaltyLines}
