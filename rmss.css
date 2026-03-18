@@ -2474,6 +2474,10 @@ tr.container-row.over-capacity {
   min-width: 720px;
   max-height: 70vh;
   overflow-y: auto;
+  font-family: "Signika", "Palatino Linotype", "Book Antiqua", serif;
+  font-size: 1.08em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .combat-history-table {
@@ -2496,6 +2500,10 @@ tr.container-row.over-capacity {
   gap: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
+  font-weight: 700;
+  font-size: 1.05em;
+  min-height: 2.5rem;
+  line-height: 1;
 }
 
 .combat-history-dialog .character-portrait {
@@ -2510,13 +2518,22 @@ tr.container-row.over-capacity {
 .combat-history-table td {
   padding: 0.5rem 0.5rem;
   text-align: left;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   vertical-align: middle;
   overflow: hidden;
 }
 
+.combat-history-table td {
+  color: #fff;
+}
+
+.combat-history-table tr:nth-child(even) { background: #555; }
+.combat-history-table tr:nth-child(odd) { background: #2e2e2e; }
+
 .combat-history-table th {
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 1.00em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .combat-history-table td:nth-child(n+2) {
@@ -2580,7 +2597,7 @@ tr.container-row.over-capacity {
 
 .combat-history-dialog .cell-breakdown {
   font-size: 0.9em;
-  color: var(--color-text-dark-secondary, #666);
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 400;
 }
 
