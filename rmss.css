@@ -1577,6 +1577,13 @@ tr.container-row.over-capacity {
     position: relative;
 }
 
+/* z-index al hacer hover en la fila para que el icono ampliado no quede tapado (incl. items en contenedores) */
+.actor-sheet table.items tr:hover,
+.actor-sheet table.weapons tr:hover,
+.actor-sheet .skills-table tr:hover {
+    z-index: 10;
+}
+
 .actor-sheet table.items td:first-child,
 .actor-sheet table.items td.indent,
 .actor-sheet table.weapons td:first-child,
@@ -1603,6 +1610,10 @@ tr.container-row.over-capacity {
 
 .actor-sheet .spell-row {
     position: relative;
+}
+
+.actor-sheet .spell-row:hover {
+    z-index: 10;
 }
 
 .actor-sheet .list-item-icon:hover,
