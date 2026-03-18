@@ -1577,12 +1577,6 @@ tr.container-row.over-capacity {
     position: relative;
 }
 
-.actor-sheet table.items tr:hover,
-.actor-sheet table.weapons tr:hover,
-.actor-sheet .skills-table tr:hover {
-    z-index: 10;
-}
-
 .actor-sheet table.items td:first-child,
 .actor-sheet table.items td.indent,
 .actor-sheet table.weapons td:first-child,
@@ -1599,23 +1593,20 @@ tr.container-row.over-capacity {
     vertical-align: middle;
 }
 
-/* List item icons: zoom on row hover (same as portrait) */
+/* List item icons: zoom on icon hover (same as portrait) */
 .actor-sheet .list-item-icon {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     transform-origin: left center;
     position: relative;
+    cursor: pointer;
 }
 
 .actor-sheet .spell-row {
     position: relative;
 }
 
-.actor-sheet .spell-row:hover {
-    z-index: 10;
-}
-
-.actor-sheet tr:hover .list-item-icon,
-.actor-sheet .spell-row:hover .list-item-icon {
+.actor-sheet .list-item-icon:hover,
+.actor-sheet .list-item-icon-wrap:hover .list-item-icon {
     transform: scale(2);
     z-index: 1000;
     box-shadow: 0 0 12px rgba(0,0,0,0.5);
