@@ -49,8 +49,9 @@ export function registerCombatHooks() {
         await RMSSWeaponSkillManager.handleAttack(item.actor, enemy.actor, item, attackerToken, defenderToken);
     });
 
-    // When GM manually toggles Defeated on a combatant, show "Who defeated?" dialog
+    // When GM manually toggles Defeated on a combatant, show "Who defeated?" dialog (GM only)
     Hooks.on("updateCombatant", async (combatant, change) => {
+        if (!game.user.isGM) return;
         if (!("defeated" in change) || !change.defeated) return;
         if (!game.combat?.id || combatant.parent?.id !== game.combat.id) return;
 
