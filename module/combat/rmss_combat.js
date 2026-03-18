@@ -199,7 +199,9 @@ export class CombatEndManager {
     }
 
     async handleCombatEnd(combat) {
-        this.playCombatEndSound();
+        // deleteCombat fires on ALL clients; combatStart only on the initiator.
+        // Only GM plays so the broadcast happens once; all clients hear via the broadcast.
+        if (game.user.isGM) this.playCombatEndSound();
         await this._showCombatHistory(combat);
     }
 
