@@ -1,6 +1,11 @@
+/** Fixed slugs for hits/PP sync (from CONFIG.rmss.skill_categories). */
+const BODY_DEVELOPMENT_SLUG = "body-development";
+const POWER_POINT_DEVELOPMENT_SLUG = "power-point-development";
+
 /**
  * Syncs actor's hits.max and power_points.max from Body Development and Power Point Development skills.
  * Uses prepared data so Active Effects and stat changes are reflected correctly.
+ * Categories are found by slug (fixed) for robustness (names can be translated).
  * @param {Actor} actor - The actor to sync.
  * @returns {Promise<void>}
  */
@@ -10,10 +15,10 @@ export async function syncHitsAndPowerPointsFromSkills(actor) {
   actor.prepareData();
 
   const bodyDevCategory = actor.items.find(
-    (i) => i.type === "skill_category" && i.name === "Body Development"
+    (i) => i.type === "skill_category" && i.system?.slug === BODY_DEVELOPMENT_SLUG
   );
   const ppDevCategory = actor.items.find(
-    (i) => i.type === "skill_category" && i.name === "Power Point Development"
+    (i) => i.type === "skill_category" && i.system?.slug === POWER_POINT_DEVELOPMENT_SLUG
   );
 
   const updates = {};
