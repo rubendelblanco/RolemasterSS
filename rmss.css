@@ -2576,6 +2576,11 @@ tr.container-row.over-capacity {
   object-fit: cover;
 }
 
+.defeated-fallback {
+  font-size: 0.85em;
+  padding: 0 0.2rem;
+}
+
 .combat-history-dialog .cell-simple {
   font-weight: 600;
   text-align: center;
@@ -2636,13 +2641,13 @@ tr.container-row.over-capacity {
 .kill-count {
   font-size: 0.75em;
   font-weight: 600;
-  color: var(--color-text-dark-secondary, #555);
+  color: var(--color-text-dark-secondary, #ffffff);
   margin-left: -2px;
 }
 
 .kill-fallback {
   font-size: 0.85em;
-  color: var(--color-text-dark-secondary, #555);
+  color: var(--color-text-dark-secondary, #ffffff);
 }
 
 .kills-cell .kills-total {

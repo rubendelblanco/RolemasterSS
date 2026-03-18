@@ -27,6 +27,9 @@ export class RMSSWeaponSkillManager {
                 }
             }
         }
+        if (!game.user.isGM) {
+            ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
+        }
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, tokenData);
         if (!gmResponse.confirmed) return;
         const rollData = await RollService.highOpenEndedD100();

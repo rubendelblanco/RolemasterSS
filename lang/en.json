@@ -579,6 +579,7 @@
         "combat": {
             "no_attack_result": "No attack table result found. Check the target's armor type.",
             "attack_no_result": "The attack had no effect.",
+            "awaiting_gm_confirmation": "Waiting for GM to confirm the attack...",
             "attack_table_load_failed": "Failed to load attack table: {table}",
             "confirm_attack": "Confirm attack",
             "confirm_critical": "Confirm critical",
@@ -657,6 +658,7 @@
                 "hp_inflicted": "HP inflicted",
                 "hp_received": "HP received",
                 "kills": "Kills",
+                "defeated": "Defeated",
                 "spells": "Spells",
                 "rounds": "Rounds",
                 "defeated_enemies": "Defeated enemies",

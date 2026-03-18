@@ -106,6 +106,9 @@ export default class BaseElementalSpellService {
             ...(facingValue !== null && { facingValue })
         };
 
+        if (!game.user.isGM) {
+            ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
+        }
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemyActor, virtualWeapon, spellOptions);
         if (!gmResponse?.confirmed) return;
 

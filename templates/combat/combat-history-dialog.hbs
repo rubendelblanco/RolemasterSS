@@ -7,10 +7,9 @@
         <div class="combat-history-defeated">
             <strong>{{ localize "rmss.combat.history.defeated_enemies" }}:</strong>
             {{#each defeatedEnemies as |enemy|}}
-            <span class="defeated-badge" title="{{ enemy.label }}">
-                {{#if enemy.img}}<img src="{{ enemy.img }}" alt="{{ enemy.name }}" class="defeated-portrait"/>{{/if}}
-                {{#unless enemy.img}}{{ enemy.label }}{{/unless}}
-            </span>{{#unless @last}} {{/unless}}
+            <span class="defeated-badge" title="{{ enemy.name }}">
+                {{#if enemy.img}}<img src="{{ enemy.img }}" alt="{{ enemy.name }}" class="defeated-portrait"/>{{else}}<span class="defeated-fallback">{{ enemy.name }}</span>{{/if}}
+            </span>
             {{/each}}
         </div>
         {{/if}}
@@ -26,7 +25,7 @@
                 <th>{{ localize "rmss.combat.history.crits_received" }}</th>
                 <th>{{ localize "rmss.combat.history.hp_inflicted" }}</th>
                 <th>{{ localize "rmss.combat.history.hp_received" }}</th>
-                <th>{{ localize "rmss.combat.history.kills" }}</th>
+                <th>{{ localize "rmss.combat.history.defeated" }}</th>
                 <th>{{ localize "rmss.combat.history.spells" }}</th>
             </tr>
         </thead>

@@ -489,10 +489,14 @@ export class RMSSWeaponCriticalManager {
     }
 
     static async getCriticalMessage(damage, criticalResult, attacker, target = null, isNullResult = false) {
+        // Solo incluir críticos con severidad real (A,B,C,D,E...); excluir los sintéticos de daño HP sin crítico
+        const criticalsWithSeverity = (criticalResult.criticals || []).filter(
+            c => c.severity != null && String(c.severity).trim() !== ""
+        );
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
             damageStr: damage,
             damage: criticalResult.damage,
-            criticals: criticalResult.criticals,
+            criticals: criticalsWithSeverity,
             attacker: attacker,
             target: target,
             isNullResult: isNullResult

@@ -212,16 +212,9 @@ export class CombatEndManager {
         if (pcCombatants.length === 0) return;
 
         const rounds = combat.round ?? 0;
-        const defeatedMap = {};
-        (combat.combatants || [])
+        const defeatedEnemies = (combat.combatants || [])
             .filter(c => c.defeated && c.actor?.type !== "character")
-            .forEach(c => {
-                const name = c.actor?.name ?? c.name ?? "?";
-                if (!defeatedMap[name]) defeatedMap[name] = { name, count: 0, img: c.actor?.img };
-                defeatedMap[name].count += 1;
-            });
-        const defeatedEnemies = Object.values(defeatedMap).map(d =>
-            ({ ...d, label: d.count > 1 ? `${d.name} (×${d.count})` : d.name }));
+            .map(c => ({ name: c.actor?.name ?? c.name ?? "?", img: c.actor?.img }));
 
         const defaultStats = () => ({
             critsInflicted: 0, critsReceived: 0, hpInflicted: 0, hpReceived: 0, kills: 0,
@@ -288,8 +281,7 @@ export class CombatEndManager {
         const d = new Dialog({
             title: game.i18n.localize("rmss.combat.history.title"),
             content: html,
-            default: "ok",
-            buttons: { ok: { icon: "<i class='fas fa-check'></i>", label: game.i18n.localize("rmss.combat.history.close") } }
+            buttons: {}
         }, { width: 800, resizable: true });
         await d.render(true);
     }
