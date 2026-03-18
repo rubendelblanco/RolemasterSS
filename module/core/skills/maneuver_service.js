@@ -285,8 +285,9 @@ export default class ManeuverService {
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
                     <img src="${actor.img}" alt="${actor.name}" width="48" height="48" style="border-radius: 6px; border: 1px solid #333;">
                     <div>
-                        <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000;">
-                            🎲 ${game.i18n.localize("rmss.maneuvers.static_maneuver")}
+                        <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000; display: flex; align-items: center; gap: 6px;">
+                            <img src="${skill.img || 'icons/svg/dice-target.svg'}" alt="" width="24" height="24" style="border-radius: 4px; flex-shrink: 0;">
+                            ${game.i18n.localize("rmss.maneuvers.static_maneuver")}
                         </h4>
                         <div style="font-size: 0.9em; color: #ccc;">
                             ${actor.name} — ${skill.name}
