@@ -22,7 +22,7 @@
     {{!-- Transport row --}}
     <tr class="container-row container-drop-target {{#if group.isOverCapacity}}over-capacity{{/if}}" data-item-id="{{group.container._id}}" draggable="true"
         data-type="Item" data-uuid="Actor.{{group.container.actorId}}.Item.{{group.container._id}}">
-        <td><img src="{{group.container.img}}" alt="{{group.container.name}}" width="32" height="32"/></td>
+        <td><span class="list-item-icon-wrap"><img class="list-item-icon" src="{{group.container.img}}" alt="{{group.container.name}}" width="32" height="32"/></span></td>
         <td><strong>{{group.container.name}}{{#if group.capacityMax}} <span class="container-capacity-badge">({{group.capacityUsed}}/{{group.capacityMax}}{{#if (eq group.capacityType "weight")}} kg{{else}}{{/if}})</span>{{/if}}{{#if group.container.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{group.container.system.description}}"></i>
@@ -69,7 +69,7 @@
     {{#each group.contents as |item|}}
     <tr class="contained-item" data-item-id="{{item._id}}" draggable="true"
         data-type="Item" data-uuid="Actor.{{item.actorId}}.Item.{{item._id}}">
-        <td class="indent"><img src="{{item.img}}" alt="{{item.name}}" width="32" height="32"/></td>
+        <td class="indent"><span class="list-item-icon-wrap"><img class="list-item-icon" src="{{item.img}}" alt="{{item.name}}" width="32" height="32"/></span></td>
         <td class="indent">{{item.name}}{{#if item.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{item.system.description}}"></i>

@@ -160,6 +160,8 @@
 .equipment-container {
     flex-direction: column;
     flex-grow: 1;
+    overflow: visible;
+    padding-bottom: 2.5rem; /* espacio para icono ampliado en última fila */
 }
 
 .stat-block {
@@ -1413,6 +1415,16 @@ tr.container-row.over-capacity {
     font-weight: 600;
 }
 
+.actor-sheet .sub-tab-content {
+    overflow: visible;
+    padding-bottom: 2.5rem; /* espacio para icono ampliado en última fila */
+}
+
+.actor-sheet .spell-container {
+    overflow: visible;
+    padding-bottom: 2.5rem;
+}
+
 @media (max-width: 800px) {
     .sub-tabs .item {
         font-size: 0.75rem;
@@ -1533,6 +1545,80 @@ tr.container-row.over-capacity {
     transform: scale(2);
     z-index: 1000;
     box-shadow: 0 0 16px rgba(0,0,0,0.6);
+}
+
+/* Evitar que el icono ampliado quede recortado por la tabla */
+.actor-sheet,
+.actor-sheet .sheet-body {
+    overflow: visible;
+}
+
+.actor-sheet form {
+    overflow: visible;
+}
+
+/* Tablas de equipment: permitir que el icono ampliado no se recorte */
+.actor-sheet table.items,
+.actor-sheet table.weapons,
+.actor-sheet .skills-table {
+    overflow: visible;
+}
+
+.actor-sheet table.items tbody,
+.actor-sheet table.weapons tbody,
+.actor-sheet .skills-table tbody {
+    overflow: visible;
+}
+
+.actor-sheet table.items tr,
+.actor-sheet table.weapons tr,
+.actor-sheet .skills-table tr {
+    overflow: visible;
+    position: relative;
+}
+
+.actor-sheet table.items tr:hover,
+.actor-sheet table.weapons tr:hover,
+.actor-sheet .skills-table tr:hover {
+    z-index: 10;
+}
+
+.actor-sheet table.items td:first-child,
+.actor-sheet table.items td.indent,
+.actor-sheet table.weapons td:first-child,
+.actor-sheet .skills-table td:first-child {
+    overflow: visible !important;
+    vertical-align: middle;
+}
+
+/* Wrapper para que el icono ampliado no sea recortado por la celda */
+.actor-sheet .list-item-icon-wrap {
+    display: inline-block;
+    overflow: visible;
+    position: relative;
+    vertical-align: middle;
+}
+
+/* List item icons: zoom on row hover (same as portrait) */
+.actor-sheet .list-item-icon {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transform-origin: left center;
+    position: relative;
+}
+
+.actor-sheet .spell-row {
+    position: relative;
+}
+
+.actor-sheet .spell-row:hover {
+    z-index: 10;
+}
+
+.actor-sheet tr:hover .list-item-icon,
+.actor-sheet .spell-row:hover .list-item-icon {
+    transform: scale(2);
+    z-index: 1000;
+    box-shadow: 0 0 12px rgba(0,0,0,0.5);
 }
 
 /* Columnas del header */

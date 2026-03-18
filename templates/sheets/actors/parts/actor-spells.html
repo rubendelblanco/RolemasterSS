@@ -49,7 +49,7 @@ placeholder="Search spell..."
     {{#each list.contents as |spell|}}
     <div class="spell-row" draggable="true" data-type="Item" data-uuid="Actor.{{list.actorId}}.Item.{{spell._id}}" data-item-id="{{spell._id}}">
     <div data-search="{{spell.name}}">
-      <img src="{{spell.img}}" alt="{{spell.name}}" width="32" height="32"/>
+      <span class="list-item-icon-wrap"><img class="list-item-icon" src="{{spell.img}}" alt="{{spell.name}}" width="32" height="32"/></span>
     </div>
 
     {{#if spell.system.favorite}}
