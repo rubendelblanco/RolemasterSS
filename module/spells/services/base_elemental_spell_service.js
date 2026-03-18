@@ -287,8 +287,9 @@ export default class BaseElementalSpellService {
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
                     <img src="${actor.img}" alt="${actor.name}" width="48" height="48" style="border-radius: 6px; border: 1px solid #333;">
                     <div>
-                        <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000;">
-                            ⚡ ${spell.name} (BE)
+                        <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000; display: flex; align-items: center; gap: 6px;">
+                            <img src="${spell.img || 'icons/svg/dice-target.svg'}" alt="" width="24" height="24" style="border-radius: 4px; flex-shrink: 0;">
+                            ${spell.name} (BE)
                         </h4>
                         <div style="font-size: 0.9em; color: #ccc;">
                             ${spellListName} — ${game.i18n.localize("rmss.spells.cast_result")}
