@@ -23,7 +23,7 @@
       <td>{{herb.system.quantity}}</td>
       <td>{{herb.system.codes}}</td>
       <td>{{herb.system.af}}</td>
-      <td>{{herb.system.weight}}</td>
+      <td>{{formatNumber herb.system.weight}}</td>
       <td>{{herb.system.cost}} <span>{{localize (concat "rmss.currency_type_abb." herb.system.currency_type)}}</span></td>
       <td>
           {{#if (gt system.quantity 1)}}

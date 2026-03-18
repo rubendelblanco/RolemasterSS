@@ -391,6 +391,13 @@ Hooks.once("init", function () {
     return Math.round((a / b) * 100);
   });
 
+  Handlebars.registerHelper("formatNumber", function (value, decimals) {
+    const n = Number(value);
+    if (isNaN(n)) return value ?? "";
+    const d = (typeof decimals === "number" && decimals >= 0) ? decimals : 2;
+    return n.toFixed(d).replace(/\.?0+$/, "");
+  });
+
   // Register a Handlebars helper to concatenate strings
   Handlebars.registerHelper("concat", function() {
     // Convert arguments to an array and remove the last one (Handlebars options object)
