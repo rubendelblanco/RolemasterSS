@@ -436,7 +436,8 @@
       "description": "Descripción",
       "create_spell": "Crear hechizo",
       "edit_spell": "Editar hechizo",
-      "new_spell": "Nuevo hechizo"
+      "new_spell": "Nuevo hechizo",
+      "view": "Ver hechizo"
     },
     "skill_category": {
       "applicable_stats": "Atributos aplicables",

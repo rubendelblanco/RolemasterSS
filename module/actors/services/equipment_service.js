@@ -35,6 +35,27 @@ export default class EquipmentService {
   }
 
   /**
+   * Hands occupied for spell casting. 2H weapons (staff, etc.) count as 1 hand:
+   * the mage holds the staff in one hand while casting with the other.
+   * @param {Actor} actor
+   * @returns {number} 0–2
+   */
+  static getHandsOccupiedForCasting(actor) {
+    if (!actor?.items) return 0;
+    let total = 0;
+    for (const item of actor.items) {
+      if (item.type === "weapon" && item.system?.equipped === true) {
+        total += Math.min(this.getWeaponHands(item), 1);
+      } else if (item.type === "creature_attack") {
+        total += this.getWeaponHands(item);
+      } else if (item.type === "armor") {
+        total += this.getArmorHands(item);
+      }
+    }
+    return Math.min(total, this.MAX_HANDS);
+  }
+
+  /**
    * Total hands occupied by actor's equipped weapons and shields.
    * @param {Actor} actor
    * @returns {number} 0–2

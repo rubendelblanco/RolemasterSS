@@ -436,7 +436,8 @@
             "description": "Description",
             "create_spell": "Create Spell",
             "edit_spell": "Edit Spell",
-            "new_spell": "New Spell"
+            "new_spell": "New Spell",
+            "view": "View Spell"
         },
         "skill_category": {
             "applicable_stats": "Applicable Stats",

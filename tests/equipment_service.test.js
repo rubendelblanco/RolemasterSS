@@ -63,6 +63,21 @@ describe("EquipmentService", () => {
     });
   });
 
+  describe("getHandsOccupiedForCasting", () => {
+    test("2H weapon (staff) counts as 1 hand when casting", () => {
+      const actor = { items: [mockWeapon2H] };
+      expect(EquipmentService.getHandsOccupiedForCasting(actor)).toBe(1);
+    });
+    test("1H weapon counts as 1 hand when casting", () => {
+      const actor = { items: [mockWeapon1H] };
+      expect(EquipmentService.getHandsOccupiedForCasting(actor)).toBe(1);
+    });
+    test("2H weapon + shield = 2 hands when casting", () => {
+      const actor = { items: [mockWeapon2H, mockShield] };
+      expect(EquipmentService.getHandsOccupiedForCasting(actor)).toBe(2);
+    });
+  });
+
   describe("getHandsOccupied", () => {
     test("actor with 1H weapon has 1 hand occupied", () => {
       const actor = { items: [mockWeapon1H] };

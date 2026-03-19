@@ -119,6 +119,10 @@ placeholder="Search spell..."
       <a class="item-delete" title="Delete Spell" data-item-id="{{spell._id}}">
         <i class="fas fa-trash"></i>
       </a>
+      {{else}}
+      <a class="item-view" title="{{localize 'rmss.spell.view'}}" data-item-id="{{spell._id}}">
+        <i class="fas fa-eye"></i>
+      </a>
       {{/if}}
     </div>
     </div>

@@ -47,7 +47,7 @@ export default class CastingOptionsService {
         const normalizedRealm = this._normalizeRealm(realm);
         const autoPenalties = (actor != null) ? ManeuverPenaltiesService.getManeuverPenalties(actor, { spellType: spellType }) : { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0 };
         const showAutoPenalties = actor != null;
-        const handsOccupied = (actor != null) ? EquipmentService.getHandsOccupied(actor) : 0;
+        const handsOccupied = (actor != null) ? EquipmentService.getHandsOccupiedForCasting(actor) : 0;
         const content = this._buildDialogContent(normalizedRealm, spellType, modifiers, autoPenalties, showAutoPenalties, handsOccupied);
         
         return new Promise((resolve) => {

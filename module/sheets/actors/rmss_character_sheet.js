@@ -82,6 +82,11 @@ export default class RMSSCharacterSheet extends ActorSheet {
             item.sheet.render(true);
         });
 
+        html.find(".item-view").click(ev => {
+            const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
+            if (item) item.sheet.render(true, { editable: false });
+        });
+
         html.find(".effect-control").click(this._onEffectControl.bind(this));
 
         const updateCriticalCodes = (html, name, updatePath) => {

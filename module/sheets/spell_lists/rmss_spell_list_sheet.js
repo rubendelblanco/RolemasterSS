@@ -82,6 +82,14 @@ export default class RMSSSpellListSheet extends ItemSheet {
             if (spell) spell.sheet.render(true);
         });
 
+        // View spell (read-only) - only when !canEditSpellsAndLists (actor mode, non-GM)
+        html.find(".item-view").click(ev => {
+            ev.preventDefault();
+            const itemId = ev.currentTarget.dataset.itemId;
+            const spell = this.item.actor?.items.get(itemId);
+            if (spell) spell.sheet.render(true, { editable: false });
+        });
+
         // Create spell (embedded mode only)
         html.find(".create-spell").click(ev => {
             ev.preventDefault();
