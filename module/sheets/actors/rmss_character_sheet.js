@@ -359,15 +359,20 @@ export default class RMSSCharacterSheet extends ActorSheet {
             const spellListData = foundry.utils.duplicate(itemData);
             delete spellListData._id;
             const creatureLevel = parseInt(this.actor.system?.attributes?.level?.value, 10) || 0;
-            const created = await this.actor.createEmbeddedDocuments("Item", [spellListData]);
-            const spellList = created[0];
-            await spellList.setFlag("rmss", "spellManeuverModifier", creatureLevel);
-            const count = await expandSpellListEmbeddedSpells(this.actor, spellList);
+            await this.actor.setFlag("rmss", "expandingSpellList", true);
+            try {
+                const created = await this.actor.createEmbeddedDocuments("Item", [spellListData]);
+                const spellList = created[0];
+                await spellList.setFlag("rmss", "spellManeuverModifier", creatureLevel);
+                const count = await expandSpellListEmbeddedSpells(this.actor, spellList);
             ui.notifications.info(
                 count > 0
                     ? game.i18n.format("rmss.spell_lists.imported_with_spells", { name: spellList.name, count })
                     : game.i18n.format("rmss.spell_lists.imported", { name: spellList.name })
             );
+            } finally {
+                await this.actor.unsetFlag("rmss", "expandingSpellList");
+            }
             return;
         }
 

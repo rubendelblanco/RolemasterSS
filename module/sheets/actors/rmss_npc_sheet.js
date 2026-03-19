@@ -41,15 +41,18 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
 
     async getData() {
         // Expand embedded spells in spell lists (for lists added before we had drop-handling)
-        for (const list of this.actor.items.filter(i => i.type === "spell_list")) {
-            const embedded = list.system?.spells ?? [];
-            if (embedded.length === 0) continue;
-            const listId = list.id ?? list._id;
-            const hasExpanded = this.actor.items.some(
-                s => s.type === "spell" && s.flags?.rmss?.containerId === listId
-            );
-            if (!hasExpanded) {
-                await expandSpellListEmbeddedSpells(this.actor, list);
+        // Skip if we're in the middle of a drop (avoids double expansion when drop triggers re-render)
+        if (!this.actor.getFlag("rmss", "expandingSpellList")) {
+            for (const list of this.actor.items.filter(i => i.type === "spell_list")) {
+                const embedded = list.system?.spells ?? [];
+                if (embedded.length === 0) continue;
+                const listId = list.id ?? list._id;
+                const hasExpanded = this.actor.items.some(
+                    s => s.type === "spell" && s.flags?.rmss?.containerId === listId
+                );
+                if (!hasExpanded) {
+                    await expandSpellListEmbeddedSpells(this.actor, list);
+                }
             }
         }
 

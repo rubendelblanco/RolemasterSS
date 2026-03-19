@@ -388,7 +388,8 @@ export default class ItemService {
                     spellManeuverModifier = (storedMod !== undefined && storedMod !== null)
                         ? parseInt(storedMod, 10) : creatureLevel;
                 }
-                return { ...list, contents, listLevel: maxLevel, spellManeuverModifier };
+                const listId = list.id ?? list._id;
+                return { ...list, listId, contents, listLevel: maxLevel, spellManeuverModifier };
             })
             .sort((a, b) => a.name.localeCompare(b.name));
     }
