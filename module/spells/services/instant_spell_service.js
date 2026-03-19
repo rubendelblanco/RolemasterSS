@@ -1,5 +1,6 @@
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
 import { sendExpMessage } from "../../chat/chatMessages.js";
+import { triggerAutoAnimations, getActorToken } from "../../autoanimations_integration.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 
 /**
@@ -37,6 +38,11 @@ export default class InstantSpellService {
         }
 
         await this._createChatMessage({ actor, spell, spellLevel });
+
+        const sourceToken = getActorToken(actor);
+        if (sourceToken) {
+            triggerAutoAnimations(sourceToken, spell, Array.from(game.user.targets));
+        }
 
         await spell.use();
 

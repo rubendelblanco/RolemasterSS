@@ -5,6 +5,7 @@
  */
 import CastingOptionsService from "./casting_options_service.js";
 import SpellFailureService from "./spell_failure_service.js";
+import { triggerAutoAnimations, getActorToken } from "../../autoanimations_integration.js";
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
 import { sendExpMessage } from "../../chat/chatMessages.js";
 import RMSSTableManager from "../../combat/rmss_table_manager.js";
@@ -269,6 +270,11 @@ export default class BaseElementalSpellService {
 
         if (game.combat?.started) {
             CombatHistoryTracker.get().recordSpellCast(actor.id, spellLevel, spellXp);
+        }
+
+        const sourceToken = getActorToken(actor);
+        if (sourceToken) {
+            triggerAutoAnimations(sourceToken, spell, targets);
         }
 
         // Execute spell macro on success (via item.use: item, actor, token)
