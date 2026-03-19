@@ -1,6 +1,7 @@
 import RMSSCharacterSheet from "./rmss_character_sheet.js";
 import ItemService from "../../actors/services/item_service.js";
 import SkillDropHandler from "../../actors/drop_handlers/skill_drop_handler.js";
+import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
 
 export default class RMSSNpcSheet extends RMSSCharacterSheet {
     static get defaultOptions() {
@@ -39,7 +40,20 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
     }
 
     async getData() {
-        const context = super.getData();
+        // Expand embedded spells in spell lists (for lists added before we had drop-handling)
+        for (const list of this.actor.items.filter(i => i.type === "spell_list")) {
+            const embedded = list.system?.spells ?? [];
+            if (embedded.length === 0) continue;
+            const listId = list.id ?? list._id;
+            const hasExpanded = this.actor.items.some(
+                s => s.type === "spell" && s.flags?.rmss?.containerId === listId
+            );
+            if (!hasExpanded) {
+                await expandSpellListEmbeddedSpells(this.actor, list);
+            }
+        }
+
+        const context = await super.getData();
         // Use a safe clone of the actor data for further operations.
         const actorData = this.actor.toObject(false);
         let enrichedDescription = await TextEditor.enrichHTML(this.actor.system.description, {async: true});

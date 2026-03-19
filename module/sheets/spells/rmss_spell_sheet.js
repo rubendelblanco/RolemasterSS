@@ -82,6 +82,16 @@ export default class RMSSSpellSheet extends ItemSheet {
   }
 
   /** @override */
+  activateListeners(html) {
+    super.activateListeners(html);
+    html.find('select[name="system.type"]').on("change", async (ev) => {
+      const newType = ev.target.value;
+      await this.item.update({ "system.type": newType });
+      this.render();
+    });
+  }
+
+  /** @override */
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
 

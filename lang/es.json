@@ -437,7 +437,10 @@
       "create_spell": "Crear hechizo",
       "edit_spell": "Editar hechizo",
       "new_spell": "Nuevo hechizo",
-      "view": "Ver hechizo"
+      "view": "Ver hechizo",
+      "list_level_hint": "Nivel máximo de hechizos visibles en esta lista. Por defecto: nivel de la criatura.",
+      "maneuver_modifier": "Mod. hechizo",
+      "maneuver_modifier_hint": "Modificador para la tirada de maniobra de lanzamiento. Por defecto: nivel de la criatura."
     },
     "skill_category": {
       "applicable_stats": "Atributos aplicables",

@@ -302,6 +302,7 @@ export default class ItemService {
 
         // Attach everything to context
         return Object.assign(context, {
+            actorIsCreature: actor?.type === "creature" || actor?.type === "npc",
             canEditSpellsAndLists,
             containers,
             transportContainers,
@@ -355,6 +356,9 @@ export default class ItemService {
             spellsByList[containerId].push(spell);
         }
 
+        const isCreatureOrNpc = actor?.type === "creature" || actor?.type === "npc";
+        const creatureLevel = parseInt(actor?.system?.attributes?.level?.value, 10) || 0;
+
         return spellists
             .map(list => {
                 const listId = list.id || list._id;
@@ -362,11 +366,29 @@ export default class ItemService {
                     (a, b) => (a.system.level || 0) - (b.system.level || 0)
                 );
                 const skill = actor?.items?.find(i => i.type === "skill" && i.name === list.name);
-                const maxLevel = skill ? (parseInt(skill.system?.ranks, 10) || 0) : 0;
+                let maxLevel;
+                if (skill) {
+                    maxLevel = parseInt(skill.system?.ranks, 10) || 0;
+                } else if (isCreatureOrNpc) {
+                    const stored = list.flags?.rmss?.listLevel;
+                    maxLevel = (stored !== undefined && stored !== null)
+                        ? parseInt(stored, 10) : creatureLevel;
+                } else {
+                    maxLevel = 0;
+                }
                 if (maxLevel >= 0) {
                     contents = contents.filter(s => (parseInt(s.system?.level, 10) || 0) <= maxLevel);
                 }
-                return { ...list, contents };
+                // Spell maneuver modifier for creatures/NPCs (no skill): default = level
+                let spellManeuverModifier = creatureLevel;
+                if (skill) {
+                    spellManeuverModifier = null; // Characters use skill bonus, not this field
+                } else if (isCreatureOrNpc) {
+                    const storedMod = list.flags?.rmss?.spellManeuverModifier;
+                    spellManeuverModifier = (storedMod !== undefined && storedMod !== null)
+                        ? parseInt(storedMod, 10) : creatureLevel;
+                }
+                return { ...list, contents, listLevel: maxLevel, spellManeuverModifier };
             })
             .sort((a, b) => a.name.localeCompare(b.name));
     }

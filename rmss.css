@@ -1127,6 +1127,26 @@ form .spell-list tr.spell-draggable:active {
     float:left;
 }
 
+.spell-list-container .spell-list-level-input {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    margin-left: 1em;
+}
+
+.spell-list-container .spell-list-level-input input,
+.spell-list-container .spell-list-modifier-input input {
+    width: 3em;
+    text-align: center;
+}
+
+.spell-list-container .spell-list-modifier-input {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    margin-left: 1em;
+}
+
 .spell-list-container .spell-list-actions {
    margin-left: 10%;
 }

@@ -1,6 +1,7 @@
 import ItemService from "../../actors/services/item_service.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
+import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
 
 /**
  * All the actions and feats in common for characters (PCs, NPCs, Creatures & Monsters)
@@ -352,6 +353,23 @@ export default class RMSSCharacterSheet extends ActorSheet {
             return;
         }
 
+        // Spell list drop for creatures/NPCs: create list and expand embedded spells
+        if (itemData.type === "spell_list" && (this.actor.type === "creature" || this.actor.type === "npc")) {
+            const spellListData = foundry.utils.duplicate(itemData);
+            delete spellListData._id;
+            const creatureLevel = parseInt(this.actor.system?.attributes?.level?.value, 10) || 0;
+            const created = await this.actor.createEmbeddedDocuments("Item", [spellListData]);
+            const spellList = created[0];
+            await spellList.setFlag("rmss", "spellManeuverModifier", creatureLevel);
+            const count = await expandSpellListEmbeddedSpells(this.actor, spellList);
+            ui.notifications.info(
+                count > 0
+                    ? game.i18n.format("rmss.spell_lists.imported_with_spells", { name: spellList.name, count })
+                    : game.i18n.format("rmss.spell_lists.imported", { name: spellList.name })
+            );
+            return;
+        }
+
         // Default behavior for non-stackable or unmatched items
         return super._onDropItem(event, data);
     }
@@ -425,6 +443,24 @@ export default class RMSSCharacterSheet extends ActorSheet {
         html.find(".item-give").click(ev => this._onItemGiveClick(ev));
         html.find(".split-stack").click(ev => this._onItemSplitClick(ev));
         html.find(".wearable").click(ev => this._onItemWearableClick(ev));
+        html.find(".spell-list-level").on("change", async (ev) => {
+            const listId = ev.currentTarget.dataset.listId;
+            const value = Math.max(0, parseInt(ev.currentTarget.value, 10) || 0);
+            const listItem = this.actor.items.get(listId);
+            if (listItem?.type === "spell_list") {
+                await listItem.setFlag("rmss", "listLevel", value);
+                this.render(false);
+            }
+        });
+        html.find(".spell-list-modifier").on("change", async (ev) => {
+            const listId = ev.currentTarget.dataset.listId;
+            const value = parseInt(ev.currentTarget.value, 10) || 0;
+            const listItem = this.actor.items.get(listId);
+            if (listItem?.type === "spell_list") {
+                await listItem.setFlag("rmss", "spellManeuverModifier", value);
+                this.render(false);
+            }
+        });
     }
 
     async _onItemFavoriteClick(ev) {

@@ -63,9 +63,23 @@ export default class BaseElementalSpellService {
             return;
         }
 
-        // If no skill associated with spell list, use 0
+        // Skill bonus: from skill for characters, from spell maneuver modifier for creatures/NPCs
         const skill = actor.items.find(i => i.type === "skill" && i.name === spellListName);
-        const skillBonus = skill?.system?.total_bonus ?? 0;
+        let skillBonus;
+        if (skill) {
+            skillBonus = skill.system?.total_bonus ?? 0;
+        } else {
+            const isCreatureOrNpc = actor.type === "creature" || actor.type === "npc";
+            const creatureLevel = parseInt(actor.system?.attributes?.level?.value, 10) || 0;
+            if (isCreatureOrNpc) {
+                const spellList = actor.items.find(i => i.type === "spell_list" && i.name === spellListName);
+                const stored = spellList?.flags?.rmss?.spellManeuverModifier;
+                skillBonus = (stored !== undefined && stored !== null)
+                    ? parseInt(stored, 10) : creatureLevel;
+            } else {
+                skillBonus = 0;
+            }
+        }
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
         const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0 } = castingOptions;
         const totalCastingModifier = castingOptions.totalModifier;

@@ -73,11 +73,25 @@ export default class ForceSpellService {
             }
         }
 
-        // Find the skill with the same name as the spell list; if none, use 0
+        // Find the skill with the same name as the spell list; if none (creatures/NPCs), use spell maneuver modifier
         const skill = actor.items.find(i =>
             i.type === "skill" && i.name === spellListName
         );
-        const skillBonus = skill?.system?.total_bonus ?? 0;
+        let skillBonus;
+        if (skill) {
+            skillBonus = skill.system?.total_bonus ?? 0;
+        } else {
+            const isCreatureOrNpc = actor.type === "creature" || actor.type === "npc";
+            const creatureLevel = parseInt(actor.system?.attributes?.level?.value, 10) || 0;
+            if (isCreatureOrNpc) {
+                const spellList = actor.items.find(i => i.type === "spell_list" && i.name === spellListName);
+                const stored = spellList?.flags?.rmss?.spellManeuverModifier;
+                skillBonus = (stored !== undefined && stored !== null)
+                    ? parseInt(stored, 10) : creatureLevel;
+            } else {
+                skillBonus = 0;
+            }
+        }
 
         // Get targets
         const targets = Array.from(game.user.targets);

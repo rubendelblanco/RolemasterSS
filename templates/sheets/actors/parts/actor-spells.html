@@ -22,6 +22,20 @@ placeholder="Search spell..."
          data-tooltip="{{list.system.description}}"></i>
       {{/if}}
     </div>
+    {{#if ../actorIsCreature}}
+    <div class="spell-list-level-input">
+      <label>{{localize "rmss.spell.level"}}</label>
+      <input type="number" class="spell-list-level" data-list-id="{{list._id}}"
+             value="{{list.listLevel}}" min="0" data-dtype="Number"
+             title="{{localize "rmss.spell.list_level_hint"}}"/>
+    </div>
+    <div class="spell-list-modifier-input">
+      <label>{{localize "rmss.spell.maneuver_modifier"}}</label>
+      <input type="number" class="spell-list-modifier" data-list-id="{{list._id}}"
+             value="{{list.spellManeuverModifier}}" data-dtype="Number"
+             title="{{localize "rmss.spell.maneuver_modifier_hint"}}"/>
+    </div>
+    {{/if}}
     <span class="spell-list-actions">
       {{#if ../canEditSpellsAndLists}}
       <a class="item-edit" title="Edit Spell List" data-item-id="{{list._id}}">

@@ -437,7 +437,10 @@
             "create_spell": "Create Spell",
             "edit_spell": "Edit Spell",
             "new_spell": "New Spell",
-            "view": "View Spell"
+            "view": "View Spell",
+            "list_level_hint": "Max spell level visible in this list. Default: creature level.",
+            "maneuver_modifier": "Spell mod",
+            "maneuver_modifier_hint": "Modifier for spell casting maneuver roll. Default: creature level."
         },
         "skill_category": {
             "applicable_stats": "Applicable Stats",
