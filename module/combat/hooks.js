@@ -1,5 +1,6 @@
 import { RMSSCombat } from "./rmss_combat.js";
 import { RMSSWeaponSkillManager } from "./rmss_weapon_skill_manager.js";
+import { triggerAutoAnimations } from "../autoanimations_integration.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import { RMSSEffectApplier } from "./rmss_effect_applier.js";
 import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_manager.js";
@@ -46,6 +47,10 @@ export function registerCombatHooks() {
 
         const attackerToken = canvas.tokens.controlled.length === 1 ? canvas.tokens.controlled[0] : null;
         const defenderToken = enemy;
+
+        // Automated Animations: trigger workflow for weapon attacks
+        triggerAutoAnimations(attackerToken, item, [defenderToken]);
+
         await RMSSWeaponSkillManager.handleAttack(item.actor, enemy.actor, item, attackerToken, defenderToken);
     });
 

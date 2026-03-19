@@ -1,5 +1,6 @@
 import BaseSpellService from "./base_spell_service.js";
 import ResistanceRollService from "../../core/rolls/resistance_roll_service.js";
+import { triggerAutoAnimations, getActorToken } from "../../autoanimations_integration.js";
 import CastingOptionsService from "./casting_options_service.js";
 import StaticManeuverService from "./static_maneuver_service.js";
 import SpellFailureService from "./spell_failure_service.js";
@@ -275,6 +276,11 @@ export default class ForceSpellService {
             game.rmss.lastSpellContext = targetRRs.length > 0
                 ? { targetRRs, casterLevel: actor.system.attributes?.level?.value ?? 1 }
                 : null;
+
+            const sourceToken = getActorToken(actor);
+            if (sourceToken) {
+                triggerAutoAnimations(sourceToken, spell, Array.from(game.user.targets));
+            }
 
             await spell.use();
         }
