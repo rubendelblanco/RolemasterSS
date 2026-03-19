@@ -302,7 +302,7 @@
       }
     },
     "creature":{
-      "templates": ["armor_info"],
+      "templates": ["armor_info", "fixed_info"],
       "attributes": {
         "initiative": {
           "value": 0,

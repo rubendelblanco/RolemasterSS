@@ -230,6 +230,8 @@ Hooks.once("init", function () {
     RMSSActor,
     RMSSItem,
     lastSpellContext: null, // Set by ForceSpellService before spell.use(); used by item macros
+    /** Get normalized sex for any actor (character, npc, creature). For spell macros: game.rmss.getActorSex(actor) */
+    getActorSex: (actor) => utils.getActorSex(actor),
     applications: {
       RMSSActorSheetConfig
     },

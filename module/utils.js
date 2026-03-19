@@ -20,6 +20,32 @@ export default class Utils {
         return actor.effects.filter(effect => effect.name === effectName);
     }
 
+    /**
+     * Get normalized sex for any actor type (character, npc, creature).
+     * Used by spell macros for effects (e.g. chant sounds).
+     * @param {Actor} actor - The actor
+     * @returns {"male"|"female"|"other"} Normalized sex
+     */
+    static getActorSex(actor) {
+        if (!actor) return "other";
+        let sex = "";
+        switch (actor.type) {
+            case "character":
+                sex = actor.system.role_traits?.sex ?? "";
+                break;
+            case "npc":
+            case "creature":
+                sex = actor.system.fixed_info?.sex ?? actor.system.role_traits?.sex ?? "";
+                break;
+            default:
+                sex = actor.system.fixed_info?.sex ?? actor.system.role_traits?.sex ?? "";
+        }
+        const normalized = String(sex || "").toLowerCase().trim();
+        if (normalized === "female") return "female";
+        if (normalized === "male") return "male";
+        return "other";
+    }
+
     static getActor(actorOrTokenOrId) {
         if (actorOrTokenOrId instanceof Actor) {
             return actorOrTokenOrId;

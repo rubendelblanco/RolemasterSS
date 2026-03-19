@@ -91,6 +91,14 @@
                     <label for="level">{{ localize "rmss.creature.treasure" }}</label>
                     <input id="level" name="system.treasure" type="text" value="{{system.treasure}}" data-dtype="String"/>
                 </div>
+                <div class="header-text flexrow">
+                    <label for="sex">{{ localize "rmss.npc.sex" }}</label>
+                    <select id="sex" name="system.fixed_info.sex">
+                        <option value="male" {{#if (eq system.fixed_info.sex "male")}}selected{{/if}}>{{ localize "rmss.npc.sex_male" }}</option>
+                        <option value="female" {{#if (eq system.fixed_info.sex "female")}}selected{{/if}}>{{ localize "rmss.npc.sex_female" }}</option>
+                        <option value="other" {{#if (eq system.fixed_info.sex "other")}}selected{{/if}}{{#unless system.fixed_info.sex}}selected{{/unless}}>{{ localize "rmss.npc.sex_other" }}</option>
+                    </select>
+                </div>
             </div>
         </div>
     </header>
