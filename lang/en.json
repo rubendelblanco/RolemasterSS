@@ -743,7 +743,11 @@
         "npc": {
             "at": "AT",
             "db": "DB",
-            "movement_rate": "Movement rate"
+            "movement_rate": "Movement rate",
+            "sex": "Sex",
+            "sex_male": "Male",
+            "sex_female": "Female",
+            "sex_other": "Other"
         },
         "effects": {
             "effects": "Active effects"

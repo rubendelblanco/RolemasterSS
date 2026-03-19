@@ -743,7 +743,11 @@
     "npc": {
       "at": "TA",
       "db": "BD",
-      "movement_rate": "Movimiento base"
+      "movement_rate": "Movimiento base",
+      "sex": "Sexo",
+      "sex_male": "Masculino",
+      "sex_female": "Femenino",
+      "sex_other": "Otro"
     },
     "effects": {
       "effects": "Efectos activos"
