@@ -348,7 +348,6 @@ export default class ItemService {
 
     static _mapSpellsToLists(actor, spellists, spells) {
         const spellsByList = {};
-
         for (const spell of spells) {
             const containerId = spell.flags?.rmss?.containerId;
             if (!containerId) continue;
@@ -360,38 +359,45 @@ export default class ItemService {
         const creatureLevel = parseInt(actor?.system?.attributes?.level?.value, 10) || 0;
 
         return spellists
-            .map(list => {
-                const listId = list.id || list._id;
-                let contents = (spellsByList[listId] || []).sort(
-                    (a, b) => (a.system.level || 0) - (b.system.level || 0)
-                );
-                const skill = actor?.items?.find(i => i.type === "skill" && i.name === list.name);
-                let maxLevel;
-                if (skill) {
-                    maxLevel = parseInt(skill.system?.ranks, 10) || 0;
-                } else if (isCreatureOrNpc) {
-                    const stored = list.flags?.rmss?.listLevel;
-                    maxLevel = (stored !== undefined && stored !== null)
-                        ? parseInt(stored, 10) : creatureLevel;
-                } else {
-                    maxLevel = 0;
-                }
-                if (maxLevel >= 0) {
-                    contents = contents.filter(s => (parseInt(s.system?.level, 10) || 0) <= maxLevel);
-                }
-                // Spell maneuver modifier for creatures/NPCs (no skill): default = level
-                let spellManeuverModifier = creatureLevel;
-                if (skill) {
-                    spellManeuverModifier = null; // Characters use skill bonus, not this field
-                } else if (isCreatureOrNpc) {
-                    const storedMod = list.flags?.rmss?.spellManeuverModifier;
-                    spellManeuverModifier = (storedMod !== undefined && storedMod !== null)
-                        ? parseInt(storedMod, 10) : creatureLevel;
-                }
-                const listId = list.id ?? list._id;
-                return { ...list, listId, contents, listLevel: maxLevel, spellManeuverModifier };
-            })
+            .map(list => this._buildSpellListEntry(actor, list, spellsByList, isCreatureOrNpc, creatureLevel))
             .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    /**
+     * Build a spell list entry with contents, level cap, and maneuver modifier.
+     * @private
+     */
+    static _buildSpellListEntry(actor, list, spellsByList, isCreatureOrNpc, creatureLevel) {
+        const listId = list.id || list._id;
+        let contents = (spellsByList[listId] || []).sort(
+            (a, b) => (a.system.level || 0) - (b.system.level || 0)
+        );
+
+        const skill = actor?.items?.find(i => i.type === "skill" && i.name === list.name);
+        const maxLevel = this._getSpellListMaxLevel(skill, list, isCreatureOrNpc, creatureLevel);
+        if (maxLevel >= 0) {
+            contents = contents.filter(s => (parseInt(s.system?.level, 10) || 0) <= maxLevel);
+        }
+
+        const spellManeuverModifier = this._getSpellManeuverModifier(skill, list, isCreatureOrNpc, creatureLevel);
+
+        return { ...list, listId, contents, listLevel: maxLevel, spellManeuverModifier };
+    }
+
+    static _getSpellListMaxLevel(skill, list, isCreatureOrNpc, creatureLevel) {
+        if (skill) return parseInt(skill.system?.ranks, 10) || 0;
+        if (isCreatureOrNpc) {
+            const stored = list.flags?.rmss?.listLevel;
+            return (stored !== undefined && stored !== null) ? parseInt(stored, 10) : creatureLevel;
+        }
+        return 0;
+    }
+
+    static _getSpellManeuverModifier(skill, list, isCreatureOrNpc, creatureLevel) {
+        if (skill) return null; // Characters use skill bonus, not this field
+        if (!isCreatureOrNpc) return creatureLevel;
+        const stored = list.flags?.rmss?.spellManeuverModifier;
+        return (stored !== undefined && stored !== null) ? parseInt(stored, 10) : creatureLevel;
     }
 
     /**
