@@ -11,24 +11,30 @@ export default class RMSSCharacterSheet extends ActorSheet {
         super.activateListeners(html);
         this._registerItemListeners(html);
 
-        // Equip/Unequip Weapon/Armor (Issue #94: validate hands limit)
+        // Equip/Unequip: items use "worn", weapons/armor use "equipped"
         html.find(".equippable").click(async ev => {
             const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
-            if (item.system.equipped === true) {
-                await item.update({ system: { equipped: false } });
+            if (!item) return;
+
+            if (item.type === "item") {
+                await ItemService.toggleWorn(item);
             } else {
-                const { valid, currentHands, itemHands } = EquipmentService.canEquip(this.actor, item);
-                if (!valid) {
-                    ui.notifications.warn(
-                        game.i18n.format("rmss.equipment.hands_limit_exceeded", {
-                            current: currentHands,
-                            adding: itemHands,
-                            max: EquipmentService.MAX_HANDS
-                        })
-                    );
-                    return;
+                if (item.system.equipped === true) {
+                    await item.update({ system: { equipped: false } });
+                } else {
+                    const { valid, currentHands, itemHands } = EquipmentService.canEquip(this.actor, item);
+                    if (!valid) {
+                        ui.notifications.warn(
+                            game.i18n.format("rmss.equipment.hands_limit_exceeded", {
+                                current: currentHands,
+                                adding: itemHands,
+                                max: EquipmentService.MAX_HANDS
+                            })
+                        );
+                        return;
+                    }
+                    await item.update({ system: { equipped: true } });
                 }
-                await item.update({ system: { equipped: true } });
             }
         });
 

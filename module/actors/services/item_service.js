@@ -162,9 +162,7 @@ export default class ItemService {
      */
     static async toggleWorn(item) {
         const isWorn = item.system.worn === true;
-        console.log(`Before change: ${isWorn}`);
         await item.update({ "system.worn": !isWorn });
-        console.log(`After change: ${!isWorn}`);
     }
 
     // --- Item Preparation ------------------------------------------------------
