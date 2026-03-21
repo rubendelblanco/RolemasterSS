@@ -1823,6 +1823,16 @@ tr.container-row.over-capacity {
     font-size: 1.1em;
 }
 
+.casting-options-dialog .dialog-button.spellAdder {
+  background: linear-gradient(180deg, #0077b6, #023e8a);
+  color: #fff;
+  border: none;
+  font-weight: bold;
+}
+.casting-options-dialog .dialog-button.spellAdder:hover {
+  background: linear-gradient(180deg, #0096c7, #0077b6);
+}
+
 /* Spell RR Results Table in Chat */
 .spell-rr-table {
     width: 100%;

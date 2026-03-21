@@ -1,7 +1,8 @@
 /**
- * Power point calculations considering equipped items (PP multiplier, spell adder).
- * PP adder adds to base; PP multiplier (≥2) multiplies the total. If multiple multipliers apply,
+ * Power point calculations considering equipped items.
+ * PP multiplier (≥2) multiplies the base. If multiple multipliers apply,
  * the highest is used (they do NOT stack). @see Spell User's Companion 6.17.2
+ * Spell adders are handled separately in CastingOptionsService (free cast).
  */
 
 /**
@@ -26,7 +27,7 @@ function getEquippedPPItems(actor) {
  * @param {string} actorRealm - actor.system.fixed_info.realm
  * @returns {boolean}
  */
-function realmMatches(itemRealm, actorRealm) {
+export function realmMatches(itemRealm, actorRealm) {
   if (!itemRealm) return false;
   if (itemRealm === "all") return true;
   if (itemRealm === "profession") return false;
@@ -35,10 +36,10 @@ function realmMatches(itemRealm, actorRealm) {
 
 /**
  * Check if item's profession filter matches the actor's profession.
- * @param {string} itemProfUuid - Profession uuid from item (pp_multiplier_profession or spell_adder_profession)
+ * @param {string} itemProfUuid - Profession uuid from item
  * @param {Actor} actor
  */
-function professionMatches(itemProfUuid, actor) {
+export function professionMatches(itemProfUuid, actor) {
   if (!itemProfUuid?.trim()) return false;
   const actorProfession = actor?.items?.find((i) => i.type === "profession");
   if (!actorProfession) return false;
@@ -49,10 +50,32 @@ function professionMatches(itemProfUuid, actor) {
 }
 
 /**
- * Effective max power points considering equipped items.
- * Formula: (base + sumAdders) * highestMultiplier
+ * Find the first equipped spell adder item whose realm/profession matches the actor.
  * @param {Actor} actor
- * @param {string} actorRealm - actor's realm (system.fixed_info.realm), e.g. "essence", "essence/channeling"
+ * @returns {{item: Item, value: number}|null}
+ */
+export function getMatchingSpellAdder(actor) {
+  const actorRealm = actor?.system?.fixed_info?.realm || "";
+  if (!actorRealm) return null;
+  for (const item of getEquippedPPItems(actor)) {
+    const sys = item.system || {};
+    const val = Number(sys.spell_adder) || 0;
+    if (val <= 0) continue;
+    const realm = sys.spell_adder_realm || "";
+    const prof = sys.spell_adder_profession || "";
+    const applies = realm === "profession"
+      ? professionMatches(prof, actor)
+      : realmMatches(realm, actorRealm);
+    if (applies) return { item, value: val };
+  }
+  return null;
+}
+
+/**
+ * Effective max power points considering equipped PP multiplier items.
+ * Formula: base * highestMultiplier
+ * @param {Actor} actor
+ * @param {string} actorRealm - actor's realm (system.fixed_info.realm)
  * @param {number} [basePP] - Override base PP. If omitted, uses actor.system.attributes.power_points.max
  * @returns {number}
  */
@@ -62,7 +85,6 @@ export function getEffectivePowerPointsMax(actor, actorRealm, basePP) {
     : Number(actor?.system?.attributes?.power_points?.max ?? actor?.system?.attributes?.power_points?.base ?? 0);
   const items = getEquippedPPItems(actor);
 
-  let adders = 0;
   let maxMultiplier = 1;
 
   for (const item of items) {
@@ -70,22 +92,15 @@ export function getEffectivePowerPointsMax(actor, actorRealm, basePP) {
     const ppMult = Number(sys.pp_multiplier) || 1;
     const ppMultRealm = sys.pp_multiplier_realm || "";
     const ppMultProf = sys.pp_multiplier_profession || "";
-    const spellAdd = Number(sys.spell_adder) || 0;
-    const spellAddRealm = sys.spell_adder_realm || "";
-    const spellAddProf = sys.spell_adder_profession || "";
 
     const ppMultApplies = ppMultRealm === "profession"
       ? professionMatches(ppMultProf, actor)
       : realmMatches(ppMultRealm, actorRealm);
-    const spellAddApplies = spellAddRealm === "profession"
-      ? professionMatches(spellAddProf, actor)
-      : realmMatches(spellAddRealm, actorRealm);
 
-    if (spellAdd > 0 && spellAddApplies) adders += spellAdd;
     if (ppMult >= 2 && ppMultApplies) maxMultiplier = Math.max(maxMultiplier, ppMult);
   }
 
-  return Math.floor((base + adders) * maxMultiplier);
+  return Math.floor(base * maxMultiplier);
 }
 
 /**

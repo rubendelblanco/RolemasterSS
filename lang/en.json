@@ -913,6 +913,8 @@
             "select_armor_type": "Select Armor Type",
             "select_armor_type_prompt": "Select the armor type:",
             "cast": "Cast spell",
+            "cast_with_spell_adder": "Use {itemName} (Spell Adder)",
+            "spell_adder_confirm": "Use {itemName} (Spell Adder) to cast {spellName} without spending Power Points?",
             "cast_result": "Cast Result",
             "rr_modifier": "RR Modifier",
             "no_skill_found": "No skill found for spell list",
@@ -946,7 +948,9 @@
             "unmodified": "Unmodified"
         },
         "dialog": {
-            "cancel": "Cancel"
+            "cancel": "Cancel",
+            "yes": "Yes",
+            "no": "No"
         },
         "attack_table": {
             "bastard_axe": "Bastard Axe",

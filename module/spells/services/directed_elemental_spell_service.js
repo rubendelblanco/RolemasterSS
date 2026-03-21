@@ -14,6 +14,7 @@ import FacingService from "../../combat/services/facing_service.js";
 import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
 import { socket } from "../../../rmss.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
+import { getMatchingSpellAdder } from "../../actors/utils/power_points_util.js";
 
 export default class DirectedElementalSpellService {
 
@@ -42,7 +43,7 @@ export default class DirectedElementalSpellService {
         }
 
         const spellLevel = spell.system?.level ?? 1;
-        const noPP = !consumePowerPoints || spell.system?.no_pp === true;
+        let noPP = !consumePowerPoints || spell.system?.no_pp === true;
         if (!noPP) {
             const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
             if (currentPP < spellLevel) {
@@ -76,14 +77,17 @@ export default class DirectedElementalSpellService {
         }
 
         const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
+        const spellAdder = !noPP ? getMatchingSpellAdder(actor) : null;
         const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
             realm: effectiveRealm,
             spellType: "DE",
             spellName: spell.name,
-            actor
+            actor,
+            spellAdderItemName: spellAdder?.item?.name ?? null
         });
 
         if (castingOptions === null) return;
+        if (castingOptions.useSpellAdder) noPP = true;
 
         const targets = Array.from(game.user.targets);
         if (targets.length === 0) {

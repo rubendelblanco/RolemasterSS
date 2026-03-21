@@ -35,9 +35,10 @@ export default class CastingOptionsService {
      * @param {string} params.spellType - The spell type (E, BE, DE, F, P, U, I)
      * @param {string} params.spellName - The spell name for display
      * @param {Actor} [params.actor] - The caster (required for BE: hits taken penalty)
-     * @returns {Promise<{totalModifier: number, options: Object}|null>} The total modifier and selected options, or null if cancelled
+     * @param {string} [params.spellAdderItemName] - Name of the equipped spell adder item (if available)
+     * @returns {Promise<{totalModifier: number, options: Object, useSpellAdder?: boolean}|null>}
      */
-    static async showCastingOptionsDialog({ realm, spellType, spellName, actor = null }) {
+    static async showCastingOptionsDialog({ realm, spellType, spellName, actor = null, spellAdderItemName = null }) {
         const modifiers = await this.loadModifiers();
         if (!modifiers) {
             ui.notifications.error("Failed to load casting modifiers");
@@ -49,26 +50,36 @@ export default class CastingOptionsService {
         const showAutoPenalties = actor != null;
         const handsOccupied = (actor != null) ? EquipmentService.getHandsOccupiedForCasting(actor) : 0;
         const content = this._buildDialogContent(normalizedRealm, spellType, modifiers, autoPenalties, showAutoPenalties, handsOccupied);
-        
-        return new Promise((resolve) => {
+
+        const buttons = {
+            cast: {
+                icon: '<i class="fas fa-magic"></i>',
+                label: game.i18n.localize("rmss.spells.cast"),
+                callback: (html) => {
+                    const result = this._calculateModifiers(html, normalizedRealm, spellType, modifiers, autoPenalties);
+                    resolve(result);
+                }
+            }
+        };
+        if (spellAdderItemName) {
+            buttons.spellAdder = {
+                icon: '<i class="fas fa-hat-wizard"></i>',
+                label: game.i18n.format("rmss.spells.cast_with_spell_adder", { itemName: spellAdderItemName }),
+                callback: (html) => {
+                    const result = this._calculateModifiers(html, normalizedRealm, spellType, modifiers, autoPenalties);
+                    result.useSpellAdder = true;
+                    resolve(result);
+                }
+            };
+        }
+
+        let resolve;
+        return new Promise((res) => {
+            resolve = res;
             new Dialog({
                 title: game.i18n.localize("rmss.spells.casting_options"),
                 content: content,
-                buttons: {
-                    cast: {
-                        icon: '<i class="fas fa-magic"></i>',
-                        label: game.i18n.localize("rmss.spells.cast"),
-                        callback: (html) => {
-                            const result = this._calculateModifiers(html, normalizedRealm, spellType, modifiers, autoPenalties);
-                            resolve(result);
-                        }
-                    },
-                    cancel: {
-                        icon: '<i class="fas fa-times"></i>',
-                        label: game.i18n.localize("rmss.dialog.cancel"),
-                        callback: () => resolve(null)
-                    }
-                },
+                buttons,
                 default: "cast",
                 close: () => resolve(null)
             }, {

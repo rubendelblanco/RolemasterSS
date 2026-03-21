@@ -913,6 +913,8 @@
       "select_armor_type": "Seleccionar Tipo de Armadura",
       "select_armor_type_prompt": "Selecciona el tipo de armadura:",
       "cast": "Lanzar hechizo",
+      "cast_with_spell_adder": "Usar {itemName} (Spell Adder)",
+      "spell_adder_confirm": "¿Usar {itemName} (Spell Adder) para lanzar {spellName} sin gastar Puntos de Poder?",
       "cast_result": "Resultado de lanzamiento",
       "rr_modifier": "Modificador de RR",
       "no_skill_found": "No se encontró la habilidad para la lista de hechizos",
@@ -946,7 +948,9 @@
       "unmodified": "Sin modificar"
     },
     "dialog": {
-      "cancel": "Cancelar"
+      "cancel": "Cancelar",
+      "yes": "Sí",
+      "no": "No"
     },
     "attack_table": {
     "bastard_axe": "Hacha bastarda",
