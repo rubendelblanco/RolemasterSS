@@ -180,18 +180,6 @@ rmss.item_pp_realm = {
   "profession": "rmss.item.pp_realm_profession"
 }
 
-/** Hybrid realm expansion: which base realms each option covers. */
-rmss.item_pp_realm_expands = {
-  "essence": ["essence"],
-  "channeling": ["channeling"],
-  "mentalism": ["mentalism"],
-  "arcane": ["arcane"],
-  "essence/channeling": ["essence", "channeling"],
-  "essence/mentalism": ["essence", "mentalism"],
-  "channeling/mentalism": ["channeling", "mentalism"],
-  "all": ["essence", "channeling", "mentalism", "arcane"]
-};
-
 rmss.character_realm = {
   "essence": "Essence",
   "channeling": "Channeling",

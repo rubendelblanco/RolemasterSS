@@ -20,19 +20,17 @@ function getEquippedPPItems(actor) {
 }
 
 /**
- * Check if an item's realm filter matches the spell realm.
- * Handles hybrid realms (essence/channeling, etc.) via CONFIG.rmss.item_pp_realm_expands.
- * @param {string} itemRealm - "" | "all" | "essence" | "channeling" | ...
- * @param {string} spellRealm - e.g. "essence", "channeling"
+ * Check if an item's realm filter matches the actor's realm exactly.
+ * "all" matches any realm. Otherwise requires exact match (no hybrid expansion).
+ * @param {string} itemRealm - "" | "all" | "essence" | "channeling" | "essence/channeling" | ...
+ * @param {string} actorRealm - actor.system.fixed_info.realm
  * @returns {boolean}
  */
-function realmMatches(itemRealm, spellRealm) {
+function realmMatches(itemRealm, actorRealm) {
   if (!itemRealm) return false;
   if (itemRealm === "all") return true;
-  if (itemRealm === "profession") return false; // Handled in professionMatches
-  const expands = CONFIG.rmss?.item_pp_realm_expands?.[itemRealm];
-  if (expands) return expands.includes(spellRealm);
-  return itemRealm === spellRealm;
+  if (itemRealm === "profession") return false;
+  return itemRealm === actorRealm;
 }
 
 /**
@@ -51,14 +49,14 @@ function professionMatches(itemProfUuid, actor) {
 }
 
 /**
- * Effective max power points for casting spells of the given realm.
- * Formula: (base + sumAdders) * productMultipliers
+ * Effective max power points considering equipped items.
+ * Formula: (base + sumAdders) * highestMultiplier
  * @param {Actor} actor
- * @param {string} spellRealm - "essence" | "channeling" | "mentalism" | "arcane"
- * @param {number} [basePP] - Override base PP (e.g. from skills). If omitted, uses actor.system.attributes.power_points.max
+ * @param {string} actorRealm - actor's realm (system.fixed_info.realm), e.g. "essence", "essence/channeling"
+ * @param {number} [basePP] - Override base PP. If omitted, uses actor.system.attributes.power_points.max
  * @returns {number}
  */
-export function getEffectivePowerPointsMax(actor, spellRealm, basePP) {
+export function getEffectivePowerPointsMax(actor, actorRealm, basePP) {
   const base = basePP !== undefined
     ? basePP
     : Number(actor?.system?.attributes?.power_points?.max ?? actor?.system?.attributes?.power_points?.base ?? 0);
@@ -78,10 +76,10 @@ export function getEffectivePowerPointsMax(actor, spellRealm, basePP) {
 
     const ppMultApplies = ppMultRealm === "profession"
       ? professionMatches(ppMultProf, actor)
-      : realmMatches(ppMultRealm, spellRealm);
+      : realmMatches(ppMultRealm, actorRealm);
     const spellAddApplies = spellAddRealm === "profession"
       ? professionMatches(spellAddProf, actor)
-      : realmMatches(spellAddRealm, spellRealm);
+      : realmMatches(spellAddRealm, actorRealm);
 
     if (spellAdd > 0 && spellAddApplies) adders += spellAdd;
     if (ppMult >= 2 && ppMultApplies) maxMultiplier = Math.max(maxMultiplier, ppMult);
@@ -90,20 +88,16 @@ export function getEffectivePowerPointsMax(actor, spellRealm, basePP) {
   return Math.floor((base + adders) * maxMultiplier);
 }
 
-const REALMS = ["essence", "channeling", "mentalism", "arcane"];
-
 /**
  * Effective max PP for the sheet display and recovery.
- * Uses the maximum across all realms (items may grant realm-specific bonuses).
+ * Uses the actor's realm (system.fixed_info.realm) for matching.
  * @param {Actor} actor
  * @param {number} [basePP] - Base PP from skills. If omitted, uses stored max/base.
  * @returns {number}
  */
 export function getEffectivePowerPointsMaxForSheet(actor, basePP) {
   const stored = basePP ?? Number(actor?.system?.attributes?.power_points?.max ?? actor?.system?.attributes?.power_points?.base ?? 0);
-  let max = stored;
-  for (const realm of REALMS) {
-    max = Math.max(max, getEffectivePowerPointsMax(actor, realm, stored));
-  }
-  return max;
+  const actorRealm = actor?.system?.fixed_info?.realm || "";
+  if (!actorRealm) return stored;
+  return getEffectivePowerPointsMax(actor, actorRealm, stored);
 }
