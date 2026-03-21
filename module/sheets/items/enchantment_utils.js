@@ -82,3 +82,83 @@ export function getPowerModifierMode(system) {
   const spellAdd = Number(system?.spell_adder) || 0;
   return ppMult >= 2 ? "multiplier" : spellAdd > 0 ? "spell_adder" : "";
 }
+
+/**
+ * Resolve profession display name from uuid or name.
+ * @param {string} uuidOrName
+ * @returns {Promise<string>}
+ */
+export async function resolveProfessionName(uuidOrName) {
+  if (!uuidOrName) return "";
+  if (!uuidOrName.startsWith("Actor.") && !uuidOrName.startsWith("Compendium.")) {
+    return uuidOrName; // already a name
+  }
+  try {
+    const doc = await fromUuid(uuidOrName);
+    return doc?.name ?? uuidOrName;
+  } catch {
+    return uuidOrName;
+  }
+}
+
+/**
+ * Setup profession drop zones for Power Modifier (when realm = profession).
+ * @param {JQuery} html
+ * @param {ItemSheet} sheet
+ */
+export function setupPowerModifierProfessionDropZones(html, sheet) {
+  html.find(".rmss-power-modifier-profession-drop").each((_, el) => {
+    el.addEventListener("dragover", ev => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      ev.dataTransfer.dropEffect = "copy";
+    });
+    el.addEventListener("drop", ev => onDropPowerModifierProfession(ev, sheet));
+  });
+}
+
+/**
+ * Handle drop of profession on Power Modifier zone.
+ * @param {DragEvent} event
+ * @param {ItemSheet} sheet
+ */
+export async function onDropPowerModifierProfession(event, sheet) {
+  event.preventDefault();
+  event.stopPropagation();
+  let data;
+  try {
+    data = JSON.parse(event.dataTransfer.getData("text/plain"));
+  } catch {
+    return;
+  }
+  if (!data?.uuid) return;
+  const dropped = await fromUuid(data.uuid);
+  if (!dropped || dropped.type !== "profession") {
+    ui.notifications.warn(game.i18n.localize("rmss.item.drop_profession_only"));
+    return;
+  }
+  const zone = event.currentTarget;
+  const field = zone.dataset?.powerModifier;
+  if (field !== "pp_multiplier" && field !== "spell_adder") return;
+  const updatePath = field === "pp_multiplier"
+    ? "system.pp_multiplier_profession"
+    : "system.spell_adder_profession";
+  await sheet.item.update({ [updatePath]: dropped.uuid });
+  sheet.render(false);
+}
+
+/**
+ * Handle clear button for Power Modifier profession.
+ * @param {Event} event
+ * @param {ItemSheet} sheet
+ */
+export async function onClearPowerModifierProfession(event, sheet) {
+  event.preventDefault();
+  const field = event.currentTarget.dataset?.powerModifier;
+  if (field !== "pp_multiplier" && field !== "spell_adder") return;
+  const updatePath = field === "pp_multiplier"
+    ? "system.pp_multiplier_profession"
+    : "system.spell_adder_profession";
+  await sheet.item.update({ [updatePath]: "" });
+  sheet.render(false);
+}

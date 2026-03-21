@@ -141,6 +141,17 @@
                             <option value="{{key}}" {{#if (eq key ../system.pp_multiplier_realm)}}selected{{/if}}>{{localize label}}</option>
                             {{/each}}
                         </select>
+                        {{#if (eq system.pp_multiplier_realm "profession")}}
+                        <span class="rmss-power-modifier-profession-label">{{localize "rmss.item.power_modifier_profession_for"}}</span>
+                        <div class="rmss-power-modifier-profession-drop drop-target" data-power-modifier="pp_multiplier" data-drop-zone="power-modifier-profession">
+                            {{#if ppMultiplierProfessionName}}
+                            <span class="rmss-profession-name">{{ppMultiplierProfessionName}}</span>
+                            <button type="button" class="rmss-profession-clear" data-action="clear-power-modifier-profession" data-power-modifier="pp_multiplier" title="{{localize 'rmss.item.enchantment_delete'}}"><i class="fas fa-times"></i></button>
+                            {{else}}
+                            <span class="rmss-drop-hint">{{localize "rmss.item.drop_profession_here"}}</span>
+                            {{/if}}
+                        </div>
+                        {{/if}}
                         {{/if}}
                         {{#if (eq powerModifierMode "spell_adder")}}
                         <input type="number" name="system.spell_adder" value="{{or system.spell_adder 1}}" min="1" max="100" step="1" data-dtype="Number" title="Bonus PP"/>
@@ -150,6 +161,17 @@
                             <option value="{{key}}" {{#if (eq key ../system.spell_adder_realm)}}selected{{/if}}>{{localize label}}</option>
                             {{/each}}
                         </select>
+                        {{#if (eq system.spell_adder_realm "profession")}}
+                        <span class="rmss-power-modifier-profession-label">{{localize "rmss.item.power_modifier_profession_for"}}</span>
+                        <div class="rmss-power-modifier-profession-drop drop-target" data-power-modifier="spell_adder" data-drop-zone="power-modifier-profession">
+                            {{#if spellAdderProfessionName}}
+                            <span class="rmss-profession-name">{{spellAdderProfessionName}}</span>
+                            <button type="button" class="rmss-profession-clear" data-action="clear-power-modifier-profession" data-power-modifier="spell_adder" title="{{localize 'rmss.item.enchantment_delete'}}"><i class="fas fa-times"></i></button>
+                            {{else}}
+                            <span class="rmss-drop-hint">{{localize "rmss.item.drop_profession_here"}}</span>
+                            {{/if}}
+                        </div>
+                        {{/if}}
                         {{/if}}
                     </div></td>
                 </tr>

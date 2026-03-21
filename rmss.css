@@ -2869,6 +2869,51 @@ tr.container-row.over-capacity {
   flex-shrink: 0;
 }
 
+.rmss-power-modifier-profession-label {
+  font-size: 0.9em;
+  color: var(--color-text-dark-inactive);
+  flex-shrink: 0;
+}
+
+.rmss-power-modifier-profession-drop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 8rem;
+  min-height: 1.5rem;
+  padding: 0.15rem 0.35rem;
+  border: 1px dashed var(--color-border-dark);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.rmss-power-modifier-profession-drop:hover {
+  border-color: var(--color-border-dark-secondary);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.rmss-power-modifier-profession-drop .rmss-profession-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rmss-power-modifier-profession-drop .rmss-profession-clear {
+  flex-shrink: 0;
+  padding: 0.1rem;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--color-text-dark-inactive);
+  cursor: pointer;
+}
+
+.rmss-power-modifier-profession-drop .rmss-profession-clear:hover {
+  color: var(--color-text-dark);
+}
+
 .rmss-item-bonus-skills {
   margin-top: 0.5rem;
 }

@@ -2,7 +2,14 @@
 
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
-import { buildEnchantmentList, getPowerModifierMode, normalizeEnchantments } from "./enchantment_utils.js";
+import {
+  buildEnchantmentList,
+  getPowerModifierMode,
+  normalizeEnchantments,
+  onClearPowerModifierProfession,
+  resolveProfessionName,
+  setupPowerModifierProfessionDropZones
+} from "./enchantment_utils.js";
 
 export default class RMSSWeaponSheet extends ItemSheet {
 
@@ -37,6 +44,8 @@ export default class RMSSWeaponSheet extends ItemSheet {
     const { material, bonus, magical, bonusEditable, magicalEditable, materialsOptions } = this._resolveWeaponMaterial(system);
     const enchantmentList = buildEnchantmentList(system.magic?.enchantments);
     const powerModifierMode = getPowerModifierMode(system);
+    const ppMultiplierProfessionName = await resolveProfessionName(system.pp_multiplier_profession ?? "");
+    const spellAdderProfessionName = await resolveProfessionName(system.spell_adder_profession ?? "");
 
     return {
       owner: this.item.isOwner,
@@ -58,7 +67,9 @@ export default class RMSSWeaponSheet extends ItemSheet {
       weightCostMultiplier: this.item._getWeightReductionModifier?.() ?? 1,
       bonusSkillsList: this._getBonusSkillsArray(),
       enchantmentList,
-      powerModifierMode
+      powerModifierMode,
+      ppMultiplierProfessionName,
+      spellAdderProfessionName
     };
   }
 
@@ -92,6 +103,8 @@ export default class RMSSWeaponSheet extends ItemSheet {
     html.find('input[name="system.weight_percent"]').on("input", this._onWeightPercentInput.bind(this));
     this._setupHolyUnholyExclusive(html);
     this._setupPPExclusive(html);
+    setupPowerModifierProfessionDropZones(html, this);
+    html.find("[data-action='clear-power-modifier-profession']").on("click", ev => onClearPowerModifierProfession(ev, this));
     this._setupBonusSkillDropZones(html);
     html.find("[data-action='remove-bonus-skill']").on("click", this._onRemoveBonusSkill.bind(this));
     this._setupEnchantmentsDropZone(html);

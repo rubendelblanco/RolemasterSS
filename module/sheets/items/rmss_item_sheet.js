@@ -1,7 +1,14 @@
 import ItemService from "../../actors/services/item_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
-import { buildEnchantmentList, getPowerModifierMode, normalizeEnchantments } from "./enchantment_utils.js";
+import {
+  buildEnchantmentList,
+  getPowerModifierMode,
+  normalizeEnchantments,
+  onClearPowerModifierProfession,
+  resolveProfessionName,
+  setupPowerModifierProfessionDropZones
+} from "./enchantment_utils.js";
 
 export default class RMSSItemSheet extends ItemSheet {
 
@@ -50,6 +57,8 @@ export default class RMSSItemSheet extends ItemSheet {
 
     const enchantmentList = buildEnchantmentList(system.magic?.enchantments);
     const powerModifierMode = getPowerModifierMode(system);
+    const ppMultiplierProfessionName = await resolveProfessionName(system.pp_multiplier_profession ?? "");
+    const spellAdderProfessionName = await resolveProfessionName(system.spell_adder_profession ?? "");
 
     return {
       owner: item.isOwner,
@@ -66,7 +75,9 @@ export default class RMSSItemSheet extends ItemSheet {
       bonusSkillsList,
       enchantmentList,
       weightCostMultiplier: item._getWeightReductionModifier?.() ?? 1,
-      powerModifierMode
+      powerModifierMode,
+      ppMultiplierProfessionName,
+      spellAdderProfessionName
     };
   }
 
@@ -84,6 +95,8 @@ export default class RMSSItemSheet extends ItemSheet {
     // --- Holy/Unholy mutually exclusive ---
     this._setupHolyUnholyExclusive(html);
     this._setupPPExclusive(html);
+    setupPowerModifierProfessionDropZones(html, this);
+    html.find("[data-action='clear-power-modifier-profession']").on("click", ev => onClearPowerModifierProfession(ev, this));
     // --- Bonus skill drop zones ---
     this._setupBonusSkillDropZones(html);
     // Bind to document: el html del sheet puede no incluir el tab Modifiers en algunas configuraciones
