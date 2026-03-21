@@ -2925,7 +2925,7 @@ tr.container-row.over-capacity {
   line-height: 1;
   border: none;
   background: transparent;
-  color: var(--color-text-dark-inactive);
+  color: var(--rmss-btn-danger);
   cursor: pointer;
 }
 
