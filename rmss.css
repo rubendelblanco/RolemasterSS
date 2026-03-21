@@ -3014,6 +3014,19 @@ tr.container-row.over-capacity {
   color: var(--color-text-dark-inactive);
 }
 
+/* Weapon sheet: attack table / skill / critical selectors row */
+.rmss-weapon-selectors-row {
+  display: table;
+  width: 100%;
+  text-align: center;
+}
+
+.rmss-weapon-selectors-row > div {
+  display: table-cell;
+  vertical-align: top;
+  padding: 0 4px;
+}
+
 /* Enchantments */
 .rmss-enchantments-header {
   display: grid;
