@@ -407,6 +407,12 @@ Hooks.once("init", function () {
     return Math.round((a / b) * 100);
   });
 
+  Handlebars.registerHelper("times", function (n, options) {
+    let result = "";
+    for (let i = 0; i < n; i++) result += options.fn(i);
+    return result;
+  });
+
   Handlebars.registerHelper("formatNumber", function (value, decimals) {
     const n = Number(value);
     if (isNaN(n)) return value ?? "";
@@ -564,26 +570,34 @@ Hooks.once("init", function () {
     }
   });
 
-  /** Reset daily enchantment uses. Call Hooks.call("rmssLongRest") from macros or rest systems. */
-  Hooks.on("rmssLongRest", async () => {
-    if (!game.actors) return;
-    for (const actor of game.actors) {
-      for (const item of actor.items) {
+  /** Reset daily enchantment uses and spell adder uses.
+   *  Call Hooks.call("rmssLongRest") for all actors, or Hooks.call("rmssLongRest", actor) for one. */
+  Hooks.on("rmssLongRest", async (actor) => {
+    const actors = actor ? [actor] : (game.actors || []);
+    for (const a of actors) {
+      for (const item of a.items) {
         if (!["item", "armor", "weapon"].includes(item.type)) continue;
+
         const enchantments = item.system?.magic?.enchantments;
-        if (!Array.isArray(enchantments)) continue;
-        let changed = false;
-        const updated = enchantments.map((e) => {
-          if (e.usage === "daily") {
-            const perDay = Number(e.usesPerDay) || 0;
-            if (Number(e.usesRemaining) !== perDay) {
-              changed = true;
-              return { ...e, usesRemaining: perDay };
+        if (Array.isArray(enchantments)) {
+          let changed = false;
+          const updated = enchantments.map((e) => {
+            if (e.usage === "daily") {
+              const perDay = Number(e.usesPerDay) || 0;
+              if (Number(e.usesRemaining) !== perDay) {
+                changed = true;
+                return { ...e, usesRemaining: perDay };
+              }
             }
-          }
-          return e;
-        });
-        if (changed) await item.update({ "system.magic.enchantments": updated });
+            return e;
+          });
+          if (changed) await item.update({ "system.magic.enchantments": updated });
+        }
+
+        const spellAdder = Number(item.system?.spell_adder) || 0;
+        if (spellAdder > 0 && Number(item.system?.spell_adder_uses_remaining) !== spellAdder) {
+          await item.update({ "system.spell_adder_uses_remaining": spellAdder });
+        }
       }
     }
   });

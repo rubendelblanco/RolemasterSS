@@ -150,6 +150,11 @@
                             <option value="{{key}}" {{#if (eq key ../system.spell_adder_realm)}}selected{{/if}}>{{localize label}}</option>
                             {{/each}}
                         </select>
+                        <span class="rmss-spell-adder-uses">
+                            <input type="number" name="system.spell_adder_uses_remaining" value="{{system.spell_adder_uses_remaining}}" min="0" max="{{system.spell_adder}}" data-dtype="Number" title="{{localize 'rmss.item.spell_adder_uses_remaining'}}"/>
+                            <span class="rmss-enchantment-slash">/</span>
+                            <span>{{system.spell_adder}}</span>
+                        </span>
                         {{/if}}
                     </div></td>
                 </tr>

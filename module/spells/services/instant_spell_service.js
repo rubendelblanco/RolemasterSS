@@ -2,7 +2,7 @@ import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_
 import { sendExpMessage } from "../../chat/chatMessages.js";
 import { triggerAutoAnimations, getActorToken } from "../../autoanimations_integration.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
-import { getMatchingSpellAdder } from "../../actors/utils/power_points_util.js";
+import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
 
 /**
  * Service for casting instant spells.
@@ -27,8 +27,12 @@ export default class InstantSpellService {
         if (!noPP) {
             const spellAdder = getMatchingSpellAdder(actor);
             if (spellAdder) {
-                const useIt = await this._askSpellAdder(spellAdder.item.name, spell.name);
-                if (useIt) noPP = true;
+                const usesLabel = spellAdder.value > 0 ? ` [${spellAdder.usesRemaining}/${spellAdder.value}]` : "";
+                const useIt = await this._askSpellAdder(spellAdder.item.name + usesLabel, spell.name);
+                if (useIt) {
+                    noPP = true;
+                    await consumeSpellAdderUse(spellAdder.item);
+                }
             }
         }
 

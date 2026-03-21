@@ -2883,6 +2883,18 @@ tr.container-row.over-capacity {
   flex-shrink: 0;
 }
 
+.rmss-spell-adder-uses {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin-left: 0.4rem;
+  font-size: 0.9em;
+}
+.rmss-spell-adder-uses input[type="number"] {
+  width: 2.5rem;
+  text-align: center;
+}
+
 .rmss-power-modifier-profession-row {
   display: flex;
   align-items: center;
@@ -3221,4 +3233,45 @@ tr.container-row.over-capacity {
   font-size: 0.85em;
   color: var(--color-text-dark-inactive);
   margin-top: 1rem;
+}
+
+/* Weapon tab: nombre en una línea, pips debajo; alineación a la izq. como lista de items */
+.actor-sheet table.weapons td.rmss-weapon-name-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  vertical-align: top;
+  gap: 0.25rem;
+  text-align: left;
+}
+.actor-sheet table.weapons td.rmss-weapon-name-cell .rmss-weapon-name-line {
+  line-height: 1.35;
+  text-align: left;
+  width: 100%;
+}
+
+/* Spell Adder pips: misma alineación en items, armas, armadura y favoritos */
+.actor-sheet .spell-adder-pips {
+  display: flex;
+  gap: 2px;
+  margin-top: 2px;
+  justify-content: flex-start;
+  align-self: flex-start;
+}
+.actor-sheet table.weapons td.rmss-weapon-name-cell .spell-adder-pips {
+  margin-top: 0;
+}
+.spell-adder-pip {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #0077b6;
+  border-radius: 1px;
+}
+.spell-adder-pip.filled {
+  background-color: #0077b6;
+}
+.spell-adder-pip.empty {
+  background-color: transparent;
 }

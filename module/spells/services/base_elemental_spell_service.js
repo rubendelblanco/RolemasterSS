@@ -14,7 +14,7 @@ import FacingService from "../../combat/services/facing_service.js";
 import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
 import { socket } from "../../../rmss.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
-import { getMatchingSpellAdder } from "../../actors/utils/power_points_util.js";
+import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
 
 export default class BaseElementalSpellService {
 
@@ -56,11 +56,16 @@ export default class BaseElementalSpellService {
             spellType: "BE",
             spellName: spell.name,
             actor,
-            spellAdderItemName: spellAdder?.item?.name ?? null
+            spellAdderItemName: spellAdder?.item?.name ?? null,
+            spellAdderUsesRemaining: spellAdder?.usesRemaining ?? 0,
+            spellAdderUsesMax: spellAdder?.value ?? 0
         });
 
         if (castingOptions === null) return;
-        if (castingOptions.useSpellAdder) noPP = true;
+        if (castingOptions.useSpellAdder) {
+            noPP = true;
+            if (spellAdder?.item) await consumeSpellAdderUse(spellAdder.item);
+        }
 
         const targets = Array.from(game.user.targets);
         if (targets.length === 0) {

@@ -374,6 +374,7 @@
       "pp_multiplier": 1,
       "pp_multiplier_realm": "",
       "spell_adder": 0,
+      "spell_adder_uses_remaining": 0,
       "spell_adder_realm": "",
       "pp_multiplier_profession": "",
       "spell_adder_profession": ""
@@ -423,6 +424,7 @@
       "pp_multiplier": 1,
       "pp_multiplier_realm": "",
       "spell_adder": 0,
+      "spell_adder_uses_remaining": 0,
       "spell_adder_realm": "",
       "pp_multiplier_profession": "",
       "spell_adder_profession": ""
@@ -454,6 +456,7 @@
       "pp_multiplier": 1,
       "pp_multiplier_realm": "",
       "spell_adder": 0,
+      "spell_adder_uses_remaining": 0,
       "spell_adder_realm": "",
       "pp_multiplier_profession": "",
       "spell_adder_profession": "",

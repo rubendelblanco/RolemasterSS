@@ -20,6 +20,13 @@
         <td>{{equipable.name}}{{#if equipable.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{equipable.system.description}}"></i>
+          {{/if}}
+          {{#if (gt equipable.system.spell_adder 0)}}
+          <div class="spell-adder-pips">
+            {{#times equipable.system.spell_adder}}
+            <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
+            {{/times}}
+          </div>
           {{/if}}</td>
         {{#if equipable.system.equipped}}
           <td><a class="equippable" data-item-id="{{equipable._id}}"><i class="fa-regular fa-square-check"></i></a></td>
@@ -39,7 +46,7 @@
           <a class="item-control item-edit" title="Edit Item" data-item-id="{{equipable._id}}"><i class="fas fa-edit"></i></a>
           <a class="item-control item-delete" title="Delete Item" data-item-id="{{equipable._id}}"><i class="fas fa-trash"></i></a>
         </td>
-  {{/each}}
   </tr>
+  {{/each}}
     </tbody>
 </table>

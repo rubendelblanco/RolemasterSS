@@ -8,7 +8,7 @@ import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_
 import { sendExpMessage } from "../../chat/chatMessages.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 import Utils from "../../utils.js";
-import { getMatchingSpellAdder } from "../../actors/utils/power_points_util.js";
+import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
 
 /**
  * Service to handle spell casting for non-elemental spells (F, P, U, I, E types).
@@ -50,14 +50,19 @@ export default class ForceSpellService {
             spellType: spell.system.type,
             spellName: spell.name,
             actor,
-            spellAdderItemName: spellAdder?.item?.name ?? null
+            spellAdderItemName: spellAdder?.item?.name ?? null,
+            spellAdderUsesRemaining: spellAdder?.usesRemaining ?? 0,
+            spellAdderUsesMax: spellAdder?.value ?? 0
         });
 
         if (castingOptions === null) {
             return;
         }
 
-        if (castingOptions.useSpellAdder) noPP = true;
+        if (castingOptions.useSpellAdder) {
+            noPP = true;
+            if (spellAdder?.item) await consumeSpellAdderUse(spellAdder.item);
+        }
 
         let totalCastingModifier = castingOptions.totalModifier;
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;

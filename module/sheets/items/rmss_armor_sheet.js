@@ -297,6 +297,11 @@ export default class RMSSArmorSheet extends ItemSheet {
         formData["system.spell_adder_realm"] = "";
       } else if (mode === "spell_adder") {
         if (formData["system.spell_adder"] === undefined) formData["system.spell_adder"] = 1;
+        const adderVal = Number(formData["system.spell_adder"]) || 1;
+        const currentRemaining = Number(this.item.system?.spell_adder_uses_remaining);
+        if (!currentRemaining && currentRemaining !== 0 || Number(this.item.system?.spell_adder) <= 0) {
+          formData["system.spell_adder_uses_remaining"] = adderVal;
+        }
         formData["system.pp_multiplier"] = 1;
         formData["system.pp_multiplier_realm"] = "";
       } else {

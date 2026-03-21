@@ -50,9 +50,10 @@ export function professionMatches(itemProfUuid, actor) {
 }
 
 /**
- * Find the first equipped spell adder item whose realm/profession matches the actor.
+ * Find the first equipped spell adder item whose realm/profession matches the actor
+ * and still has daily uses remaining.
  * @param {Actor} actor
- * @returns {{item: Item, value: number}|null}
+ * @returns {{item: Item, value: number, usesRemaining: number}|null}
  */
 export function getMatchingSpellAdder(actor) {
   const actorRealm = actor?.system?.fixed_info?.realm || "";
@@ -61,14 +62,27 @@ export function getMatchingSpellAdder(actor) {
     const sys = item.system || {};
     const val = Number(sys.spell_adder) || 0;
     if (val <= 0) continue;
+    const usesRemaining = Number(sys.spell_adder_uses_remaining) || 0;
+    if (usesRemaining <= 0) continue;
     const realm = sys.spell_adder_realm || "";
     const prof = sys.spell_adder_profession || "";
     const applies = realm === "profession"
       ? professionMatches(prof, actor)
       : realmMatches(realm, actorRealm);
-    if (applies) return { item, value: val };
+    if (applies) return { item, value: val, usesRemaining };
   }
   return null;
+}
+
+/**
+ * Consume one daily use of a spell adder item.
+ * @param {Item} item - The item with spell_adder
+ * @returns {Promise<void>}
+ */
+export async function consumeSpellAdderUse(item) {
+  const current = Number(item.system?.spell_adder_uses_remaining) || 0;
+  if (current <= 0) return;
+  await item.update({ "system.spell_adder_uses_remaining": current - 1 });
 }
 
 /**
