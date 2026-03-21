@@ -7,3 +7,4 @@ packs/*
 !packs/skill-categories.db
 .cursorrules
 docs/
+coverage/
