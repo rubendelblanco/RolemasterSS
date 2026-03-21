@@ -2869,6 +2869,13 @@ tr.container-row.over-capacity {
   flex-shrink: 0;
 }
 
+.rmss-power-modifier-profession-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0;
+}
+
 .rmss-power-modifier-profession-label {
   font-size: 0.9em;
   color: var(--color-text-dark-inactive);
@@ -2876,20 +2883,30 @@ tr.container-row.over-capacity {
 }
 
 .rmss-power-modifier-profession-drop {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.25rem;
-  min-width: 8rem;
-  min-height: 1.5rem;
-  padding: 0.15rem 0.35rem;
+  flex: 1;
+  min-height: 1.8rem;
+  padding: 0.2rem 0.4rem;
   border: 1px dashed var(--color-border-dark);
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.02);
 }
 
-.rmss-power-modifier-profession-drop:hover {
+.rmss-power-modifier-profession-drop:hover,
+.rmss-power-modifier-profession-drop.drag-hover {
   border-color: var(--color-border-dark-secondary);
   background: rgba(0, 0, 0, 0.04);
+}
+
+.rmss-power-modifier-profession-drop.drag-hover {
+  border-color: var(--color-primary);
+  background: rgba(0, 135, 245, 0.08);
+}
+
+.rmss-power-modifier-profession-drop > * {
+  pointer-events: none;
 }
 
 .rmss-power-modifier-profession-drop .rmss-profession-name {
@@ -2901,7 +2918,9 @@ tr.container-row.over-capacity {
 }
 
 .rmss-power-modifier-profession-drop .rmss-profession-clear {
+  pointer-events: auto;
   flex-shrink: 0;
+  width:auto;
   padding: 0.1rem;
   line-height: 1;
   border: none;

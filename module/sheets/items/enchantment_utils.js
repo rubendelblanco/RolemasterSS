@@ -90,60 +90,76 @@ export function getPowerModifierMode(system) {
  */
 export async function resolveProfessionName(uuidOrName) {
   if (!uuidOrName) return "";
-  if (!uuidOrName.startsWith("Actor.") && !uuidOrName.startsWith("Compendium.")) {
-    return uuidOrName; // already a name
-  }
   try {
     const doc = await fromUuid(uuidOrName);
-    return doc?.name ?? uuidOrName;
-  } catch {
-    return uuidOrName;
-  }
+    if (doc?.name) return doc.name;
+  } catch { /* not a valid UUID, treat as plain name */ }
+  return uuidOrName;
 }
 
 /**
  * Setup profession drop zones for Power Modifier (when realm = profession).
+ * Direct binding on each element, same pattern as bonus-skill drop zones.
  * @param {JQuery} html
  * @param {ItemSheet} sheet
  */
 export function setupPowerModifierProfessionDropZones(html, sheet) {
-  html.find(".rmss-power-modifier-profession-drop").each((_, el) => {
+  const zones = html.find(".rmss-power-modifier-profession-drop");
+  zones.each((_, el) => {
+    el.addEventListener("dragenter", ev => {
+      ev.preventDefault();
+      el.classList.add("drag-hover");
+    });
+    el.addEventListener("dragleave", ev => {
+      if (!el.contains(ev.relatedTarget)) el.classList.remove("drag-hover");
+    });
     el.addEventListener("dragover", ev => {
       ev.preventDefault();
       ev.stopPropagation();
       ev.dataTransfer.dropEffect = "copy";
     });
-    el.addEventListener("drop", ev => onDropPowerModifierProfession(ev, sheet));
+    el.addEventListener("drop", ev => {
+      el.classList.remove("drag-hover");
+      _handleProfessionDrop(ev, sheet, el);
+    });
   });
 }
 
 /**
- * Handle drop of profession on Power Modifier zone.
- * @param {DragEvent} event
- * @param {ItemSheet} sheet
+ * Internal handler for profession drop.
  */
-export async function onDropPowerModifierProfession(event, sheet) {
+async function _handleProfessionDrop(event, sheet, zone) {
   event.preventDefault();
   event.stopPropagation();
+
   let data;
   try {
-    data = JSON.parse(event.dataTransfer.getData("text/plain"));
+    const raw = event.dataTransfer.getData("text/plain")
+             || event.dataTransfer.getData("application/json");
+    data = JSON.parse(raw);
   } catch {
     return;
   }
-  if (!data?.uuid) return;
-  const dropped = await fromUuid(data.uuid);
+  if (!data) return;
+
+  let uuid = data.uuid;
+  if (!uuid && data.type === "Item" && data.data?._id) {
+    uuid = `Item.${data.data._id}`;
+  }
+  if (!uuid) return;
+
+  const dropped = await fromUuid(uuid);
   if (!dropped || dropped.type !== "profession") {
     ui.notifications.warn(game.i18n.localize("rmss.item.drop_profession_only"));
     return;
   }
-  const zone = event.currentTarget;
+
   const field = zone.dataset?.powerModifier;
   if (field !== "pp_multiplier" && field !== "spell_adder") return;
   const updatePath = field === "pp_multiplier"
     ? "system.pp_multiplier_profession"
     : "system.spell_adder_profession";
-  await sheet.item.update({ [updatePath]: dropped.uuid });
+  await sheet.item.update({ [updatePath]: dropped.uuid ?? uuid });
   sheet.render(false);
 }
 
