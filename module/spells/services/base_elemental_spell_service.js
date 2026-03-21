@@ -26,7 +26,7 @@ export default class BaseElementalSpellService {
      * @param {string} params.spellListName - Name of the spell list (for skill bonus)
      * @param {string} params.spellListRealm - Realm of the spell list
      */
-    static async castBaseElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true }) {
+    static async castBaseElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false }) {
         const attackTableName = spell.system?.attack_table;
         if (!attackTableName) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_attack_table"));
@@ -64,21 +64,25 @@ export default class BaseElementalSpellService {
             return;
         }
 
-        // Skill bonus: from skill for characters, from spell maneuver modifier for creatures/NPCs
-        const skill = actor.items.find(i => i.type === "skill" && i.name === spellListName);
+        // Skill bonus: from enchantment always 0; otherwise from skill for characters, spell maneuver modifier for creatures/NPCs
         let skillBonus;
-        if (skill) {
-            skillBonus = skill.system?.total_bonus ?? 0;
+        if (fromEnchantment) {
+            skillBonus = 0;
         } else {
-            const isCreatureOrNpc = actor.type === "creature" || actor.type === "npc";
-            const creatureLevel = parseInt(actor.system?.attributes?.level?.value, 10) || 0;
-            if (isCreatureOrNpc) {
-                const spellList = actor.items.find(i => i.type === "spell_list" && i.name === spellListName);
-                const stored = spellList?.flags?.rmss?.spellManeuverModifier;
-                skillBonus = (stored !== undefined && stored !== null)
-                    ? parseInt(stored, 10) : creatureLevel;
+            const skill = actor.items.find(i => i.type === "skill" && i.name === spellListName);
+            if (skill) {
+                skillBonus = skill.system?.total_bonus ?? 0;
             } else {
-                skillBonus = 0;
+                const isCreatureOrNpc = actor.type === "creature" || actor.type === "npc";
+                const creatureLevel = parseInt(actor.system?.attributes?.level?.value, 10) || 0;
+                if (isCreatureOrNpc) {
+                    const spellList = actor.items.find(i => i.type === "spell_list" && i.name === spellListName);
+                    const stored = spellList?.flags?.rmss?.spellManeuverModifier;
+                    skillBonus = (stored !== undefined && stored !== null)
+                        ? parseInt(stored, 10) : creatureLevel;
+                } else {
+                    skillBonus = 0;
+                }
             }
         }
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;

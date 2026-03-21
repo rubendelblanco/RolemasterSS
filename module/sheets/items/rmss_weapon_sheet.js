@@ -4,10 +4,12 @@ import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 import {
   buildEnchantmentList,
+  buildSpellDataForStorage,
   getPowerModifierMode,
   normalizeEnchantments,
   onClearPowerModifierProfession,
   resolveProfessionName,
+  resolveSpellForEnchantment,
   setupPowerModifierProfessionDropZones
 } from "./enchantment_utils.js";
 
@@ -234,6 +236,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
     let spellUuid = "";
     let spellListUuid = "";
 
+    let spellData = null;
     if (data.type === "EmbeddedSpell" && data.spellData) {
       const sd = data.spellData;
       spellName = sd.name ?? "";
@@ -243,6 +246,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
       spellListName = data.spellListName ?? "";
       profession = data.profession ?? "";
       spellListUuid = data.spellListUuid ?? "";
+      spellData = buildSpellDataForStorage(sd);
     } else if (data.uuid) {
       const doc = await fromUuid(data.uuid);
       if (!doc || doc.type !== "spell") {
@@ -252,6 +256,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
       spellName = doc.name ?? "";
       level = doc.system?.level ?? "";
       spellUuid = data.uuid ?? "";
+      spellData = buildSpellDataForStorage(doc);
       const containerId = doc.flags?.rmss?.containerId;
       if (containerId && doc.parent?.items) {
         const spellList = doc.parent.items.get(containerId);
@@ -276,6 +281,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
       listType,
       spellListName,
       profession,
+      spellData: spellData || undefined,
       spellUuid: spellUuid || undefined,
       spellListUuid: spellListUuid || undefined,
       usage: "passive",
@@ -375,11 +381,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
       return;
     }
 
-    let spellDoc = null;
-    if (enchantment.spellUuid) spellDoc = await fromUuid(enchantment.spellUuid);
-    if (!spellDoc || spellDoc.type !== "spell") {
-      spellDoc = actor.items.find(i => i.type === "spell" && i.name === enchantment.spell);
-    }
+    const spellDoc = await resolveSpellForEnchantment(enchantment, actor);
     if (!spellDoc || spellDoc.type !== "spell") {
       ui.notifications.warn(game.i18n.localize("rmss.item.enchantment_spell_not_found") || "Spell not found.");
       return;
@@ -388,7 +390,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
     const spellListName = enchantment.spellListName || spellDoc.name;
     const spellListRealm = enchantment.realm || actor.system?.fixed_info?.realm || "essence";
 
-    const fromEnchantmentOpt = { consumePowerPoints: false };
+    const fromEnchantmentOpt = { consumePowerPoints: false, fromEnchantment: true };
     if (spellDoc.system?.instant) {
       const InstantSpellService = (await import("../../spells/services/instant_spell_service.js")).default;
       await InstantSpellService.castInstantSpell({ actor, spell: spellDoc, ...fromEnchantmentOpt });

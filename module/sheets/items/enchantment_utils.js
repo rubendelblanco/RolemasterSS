@@ -164,6 +164,44 @@ async function _handleProfessionDrop(event, sheet, zone) {
 }
 
 /**
+ * Build spellData for enchantment storage. Makes the enchantment independent of any spell document.
+ * @param {{ name: string, img?: string, system: Object } | Item} spellDocOrData - Spell Item or spellData object
+ * @returns {{ name: string, img: string, system: Object }} Data to store in enchantment.spellData
+ */
+export function buildSpellDataForStorage(spellDocOrData) {
+  if (!spellDocOrData) return null;
+  const name = spellDocOrData.name ?? "";
+  const img = spellDocOrData.img ?? "systems/rmss/assets/default/spell.svg";
+  const system = foundry.utils.duplicate(spellDocOrData.system ?? {});
+  return { name, img, system };
+}
+
+/**
+ * Resolve spell for casting from enchantment.
+ * Priority: 1) spellData (create temp Item), 2) spellUuid, 3) actor.items.find (legacy).
+ * @param {Object} enchantment
+ * @param {Actor} actor
+ * @returns {Promise<Item|null>} Spell Item for casting, or null
+ */
+export async function resolveSpellForEnchantment(enchantment, actor) {
+  if (enchantment.spellData?.name && enchantment.spellData?.system) {
+    const spellData = {
+      name: enchantment.spellData.name,
+      type: "spell",
+      img: enchantment.spellData.img || "systems/rmss/assets/default/spell.svg",
+      system: foundry.utils.duplicate(enchantment.spellData.system)
+    };
+    return await Item.create(spellData, { temporary: true });
+  }
+  if (enchantment.spellUuid) {
+    const doc = await fromUuid(enchantment.spellUuid);
+    if (doc?.type === "spell") return doc;
+  }
+  const found = actor.items.find((i) => i.type === "spell" && i.name === enchantment.spell);
+  return found ?? null;
+}
+
+/**
  * Handle clear button for Power Modifier profession.
  * @param {Event} event
  * @param {ItemSheet} sheet

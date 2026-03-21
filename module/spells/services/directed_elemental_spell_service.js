@@ -26,7 +26,7 @@ export default class DirectedElementalSpellService {
      * @param {string} params.spellListName - Name of the spell list (for context)
      * @param {string} params.spellListRealm - Realm of the spell list
      */
-    static async castDirectedElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true }) {
+    static async castDirectedElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false }) {
         const attackTableName = spell.system?.attack_table;
         if (!attackTableName || !CONFIG.rmss?.boltTables?.includes(attackTableName)) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_attack_table"));
@@ -35,8 +35,8 @@ export default class DirectedElementalSpellService {
 
         const skillName = spell.system?.skillName;
         const isCreature = actor.type === "creature";
-        // Characters and NPCs need a skill; creatures don't have skills, so skillName is optional for them
-        if (!isCreature && !skillName) {
+        // Characters and NPCs need a skill (unless from enchantment); creatures don't have skills
+        if (!fromEnchantment && !isCreature && !skillName) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_skill"));
             return;
         }
@@ -56,10 +56,13 @@ export default class DirectedElementalSpellService {
             }
         }
 
-        // OB: skill bonus for characters, creature_attack bonus for creatures
+        // OB: from enchantment always 0; otherwise skill bonus for characters, creature_attack bonus for creatures
         let skillBonus;
         let displaySkillName;
-        if (isCreature && skillName) {
+        if (fromEnchantment) {
+            skillBonus = 0;
+            displaySkillName = spellListName || spell.name || "";
+        } else if (isCreature && skillName) {
             const creatureAttack = actor.items.find(i =>
                 i.type === "creature_attack" && i.name === skillName
             );
