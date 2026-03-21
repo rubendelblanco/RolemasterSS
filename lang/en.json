@@ -362,6 +362,7 @@
             "enchantments_realm": "Realm",
             "enchantments_list_type": "List Type",
             "enchantments_spell_list": "Spell List",
+            "enchantments_attack_bonus": "BAR",
             "enchantments_effect": "Effect",
             "enchantments_view_spell": "View",
             "enchantment_delete": "Remove enchantment",

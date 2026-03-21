@@ -54,6 +54,7 @@ export function buildEnchantmentList(rawEnchantments) {
       single: () => (charges > 0 ? `${charges}/1` : usesRemaining > 0 ? `${usesRemaining}/1` : "0/1")
     };
     const usageLabel = usageLabels[usage]?.() ?? "—";
+    const attackBonus = Number(e.attackBonus) || 0;
     return {
       ...e,
       spell: e.spell ?? "",
@@ -67,6 +68,7 @@ export function buildEnchantmentList(rawEnchantments) {
       usesRemaining,
       chargesMax,
       charges,
+      attackBonus,
       canUse,
       usageLabel
     };

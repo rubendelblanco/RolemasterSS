@@ -288,7 +288,8 @@ export default class RMSSWeaponSheet extends ItemSheet {
       usesPerDay: 0,
       usesRemaining: 0,
       chargesMax: 0,
-      charges: 0
+      charges: 0,
+      attackBonus: 0
     });
     await this.item.update({ "system.magic.enchantments": enchantments });
     this.render(false);
@@ -354,7 +355,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
       const field = rest.slice(dotPos + 1);
       if (!Number.isInteger(idx) || idx < 0 || idx >= enchantments.length) continue;
       let val = formData[key];
-      if (["usesPerDay", "usesRemaining", "chargesMax", "charges"].includes(field)) val = Number(val) || 0;
+      if (["usesPerDay", "usesRemaining", "chargesMax", "charges", "attackBonus"].includes(field)) val = Number(val) || 0;
       enchantments[idx][field] = val;
       delete formData[key];
     }
@@ -390,7 +391,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
     const spellListName = enchantment.spellListName || spellDoc.name;
     const spellListRealm = enchantment.realm || actor.system?.fixed_info?.realm || "essence";
 
-    const fromEnchantmentOpt = { consumePowerPoints: false, fromEnchantment: true };
+    const fromEnchantmentOpt = { consumePowerPoints: false, fromEnchantment: true, enchantmentAttackBonus: Number(enchantment.attackBonus) || 0 };
     if (spellDoc.system?.instant) {
       const InstantSpellService = (await import("../../spells/services/instant_spell_service.js")).default;
       await InstantSpellService.castInstantSpell({ actor, spell: spellDoc, ...fromEnchantmentOpt });

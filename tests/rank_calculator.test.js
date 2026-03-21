@@ -147,7 +147,7 @@ describe('RankCalculator.getCategoryProgression', () => {
     rmss: {
       skill_progression: {
         standard: { progression: "-15*2*1*0.5*0" },
-        limited: { progression: "-15*1*0.5*0*0" }
+        limited: { progression: "0*1*0.5*0*0" }
       }
     }
   };

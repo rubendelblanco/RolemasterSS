@@ -24,7 +24,7 @@ export default class ForceSpellService {
      * @param {string} params.spellListName - Name of the spell list (to find matching skill)
      * @param {string} params.spellListRealm - Realm of the spell list
      */
-    static async castForceSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false }) {
+    static async castForceSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0 }) {
         // Check power points before casting (spell level = PP cost), unless spell has no_pp or from enchantment
         const spellLevel = spell.system?.level ?? 1;
         const noPP = !consumePowerPoints || spell.system?.no_pp === true;
@@ -129,7 +129,7 @@ export default class ForceSpellService {
         // For 100, use just 100 (special result UM 100)
         // Modified rolls: 03-95 (add skill bonus and casting modifiers to first roll only)
         const isUnmodified = naturalRoll <= 2 || naturalRoll >= 96;
-        const totalBonus = skillBonus + totalCastingModifier;
+        const totalBonus = skillBonus + totalCastingModifier + enchantmentAttackBonus;
         const finalResult = isUnmodified ? rollTotal : naturalRoll + totalBonus;
 
         // Only process RR for Force (F) type spells with targets
@@ -228,6 +228,7 @@ export default class ForceSpellService {
             spellListName,
             skillBonus,
             castingModifier: totalCastingModifier,
+            enchantmentAttackBonus,
             hitsTaken,
             bleeding,
             stunned,
@@ -366,6 +367,7 @@ export default class ForceSpellService {
         spellListName,
         skillBonus,
         castingModifier = 0,
+        enchantmentAttackBonus = 0,
         hitsTaken = 0,
         bleeding = 0,
         stunned = 0,
@@ -383,7 +385,7 @@ export default class ForceSpellService {
         casterLevel = 1
     }) {
         const hasTargets = targets.length > 0;
-        const totalBonus = skillBonus + castingModifier;
+        const totalBonus = skillBonus + castingModifier + enchantmentAttackBonus;
         const formatMod = (n) => n >= 0 ? `+${n}` : `${n}`;
         const isExplosive = rollTotal && rollTotal !== naturalRoll;
         
@@ -407,6 +409,7 @@ export default class ForceSpellService {
                     ${!isUnmodified ? `
                     <div>📊 Skill: <strong>${formatMod(skillBonus)}</strong></div>
                     ${castingModifier !== 0 ? `<div>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></div>` : ''}
+                    ${enchantmentAttackBonus !== 0 ? `<div>✨ ${game.i18n.localize("rmss.item.enchantments_attack_bonus")}: <strong>${formatMod(enchantmentAttackBonus)}</strong></div>` : ''}
                     ${hitsTaken !== 0 ? `<div>💔 ${game.i18n.localize("rmss.combat.hits_taken")}: <strong>${formatMod(hitsTaken)}</strong></div>` : ''}
                     ${bleeding !== 0 ? `<div>🩸 ${game.i18n.localize("rmss.maneuvers.bleeding")}: <strong>${formatMod(bleeding)}</strong></div>` : ''}
                     ${stunned !== 0 ? `<div>😵 ${game.i18n.localize("rmss.maneuvers.stunned")}: <strong>${formatMod(stunned)}</strong></div>` : ''}

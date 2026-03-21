@@ -213,6 +213,7 @@
                     <span>{{localize "rmss.item.enchantments_realm"}}</span>
                     <span>{{localize "rmss.item.enchantments_list_type"}}</span>
                     <span>{{localize "rmss.item.enchantments_spell_list"}}</span>
+                    <span>{{localize "rmss.item.enchantments_attack_bonus"}}</span>
                     <span>{{localize "rmss.item.enchantments_usage"}}</span>
                     <span>{{localize "rmss.item.enchantments_view_spell"}}</span>
                     <span></span>
@@ -224,21 +225,22 @@
                     <span>{{enchantment.realmLabel}}</span>
                     <span>{{enchantment.listTypeLabel}}</span>
                     <span>{{enchantment.spellListName}}</span>
+                    <span class="rmss-enchantment-bar-cell">{{#if ../editable}}<input type="number" name="system.magic.enchantments.{{idx}}.attackBonus" value="{{enchantment.attackBonus}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_attack_bonus'}}" placeholder="0"/>{{else}}{{enchantment.attackBonus}}{{/if}}</span>
                     <span class="rmss-enchantment-usage-cell">
                         {{#if ../editable}}
-                        <select name="system.magic.enchantments.{{idx}}.usage" data-dtype="String">
-                            {{#each ../config.enchantment_usage as |label key|}}
-                            <option value="{{key}}" {{#if (eq enchantment.usage key)}}selected{{/if}}>{{localize label}}</option>
-                            {{/each}}
-                        </select>
-                        {{#if (eq enchantment.usage "daily")}}
-                        <input type="number" name="system.magic.enchantments.{{idx}}.usesPerDay" value="{{enchantment.usesPerDay}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_per_day'}}" placeholder="/"/>
-                        <input type="number" name="system.magic.enchantments.{{idx}}.usesRemaining" value="{{enchantment.usesRemaining}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_remaining'}}"/>
-                        {{/if}}
-                        {{#if (or (eq enchantment.usage "charged") (eq enchantment.usage "single"))}}
-                        <input type="number" name="system.magic.enchantments.{{idx}}.chargesMax" value="{{enchantment.chargesMax}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges_max'}}" placeholder="/"/>
-                        <input type="number" name="system.magic.enchantments.{{idx}}.charges" value="{{enchantment.charges}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges'}}"/>
-                        {{/if}}
+                        <div class="rmss-enchantment-usage-stack">
+                            <select name="system.magic.enchantments.{{idx}}.usage" data-dtype="String">
+                                {{#each ../config.enchantment_usage as |label key|}}
+                                <option value="{{key}}" {{#if (eq enchantment.usage key)}}selected{{/if}}>{{localize label}}</option>
+                                {{/each}}
+                            </select>
+                            {{#if (eq enchantment.usage "daily")}}
+                            <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.usesRemaining" value="{{enchantment.usesRemaining}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_remaining'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.usesPerDay" value="{{enchantment.usesPerDay}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_per_day'}}" placeholder="—"/></span>
+                            {{/if}}
+                            {{#if (or (eq enchantment.usage "charged") (eq enchantment.usage "single"))}}
+                            <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.charges" value="{{enchantment.charges}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.chargesMax" value="{{enchantment.chargesMax}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges_max'}}" placeholder="—"/></span>
+                            {{/if}}
+                        </div>
                         {{else}}
                         <span>{{enchantment.usageLabel}}</span>
                         {{/if}}

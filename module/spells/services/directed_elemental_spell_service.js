@@ -26,7 +26,7 @@ export default class DirectedElementalSpellService {
      * @param {string} params.spellListName - Name of the spell list (for context)
      * @param {string} params.spellListRealm - Realm of the spell list
      */
-    static async castDirectedElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false }) {
+    static async castDirectedElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0 }) {
         const attackTableName = spell.system?.attack_table;
         if (!attackTableName || !CONFIG.rmss?.boltTables?.includes(attackTableName)) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_attack_table"));
@@ -56,13 +56,10 @@ export default class DirectedElementalSpellService {
             }
         }
 
-        // OB: from enchantment always 0; otherwise skill bonus for characters, creature_attack bonus for creatures
+        // OB: from enchantment use skill if developed (manual exception); otherwise skill for characters, creature_attack for creatures
         let skillBonus;
         let displaySkillName;
-        if (fromEnchantment) {
-            skillBonus = 0;
-            displaySkillName = spellListName || spell.name || "";
-        } else if (isCreature && skillName) {
+        if (isCreature && skillName) {
             const creatureAttack = actor.items.find(i =>
                 i.type === "creature_attack" && i.name === skillName
             );
@@ -75,7 +72,7 @@ export default class DirectedElementalSpellService {
                 i.name === skillName
             ) : null;
             skillBonus = skill?.system?.total_bonus ?? 0;
-            displaySkillName = skillName || (isCreature ? game.i18n.localize("rmss.spells.de_creature_cast") : "");
+            displaySkillName = skillName || (isCreature ? game.i18n.localize("rmss.spells.de_creature_cast") : (fromEnchantment ? (spellListName || spell.name || "") : ""));
         }
 
         const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
@@ -126,7 +123,7 @@ export default class DirectedElementalSpellService {
         }
 
         const spellOptions = {
-            ob: skillBonus,
+            ob: skillBonus + enchantmentAttackBonus,
             hitsTaken,
             bleeding,
             penaltyValue,
