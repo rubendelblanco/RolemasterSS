@@ -2,6 +2,7 @@ import ItemService from "../../actors/services/item_service.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
+
 import ArmorInfoService from "../../actors/services/armor_info_service.js";
 
 /**

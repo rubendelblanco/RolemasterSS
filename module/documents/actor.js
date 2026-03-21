@@ -241,6 +241,7 @@ export class RMSSActor extends Actor {
       else if (gear.type === "weapon" && gear.system?.equipped) addBonusSkillsFromItem(gear);
     }
 
+
     for (const item of this.items) {
       if (item.type === "skill") {
         const profBonus = bonusBySkillName[item.name] ?? 0;

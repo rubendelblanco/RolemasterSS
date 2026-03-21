@@ -287,6 +287,7 @@ export default class RMSSArmorSheet extends ItemSheet {
       }
     }
 
+
     const material = formData["system.material"];
     if (material && material !== "custom") {
       const matDef = CONFIG.rmss?.materials?.[material];
@@ -332,6 +333,7 @@ export default class RMSSArmorSheet extends ItemSheet {
     }
     formData["system.magic.enchantments"] = enchantments;
   }
+
 
   _onDeleteEnchantment(event) {
     const index = parseInt(event.currentTarget.dataset.index, 10);

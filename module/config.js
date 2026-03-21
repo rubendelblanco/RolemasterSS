@@ -222,6 +222,7 @@ rmss.slaying_types = [
   "serpent", "spider", "elemental", "witch", "evil", "humanoid"
 ];
 
+
 rmss.armor_slot = {
   "body": "Body",
   "helmet": "Helmet",
@@ -440,6 +441,7 @@ rmss.weight_reduction = {
   "39": { min: 20, max: 39, modifier: 100, label: "rmss.weight_reduction.p20_39" },
   "19": { min: 0, max: 19, modifier: 500, label: "rmss.weight_reduction.p0_19" }
 };
+
 
 /** Materials from Arms Law table 08-02 (Bonuses Due to Special Material and Magic). */
 rmss.materials = {

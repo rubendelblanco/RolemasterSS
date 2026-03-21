@@ -235,6 +235,7 @@ export default class BaseElementalSpellService {
                 attackResult.damage,
                 attackTable.critical_severity || null
             );
+            const enemyActor = target.actor ?? target;
             criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemyActor);
 
             // Per-target F (high defense): spell had no effect on this target, skip

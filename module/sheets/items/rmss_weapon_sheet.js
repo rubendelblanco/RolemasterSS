@@ -402,6 +402,121 @@ export default class RMSSWeaponSheet extends ItemSheet {
     this.render(false);
   }
 
+  activateListeners(html) {
+    super.activateListeners(html);
+    html.find("[data-action='delete-enchantment']").on("click", this._onDeleteEnchantment.bind(this));
+    html.find("[data-action='open-spell-link']").on("click", this._onOpenSpellLink.bind(this));
+    this._setupEnchantmentsDropZone(html);
+  }
+
+  async _onOpenSpellLink(event) {
+    event.preventDefault();
+    const uuid = event.currentTarget.dataset.uuid;
+    if (!uuid) return;
+    const doc = await fromUuid(uuid);
+    if (doc?.sheet) doc.sheet.render(true);
+  }
+
+  _setupEnchantmentsDropZone(html) {
+    const zone = html.find(".rmss-enchantments-drop-zone")[0];
+    if (!zone) return;
+    zone.addEventListener("dragover", ev => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      ev.dataTransfer.dropEffect = "copy";
+    });
+    zone.addEventListener("drop", ev => this._onDropSpell(ev));
+  }
+
+  async _onDropSpell(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let data;
+    try {
+      data = JSON.parse(event.dataTransfer.getData("text/plain"));
+    } catch {
+      return;
+    }
+    if (!data) return;
+
+    let spellName = "";
+    let level = "";
+    let realm = "";
+    let listType = "";
+    let spellListName = "";
+    let profession = "";
+    let spellUuid = "";
+    let spellListUuid = "";
+
+    if (data.type === "EmbeddedSpell" && data.spellData) {
+      const sd = data.spellData;
+      spellName = sd.name ?? "";
+      level = sd.system?.level ?? "";
+      realm = data.realm ?? "";
+      listType = data.listType ?? "";
+      spellListName = data.spellListName ?? "";
+      profession = data.profession ?? "";
+      spellListUuid = data.spellListUuid ?? "";
+    } else if (data.uuid) {
+      const doc = await fromUuid(data.uuid);
+      if (!doc || doc.type !== "spell") {
+        ui.notifications.warn(game.i18n.localize("rmss.item.enchantments_spell_only") || "Only spells can be dropped here.");
+        return;
+      }
+      spellName = doc.name ?? "";
+      level = doc.system?.level ?? "";
+      spellUuid = data.uuid ?? "";
+      const containerId = doc.flags?.rmss?.containerId;
+      if (containerId && doc.parent?.items) {
+        const spellList = doc.parent.items.get(containerId);
+        if (spellList?.type === "spell_list") {
+          realm = spellList.system?.realm ?? "";
+          listType = spellList.system?.type ?? "";
+          spellListName = spellList.name ?? "";
+          profession = spellList.system?.profession ?? "";
+        }
+      }
+    } else {
+      return;
+    }
+
+    if (!spellName) return;
+
+    const enchantments = foundry.utils.duplicate(this.item.system.magic?.enchantments ?? []);
+    enchantments.push({
+      spell: spellName,
+      level: String(level),
+      realm,
+      listType,
+      spellListName,
+      profession,
+      spellUuid: spellUuid || undefined,
+      spellListUuid: spellListUuid || undefined
+    });
+    await this.item.update({ "system.magic.enchantments": enchantments });
+    this.render(false);
+  }
+
+  async _updateObject(event, formData) {
+    const material = formData["system.material"];
+    if (material && material !== "custom") {
+      const matDef = CONFIG.rmss?.materials?.[material];
+      if (matDef) {
+        formData["system.bonus"] = matDef.bonus;
+        formData["system.magical"] = matDef.magical;
+        formData["system.quality"] = null;
+      }
+    }
+    return super._updateObject(event, formData);
+  }
+
+  _onDeleteEnchantment(event) {
+    const index = parseInt(event.currentTarget.dataset.index, 10);
+    const enchantments = foundry.utils.duplicate(this.item.system.magic?.enchantments ?? []);
+    enchantments.splice(index, 1);
+    this.item.update({ "system.magic.enchantments": enchantments });
+  }
+
   async getOffensiveSkills() {
     if (!this.object.parent) {
       return null
