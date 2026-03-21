@@ -32,6 +32,10 @@
   --rmss-padding-md: 8px;
 }
 
+.rmss .window-content {
+    background: #e9e0d5;
+  }
+
 /* ================================
    SKILL CATEGORIES GRID
    ================================ */
