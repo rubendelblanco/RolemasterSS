@@ -2,6 +2,7 @@
 
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
+import { buildEnchantmentList, getPowerModifierMode, normalizeEnchantments } from "./enchantment_utils.js";
 
 export default class RMSSWeaponSheet extends ItemSheet {
 
@@ -22,32 +23,46 @@ export default class RMSSWeaponSheet extends ItemSheet {
     return "systems/rmss/templates/sheets/items/rmss-weapon-sheet.html";
   }
 
-  // Make the data available to the sheet template
   async getData() {
     const baseData = await super.getData();
-
-    let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, { async: true });
-    let secretDescription = await TextEditor.enrichHTML(this.item.system.description_secret, { async: true });
-
-    // Get arms tables and sort by translated name
-    let armsTables = await game.rmss?.attackTableIndex || [];
-    armsTables = armsTables.sort((a, b) => {
-      const nameA = game.i18n.localize(`rmss.attack_table.${a}`) || a;
-      const nameB = game.i18n.localize(`rmss.attack_table.${b}`) || b;
-      return nameA.localeCompare(nameB, game.i18n.lang);
-    });
-
-    // Get critical tables and sort by translated name
-    let criticalTables = await game.rmss?.criticalTableIndex || [];
-    criticalTables = criticalTables.sort((a, b) => {
-      const nameA = game.i18n.localize(`rmss.critical_table.${a}`) || a;
-      const nameB = game.i18n.localize(`rmss.critical_table.${b}`) || b;
-      return nameA.localeCompare(nameB, game.i18n.lang);
-    });
-
     const system = baseData.item.system;
 
-    // Migrate old quality/magical to new material structure
+    const armsTables = (await game.rmss?.attackTableIndex || []).sort((a, b) =>
+      (game.i18n.localize(`rmss.attack_table.${a}`) || a).localeCompare(game.i18n.localize(`rmss.attack_table.${b}`) || b, game.i18n.lang)
+    );
+    const criticalTables = (await game.rmss?.criticalTableIndex || []).sort((a, b) =>
+      (game.i18n.localize(`rmss.critical_table.${a}`) || a).localeCompare(game.i18n.localize(`rmss.critical_table.${b}`) || b, game.i18n.lang)
+    );
+
+    const { material, bonus, magical, bonusEditable, magicalEditable, materialsOptions } = this._resolveWeaponMaterial(system);
+    const enchantmentList = buildEnchantmentList(system.magic?.enchantments);
+    const powerModifierMode = getPowerModifierMode(system);
+
+    return {
+      owner: this.item.isOwner,
+      editable: this.isEditable,
+      item: baseData.item,
+      system: { ...system, material, bonus, magical },
+      config: CONFIG.rmss,
+      user: game.user,
+      enrichedDescription: await TextEditor.enrichHTML(this.item.system.description, { async: true }),
+      secretDescription: await TextEditor.enrichHTML(this.item.system.description_secret, { async: true }),
+      armsTables,
+      criticalTables,
+      offensiveSkills: await this.getOffensiveSkills(),
+      weaponTypes: CONFIG.weapons.type,
+      materialsOptions,
+      bonusEditable,
+      magicalEditable,
+      rmss_weapon_total: bonus,
+      weightCostMultiplier: this.item._getWeightReductionModifier?.() ?? 1,
+      bonusSkillsList: this._getBonusSkillsArray(),
+      enchantmentList,
+      powerModifierMode
+    };
+  }
+
+  _resolveWeaponMaterial(system) {
     let material = system.material ?? "custom";
     let bonus = system.bonus ?? 0;
     let magical = system.magical ?? false;
@@ -58,96 +73,15 @@ export default class RMSSWeaponSheet extends ItemSheet {
       bonus = oldQuality + oldMagicalBonus;
       magical = oldMagicalBonus !== 0;
     }
-
     const materials = CONFIG.rmss?.materials ?? {};
-    const matDef = materials[material];
     const bonusEditable = material === "custom";
     const magicalEditable = material === "custom";
-    const rmss_weapon_total = bonus;
-
     const materialsOptions = Object.entries(materials).map(([key, def]) => ({
       key,
       label: game.i18n.localize(def.label),
       selected: material === key
     }));
-
-    const bonusSkillsList = this._getBonusSkillsArray();
-
-    const rawEnch = system.magic?.enchantments ?? [];
-    const enchantments = Array.isArray(rawEnch)
-      ? rawEnch
-      : Object.keys(rawEnch).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b)).map(k => rawEnch[k]);
-    const enchantmentList = enchantments.map((e) => {
-      const realm = e.realm ?? "";
-      const listType = e.listType ?? "";
-      const profession = e.profession ?? "";
-      let listTypeLabel = "—";
-      if (listType) {
-        const isBase = ["base", "own_base", "other_base"].includes(listType);
-        const label = isBase ? (CONFIG.rmss?.spell_list_type?.base || "Base") : (CONFIG.rmss?.spell_list_type?.[listType] || listType);
-        listTypeLabel = (isBase && profession) ? `${label} (${profession})` : label;
-      }
-      const spellLinkUuid = e.spellUuid || e.spellListUuid || "";
-      const usage = e.usage ?? "passive";
-      const usesPerDay = Number(e.usesPerDay) || 0;
-      const usesRemaining = Number(e.usesRemaining) ?? usesPerDay;
-      const chargesMax = Number(e.chargesMax) || 0;
-      const charges = Number(e.charges) ?? chargesMax;
-      const canUse = usage !== "passive" && (
-        (usage === "daily" && usesRemaining > 0) ||
-        (usage === "charged" && charges > 0) ||
-        (usage === "single" && (charges > 0 || usesRemaining > 0))
-      );
-      const usageLabel = usage === "passive" ? (game.i18n.localize("rmss.item.enchantment_usage_passive") || "Passive") :
-        usage === "daily" ? `${usesRemaining}/${usesPerDay}` :
-        usage === "charged" ? `${charges}/${chargesMax}` :
-        usage === "single" ? (charges > 0 ? `${charges}/1` : (usesRemaining > 0 ? `${usesRemaining}/1` : "0/1")) : "—";
-      return {
-        ...e,
-        spell: e.spell ?? "",
-        level: e.level ?? "",
-        realmLabel: realm ? (CONFIG.rmss?.spell_realm?.[realm] || realm) : "—",
-        listTypeLabel,
-        spellListName: e.spellListName ?? "—",
-        spellLinkUuid,
-        usage,
-        usesPerDay,
-        usesRemaining,
-        chargesMax,
-        charges,
-        canUse,
-        usageLabel
-      };
-    });
-
-    const ppMult = Number(system.pp_multiplier) || 1;
-    const spellAdd = Number(system.spell_adder) || 0;
-    const powerModifierMode = ppMult >= 2 ? "multiplier" : spellAdd > 0 ? "spell_adder" : "";
-
-    let sheetData = {
-      owner: this.item.isOwner,
-      editable: this.isEditable,
-      item: baseData.item,
-      system: { ...system, material, bonus, magical },
-      config: CONFIG.rmss,
-      user: game.user,
-      enrichedDescription: enrichedDescription,
-      secretDescription: secretDescription,
-      armsTables: armsTables,
-      criticalTables: criticalTables,
-      offensiveSkills: await this.getOffensiveSkills(),
-      weaponTypes: CONFIG.weapons.type,
-      materialsOptions,
-      bonusEditable,
-      magicalEditable,
-      rmss_weapon_total,
-      weightCostMultiplier: this.item._getWeightReductionModifier?.() ?? 1,
-      bonusSkillsList,
-      enchantmentList,
-      powerModifierMode
-    };
-
-    return sheetData;
+    return { material, bonus, magical, bonusEditable, magicalEditable, materialsOptions };
   }
 
   activateListeners(html) {
@@ -392,10 +326,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
     const patchKeys = Object.keys(formData).filter(k => k.startsWith(prefix) && k !== "system.magic.enchantments");
     if (patchKeys.length === 0) return;
 
-    const raw = this.item.system.magic?.enchantments ?? [];
-    const enchantments = Array.isArray(raw)
-      ? foundry.utils.duplicate(raw)
-      : Object.keys(raw).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b)).map(k => foundry.utils.duplicate(raw[k]));
+    const enchantments = foundry.utils.duplicate(normalizeEnchantments(this.item.system?.magic?.enchantments ?? []));
     for (const key of patchKeys) {
       const rest = key.slice(prefix.length);
       const dotPos = rest.indexOf(".");

@@ -1,6 +1,7 @@
 import ItemService from "../../actors/services/item_service.js";
-import {ContainerHandler} from "../../actors/utils/container_handler.js";
+import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
+import { buildEnchantmentList, getPowerModifierMode, normalizeEnchantments } from "./enchantment_utils.js";
 
 export default class RMSSItemSheet extends ItemSheet {
 
@@ -47,56 +48,8 @@ export default class RMSSItemSheet extends ItemSheet {
       idx
     }));
 
-    const rawEnch = system.magic?.enchantments ?? [];
-    const enchantments = Array.isArray(rawEnch)
-      ? rawEnch
-      : Object.keys(rawEnch).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b)).map(k => rawEnch[k]);
-    const enchantmentList = enchantments.map((e) => {
-      const realm = e.realm ?? "";
-      const listType = e.listType ?? "";
-      const profession = e.profession ?? "";
-      let listTypeLabel = "—";
-      if (listType) {
-        const isBase = ["base", "own_base", "other_base"].includes(listType);
-        const label = isBase ? (CONFIG.rmss?.spell_list_type?.base || "Base") : (CONFIG.rmss?.spell_list_type?.[listType] || listType);
-        listTypeLabel = (isBase && profession) ? `${label} (${profession})` : label;
-      }
-      const spellLinkUuid = e.spellUuid || e.spellListUuid || "";
-      const usage = e.usage ?? "passive";
-      const usesPerDay = Number(e.usesPerDay) || 0;
-      const usesRemaining = Number(e.usesRemaining) ?? usesPerDay;
-      const chargesMax = Number(e.chargesMax) || 0;
-      const charges = Number(e.charges) ?? chargesMax;
-      const canUse = usage !== "passive" && (
-        (usage === "daily" && usesRemaining > 0) ||
-        (usage === "charged" && charges > 0) ||
-        (usage === "single" && (charges > 0 || usesRemaining > 0))
-      );
-      const usageLabel = usage === "passive" ? (game.i18n.localize("rmss.item.enchantment_usage_passive") || "Passive") :
-        usage === "daily" ? `${usesRemaining}/${usesPerDay}` :
-        usage === "charged" ? `${charges}/${chargesMax}` :
-        usage === "single" ? (charges > 0 ? `${charges}/1` : (usesRemaining > 0 ? `${usesRemaining}/1` : "0/1")) : "—";
-      return {
-        ...e,
-        spell: e.spell ?? "",
-        level: e.level ?? "",
-        realmLabel: realm ? (CONFIG.rmss?.spell_realm?.[realm] || realm) : "—",
-        listTypeLabel,
-        spellListName: e.spellListName ?? "—",
-        spellLinkUuid,
-        usage,
-        usesPerDay,
-        usesRemaining,
-        chargesMax,
-        charges,
-        canUse,
-        usageLabel
-      };
-    });
-
-    const ppMult = Number(system.pp_multiplier) || 1;
-    const spellAdd = Number(system.spell_adder) || 0;
-    const powerModifierMode = ppMult >= 2 ? "multiplier" : spellAdd > 0 ? "spell_adder" : "";
+    const enchantmentList = buildEnchantmentList(system.magic?.enchantments);
+    const powerModifierMode = getPowerModifierMode(system);
 
     return {
       owner: item.isOwner,
@@ -342,10 +295,7 @@ export default class RMSSItemSheet extends ItemSheet {
     const patchKeys = Object.keys(formData).filter(k => k.startsWith(prefix) && k !== "system.magic.enchantments");
     if (patchKeys.length === 0) return;
 
-    const raw = this.item.system.magic?.enchantments ?? [];
-    const enchantments = Array.isArray(raw)
-      ? foundry.utils.duplicate(raw)
-      : Object.keys(raw).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b)).map(k => foundry.utils.duplicate(raw[k]));
+    const enchantments = foundry.utils.duplicate(normalizeEnchantments(this.item.system?.magic?.enchantments ?? []));
     for (const key of patchKeys) {
       const rest = key.slice(prefix.length);
       const dotPos = rest.indexOf(".");
