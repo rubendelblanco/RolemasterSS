@@ -280,7 +280,7 @@
                 {{#each enchantmentList as |enchantment idx|}}
                 <div class="rmss-enchantment-row" data-enchantment-index="{{idx}}">
                     <span class="rmss-text-center">{{enchantment.level}}</span>
-                    <span>{{enchantment.spell}}</span>
+                    <span class="rmss-enchantment-spell-cell">{{enchantment.spell}}{{#if enchantment.canUse}} <button type="button" class="rmss-enchantment-use" data-action="use-enchantment" data-index="{{idx}}" title="{{localize 'rmss.item.enchantment_use'}}"><i class="fas fa-wand-magic-sparkles"></i></button>{{/if}}</span>
                     <span>{{enchantment.realmLabel}}</span>
                     <span>{{enchantment.listTypeLabel}}</span>
                     <span>{{enchantment.spellListName}}</span>
@@ -294,10 +294,10 @@
                                 {{/each}}
                             </select>
                             {{#if (eq enchantment.usage "daily")}}
-                            <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.usesRemaining" value="{{enchantment.usesRemaining}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_remaining'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.usesPerDay" value="{{enchantment.usesPerDay}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_per_day'}}" placeholder="—"/></span>
+                            <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.usesRemaining" value="{{enchantment.usesRemaining}}" data-dtype="Number" min="0" max="{{enchantment.usesPerDay}}" title="{{localize 'rmss.item.enchantments_uses_remaining'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.usesPerDay" value="{{enchantment.usesPerDay}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_per_day'}}" placeholder="—"/></span>
                             {{/if}}
-                            {{#if (or (eq enchantment.usage "charged") (eq enchantment.usage "single"))}}
-                            <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.charges" value="{{enchantment.charges}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.chargesMax" value="{{enchantment.chargesMax}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges_max'}}" placeholder="—"/></span>
+                            {{#if (eq enchantment.usage "charged")}}
+                            <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.charges" value="{{enchantment.charges}}" data-dtype="Number" min="0" max="{{enchantment.chargesMax}}" title="{{localize 'rmss.item.enchantments_charges'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.chargesMax" value="{{enchantment.chargesMax}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges_max'}}" placeholder="—"/></span>
                             {{/if}}
                         </div>
                         {{else}}
@@ -305,16 +305,11 @@
                         {{/if}}
                     </span>
                     <span>{{#if enchantment.spellLinkUuid}}<a class="spell-link" data-action="open-spell-link" data-uuid="{{enchantment.spellLinkUuid}}" title="{{localize "rmss.item.enchantments_view_spell"}}"><i class="fas fa-external-link-alt"></i></a>{{else}}—{{/if}}</span>
-                    {{#if ../editable}}
                     <span>
-                        {{#if enchantment.canUse}}<button type="button" class="rmss-enchantment-use" data-action="use-enchantment" data-index="{{idx}}" title="{{localize 'rmss.item.enchantment_use'}}"><i class="fas fa-wand-magic-sparkles"></i></button>{{/if}}
                         <button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </span>
-                    {{else}}
-                    <span><button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}"><i class="fas fa-trash"></i></button></span>
-                    {{/if}}
                 </div>
                 {{/each}}
                 <p class="rmss-enchantments-hint">{{localize "rmss.item.enchantments_hint"}}</p>

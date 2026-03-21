@@ -38,20 +38,20 @@ export function buildEnchantmentList(rawEnchantments) {
     }
     const spellLinkUuid = e.spellUuid || e.spellListUuid || "";
     const usage = e.usage ?? "passive";
-    const usesPerDay = Number(e.usesPerDay) || 0;
-    const usesRemaining = Number(e.usesRemaining) ?? usesPerDay;
-    const chargesMax = Number(e.chargesMax) || 0;
-    const charges = Number(e.charges) ?? chargesMax;
+    const usesPerDay = Number(e.usesPerDay) || (usage === "daily" ? 1 : 0);
+    const usesRemaining = Math.min(Number(e.usesRemaining) ?? usesPerDay, usesPerDay);
+    const chargesMax = Number(e.chargesMax) || (usage === "charged" ? 10 : 0);
+    const charges = Math.min(Number(e.charges) ?? chargesMax, chargesMax);
     const canUse =
       usage !== "passive" &&
       ((usage === "daily" && usesRemaining > 0) ||
         (usage === "charged" && charges > 0) ||
-        (usage === "single" && (charges > 0 || usesRemaining > 0)));
+        usage === "single");
     const usageLabels = {
       passive: () => game.i18n.localize("rmss.item.enchantment_usage_passive") || "Passive",
       daily: () => `${usesRemaining}/${usesPerDay}`,
       charged: () => `${charges}/${chargesMax}`,
-      single: () => (charges > 0 ? `${charges}/1` : usesRemaining > 0 ? `${usesRemaining}/1` : "0/1")
+      single: () => game.i18n.localize("rmss.item.enchantment_usage_single") || "Single use"
     };
     const usageLabel = usageLabels[usage]?.() ?? "—";
     const attackBonus = Number(e.attackBonus) || 0;
@@ -180,7 +180,7 @@ export function buildSpellDataForStorage(spellDocOrData) {
 
 /**
  * Resolve spell for casting from enchantment.
- * Priority: 1) spellData (create temp Item), 2) spellUuid, 3) actor.items.find (legacy).
+ * Priority: 1) spellData (create temp Item), 2) spellUuid, 3) spellListUuid+name (from embedded list), 4) actor.items.find (legacy).
  * @param {Object} enchantment
  * @param {Actor} actor
  * @returns {Promise<Item|null>} Spell Item for casting, or null
@@ -198,6 +198,23 @@ export async function resolveSpellForEnchantment(enchantment, actor) {
   if (enchantment.spellUuid) {
     const doc = await fromUuid(enchantment.spellUuid);
     if (doc?.type === "spell") return doc;
+  }
+  if (enchantment.spellListUuid && enchantment.spell) {
+    const spellList = await fromUuid(enchantment.spellListUuid);
+    if (spellList?.type === "spell_list" && spellList.system?.spells) {
+      const embedded = spellList.system.spells.find(
+        (s) => (s?.name ?? "") === enchantment.spell
+      );
+      if (embedded?.name && embedded?.system) {
+        const spellData = {
+          name: embedded.name,
+          type: "spell",
+          img: embedded.img || "systems/rmss/assets/default/spell.svg",
+          system: foundry.utils.duplicate(embedded.system ?? {})
+        };
+        return await Item.create(spellData, { temporary: true });
+      }
+    }
   }
   const found = actor.items.find((i) => i.type === "spell" && i.name === enchantment.spell);
   return found ?? null;

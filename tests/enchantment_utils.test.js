@@ -131,6 +131,11 @@ describe('buildEnchantmentList', () => {
     expect(empty[0].canUse).toBe(false);
   });
 
+  test('canUse is always true for single usage', () => {
+    const single = buildEnchantmentList([{ usage: "single" }]);
+    expect(single[0].canUse).toBe(true);
+  });
+
   test('canUse is false for passive', () => {
     const passive = buildEnchantmentList([{ usage: "passive" }]);
     expect(passive[0].canUse).toBe(false);
@@ -144,6 +149,11 @@ describe('buildEnchantmentList', () => {
   test('usageLabel for charged shows charges/max', () => {
     const result = buildEnchantmentList([{ usage: "charged", chargesMax: 10, charges: 7 }]);
     expect(result[0].usageLabel).toBe("7/10");
+  });
+
+  test('usageLabel for single shows localized label', () => {
+    const result = buildEnchantmentList([{ usage: "single" }]);
+    expect(result[0].usageLabel).toBe("rmss.item.enchantment_usage_single");
   });
 
   test('spellLinkUuid prefers spellUuid over spellListUuid', () => {

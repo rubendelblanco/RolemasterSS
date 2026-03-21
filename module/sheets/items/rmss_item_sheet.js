@@ -300,10 +300,10 @@ export default class RMSSItemSheet extends ItemSheet {
       spellUuid: spellUuid || undefined,
       spellListUuid: spellListUuid || undefined,
       usage: "passive",
-      usesPerDay: 0,
-      usesRemaining: 0,
-      chargesMax: 0,
-      charges: 0,
+      usesPerDay: 1,
+      usesRemaining: 1,
+      chargesMax: 10,
+      charges: 10,
       attackBonus: 0
     });
     await this.item.update({ "system.magic.enchantments": enchantments });
@@ -378,14 +378,17 @@ export default class RMSSItemSheet extends ItemSheet {
     }
 
     const usage = enchantment.usage ?? "passive";
-    if (usage === "daily") {
+    if (usage === "single") {
+      enchantments.splice(index, 1);
+    } else if (usage === "daily") {
       const r = Number(enchantment.usesRemaining) ?? Number(enchantment.usesPerDay) ?? 0;
       enchantment.usesRemaining = Math.max(0, r - 1);
-    } else if (usage === "charged" || usage === "single") {
+      enchantments[index] = enchantment;
+    } else if (usage === "charged") {
       const c = Number(enchantment.charges) ?? Number(enchantment.chargesMax) ?? 0;
       enchantment.charges = Math.max(0, c - 1);
+      enchantments[index] = enchantment;
     }
-    enchantments[index] = enchantment;
     await this.item.update({ "system.magic.enchantments": enchantments });
     this.render(false);
   }

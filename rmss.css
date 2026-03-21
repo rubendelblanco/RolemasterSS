@@ -3173,12 +3173,21 @@ tr.container-row.over-capacity {
   font-size: 0.9em;
 }
 
+.rmss-enchantment-spell-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 .rmss-enchantment-use {
-  padding: 0.2rem;
+  padding: 0.1rem 0.2rem;
   color: var(--rmss-btn-success);
   background: none;
   border: none;
   cursor: pointer;
+  flex-shrink: 0;
+  font-size: 0.85em;
+  line-height: 1;
 }
 
 .rmss-enchantment-use:hover {
