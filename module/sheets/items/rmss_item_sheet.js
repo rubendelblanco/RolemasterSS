@@ -47,7 +47,10 @@ export default class RMSSItemSheet extends ItemSheet {
       idx
     }));
 
-    const enchantments = system.magic?.enchantments ?? [];
+    const rawEnch = system.magic?.enchantments ?? [];
+    const enchantments = Array.isArray(rawEnch)
+      ? rawEnch
+      : Object.keys(rawEnch).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b)).map(k => rawEnch[k]);
     const enchantmentList = enchantments.map((e) => {
       const realm = e.realm ?? "";
       const listType = e.listType ?? "";
@@ -59,6 +62,20 @@ export default class RMSSItemSheet extends ItemSheet {
         listTypeLabel = (isBase && profession) ? `${label} (${profession})` : label;
       }
       const spellLinkUuid = e.spellUuid || e.spellListUuid || "";
+      const usage = e.usage ?? "passive";
+      const usesPerDay = Number(e.usesPerDay) || 0;
+      const usesRemaining = Number(e.usesRemaining) ?? usesPerDay;
+      const chargesMax = Number(e.chargesMax) || 0;
+      const charges = Number(e.charges) ?? chargesMax;
+      const canUse = usage !== "passive" && (
+        (usage === "daily" && usesRemaining > 0) ||
+        (usage === "charged" && charges > 0) ||
+        (usage === "single" && (charges > 0 || usesRemaining > 0))
+      );
+      const usageLabel = usage === "passive" ? (game.i18n.localize("rmss.item.enchantment_usage_passive") || "Passive") :
+        usage === "daily" ? `${usesRemaining}/${usesPerDay}` :
+        usage === "charged" ? `${charges}/${chargesMax}` :
+        usage === "single" ? (charges > 0 ? `${charges}/1` : (usesRemaining > 0 ? `${usesRemaining}/1` : "0/1")) : "—";
       return {
         ...e,
         spell: e.spell ?? "",
@@ -66,7 +83,14 @@ export default class RMSSItemSheet extends ItemSheet {
         realmLabel: realm ? (CONFIG.rmss?.spell_realm?.[realm] || realm) : "—",
         listTypeLabel,
         spellListName: e.spellListName ?? "—",
-        spellLinkUuid
+        spellLinkUuid,
+        usage,
+        usesPerDay,
+        usesRemaining,
+        chargesMax,
+        charges,
+        canUse,
+        usageLabel
       };
     });
 
@@ -83,7 +107,8 @@ export default class RMSSItemSheet extends ItemSheet {
       contents,
       containerStats,
       bonusSkillsList,
-      enchantmentList
+      enchantmentList,
+      weightCostMultiplier: item._getWeightReductionModifier?.() ?? 1
     };
   }
 
@@ -98,6 +123,9 @@ export default class RMSSItemSheet extends ItemSheet {
     html.find(".sheet-content.drop-target").on("drop", this._onDropItem.bind(this));
     html.find(".remove-from-container").click(ev => this._onRemoveFromContainer(ev));
 
+    // --- Holy/Unholy mutually exclusive ---
+    this._setupHolyUnholyExclusive(html);
+    this._setupPPExclusive(html);
     // --- Bonus skill drop zones ---
     this._setupBonusSkillDropZones(html);
     // Bind to document: el html del sheet puede no incluir el tab Modifiers en algunas configuraciones
@@ -110,10 +138,46 @@ export default class RMSSItemSheet extends ItemSheet {
     // --- Enchantments ---
     this._setupEnchantmentsDropZone(html);
     html.find("[data-action='delete-enchantment']").click(ev => this._onDeleteEnchantment(ev));
+    html.find("[data-action='use-enchantment']").click(ev => this._onUseEnchantment(ev));
     html.find("[data-action='open-spell-link']").click(ev => this._onOpenSpellLink(ev));
 
     // --- Macro ---
     html.find(".shtick-type").change(ev => this._onShtickTypeChange(ev));
+  }
+
+  _setupHolyUnholyExclusive(html) {
+    const holy = html.find('input[name="system.holy"]')[0];
+    const unholy = html.find('input[name="system.unholy"]')[0];
+    if (!holy || !unholy) return;
+    const sync = (source) => {
+      if (source.checked) {
+        const other = source === holy ? unholy : holy;
+        other.checked = false;
+      }
+    };
+    holy.addEventListener("change", () => sync(holy));
+    unholy.addEventListener("change", () => sync(unholy));
+  }
+
+  _setupPPExclusive(html) {
+    const ppMult = html.find('input[name="system.pp_multiplier"]')[0];
+    const spellAdd = html.find('input[name="system.spell_adder"]')[0];
+    if (!ppMult || !spellAdd) return;
+    const sync = () => {
+      const mult = Number(ppMult.value) || 1;
+      const add = Number(spellAdd.value) || 0;
+      if (mult >= 2) {
+        spellAdd.value = "0";
+        const realm = html.find('select[name="system.spell_adder_realm"]')[0];
+        if (realm) realm.value = "";
+      } else if (add > 0) {
+        ppMult.value = "1";
+        const realm = html.find('select[name="system.pp_multiplier_realm"]')[0];
+        if (realm) realm.value = "";
+      }
+    };
+    ppMult.addEventListener("change", sync);
+    spellAdd.addEventListener("change", sync);
   }
 
   _getBonusSkillsArray() {
@@ -274,10 +338,39 @@ export default class RMSSItemSheet extends ItemSheet {
       spellListName,
       profession,
       spellUuid: spellUuid || undefined,
-      spellListUuid: spellListUuid || undefined
+      spellListUuid: spellListUuid || undefined,
+      usage: "passive",
+      usesPerDay: 0,
+      usesRemaining: 0,
+      chargesMax: 0,
+      charges: 0
     });
     await this.item.update({ "system.magic.enchantments": enchantments });
     this.render(false);
+  }
+
+  _mergeEnchantmentFormData(formData) {
+    const prefix = "system.magic.enchantments.";
+    const patchKeys = Object.keys(formData).filter(k => k.startsWith(prefix) && k !== "system.magic.enchantments");
+    if (patchKeys.length === 0) return;
+
+    const raw = this.item.system.magic?.enchantments ?? [];
+    const enchantments = Array.isArray(raw)
+      ? foundry.utils.duplicate(raw)
+      : Object.keys(raw).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b)).map(k => foundry.utils.duplicate(raw[k]));
+    for (const key of patchKeys) {
+      const rest = key.slice(prefix.length);
+      const dotPos = rest.indexOf(".");
+      if (dotPos < 0) continue;
+      const idx = parseInt(rest.slice(0, dotPos), 10);
+      const field = rest.slice(dotPos + 1);
+      if (!Number.isInteger(idx) || idx < 0 || idx >= enchantments.length) continue;
+      let val = formData[key];
+      if (["usesPerDay", "usesRemaining", "chargesMax", "charges"].includes(field)) val = Number(val) || 0;
+      enchantments[idx][field] = val;
+      delete formData[key];
+    }
+    formData["system.magic.enchantments"] = enchantments;
   }
 
   _onDeleteEnchantment(event) {
@@ -286,6 +379,60 @@ export default class RMSSItemSheet extends ItemSheet {
     const enchantments = foundry.utils.duplicate(this.item.system.magic?.enchantments ?? []);
     enchantments.splice(index, 1);
     this.item.update({ "system.magic.enchantments": enchantments });
+    this.render(false);
+  }
+
+  async _onUseEnchantment(event) {
+    event.preventDefault();
+    const index = parseInt(event.currentTarget.dataset.index, 10);
+    const enchantments = foundry.utils.duplicate(this.item.system.magic?.enchantments ?? []);
+    const enchantment = enchantments[index];
+    if (!enchantment) return;
+
+    const actor = this.item.actor ?? this.item.parent;
+    if (!actor || !(actor instanceof Actor)) {
+      ui.notifications.warn(game.i18n.localize("rmss.item.enchantment_need_actor") || "Item must be owned by an actor to use enchantment.");
+      return;
+    }
+
+    let spellDoc = null;
+    if (enchantment.spellUuid) spellDoc = await fromUuid(enchantment.spellUuid);
+    if (!spellDoc || spellDoc.type !== "spell") {
+      spellDoc = actor.items.find(i => i.type === "spell" && i.name === enchantment.spell);
+    }
+    if (!spellDoc || spellDoc.type !== "spell") {
+      ui.notifications.warn(game.i18n.localize("rmss.item.enchantment_spell_not_found") || "Spell not found.");
+      return;
+    }
+
+    const spellListName = enchantment.spellListName || spellDoc.name;
+    const spellListRealm = enchantment.realm || actor.system?.fixed_info?.realm || "essence";
+
+    const fromEnchantmentOpt = { consumePowerPoints: false };
+    if (spellDoc.system?.instant) {
+      const InstantSpellService = (await import("../../spells/services/instant_spell_service.js")).default;
+      await InstantSpellService.castInstantSpell({ actor, spell: spellDoc, ...fromEnchantmentOpt });
+    } else if (spellDoc.system?.type === "BE") {
+      const BaseElementalSpellService = (await import("../../spells/services/base_elemental_spell_service.js")).default;
+      await BaseElementalSpellService.castBaseElementalSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
+    } else if (spellDoc.system?.type === "DE") {
+      const DirectedElementalSpellService = (await import("../../spells/services/directed_elemental_spell_service.js")).default;
+      await DirectedElementalSpellService.castDirectedElementalSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
+    } else {
+      const ForceSpellService = (await import("../../spells/services/force_spell_service.js")).default;
+      await ForceSpellService.castForceSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
+    }
+
+    const usage = enchantment.usage ?? "passive";
+    if (usage === "daily") {
+      const r = Number(enchantment.usesRemaining) ?? Number(enchantment.usesPerDay) ?? 0;
+      enchantment.usesRemaining = Math.max(0, r - 1);
+    } else if (usage === "charged" || usage === "single") {
+      const c = Number(enchantment.charges) ?? Number(enchantment.chargesMax) ?? 0;
+      enchantment.charges = Math.max(0, c - 1);
+    }
+    enchantments[index] = enchantment;
+    await this.item.update({ "system.magic.enchantments": enchantments });
     this.render(false);
   }
 
@@ -299,6 +446,22 @@ export default class RMSSItemSheet extends ItemSheet {
 
   /** @override */
   async _updateObject(event, formData) {
+    // Holy and unholy are mutually exclusive
+    if (formData["system.holy"] === true) formData["system.unholy"] = false;
+    if (formData["system.unholy"] === true) formData["system.holy"] = false;
+
+    // PP multiplier and spell adder are mutually exclusive
+    const ppMult = Number(formData["system.pp_multiplier"]) || 1;
+    const spellAdd = Number(formData["system.spell_adder"]) || 0;
+    if (ppMult >= 2) {
+      formData["system.spell_adder"] = 0;
+      formData["system.spell_adder_realm"] = "";
+    } else if (spellAdd > 0) {
+      formData["system.pp_multiplier"] = 1;
+      formData["system.pp_multiplier_realm"] = "";
+    }
+
+    this._mergeEnchantmentFormData(formData);
     const normalizedData = ItemService.normalizeItemFormData(this.item, formData);
     // Ensure bonus_skills is an array (form may submit object with numeric keys)
     const raw = normalizedData.system?.bonus_skills;

@@ -76,44 +76,105 @@
             {{/if}}
         </div>
         <div class="tab rmss-tab-modifiers" data-tab="modifiers" data-group="primary">
-            <div class="rmss-modifiers-grid">
-                <div class="rmss-modifiers-header">{{localize "rmss.item.modifiers_material"}}</div>
-                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_bonus"}}</div>
-                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_total"}}</div>
-                <div class="rmss-modifiers-cell">
-                    <select name="system.material">
-                        {{#each materialsOptions as |opt|}}
-                        <option value="{{opt.key}}" {{#if opt.selected}}selected{{/if}}>{{opt.label}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-                <div class="rmss-modifiers-cell rmss-text-center">
-                    {{#if bonusEditable}}
-                    <input type="number" name="system.bonus" value="{{or system.bonus 0}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
-                    {{else}}
-                    <span class="rmss-bonus-readonly">{{or system.bonus 0}}</span>
-                    {{/if}}
-                </div>
-                <div class="rmss-modifiers-cell rmss-text-center rmss-text-strong">{{rmss_armor_total}}</div>
-            </div>
-            <div class="rmss-modifiers-grid rmss-modifiers-grid-row2">
-                <div class="rmss-modifiers-header">{{localize "rmss.item.modifiers_weight_reduction"}}</div>
-                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_magical"}}</div>
-                <div class="rmss-modifiers-header rmss-text-center">{{localize "rmss.item.modifiers_sacred"}}</div>
-                <div class="rmss-modifiers-cell" style="display:flex; align-items:center; gap:0.5rem;">
-                    <input type="number" name="system.weight_percent" value="{{or system.weight_percent 100}}" min="0" max="100" step="1" data-dtype="Number" title="0-19: 500× | 20-39: 100× | 40-59: 20× | 60-79: 8× | 80-94: 4× | 95-100: 1×"/>
-                    <span class="rmss-weight-multiplier">{{weightCostMultiplier}}×</span>
-                </div>
-                <div class="rmss-modifiers-cell rmss-text-center">
-                    {{#if magicalEditable}}
-                    <input type="checkbox" name="system.magical" {{checked system.magical}}/>
-                    {{else}}
-                    <input type="hidden" name="system.magical" value="{{#if system.magical}}true{{else}}false{{/if}}" data-dtype="Boolean"/>
-                    <input type="checkbox" {{checked system.magical}} disabled title="{{#if system.magical}}{{localize "rmss.item.modifiers_magical"}}{{/if}}"/>
-                    {{/if}}
-                </div>
-                <div class="rmss-modifiers-cell rmss-text-center">
-                    <input type="checkbox" name="system.sacred" {{checked system.sacred}}/>
+            <table class="rmss-modifiers-table">
+                <tr>
+                    <th>{{localize "rmss.item.modifiers_material"}}</th>
+                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_bonus"}}</th>
+                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_total"}}</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="system.material">
+                            {{#each materialsOptions as |opt|}}
+                            <option value="{{opt.key}}" {{#if opt.selected}}selected{{/if}}>{{opt.label}}</option>
+                            {{/each}}
+                        </select>
+                    </td>
+                    <td class="rmss-text-center">
+                        {{#if bonusEditable}}
+                        <input type="number" name="system.bonus" value="{{or system.bonus 0}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
+                        {{else}}
+                        <span class="rmss-bonus-readonly">{{or system.bonus 0}}</span>
+                        {{/if}}
+                    </td>
+                    <td class="rmss-text-center rmss-text-strong">{{rmss_armor_total}}</td>
+                </tr>
+                <tr>
+                    <th>{{localize "rmss.item.modifiers_weight_reduction"}}</th>
+                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_magical"}}</th>
+                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_holy"}}</th>
+                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_unholy"}}</th>
+                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_of_changing"}}</th>
+                </tr>
+                <tr>
+                    <td class="rmss-weight-cell">
+                        <input type="number" name="system.weight_percent" value="{{or system.weight_percent 100}}" min="0" max="100" step="1" data-dtype="Number" title="0-19: 500× | 20-39: 100× | 40-59: 20× | 60-79: 8× | 80-94: 4× | 95-100: 1×"/>
+                        <span class="rmss-weight-multiplier">{{weightCostMultiplier}}×</span>
+                    </td>
+                    <td class="rmss-text-center">
+                        {{#if magicalEditable}}
+                        <input type="checkbox" name="system.magical" {{checked system.magical}}/>
+                        {{else}}
+                        <input type="hidden" name="system.magical" value="{{#if system.magical}}true{{else}}false{{/if}}" data-dtype="Boolean"/>
+                        <input type="checkbox" {{checked system.magical}} disabled title="{{#if system.magical}}{{localize "rmss.item.modifiers_magical"}}{{/if}}"/>
+                        {{/if}}
+                    </td>
+                    <td class="rmss-text-center"><input type="checkbox" name="system.holy" {{checked system.holy}}/></td>
+                    <td class="rmss-text-center"><input type="checkbox" name="system.unholy" {{checked system.unholy}}/></td>
+                    <td class="rmss-text-center"><input type="checkbox" name="system.of_changing" {{checked system.of_changing}}/></td>
+                </tr>
+                <tr>
+                    <th colspan="2">{{localize "rmss.item.modifiers_pp_multiplier"}}</th>
+                    <th colspan="3">{{localize "rmss.item.modifiers_spell_adder"}}</th>
+                </tr>
+                <tr>
+                    <td><div class="rmss-pp-cell">
+                        <span class="rmss-pp-input-wrap">
+                            <input type="number" name="system.pp_multiplier" value="{{or system.pp_multiplier 1}}" min="1" max="10" step="1" data-dtype="Number" title="1=none, 2=2×, 3=3×..."/>
+                            <span class="rmss-pp-suffix">×</span>
+                        </span>
+                        <select name="system.pp_multiplier_realm">
+                            {{#each config.item_pp_realm as |label key|}}
+                            <option value="{{key}}" {{#if (eq key ../system.pp_multiplier_realm)}}selected{{/if}}>{{localize label}}</option>
+                            {{/each}}
+                        </select>
+                    </div></td>
+                    <td colspan="3"><div class="rmss-pp-cell">
+                        <span class="rmss-pp-input-wrap">
+                            <input type="number" name="system.spell_adder" value="{{or system.spell_adder 0}}" min="0" max="100" step="1" data-dtype="Number" title="Bonus PP"/>
+                            <span class="rmss-pp-suffix">+</span>
+                        </span>
+                        <select name="system.spell_adder_realm">
+                            {{#each config.item_pp_realm as |label key|}}
+                            <option value="{{key}}" {{#if (eq key ../system.spell_adder_realm)}}selected{{/if}}>{{localize label}}</option>
+                            {{/each}}
+                        </select>
+                    </div></td>
+                </tr>
+            </table>
+            <div class="rmss-item-bonus-skills">
+                <div class="rmss-modifiers-header">{{localize "rmss.item.modifiers_bonus_skills"}}</div>
+                <div class="rmss-bonus-skills-list">
+                    {{#each bonusSkillsList as |entry idx|}}
+                    <div class="rmss-bonus-skill-row" data-index="{{idx}}">
+                        <div class="rmss-bonus-skill-drop-zone drop-target" data-drop-zone="bonus-skill" data-index="{{idx}}">
+                            {{#if entry.skill}}
+                            <span class="rmss-bonus-skill-name">{{#if entry.skill_name}}{{entry.skill_name}}{{else}}{{entry.skill}}{{/if}}</span>
+                            <input type="hidden" name="system.bonus_skills.{{idx}}.skill" value="{{entry.skill}}" data-dtype="String"/>
+                            <input type="hidden" name="system.bonus_skills.{{idx}}.skill_name" value="{{entry.skill_name}}" data-dtype="String"/>
+                            {{else}}
+                            <span class="rmss-drop-hint">{{localize "rmss.item.drop_skill_for_bonus"}}</span>
+                            {{/if}}
+                        </div>
+                        <input type="number" name="system.bonus_skills.{{idx}}.bonus" value="{{entry.bonus}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
+                        <button type="button" class="rmss-bonus-skill-remove" data-action="remove-bonus-skill" data-index="{{idx}}" title="{{localize 'rmss.item.enchantment_delete'}}"><i class="fas fa-times"></i></button>
+                    </div>
+                    {{/each}}
+                    <div class="rmss-bonus-skill-add-row">
+                        <div class="rmss-bonus-skill-drop-zone drop-target rmss-bonus-skill-add-zone" data-drop-zone="bonus-skill-add">
+                            <span class="rmss-drop-hint"><i class="fas fa-plus"></i> {{localize "rmss.item.add_bonus_skill"}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,6 +186,7 @@
                     <span>{{localize "rmss.item.enchantments_realm"}}</span>
                     <span>{{localize "rmss.item.enchantments_list_type"}}</span>
                     <span>{{localize "rmss.item.enchantments_spell_list"}}</span>
+                    <span>{{localize "rmss.item.enchantments_usage"}}</span>
                     <span>{{localize "rmss.item.enchantments_view_spell"}}</span>
                     <span></span>
                 </div>
@@ -135,10 +197,36 @@
                     <span>{{enchantment.realmLabel}}</span>
                     <span>{{enchantment.listTypeLabel}}</span>
                     <span>{{enchantment.spellListName}}</span>
+                    <span class="rmss-enchantment-usage-cell">
+                        {{#if ../editable}}
+                        <select name="system.magic.enchantments.{{idx}}.usage" data-dtype="String">
+                            {{#each ../config.enchantment_usage as |label key|}}
+                            <option value="{{key}}" {{#if (eq enchantment.usage key)}}selected{{/if}}>{{localize label}}</option>
+                            {{/each}}
+                        </select>
+                        {{#if (eq enchantment.usage "daily")}}
+                        <input type="number" name="system.magic.enchantments.{{idx}}.usesPerDay" value="{{enchantment.usesPerDay}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_per_day'}}" placeholder="/"/>
+                        <input type="number" name="system.magic.enchantments.{{idx}}.usesRemaining" value="{{enchantment.usesRemaining}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_remaining'}}"/>
+                        {{/if}}
+                        {{#if (or (eq enchantment.usage "charged") (eq enchantment.usage "single"))}}
+                        <input type="number" name="system.magic.enchantments.{{idx}}.chargesMax" value="{{enchantment.chargesMax}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges_max'}}" placeholder="/"/>
+                        <input type="number" name="system.magic.enchantments.{{idx}}.charges" value="{{enchantment.charges}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges'}}"/>
+                        {{/if}}
+                        {{else}}
+                        <span>{{enchantment.usageLabel}}</span>
+                        {{/if}}
+                    </span>
                     <span>{{#if enchantment.spellLinkUuid}}<a class="spell-link" data-action="open-spell-link" data-uuid="{{enchantment.spellLinkUuid}}" title="{{localize "rmss.item.enchantments_view_spell"}}"><i class="fas fa-external-link-alt"></i></a>{{else}}—{{/if}}</span>
-                    <button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    {{#if ../editable}}
+                    <span>
+                        {{#if enchantment.canUse}}<button type="button" class="rmss-enchantment-use" data-action="use-enchantment" data-index="{{idx}}" title="{{localize 'rmss.item.enchantment_use'}}"><i class="fas fa-wand-magic-sparkles"></i></button>{{/if}}
+                        <button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </span>
+                    {{else}}
+                    <span><button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}"><i class="fas fa-trash"></i></button></span>
+                    {{/if}}
                 </div>
                 {{/each}}
                 <p class="rmss-enchantments-hint">{{localize "rmss.item.enchantments_hint"}}</p>

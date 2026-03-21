@@ -22,7 +22,7 @@ export class RMSSItem extends Item {
    * For custom material, modifier is 1. Weight reduction uses % of min normal weight.
    */
   get effectiveUnitCost() {
-    if (!["armor", "weapon"].includes(this.type)) return Number(this.system.unitCost) || 0;
+    if (!["armor", "weapon", "item"].includes(this.type)) return Number(this.system.unitCost) || 0;
     const mat = CONFIG.rmss?.materials?.[this.system.material];
     const matMod = mat?.baseCostModifier ?? 1;
     const weightMod = this._getWeightReductionModifier();

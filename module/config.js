@@ -155,8 +155,8 @@ rmss.criticalDictionary = {
 rmss.large_critical_types = {
   superlarge_spell: ['normal', 'slaying'],
   large_spell: ['normal', 'slaying'],
-  superlarge_melee: ['normal', 'magic', 'mithril', 'sacred', 'slaying'],
-  large_melee: ['normal', 'magic', 'mithril', 'sacred', 'slaying']
+  superlarge_melee: ['normal', 'magic', 'mithril', 'holy', 'slaying'],
+  large_melee: ['normal', 'magic', 'mithril', 'holy', 'slaying']
 }
 
 rmss.spell_realm = {
@@ -165,6 +165,32 @@ rmss.spell_realm = {
   "mentalism": "Mentalism",
   "arcane": "Arcane"
 }
+
+/** For PP multiplier/spell adder: realm or "all". Values = lang keys. */
+rmss.item_pp_realm = {
+  "": "rmss.item.pp_realm_none",
+  "all": "rmss.item.pp_realm_all",
+  "essence": "rmss.item.pp_realm_essence",
+  "channeling": "rmss.item.pp_realm_channeling",
+  "mentalism": "rmss.item.pp_realm_mentalism",
+  "essence/channeling": "rmss.item.pp_realm_essence_channeling",
+  "essence/mentalism": "rmss.item.pp_realm_essence_mentalism",
+  "channeling/mentalism": "rmss.item.pp_realm_channeling_mentalism",
+  "arcane": "rmss.item.pp_realm_arcane",
+  "profession": "rmss.item.pp_realm_profession"
+}
+
+/** Hybrid realm expansion: which base realms each option covers. */
+rmss.item_pp_realm_expands = {
+  "essence": ["essence"],
+  "channeling": ["channeling"],
+  "mentalism": ["mentalism"],
+  "arcane": ["arcane"],
+  "essence/channeling": ["essence", "channeling"],
+  "essence/mentalism": ["essence", "mentalism"],
+  "channeling/mentalism": ["channeling", "mentalism"],
+  "all": ["essence", "channeling", "mentalism", "arcane"]
+};
 
 rmss.character_realm = {
   "essence": "Essence",
@@ -181,6 +207,20 @@ rmss.spell_list_type = {
   "closed": "Closed",
   "base": "Base"
 }
+
+/** Enchantment usage types (Fase 3). */
+rmss.enchantment_usage = {
+  "passive": "rmss.item.enchantment_usage_passive",
+  "daily": "rmss.item.enchantment_usage_daily",
+  "charged": "rmss.item.enchantment_usage_charged",
+  "single": "rmss.item.enchantment_usage_single"
+}
+
+/** Slaying weapon creature types (for autocomplete). */
+rmss.slaying_types = [
+  "dragon", "undead", "orc", "troll", "demon", "vampire", "lycanthrope",
+  "serpent", "spider", "elemental", "witch", "evil", "humanoid"
+];
 
 rmss.armor_slot = {
   "body": "Body",

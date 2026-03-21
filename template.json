@@ -365,9 +365,18 @@
         "label": "RMSS.CurrencyType"
       },
       "magical": false,
-      "sacred": false,
+      "holy": false,
+      "unholy": false,
+      "of_changing": false,
+      "weight_percent": 100,
       "bonus_skills": [],
-      "magic": { "enchantments": [] }
+      "magic": { "enchantments": [] },
+      "pp_multiplier": 1,
+      "pp_multiplier_realm": "",
+      "spell_adder": 0,
+      "spell_adder_realm": "",
+      "pp_multiplier_profession": "",
+      "spell_adder_profession": ""
     },
     "creature_attack": {
       "templates": ["base"],
@@ -406,8 +415,17 @@
       "material": "iron",
       "bonus": 0,
       "magical": false,
-      "sacred": false,
-      "magic": { "enchantments": [] }
+      "holy": false,
+      "unholy": false,
+      "of_changing": false,
+      "bonus_skills": [],
+      "magic": { "enchantments": [] },
+      "pp_multiplier": 1,
+      "pp_multiplier_realm": "",
+      "spell_adder": 0,
+      "spell_adder_realm": "",
+      "pp_multiplier_profession": "",
+      "spell_adder_profession": ""
     },
     "weapon": {
       "templates": ["item"],
@@ -428,8 +446,18 @@
       "material": "iron",
       "bonus": 0,
       "magical": false,
-      "sacred": false,
-      "magic": { "enchantments": [] }
+      "holy": false,
+      "unholy": false,
+      "of_changing": false,
+      "bonus_skills": [],
+      "magic": { "enchantments": [] },
+      "pp_multiplier": 1,
+      "pp_multiplier_realm": "",
+      "spell_adder": 0,
+      "spell_adder_realm": "",
+      "pp_multiplier_profession": "",
+      "spell_adder_profession": "",
+      "slaying": ""
     },
     "herb_or_poison": {
       "templates": ["item"],

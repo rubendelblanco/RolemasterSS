@@ -26,7 +26,7 @@ export default class DirectedElementalSpellService {
      * @param {string} params.spellListName - Name of the spell list (for context)
      * @param {string} params.spellListRealm - Realm of the spell list
      */
-    static async castDirectedElementalSpell({ actor, spell, spellListName, spellListRealm }) {
+    static async castDirectedElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true }) {
         const attackTableName = spell.system?.attack_table;
         if (!attackTableName || !CONFIG.rmss?.boltTables?.includes(attackTableName)) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_attack_table"));
@@ -42,7 +42,7 @@ export default class DirectedElementalSpellService {
         }
 
         const spellLevel = spell.system?.level ?? 1;
-        const noPP = spell.system?.no_pp === true;
+        const noPP = !consumePowerPoints || spell.system?.no_pp === true;
         if (!noPP) {
             const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
             if (currentPP < spellLevel) {

@@ -2,8 +2,11 @@
 const BODY_DEVELOPMENT_SLUG = "body-development";
 const POWER_POINT_DEVELOPMENT_SLUG = "power-point-development";
 
+import { getEffectivePowerPointsMaxForSheet } from "./power_points_util.js";
+
 /**
  * Syncs actor's hits.max and power_points.max from Body Development and Power Point Development skills.
+ * PP max includes bonuses from equipped items (pp_multiplier, spell_adder).
  * Uses prepared data so Active Effects and stat changes are reflected correctly.
  * Categories are found by slug (fixed) for robustness (names can be translated).
  * @param {Actor} actor - The actor to sync.
@@ -40,12 +43,14 @@ export async function syncHitsAndPowerPointsFromSkills(actor) {
     const ppSkills = actor.items.filter(
       (i) => i.type === "skill" && i.system?.category === ppDevCategory.id
     );
-    const ppMax = ppSkills.length > 0
+    const basePP = ppSkills.length > 0
       ? Math.max(...ppSkills.map((s) => Number(s.system?.total_bonus ?? 0)))
       : 0;
-    const currentPP = Number(actor.system?.attributes?.power_points?.max ?? 0);
-    if (ppMax !== currentPP) {
-      updates["system.attributes.power_points.max"] = ppMax;
+    // Effective max includes equipped items (pp_multiplier, spell_adder)
+    const effectivePP = getEffectivePowerPointsMaxForSheet(actor, basePP);
+    const currentMax = Number(actor.system?.attributes?.power_points?.max ?? 0);
+    if (effectivePP !== currentMax) {
+      updates["system.attributes.power_points.max"] = effectivePP;
     }
   }
 

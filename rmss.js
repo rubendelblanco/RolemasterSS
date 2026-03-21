@@ -205,6 +205,20 @@ Hooks.once("init", function () {
     default: true
   });
 
+  game.settings.register("rmss", "sacredToHolyMigrated", {
+    scope: "world",
+    config: false,
+    type: Boolean,
+    default: false
+  });
+
+  game.settings.register("rmss", "ofDarknessToUnholyMigrated", {
+    scope: "world",
+    config: false,
+    type: Boolean,
+    default: false
+  });
+
   // --- Register the system setting for maximum Fate Points ---
   game.settings.register("rmss", "maxFatePoints", {
     name: "Maximum Fate Points",
@@ -496,6 +510,82 @@ Hooks.once("init", function () {
     CONFIG.rmss.skillCategories = Object.entries(categories)
       .map(([slug, data]) => ({ system: { slug }, name: data.name }))
       .sort((a, b) => a.name.localeCompare(b.name));
+
+    // Migration: sacred -> holy (manual uses "Holy")
+    const migrated = game.settings.get("rmss", "sacredToHolyMigrated");
+    if (!migrated && game.actors) {
+      let count = 0;
+      for (const actor of game.actors) {
+        for (const item of actor.items) {
+          if (!["item", "armor", "weapon"].includes(item.type)) continue;
+          const sys = item.system;
+          if (sys?.sacred !== undefined) {
+            await item.update({ "system.holy": sys.sacred, "system.-=sacred": null });
+            count++;
+          }
+        }
+      }
+      if (count > 0) console.log(`RMSS | Migrated ${count} items from sacred to holy`);
+      await game.settings.set("rmss", "sacredToHolyMigrated", true);
+    }
+
+    // Migration: of_darkness -> unholy
+    const unholyMigrated = game.settings.get("rmss", "ofDarknessToUnholyMigrated");
+    if (!unholyMigrated && game.actors) {
+      let count = 0;
+      for (const actor of game.actors) {
+        for (const item of actor.items) {
+          if (!["item", "armor", "weapon"].includes(item.type)) continue;
+          const sys = item.system;
+          if (sys?.of_darkness !== undefined) {
+            await item.update({ "system.unholy": sys.of_darkness, "system.-=of_darkness": null });
+            count++;
+          }
+        }
+      }
+      if (count > 0) console.log(`RMSS | Migrated ${count} items from of_darkness to unholy`);
+      await game.settings.set("rmss", "ofDarknessToUnholyMigrated", true);
+    }
+  });
+
+  // Fix corrupted enchantments (object with numeric keys instead of array)
+  Hooks.once("ready", async () => {
+    if (!game.actors) return;
+    for (const actor of game.actors) {
+      for (const item of actor.items) {
+        if (!["item", "armor", "weapon"].includes(item.type)) continue;
+        const ench = item.system?.magic?.enchantments;
+        if (ench && !Array.isArray(ench) && typeof ench === "object") {
+          const arr = Object.keys(ench).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b)).map(k => ench[k]);
+          await item.update({ "system.magic.enchantments": arr });
+          console.log(`RMSS | Fixed corrupted enchantments on ${item.name} (${actor.name})`);
+        }
+      }
+    }
+  });
+
+  /** Reset daily enchantment uses. Call Hooks.call("rmssLongRest") from macros or rest systems. */
+  Hooks.on("rmssLongRest", async () => {
+    if (!game.actors) return;
+    for (const actor of game.actors) {
+      for (const item of actor.items) {
+        if (!["item", "armor", "weapon"].includes(item.type)) continue;
+        const enchantments = item.system?.magic?.enchantments;
+        if (!Array.isArray(enchantments)) continue;
+        let changed = false;
+        const updated = enchantments.map((e) => {
+          if (e.usage === "daily") {
+            const perDay = Number(e.usesPerDay) || 0;
+            if (Number(e.usesRemaining) !== perDay) {
+              changed = true;
+              return { ...e, usesRemaining: perDay };
+            }
+          }
+          return e;
+        });
+        if (changed) await item.update({ "system.magic.enchantments": updated });
+      }
+    }
   });
 
   /** Generate slug from name: lowercase, normalize accents, replace spaces/special chars with hyphens. */
@@ -667,10 +757,14 @@ Hooks.once("init", function () {
   });
 
   // Hook: updateItem - sync Body Development / Power Point Development skills to actor hits.max / power_points.max
+  // Also sync when weapon/armor/item with pp_multiplier/spell_adder changes
   Hooks.on("updateItem", async (item, update, options, userId) => {
     const actor = item.parent;
     if (!actor) return;
-    if (item.type !== "skill" && item.type !== "skill_category") return;
+    const ppRelevant = ["weapon", "armor", "item"].includes(item.type)
+      && ("system" in update)
+      && (["pp_multiplier", "pp_multiplier_realm", "spell_adder", "spell_adder_realm", "equipped"].some((k) => k in (update.system || {})));
+    if (item.type !== "skill" && item.type !== "skill_category" && !ppRelevant) return;
 
     await syncHitsAndPowerPointsFromSkills(actor);
   });
@@ -678,7 +772,8 @@ Hooks.once("init", function () {
   // Hook: createItem - sync Body Development / Power Point Development skills to actor hits.max / power_points.max
   Hooks.on("createItem", async (item, options, userId) => {
     const actor = item.parent;
-    if (!actor || item.type !== "skill") return;
+    if (!actor) return;
+    if (item.type !== "skill" && !["weapon", "armor", "item"].includes(item.type)) return;
 
     await syncHitsAndPowerPointsFromSkills(actor);
   });
@@ -709,7 +804,7 @@ Hooks.once("init", function () {
       }
     }
 
-    if (item.type === "skill") {
+    if (["skill", "weapon", "armor", "item"].includes(item.type)) {
       await syncHitsAndPowerPointsFromSkills(actor);
     }
   });

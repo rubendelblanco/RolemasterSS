@@ -17,11 +17,11 @@ export default class InstantSpellService {
      * @param {Item} params.spell - The spell (must have system.instant === true)
      * @returns {Promise<boolean>} True if cast successfully
      */
-    static async castInstantSpell({ actor, spell }) {
+    static async castInstantSpell({ actor, spell, consumePowerPoints = true }) {
         if (!spell?.system?.instant) return false;
 
         const spellLevel = spell.system?.level ?? 1;
-        const noPP = spell.system?.no_pp === true;
+        const noPP = !consumePowerPoints || spell.system?.no_pp === true;
         if (!noPP) {
             const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
             if (currentPP < spellLevel) {

@@ -26,7 +26,7 @@ export default class BaseElementalSpellService {
      * @param {string} params.spellListName - Name of the spell list (for skill bonus)
      * @param {string} params.spellListRealm - Realm of the spell list
      */
-    static async castBaseElementalSpell({ actor, spell, spellListName, spellListRealm }) {
+    static async castBaseElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true }) {
         const attackTableName = spell.system?.attack_table;
         if (!attackTableName) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_attack_table"));
@@ -34,7 +34,7 @@ export default class BaseElementalSpellService {
         }
 
         const spellLevel = spell.system?.level ?? 1;
-        const noPP = spell.system?.no_pp === true;
+        const noPP = !consumePowerPoints || spell.system?.no_pp === true;
         if (!noPP) {
             const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
             if (currentPP < spellLevel) {

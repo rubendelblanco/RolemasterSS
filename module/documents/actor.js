@@ -212,7 +212,7 @@ export class RMSSActor extends Actor {
       }
     }
 
-    // Gear items (type "item") that are worn and grant bonus to skills (by skill slug or name)
+    // Gear (item worn), armor (equipped), weapon (equipped) that grant bonus to skills
     const gearBonusBySkillSlug = {};
     const gearBonusBySkillName = {};
     const normalizeBonusEntries = (raw) => {
@@ -223,9 +223,8 @@ export class RMSSActor extends Actor {
       }
       return [];
     };
-    for (const gear of this.items) {
-      if (gear.type !== "item" || !gear.system?.worn) continue;
-      const raw = gear.system.bonus_skills ?? (gear.system.bonus_skill ? [{ skill: gear.system.bonus_skill, skill_name: gear.system.bonus_skill_name || "", bonus: Number(gear.system.bonus) || 0 }] : []);
+    const addBonusSkillsFromItem = (item) => {
+      const raw = item.system.bonus_skills ?? (item.system.bonus_skill ? [{ skill: item.system.bonus_skill, skill_name: item.system.bonus_skill_name || "", bonus: Number(item.system.bonus) || 0 }] : []);
       const entries = normalizeBonusEntries(raw);
       for (const e of entries) {
         const bonus = Number(e?.bonus) || 0;
@@ -235,6 +234,11 @@ export class RMSSActor extends Actor {
         if (slug) gearBonusBySkillSlug[slug] = (gearBonusBySkillSlug[slug] || 0) + bonus;
         if (name) gearBonusBySkillName[name] = (gearBonusBySkillName[name] || 0) + bonus;
       }
+    };
+    for (const gear of this.items) {
+      if (gear.type === "item" && gear.system?.worn) addBonusSkillsFromItem(gear);
+      else if (gear.type === "armor" && gear.system?.equipped) addBonusSkillsFromItem(gear);
+      else if (gear.type === "weapon" && gear.system?.equipped) addBonusSkillsFromItem(gear);
     }
 
     for (const item of this.items) {

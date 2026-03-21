@@ -25,14 +25,14 @@ const CRITICAL_COLUMN_MAP = {
         normal: "A",
         magic: "B",
         mithril: "C",
-        sacred: "D",
+        holy: "D",
         slaying: "E"
     },
     superlarge_melee: {
         normal: "A",
         magic: "B",
         mithril: "C",
-        sacred: "D",
+        holy: "D",
         slaying: "E"
     }
 };
@@ -255,10 +255,10 @@ export class RMSSWeaponCriticalManager {
 
     /**
      * Returns the default critical subtype for large/superlarge melee based on the attacker's equipped weapon.
-     * Priority: Sacred > Mithril > Magical > Normal. Slaying is not auto-selected (creature-dependent).
+     * Priority: Holy > Mithril > Magical > Normal. Slaying is not auto-selected (creature-dependent).
      * @param {string|null} attackerId - Actor ID (or token document id)
      * @param {string} critType - e.g. large_melee, superlarge_melee
-     * @returns {string} - One of: normal, magic, mithril, sacred
+     * @returns {string} - One of: normal, magic, mithril, holy
      */
     /**
      * Filter criticals for large/superlarge creatures: A is ignored (large), A-B ignored (superlarge).
@@ -287,7 +287,8 @@ export class RMSSWeaponCriticalManager {
         const weapons = EquipmentService.getEquippedWeapons(actor);
         const weapon = weapons[0];
         if (!weapon?.system) return "normal";
-        if (weapon.system.sacred === true) return subtypes.includes("sacred") ? "sacred" : "normal";
+        // Holy and unholy weapons both hit as sacred (same combat effect)
+        if (weapon.system.holy === true || weapon.system.unholy === true) return subtypes.includes("holy") ? "holy" : "normal";
         if (weapon.system.material === "mithril_alloy") return subtypes.includes("mithril") ? "mithril" : "normal";
         if (weapon.system.magical === true) return subtypes.includes("magic") ? "magic" : "normal";
         return "normal";

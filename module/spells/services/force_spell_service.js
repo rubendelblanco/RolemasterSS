@@ -24,10 +24,10 @@ export default class ForceSpellService {
      * @param {string} params.spellListName - Name of the spell list (to find matching skill)
      * @param {string} params.spellListRealm - Realm of the spell list
      */
-    static async castForceSpell({ actor, spell, spellListName, spellListRealm }) {
-        // Check power points before casting (spell level = PP cost), unless spell has no_pp
+    static async castForceSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true }) {
+        // Check power points before casting (spell level = PP cost), unless spell has no_pp or from enchantment
         const spellLevel = spell.system?.level ?? 1;
-        const noPP = spell.system?.no_pp === true;
+        const noPP = !consumePowerPoints || spell.system?.no_pp === true;
         if (!noPP) {
             const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
             if (currentPP < spellLevel) {
