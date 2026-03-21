@@ -2842,34 +2842,31 @@ tr.container-row.over-capacity {
   font-weight: bold;
 }
 
-.rmss-modifiers-table .rmss-pp-cell {
+.rmss-power-modifier-row {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-wrap: nowrap;
-  min-width: 0;
 }
 
-.rmss-modifiers-table .rmss-pp-input-wrap {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2rem;
-  flex-shrink: 0;
+.rmss-power-modifier-select {
+  flex: 0 0 auto;
+  min-width: 7rem;
 }
 
-.rmss-modifiers-table .rmss-pp-cell input[type="number"] {
+.rmss-power-modifier-row input[type="number"] {
   width: 3rem;
   text-align: center;
 }
 
-.rmss-modifiers-table .rmss-pp-cell select {
+.rmss-power-modifier-row select:not(.rmss-power-modifier-select) {
   flex: 1 1 5rem;
   min-width: 0;
-  max-width: 12rem;
 }
 
-.rmss-modifiers-table .rmss-pp-suffix {
+.rmss-pp-suffix {
   font-weight: bold;
+  flex-shrink: 0;
 }
 
 .rmss-item-bonus-skills {

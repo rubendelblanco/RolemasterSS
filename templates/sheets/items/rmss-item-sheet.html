@@ -136,29 +136,31 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>{{localize "rmss.item.modifiers_pp_multiplier"}}</th>
-                    <td><div class="rmss-pp-cell">
-                        <span class="rmss-pp-input-wrap">
-                            <input type="number" name="system.pp_multiplier" value="{{or system.pp_multiplier 1}}" min="1" max="10" step="1" data-dtype="Number" title="1=none, 2=2×..."/>
-                            <span class="rmss-pp-suffix">×</span>
-                        </span>
+                    <th colspan="2">{{localize "rmss.item.modifiers_power_modifier"}}</th>
+                    <td colspan="2"><div class="rmss-power-modifier-row">
+                        <select name="system._powerModifierMode" class="rmss-power-modifier-select">
+                            <option value="" {{#unless powerModifierMode}}selected{{/unless}}>{{localize "rmss.item.power_modifier_none"}}</option>
+                            <option value="multiplier" {{#if (eq powerModifierMode "multiplier")}}selected{{/if}}>{{localize "rmss.item.power_modifier_multiplier"}}</option>
+                            <option value="spell_adder" {{#if (eq powerModifierMode "spell_adder")}}selected{{/if}}>{{localize "rmss.item.power_modifier_spell_adder"}}</option>
+                        </select>
+                        {{#if (eq powerModifierMode "multiplier")}}
+                        <input type="number" name="system.pp_multiplier" value="{{or system.pp_multiplier 2}}" min="2" max="10" step="1" data-dtype="Number" title="2=2×, 3=3×..."/>
+                        <span class="rmss-pp-suffix">×</span>
                         <select name="system.pp_multiplier_realm">
                             {{#each config.item_pp_realm as |label key|}}
                             <option value="{{key}}" {{#if (eq key ../system.pp_multiplier_realm)}}selected{{/if}}>{{localize label}}</option>
                             {{/each}}
                         </select>
-                    </div></td>
-                    <th>{{localize "rmss.item.modifiers_spell_adder"}}</th>
-                    <td><div class="rmss-pp-cell">
-                        <span class="rmss-pp-input-wrap">
-                            <input type="number" name="system.spell_adder" value="{{or system.spell_adder 0}}" min="0" max="100" step="1" data-dtype="Number"/>
-                            <span class="rmss-pp-suffix">+</span>
-                        </span>
+                        {{/if}}
+                        {{#if (eq powerModifierMode "spell_adder")}}
+                        <input type="number" name="system.spell_adder" value="{{or system.spell_adder 1}}" min="1" max="100" step="1" data-dtype="Number" title="Bonus PP"/>
+                        <span class="rmss-pp-suffix">+</span>
                         <select name="system.spell_adder_realm">
                             {{#each config.item_pp_realm as |label key|}}
                             <option value="{{key}}" {{#if (eq key ../system.spell_adder_realm)}}selected{{/if}}>{{localize label}}</option>
                             {{/each}}
                         </select>
+                        {{/if}}
                     </div></td>
                 </tr>
             </table>

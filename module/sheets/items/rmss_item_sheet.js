@@ -94,6 +94,10 @@ export default class RMSSItemSheet extends ItemSheet {
       };
     });
 
+    const ppMult = Number(system.pp_multiplier) || 1;
+    const spellAdd = Number(system.spell_adder) || 0;
+    const powerModifierMode = ppMult >= 2 ? "multiplier" : spellAdd > 0 ? "spell_adder" : "";
+
     return {
       owner: item.isOwner,
       editable: this.isEditable,
@@ -108,7 +112,8 @@ export default class RMSSItemSheet extends ItemSheet {
       containerStats,
       bonusSkillsList,
       enchantmentList,
-      weightCostMultiplier: item._getWeightReductionModifier?.() ?? 1
+      weightCostMultiplier: item._getWeightReductionModifier?.() ?? 1,
+      powerModifierMode
     };
   }
 
@@ -160,24 +165,7 @@ export default class RMSSItemSheet extends ItemSheet {
   }
 
   _setupPPExclusive(html) {
-    const ppMult = html.find('input[name="system.pp_multiplier"]')[0];
-    const spellAdd = html.find('input[name="system.spell_adder"]')[0];
-    if (!ppMult || !spellAdd) return;
-    const sync = () => {
-      const mult = Number(ppMult.value) || 1;
-      const add = Number(spellAdd.value) || 0;
-      if (mult >= 2) {
-        spellAdd.value = "0";
-        const realm = html.find('select[name="system.spell_adder_realm"]')[0];
-        if (realm) realm.value = "";
-      } else if (add > 0) {
-        ppMult.value = "1";
-        const realm = html.find('select[name="system.pp_multiplier_realm"]')[0];
-        if (realm) realm.value = "";
-      }
-    };
-    ppMult.addEventListener("change", sync);
-    spellAdd.addEventListener("change", sync);
+    // Power modifier mode is now handled by a single select; no-op for backwards compat
   }
 
   _getBonusSkillsArray() {
@@ -450,15 +438,24 @@ export default class RMSSItemSheet extends ItemSheet {
     if (formData["system.holy"] === true) formData["system.unholy"] = false;
     if (formData["system.unholy"] === true) formData["system.holy"] = false;
 
-    // PP multiplier and spell adder are mutually exclusive
-    const ppMult = Number(formData["system.pp_multiplier"]) || 1;
-    const spellAdd = Number(formData["system.spell_adder"]) || 0;
-    if (ppMult >= 2) {
-      formData["system.spell_adder"] = 0;
-      formData["system.spell_adder_realm"] = "";
-    } else if (spellAdd > 0) {
-      formData["system.pp_multiplier"] = 1;
-      formData["system.pp_multiplier_realm"] = "";
+    // Power modifier mode: virtual field → real fields
+    const mode = formData["system._powerModifierMode"];
+    delete formData["system._powerModifierMode"];
+    if (mode !== undefined) {
+      if (mode === "multiplier") {
+        if (formData["system.pp_multiplier"] === undefined) formData["system.pp_multiplier"] = 2;
+        formData["system.spell_adder"] = 0;
+        formData["system.spell_adder_realm"] = "";
+      } else if (mode === "spell_adder") {
+        if (formData["system.spell_adder"] === undefined) formData["system.spell_adder"] = 1;
+        formData["system.pp_multiplier"] = 1;
+        formData["system.pp_multiplier_realm"] = "";
+      } else {
+        formData["system.pp_multiplier"] = 1;
+        formData["system.pp_multiplier_realm"] = "";
+        formData["system.spell_adder"] = 0;
+        formData["system.spell_adder_realm"] = "";
+      }
     }
 
     this._mergeEnchantmentFormData(formData);
