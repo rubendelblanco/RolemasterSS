@@ -706,7 +706,7 @@
       "no_attack_result": "No se encontró resultado en la tabla de ataque. Verifica el tipo de armadura del objetivo.",
       "attack_no_result": "El ataque no tuvo efecto.",
       "awaiting_gm_confirmation": "Esperando confirmación del director de juego...",
-      "target_already_defeated": "Ese objetivo ya está vencido (sin puntos de golpe o marcado como derrotado).",
+      "target_already_defeated": "Ese objetivo ya está vencido",
       "attack_table_load_failed": "Error al cargar la tabla de ataque: {table}",
       "confirm_attack": "Confirmar ataque",
       "confirm": "Confirmar",
