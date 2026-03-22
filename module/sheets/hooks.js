@@ -12,8 +12,8 @@ Hooks.on("createActor", async (actor) => {
 
 Hooks.on("hotbarDrop", (bar, data, slot) => {
     if (data.type !== "Item" || !data.uuid) return;
-    // Ejecutar lógica async en segundo plano; devolver false INMEDIATAMENTE
-    // para evitar race condition con el manejo por defecto de Foundry
+    // Run async logic in the background; return false immediately
+    // to avoid a race with Foundry's default hotbar handling
     _handleItemHotbarDrop(data, slot).catch(err => {
         console.error("[RMSS] hotbarDrop error:", err);
         ui.notifications.error("Error al asignar al hotbar");

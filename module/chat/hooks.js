@@ -1,65 +1,66 @@
 // Listen for click events on chat buttons
-import {RMSSWeaponCriticalManager} from "../combat/rmss_weapon_critical_manager.js";
-import {RMSSCombat} from "../combat/rmss_combat.js";
-import {socket} from "../../rmss.js";
+import { RMSSWeaponCriticalManager } from "../combat/rmss_weapon_critical_manager.js";
+import { RMSSCombat } from "../combat/rmss_combat.js";
+import { socket } from "../../rmss.js";
+import {
+    getChatMessageFromButton,
+    applyCriticalRollChatUI,
+    setupCriticalRollGmReroll,
+    registerCriticalRollChatMessageFollowUp,
+    beginCriticalRollClickLock,
+    endCriticalRollClickLock
+} from "./critical_roll_chat_ui.js";
 
-// Map to track buttons in cooldown: key = button element, value = timeout ID
-const buttonCooldowns = new WeakMap();
+registerCriticalRollChatMessageFollowUp();
 
 Hooks.on("renderChatMessage", (message, html, data) => {
-    html.find(".chat-critical-roll").click(async ev => {
+    // Attacker owner or GM (reroll UI); runs outside combat too (chat/hooks always loads)
+    html.find(".chat-critical-roll").each(function () {
+        const attackerId = this.dataset.attacker;
+        const actor = game.actors.get(attackerId);
+        const isOwner = actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+        if (!isOwner && !game.user.isGM) {
+            this.remove();
+        }
+    });
+
+    if (html.find(".chat-critical-roll").length) {
+        applyCriticalRollChatUI(message);
+        setupCriticalRollGmReroll(message, html);
+    }
+
+    // Un solo manejador por botón: sin .off() cada renderChatMessage duplica listeners y el 2.º clic parece “el primero que cuenta” (handlers async + GM).
+    const CRIT_CLICK_NS = "click.rmssCriticalRoll";
+    html.find(".chat-critical-roll").off(CRIT_CLICK_NS).on(CRIT_CLICK_NS, async (ev) => {
         const button = ev.currentTarget;
-        
-        // Check if button is in cooldown
-        if (button.disabled || buttonCooldowns.has(button)) {
+
+        if (button.disabled) {
             ev.preventDefault();
             return;
         }
 
-        ev.preventDefault();
-        
-        // Disable button and add cooldown style
-        button.disabled = true;
-        button.style.opacity = "0.5";
-        button.style.cursor = "not-allowed";
-        
-        // Save original text
-        const originalContent = button.innerHTML;
-        
-        // 5 second cooldown
-        const cooldownSeconds = 5;
-        let remaining = cooldownSeconds;
-        
-        // Clear existing timeout if any
-        const existingTimeout = buttonCooldowns.get(button);
-        if (existingTimeout) {
-            clearTimeout(existingTimeout);
+        const lockKey = beginCriticalRollClickLock(button);
+        if (lockKey == null) {
+            ev.preventDefault();
+            ev.stopImmediatePropagation();
+            return;
         }
-        
-        // Function to update the counter
-        const updateCooldown = () => {
-            if (remaining > 0) {
-                button.innerHTML = `<div style="display:inline-block; align-items:center; gap:4px;">
-                    <span style="font-size:1.1em;">⏱️</span>
-                    <span>${game.i18n.localize("rmss.combat.cooldown")} ${remaining}s</span>
-                </div>`;
-                remaining--;
-                const timeoutId = setTimeout(updateCooldown, 1000);
-                buttonCooldowns.set(button, timeoutId);
-            } else {
-                // Restore button
-                button.innerHTML = originalContent;
-                button.disabled = false;
-                button.style.opacity = "1";
-                button.style.cursor = "pointer";
-                buttonCooldowns.delete(button);
-            }
-        };
-        
-        // Start cooldown
-        updateCooldown();
-        
-        // Execute the action - use stored target from button (embedded at attack time), else current user's targets
+
+        ev.preventDefault();
+        ev.stopImmediatePropagation();
+
+        const originalContent = button.innerHTML;
+        const msg = getChatMessageFromButton(button);
+
+        try {
+        button.disabled = true;
+        button.style.opacity = "0.65";
+        button.style.cursor = "wait";
+        button.innerHTML = `<div class="chat-critical-roll-inner"><div class="chat-critical-roll-main" style="justify-content:center;">
+            <span style="font-size:1.1em;">⏱️</span>
+            <span>${game.i18n.localize("rmss.combat.awaiting_gm_confirmation")}</span>
+        </div></div>`;
+
         const targetId = ev.currentTarget.dataset.targetId;
         let token = targetId ? canvas.scene?.tokens?.get(targetId) : null;
         if (!token) {
@@ -68,6 +69,10 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         }
         if (!token) {
             ui.notifications.warn(game.i18n.localize("rmss.combat.select_target") || "Please select a target.");
+            button.innerHTML = originalContent;
+            button.disabled = false;
+            button.style.opacity = "1";
+            button.style.cursor = "pointer";
             return;
         }
         const damage = ev.currentTarget.dataset.damage;
@@ -93,16 +98,60 @@ Hooks.on("renderChatMessage", (message, html, data) => {
                 ...(ewExtraCrit ? { extraCritType: ewExtraCrit } : {})
             };
         }
-        const criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(
-            token, damage, severity, critType, attackerId, sendOpts
-        );
-        if (criticalResult) {
-            await socket.executeAsGM("applyCriticalToEnemy", criticalResult, token.id, attackerId, true);
-            let follow = criticalResult._rmssEffectWeaponFollowUp;
-            while (follow) {
-                await socket.executeAsGM("applyCriticalToEnemy", follow, token.id, attackerId, true);
-                follow = follow._rmssEffectWeaponFollowUp;
-            }
+
+        let criticalResult;
+        try {
+            criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(
+                token, damage, severity, critType, attackerId, sendOpts
+            );
+        } catch (err) {
+            console.error("[RMSS] sendCriticalMessage", err);
+            button.innerHTML = originalContent;
+            button.disabled = false;
+            button.style.opacity = "1";
+            button.style.cursor = "pointer";
+            return;
+        }
+
+        if (!criticalResult) {
+            button.innerHTML = originalContent;
+            button.disabled = false;
+            button.style.opacity = "1";
+            button.style.cursor = "pointer";
+            return;
+        }
+
+        let spentSlotsAfter = null;
+        if (msg) {
+            const slot = button.dataset.critSlot ?? "0";
+            const slots = { ...(msg.getFlag("rmss", "criticalSpentSlots") || {}), [slot]: true };
+            spentSlotsAfter = slots;
+            // Single update reduces re-renders and getFlag race conditions
+            await msg.update({
+                "flags.rmss.criticalSpentSlots": slots,
+                "flags.rmss.criticalRerollUnlocked": false
+            });
+        }
+
+        button.innerHTML = originalContent;
+        if (msg) {
+            applyCriticalRollChatUI(msg, {
+                spentSlots: spentSlotsAfter ?? (msg.getFlag("rmss", "criticalSpentSlots") || {}),
+                unlocked: false
+            });
+            const $li = $(button.closest(".message"));
+            const $content = $li.find(".message-content");
+            if ($content.length) setupCriticalRollGmReroll(msg, $content);
+        }
+
+        await socket.executeAsGM("applyCriticalToEnemy", criticalResult, token.id, attackerId, true);
+        let follow = criticalResult._rmssEffectWeaponFollowUp;
+        while (follow) {
+            await socket.executeAsGM("applyCriticalToEnemy", follow, token.id, attackerId, true);
+            follow = follow._rmssEffectWeaponFollowUp;
+        }
+        } finally {
+            endCriticalRollClickLock(button, lockKey);
         }
     });
 
@@ -111,4 +160,3 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         breakdown.toggle();
     });
 });
-

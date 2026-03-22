@@ -761,6 +761,7 @@
       "weapon_fumble_roll": "Tirada",
       "weapon_fumble_mounted": "¿Montado?",
       "cooldown": "Esperando confirmación del GM",
+      "critical_reroll_gm_allow": "Tirar crítico de nuevo",
       "critical": "Crítico",
       "critical_subtype": "Subtipo",
       "severity_normal": "Normal",

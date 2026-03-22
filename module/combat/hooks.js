@@ -6,30 +6,21 @@ import { RMSSEffectApplier } from "./rmss_effect_applier.js";
 import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_manager.js";
 
 export function registerCombatHooks() {
-    // Hide critical roll button if is not owner
+    // Weapon fumble: Mounted? checkbox only visible to GM
     Hooks.on("renderChatMessage", (message, html, data) => {
-        html.find(".chat-critical-roll").each(function () {
-            const attackerId = this.dataset.attacker;
-            const actor = game.actors.get(attackerId);
-            if (!actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)) {
-                this.remove();
-            }
-        });
-
-        // Weapon fumble: Mounted? checkbox only visible to GM
         const mountedCheck = html.find(".weapon-fumble-mounted-check");
         if (!game.user.isGM) {
             mountedCheck.remove();
         } else {
             mountedCheck.find("input[data-action='toggle-mounted']").on("change", async (ev) => {
-            const msg = message;
-            const flags = msg.getFlag("rmss", "weaponFumble");
-            if (!flags) return;
-            const useMounted = !!ev.currentTarget.checked;
-            const templateData = { ...flags, useMounted };
-            const htmlContent = await renderTemplate("systems/rmss/templates/chat/weapon-fumble-result.hbs", templateData);
-            await msg.update({ content: htmlContent, "flags.rmss.weaponFumble.useMounted": useMounted });
-        });
+                const msg = message;
+                const flags = msg.getFlag("rmss", "weaponFumble");
+                if (!flags) return;
+                const useMounted = !!ev.currentTarget.checked;
+                const templateData = { ...flags, useMounted };
+                const htmlContent = await renderTemplate("systems/rmss/templates/chat/weapon-fumble-result.hbs", templateData);
+                await msg.update({ content: htmlContent, "flags.rmss.weaponFumble.useMounted": useMounted });
+            });
         }
     });
 

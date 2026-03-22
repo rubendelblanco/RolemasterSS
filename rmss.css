@@ -1578,7 +1578,7 @@ tr.container-row.over-capacity {
     color: #e03512;
 }
 
-/* Botón de crítico en chat: icono fa-circle a 24px (la letra escala en em sobre este tamaño) */
+/* Chat critical button: fa-circle icon at 24px (letter scales in em from that size) */
 .chat-critical-roll .rmss-crit-severity {
     font-size: 24px;
     width: 1.15em;
@@ -1613,6 +1613,10 @@ tr.container-row.over-capacity {
 }
 
 /* Chat critical: column layout so Effect Weapon hint wraps inside the red button (Foundry often fixes button height) */
+.chat-critical-roll.rmss-critical-roll-busy {
+    pointer-events: none !important;
+}
+
 .chat-critical-roll {
     display: flex;
     flex-direction: column;
@@ -1706,6 +1710,36 @@ tr.container-row.over-capacity {
 
 .chat-critical-roll .crit-severity {
     color: #ffd;
+}
+
+/* GM: one-shot action to allow resolving criticals on this message again */
+.rmss-crit-gm-reroll-wrap {
+    margin-top: 8px;
+    padding: 6px 8px;
+    background: rgba(0, 40, 80, 0.35);
+    border-radius: 6px;
+    border: 1px solid #4a7a9a;
+    font-size: 0.85em;
+    color: #cde;
+}
+.rmss-crit-gm-unlock-btn {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 8px 10px;
+    text-align: center;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: #e8f4ff;
+    background: linear-gradient(180deg, #2a5a8a, #1a4060);
+    border: 1px solid #5a9aca;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1.35;
+}
+.rmss-crit-gm-unlock-btn:hover {
+    background: linear-gradient(180deg, #3a6a9a, #2a5070);
+    color: #fff;
 }
 
 /* ================================

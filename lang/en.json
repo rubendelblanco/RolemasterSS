@@ -761,6 +761,7 @@
             "weapon_fumble_roll": "Roll",
             "weapon_fumble_mounted": "Mounted?",
             "cooldown": "Waiting for GM confirmation",
+            "critical_reroll_gm_allow": "Roll critical again",
             "critical": "Critical",
             "critical_subtype": "Subtype",
             "severity_normal": "Normal",

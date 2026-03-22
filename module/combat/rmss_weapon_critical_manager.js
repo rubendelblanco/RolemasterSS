@@ -134,7 +134,7 @@ class LargeCreatureCriticalStrategy {
             const extraType = (extraRaw && String(extraRaw).trim() !== "") ? String(extraRaw).trim() : tableName;
 
             const clampOpen = (n) => Math.min(Math.max(n, 1), 999);
-            /** Segunda consulta: tabla grande → mod. de columna; tabla normal (p. ej. calor) → mod. del ataque (botón). */
+            /** Second lookup: large table → column modifier; standard table (e.g. heat) → attack roll modifier (button). */
             const resultExtraForLargeTable = clampOpen(result + largeEwRollMod);
             const resultExtraForStandardTable = clampOpen(result + (Number(ew.ewRollModifier) || 0));
 
@@ -392,7 +392,7 @@ export class RMSSWeaponCriticalManager {
                 ? String(ew.extraCritType).trim()
                 : mainCrit;
             if (ew.duplicatePrimary) {
-                // Mayor: misma severidad / misma tirada. Si la tabla extra es distinta, hay que volver a consultar, no clonar el texto del principal.
+                // Greater: same severity / same roll. If the extra table differs, re-query; do not clone primary text.
                 if (extraCrit !== mainCrit) {
                     secondResult = await RMSSTableManager.getCriticalTableResult(
                         resultExtra,
@@ -409,7 +409,7 @@ export class RMSSWeaponCriticalManager {
                     await RMSSTableManager.announceCriticalInChat(secondResult, roll, null, { isEffectWeaponExtra: true });
                 }
             } else if (ew.superiorEChain) {
-                // Superior + severidad E: E principal; en tabla extra, E y luego A; misma tirada d100 (sin mod. extra en Superior).
+                // Superior + E severity: E on primary; on extra table E then A; same d100 roll (Superior adds no extra roll mod).
                 const critExtra = extraCrit;
                 secondResult = await RMSSTableManager.getCriticalTableResult(
                     result,
@@ -781,7 +781,7 @@ export class RMSSWeaponCriticalManager {
     }
 
     static async getCriticalMessage(damage, criticalResult, attacker, target = null, isNullResult = false) {
-        // Solo incluir críticos con severidad real (A,B,C,D,E...); excluir los sintéticos de daño HP sin crítico
+        // Only include criticals with real severity (A–E…); exclude synthetic HP-only rows with no critical
         const criticalsWithSeverity = (criticalResult.criticals || []).filter(
             c => c.severity != null && String(c.severity).trim() !== ""
         );
