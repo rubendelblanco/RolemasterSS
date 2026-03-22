@@ -5,7 +5,8 @@ import { jest, describe, it, expect } from "@jest/globals";
 import WeaponEffectsService, {
   shiftSeverity,
   severityGreaterThanE,
-  effectWeaponShiftMilderProcedureI
+  effectWeaponShiftMilderProcedureI,
+  expandCompositeSeverityToTableCrits
 } from "../module/combat/weapon_effects_service.js";
 
 describe("WeaponEffectsService", () => {
@@ -42,7 +43,42 @@ describe("WeaponEffectsService", () => {
   it("getWeaponOfBleedingHprBonus by main severity", () => {
     expect(WeaponEffectsService.getWeaponOfBleedingHprBonus("B")).toBe(1);
     expect(WeaponEffectsService.getWeaponOfBleedingHprBonus("D")).toBe(2);
-    expect(WeaponEffectsService.getWeaponOfBleedingHprBonus("F")).toBe(0);
+    expect(WeaponEffectsService.getWeaponOfBleedingHprBonus("F")).toBe(2);
+  });
+
+  it("expandCompositeSeverityToTableCrits maps F–J to E + A–E pairs", () => {
+    const base = { critType: "K", damage: 7 };
+    expect(expandCompositeSeverityToTableCrits(base, "F").map((c) => [c.severity, c.damage])).toEqual([
+      ["E", 7],
+      ["A", 0]
+    ]);
+    expect(expandCompositeSeverityToTableCrits(base, "G").map((c) => [c.severity, c.damage])).toEqual([
+      ["E", 7],
+      ["B", 0]
+    ]);
+    expect(expandCompositeSeverityToTableCrits(base, "J").map((c) => [c.severity, c.damage])).toEqual([
+      ["E", 7],
+      ["E", 0]
+    ]);
+  });
+
+  it("applyIncreasedCritical E→F yields two buttons E and A plus mainSeverity F", () => {
+    const weapon = { type: "weapon", system: { weapon_effects: { increased_critical: true } } };
+    const criticalResult = { criticals: [{ severity: "E", critType: "K", damage: 10 }] };
+    WeaponEffectsService.applyIncreasedCritical(criticalResult, weapon);
+    expect(criticalResult.criticals.map((x) => ({ s: x.severity, d: x.damage }))).toEqual([
+      { s: "E", d: 10 },
+      { s: "A", d: 0 }
+    ]);
+    expect(criticalResult.mainSeverity).toBe("F");
+  });
+
+  it("applyIncreasedCritical on F shifts to G → E + B", () => {
+    const weapon = { type: "weapon", system: { weapon_effects: { increased_critical: true } } };
+    const criticalResult = { criticals: [{ severity: "F", critType: "K", damage: 3 }] };
+    WeaponEffectsService.applyIncreasedCritical(criticalResult, weapon);
+    expect(criticalResult.criticals.map((x) => x.severity)).toEqual(["E", "B"]);
+    expect(criticalResult.mainSeverity).toBe("G");
   });
 
   it("appendEffectWeaponCriticals marks primary with effectWeaponPair (minor)", () => {

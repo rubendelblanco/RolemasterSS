@@ -505,8 +505,8 @@ export class RMSSWeaponCriticalManager {
     static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId, options = {}) {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType, attackerId);
 
-        if (!gmResponse["confirmed"]) {
-            return
+        if (!gmResponse?.confirmed) {
+            return undefined;
         }
 
         if (options.mainSeverity != null) {
@@ -608,77 +608,94 @@ export class RMSSWeaponCriticalManager {
         };
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-critical.hbs", initialContext);
 
-        let confirmed = await new Promise((resolve) => {
-            new Dialog({
-                title: game.i18n.localize("rmss.combat.confirm_critical"),
-                content: htmlContent,
-                buttons: {
-                    confirm: {
-                        label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
-                        callback: (html) => {
-                            const damage = parseInt(html.find("#damage").val());
-                            let severity = html.find("#severity").val();
-                            const critType = html.find("#critical-type").val();
-                            let subCritType = html.find("#critical-subtype").val();
-                            const modifier = html.find("#modifier").val();
-                            if (initialContext.useLargeCreatureSeverityLabels) {
-                                subCritType = severity;
-                                severity = initialContext.originalSeverity ?? "null";
+        const confirmed = await new Promise((resolve) => {
+            let settled = false;
+            const resolveOnce = (value) => {
+                if (settled) return;
+                settled = true;
+                resolve(value);
+            };
+            new Dialog(
+                {
+                    title: game.i18n.localize("rmss.combat.confirm_critical"),
+                    content: htmlContent,
+                    buttons: {
+                        confirm: {
+                            label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
+                            callback: (html) => {
+                                const damage = parseInt(html.find("#damage").val());
+                                let severity = html.find("#severity").val();
+                                const critType = html.find("#critical-type").val();
+                                let subCritType = html.find("#critical-subtype").val();
+                                const modifier = html.find("#modifier").val();
+                                if (initialContext.useLargeCreatureSeverityLabels) {
+                                    subCritType = severity;
+                                    severity = initialContext.originalSeverity ?? "null";
+                                }
+                                resolveOnce({
+                                    confirmed: true,
+                                    damage,
+                                    severity,
+                                    critType,
+                                    subCritType,
+                                    modifier,
+                                    attackerId
+                                });
                             }
-                            resolve({ confirmed: true, damage, severity, critType, subCritType, modifier, attackerId });
+                        },
+                        cancel: {
+                            label: `❌ ${game.i18n.localize("rmss.combat.cancel")}`,
+                            callback: () => {
+                                ui.notifications.error("Attack cancelled!");
+                                resolveOnce({ confirmed: false });
+                            }
                         }
                     },
-                    cancel: {
-                        label: `❌ ${game.i18n.localize("rmss.combat.cancel")}`,
-                        callback: () => {
-                            ui.notifications.error("Attack cancelled!");
-                            resolve({ confirmed: false });
-                        }
-                    }
-                },
-                default: "cancel",
-                render: (html) => {
-                    html.find("#damage-mult").on("change", (event) => {
-                        const mult = parseInt(event.target.value);
-                        const base = parseInt(html.find("#damage-base").val());
-                        const damage = mult * base;
-                        html.find("#damage").val(damage);
-                    });
+                    default: "cancel",
+                    // Must live in Dialog data (first arg), not Application options — otherwise X/ESC never resolves the Promise.
+                    close: () => resolveOnce({ confirmed: false }),
+                    render: (html) => {
+                        html.find("#damage-mult").on("change", (event) => {
+                            const mult = parseInt(event.target.value);
+                            const base = parseInt(html.find("#damage-base").val());
+                            const damage = mult * base;
+                            html.find("#damage").val(damage);
+                        });
 
-                    const populateSubtypeSelect = (tableName, selectedSubtype) => {
-                        const criticalSubtypes = rmss.large_critical_types[tableName] || [];
-                        if (criticalSubtypes.length > 0) {
-                            html.find("#critical-subtype").empty();
-                            criticalSubtypes.forEach((subtype) => {
-                                const sel = subtype === selectedSubtype ? ' selected' : '';
-                                html.find("#critical-subtype").append(`<option value="${subtype}"${sel}>${subtype}</option>`);
-                            });
-                            html.find("#critical-subtype-container").show();
-                        } else {
+                        const populateSubtypeSelect = (tableName, selectedSubtype) => {
+                            const criticalSubtypes = rmss.large_critical_types[tableName] || [];
+                            if (criticalSubtypes.length > 0) {
+                                html.find("#critical-subtype").empty();
+                                criticalSubtypes.forEach((subtype) => {
+                                    const sel = subtype === selectedSubtype ? ' selected' : '';
+                                    html.find("#critical-subtype").append(`<option value="${subtype}"${sel}>${subtype}</option>`);
+                                });
+                                html.find("#critical-subtype-container").show();
+                            } else {
+                                html.find("#critical-subtype-container").hide();
+                            }
+                        };
+
+                        html.find("#critical-type").on("change", (event) => {
+                            const tableName = event.target.value;
+                            populateSubtypeSelect(tableName, "normal");
+                        });
+
+                        html.find(".is-positive").on("change", (event) => {
+                            event.target.value = parseInt(event.target.value) < 0 ? -event.target.value : event.target.value;
+                        });
+
+                        // Show subtype selector based on initial crit type; large/superlarge use severity as subtype elsewhere.
+                        if (initialContext.useLargeCreatureSeverityLabels) {
                             html.find("#critical-subtype-container").hide();
+                        } else if (!initialContext.criticalHasSubtypes) {
+                            html.find("#critical-subtype-container").hide();
+                        } else {
+                            populateSubtypeSelect(initialContext.critType, initialContext.defaultSubtype);
                         }
-                    };
-
-                    html.find("#critical-type").on("change", (event) => {
-                        const tableName = event.target.value;
-                        populateSubtypeSelect(tableName, "normal");
-                    });
-
-                    html.find(".is-positive").on("change", (event) => {
-                        event.target.value = parseInt(event.target.value) < 0 ? -event.target.value : event.target.value;
-                    });
-
-                    // En funcion del tipo de critico inicial, se muestra o no el selector de subtipos.
-                    // Para large/superlarge, severity YA es el subtipo (Normal, Magical...), ocultar selector duplicado.
-                    if (initialContext.useLargeCreatureSeverityLabels) {
-                        html.find("#critical-subtype-container").hide();
-                    } else if (!initialContext.criticalHasSubtypes) {
-                        html.find("#critical-subtype-container").hide();
-                    } else {
-                        populateSubtypeSelect(initialContext.critType, initialContext.defaultSubtype);
                     }
                 }
-            }).render(true);
+            ).render(true);
         });
         return confirmed;
     }
@@ -785,7 +802,8 @@ export class RMSSWeaponCriticalManager {
         const criticalsWithSeverity = (criticalResult.criticals || []).filter(
             c => c.severity != null && String(c.severity).trim() !== ""
         );
-        const mainSeverity = criticalsWithSeverity[0]?.severity ?? null;
+        const mainSeverity =
+            criticalResult.mainSeverity ?? criticalsWithSeverity[0]?.severity ?? null;
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
             damageStr: damage,
             damage: criticalResult.damage,

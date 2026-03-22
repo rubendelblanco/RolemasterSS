@@ -67,6 +67,47 @@ function severityGreaterThanE(sev) {
   return i > e;
 }
 
+const INDEX_E = SEVERITY_LETTERS.indexOf("E");
+
+/**
+ * Letters beyond E are not real table columns: F = column E + column A, G = E + B, …, J = E + E.
+ * Past J, repeat full “J-sized” steps (E+E) then the remainder (same chunking as F–J).
+ * @param {object} baseCrit - One critical line from the attack (damage on first row only).
+ * @param {string} compositeSev - Letter after Increased Critical (F, G, …).
+ * @returns {object[]}
+ */
+function expandCompositeSeverityToTableCrits(baseCrit, compositeSev) {
+  const past = severityIndex(compositeSev) - INDEX_E;
+  if (past <= 0) {
+    return [{ ...baseCrit, severity: compositeSev }];
+  }
+  const pairs = [];
+  let remaining = past;
+  while (remaining > 0) {
+    const chunk = Math.min(remaining, SEVERITY_AE.length);
+    pairs.push(["E", SEVERITY_AE[chunk - 1]]);
+    remaining -= chunk;
+  }
+  const out = [];
+  let firstRow = true;
+  for (const [s1, s2] of pairs) {
+    out.push({
+      ...baseCrit,
+      severity: s1,
+      damage: firstRow ? baseCrit.damage : 0,
+      independentCriticalRoll: true
+    });
+    firstRow = false;
+    out.push({
+      ...baseCrit,
+      severity: s2,
+      damage: 0,
+      independentCriticalRoll: true
+    });
+  }
+  return out;
+}
+
 const INITIATIVE_BONUS = {
   minor: 2,
   normal: 4,
@@ -108,6 +149,8 @@ export default class WeaponEffectsService {
     const s = mainSeverity.trim().toUpperCase()[0];
     if ("ABC".includes(s)) return 1;
     if ("DE".includes(s)) return 2;
+    // Composite letter (F+) = at least one E-column critical; treat as E-tier for bleeding.
+    if (severityGreaterThanE(s)) return 2;
     return 0;
   }
 
@@ -128,13 +171,14 @@ export default class WeaponEffectsService {
         newCrits.push(c);
         continue;
       }
-      const oldSev = c.severity;
-      const newSev = shiftSeverity(oldSev, 1);
-      if (!severityGreaterThanE(oldSev) && severityGreaterThanE(newSev)) {
-        newCrits.push({ ...c, severity: newSev, independentCriticalRoll: true });
-        newCrits.push({ ...c, severity: newSev, damage: 0, independentCriticalRoll: true });
-      } else if (severityGreaterThanE(newSev)) {
-        newCrits.push({ ...c, severity: newSev, independentCriticalRoll: true });
+      const newSev = shiftSeverity(c.severity, 1);
+      if (severityGreaterThanE(newSev)) {
+        const expanded = expandCompositeSeverityToTableCrits(c, newSev);
+        newCrits.push(...expanded);
+        const prev = criticalResult.mainSeverity;
+        if (!prev || severityIndex(newSev) > severityIndex(prev)) {
+          criticalResult.mainSeverity = newSev;
+        }
       } else {
         newCrits.push({ ...c, severity: newSev });
       }
@@ -206,4 +250,10 @@ export default class WeaponEffectsService {
   }
 }
 
-export { severityGreaterThanE, shiftSeverity, severityIndex, effectWeaponShiftMilderProcedureI };
+export {
+  severityGreaterThanE,
+  shiftSeverity,
+  severityIndex,
+  effectWeaponShiftMilderProcedureI,
+  expandCompositeSeverityToTableCrits
+};

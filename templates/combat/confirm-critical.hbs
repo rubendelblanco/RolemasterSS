@@ -37,6 +37,7 @@
                 <option value="C" {{#if (eq severity "C" )}}selected{{/if}}>C</option>
                 <option value="D" {{#if (eq severity "D" )}}selected{{/if}}>D</option>
                 <option value="E" {{#if (eq severity "E" )}}selected{{/if}}>E</option>
+                {{!-- F+ are not table columns (F = E+A, G = E+B, …); only A–E exist on critical tables. --}}
                 {{/if}}
             </select>
         </div>
