@@ -6,6 +6,37 @@
 /** Prevents double-click / duplicate listeners before the first await (disabled alone is not enough). */
 const CRITICAL_ROLL_CLICK_LOCKS = new Set();
 
+/**
+ * Serializes flag updates per chat message so two critical buttons finishing close together
+ * do not overwrite each other's criticalSpentSlots (last-write-wins was dropping a slot).
+ */
+const criticalSpentSlotsUpdateChains = new Map();
+
+/**
+ * Merge one spent slot into flags.rmss.criticalSpentSlots; safe under concurrent completions.
+ * @param {ChatMessage} message
+ * @param {string} slot
+ * @returns {Promise<Record<string, boolean>>}
+ */
+export async function mergeCriticalSpentSlotFlag(message, slot) {
+    const id = message.id;
+    const slotKey = String(slot);
+    const run = async () => {
+        const m = game.messages.get(id);
+        if (!m) return {};
+        const slots = { ...(m.getFlag("rmss", "criticalSpentSlots") || {}), [slotKey]: true };
+        await m.update({
+            "flags.rmss.criticalSpentSlots": slots,
+            "flags.rmss.criticalRerollUnlocked": false
+        });
+        return { ...slots };
+    };
+    const prev = criticalSpentSlotsUpdateChains.get(id) ?? Promise.resolve();
+    const next = prev.then(run, run);
+    criticalSpentSlotsUpdateChains.set(id, next);
+    return next;
+}
+
 /** While set, renderChatMessage must not clear disabled (flags not updated yet during GM dialog). */
 export const CRITICAL_ROLL_PENDING_ATTR = "rmssCritPending";
 

@@ -1,5 +1,6 @@
 import { RMSSCombat } from "./rmss_combat.js";
 import { RMSSWeaponSkillManager } from "./rmss_weapon_skill_manager.js";
+import Utils from "../utils.js";
 import { triggerAutoAnimations } from "../autoanimations_integration.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import { RMSSEffectApplier } from "./rmss_effect_applier.js";
@@ -35,6 +36,9 @@ export function registerCombatHooks() {
         const targets = RMSSCombat?.getTargets();
         const enemy = targets?.[0];
         if (!enemy) return ui.notifications.warn("No target selected.");
+        if (Utils.isTargetDefeated(enemy.actor)) {
+            return ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
+        }
 
         const attackerToken = canvas.tokens.controlled.length === 1 ? canvas.tokens.controlled[0] : null;
         const defenderToken = enemy;

@@ -15,6 +15,7 @@ import { ExperienceManager } from "../../sheets/experience/rmss_experience_manag
 import { socket } from "../../../rmss.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
+import Utils from "../../utils.js";
 
 export default class BaseElementalSpellService {
 
@@ -133,6 +134,11 @@ export default class BaseElementalSpellService {
             bonusValue: restModifier,
             ...(facingValue !== null && { facingValue })
         };
+
+        if (Utils.isTargetDefeated(enemyActor)) {
+            ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
+            return;
+        }
 
         if (!game.user.isGM) {
             ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));

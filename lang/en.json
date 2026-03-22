@@ -706,6 +706,7 @@
             "no_attack_result": "No attack table result found. Check the target's armor type.",
             "attack_no_result": "The attack had no effect.",
             "awaiting_gm_confirmation": "Waiting for GM to confirm the attack...",
+            "target_already_defeated": "That target is already defeated (no hit points or marked defeated).",
             "attack_table_load_failed": "Failed to load attack table: {table}",
             "confirm_attack": "Confirm attack",
             "confirm_critical": "Confirm critical",

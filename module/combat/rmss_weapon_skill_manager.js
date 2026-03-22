@@ -28,6 +28,13 @@ export class RMSSWeaponSkillManager {
                 }
             }
         }
+
+        const defenderActor = enemy instanceof Actor ? enemy : enemy?.actor ?? Utils.getActor(enemy);
+        if (Utils.isTargetDefeated(defenderActor)) {
+            ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
+            return;
+        }
+
         if (!game.user.isGM) {
             ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
         }
@@ -143,6 +150,11 @@ export class RMSSWeaponSkillManager {
         const tokenData = spellOptionsOrTokenData?.facingValue !== undefined ? spellOptionsOrTokenData : null;
 
         const realEnemy = (enemy?.id && game.actors) ? game.actors.get(enemy.id) : enemy;
+
+        if (Utils.isTargetDefeated(realEnemy)) {
+            ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
+            return { confirmed: false };
+        }
 
         const facingValue = (tokenData?.facingValue ?? FacingService.FACING.FRONT) || "";
 

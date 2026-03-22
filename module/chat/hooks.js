@@ -10,6 +10,7 @@ import {
     beginCriticalRollClickLock,
     endCriticalRollClickLock,
     clearCriticalRollPending,
+    mergeCriticalSpentSlotFlag,
     CRITICAL_ROLL_PENDING_ATTR
 } from "./critical_roll_chat_ui.js";
 
@@ -131,13 +132,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         let spentSlotsAfter = null;
         if (msg) {
             const slot = button.dataset.critSlot ?? "0";
-            const slots = { ...(msg.getFlag("rmss", "criticalSpentSlots") || {}), [slot]: true };
-            spentSlotsAfter = slots;
-            // Single update reduces re-renders and getFlag race conditions
-            await msg.update({
-                "flags.rmss.criticalSpentSlots": slots,
-                "flags.rmss.criticalRerollUnlocked": false
-            });
+            spentSlotsAfter = await mergeCriticalSpentSlotFlag(msg, slot);
         }
 
         button.innerHTML = originalContent;
