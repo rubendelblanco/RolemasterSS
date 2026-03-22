@@ -6,6 +6,14 @@
 /** Prevents double-click / duplicate listeners before the first await (disabled alone is not enough). */
 const CRITICAL_ROLL_CLICK_LOCKS = new Set();
 
+/** While set, renderChatMessage must not clear disabled (flags not updated yet during GM dialog). */
+export const CRITICAL_ROLL_PENDING_ATTR = "rmssCritPending";
+
+/** @param {HTMLElement} button */
+export function clearCriticalRollPending(button) {
+    delete button.dataset[CRITICAL_ROLL_PENDING_ATTR];
+}
+
 /**
  * @param {HTMLElement} button
  * @returns {string|null} lock key if acquired; null if a click is already in progress
@@ -59,6 +67,12 @@ export function applyCriticalRollChatUI(message, uiState) {
             : message.getFlag("rmss", "criticalRerollUnlocked") === true;
     const nodes = document.querySelectorAll(`.message[data-message-id="${message.id}"] .chat-critical-roll`);
     nodes.forEach((btn) => {
+        if (btn.dataset[CRITICAL_ROLL_PENDING_ATTR] === "1") {
+            btn.disabled = true;
+            btn.style.opacity = "0.65";
+            btn.style.cursor = "wait";
+            return;
+        }
         const slot = btn.dataset.critSlot ?? "0";
         const spent = slots[slot] === true;
         const shouldLock = spent && !unlocked;

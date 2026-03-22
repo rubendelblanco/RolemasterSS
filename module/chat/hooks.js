@@ -8,7 +8,9 @@ import {
     setupCriticalRollGmReroll,
     registerCriticalRollChatMessageFollowUp,
     beginCriticalRollClickLock,
-    endCriticalRollClickLock
+    endCriticalRollClickLock,
+    clearCriticalRollPending,
+    CRITICAL_ROLL_PENDING_ATTR
 } from "./critical_roll_chat_ui.js";
 
 registerCriticalRollChatMessageFollowUp();
@@ -29,7 +31,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         setupCriticalRollGmReroll(message, html);
     }
 
-    // Un solo manejador por botón: sin .off() cada renderChatMessage duplica listeners y el 2.º clic parece “el primero que cuenta” (handlers async + GM).
+    // One handler per button: without .off(), each renderChatMessage stacks listeners (async / GM).
     const CRIT_CLICK_NS = "click.rmssCriticalRoll";
     html.find(".chat-critical-roll").off(CRIT_CLICK_NS).on(CRIT_CLICK_NS, async (ev) => {
         const button = ev.currentTarget;
@@ -51,6 +53,8 @@ Hooks.on("renderChatMessage", (message, html, data) => {
 
         const originalContent = button.innerHTML;
         const msg = getChatMessageFromButton(button);
+        // Stops applyCriticalRollChatUI(message) on re-render from clearing disabled while GM dialog is open
+        button.dataset[CRITICAL_ROLL_PENDING_ATTR] = "1";
 
         try {
         button.disabled = true;
@@ -69,6 +73,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         }
         if (!token) {
             ui.notifications.warn(game.i18n.localize("rmss.combat.select_target") || "Please select a target.");
+            clearCriticalRollPending(button);
             button.innerHTML = originalContent;
             button.disabled = false;
             button.style.opacity = "1";
@@ -106,6 +111,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
             );
         } catch (err) {
             console.error("[RMSS] sendCriticalMessage", err);
+            clearCriticalRollPending(button);
             button.innerHTML = originalContent;
             button.disabled = false;
             button.style.opacity = "1";
@@ -114,6 +120,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         }
 
         if (!criticalResult) {
+            clearCriticalRollPending(button);
             button.innerHTML = originalContent;
             button.disabled = false;
             button.style.opacity = "1";
@@ -134,6 +141,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         }
 
         button.innerHTML = originalContent;
+        clearCriticalRollPending(button);
         if (msg) {
             applyCriticalRollChatUI(msg, {
                 spentSlots: spentSlotsAfter ?? (msg.getFlag("rmss", "criticalSpentSlots") || {}),
