@@ -74,9 +74,35 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         const severity = ev.currentTarget.dataset.severity;
         const critType = ev.currentTarget.dataset.crittype;
         const attackerId = ev.currentTarget.dataset.attacker;
-        const criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(token, damage, severity, critType, attackerId);
+        const mainSev = ev.currentTarget.dataset.mainSeverity;
+        const ewDup = ev.currentTarget.dataset.effectWeaponDup === "1";
+        const ewSecond = ev.currentTarget.dataset.effectWeaponSecond;
+        const ewExtraCrit = ev.currentTarget.dataset.effectWeaponExtraCritType;
+        const ewRollModRaw = ev.currentTarget.dataset.effectWeaponRollMod;
+        const ewRollModifier = ewRollModRaw !== undefined && ewRollModRaw !== "" ? parseInt(ewRollModRaw, 10) : 0;
+        const ewSuperiorEChain = ev.currentTarget.dataset.effectWeaponSuperiorEChain === "1";
+        const sendOpts = {};
+        if (mainSev !== undefined && mainSev !== "") sendOpts.mainSeverity = mainSev;
+        if (ewDup || (ewSecond !== undefined && ewSecond !== "") || (ewExtraCrit !== undefined && ewExtraCrit !== "")) {
+            sendOpts.effectWeapon = {
+                enabled: true,
+                duplicatePrimary: ewDup,
+                ewRollModifier: Number.isFinite(ewRollModifier) ? ewRollModifier : 0,
+                superiorEChain: ewSuperiorEChain,
+                ...(ewSecond ? { secondSeverity: ewSecond } : {}),
+                ...(ewExtraCrit ? { extraCritType: ewExtraCrit } : {})
+            };
+        }
+        const criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(
+            token, damage, severity, critType, attackerId, sendOpts
+        );
         if (criticalResult) {
             await socket.executeAsGM("applyCriticalToEnemy", criticalResult, token.id, attackerId, true);
+            let follow = criticalResult._rmssEffectWeaponFollowUp;
+            while (follow) {
+                await socket.executeAsGM("applyCriticalToEnemy", follow, token.id, attackerId, true);
+                follow = follow._rmssEffectWeaponFollowUp;
+            }
         }
     });
 

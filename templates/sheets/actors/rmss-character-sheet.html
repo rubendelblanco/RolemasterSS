@@ -62,6 +62,15 @@
         </div>
         {{/if}}
 
+        <!-- Long rest -->
+        <div class="header-text flexrow long-rest-row">
+          <label>{{ localize "rmss.long_rest.label" }}</label>
+          <button type="button" class="long-rest-btn" data-action="long-rest"
+                  title="{{ localize 'rmss.long_rest.title' }}">
+            <i class="fa-solid fa-bed"></i>
+          </button>
+        </div>
+
         <!-- Movement Rate row -->
         <div class="header-text flexrow">
           <label for="movement-rate-value"><a class="item-roll"> {{ localize "rmss.pc_sheet_fixed_info.movement_rate" }}

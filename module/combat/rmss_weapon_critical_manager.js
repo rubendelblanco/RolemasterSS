@@ -8,6 +8,7 @@ import { RMSSEffectApplier } from "./rmss_effect_applier.js";
 import WeaponFumbleService from "./services/weapon_fumble_service.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import EquipmentService from "../actors/services/equipment_service.js";
+import { shiftSeverity, effectWeaponShiftMilderProcedureI } from "./weapon_effects_service.js";
 
 
 /* ---------------------------------------------
@@ -17,6 +18,11 @@ import EquipmentService from "../actors/services/equipment_service.js";
 const SPELL_CRIT_TYPES = new Set(["heat", "cold", "electricity", "impact", "strikes", "large_spell", "superlarge_spell"]);
 /** Melee critical types (use large_melee / superlarge_melee for large creatures). */
 const MELEE_CRIT_TYPES = new Set(["S", "K", "P", "U", "G", "T", "slash", "krush", "puncture", "unbalance", "grappling", "tiny", "brawl", "subdue", "sweeps", "large_melee", "superlarge_melee"]);
+
+/** @param {string} ct */
+function isLargeCreatureCriticalTableType(ct) {
+    return Boolean(ct && rmss.large_critical_types && Object.prototype.hasOwnProperty.call(rmss.large_critical_types, ct));
+}
 
 const CRITICAL_COLUMN_MAP = {
     large_spell: { normal: "A", default: "B" },
@@ -96,7 +102,125 @@ class LargeCreatureCriticalStrategy {
         const expData = (expBreakDown && totalExp > 0)
             ? { actorName: attackerActor.name, actorId: attackerActor.id, expBreakdown: expBreakDown, expGained: totalExp }
             : null;
-        return await RMSSTableManager.getCriticalTableResult(result, defenderActor, column, tableName, roll, expData);
+        const tableResult = await RMSSTableManager.getCriticalTableResult(result, defenderActor, column, tableName, roll, expData);
+        if (tableResult && typeof tableResult === "object") {
+            tableResult._rmssContext = {
+                severity: data.severity,
+                mainSeverity: data.mainSeverity ?? data.severity,
+                attackerId: attackerActor.id
+            };
+        }
+
+        const ew = data.effectWeapon;
+        if (tableResult && ew?.enabled) {
+            const weapons = EquipmentService.getEquippedWeapons(attackerActor);
+            const tier = weapons[0]?.system?.weapon_effects?.effect_weapon;
+            let secondColumn = column;
+            let largeEwRollMod = 0;
+            if (!ew.duplicatePrimary) {
+                if (tier === "minor") {
+                    const r = effectWeaponShiftMilderProcedureI(column, 2);
+                    secondColumn = r.secondSeverity;
+                    largeEwRollMod = r.ewRollModifier;
+                } else if (tier === "normal") {
+                    const r = effectWeaponShiftMilderProcedureI(column, 1);
+                    secondColumn = r.secondSeverity;
+                    largeEwRollMod = r.ewRollModifier;
+                } else if (tier === "superior") {
+                    secondColumn = shiftSeverity(column, 1);
+                }
+            }
+            const extraRaw = ew.extraCritType;
+            const extraType = (extraRaw && String(extraRaw).trim() !== "") ? String(extraRaw).trim() : tableName;
+
+            const clampOpen = (n) => Math.min(Math.max(n, 1), 999);
+            /** Segunda consulta: tabla grande → mod. de columna; tabla normal (p. ej. calor) → mod. del ataque (botón). */
+            const resultExtraForLargeTable = clampOpen(result + largeEwRollMod);
+            const resultExtraForStandardTable = clampOpen(result + (Number(ew.ewRollModifier) || 0));
+
+            let secondResult;
+            if (ew.duplicatePrimary) {
+                if (extraType !== tableName) {
+                    if (isLargeCreatureCriticalTableType(extraType)) {
+                        secondResult = await RMSSTableManager.getCriticalTableResult(
+                            result,
+                            defenderActor,
+                            column,
+                            extraType,
+                            roll,
+                            null,
+                            { isEffectWeaponExtra: true }
+                        );
+                    } else {
+                        secondResult = await RMSSTableManager.getCriticalTableResult(
+                            result,
+                            defenderActor,
+                            data.severity,
+                            extraType,
+                            roll,
+                            null,
+                            { isEffectWeaponExtra: true }
+                        );
+                    }
+                } else {
+                    secondResult = foundry.utils.duplicate(tableResult);
+                    delete secondResult._rmssEffectWeaponFollowUp;
+                    await RMSSTableManager.announceCriticalInChat(secondResult, roll, null, { isEffectWeaponExtra: true });
+                }
+            } else if (ew.superiorEChain) {
+                secondResult = await RMSSTableManager.getCriticalTableResult(
+                    result,
+                    defenderActor,
+                    "E",
+                    extraType,
+                    roll,
+                    null,
+                    { isEffectWeaponExtra: true }
+                );
+                const thirdResult = await RMSSTableManager.getCriticalTableResult(
+                    result,
+                    defenderActor,
+                    "A",
+                    extraType,
+                    roll,
+                    null,
+                    { isEffectWeaponExtra: true }
+                );
+                if (secondResult && thirdResult) {
+                    secondResult._rmssContext = { ...tableResult._rmssContext };
+                    thirdResult._rmssContext = { ...tableResult._rmssContext };
+                    delete secondResult._rmssEffectWeaponFollowUp;
+                    secondResult._rmssEffectWeaponFollowUp = thirdResult;
+                }
+            } else if (isLargeCreatureCriticalTableType(extraType)) {
+                secondResult = await RMSSTableManager.getCriticalTableResult(
+                    resultExtraForLargeTable,
+                    defenderActor,
+                    secondColumn,
+                    extraType,
+                    roll,
+                    null,
+                    { isEffectWeaponExtra: true }
+                );
+            } else {
+                const sev = ew.secondSeverity ?? data.severity;
+                secondResult = await RMSSTableManager.getCriticalTableResult(
+                    resultExtraForStandardTable,
+                    defenderActor,
+                    sev,
+                    extraType,
+                    roll,
+                    null,
+                    { isEffectWeaponExtra: true }
+                );
+            }
+            if (secondResult) {
+                secondResult._rmssContext = { ...tableResult._rmssContext };
+                tableResult._rmssEffectWeaponFollowUp = secondResult;
+            }
+        }
+
+        return tableResult;
     }
 }
 
@@ -226,11 +350,12 @@ export class RMSSWeaponCriticalManager {
         }
 
         if (gmResponse.severity === "null") return;
-        let roll = new Roll(`(1d100)`);
+        const roll = new Roll(`(1d100)`);
         await roll.evaluate({ async: true });
-        let result = (parseInt(roll.total) + parseInt(gmResponse.modifier));
-        if (result < 1) result = 1;
-        if (result > 100) result = 100;
+        const baseRoll = parseInt(roll.total, 10) + parseInt(gmResponse.modifier ?? 0, 10);
+        let result = Math.min(Math.max(baseRoll, 1), 100);
+        const ewMod = Number(gmResponse.effectWeapon?.ewRollModifier) || 0;
+        const resultExtra = Math.min(Math.max(baseRoll + ewMod, 1), 100);
         let expData = null;
         if (gmResponse.expBreakDown && gmResponse.totalExp > 0 && gmResponse.attackerId) {
             const attacker = game.actors.get(gmResponse.attackerId);
@@ -243,7 +368,7 @@ export class RMSSWeaponCriticalManager {
                 };
             }
         }
-        return await RMSSTableManager.getCriticalTableResult(
+        const tableResult = await RMSSTableManager.getCriticalTableResult(
             result,
             target,
             gmResponse.severity,
@@ -251,6 +376,84 @@ export class RMSSWeaponCriticalManager {
             roll,
             expData,
         );
+        if (tableResult && typeof tableResult === "object") {
+            tableResult._rmssContext = {
+                severity: gmResponse.severity,
+                mainSeverity: gmResponse.mainSeverity ?? gmResponse.severity,
+                attackerId: gmResponse.attackerId
+            };
+        }
+
+        const ew = gmResponse.effectWeapon;
+        if (tableResult && ew?.enabled) {
+            let secondResult;
+            const mainCrit = String(gmResponse.critType ?? "").trim();
+            const extraCrit = (ew.extraCritType && String(ew.extraCritType).trim() !== "")
+                ? String(ew.extraCritType).trim()
+                : mainCrit;
+            if (ew.duplicatePrimary) {
+                // Mayor: misma severidad / misma tirada. Si la tabla extra es distinta, hay que volver a consultar, no clonar el texto del principal.
+                if (extraCrit !== mainCrit) {
+                    secondResult = await RMSSTableManager.getCriticalTableResult(
+                        resultExtra,
+                        target,
+                        gmResponse.severity,
+                        extraCrit,
+                        roll,
+                        null,
+                        { isEffectWeaponExtra: true }
+                    );
+                } else {
+                    secondResult = foundry.utils.duplicate(tableResult);
+                    delete secondResult._rmssEffectWeaponFollowUp;
+                    await RMSSTableManager.announceCriticalInChat(secondResult, roll, null, { isEffectWeaponExtra: true });
+                }
+            } else if (ew.superiorEChain) {
+                // Superior + severidad E: E principal; en tabla extra, E y luego A; misma tirada d100 (sin mod. extra en Superior).
+                const critExtra = extraCrit;
+                secondResult = await RMSSTableManager.getCriticalTableResult(
+                    result,
+                    target,
+                    "E",
+                    critExtra,
+                    roll,
+                    null,
+                    { isEffectWeaponExtra: true }
+                );
+                const thirdResult = await RMSSTableManager.getCriticalTableResult(
+                    result,
+                    target,
+                    "A",
+                    critExtra,
+                    roll,
+                    null,
+                    { isEffectWeaponExtra: true }
+                );
+                if (secondResult && thirdResult) {
+                    secondResult._rmssContext = { ...tableResult._rmssContext };
+                    thirdResult._rmssContext = { ...tableResult._rmssContext };
+                    delete secondResult._rmssEffectWeaponFollowUp;
+                    secondResult._rmssEffectWeaponFollowUp = thirdResult;
+                }
+            } else {
+                const critType2 = extraCrit;
+                secondResult = await RMSSTableManager.getCriticalTableResult(
+                    resultExtra,
+                    target,
+                    ew.secondSeverity,
+                    critType2,
+                    roll,
+                    null,
+                    { isEffectWeaponExtra: true }
+                );
+            }
+            if (secondResult) {
+                secondResult._rmssContext = { ...tableResult._rmssContext };
+                tableResult._rmssEffectWeaponFollowUp = secondResult;
+            }
+        }
+
+        return tableResult;
     }
 
     /**
@@ -294,11 +497,23 @@ export class RMSSWeaponCriticalManager {
         return "normal";
     }
 
-    static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId) {
+    /**
+     * @param {object} [options]
+     * @param {string} [options.mainSeverity] - Primary attack critical severity (for Weapon of Bleeding bonus).
+     * @param {{ enabled: boolean, duplicatePrimary?: boolean, secondSeverity?: string, extraCritType?: string, ewRollModifier?: number, superiorEChain?: boolean }} [options.effectWeapon]
+     */
+    static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId, options = {}) {
         const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType, attackerId);
 
         if (!gmResponse["confirmed"]) {
             return
+        }
+
+        if (options.mainSeverity != null) {
+            gmResponse.mainSeverity = options.mainSeverity;
+        }
+        if (options.effectWeapon?.enabled) {
+            gmResponse.effectWeapon = { ...options.effectWeapon };
         }
 
         const actor = Utils.getActor(attackerId);
@@ -319,7 +534,23 @@ export class RMSSWeaponCriticalManager {
         let strategy = RMSSWeaponCriticalManager.criticalCalculatorStrategy(critType);
         const targetTokenId = target?.id ?? target?.document?.id;
 
-        return await strategy.apply(actor, target.actor,  { damage, severity, critType, subCritType, modifier, metadata, targetTokenId });
+        const applyPayload = {
+            damage,
+            severity,
+            critType,
+            subCritType,
+            modifier,
+            metadata,
+            targetTokenId,
+        };
+        if (gmResponse.mainSeverity != null && gmResponse.mainSeverity !== "") {
+            applyPayload.mainSeverity = gmResponse.mainSeverity;
+        }
+        if (gmResponse.effectWeapon?.enabled) {
+            applyPayload.effectWeapon = { ...gmResponse.effectWeapon };
+        }
+
+        return await strategy.apply(actor, target.actor, applyPayload);
     }
 
     static async criticalMessagePopup(enemy, damage, severity, critType, attackerId = null) {
@@ -394,13 +625,14 @@ export class RMSSWeaponCriticalManager {
                                 subCritType = severity;
                                 severity = initialContext.originalSeverity ?? "null";
                             }
-                            resolve({ confirmed: true, damage, severity, critType, subCritType, modifier });
+                            resolve({ confirmed: true, damage, severity, critType, subCritType, modifier, attackerId });
                         }
                     },
                     cancel: {
                         label: `❌ ${game.i18n.localize("rmss.combat.cancel")}`,
                         callback: () => {
                             ui.notifications.error("Attack cancelled!");
+                            resolve({ confirmed: false });
                         }
                     }
                 },
@@ -553,13 +785,15 @@ export class RMSSWeaponCriticalManager {
         const criticalsWithSeverity = (criticalResult.criticals || []).filter(
             c => c.severity != null && String(c.severity).trim() !== ""
         );
+        const mainSeverity = criticalsWithSeverity[0]?.severity ?? null;
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
             damageStr: damage,
             damage: criticalResult.damage,
             criticals: criticalsWithSeverity,
             attacker: attacker,
             target: target,
-            isNullResult: isNullResult
+            isNullResult: isNullResult,
+            mainSeverity
         });
         const speaker = "Game Master";
 

@@ -29,14 +29,33 @@
                         data-damage="{{damage}}"
                         data-severity="{{severity}}"
                         data-crittype="{{critType}}"
+                        {{#if ../mainSeverity}}data-main-severity="{{../mainSeverity}}"{{/if}}
+                        {{#if effectWeaponPair.duplicatePrimary}}data-effect-weapon-dup="1"{{/if}}
+                        {{#if effectWeaponPair.secondSeverity}}data-effect-weapon-second="{{effectWeaponPair.secondSeverity}}"{{/if}}
+                        {{#if effectWeaponPair.extraCritType}}data-effect-weapon-extra-crit-type="{{effectWeaponPair.extraCritType}}"{{/if}}
+                        {{#if effectWeaponPair}}data-effect-weapon-roll-mod="{{effectWeaponPair.ewRollModifier}}"{{/if}}
+                        {{#if effectWeaponPair.superiorEChain}}data-effect-weapon-superior-e-chain="1"{{/if}}
                         {{#if ../target}}data-target-id="{{../target.id}}"{{/if}}>
-                    <div style="display:inline-block; align-items:center; gap:4px;">
-                        <span style="font-size:1.1em;">⚔️</span>
-                        <span>{{localize "rmss.combat.critical_roll"}} {{inc @index}}</span>
-                        {{localize "rmss.combat.critical_type"}}:
-                        <span style="color: #ffb;">{{critType}}</span> /
-                        {{localize "rmss.combat.critical_severity"}}:
-                        <span style="color: #ffd;">{{severity}}</span>
+                    <div class="chat-critical-roll-inner">
+                        <div class="chat-critical-roll-main">
+                            <span style="font-size:1.1em;">⚔️</span>
+                            <span>{{localize "rmss.combat.critical_roll"}} {{inc @index}}</span>
+                            {{localize "rmss.combat.critical_type"}}:
+                            <span style="color: #ffb;">{{critType}}</span> /
+                            {{localize "rmss.combat.critical_severity"}}:
+                            {{{criticalSeverityIcon severity}}}
+                        </div>
+                        {{#if effectWeaponPair}}
+                        <div class="chat-critical-roll-effect-hint">
+                            {{#if effectWeaponPair.duplicatePrimary}}
+                            {{localize "rmss.combat.critical_effect_weapon_dup_grade"}}
+                            {{else if effectWeaponPair.superiorEChain}}
+                            {{localize "rmss.combat.critical_effect_weapon_superior_e_chain"}}
+                            {{else}}
+                            {{localize "rmss.combat.critical_effect_weapon_extra"}} {{#unless (eq effectWeaponPair.extraCritType critType)}}<span class="rmss-ew-extra-type">({{localize "rmss.combat.critical_type"}} {{effectWeaponPair.extraCritType}})</span> {{/unless}}{{{criticalSeverityIcon effectWeaponPair.secondSeverity}}}
+                            {{/if}}
+                        </div>
+                        {{/if}}
                     </div>
                 </button>
             {{/each}}

@@ -1,5 +1,3 @@
-import {RMSSWeaponCriticalManager} from "./rmss_weapon_critical_manager.js";
-import {ExperienceManager} from "../sheets/experience/rmss_experience_manager.js";
 import {socket} from "../../rmss.js";
 
 const findAttackTableRow = (tableName, attackTable, result) => {
@@ -130,48 +128,87 @@ export default class RMSSTableManager {
         }
     }
 
-    static async getCriticalTableResult(result, enemy, severity, critType, roll = null, expData = null){
+    /**
+     * Resolve critical table cell for a d100 result (GM branch choice if needed). Does not post chat.
+     * @returns {Promise<object|null>}
+     */
+    static async resolveCriticalTableRow(result, enemy, severity, critType) {
+        if (severity == null || severity === "" || severity === "null") return null;
         const criticalTable = await RMSSTableManager.loadCriticalTable(critType);
+        if (!criticalTable?.rows) return null;
         for (const element of criticalTable.rows) {
-            let criticalResult = element[severity];
-            if (result >= parseInt(element["lower"]) && result <= parseInt(element["upper"])) {
-                if (!element[severity].hasOwnProperty("metadata")) {
-                    criticalResult["metadata"] = {};
-                }
+            const lower = parseInt(element["lower"], 10);
+            const upper = parseInt(element["upper"], 10);
+            if (result < lower || result > upper) continue;
+            const cell = element[severity];
+            if (!cell) return null;
+            const criticalResult = foundry.utils.duplicate(cell);
+            if (!criticalResult.hasOwnProperty("metadata")) {
+                criticalResult.metadata = {};
+            }
+            if (cell.metadata?.length > 1) {
+                const gmResponse = await socket.executeAsGM("chooseCriticalOption", cell);
+                criticalResult.metadata = gmResponse;
+            } else {
+                criticalResult.metadata = cell.metadata?.[0] ?? {};
+            }
+            return criticalResult;
+        }
+        return null;
+    }
 
-                if (element[severity].metadata.length > 1) {
-                    const gmResponse = await socket.executeAsGM("chooseCriticalOption", element[severity]);
-                    criticalResult["metadata"] = gmResponse;
-                }
-                else {
-                    criticalResult["metadata"] = element[severity]["metadata"][0];
-                }
-                const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-result.hbs", {
-                    result: criticalResult,
-                    rollTotal: roll?.total,
-                    rollFormula: roll?.formula,
-                    expData: expData
-                });
-                const speaker = "Game Master";
-                const msgData = {
-                    content: htmlContent,
-                    speaker: speaker,
-                    rolls: roll ? [roll] : undefined
-                };
-                if (expData?.actorId) {
-                    const actor = game.actors.get(expData.actorId);
-                    if (actor) {
-                        const whispers = new Set();
-                        game.users.filter(u => actor.testUserPermission(u, "OWNER")).forEach(u => whispers.add(u.id));
-                        game.users.filter(u => u.isGM).forEach(u => whispers.add(u.id));
-                        msgData.whisper = Array.from(whispers);
-                    }
-                }
-                await ChatMessage.create(msgData);
-
-                return criticalResult;
+    /**
+     * Publica un mensaje de chat con el resultado de crítico (misma tirada opcional).
+     * @param {object} criticalResult - Resultado de resolveCriticalTableRow
+     * @param {Roll|null} roll
+     * @param {object|null} expData - Si null, no se muestra bloque de XP (p. ej. crítico extra Effect Weapon).
+     * @param {object} [options]
+     * @param {boolean} [options.isEffectWeaponExtra]
+     */
+    static async announceCriticalInChat(criticalResult, roll, expData = null, options = {}) {
+        if (!criticalResult) return;
+        const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-result.hbs", {
+            result: criticalResult,
+            rollTotal: roll?.total,
+            rollFormula: roll?.formula,
+            expData,
+            isEffectWeaponExtra: options.isEffectWeaponExtra === true
+        });
+        const speaker = "Game Master";
+        const msgData = {
+            content: htmlContent,
+            speaker,
+            rolls: roll ? [roll] : undefined
+        };
+        if (expData?.actorId) {
+            const actor = game.actors.get(expData.actorId);
+            if (actor) {
+                const whispers = new Set();
+                game.users.filter(u => actor.testUserPermission(u, "OWNER")).forEach(u => whispers.add(u.id));
+                game.users.filter(u => u.isGM).forEach(u => whispers.add(u.id));
+                msgData.whisper = Array.from(whispers);
             }
         }
+        await ChatMessage.create(msgData);
+    }
+
+    /**
+     * @param {object} [options]
+     * @param {boolean} [options.skipChat] - Si true, no crea mensaje en chat.
+     * @param {boolean} [options.isEffectWeaponExtra] - Etiqueta visual “crítico extra” en el mensaje.
+     */
+    static async getCriticalTableResult(result, enemy, severity, critType, roll = null, expData = null, options = {}) {
+        const skipChat = options.skipChat === true;
+        const criticalResult = await RMSSTableManager.resolveCriticalTableRow(result, enemy, severity, critType);
+        if (!criticalResult) return null;
+
+        if (!skipChat) {
+            await RMSSTableManager.announceCriticalInChat(criticalResult, roll, expData, {
+                isEffectWeaponExtra: options.isEffectWeaponExtra === true
+            });
+        }
+
+        return criticalResult;
     }
 
 }

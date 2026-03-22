@@ -50,28 +50,76 @@ export function professionMatches(itemProfUuid, actor) {
 }
 
 /**
- * Find the first equipped spell adder item whose realm/profession matches the actor
- * and still has daily uses remaining.
+ * Normalized daily max and remaining uses for a spell adder item.
+ * Missing `spell_adder_uses_remaining` is treated as full (max), for legacy items.
+ * @param {object} sys - item.system
+ * @returns {{ max: number, rem: number }}
+ */
+function spellAdderMaxAndRemaining(sys) {
+  const max = Number(sys?.spell_adder) || 0;
+  const raw = sys?.spell_adder_uses_remaining;
+  let rem;
+  if (raw === undefined || raw === null || raw === "") {
+    rem = max;
+  } else {
+    rem = Number(raw);
+    if (!Number.isFinite(rem)) rem = max;
+    rem = Math.min(Math.max(0, rem), max);
+  }
+  return { max, rem };
+}
+
+/**
+ * Equipped spell adder used for casting options / free casts.
+ * Rules:
+ * - Only one spell adder “line” per day: if any matching adder has been used
+ *   ({@code usesRemaining < max}), only those items count until long rest — no switching
+ *   to a higher-bonus full adder the same day.
+ * - If none have been used yet, pick the highest {@code spell_adder} value; ties use
+ *   the first item in equipped iteration order.
+ * - Multiple adders with {@code usesRemaining < max} at once is invalid play; we pick the
+ *   first in iteration order. The GM should correct data if that ever happens.
  * @param {Actor} actor
  * @returns {{item: Item, value: number, usesRemaining: number}|null}
  */
 export function getMatchingSpellAdder(actor) {
   const actorRealm = actor?.system?.fixed_info?.realm || "";
   if (!actorRealm) return null;
+
+  /** @type {{ item: Item, max: number, rem: number }[]} */
+  const rows = [];
   for (const item of getEquippedPPItems(actor)) {
     const sys = item.system || {};
-    const val = Number(sys.spell_adder) || 0;
-    if (val <= 0) continue;
-    const usesRemaining = Number(sys.spell_adder_uses_remaining) || 0;
-    if (usesRemaining <= 0) continue;
+    const { max, rem } = spellAdderMaxAndRemaining(sys);
+    if (max <= 0) continue;
     const realm = sys.spell_adder_realm || "";
     const prof = sys.spell_adder_profession || "";
     const applies = realm === "profession"
       ? professionMatches(prof, actor)
       : realmMatches(realm, actorRealm);
-    if (applies) return { item, value: val, usesRemaining };
+    if (!applies) continue;
+    rows.push({ item, max, rem });
   }
-  return null;
+
+  if (rows.length === 0) return null;
+
+  const committed = rows.filter((r) => r.rem < r.max);
+  if (committed.length > 0) {
+    const usable = committed.filter((r) => r.rem > 0);
+    if (usable.length === 0) return null;
+    const pick = usable[0];
+    return { item: pick.item, value: pick.max, usesRemaining: pick.rem };
+  }
+
+  const withUses = rows.filter((r) => r.rem > 0);
+  if (withUses.length === 0) return null;
+
+  let winner = withUses[0];
+  for (let i = 1; i < withUses.length; i++) {
+    const r = withUses[i];
+    if (r.max > winner.max) winner = r;
+  }
+  return { item: winner.item, value: winner.max, usesRemaining: winner.rem };
 }
 
 /**

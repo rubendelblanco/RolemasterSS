@@ -6,6 +6,7 @@ import RollService from "./services/roll_service.js";
 import WeaponFumbleService from "./services/weapon_fumble_service.js";
 import FacingService from "./services/facing_service.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
+import WeaponEffectsService from "./weapon_effects_service.js";
 
 export class RMSSWeaponSkillManager {
 
@@ -96,6 +97,11 @@ export class RMSSWeaponSkillManager {
         }
 
         criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemy);
+
+        if (weapon.type === "weapon") {
+            WeaponEffectsService.applyIncreasedCritical(criticalResult, weapon);
+            WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+        }
 
         const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
 

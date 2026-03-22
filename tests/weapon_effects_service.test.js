@@ -1,0 +1,159 @@
+/**
+ * @jest-environment node
+ */
+import { jest, describe, it, expect } from "@jest/globals";
+import WeaponEffectsService, {
+  shiftSeverity,
+  severityGreaterThanE,
+  effectWeaponShiftMilderProcedureI
+} from "../module/combat/weapon_effects_service.js";
+
+describe("WeaponEffectsService", () => {
+  it("shiftSeverity moves along A–Z", () => {
+    expect(shiftSeverity("C", -2)).toBe("A");
+    expect(shiftSeverity("A", -1)).toBe("A");
+    expect(shiftSeverity("E", 1)).toBe("F");
+  });
+
+  it("severityGreaterThanE", () => {
+    expect(severityGreaterThanE("E")).toBe(false);
+    expect(severityGreaterThanE("F")).toBe(true);
+  });
+
+  it("effectWeaponShiftMilderProcedureI matches creature procedure I (A floor −25 per step)", () => {
+    expect(effectWeaponShiftMilderProcedureI("A", 1)).toEqual({ secondSeverity: "A", ewRollModifier: -25 });
+    expect(effectWeaponShiftMilderProcedureI("A", 2)).toEqual({ secondSeverity: "A", ewRollModifier: -50 });
+    expect(effectWeaponShiftMilderProcedureI("B", 2)).toEqual({ secondSeverity: "A", ewRollModifier: -25 });
+    expect(effectWeaponShiftMilderProcedureI("C", 2)).toEqual({ secondSeverity: "A", ewRollModifier: 0 });
+    expect(effectWeaponShiftMilderProcedureI("B", 1)).toEqual({ secondSeverity: "A", ewRollModifier: 0 });
+  });
+
+  it("getEquippedWeaponInitiativeBonus sums equipped weapons", async () => {
+    const { default: EquipmentService } = await import("../module/actors/services/equipment_service.js");
+    jest.spyOn(EquipmentService, "getEquippedWeapons").mockReturnValue([
+      { system: { weapon_effects: { increased_initiative: "minor" } } },
+      { system: { weapon_effects: { increased_initiative: "normal" } } }
+    ]);
+    const actor = { items: [] };
+    expect(WeaponEffectsService.getEquippedWeaponInitiativeBonus(actor)).toBe(6);
+    EquipmentService.getEquippedWeapons.mockRestore();
+  });
+
+  it("getWeaponOfBleedingHprBonus by main severity", () => {
+    expect(WeaponEffectsService.getWeaponOfBleedingHprBonus("B")).toBe(1);
+    expect(WeaponEffectsService.getWeaponOfBleedingHprBonus("D")).toBe(2);
+    expect(WeaponEffectsService.getWeaponOfBleedingHprBonus("F")).toBe(0);
+  });
+
+  it("appendEffectWeaponCriticals marks primary with effectWeaponPair (minor)", () => {
+    const weapon = {
+      type: "weapon",
+      system: {
+        critical_type: "K",
+        weapon_effects: { effect_weapon: "minor", effect_weapon_critical_type: "heat" }
+      },
+      id: "w1"
+    };
+    const criticalResult = {
+      criticals: [{ severity: "C", critType: "K", damage: 5 }]
+    };
+    WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+    expect(criticalResult.criticals.length).toBe(1);
+    const p = criticalResult.criticals[0];
+    expect(p.effectWeaponPair.duplicatePrimary).toBe(false);
+    expect(p.effectWeaponPair.secondSeverity).toBe("A");
+    expect(p.effectWeaponPair.extraCritType).toBe("heat");
+    expect(p.effectWeaponPair.ewRollModifier).toBe(0);
+  });
+
+  it("appendEffectWeaponCriticals does nothing without effect_weapon_critical_type", () => {
+    const weapon = {
+      type: "weapon",
+      system: { critical_type: "K", weapon_effects: { effect_weapon: "minor" } }
+    };
+    const criticalResult = { criticals: [{ severity: "C", critType: "K", damage: 1 }] };
+    WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+    expect(criticalResult.criticals[0].effectWeaponPair).toBeUndefined();
+  });
+
+  it("appendEffectWeaponCriticals greater uses duplicatePrimary", () => {
+    const weapon = {
+      type: "weapon",
+      system: {
+        critical_type: "K",
+        weapon_effects: { effect_weapon: "greater", effect_weapon_critical_type: "heat" }
+      }
+    };
+    const criticalResult = { criticals: [{ severity: "D", critType: "K", damage: 3 }] };
+    WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+    expect(criticalResult.criticals[0].effectWeaponPair).toEqual({
+      duplicatePrimary: true,
+      extraCritType: "heat",
+      ewRollModifier: 0
+    });
+  });
+
+  it("appendEffectWeaponCriticals superior on E sets superiorEChain (triple same roll: E main, E+A extra)", () => {
+    const weapon = {
+      type: "weapon",
+      system: {
+        critical_type: "K",
+        weapon_effects: { effect_weapon: "superior", effect_weapon_critical_type: "heat" }
+      }
+    };
+    const criticalResult = { criticals: [{ severity: "E", critType: "K", damage: 2 }] };
+    WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+    const p = criticalResult.criticals[0].effectWeaponPair;
+    expect(p.duplicatePrimary).toBe(false);
+    expect(p.superiorEChain).toBe(true);
+    expect(p.secondSeverity).toBe("E");
+    expect(p.extraCritType).toBe("heat");
+    expect(p.ewRollModifier).toBe(0);
+  });
+
+  it("appendEffectWeaponCriticals superior below E shifts one step only", () => {
+    const weapon = {
+      type: "weapon",
+      system: {
+        critical_type: "K",
+        weapon_effects: { effect_weapon: "superior", effect_weapon_critical_type: "heat" }
+      }
+    };
+    const criticalResult = { criticals: [{ severity: "D", critType: "K", damage: 1 }] };
+    WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+    const p = criticalResult.criticals[0].effectWeaponPair;
+    expect(p.superiorEChain).toBe(false);
+    expect(p.secondSeverity).toBe("E");
+    expect(p.ewRollModifier).toBe(0);
+  });
+
+  it("appendEffectWeaponCriticals uses effect_weapon_critical_type when set", () => {
+    const weapon = {
+      type: "weapon",
+      system: {
+        critical_type: "K",
+        weapon_effects: { effect_weapon: "normal", effect_weapon_critical_type: "S" }
+      }
+    };
+    const criticalResult = { criticals: [{ severity: "C", critType: "K", damage: 2 }] };
+    WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+    expect(criticalResult.criticals[0].effectWeaponPair.extraCritType).toBe("S");
+    expect(criticalResult.criticals[0].effectWeaponPair.secondSeverity).toBe("B");
+    expect(criticalResult.criticals[0].effectWeaponPair.ewRollModifier).toBe(0);
+  });
+
+  it("appendEffectWeaponCriticals minor on A adds −50 roll mod", () => {
+    const weapon = {
+      type: "weapon",
+      system: {
+        critical_type: "K",
+        weapon_effects: { effect_weapon: "minor", effect_weapon_critical_type: "heat" }
+      }
+    };
+    const criticalResult = { criticals: [{ severity: "A", critType: "K", damage: 1 }] };
+    WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+    const p = criticalResult.criticals[0];
+    expect(p.effectWeaponPair.secondSeverity).toBe("A");
+    expect(p.effectWeaponPair.ewRollModifier).toBe(-50);
+  });
+});

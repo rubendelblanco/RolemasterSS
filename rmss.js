@@ -359,6 +359,25 @@ Hooks.once("init", function () {
     return parseInt(value) + 1;
   });
 
+  /**
+   * Crítico A–E: círculo (fas fa-circle) + letra, colores de gravedad creciente.
+   * Equivale visualmente a los FA Pro circle-a…e, compatibles con FA Free de Foundry.
+   */
+  Handlebars.registerHelper("criticalSeverityIcon", function (severity) {
+    const raw = severity == null ? "" : String(severity);
+    const letter = raw.trim().toUpperCase().charAt(0);
+    if (!["A", "B", "C", "D", "E"].includes(letter)) {
+      return new Handlebars.SafeString(Handlebars.escapeExpression(raw));
+    }
+    const key = letter.toLowerCase();
+    const esc = Handlebars.escapeExpression(letter);
+    const html =
+      `<span class="rmss-crit-severity rmss-crit-severity-${key}" role="img" aria-label="${esc}" title="${esc}">` +
+      `<i class="fas fa-circle" aria-hidden="true"></i>` +
+      `<span class="rmss-crit-severity-letter">${esc}</span></span>`;
+    return new Handlebars.SafeString(html);
+  });
+
   Handlebars.registerHelper("switch", function (value, options) {
     const context = Object.assign({}, this);
     context.switch_value = value;

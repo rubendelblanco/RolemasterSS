@@ -44,6 +44,17 @@ export default class RMSSWeaponSheet extends ItemSheet {
     );
 
     const { material, bonus, magical, bonusEditable, magicalEditable, materialsOptions } = this._resolveWeaponMaterial(system);
+    const weapon_effects = foundry.utils.mergeObject(
+      {
+        increased_initiative: "",
+        effect_weapon: "",
+        effect_weapon_critical_type: "",
+        increased_critical: false,
+        weapon_of_bleeding: false
+      },
+      system.weapon_effects ?? {},
+      { inplace: false }
+    );
     const enchantmentList = buildEnchantmentList(system.magic?.enchantments);
     const powerModifierMode = getPowerModifierMode(system);
     const ppMultiplierProfessionName = await resolveProfessionName(system.pp_multiplier_profession ?? "");
@@ -53,7 +64,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
       owner: this.item.isOwner,
       editable: this.isEditable,
       item: baseData.item,
-      system: { ...system, material, bonus, magical },
+      system: { ...system, material, bonus, magical, weapon_effects },
       config: CONFIG.rmss,
       user: game.user,
       enrichedDescription: await TextEditor.enrichHTML(this.item.system.description, { async: true }),

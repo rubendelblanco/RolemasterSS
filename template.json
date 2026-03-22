@@ -460,7 +460,14 @@
       "spell_adder_realm": "",
       "pp_multiplier_profession": "",
       "spell_adder_profession": "",
-      "slaying": ""
+      "slaying": "",
+      "weapon_effects": {
+        "increased_initiative": "",
+        "effect_weapon": "",
+        "effect_weapon_critical_type": "",
+        "increased_critical": false,
+        "weapon_of_bleeding": false
+      }
     },
     "herb_or_poison": {
       "templates": ["item"],

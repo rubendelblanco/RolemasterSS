@@ -1,6 +1,7 @@
 import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_manager.js";
 import Utils from "../utils.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
+import WeaponEffectsService from "./weapon_effects_service.js";
 
 /**
  * @class RMSSEffectApplier
@@ -61,7 +62,7 @@ export class RMSSEffectApplier {
         for (const [key, value] of Object.entries(critical.metadata)) {
             switch (key) {
                 case "STUN": await this._applyStun(entity, value, stun_bleeding); break;
-                case "HPR": await this._applyBleeding(entity, value, stun_bleeding, critical.text); break;
+                case "HPR": await this._applyBleeding(entity, value, stun_bleeding, critical.text, critical, effectiveOriginId); break;
                 case "PE": await this._applyPenalty(entity, value, critical.text); break;
                 case "P": await this._applyParry(entity, value); break;
                 case "NP": await this._applyNoParry(entity, value); break;
@@ -130,9 +131,18 @@ export class RMSSEffectApplier {
         }
     }
 
-    static async _applyBleeding(entity, data, stun_bleeding, description) {
+    static async _applyBleeding(entity, data, stun_bleeding, description, critical = null, originId = null) {
         if (stun_bleeding === "bleeding") return;
-        const rate = parseInt(data) || 0;
+        let rate = parseInt(data) || 0;
+        const ctx = critical?._rmssContext;
+        const atkId = originId ?? ctx?.attackerId;
+        if (atkId) {
+            const attacker = game.actors.get(atkId);
+            if (attacker && WeaponEffectsService.actorHasWeaponOfBleeding(attacker)) {
+                const mainSev = ctx?.mainSeverity ?? ctx?.severity;
+                rate += WeaponEffectsService.getWeaponOfBleedingHprBonus(mainSev);
+            }
+        }
         await entity.createEmbeddedDocuments("ActiveEffect", [{
             name: "Bleeding",
             icon: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
