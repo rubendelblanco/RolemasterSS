@@ -167,18 +167,36 @@ export default class RMSSTableManager {
      */
     static async announceCriticalInChat(criticalResult, roll, expData = null, options = {}) {
         if (!criticalResult) return;
+        const displayRoll =
+            options.displayRollTotal !== undefined && options.displayRollTotal !== null
+                ? options.displayRollTotal
+                : roll?.total;
+        const showNaturalHint =
+            options.isEffectWeaponExtra === true &&
+            roll != null &&
+            displayRoll != null &&
+            Number(roll.total) !== Number(displayRoll);
+        const naturalD100HintText = showNaturalHint
+            ? game.i18n.format("rmss.combat.critical_roll_natural_d100_hint", { n: roll.total })
+            : null;
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-result.hbs", {
             result: criticalResult,
-            rollTotal: roll?.total,
+            rollTotal: displayRoll,
             rollFormula: roll?.formula,
             expData,
-            isEffectWeaponExtra: options.isEffectWeaponExtra === true
+            isEffectWeaponExtra: options.isEffectWeaponExtra === true,
+            naturalD100HintText
         });
         const speaker = "Game Master";
+        const suppressRollAttachment =
+            options.isEffectWeaponExtra === true &&
+            roll != null &&
+            displayRoll != null &&
+            Number(roll.total) !== Number(displayRoll);
         const msgData = {
             content: htmlContent,
             speaker,
-            rolls: roll ? [roll] : undefined
+            rolls: roll && !suppressRollAttachment ? [roll] : undefined
         };
         if (expData?.actorId) {
             const actor = game.actors.get(expData.actorId);
@@ -204,7 +222,8 @@ export default class RMSSTableManager {
 
         if (!skipChat) {
             await RMSSTableManager.announceCriticalInChat(criticalResult, roll, expData, {
-                isEffectWeaponExtra: options.isEffectWeaponExtra === true
+                isEffectWeaponExtra: options.isEffectWeaponExtra === true,
+                displayRollTotal: options.displayRollTotal ?? result
             });
         }
 

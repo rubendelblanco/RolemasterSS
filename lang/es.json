@@ -745,6 +745,7 @@
       "critical_effect_weapon_dup_grade": "Arma de efecto: la misma tirada se aplica dos veces en esta severidad.",
       "critical_effect_weapon_extra": "Arma de efecto: la misma tirada resuelve también la columna",
       "critical_effect_weapon_extra_chat": "Crítico extra (Arma de efecto) — misma tirada",
+      "critical_roll_natural_d100_hint": "D100 natural: {n}",
       "critical_effect_weapon_superior_e_chain": "Arma de efecto (Superior en E): misma tirada — E principal; en la tabla extra, E y luego A.",
       "damage": "Daño",
       "multiplier": "Multiplicador",

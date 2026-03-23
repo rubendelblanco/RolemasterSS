@@ -98,11 +98,6 @@ export class RMSSWeaponSkillManager {
             return;
         }
 
-        // No critical from table (e.g. "36" damage only): add synthetic for chat
-        if (criticalResult.criticals.length === 0) {
-            criticalResult.criticals = [{ severity: null, critType: weapon.system.critical_type, damage: criticalResult.damage ?? 0 }];
-        }
-
         criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemy);
 
         if (weapon.type === "weapon") {
@@ -112,8 +107,9 @@ export class RMSSWeaponSkillManager {
 
         const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
 
-        // Critical not exists (or filtered out for large/superlarge: A or A-B = no critical)
-        if (criticalResult.criticals.length === 0) {
+        // HP-only hit (no letter critical): apply damage immediately. Do not post a critical card with no buttons
+        // (previously a synthetic severity-null row skipped the empty-critics branch and never applied hits).
+        if (!RMSSWeaponCriticalManager.hasResolvableCriticalForChat(criticalResult)) {
             if (!isNullResult) {
                 const damageToApply = parseInt(criticalResult.damage);
                 if (!isNaN(damageToApply) && damageToApply > 0) {

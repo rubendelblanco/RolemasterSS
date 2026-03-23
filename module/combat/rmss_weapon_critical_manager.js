@@ -98,7 +98,8 @@ class LargeCreatureCriticalStrategy {
 
         if (severity === "null") return;
 
-        let result = Math.min(Math.max(parseInt(roll.total) + parseInt(modifier), 1), 999);
+        const naturalTotal = parseInt(roll.total, 10);
+        let result = Math.min(Math.max(naturalTotal + parseInt(modifier, 10), 1), 999);
         const expData = (expBreakDown && totalExp > 0)
             ? { actorName: attackerActor.name, actorId: attackerActor.id, expBreakdown: expBreakDown, expGained: totalExp }
             : null;
@@ -134,9 +135,15 @@ class LargeCreatureCriticalStrategy {
             const extraType = (extraRaw && String(extraRaw).trim() !== "") ? String(extraRaw).trim() : tableName;
 
             const clampOpen = (n) => Math.min(Math.max(n, 1), 999);
-            /** Second lookup: large table → column modifier; standard table (e.g. heat) → attack roll modifier (button). */
-            const resultExtraForLargeTable = clampOpen(result + largeEwRollMod);
-            const resultExtraForStandardTable = clampOpen(result + (Number(ew.ewRollModifier) || 0));
+            const ewM = Number(ew.ewRollModifier) || 0;
+            /**
+             * Second lookup: Effect Weapon roll penalties (−50 Minor on A, −25 Minor on B→A, etc.) apply only to the extra table,
+             * on the natural open-ended total — not stacked on top of the main index (which already includes modifier).
+             */
+            const resultExtraForLargeTable =
+                largeEwRollMod !== 0 ? clampOpen(naturalTotal + largeEwRollMod) : result;
+            const resultExtraForStandardTable =
+                ewM !== 0 ? clampOpen(naturalTotal + ewM) : result;
 
             let secondResult;
             if (ew.duplicatePrimary) {
@@ -165,7 +172,10 @@ class LargeCreatureCriticalStrategy {
                 } else {
                     secondResult = foundry.utils.duplicate(tableResult);
                     delete secondResult._rmssEffectWeaponFollowUp;
-                    await RMSSTableManager.announceCriticalInChat(secondResult, roll, null, { isEffectWeaponExtra: true });
+                    await RMSSTableManager.announceCriticalInChat(secondResult, roll, null, {
+                        isEffectWeaponExtra: true,
+                        displayRollTotal: result
+                    });
                 }
             } else if (ew.superiorEChain) {
                 secondResult = await RMSSTableManager.getCriticalTableResult(
@@ -320,6 +330,25 @@ export class RMSSWeaponCriticalManager {
         }
     }
 
+    /**
+     * When socket payload omits effectWeapon.ewRollModifier, recompute Minor/Normal shift from equipped weapon + main severity (RM 9.7).
+     * @returns {{ secondSeverity: string, ewRollModifier: number }|null}
+     */
+    static _effectWeaponShiftFromEquippedWeapon(attackerId, mainSeverity) {
+        if (!attackerId) return null;
+        const attacker = game.actors.get(attackerId);
+        if (!attacker?.items) return null;
+        const weapons = EquipmentService.getEquippedWeapons(attacker);
+        const tier = weapons[0]?.system?.weapon_effects?.effect_weapon;
+        if (!tier || tier === "none" || tier === "") return null;
+        const s = String(mainSeverity ?? "").trim();
+        if (!s || s === "null") return null;
+        const sev = s.toUpperCase()[0];
+        if (tier === "minor") return effectWeaponShiftMilderProcedureI(sev, 2);
+        if (tier === "normal") return effectWeaponShiftMilderProcedureI(sev, 1);
+        return null;
+    }
+
     static async updateTokenOrActorHits(token, damage, attackerId = null) {
         const actor = Utils.getActor(token);
         if (!actor) return;
@@ -352,10 +381,30 @@ export class RMSSWeaponCriticalManager {
         if (gmResponse.severity === "null") return;
         const roll = new Roll(`(1d100)`);
         await roll.evaluate({ async: true });
-        const baseRoll = parseInt(roll.total, 10) + parseInt(gmResponse.modifier ?? 0, 10);
+        const natural = parseInt(roll.total, 10);
+        const dialogMod = parseInt(gmResponse.modifier ?? 0, 10);
+        const baseRoll = natural + dialogMod;
         let result = Math.min(Math.max(baseRoll, 1), 100);
-        const ewMod = Number(gmResponse.effectWeapon?.ewRollModifier) || 0;
-        const resultExtra = Math.min(Math.max(baseRoll + ewMod, 1), 100);
+        /** Effect Weapon Minor/Normal: −50/−25 etc. apply only to the *second* table, on the natural d100 — not added to the main critical index. */
+        const ew0 = gmResponse.effectWeapon;
+        let ewMod = Number(ew0?.ewRollModifier);
+        if (!Number.isFinite(ewMod)) ewMod = 0;
+        let resolvedSecondSeverity = ew0?.secondSeverity;
+        // Socket payloads sometimes drop ewRollModifier / secondSeverity; recompute from equipped weapon on GM client.
+        if (ew0?.enabled === true && !ew0.duplicatePrimary && !ew0.superiorEChain) {
+            const shift = RMSSWeaponCriticalManager._effectWeaponShiftFromEquippedWeapon(
+                gmResponse.attackerId,
+                gmResponse.severity
+            );
+            if (shift) {
+                if (ewMod === 0) ewMod = shift.ewRollModifier;
+                if (!resolvedSecondSeverity) resolvedSecondSeverity = shift.secondSeverity;
+            }
+        }
+        const resultExtra =
+            ewMod !== 0
+                ? Math.min(Math.max(natural + ewMod, 1), 100)
+                : result;
         let expData = null;
         if (gmResponse.expBreakDown && gmResponse.totalExp > 0 && gmResponse.attackerId) {
             const attacker = game.actors.get(gmResponse.attackerId);
@@ -406,7 +455,10 @@ export class RMSSWeaponCriticalManager {
                 } else {
                     secondResult = foundry.utils.duplicate(tableResult);
                     delete secondResult._rmssEffectWeaponFollowUp;
-                    await RMSSTableManager.announceCriticalInChat(secondResult, roll, null, { isEffectWeaponExtra: true });
+                    await RMSSTableManager.announceCriticalInChat(secondResult, roll, null, {
+                        isEffectWeaponExtra: true,
+                        displayRollTotal: result
+                    });
                 }
             } else if (ew.superiorEChain) {
                 // Superior + E severity: E on primary; on extra table E then A; same d100 roll (Superior adds no extra roll mod).
@@ -437,10 +489,11 @@ export class RMSSWeaponCriticalManager {
                 }
             } else {
                 const critType2 = extraCrit;
+                const col = resolvedSecondSeverity ?? ew.secondSeverity;
                 secondResult = await RMSSTableManager.getCriticalTableResult(
                     resultExtra,
                     target,
-                    ew.secondSeverity,
+                    col,
                     critType2,
                     roll,
                     null,
@@ -795,6 +848,17 @@ export class RMSSWeaponCriticalManager {
         };
         if (rollObj) msgData.rolls = [rollObj];
         await ChatMessage.create(msgData);
+    }
+
+    /**
+     * Whether any critical row needs chat roll / GM confirmation (real severity, not HP-only placeholder).
+     */
+    static hasResolvableCriticalForChat(criticalResult) {
+        return (criticalResult.criticals || []).some((c) => {
+            const s = c.severity;
+            if (s == null || String(s).trim() === "") return false;
+            return String(s).trim() !== "null";
+        });
     }
 
     static async getCriticalMessage(damage, criticalResult, attacker, target = null, isNullResult = false) {

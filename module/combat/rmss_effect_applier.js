@@ -82,7 +82,8 @@ export class RMSSEffectApplier {
             CombatHistoryTracker.get().recordDamage(originId, entity.id, dmg, newHits <= 0 && !wasAlreadyDead);
         }
 
-        if (entity.system.attributes.hits.current <= 0) {
+        // Only announce "slain" / overlay / XP once: a second critical on an already-dead target still applies HP math but must not repeat death handling.
+        if (newHits <= 0 && !wasAlreadyDead) {
             const tokens = entity.getActiveTokens(true);
             const selected = tokens.find(t => t.controlled) || tokens[0];
             let expData = null;

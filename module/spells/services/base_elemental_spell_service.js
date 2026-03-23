@@ -254,15 +254,12 @@ export default class BaseElementalSpellService {
                 attackResult.damage,
                 attackTable.critical_severity || null
             );
-            const enemyActor = target.actor ?? target;
             criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemyActor);
 
             // Per-target F (high defense): spell had no effect on this target, skip
             if (criticalResult.criticals === "fumble") continue;
 
-            if (criticalResult.criticals.length === 0) {
-                const critType = attackTable.critical_severity?.default || "heat";
-                criticalResult.criticals = [{ severity: null, critType, damage: criticalResult.damage ?? 0 }];
+            if (!RMSSWeaponCriticalManager.hasResolvableCriticalForChat(criticalResult)) {
                 const damageToApply = parseInt(criticalResult.damage);
                 if (!isNaN(damageToApply) && damageToApply > 0) {
                     await RMSSWeaponCriticalManager.updateTokenOrActorHits(enemyActor, damageToApply, actor.id);
@@ -270,7 +267,6 @@ export default class BaseElementalSpellService {
                         await ExperienceManager.applyExperience(actor, criticalResult.damage);
                     }
                 }
-                await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, target);
                 continue;
             }
 
