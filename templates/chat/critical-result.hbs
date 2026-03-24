@@ -1,5 +1,12 @@
+{{#if isEffectWeaponExtra}}
+<p class="rmss-effect-weapon-extra-chat-label"><i class="fas fa-bolt"></i> {{localize "rmss.combat.critical_effect_weapon_extra_chat"}}</p>
+{{/if}}
 {{#if rollTotal}}
-<p class="critical-roll-result"><i class="fas fa-dice"></i> <span class="critical-roll-value">{{rollTotal}}</span></p>
+<p class="critical-roll-result"><i class="fas fa-dice"></i> <span class="critical-roll-value">{{rollTotal}}</span>
+    {{#if naturalD100HintText}}
+    <span class="rmss-critical-natural-d100-hint" style="display:block;font-size:0.9em;color:#aaa;margin-top:4px;">{{naturalD100HintText}}</span>
+    {{/if}}
+</p>
 {{/if}}
 <p class="critical-description">{{result.text}}</p>
 <table class="rwd-table">

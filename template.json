@@ -363,7 +363,21 @@
         "type": "string",
         "default": "gp",
         "label": "RMSS.CurrencyType"
-      }
+      },
+      "magical": false,
+      "holy": false,
+      "unholy": false,
+      "of_changing": false,
+      "weight_percent": 100,
+      "bonus_skills": [],
+      "magic": { "enchantments": [] },
+      "pp_multiplier": 1,
+      "pp_multiplier_realm": "",
+      "spell_adder": 0,
+      "spell_adder_uses_remaining": 0,
+      "spell_adder_realm": "",
+      "pp_multiplier_profession": "",
+      "spell_adder_profession": ""
     },
     "creature_attack": {
       "templates": ["base"],
@@ -396,7 +410,24 @@
       "cost": 0,
       "prod_time": 0,
       "at": 1,
-      "isShield": false
+      "armorSlot": "body",
+      "isShield": false,
+      "weight_percent": 100,
+      "material": "iron",
+      "bonus": 0,
+      "magical": false,
+      "holy": false,
+      "unholy": false,
+      "of_changing": false,
+      "bonus_skills": [],
+      "magic": { "enchantments": [] },
+      "pp_multiplier": 1,
+      "pp_multiplier_realm": "",
+      "spell_adder": 0,
+      "spell_adder_uses_remaining": 0,
+      "spell_adder_realm": "",
+      "pp_multiplier_profession": "",
+      "spell_adder_profession": ""
     },
     "weapon": {
       "templates": ["item"],
@@ -412,7 +443,31 @@
       "fumble_range": "",
       "attack_table": "",
       "critical_type": "",
-      "offensive_skill": ""
+      "offensive_skill": "",
+      "weight_percent": 100,
+      "material": "iron",
+      "bonus": 0,
+      "magical": false,
+      "holy": false,
+      "unholy": false,
+      "of_changing": false,
+      "bonus_skills": [],
+      "magic": { "enchantments": [] },
+      "pp_multiplier": 1,
+      "pp_multiplier_realm": "",
+      "spell_adder": 0,
+      "spell_adder_uses_remaining": 0,
+      "spell_adder_realm": "",
+      "pp_multiplier_profession": "",
+      "spell_adder_profession": "",
+      "slaying": "",
+      "weapon_effects": {
+        "increased_initiative": "",
+        "effect_weapon": "",
+        "effect_weapon_critical_type": "",
+        "increased_critical": false,
+        "weapon_of_bleeding": false
+      }
     },
     "herb_or_poison": {
       "templates": ["item"],
@@ -426,6 +481,7 @@
     },
     "skill": {
       "templates": ["base"],
+      "slug": "",
       "category": "",
       "ranks": 0,
       "new_ranks": {

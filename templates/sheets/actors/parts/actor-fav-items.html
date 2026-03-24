@@ -12,6 +12,13 @@
                 <i class="fas fa-info-circle spell-info-icon"
                    data-tooltip="{{equipable.system.description}}"></i>
                 {{/if}}</h4>
+                {{#if (gt equipable.system.spell_adder 0)}}
+                <div class="spell-adder-pips">
+                  {{#times equipable.system.spell_adder}}
+                  <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
+                  {{/times}}
+                </div>
+                {{/if}}
             </div></td>
             <td><div class="equipable-entry item-prop"><div>{{equipable.system.at}}</div></div></td>
             <td><div class="equipable-entry item-prop"> - </div></td>
@@ -28,6 +35,13 @@
               <i class="fas fa-info-circle spell-info-icon"
                  data-tooltip="{{weapon.system.description}}"></i>
               {{/if}}</h4>
+              {{#if (gt weapon.system.spell_adder 0)}}
+              <div class="spell-adder-pips">
+                {{#times weapon.system.spell_adder}}
+                <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
+                {{/times}}
+              </div>
+              {{/if}}
           </div></td>
           <td><div class="equipable-entry item-prop"><div> - </div></div></td>
           <td><div class="equipable-entry item-prop">{{weapon.system.breakage_range}}</div></td>

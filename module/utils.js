@@ -64,4 +64,25 @@ export default class Utils {
         // actorId?
         return game.actors.get(actorOrTokenOrId);
     }
+
+    /**
+     * Whether the actor should not receive attacks (no HP left or marked defeated in the active encounter).
+     * @param {Actor|null|undefined} actor
+     * @returns {boolean}
+     */
+    static isTargetDefeated(actor) {
+        if (!actor) return false;
+        const hits = actor.system?.attributes?.hits;
+        if (hits) {
+            const cur = Number(hits.current);
+            if (Number.isFinite(cur) && cur <= 0) return true;
+        }
+        const combat = game.combat;
+        if (combat?.combatants?.size) {
+            for (const c of combat.combatants) {
+                if (c.actorId === actor.id && c.defeated) return true;
+            }
+        }
+        return false;
+    }
 }

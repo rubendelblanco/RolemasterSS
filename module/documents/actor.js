@@ -1,3 +1,5 @@
+import EquipmentService from "../actors/services/equipment_service.js";
+
 export class RMSSActor extends Actor {
 
   /** @override */
@@ -49,6 +51,8 @@ export class RMSSActor extends Actor {
    */
   _prepareNpcData(actorData) {
     if (actorData.type !== "npc") return;
+
+    this.calculateSkillBonuses();
 
     // Make modifications to data here. For example:
     const data = actorData.system;
@@ -185,11 +189,67 @@ export class RMSSActor extends Actor {
     const skillBonuses = (profession?.system?.professionBonuses ?? []).filter(b => b.type === "skill");
     const bonusBySkillName = Object.fromEntries(skillBonuses.map(b => [b.slug, Number(b.bonus) || 0]));
 
+    const equippedWeapons = EquipmentService.getEquippedWeapons(this);
+    const weaponBonusBySkillId = {};
+    if (equippedWeapons.length === 1) {
+      const weapon = equippedWeapons[0];
+      const skillId = weapon.system?.offensive_skill;
+      const bonus = Number(weapon.system?.bonus) || 0;
+      if (skillId && bonus !== 0) {
+        weaponBonusBySkillId[skillId] = bonus;
+      }
+    } else if (equippedWeapons.length === 2) {
+      const skills = equippedWeapons.map(w => (w.system?.offensive_skill || "").trim()).filter(Boolean);
+      const uniqueSkills = [...new Set(skills)];
+      if (uniqueSkills.length === 2) {
+        equippedWeapons.forEach(weapon => {
+          const skillId = weapon.system?.offensive_skill;
+          const bonus = Number(weapon.system?.bonus) || 0;
+          if (skillId && bonus !== 0) {
+            weaponBonusBySkillId[skillId] = (weaponBonusBySkillId[skillId] || 0) + bonus;
+          }
+        });
+      }
+    }
+
+    // Gear (item worn), armor (equipped), weapon (equipped) that grant bonus to skills
+    const gearBonusBySkillSlug = {};
+    const gearBonusBySkillName = {};
+    const normalizeBonusEntries = (raw) => {
+      if (Array.isArray(raw)) return raw;
+      if (raw && typeof raw === "object") {
+        const keys = Object.keys(raw).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b));
+        return keys.map(k => raw[k]);
+      }
+      return [];
+    };
+    const addBonusSkillsFromItem = (item) => {
+      const raw = item.system.bonus_skills ?? (item.system.bonus_skill ? [{ skill: item.system.bonus_skill, skill_name: item.system.bonus_skill_name || "", bonus: Number(item.system.bonus) || 0 }] : []);
+      const entries = normalizeBonusEntries(raw);
+      for (const e of entries) {
+        const bonus = Number(e?.bonus) || 0;
+        if (bonus === 0) continue;
+        const slug = (e?.skill || "").trim();
+        const name = (e?.skill_name || "").trim();
+        if (slug) gearBonusBySkillSlug[slug] = (gearBonusBySkillSlug[slug] || 0) + bonus;
+        if (name) gearBonusBySkillName[name] = (gearBonusBySkillName[name] || 0) + bonus;
+      }
+    };
+    for (const gear of this.items) {
+      if (gear.type === "item" && gear.system?.worn) addBonusSkillsFromItem(gear);
+      else if (gear.type === "armor" && gear.system?.equipped) addBonusSkillsFromItem(gear);
+      else if (gear.type === "weapon" && gear.system?.equipped) addBonusSkillsFromItem(gear);
+    }
+
+
     for (const item of this.items) {
       if (item.type === "skill") {
-        const baseItemBonus = Number(item.system.item_bonus) || 0;
         const profBonus = bonusBySkillName[item.name] ?? 0;
-        item.system.item_bonus = baseItemBonus + profBonus;
+        const weaponBonus = weaponBonusBySkillId[item.id ?? item._id] ?? 0;
+        const skillSlug = (item.system?.slug || "").trim();
+        const skillName = (item.name || "").trim();
+        const gearBonus = gearBonusBySkillSlug[skillSlug] ?? gearBonusBySkillName[skillName] ?? 0;
+        item.system.item_bonus = profBonus + weaponBonus + gearBonus;
         item.calculateSelectedSkillCategoryBonus(item);
         item.calculateSkillTotalBonus(item);
       }

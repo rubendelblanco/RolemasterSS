@@ -24,13 +24,23 @@ export default class EquipmentService {
   }
 
   /**
+   * Get armor slot (body, helmet, shield). Uses armorSlot, falls back to isShield.
+   * @param {Item} armor - Armor item
+   * @returns {string} "body" | "helmet" | "shield"
+   */
+  static getArmorSlot(armor) {
+    if (!armor || armor.type !== "armor") return "body";
+    return armor.system?.armorSlot || (armor.system?.isShield ? "shield" : "body");
+  }
+
+  /**
    * Returns hands used by equipped armor (shield = 1).
    * @param {Item} armor - Armor item
    * @returns {number} 0 or 1
    */
   static getArmorHands(armor) {
     if (!armor || armor.type !== "armor") return 0;
-    if (armor.system?.isShield === true && armor.system?.equipped === true) return 1;
+    if (this.getArmorSlot(armor) === "shield" && armor.system?.equipped === true) return 1;
     return 0;
   }
 
@@ -96,24 +106,77 @@ export default class EquipmentService {
   static getItemHandsIfEquipped(item) {
     if (!item) return 0;
     if (item.type === "weapon") return this.getWeaponHands(item);
-    if (item.type === "armor" && item.system?.isShield === true) return 1;
+    if (item.type === "armor" && this.getArmorSlot(item) === "shield") return 1;
     return 0;
   }
 
   /**
+   * Check if equipping this armor would conflict with another equipped armor in the same slot.
+   * Only one armor per slot (body, helmet, shield) can be equipped.
+   * @param {Actor} actor
+   * @param {Item} item - armor item to equip
+   * @returns {{ valid: boolean, reason?: string }}
+   */
+  static canEquipArmor(actor, item) {
+    if (!actor?.items || item?.type !== "armor") return { valid: true };
+    const slot = this.getArmorSlot(item);
+    const itemId = item.id ?? item._id;
+    const equippedInSlot = actor.items.find(
+      (i) => i.type === "armor" && (i.id ?? i._id) !== itemId && i.system?.equipped && this.getArmorSlot(i) === slot
+    );
+    if (equippedInSlot) {
+      return { valid: false, reason: "armor_slot_occupied" };
+    }
+    return { valid: true };
+  }
+
+  /**
+   * Equipped weapons only (weapon type, equipped=true). Excludes natural weapons and creature_attack.
+   * Used to determine if weapon skill bonus applies (only when exactly one weapon equipped).
+   * @param {Actor} actor
+   * @returns {Item[]}
+   */
+  static getEquippedWeapons(actor) {
+    if (!actor?.items) return [];
+    return actor.items.filter(
+      (i) => i.type === "weapon" && i.system?.equipped === true && i.system?.isNaturalWeapon !== true
+    );
+  }
+
+  /**
    * Check if equipping this item would exceed MAX_HANDS.
+   * For weapons: allows 2 weapons only when both are 1-handed AND have different offensive_skill.
    * @param {Actor} actor
    * @param {Item} item - The item to equip
-   * @returns {{ valid: boolean, currentHands: number, itemHands: number }}
+   * @returns {{ valid: boolean, currentHands: number, itemHands: number, reason?: string }}
    */
   static canEquip(actor, item) {
     const currentHands = this.getHandsOccupied(actor);
     const itemHands = this.getItemHandsIfEquipped(item);
     const wouldExceed = (currentHands + itemHands) > this.MAX_HANDS;
-    return {
-      valid: !wouldExceed,
-      currentHands,
-      itemHands
-    };
+    if (wouldExceed) {
+      return { valid: false, currentHands, itemHands, reason: "hands_limit_exceeded" };
+    }
+
+    if (item.type === "weapon" && item.system?.isNaturalWeapon !== true) {
+      const equippedWeapons = this.getEquippedWeapons(actor);
+      if (equippedWeapons.length >= 1) {
+        const newWeaponHands = this.getWeaponHands(item);
+        const existingWeapon = equippedWeapons[0];
+        const existingHands = this.getWeaponHands(existingWeapon);
+        const bothOneHanded = newWeaponHands === 1 && existingHands === 1;
+        const newSkill = (item.system?.offensive_skill || "").trim();
+        const existingSkill = (existingWeapon.system?.offensive_skill || "").trim();
+        const sameSkill = newSkill && existingSkill && newSkill === existingSkill;
+        if (!bothOneHanded) {
+          return { valid: false, currentHands, itemHands, reason: "dual_wield_both_one_handed" };
+        }
+        if (sameSkill) {
+          return { valid: false, currentHands, itemHands, reason: "dual_wield_same_skill" };
+        }
+      }
+    }
+
+    return { valid: true, currentHands, itemHands };
   }
 }

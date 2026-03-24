@@ -8,6 +8,7 @@ import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_
 import { sendExpMessage } from "../../chat/chatMessages.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 import Utils from "../../utils.js";
+import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
 
 /**
  * Service to handle spell casting for non-elemental spells (F, P, U, I, E types).
@@ -24,10 +25,9 @@ export default class ForceSpellService {
      * @param {string} params.spellListName - Name of the spell list (to find matching skill)
      * @param {string} params.spellListRealm - Realm of the spell list
      */
-    static async castForceSpell({ actor, spell, spellListName, spellListRealm }) {
-        // Check power points before casting (spell level = PP cost), unless spell has no_pp
+    static async castForceSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0 }) {
         const spellLevel = spell.system?.level ?? 1;
-        const noPP = spell.system?.no_pp === true;
+        let noPP = !consumePowerPoints || spell.system?.no_pp === true;
         if (!noPP) {
             const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
             if (currentPP < spellLevel) {
@@ -43,18 +43,25 @@ export default class ForceSpellService {
 
         // Determine realm for casting options
         const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
-        
-        // Show casting options dialog first
+        const spellAdder = !noPP ? getMatchingSpellAdder(actor) : null;
+
         const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
             realm: effectiveRealm,
             spellType: spell.system.type,
             spellName: spell.name,
-            actor
+            actor,
+            spellAdderItemName: spellAdder?.item?.name ?? null,
+            spellAdderUsesRemaining: spellAdder?.usesRemaining ?? 0,
+            spellAdderUsesMax: spellAdder?.value ?? 0
         });
 
-        // If user cancelled the dialog, abort
         if (castingOptions === null) {
             return;
+        }
+
+        if (castingOptions.useSpellAdder) {
+            noPP = true;
+            if (spellAdder?.item) await consumeSpellAdderUse(spellAdder.item);
         }
 
         let totalCastingModifier = castingOptions.totalModifier;
@@ -74,23 +81,27 @@ export default class ForceSpellService {
             }
         }
 
-        // Find the skill with the same name as the spell list; if none (creatures/NPCs), use spell maneuver modifier
-        const skill = actor.items.find(i =>
-            i.type === "skill" && i.name === spellListName
-        );
+        // Find the skill with the same name as the spell list; if from enchantment, maneuver ability is always 0
         let skillBonus;
-        if (skill) {
-            skillBonus = skill.system?.total_bonus ?? 0;
+        if (fromEnchantment) {
+            skillBonus = 0;
         } else {
-            const isCreatureOrNpc = actor.type === "creature" || actor.type === "npc";
-            const creatureLevel = parseInt(actor.system?.attributes?.level?.value, 10) || 0;
-            if (isCreatureOrNpc) {
-                const spellList = actor.items.find(i => i.type === "spell_list" && i.name === spellListName);
-                const stored = spellList?.flags?.rmss?.spellManeuverModifier;
-                skillBonus = (stored !== undefined && stored !== null)
-                    ? parseInt(stored, 10) : creatureLevel;
+            const skill = actor.items.find(i =>
+                i.type === "skill" && i.name === spellListName
+            );
+            if (skill) {
+                skillBonus = skill.system?.total_bonus ?? 0;
             } else {
-                skillBonus = 0;
+                const isCreatureOrNpc = actor.type === "creature" || actor.type === "npc";
+                const creatureLevel = parseInt(actor.system?.attributes?.level?.value, 10) || 0;
+                if (isCreatureOrNpc) {
+                    const spellList = actor.items.find(i => i.type === "spell_list" && i.name === spellListName);
+                    const stored = spellList?.flags?.rmss?.spellManeuverModifier;
+                    skillBonus = (stored !== undefined && stored !== null)
+                        ? parseInt(stored, 10) : creatureLevel;
+                } else {
+                    skillBonus = 0;
+                }
             }
         }
 
@@ -125,7 +136,7 @@ export default class ForceSpellService {
         // For 100, use just 100 (special result UM 100)
         // Modified rolls: 03-95 (add skill bonus and casting modifiers to first roll only)
         const isUnmodified = naturalRoll <= 2 || naturalRoll >= 96;
-        const totalBonus = skillBonus + totalCastingModifier;
+        const totalBonus = skillBonus + totalCastingModifier + enchantmentAttackBonus;
         const finalResult = isUnmodified ? rollTotal : naturalRoll + totalBonus;
 
         // Only process RR for Force (F) type spells with targets
@@ -224,6 +235,7 @@ export default class ForceSpellService {
             spellListName,
             skillBonus,
             castingModifier: totalCastingModifier,
+            enchantmentAttackBonus,
             hitsTaken,
             bleeding,
             stunned,
@@ -362,6 +374,7 @@ export default class ForceSpellService {
         spellListName,
         skillBonus,
         castingModifier = 0,
+        enchantmentAttackBonus = 0,
         hitsTaken = 0,
         bleeding = 0,
         stunned = 0,
@@ -379,7 +392,7 @@ export default class ForceSpellService {
         casterLevel = 1
     }) {
         const hasTargets = targets.length > 0;
-        const totalBonus = skillBonus + castingModifier;
+        const totalBonus = skillBonus + castingModifier + enchantmentAttackBonus;
         const formatMod = (n) => n >= 0 ? `+${n}` : `${n}`;
         const isExplosive = rollTotal && rollTotal !== naturalRoll;
         
@@ -403,6 +416,7 @@ export default class ForceSpellService {
                     ${!isUnmodified ? `
                     <div>📊 Skill: <strong>${formatMod(skillBonus)}</strong></div>
                     ${castingModifier !== 0 ? `<div>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></div>` : ''}
+                    ${enchantmentAttackBonus !== 0 ? `<div>✨ ${game.i18n.localize("rmss.item.enchantments_attack_bonus")}: <strong>${formatMod(enchantmentAttackBonus)}</strong></div>` : ''}
                     ${hitsTaken !== 0 ? `<div>💔 ${game.i18n.localize("rmss.combat.hits_taken")}: <strong>${formatMod(hitsTaken)}</strong></div>` : ''}
                     ${bleeding !== 0 ? `<div>🩸 ${game.i18n.localize("rmss.maneuvers.bleeding")}: <strong>${formatMod(bleeding)}</strong></div>` : ''}
                     ${stunned !== 0 ? `<div>😵 ${game.i18n.localize("rmss.maneuvers.stunned")}: <strong>${formatMod(stunned)}</strong></div>` : ''}

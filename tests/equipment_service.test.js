@@ -8,8 +8,8 @@ describe("EquipmentService", () => {
   const mockWeapon2H = { type: "weapon", system: { equipped: true, type: "2h", isNaturalWeapon: false } };
   const mockNaturalWeapon = { type: "weapon", system: { equipped: false, hands: 1, isNaturalWeapon: true } };
   const mockCreatureAttack = { type: "creature_attack", system: {} };
-  const mockShield = { type: "armor", system: { equipped: true, isShield: true } };
-  const mockArmor = { type: "armor", system: { equipped: true, isShield: false } };
+  const mockShield = { type: "armor", _id: "s1", system: { equipped: true, armorSlot: "shield", isShield: true } };
+  const mockArmor = { type: "armor", _id: "a1", system: { equipped: true, armorSlot: "body", isShield: false } };
 
   describe("getWeaponHands", () => {
     test("1H weapon returns 1", () => {
@@ -119,6 +119,43 @@ describe("EquipmentService", () => {
       const result = EquipmentService.canEquip(actor, newWeapon);
       expect(result.valid).toBe(false);
       expect(result.currentHands).toBe(2);
+    });
+    test("can equip 2 one-handed weapons with different skills", () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } };
+      const actor = { items: [weapon1] };
+      const weapon2 = { type: "weapon", system: { type: "1he", isNaturalWeapon: false, offensive_skill: "skill-shortsword" } };
+      const result = EquipmentService.canEquip(actor, weapon2);
+      expect(result.valid).toBe(true);
+    });
+    test("cannot equip 2 one-handed weapons with same skill", () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } };
+      const actor = { items: [weapon1] };
+      const weapon2 = { type: "weapon", system: { type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } };
+      const result = EquipmentService.canEquip(actor, weapon2);
+      expect(result.valid).toBe(false);
+      expect(result.reason).toBe("dual_wield_same_skill");
+    });
+  });
+
+  describe("canEquipArmor", () => {
+    test("can equip when slot is free", () => {
+      const actor = { items: [] };
+      const armor = { type: "armor", _id: "a1", system: { armorSlot: "body" } };
+      expect(EquipmentService.canEquipArmor(actor, armor).valid).toBe(true);
+    });
+    test("cannot equip second body armor when one already equipped", () => {
+      const body1 = { type: "armor", _id: "b1", system: { equipped: true, armorSlot: "body" } };
+      const actor = { items: [body1] };
+      const body2 = { type: "armor", _id: "b2", system: { armorSlot: "body" } };
+      const result = EquipmentService.canEquipArmor(actor, body2);
+      expect(result.valid).toBe(false);
+      expect(result.reason).toBe("armor_slot_occupied");
+    });
+    test("can equip body + helmet + shield", () => {
+      const body = { type: "armor", _id: "b1", system: { equipped: true, armorSlot: "body" } };
+      const actor = { items: [body] };
+      const helmet = { type: "armor", _id: "h1", system: { armorSlot: "helmet" } };
+      expect(EquipmentService.canEquipArmor(actor, helmet).valid).toBe(true);
     });
   });
 });

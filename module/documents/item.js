@@ -17,6 +17,34 @@
 
 export class RMSSItem extends Item {
 
+  /**
+   * Effective unit cost = unitCost × material baseCostModifier × weight reduction modifier (Arms Law table 08-02).
+   * For custom material, modifier is 1. Weight reduction uses % of min normal weight.
+   */
+  get effectiveUnitCost() {
+    if (!["armor", "weapon", "item"].includes(this.type)) return Number(this.system.unitCost) || 0;
+    const mat = CONFIG.rmss?.materials?.[this.system.material];
+    const matMod = mat?.baseCostModifier ?? 1;
+    const weightMod = this._getWeightReductionModifier();
+    return (Number(this.system.unitCost) || 0) * matMod * weightMod;
+  }
+
+  /** Get weight reduction cost modifier from table 08-02 (Weight Decreases Due to Material and Design). */
+  _getWeightReductionModifier() {
+    return RMSSItem.getWeightModifierFromPercent(this.system.weight_percent);
+  }
+
+  /** Static: compute weight cost modifier from a raw percent value (for live UI updates). */
+  static getWeightModifierFromPercent(percent) {
+    const wr = CONFIG.rmss?.weight_reduction;
+    if (!wr) return 1;
+    const p = Number(percent) || 100;
+    for (const entry of Object.values(wr)) {
+      if (p >= entry.min && p <= entry.max) return entry.modifier;
+    }
+    return p >= 95 ? 1 : 500;
+  }
+
   /** @override */
   prepareData() {
     // Prepare data for the item. Calling the super version of this executes
@@ -61,6 +89,19 @@ export class RMSSItem extends Item {
     if (itemData.type === "skill") {
       this._prepareSkillData(itemData);
     }
+
+    if (itemData.type === "armor") {
+      this._prepareArmorData(itemData);
+    }
+  }
+
+  _prepareArmorData(itemData) {
+    if (itemData.type !== "armor") return;
+    const sys = itemData.system;
+    if (sys.armorSlot === undefined) {
+      sys.armorSlot = sys.isShield === true ? "shield" : "body";
+    }
+    sys.isShield = sys.armorSlot === "shield";
   }
 
   _prepareSkillCategoryData(itemData) {

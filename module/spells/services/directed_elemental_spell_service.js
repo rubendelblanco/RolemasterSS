@@ -14,6 +14,8 @@ import FacingService from "../../combat/services/facing_service.js";
 import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
 import { socket } from "../../../rmss.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
+import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
+import Utils from "../../utils.js";
 
 export default class DirectedElementalSpellService {
 
@@ -26,7 +28,7 @@ export default class DirectedElementalSpellService {
      * @param {string} params.spellListName - Name of the spell list (for context)
      * @param {string} params.spellListRealm - Realm of the spell list
      */
-    static async castDirectedElementalSpell({ actor, spell, spellListName, spellListRealm }) {
+    static async castDirectedElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0 }) {
         const attackTableName = spell.system?.attack_table;
         if (!attackTableName || !CONFIG.rmss?.boltTables?.includes(attackTableName)) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_attack_table"));
@@ -35,14 +37,14 @@ export default class DirectedElementalSpellService {
 
         const skillName = spell.system?.skillName;
         const isCreature = actor.type === "creature";
-        // Characters and NPCs need a skill; creatures don't have skills, so skillName is optional for them
-        if (!isCreature && !skillName) {
+        // Characters and NPCs need a skill (unless from enchantment); creatures don't have skills
+        if (!fromEnchantment && !isCreature && !skillName) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_skill"));
             return;
         }
 
         const spellLevel = spell.system?.level ?? 1;
-        const noPP = spell.system?.no_pp === true;
+        let noPP = !consumePowerPoints || spell.system?.no_pp === true;
         if (!noPP) {
             const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
             if (currentPP < spellLevel) {
@@ -56,7 +58,7 @@ export default class DirectedElementalSpellService {
             }
         }
 
-        // OB: skill bonus for characters, creature_attack bonus for creatures
+        // OB: from enchantment use skill if developed (manual exception); otherwise skill for characters, creature_attack for creatures
         let skillBonus;
         let displaySkillName;
         if (isCreature && skillName) {
@@ -72,18 +74,26 @@ export default class DirectedElementalSpellService {
                 i.name === skillName
             ) : null;
             skillBonus = skill?.system?.total_bonus ?? 0;
-            displaySkillName = skillName || (isCreature ? game.i18n.localize("rmss.spells.de_creature_cast") : "");
+            displaySkillName = skillName || (isCreature ? game.i18n.localize("rmss.spells.de_creature_cast") : (fromEnchantment ? (spellListName || spell.name || "") : ""));
         }
 
         const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
+        const spellAdder = !noPP ? getMatchingSpellAdder(actor) : null;
         const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
             realm: effectiveRealm,
             spellType: "DE",
             spellName: spell.name,
-            actor
+            actor,
+            spellAdderItemName: spellAdder?.item?.name ?? null,
+            spellAdderUsesRemaining: spellAdder?.usesRemaining ?? 0,
+            spellAdderUsesMax: spellAdder?.value ?? 0
         });
 
         if (castingOptions === null) return;
+        if (castingOptions.useSpellAdder) {
+            noPP = true;
+            if (spellAdder?.item) await consumeSpellAdderUse(spellAdder.item);
+        }
 
         const targets = Array.from(game.user.targets);
         if (targets.length === 0) {
@@ -123,13 +133,18 @@ export default class DirectedElementalSpellService {
         }
 
         const spellOptions = {
-            ob: skillBonus,
+            ob: skillBonus + enchantmentAttackBonus,
             hitsTaken,
             bleeding,
             penaltyValue,
             bonusValue: restModifier,
             ...(facingValue !== null && { facingValue })
         };
+
+        if (Utils.isTargetDefeated(enemyActor)) {
+            ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
+            return;
+        }
 
         if (!game.user.isGM) {
             ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
@@ -232,23 +247,23 @@ export default class DirectedElementalSpellService {
             const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
             if (isNullResult) continue;
 
-            const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
+            let criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
                 attackResult.damage,
                 attackTable.critical_severity || null
             );
+            criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, targetActor);
 
             if (criticalResult.criticals === "fumble") continue;
 
-            if (criticalResult.criticals.length === 0) {
-                const critType = attackTable.critical_severity?.default || "heat";
-                criticalResult.criticals = [{ severity: null, critType, damage: criticalResult.damage ?? 0 }];
+            if (!RMSSWeaponCriticalManager.hasResolvableCriticalForChat(criticalResult)) {
                 const damageToApply = parseInt(criticalResult.damage);
                 if (!isNaN(damageToApply) && damageToApply > 0) {
-                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(target.actor ?? target, damageToApply, actor.id);
+                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(targetActor, damageToApply, actor.id);
                     if (actor.type === "character") {
                         await ExperienceManager.applyExperience(actor, criticalResult.damage);
                     }
                 }
+                continue;
             }
 
             await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, target, false);

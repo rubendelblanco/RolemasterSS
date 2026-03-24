@@ -205,6 +205,20 @@ Hooks.once("init", function () {
     default: true
   });
 
+  game.settings.register("rmss", "sacredToHolyMigrated", {
+    scope: "world",
+    config: false,
+    type: Boolean,
+    default: false
+  });
+
+  game.settings.register("rmss", "ofDarknessToUnholyMigrated", {
+    scope: "world",
+    config: false,
+    type: Boolean,
+    default: false
+  });
+
   // --- Register the system setting for maximum Fate Points ---
   game.settings.register("rmss", "maxFatePoints", {
     name: "Maximum Fate Points",
@@ -345,6 +359,25 @@ Hooks.once("init", function () {
     return parseInt(value) + 1;
   });
 
+  /**
+   * Crítico A–E: círculo (fas fa-circle) + letra, colores de gravedad creciente.
+   * Equivale visualmente a los FA Pro circle-a…e, compatibles con FA Free de Foundry.
+   */
+  Handlebars.registerHelper("criticalSeverityIcon", function (severity) {
+    const raw = severity == null ? "" : String(severity);
+    const letter = raw.trim().toUpperCase().charAt(0);
+    if (!["A", "B", "C", "D", "E"].includes(letter)) {
+      return new Handlebars.SafeString(Handlebars.escapeExpression(raw));
+    }
+    const key = letter.toLowerCase();
+    const esc = Handlebars.escapeExpression(letter);
+    const html =
+      `<span class="rmss-crit-severity rmss-crit-severity-${key}" role="img" aria-label="${esc}" title="${esc}">` +
+      `<i class="fas fa-circle" aria-hidden="true"></i>` +
+      `<span class="rmss-crit-severity-letter">${esc}</span></span>`;
+    return new Handlebars.SafeString(html);
+  });
+
   Handlebars.registerHelper("switch", function (value, options) {
     const context = Object.assign({}, this);
     context.switch_value = value;
@@ -391,6 +424,12 @@ Hooks.once("init", function () {
   Handlebars.registerHelper("percentage", function (a, b) {
     if (typeof a !== "number" || typeof b !== "number" || b === 0) return 0;
     return Math.round((a / b) * 100);
+  });
+
+  Handlebars.registerHelper("times", function (n, options) {
+    let result = "";
+    for (let i = 0; i < n; i++) result += options.fn(i);
+    return result;
   });
 
   Handlebars.registerHelper("formatNumber", function (value, decimals) {
@@ -496,7 +535,105 @@ Hooks.once("init", function () {
     CONFIG.rmss.skillCategories = Object.entries(categories)
       .map(([slug, data]) => ({ system: { slug }, name: data.name }))
       .sort((a, b) => a.name.localeCompare(b.name));
+
+    // Migration: sacred -> holy (manual uses "Holy")
+    const migrated = game.settings.get("rmss", "sacredToHolyMigrated");
+    if (!migrated && game.actors) {
+      let count = 0;
+      for (const actor of game.actors) {
+        for (const item of actor.items) {
+          if (!["item", "armor", "weapon"].includes(item.type)) continue;
+          const sys = item.system;
+          if (sys?.sacred !== undefined) {
+            await item.update({ "system.holy": sys.sacred, "system.-=sacred": null });
+            count++;
+          }
+        }
+      }
+      if (count > 0) console.log(`RMSS | Migrated ${count} items from sacred to holy`);
+      await game.settings.set("rmss", "sacredToHolyMigrated", true);
+    }
+
+    // Migration: of_darkness -> unholy
+    const unholyMigrated = game.settings.get("rmss", "ofDarknessToUnholyMigrated");
+    if (!unholyMigrated && game.actors) {
+      let count = 0;
+      for (const actor of game.actors) {
+        for (const item of actor.items) {
+          if (!["item", "armor", "weapon"].includes(item.type)) continue;
+          const sys = item.system;
+          if (sys?.of_darkness !== undefined) {
+            await item.update({ "system.unholy": sys.of_darkness, "system.-=of_darkness": null });
+            count++;
+          }
+        }
+      }
+      if (count > 0) console.log(`RMSS | Migrated ${count} items from of_darkness to unholy`);
+      await game.settings.set("rmss", "ofDarknessToUnholyMigrated", true);
+    }
   });
+
+  // Fix corrupted enchantments (object with numeric keys instead of array)
+  Hooks.once("ready", async () => {
+    if (!game.actors) return;
+    for (const actor of game.actors) {
+      for (const item of actor.items) {
+        if (!["item", "armor", "weapon"].includes(item.type)) continue;
+        const ench = item.system?.magic?.enchantments;
+        if (ench && !Array.isArray(ench) && typeof ench === "object") {
+          const arr = Object.keys(ench).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b)).map(k => ench[k]);
+          await item.update({ "system.magic.enchantments": arr });
+          console.log(`RMSS | Fixed corrupted enchantments on ${item.name} (${actor.name})`);
+        }
+      }
+    }
+  });
+
+  /** Reset daily enchantment uses and spell adder uses.
+   *  Call Hooks.call("rmssLongRest") for all actors, or Hooks.call("rmssLongRest", actor) for one. */
+  Hooks.on("rmssLongRest", async (actor) => {
+    const actors = actor ? [actor] : (game.actors || []);
+    for (const a of actors) {
+      for (const item of a.items) {
+        if (!["item", "armor", "weapon"].includes(item.type)) continue;
+
+        const enchantments = item.system?.magic?.enchantments;
+        if (Array.isArray(enchantments)) {
+          let changed = false;
+          const updated = enchantments.map((e) => {
+            if (e.usage === "daily") {
+              const perDay = Number(e.usesPerDay) || 0;
+              if (Number(e.usesRemaining) !== perDay) {
+                changed = true;
+                return { ...e, usesRemaining: perDay };
+              }
+            }
+            return e;
+          });
+          if (changed) await item.update({ "system.magic.enchantments": updated });
+        }
+
+        const spellAdder = Number(item.system?.spell_adder) || 0;
+        if (spellAdder > 0 && Number(item.system?.spell_adder_uses_remaining) !== spellAdder) {
+          await item.update({ "system.spell_adder_uses_remaining": spellAdder });
+        }
+      }
+    }
+  });
+
+  /** Generate slug from name: lowercase, normalize accents, replace spaces/special chars with hyphens. */
+  const slugFromName = (name) => {
+    if (!name || typeof name !== "string") return "";
+    return String(name)
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .toLowerCase()
+      .replace(/\s*[•·]\s*/g, "-")
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "");
+  };
 
   // Ensure skill_category has slug when created (e.g. from compendium without slug)
   Hooks.on("preCreateItem", (item, data, options) => {
@@ -513,6 +650,34 @@ Hooks.once("init", function () {
     if (derivedSlug) {
       item.updateSource({ "system.slug": derivedSlug });
     }
+  });
+
+  // Ensure skill has slug when created or when name changes
+  Hooks.on("preCreateItem", (item, data, options) => {
+    if (item.type !== "skill") return;
+    const name = item.name ?? data.name ?? "";
+    const derivedSlug = slugFromName(name);
+    if (derivedSlug) {
+      item.updateSource({ "system.slug": derivedSlug });
+    }
+  });
+
+  Hooks.on("preUpdateItem", (item, update, options, userId) => {
+    if (item.type !== "skill") return;
+    const nameChanged = "name" in update;
+    if (!nameChanged) return;
+    const newName = update.name ?? item.name ?? "";
+    const derivedSlug = slugFromName(newName);
+    if (derivedSlug) {
+      update.system = foundry.utils.mergeObject(update.system ?? {}, { slug: derivedSlug });
+    }
+  });
+
+  // Items dropped onto an actor are worn by default (character is carrying them)
+  Hooks.on("preCreateItem", (item, data, options, userId) => {
+    if (item.type !== "item") return;
+    if (!(item.parent instanceof Actor)) return;
+    item.updateSource({ "system.worn": true });
   });
 
   // Hook: renderChatMessage - Handle RR roll buttons
@@ -582,6 +747,18 @@ Hooks.once("init", function () {
     }
   });
 
+  // Hook: updateItem - refresh actor armor_info when armor item changes
+  Hooks.on("updateItem", async (item, update, options, userId) => {
+    if (item.type !== "armor") return;
+    const actor = item.parent;
+    if (!actor?.system?.armor_info) return;
+    const armorRelevant = "system.equipped" in update || "system.bonus" in update || "system.at" in update || "system.armorSlot" in update ||
+      update.system?.equipped !== undefined || update.system?.bonus !== undefined || update.system?.at !== undefined || update.system?.armorSlot !== undefined;
+    if (!armorRelevant) return;
+    const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
+    await ArmorInfoService.updateActorArmorInfo(actor);
+  });
+
   // Hook: updateItem - container capacity
   Hooks.on("updateItem", async (item, update, options, userId) => {
     const actor = item.parent;
@@ -613,10 +790,14 @@ Hooks.once("init", function () {
   });
 
   // Hook: updateItem - sync Body Development / Power Point Development skills to actor hits.max / power_points.max
+  // Also sync when weapon/armor/item with pp_multiplier/spell_adder changes
   Hooks.on("updateItem", async (item, update, options, userId) => {
     const actor = item.parent;
     if (!actor) return;
-    if (item.type !== "skill" && item.type !== "skill_category") return;
+    const ppRelevant = ["weapon", "armor", "item"].includes(item.type)
+      && ("system" in update)
+      && (["pp_multiplier", "pp_multiplier_realm", "spell_adder", "spell_adder_realm", "equipped"].some((k) => k in (update.system || {})));
+    if (item.type !== "skill" && item.type !== "skill_category" && !ppRelevant) return;
 
     await syncHitsAndPowerPointsFromSkills(actor);
   });
@@ -624,7 +805,8 @@ Hooks.once("init", function () {
   // Hook: createItem - sync Body Development / Power Point Development skills to actor hits.max / power_points.max
   Hooks.on("createItem", async (item, options, userId) => {
     const actor = item.parent;
-    if (!actor || item.type !== "skill") return;
+    if (!actor) return;
+    if (item.type !== "skill" && !["weapon", "armor", "item"].includes(item.type)) return;
 
     await syncHitsAndPowerPointsFromSkills(actor);
   });
@@ -655,7 +837,7 @@ Hooks.once("init", function () {
       }
     }
 
-    if (item.type === "skill") {
+    if (["skill", "weapon", "armor", "item"].includes(item.type)) {
       await syncHitsAndPowerPointsFromSkills(actor);
     }
   });

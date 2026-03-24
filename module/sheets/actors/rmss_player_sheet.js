@@ -14,6 +14,7 @@ import WeaponPreferenceDialog from "../../actors/dialogs/weapon_preference_dialo
 import StatAssignmentDialog from "../../actors/dialogs/stat_assignment_dialog.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 import RaceService from "../../actors/services/race_service.js";
+import { getEffectivePowerPointsMaxForSheet } from "../../actors/utils/power_points_util.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -34,6 +35,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
   // Make the data available to the sheet template
   async getData() {
+    // Forzar preparación del actor para que calculateSkillBonuses (y otros) se ejecute
+    // al abrir la hoja, no solo al cargar el mundo (F5)
+    this.actor.prepareData();
     // Retrieve base data from Foundry's ActorSheet
     let context = await super.getData();
 
@@ -292,6 +296,8 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     
     // Calculate recover_pp_per_hour_resting on initial load
     this._updatePowerPointRecovery(html);
+
+    html.find(".long-rest-btn").on("click", (ev) => this._onLongRest(ev));
   }
 
   async _onItemCreate(event) {
@@ -581,13 +587,13 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
   /**
    * Calculates and updates recover_hits_per_hour_resting and recover_hits_per_sleep_cycle
-   * based on constitution.basic_bonus.
+   * based on constitution.stat_bonus.
    * @param {jQuery} html - The jQuery object containing the sheet HTML (optional)
    */
   async _updateConstitutionRecovery(html = null) {
-    const basicBonus = Number(this.actor.system.stats?.constitution?.basic_bonus) || 0;
-    const recoverHitsPerHour = Math.ceil(basicBonus / 2);
-    const recoverHitsPerSleep = basicBonus * 2;
+    const statBonus = Number(this.actor.system.stats?.constitution?.stat_bonus) || 0;
+    const recoverHitsPerHour = Math.ceil(statBonus / 2);
+    const recoverHitsPerSleep = statBonus * 2;
     
     await this.actor.update({ 
       "system.race_stat_fixed_info.recover_hits_per_hour_resting": recoverHitsPerHour,
@@ -623,9 +629,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const realm = this.actor.system.fixed_info?.realm || "";
     const stats = this.actor.system.stats || {};
     
-    const empathyBonus = Number(stats.empathy?.basic_bonus) || 0;
-    const intuitionBonus = Number(stats.intuition?.basic_bonus) || 0;
-    const presenceBonus = Number(stats.presence?.basic_bonus) || 0;
+    const empathyBonus = Number(stats.empathy?.stat_bonus) || 0;
+    const intuitionBonus = Number(stats.intuition?.stat_bonus) || 0;
+    const presenceBonus = Number(stats.presence?.stat_bonus) || 0;
     
     switch (realm) {
       case "essence":
@@ -660,6 +666,108 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     await this.actor.update({ 
       "system.race_stat_fixed_info.recover_pp_per_hour_resting": recoverPPPerHour,
       "system.race_stat_fixed_info.recover_pp_per_sleep_cycle": recoverPPPerSleep
+    });
+  }
+
+  /**
+   * Stat bonus of the primary realm stat for power point recovery (same logic as
+   * _getPowerPointRecoveryBaseBonus, using total stat_bonus).
+   * @returns {number}
+   */
+  _getRealmStatBonus() {
+    return this._getPowerPointRecoveryBaseBonus();
+  }
+
+  /**
+   * Open dialog to choose rest duration, then apply long rest recovery and daily resets.
+   * @param {Event} event
+   */
+  _onLongRest(event) {
+    event.preventDefault();
+    if (!this.actor.isOwner && !game.user.isGM) {
+      ui.notifications.warn(game.i18n.localize("DOCUMENT.UpdateRequiresOwnership"));
+      return;
+    }
+
+    const title = game.i18n.localize("rmss.long_rest.dialog_title");
+    const labelHours = game.i18n.localize("rmss.long_rest.dialog_hours");
+    const btnLabel = game.i18n.localize("rmss.long_rest.confirm");
+
+    new Dialog({
+      title,
+      content: `<form><div class="form-group"><label>${labelHours}</label><input type="number" name="hours" value="6" min="1" step="1" data-dtype="Number"/></div></form>`,
+      buttons: {
+        rest: {
+          icon: '<i class="fas fa-bed"></i>',
+          label: btnLabel,
+          callback: async (html) => {
+            const hours = Number(html.find('[name="hours"]').val()) || 6;
+            await this._performLongRest(hours);
+          }
+        }
+      },
+      default: "rest"
+    }, { width: 320 }).render(true);
+  }
+
+  /**
+   * Apply HP/PP recovery from a long rest, reset enchantments/spell adder via hook, whisper summary.
+   * @param {number} hours
+   */
+  async _performLongRest(hours) {
+    this.actor.prepareData();
+
+    const intervals = Math.max(0, Math.floor(Number(hours) / 3));
+    const conStatBonus = Number(this.actor.system.stats?.constitution?.stat_bonus) || 0;
+    const realmStatBonus = this._getRealmStatBonus();
+
+    const hits = this.actor.system.attributes?.hits || {};
+    const hitsMax = Number(hits.max) || 0;
+    const hitsCurrent = Number(hits.current) || 0;
+    const hpRoom = Math.max(0, hitsMax - hitsCurrent);
+    const hpRecovered = Math.min(hpRoom, conStatBonus * 2 * intervals);
+
+    const pp = this.actor.system.attributes?.power_points || {};
+    const ppCurrent = Number(pp.current) || 0;
+    const ppMax = getEffectivePowerPointsMaxForSheet(this.actor);
+    const ppRoom = Math.max(0, ppMax - ppCurrent);
+    const ppRecovered = Math.min(ppRoom, realmStatBonus * 2 * intervals);
+
+    await this.actor.update({
+      "system.attributes.hits.current": hitsCurrent + hpRecovered,
+      "system.attributes.power_points.current": ppCurrent + ppRecovered
+    });
+
+    const hookReturns = Hooks.callAll("rmssLongRest", this.actor);
+    await Promise.all((hookReturns ?? []).filter((r) => r && typeof r.then === "function"));
+
+    const whispers = new Set();
+    (game.users ?? []).filter((u) => this.actor.testUserPermission(u, "OWNER")).forEach((u) => whispers.add(u.id));
+    (game.users ?? []).filter((u) => u.isGM).forEach((u) => whispers.add(u.id));
+
+    const hoursNum = Math.max(0, Math.floor(Number(hours)) || 0);
+    const hoursUnitKey = hoursNum === 1 ? "rmss.long_rest.hour_unit" : "rmss.long_rest.hours_unit";
+    const hoursUnit = game.i18n.localize(hoursUnitKey);
+    const nameSafe = typeof foundry.utils?.escapeHTML === "function"
+      ? foundry.utils.escapeHTML(this.actor.name)
+      : this.actor.name;
+    const summaryLine = game.i18n.format("rmss.long_rest.chat_message", {
+      name: nameSafe,
+      hours: hoursNum,
+      hoursUnit
+    });
+    const imgSrc = this.actor.img;
+    const portraitHtml = imgSrc
+      ? `<img src="${imgSrc}" alt="" width="40" height="40" style="border-radius: 6px; border: 1px solid #333; object-fit: cover; flex-shrink: 0;" />`
+      : "";
+    const content = `<p class="rmss-long-rest-chat" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 0 0 0.35em 0;">${portraitHtml}<span>${summaryLine}</span></p>
+            <p>${game.i18n.localize("rmss.long_rest.hits_recovered")}: ${hpRecovered}</p>
+            <p>${game.i18n.localize("rmss.long_rest.pp_recovered")}: ${ppRecovered}</p>`;
+
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content,
+      whisper: Array.from(whispers)
     });
   }
 }

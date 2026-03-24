@@ -14,6 +14,8 @@ import FacingService from "../../combat/services/facing_service.js";
 import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
 import { socket } from "../../../rmss.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
+import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
+import Utils from "../../utils.js";
 
 export default class BaseElementalSpellService {
 
@@ -26,7 +28,7 @@ export default class BaseElementalSpellService {
      * @param {string} params.spellListName - Name of the spell list (for skill bonus)
      * @param {string} params.spellListRealm - Realm of the spell list
      */
-    static async castBaseElementalSpell({ actor, spell, spellListName, spellListRealm }) {
+    static async castBaseElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0 }) {
         const attackTableName = spell.system?.attack_table;
         if (!attackTableName) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_attack_table"));
@@ -34,7 +36,7 @@ export default class BaseElementalSpellService {
         }
 
         const spellLevel = spell.system?.level ?? 1;
-        const noPP = spell.system?.no_pp === true;
+        let noPP = !consumePowerPoints || spell.system?.no_pp === true;
         if (!noPP) {
             const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
             if (currentPP < spellLevel) {
@@ -49,14 +51,22 @@ export default class BaseElementalSpellService {
         }
 
         const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
+        const spellAdder = !noPP ? getMatchingSpellAdder(actor) : null;
         const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
             realm: effectiveRealm,
             spellType: "BE",
             spellName: spell.name,
-            actor
+            actor,
+            spellAdderItemName: spellAdder?.item?.name ?? null,
+            spellAdderUsesRemaining: spellAdder?.usesRemaining ?? 0,
+            spellAdderUsesMax: spellAdder?.value ?? 0
         });
 
         if (castingOptions === null) return;
+        if (castingOptions.useSpellAdder) {
+            noPP = true;
+            if (spellAdder?.item) await consumeSpellAdderUse(spellAdder.item);
+        }
 
         const targets = Array.from(game.user.targets);
         if (targets.length === 0) {
@@ -64,21 +74,25 @@ export default class BaseElementalSpellService {
             return;
         }
 
-        // Skill bonus: from skill for characters, from spell maneuver modifier for creatures/NPCs
-        const skill = actor.items.find(i => i.type === "skill" && i.name === spellListName);
+        // Skill bonus: from enchantment always 0; otherwise from skill for characters, spell maneuver modifier for creatures/NPCs
         let skillBonus;
-        if (skill) {
-            skillBonus = skill.system?.total_bonus ?? 0;
+        if (fromEnchantment) {
+            skillBonus = 0;
         } else {
-            const isCreatureOrNpc = actor.type === "creature" || actor.type === "npc";
-            const creatureLevel = parseInt(actor.system?.attributes?.level?.value, 10) || 0;
-            if (isCreatureOrNpc) {
-                const spellList = actor.items.find(i => i.type === "spell_list" && i.name === spellListName);
-                const stored = spellList?.flags?.rmss?.spellManeuverModifier;
-                skillBonus = (stored !== undefined && stored !== null)
-                    ? parseInt(stored, 10) : creatureLevel;
+            const skill = actor.items.find(i => i.type === "skill" && i.name === spellListName);
+            if (skill) {
+                skillBonus = skill.system?.total_bonus ?? 0;
             } else {
-                skillBonus = 0;
+                const isCreatureOrNpc = actor.type === "creature" || actor.type === "npc";
+                const creatureLevel = parseInt(actor.system?.attributes?.level?.value, 10) || 0;
+                if (isCreatureOrNpc) {
+                    const spellList = actor.items.find(i => i.type === "spell_list" && i.name === spellListName);
+                    const stored = spellList?.flags?.rmss?.spellManeuverModifier;
+                    skillBonus = (stored !== undefined && stored !== null)
+                        ? parseInt(stored, 10) : creatureLevel;
+                } else {
+                    skillBonus = 0;
+                }
             }
         }
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
@@ -113,13 +127,18 @@ export default class BaseElementalSpellService {
         }
 
         const spellOptions = {
-            ob: skillBonus,
+            ob: skillBonus + enchantmentAttackBonus,
             hitsTaken,
             bleeding,
             penaltyValue,
             bonusValue: restModifier,
             ...(facingValue !== null && { facingValue })
         };
+
+        if (Utils.isTargetDefeated(enemyActor)) {
+            ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
+            return;
+        }
 
         if (!game.user.isGM) {
             ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
@@ -231,24 +250,24 @@ export default class BaseElementalSpellService {
             const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
             if (isNullResult) continue;
 
-            const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
+            let criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
                 attackResult.damage,
                 attackTable.critical_severity || null
             );
+            criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemyActor);
 
             // Per-target F (high defense): spell had no effect on this target, skip
             if (criticalResult.criticals === "fumble") continue;
 
-            if (criticalResult.criticals.length === 0) {
-                const critType = attackTable.critical_severity?.default || "heat";
-                criticalResult.criticals = [{ severity: null, critType, damage: criticalResult.damage ?? 0 }];
+            if (!RMSSWeaponCriticalManager.hasResolvableCriticalForChat(criticalResult)) {
                 const damageToApply = parseInt(criticalResult.damage);
                 if (!isNaN(damageToApply) && damageToApply > 0) {
-                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(target.actor ?? target, damageToApply, actor.id);
+                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(enemyActor, damageToApply, actor.id);
                     if (actor.type === "character") {
                         await ExperienceManager.applyExperience(actor, criticalResult.damage);
                     }
                 }
+                continue;
             }
 
             await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, target, false);

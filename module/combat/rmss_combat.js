@@ -1,6 +1,7 @@
 import {RMSSCombatant} from "./rmss_combatant.js";
 import { registerCombatHooks } from "./hooks.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
+import WeaponEffectsService from "./weapon_effects_service.js";
 
 /**
  * Custom Combat class for RMSS system.
@@ -79,7 +80,21 @@ export class RMSSCombat extends Combat {
     }
 
     async rollInitiative(ids, {formula=null, updateTurn=true}={}) {
-        return super.rollInitiative(ids, {formula, updateTurn});
+        await super.rollInitiative(ids, {formula, updateTurn});
+        const idList = ids?.length
+            ? ids.map((id) => (typeof id === "string" ? id : id?.id ?? id)).filter(Boolean)
+            : this.combatants.map((c) => c.id);
+        for (const cid of idList) {
+            const combatant = this.combatants.get(cid);
+            const actor = combatant?.actor;
+            if (!combatant || !actor) continue;
+            const bonus = WeaponEffectsService.getEquippedWeaponInitiativeBonus(actor);
+            if (!bonus) continue;
+            const cur = combatant.initiative;
+            const base = typeof cur === "number" ? cur : parseFloat(cur);
+            if (Number.isNaN(base)) continue;
+            await combatant.update({ initiative: base + bonus });
+        }
     }
 
     // Function to get the selected target token based on toggle target state

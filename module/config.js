@@ -155,8 +155,8 @@ rmss.criticalDictionary = {
 rmss.large_critical_types = {
   superlarge_spell: ['normal', 'slaying'],
   large_spell: ['normal', 'slaying'],
-  superlarge_melee: ['normal', 'magic', 'mithril', 'sacred', 'slaying'],
-  large_melee: ['normal', 'magic', 'mithril', 'sacred', 'slaying']
+  superlarge_melee: ['normal', 'magic', 'mithril', 'holy', 'slaying'],
+  large_melee: ['normal', 'magic', 'mithril', 'holy', 'slaying']
 }
 
 rmss.spell_realm = {
@@ -164,6 +164,20 @@ rmss.spell_realm = {
   "channeling": "Channeling",
   "mentalism": "Mentalism",
   "arcane": "Arcane"
+}
+
+/** For PP multiplier/spell adder: realm or "all". Values = lang keys. */
+rmss.item_pp_realm = {
+  "": "rmss.item.pp_realm_none",
+  "all": "rmss.item.pp_realm_all",
+  "essence": "rmss.item.pp_realm_essence",
+  "channeling": "rmss.item.pp_realm_channeling",
+  "mentalism": "rmss.item.pp_realm_mentalism",
+  "essence/channeling": "rmss.item.pp_realm_essence_channeling",
+  "essence/mentalism": "rmss.item.pp_realm_essence_mentalism",
+  "channeling/mentalism": "rmss.item.pp_realm_channeling_mentalism",
+  "arcane": "rmss.item.pp_realm_arcane",
+  "profession": "rmss.item.pp_realm_profession"
 }
 
 rmss.character_realm = {
@@ -180,6 +194,27 @@ rmss.spell_list_type = {
   "open": "Open",
   "closed": "Closed",
   "base": "Base"
+}
+
+/** Enchantment usage types (Fase 3). */
+rmss.enchantment_usage = {
+  "passive": "rmss.item.enchantment_usage_passive",
+  "daily": "rmss.item.enchantment_usage_daily",
+  "charged": "rmss.item.enchantment_usage_charged",
+  "single": "rmss.item.enchantment_usage_single"
+}
+
+/** Slaying weapon creature types (for autocomplete). */
+rmss.slaying_types = [
+  "dragon", "undead", "orc", "troll", "demon", "vampire", "lycanthrope",
+  "serpent", "spider", "elemental", "witch", "evil", "humanoid"
+];
+
+
+rmss.armor_slot = {
+  "body": "Body",
+  "helmet": "Helmet",
+  "shield": "Shield"
 }
 
 rmss.skill_tab = {
@@ -380,6 +415,41 @@ rmss.spell_list_dp_costs = {
     }
   }
 }
+
+/**
+ * Weight reduction due to material and design (Arms Law table 08-02).
+ * % of Min Normal Weight → Base Cost Modifier.
+ * Used when item weighs less than normal (e.g. mithril design).
+ */
+rmss.weight_reduction = {
+  "100": { min: 95, max: 100, modifier: 1, label: "rmss.weight_reduction.p95_100" },
+  "94": { min: 80, max: 94, modifier: 4, label: "rmss.weight_reduction.p80_94" },
+  "79": { min: 60, max: 79, modifier: 8, label: "rmss.weight_reduction.p60_79" },
+  "59": { min: 40, max: 59, modifier: 20, label: "rmss.weight_reduction.p40_59" },
+  "39": { min: 20, max: 39, modifier: 100, label: "rmss.weight_reduction.p20_39" },
+  "19": { min: 0, max: 19, modifier: 500, label: "rmss.weight_reduction.p0_19" }
+};
+
+
+/** Materials from Arms Law table 08-02 (Bonuses Due to Special Material and Magic). */
+rmss.materials = {
+  custom: { label: "rmss.item.material_custom", bonus: null, magical: null, baseCostModifier: 1 },
+  stone: { label: "rmss.item.material_stone", bonus: -50, magical: false, baseCostModifier: 0.1 },
+  wood: { label: "rmss.item.material_wood", bonus: -30, magical: false, baseCostModifier: 0.1 },
+  bone: { label: "rmss.item.material_bone", bonus: -20, magical: false, baseCostModifier: 0.25 },
+  bronze: { label: "rmss.item.material_bronze", bonus: -10, magical: false, baseCostModifier: 0.5 },
+  iron: { label: "rmss.item.material_iron", bonus: 0, magical: false, baseCostModifier: 1 },
+  low_steel: { label: "rmss.item.material_low_steel", bonus: 5, magical: false, baseCostModifier: 5 },
+  high_steel: { label: "rmss.item.material_high_steel", bonus: 10, magical: false, baseCostModifier: 20 },
+  white_alloy: { label: "rmss.item.material_white_alloy", bonus: 15, magical: false, baseCostModifier: 100 },
+  black_alloy: { label: "rmss.item.material_black_alloy", bonus: 20, magical: false, baseCostModifier: 500 },
+  enchanted_iron: { label: "rmss.item.material_enchanted_iron", bonus: 5, magical: true, baseCostModifier: 10 },
+  enchanted_steel_i: { label: "rmss.item.material_enchanted_steel_i", bonus: 10, magical: true, baseCostModifier: 40 },
+  enchanted_steel_ii: { label: "rmss.item.material_enchanted_steel_ii", bonus: 15, magical: true, baseCostModifier: 200 },
+  mithril_alloy: { label: "rmss.item.material_mithril_alloy", bonus: 20, magical: true, baseCostModifier: 1000 },
+  laen: { label: "rmss.item.material_laen", bonus: 25, magical: true, baseCostModifier: 5000 },
+  eog: { label: "rmss.item.material_eog", bonus: 30, magical: true, baseCostModifier: 10000 }
+};
 
 rmss.creature_speed = {
   "in": {

@@ -32,6 +32,10 @@
   --rmss-padding-md: 8px;
 }
 
+.rmss .window-content {
+    background: #e9e0d5;
+  }
+
 /* ================================
    SKILL CATEGORIES GRID
    ================================ */
@@ -627,6 +631,21 @@
     align-items: center;
 }
 
+/* Editar / ver / borrar agrupados (misma celda, estilo lista de skills) */
+.spell-row-actions-cell .spell-row-actions {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+}
+.spell-row-actions .item-edit,
+.spell-row-actions .item-view,
+.spell-row-actions .item-delete {
+    flex: 0 0 auto;
+}
+
 .spell-grid-heading {
     font-weight: bold;
     border-bottom: 1px solid;
@@ -1002,6 +1021,17 @@ form#rmss-attack-melee-confirmation hr {
     color: #dd5;
 }
 
+.rmss-effect-weapon-extra-chat-label {
+    margin: 0 0 0.35em 0;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, rgba(180, 120, 40, 0.35), rgba(80, 60, 20, 0.25));
+    border: 1px solid rgba(255, 200, 100, 0.35);
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #ffd591;
+}
+
 .critical-roll-result {
     margin: 0 0 0.5em 0;
     display: flex;
@@ -1322,6 +1352,25 @@ tr.container-row.over-capacity {
     color: var(--rmss-progress-text); /* Grayed out when spent */
 }
 
+.long-rest-row {
+    align-items: center;
+}
+
+.long-rest-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-light-highlight, #ddd);
+    font-size: 1rem;
+    padding: 0.1rem 0.3rem;
+}
+
+.long-rest-btn:hover {
+    color: var(--color-accent, #66aaff);
+    transform: scale(1.1);
+    transition: 0.15s;
+}
+
 /* ================================
    Rolemaster Sheet Tabs Styling
    ================================ */
@@ -1471,8 +1520,78 @@ tr.container-row.over-capacity {
     box-shadow: 0 0 6px #58a6ff44;
 }
 
+/* === Critical severity A–E (chat / FA Free: fa-circle + letra, estilo circle-a…e Pro) === */
+.rmss-crit-severity {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: -0.14em;
+    line-height: 1;
+    margin: 0 2px;
+    font-size: 1.12em;
+}
+
+.rmss-crit-severity .fa-circle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -52%);
+    font-size: 1em;
+    line-height: 1;
+}
+
+.rmss-crit-severity-letter {
+    position: relative;
+    z-index: 1;
+    font-size: 0.44em;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    text-shadow:
+        0 0 2px rgba(0, 0, 0, 0.95),
+        0 1px 2px rgba(0, 0, 0, 0.85);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: -0.04em;
+}
+
+/* A verde → B más amarillento → C amarillo-anaranjado → D naranja-rojizo → E rojo anaranjado */
+.rmss-crit-severity-a .fa-circle {
+    color: #1fa855;
+}
+
+.rmss-crit-severity-b .fa-circle {
+    color: #7cb518;
+}
+
+.rmss-crit-severity-c .fa-circle {
+    color: #d4a017;
+}
+
+.rmss-crit-severity-d .fa-circle {
+    color: #e86812;
+}
+
+.rmss-crit-severity-e .fa-circle {
+    color: #e03512;
+}
+
+/* Chat critical button: fa-circle icon at 24px (letter scales in em from that size) */
+.chat-critical-roll .rmss-crit-severity {
+    font-size: 24px;
+    width: 1.15em;
+    height: 1.15em;
+    margin: 0 4px;
+}
+
+.chat-critical-roll .rmss-crit-severity-letter {
+    font-size: 0.4em;
+}
+
 /* === Critical Roll Button === */
-.chat-critical-roll, .dialog-button {
+.dialog-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1489,12 +1608,88 @@ tr.container-row.over-capacity {
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.6);
     line-height: 1.4;
     padding: 6px 8px;
-    margin: 2px 0;
+    margin: 5px;
     transition: all 0.2s ease-in-out;
 }
 
-.dialog-button {
-    margin:5px;
+/* Chat critical: column layout so Effect Weapon hint wraps inside the red button (Foundry often fixes button height) */
+.chat-critical-roll.rmss-critical-roll-busy {
+    pointer-events: none !important;
+}
+
+.chat-critical-roll {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(180deg, #b00, #700);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 3px #000;
+    white-space: normal;
+    word-break: break-word;
+    overflow: visible;
+    box-sizing: border-box;
+    min-height: 0;
+    height: auto;
+    max-height: none;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.6);
+    line-height: 1.4;
+    padding: 8px 10px;
+    margin: 2px 0;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    max-width: 100%;
+}
+
+.chat-critical-roll .chat-critical-roll-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+}
+
+.chat-critical-roll .chat-critical-roll-main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    row-gap: 2px;
+}
+
+.chat-critical-roll .chat-critical-roll-effect-hint {
+    font-size: 0.82em;
+    font-weight: 600;
+    color: #9cc;
+    line-height: 1.35;
+    text-align: center;
+    width: 100%;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    margin: 0;
+    padding: 0 2px;
+}
+
+.chat-critical-roll .rmss-ew-extra-type {
+    color: #b8e0ff;
+    font-weight: 700;
+}
+
+/* Foundry core often sets a fixed min-height on chat buttons — allow multi-line Effect Weapon text */
+.chat-log .message .chat-critical-roll,
+.chat-popout .message .chat-critical-roll {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    overflow: visible !important;
 }
 
 .chat-critical-roll:hover {
@@ -1503,7 +1698,8 @@ tr.container-row.over-capacity {
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
 }
 
-.chat-critical-roll span {
+/* Solo la fila principal del botón: no teñir el icono de severidad (círculo + letra) */
+.chat-critical-roll .chat-critical-roll-main > span:not(.rmss-crit-severity) {
     color: #ffd;
     font-weight: 600;
 }
@@ -1514,6 +1710,36 @@ tr.container-row.over-capacity {
 
 .chat-critical-roll .crit-severity {
     color: #ffd;
+}
+
+/* GM: one-shot action to allow resolving criticals on this message again */
+.rmss-crit-gm-reroll-wrap {
+    margin-top: 8px;
+    padding: 6px 8px;
+    background: rgba(0, 40, 80, 0.35);
+    border-radius: 6px;
+    border: 1px solid #4a7a9a;
+    font-size: 0.85em;
+    color: #cde;
+}
+.rmss-crit-gm-unlock-btn {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 8px 10px;
+    text-align: center;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: #e8f4ff;
+    background: linear-gradient(180deg, #2a5a8a, #1a4060);
+    border: 1px solid #5a9aca;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1.35;
+}
+.rmss-crit-gm-unlock-btn:hover {
+    background: linear-gradient(180deg, #3a6a9a, #2a5070);
+    color: #fff;
 }
 
 /* ================================
@@ -1817,6 +2043,16 @@ tr.container-row.over-capacity {
 .casting-options-dialog .total-modifier label,
 .casting-options-dialog .total-modifier span {
     font-size: 1.1em;
+}
+
+.casting-options-dialog .dialog-button.spellAdder {
+  background: linear-gradient(180deg, #0077b6, #023e8a);
+  color: #fff;
+  border: none;
+  font-weight: bold;
+}
+.casting-options-dialog .dialog-button.spellAdder:hover {
+  background: linear-gradient(180deg, #0096c7, #0077b6);
 }
 
 /* Spell RR Results Table in Chat */
@@ -2762,4 +2998,514 @@ tr.container-row.over-capacity {
   display: block;
   margin-top: 0.35rem;
   font-size: 0.9em;
+}
+
+/* ================================
+   ITEM SHEET TABS (Armor, Weapon)
+   ================================ */
+.rmss-item-tabs {
+  flex: 0 0 0;
+  border-bottom: 1px solid var(--color-border-light-primary);
+  margin-bottom: 0.5rem;
+}
+
+.rmss-item-tabs .item {
+  padding: 0.25rem 0.75rem;
+}
+
+.rmss-item-tabs .item.active {
+  border-bottom: 2px solid var(--rmss-tab-gold-active);
+  color: var(--rmss-tab-gold-active);
+}
+
+/* Modifiers tab: ocupar todo el ancho para que la tabla extienda el borde */
+.rmss-tab-modifiers {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Modifiers table */
+.rmss-modifiers-table {
+  width: 100%;
+  min-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.rmss-modifiers-table th,
+.rmss-modifiers-table td {
+  padding: 0.35rem 0.5rem;
+  vertical-align: middle;
+}
+
+/* Evitar doble borde: quitar el borde de la fila de cabecera "Weight %" (no el del campo numérico) */
+.rmss-modifiers-table tr:nth-last-child(2) th {
+  border-bottom: none;
+}
+.rmss-modifiers-table tr:last-child th {
+  border-bottom: none;
+}
+
+.rmss-modifiers-table th {
+  font-weight: bold;
+  font-size: var(--rmss-font-size-sm);
+  text-align: left;
+}
+
+.rmss-modifiers-table th.rmss-text-center,
+.rmss-modifiers-table td.rmss-text-center {
+  text-align: center;
+}
+
+.rmss-modifiers-table .rmss-weight-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rmss-modifiers-table .rmss-weight-cell input[type="number"] {
+  width: 4rem;
+  text-align: center;
+}
+
+.rmss-modifiers-table select {
+  min-width: 10rem;
+  max-width: 100%;
+}
+
+.rmss-modifiers-table .rmss-text-strong {
+  font-weight: bold;
+}
+
+.rmss-power-modifier-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: nowrap;
+}
+
+.rmss-power-modifier-select {
+  flex: 0 0 auto;
+  min-width: 7rem;
+}
+
+.rmss-power-modifier-row input[type="number"] {
+  width: 3rem;
+  text-align: center;
+}
+
+.rmss-power-modifier-row select:not(.rmss-power-modifier-select) {
+  flex: 1 1 5rem;
+  min-width: 0;
+}
+
+.rmss-pp-suffix {
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.rmss-spell-adder-uses {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin-left: 0.4rem;
+  font-size: 0.9em;
+}
+.rmss-spell-adder-uses input[type="number"] {
+  width: 2.5rem;
+  text-align: center;
+}
+
+.rmss-power-modifier-profession-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0;
+}
+
+.rmss-power-modifier-profession-label {
+  font-size: 0.9em;
+  color: var(--color-text-dark-inactive);
+  flex-shrink: 0;
+}
+
+.rmss-power-modifier-profession-drop {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  min-height: 1.8rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px dashed var(--color-border-dark);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.rmss-power-modifier-profession-drop:hover,
+.rmss-power-modifier-profession-drop.drag-hover {
+  border-color: var(--color-border-dark-secondary);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.rmss-power-modifier-profession-drop.drag-hover {
+  border-color: var(--color-primary);
+  background: rgba(0, 135, 245, 0.08);
+}
+
+.rmss-power-modifier-profession-drop > * {
+  pointer-events: none;
+}
+
+.rmss-power-modifier-profession-drop .rmss-profession-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rmss-power-modifier-profession-drop .rmss-profession-clear {
+  pointer-events: auto;
+  flex-shrink: 0;
+  width:auto;
+  padding: 0.1rem;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--rmss-btn-danger);
+  cursor: pointer;
+}
+
+.rmss-power-modifier-profession-drop .rmss-profession-clear:hover {
+  color: var(--color-text-dark);
+}
+
+.rmss-item-bonus-skills {
+  margin-top: 0.5rem;
+}
+
+.rmss-item-bonus-skills .rmss-modifiers-header {
+  margin-bottom: 0.35rem;
+}
+
+.rmss-bonus-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rmss-bonus-skill-row {
+  display: grid;
+  grid-template-columns: 1fr 4rem 2rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rmss-bonus-skill-row .rmss-bonus-skill-drop-zone {
+  min-width: 0;
+}
+
+.rmss-bonus-skill-row .rmss-bonus-skill-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rmss-bonus-skill-row input[type="number"] {
+  width: 100%;
+  min-width: 3rem;
+  text-align: center;
+}
+
+.rmss-bonus-skill-remove {
+  padding: 0.2rem;
+  color: var(--rmss-btn-danger);
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.rmss-bonus-skill-remove:hover {
+  color: var(--rmss-btn-danger-hover);
+}
+
+.rmss-bonus-skill-remove i {
+  pointer-events: none;
+}
+
+.rmss-bonus-skill-add-row .rmss-bonus-skill-add-zone {
+  justify-content: center;
+}
+
+.rmss-modifiers-header {
+  font-weight: bold;
+  font-size: var(--rmss-font-size-sm);
+}
+
+.rmss-modifiers-label {
+  font-size: var(--rmss-font-size-sm);
+}
+
+.rmss-modifiers-cell select {
+  min-width: 10rem;
+  max-width: 14rem;
+}
+
+.rmss-modifiers-cell input[type="number"] {
+  width: 4rem;
+  text-align: center;
+}
+
+.rmss-effective-cost {
+  font-size: 0.85em;
+  color: var(--color-text-dark-inactive);
+  margin-top: 0.15rem;
+}
+
+.rmss-cost-row {
+  border-top: 1px solid var(--color-border-light-tertiary);
+}
+.rmss-cost-row th,
+.rmss-cost-row td {
+  text-align: left;
+  vertical-align: middle;
+}
+.rmss-cost-row th {
+  font-weight: 600;
+  font-size: var(--rmss-font-size-sm);
+}
+
+.rmss-bonus-readonly {
+  font-weight: 500;
+}
+
+.rmss-text-center {
+  text-align: center;
+}
+
+.rmss-text-strong {
+  font-weight: bold;
+}
+
+/* Item bonus skill drop zone */
+.rmss-bonus-skill-drop-zone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px dashed var(--color-border-dark-ternary);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.02);
+}
+.rmss-bonus-skill-drop-zone:hover {
+  border-color: var(--color-border-dark-secondary);
+  background: rgba(0, 0, 0, 0.04);
+}
+.rmss-bonus-skill-name {
+  flex: 1;
+  font-weight: 500;
+}
+.rmss-bonus-skill-clear {
+  padding: 0.2rem;
+  color: var(--rmss-btn-danger);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.rmss-bonus-skill-clear:hover {
+  color: var(--rmss-btn-danger-hover);
+}
+.rmss-drop-hint {
+  font-size: 0.9em;
+  color: var(--color-text-dark-inactive);
+}
+
+/* Weapon sheet: attack table / skill / critical selectors row */
+.rmss-weapon-selectors-row {
+  display: table;
+  width: 100%;
+  text-align: center;
+}
+
+.rmss-weapon-selectors-row > div {
+  display: table-cell;
+  vertical-align: top;
+  padding: 0 4px;
+}
+
+.rmss-effect-weapon-selects {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rmss-effect-weapon-selects select {
+  flex: 1 1 8rem;
+  min-width: 7rem;
+}
+
+/* Enchantments */
+.rmss-enchantments-header {
+  display: grid;
+  grid-template-columns: 4rem 1.2fr 0.8fr 0.8fr 1.2fr 3rem 1.4fr 1fr 2.5rem;
+  gap: 0.5rem;
+  font-weight: bold;
+  font-size: var(--rmss-font-size-sm);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--color-border-light-primary);
+}
+
+.rmss-enchantment-row {
+  display: grid;
+  grid-template-columns: 4rem 1.2fr 0.8fr 0.8fr 1.2fr 3rem 1.4fr 1fr 2.5rem;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: var(--rmss-font-size-sm);
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.rmss-enchantment-delete {
+  padding: 0.2rem;
+  color: var(--rmss-btn-danger);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.rmss-enchantment-delete:hover {
+  color: var(--rmss-btn-danger-hover);
+}
+
+.rmss-enchantment-bar-cell input[type="number"] {
+  width: 2.5rem;
+  min-width: 2.5rem;
+  max-width: 3rem;
+  padding: 0.1rem 0.2rem;
+  font-size: 0.9em;
+  box-sizing: border-box;
+}
+
+.rmss-enchantment-usage-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.rmss-enchantment-usage-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: flex-start;
+}
+
+.rmss-enchantment-usage-stack select {
+  min-width: 4rem;
+  max-width: 5.5rem;
+}
+
+.rmss-enchantment-usage-fraction {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.15rem;
+  align-items: center;
+}
+
+.rmss-enchantment-slash {
+  color: var(--color-text-dark-inactive);
+  font-size: 0.9em;
+  flex-shrink: 0;
+}
+
+.rmss-enchantment-usage-cell input[type="number"],
+.rmss-enchantment-usage-fraction input[type="number"] {
+  width: 2.5rem;
+  min-width: 2.5rem;
+  flex-shrink: 0;
+  padding: 0.1rem 0.2rem;
+  font-size: 0.9em;
+}
+
+.rmss-enchantment-spell-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.rmss-enchantment-use {
+  padding: 0.1rem 0.2rem;
+  color: var(--rmss-btn-success);
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 0.85em;
+  line-height: 1;
+}
+
+.rmss-enchantment-use:hover {
+  color: var(--rmss-btn-success-hover);
+}
+
+.rmss-enchantment-row .spell-link {
+  color: var(--color-text-hyperlink);
+  cursor: pointer;
+}
+
+.rmss-enchantment-row .spell-link:hover {
+  text-decoration: underline;
+}
+
+.rmss-enchantments-hint {
+  font-size: 0.85em;
+  color: var(--color-text-dark-inactive);
+  margin-top: 1rem;
+}
+
+/* Weapon tab: nombre en una línea, pips debajo; alineación a la izq. como lista de items */
+.actor-sheet table.weapons td.rmss-weapon-name-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  vertical-align: top;
+  gap: 0.25rem;
+  text-align: left;
+}
+.actor-sheet table.weapons td.rmss-weapon-name-cell .rmss-weapon-name-line {
+  line-height: 1.35;
+  text-align: left;
+  width: 100%;
+}
+
+/* Spell Adder pips: misma alineación en items, armas, armadura y favoritos */
+.actor-sheet .spell-adder-pips {
+  display: flex;
+  gap: 2px;
+  margin-top: 2px;
+  justify-content: flex-start;
+  align-self: flex-start;
+}
+.actor-sheet table.weapons td.rmss-weapon-name-cell .spell-adder-pips {
+  margin-top: 0;
+}
+.spell-adder-pip {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #0077b6;
+  border-radius: 1px;
+}
+.spell-adder-pip.filled {
+  background-color: #0077b6;
+}
+.spell-adder-pip.empty {
+  background-color: transparent;
 }

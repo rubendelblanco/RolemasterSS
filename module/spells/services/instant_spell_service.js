@@ -2,6 +2,7 @@ import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_
 import { sendExpMessage } from "../../chat/chatMessages.js";
 import { triggerAutoAnimations, getActorToken } from "../../autoanimations_integration.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
+import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
 
 /**
  * Service for casting instant spells.
@@ -17,11 +18,24 @@ export default class InstantSpellService {
      * @param {Item} params.spell - The spell (must have system.instant === true)
      * @returns {Promise<boolean>} True if cast successfully
      */
-    static async castInstantSpell({ actor, spell }) {
+    static async castInstantSpell({ actor, spell, consumePowerPoints = true }) {
         if (!spell?.system?.instant) return false;
 
         const spellLevel = spell.system?.level ?? 1;
-        const noPP = spell.system?.no_pp === true;
+        let noPP = !consumePowerPoints || spell.system?.no_pp === true;
+
+        if (!noPP) {
+            const spellAdder = getMatchingSpellAdder(actor);
+            if (spellAdder) {
+                const usesLabel = spellAdder.value > 0 ? ` [${spellAdder.usesRemaining}/${spellAdder.value}]` : "";
+                const useIt = await this._askSpellAdder(spellAdder.item.name + usesLabel, spell.name);
+                if (useIt) {
+                    noPP = true;
+                    await consumeSpellAdderUse(spellAdder.item);
+                }
+            }
+        }
+
         if (!noPP) {
             const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
             if (currentPP < spellLevel) {
@@ -64,6 +78,36 @@ export default class InstantSpellService {
         }
 
         return true;
+    }
+
+    /**
+     * Ask the user whether to use a spell adder for an instant spell.
+     * @returns {Promise<boolean>}
+     */
+    static _askSpellAdder(itemName, spellName) {
+        return new Promise((resolve) => {
+            new Dialog({
+                title: game.i18n.format("rmss.spells.cast_with_spell_adder", { itemName }),
+                content: `<p>${game.i18n.format("rmss.spells.spell_adder_confirm", { itemName, spellName })}</p>`,
+                buttons: {
+                    yes: {
+                        icon: '<i class="fas fa-hat-wizard"></i>',
+                        label: game.i18n.localize("rmss.dialog.yes"),
+                        callback: () => resolve(true)
+                    },
+                    no: {
+                        icon: '<i class="fas fa-times"></i>',
+                        label: game.i18n.localize("rmss.dialog.no"),
+                        callback: () => resolve(false)
+                    }
+                },
+                default: "yes",
+                close: () => resolve(false)
+            }, {
+                classes: ["rmss", "casting-options-dialog"],
+                width: 400
+            }).render(true);
+        });
     }
 
     /**

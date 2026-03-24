@@ -6,6 +6,7 @@ import RollService from "./services/roll_service.js";
 import WeaponFumbleService from "./services/weapon_fumble_service.js";
 import FacingService from "./services/facing_service.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
+import WeaponEffectsService from "./weapon_effects_service.js";
 
 export class RMSSWeaponSkillManager {
 
@@ -27,6 +28,13 @@ export class RMSSWeaponSkillManager {
                 }
             }
         }
+
+        const defenderActor = enemy instanceof Actor ? enemy : enemy?.actor ?? Utils.getActor(enemy);
+        if (Utils.isTargetDefeated(defenderActor)) {
+            ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
+            return;
+        }
+
         if (!game.user.isGM) {
             ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
         }
@@ -80,7 +88,7 @@ export class RMSSWeaponSkillManager {
             ui.notifications.warn(game.i18n.localize("rmss.combat.no_attack_result"));
             return;
         }
-        const criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage, attackTable.critical_severity || null, weapon.system.critical_type);
+        let criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(attackResult.damage, attackTable.critical_severity || null, weapon.system.critical_type);
         // Fumble from attack table (result "F")
         if (criticalResult.criticals === "fumble") {
             const fumbleRoll = new Roll("1d100");
@@ -90,26 +98,29 @@ export class RMSSWeaponSkillManager {
             return;
         }
 
-        // Critical not exists
+        criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemy);
+
+        if (weapon.type === "weapon") {
+            WeaponEffectsService.applyIncreasedCritical(criticalResult, weapon);
+            WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+        }
+
         const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
-        if (criticalResult.criticals.length === 0) {
+
+        // HP-only hit (no letter critical): apply damage immediately. Do not post a critical card with no buttons
+        // (previously a synthetic severity-null row skipped the empty-critics branch and never applied hits).
+        if (!RMSSWeaponCriticalManager.hasResolvableCriticalForChat(criticalResult)) {
             if (!isNullResult) {
-                criticalResult.criticals = [
-                    { severity: null, critType: weapon.system.critical_type, damage: criticalResult.damage ?? 0 }
-                ];
                 const damageToApply = parseInt(criticalResult.damage);
                 if (!isNaN(damageToApply) && damageToApply > 0) {
-                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(
-                        enemy,
-                        damageToApply,
-                        actor.id
-                    );
+                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(enemy, damageToApply, actor.id);
                     if (actor.type === "character") {
                         const { ExperienceManager } = await import("../sheets/experience/rmss_experience_manager.js");
                         await ExperienceManager.applyExperience(actor, criticalResult.damage);
                     }
                 }
             }
+            return;
         }
 
         await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken, isNullResult);
@@ -135,6 +146,11 @@ export class RMSSWeaponSkillManager {
         const tokenData = spellOptionsOrTokenData?.facingValue !== undefined ? spellOptionsOrTokenData : null;
 
         const realEnemy = (enemy?.id && game.actors) ? game.actors.get(enemy.id) : enemy;
+
+        if (Utils.isTargetDefeated(realEnemy)) {
+            ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
+            return { confirmed: false };
+        }
 
         const facingValue = (tokenData?.facingValue ?? FacingService.FACING.FRONT) || "";
 
