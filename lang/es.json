@@ -105,6 +105,12 @@
     "pc_sheet": {
       "import_skillcat": "Importar"
     },
+    "pc_sheet_record": {
+      "favorite_skills": "Habilidades favoritas",
+      "favorite_spells": "Hechizos favoritos",
+      "equipped_items": "Objetos equipados",
+      "description": "Descripción"
+    },
     "pc_sheet_tabs": {
       "record": "Registro",
       "skill_categories": "Categorías de habilidades",
@@ -193,6 +199,7 @@
     },
     "pc_sheet_skills": {
       "favorite": "¿Favorito?",
+      "roll_check": "Tirada de habilidad",
       "skill_name": "Nombre de habilidad",
       "ranks": "# Rangos",
       "new_ranks": "Nuevos rangos",
@@ -259,6 +266,7 @@
       "equipped": "Equipado",
       "worn": "Equipado",
       "favorite": "Favorito",
+      "open_item_sheet": "Abrir ficha del objeto",
       "quantity": "Cantidad",
       "item_name": "Nombre de ítem",
       "weight": "Peso",

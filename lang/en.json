@@ -105,6 +105,12 @@
         "pc_sheet": {
             "import_skillcat": "Import"
         },
+        "pc_sheet_record": {
+            "favorite_skills": "Favorite Skills",
+            "favorite_spells": "Favorite Spells",
+            "equipped_items": "Equipped Items",
+            "description": "Description"
+        },
         "pc_sheet_tabs": {
             "record": "Record",
             "skill_categories": "Skill Categories",
@@ -193,6 +199,7 @@
         },
         "pc_sheet_skills": {
           "favorite": "Favorite?",
+          "roll_check": "Roll skill check",
           "skill_name": "Skill Name",
           "ranks": "# Ranks",
           "new_ranks": "New Ranks",
@@ -259,6 +266,7 @@
             "equipped": "Equipped",
             "worn": "Worn",
             "favorite": "Favorite",
+            "open_item_sheet": "Open item sheet",
             "quantity": "Quantity",
             "item_name": "Item Name",
             "weight": "Weight",

@@ -22,10 +22,10 @@
     <tr draggable="true" data-type="Item" data-item-id="{{weapon._id}}" data-uuid="Actor.{{weapon.actorId}}.Item.{{weapon._id}}">
         <td><span class="list-item-icon-wrap"><img class="list-item-icon" src="{{weapon.img}}" alt="{{weapon.name}}" width="32" height="32"/></span></td>
         <td class="clickable offensive-skill rmss-weapon-name-cell" data-item-id="{{weapon._id}}">
-          <div class="rmss-weapon-name-line">{{weapon.name}}{{#if weapon.system.description}}
+          <div class="rmss-weapon-name-line">{{weapon.name}} <i class="fa-solid fa-sword"></i>{{#if weapon.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{weapon.system.description}}"></i>
-          {{/if}} <i class="fa-solid fa-sword"></i></div>
+          {{/if}}</div>
           {{#if (gt weapon.system.spell_adder 0)}}
           <div class="spell-adder-pips">
             {{#times weapon.system.spell_adder}}

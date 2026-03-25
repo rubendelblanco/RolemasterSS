@@ -353,11 +353,11 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   async _onSpellCastClick(ev) {
     ev.preventDefault();
     const spellId = ev.currentTarget.dataset.itemId;
-    const spellListName = ev.currentTarget.dataset.spellListName;
-    const spellListRealm = ev.currentTarget.dataset.spellListRealm;
-    
+
     const spell = this.actor.items.get(spellId);
     if (!spell) return;
+
+    const { spellListName, spellListRealm } = this._resolveSpellListCastContext(spell, ev.currentTarget.dataset);
 
     if (spell.system?.instant) {
       const InstantSpellService = (await import("../../spells/services/instant_spell_service.js")).default;

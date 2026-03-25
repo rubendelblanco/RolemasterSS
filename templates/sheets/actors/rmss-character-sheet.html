@@ -152,13 +152,13 @@
           {{> "systems/rmss/templates/sheets/actors/parts/actor-stats.html" }}
 
           <div class="favorite-container">
-            <h2>Favorite Skills</h2>
+            <h2>{{ localize "rmss.pc_sheet_record.favorite_skills" }}</h2>
             {{> "systems/rmss/templates/sheets/actors/parts/actor-fav-skills.html" }}
-            <h2>Favorite Spells</h2>
+            <h2>{{ localize "rmss.pc_sheet_record.favorite_spells" }}</h2>
             {{> "systems/rmss/templates/sheets/actors/parts/actor-fav-spells.html" }}
-            <h2>Equipped Items</h2>
+            <h2>{{ localize "rmss.pc_sheet_record.equipped_items" }}</h2>
             {{> "systems/rmss/templates/sheets/actors/parts/actor-fav-items.html" }}
-            <h2>Description</h2>
+            <h2>{{ localize "rmss.pc_sheet_record.description" }}</h2>
             <div class="description-editor-wrapper {{#unless system.description}}empty-description{{/unless}}">
               {{editor enrichedDescription target="system.description" button=true owner=true editable=true}}
             </div>

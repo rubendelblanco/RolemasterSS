@@ -526,4 +526,24 @@ export default class RMSSCharacterSheet extends ActorSheet {
         if (!item) return;
         await ItemService.toggleWorn(item);
     }
+
+    /**
+     * Spell list name/realm for casting when the link omits data-spell-list-* (e.g. Record favorites).
+     * @param {Item} spell
+     * @param {DOMStringMap} dataset
+     * @returns {{ spellListName: string, spellListRealm: string }}
+     */
+    _resolveSpellListCastContext(spell, dataset) {
+        let spellListName = dataset.spellListName ?? "";
+        let spellListRealm = dataset.spellListRealm ?? "";
+        if (!spellListName && spell) {
+            const listId = spell.flags?.rmss?.containerId;
+            const listItem = listId ? this.actor.items.get(listId) : null;
+            if (listItem?.type === "spell_list") {
+                spellListName = listItem.name;
+                spellListRealm = listItem.system?.realm ?? "";
+            }
+        }
+        return { spellListName, spellListRealm };
+    }
 }

@@ -1,23 +1,67 @@
-<table>
-    <th><div class="spell-name spell-headeritem">{{ localize "rmss.pc_sheet_spell.name" }}</div></th>
-    <th><div class="spell-entry spell-headeritem">{{ localize "rmss.pc_sheet_spell.area_of_effect" }}</div></th>
-    <th><div class="spell-entry spell-headeritem">{{ localize "rmss.pc_sheet_spell.duration" }}</div></th>
-    <th><div class="spell-entry spell-headeritem">{{ localize "rmss.pc_sheet_spell.range" }}</div></th>
-    <th><div class="spell-entry spell-headeritem">{{ localize "rmss.pc_sheet_spell.type" }}</div></th>
+<table class="favorite-spells-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th><div class="spell-name spell-headeritem">{{ localize "rmss.pc_sheet_spell.name" }}</div></th>
+      <th><div class="spell-entry spell-headeritem">{{ localize "rmss.pc_sheet_spell.area_of_effect" }}</div></th>
+      <th><div class="spell-entry spell-headeritem">{{ localize "rmss.pc_sheet_spell.duration" }}</div></th>
+      <th><div class="spell-entry spell-headeritem">{{ localize "rmss.pc_sheet_spell.range" }}</div></th>
+      <th><div class="spell-entry spell-headeritem">{{ localize "rmss.pc_sheet_spell.type" }}</div></th>
+    </tr>
+  </thead>
+  <tbody>
   {{#each spells as |spell id|}}
-    {{#if spell.system.favorite}}  
-        <tr class="item" data-item-id="{{spell._id}}">
-            <td><div class="spell-name">
-                <h4>{{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}{{#if spell.system.description}}
-                <i class="fas fa-info-circle spell-info-icon"
-                   data-tooltip="{{spell.system.description}}"></i>
-                {{/if}}</h4>
-            </div></td>
-            <td><div class="spell-entry item-prop">{{spell.system.area_of_effect}}</div></td>
-            <td><div class="spell-entry item-prop">{{spell.system.duration}}</div></td>
-            <td><div class="spell-entry item-prop">{{spell.system.range}}</div></td>
-            <td><div class="spell-entry item-prop">{{spell.system.type}}</div></td>
-        </tr>
+    {{#if spell.system.favorite}}
+    <tr class="favorite-spell-row" draggable="true" data-type="Item" data-uuid="Actor.{{spell.actorId}}.Item.{{spell._id}}" data-item-id="{{spell._id}}">
+      <td><span class="list-item-icon-wrap"><img class="list-item-icon" src="{{spell.img}}" alt="{{spell.name}}" width="32" height="32"/></span></td>
+      <td class="favorite-record-name-td"><div class="spell-name favorite-record-name-block">
+          <div class="favorite-record-name-line">
+          {{#if (eq spell.system.type "F")}}
+          <a class="spell-cast spell-cast-force" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{spell.spellListName}}" data-spell-list-realm="{{spell.spellListRealm}}" data-spell-type="{{spell.system.type}}">
+            <i class="fas fa-hand-sparkles"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}
+          </a>
+          {{/if}}
+          {{#if (eq spell.system.type "E")}}
+          <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{spell.spellListName}}" data-spell-list-realm="{{spell.spellListRealm}}" data-spell-type="{{spell.system.type}}">
+            <i class="fas fa-magic"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}
+          </a>
+          {{/if}}
+          {{#if (eq spell.system.type "P")}}
+          <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{spell.spellListName}}" data-spell-list-realm="{{spell.spellListRealm}}" data-spell-type="{{spell.system.type}}">
+            <i class="fas fa-magic"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}
+          </a>
+          {{/if}}
+          {{#if (eq spell.system.type "U")}}
+          <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{spell.spellListName}}" data-spell-list-realm="{{spell.spellListRealm}}" data-spell-type="{{spell.system.type}}">
+            <i class="fas fa-magic"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}
+          </a>
+          {{/if}}
+          {{#if (eq spell.system.type "I")}}
+          <a class="spell-cast spell-cast-utility" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{spell.spellListName}}" data-spell-list-realm="{{spell.spellListRealm}}" data-spell-type="{{spell.system.type}}">
+            <i class="fas fa-magic"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}
+          </a>
+          {{/if}}
+          {{#if (eq spell.system.type "BE")}}
+          <a class="spell-cast spell-cast-elemental" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{spell.spellListName}}" data-spell-list-realm="{{spell.spellListRealm}}" data-spell-type="{{spell.system.type}}">
+            <i class="fa-solid fa-meteor"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}
+          </a>
+          {{/if}}
+          {{#if (eq spell.system.type "DE")}}
+          <a class="spell-cast spell-cast-directed" title="{{localize 'rmss.spells.cast'}}" data-item-id="{{spell._id}}" data-spell-list-name="{{spell.spellListName}}" data-spell-list-realm="{{spell.spellListRealm}}" data-spell-type="{{spell.system.type}}">
+            <i class="fa-solid fa-bolt"></i> {{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}
+          </a>
+          {{/if}}
+          {{#if spell.system.description}}
+          <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{spell.system.description}}"></i>
+          {{/if}}
+          </div>
+      </div></td>
+      <td><div class="spell-entry item-prop">{{spell.system.area_of_effect}}</div></td>
+      <td><div class="spell-entry item-prop">{{spell.system.duration}}</div></td>
+      <td><div class="spell-entry item-prop">{{spell.system.range}}</div></td>
+      <td><div class="spell-entry item-prop">{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</div></td>
+    </tr>
     {{/if}}
   {{/each}}
+  </tbody>
 </table>

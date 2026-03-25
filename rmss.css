@@ -100,6 +100,82 @@
     padding: 5px;
 }
 
+/* Registro (favoritos / equipo): misma alineación de nombres e iconos en las tres tablas */
+.favorite-skills-table,
+.favorite-spells-table,
+.favorite-equipped-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.favorite-skills-table th:first-child,
+.favorite-skills-table td:first-child,
+.favorite-spells-table th:first-child,
+.favorite-spells-table td:first-child,
+.favorite-equipped-table th:first-child,
+.favorite-equipped-table td:first-child {
+    width: 42px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.favorite-skills-table .favorite-record-name-td,
+.favorite-spells-table .favorite-record-name-td,
+.favorite-equipped-table .favorite-record-name-td {
+    text-align: left;
+    vertical-align: middle;
+    font-family: var(--rmss-font-main);
+    font-size: var(--rmss-font-size-sm);
+    font-weight: bold;
+}
+
+.favorite-skills-table .skill-name,
+.favorite-spells-table .spell-name,
+.favorite-equipped-table .equipable-name {
+    text-align: left;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.favorite-skills-table .favorite-record-name-td a,
+.favorite-spells-table .favorite-record-name-td a,
+.favorite-equipped-table .favorite-record-name-td a {
+    font: inherit;
+}
+
+.favorite-record-name-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    width: 100%;
+}
+
+.favorite-record-name-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.35em;
+    width: 100%;
+    line-height: 1.35;
+    text-align: left;
+}
+
+.actor-sheet .favorite-equipped-table td.rmss-weapon-name-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.25rem;
+    text-align: left;
+}
+
+.actor-sheet .favorite-equipped-table td.rmss-weapon-name-cell .rmss-weapon-name-line {
+    width: 100%;
+}
+
 .header-container {
     flex-grow: 2;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;

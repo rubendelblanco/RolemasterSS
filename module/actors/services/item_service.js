@@ -211,6 +211,17 @@ export default class ItemService {
             }
         }
 
+        // Spell list name/realm for casting (Record tab favorites, etc.)
+        for (const spell of spells) {
+            const listId = spell.flags?.rmss?.containerId;
+            if (!listId) continue;
+            const listItem = actor.items.get(listId);
+            if (listItem?.type === "spell_list") {
+                spell.spellListName = listItem.name;
+                spell.spellListRealm = listItem.system?.realm ?? "";
+            }
+        }
+
         // ✅ Pass 2: group all containerable items (gear + herbs + weapons) by containerId flag
         const allContainerables = [...gear, ...herbs, ...weapons];
 
