@@ -71,6 +71,50 @@ export class RMSSEffectApplier {
         }
     }
 
+    /**
+     * If damage brings hits from above 0 to 0 or below, mark dead (effect, defeated, optional killer XP).
+     * Used by crit HP metadata and by all weapon/spell damage paths that update hits directly.
+     * @param {Actor} actor
+     * @param {number} priorHits - hits.current before the update
+     * @param {number} newHits - hits.current after the update
+     * @param {string|null} attackerId
+     * @param {Token|TokenDocument|null} [preferredToken] - e.g. targeted token from combat (more reliable than picking from scene)
+     * @returns {Promise<boolean>} true if death handling ran
+     */
+    static async applyDeathIfBroughtToZero(actor, priorHits, newHits, attackerId, preferredToken = null) {
+        const prior = Number(priorHits);
+        const next = Number(newHits);
+        if (!Number.isFinite(prior) || !Number.isFinite(next)) return false;
+        if (next > 0 || prior <= 0) return false;
+
+        const fromPreferred = preferredToken?.actor?.id === actor?.id ? preferredToken : null;
+        const tokens = actor.getActiveTokens(true);
+        const selected = fromPreferred
+            || tokens.find(t => t.controlled)
+            || tokens[0];
+
+        let expData = null;
+        if (selected && attackerId && Utils.isAPC(attackerId)) {
+            const killer = Utils.getActor(attackerId);
+            if (killer) {
+                const killExp = ExperiencePointsCalculator.calculateKillExpPoints(actor.system.attributes.level.value, killer.system.attributes.level.value);
+                const code = actor.system?.bonus_experience ?? null;
+                const bonusExp = ExperiencePointsCalculator.calculateBonusExpPoints(killer.system.attributes.level.value, code);
+                const totalAmountExp = killExp + bonusExp;
+                const totalExpActor = parseInt(killer.system.attributes.experience_points.value || 0) + totalAmountExp;
+                await killer.update({ "system.attributes.experience_points.value": totalExpActor });
+                expData = {
+                    actorName: killer.name,
+                    actorId: killer.id,
+                    expBreakdown: { kill: killExp, bonus: bonusExp },
+                    expGained: totalAmountExp
+                };
+            }
+        }
+        if (selected) await RMSSEffectApplier._markTokenAsDead(selected, expData);
+        return true;
+    }
+
     static async _applyHPDamage(entity, hp, originId = null) {
         const dmg = parseInt(hp) || 0;
         const currentHits = entity.system.attributes.hits.current;
@@ -82,33 +126,7 @@ export class RMSSEffectApplier {
             CombatHistoryTracker.get().recordDamage(originId, entity.id, dmg, newHits <= 0 && !wasAlreadyDead);
         }
 
-        // Only announce "slain" / overlay / XP once: a second critical on an already-dead target still applies HP math but must not repeat death handling.
-        if (newHits <= 0 && !wasAlreadyDead) {
-            const tokens = entity.getActiveTokens(true);
-            const selected = tokens.find(t => t.controlled) || tokens[0];
-            let expData = null;
-            if (selected && Utils.isAPC(originId)) {
-                const killer = Utils.getActor(originId);
-                if (killer) {
-                    const killExp = ExperiencePointsCalculator.calculateKillExpPoints(entity.system.attributes.level.value, killer.system.attributes.level.value);
-                    const code = entity.system?.bonus_experience ?? null;
-                    const bonusExp = ExperiencePointsCalculator.calculateBonusExpPoints(killer.system.attributes.level.value, code);
-                    const totalAmountExp = killExp + bonusExp;
-                    const totalExpActor = parseInt(killer.system.attributes.experience_points.value || 0) + totalAmountExp;
-                    await killer.update({ "system.attributes.experience_points.value": totalExpActor });
-                    expData = {
-                        actorName: killer.name,
-                        actorId: killer.id,
-                        expBreakdown: { kill: killExp, bonus: bonusExp },
-                        expGained: totalAmountExp
-                    };
-                }
-            }
-            if (selected) await RMSSEffectApplier._markTokenAsDead(selected, expData);
-            return true;
-        }
-
-        return false;
+        return RMSSEffectApplier.applyDeathIfBroughtToZero(entity, currentHits, newHits, originId);
     }
 
     static async _applyStun(entity, data, stun_bleeding) {

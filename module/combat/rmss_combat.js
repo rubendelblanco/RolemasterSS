@@ -2,6 +2,7 @@ import {RMSSCombatant} from "./rmss_combatant.js";
 import { registerCombatHooks } from "./hooks.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
+import { RMSSEffectApplier } from "./rmss_effect_applier.js";
 
 /**
  * Custom Combat class for RMSS system.
@@ -54,17 +55,44 @@ export class RMSSCombat extends Combat {
     async nextRound(){
         super.nextRound();
 
+        // Actor updates, effect deletes: GM only so hits persist once and sync to clients.
+        if (!game.user.isGM) return;
+
         for (let combatant of this.combatants) {
             const actor = combatant.actor;
             if (!actor) continue;
             const permanentEffects = ["Bleeding", "Penalty"];
             let effectsAlreadyErased = {"Stunned": false, "No parry": false, "Parry": false};
 
-            for (let effect of [...actor.effects]) {
+            let bleedTotal = 0;
+            for (const effect of actor.effects) {
                 if (effect.name === "Bleeding") {
-                    actor.system.attributes.hits.current -= effect.flags.rmss.value;
+                    bleedTotal += Number(effect.flags?.rmss?.value) || 0;
                 }
+            }
+            if (bleedTotal > 0) {
+                const priorHits = Number(actor.system.attributes.hits.current);
+                const newHits = priorHits - bleedTotal;
+                await actor.update({ "system.attributes.hits.current": newHits });
+                const attackerId = CombatHistoryTracker.get().getLastAttacker(actor.id) ?? null;
+                if (attackerId && game.combat?.id) {
+                    CombatHistoryTracker.get().recordDamage(
+                        attackerId,
+                        actor.id,
+                        bleedTotal,
+                        newHits <= 0 && priorHits > 0
+                    );
+                }
+                await RMSSEffectApplier.applyDeathIfBroughtToZero(
+                    actor,
+                    priorHits,
+                    newHits,
+                    attackerId,
+                    combatant.token ?? null
+                );
+            }
 
+            for (let effect of [...actor.effects]) {
                 if (permanentEffects.includes(effect.name) || (effectsAlreadyErased.hasOwnProperty(effect.name) && effectsAlreadyErased[effect.name])) {
                     continue;
                 }

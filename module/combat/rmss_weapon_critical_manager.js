@@ -89,11 +89,13 @@ class LargeCreatureCriticalStrategy {
         const roll = new Roll(`1d100x>95`);
         await roll.evaluate({ async: true });
 
-        let newHits = defenderActor.system.attributes.hits.current - parseInt(damage);
+        const priorHits = defenderActor.system.attributes.hits.current;
+        let newHits = priorHits - parseInt(damage);
         await defenderActor.update({ "system.attributes.hits.current": newHits });
 
         const tracker = CombatHistoryTracker.get();
         tracker.recordDamage(attackerActor.id, defenderActor.id, parseInt(damage), newHits <= 0);
+        await RMSSEffectApplier.applyDeathIfBroughtToZero(defenderActor, priorHits, newHits, attackerActor.id);
         tracker.recordCritical(attackerActor.id, defenderActor.id, data.severity);
 
         if (severity === "null") return;
@@ -353,13 +355,15 @@ export class RMSSWeaponCriticalManager {
         const actor = Utils.getActor(token);
         if (!actor) return;
         const dmg = parseInt(damage);
-        let newHits = actor.system.attributes.hits.current - dmg;
+        const priorHits = actor.system.attributes.hits.current;
+        let newHits = priorHits - dmg;
         await actor.update({ "system.attributes.hits.current": newHits });
 
         if (attackerId && game.combat?.id) {
             const tracker = CombatHistoryTracker.get();
             tracker.recordDamage(attackerId, actor.id, dmg, newHits <= 0);
         }
+        await RMSSEffectApplier.applyDeathIfBroughtToZero(actor, priorHits, newHits, attackerId);
     }
 
     static async updateActorHits(targetId, isToken, damage, gmResponse) {
@@ -368,7 +372,8 @@ export class RMSSWeaponCriticalManager {
         if (isNaN(damage)) return;
         const target = token.actor;
         const dmg = parseInt(damage);
-        let newHits = target.system.attributes.hits.current - dmg;
+        const priorHits = target.system.attributes.hits.current;
+        let newHits = priorHits - dmg;
         await target.update({ "system.attributes.hits.current": newHits });
 
         const attackerId = gmResponse?.attackerId;
@@ -377,6 +382,7 @@ export class RMSSWeaponCriticalManager {
             tracker.recordDamage(attackerId, target.id, dmg, newHits <= 0);
             tracker.recordCritical(attackerId, target.id, gmResponse?.severity);
         }
+        await RMSSEffectApplier.applyDeathIfBroughtToZero(target, priorHits, newHits, attackerId, token);
 
         if (gmResponse.severity === "null") return;
         const roll = new Roll(`(1d100)`);
