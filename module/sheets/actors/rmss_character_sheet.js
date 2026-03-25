@@ -29,7 +29,10 @@ export default class RMSSCharacterSheet extends ActorSheet {
                 if (item.type === "armor") {
                     const armorCheck = EquipmentService.canEquipArmor(this.actor, item);
                     if (!armorCheck.valid) {
-                        ui.notifications.warn(game.i18n.localize("rmss.equipment.armor_slot_occupied"));
+                        const armorMsg = armorCheck.reason === "shield_with_two_handed_weapon"
+                            ? game.i18n.localize("rmss.equipment.shield_with_two_handed_weapon")
+                            : game.i18n.localize("rmss.equipment.armor_slot_occupied");
+                        ui.notifications.warn(armorMsg);
                         return;
                     }
                 }

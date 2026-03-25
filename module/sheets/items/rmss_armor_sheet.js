@@ -39,12 +39,15 @@ export default class RMSSArmorSheet extends ItemSheet {
     const powerModifierMode = getPowerModifierMode(system);
     const ppMultiplierProfessionName = await resolveProfessionName(system.pp_multiplier_profession ?? "");
     const spellAdderProfessionName = await resolveProfessionName(system.spell_adder_profession ?? "");
+    const armorSlot = system.armorSlot || (system.isShield ? "shield" : "body");
 
     return {
       owner: this.item.isOwner,
       editable: this.isEditable,
       item: baseData.item,
       system: { ...system, material, bonus, magical },
+      showArmorAt: armorSlot === "body",
+      showShieldDb: armorSlot === "shield",
       config: CONFIG.rmss,
       user: game.user,
       enrichedDescription: await TextEditor.enrichHTML(this.item.system.description, { async: true }),
@@ -322,9 +325,19 @@ export default class RMSSArmorSheet extends ItemSheet {
         formData["system.quality"] = null;
       }
     }
-    const armorSlot = formData["system.armorSlot"];
-    if (armorSlot !== undefined) {
-      formData["system.isShield"] = armorSlot === "shield";
+    const armorSlot =
+      formData["system.armorSlot"] !== undefined
+        ? formData["system.armorSlot"]
+        : (this.item.system?.armorSlot ?? (this.item.system?.isShield ? "shield" : "body"));
+    const resolvedSlot = armorSlot;
+    if (formData["system.armorSlot"] !== undefined) {
+      formData["system.isShield"] = formData["system.armorSlot"] === "shield";
+    }
+    if (resolvedSlot !== "body") {
+      formData["system.at"] = 1;
+    }
+    if (resolvedSlot !== "shield") {
+      formData["system.db"] = 0;
     }
     const raw = formData["system.bonus_skills"];
     if (raw && typeof raw === "object" && !Array.isArray(raw)) {

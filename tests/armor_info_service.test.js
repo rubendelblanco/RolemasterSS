@@ -3,10 +3,10 @@
  */
 import ArmorInfoService from '../module/actors/services/armor_info_service.js';
 
-function makeArmor({ slot = "body", equipped = true, at = 1, bonus = 0, isShield = false } = {}) {
+function makeArmor({ slot = "body", equipped = true, at = 1, db = 0, bonus = 0, isShield = false } = {}) {
   return {
     type: "armor",
-    system: { equipped, armorSlot: slot, at, bonus, isShield }
+    system: { equipped, armorSlot: slot, at, db, bonus, isShield }
   };
 }
 
@@ -36,7 +36,7 @@ describe('ArmorInfoService.getEquippedArmorBySlot', () => {
   test('picks equipped items in each slot', () => {
     const body = makeArmor({ slot: "body", at: 12 });
     const helmet = makeArmor({ slot: "helmet", bonus: 5 });
-    const shield = makeArmor({ slot: "shield", bonus: 15 });
+    const shield = makeArmor({ slot: "shield", db: 15, bonus: 0 });
     const result = ArmorInfoService.getEquippedArmorBySlot(makeActor([body, helmet, shield]));
     expect(result.body).toBe(body);
     expect(result.helmet).toBe(helmet);
@@ -63,7 +63,7 @@ describe('ArmorInfoService.getEquippedArmorBySlot', () => {
   });
 
   test('falls back to isShield flag when armorSlot is missing', () => {
-    const shield = { type: "armor", system: { equipped: true, armorSlot: "", isShield: true, bonus: 5 } };
+    const shield = { type: "armor", system: { equipped: true, armorSlot: "", isShield: true, db: 5, bonus: 0 } };
     const result = ArmorInfoService.getEquippedArmorBySlot(makeActor([shield]));
     expect(result.shield).toBe(shield);
   });
@@ -81,11 +81,18 @@ describe('ArmorInfoService.computeFromEquipment', () => {
     expect(result.armor_type).toBe(12);
   });
 
-  test('shield sets shield_bonus', () => {
-    const shield = makeArmor({ slot: "shield", bonus: 20 });
+  test('shield sets shield_bonus from db', () => {
+    const shield = makeArmor({ slot: "shield", db: 20, bonus: 0 });
     const result = ArmorInfoService.computeFromEquipment(makeActor([shield]));
     expect(result.shield_bonus).toBe(20);
-    expect(result.armor_type).toBe(1); // no body armor
+    expect(result.armor_type).toBe(1);
+  });
+
+  test('shield material bonus counts toward magic, not shield_bonus', () => {
+    const shield = makeArmor({ slot: "shield", db: 20, bonus: 10 });
+    const result = ArmorInfoService.computeFromEquipment(makeActor([shield]));
+    expect(result.shield_bonus).toBe(20);
+    expect(result.magic).toBe(10);
   });
 
   test('body + helmet bonuses combine into magic', () => {
@@ -95,20 +102,20 @@ describe('ArmorInfoService.computeFromEquipment', () => {
     expect(result.magic).toBe(15);
   });
 
-  test('shield bonus does NOT count as magic', () => {
-    const shield = makeArmor({ slot: "shield", bonus: 25 });
-    const result = ArmorInfoService.computeFromEquipment(makeActor([shield]));
-    expect(result.magic).toBe(0);
-    expect(result.shield_bonus).toBe(25);
+  test('helmet with bonus 0 does not add to magic', () => {
+    const body = makeArmor({ slot: "body", at: 8, bonus: 10 });
+    const helmet = makeArmor({ slot: "helmet", bonus: 0 });
+    const result = ArmorInfoService.computeFromEquipment(makeActor([body, helmet]));
+    expect(result.magic).toBe(10);
   });
 
-  test('full setup: body + helmet + shield', () => {
+  test('full setup: body + helmet + shield with db and material on shield', () => {
     const body = makeArmor({ slot: "body", at: 16, bonus: 10 });
     const helmet = makeArmor({ slot: "helmet", bonus: 5 });
-    const shield = makeArmor({ slot: "shield", bonus: 20 });
+    const shield = makeArmor({ slot: "shield", db: 20, bonus: 7 });
     const result = ArmorInfoService.computeFromEquipment(makeActor([body, helmet, shield]));
     expect(result.armor_type).toBe(16);
     expect(result.shield_bonus).toBe(20);
-    expect(result.magic).toBe(15); // body 10 + helmet 5
+    expect(result.magic).toBe(22);
   });
 });

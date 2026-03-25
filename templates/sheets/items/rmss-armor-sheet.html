@@ -15,7 +15,11 @@
                     <th>{{localize "rmss.item.equipped"}}</th>
                     <th>{{localize "rmss.armor.armor_slot"}}</th>
                     <th>{{localize "rmss.armor.weight"}}</th>
-                    <th>{{localize "rmss.armor.at"}}</th>
+                    <th>
+                        {{#if showArmorAt}}{{localize "rmss.armor.at"}}
+                        {{else}}{{#if showShieldDb}}{{localize "rmss.armor.db"}}
+                        {{else}}—{{/if}}{{/if}}
+                    </th>
                 </tr>
                 <tr>
                     <td>
@@ -32,7 +36,13 @@
                         <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
                     </td>
                     <td>
+                        {{#if showArmorAt}}
                         <input name="system.at" type="text" value="{{system.at}}" data-dtype="Number"/>
+                        {{else}}{{#if showShieldDb}}
+                        <input name="system.db" type="text" value="{{system.db}}" data-dtype="Number"/>
+                        {{else}}
+                        <span class="rmss-armor-slot-na">—</span>
+                        {{/if}}{{/if}}
                     </td>
                 </tr>
                 <tr class="rmss-cost-row">

@@ -252,7 +252,8 @@
             "weapon_bonus_no_second_weapon": "Weapon skill bonus only applies when exactly one weapon is equipped. With multiple weapons, no bonus is added to the skill.",
             "dual_wield_same_skill": "Dual wielding requires two one-handed weapons with different skills. This weapon uses the same skill as the one already equipped.",
             "dual_wield_both_one_handed": "Dual wielding requires both weapons to be one-handed.",
-            "armor_slot_occupied": "That slot already has armor equipped. Only one armor per slot (body, helmet, shield)."
+            "armor_slot_occupied": "That slot already has armor equipped. Only one armor per slot (body, helmet, shield).",
+            "shield_with_two_handed_weapon": "You cannot equip a shield while wielding a two-handed weapon (2H, pole arm 2H, or missile weapon)."
         },
         "pc_sheet_items": {
             "equipped": "Equipped",
@@ -486,6 +487,7 @@
         },
         "armor": {
             "at": "AT",
+            "db": "DB",
             "armor_slot": "Slot",
             "is_shield": "Shield",
             "weight": "Weight",

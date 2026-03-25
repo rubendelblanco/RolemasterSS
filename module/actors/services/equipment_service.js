@@ -121,6 +121,9 @@ export default class EquipmentService {
     if (!actor?.items || item?.type !== "armor") return { valid: true };
     const slot = this.getArmorSlot(item);
     const itemId = item.id ?? item._id;
+    if (slot === "shield" && this.hasEquippedTwoHandedWeapon(actor)) {
+      return { valid: false, reason: "shield_with_two_handed_weapon" };
+    }
     const equippedInSlot = actor.items.find(
       (i) => i.type === "armor" && (i.id ?? i._id) !== itemId && i.system?.equipped && this.getArmorSlot(i) === slot
     );
@@ -141,6 +144,22 @@ export default class EquipmentService {
     return actor.items.filter(
       (i) => i.type === "weapon" && i.system?.equipped === true && i.system?.isNaturalWeapon !== true
     );
+  }
+
+  /**
+   * Whether the actor has a two-handed weapon equipped (2h, pole arm 2h, missile).
+   * Natural weapons are excluded (they do not occupy hands).
+   * @param {Actor} actor
+   * @returns {boolean}
+   */
+  static hasEquippedTwoHandedWeapon(actor) {
+    if (!actor?.items) return false;
+    for (const item of actor.items) {
+      if (item.type !== "weapon" || item.system?.equipped !== true) continue;
+      if (item.system?.isNaturalWeapon === true) continue;
+      if (this.getWeaponHands(item) >= 2) return true;
+    }
+    return false;
   }
 
   /**

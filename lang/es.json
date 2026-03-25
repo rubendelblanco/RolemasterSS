@@ -252,7 +252,8 @@
             "weapon_bonus_no_second_weapon": "El bonus del arma a la habilidad solo se aplica cuando hay exactamente un arma equipada. Con varias armas, no se añade bonus.",
             "dual_wield_same_skill": "Doble empuñadura requiere dos armas de una mano con habilidades distintas. Esta arma usa la misma habilidad que la ya equipada.",
             "dual_wield_both_one_handed": "Doble empuñadura requiere que ambas armas sean de una mano.",
-            "armor_slot_occupied": "Esa ranura ya tiene armadura equipada. Solo una armadura por ranura (cuerpo, yelmo, escudo)."
+            "armor_slot_occupied": "Esa ranura ya tiene armadura equipada. Solo una armadura por ranura (cuerpo, yelmo, escudo).",
+            "shield_with_two_handed_weapon": "No puedes equipar un escudo mientras empuñas un arma a dos manos (2H, pertiga a dos manos o arma de proyectiles)."
         },
     "pc_sheet_items": {
       "equipped": "Equipado",
@@ -486,6 +487,7 @@
     },
     "armor": {
       "at": "AT",
+      "db": "BD",
       "armor_slot": "Ranura",
       "is_shield": "Escudo",
       "weight": "Peso",

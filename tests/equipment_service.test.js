@@ -157,5 +157,25 @@ describe("EquipmentService", () => {
       const helmet = { type: "armor", _id: "h1", system: { armorSlot: "helmet" } };
       expect(EquipmentService.canEquipArmor(actor, helmet).valid).toBe(true);
     });
+    test("cannot equip shield while 2H weapon is equipped", () => {
+      const weapon2H = { type: "weapon", system: { equipped: true, type: "2h", isNaturalWeapon: false } };
+      const actor = { items: [weapon2H] };
+      const shield = { type: "armor", _id: "s1", system: { armorSlot: "shield", isShield: true } };
+      const result = EquipmentService.canEquipArmor(actor, shield);
+      expect(result.valid).toBe(false);
+      expect(result.reason).toBe("shield_with_two_handed_weapon");
+    });
+    test("cannot equip shield while pa2h weapon is equipped", () => {
+      const pa2h = { type: "weapon", system: { equipped: true, type: "pa2h", isNaturalWeapon: false } };
+      const actor = { items: [pa2h] };
+      const shield = { type: "armor", _id: "s1", system: { armorSlot: "shield" } };
+      expect(EquipmentService.canEquipArmor(actor, shield).reason).toBe("shield_with_two_handed_weapon");
+    });
+    test("can equip shield with only 1H weapon equipped", () => {
+      const weapon1H = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false } };
+      const actor = { items: [weapon1H] };
+      const shield = { type: "armor", _id: "s1", system: { armorSlot: "shield", isShield: true } };
+      expect(EquipmentService.canEquipArmor(actor, shield).valid).toBe(true);
+    });
   });
 });

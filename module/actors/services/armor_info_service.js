@@ -1,8 +1,8 @@
 /**
  * Service to compute and update actor armor_info from equipped armor items.
- * - armor_type (AT): from equipped body armor
- * - shield_bonus: from equipped shield bonus
- * - magic: from equipped body + helmet bonuses (combined)
+ * - armor_type (AT): from equipped body armor only
+ * - shield_bonus: from equipped shield system.db (defensive bonus)
+ * - magic: sum of material bonuses (system.bonus > 0) from all equipped armor (body, helmet, shield)
  * - total_db: recalculated from quickness_bonus + adrenal_defense + magic + shield_bonus - quickness_penalty
  */
 export default class ArmorInfoService {
@@ -25,17 +25,32 @@ export default class ArmorInfoService {
   }
 
   /**
+   * Sum material magic bonus from every equipped armor piece (bonus > 0 only).
+   * @param {Actor} actor
+   * @returns {number}
+   */
+  static computeEquippedMagicBonus(actor) {
+    if (!actor?.items) return 0;
+    let magic = 0;
+    for (const item of actor.items) {
+      if (item.type !== "armor" || !item.system?.equipped) continue;
+      const b = Number(item.system?.bonus) || 0;
+      if (b > 0) magic += b;
+    }
+    return magic;
+  }
+
+  /**
    * Compute armor_info values from equipped armor items.
    * @param {Actor} actor
    * @returns {{ armor_type: number, shield_bonus: number, magic: number }}
    */
   static computeFromEquipment(actor) {
     const equipped = this.getEquippedArmorBySlot(actor);
-    const bonus = (item) => Number(item?.system?.bonus) || 0;
 
     const armor_type = equipped.body ? (Number(equipped.body.system?.at) || 1) : 1;
-    const shield_bonus = equipped.shield ? bonus(equipped.shield) : 0;
-    const magic = (equipped.body ? bonus(equipped.body) : 0) + (equipped.helmet ? bonus(equipped.helmet) : 0);
+    const shield_bonus = equipped.shield ? (Number(equipped.shield.system?.db) || 0) : 0;
+    const magic = this.computeEquippedMagicBonus(actor);
 
     return { armor_type, shield_bonus, magic };
   }

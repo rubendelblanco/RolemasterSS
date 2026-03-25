@@ -752,9 +752,22 @@ Hooks.once("init", function () {
     if (item.type !== "armor") return;
     const actor = item.parent;
     if (!actor?.system?.armor_info) return;
-    const armorRelevant = "system.equipped" in update || "system.bonus" in update || "system.at" in update || "system.armorSlot" in update ||
-      update.system?.equipped !== undefined || update.system?.bonus !== undefined || update.system?.at !== undefined || update.system?.armorSlot !== undefined;
+    const s = update.system;
+    const armorRelevant =
+      "system.equipped" in update || "system.bonus" in update || "system.at" in update || "system.db" in update ||
+      "system.armorSlot" in update || "system.material" in update ||
+      s?.equipped !== undefined || s?.bonus !== undefined || s?.at !== undefined || s?.db !== undefined ||
+      s?.armorSlot !== undefined || s?.material !== undefined;
     if (!armorRelevant) return;
+    const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
+    await ArmorInfoService.updateActorArmorInfo(actor);
+  });
+
+  // Hook: deleteItem - keep armor_info in sync when armor is removed from an actor
+  Hooks.on("deleteItem", async (item, options, userId) => {
+    if (item.type !== "armor") return;
+    const actor = item.parent;
+    if (!actor?.system?.armor_info) return;
     const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
     await ArmorInfoService.updateActorArmorInfo(actor);
   });
