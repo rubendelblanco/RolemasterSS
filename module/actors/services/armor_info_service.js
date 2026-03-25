@@ -4,8 +4,35 @@
  * - shield_bonus: from equipped shield system.db (defensive bonus)
  * - magic: sum of material bonuses (system.bonus > 0) from all equipped armor (body, helmet, shield)
  * - total_db: recalculated from quickness_bonus + adrenal_defense + magic + shield_bonus - quickness_penalty
+ * - quickness_bonus (characters): (stats.quickness.stat_bonus) * 3 — stat_bonus is racial + special + basic (table from temp)
  */
 export default class ArmorInfoService {
+
+  /**
+   * Sets armor_info.quickness_bonus from Quickness stat total bonus × 3 and refreshes total_db.
+   * For character actors only; uses current armor_info fields for the other total_db terms.
+   * @param {Actor} actor
+   */
+  static async syncQuicknessArmorBonus(actor) {
+    if (actor?.type !== "character" || !actor.system?.armor_info) return;
+    actor.prepareData();
+    const quickness_bonus = (Number(actor.system.stats?.quickness?.stat_bonus) || 0) * 3;
+    const info = actor.system.armor_info;
+    const total_db = Math.max(0,
+      quickness_bonus +
+      (Number(info.adrenal_defense) || 0) +
+      (Number(info.magic) || 0) +
+      (Number(info.shield_bonus) || 0) -
+      (Number(info.quickness_penalty) || 0)
+    );
+    const prevQb = Number(actor.system.armor_info.quickness_bonus) || 0;
+    const prevDb = Number(actor.system.armor_info.total_db) || 0;
+    if (prevQb === quickness_bonus && prevDb === total_db) return;
+    await actor.update({
+      "system.armor_info.quickness_bonus": quickness_bonus,
+      "system.armor_info.total_db": total_db
+    });
+  }
 
   /**
    * Get equipped armor items grouped by slot.

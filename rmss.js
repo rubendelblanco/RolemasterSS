@@ -860,6 +860,11 @@ Hooks.once("init", function () {
     if (!actor) return;
     if (!("system" in update)) return;
 
+    if (actor.type === "character" && actor.system?.armor_info && update.system?.stats?.quickness) {
+      const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
+      await ArmorInfoService.syncQuicknessArmorBonus(actor);
+    }
+
     await syncHitsAndPowerPointsFromSkills(actor);
   });
 

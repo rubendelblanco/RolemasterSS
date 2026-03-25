@@ -15,6 +15,7 @@ import StatAssignmentDialog from "../../actors/dialogs/stat_assignment_dialog.js
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 import RaceService from "../../actors/services/race_service.js";
 import { getEffectivePowerPointsMaxForSheet } from "../../actors/utils/power_points_util.js";
+import ArmorInfoService from "../../actors/services/armor_info_service.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -279,7 +280,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     // Auto-calculate total_db when armor_info values change
     this._registerArmorInfoListeners(html);
     
-    // Auto-calculate quickness_bonus when quickness.basic_bonus changes
+    // Auto-calculate quickness_bonus when any Quickness stat field that affects stat_bonus changes
     this._registerQuicknessBonusListener(html);
     
     // Calculate quickness_bonus on initial load
@@ -452,34 +453,34 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   }
 
   /**
-   * Registers a listener for quickness.basic_bonus changes to automatically
-   * calculate and update quickness_bonus (basic_bonus * 3).
+   * Registers listeners for Quickness fields that feed stat_bonus (temp → basic_bonus, racial, special).
+   * quickness_bonus = stats.quickness.stat_bonus × 3 (same total as on the stat line).
    * @param {jQuery} html - The jQuery object containing the sheet HTML
    */
   _registerQuicknessBonusListener(html) {
-    html.find('input[name="system.stats.quickness.basic_bonus"]').on("change", async (ev) => {
-      await this._updateQuicknessBonus(html);
-    });
-    
-    html.find('input[name="system.stats.quickness.temp"]').on("change", async (ev) => {
-      await this._updateQuicknessBonus(html);
-    });
+    const fields = [
+      "system.stats.quickness.temp",
+      "system.stats.quickness.basic_bonus",
+      "system.stats.quickness.racial_bonus",
+      "system.stats.quickness.special_bonus"
+    ];
+    for (const name of fields) {
+      html.find(`input[name="${name}"]`).on("change", async () => {
+        await this._updateQuicknessBonus(html);
+      });
+    }
   }
 
   /**
-   * Calculates and updates quickness_bonus based on quickness.basic_bonus * 3.
-   * Also recalculates total_db in the same update to avoid flickering.
+   * quickness_bonus = (racial + special + basic_bonus) × 3 === stats.quickness.stat_bonus × 3 after prepareData().
+   * Recalculates total_db using armor fields from the form when available.
    * @param {jQuery} html - The jQuery object containing the sheet HTML (optional)
    */
   async _updateQuicknessBonus(html = null) {
-    const basicBonus = Number(this.actor.system.stats?.quickness?.basic_bonus) || 0;
-    const quicknessBonus = basicBonus * 3;
-    
-    // Calculate total_db with the new quickness_bonus value
+    this.actor.prepareData();
+    const quicknessBonus = (Number(this.actor.system.stats?.quickness?.stat_bonus) || 0) * 3;
     const totalDB = this._calculateTotalDB(html, quicknessBonus);
-    
-    // Update both values in a single actor update to prevent flickering
-    await this.actor.update({ 
+    await this.actor.update({
       "system.armor_info.quickness_bonus": quicknessBonus,
       "system.armor_info.total_db": totalDB
     });
@@ -543,8 +544,8 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     if (quicknessBonusOverride !== null) {
       quicknessBonus = quicknessBonusOverride;
     } else {
-      const basicBonus = Number(this.actor.system.stats?.quickness?.basic_bonus) || 0;
-      quicknessBonus = basicBonus * 3;
+      this.actor.prepareData();
+      quicknessBonus = (Number(this.actor.system.stats?.quickness?.stat_bonus) || 0) * 3;
     }
     
     if (html) {
