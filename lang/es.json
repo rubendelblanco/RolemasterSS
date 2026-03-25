@@ -144,6 +144,7 @@
       "quickness_bonus": "Bonificación de rapidez",
       "adrenal_defense": "Defensa adrenal",
       "shield_bonus": "Bonificación de escudo",
+      "shield_bonus_from_equipment": "Proviene del escudo equipado y efectos activos; edita el DB del escudo o usa efectos. No se guarda desde aquí para evitar duplicar bonos.",
       "magic": "Magia (Hechizos, objetos, etc.)",
       "total_db": "DB total"
     },

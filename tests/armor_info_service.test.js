@@ -118,4 +118,18 @@ describe('ArmorInfoService.computeFromEquipment', () => {
     expect(result.shield_bonus).toBe(20);
     expect(result.magic).toBe(22);
   });
+
+  test('uses item source db/bonus (toObject(true)), not prepared system', () => {
+    const shield = {
+      type: "armor",
+      system: { equipped: true, armorSlot: "shield", db: 25, bonus: 12 },
+      toObject(source) {
+        if (source) return { system: { equipped: true, armorSlot: "shield", db: 10, bonus: 5 } };
+        return { system: this.system };
+      }
+    };
+    const result = ArmorInfoService.computeFromEquipment(makeActor([shield]));
+    expect(result.shield_bonus).toBe(10);
+    expect(result.magic).toBe(5);
+  });
 });

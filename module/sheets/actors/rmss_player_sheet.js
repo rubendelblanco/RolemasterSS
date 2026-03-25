@@ -491,7 +491,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const armorInfoFields = [
       "system.armor_info.quickness_penalty",
       "system.armor_info.adrenal_defense",
-      "system.armor_info.shield_bonus",
       "system.armor_info.magic"
     ];
 

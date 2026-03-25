@@ -9,6 +9,26 @@
 export default class ArmorInfoService {
 
   /**
+   * System data from the item document source (not prepared / ActiveEffect-mixed `item.system`).
+   * Prevents writing effect-inflated db/at/bonus into actor armor_info; actor effects (e.g. Convenient Effects)
+   * would then stack twice on the same bonus.
+   * @param {Item|null|undefined} item
+   * @returns {object|null}
+   */
+  static _itemSourceSystem(item) {
+    if (!item) return null;
+    if (typeof item.toObject === "function") {
+      try {
+        const sys = item.toObject(true)?.system;
+        if (sys) return sys;
+      } catch {
+        /* ignore */
+      }
+    }
+    return item._source?.system ?? item.system ?? null;
+  }
+
+  /**
    * Sets armor_info.quickness_bonus from Quickness stat total bonus × 3 and refreshes total_db.
    * For character actors only; uses current armor_info fields for the other total_db terms.
    * @param {Actor} actor
@@ -61,7 +81,8 @@ export default class ArmorInfoService {
     let magic = 0;
     for (const item of actor.items) {
       if (item.type !== "armor" || !item.system?.equipped) continue;
-      const b = Number(item.system?.bonus) || 0;
+      const sys = this._itemSourceSystem(item);
+      const b = Number(sys?.bonus) || 0;
       if (b > 0) magic += b;
     }
     return magic;
@@ -75,8 +96,10 @@ export default class ArmorInfoService {
   static computeFromEquipment(actor) {
     const equipped = this.getEquippedArmorBySlot(actor);
 
-    const armor_type = equipped.body ? (Number(equipped.body.system?.at) || 1) : 1;
-    const shield_bonus = equipped.shield ? (Number(equipped.shield.system?.db) || 0) : 0;
+    const bodySys = this._itemSourceSystem(equipped.body);
+    const shieldSys = this._itemSourceSystem(equipped.shield);
+    const armor_type = equipped.body ? (Number(bodySys?.at) || 1) : 1;
+    const shield_bonus = equipped.shield ? (Number(shieldSys?.db) || 0) : 0;
     const magic = this.computeEquippedMagicBonus(actor);
 
     return { armor_type, shield_bonus, magic };

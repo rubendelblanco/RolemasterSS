@@ -4,15 +4,36 @@ const POWER_POINT_DEVELOPMENT_SLUG = "power-point-development";
 
 import { getEffectivePowerPointsMaxForSheet } from "./power_points_util.js";
 
+/** Debounce por actor para no ejecutar prepareData() en ráfaga (p. ej. varios hooks al aplicar efectos). */
+const _hitsPpSyncDebounced = new Map();
+
 /**
  * Syncs actor's hits.max and power_points.max from Body Development and Power Point Development skills.
  * PP max includes bonuses from equipped items (pp_multiplier, spell_adder).
  * Uses prepared data so Active Effects and stat changes are reflected correctly.
  * Categories are found by slug (fixed) for robustness (names can be translated).
  * @param {Actor} actor - The actor to sync.
- * @returns {Promise<void>}
  */
-export async function syncHitsAndPowerPointsFromSkills(actor) {
+export function syncHitsAndPowerPointsFromSkills(actor) {
+  if (!actor?.id) return;
+
+  let debounced = _hitsPpSyncDebounced.get(actor.id);
+  if (!debounced) {
+    debounced = foundry.utils.debounce(
+      (a) => {
+        _syncHitsAndPowerPointsFromSkillsNow(a).catch((e) => console.error("rmss | hits_pp_sync", e));
+      },
+      100
+    );
+    _hitsPpSyncDebounced.set(actor.id, debounced);
+  }
+  debounced(actor);
+}
+
+/**
+ * @param {Actor} actor
+ */
+async function _syncHitsAndPowerPointsFromSkillsNow(actor) {
   if (!actor) return;
 
   actor.prepareData();
@@ -58,3 +79,4 @@ export async function syncHitsAndPowerPointsFromSkills(actor) {
     await actor.update(updates);
   }
 }
+

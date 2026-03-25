@@ -20,6 +20,7 @@ export class RMSSActor extends Actor {
     // things organized.
     this._prepareCharacterData(actorData);
     this._prepareNpcData(actorData);
+    this._prepareCreatureData(actorData);
   }
 
   /**
@@ -56,6 +57,16 @@ export class RMSSActor extends Actor {
 
     // Make modifications to data here. For example:
     const data = actorData.system;
+  }
+
+  /**
+   * Criaturas: mismo orden que PJ (categorías → habilidades), sin paso duplicado en Item.prepareDerivedData.
+   * @param {Actor} actorData
+   */
+  _prepareCreatureData(actorData) {
+    if (actorData.type !== "creature") return;
+    this.calculateSkillCategoryStatBonuses();
+    this.calculateSkillBonuses();
   }
 
   _getStatBasicBonusFromTable(value){

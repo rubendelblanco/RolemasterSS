@@ -144,6 +144,7 @@
             "quickness_bonus": "Quickness Bonus",
             "adrenal_defense": "Adrenal Defence",
             "shield_bonus": "Shield Bonus",
+            "shield_bonus_from_equipment": "Sourced from equipped shield and active effects; edit the shield item’s DB or use effects. Not stored from this field to avoid doubling bonuses.",
             "magic": "Magic (Spells, Items, etc.)",
             "total_db": "Total DB"
         },

@@ -112,12 +112,9 @@ export class RMSSItem extends Item {
 
   _prepareSkillData(itemData) {
     if (itemData.type !== "skill") return;
-    // Make modifications to data here. For example:
-    // const systemData = itemData.system;
-    // Calculate Skill Category Bonus
-    this.calculateSelectedSkillCategoryBonus(itemData);
-    // Calculate Skill Total Bonus
-    this.calculateSkillTotalBonus(itemData);
+    // category_bonus / item_bonus / total_bonus: solo RMSSActor.calculateSkillBonuses()
+    // tras preparar categorías (PJ, PNJ, criatura). Evita 2× trabajo por skill y cada
+    // prepareData del actor (efectos, hoja, hooks) ya no duplica con el ítem.
   }
 
   calculateSkillCategoryTotalBonus(itemData) {
@@ -143,19 +140,12 @@ export class RMSSItem extends Item {
   }
 
   calculateSelectedSkillCategoryBonus(itemData) {
-    if (this.isEmbedded === null) {
-      console.log(`rmss | item.js | Skill ${this.name} has no owner. Not calculating Skill Category bonus`);
-    }
-    else
-    {
-      const items = this.parent?.items || [];
-      console.log(`rmss | item.js | Skill ${this.name} has owner, calculating skill category bonus.`);
-      for (const item of items) {
-        if (item.type === "skill_category" && item._id === itemData.system.category) {
-          console.log(`rmss | item.js | Calculating Skill Category bonus for skill: ${this.name}`);
-          this.system.category_bonus = item.system.total_bonus;
-          this.system.development_cost = item.system.development_cost;
-        }
+    if (this.isEmbedded === null) return;
+    const items = this.parent?.items || [];
+    for (const item of items) {
+      if (item.type === "skill_category" && item._id === itemData.system.category) {
+        this.system.category_bonus = item.system.total_bonus;
+        this.system.development_cost = item.system.development_cost;
       }
     }
   }
