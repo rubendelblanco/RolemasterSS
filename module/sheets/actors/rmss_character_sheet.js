@@ -209,10 +209,12 @@ export default class RMSSCharacterSheet extends ActorSheet {
                     return ui.notifications.error("Managing embedded Documents which are not direct descendants of a primary Document is un-supported at this time.");
                 }
                 return owner.createEmbeddedDocuments("ActiveEffect", [{
-                    label: "New Effect",
-                    icon: "icons/svg/aura.svg",
+                    name: "New Effect",
+                    img: "icons/svg/aura.svg",
                     origin: owner.uuid,
-                    disabled: true
+                    disabled: false,
+                    changes: [],
+                    duration: { startTime: game.time.worldTime }
                 }]);
             case "edit":
                 return effect.sheet.render(true);

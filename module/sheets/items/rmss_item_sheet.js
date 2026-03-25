@@ -507,10 +507,12 @@ export default class RMSSItemSheet extends ItemSheet {
     switch (action) {
       case "create":
         return this.item.createEmbeddedDocuments("ActiveEffect", [{
-          label: "New Effect",
-          icon: "icons/svg/aura.svg",
+          name: "New Effect",
+          img: "icons/svg/aura.svg",
           origin: this.item.uuid,
-          disabled: true
+          disabled: false,
+          changes: [],
+          duration: { startTime: game.time.worldTime }
         }]);
       case "edit":
         return effect?.sheet.render(true);
