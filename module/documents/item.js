@@ -66,6 +66,14 @@ export class RMSSItem extends Item {
       }
       data.system.tags = tags;
     }
+    if (data.type === "herb_or_poison") {
+      if (!data.system) data.system = {};
+      const tags = normalizeTagArray(data.system.tags);
+      if (!tags.some((t) => t.toLowerCase() === "herb")) {
+        tags.unshift("herb");
+      }
+      data.system.tags = tags;
+    }
     await super._preCreate(data, options, userId);
   }
 
