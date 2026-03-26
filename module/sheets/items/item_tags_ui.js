@@ -40,7 +40,10 @@ export function getItemTagListId(item) {
 export function bindItemTagsEditor(sheet, html) {
     if (!sheet.isEditable) return;
 
-    html.find(".rmss-item-tags [data-action='item-tag-remove']").on("click", async (ev) => {
+    // Delegación + namespace: la hoja puede re-renderizarse; evita listeners huérfanos y fallos si el DOM se reordena.
+    const ns = ".rmssItemTagsUi";
+    html.off(`click${ns}`, ".rmss-item-tags [data-action='item-tag-remove']");
+    html.on(`click${ns}`, ".rmss-item-tags [data-action='item-tag-remove']", async (ev) => {
         ev.preventDefault();
         const chip = ev.currentTarget.closest("[data-tag-index]");
         if (!chip) return;
@@ -52,9 +55,11 @@ export function bindItemTagsEditor(sheet, html) {
         sheet.render(false);
     });
 
-    html.find(".rmss-item-tags input.rmss-item-tag-input").on("keydown", async (ev) => {
+    html.off(`keydown${ns}`, ".rmss-item-tags input.rmss-item-tag-input");
+    html.on(`keydown${ns}`, ".rmss-item-tags input.rmss-item-tag-input", async (ev) => {
         if (ev.key !== "Enter") return;
         ev.preventDefault();
+        ev.stopPropagation();
         const input = ev.currentTarget;
         const v = String(input.value ?? "").trim();
         if (!v) return;

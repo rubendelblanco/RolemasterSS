@@ -30,13 +30,16 @@ export default class RMSSHerbAndPoisonSheet extends ItemSheet {
   // Make the data available to the sheet template
   async getData() {
     const baseData = await super.getData();
+    const system = baseData.item.system;
     let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
     let secretDescription = await TextEditor.enrichHTML(this.item.system.description_secret, {async: true});
     let sheetData = {
       owner: this.item.isOwner,
       editable: this.isEditable,
       item: baseData.item,
-      system: baseData.item.system,
+      system,
+      itemTags: getItemTagsArray(system),
+      itemTagListId: getItemTagListId(this.item),
       config: CONFIG.rmss,
       user: game.user,
       enrichedDescription: enrichedDescription,
