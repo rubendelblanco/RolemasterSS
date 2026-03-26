@@ -23,6 +23,16 @@
             "hits_recovered": "Hit points recovered",
             "pp_recovered": "Power Points recovered"
         },
+        "spell_heal": {
+            "wrong_target_count": "Select between 1 and {max} target(s); you have {actual} selected.",
+            "duplicate_targets": "The same target is selected more than once.",
+            "invalid_amount": "Heal amount must be a non-negative number.",
+            "no_scene": "No active scene to resolve targets.",
+            "token_not_found": "One or more targets are not on that scene.",
+            "socket_failed": "Could not apply healing (connection error).",
+            "notify_healed_line": "{name}: +{recovered} hits ({current}/{max})",
+            "notify_separator": " · "
+        },
         "race": {
             "tab_general": "General",
             "tab_other_factors": "Other Factors",
