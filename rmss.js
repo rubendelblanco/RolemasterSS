@@ -80,6 +80,10 @@ Hooks.once("socketlib.ready", () => {
   socket.register("chooseCriticalOption", RMSSWeaponCriticalManager.chooseCriticalOption);
   socket.register("updateActorHits", RMSSWeaponCriticalManager.updateActorHits);
   socket.register("applyCriticalToEnemy", RMSSWeaponCriticalManager.applyCriticalToEnemy);
+  socket.register("applySpellHealHits", async (payload) => {
+    const { default: SpellHealService } = await import("./module/spells/services/spell_heal_service.js");
+    return SpellHealService.applySpellHealHitsGM(payload);
+  });
   socket.register("recordCombatStat", async (combatId, op, payload) => {
     const combat = game.combats.get(combatId);
     if (!combat) return;
@@ -288,7 +292,16 @@ Hooks.once("init", function () {
     /** Create a profession item from predefined data. Run from macro: await game.rmss.createProfession("Cleric"); */
     createProfession,
     /** Show dialog to pick profession and create it. Run from macro: await game.rmss.createProfessionDialog(); */
-    createProfessionDialog
+    createProfessionDialog,
+    /**
+     * Heal hit points on targeted token(s) as GM (for spell macros). Target count must be between 1 and `maxTargets` (inclusive).
+     * @param {{ amountPerTarget: number, maxTargets?: number, tokenIds?: string[], sceneId?: string }} options
+     * @returns {Promise<boolean>}
+     */
+    async applySpellHealHits(options) {
+      const { default: SpellHealService } = await import("./module/spells/services/spell_heal_service.js");
+      return SpellHealService.applyHealHits(options);
+    }
   };
 
   // Define custom Document classes

@@ -23,6 +23,16 @@
       "hits_recovered": "Puntos de vida recuperados",
       "pp_recovered": "Puntos de Poder recuperados"
     },
+    "spell_heal": {
+      "wrong_target_count": "Selecciona entre 1 y {max} objetivo(s); tienes {actual} seleccionado(s).",
+      "duplicate_targets": "El mismo objetivo está seleccionado más de una vez.",
+      "invalid_amount": "La cantidad de curación debe ser un número no negativo.",
+      "no_scene": "No hay escena activa para resolver objetivos.",
+      "token_not_found": "Uno o más objetivos no están en esa escena.",
+      "socket_failed": "No se pudo aplicar la curación (error de conexión).",
+      "notify_healed_line": "{name}: +{recovered} golpes ({current}/{max})",
+      "notify_separator": " · "
+    },
     "race": {
       "tab_general": "General",
       "tab_other_factors": "Otros factores",
