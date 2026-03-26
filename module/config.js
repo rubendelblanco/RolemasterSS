@@ -220,6 +220,20 @@ rmss.slaying_types = [
   "demon-fifth-pale","demon-sixth-pale","demon-beyond-pale","fire-elemental","water-elemental","air-elemental","earth-elemental"
 ];
 
+/**
+ * Item classification tags (consumables, ammunition, gear). Kept separate from Foundry Item.type (weapon, armor, item…).
+ * Use for compendia, macros, containers `allowedTags`, or future sheet filters — same kebab-case style as slaying_types.
+ */
+rmss.item_type_tags = [
+  "accessory", "ammo", "antidote", "arrow", "bandage", "bolt", "book", "bullet",
+  "clothing", "component", "consumable", "container", "crafting", "dart", "drink", "explosive",
+  "food", "fuel", "gem", "herb", "incense", "jewelry", "key", "kit", "light", "lock", "map",
+  "material", "oil", "part", "poison", "powder", "potion", "quest", "quarrel", "rope", "salve",
+  "scroll", "shuriken", "sling-bullet", "sling-stone", "spell-component", "tool",
+  "trap", "treasure", "wand", "writing", "1-hand-edged", "1-hand-concussion", "2-handed", "missile", 
+  "missile-artillery", "pole-arms", "thrown", "stackable"
+];
+
 
 rmss.armor_slot = {
   "body": "Body",
