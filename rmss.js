@@ -68,6 +68,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/items/rmss-macro-editor.hbs",
     "systems/rmss/templates/sheets/actors/dialogs/weapon_preference_dialog.html",
     "systems/rmss/templates/sheets/actors/dialogs/stat_assignment_dialog.html",
+    "systems/rmss/templates/sheets/items/parts/item-tags.hbs",
   ];
   return loadTemplates(templatePaths);
 }
@@ -360,7 +361,12 @@ Hooks.once("init", function () {
 
 
   // Preload Handlebars Templates
-  preloadHandlebarsTemplates();
+  preloadHandlebarsTemplates().then(() => {
+    fetch("systems/rmss/templates/sheets/items/parts/item-tags.hbs")
+      .then((r) => r.text())
+      .then((text) => Handlebars.registerPartial("rmssItemTags", text))
+      .catch((err) => console.warn("rmss | item tags partial", err));
+  });
 
   // Handlebars Helpers
 

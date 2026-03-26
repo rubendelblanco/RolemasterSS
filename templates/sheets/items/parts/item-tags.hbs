@@ -1,0 +1,24 @@
+<div class="form-group rmss-item-tags">
+    <label>{{localize "rmss.item.item_tags"}}</label>
+    <p class="notes">{{localize "rmss.item.item_tags_hint"}}</p>
+    <div class="rmss-item-tags-chips">
+        {{#each itemTags}}
+        <span class="rmss-tag-chip" data-tag-index="{{@index}}">
+            <span class="rmss-tag-label">{{this}}</span>
+            {{#if ../editable}}
+            <button type="button" class="item-tag-remove" data-action="item-tag-remove" title="{{localize 'rmss.item.item_tags_remove'}}">
+                <i class="fas fa-trash"></i>
+            </button>
+            {{/if}}
+        </span>
+        {{/each}}
+    </div>
+    {{#if editable}}
+    <input type="text" name="rmss-item-tag-new" class="rmss-item-tag-input" list="rmss-item-type-tags-{{itemTagListId}}" placeholder="{{localize 'rmss.item.item_tags_placeholder'}}" autocomplete="off"/>
+    <datalist id="rmss-item-type-tags-{{itemTagListId}}">
+        {{#each config.item_type_tags as |tag|}}
+        <option value="{{tag}}"/>
+        {{/each}}
+    </datalist>
+    {{/if}}
+</div>

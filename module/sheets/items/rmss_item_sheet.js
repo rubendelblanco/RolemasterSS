@@ -1,4 +1,5 @@
 import ItemService from "../../actors/services/item_service.js";
+import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import {
@@ -67,6 +68,8 @@ export default class RMSSItemSheet extends ItemSheet {
       editable: this.isEditable,
       item,
       system,
+      itemTags: getItemTagsArray(system),
+      itemTagListId: getItemTagListId(item),
       config: CONFIG.rmss,
       user: game.user,
       effects: item.getEmbeddedCollection("ActiveEffect").contents,
@@ -116,6 +119,8 @@ export default class RMSSItemSheet extends ItemSheet {
 
     // --- Macro ---
     html.find(".shtick-type").change(ev => this._onShtickTypeChange(ev));
+
+    bindItemTagsEditor(this, html);
   }
 
   _setupHolyUnholyExclusive(html) {

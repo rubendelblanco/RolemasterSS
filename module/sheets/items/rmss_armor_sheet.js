@@ -1,5 +1,6 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
+import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 import {
   buildEnchantmentList,
   buildSpellDataForStorage,
@@ -45,6 +46,8 @@ export default class RMSSArmorSheet extends ItemSheet {
       owner: this.item.isOwner,
       editable: this.isEditable,
       item: baseData.item,
+      itemTags: getItemTagsArray(system),
+      itemTagListId: getItemTagListId(this.item),
       system: { ...system, material, bonus, magical },
       showArmorAt: armorSlot === "body",
       showShieldDb: armorSlot === "shield",
@@ -100,6 +103,7 @@ export default class RMSSArmorSheet extends ItemSheet {
     this._setupBonusSkillDropZones(html);
     html.find("[data-action='remove-bonus-skill']").on("click", this._onRemoveBonusSkill.bind(this));
     this._setupEnchantmentsDropZone(html);
+    bindItemTagsEditor(this, html);
   }
 
   _getBonusSkillsArray() {

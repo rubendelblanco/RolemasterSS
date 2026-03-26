@@ -3585,3 +3585,44 @@ tr.container-row.over-capacity {
 .spell-adder-pip.empty {
   background-color: transparent;
 }
+
+/* Item sheet: system.tags chips + autocomplete */
+.rmss.sheet.item .rmss-item-tags .notes {
+  margin: 0.15rem 0 0.35rem;
+  font-size: var(--font-size-12);
+  opacity: 0.9;
+}
+.rmss.sheet.item .rmss-item-tags-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.25rem 0 0.5rem;
+  align-items: center;
+}
+.rmss.sheet.item .rmss-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1rem 0.4rem 0.1rem 0.5rem;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  font-size: var(--font-size-13);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.rmss.sheet.item .rmss-tag-chip .item-tag-remove {
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--color-text-light-6);
+  cursor: pointer;
+  font-size: 0.85em;
+}
+.rmss.sheet.item .rmss-tag-chip .item-tag-remove:hover {
+  color: var(--color-text-danger);
+}
+.rmss.sheet.item .rmss-item-tag-input {
+  width: 100%;
+  max-width: 28rem;
+}

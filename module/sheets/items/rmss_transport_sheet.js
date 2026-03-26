@@ -1,6 +1,7 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import {ContainerHandler} from "../../actors/utils/container_handler.js";
+import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 
 export default class RMSSTransportSheet extends ItemSheet {
 
@@ -30,11 +31,14 @@ export default class RMSSTransportSheet extends ItemSheet {
     const handler = ContainerHandler.for(item);
     const contents = handler ? handler.contents : [];
 
+    const sys = item.system;
     let sheetData = {
       owner: item.isOwner,
       editable: this.isEditable,
       item: item,
-      system: item.system,
+      system: sys,
+      itemTags: getItemTagsArray(sys),
+      itemTagListId: getItemTagListId(item),
       config: CONFIG.rmss,
       enrichedDescription: enrichedDescription,
       contents: contents
@@ -45,6 +49,7 @@ export default class RMSSTransportSheet extends ItemSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+    bindItemTagsEditor(this, html);
     if (!this.isEditable) return;
 
     // --- Containers ---

@@ -377,7 +377,8 @@
       "spell_adder_uses_remaining": 0,
       "spell_adder_realm": "",
       "pp_multiplier_profession": "",
-      "spell_adder_profession": ""
+      "spell_adder_profession": "",
+      "tags": []
     },
     "creature_attack": {
       "templates": ["base"],
