@@ -204,10 +204,20 @@ rmss.enchantment_usage = {
   "single": "rmss.item.enchantment_usage_single"
 }
 
-/** Slaying weapon creature types (for autocomplete). */
+/** Slaying weapon creature types (for autocomplete). Includes general types, professions, and undead creature names (kebab-case). */
 rmss.slaying_types = [
   "dragon", "undead", "orc", "troll", "demon", "vampire", "lycanthrope",
-  "serpent", "spider", "elemental", "witch", "evil", "humanoid"
+  "snake", "spider", "elemental", "witch", "evil", "humanoid",
+  "fighter", "rogue", "thief", "layman", "warrior-monk", "cleric", "druid", "animist", "magician", "illusionist",
+  "mentalist", "lay healer", "seer", "alchemist", "ranger", "paladin", "dabbler", "monk", "bard", "magent",
+  "armsmaster", "healer", "sorcerer", "mystic", "warlock", "enchanter", "astrologer", "conjuror", "famulus", "manipulator",
+  "necromancer", "runemaster", "burglar", "barbarian", "archmage", "delver", "nightblade",
+  "animal", "bear", "wolf", "tiger", "lion", "shapeshifter","magehunter","chaotic","wizard",
+  "apparition", "black-paladin",
+  "ghost", "ghoul", "lich", "mummy","skeleton", "wight", "wraith", "wrath",
+  "zombie", "construct","elf","dwarf","human","halfling","gnome","orc","troll","ogre","giant","centaur",
+  "minotaur","cyclops","good","underground-creature", "demon-first-pale","demon-second-pale","demon-third-pale","demon-fourth-pale",
+  "demon-fifth-pale","demon-sixth-pale","demon-beyond-pale","fire-elemental","water-elemental","air-elemental","earth-elemental"
 ];
 
 
