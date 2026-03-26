@@ -543,6 +543,14 @@
         "pa1h": "asta (1 mano)",
         "pa2h": "asta (2 manos)",
         "mis": "proyectil"
+      },
+      "ammo_type": "Tipo de munición",
+      "ammo_type_none": "—",
+      "ammo_type_hint": "Los ítems de munición deben llevar la misma etiqueta en Etiquetas del ítem (p. ej. arrow). Las pilas pueden estar en un carcaj o en el inventario.",
+      "ammo_type_label": {
+        "arrow": "arrow (flechas)",
+        "bolt": "bolt (virote)",
+        "bullet": "bullet (bala / honda)"
       }
     },
     "herb_or_poison": {
@@ -737,6 +745,10 @@
       "confirm_attack": "Confirmar ataque",
       "confirm": "Confirmar",
       "cancel": "Cancelar",
+      "no_ammo": "No queda munición que coincida con el tipo del arma (revisa las etiquetas del ítem).",
+      "select_ammo": "Elegir munición",
+      "select_ammo_label": "Pila",
+      "ammo_consumed": "{name}: −1 (quedan {remaining})",
       "confirm_critical": "Confirmar critico",
       "ob": "Bonificación ofensiva",
       "action_points": "Puntos acción",

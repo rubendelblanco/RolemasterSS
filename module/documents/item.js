@@ -15,6 +15,8 @@
  * @property {number} casterLevel - Caster level
  */
 
+import { normalizeTagArray } from "../sheets/items/item_tags_ui.js";
+
 export class RMSSItem extends Item {
 
   /**
@@ -54,8 +56,16 @@ export class RMSSItem extends Item {
     super.prepareData();
   }
 
-  // Set the icon images for newly created images.
+  /** @override */
   async _preCreate(data, options, userId) {
+    if (data.type === "weapon") {
+      if (!data.system) data.system = {};
+      const tags = normalizeTagArray(data.system.tags);
+      if (!tags.some((t) => t.toLowerCase() === "weapon")) {
+        tags.unshift("weapon");
+      }
+      data.system.tags = tags;
+    }
     await super._preCreate(data, options, userId);
   }
 

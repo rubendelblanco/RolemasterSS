@@ -80,6 +80,22 @@
                         <input name="system.fumble_range" type="text" value="{{system.fumble_range}}" data-dtype="String"/>
                     </td>
                 </tr>
+                {{#if (eq system.type "mis")}}
+                <tr>
+                    <th colspan="5">{{localize "rmss.weapon.ammo_type"}}</th>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <select name="system.ammoType" data-dtype="String" class="rmss-weapon-ammo-select">
+                            <option value="">{{localize "rmss.weapon.ammo_type_none"}}</option>
+                            {{#each config.ammunition_types as |at|}}
+                            <option value="{{at}}" {{#if (eq ../system.ammoType at)}}selected{{/if}}>{{localize (concat "rmss.weapon.ammo_type_label." at)}}</option>
+                            {{/each}}
+                        </select>
+                        <p class="notes">{{localize "rmss.weapon.ammo_type_hint"}}</p>
+                    </td>
+                </tr>
+                {{/if}}
                 <tr class="rmss-cost-row">
                     <th>{{localize "rmss.weapon.cost"}}</th>
                     <th>{{localize "rmss.item.currency"}}</th>

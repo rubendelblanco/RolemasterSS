@@ -463,6 +463,7 @@
       "pp_multiplier_profession": "",
       "spell_adder_profession": "",
       "slaying": "",
+      "ammoType": "",
       "weapon_effects": {
         "increased_initiative": "",
         "effect_weapon": "",

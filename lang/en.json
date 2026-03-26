@@ -543,6 +543,14 @@
                 "pa1h": "pole arm (1h)",
                 "pa2h": "pole arm (2h)",
                 "mis": "missile"
+            },
+            "ammo_type": "Ammunition type",
+            "ammo_type_none": "—",
+            "ammo_type_hint": "Ammo items must include the same tag in their item Tags (e.g. arrow). Stacks can be in a quiver or elsewhere on the character.",
+            "ammo_type_label": {
+                "arrow": "Arrow",
+                "bolt": "Bolt",
+                "bullet": "Bullet"
             }
         },
         "herb_or_poison": {
@@ -738,6 +746,10 @@
             "confirm_critical": "Confirm critical",
             "confirm": "Confirm",
             "cancel": "Cancel",
+            "no_ammo": "No ammunition left that matches this weapon's ammo type (check item tags).",
+            "select_ammo": "Choose ammunition",
+            "select_ammo_label": "Stack",
+            "ammo_consumed": "{name}: −1 (remaining {remaining})",
             "ob": "Offensive bonus",
             "action_points": "Action points",
             "hits_taken": "Hits taken",

@@ -227,13 +227,15 @@ rmss.slaying_types = [
 rmss.item_type_tags = [
   "accessory", "ammo", "antidote", "arrow", "bandage", "bolt", "book", "bullet",
   "clothing", "component", "consumable", "container", "crafting", "dart", "drink", "explosive",
-  "food", "fuel", "gem", "herb", "incense", "jewelry", "key", "kit", "light", "lock", "map",
-  "material", "oil", "part", "poison", "powder", "potion", "quest", "quarrel", "rope", "rune", "salve",
-  "scroll", "shuriken", "sling-bullet", "sling-stone", "spell", "spell-component", "tool",
-  "trap", "treasure", "wand", "writing", "1-hand-edged", "1-hand-concussion", "2-handed", "missile", 
-  "missile-artillery", "pole-arms", "thrown", "stackable"
+  "food", "fuel", "herb", "jewelry", "key", "kit", "light", "lock", "map",
+  "material", "oil", "part", "poison", "powder", "potion", "quest", "quarrel", "rope", "rune",
+  "scroll", "shuriken","sling", "spell", "spell-component", "tool",
+  "trap", "treasure", "wand", "weapon", "writing"
 ];
 
+rmss.ammunition_types = [
+  "arrow", "bolt", "bullet"
+];
 
 rmss.armor_slot = {
   "body": "Body",

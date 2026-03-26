@@ -303,6 +303,31 @@ Hooks.once("init", function () {
     async applySpellHealHits(options) {
       const { default: SpellHealService } = await import("./module/spells/services/spell_heal_service.js");
       return SpellHealService.applyHealHits(options);
+    },
+    /**
+     * Ammo stacks on an actor (items with matching tag + quantity &gt; 0). See {@link CONFIG.rmss.ammunition_types}.
+     * @param {string} actorId
+     * @param {string} ammoTag - e.g. "arrow"
+     * @returns {Promise<Item[]>}
+     */
+    async findAmmoStacksOnActor(actorId, ammoTag) {
+      const actor = game.actors.get(actorId);
+      if (!actor) return [];
+      const { findAmmoStacksOnActor } = await import("./module/actors/utils/ammunition_util.js");
+      return findAmmoStacksOnActor(actor, ammoTag);
+    },
+    /**
+     * Ammo stacks using the missile weapon {@code system.ammoType} (must be type {@code mis}).
+     * @param {string} actorId
+     * @param {string} weaponItemId
+     * @returns {Promise<Item[]>}
+     */
+    async findAmmoStacksForWeapon(actorId, weaponItemId) {
+      const actor = game.actors.get(actorId);
+      const weapon = actor?.items.get(weaponItemId);
+      if (!actor || !weapon) return [];
+      const { findAmmoStacksForWeapon } = await import("./module/actors/utils/ammunition_util.js");
+      return findAmmoStacksForWeapon(actor, weapon);
     }
   };
 

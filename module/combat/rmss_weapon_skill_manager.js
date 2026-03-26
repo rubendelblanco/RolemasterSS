@@ -7,6 +7,7 @@ import WeaponFumbleService from "./services/weapon_fumble_service.js";
 import FacingService from "./services/facing_service.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
+import { tryConsumeMissileAmmo } from "../actors/utils/ammunition_util.js";
 
 export class RMSSWeaponSkillManager {
 
@@ -40,6 +41,10 @@ export class RMSSWeaponSkillManager {
         }
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, tokenData);
         if (!gmResponse.confirmed) return;
+
+        const ammoResult = await tryConsumeMissileAmmo(actor, weapon);
+        if (!ammoResult.ok) return;
+
         const rollData = await RollService.highOpenEndedD100();
         const baseAttack = rollData.roll.terms[0].results[0].result;
 
