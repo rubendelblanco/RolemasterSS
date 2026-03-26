@@ -2,6 +2,7 @@ import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_man
 import Utils from "../utils.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
+import { shouldDeferTickToNextRound } from "./combat_tick_policy.js";
 
 /**
  * @class RMSSEffectApplier
@@ -15,7 +16,7 @@ import WeaponEffectsService from "./weapon_effects_service.js";
  * Each supported critical effect type has its own dedicated handler method:
  *  - **STUN** → Applies or extends a temporary "Stunned" ActiveEffect.
  *  - **HPR (Bleeding)** → Creates a persistent bleeding effect (damage-over-time).
- *  - **PE (Penalty)** → Applies an activity penalty (e.g., –25 due to injuries).
+ *  - **PE (Penalty)** → `VALUE` only = permanente; `ROUNDS` + `VALUE` = penalización temporal (baja por fin de turno hasta 0 y el efecto desaparece).
  *  - **P (Parry Bonus)** → Adds or extends a parry effect for improved defense.
  *  - **NP (No Parry)** → Temporarily disables parry actions.
  *  - **BONUS** → Grants a temporary bonus effect (e.g., magical or situational).
@@ -36,7 +37,8 @@ import WeaponEffectsService from "./weapon_effects_service.js";
  *   describing each sub-effect (e.g., `{ STUN: { ROUNDS: 3 }, PE: { VALUE: -25 } }`).
  * - All ActiveEffect icons are resolved from `CONFIG.rmss.paths.icons_folder`.
  * - Effects are automatically stacked or extended if an equivalent effect already exists.
- * - Duration rounds are relative to the current combat round (`game.combat.round`).
+ * - Duration rounds tick down when that actor **finishes** their initiative turn (see `combat_turn_tick.js`),
+ *   with `tickDeferredUntilRound` if the effect was gained after they had already acted this round.
  *
  * @author Ruben Rey
  * @since 2025-11
@@ -129,6 +131,13 @@ export class RMSSEffectApplier {
         return RMSSEffectApplier.applyDeathIfBroughtToZero(entity, currentHits, newHits, originId);
     }
 
+    /** @param {Combat|null} combat */
+    static _tickDeferralRmssFlags(combat, actor) {
+        const c = combat ?? game.combat;
+        if (!c || !shouldDeferTickToNextRound(c, actor)) return {};
+        return { tickDeferredUntilRound: c.round + 1 };
+    }
+
     static async _applyStun(entity, data, stun_bleeding) {
         if (stun_bleeding !== "-") return;
         const rounds = parseInt(data.ROUNDS) || 0;
@@ -137,11 +146,13 @@ export class RMSSEffectApplier {
             const total = (existing.duration.rounds || 0) + rounds;
             await existing.update({ "duration.rounds": total });
         } else {
+            const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "Stunned",
                 icon: `${CONFIG.rmss.paths.icons_folder}stunned.svg`,
                 origin: entity.id,
                 disabled: false,
+                ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
                 duration: {
                     rounds,
                     startRound: game.combat ? game.combat.round : 0
@@ -168,7 +179,7 @@ export class RMSSEffectApplier {
             origin: entity.id,
             description,
             disabled: false,
-            flags: { rmss: { value: rate } },
+            flags: { rmss: { value: rate, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity) } },
             duration: { rounds: 99, startRound: game.combat ? game.combat.round : 0 }
         }]);
     }
@@ -176,13 +187,34 @@ export class RMSSEffectApplier {
     static async _applyPenalty(entity, data, description) {
         const val = parseInt(data.VALUE) || 0;
         const penalty = val > 0 ? -val : val;
+        const roundsRaw = data.ROUNDS !== undefined && data.ROUNDS !== null ? parseInt(data.ROUNDS, 10) : NaN;
+        const timedRounds = Number.isFinite(roundsRaw) && roundsRaw > 0 ? roundsRaw : 0;
+
+        if (timedRounds > 0) {
+            const rmss = {
+                value: penalty,
+                temporaryPenalty: true,
+                ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity)
+            };
+            await entity.createEmbeddedDocuments("ActiveEffect", [{
+                name: "Penalty",
+                icon: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
+                origin: entity.id,
+                description,
+                disabled: false,
+                flags: { rmss },
+                duration: { rounds: timedRounds, startRound: game.combat ? game.combat.round : 0 }
+            }]);
+            return;
+        }
+
         await entity.createEmbeddedDocuments("ActiveEffect", [{
             name: "Penalty",
             icon: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
             origin: entity.id,
             description,
             disabled: false,
-            flags: { rmss: { value: penalty } },
+            flags: { rmss: { value: penalty, permanentPenalty: true } },
             duration: { rounds: 99, startRound: game.combat ? game.combat.round : 0 }
         }]);
     }
@@ -194,11 +226,13 @@ export class RMSSEffectApplier {
             const total = (existing.duration.rounds || 0) + rounds;
             await existing.update({ "duration.rounds": total });
         } else {
+            const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "Parry",
                 icon: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
                 origin: entity.id,
                 disabled: false,
+                ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
                 duration: { rounds, startRound: game.combat ? game.combat.round : 0 }
             }]);
         }
@@ -211,11 +245,13 @@ export class RMSSEffectApplier {
             const total = (existing.duration.rounds || 0) + r;
             await existing.update({ "duration.rounds": total });
         } else {
+            const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "No parry",
                 icon: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
                 origin: entity.id,
                 disabled: false,
+                ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
                 duration: { rounds: r, startRound: game.combat ? game.combat.round : 0 }
             }]);
         }
@@ -227,13 +263,14 @@ export class RMSSEffectApplier {
         const attacker = game.actors.get(originId);
         if (!attacker) return;
 
+        const rmss = { value, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, attacker) };
         await attacker.createEmbeddedDocuments("ActiveEffect", [{
             name: "Bonus",
             icon: `${CONFIG.rmss.paths.icons_folder}bonus.svg`,
             origin: originId,
             description,
             disabled: false,
-            flags: { rmss: { value } },
+            flags: { rmss },
             duration: { rounds, startRound: game.combat ? game.combat.round : 0 }
         }]);
     }

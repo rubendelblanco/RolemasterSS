@@ -5,8 +5,10 @@ import { triggerAutoAnimations } from "../autoanimations_integration.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import { RMSSEffectApplier } from "./rmss_effect_applier.js";
 import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_manager.js";
+import { registerCombatTurnTickHooks } from "./combat_turn_tick.js";
 
 export function registerCombatHooks() {
+    registerCombatTurnTickHooks();
     // Weapon fumble: Mounted? checkbox only visible to GM
     Hooks.on("renderChatMessage", (message, html, data) => {
         const mountedCheck = html.find(".weapon-fumble-mounted-check");
