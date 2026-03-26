@@ -1,4 +1,5 @@
 import ItemService from "../../actors/services/item_service.js";
+import { bindContainerAllowedTagsEditor, getContainerAllowedTagListId, getContainerAllowedTagsArray } from "./container_allowed_tags_ui.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
@@ -70,6 +71,8 @@ export default class RMSSItemSheet extends ItemSheet {
       system,
       itemTags: getItemTagsArray(system),
       itemTagListId: getItemTagListId(item),
+      containerAllowedTags: getContainerAllowedTagsArray(system),
+      containerAllowedTagListId: getContainerAllowedTagListId(item),
       config: CONFIG.rmss,
       user: game.user,
       effects: item.getEmbeddedCollection("ActiveEffect").contents,
@@ -121,6 +124,7 @@ export default class RMSSItemSheet extends ItemSheet {
     html.find(".shtick-type").change(ev => this._onShtickTypeChange(ev));
 
     bindItemTagsEditor(this, html);
+    bindContainerAllowedTagsEditor(this, html);
   }
 
   _setupHolyUnholyExclusive(html) {

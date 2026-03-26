@@ -3,11 +3,11 @@
  */
 
 /**
- * @param {object} system - item.system
+ * Normalize stored tag lists (array or comma-separated string).
+ * @param {string[]|string|null|undefined} raw
  * @returns {string[]}
  */
-export function getItemTagsArray(system) {
-    const raw = system?.tags;
+export function normalizeTagArray(raw) {
     if (Array.isArray(raw)) {
         return raw.map((t) => String(t).trim()).filter(Boolean);
     }
@@ -15,6 +15,14 @@ export function getItemTagsArray(system) {
         return raw.split(",").map((s) => s.trim()).filter(Boolean);
     }
     return [];
+}
+
+/**
+ * @param {object} system - item.system
+ * @returns {string[]}
+ */
+export function getItemTagsArray(system) {
+    return normalizeTagArray(system?.tags);
 }
 
 /**

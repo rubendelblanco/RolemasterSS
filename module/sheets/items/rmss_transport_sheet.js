@@ -1,6 +1,7 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import {ContainerHandler} from "../../actors/utils/container_handler.js";
+import { bindContainerAllowedTagsEditor, getContainerAllowedTagListId, getContainerAllowedTagsArray } from "./container_allowed_tags_ui.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 
 export default class RMSSTransportSheet extends ItemSheet {
@@ -39,7 +40,10 @@ export default class RMSSTransportSheet extends ItemSheet {
       system: sys,
       itemTags: getItemTagsArray(sys),
       itemTagListId: getItemTagListId(item),
+      containerAllowedTags: getContainerAllowedTagsArray(sys),
+      containerAllowedTagListId: getContainerAllowedTagListId(item),
       config: CONFIG.rmss,
+      user: game.user,
       enrichedDescription: enrichedDescription,
       contents: contents
     };
@@ -50,6 +54,7 @@ export default class RMSSTransportSheet extends ItemSheet {
   activateListeners(html) {
     super.activateListeners(html);
     bindItemTagsEditor(this, html);
+    bindContainerAllowedTagsEditor(this, html);
     if (!this.isEditable) return;
 
     // --- Containers ---

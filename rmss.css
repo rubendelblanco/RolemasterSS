@@ -3587,7 +3587,8 @@ tr.container-row.over-capacity {
 }
 
 /* Item sheet: system.tags chips + autocomplete */
-.rmss.sheet.item .rmss-item-tags .notes {
+.rmss.sheet.item .rmss-item-tags .notes,
+.rmss.sheet.item .rmss-container-allowed-tags .notes {
   margin: 0.15rem 0 0.35rem;
   font-size: var(--font-size-12);
   opacity: 0.9;

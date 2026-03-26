@@ -69,6 +69,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/dialogs/weapon_preference_dialog.html",
     "systems/rmss/templates/sheets/actors/dialogs/stat_assignment_dialog.html",
     "systems/rmss/templates/sheets/items/parts/item-tags.hbs",
+    "systems/rmss/templates/sheets/items/parts/container-allowed-tags.hbs",
   ];
   return loadTemplates(templatePaths);
 }
@@ -362,10 +363,15 @@ Hooks.once("init", function () {
 
   // Preload Handlebars Templates
   preloadHandlebarsTemplates().then(() => {
-    fetch("systems/rmss/templates/sheets/items/parts/item-tags.hbs")
-      .then((r) => r.text())
-      .then((text) => Handlebars.registerPartial("rmssItemTags", text))
-      .catch((err) => console.warn("rmss | item tags partial", err));
+    Promise.all([
+      fetch("systems/rmss/templates/sheets/items/parts/item-tags.hbs").then((r) => r.text()),
+      fetch("systems/rmss/templates/sheets/items/parts/container-allowed-tags.hbs").then((r) => r.text())
+    ])
+      .then(([itemTagsText, containerAllowedText]) => {
+        Handlebars.registerPartial("rmssItemTags", itemTagsText);
+        Handlebars.registerPartial("rmssContainerAllowedTags", containerAllowedText);
+      })
+      .catch((err) => console.warn("rmss | item sheet partials", err));
   });
 
   // Handlebars Helpers

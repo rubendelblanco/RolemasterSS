@@ -526,6 +526,7 @@
       "slug": ""
     },
     "spell": {
+      "tags": ["spell"],
       "favorite": false,
       "instant": false,
       "no_pp": false,

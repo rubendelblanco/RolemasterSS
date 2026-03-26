@@ -295,10 +295,7 @@
                 {{/if}}
             </div>
             <hr/>
-            <div class="form-group">
-                <label>{{localize "rmss.item.allowed_tags"}}</label>
-                <input type="text" name="system.container.allowedTags" value="{{join system.container.allowedTags ", "}}" placeholder="gear, weapon, herb, spell" />
-            </div>
+            {{> rmssContainerAllowedTags}}
         </section>
         {{/if}}
 

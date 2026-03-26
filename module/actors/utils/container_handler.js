@@ -1,4 +1,6 @@
 // All comments in English as requested
+import { normalizeTagArray } from "../../sheets/items/item_tags_ui.js";
+
 export class ContainerHandler {
     constructor(item) {
         this.item = item;
@@ -18,13 +20,25 @@ export class ContainerHandler {
         return actor.items.filter(i => i.getFlag("rmss", "containerId") === this.item.id);
     }
 
+    /**
+     * Whether {@code item} may be stored in this container.
+     * If {@code container.allowedTags} is empty, any item is allowed.
+     * Otherwise the item must have at least one tag in {@code item.system.tags} that matches (case-insensitive),
+     * or (legacy) the Foundry item {@code type} matches an allowed tag string for items not yet using {@code system.tags}.
+     */
     canAccept(item) {
-        const raw = this.item.system?.container?.allowedTags;
-        const acceptedTags = Array.isArray(raw) ? raw : (typeof raw === "string" ? raw.split(",").map(s => s.trim()).filter(Boolean) : []);
+        const acceptedTags = normalizeTagArray(this.item.system?.container?.allowedTags);
         if (acceptedTags.length === 0) return true;
-        const itemTags = item.system?.tags ?? [];
-        const itemType = item.type ?? "";
-        return acceptedTags.some(tag => itemType === tag || (Array.isArray(itemTags) && itemTags.includes(tag)));
+
+        const itemTags = normalizeTagArray(item.system?.tags);
+        const acceptedLc = acceptedTags.map((t) => t.toLowerCase());
+
+        if (itemTags.some((t) => acceptedLc.includes(t.toLowerCase()))) return true;
+
+        const docType = (item.type ?? "").toLowerCase();
+        if (docType && acceptedLc.includes(docType)) return true;
+
+        return false;
     }
 
     getTotalWeight() {

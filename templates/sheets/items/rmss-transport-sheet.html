@@ -108,10 +108,7 @@
                 {{/if}}
             </div>
             <hr/>
-            <div class="form-group">
-                <label>Tags permitidos (coma):</label>
-                <input type="text" name="system.container.allowedTags" value="{{join system.container.allowedTags ", "}}" />
-            </div>
+            {{> rmssContainerAllowedTags}}
         </section>
     </section>
 </form>
