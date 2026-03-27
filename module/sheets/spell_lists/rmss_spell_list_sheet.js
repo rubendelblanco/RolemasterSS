@@ -267,13 +267,18 @@ export default class RMSSSpellListSheet extends ItemSheet {
         ui.notifications.info(`${spellsToAdd.length} spell(s) added to ${this.item.name}.`);
     }
 
-    /** Convert spell Item to embedded object */
+    /** Convert spell Item to embedded object (preserves flags e.g. rmss.macro) */
     _spellItemToEmbedded(spell) {
-        return {
+        const o = {
             name: spell.name,
             img: spell.img ?? "",
             system: foundry.utils.duplicate(spell.system ?? {})
         };
+        const flags = spell.flags && Object.keys(spell.flags).length
+            ? foundry.utils.duplicate(spell.flags)
+            : null;
+        if (flags) o.flags = flags;
+        return o;
     }
 
     /** Create new embedded spell - opens full spell sheet (same as spell from actor list) */
@@ -315,7 +320,8 @@ export default class RMSSSpellListSheet extends ItemSheet {
             name: spell.name,
             type: "spell",
             img: spell.img ?? "icons/svg/mystery-man.svg",
-            system: foundry.utils.duplicate(spell.system ?? {})
+            system: foundry.utils.duplicate(spell.system ?? {}),
+            flags: foundry.utils.duplicate(spell.flags ?? {})
         };
         await this._openEmbeddedSpellSheet(spellData, idx);
     }
@@ -325,9 +331,14 @@ export default class RMSSSpellListSheet extends ItemSheet {
         const isCreate = idx < 0;
         const spellListUuid = this.item.uuid;
 
+        const baseFlags = foundry.utils.duplicate(spellData.flags ?? {});
+        const rmssPrev = { ...(baseFlags.rmss ?? {}) };
+        delete rmssPrev.embeddedSpellEdit;
         const createData = foundry.utils.mergeObject(spellData, {
             flags: {
+                ...baseFlags,
                 rmss: {
+                    ...rmssPrev,
                     embeddedSpellEdit: { spellListUuid, spellIndex: idx, isCreate }
                 }
             }

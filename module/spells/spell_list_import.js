@@ -33,12 +33,16 @@ export async function expandSpellListEmbeddedSpells(actor, spellList) {
             s.system ?? {},
             { inplace: false }
         );
+        // Preservar flags del hechizo embebido (p. ej. rmss.macro); solo añadir containerId a la lista.
+        const flags = foundry.utils.duplicate(s.flags ?? {});
+        if (!flags.rmss) flags.rmss = {};
+        flags.rmss.containerId = spellListId;
         return {
             name: s.name ?? game.i18n.localize("rmss.spell.new_spell"),
             type: "spell",
             img: s.img ?? "icons/svg/mystery-man.svg",
             system,
-            flags: { rmss: { containerId: spellListId } }
+            flags
         };
     });
 

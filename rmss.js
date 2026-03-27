@@ -773,28 +773,70 @@ Hooks.once("init", function () {
     });
   });
 
-  // Hook: updateItem - sync embedded spell from temp item back to spell list
+  // Temp spell item id → index in spell list after first push (embedded create from compendium)
+  const _rmssEmbeddedSpellListIndex = new Map();
+
+  /**
+   * Build the object stored in spell_list.system.spells from the editing temp Item (flags minus embeddedSpellEdit).
+   * @param {Item} item
+   * @returns {{ name: string, img: string, system: object, flags?: object }}
+   */
+  function embeddedTempItemToStoredSpell(item) {
+    const flags = foundry.utils.duplicate(item.flags ?? {});
+    if (flags.rmss?.embeddedSpellEdit) {
+      const rmss = { ...flags.rmss };
+      delete rmss.embeddedSpellEdit;
+      if (Object.keys(rmss).length > 0) flags.rmss = rmss;
+      else delete flags.rmss;
+    }
+    const spell = {
+      name: item.name,
+      img: item.img,
+      system: foundry.utils.duplicate(item.system)
+    };
+    if (flags && Object.keys(flags).length > 0) spell.flags = flags;
+    return spell;
+  }
+
+  // Hook: updateItem - sync embedded spell from temp item back to spell list (compendium; includes flags.rmss.macro)
   Hooks.on("updateItem", async (item, update, options, userId) => {
     const editCtx = item.getFlag("rmss", "embeddedSpellEdit");
-    if (editCtx) {
-      try {
-        const spellList = await fromUuid(editCtx.spellListUuid);
-        if (spellList) {
-          const spell = { name: item.name, img: item.img, system: foundry.utils.duplicate(item.system) };
-          const spells = [...(spellList.system.spells ?? [])];
-          if (editCtx.isCreate) {
-            spells.push(spell);
-          } else {
-            spells[editCtx.spellIndex] = spell;
-          }
-          await spellList.update({ "system.spells": spells });
-          if (spellList.sheet?.rendered) spellList.sheet.render(false);
+    if (!editCtx) return;
+
+    try {
+      const spellList = await fromUuid(editCtx.spellListUuid);
+      if (!spellList) return;
+
+      const spellPayload = embeddedTempItemToStoredSpell(item);
+      const spells = [...(spellList.system.spells ?? [])];
+
+      if (editCtx.isCreate) {
+        let idx = _rmssEmbeddedSpellListIndex.get(item.id);
+        if (idx === undefined) {
+          spells.push(spellPayload);
+          idx = spells.length - 1;
+          _rmssEmbeddedSpellListIndex.set(item.id, idx);
+        } else {
+          spells[idx] = spellPayload;
         }
-      } finally {
-        await item.delete();
+      } else {
+        const i = Number(editCtx.spellIndex);
+        if (Number.isFinite(i) && i >= 0 && i < spells.length) {
+          spells[i] = spellPayload;
+        } else {
+          spells.push(spellPayload);
+        }
       }
-      return;
+
+      await spellList.update({ "system.spells": spells });
+      if (spellList.sheet?.rendered) spellList.sheet.render(false);
+    } catch (e) {
+      console.error("rmss | embedded spell sync", e);
     }
+  });
+
+  Hooks.on("deleteItem", (item) => {
+    if (item.type === "spell") _rmssEmbeddedSpellListIndex.delete(item.id);
   });
 
   // Hook: updateItem - refresh actor armor_info when armor item changes
