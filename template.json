@@ -370,6 +370,7 @@
       "of_changing": false,
       "weight_percent": 100,
       "bonus_skills": [],
+      "passive_modifiers": [],
       "magic": { "enchantments": [] },
       "pp_multiplier": 1,
       "pp_multiplier_realm": "",

@@ -11,6 +11,13 @@ import {
   resolveSpellForEnchantment,
   setupPowerModifierProfessionDropZones
 } from "./enchantment_utils.js";
+import {
+  buildPassiveModifiersListForSheet,
+  getRrKeyOptionsForSheet,
+  getStatKeyOptionsForSheet,
+  mergePassiveModifiersFormData
+} from "../../actors/services/passive_item_modifiers_service.js";
+import { bindPassiveModifiersEditor } from "./passive_modifiers_ui.js";
 
 export default class RMSSArmorSheet extends ItemSheet {
 
@@ -64,7 +71,10 @@ export default class RMSSArmorSheet extends ItemSheet {
       enchantmentList,
       powerModifierMode,
       ppMultiplierProfessionName,
-      spellAdderProfessionName
+      spellAdderProfessionName,
+      passiveModifiersList: buildPassiveModifiersListForSheet(system),
+      statKeyOptions: getStatKeyOptionsForSheet(),
+      rrKeyOptions: getRrKeyOptionsForSheet()
     };
   }
 
@@ -104,6 +114,7 @@ export default class RMSSArmorSheet extends ItemSheet {
     html.find("[data-action='remove-bonus-skill']").on("click", this._onRemoveBonusSkill.bind(this));
     this._setupEnchantmentsDropZone(html);
     bindItemTagsEditor(this, html);
+    bindPassiveModifiersEditor(this, html);
   }
 
   _getBonusSkillsArray() {
@@ -352,6 +363,7 @@ export default class RMSSArmorSheet extends ItemSheet {
       });
     }
     this._mergeEnchantmentFormData(formData);
+    mergePassiveModifiersFormData(formData, this.item);
     return super._updateObject(event, formData);
   }
 

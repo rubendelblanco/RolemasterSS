@@ -1,0 +1,57 @@
+<div class="rmss-passive-modifiers">
+    <div class="rmss-modifiers-header">{{localize "rmss.item.passive_modifiers_header"}}</div>
+    <p class="notes">{{localize "rmss.item.passive_modifiers_hint"}}</p>
+    <div class="rmss-passive-modifiers-list">
+        {{#each passiveModifiersList as |row|}}
+        <div class="rmss-passive-mod-row flexrow" data-index="{{row.idx}}">
+            <input type="hidden" name="system.passive_modifiers.{{row.idx}}._id" value="{{row._id}}"/>
+            <label class="rmss-passive-mod-field">
+                <span>{{localize "rmss.item.passive_mod_field_target"}}</span>
+                <select name="system.passive_modifiers.{{row.idx}}.target" data-dtype="String">
+                    {{#each ../config.passive_modifier_targets as |label key|}}
+                    <option value="{{key}}" {{#if (eq key row.target)}}selected{{/if}}>{{localize label}}</option>
+                    {{/each}}
+                </select>
+            </label>
+            {{#if (eq row.target "stat_special")}}
+            <label class="rmss-passive-mod-field">
+                <span>{{localize "rmss.item.passive_mod_field_stat"}}</span>
+                <select name="system.passive_modifiers.{{row.idx}}.statKey" data-dtype="String">
+                    {{#each ../statKeyOptions as |opt|}}
+                    <option value="{{opt.key}}" {{#if (eq opt.key row.statKey)}}selected{{/if}}>{{opt.label}}</option>
+                    {{/each}}
+                </select>
+            </label>
+            {{/if}}
+            {{#if (eq row.target "resistance_roll")}}
+            <label class="rmss-passive-mod-field">
+                <span>{{localize "rmss.item.passive_mod_field_rr"}}</span>
+                <select name="system.passive_modifiers.{{row.idx}}.rrKey" data-dtype="String">
+                    {{#each ../rrKeyOptions as |opt|}}
+                    <option value="{{opt.key}}" {{#if (eq opt.key row.rrKey)}}selected{{/if}}>{{opt.label}}</option>
+                    {{/each}}
+                </select>
+            </label>
+            {{/if}}
+            <label class="rmss-passive-mod-field">
+                <span>{{localize "rmss.item.passive_mod_field_action"}}</span>
+                <select name="system.passive_modifiers.{{row.idx}}.action" data-dtype="String">
+                    {{#each ../config.passive_modifier_actions as |label key|}}
+                    <option value="{{key}}" {{#if (eq key row.action)}}selected{{/if}}>{{localize label}}</option>
+                    {{/each}}
+                </select>
+            </label>
+            <label class="rmss-passive-mod-field">
+                <span>{{localize "rmss.item.passive_mod_field_value"}}</span>
+                <input type="number" name="system.passive_modifiers.{{row.idx}}.value" value="{{row.value}}" step="1" data-dtype="Number"/>
+            </label>
+            <button type="button" class="rmss-passive-mod-remove" data-action="remove-passive-modifier" data-index="{{row.idx}}" title="{{localize 'rmss.item.passive_mod_remove'}}">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        {{/each}}
+    </div>
+    <button type="button" class="rmss-passive-mod-add" data-action="add-passive-modifier">
+        <i class="fas fa-plus"></i> {{localize "rmss.item.passive_mod_add"}}
+    </button>
+</div>

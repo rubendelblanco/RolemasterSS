@@ -204,6 +204,20 @@ rmss.enchantment_usage = {
   "single": "rmss.item.enchantment_usage_single"
 }
 
+/** Passive item modifiers (system.passive_modifiers → Actor ActiveEffects when worn/equipped). */
+rmss.passive_modifier_targets = {
+  armor_magic: "rmss.item.passive_mod_target_armor_magic",
+  initiative: "rmss.item.passive_mod_target_initiative",
+  stat_special: "rmss.item.passive_mod_target_stat",
+  resistance_roll: "rmss.item.passive_mod_target_rr"
+}
+
+rmss.passive_modifier_actions = {
+  add: "rmss.item.passive_mod_action_add",
+  subtract: "rmss.item.passive_mod_action_subtract",
+  override: "rmss.item.passive_mod_action_override"
+}
+
 /** Slaying weapon creature types (for autocomplete). Includes general types, professions, and undead creature names (kebab-case). */
 rmss.slaying_types = [
   "dragon", "undead", "orc", "troll", "demon", "vampire", "lycanthrope",

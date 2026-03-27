@@ -70,6 +70,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/dialogs/stat_assignment_dialog.html",
     "systems/rmss/templates/sheets/items/parts/item-tags.hbs",
     "systems/rmss/templates/sheets/items/parts/container-allowed-tags.hbs",
+    "systems/rmss/templates/sheets/items/parts/passive-modifiers.hbs",
   ];
   return loadTemplates(templatePaths);
 }
@@ -390,11 +391,13 @@ Hooks.once("init", function () {
   preloadHandlebarsTemplates().then(() => {
     Promise.all([
       fetch("systems/rmss/templates/sheets/items/parts/item-tags.hbs").then((r) => r.text()),
-      fetch("systems/rmss/templates/sheets/items/parts/container-allowed-tags.hbs").then((r) => r.text())
+      fetch("systems/rmss/templates/sheets/items/parts/container-allowed-tags.hbs").then((r) => r.text()),
+      fetch("systems/rmss/templates/sheets/items/parts/passive-modifiers.hbs").then((r) => r.text())
     ])
-      .then(([itemTagsText, containerAllowedText]) => {
+      .then(([itemTagsText, containerAllowedText, passiveModifiersText]) => {
         Handlebars.registerPartial("rmssItemTags", itemTagsText);
         Handlebars.registerPartial("rmssContainerAllowedTags", containerAllowedText);
+        Handlebars.registerPartial("rmssPassiveModifiers", passiveModifiersText);
       })
       .catch((err) => console.warn("rmss | item sheet partials", err));
   });
@@ -639,6 +642,16 @@ Hooks.once("init", function () {
     }
   });
 
+  Hooks.once("ready", async () => {
+    const { syncPassiveItemEffectsForActor } = await import("./module/actors/services/passive_item_modifiers_service.js");
+    if (!game.actors) return;
+    for (const actor of game.actors) {
+      if (actor.isOwner || game.user.isGM) {
+        await syncPassiveItemEffectsForActor(actor);
+      }
+    }
+  });
+
   /** Reset daily enchantment uses and spell adder uses.
    *  Call Hooks.call("rmssLongRest") for all actors, or Hooks.call("rmssLongRest", actor) for one. */
   Hooks.on("rmssLongRest", async (actor) => {
@@ -862,6 +875,31 @@ Hooks.once("init", function () {
     if (!actor?.system?.armor_info) return;
     const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
     await ArmorInfoService.updateActorArmorInfo(actor);
+  });
+
+  // Passive modifiers on items → Actor ActiveEffects while worn/equipped
+  const passiveItemModImport = () => import("./module/actors/services/passive_item_modifiers_service.js");
+  Hooks.on("updateItem", async (item, update, options, userId) => {
+    const actor = item.parent;
+    if (!actor) return;
+    if (!["item", "weapon", "armor", "herb_or_poison", "transport"].includes(item.type)) return;
+    const { syncPassiveItemEffectsForActor, shouldSyncPassiveEffectsOnItemDiff } = await passiveItemModImport();
+    if (!shouldSyncPassiveEffectsOnItemDiff(update)) return;
+    await syncPassiveItemEffectsForActor(actor);
+  });
+  Hooks.on("createItem", async (item, options, userId) => {
+    const actor = item.parent;
+    if (!actor) return;
+    if (!["item", "weapon", "armor", "herb_or_poison", "transport"].includes(item.type)) return;
+    const { syncPassiveItemEffectsForActor } = await passiveItemModImport();
+    await syncPassiveItemEffectsForActor(actor);
+  });
+  Hooks.on("deleteItem", async (item, options, userId) => {
+    const actor = item.parent;
+    if (!actor) return;
+    if (!["item", "weapon", "armor", "herb_or_poison", "transport"].includes(item.type)) return;
+    const { syncPassiveItemEffectsForActor } = await passiveItemModImport();
+    await syncPassiveItemEffectsForActor(actor);
   });
 
   // Hook: updateItem - container capacity

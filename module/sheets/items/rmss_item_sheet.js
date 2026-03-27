@@ -13,6 +13,13 @@ import {
   resolveSpellForEnchantment,
   setupPowerModifierProfessionDropZones
 } from "./enchantment_utils.js";
+import {
+  buildPassiveModifiersListForSheet,
+  getRrKeyOptionsForSheet,
+  getStatKeyOptionsForSheet,
+  mergePassiveModifiersFormData
+} from "../../actors/services/passive_item_modifiers_service.js";
+import { bindPassiveModifiersEditor } from "./passive_modifiers_ui.js";
 
 export default class RMSSItemSheet extends ItemSheet {
 
@@ -85,7 +92,10 @@ export default class RMSSItemSheet extends ItemSheet {
       weightCostMultiplier: item._getWeightReductionModifier?.() ?? 1,
       powerModifierMode,
       ppMultiplierProfessionName,
-      spellAdderProfessionName
+      spellAdderProfessionName,
+      passiveModifiersList: buildPassiveModifiersListForSheet(system),
+      statKeyOptions: getStatKeyOptionsForSheet(),
+      rrKeyOptions: getRrKeyOptionsForSheet()
     };
   }
 
@@ -125,6 +135,7 @@ export default class RMSSItemSheet extends ItemSheet {
 
     bindItemTagsEditor(this, html);
     bindContainerAllowedTagsEditor(this, html);
+    bindPassiveModifiersEditor(this, html);
   }
 
   _setupHolyUnholyExclusive(html) {
@@ -442,6 +453,7 @@ export default class RMSSItemSheet extends ItemSheet {
     }
 
     this._mergeEnchantmentFormData(formData);
+    mergePassiveModifiersFormData(formData, this.item);
     const normalizedData = ItemService.normalizeItemFormData(this.item, formData);
     // Ensure bonus_skills is an array (form may submit object with numeric keys)
     const raw = normalizedData.system?.bonus_skills;
