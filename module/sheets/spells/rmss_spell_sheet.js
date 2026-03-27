@@ -84,10 +84,10 @@ export default class RMSSSpellSheet extends ItemSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
+    // Persistir todo el formulario antes de re-renderizar; si no, se pierden nombre, nivel, descripción, etc.
     html.find('select[name="system.type"]').on("change", async (ev) => {
-      const newType = ev.target.value;
-      await this.item.update({ "system.type": newType });
-      this.render();
+      await this._onSubmit(ev);
+      await this.render(false);
     });
   }
 
