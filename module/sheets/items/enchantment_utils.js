@@ -167,15 +167,21 @@ async function _handleProfessionDrop(event, sheet, zone) {
 
 /**
  * Build spellData for enchantment storage. Makes the enchantment independent of any spell document.
- * @param {{ name: string, img?: string, system: Object } | Item} spellDocOrData - Spell Item or spellData object
- * @returns {{ name: string, img: string, system: Object }} Data to store in enchantment.spellData
+ * Incluye flags (p. ej. rmss.macro) para que Use enchantment ejecute el script vía spell.use().
+ * @param {{ name: string, img?: string, system: Object, flags?: object } | Item} spellDocOrData - Spell Item or spellData object
+ * @returns {{ name: string, img: string, system: Object, flags?: object }} Data to store in enchantment.spellData
  */
 export function buildSpellDataForStorage(spellDocOrData) {
   if (!spellDocOrData) return null;
   const name = spellDocOrData.name ?? "";
   const img = spellDocOrData.img ?? "systems/rmss/assets/default/spell.svg";
   const system = foundry.utils.duplicate(spellDocOrData.system ?? {});
-  return { name, img, system };
+  const out = { name, img, system };
+  const flags = spellDocOrData.flags;
+  if (flags && typeof flags === "object" && Object.keys(flags).length > 0) {
+    out.flags = foundry.utils.duplicate(flags);
+  }
+  return out;
 }
 
 /**
@@ -193,6 +199,10 @@ export async function resolveSpellForEnchantment(enchantment, actor) {
       img: enchantment.spellData.img || "systems/rmss/assets/default/spell.svg",
       system: foundry.utils.duplicate(enchantment.spellData.system)
     };
+    const fd = enchantment.spellData.flags;
+    if (fd && typeof fd === "object" && Object.keys(fd).length > 0) {
+      spellData.flags = foundry.utils.duplicate(fd);
+    }
     return await Item.create(spellData, { temporary: true });
   }
   if (enchantment.spellUuid) {
@@ -212,6 +222,10 @@ export async function resolveSpellForEnchantment(enchantment, actor) {
           img: embedded.img || "systems/rmss/assets/default/spell.svg",
           system: foundry.utils.duplicate(embedded.system ?? {})
         };
+        const ef = embedded.flags;
+        if (ef && typeof ef === "object" && Object.keys(ef).length > 0) {
+          spellData.flags = foundry.utils.duplicate(ef);
+        }
         return await Item.create(spellData, { temporary: true });
       }
     }
