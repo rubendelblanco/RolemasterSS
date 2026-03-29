@@ -28,9 +28,11 @@ export default class ForceSpellService {
     static async castForceSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0 }) {
         const spellLevel = spell.system?.level ?? 1;
         let noPP = !consumePowerPoints || spell.system?.no_pp === true;
+        let spellAdder = null;
         if (!noPP) {
+            spellAdder = getMatchingSpellAdder(actor);
             const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
-            if (currentPP < spellLevel) {
+            if (currentPP < spellLevel && !spellAdder) {
                 ui.notifications.warn(
                     game.i18n.format("rmss.spells.insufficient_power", {
                         actorName: actor.name,
@@ -43,7 +45,6 @@ export default class ForceSpellService {
 
         // Determine realm for casting options
         const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
-        const spellAdder = !noPP ? getMatchingSpellAdder(actor) : null;
 
         const castingOptions = await CastingOptionsService.showCastingOptionsDialog({
             realm: effectiveRealm,

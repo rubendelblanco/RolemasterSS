@@ -32,6 +32,7 @@ import { createProfession, createProfessionDialog } from "./module/tools/profess
 import {ContainerHandler} from "./module/actors/utils/container_handler.js";
 import { syncHitsAndPowerPointsFromSkills } from "./module/actors/utils/hits_pp_sync.js";
 import EffectsPopupService from "./module/core/rolls/effects_popup_service.js";
+import ExperiencePointsCalculator from "./module/sheets/experience/rmss_experience_manager.js";
 
 export let socket;
 
@@ -80,6 +81,7 @@ Hooks.once("socketlib.ready", () => {
   socket = socketlib.registerSystem("rmss");
   socket.register("confirmWeaponAttack", RMSSWeaponSkillManager.attackMessagePopup);
   socket.register("confirmWeaponCritical", RMSSWeaponCriticalManager.criticalMessagePopup);
+  socket.register("applyLargeCreatureCritical", RMSSWeaponCriticalManager.applyLargeCreatureCriticalGM);
   socket.register("chooseCriticalOption", RMSSWeaponCriticalManager.chooseCriticalOption);
   socket.register("updateActorHits", RMSSWeaponCriticalManager.updateActorHits);
   socket.register("applyCriticalToEnemy", RMSSWeaponCriticalManager.applyCriticalToEnemy);
@@ -989,6 +991,36 @@ Hooks.once("init", function () {
   Hooks.on("updateActor", async (actor, update, options, userId) => {
     if (!actor) return;
     if (!("system" in update)) return;
+
+    if (
+      actor.type === "character" &&
+      game.user.isGM &&
+      foundry.utils.hasProperty(update, "system.attributes.experience_points.value")
+    ) {
+      const xp = parseInt(actor.system?.attributes?.experience_points?.value ?? 0, 10);
+      const sheetLevel = parseInt(actor.system?.attributes?.level?.value ?? 0, 10);
+      const calcLevel = ExperiencePointsCalculator.getCharacterLevelNumber(xp);
+      if (calcLevel > sheetLevel) {
+        const delta = calcLevel - sheetLevel;
+        const prevAbove = Number(actor.system?.levelUp?.levelAbove ?? 0);
+        if (delta > prevAbove) {
+          const soundPath = "systems/rmss/assets/sounds/power_up.mp3";
+          foundry.audio.AudioHelper.play({ src: soundPath, volume: 0.8, loop: false }).catch(() => {});
+          await ChatMessage.create({
+            content: `
+                    <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+                    <img src="systems/rmss/assets/default/level_up.png" alt="Level up" style="width:100px; height:auto; border: 2px solid #333;">
+                      <p style="color: #333; font-size: 16px;">
+                        <b>${actor.name}</b> sube a <b>nivel ${calcLevel}</b>
+                      </p>
+                    </div>
+                    `,
+            speaker: { alias: "GM" },
+          });
+          await actor.update({ "system.levelUp.levelAbove": delta });
+        }
+      }
+    }
 
     if (actor.type === "character" && actor.system?.armor_info && update.system?.stats?.quickness) {
       const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;

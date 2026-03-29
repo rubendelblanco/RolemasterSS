@@ -220,6 +220,23 @@ export default class ExperiencePointsCalculator {
     }
 
     /**
+     * Nivel del personaje (1+) a partir de la experiencia total. Unifica el retorno de
+     * {@link getCharacterLevel} (número para nivel 20+ o umbral bajo, objeto para 1–20).
+     * @param {number} experiencePoints
+     * @returns {number}
+     */
+    static getCharacterLevelNumber(experiencePoints) {
+        const xp = Number(experiencePoints);
+        if (!Number.isFinite(xp)) return 1;
+        const raw = ExperiencePointsCalculator.getCharacterLevel(xp);
+        if (typeof raw === "number") return Math.max(1, raw);
+        if (raw && typeof raw === "object" && raw.level != null) {
+            return Math.max(1, parseInt(raw.level, 10) || 1);
+        }
+        return 1;
+    }
+
+    /**
      * Calculates the progress percentage towards the next level based on experience points.
      * @param {number} experiencePoints - Current experience points
      * @returns {number} Percentage (0-100) of progress towards next level
@@ -307,7 +324,7 @@ export default class ExperiencePointsCalculator {
             if (!actor) return;
             const experience = parseInt(ev.currentTarget.value);
             const level = parseInt(html.find("#level").val());
-            const calcLevel = this.getCharacterLevel(experience).level;
+            const calcLevel = ExperiencePointsCalculator.getCharacterLevelNumber(experience);
 
             if (!actor.system.levelUp.levelAbove) {
                 if (calcLevel - level < 0) {

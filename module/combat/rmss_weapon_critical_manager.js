@@ -516,6 +516,25 @@ export class RMSSWeaponCriticalManager {
     }
 
     /**
+     * Apply large/superlarge critical on the GM client so defender hits (incl. unlinked token ActorDelta)
+     * and combat tracker updates succeed; players lack permission to update NPC token actors.
+     * @param {{ attackerId: string, targetTokenId: string, critType: string, applyPayload: object }} payload
+     */
+    static async applyLargeCreatureCriticalGM(payload) {
+        const { attackerId, targetTokenId, critType, applyPayload } = payload ?? {};
+        const attacker = Utils.getActor(attackerId);
+        const token = canvas?.scene?.tokens?.get(targetTokenId);
+        if (!attacker || !token?.actor) {
+            ui.notifications.error(
+                "Could not apply large creature critical (attacker or token not found on GM canvas)."
+            );
+            return undefined;
+        }
+        const strategy = RMSSWeaponCriticalManager.criticalCalculatorStrategy(critType);
+        return await strategy.apply(attacker, token.actor, applyPayload);
+    }
+
+    /**
      * Returns the default critical subtype for large/superlarge melee based on the attacker's equipped weapon.
      * Priority: Holy > Mithril > Magical > Normal. Slaying is not auto-selected (creature-dependent).
      * @param {string|null} attackerId - Actor ID (or token document id)
@@ -607,6 +626,16 @@ export class RMSSWeaponCriticalManager {
         }
         if (gmResponse.effectWeapon?.enabled) {
             applyPayload.effectWeapon = { ...gmResponse.effectWeapon };
+        }
+
+        const largeCreatureCritTypes = ["large_melee", "superlarge_melee", "large_spell", "superlarge_spell"];
+        if (largeCreatureCritTypes.includes(critType)) {
+            return await socket.executeAsGM("applyLargeCreatureCritical", {
+                attackerId: actor.id,
+                targetTokenId,
+                critType,
+                applyPayload,
+            });
         }
 
         return await strategy.apply(actor, target.actor, applyPayload);
