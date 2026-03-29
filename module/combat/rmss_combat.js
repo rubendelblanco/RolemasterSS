@@ -1,6 +1,7 @@
 import {RMSSCombatant} from "./rmss_combatant.js";
 import { registerCombatHooks } from "./hooks.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
+import { CombatHistoryTracker } from "./combat_history_tracker.js";
 
 /**
  * Custom Combat class for RMSS system.
