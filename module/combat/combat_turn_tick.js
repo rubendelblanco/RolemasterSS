@@ -1,7 +1,21 @@
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import { RMSSEffectApplier } from "./rmss_effect_applier.js";
-/** @type {Map<string, { turn: number, round: number, turns: string[] }>} */
+/** @type {Map<string, { turn: number, round: number, turns: (string|null)[] }>} */
 const _combatPrev = new Map();
+
+/**
+ * Foundry v13 puede dar en `combat.turns` ids string o objetos combatiente; `.get` del mapa exige id string.
+ * @param {unknown} ref
+ * @returns {string|null}
+ */
+function toCombatantId(ref) {
+    if (ref == null || ref === "") return null;
+    if (typeof ref === "string") return ref;
+    if (typeof ref === "object" && ref !== null && "_id" in ref && ref._id != null) {
+        return String(ref._id);
+    }
+    return null;
+}
 
 /**
  * @param {ActiveEffect} effect
@@ -33,10 +47,11 @@ async function decreaseRoundsEffect(effect) {
 
 /**
  * @param {Combat} combat
- * @param {string} finishedCombatantId
+ * @param {unknown} finishedCombatantId - id string o objeto combatiente (v13)
  */
 export async function processCombatantTurnEnd(combat, finishedCombatantId) {
-    const combatant = combat.combatants.get(finishedCombatantId);
+    const cid = toCombatantId(finishedCombatantId) ?? (typeof finishedCombatantId === "string" ? finishedCombatantId : null);
+    const combatant = cid ? combat.combatants.get(cid) : undefined;
     const actor = combatant?.actor;
     if (!actor) return;
 
@@ -109,16 +124,20 @@ export async function processCombatantTurnEnd(combat, finishedCombatantId) {
 
 export function registerCombatTurnTickHooks() {
     Hooks.on("preUpdateCombat", (combat) => {
+        const turnsRaw = [...(combat.turns ?? [])];
+        // No filtrar: los índices deben coincidir con combat.turns / oldTurn.
+        const turns = turnsRaw.map((ref) => toCombatantId(ref));
         _combatPrev.set(combat.id, {
             turn: combat.turn,
             round: combat.round,
-            turns: [...(combat.turns ?? [])]
+            turns
         });
     });
 
     Hooks.on("updateCombat", async (combat, changed) => {
         if (!game.user.isGM) return;
-        if (!("turn" in changed)) return;
+        // Foundry puede incluir solo `round` al cerrar ronda (último combatiente) sin clave `turn` en el diff.
+        if (!("turn" in changed) && !("round" in changed)) return;
 
         const prev = _combatPrev.get(combat.id);
         if (!prev || prev.turns.length === 0) return;
