@@ -158,6 +158,36 @@ export default class RMSSCharacterSheet extends ActorSheet {
         // Remove from container: click box-open icon on contained items
         html.find(".remove-from-container").click(ev => this._onRemoveFromContainer(ev));
 
+        html.find(".container-collapse-toggle").on("dragstart", ev => {
+            ev.preventDefault();
+            ev.stopPropagation();
+        });
+        html.find(".container-collapse-toggle").on("click", async ev => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            const rawId = ev.currentTarget.getAttribute("data-container-id");
+            if (!rawId) return;
+            const item = this.actor.items.get(rawId);
+            const containerId = item?.id ?? rawId;
+            const prev = this.actor.getFlag("rmss", "collapsedContainers") ?? {};
+            const next = {};
+            let wasCollapsed = false;
+            for (const [k, v] of Object.entries(prev)) {
+                if (!v) continue;
+                const norm = this.actor.items.get(k)?.id ?? k;
+                if (norm === containerId) {
+                    wasCollapsed = true;
+                    continue;
+                }
+                next[norm] = true;
+            }
+            if (!wasCollapsed) next[containerId] = true;
+            await this.actor.unsetFlag("rmss", "collapsedContainers");
+            if (Object.keys(next).length > 0) {
+                await this.actor.setFlag("rmss", "collapsedContainers", next);
+            }
+        });
+
         // Container drop target: drag items onto container rows to store inside
         html.find(".container-drop-target").each((i, el) => {
             el.addEventListener("dragover", ev => {

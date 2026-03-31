@@ -191,6 +191,16 @@ export default class ItemService {
         // Helper to normalize Document/POJO IDs
         const getId = (obj) => obj?.id ?? obj?._id ?? null;
 
+        const collapsedContainersRaw = actor.getFlag("rmss", "collapsedContainers") ?? {};
+        /** @type {Record<string, boolean>} */
+        const collapsedContainers = {};
+        for (const [k, v] of Object.entries(collapsedContainersRaw)) {
+            if (!v) continue;
+            const doc = actor.items.get(k);
+            const norm = doc?.id ?? k;
+            collapsedContainers[norm] = true;
+        }
+
         // Pass 1: classify items by type
         for (const item of context.items) {
             item.actorId = actor.id;
@@ -242,12 +252,14 @@ export default class ItemService {
             const contents = containersMap.get(transportId) || [];
             transportContainers.push({
                 container: transport,
+                collapseGroupId: transportId,
                 contents,
                 capacityUsed: handler?.usedValue ?? 0,
                 capacityMax: handler?.maxCapacity ?? 0,
                 capacityPercent: handler?.usedPercent ?? 0,
                 isOverCapacity: handler?.isOverCapacity() ?? false,
-                capacityType: handler?.capacityType ?? "weight"
+                capacityType: handler?.capacityType ?? "weight",
+                isCollapsed: !!collapsedContainers[transportId]
             });
         }
 
@@ -270,12 +282,14 @@ export default class ItemService {
                 }
                 containers.push({
                     container: i,
+                    collapseGroupId: itemId,
                     contents,
                     capacityUsed: handler?.usedValue ?? 0,
                     capacityMax: handler?.maxCapacity ?? 0,
                     capacityPercent: handler?.usedPercent ?? 0,
                     isOverCapacity: handler?.isOverCapacity() ?? false,
-                    capacityType: handler?.capacityType ?? "weight"
+                    capacityType: handler?.capacityType ?? "weight",
+                    isCollapsed: !!collapsedContainers[itemId]
                 });
             } else if (!i.flags?.rmss?.containerId) {
                 looseGear.push(i);
