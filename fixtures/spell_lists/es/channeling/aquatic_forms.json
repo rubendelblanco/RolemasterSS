@@ -1,0 +1,394 @@
+{
+  "name": "Formas Acuáticas",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "priest",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Sacerdote 17.4.1 - Formas Acuáticas. Permite al lanzador adoptar diversas formas físicas de criaturas marinas.",
+    "spells": [
+      {
+        "name": "01. Forma de Medusa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador toma la forma física de una medusa. La transformación requiere 10 asaltos de concentración."
+        }
+      },
+      {
+        "name": "02. Forma de Estrella de Mar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Medusa, pero toma la forma de una estrella de mar normal (tarda 9 asaltos)."
+        }
+      },
+      {
+        "name": "03. Forma de Pez",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Medusa (tarda 8 asaltos). A nivel 5 puede ser variedad mediana y a nivel 10 grande."
+        }
+      },
+      {
+        "name": "04. Forma de Cangrejo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Medusa, pero toma la forma de un cangrejo normal (tarda 7 asaltos)."
+        }
+      },
+      {
+        "name": "05. Forma de Serpiente Marina",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Medusa, pero toma la forma de una serpiente marina (tarda 6 asaltos)."
+        }
+      },
+      {
+        "name": "06. Forma de Anguila",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Medusa (tarda 5 asaltos). Variedades: Nvl 5 Morena, Nvl 10 Congrio, Nvl 15 Anguila Eléctrica."
+        }
+      },
+      {
+        "name": "07. Forma de Tortuga",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "lanzador",
+          "duration": "10 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Medusa (tarda 4 asaltos). A nivel 10 puede ser una tortuga grande."
+        }
+      },
+      {
+        "name": "08. Forma de Pulpo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Medusa (tarda 3 asaltos). Nvl 10 Medianas, Nvl 15 Grandes."
+        }
+      },
+      {
+        "name": "09. Forma de Carabela Portuguesa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Medusa, pero toma la forma de una carabela portuguesa (tarda 2 asaltos)."
+        }
+      },
+      {
+        "name": "10. Forma de Foca",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Medusa (tarda 1 asalto). A nivel 10 puede usar estadísticas de morsa."
+        }
+      },
+      {
+        "name": "11. Forma de Delfín",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca. Nvl 9 Delfín de Río, Nvl 10 Delfín, Nvl 15 Marsopa, Nvl 25 Orca."
+        }
+      },
+      {
+        "name": "12. Forma de Raya",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca. Nvl 5 Manta, Nvl 10 Aguijón, Nvl 15 Eléctrica, Nvl 20 Pez Sierra."
+        }
+      },
+      {
+        "name": "13. Forma de Sabueso de Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca, pero toma la forma de un Sabueso de Agua."
+        }
+      },
+      {
+        "name": "14. Forma de Pez Espada",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca, pero toma la forma de un pez vela o pez espada."
+        }
+      },
+      {
+        "name": "15. Forma de Tritón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca (Tritón). Se permite el uso de habilidades propias."
+        }
+      },
+      {
+        "name": "16. Forma de Tiburón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca. Hasta nivel 15 usa Tiburón Pequeño, después Tiburón Grande."
+        }
+      },
+      {
+        "name": "17. Forma de Gusano de Lago",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca, pero toma la forma de un Gusano de Lago."
+        }
+      },
+      {
+        "name": "19. Forma de Ballena",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca. Nvl 15 Odontoceto Pequeño, Nvl 30 Grande, Nvl 50 Misticeto."
+        }
+      },
+      {
+        "name": "20. Forma de Troll Marino",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca (Troll Marino). Se permite el uso de habilidades propias."
+        }
+      },
+      {
+        "name": "25. Forma de Mergrifo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca, pero toma la forma de un Mergrifo."
+        }
+      },
+      {
+        "name": "30. Forma de Salamandra Dragón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca (Salamandra Dragón). Se permite el uso de hechizos conocidos."
+        }
+      },
+      {
+        "name": "50. Forma de Draco Marino",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "lanzador",
+          "duration": "1 min/nvl(C)",
+          "range": "personal",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma de Foca (Draco Marino). Se permite el uso de hechizos conocidos."
+        }
+      }
+    ]
+  }
+}

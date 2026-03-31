@@ -1,0 +1,309 @@
+{
+    "name": "Protections",
+    "type": "spell_list",
+    "img": "systems/rmss/assets/default/spell.svg",
+    "system": {
+      "type": "base",
+      "realm": "channeling",
+      "profession": "cleric",
+      "is_container": true,
+      "container": {
+        "maxCapacity": 50,
+        "usedCapacity": 0,
+        "capacityType": "quantity",
+        "allowedTags": ["spell"]
+      },
+      "description": "Cleric Base List - Protections. Spells designed to provide bonuses to resistance rolls, defense, and maneuver rolls, as well as environmental protection.",
+      "spells": [
+        {
+          "name": "01. Prayer I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 1,
+            "area_of_effect": "1 target",
+            "duration": "1 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Target gets a special bonus of +5 to his resistance rolls and maneuver rolls. If the target is more than 100' from the caster at any time, the spell is cancelled."
+          }
+        },
+        {
+          "name": "02. Bless I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 2,
+            "area_of_effect": "1 target",
+            "duration": "1 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Prayer I, except target gets a special bonus of +5 to his defensive bonus and maneuver rolls."
+          }
+        },
+        {
+          "name": "03. Resistance I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 3,
+            "area_of_effect": "1 target",
+            "duration": "1 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Prayer I, except target gets a special bonus of +5 to his resistance rolls and defensive bonus."
+          }
+        },
+        {
+          "name": "04. Heat Resistance",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 4,
+            "area_of_effect": "1 target",
+            "duration": "10 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "*",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Target is protected from natural heat up to 170˚F (treat as 70˚F). Above 170˚F, subtract 100˚F from effective temperature. Target receives +20 to RRs vs heat spells and +20 DB vs elemental heat attacks."
+          }
+        },
+        {
+          "name": "05. Cold Resistance",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 5,
+            "area_of_effect": "1 target",
+            "duration": "10 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "*",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Target is protected from natural cold down to 20˚F (treat as 70˚F). Below 20˚F, add 50˚F to effective temperature. Target receives +20 to RRs vs cold spells and +20 DB vs elemental cold attacks."
+          }
+        },
+        {
+          "name": "08. Temperature Sphere I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 8,
+            "area_of_effect": "10'R",
+            "duration": "10 min/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "All within the sphere gain benefits of either Heat or Cold Resistance (must be same for all). Cancelled if sphere is more than 100' from caster."
+          }
+        },
+        {
+          "name": "10. Protections Sphere I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 10,
+            "area_of_effect": "10'R",
+            "duration": "1 min/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "All within radius gain benefits of Prayer I, Bless I, or Resistance I (must be same for all). Cancelled if more than 100' from caster."
+          }
+        },
+        {
+          "name": "11. Prayer III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 11,
+            "area_of_effect": "1-3 tgts",
+            "duration": "1 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Prayer I, except total bonus is +15 and may be spread over 1-3 targets (e.g., one target gets +15, or three get +5 each)."
+          }
+        },
+        {
+          "name": "12. Bless III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 12,
+            "area_of_effect": "1-3 tgts",
+            "duration": "1 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Bless I, except total bonus is +15 and may be spread over 1-3 targets."
+          }
+        },
+        {
+          "name": "13. Resistance III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 13,
+            "area_of_effect": "1-3 tgts",
+            "duration": "1 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Resistance I, except total bonus is +15 and may be spread over 1-3 targets."
+          }
+        },
+        {
+          "name": "15. Temperature Sphere II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 15,
+            "area_of_effect": "20'R",
+            "duration": "10 min/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Temperature Sphere I, except radius is 20'."
+          }
+        },
+        {
+          "name": "17. Protections Sphere III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 17,
+            "area_of_effect": "10'R",
+            "duration": "1 min/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Protections Sphere I, except all gain benefits of Prayer III, Bless III, or Resistance III."
+          }
+        },
+        {
+          "name": "18. Prayer V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 18,
+            "area_of_effect": "1-5 tgts",
+            "duration": "1 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Prayer I, except total bonus is +25 and may be spread over 1-5 targets."
+          }
+        },
+        {
+          "name": "20. Bless V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 20,
+            "area_of_effect": "1-5 tgts",
+            "duration": "1 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Bless I, except total bonus is +25 and may be spread over 1-5 targets."
+          }
+        },
+        {
+          "name": "25. Resistance V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 25,
+            "area_of_effect": "1-5 tgts",
+            "duration": "1 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Resistance I, except total bonus is +25 and may be spread over 1-5 targets."
+          }
+        },
+        {
+          "name": "30. Protections Sphere V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 30,
+            "area_of_effect": "10'R",
+            "duration": "1 min/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Protections Sphere I, except all gain benefits of Prayer V, Bless V, or Resistance V."
+          }
+        },
+        {
+          "name": "50. Protections True",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 50,
+            "area_of_effect": "1 target",
+            "duration": "1 min/lvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Target gets a special bonus of +30 to his RRs, maneuver rolls, and DB. Additionally, 30 is subtracted from all elemental attacks against him."
+          }
+        }
+      ]
+    }
+  }

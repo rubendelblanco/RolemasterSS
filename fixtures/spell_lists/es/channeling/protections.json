@@ -1,0 +1,309 @@
+{
+    "name": "Protecciones",
+    "type": "spell_list",
+    "img": "systems/rmss/assets/default/spell.svg",
+    "system": {
+      "type": "base",
+      "realm": "channeling",
+      "profession": "cleric",
+      "is_container": true,
+      "container": {
+        "maxCapacity": 50,
+        "usedCapacity": 0,
+        "capacityType": "quantity",
+        "allowedTags": ["spell"]
+      },
+      "description": "Lista Base de Clérigo - Protecciones. Hechizos diseñados para otorgar bonificadores a las tiradas de resistencia, defensa y maniobras, así como protección ambiental.",
+      "spells": [
+        {
+          "name": "01. Plegaria I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 1,
+            "area_of_effect": "1 objetivo",
+            "duration": "1 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "El objetivo recibe un bonificador especial de +5 a sus Tiradas de Resistencia (TR) y tiradas de maniobra. Si el objetivo se aleja más de 100' del lanzador, el hechizo se cancela."
+          }
+        },
+        {
+          "name": "02. Bendición I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 2,
+            "area_of_effect": "1 objetivo",
+            "duration": "1 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Plegaria I, pero el bonificador de +5 se aplica a la Bonificación Defensiva (BD) y a las tiradas de maniobra."
+          }
+        },
+        {
+          "name": "03. Resistencia I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 3,
+            "area_of_effect": "1 objetivo",
+            "duration": "1 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Plegaria I, pero el bonificador de +5 se aplica a las TR y a la BD."
+          }
+        },
+        {
+          "name": "04. Resistencia al Calor",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 4,
+            "area_of_effect": "1 objetivo",
+            "duration": "10 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "*",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Protege contra calor natural hasta 170°F (el objetivo lo siente como 70°F). Por encima de 170°F, resta 100°F a la temperatura real. Otorga +20 a TR contra hechizos de calor y +20 a la BD contra ataques de fuego/calor elementales."
+          }
+        },
+        {
+          "name": "05. Resistencia al Frío",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 5,
+            "area_of_effect": "1 objetivo",
+            "duration": "10 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "*",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Protege contra frío natural hasta 20°F (el objetivo lo siente como 70°F). Por debajo de 20°F, suma 50°F a la temperatura real. Otorga +20 a TR contra hechizos de frío y +20 a la BD contra ataques de frío/hielo elementales."
+          }
+        },
+        {
+          "name": "08. Esfera de Temperatura I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 8,
+            "area_of_effect": "10'R",
+            "duration": "10 min/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Todos dentro de la esfera reciben los beneficios de Resistencia al Calor o Resistencia al Frío (debe ser el mismo para todos). Se cancela si la esfera se aleja más de 100' del lanzador."
+          }
+        },
+        {
+          "name": "10. Esfera de Protecciones I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 10,
+            "area_of_effect": "10'R",
+            "duration": "1 min/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Todos dentro del radio reciben los beneficios de Plegaria I, Bendición I o Resistencia I (debe ser el mismo para todos). Se cancela si se aleja más de 100' del lanzador."
+          }
+        },
+        {
+          "name": "11. Plegaria III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 11,
+            "area_of_effect": "1-3 objetivos",
+            "duration": "1 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Plegaria I, pero el bono total es de +15 a repartir entre 1 y 3 objetivos (ej: uno recibe +15, o tres reciben +5 cada uno)."
+          }
+        },
+        {
+          "name": "12. Bendición III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 12,
+            "area_of_effect": "1-3 objetivos",
+            "duration": "1 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Bendición I, pero el bono total es de +15 a repartir entre 1 y 3 objetivos."
+          }
+        },
+        {
+          "name": "13. Resistencia III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 13,
+            "area_of_effect": "1-3 objetivos",
+            "duration": "1 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Resistencia I, pero el bono total es de +15 a repartir entre 1 y 3 objetivos."
+          }
+        },
+        {
+          "name": "15. Esfera de Temperatura II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 15,
+            "area_of_effect": "20'R",
+            "duration": "10 min/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Esfera de Temperatura I, pero con un radio de 20'."
+          }
+        },
+        {
+          "name": "17. Esfera de Protecciones III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 17,
+            "area_of_effect": "10'R",
+            "duration": "1 min/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Esfera de Protecciones I, pero otorga los beneficios de Plegaria III, Bendición III o Resistencia III."
+          }
+        },
+        {
+          "name": "18. Plegaria V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 18,
+            "area_of_effect": "1-5 objetivos",
+            "duration": "1 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Plegaria I, pero el bono total es de +25 a repartir entre 1 y 5 objetivos."
+          }
+        },
+        {
+          "name": "20. Bendición V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 20,
+            "area_of_effect": "1-5 objetivos",
+            "duration": "1 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Bendición I, pero el bono total es de +25 a repartir entre 1 y 5 objetivos."
+          }
+        },
+        {
+          "name": "25. Resistencia V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 25,
+            "area_of_effect": "1-5 objetivos",
+            "duration": "1 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Resistencia I, pero el bono total es de +25 a repartir entre 1 y 5 objetivos."
+          }
+        },
+        {
+          "name": "30. Esfera de Protecciones V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 30,
+            "area_of_effect": "10'R",
+            "duration": "1 min/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Esfera de Protecciones I, pero otorga los beneficios de Plegaria V, Bendición V o Resistencia V."
+          }
+        },
+        {
+          "name": "50. Protecciones Verdaderas",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 50,
+            "area_of_effect": "1 objetivo",
+            "duration": "1 min/nvl",
+            "range": "100'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "El objetivo recibe un bonificador especial de +30 a sus TR, tiradas de maniobra y BD. Además, se resta 30 a todos los ataques elementales contra él."
+          }
+        }
+      ]
+    }
+  }

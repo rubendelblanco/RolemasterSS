@@ -1,0 +1,326 @@
+{
+    "name": "Communal Ways",
+    "type": "spell_list",
+    "img": "systems/rmss/assets/default/spell.svg",
+    "system": {
+      "type": "base",
+      "realm": "channeling",
+      "profession": "cleric",
+      "is_container": true,
+      "container": {
+        "maxCapacity": 50,
+        "usedCapacity": 0,
+        "capacityType": "quantity",
+        "allowedTags": ["spell"]
+      },
+      "description": "Cleric Base List 5.2 - Communal Ways. Spells for divination, gaining intuitions, and communicating with deities or through mystical means.",
+      "spells": [
+        {
+          "name": "01. Guess",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 1,
+            "area_of_effect": "caster",
+            "duration": "-",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "When faced with a choice about which he has little or no information, the caster may cast this spell and the GM will determine which way he goes, biasing the choice favorable by 25% (e.g., roll d100: correct on a 26-100, incorrect on 1-25)."
+          }
+        },
+        {
+          "name": "03. Intuitions I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 3,
+            "area_of_effect": "caster",
+            "duration": "-",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Caster gains a vision of what will probably happen in the next minute if he takes a specified action."
+          }
+        },
+        {
+          "name": "04. Dream I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 4,
+            "area_of_effect": "caster",
+            "duration": "sleep",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Caster has a dream relating to a topic decided upon just before retiring. The caster must sleep for a normal sleep cycle (minimum of 4 hours) for this spell to work."
+          }
+        },
+        {
+          "name": "05. Intuitions III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 5,
+            "area_of_effect": "caster",
+            "duration": "-",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Intuitions I, except the caster gets to gaze 3 minutes into the future."
+          }
+        },
+        {
+          "name": "06. Death's Tale",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 6,
+            "area_of_effect": "caster",
+            "duration": "-",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Caster gets a vision of the events surrounding the death of any 1 dead target through the eyes of the deceased. He also gets a view of the killer (if any). Caster must be within 10' of the corpse. Corpse must have died within a number of years equal to caster's level."
+          }
+        },
+        {
+          "name": "07. Channel Opening I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 7,
+            "area_of_effect": "1 being",
+            "duration": "C",
+            "range": "1 mile/lvl",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "The caster can make contact with any 1 known target he is acquainted with. This spell will enable the caster to learn the specific location (direction and distance only) of the other being."
+          }
+        },
+        {
+          "name": "08. Intuitions V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 8,
+            "area_of_effect": "caster",
+            "duration": "-",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Intuitions I, except caster may gaze 5 minutes into the future."
+          }
+        },
+        {
+          "name": "10. Dreams III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 10,
+            "area_of_effect": "caster",
+            "duration": "sleep",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Dream I, except limit is 3 dreams per night on different topics."
+          }
+        },
+        {
+          "name": "11. Intuitions X",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 11,
+            "area_of_effect": "caster",
+            "duration": "-",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Intuitions I, except caster may gaze 10 minutes into the future."
+          }
+        },
+        {
+          "name": "12. Commune I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 12,
+            "area_of_effect": "caster",
+            "duration": "-",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Caster receives (usually from his patron deity) a 'yes' or a 'no' answer to a question on a single topic. This spell may be used a maximum of once per day."
+          }
+        },
+        {
+          "name": "13. Magic Basin I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 13,
+            "area_of_effect": "1 pool",
+            "duration": "1 min/lvl",
+            "range": "10'",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "The target is a small pool of clear, clean water. The water must be calm. Caster may designate a topic and a vision will appear in the pool. Vision normally takes 5-50 rounds."
+          }
+        },
+        {
+          "name": "15. Channel Opening II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 15,
+            "area_of_effect": "1 being",
+            "duration": "C",
+            "range": "10 mile/lvl",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Channel Opening I, except for range."
+          }
+        },
+        {
+          "name": "18. Magic Basin II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 18,
+            "area_of_effect": "1 pool",
+            "duration": "1 min/lvl",
+            "range": "10'",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Magic Basin I, except up to two topics may be designated (5-50 rounds is required for each one)."
+          }
+        },
+        {
+          "name": "19. Death's Tale True",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 19,
+            "area_of_effect": "caster",
+            "duration": "-",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Caster gets a vision of the events surrounding the death of any 1 dead target within 10 feet. Caster gets an understanding of the reason(s) the deceased died, exactly who the killer was, and who was ultimately responsible. Corpse may be of any age."
+          }
+        },
+        {
+          "name": "20. Commune True",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 20,
+            "area_of_effect": "caster",
+            "duration": "C",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Commune I, except caster can receive a more detailed answer (e.g., a name or short phrase) to a question involving only 1 concept."
+          }
+        },
+        {
+          "name": "25. Intuitions True",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 25,
+            "area_of_effect": "caster",
+            "duration": "-",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Intuitions I, except caster may gaze into the future for a number of minutes equal to his level."
+          }
+        },
+        {
+          "name": "30. Channel Opening True",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 30,
+            "area_of_effect": "1 being",
+            "duration": "C",
+            "range": "1 mile/lvl",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Channel Opening I, except caster can open a channel to anyone he chooses, regardless of whether or not he is acquainted with the being. Must specify the type of being sought."
+          }
+        },
+        {
+          "name": "50. High Prayer",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 50,
+            "area_of_effect": "caster",
+            "duration": "C",
+            "range": "self",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Caster receives detailed information from his deity on a single topic question."
+          }
+        }
+      ]
+    }
+  }

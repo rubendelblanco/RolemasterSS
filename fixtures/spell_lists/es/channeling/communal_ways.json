@@ -1,0 +1,326 @@
+{
+    "name": "Caminos de Comunión",
+    "type": "spell_list",
+    "img": "systems/rmss/assets/default/spell.svg",
+    "system": {
+      "type": "base",
+      "realm": "channeling",
+      "profession": "cleric",
+      "is_container": true,
+      "container": {
+        "maxCapacity": 50,
+        "usedCapacity": 0,
+        "capacityType": "quantity",
+        "allowedTags": ["spell"]
+      },
+      "description": "Lista Base de Clérigo 5.2 - Caminos de Comunión. Hechizos para la adivinación, obtención de intuiciones y comunicación con deidades o medios místicos.",
+      "spells": [
+        {
+          "name": "01. Conjetura",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 1,
+            "area_of_effect": "lanzador",
+            "duration": "-",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Ante una elección sobre la que tiene poca o ninguna información, el DJ determinará qué camino toma el lanzador, sesgando la elección favorablemente en un 25% (ej. d100: éxito con 26-100, error con 1-25)."
+          }
+        },
+        {
+          "name": "03. Intuiciones I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 3,
+            "area_of_effect": "lanzador",
+            "duration": "-",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "El lanzador recibe una visión de lo que probablemente ocurrirá en el próximo minuto si realiza una acción específica."
+          }
+        },
+        {
+          "name": "04. Sueño I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 4,
+            "area_of_effect": "lanzador",
+            "duration": "sueño",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "El lanzador tiene un sueño relacionado con un tema decidido justo antes de dormir. Requiere un ciclo de sueño normal (mínimo 4 horas)."
+          }
+        },
+        {
+          "name": "05. Intuiciones III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 5,
+            "area_of_effect": "lanzador",
+            "duration": "-",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Intuiciones I, pero el lanzador puede ver hasta 3 minutos en el futuro."
+          }
+        },
+        {
+          "name": "06. Relato de la Muerte",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 6,
+            "area_of_effect": "lanzador",
+            "duration": "-",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Visión de los eventos que rodearon la muerte de un objetivo fallecido a través de sus ojos. Puede ver al asesino. El cadáver debe estar a menos de 10 pies y haber muerto hace no más años que el nivel del lanzador."
+          }
+        },
+        {
+          "name": "07. Apertura de Canal I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 7,
+            "area_of_effect": "1 ser",
+            "duration": "C",
+            "range": "1 milla/nvl",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Permite contactar con un objetivo conocido con el que esté familiarizado. El lanzador conoce la ubicación específica (solo dirección y distancia) del otro ser."
+          }
+        },
+        {
+          "name": "08. Intuiciones V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 8,
+            "area_of_effect": "lanzador",
+            "duration": "-",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Intuiciones I, pero permite ver hasta 5 minutos en el futuro."
+          }
+        },
+        {
+          "name": "10. Sueños III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 10,
+            "area_of_effect": "lanzador",
+            "duration": "sueño",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Sueño I, pero con un límite de 3 sueños por noche sobre temas diferentes."
+          }
+        },
+        {
+          "name": "11. Intuiciones X",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 11,
+            "area_of_effect": "lanzador",
+            "duration": "-",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Intuiciones I, pero permite ver hasta 10 minutos en el futuro."
+          }
+        },
+        {
+          "name": "12. Comunión I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 12,
+            "area_of_effect": "lanzador",
+            "duration": "-",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "El lanzador recibe una respuesta de 'sí' o 'no' de su deidad patrona sobre una sola pregunta. Máximo una vez al día."
+          }
+        },
+        {
+          "name": "13. Cuenco Mágico I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 13,
+            "area_of_effect": "1 estanque",
+            "duration": "1 min/nvl",
+            "range": "10'",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "En un pequeño estanque de agua limpia y calmada, aparece una visión sobre un tema designado. La visión suele tardar entre 5 y 50 asaltos en manifestarse."
+          }
+        },
+        {
+          "name": "15. Apertura de Canal II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 15,
+            "area_of_effect": "1 ser",
+            "duration": "C",
+            "range": "10 millas/nvl",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Apertura de Canal I, pero con mayor alcance."
+          }
+        },
+        {
+          "name": "18. Cuenco Mágico II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 18,
+            "area_of_effect": "1 estanque",
+            "duration": "1 min/nvl",
+            "range": "10'",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Cuenco Mágico I, pero permite designar hasta dos temas (requiere 5-50 asaltos para cada uno)."
+          }
+        },
+        {
+          "name": "19. Relato de la Muerte Verdadero",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 19,
+            "area_of_effect": "lanzador",
+            "duration": "-",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Visión de los hechos de la muerte de un cadáver a menos de 10 pies. El lanzador comprende la razón de la muerte, quién fue el asesino y quién el responsable último. El cadáver puede tener cualquier antigüedad."
+          }
+        },
+        {
+          "name": "20. Comunión Verdadera",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 20,
+            "area_of_effect": "lanzador",
+            "duration": "C",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Comunión I, pero permite recibir una respuesta más detallada (ej. un nombre o frase corta) sobre un concepto único."
+          }
+        },
+        {
+          "name": "25. Intuiciones Verdaderas",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 25,
+            "area_of_effect": "lanzador",
+            "duration": "-",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Intuiciones I, pero permite ver el futuro durante un número de minutos igual al nivel del lanzador."
+          }
+        },
+        {
+          "name": "30. Apertura de Canal Verdadera",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 30,
+            "area_of_effect": "1 ser",
+            "duration": "C",
+            "range": "1 milla/nvl",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Apertura de Canal I, pero permite abrir el canal a cualquier persona, incluso si no la conoce, siempre que especifique el tipo de ser buscado."
+          }
+        },
+        {
+          "name": "50. Oración Mayor",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 50,
+            "area_of_effect": "lanzador",
+            "duration": "C",
+            "range": "personal",
+            "type": "I",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "El lanzador recibe información detallada de su deidad sobre una sola pregunta o tema."
+          }
+        }
+      ]
+    }
+  }

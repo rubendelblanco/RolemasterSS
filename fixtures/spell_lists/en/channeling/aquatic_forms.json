@@ -1,0 +1,394 @@
+{
+  "name": "Aquatic Forms",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "priest",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Priest Base List 17.4.1 - Aquatic Forms. Allows caster to take the physical form of various sea creatures, gaining the abilities of the new form.",
+    "spells": [
+      {
+        "name": "01. Jellyfish Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "10min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to take the physical form of a Jellyfish. Transformation takes ten complete rounds of concentration to occur."
+        }
+      },
+      {
+        "name": "02. Starfish Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "10min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jellyfish Form, except caster takes the form of a normal Starfish, and the transformation takes only nine rounds."
+        }
+      },
+      {
+        "name": "03. Fish Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "10min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jellyfish Form, except caster takes the form of a small fish (8 rounds). At 5th level may use medium variety; at 10th level large variety."
+        }
+      },
+      {
+        "name": "04. Crab Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "10min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jellyfish Form, except caster takes the form of a normal Crab, and the transformation takes only seven rounds."
+        }
+      },
+      {
+        "name": "05. Sea Snake Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "10min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jellyfish Form, except caster takes the form of a Sea Snake, and the transformation takes only six rounds."
+        }
+      },
+      {
+        "name": "06. Eel Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "10min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jellyfish Form (5 rounds). At 5th level use Moray Eel stats, at 10th Conger Eel, and at 15th Electric Eel."
+        }
+      },
+      {
+        "name": "07. Turtle Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "10min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jellyfish Form (4 rounds). At 10th level use large Turtle stats."
+        }
+      },
+      {
+        "name": "08. Octopus Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jellyfish Form (3 rounds). At 10th level use Medium stats and at 15th level use Large stats."
+        }
+      },
+      {
+        "name": "09. Man-o-war Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jellyfish Form, except caster takes the form of a Portuguese Man-o-war (2 rounds)."
+        }
+      },
+      {
+        "name": "10. Seal Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jellyfish Form (1 round). At 10th level the caster may use the Walrus stats."
+        }
+      },
+      {
+        "name": "11. Dolphin Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form. Levels: up to 9th River Dolphin, 10th Dolphin, 15th Porpoise, 25th Killer Whale."
+        }
+      },
+      {
+        "name": "12. Ray Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form. Levels: up to 5th Manta Ray, 10th Sting Ray, 15th Electric Ray, 20th Sawfish."
+        }
+      },
+      {
+        "name": "13. Water Hound Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form, except caster takes the form of a Water Hound."
+        }
+      },
+      {
+        "name": "14. Swordfish Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form, except caster takes the form of a Sailfish or Swordfish."
+        }
+      },
+      {
+        "name": "15. Merman Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form, except caster takes the form of a Merman. May use skills while in this form."
+        }
+      },
+      {
+        "name": "16. Shark Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form. Up to 15th level use Small stats; thereafter use Large stats."
+        }
+      },
+      {
+        "name": "17. Lake Worm Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form, except caster takes the form of a Lake Worm."
+        }
+      },
+      {
+        "name": "19. Whale Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form. Up to 15th Toothed/Small, 30th Toothed/Large, 50th Baleen stats."
+        }
+      },
+      {
+        "name": "20. Sea Troll Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form, except caster takes the form of a Sea Troll. May use skills while in this form."
+        }
+      },
+      {
+        "name": "25. Mergryph Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form, except caster takes the form of a Mergryph."
+        }
+      },
+      {
+        "name": "30. Dragon Salamander Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form, except caster takes the form of a Dragon Salamander. May use spells while in this form."
+        }
+      },
+      {
+        "name": "50. Sea Drake Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1min/lvl(C)",
+          "range": "self",
+          "type": "U",
+          "subType": "",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Seal Form, except caster takes the form of a Sea Drake. May use spells while in this form."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,394 @@
+{
+    "name": "Maestría de la Vida",
+    "type": "spell_list",
+    "img": "systems/rmss/assets/default/spell.svg",
+    "system": {
+      "type": "base",
+      "realm": "channeling",
+      "profession": "cleric",
+      "is_container": true,
+      "container": {
+        "maxCapacity": 50,
+        "usedCapacity": 0,
+        "capacityType": "quantity",
+        "allowedTags": ["spell"]
+      },
+      "description": "Lista Base de Clérigo 5.3 - Maestría de la Vida. Hechizos especializados en la preservación del cuerpo, la retención del alma y la resurrección.",
+      "spells": [
+        {
+          "name": "01. Preservación I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 1,
+            "area_of_effect": "1 cuerpo",
+            "duration": "1 min/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Preserva un cuerpo 'muerto', evitando el deterioro de estadísticas o daños por heridas existentes; el objetivo entra en coma. No evita que el alma abandone el cuerpo."
+          }
+        },
+        {
+          "name": "02. Mantenimiento de Vida I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 2,
+            "area_of_effect": "1 cuerpo",
+            "duration": "1 min/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Evita que el alma de un cuerpo 'muerto' lo abandone, impidiendo la muerte real y permitiendo la recuperación mediante reparaciones corporales simples. Debe lanzarse antes de que el alma parta."
+          }
+        },
+        {
+          "name": "03. Preservación II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 3,
+            "area_of_effect": "1 cuerpo",
+            "duration": "1 hora/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Preservación I, excepto por la duración."
+          }
+        },
+        {
+          "name": "04. Sanar Esencia Vital I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 4,
+            "area_of_effect": "1 objetivo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Sana d10 puntos de Constitución temporal perdida por daño de alma."
+          }
+        },
+        {
+          "name": "05. Mantenimiento de Vida II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 5,
+            "area_of_effect": "1 cuerpo",
+            "duration": "1 hora/nvl",
+            "range": "toque",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Mantenimiento de Vida I, excepto por la duración y alcance."
+          }
+        },
+        {
+          "name": "06. Sanar Esencia Vital II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 6,
+            "area_of_effect": "1 objetivo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Sanar Esencia Vital I, pero sana 2d10 puntos."
+          }
+        },
+        {
+          "name": "07. Preservación III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 7,
+            "area_of_effect": "1 cuerpo",
+            "duration": "1 día/nvl",
+            "range": "toque",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Preservación I, excepto por la duración."
+          }
+        },
+        {
+          "name": "09. Sanar Esencia Vital III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 9,
+            "area_of_effect": "1 objetivo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Sanar Esencia Vital I, pero sana 3d10 puntos."
+          }
+        },
+        {
+          "name": "10. Preservación IV",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 10,
+            "area_of_effect": "1 cuerpo",
+            "duration": "1 semana/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Preservación I, excepto por la duración."
+          }
+        },
+        {
+          "name": "11. Mantenimiento de Vida III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 11,
+            "area_of_effect": "1 cuerpo",
+            "duration": "1 día/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Mantenimiento de Vida I, excepto por la duración."
+          }
+        },
+        {
+          "name": "12. Dación de Vida I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 12,
+            "area_of_effect": "1 cuerpo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Resucita a un ser restaurando su alma (muerto hace menos de un año). Requiere tirada de d100 abierta + estadística de Constitución. Penalizador de -10 por día muerto. Éxito con 100+. Periodo de recuperación: 100 días por cada día muerto."
+          }
+        },
+        {
+          "name": "13. Sanar Esencia Vital Verdadera",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 13,
+            "area_of_effect": "1 objetivo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Sanar Esencia Vital I, pero sana 1 punto de Constitución temporal por cada nivel del lanzador."
+          }
+        },
+        {
+          "name": "14. Preservación V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 14,
+            "area_of_effect": "1 cuerpo",
+            "duration": "1 mes/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Preservación I, excepto por la duración."
+          }
+        },
+        {
+          "name": "15. Dación de Vida II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 15,
+            "area_of_effect": "1 cuerpo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Dación de Vida I, pero el penalizador es de -5 por día muerto y el periodo de recuperación es de 50 días por día muerto."
+          }
+        },
+        {
+          "name": "16. Mantenimiento de Vida IV",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 16,
+            "area_of_effect": "1 cuerpo",
+            "duration": "1 semana/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Mantenimiento de Vida I, excepto por la duración."
+          }
+        },
+        {
+          "name": "17. Dación de Vida III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 17,
+            "area_of_effect": "1 cuerpo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Dación de Vida I, pero el penalizador es de -2 por día muerto y el periodo de recuperación es de 20 días por día muerto."
+          }
+        },
+        {
+          "name": "18. Preservación Verdadera",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 18,
+            "area_of_effect": "1 cuerpo",
+            "duration": "1 año/nvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Preservación I, excepto por la duración."
+          }
+        },
+        {
+          "name": "19. Restauración",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 19,
+            "area_of_effect": "1 objetivo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Restaura capacidades mentales mermadas y experiencia perdida. Se pierde un 1% de la experiencia total a recuperar por cada día que se sufrió la condición antes del tratamiento."
+          }
+        },
+        {
+          "name": "20. Dación de Vida IV",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 20,
+            "area_of_effect": "1 cuerpo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Dación de Vida I, con penalizador de -1 por día muerto. El periodo de recuperación es igual al número de días muerto."
+          }
+        },
+        {
+          "name": "25. Dación de Vida V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 25,
+            "area_of_effect": "1 cuerpo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Dación de Vida I, con penalizador de -1 por cada dos días muerto. Sin periodo de recuperación."
+          }
+        },
+        {
+          "name": "30. Restauración Verdadera",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 30,
+            "area_of_effect": "1 objetivo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Como Restauración, pero la mente y la experiencia se restauran por completo sin pérdidas."
+          }
+        },
+        {
+          "name": "50. Dación de Vida Verdadera",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 50,
+            "area_of_effect": "1 cuerpo",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "El objetivo resucita automáticamente sin necesidad de tirada y no sufre periodo de recuperación."
+          }
+        }
+      ]
+    }
+  }

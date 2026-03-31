@@ -1,0 +1,394 @@
+{
+    "name": "Life Mastery",
+    "type": "spell_list",
+    "img": "systems/rmss/assets/default/spell.svg",
+    "system": {
+      "type": "base",
+      "realm": "channeling",
+      "profession": "cleric",
+      "is_container": true,
+      "container": {
+        "maxCapacity": 50,
+        "usedCapacity": 0,
+        "capacityType": "quantity",
+        "allowedTags": ["spell"]
+      },
+      "description": "Cleric Base List 5.3 - Life Mastery. Spells specialized in the preservation of the body, soul retention, and restoration of life.",
+      "spells": [
+        {
+          "name": "01. Preservation I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 1,
+            "area_of_effect": "1 body",
+            "duration": "1 min/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Caster can preserve a “dead” body, preventing any further deterioration (i.e., stat deterioration) or damage from already existing wounds; the target will be in a coma; this spell will not prevent the target’s soul from leaving the body."
+          }
+        },
+        {
+          "name": "02. Lifekeeping I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 2,
+            "area_of_effect": "1 body",
+            "duration": "1 min/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Caster can prevent the soul of a “dead” body from leaving its body (thus preventing actual death and enabling the fallen being to be restored via simple bodily repairs). This spell must be cast before the soul leaves the body."
+          }
+        },
+        {
+          "name": "03. Preservation II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 3,
+            "area_of_effect": "1 body",
+            "duration": "1 hr/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Preservation I, except for the duration."
+          }
+        },
+        {
+          "name": "04. Heal Life Essence I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 4,
+            "area_of_effect": "1 target",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "The target will be healed of d10 points of lost temporary Constitution. See RMFRP Section 24.0 for more information on soul damage."
+          }
+        },
+        {
+          "name": "05. Lifekeeping II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 5,
+            "area_of_effect": "1 body",
+            "duration": "1 hr/lvl",
+            "range": "touch",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Lifekeeping I, except for the duration."
+          }
+        },
+        {
+          "name": "06. Heal Life Essence II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 6,
+            "area_of_effect": "1 target",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Heal Life Essence I, except will heal 2d10 lost points."
+          }
+        },
+        {
+          "name": "07. Preservation III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 7,
+            "area_of_effect": "1 body",
+            "duration": "1 day/lvl",
+            "range": "touch",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Preservation I, except for the duration."
+          }
+        },
+        {
+          "name": "09. Heal Life Essence III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 9,
+            "area_of_effect": "1 target",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Heal Life Essence I, except will heal 3d10 lost points of temporary Constitution."
+          }
+        },
+        {
+          "name": "10. Preservation IV",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 10,
+            "area_of_effect": "1 body",
+            "duration": "1 week/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Preservation I, except for duration."
+          }
+        },
+        {
+          "name": "11. Lifekeeping III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 11,
+            "area_of_effect": "1 body",
+            "duration": "1 day/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Lifekeeping I, except for the duration."
+          }
+        },
+        {
+          "name": "12. Lifegiving I",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 12,
+            "area_of_effect": "1 body",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Caster can “raise” 1 dead being by restoring the being’s lost soul. Target must roll d100 (open-ended) + Constitution stat. Mod of -10 per day dead. Result 100+ required. Recovery: 100 days per day dead."
+          }
+        },
+        {
+          "name": "13. Heal Life Essence True",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 13,
+            "area_of_effect": "1 target",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Heal Life Essence I, except heals 1 lost point of temporary Constitution per level of the caster."
+          }
+        },
+        {
+          "name": "14. Preservation V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 14,
+            "area_of_effect": "1 body",
+            "duration": "1 month/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Preservation I, except for the duration."
+          }
+        },
+        {
+          "name": "15. Lifegiving II",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 15,
+            "area_of_effect": "1 body",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Lifegiving I, except mod is -5 per day dead and recovery period is 50 days per day dead."
+          }
+        },
+        {
+          "name": "16. Lifekeeping IV",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 16,
+            "area_of_effect": "1 body",
+            "duration": "1 week/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Lifekeeping I, except for duration."
+          }
+        },
+        {
+          "name": "17. Lifegiving III",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 17,
+            "area_of_effect": "1 body",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Lifekeeping I, except mod is -2 per day dead and recovery period is 20 days per day dead."
+          }
+        },
+        {
+          "name": "18. Preservation True",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 18,
+            "area_of_effect": "1 body",
+            "duration": "1 year/lvl",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Preservation I, except for the duration."
+          }
+        },
+        {
+          "name": "19. Restoration",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 19,
+            "area_of_effect": "1 target",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "Target recovers lost experience. The amount of experience that is not recovered is 1% for each day that the target suffered from the condition."
+          }
+        },
+        {
+          "name": "20. Lifegiving IV",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 20,
+            "area_of_effect": "1 body",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Lifegiving I, except mod is -1 per day dead and the recovery period is equal to the number of days dead."
+          }
+        },
+        {
+          "name": "25. Lifegiving V",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 25,
+            "area_of_effect": "1 body",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Lifegiving I, except mod is -1 for every two days dead and there is no recovery period."
+          }
+        },
+        {
+          "name": "30. Restoration True",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 30,
+            "area_of_effect": "1 target",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Restoration, except that target’s mind is fully restored (including experience)."
+          }
+        },
+        {
+          "name": "50. Lifegiving True",
+          "img": "systems/rmss/assets/default/spell.svg",
+          "system": {
+            "favorite": false,
+            "instant": false,
+            "level": 50,
+            "area_of_effect": "1 body",
+            "duration": "P",
+            "range": "10'",
+            "type": "U",
+            "subType": "-",
+            "attack_table": "",
+            "skillName": "",
+            "description": "As Lifegiving, except target is automatically raised from the dead and there is no recovery period."
+          }
+        }
+      ]
+    }
+  }
