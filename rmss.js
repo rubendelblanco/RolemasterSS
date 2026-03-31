@@ -1089,6 +1089,11 @@ Hooks.once("init", function () {
     itemData.system.quantity = qty;
     delete itemData._id; // ensure new document is created
 
+    // containerId refers to a container on the source actor; strip it for the recipient
+    if (itemData.flags?.rmss?.containerId != null) {
+      delete itemData.flags.rmss.containerId;
+    }
+
     await targetActor.createEmbeddedDocuments("Item", [itemData]);
 
     // Update or remove from the source
