@@ -136,6 +136,26 @@ export default class RMSSWeaponSheet extends ItemSheet {
     this._setupEnchantmentsDropZone(html);
     bindItemTagsEditor(this, html);
     bindPassiveModifiersEditor(this, html);
+
+    const slayingNs = ".rmssWeaponSlayingTag";
+    html.off(`keydown${slayingNs}`, 'input[name="system.slaying"]');
+    html.on(`keydown${slayingNs}`, 'input[name="system.slaying"]', async (ev) => {
+      if (ev.key !== "Enter") return;
+      ev.preventDefault();
+      ev.stopPropagation();
+      const v = String(ev.currentTarget.value ?? "").trim();
+      if (!v) return; // Enter sin texto: no enviar el formulario
+      const tags = [...getItemTagsArray(this.item.system)];
+      const lower = tags.map((t) => t.toLowerCase());
+      if (lower.includes(v.toLowerCase())) {
+        await this.item.update({ "system.slaying": "" });
+        this.render(false);
+        return;
+      }
+      tags.push(v);
+      await this.item.update({ "system.tags": tags, "system.slaying": "" });
+      this.render(false);
+    });
   }
 
   _getBonusSkillsArray() {
