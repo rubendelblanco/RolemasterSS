@@ -525,6 +525,10 @@
             }
         },
         "creature_attack": {
+            "drag_reorder": "Drag to reorder attacks",
+            "gm_chain_reminder_banner": "Game Master notice — creature attack chain",
+            "gm_chain_reminder_same": "{creatureName}: crit “{triggeringAttack}” → next “{chainedAttack}” · Special: same round as the attack above.",
+            "gm_chain_reminder_next": "{creatureName}: crit “{triggeringAttack}” → next “{chainedAttack}” · Special: round after the attack above.",
             "attack": "Attack",
             "attacks": "Attacks",
             "bonus": "Bonus",

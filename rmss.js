@@ -84,6 +84,7 @@ Hooks.once("socketlib.ready", () => {
   socket.register("applyLargeCreatureCritical", RMSSWeaponCriticalManager.applyLargeCreatureCriticalGM);
   socket.register("chooseCriticalOption", RMSSWeaponCriticalManager.chooseCriticalOption);
   socket.register("updateActorHits", RMSSWeaponCriticalManager.updateActorHits);
+  socket.register("postCreatureAttackChainReminderGm", RMSSWeaponCriticalManager.postCreatureAttackSpecialChainGmReminder);
   socket.register("applyCriticalToEnemy", RMSSWeaponCriticalManager.applyCriticalToEnemy);
   socket.register("applySpellHealHits", async (payload) => {
     const { default: SpellHealService } = await import("./module/spells/services/spell_heal_service.js");

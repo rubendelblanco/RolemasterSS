@@ -352,7 +352,7 @@
 
 .skills-grid-container-creature {
     display: grid;
-    grid-template-columns: [attack-name] 19% [attack-bonus] 10% [attack-multiplier] 10% [attacks-number] 10% [attack-probability] 18% [special] 25% [controls] 8%;
+    grid-template-columns: [drag] 4% [attack-name] 16% [attack-bonus] 10% [attack-multiplier] 10% [attacks-number] 10% [attack-probability] 16% [special] 22% [controls] 12%;
 }
 
 .skills-grid-container > div, .skills-grid-container-creature > div,.skills-grid-container-npc > div {
@@ -1300,6 +1300,29 @@ form .spell-list tr.spell-draggable:active {
     margin-bottom: 0.5em;
 }
 
+.creature-attack-drag-handle {
+    cursor: grab;
+    color: rgba(0, 0, 0, 0.55);
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.creature-attack-drag-handle:active {
+    cursor: grabbing;
+}
+
+.creature-attack-calc.creature-attack-drag-over > .creature-attack-drag-handle,
+.creature-attack-calc.creature-attack-drag-over > .creature-attack-name,
+.creature-attack-calc.creature-attack-drag-over > .creature-attack-bonus,
+.creature-attack-calc.creature-attack-drag-over > .creature-attack-multiplier,
+.creature-attack-calc.creature-attack-drag-over > .creature-attack-number,
+.creature-attack-calc.creature-attack-drag-over > .creature-attack-probability,
+.creature-attack-calc.creature-attack-drag-over > .creature-attack-special,
+.creature-attack-calc.creature-attack-drag-over > div:last-child {
+    box-shadow: inset 0 0 0 1px rgba(100, 180, 255, 0.85);
+}
+
 .creature-attack-special select {
     width:50%;
 }
@@ -1727,6 +1750,57 @@ tr.container-row.over-capacity {
 }
 
 /* Chat critical: column layout so Effect Weapon hint wraps inside the red button (Foundry often fixes button height) */
+/* GM-only whisper: cadena de ataques (creature_attack special) — debe destacar en el chat */
+.rmss-creature-attack-gm-reminder {
+    margin: 6px 2px 10px;
+    border: 2px solid #74c927;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.45),
+        0 4px 14px rgba(201, 162, 39, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    background: linear-gradient(165deg, rgba(45, 32, 8, 0.98) 0%, rgba(22, 16, 6, 0.99) 100%);
+    color: #4bd7ef;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    text-align: left;
+}
+
+.rmss-creature-attack-gm-reminder__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: linear-gradient(180deg, #b8860b 0%, #8b6914 55%, #6b4e0f 100%);
+    color: #1a1204;
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.rmss-creature-attack-gm-reminder__head .fa-user-secret {
+    font-size: 1.15em;
+    opacity: 0.95;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4));
+}
+
+.rmss-creature-attack-gm-reminder__title {
+    flex: 1;
+    min-width: 0;
+}
+
+.rmss-creature-attack-gm-reminder__body {
+    padding: 12px 14px 14px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff8e8;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+}
+
 .chat-critical-roll.rmss-critical-roll-busy {
     pointer-events: none !important;
 }

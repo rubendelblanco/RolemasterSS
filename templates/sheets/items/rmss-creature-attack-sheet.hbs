@@ -29,13 +29,13 @@
                     <input name="system.bonus" type="text" value="{{system.bonus}}" data-dtype="Number"/>
                 </td>
                 <td>
-                    <select id="damage-mult" value="{{system.multiplier}}">
-                        <option value="1">1D</option>
-                        <option value="2">2D</option>
-                        <option value="3">3D</option>
-                        <option value="4">4D</option>
-                        <option value="5">5D</option>
-                        <option value="6">6D</option>
+                    <select name="system.multiplier" data-dtype="Number">
+                        <option value="1" {{#if (or (eq system.multiplier 1) (eq system.multiplier "1"))}}selected{{/if}}>1D</option>
+                        <option value="2" {{#if (or (eq system.multiplier 2) (eq system.multiplier "2"))}}selected{{/if}}>2D</option>
+                        <option value="3" {{#if (or (eq system.multiplier 3) (eq system.multiplier "3"))}}selected{{/if}}>3D</option>
+                        <option value="4" {{#if (or (eq system.multiplier 4) (eq system.multiplier "4"))}}selected{{/if}}>4D</option>
+                        <option value="5" {{#if (or (eq system.multiplier 5) (eq system.multiplier "5"))}}selected{{/if}}>5D</option>
+                        <option value="6" {{#if (or (eq system.multiplier 6) (eq system.multiplier "6"))}}selected{{/if}}>6D</option>
                     </select>
                 </td>
                 <td>
@@ -46,7 +46,7 @@
                     <input name="system.probability" type="text" value="{{system.probability}}" data-dtype="Number"/>
                 </td>
                 <td>
-                {{#unless (eq attack.system.order 1)}}
+                {{#unless (eq system.order 1)}}
                     <select name="system.special">
                         <option value="none" {{#if (eq system.special "none")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.none" }}</option>
                         <option value="same" {{#if (eq system.special "same")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.same" }}</option>

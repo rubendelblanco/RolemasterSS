@@ -323,6 +323,15 @@ export default class ItemService {
         const showWeaponPrefAssign = hasWeaponCategories && level === 0;
         const canEditSpellsAndLists = game.user.isGM || game.user.role === CONST.USER_ROLES.ASSISTANT;
 
+        creature_attacks.sort((a, b) => {
+            const oa = Number(a.system?.order);
+            const ob = Number(b.system?.order);
+            const na = Number.isFinite(oa) ? oa : 9999;
+            const nb = Number.isFinite(ob) ? ob : 9999;
+            if (na !== nb) return na - nb;
+            return (a.name || "").localeCompare(b.name || "", game.i18n.lang);
+        });
+
         // Attach everything to context
         return Object.assign(context, {
             actorIsCreature: actor?.type === "creature" || actor?.type === "npc",

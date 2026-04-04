@@ -52,7 +52,7 @@ export default class Utils {
         }
 
         if (actorOrTokenOrId instanceof Token) {
-            return token.actor;
+            return actorOrTokenOrId.actor;
         }
 
         // tokenId?

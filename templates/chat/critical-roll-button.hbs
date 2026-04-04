@@ -27,6 +27,7 @@
                         type="button"
                         data-crit-slot="{{@index}}"
                         data-attacker="{{../attacker.id}}"
+                        data-attacker-uuid="{{../attacker.uuid}}"
                         data-damage="{{damage}}"
                         data-severity="{{severity}}"
                         data-crittype="{{critType}}"
@@ -36,7 +37,8 @@
                         {{#if effectWeaponPair.extraCritType}}data-effect-weapon-extra-crit-type="{{effectWeaponPair.extraCritType}}"{{/if}}
                         {{#if effectWeaponPair}}data-effect-weapon-roll-mod="{{effectWeaponPair.ewRollModifier}}"{{/if}}
                         {{#if effectWeaponPair.superiorEChain}}data-effect-weapon-superior-e-chain="1"{{/if}}
-                        {{#if ../target}}data-target-id="{{../target.id}}"{{/if}}>
+                        {{#if ../target}}data-target-id="{{../target.id}}"{{/if}}
+                        {{#if ../weaponItemId}}data-weapon-item-id="{{../weaponItemId}}"{{/if}}>
                     <div class="chat-critical-roll-inner">
                         <div class="chat-critical-roll-main">
                             <span style="font-size:1.1em;">⚔️</span>

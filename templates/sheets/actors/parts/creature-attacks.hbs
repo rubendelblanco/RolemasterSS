@@ -1,4 +1,5 @@
-<div class="skills-grid-container-creature">
+<div class="skills-grid-container-creature creature-attacks-sortable">
+    <div class="skills-grid-heading creature-attack-drag-header" aria-hidden="true"></div>
     <div class="skills-grid-heading">{{ localize "rmss.creature_attack.attack" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.creature_attack.bonus" }}</div>
     <div class="skills-grid-heading">{{ localize "rmss.creature_attack.multiplier" }}</div>
@@ -12,18 +13,21 @@
     </div>
     {{#each creature_attacks as |attack id|}}
         <div class="creature-attack-calc" data-item-id="{{attack._id}}" data-item-order="{{attack.system.order}}">
+            <div class="creature-attack-drag-handle" draggable="true" data-item-id="{{attack._id}}" title="{{ localize "rmss.creature_attack.drag_reorder" }}">
+                <i class="fas fa-grip-vertical" aria-hidden="true"></i>
+            </div>
             <div class="creature-attack-name clickable offensive-skill" data-item-id="{{attack._id}}">{{attack.name}}
-                <span data-item-id="{{weapon._id}}"><i class="fa-solid fa-sword"></i></span>
+                <span data-item-id="{{attack._id}}"><i class="fa-solid fa-sword"></i></span>
             </div>
             <div class="creature-attack-bonus" contenteditable="true" data-item-id="{{attack._id}}">{{attack.system.bonus}}</div>
             <div class="creature-attack-multiplier" data-item-id="{{attack._id}}">
                 <select name="system.multiplier">
-                    <option value="1" {{#if (eq system.multiplier "1")}}selected{{/if}}>1D</option>
-                    <option value="2" {{#if (eq system.multiplier "2")}}selected{{/if}}>2D</option>
-                    <option value="3" {{#if (eq system.multiplier "3")}}selected{{/if}}>3D</option>
-                    <option value="4" {{#if (eq system.multiplier "4")}}selected{{/if}}>4D</option>
-                    <option value="5" {{#if (eq system.multiplier "5")}}selected{{/if}}>5D</option>
-                    <option value="6" {{#if (eq system.multiplier "6")}}selected{{/if}}>6D</option>
+                    <option value="1" {{#if (or (eq attack.system.multiplier 1) (eq attack.system.multiplier "1"))}}selected{{/if}}>1D</option>
+                    <option value="2" {{#if (or (eq attack.system.multiplier 2) (eq attack.system.multiplier "2"))}}selected{{/if}}>2D</option>
+                    <option value="3" {{#if (or (eq attack.system.multiplier 3) (eq attack.system.multiplier "3"))}}selected{{/if}}>3D</option>
+                    <option value="4" {{#if (or (eq attack.system.multiplier 4) (eq attack.system.multiplier "4"))}}selected{{/if}}>4D</option>
+                    <option value="5" {{#if (or (eq attack.system.multiplier 5) (eq attack.system.multiplier "5"))}}selected{{/if}}>5D</option>
+                    <option value="6" {{#if (or (eq attack.system.multiplier 6) (eq attack.system.multiplier "6"))}}selected{{/if}}>6D</option>
                 </select>
             </div>
             <div class="creature-attack-number" contenteditable="true" data-item-id="{{attack._id}}" data-dtype="Number">{{attack.system.attacks_number}}</div>
@@ -31,9 +35,9 @@
             <div class="creature-attack-special" data-item-id="{{attack._id}}">
             {{#unless (eq attack.system.order 1)}}
                 <select name="system.special">
-                    <option value="none" {{#if (eq system.special "none")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.none" }}</option>
-                    <option value="same" {{#if (eq system.special "same")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.same" }}</option>
-                    <option value="next" {{#if (eq system.special "next")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.next" }}</option>
+                    <option value="none" {{#if (eq attack.system.special "none")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.none" }}</option>
+                    <option value="same" {{#if (eq attack.system.special "same")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.same" }}</option>
+                    <option value="next" {{#if (eq attack.system.special "next")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.next" }}</option>
                 </select>
             {{/unless}}
             </div>

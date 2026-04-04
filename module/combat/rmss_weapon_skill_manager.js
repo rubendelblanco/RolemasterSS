@@ -128,7 +128,7 @@ export class RMSSWeaponSkillManager {
             return;
         }
 
-        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken, isNullResult);
+        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken, isNullResult, weapon);
     }
 
     /**

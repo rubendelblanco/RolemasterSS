@@ -72,6 +72,10 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
                 "system.bonus": attackBonus,
                 "system.multiplier": attackMult,
                 "system.probability": attackProb
+            };
+            const specialSelect = attackCalc.find(".creature-attack-special select");
+            if (specialSelect.length) {
+                data["system.special"] = specialSelect.val();
             }
             const itemId = attackCalc.data('item-id');
             const item = this.actor.items.get(itemId);
@@ -85,6 +89,10 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
         html.find('.creature-attack-calc').on('blur', '[contenteditable="true"]', saveCreatureAttack);
         // select fires 'change' when user picks a new value
         html.find('.creature-attack-calc').on('change', 'select', saveCreatureAttack);
+
+        if (this.isEditable) {
+            this._registerCreatureAttackSortable(html);
+        }
 
         html.find('select[name="system.initiative_code"]').on("change", ev => {
             const newValue = Number(ev.target.value);
@@ -108,8 +116,6 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
                 for (let [index, attack] of creatureAttacks.entries()) {
                     await attack.update({ "system.order": index + 1 });
                 }
-
-                console.log(creatureAttacks);
             }
         }
     }
@@ -155,6 +161,66 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
         return ItemService.prepareItems(this.actor, context);
     }
 
+    /**
+     * Drag handle reorders creature attacks (updates system.order).
+     * @param {jQuery} html
+     */
+    _registerCreatureAttackSortable(html) {
+        const container = html.find(".creature-attacks-sortable");
+        if (!container.length) return;
+
+        container.on("dragstart", ".creature-attack-drag-handle", (ev) => {
+            const id = ev.currentTarget.dataset.itemId;
+            this._creatureAttackDragSourceId = id;
+            ev.originalEvent.dataTransfer?.setData("text/plain", "rmss-creature-attack-reorder");
+            ev.originalEvent.dataTransfer.effectAllowed = "move";
+        });
+
+        container.on("dragend", ".creature-attack-drag-handle", () => {
+            this._creatureAttackDragSourceId = null;
+            html.find(".creature-attack-calc").removeClass("creature-attack-drag-over");
+        });
+
+        container.on("dragover", (ev) => {
+            if (!this._creatureAttackDragSourceId) return;
+            const row = ev.target.closest(".creature-attack-calc");
+            ev.preventDefault();
+            ev.originalEvent.dataTransfer.dropEffect = "move";
+            if (row) {
+                html.find(".creature-attack-calc").removeClass("creature-attack-drag-over");
+                row.classList.add("creature-attack-drag-over");
+            }
+        });
+
+        container.on("drop", async (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            html.find(".creature-attack-calc").removeClass("creature-attack-drag-over");
+            const draggedId = this._creatureAttackDragSourceId;
+            this._creatureAttackDragSourceId = null;
+            const row = ev.target.closest(".creature-attack-calc");
+            if (!row || !draggedId) return;
+            const targetId = row.dataset.itemId;
+            if (draggedId === targetId) return;
+
+            const ids = [...container[0].querySelectorAll(".creature-attack-calc")].map((el) => el.dataset.itemId);
+            const dragI = ids.indexOf(draggedId);
+            const targetI = ids.indexOf(targetId);
+            if (dragI === -1 || targetI === -1) return;
+
+            const next = ids.filter((id) => id !== draggedId);
+            let insertAt = targetI;
+            if (dragI < targetI) insertAt--;
+            next.splice(insertAt, 0, draggedId);
+
+            const updates = next.map((id, i) => ({
+                _id: id,
+                system: { order: i + 1 }
+            }));
+            await this.actor.updateEmbeddedDocuments("Item", updates);
+        });
+    }
+
     async _onItemCreate(event) {
         event.preventDefault();
         const header = event.currentTarget;
@@ -176,6 +242,12 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
         };
         // Remove the type from the dataset since it's in the itemData.type prop.
         delete itemData.data.type;
+        if (type === "creature_attack") {
+            const maxOrder = this.actor.items
+                .filter((i) => i.type === "creature_attack")
+                .reduce((m, i) => Math.max(m, Number(i.system?.order) || 0), 0);
+            itemData.data.order = maxOrder + 1;
+        }
         // Finally, create the item!
         return await Item.create(itemData, {parent: this.actor});
     }

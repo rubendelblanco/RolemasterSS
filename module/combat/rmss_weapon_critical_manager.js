@@ -87,7 +87,7 @@ class LargeCreatureCriticalStrategy {
         // Roll for the critical
         const column = this.getColumForCriticalSubtype(subCritType);
         const roll = new Roll(`1d100x>95`);
-        await roll.evaluate({ async: true });
+        await roll.evaluate();
 
         const priorHits = defenderActor.system.attributes.hits.current;
         let newHits = priorHits - parseInt(damage);
@@ -386,7 +386,7 @@ export class RMSSWeaponCriticalManager {
 
         if (gmResponse.severity === "null") return;
         const roll = new Roll(`(1d100)`);
-        await roll.evaluate({ async: true });
+        await roll.evaluate();
         const natural = parseInt(roll.total, 10);
         const dialogMod = parseInt(gmResponse.modifier ?? 0, 10);
         const baseRoll = natural + dialogMod;
@@ -429,7 +429,7 @@ export class RMSSWeaponCriticalManager {
             gmResponse.severity,
             gmResponse.critType,
             roll,
-            expData,
+            expData
         );
         if (tableResult && typeof tableResult === "object") {
             tableResult._rmssContext = {
@@ -577,14 +577,34 @@ export class RMSSWeaponCriticalManager {
 
     /**
      * @param {object} [options]
+     * @param {string} [options.attackerUuid] - Actor UUID from the attack (resolves the same document as the embedded weapon item).
      * @param {string} [options.mainSeverity] - Primary attack critical severity (for Weapon of Bleeding bonus).
      * @param {{ enabled: boolean, duplicatePrimary?: boolean, secondSeverity?: string, extraCritType?: string, ewRollModifier?: number, superiorEChain?: boolean }} [options.effectWeapon]
      */
     static async sendCriticalMessage(target, initialDamage, initialSeverity, initialCritType, attackerId, options = {}) {
-        const gmResponse = await socket.executeAsGM("confirmWeaponCritical", target.actor, initialDamage, initialSeverity, initialCritType, attackerId);
+        const gmResponse = await socket.executeAsGM(
+            "confirmWeaponCritical",
+            target.actor,
+            initialDamage,
+            initialSeverity,
+            initialCritType,
+            attackerId,
+            options.weaponItemId ?? null,
+            options.attackerUuid ?? null
+        );
 
         if (!gmResponse?.confirmed) {
             return undefined;
+        }
+
+        if (options.weaponItemId && !gmResponse.weaponItemId) {
+            gmResponse.weaponItemId = options.weaponItemId;
+        }
+        if (!gmResponse.attackerId) {
+            gmResponse.attackerId = attackerId;
+        }
+        if (options.attackerUuid && !gmResponse.attackerUuid) {
+            gmResponse.attackerUuid = options.attackerUuid;
         }
 
         if (options.mainSeverity != null) {
@@ -621,6 +641,9 @@ export class RMSSWeaponCriticalManager {
             metadata,
             targetTokenId,
         };
+        if (gmResponse.weaponItemId) {
+            applyPayload.weaponItemId = gmResponse.weaponItemId;
+        }
         if (gmResponse.mainSeverity != null && gmResponse.mainSeverity !== "") {
             applyPayload.mainSeverity = gmResponse.mainSeverity;
         }
@@ -630,18 +653,38 @@ export class RMSSWeaponCriticalManager {
 
         const largeCreatureCritTypes = ["large_melee", "superlarge_melee", "large_spell", "superlarge_spell"];
         if (largeCreatureCritTypes.includes(critType)) {
-            return await socket.executeAsGM("applyLargeCreatureCritical", {
+            const applied = await socket.executeAsGM("applyLargeCreatureCritical", {
                 attackerId: actor.id,
                 targetTokenId,
                 critType,
                 applyPayload,
             });
+            await RMSSWeaponCriticalManager._invokeCreatureAttackChainReminderGm(gmResponse, attackerId, options.weaponItemId);
+            return applied;
         }
 
-        return await strategy.apply(actor, target.actor, applyPayload);
+        const applied = await strategy.apply(actor, target.actor, applyPayload);
+        await RMSSWeaponCriticalManager._invokeCreatureAttackChainReminderGm(gmResponse, attackerId, options.weaponItemId);
+        return applied;
     }
 
-    static async criticalMessagePopup(enemy, damage, severity, critType, attackerId = null) {
+    /**
+     * Runs on GM via socket so the chain reminder always fires after the critical is resolved (reliable vs chat pipeline).
+     */
+    static async _invokeCreatureAttackChainReminderGm(gmResponse, attackerIdFallback, weaponItemIdFallback) {
+        const attackerId = gmResponse?.attackerId ?? attackerIdFallback;
+        const weaponItemId = gmResponse?.weaponItemId ?? weaponItemIdFallback;
+        if (!attackerId || !weaponItemId) return;
+        await socket.executeAsGM("postCreatureAttackChainReminderGm", {
+            attackerId,
+            weaponItemId,
+            attackerUuid: gmResponse?.attackerUuid ?? null,
+            severity: gmResponse.severity,
+            critType: gmResponse.critType
+        });
+    }
+
+    static async criticalMessagePopup(enemy, damage, severity, critType, attackerId = null, weaponItemId = null, attackerUuid = null) {
         let modifier = 0;
         if ((enemy.type === "creature" || enemy.type === "npc") && severity != null && severity !== "null") {
             if (enemy.system.attributes.critical_codes.critical_procedure === "I") {
@@ -727,7 +770,9 @@ export class RMSSWeaponCriticalManager {
                                     critType,
                                     subCritType,
                                     modifier,
-                                    attackerId
+                                    attackerId,
+                                    weaponItemId: weaponItemId ?? null,
+                                    attackerUuid: attackerUuid ?? null
                                 });
                             }
                         },
@@ -896,13 +941,99 @@ export class RMSSWeaponCriticalManager {
         });
     }
 
-    static async getCriticalMessage(damage, criticalResult, attacker, target = null, isNullResult = false) {
+    /** True if critical table type is Tiny (not a full A–E column crit). */
+    static isTinyCriticalType(critType) {
+        const t = String(critType ?? "").trim();
+        if (!t) return false;
+        if (t === "T") return true;
+        return t.toLowerCase() === "tiny";
+    }
+
+    /**
+     * GM-only whisper when a non-Tiny critical resolves on a creature_attack.
+     * The "special" field lives on the **row below** (same/next vs attack above); we read it from that follow-up row,
+     * not from the attack that rolled the critical—otherwise the first attack never triggers a reminder.
+     *
+     * @param {{ attackerId: string, weaponItemId: string, attackerUuid?: string|null, severity: string, critType: string }} params
+     */
+    static async postCreatureAttackSpecialChainGmReminder(params) {
+        const { attackerId, weaponItemId, attackerUuid, severity, critType } = params ?? {};
+        if (!attackerId || !weaponItemId) return;
+        const sev = String(severity ?? "").trim();
+        if (!sev || sev === "null") return;
+        if (RMSSWeaponCriticalManager.isTinyCriticalType(critType)) return;
+
+        /** Same resolution as {@link sendCriticalMessage} (token id → token.actor) plus optional UUID for the exact Actor document. */
+        let attacker = null;
+        if (attackerUuid) {
+            try {
+                const doc = await fromUuid(attackerUuid);
+                if (doc instanceof Actor) attacker = doc;
+            } catch (_) {
+                /* ignore */
+            }
+        }
+        if (!attacker) attacker = Utils.getActor(attackerId);
+        if (!attacker?.items) return;
+        let triggeringAttack = attacker.items.get(weaponItemId);
+        if (!triggeringAttack) {
+            triggeringAttack = attacker.items.find((i) => (i.id ?? i._id) === weaponItemId);
+        }
+        if (!triggeringAttack || triggeringAttack.type !== "creature_attack") return;
+
+        const ordered = attacker.items
+            .filter((i) => i.type === "creature_attack")
+            .sort((a, b) => {
+                const oa = Number(a.system?.order);
+                const ob = Number(b.system?.order);
+                return (Number.isFinite(oa) ? oa : 9999) - (Number.isFinite(ob) ? ob : 9999);
+            });
+        const idx = ordered.findIndex((i) => i.id === triggeringAttack.id);
+        const followUpAttack = idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1] : null;
+        if (!followUpAttack) return;
+
+        const special = String(followUpAttack.system?.special ?? "none");
+        if (special !== "same" && special !== "next") return;
+
+        const gmIds = game.users.filter((u) => u.isGM).map((u) => u.id);
+        if (!gmIds.length) return;
+
+        const key =
+            special === "same"
+                ? "rmss.creature_attack.gm_chain_reminder_same"
+                : "rmss.creature_attack.gm_chain_reminder_next";
+        const text = game.i18n.format(key, {
+            creatureName: attacker.name,
+            triggeringAttack: triggeringAttack.name,
+            chainedAttack: followUpAttack.name
+        });
+        const esc = typeof foundry.utils?.escapeHTML === "function" ? foundry.utils.escapeHTML : (s) => String(s ?? "");
+        const banner = esc(game.i18n.localize("rmss.creature_attack.gm_chain_reminder_banner"));
+        const bodyHtml = esc(text);
+        const content = `
+<div class="rmss-creature-attack-gm-reminder" role="status">
+  <div class="rmss-creature-attack-gm-reminder__head">
+    <i class="fas fa-user-secret" aria-hidden="true"></i>
+    <span class="rmss-creature-attack-gm-reminder__title">${banner}</span>
+  </div>
+  <div class="rmss-creature-attack-gm-reminder__body">${bodyHtml}</div>
+</div>`;
+
+        await ChatMessage.create({
+            content,
+            speaker: { alias: "Game Master" },
+            whisper: gmIds
+        });
+    }
+
+    static async getCriticalMessage(damage, criticalResult, attacker, target = null, isNullResult = false, weapon = null) {
         // Only include criticals with real severity (A–E…); exclude synthetic HP-only rows with no critical
         const criticalsWithSeverity = (criticalResult.criticals || []).filter(
             c => c.severity != null && String(c.severity).trim() !== ""
         );
         const mainSeverity =
             criticalResult.mainSeverity ?? criticalsWithSeverity[0]?.severity ?? null;
+        const weaponItemId = weapon?.id ?? weapon?._id ?? null;
         const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
             damageStr: damage,
             damage: criticalResult.damage,
@@ -910,7 +1041,8 @@ export class RMSSWeaponCriticalManager {
             attacker: attacker,
             target: target,
             isNullResult: isNullResult,
-            mainSeverity
+            mainSeverity,
+            weaponItemId
         });
         const speaker = "Game Master";
 

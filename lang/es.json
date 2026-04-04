@@ -525,6 +525,10 @@
       }
     },
     "creature_attack": {
+      "drag_reorder": "Arrastrar para reordenar ataques",
+      "gm_chain_reminder_banner": "Aviso para el Director de Juego — cadena de ataques",
+      "gm_chain_reminder_same": "{creatureName}: crítico «{triggeringAttack}» → siguiente «{chainedAttack}» · Especial: mismo asalto que el de arriba.",
+      "gm_chain_reminder_next": "{creatureName}: crítico «{triggeringAttack}» → siguiente «{chainedAttack}» · Especial: asalto siguiente al de arriba.",
       "attack": "Ataque",
       "attacks": "Ataques",
       "bonus": "Bonus",

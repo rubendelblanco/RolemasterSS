@@ -85,6 +85,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         const severity = ev.currentTarget.dataset.severity;
         const critType = ev.currentTarget.dataset.crittype;
         const attackerId = ev.currentTarget.dataset.attacker;
+        const attackerUuid = ev.currentTarget.dataset.attackerUuid;
         const mainSev = ev.currentTarget.dataset.mainSeverity;
         const ewDup = ev.currentTarget.dataset.effectWeaponDup === "1";
         const ewSecond = ev.currentTarget.dataset.effectWeaponSecond;
@@ -106,9 +107,19 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         }
 
         let criticalResult;
+        const weaponItemId = ev.currentTarget.dataset.weaponItemId;
         try {
             criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(
-                token, damage, severity, critType, attackerId, sendOpts
+                token,
+                damage,
+                severity,
+                critType,
+                attackerId,
+                {
+                    ...sendOpts,
+                    ...(weaponItemId ? { weaponItemId } : {}),
+                    ...(attackerUuid ? { attackerUuid } : {})
+                }
             );
         } catch (err) {
             console.error("[RMSS] sendCriticalMessage", err);
