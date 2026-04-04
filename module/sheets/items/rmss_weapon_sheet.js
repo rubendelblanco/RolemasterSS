@@ -57,6 +57,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
         increased_initiative: "",
         effect_weapon: "",
         effect_weapon_critical_type: "",
+        effect_weapon_fixed_severity: "",
         increased_critical: false,
         weapon_of_bleeding: false
       },

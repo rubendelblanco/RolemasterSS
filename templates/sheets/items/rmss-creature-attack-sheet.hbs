@@ -57,5 +57,51 @@
                 </td>
             </tr>
         </table>
+
+        <table class="rmss-creature-attack-effects">
+            <tr>
+                <th colspan="2">{{localize "rmss.creature_attack.attack_effects_header"}}</th>
+            </tr>
+            <tr>
+                <td>{{localize "rmss.item.weapon_effects_effect_weapon"}}
+                    <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_effect_weapon_hint'}}"></i></td>
+                <td>
+                    <div class="rmss-effect-weapon-selects">
+                        <select name="system.attack_effects.effect_weapon" data-dtype="String">
+                            <option value="" {{#unless system.attack_effects.effect_weapon}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_none"}}</option>
+                            <option value="minor" {{#if (eq system.attack_effects.effect_weapon "minor")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_minor"}}</option>
+                            <option value="normal" {{#if (eq system.attack_effects.effect_weapon "normal")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_normal"}}</option>
+                            <option value="greater" {{#if (eq system.attack_effects.effect_weapon "greater")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_greater"}}</option>
+                            <option value="superior" {{#if (eq system.attack_effects.effect_weapon "superior")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_superior"}}</option>
+                        </select>
+                        <select name="system.attack_effects.effect_weapon_critical_type" data-dtype="String" title="{{localize 'rmss.item.weapon_effects_effect_weapon_critical_hint'}}">
+                            <option value="" disabled {{#unless system.attack_effects.effect_weapon_critical_type}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_ew_crit_placeholder"}}</option>
+                            {{#each criticalTables as |key|}}
+                            <option value="{{key}}" {{#if (eq key ../system.attack_effects.effect_weapon_critical_type)}}selected{{/if}}>{{localize (concat "rmss.critical_table." key)}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>{{localize "rmss.item.weapon_effects_fixed_severity"}}
+                    <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_fixed_severity_hint'}}"></i></td>
+                <td>
+                    <select name="system.attack_effects.effect_weapon_fixed_severity" data-dtype="String">
+                        <option value="" {{#unless system.attack_effects.effect_weapon_fixed_severity}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_fixed_severity_none"}}</option>
+                        <option value="A" {{#if (eq system.attack_effects.effect_weapon_fixed_severity "A")}}selected{{/if}}>A</option>
+                        <option value="B" {{#if (eq system.attack_effects.effect_weapon_fixed_severity "B")}}selected{{/if}}>B</option>
+                        <option value="C" {{#if (eq system.attack_effects.effect_weapon_fixed_severity "C")}}selected{{/if}}>C</option>
+                        <option value="D" {{#if (eq system.attack_effects.effect_weapon_fixed_severity "D")}}selected{{/if}}>D</option>
+                        <option value="E" {{#if (eq system.attack_effects.effect_weapon_fixed_severity "E")}}selected{{/if}}>E</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>{{localize "rmss.item.weapon_effects_increased_critical"}}
+                    <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_increased_critical_hint'}}"></i></td>
+                <td><input type="checkbox" name="system.attack_effects.increased_critical" {{checked system.attack_effects.increased_critical}}/></td>
+            </tr>
+        </table>
     </div>
 </form>

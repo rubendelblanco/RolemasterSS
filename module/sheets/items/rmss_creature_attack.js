@@ -7,7 +7,7 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             width: 530,
-            height: 440,
+            height: 560,
             template: "systems/rmss/templates/sheets/items/rmss-creature-attack-sheet.hbs",
             classes: ["rmss", "sheet", "item"]
         });
@@ -29,15 +29,37 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
             const nameB = game.i18n.localize(`rmss.attack_table.${b}`) || b;
             return nameA.localeCompare(nameB, game.i18n.lang);
         });
-        
+
+        let criticalTables = await game.rmss?.criticalTableIndex || [];
+        criticalTables = criticalTables.sort((a, b) => {
+            const nameA = game.i18n.localize(`rmss.critical_table.${a}`) || a;
+            const nameB = game.i18n.localize(`rmss.critical_table.${b}`) || b;
+            return nameA.localeCompare(nameB, game.i18n.lang);
+        });
+
+        const system = baseData.item.system;
+        const attack_effects = foundry.utils.mergeObject(
+            {
+                increased_initiative: "",
+                effect_weapon: "",
+                effect_weapon_critical_type: "",
+                effect_weapon_fixed_severity: "",
+                increased_critical: false,
+                weapon_of_bleeding: false
+            },
+            system.attack_effects ?? {},
+            { inplace: false }
+        );
+
         let sheetData = {
             owner: this.item.isOwner,
             editable: this.isEditable,
             item: baseData.item,
-            system: baseData.item.system,
+            system: { ...system, attack_effects },
             config: CONFIG.rmss,
             actorId: this.getActorId(),
             armsTables: armsTables,
+            criticalTables
         };
 
         return sheetData;

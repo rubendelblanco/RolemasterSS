@@ -105,7 +105,7 @@ export class RMSSWeaponSkillManager {
 
         criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemy);
 
-        if (weapon.type === "weapon") {
+        if (weapon.type === "weapon" || weapon.type === "creature_attack") {
             WeaponEffectsService.applyIncreasedCritical(criticalResult, weapon);
             WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
         }

@@ -115,6 +115,36 @@ const INITIATIVE_BONUS = {
   superior: 8
 };
 
+/** Defaults for weapon_effects / creature_attack.attack_effects (same shape). */
+const WEAPON_LIKE_EFFECTS_DEFAULTS = {
+  increased_initiative: "",
+  effect_weapon: "",
+  effect_weapon_critical_type: "",
+  effect_weapon_fixed_severity: "",
+  increased_critical: false,
+  weapon_of_bleeding: false
+};
+
+/**
+ * @param {Item} item
+ * @returns {typeof WEAPON_LIKE_EFFECTS_DEFAULTS|null}
+ */
+function mergeWeaponLikeEffects(item) {
+  if (!item) return null;
+  if (item.type === "weapon") {
+    return foundry.utils.mergeObject({ ...WEAPON_LIKE_EFFECTS_DEFAULTS }, item.system?.weapon_effects ?? {}, { inplace: false });
+  }
+  if (item.type === "creature_attack") {
+    return foundry.utils.mergeObject({ ...WEAPON_LIKE_EFFECTS_DEFAULTS }, item.system?.attack_effects ?? {}, { inplace: false });
+  }
+  return null;
+}
+
+/** @param {string} s */
+function isFixedExtraSeverityLetter(s) {
+  return /^[A-E]$/i.test(String(s ?? "").trim());
+}
+
 export default class WeaponEffectsService {
   /**
    * Sum Increased Initiative from all equipped weapons (RM 9.7).
@@ -160,8 +190,8 @@ export default class WeaponEffectsService {
    * @param {Item} weapon
    */
   static applyIncreasedCritical(criticalResult, weapon) {
-    if (weapon?.type !== "weapon") return;
-    if (!weapon.system?.weapon_effects?.increased_critical) return;
+    const effects = mergeWeaponLikeEffects(weapon);
+    if (!effects?.increased_critical) return;
     const crits = criticalResult.criticals;
     if (!crits?.length) return;
 
@@ -193,9 +223,8 @@ export default class WeaponEffectsService {
    * @param {Item} weapon
    */
   static appendEffectWeaponCriticals(criticalResult, weapon) {
-    if (weapon?.type !== "weapon") return;
-    const tier = weapon.system?.weapon_effects?.effect_weapon;
-    if (!tier || tier === "" || tier === "none") return;
+    const effects = mergeWeaponLikeEffects(weapon);
+    if (!effects) return;
 
     const crits = criticalResult.criticals;
     if (!crits?.length) return;
@@ -203,10 +232,27 @@ export default class WeaponEffectsService {
     const primary = crits.find((c) => c.severity != null && String(c.severity).trim() !== "" && c.severity !== "null");
     if (!primary) return;
 
-    const explicitExtraCrit = weapon.system?.weapon_effects?.effect_weapon_critical_type;
+    const explicitExtraCrit = effects.effect_weapon_critical_type;
     if (!explicitExtraCrit || String(explicitExtraCrit).trim() === "") return;
 
     const extraCritType = String(explicitExtraCrit).trim();
+    const fixedSevRaw = String(effects.effect_weapon_fixed_severity ?? "").trim().toUpperCase();
+
+    /** Crítico extra a gravedad fija (p. ej. siempre A de calor) si hubo crítico; ignora el tipo Menor/Mayor… */
+    if (isFixedExtraSeverityLetter(fixedSevRaw)) {
+      primary.effectWeaponPair = {
+        duplicatePrimary: false,
+        secondSeverity: fixedSevRaw,
+        extraCritType,
+        ewRollModifier: 0,
+        superiorEChain: false
+      };
+      return;
+    }
+
+    const tier = effects.effect_weapon;
+    if (!tier || tier === "" || tier === "none") return;
+
     const sev = primary.severity;
 
     let secondSeverity;

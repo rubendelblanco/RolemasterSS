@@ -3524,6 +3524,16 @@ tr.container-row.over-capacity {
   padding: 0 4px;
 }
 
+.rmss-creature-attack-effects {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.rmss-creature-attack-effects th {
+  text-align: left;
+  padding-bottom: 4px;
+}
+
 .rmss-effect-weapon-selects {
   display: flex;
   flex-wrap: wrap;

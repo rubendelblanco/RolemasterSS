@@ -192,4 +192,48 @@ describe("WeaponEffectsService", () => {
     expect(p.effectWeaponPair.secondSeverity).toBe("A");
     expect(p.effectWeaponPair.ewRollModifier).toBe(-50);
   });
+
+  it("appendEffectWeaponCriticals fixed severity overrides tier (e.g. superior+E chain)", () => {
+    const weapon = {
+      type: "weapon",
+      system: {
+        weapon_effects: {
+          effect_weapon: "superior",
+          effect_weapon_critical_type: "heat",
+          effect_weapon_fixed_severity: "A"
+        }
+      }
+    };
+    const criticalResult = { criticals: [{ severity: "E", critType: "K", damage: 2 }] };
+    WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+    const p = criticalResult.criticals[0].effectWeaponPair;
+    expect(p.secondSeverity).toBe("A");
+    expect(p.superiorEChain).toBe(false);
+    expect(p.extraCritType).toBe("heat");
+  });
+
+  it("appendEffectWeaponCriticals creature_attack uses attack_effects fixed A + heat", () => {
+    const attack = {
+      type: "creature_attack",
+      system: {
+        attack_effects: {
+          effect_weapon_critical_type: "heat",
+          effect_weapon_fixed_severity: "A"
+        }
+      }
+    };
+    const criticalResult = { criticals: [{ severity: "D", critType: "K", damage: 3 }] };
+    WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, attack);
+    const p = criticalResult.criticals[0].effectWeaponPair;
+    expect(p.secondSeverity).toBe("A");
+    expect(p.extraCritType).toBe("heat");
+    expect(p.ewRollModifier).toBe(0);
+  });
+
+  it("applyIncreasedCritical applies to creature_attack attack_effects", () => {
+    const ca = { type: "creature_attack", system: { attack_effects: { increased_critical: true } } };
+    const criticalResult = { criticals: [{ severity: "C", critType: "K", damage: 5 }] };
+    WeaponEffectsService.applyIncreasedCritical(criticalResult, ca);
+    expect(criticalResult.criticals[0].severity).toBe("D");
+  });
 });

@@ -363,6 +363,9 @@
       "weapon_effects_effect_weapon_hint": "Al lograr un crítico solo aparece un botón. Tras confirmar el GM, un único d100 resuelve el principal y el mismo resultado el extra (severidad: Menor −2, Normal −1, Mayor misma letra en otra tabla, Superior +1). El segundo desplegable elige siempre otra tabla de crítico (p. ej. calor). Ambos resultados se aplican al objetivo.",
       "weapon_effects_increased_critical_hint": "La severidad del crítico según el resultado de ataque sube un escalón (p. ej. C→D, E→F). Si tras subir queda por encima de E (F+), el ataque pasa a usar dos tiradas de crítico independientes en lugar de una.",
       "weapon_effects_weapon_of_bleeding_hint": "Al aplicar un efecto de sangrado (HPR) por un crítico mientras esta arma está equipada, suma +1 a los golpes/asalto del sangrado si la severidad del crítico principal fue A–C, o +2 si fue D–E (Arma sangrante RM 9.7).",
+      "weapon_effects_fixed_severity": "Gravedad fija del crítico extra",
+      "weapon_effects_fixed_severity_hint": "Si eliges A–E, el segundo crítico (segunda tabla) usa siempre esa letra aunque el principal sea otra, siempre que hubiera crítico. Deja «—» para calcular la gravedad según Menor/Normal/Mayor/Superior.",
+      "weapon_effects_fixed_severity_none": "— Según tipo (Menor…) —",
       "modifiers_pp_multiplier": "Multiplicador PP",
       "modifiers_spell_adder": "Adder de hechizos",
       "spell_adder_uses_remaining": "Usos restantes",
@@ -525,6 +528,7 @@
       }
     },
     "creature_attack": {
+      "attack_effects_header": "Efectos de ataque y críticos adicionales (RM 9.7)",
       "drag_reorder": "Arrastrar para reordenar ataques",
       "gm_chain_reminder_banner": "Aviso para el Director de Juego — cadena de ataques",
       "gm_chain_reminder_same": "{creatureName}: crítico «{triggeringAttack}» → siguiente «{chainedAttack}» · Especial: mismo asalto que el de arriba.",

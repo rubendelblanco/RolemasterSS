@@ -363,6 +363,9 @@
             "weapon_effects_effect_weapon_hint": "When you score a critical, you get one button. After the GM confirms, one d100 resolves the main critical and the same roll the extra (severity: Minor −2, Normal −1, Greater same letter on another table, Superior +1). The second dropdown always picks a different critical table (e.g. heat). Both outcomes apply to the target.",
             "weapon_effects_increased_critical_hint": "The critical severity from the attack result is increased by one step (e.g. C→D, E→F). If the raised severity is beyond E (F+), the attack uses two separate critical rolls instead of one.",
             "weapon_effects_weapon_of_bleeding_hint": "When you apply a bleeding (HPR) effect from a critical while this weapon is equipped, add +1 to the bleeding rate per round if the main critical severity was A–C, or +2 if it was D–E (RM 9.7 Weapon of Bleeding).",
+            "weapon_effects_fixed_severity": "Fixed extra critical severity",
+            "weapon_effects_fixed_severity_hint": "If you pick A–E, the second critical (second table) always uses that letter whenever a critical occurred, regardless of the main severity. Leave “—” to derive severity from Minor/Normal/Greater/Superior.",
+            "weapon_effects_fixed_severity_none": "— By tier (Minor…) —",
             "modifiers_pp_multiplier": "PP Multiplier",
             "modifiers_spell_adder": "Spell Adder",
             "spell_adder_uses_remaining": "Uses remaining",
@@ -525,6 +528,7 @@
             }
         },
         "creature_attack": {
+            "attack_effects_header": "Attack effects and extra criticals (RM 9.7)",
             "drag_reorder": "Drag to reorder attacks",
             "gm_chain_reminder_banner": "Game Master notice — creature attack chain",
             "gm_chain_reminder_same": "{creatureName}: crit “{triggeringAttack}” → next “{chainedAttack}” · Special: same round as the attack above.",

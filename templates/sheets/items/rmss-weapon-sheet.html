@@ -237,6 +237,20 @@
                     </td>
                 </tr>
                 <tr>
+                    <td colspan="2">{{localize "rmss.item.weapon_effects_fixed_severity"}}
+                        <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_fixed_severity_hint'}}"></i></td>
+                    <td colspan="3">
+                        <select name="system.weapon_effects.effect_weapon_fixed_severity" data-dtype="String" title="{{localize 'rmss.item.weapon_effects_fixed_severity_hint'}}">
+                            <option value="" {{#unless system.weapon_effects.effect_weapon_fixed_severity}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_fixed_severity_none"}}</option>
+                            <option value="A" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "A")}}selected{{/if}}>A</option>
+                            <option value="B" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "B")}}selected{{/if}}>B</option>
+                            <option value="C" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "C")}}selected{{/if}}>C</option>
+                            <option value="D" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "D")}}selected{{/if}}>D</option>
+                            <option value="E" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "E")}}selected{{/if}}>E</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2">{{localize "rmss.item.weapon_effects_increased_critical"}}
                         <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_increased_critical_hint'}}"></i></td>
                     <td colspan="3"><input type="checkbox" name="system.weapon_effects.increased_critical" {{checked system.weapon_effects.increased_critical}}/></td>
