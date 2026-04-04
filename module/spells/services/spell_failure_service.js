@@ -72,9 +72,10 @@ export default class SpellFailureService {
      * @param {string} spellType - The spell type (E, BE, DE, F, P, U, I)
      * @param {string} failureCode - The failure code from static maneuver (spectacular_failure, absolute_failure, failure)
      * @param {number} castingModifiers - The total negative modifiers from the casting options modal
+     * @param {boolean} [synchronizeDice3d=true] - If false, Dice So Nice does not broadcast to all players
      * @returns {Promise<Object>} Result with roll, final value, and failure description
      */
-    static async rollFailure(spellType, failureCode, castingModifiers) {
+    static async rollFailure(spellType, failureCode, castingModifiers, synchronizeDice3d = true) {
         const table = await this.loadTable();
         if (!table) return null;
 
@@ -84,7 +85,7 @@ export default class SpellFailureService {
 
         // Show dice if Dice So Nice is available
         if (game.dice3d) {
-            await game.dice3d.showForRoll(roll, game.user, true);
+            await game.dice3d.showForRoll(roll, game.user, synchronizeDice3d);
         }
 
         // Calculate modifier impact

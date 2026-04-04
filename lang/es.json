@@ -939,6 +939,9 @@
       "cannot_level_zero_to_one": "No se puede subir de nivel 0 a 1. Falta: {missing}."
     },
     "chat":{
+      "public_roll_to_players": "Mostrar el resultado a los jugadores",
+      "public_roll_to_players_hint": "Si no está marcado, solo los GM ven el mensaje en el chat. Para habilidades y hechizos de PNJ/criatura que no son ataque de hechizo (BE/DE).",
+      "instant_cast_visibility_prompt": "Conjuro instantáneo de <strong>{name}</strong> — elige visibilidad en el chat abajo.",
       "potential_roll": "Resultado de atributo potencial:  <strong>{total}</strong> ({result})",
       "potential_rolls_title": "Tiradas de atributos potenciales",
       "potential_rolls_stat": "Atributo",

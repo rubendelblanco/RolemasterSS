@@ -1,5 +1,5 @@
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
-import { sendExpMessage } from "../../chat/chatMessages.js";
+import { sendExpMessage, isNpcOrCreatureActor, whisperIdsForNpcRollPrivacy } from "../../chat/chatMessages.js";
 import { triggerAutoAnimations, getActorToken } from "../../autoanimations_integration.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
@@ -47,11 +47,18 @@ export default class InstantSpellService {
                 );
                 return false;
             }
+        }
+
+        const publicToPlayers = await this._resolveNpcInstantPublicPreference(actor);
+        if (publicToPlayers === null) return false;
+
+        if (!noPP) {
+            const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
             const newPP = Math.max(0, currentPP - spellLevel);
             await actor.update({ "system.attributes.power_points.current": newPP });
         }
 
-        await this._createChatMessage({ actor, spell, spellLevel });
+        await this._createChatMessage({ actor, spell, spellLevel, publicToPlayers });
 
         const sourceToken = getActorToken(actor);
         if (sourceToken) {
@@ -78,6 +85,51 @@ export default class InstantSpellService {
         }
 
         return true;
+    }
+
+    /**
+     * NPC/creature: prompt whether the cast card is visible to players. PC: no prompt (always public).
+     * @returns {Promise<boolean|null>} true/false, or null if user closed the dialog without confirming
+     */
+    static async _resolveNpcInstantPublicPreference(actor) {
+        if (!isNpcOrCreatureActor(actor)) return true;
+        return new Promise((resolve) => {
+            new Dialog({
+                title: game.i18n.localize("rmss.spells.instant_cast"),
+                content: `
+                    <form class="rmss-instant-visibility-form">
+                        <p style="margin-top:0;">${game.i18n.format("rmss.chat.instant_cast_visibility_prompt", { name: actor.name })}</p>
+                        <div class="form-group">
+                            <label class="flexrow" style="align-items:center; gap:8px;">
+                                <input type="checkbox" name="publicRollToPlayers"/>
+                                <span>${game.i18n.localize("rmss.chat.public_roll_to_players")}</span>
+                            </label>
+                            <p class="notes" style="margin:6px 0 0 0; font-size:0.85em;">${game.i18n.localize("rmss.chat.public_roll_to_players_hint")}</p>
+                        </div>
+                    </form>
+                `,
+                buttons: {
+                    cast: {
+                        icon: '<i class="fas fa-magic"></i>',
+                        label: game.i18n.localize("rmss.spells.cast"),
+                        callback: (html) => {
+                            const checked = !!html.find('[name="publicRollToPlayers"]')[0]?.checked;
+                            resolve(checked);
+                        }
+                    },
+                    cancel: {
+                        icon: '<i class="fas fa-times"></i>',
+                        label: game.i18n.localize("rmss.dialog.cancel"),
+                        callback: () => resolve(null)
+                    }
+                },
+                default: "cast",
+                close: () => resolve(null)
+            }, {
+                classes: ["rmss", "casting-options-dialog"],
+                width: 420
+            }).render(true);
+        });
     }
 
     /**
@@ -116,8 +168,9 @@ export default class InstantSpellService {
      * @param {Actor} params.actor - The caster
      * @param {Item} params.spell - The spell
      * @param {number} params.spellLevel - Spell level (PP cost)
+     * @param {boolean} [params.publicToPlayers=true]
      */
-    static async _createChatMessage({ actor, spell, spellLevel }) {
+    static async _createChatMessage({ actor, spell, spellLevel, publicToPlayers = true }) {
         const content = `
             <div style="border: 1px solid #555; border-radius: 8px; padding: 8px 10px; background: rgba(0,0,0,0.25); box-shadow: 0 0 6px rgba(0,0,0,0.4);">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
@@ -139,10 +192,12 @@ export default class InstantSpellService {
             </div>
         `;
 
+        const whisper = whisperIdsForNpcRollPrivacy(actor, publicToPlayers);
         await ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ actor }),
             content,
-            type: CONST.CHAT_MESSAGE_TYPES.OTHER
+            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+            ...(whisper ? { whisper } : {})
         });
     }
 }

@@ -5,7 +5,7 @@
 import ManeuverPenaltiesService from "../maneuver_penalties_service.js";
 import SkillManeuverService from "./skill_maneuver_service.js";
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
-import { sendExpMessage } from "../../chat/chatMessages.js";
+import { sendExpMessage, whisperIdsForNpcRollPrivacy, dice3dSynchronizeForNpcRoll } from "../../chat/chatMessages.js";
 
 /** Difficulty modifiers */
 const DIFFICULTY = {
@@ -64,13 +64,26 @@ export default class ManeuverService {
      * @param {Item} skill - The skill item
      * @returns {Promise<boolean>} true if roll was performed
      */
+    /**
+     * Skills tied to weapon offense behave like attacks: always public for NPC/creature (no GM-only default).
+     * @param {Item} skill
+     * @returns {boolean}
+     */
+    static _isOffensiveCombatSkill(skill) {
+        const v = skill?.system?.offensive_skill;
+        if (v == null || v === "" || v === "none") return false;
+        return String(v).trim() !== "";
+    }
+
     static async rollManeuver(actor, skill) {
         const skillBonus = skill.system?.total_bonus ?? 0;
         const autoPenalties = this.getAutoPenalties(actor);
+        const offensiveCombatSkill = this._isOffensiveCombatSkill(skill);
 
-        const result = await this._showManeuverOptionsDialog({
+        const result = await this._showManeuverOptionsDialog(actor, {
             skillName: skill.name,
             skillBonus,
+            offensiveCombatSkill,
             ...autoPenalties
         });
 
@@ -80,21 +93,22 @@ export default class ManeuverService {
         const totalModifier = skillBonus + autoPenaltyTotal + result.difficulty + result.combatSituation
             + result.lighting + result.darkness + result.otherMods;
 
-        return this._executeManeuverRoll(actor, skill, totalModifier, result.difficultyKey, autoPenalties);
+        return this._executeManeuverRoll(actor, skill, totalModifier, result.difficultyKey, autoPenalties, result.publicRollToPlayers);
     }
 
     /**
      * Show the maneuver options dialog.
      * @private
      */
-    static async _showManeuverOptionsDialog({ skillName, skillBonus, hitsTaken, bleeding, stunned, penaltyEffect }) {
-        const content = this._buildDialogContent({
+    static async _showManeuverOptionsDialog(actor, { skillName, skillBonus, hitsTaken, bleeding, stunned, penaltyEffect, offensiveCombatSkill = false }) {
+        const content = this._buildDialogContent(actor, {
             skillName,
             skillBonus,
             hitsTaken,
             bleeding,
             stunned,
-            penaltyEffect: penaltyEffect ?? 0
+            penaltyEffect: penaltyEffect ?? 0,
+            offensiveCombatSkill
         });
 
         return new Promise((resolve) => {
@@ -106,7 +120,7 @@ export default class ManeuverService {
                         icon: '<i class="fas fa-dice"></i>',
                         label: game.i18n.localize("rmss.maneuvers.roll"),
                         callback: (html) => {
-                            resolve(this._calculateModifiers(html, { hitsTaken, bleeding, stunned, penaltyEffect }) ?? null);
+                            resolve(this._calculateModifiers(html, { hitsTaken, bleeding, stunned, penaltyEffect }, actor, offensiveCombatSkill) ?? null);
                         }
                     },
                     cancel: {
@@ -154,7 +168,8 @@ export default class ManeuverService {
      * Build dialog HTML content.
      * @private
      */
-    static _buildDialogContent({ skillName, skillBonus, hitsTaken, bleeding, stunned, penaltyEffect = 0 }) {
+    static _buildDialogContent(actor, { skillName, skillBonus, hitsTaken, bleeding, stunned, penaltyEffect = 0, offensiveCombatSkill = false }) {
+        const showPublicRollCheckbox = actor && (actor.type === "npc" || actor.type === "creature") && !offensiveCombatSkill;
         const fmt = (n) => (n >= 0 ? `+${n}` : `${n}`);
         const sel = (k, def) => (k === def ? " selected" : "");
         const difficultyOpts = Object.entries(DIFFICULTY).map(([k, v]) =>
@@ -205,6 +220,15 @@ export default class ManeuverService {
                     <label>${game.i18n.localize("rmss.maneuvers.other_mods")}</label>
                     <input type="number" name="otherMods" value="0" style="width:80px;"/>
                 </div>
+                ${showPublicRollCheckbox ? `
+                <div class="form-group" style="margin-top:8px;">
+                    <label class="flexrow" style="align-items:center; gap:8px;">
+                        <input type="checkbox" name="publicRollToPlayers"/>
+                        <span>${game.i18n.localize("rmss.chat.public_roll_to_players")}</span>
+                    </label>
+                    <p class="notes" style="margin:4px 0 0 0; font-size:0.85em; color:#666;">${game.i18n.localize("rmss.chat.public_roll_to_players_hint")}</p>
+                </div>
+                ` : ""}
                 <hr style="margin:8px 0; border:none; border-top:1px solid #ccc;">
                 <div class="form-group">
                     <label><strong>${game.i18n.localize("rmss.maneuvers.total_modifier")}:</strong></label>
@@ -218,7 +242,7 @@ export default class ManeuverService {
      * Extract modifier values from dialog.
      * @private
      */
-    static _calculateModifiers(html, { hitsTaken, bleeding, stunned, penaltyEffect }) {
+    static _calculateModifiers(html, { hitsTaken, bleeding, stunned, penaltyEffect }, actor, offensiveCombatSkill = false) {
         const form = html.find("form")[0];
         if (!form) return null;
         const fd = new FormData(form);
@@ -228,13 +252,16 @@ export default class ManeuverService {
         const lighting = LIGHTING_REQUIRED[fd.get("lighting")] ?? 0;
         const darkness = DARKNESS_ADVANTAGEOUS[fd.get("darkness")] ?? 0;
         const otherMods = parseInt(fd.get("otherMods")) || 0;
+        const showPublicRoll = actor && (actor.type === "npc" || actor.type === "creature") && !offensiveCombatSkill;
+        const publicRollToPlayers = !showPublicRoll || !!form.querySelector('[name="publicRollToPlayers"]')?.checked;
         return {
             difficulty,
             difficultyKey,
             combatSituation,
             lighting,
             darkness,
-            otherMods
+            otherMods,
+            publicRollToPlayers
         };
     }
 
@@ -243,7 +270,8 @@ export default class ManeuverService {
      * @param {string} difficultyKey - Key for XP lookup (routine, easy, medium, etc.)
      * @private
      */
-    static async _executeManeuverRoll(actor, skill, totalModifier, difficultyKey = "medium", autoPenalties = {}) {
+    static async _executeManeuverRoll(actor, skill, totalModifier, difficultyKey = "medium", autoPenalties = {}, publicRollToPlayers = true) {
+        const syncDice3d = dice3dSynchronizeForNpcRoll(actor, publicRollToPlayers);
         const roll = await new Roll("1d100x>95").evaluate();
         const naturalRoll = roll.dice[0].results[0].result;
         const rollTotal = naturalRoll === 100 ? 100 : roll.total;
@@ -253,7 +281,7 @@ export default class ManeuverService {
         const finalResult = isUnmodified ? rollTotal : rollTotal + totalModifier;
 
         if (game.dice3d) {
-            await game.dice3d.showForRoll(roll, game.user, true);
+            await game.dice3d.showForRoll(roll, game.user, syncDice3d);
         }
 
         const maneuverResult = await SkillManeuverService.getResult(finalResult, naturalRoll);
@@ -311,10 +339,12 @@ export default class ManeuverService {
             </div>
         `;
 
+        const whisper = whisperIdsForNpcRollPrivacy(actor, publicRollToPlayers);
         await ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ actor }),
             content,
-            type: CONST.CHAT_MESSAGE_TYPES.OTHER
+            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+            ...(whisper ? { whisper } : {})
         });
 
         return true;

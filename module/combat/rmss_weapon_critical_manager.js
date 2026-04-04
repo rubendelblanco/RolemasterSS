@@ -9,6 +9,7 @@ import WeaponFumbleService from "./services/weapon_fumble_service.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import EquipmentService from "../actors/services/equipment_service.js";
 import { shiftSeverity, effectWeaponShiftMilderProcedureI } from "./weapon_effects_service.js";
+import { withPublicRollMode } from "../chat/chatMessages.js";
 
 
 /* ---------------------------------------------
@@ -888,10 +889,10 @@ export class RMSSWeaponCriticalManager {
         });
         const speaker = "Game Master";
 
-        await ChatMessage.create({
+        await ChatMessage.create(withPublicRollMode({
             content: htmlContent,
             speaker: speaker
-        });
+        }));
     }
 
     /**
@@ -927,7 +928,7 @@ export class RMSSWeaponCriticalManager {
             }
         };
         if (rollObj) msgData.rolls = [rollObj];
-        await ChatMessage.create(msgData);
+        await ChatMessage.create(withPublicRollMode(msgData));
     }
 
     /**
@@ -1046,9 +1047,9 @@ export class RMSSWeaponCriticalManager {
         });
         const speaker = "Game Master";
 
-        await ChatMessage.create({
+        await ChatMessage.create(withPublicRollMode({
             content: htmlContent,
             speaker: speaker
-        });
+        }));
     }
 }

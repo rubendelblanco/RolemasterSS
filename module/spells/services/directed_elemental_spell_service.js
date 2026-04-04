@@ -7,7 +7,7 @@ import CastingOptionsService from "./casting_options_service.js";
 import SpellFailureService from "./spell_failure_service.js";
 import { triggerAutoAnimations, getActorToken } from "../../autoanimations_integration.js";
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
-import { sendExpMessage } from "../../chat/chatMessages.js";
+import { sendExpMessage, withPublicRollMode } from "../../chat/chatMessages.js";
 import RMSSTableManager from "../../combat/rmss_table_manager.js";
 import { RMSSWeaponCriticalManager } from "../../combat/rmss_weapon_critical_manager.js";
 import FacingService from "../../combat/services/facing_service.js";
@@ -362,10 +362,10 @@ export default class DirectedElementalSpellService {
 
         content += `</div>`;
 
-        await ChatMessage.create({
+        await ChatMessage.create(withPublicRollMode({
             speaker: ChatMessage.getSpeaker({ actor }),
             content,
             type: CONST.CHAT_MESSAGE_TYPES.OTHER
-        });
+        }));
     }
 }

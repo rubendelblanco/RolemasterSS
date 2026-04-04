@@ -939,6 +939,9 @@
             "cannot_level_zero_to_one": "Cannot level up from 0 to 1. Missing: {missing}."
         },
         "chat":{
+            "public_roll_to_players": "Show result to players",
+            "public_roll_to_players_hint": "If unchecked, only GMs see this in chat. For NPC and creature skills and spells that are not spell attacks (BE/DE).",
+            "instant_cast_visibility_prompt": "Instant cast for <strong>{name}</strong> — set chat visibility below.",
             "potential_roll": "Potential stat roll result:  <strong>{total}</strong> ({result})",
             "potential_rolls_title": "Potential Stat Rolls",
             "potential_rolls_stat": "Stat",

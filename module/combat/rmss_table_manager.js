@@ -1,4 +1,5 @@
 import {socket} from "../../rmss.js";
+import { withPublicRollMode } from "../chat/chatMessages.js";
 
 const findAttackTableRow = (tableName, attackTable, result) => {
     const numResult = parseInt(result, 10);
@@ -207,7 +208,7 @@ export default class RMSSTableManager {
                 msgData.whisper = Array.from(whispers);
             }
         }
-        await ChatMessage.create(msgData);
+        await ChatMessage.create(withPublicRollMode(msgData));
     }
 
     /**

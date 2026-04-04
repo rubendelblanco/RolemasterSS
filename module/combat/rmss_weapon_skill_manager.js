@@ -8,6 +8,7 @@ import FacingService from "./services/facing_service.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
 import { tryConsumeMissileAmmo } from "../actors/utils/ammunition_util.js";
+import { withPublicRollMode } from "../chat/chatMessages.js";
 
 export class RMSSWeaponSkillManager {
 
@@ -66,10 +67,10 @@ export class RMSSWeaponSkillManager {
         });
 
         if (game.dice3d) await game.dice3d.showForRoll(rollData.roll, game.user, true);
-        await ChatMessage.create({
+        await ChatMessage.create(withPublicRollMode({
             content: flavor,
             speaker: "Game master"
-        });
+        }));
 
         const tableName = weapon.system.attack_table;
         const attackTable = await RMSSTableManager.loadAttackTable(tableName);

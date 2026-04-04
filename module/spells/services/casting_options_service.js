@@ -51,14 +51,19 @@ export default class CastingOptionsService {
         const autoPenalties = (actor != null) ? ManeuverPenaltiesService.getManeuverPenalties(actor, { spellType: spellType }) : { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0 };
         const showAutoPenalties = actor != null;
         const handsOccupied = (actor != null) ? EquipmentService.getHandsOccupiedForCasting(actor) : 0;
-        const content = this._buildDialogContent(normalizedRealm, spellType, modifiers, autoPenalties, showAutoPenalties, handsOccupied);
+        const spellTypeUpper = String(spellType ?? "").toUpperCase();
+        const showPublicRollCheckbox =
+            actor != null
+            && (actor.type === "npc" || actor.type === "creature")
+            && !["BE", "DE"].includes(spellTypeUpper);
+        const content = this._buildDialogContent(normalizedRealm, spellType, modifiers, autoPenalties, showAutoPenalties, handsOccupied, showPublicRollCheckbox);
 
         const buttons = {
             cast: {
                 icon: '<i class="fas fa-magic"></i>',
                 label: game.i18n.localize("rmss.spells.cast"),
                 callback: (html) => {
-                    const result = this._calculateModifiers(html, normalizedRealm, spellType, modifiers, autoPenalties);
+                    const result = this._calculateModifiers(html, normalizedRealm, spellType, modifiers, autoPenalties, showPublicRollCheckbox);
                     resolve(result);
                 }
             }
@@ -69,7 +74,7 @@ export default class CastingOptionsService {
                 icon: '<i class="fas fa-hat-wizard"></i>',
                 label: game.i18n.format("rmss.spells.cast_with_spell_adder", { itemName: spellAdderItemName }) + usesLabel,
                 callback: (html) => {
-                    const result = this._calculateModifiers(html, normalizedRealm, spellType, modifiers, autoPenalties);
+                    const result = this._calculateModifiers(html, normalizedRealm, spellType, modifiers, autoPenalties, showPublicRollCheckbox);
                     result.useSpellAdder = true;
                     resolve(result);
                 }
@@ -96,7 +101,7 @@ export default class CastingOptionsService {
      * Build the HTML content for the casting options dialog.
      * @param {number} [handsOccupied] - Actor's occupied hands (0-2) for pre-selecting hands option
      */
-    static _buildDialogContent(realm, spellType, modifiers, autoPenalties = {}, showAutoPenalties = false, handsOccupied = 0) {
+    static _buildDialogContent(realm, spellType, modifiers, autoPenalties = {}, showAutoPenalties = false, handsOccupied = 0, showPublicRollCheckbox = false) {
         const subtletyPenalty = this._getSubtletyPenalty(realm, spellType, modifiers);
         const handsModifiers = this._getHandsModifiers(realm, modifiers);
         const voiceModifiers = this._getVoiceModifiers(realm, modifiers);
@@ -166,6 +171,16 @@ export default class CastingOptionsService {
                     <input type="number" name="otherMods" value="0" style="width: 80px;"/>
                 </div>
                 
+                ${showPublicRollCheckbox ? `
+                <div class="form-group" style="margin-top:8px;">
+                    <label class="flexrow" style="align-items:center; gap:8px;">
+                        <input type="checkbox" name="publicRollToPlayers"/>
+                        <span>${game.i18n.localize("rmss.chat.public_roll_to_players")}</span>
+                    </label>
+                    <p class="notes" style="margin:4px 0 0 0; font-size:0.85em;">${game.i18n.localize("rmss.chat.public_roll_to_players_hint")}</p>
+                </div>
+                ` : ""}
+                
                 <hr/>
                 <div class="form-group total-modifier">
                     <label><strong>${game.i18n.localize("rmss.spells.total_modifier")}:</strong></label>
@@ -208,7 +223,7 @@ export default class CastingOptionsService {
     /**
      * Calculate the total modifier from the dialog selections.
      */
-    static _calculateModifiers(html, realm, spellType, modifiers, autoPenalties = {}) {
+    static _calculateModifiers(html, realm, spellType, modifiers, autoPenalties = {}, showPublicRollCheckbox = false) {
         const form = html.find('form')[0];
         const formData = new FormData(form);
         
@@ -227,9 +242,12 @@ export default class CastingOptionsService {
         const autoPenaltyTotal = ManeuverPenaltiesService.getTotalAutoPenalty(autoPenalties);
         const totalModifier = castingModifier + autoPenaltyTotal;
 
+        const publicRollToPlayers = !showPublicRollCheckbox || !!form?.querySelector('[name="publicRollToPlayers"]')?.checked;
+
         return {
             totalModifier,
             castingModifier,
+            publicRollToPlayers,
             ...autoPenalties,
             options: {
                 subtlety,

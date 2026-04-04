@@ -5,7 +5,7 @@ import CastingOptionsService from "./casting_options_service.js";
 import StaticManeuverService from "./static_maneuver_service.js";
 import SpellFailureService from "./spell_failure_service.js";
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
-import { sendExpMessage } from "../../chat/chatMessages.js";
+import { sendExpMessage, whisperIdsForNpcRollPrivacy, dice3dSynchronizeForNpcRoll } from "../../chat/chatMessages.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 import Utils from "../../utils.js";
 import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
@@ -67,7 +67,8 @@ export default class ForceSpellService {
 
         let totalCastingModifier = castingOptions.totalModifier;
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
-        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0 } = castingOptions;
+        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0, publicRollToPlayers = true } = castingOptions;
+        const syncDice3d = dice3dSynchronizeForNpcRoll(actor, publicRollToPlayers);
 
         // Movement penalty in combat: -1 per 1% of activity dedicated to movement (applies to non-BE, non-DE, non-instant spells)
         let movementPenalty = 0;
@@ -122,7 +123,7 @@ export default class ForceSpellService {
         
         // Show dice animation if Dice So Nice is active
         if (game.dice3d) {
-            await game.dice3d.showForRoll(roll, game.user, true);
+            await game.dice3d.showForRoll(roll, game.user, syncDice3d);
         }
 
         // Deduct power points (spell level = PP cost), unless spell has no_pp
@@ -179,7 +180,8 @@ export default class ForceSpellService {
                     failureResult = await SpellFailureService.rollFailure(
                         spell.system.type,
                         "spectacular_failure", // Base spell fumble = worst case (×3 modifier)
-                        totalCastingModifier
+                        totalCastingModifier,
+                        syncDice3d
                     );
                     break; // Stop processing targets on fumble
                 }
@@ -224,7 +226,8 @@ export default class ForceSpellService {
                 failureResult = await SpellFailureService.rollFailure(
                     spell.system.type,
                     maneuverResult.code,
-                    totalCastingModifier
+                    totalCastingModifier,
+                    syncDice3d
                 );
             }
         }
@@ -251,7 +254,8 @@ export default class ForceSpellService {
             targetRRs,
             maneuverResult,
             failureResult,
-            casterLevel: actor.system.attributes?.level?.value ?? 1
+            casterLevel: actor.system.attributes?.level?.value ?? 1,
+            publicToPlayers: publicRollToPlayers
         });
 
         // Execute spell macro only on success (no failure, no fumble)
@@ -390,7 +394,8 @@ export default class ForceSpellService {
         targetRRs = [],
         maneuverResult = null,
         failureResult = null,
-        casterLevel = 1
+        casterLevel = 1,
+        publicToPlayers = true
     }) {
         const hasTargets = targets.length > 0;
         const totalBonus = skillBonus + castingModifier + enchantmentAttackBonus;
@@ -513,10 +518,12 @@ export default class ForceSpellService {
 
         content += `</div>`;
 
+        const whisper = whisperIdsForNpcRollPrivacy(actor, publicToPlayers);
         await ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ actor }),
             content: content,
-            type: CONST.CHAT_MESSAGE_TYPES.OTHER
+            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+            ...(whisper ? { whisper } : {})
         });
     }
 }
