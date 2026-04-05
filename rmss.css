@@ -2042,6 +2042,14 @@ tr.container-row.over-capacity {
     cursor: pointer;
 }
 
+/* Ítems mágicos (checkbox Modifiers): borde en iconos de listas de PJ / PNJ / criatura */
+.actor-sheet .list-item-icon-wrap--magical .list-item-icon,
+.npc-sheet .list-item-icon-wrap--magical .list-item-icon {
+    box-sizing: border-box;
+    border: 2px solid rgb(0, 202, 252);
+    border-radius: 2px;
+}
+
 .actor-sheet .spell-row {
     position: relative;
 }

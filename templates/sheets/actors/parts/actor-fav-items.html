@@ -13,7 +13,7 @@
   {{#each armor as |equipable id|}}
     {{#if equipable.system.equipped}}
     <tr class="favorite-armor-row" draggable="true" data-type="Item" data-uuid="Actor.{{equipable.actorId}}.Item.{{equipable._id}}" data-item-id="{{equipable._id}}">
-      <td><span class="list-item-icon-wrap"><img class="list-item-icon" src="{{equipable.img}}" alt="{{equipable.name}}" width="32" height="32"/></span></td>
+      <td><span class="list-item-icon-wrap{{#if equipable.system.magical}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{equipable.img}}" alt="{{equipable.name}}" width="32" height="32"/></span></td>
       <td class="favorite-record-name-td"><div class="equipable-name favorite-record-name-block">
           <div class="favorite-record-name-line">
             <a class="item-edit favorite-equipped-open" data-item-id="{{equipable._id}}" title="{{ localize 'rmss.pc_sheet_items.open_item_sheet' }}">
@@ -55,7 +55,7 @@
   {{#each weapons as |weapon id|}}
     {{#if weapon.system.equipped}}
     <tr class="favorite-weapon-row" draggable="true" data-type="Item" data-uuid="Actor.{{weapon.actorId}}.Item.{{weapon._id}}" data-item-id="{{weapon._id}}">
-      <td><span class="list-item-icon-wrap"><img class="list-item-icon" src="{{weapon.img}}" alt="{{weapon.name}}" width="32" height="32"/></span></td>
+      <td><span class="list-item-icon-wrap{{#if weapon.system.magical}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{weapon.img}}" alt="{{weapon.name}}" width="32" height="32"/></span></td>
       <td class="favorite-record-name-td clickable offensive-skill rmss-weapon-name-cell" data-item-id="{{weapon._id}}">
         <div class="favorite-record-name-block">
           <div class="rmss-weapon-name-line favorite-record-name-line">{{weapon.name}} <i class="fa-solid fa-sword"></i>{{#if weapon.system.description}}

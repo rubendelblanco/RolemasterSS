@@ -16,7 +16,7 @@
     <tbody>
   {{#each armor as |equipable id|}}
   <tr draggable="true" data-type="Item" data-item-id="{{equipable._id}}" data-uuid="Actor.{{equipable.actorId}}.Item.{{equipable._id}}">
-        <td><span class="list-item-icon-wrap"><img class="list-item-icon" src="{{equipable.img}}" alt="{{equipable.name}}" width="32" height="32"/></span></td>
+        <td><span class="list-item-icon-wrap{{#if equipable.system.magical}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{equipable.img}}" alt="{{equipable.name}}" width="32" height="32"/></span></td>
         <td>{{equipable.name}}{{#if equipable.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{equipable.system.description}}"></i>
