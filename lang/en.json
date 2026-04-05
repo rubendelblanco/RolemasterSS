@@ -425,8 +425,6 @@
             "add_bonus_skill": "Drag skill bonus here",
             "drop_skill_for_bonus": "Drop skill here (from character or compendium)",
             "drop_skill_only": "Only skills can be dropped here.",
-            "effective_cost": "Effective cost: {value}",
-            "effective_cost_label": "Effective cost",
             "base_cost": "Base cost",
             "material_custom": "Custom",
             "material_stone": "Stone",

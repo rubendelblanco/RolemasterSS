@@ -98,13 +98,10 @@
                 {{/if}}
                 <tr class="rmss-cost-row">
                     <th>{{localize "rmss.weapon.cost"}}</th>
-                    <th>{{localize "rmss.item.currency"}}</th>
-                    <th colspan="3">{{localize "rmss.item.effective_cost_label"}}</th>
-                </tr>
-                <tr class="rmss-cost-row">
-                    <td>
+                    <td colspan="2">
                         <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
                     </td>
+                    <th>{{localize "rmss.item.currency"}}</th>
                     <td>
                         <select name="system.currency_type">
                             {{#each config.currency_type_abb as |label key|}}
@@ -113,13 +110,6 @@
                             </option>
                             {{/each}}
                         </select>
-                    </td>
-                    <td colspan="3">
-                        {{#if (and item.effectiveUnitCost (gt item.effectiveUnitCost 0))}}
-                        {{item.effectiveUnitCost}} {{localize (concat "rmss.currency_type_abb." system.currency_type)}}
-                        {{else}}
-                        —
-                        {{/if}}
                     </td>
                 </tr>
             </table>

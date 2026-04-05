@@ -19,19 +19,7 @@ import { normalizeTagArray } from "../sheets/items/item_tags_ui.js";
 
 export class RMSSItem extends Item {
 
-  /**
-   * Effective unit cost = unitCost × material baseCostModifier × weight reduction modifier (Arms Law table 08-02).
-   * For custom material, modifier is 1. Weight reduction uses % of min normal weight.
-   */
-  get effectiveUnitCost() {
-    if (!["armor", "weapon", "item"].includes(this.type)) return Number(this.system.unitCost) || 0;
-    const mat = CONFIG.rmss?.materials?.[this.system.material];
-    const matMod = mat?.baseCostModifier ?? 1;
-    const weightMod = this._getWeightReductionModifier();
-    return (Number(this.system.unitCost) || 0) * matMod * weightMod;
-  }
-
-  /** Get weight reduction cost modifier from table 08-02 (Weight Decreases Due to Material and Design). */
+  /** Weight reduction cost modifier from table 08-02 (Weight Decreases Due to Material and Design). */
   _getWeightReductionModifier() {
     return RMSSItem.getWeightModifierFromPercent(this.system.weight_percent);
   }
