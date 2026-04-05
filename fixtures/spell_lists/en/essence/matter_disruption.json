@@ -1,0 +1,377 @@
+{
+  "name": "Matter Disruption",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Evil Essence 10.5 - Matter Disruption. Spells to vaporize ice, reduce earth and stone to powder, worsen cracks, disrupt and disintegrate inorganic matter. See Spell Law Section 15.24 (p. 101) for evil spell lists.",
+    "spells": [
+      {
+        "name": "01. Un-Ice I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "100 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Turns 100 cubic feet of ice into water vapor."
+        }
+      },
+      {
+        "name": "02. Earth to Dust I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "10 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Turns 10 cubic feet of earth into fine dust."
+        }
+      },
+      {
+        "name": "03. Cracks Call",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1000 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any previous cracks or flaws within a section of any normal material 1,000 cubic feet (10'x10'x10') will extend to their limit. See Section 15.7 (p. 97)."
+        }
+      },
+      {
+        "name": "04. Powder Stone I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Turns 10 cubic feet of stone into fine powder."
+        }
+      },
+      {
+        "name": "05. Un-Ice X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1000 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Un-Ice I, except affects up to 1,000 cubic feet."
+        }
+      },
+      {
+        "name": "06. Disruption I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 cu. ft.",
+          "duration": "P",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Turns 1 cubic foot of any inorganic material to fine powder (must be one object)."
+        }
+      },
+      {
+        "name": "07. Earth to Dust X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "100 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Earth to Dust I, except affects up to 100 cubic feet."
+        }
+      },
+      {
+        "name": "08. Shatter",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 cu. ft.",
+          "duration": "P",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Can shatter an inorganic object, up to 1 cubic foot in volume; all within 5' take an 'A' Impact critical, holder takes a 'C' Impact critical. Metal objects get a special +30 RR modification."
+        }
+      },
+      {
+        "name": "09. Powder Stone X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "100 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Powder Stone I, except affects up to 100 cubic feet."
+        }
+      },
+      {
+        "name": "10. Un-Ice True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "100 cu. ft./lvl",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Un-Ice I, except affects up to 100 cubic feet per level of the caster."
+        }
+      },
+      {
+        "name": "11. Disruption X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10 cu. ft.",
+          "duration": "P",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disruption I, except affects up to 10 cubic feet."
+        }
+      },
+      {
+        "name": "12. Earth to Dust True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1000 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Earth to Dust I, except affects up to 1,000 cubic feet."
+        }
+      },
+      {
+        "name": "13. Cause Cracks",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "100 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes cracks to appear in up to 100 cubic feet of non-metal, inorganic material."
+        }
+      },
+      {
+        "name": "14. Powder Stone True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1000 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Powder Stone I, except affects 1,000 cubic feet."
+        }
+      },
+      {
+        "name": "15. Disintegration I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Completely disintegrates 1 cubic foot of inorganic material."
+        }
+      },
+      {
+        "name": "17. Long Matter Disruption",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As any single spell (10th level or lower) from this list, except with a range of 300'."
+        }
+      },
+      {
+        "name": "19. Disintegration X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10 cu. ft.",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disintegration I, except affects 10 cubic feet."
+        }
+      },
+      {
+        "name": "20. Mass Earth to Dust",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "100 cu. ft./lvl",
+          "duration": "P",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Earth to Dust I, except affects up to 100 cubic feet per level of the caster."
+        }
+      },
+      {
+        "name": "25. Mass Powder Stone",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "100 cu. ft./lvl",
+          "duration": "P",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Powder Stone I, except affects up to 100 cubic feet per level of the caster."
+        }
+      },
+      {
+        "name": "30. Mass Disruption",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disruption I, except up to as many objects (up to 1 cubic foot each) as the caster's level can be affected, and range is 100'."
+        }
+      },
+      {
+        "name": "50. Disintegration True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "100 cu. ft.",
+          "duration": "P",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disintegration I, except affects objects up to 100 cubic feet and range is 300'."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,394 @@
+{
+  "name": "Entity Summons",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Evil Essence 10.4 - Entity Summons. Spells to summon elementals and demons and to control, master, order, and contain entities. Entities include Demons and other extra-planar creatures appropriate to the GM's world (including elementals). See Section 15.22 (p. 100). See Section 15.24 (p. 101) for evil spell lists.",
+    "spells": [
+      {
+        "name": "02. Summon Elemental I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 elemental",
+          "duration": "2 rnds",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster summons an Elemental Servant (a Type I Entity) that gradually appears over the course of two rounds. If it is not \"controlled\" or \"Mastered\" (usually by one of the spells on this list), it will attack random targets until it fades away after 2-20 rounds."
+        }
+      },
+      {
+        "name": "03. Control Entity I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 entity",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows the caster to totally control a Type I Entity (the chance of non-control is [the Entity's Type x 2%]). The Entity leaves when the caster stops concentrating. The Entity will not speak with the summoner."
+        }
+      },
+      {
+        "name": "04. Summon Elemental II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 elemental",
+          "duration": "2 rnds",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summon Elemental I, except the caster summons a Weak Elemental (a Type II entity)."
+        }
+      },
+      {
+        "name": "05. Lesser Demonic Gate",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 Demon",
+          "duration": "2 rnds",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster summons a Demon who gradually appears over the course of 2 rounds. Roll d100 (not open-ended) for Type. A result of 01-60 is a Type I; a result of 61-90 is a Type II; a result of 91-100 is a Type III. If the Demon is not \"Controlled\" or \"Mastered\" (i.e., usually by one of the spells on this list) before the Demon materializes, the caster suffers an effect as outlined in Section 15.22 (p. 100)."
+        }
+      },
+      {
+        "name": "06. Entity Mastery I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 entity",
+          "duration": "varies",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Entity I, except the caster need not concentrate to control the Entity. The chance of failure is 5 times the Entity's Type. The Entity will remain and obey the caster until the caster is killed or the Entity is outside the range limit or the caster releases him. A maximum of two Entities can be mastered at one time by one being. Obtaining information may only be accomplished by using spells off the Evil Magician's Base list, Dark Contacts."
+        }
+      },
+      {
+        "name": "07. Control Entity II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 entity",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Entity I, except Types I and II can be controlled."
+        }
+      },
+      {
+        "name": "08. Summon Elemental III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 elemental",
+          "duration": "2 rnds",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summon Elemental I, except caster summons a Guardian Elemental (a Type III Entity)."
+        }
+      },
+      {
+        "name": "09. Entity Mastery II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 entity",
+          "duration": "varies",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Entity Mastery I, except Types I and II can be mastered."
+        }
+      },
+      {
+        "name": "10. Control Entity III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 entity",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Entity I, except Types I-III can be controlled."
+        }
+      },
+      {
+        "name": "11. Summon Elemental IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 elemental",
+          "duration": "2 rnds",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summon Elemental I, except caster summons a Strong Elemental (a Type IV Entity)."
+        }
+      },
+      {
+        "name": "12. Greater Demonic Gate",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 Demon",
+          "duration": "2 rnds",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Demonic Gate, except Types III-VI can be summoned: (01-60) Type III, (61-85) Type IV, (86-95) Type V, (96-100) Type VI."
+        }
+      },
+      {
+        "name": "13. Entity Mastery III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 entity",
+          "duration": "varies",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Entity Mastery I, except Types I-III can be mastered."
+        }
+      },
+      {
+        "name": "14. Control Entity IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 entity",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Entity I, except Types I-IV can be controlled."
+        }
+      },
+      {
+        "name": "15. Entity Mastery IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 entity",
+          "duration": "varies",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Entity Mastery I, except Types I-IV can be mastered."
+        }
+      },
+      {
+        "name": "16. Order Elemental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 elemental",
+          "duration": "1 hr/lvl",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target of this spell is any Mastered Elemental. The Elemental can be given a simple, straightforward task that it will attempt to complete (within the duration of the spell). When this spell expires, the Elemental returns to its plane."
+        }
+      },
+      {
+        "name": "17. Contain Elemental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 elemental",
+          "duration": "varies",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target of this spell is any Mastered Elemental. The Elemental is contained within an object (must be within 50% of the elemental's actual size). The Elemental will be released by a specific trigger (specified by the caster at the time of casting). Possible triggers include touching the object, proximity to the object, specific words spoken, etc."
+        }
+      },
+      {
+        "name": "18. Order Entity",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 entity",
+          "duration": "varies",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Order Elemental, except will work on any Mastered Entity."
+        }
+      },
+      {
+        "name": "19. Contain Entity",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 entity",
+          "duration": "varies",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Contain Elemental, except will work on any Mastered Entity."
+        }
+      },
+      {
+        "name": "20. Control Entity V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 entity",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Entity I, except Types I-V can be controlled."
+        }
+      },
+      {
+        "name": "25. Entity Mastery V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 entity",
+          "duration": "varies",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Entity Mastery I, except Types I-V can be mastered."
+        }
+      },
+      {
+        "name": "30. Control Entity VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 entity",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Control Entity I, except Types I-VI can be controlled."
+        }
+      },
+      {
+        "name": "50. Entity Mastery VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 entity",
+          "duration": "varies",
+          "range": "10'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Entity Mastery I, except Types I-VI can be mastered."
+        }
+      }
+    ]
+  }
+}

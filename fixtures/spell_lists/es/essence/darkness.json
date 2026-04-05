@@ -1,0 +1,394 @@
+{
+  "name": "Oscuridad",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Malvada 10.3 - Oscuridad. Hechizos para crear y controlar zonas de oscuridad, oscuridad absoluta (utterdark), formas de sombra y visión nocturna/en la oscuridad. Ver sección 15.12 (p. 98) sobre visibilidad. Ver sección 15.14 (p. 98) sobre ilusiones. Ver sección 15.24 (p. 101) sobre listas malvadas.",
+    "spells": [
+      {
+        "name": "01. Oscuridad II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "20' R",
+          "duration": "10 min/niv",
+          "range": "toque",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea una zona de hasta 20' de radio en torno al punto tocado. La oscuridad equivale a la noche más cerrada. Si el punto está en un objetivo móvil, se mueve con él. Ver sección 15.12 (p. 98)."
+        }
+      },
+      {
+        "name": "02. Visión nocturna",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/niv",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo ve 100' en oscuridad normal como si fuera de día."
+        }
+      },
+      {
+        "name": "03. Control oscuro II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "20' R",
+          "duration": "C",
+          "range": "20'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede variar la intensidad de la oscuridad en la zona, pero no aclararla más allá del estado natural."
+        }
+      },
+      {
+        "name": "05. Oscuridad X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "100' R",
+          "duration": "10 min/niv",
+          "range": "toque",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oscuridad II, salvo que el radio es 100'."
+        }
+      },
+      {
+        "name": "06. Visión en la oscuridad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/niv",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión nocturna, salvo que el lanzador ve en toda oscuridad (incluso mágica)."
+        }
+      },
+      {
+        "name": "07. Control oscuro V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "50' R",
+          "duration": "C",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Control oscuro II, salvo alcance y radio 50'."
+        }
+      },
+      {
+        "name": "08. Formas de sombra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 sombra/niv",
+          "duration": "10 min/niv (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador crea la ilusión visual de figuras sombrías u sombras reales (tantas como su nivel); se mueven mientras se concentra. Ver sección 15.14 (p. 98) sobre ilusiones."
+        }
+      },
+      {
+        "name": "09. Oscuridad menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "300' R",
+          "duration": "10 min/niv",
+          "range": "toque",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oscuridad II, salvo que el radio es 300'."
+        }
+      },
+      {
+        "name": "10. Oscuridad absoluta menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "20' R",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea una zona de oscuridad de 20' de radio. No puede existir luz no mágica y la luz mágica (salvo Utterlight) debe superar RR o cancelarse."
+        }
+      },
+      {
+        "name": "11. Control oscuro X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "100' R",
+          "duration": "C",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Control oscuro II, salvo alcance y radio 100'."
+        }
+      },
+      {
+        "name": "12. Visión nocturna verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/niv",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión en la oscuridad, salvo que el objetivo ve tan lejos como podría a plena luz del día."
+        }
+      },
+      {
+        "name": "13. Oscuridad absoluta",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "100' R",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oscuridad absoluta menor, salvo que el radio es 100'."
+        }
+      },
+      {
+        "name": "14. Oscuridad leve",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "500' R",
+          "duration": "10 min/niv",
+          "range": "toque",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oscuridad II, salvo que el radio es 500'."
+        }
+      },
+      {
+        "name": "15. Nubes de oscuridad I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "100' R",
+          "duration": "2 h/niv",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea una \"nube\" de oscuridad de 100' de radio que se desplaza con el viento. La intensidad puede ir de día nublado a noche cerrada."
+        }
+      },
+      {
+        "name": "16. Visión nocturna en masa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo/niv",
+          "duration": "10 min/niv",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión nocturna, salvo que afecta a tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "17. Oscuridad absoluta mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "200' R",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oscuridad absoluta menor, salvo que el área es 200'."
+        }
+      },
+      {
+        "name": "18. Visión en la oscuridad en masa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo/niv",
+          "duration": "10 min/niv",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión en la oscuridad, salvo que afecta a tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "19. Nubes de oscuridad II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10' R/niv",
+          "duration": "2 h/niv",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Nubes de oscuridad I, salvo el área de efecto."
+        }
+      },
+      {
+        "name": "20. Oscuridad mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1000' R",
+          "duration": "10 min/niv",
+          "range": "toque",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oscuridad II, salvo que el radio es 1000'."
+        }
+      },
+      {
+        "name": "25. Oscuridad absoluta verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "300' R",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oscuridad absoluta menor, salvo que el radio es 300'."
+        }
+      },
+      {
+        "name": "30. Oscuridad verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "100' R/niv",
+          "duration": "10 min/niv",
+          "range": "toque",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oscuridad II, salvo que el radio es 100' por nivel del lanzador."
+        }
+      },
+      {
+        "name": "50. Nubes de oscuridad verdaderas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 mi R/niv",
+          "duration": "2 h/niv",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Nubes de oscuridad I, salvo que el radio es 1 milla por nivel del lanzador."
+        }
+      }
+    ]
+  }
+}

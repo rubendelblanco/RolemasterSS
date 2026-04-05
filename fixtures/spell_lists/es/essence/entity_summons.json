@@ -1,0 +1,394 @@
+{
+  "name": "Convocatoria de entidades",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Malvada 10.4 - Convocatoria de entidades. Hechizos para invocar elementales y demonios y para controlar, dominar, ordenar y contener entidades. Las entidades incluyen demonios y otras criaturas extradimensionales adecuadas al mundo del DJ (incluidos los elementales). Ver sección 15.22 (p. 100). Ver sección 15.24 (p. 101) sobre listas malvadas.",
+    "spells": [
+      {
+        "name": "02. Invocar elemental I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 elemental",
+          "duration": "2 asaltos",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador invoca un sirviente elemental (entidad de tipo I) que aparece poco a poco en dos asaltos. Si no es \"controlado\" o \"dominado\" (normalmente con un hechizo de esta lista), atacará objetivos al azar hasta desvanecerse tras 2-20 asaltos."
+        }
+      },
+      {
+        "name": "03. Controlar entidad I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 entidad",
+          "duration": "C",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador controlar por completo una entidad de tipo I (la probabilidad de no control es [tipo de la entidad × 2 %]). La entidad se va cuando el lanzador deja de concentrarse. La entidad no hablará con el invocador."
+        }
+      },
+      {
+        "name": "04. Invocar elemental II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 elemental",
+          "duration": "2 asaltos",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocar elemental I, salvo que invoca un elemental débil (entidad de tipo II)."
+        }
+      },
+      {
+        "name": "05. Portal demoníaco menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 demonio",
+          "duration": "2 asaltos",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador invoca un demonio que aparece poco a poco en 2 asaltos. Tira d100 (sin extremos abiertos) para el tipo: 01-60 tipo I; 61-90 tipo II; 91-100 tipo III. Si el demonio no está \"controlado\" o \"dominado\" (normalmente con un hechizo de esta lista) antes de materializarse, el lanzador sufre el efecto indicado en la sección 15.22 (p. 100)."
+        }
+      },
+      {
+        "name": "06. Maestría de entidad I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 entidad",
+          "duration": "varía",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar entidad I, salvo que el lanzador no necesita concentrarse. La probabilidad de fallo es 5 veces el tipo de la entidad. La entidad permanece y obedece hasta que el lanzador muere, la entidad sale del límite de alcance o el lanzador la libera. Un máximo de dos entidades pueden estar dominadas a la vez por un ser. Obtener información solo es posible con hechizos de la lista base del mago malvado Contactos oscuros."
+        }
+      },
+      {
+        "name": "07. Controlar entidad II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 entidad",
+          "duration": "C",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar entidad I, salvo que pueden controlarse los tipos I y II."
+        }
+      },
+      {
+        "name": "08. Invocar elemental III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 elemental",
+          "duration": "2 asaltos",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocar elemental I, salvo que invoca un elemental guardián (entidad de tipo III)."
+        }
+      },
+      {
+        "name": "09. Maestría de entidad II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 entidad",
+          "duration": "varía",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Maestría de entidad I, salvo que pueden dominar los tipos I y II."
+        }
+      },
+      {
+        "name": "10. Controlar entidad III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 entidad",
+          "duration": "C",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar entidad I, salvo que pueden controlarse los tipos I a III."
+        }
+      },
+      {
+        "name": "11. Invocar elemental IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 elemental",
+          "duration": "2 asaltos",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocar elemental I, salvo que invoca un elemental fuerte (entidad de tipo IV)."
+        }
+      },
+      {
+        "name": "12. Portal demoníaco mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 demonio",
+          "duration": "2 asaltos",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Portal demoníaco menor, salvo que pueden invocarse los tipos III a VI: (01-60) tipo III, (61-85) tipo IV, (86-95) tipo V, (96-100) tipo VI."
+        }
+      },
+      {
+        "name": "13. Maestría de entidad III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 entidad",
+          "duration": "varía",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Maestría de entidad I, salvo que pueden dominar los tipos I a III."
+        }
+      },
+      {
+        "name": "14. Controlar entidad IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 entidad",
+          "duration": "C",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar entidad I, salvo que pueden controlarse los tipos I a IV."
+        }
+      },
+      {
+        "name": "15. Maestría de entidad IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 entidad",
+          "duration": "varía",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Maestría de entidad I, salvo que pueden dominar los tipos I a IV."
+        }
+      },
+      {
+        "name": "16. Ordenar elemental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 elemental",
+          "duration": "1 h/niv",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo es cualquier elemental dominado. Puede encomendársele una tarea sencilla y directa que intentará completar (dentro de la duración del hechizo). Al acabar, el elemental vuelve a su plano."
+        }
+      },
+      {
+        "name": "17. Contener elemental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 elemental",
+          "duration": "varía",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo es cualquier elemental dominado. El elemental queda contenido en un objeto (debe tener un tamaño dentro del 50 % del tamaño real del elemental). Se libera por un disparador concreto (fijado al lanzar): tocar el objeto, proximidad, palabras determinadas, etc."
+        }
+      },
+      {
+        "name": "18. Ordenar entidad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 entidad",
+          "duration": "varía",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ordenar elemental, salvo que funciona con cualquier entidad dominada."
+        }
+      },
+      {
+        "name": "19. Contener entidad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 entidad",
+          "duration": "varía",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Contener elemental, salvo que funciona con cualquier entidad dominada."
+        }
+      },
+      {
+        "name": "20. Controlar entidad V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 entidad",
+          "duration": "C",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar entidad I, salvo que pueden controlarse los tipos I a V."
+        }
+      },
+      {
+        "name": "25. Maestría de entidad V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 entidad",
+          "duration": "varía",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Maestría de entidad I, salvo que pueden dominar los tipos I a V."
+        }
+      },
+      {
+        "name": "30. Controlar entidad VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 entidad",
+          "duration": "C",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Controlar entidad I, salvo que pueden controlarse los tipos I a VI."
+        }
+      },
+      {
+        "name": "50. Maestría de entidad VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 entidad",
+          "duration": "varía",
+          "range": "10'/niv",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Maestría de entidad I, salvo que pueden dominar los tipos I a VI."
+        }
+      }
+    ]
+  }
+}

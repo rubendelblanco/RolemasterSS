@@ -1,0 +1,394 @@
+{
+  "name": "Darkness",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Evil Essence 10.3 - Darkness. Spells to create and control areas of darkness, utterdark, shadow forms, and night/darkvision. See Section 15.12 (p. 98) for visibility. See Section 15.14 (p. 98) for illusions. See Section 15.24 (p. 101) for evil spell lists.",
+    "spells": [
+      {
+        "name": "01. Darkness II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "20' R",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates an area of up to 20' radius about the point touched. The darkness is equal to the darkest night. If the point is on a mobile target, it will move with the target. See Section 15.12 (p. 98)."
+        }
+      },
+      {
+        "name": "02. Nightvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target can see 100' in normal darkness as if it were day."
+        }
+      },
+      {
+        "name": "03. Dark Control II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "20' R",
+          "duration": "C",
+          "range": "20'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can vary the intensity of darkness in the area, but he cannot lighten it past its natural state."
+        }
+      },
+      {
+        "name": "05. Darkness X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "100' R",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Darkness II, except radius is 100'."
+        }
+      },
+      {
+        "name": "06. Darkvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nightvision, except caster can see in all darkness (even magical)."
+        }
+      },
+      {
+        "name": "07. Dark Control V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "50' R",
+          "duration": "C",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dark Control II, except range and radius are 50'."
+        }
+      },
+      {
+        "name": "08. Shadow Forms",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 shadow/lvl",
+          "duration": "10 min/lvl (C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can create either the visual illusion of shadowy figures, or real shadows (as many as the caster's level); they will move when he concentrates. See Section 15.14 (p. 98) for more on illusions."
+        }
+      },
+      {
+        "name": "09. Lesser Darkness",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "300' R",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Darkness II, except radius is 300'."
+        }
+      },
+      {
+        "name": "10. Lesser Utterdark",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "20' R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a 20' radius area of darkness. No non-magic light can exist and magic light (except Utterlight) must make a RR or be cancelled."
+        }
+      },
+      {
+        "name": "11. Dark Control X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "100' R",
+          "duration": "C",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dark Control II, except range and radius are 100'."
+        }
+      },
+      {
+        "name": "12. Nightvision True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Darkvision, except the target can see as far as he would be allowed in daylight."
+        }
+      },
+      {
+        "name": "13. Utterdark",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "100' R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Utterdark, except radius is 100'."
+        }
+      },
+      {
+        "name": "14. Minor Darkness",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "500' R",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Darkness II, except radius is 500'."
+        }
+      },
+      {
+        "name": "15. Clouds of Darkness I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "100' R",
+          "duration": "2 hrs/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a \"cloud\" of darkness that has a 100' radius and drifts with the wind. The darkness can vary in intensity from an overcast day to the dark of night."
+        }
+      },
+      {
+        "name": "16. Mass Nightvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target/lvl",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nightvision, except affects a number of targets equal to caster's level."
+        }
+      },
+      {
+        "name": "17. Greater Utterdark",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "200' R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Utterdark, except area of effect is 200'."
+        }
+      },
+      {
+        "name": "18. Mass Darkvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target/lvl",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Darkvision, except affects a number of targets equal to caster's level."
+        }
+      },
+      {
+        "name": "19. Clouds of Darkness II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10' R/lvl",
+          "duration": "2 hrs/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Clouds of Darkness I, except for area of effect."
+        }
+      },
+      {
+        "name": "20. Greater Darkness",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1000' R",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Darkness II, except radius is 1,000'."
+        }
+      },
+      {
+        "name": "25. Utterdark True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "300' R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lesser Utterdark, except radius is 300'."
+        }
+      },
+      {
+        "name": "30. Darkness True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "100' R/lvl",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Darkness II, except radius is 100' per level of the caster."
+        }
+      },
+      {
+        "name": "50. Clouds of Darkness True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 mi R/lvl",
+          "duration": "2 hrs/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Clouds of Darkness I, except radius is 1 mile per level of the caster."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "name": "Physical Erosion",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Evil Essence 10.6 - Physical Erosion. Spells to inflict pain, creeping ache, physical impairment, and trait erosion at 100'. See Spell Law Section 15.24 (p. 101) for evil spell lists. Special notes: Spells on this list cannot lower a stat to less than 1. In a 3d6 system, every 5 points of stat translate to 1 point.",
+    "spells": [
+      {
+        "name": "01. Pain",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target feels pain, and he takes 20% of his remaining hits."
+        }
+      },
+      {
+        "name": "02. Impair I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target has one of his physical stats (characteristics) temporarily lowered by d10. Only the temporary stat is lowered. Physical stats include Strength, Agility, Quickness, Constitution, Presence, and Self Discipline (one is selected at random). When the duration expires, the stat will go back up by the same amount that it went down (with a maximum of whatever the potential for the stat is)."
+        }
+      },
+      {
+        "name": "03. Ache",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Pain, except the ache seems natural and reduces target's hits by 10% until cured (caster must specify nature of ache). The target is unaware that the spell has been cast on him, because it affects him gradually (target loses 1 hit per minute). The GM should describe the ache as a natural thing (and may choose not to inform the player that the character has reduced hits)."
+        }
+      },
+      {
+        "name": "04. Fire Nerves",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Pain, except target takes 40% of his remaining hits."
+        }
+      },
+      {
+        "name": "05. Trait Erosion I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Impair I, except affects temporary and potential stats."
+        }
+      },
+      {
+        "name": "06. Impair III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Impair I, except decrease is 3d10."
+        }
+      },
+      {
+        "name": "07. Pang",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Ache, except target's hits are reduced by 20%."
+        }
+      },
+      {
+        "name": "09. Agony",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Pain, except target takes 60% of his remaining hits."
+        }
+      },
+      {
+        "name": "10. Trait Erosion II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Trait Erosion I, except decrease is 2d10."
+        }
+      },
+      {
+        "name": "11. Impair V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Impair I, except decrease is 5d10."
+        }
+      },
+      {
+        "name": "12. Spasm",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Ache, except target's hits are reduced by 40%."
+        }
+      },
+      {
+        "name": "13. Mass Pain",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Pain, except as many targets as the caster's level can be affected."
+        }
+      },
+      {
+        "name": "14. Torment",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Pain, except target takes 90% of his remaining hits."
+        }
+      },
+      {
+        "name": "15. Trait Erosion III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Trait Erosion I, except decrease is 3d10."
+        }
+      },
+      {
+        "name": "16. Mass Impair I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Impair I, except affects a number of targets equal to the caster's level."
+        }
+      },
+      {
+        "name": "18. Mass Fire Nerves",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fire Nerves, except affects a number of targets equal to the caster's level."
+        }
+      },
+      {
+        "name": "19. Mass Trait Erosion I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Trait Erosion I, except affects a number of targets equal to the caster's level."
+        }
+      },
+      {
+        "name": "20. Impair X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Impair I, except decrease is 10d10."
+        }
+      },
+      {
+        "name": "25. Mass Agony",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Agony, except as many targets as the caster's level can be affected."
+        }
+      },
+      {
+        "name": "30. Trait Erosion V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Trait Erosion I, except decrease is 5d10."
+        }
+      },
+      {
+        "name": "50. Trait Erosion True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "1 min/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Trait Erosion I, except one physical stat is reduced to 1."
+        }
+      }
+    ]
+  }
+}

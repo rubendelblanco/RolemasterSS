@@ -1,0 +1,377 @@
+{
+  "name": "Erosión física",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Malvada 10.6 - Erosión física. Hechizos para infligir dolor, malestar progresivo, menoscabo físico y erosión de rasgos a 100'. Ver Spell Law sección 15.24 (p. 101) sobre listas malvadas. Notas especiales: Los hechizos de esta lista no pueden bajar una característica por debajo de 1. En un sistema 3d6, cada 5 puntos de característica se traducen en 1 punto.",
+    "spells": [
+      {
+        "name": "01. Dolor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo siente dolor y recibe un 20 % de sus golpes restantes."
+        }
+      },
+      {
+        "name": "02. Menoscabo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Una de las características físicas del objetivo (temporal) se reduce en d10. Solo baja la temporal. Las físicas incluyen Fuerza, Agilidad, Rapidez, Constitución, Presencia y Autodisciplina (una al azar). Al acabar la duración, la característica recupera la misma cantidad que bajó (como máximo hasta su potencial)."
+        }
+      },
+      {
+        "name": "03. Malestar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dolor, salvo que el malestar parece natural y reduce los golpes del objetivo un 10 % hasta curarse (el lanzador debe especificar la naturaleza del malestar). El objetivo no sabe que se le ha lanzado el hechizo, porque el efecto es gradual (pierde 1 golpe por minuto). El DJ debe describir el malestar como algo natural (y puede no informar al jugador de que el personaje tiene golpes reducidos)."
+        }
+      },
+      {
+        "name": "04. Nervios ardientes",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dolor, salvo que el objetivo recibe un 40 % de sus golpes restantes."
+        }
+      },
+      {
+        "name": "05. Erosión de rasgo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Menoscabo I, salvo que afecta a las características temporales y potenciales."
+        }
+      },
+      {
+        "name": "06. Menoscabo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Menoscabo I, salvo que la reducción es 3d10."
+        }
+      },
+      {
+        "name": "07. Punzada",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Malestar, salvo que los golpes del objetivo se reducen un 20 %."
+        }
+      },
+      {
+        "name": "09. Agonía",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dolor, salvo que el objetivo recibe un 60 % de sus golpes restantes."
+        }
+      },
+      {
+        "name": "10. Erosión de rasgo II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Erosión de rasgo I, salvo que la reducción es 2d10."
+        }
+      },
+      {
+        "name": "11. Menoscabo V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Menoscabo I, salvo que la reducción es 5d10."
+        }
+      },
+      {
+        "name": "12. Espasmo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Malestar, salvo que los golpes del objetivo se reducen un 40 %."
+        }
+      },
+      {
+        "name": "13. Dolor en masa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo/niv",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dolor, salvo que pueden afectarse tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "14. Tormento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo/niv",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dolor, salvo que el objetivo recibe un 90 % de sus golpes restantes."
+        }
+      },
+      {
+        "name": "15. Erosión de rasgo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Erosión de rasgo I, salvo que la reducción es 3d10."
+        }
+      },
+      {
+        "name": "16. Menoscabo en masa I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo/niv",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Menoscabo I, salvo que afecta a tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "18. Nervios ardientes en masa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo/niv",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Nervios ardientes, salvo que afecta a tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "19. Erosión de rasgo en masa I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo/niv",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Erosión de rasgo I, salvo que afecta a tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "20. Menoscabo X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Menoscabo I, salvo que la reducción es 10d10."
+        }
+      },
+      {
+        "name": "25. Agonía en masa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo/niv",
+          "duration": "1 min/niv",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Agonía, salvo que pueden afectarse tantos objetivos como el nivel del lanzador."
+        }
+      },
+      {
+        "name": "30. Erosión de rasgo V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Erosión de rasgo I, salvo que la reducción es 5d10."
+        }
+      },
+      {
+        "name": "50. Erosión de rasgo verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Erosión de rasgo I, salvo que una característica física queda reducida a 1."
+        }
+      }
+    ]
+  }
+}

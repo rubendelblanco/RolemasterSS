@@ -1,0 +1,411 @@
+{
+  "name": "Convocatoria oscura",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Malvada 10.2 - Convocatoria oscura. Familiares, investidura, invocaciones con opciones acumulables, ataduras y órdenes a criaturas atadas. Ver sección 15.24 (p. 101) sobre listas malvadas.",
+    "spells": [
+      {
+        "name": "01. Familiar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "toque",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede armonizarse con un animal pequeño como familiar. Debe obtener el animal por medios normales (como mucho el 10 % de la masa propia del lanzador) y lanzar este hechizo sobre el animal una vez al día durante una semana (concentrándose 2 horas al día). Tras eso puede controlar al familiar y ver por sus sentidos concentrándose en él (el familiar debe estar a 50' por nivel). Si el animal muere, el lanzador tiene -25 a todas las acciones durante 2 semanas."
+        }
+      },
+      {
+        "name": "02. Invocación I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador invoca al instante una criatura de primer nivel que puede controlar. Si la criatura entiende al lanzador (p. ej. Lengua animal), el control es por comunicación normal; si no, mediante concentración del lanzador. Puede especificarse el tipo general, pero la criatura concreta la decide el DJ (entre las comunes en la zona). Si la tarea no es peligrosa para la criatura, la duración es 10 minutos por nivel del lanzador; si se mete en peligro, la duración pasa a 1 asalto por nivel del lanzador."
+        }
+      },
+      {
+        "name": "03. Investidura I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 familiar",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Se lanza sobre el familiar del lanzador, que debe ser de un tipo asociado a lo «malvado» (p. ej. reptil, murciélago, cuervo). Transfiere parte de la «vida» del lanzador al familiar. Debe lanzarse cada día durante un mes (2 h al día de concentración). El familiar conserva sus capacidades y gana otras; su aspecto se vuelve deforme y grotesco. El lanzador percibe a 250' por nivel; la TA pasa a 4 y obtiene +10 a BD y BO; puede lanzar hechizos a través del familiar como si estuviera en su lugar (incluye «yo» sobre el familiar; alcance 50' por nivel). Sus RR usan la mitad del nivel del lanzador o su propio nivel, el que sea mayor. Si el familiar muere, el lanzador pierde el 25 % de sus Puntos de Poder y Golpes durante 1-5 semanas (sin recuperarlos hasta que pasen)."
+        }
+      },
+      {
+        "name": "04. Invocación II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación I, salvo que elige una de: a) subir un nivel la criatura invocada, b) invocar un extra de primer nivel, o c) duplicar la duración."
+        }
+      },
+      {
+        "name": "05. Atadura II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Liga una criatura (intelecto animal, hasta segundo nivel). Debe obedecer al lanzador sin que este haya de concentrarse. Solo puede tener tantas criaturas atadas como niveles. Si sale del alcance del hechizo, el hechizo se disipa."
+        }
+      },
+      {
+        "name": "06. Invocación III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación II, salvo con 2 opciones."
+        }
+      },
+      {
+        "name": "07. Orden atada II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Objetivo: criatura (intelecto animal, hasta segundo nivel) previamente atada con Atadura. Se le da una tarea sencilla que intentará completar durante la duración del hechizo. Al acabar, vuelve a su estado «sin atar»."
+        }
+      },
+      {
+        "name": "08. Invocación V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación II, salvo con cuatro opciones."
+        }
+      },
+      {
+        "name": "09. Atadura V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Atadura II, salvo ata hasta una criatura de 5.º nivel."
+        }
+      },
+      {
+        "name": "10. Invocación VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación II, salvo con seis opciones."
+        }
+      },
+      {
+        "name": "11. Investidura II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 familiar",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Objetivo: familiar sobre el que Investidura I se completó con éxito. Trasvasa más esencia del lanzador al familiar. Debe lanzarse una vez al día durante seis meses (2 h diarias). Sentidos del familiar hasta 1000 pies por nivel; lanzar a través del familiar hasta 200' por nivel; TA 11; +20 a BD respecto a la original; +30 a BO; ataque venenoso con su ataque normal; RR a tres cuartos del nivel del lanzador o el propio, el mayor; aspecto cada vez más grotesco. Si el familiar muere, el lanzador pierde la mitad de PP y Golpes durante 1-5 semanas."
+        }
+      },
+      {
+        "name": "12. Invocación X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación II, salvo con nueve opciones."
+        }
+      },
+      {
+        "name": "13. Atadura X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Atadura II, salvo ata hasta criatura de 10.º nivel."
+        }
+      },
+      {
+        "name": "14. Invocación XII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación II, salvo con once opciones."
+        }
+      },
+      {
+        "name": "15. Orden atada X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Orden atada II, salvo afecta hasta criatura de 10.º nivel."
+        }
+      },
+      {
+        "name": "16. Invocación XV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación II, salvo con catorce opciones."
+        }
+      },
+      {
+        "name": "17. Atadura XV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Atadura II, salvo ata a criatura de 15.º nivel."
+        }
+      },
+      {
+        "name": "18. Invocación XVII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación II, salvo con dieciséis opciones."
+        }
+      },
+      {
+        "name": "19. Investidura III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 familiar",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Investidura II, salvo el familiar queda aún más fundido con el lanzador. Tras Investidura II, lanzar una vez al día durante un año (2 h diarias). Sentidos a 1 milla por nivel; hechizos a través del familiar hasta 1000' por nivel; TA 12; +30 BD; +50 BO; aliento menor como arma además de otros ataques; RR al nivel del lanzador o al propio, el mayor; forma totalmente grotesca. Si muere el familiar, el lanzador pierde tres cuartas partes de PP y Golpes durante 1-5 semanas."
+        }
+      },
+      {
+        "name": "20. Gran invocación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Invocación II, salvo con diecinueve opciones."
+        }
+      },
+      {
+        "name": "25. Atadura verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 criatura",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Atadura II, salvo ata a cualquier criatura."
+        }
+      },
+      {
+        "name": "30. Orden atada verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Orden atada II, salvo afecta a criatura de cualquier nivel."
+        }
+      },
+      {
+        "name": "50. Maestría de invocación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "1 asalto/niv",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Gran invocación, salvo el efecto se resuelve en hasta 1 asalto por nivel del lanzador (concentración), debe permanecer a 10' del foco cada asalto y, si falla la concentración, el hechizo termina antes. Por lo demás, área, opciones y criaturas como Gran invocación (Esencia Malvada 10.2)."
+        }
+      }
+    ]
+  }
+}

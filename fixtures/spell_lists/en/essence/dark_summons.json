@@ -1,0 +1,411 @@
+{
+  "name": "Dark Summons",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Evil Essence 10.2 - Dark Summons. Familiars, investiture, summoning with stacking options, binding, and ordered bound creatures. See Section 15.24 (p. 101) for evil spell lists.",
+    "spells": [
+      {
+        "name": "01. Familiar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 animal",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can attune himself to a small animal to serve as his familiar. The caster must obtain the animal through normal means (can be no more than 10% of the caster's own mass) and cast this spell on the animal once per day for one week (concentrating for 2 hours each day). The caster can then control the familiar and view the world through its senses by concentrating on it (though the familiar must be within 50' per level). If the animal is killed, the caster will have a -25 modification to all actions for 2 weeks."
+        }
+      },
+      {
+        "name": "02. Summons I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can instantly summon a first level creature that he can control. If the creature can understand the caster's communication (e.g., Animal Tongues), the creature can be controlled by normal communication. Otherwise, control is maintained through concentration of the caster. The general type of creature can be specified by the caster, but exactly what creature is summoned should be determined by the GM (select from creatures commonly found in the area where the spell is cast). If the creature was summoned to be used for a task that is not dangerous to the creature, the duration for this spell is 10 minutes per level of the caster. However, if the creature is ever put into a dangerous situation, the duration drops to 1 round per level of the caster."
+        }
+      },
+      {
+        "name": "03. Investiture I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 familiar",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "This spell is cast upon the caster's familiar. However, the familiar must be a type of animal that is usually associated with \"evil\" (e.g., a reptile, a bat, a raven, etc.). This spell transfers part of the caster's \"life\" into the familiar. This spell must be cast upon the familiar every day for a month (concentrating for 2 hours a day). The familiar retains all of its old abilities and it gains special abilities. The familiar will become a malformed version of the animal it once was (more grotesque). The caster can view the world through the senses of the creature at a range of 250' per level. The creature's AT changes to 4, and it gains a special bonus of +10 to its DB and OB. The caster can cast spells through the familiar as if the caster were exactly where the familiar is (this includes casting \"self\" spells on the familiar—the range for this ability is 50' per level). The creature will make all of its RRs at half the caster's level (or its own level, whichever is higher). The familiar can be sent on long range missions relating to the caster's nature. If the familiar dies, the caster will lose 25% of his Power Points and Hits for 1-5 weeks (can't be regained by any means until time has passed)."
+        }
+      },
+      {
+        "name": "04. Summons II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons I, except caster can also choose one of the following options: a) the level of the summoned creature is increased by one, b) an extra first level is summoned, or c) the duration can be doubled."
+        }
+      },
+      {
+        "name": "05. Binding II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can bind one creature (animal intelligence, up to second level). The bound creature must follow the commands of the caster (the caster does not have to concentrate). The caster can only have as many creatures bound as he has levels. If the creature is ever outside the range of the spell, the spell is dispelled."
+        }
+      },
+      {
+        "name": "06. Summons III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons II, except it has 2 options."
+        }
+      },
+      {
+        "name": "07. Order Bound II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target of this spell is any creature (animal intelligence, up to second level) that has been bound (with a Binding spell). The caster can give a simple, straight-forward task for the creature to attempt to complete. The creature will do its best to complete the task (within the duration of the spell). When the duration of this spell expires, the creature returns to its \"unbound\" status."
+        }
+      },
+      {
+        "name": "08. Summons V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons II, except it has four options."
+        }
+      },
+      {
+        "name": "09. Binding V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Binding II, except binds up to a 5th lvl creature."
+        }
+      },
+      {
+        "name": "10. Summons VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons II, except it has six options."
+        }
+      },
+      {
+        "name": "11. Investiture II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 familiar",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target of this spell is a familiar that has had Investiture I successfully cast upon it. This spell puts more of the caster into his familiar. The caster must cast this spell once per day for six months (for 2 hours each day). The caster can use the familiar's senses up to 1,000 feet per level away; can cast spells through the familiar up to 200' per level away; the creature's AT improves to 11; it gets a DB bonus of +20 (to the original DB); it gets an OB bonus of +30 (to the OB); gains a poisonous attack that is used in conjunction with its normal attack (bite, sting, etc.); makes RRs at three quarters the caster's level or its own level (whichever is higher); its appearance continues to become more grotesque (assuming the nature of the caster—it may not be recognized as the animal-type that it once was). If the familiar dies, the caster loses half his Power Points and Hits for 1-5 weeks."
+        }
+      },
+      {
+        "name": "12. Summons X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons II, except it has nine options."
+        }
+      },
+      {
+        "name": "13. Binding X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Binding II, except binds up to a 10th lvl creature."
+        }
+      },
+      {
+        "name": "14. Summons XII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons II, except it has eleven options."
+        }
+      },
+      {
+        "name": "15. Order Bound X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Order Bound II, except affects up to a 10th lvl creature."
+        }
+      },
+      {
+        "name": "16. Summons XV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons II, except it has fourteen options."
+        }
+      },
+      {
+        "name": "17. Binding XV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Binding II, except binds a 15th level creature."
+        }
+      },
+      {
+        "name": "18. Summons XVII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons II, except it has sixteen options."
+        }
+      },
+      {
+        "name": "19. Investiture III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 familiar",
+          "duration": "P",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Investiture II, except familiar becomes even more part of the caster. Investiture II must already have been completed, then the caster must cast this spell once per day for one year (for 2 hours each day). Caster can use the familiar's senses up to 1 mile per level away; can cast spells through the familiar up to 1,000' per level away; the creature's AT improves to 12; it gets a DB bonus of +30 (to the original DB); it gets an OB bonus of +50 (to the original OB); gains a minor breath weapon attack (in addition to its normal attacks); makes its RRs at the caster's level (or its own, whichever is higher); its form becomes completely grotesque and could not be associated with the animal it once was. However, if the familiar dies, the caster loses three quarters of his Power Points and Hits for 1-5 weeks."
+        }
+      },
+      {
+        "name": "20. Lord Summons",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Summons II, except has nineteen options."
+        }
+      },
+      {
+        "name": "25. Binding True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 creature",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Binding II, except binds any creature."
+        }
+      },
+      {
+        "name": "30. Order Bound True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Order Bound II, except affects any level creature."
+        }
+      },
+      {
+        "name": "50. Summon Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Lord Summons, except the effect is completed over up to 1 round per level of the caster (concentration), the caster must stay within 10' of the casting focus each round, and if concentration fails the spell ends early. Otherwise resolve area, options, and creatures as Lord Summons (Evil Essence 10.2)."
+        }
+      }
+    ]
+  }
+}

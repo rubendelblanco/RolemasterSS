@@ -1,0 +1,377 @@
+{
+  "name": "Disrupción de la materia",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "essence",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Esencia Malvada 10.5 - Disrupción de la materia. Hechizos para vaporizar hielo, reducir tierra y piedra a polvo, agravar grietas y desintegrar materia inorgánica. Ver Spell Law sección 15.24 (p. 101) sobre listas malvadas.",
+    "spells": [
+      {
+        "name": "01. Fundir hielo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "100 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Convierte 100 pies cúbicos de hielo en vapor de agua."
+        }
+      },
+      {
+        "name": "02. Tierra a polvo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "10 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Convierte 10 pies cúbicos de tierra en polvo fino."
+        }
+      },
+      {
+        "name": "03. Llamada de grietas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1000 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquier grieta o defecto previo en una sección de cualquier material normal de 1000 pies cúbicos (10'×10'×10') se extiende hasta su límite. Ver sección 15.7 (p. 97)."
+        }
+      },
+      {
+        "name": "04. Piedra a polvo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Convierte 10 pies cúbicos de piedra en polvo fino."
+        }
+      },
+      {
+        "name": "05. Fundir hielo X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1000 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fundir hielo I, salvo que afecta hasta 1000 pies cúbicos."
+        }
+      },
+      {
+        "name": "06. Disrupción I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 pie cúbico",
+          "duration": "P",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Convierte 1 pie cúbico de cualquier material inorgánico en polvo fino (debe ser un solo objeto)."
+        }
+      },
+      {
+        "name": "07. Tierra a polvo X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "100 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Tierra a polvo I, salvo que afecta hasta 100 pies cúbicos."
+        }
+      },
+      {
+        "name": "08. Añicos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 pie cúbico",
+          "duration": "P",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Puede hacer añicos un objeto inorgánico de hasta 1 pie cúbico de volumen; todos dentro de 5' reciben un crítico de impacto 'A', quien lo sostiene recibe un 'C'. Los objetos metálicos obtienen un modificador especial de +30 a la RR."
+        }
+      },
+      {
+        "name": "09. Piedra a polvo X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "100 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Piedra a polvo I, salvo que afecta hasta 100 pies cúbicos."
+        }
+      },
+      {
+        "name": "10. Fundir hielo verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "100 pies cúbicos/niv",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fundir hielo I, salvo que afecta hasta 100 pies cúbicos por nivel del lanzador."
+        }
+      },
+      {
+        "name": "11. Disrupción X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10 pies cúbicos",
+          "duration": "P",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disrupción I, salvo que afecta hasta 10 pies cúbicos."
+        }
+      },
+      {
+        "name": "12. Tierra a polvo verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1000 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Tierra a polvo I, salvo que afecta hasta 1000 pies cúbicos."
+        }
+      },
+      {
+        "name": "13. Causar grietas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "100 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace aparecer grietas en hasta 100 pies cúbicos de material inorgánico no metálico."
+        }
+      },
+      {
+        "name": "14. Piedra a polvo verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1000 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Piedra a polvo I, salvo que afecta 1000 pies cúbicos."
+        }
+      },
+      {
+        "name": "15. Desintegración I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 pie cúbico",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Desintegra por completo 1 pie cúbico de material inorgánico."
+        }
+      },
+      {
+        "name": "17. Disrupción de materia lejana",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "variable",
+          "duration": "P",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como cualquier hechizo individual (de nivel 10 o menor) de esta lista, salvo con alcance de 300'."
+        }
+      },
+      {
+        "name": "19. Desintegración X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10 pies cúbicos",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desintegración I, salvo que afecta 10 pies cúbicos."
+        }
+      },
+      {
+        "name": "20. Tierra a polvo en masa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "100 pies cúbicos/niv",
+          "duration": "P",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Tierra a polvo I, salvo que afecta hasta 100 pies cúbicos por nivel del lanzador."
+        }
+      },
+      {
+        "name": "25. Piedra a polvo en masa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "100 pies cúbicos/niv",
+          "duration": "P",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Piedra a polvo I, salvo que afecta hasta 100 pies cúbicos por nivel del lanzador."
+        }
+      },
+      {
+        "name": "30. Disrupción en masa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "variable",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disrupción I, salvo que pueden afectarse tantos objetos (de hasta 1 pie cúbico cada uno) como el nivel del lanzador, y el alcance es 100'."
+        }
+      },
+      {
+        "name": "50. Desintegración verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "100 pies cúbicos",
+          "duration": "P",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desintegración I, salvo que afecta objetos de hasta 100 pies cúbicos y el alcance es 300'."
+        }
+      }
+    ]
+  }
+}
