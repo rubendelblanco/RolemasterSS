@@ -1,28 +1,51 @@
-<div class="rmss-critical-chat-card" style="border: 1px solid #555; border-radius: 8px; padding: 8px 10px; background: rgba(0,0,0,0.25); box-shadow: 0 0 6px rgba(0,0,0,0.4);">
+<div class="rmss-critical-chat-card" style="border: 1px solid #444; margin-bottom: 10px; border-radius: 8px; padding: 10px; background: rgba(0,0,0,0.3); box-shadow: 0 0 6px rgba(0,0,0,0.5); font-family: 'Signika', sans-serif;">
 
-    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-        <img src="{{attacker.img}}" alt="{{attacker.name}}" width="48" height="48" style="border-radius: 6px; border: 1px solid #333;">
-        <div>
-            <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000;">
-                {{attacker.name}} {{ localize "rmss.combat.attacks" }}
-            </h4>
-            <div style="font-size: 0.9em; color: #fff;">
-                {{damageStr}}
-            </div>
+    <div style="text-align: center; color: #ffd700; font-size: 1.15em; font-weight: bold; text-shadow: 0 0 4px #000; margin-bottom: 8px;">
+        {{localize "rmss.combat.critical_roll_banner"}}
+    </div>
+
+    {{#if targetDisplay}}
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+        <div style="text-align: center;">
+            <img title="{{attacker.name}}" src="{{attacker.img}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #666;">
+            <div style="font-size: 1.2em; color: #fff;">{{attacker.name}}</div>
         </div>
+        <div style="font-weight: bold; font-size: 1.1em; color: #ffcc00; text-shadow: 0 0 6px #000;">VS</div>
+        <div style="text-align: center;">
+            <img title="{{targetDisplay.name}}" src="{{targetDisplay.img}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #666;">
+            <div style="font-size: 1.2em; color: #fff;">{{targetDisplay.name}}</div>
+        </div>
+    </div>
+    {{else}}
+    <div style="display: flex; justify-content: center; margin-bottom: 8px;">
+        <div style="text-align: center;">
+            <img title="{{attacker.name}}" src="{{attacker.img}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #666;">
+            <div style="font-size: 1.2em; color: #fff;">{{attacker.name}}</div>
+        </div>
+    </div>
+    {{/if}}
+
+    <div style="text-align: center; color: #fff; font-size: 1.05em; line-height: 1.4;">
+        {{damageStr}}
     </div>
 
     {{#if isNullResult}}
-        <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
+        <hr style="border: none; border-top: 1px solid #333; margin: 8px 0;">
         <p style="text-align: center; margin: 0; color: #fff; font-style: italic;">
             {{localize "rmss.combat.attack_no_result"}} 😢
         </p>
+    {{else if hpDamageOnly}}
+        <hr style="border: none; border-top: 1px solid #333; margin: 8px 0;">
+        <p style="text-align: center; margin: 0; color: #cfe8ff; font-size: 0.95em;">
+            {{hpDamageOnlyLine}}
+        </p>
     {{else if criticals.length}}
-        <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
+        <hr style="border: none; border-top: 1px solid #333; margin: 8px 0;">
 
         <div class="rmss-chat-criticals-list" style="display: flex; flex-direction: column; gap: 8px; align-items: stretch;">
 
             {{#each criticals}}
+            <div class="rmss-crit-slot-host">
                 <button class="chat-critical-roll"
                         type="button"
                         data-crit-slot="{{@index}}"
@@ -37,7 +60,7 @@
                         {{#if effectWeaponPair.extraCritType}}data-effect-weapon-extra-crit-type="{{effectWeaponPair.extraCritType}}"{{/if}}
                         {{#if effectWeaponPair}}data-effect-weapon-roll-mod="{{effectWeaponPair.ewRollModifier}}"{{/if}}
                         {{#if effectWeaponPair.superiorEChain}}data-effect-weapon-superior-e-chain="1"{{/if}}
-                        {{#if ../target}}data-target-id="{{../target.id}}"{{/if}}
+                        {{#if ../targetDisplay}}data-target-id="{{../targetDisplay.id}}"{{/if}}
                         {{#if ../weaponItemId}}data-weapon-item-id="{{../weaponItemId}}"{{/if}}>
                     <div class="chat-critical-roll-inner">
                         <div class="chat-critical-roll-main">
@@ -61,10 +84,10 @@
                         {{/if}}
                     </div>
                 </button>
+            </div>
             {{/each}}
 
         </div>
     {{/if}}
 
 </div>
-

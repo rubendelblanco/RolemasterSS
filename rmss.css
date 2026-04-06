@@ -1900,34 +1900,49 @@ tr.container-row.over-capacity {
     color: #ffd;
 }
 
-/* GM: one-shot action to allow resolving criticals on this message again */
-.rmss-crit-gm-reroll-wrap {
-    margin-top: 8px;
-    padding: 6px 8px;
-    background: rgba(0, 40, 80, 0.35);
-    border-radius: 6px;
-    border: 1px solid #4a7a9a;
-    font-size: 0.85em;
-    color: #cde;
-}
-.rmss-crit-gm-unlock-btn {
-    display: block;
-    width: 100%;
-    margin: 0;
-    padding: 8px 10px;
+/* Local-only state after clicking “Tirar crítico” (no message flags) */
+.rmss-crit-slot-host .rmss-crit-pending {
     text-align: center;
+    padding: 10px 8px;
+    color: #bbb;
     font-size: 0.95em;
-    font-weight: 600;
-    color: #e8f4ff;
-    background: linear-gradient(180deg, #2a5a8a, #1a4060);
-    border: 1px solid #5a9aca;
-    border-radius: 6px;
-    cursor: pointer;
-    line-height: 1.35;
+    font-style: italic;
 }
-.rmss-crit-gm-unlock-btn:hover {
-    background: linear-gradient(180deg, #3a6a9a, #2a5070);
+
+.rmss-crit-done {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 8px 6px;
+    text-align: center;
+}
+
+.rmss-crit-rolled-msg {
+    color: #58a6ff;
+    font-weight: 600;
+    font-size: 0.95em;
+    background-color: black;
+    border-radius: 8px;
+}
+
+button.rmss-crit-reenable-local {
+    display: inline;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 0.88em;
     color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
+    width: auto;
+    align-self: center;
+}
+
+button.rmss-crit-reenable-local:hover {
+    color: #bdf;
 }
 
 /* ================================

@@ -268,6 +268,12 @@ export default class BaseElementalSpellService {
                         await ExperienceManager.applyExperience(actor, criticalResult.damage);
                     }
                 }
+                await RMSSWeaponCriticalManager.getHpOnlyDamageMessage(
+                    attackResult.damage,
+                    criticalResult,
+                    actor,
+                    target
+                );
                 continue;
             }
 

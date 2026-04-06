@@ -1,72 +1,83 @@
 // Listen for click events on chat buttons
 import { RMSSWeaponCriticalManager } from "../combat/rmss_weapon_critical_manager.js";
-import { RMSSCombat } from "../combat/rmss_combat.js";
 import { socket } from "../../rmss.js";
-import {
-    getChatMessageFromButton,
-    applyCriticalRollChatUI,
-    setupCriticalRollGmReroll,
-    registerCriticalRollChatMessageFollowUp,
-    beginCriticalRollClickLock,
-    endCriticalRollClickLock,
-    clearCriticalRollPending,
-    mergeCriticalSpentSlotFlag,
-    CRITICAL_ROLL_PENDING_ATTR
-} from "./critical_roll_chat_ui.js";
 
-registerCriticalRollChatMessageFollowUp();
+/** Same message+slot cannot start two critical flows before the first await (disabled alone is not enough). */
+const CRITICAL_ROLL_IN_FLIGHT = new Set();
 
-Hooks.on("renderChatMessage", (message, html, data) => {
-    // Attacker owner or GM (reroll UI); runs outside combat too (chat/hooks always loads)
-    html.find(".chat-critical-roll").each(function () {
-        const attackerId = this.dataset.attacker;
-        const actor = game.actors.get(attackerId);
-        const isOwner = actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
-        if (!isOwner && !game.user.isGM) {
-            this.remove();
-        }
-    });
+/** @param {HTMLElement} button */
+function criticalRollLockKey(button) {
+    const row = button.closest(".message");
+    const mid = row?.dataset?.messageId ?? "";
+    const slot = button.dataset.critSlot ?? "0";
+    if (mid) return `${mid}:${slot}`;
+    if (!button.dataset.rmssCritLockId) button.dataset.rmssCritLockId = foundry.utils.randomID();
+    return `orphan:${button.dataset.rmssCritLockId}`;
+}
 
-    if (html.find(".chat-critical-roll").length) {
-        applyCriticalRollChatUI(message);
-        setupCriticalRollGmReroll(message, html);
+/** @returns {string|null} key if acquired */
+function beginCriticalRollLock(button) {
+    const key = criticalRollLockKey(button);
+    if (CRITICAL_ROLL_IN_FLIGHT.has(key)) return null;
+    CRITICAL_ROLL_IN_FLIGHT.add(key);
+    button.classList.add("rmss-critical-roll-busy");
+    return key;
+}
+
+/** @param {string|null|undefined} lockKey */
+function endCriticalRollLock(button, lockKey) {
+    if (lockKey) CRITICAL_ROLL_IN_FLIGHT.delete(lockKey);
+    if (button?.classList) button.classList.remove("rmss-critical-roll-busy");
+}
+
+/**
+ * Restore critical button HTML and re-attach click handler (local DOM only).
+ * @param {HTMLElement} host
+ * @param {string} backupHtml
+ */
+function restoreCriticalButtonInHost(host, backupHtml) {
+    host.innerHTML = backupHtml;
+    const btn = host.querySelector(".chat-critical-roll");
+    if (btn) {
+        btn.classList.remove("rmss-critical-roll-busy");
+        $(btn).off(CRIT_CLICK_NS).on(CRIT_CLICK_NS, onCriticalRollClick);
+    }
+}
+
+const CRIT_CLICK_NS = "click.rmssCriticalRoll";
+
+/**
+ * @param {JQuery.Event} ev
+ */
+async function onCriticalRollClick(ev) {
+    const button = ev.currentTarget;
+
+    if (button.disabled) {
+        ev.preventDefault();
+        return;
     }
 
-    // One handler per button: without .off(), each renderChatMessage stacks listeners (async / GM).
-    const CRIT_CLICK_NS = "click.rmssCriticalRoll";
-    html.find(".chat-critical-roll").off(CRIT_CLICK_NS).on(CRIT_CLICK_NS, async (ev) => {
-        const button = ev.currentTarget;
+    ev.preventDefault();
+    ev.stopImmediatePropagation();
 
-        if (button.disabled) {
-            ev.preventDefault();
-            return;
-        }
+    const host = button.closest(".rmss-crit-slot-host");
+    if (!host) {
+        ui.notifications.warn("RMSS: missing .rmss-crit-slot-host (old chat message?).");
+        return;
+    }
 
-        const lockKey = beginCriticalRollClickLock(button);
-        if (lockKey == null) {
-            ev.preventDefault();
-            ev.stopImmediatePropagation();
-            return;
-        }
+    // Snapshot before lock: beginCriticalRollLock adds rmss-critical-roll-busy, which must not be in the restore HTML.
+    const backupHtml = host.innerHTML;
 
-        ev.preventDefault();
-        ev.stopImmediatePropagation();
+    const lockKey = beginCriticalRollLock(button);
+    if (lockKey == null) {
+        return;
+    }
+    host.innerHTML = `<div class="rmss-crit-pending">${game.i18n.localize("rmss.combat.critical_resolving")}</div>`;
 
-        const originalContent = button.innerHTML;
-        const msg = getChatMessageFromButton(button);
-        // Stops applyCriticalRollChatUI(message) on re-render from clearing disabled while GM dialog is open
-        button.dataset[CRITICAL_ROLL_PENDING_ATTR] = "1";
-
-        try {
-        button.disabled = true;
-        button.style.opacity = "0.65";
-        button.style.cursor = "wait";
-        button.innerHTML = `<div class="chat-critical-roll-inner"><div class="chat-critical-roll-main" style="justify-content:center;">
-            <span style="font-size:1.1em;">⏱️</span>
-            <span>${game.i18n.localize("rmss.combat.awaiting_gm_confirmation")}</span>
-        </div></div>`;
-
-        const targetId = ev.currentTarget.dataset.targetId;
+    let success = false;
+    try {
+        const targetId = button.dataset.targetId;
         let token = targetId ? canvas.scene?.tokens?.get(targetId) : null;
         if (!token) {
             const targets = Array.from(game.user.targets);
@@ -74,25 +85,20 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         }
         if (!token) {
             ui.notifications.warn(game.i18n.localize("rmss.combat.select_target") || "Please select a target.");
-            clearCriticalRollPending(button);
-            button.innerHTML = originalContent;
-            button.disabled = false;
-            button.style.opacity = "1";
-            button.style.cursor = "pointer";
             return;
         }
-        const damage = ev.currentTarget.dataset.damage;
-        const severity = ev.currentTarget.dataset.severity;
-        const critType = ev.currentTarget.dataset.crittype;
-        const attackerId = ev.currentTarget.dataset.attacker;
-        const attackerUuid = ev.currentTarget.dataset.attackerUuid;
-        const mainSev = ev.currentTarget.dataset.mainSeverity;
-        const ewDup = ev.currentTarget.dataset.effectWeaponDup === "1";
-        const ewSecond = ev.currentTarget.dataset.effectWeaponSecond;
-        const ewExtraCrit = ev.currentTarget.dataset.effectWeaponExtraCritType;
-        const ewRollModRaw = ev.currentTarget.dataset.effectWeaponRollMod;
+        const damage = button.dataset.damage;
+        const severity = button.dataset.severity;
+        const critType = button.dataset.crittype;
+        const attackerId = button.dataset.attacker;
+        const attackerUuid = button.dataset.attackerUuid;
+        const mainSev = button.dataset.mainSeverity;
+        const ewDup = button.dataset.effectWeaponDup === "1";
+        const ewSecond = button.dataset.effectWeaponSecond;
+        const ewExtraCrit = button.dataset.effectWeaponExtraCritType;
+        const ewRollModRaw = button.dataset.effectWeaponRollMod;
         const ewRollModifier = ewRollModRaw !== undefined && ewRollModRaw !== "" ? parseInt(ewRollModRaw, 10) : 0;
-        const ewSuperiorEChain = ev.currentTarget.dataset.effectWeaponSuperiorEChain === "1";
+        const ewSuperiorEChain = button.dataset.effectWeaponSuperiorEChain === "1";
         const sendOpts = {};
         if (mainSev !== undefined && mainSev !== "") sendOpts.mainSeverity = mainSev;
         if (ewDup || (ewSecond !== undefined && ewSecond !== "") || (ewExtraCrit !== undefined && ewExtraCrit !== "")) {
@@ -106,8 +112,8 @@ Hooks.on("renderChatMessage", (message, html, data) => {
             };
         }
 
+        const weaponItemId = button.dataset.weaponItemId;
         let criticalResult;
-        const weaponItemId = ev.currentTarget.dataset.weaponItemId;
         try {
             criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(
                 token,
@@ -123,40 +129,10 @@ Hooks.on("renderChatMessage", (message, html, data) => {
             );
         } catch (err) {
             console.error("[RMSS] sendCriticalMessage", err);
-            clearCriticalRollPending(button);
-            button.innerHTML = originalContent;
-            button.disabled = false;
-            button.style.opacity = "1";
-            button.style.cursor = "pointer";
             return;
         }
 
-        if (!criticalResult) {
-            clearCriticalRollPending(button);
-            button.innerHTML = originalContent;
-            button.disabled = false;
-            button.style.opacity = "1";
-            button.style.cursor = "pointer";
-            return;
-        }
-
-        let spentSlotsAfter = null;
-        if (msg) {
-            const slot = button.dataset.critSlot ?? "0";
-            spentSlotsAfter = await mergeCriticalSpentSlotFlag(msg, slot);
-        }
-
-        button.innerHTML = originalContent;
-        clearCriticalRollPending(button);
-        if (msg) {
-            applyCriticalRollChatUI(msg, {
-                spentSlots: spentSlotsAfter ?? (msg.getFlag("rmss", "criticalSpentSlots") || {}),
-                unlocked: false
-            });
-            const $li = $(button.closest(".message"));
-            const $content = $li.find(".message-content");
-            if ($content.length) setupCriticalRollGmReroll(msg, $content);
-        }
+        if (!criticalResult) return;
 
         await socket.executeAsGM("applyCriticalToEnemy", criticalResult, token.id, attackerId, true);
         let follow = criticalResult._rmssEffectWeaponFollowUp;
@@ -164,10 +140,52 @@ Hooks.on("renderChatMessage", (message, html, data) => {
             await socket.executeAsGM("applyCriticalToEnemy", follow, token.id, attackerId, true);
             follow = follow._rmssEffectWeaponFollowUp;
         }
-        } finally {
-            endCriticalRollClickLock(button, lockKey);
+
+        success = true;
+
+        const rolled = game.i18n.localize("rmss.combat.critical_rolled");
+        const again = game.i18n.localize("rmss.combat.critical_roll_again_link");
+        host.innerHTML = `
+<div class="rmss-crit-done">
+  <div class="rmss-crit-rolled-msg">${rolled}</div>
+  <button type="button" class="rmss-crit-reenable-local">${again}</button>
+</div>`;
+        const reenableBtn = host.querySelector(".rmss-crit-reenable-local");
+        if (reenableBtn) {
+            reenableBtn.addEventListener(
+                "click",
+                (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    restoreCriticalButtonInHost(host, backupHtml);
+                },
+                { once: true }
+            );
+        }
+    } catch (err) {
+        console.error("[RMSS] critical roll pipeline", err);
+    } finally {
+        endCriticalRollLock(button, lockKey);
+        if (!success && host.querySelector(".rmss-crit-pending")) {
+            restoreCriticalButtonInHost(host, backupHtml);
+        }
+    }
+}
+
+Hooks.on("renderChatMessage", (message, html, data) => {
+    // Attacker owner or GM; runs outside combat too (chat/hooks always loads)
+    html.find(".chat-critical-roll").each(function () {
+        const attackerId = this.dataset.attacker;
+        const actor = game.actors.get(attackerId);
+        const isOwner = actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+        if (!isOwner && !game.user.isGM) {
+            const h = this.closest(".rmss-crit-slot-host");
+            if (h) h.remove();
+            else this.remove();
         }
     });
+
+    html.find(".chat-critical-roll").off(CRIT_CLICK_NS).on(CRIT_CLICK_NS, onCriticalRollClick);
 
     html.find('.click-to-toggle').on('click', (event) => {
         const breakdown = html.find('.breakdown-details');

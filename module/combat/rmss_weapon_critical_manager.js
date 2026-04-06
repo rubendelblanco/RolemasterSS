@@ -1027,6 +1027,87 @@ export class RMSSWeaponCriticalManager {
         });
     }
 
+    /**
+     * @param {Actor|null} actor
+     * @returns {{ id: string, name: string, img: string, uuid: string }}
+     */
+    static attackerDisplayFromActor(actor) {
+        if (!actor) return { id: "", name: "?", img: "", uuid: "" };
+        return {
+            id: actor.id,
+            uuid: actor.uuid ?? "",
+            name: actor.name,
+            img: actor.img || ""
+        };
+    }
+
+    /**
+     * Token id / name / portrait for critical chat cards (attack table target).
+     * @param {Actor|Token|TokenDocument|null} target
+     * @returns {{ id: string, name: string, img: string }|null}
+     */
+    static normalizeCombatChatTarget(target) {
+        if (!target) return null;
+        if (target instanceof Actor) {
+            return { id: target.id, name: target.name, img: target.img || "" };
+        }
+        const doc = target.document;
+        if (doc && doc.actor !== undefined && doc.id != null) {
+            const actor = doc.actor;
+            const name = doc.name ?? actor?.name ?? "?";
+            // Chat cards use actor sheet portrait (same as attack-result), not token ring art
+            const img = (actor?.img || doc.texture?.src || "").trim();
+            return { id: doc.id, name, img };
+        }
+        if (target.actor !== undefined && target.id != null && target.items === undefined) {
+            const actor = target.actor;
+            const name = target.name ?? actor?.name ?? "?";
+            const img = (actor?.img || target.texture?.src || "").trim();
+            return { id: target.id, name, img };
+        }
+        return null;
+    }
+
+    static async _renderCriticalChatCard(templateData) {
+        return renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", templateData);
+    }
+
+    /**
+     * Chat card for hits that only apply HP (no letter critical / no roll buttons).
+     * @param {string|number} damageStr - Attack table damage cell (display)
+     * @param {{ damage: *, criticals?: unknown[] }} criticalResult
+     * @param {Actor} attacker
+     * @param {Actor|Token|TokenDocument|null} target
+     */
+    static async getHpOnlyDamageMessage(damageStr, criticalResult, attacker, target = null) {
+        const damageNum = Number(criticalResult?.damage);
+        if (!Number.isFinite(damageNum) || damageNum <= 0) return;
+
+        const targetDisplay = RMSSWeaponCriticalManager.normalizeCombatChatTarget(target);
+        const attackerDisplay = RMSSWeaponCriticalManager.attackerDisplayFromActor(attacker);
+        const targetName = targetDisplay?.name ?? "";
+        const hpDamageOnlyLine = game.i18n.format("rmss.combat.hp_damage_only_line", {
+            damage: damageNum,
+            targetName
+        });
+        const htmlContent = await RMSSWeaponCriticalManager._renderCriticalChatCard({
+            damageStr,
+            damage: criticalResult.damage,
+            criticals: [],
+            attacker: attackerDisplay,
+            targetDisplay,
+            isNullResult: false,
+            hpDamageOnly: true,
+            hpDamageOnlyLine,
+            mainSeverity: null,
+            weaponItemId: null
+        });
+        await ChatMessage.create(withPublicRollMode({
+            content: htmlContent,
+            speaker: "Game Master"
+        }));
+    }
+
     static async getCriticalMessage(damage, criticalResult, attacker, target = null, isNullResult = false, weapon = null) {
         // Only include criticals with real severity (A–E…); exclude synthetic HP-only rows with no critical
         const criticalsWithSeverity = (criticalResult.criticals || []).filter(
@@ -1035,13 +1116,17 @@ export class RMSSWeaponCriticalManager {
         const mainSeverity =
             criticalResult.mainSeverity ?? criticalsWithSeverity[0]?.severity ?? null;
         const weaponItemId = weapon?.id ?? weapon?._id ?? null;
-        const htmlContent = await renderTemplate("systems/rmss/templates/chat/critical-roll-button.hbs", {
+        const targetDisplay = RMSSWeaponCriticalManager.normalizeCombatChatTarget(target);
+        const attackerDisplay = RMSSWeaponCriticalManager.attackerDisplayFromActor(attacker);
+        const htmlContent = await RMSSWeaponCriticalManager._renderCriticalChatCard({
             damageStr: damage,
             damage: criticalResult.damage,
             criticals: criticalsWithSeverity,
-            attacker: attacker,
-            target: target,
+            attacker: attackerDisplay,
+            targetDisplay,
             isNullResult: isNullResult,
+            hpDamageOnly: false,
+            hpDamageOnlyLine: "",
             mainSeverity,
             weaponItemId
         });

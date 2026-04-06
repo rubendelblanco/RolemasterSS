@@ -113,8 +113,7 @@ export class RMSSWeaponSkillManager {
 
         const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
 
-        // HP-only hit (no letter critical): apply damage immediately. Do not post a critical card with no buttons
-        // (previously a synthetic severity-null row skipped the empty-critics branch and never applied hits).
+        // HP-only hit (no letter critical): apply damage immediately, then post the same chat card layout without roll buttons.
         if (!RMSSWeaponCriticalManager.hasResolvableCriticalForChat(criticalResult)) {
             if (!isNullResult) {
                 const damageToApply = parseInt(criticalResult.damage);
@@ -126,10 +125,18 @@ export class RMSSWeaponSkillManager {
                     }
                 }
             }
+            if (!isNullResult) {
+                await RMSSWeaponCriticalManager.getHpOnlyDamageMessage(
+                    attackResult.damage,
+                    criticalResult,
+                    actor,
+                    defenderToken ?? enemy
+                );
+            }
             return;
         }
 
-        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken, isNullResult, weapon);
+        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken ?? enemy, isNullResult, weapon);
     }
 
     /**
