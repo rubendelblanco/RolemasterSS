@@ -1904,7 +1904,7 @@ tr.container-row.over-capacity {
 .rmss-crit-slot-host .rmss-crit-pending {
     text-align: center;
     padding: 10px 8px;
-    color: #bbb;
+    color: #b1dcff;
     font-size: 0.95em;
     font-style: italic;
 }
