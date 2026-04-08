@@ -42,6 +42,11 @@
           {{equipable.system.unitCost}}
           {{/if}}</td>
         <td class="item-controls">
+          {{#if equipable.rmssShowItemMagicAction}}
+          <a class="item-control item-cast-magic" title="{{localize 'rmss.item.cast_magic_tooltip'}}" data-item-id="{{equipable._id}}">
+            <i class="fas {{#if equipable.rmssItemMagicIsPotion}}fa-flask{{else}}fa-wand-magic-sparkles{{/if}}"></i>
+          </a>
+          {{/if}}
           <a class="item-give" title="Give item" data-item-id="{{equipable._id}}"><i class="fas fa-hands-helping"></i></a>
           <a class="item-control item-edit" title="Edit Item" data-item-id="{{equipable._id}}"><i class="fas fa-edit"></i></a>
           <a class="item-control item-delete" title="Delete Item" data-item-id="{{equipable._id}}"><i class="fas fa-trash"></i></a>

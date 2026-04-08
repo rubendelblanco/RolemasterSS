@@ -2,7 +2,7 @@
 
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
-import ForceSpellService from "../../spells/services/force_spell_service.js";
+import { castEnchantmentFromItem } from "./cast_enchantment_from_item.js";
 import {
   buildEnchantmentList,
   buildSpellDataForStorage,
@@ -10,7 +10,6 @@ import {
   normalizeEnchantments,
   onClearPowerModifierProfession,
   resolveProfessionName,
-  resolveSpellForEnchantment,
   setupPowerModifierProfessionDropZones
 } from "./enchantment_utils.js";
 import {
@@ -425,53 +424,10 @@ export default class RMSSWeaponSheet extends ItemSheet {
   async _onUseEnchantment(event) {
     event.preventDefault();
     const index = parseInt(event.currentTarget.dataset.index, 10);
-    const enchantments = foundry.utils.duplicate(this.item.system.magic?.enchantments ?? []);
-    const enchantment = enchantments[index];
-    if (!enchantment) return;
-
     const actor = this.item.actor ?? this.item.parent;
-    if (!actor || !(actor instanceof Actor)) {
-      ui.notifications.warn(game.i18n.localize("rmss.item.enchantment_need_actor") || "Item must be owned by an actor to use enchantment.");
-      return;
-    }
-
-    const spellDoc = await resolveSpellForEnchantment(enchantment, actor);
-    if (!spellDoc || spellDoc.type !== "spell") {
-      ui.notifications.warn(game.i18n.localize("rmss.item.enchantment_spell_not_found") || "Spell not found.");
-      return;
-    }
-
-    const spellListName = enchantment.spellListName || spellDoc.name;
-    const spellListRealm = enchantment.realm || actor.system?.fixed_info?.realm || "essence";
-
-    const fromEnchantmentOpt = { consumePowerPoints: false, fromEnchantment: true, enchantmentAttackBonus: Number(enchantment.attackBonus) || 0 };
-    if (spellDoc.system?.instant) {
-      const InstantSpellService = (await import("../../spells/services/instant_spell_service.js")).default;
-      await InstantSpellService.castInstantSpell({ actor, spell: spellDoc, ...fromEnchantmentOpt });
-    } else if (spellDoc.system?.type === "BE") {
-      const BaseElementalSpellService = (await import("../../spells/services/base_elemental_spell_service.js")).default;
-      await BaseElementalSpellService.castBaseElementalSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
-    } else if (spellDoc.system?.type === "DE") {
-      const DirectedElementalSpellService = (await import("../../spells/services/directed_elemental_spell_service.js")).default;
-      await DirectedElementalSpellService.castDirectedElementalSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
-    } else {
-      await ForceSpellService.castForceSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
-    }
-
-    const usage = enchantment.usage ?? "passive";
-    if (usage === "single") {
-      enchantments.splice(index, 1);
-    } else if (usage === "daily") {
-      const r = Number(enchantment.usesRemaining) ?? Number(enchantment.usesPerDay) ?? 0;
-      enchantment.usesRemaining = Math.max(0, r - 1);
-      enchantments[index] = enchantment;
-    } else if (usage === "charged") {
-      const c = Number(enchantment.charges) ?? Number(enchantment.chargesMax) ?? 0;
-      enchantment.charges = Math.max(0, c - 1);
-      enchantments[index] = enchantment;
-    }
-    await this.item.update({ "system.magic.enchantments": enchantments });
-    this.render(false);
+    const { itemDeleted, applied } = await castEnchantmentFromItem(actor, this.item, index);
+    if (itemDeleted) this.close();
+    else if (applied) this.render(false);
   }
 
   async getOffensiveSkills() {

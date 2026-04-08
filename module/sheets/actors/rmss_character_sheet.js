@@ -1,4 +1,5 @@
 import ItemService from "../../actors/services/item_service.js";
+import { castEnchantmentFromItem, getUsableEnchantmentsForItem } from "../items/cast_enchantment_from_item.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
@@ -508,6 +509,7 @@ export default class RMSSCharacterSheet extends ActorSheet {
     _registerItemListeners(html) {
         html.find(".spell-favorite, .skill-favorite").click(ev => this._onItemFavoriteClick(ev));
         html.find(".item-give").click(ev => this._onItemGiveClick(ev));
+        html.find(".item-cast-magic").on("click", ev => this._onItemCastMagicClick(ev));
         html.find(".split-stack").click(ev => this._onItemSplitClick(ev));
         html.find(".wearable").click(ev => this._onItemWearableClick(ev));
         html.find(".spell-list-level").on("change", async (ev) => {
@@ -541,6 +543,79 @@ export default class RMSSCharacterSheet extends ActorSheet {
         const itemId = ev.currentTarget.dataset.itemId;
         const item = this.actor.items.get(itemId);
         if (item) await ItemService.giveItem(this.actor, item);
+    }
+
+    async _onItemCastMagicClick(ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        const itemId = ev.currentTarget.dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        if (!item) return;
+        const usable = getUsableEnchantmentsForItem(item);
+        if (usable.length === 0) {
+            ui.notifications.warn(game.i18n.localize("rmss.item.cast_magic_none_usable"));
+            return;
+        }
+
+        let didApply = false;
+        if (usable.length === 1) {
+            const result = await castEnchantmentFromItem(this.actor, item, usable[0].index);
+            didApply = !!result.applied;
+        } else {
+            didApply = await new Promise(resolve => {
+                const esc = s =>
+                    String(s)
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
+                        .replace(/"/g, "&quot;");
+                const placeholder = esc(game.i18n.localize("rmss.item.cast_magic_select_placeholder"));
+                const optionsHtml = usable
+                    .map(u => {
+                        const label = esc(`${u.spellLabel} (${u.usageLabel})`.slice(0, 200));
+                        return `<option value="${u.index}">${label}</option>`;
+                    })
+                    .join("");
+                new Dialog({
+                    title: game.i18n.localize("rmss.item.cast_magic_modal_title"),
+                    content: `<form>
+                        <p class="notes">${game.i18n.localize("rmss.item.cast_magic_modal_hint")}</p>
+                        <div class="form-group">
+                            <select name="rmss-enchantment" class="dialog-select" style="width:100%">
+                                <option value="">${placeholder}</option>
+                                ${optionsHtml}
+                            </select>
+                        </div>
+                    </form>`,
+                    buttons: {
+                        ok: {
+                            label: game.i18n.localize("rmss.item.cast_magic_accept"),
+                            icon: '<i class="fas fa-check"></i>',
+                            callback: async html => {
+                                const raw = html.find('[name="rmss-enchantment"]').val();
+                                if (raw === "" || raw === undefined) {
+                                    resolve(false);
+                                    return;
+                                }
+                                const enchantIndex = Number.parseInt(raw, 10);
+                                if (!Number.isInteger(enchantIndex)) {
+                                    resolve(false);
+                                    return;
+                                }
+                                const result = await castEnchantmentFromItem(this.actor, item, enchantIndex);
+                                resolve(!!result.applied);
+                            }
+                        },
+                        cancel: {
+                            label: game.i18n.localize("rmss.item.cast_magic_cancel"),
+                            callback: () => resolve(false)
+                        }
+                    },
+                    default: "ok"
+                }).render(true);
+            });
+        }
+        if (didApply) await this.render(false);
     }
 
     async _onItemSplitClick(ev) {

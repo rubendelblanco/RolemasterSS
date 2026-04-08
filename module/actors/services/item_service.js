@@ -1,4 +1,5 @@
 import { socket } from "../../../rmss.js";
+import { attachItemMagicActionFlags } from "../../sheets/items/cast_enchantment_from_item.js";
 import { ContainerHandler } from "../utils/container_handler.js";
 
 /**
@@ -331,6 +332,21 @@ export default class ItemService {
             if (na !== nb) return na - nb;
             return (a.name || "").localeCompare(b.name || "", game.i18n.lang);
         });
+
+        const attachMagicUi = (po) => {
+            if (po && typeof po === "object") attachItemMagicActionFlags(po);
+        };
+        for (const g of containers) {
+            attachMagicUi(g.container);
+            for (const c of g.contents) attachMagicUi(c);
+        }
+        for (const g of transportContainers) {
+            attachMagicUi(g.container);
+            for (const c of g.contents) attachMagicUi(c);
+        }
+        for (const i of looseGear) attachMagicUi(i);
+        for (const w of weapons) attachMagicUi(w);
+        for (const a of armor) attachMagicUi(a);
 
         // Attach everything to context
         return Object.assign(context, {

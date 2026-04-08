@@ -60,6 +60,11 @@
                 <i class="fa-solid fa-split"></i>
             </a>
             {{/if}}
+            {{#if group.container.rmssShowItemMagicAction}}
+            <a class="item-control item-cast-magic" title="{{localize 'rmss.item.cast_magic_tooltip'}}" data-item-id="{{group.container._id}}">
+                <i class="fas {{#if group.container.rmssItemMagicIsPotion}}fa-flask{{else}}fa-wand-magic-sparkles{{/if}}"></i>
+            </a>
+            {{/if}}
             <a class="item-give" title="Give item" data-item-id="{{group.container._id}}">
                 <i class="fas fa-hands-helping"></i>
             </a>
@@ -122,6 +127,11 @@
                 <i class="fa-solid fa-split"></i>
             </a>
             {{/if}}
+            {{#if item.rmssShowItemMagicAction}}
+            <a class="item-control item-cast-magic" title="{{localize 'rmss.item.cast_magic_tooltip'}}" data-item-id="{{item._id}}">
+                <i class="fas {{#if item.rmssItemMagicIsPotion}}fa-flask{{else}}fa-wand-magic-sparkles{{/if}}"></i>
+            </a>
+            {{/if}}
             <a class="item-give" title="Give item" data-item-id="{{item._id}}">
                 <i class="fas fa-hands-helping"></i>
             </a>
@@ -175,6 +185,11 @@
             {{#if (gt item.system.quantity 1)}}
             <a class="item-control split-stack" data-item-id="{{item._id}}" title="Split pile">
                 <i class="fa-solid fa-split"></i>
+            </a>
+            {{/if}}
+            {{#if item.rmssShowItemMagicAction}}
+            <a class="item-control item-cast-magic" title="{{localize 'rmss.item.cast_magic_tooltip'}}" data-item-id="{{item._id}}">
+                <i class="fas {{#if item.rmssItemMagicIsPotion}}fa-flask{{else}}fa-wand-magic-sparkles{{/if}}"></i>
             </a>
             {{/if}}
             <a class="item-give" title="Give item" data-item-id="{{item._id}}">

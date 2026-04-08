@@ -61,6 +61,11 @@
         </td>
         <td class="item-controls">
             {{#unless weapon.system.isNaturalWeapon}}
+            {{#if weapon.rmssShowItemMagicAction}}
+            <a class="item-control item-cast-magic" title="{{localize 'rmss.item.cast_magic_tooltip'}}" data-item-id="{{weapon._id}}">
+                <i class="fas {{#if weapon.rmssItemMagicIsPotion}}fa-flask{{else}}fa-wand-magic-sparkles{{/if}}"></i>
+            </a>
+            {{/if}}
             <a class="item-give" title="Give item" data-item-id="{{weapon._id}}">
                 <i class="fas fa-hands-helping"></i>
             </a>
