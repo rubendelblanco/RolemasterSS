@@ -5,6 +5,9 @@
  * - magic: sum of material bonuses (system.bonus > 0) from all equipped armor (body, helmet, shield)
  * - total_db: recalculated from quickness_bonus + adrenal_defense + magic + shield_bonus - quickness_penalty
  * - quickness_bonus (characters): (stats.quickness.stat_bonus) * 3 — stat_bonus is racial + special + basic (table from temp)
+ * - creature actors: total_db = intrinsic_db + magic + shield_bonus (intrinsic = previous total minus previous
+ *   magic/shield from this service); armor_type is updated only when body armor is equipped (manual AT is kept
+ *   if there is no body piece, e.g. shield only).
  */
 export default class ArmorInfoService {
 
@@ -113,19 +116,35 @@ export default class ArmorInfoService {
   static async updateActorArmorInfo(actor) {
     if (!actor?.system?.armor_info) return;
 
+    const equipped = this.getEquippedArmorBySlot(actor);
     const { armor_type, shield_bonus, magic } = this.computeFromEquipment(actor);
     const armorInfo = actor.system.armor_info;
 
-    const quicknessBonus = Number(armorInfo.quickness_bonus) || 0;
-    const adrenalDefense = Number(armorInfo.adrenal_defense) || 0;
-    const quicknessPenalty = Number(armorInfo.quickness_penalty) || 0;
-    const total_db = Math.max(0, quicknessBonus + adrenalDefense + magic + shield_bonus - quicknessPenalty);
+    const prevTotal = Number(armorInfo.total_db) || 0;
+    const prevMagic = Number(armorInfo.magic) || 0;
+    const prevShield = Number(armorInfo.shield_bonus) || 0;
 
-    await actor.update({
-      "system.armor_info.armor_type": armor_type,
+    const updates = {
       "system.armor_info.shield_bonus": shield_bonus,
-      "system.armor_info.magic": magic,
-      "system.armor_info.total_db": total_db
-    });
+      "system.armor_info.magic": magic
+    };
+
+    if (actor.type === "creature") {
+      const intrinsicDb = prevTotal - prevMagic - prevShield;
+      updates["system.armor_info.total_db"] = Math.max(0, intrinsicDb + magic + shield_bonus);
+      if (equipped.body) {
+        updates["system.armor_info.armor_type"] = armor_type;
+      }
+    } else {
+      const quicknessBonus = Number(armorInfo.quickness_bonus) || 0;
+      const adrenalDefense = Number(armorInfo.adrenal_defense) || 0;
+      const quicknessPenalty = Number(armorInfo.quickness_penalty) || 0;
+      updates["system.armor_info.armor_type"] = armor_type;
+      updates["system.armor_info.total_db"] = Math.max(0,
+        quicknessBonus + adrenalDefense + magic + shield_bonus - quicknessPenalty
+      );
+    }
+
+    await actor.update(updates);
   }
 }

@@ -133,3 +133,58 @@ describe('ArmorInfoService.computeFromEquipment', () => {
     expect(result.magic).toBe(5);
   });
 });
+
+function makeCreatureActor(armorInfo, items) {
+  const updateCalls = [];
+  return {
+    type: "creature",
+    system: { armor_info: armorInfo },
+    items,
+    async update(data) {
+      updateCalls.push(data);
+    },
+    getLastUpdatePayload() {
+      return updateCalls[updateCalls.length - 1];
+    }
+  };
+}
+
+describe('ArmorInfoService.updateActorArmorInfo', () => {
+  test('creature + shield only: does not set armor_type; total_db adds shield to intrinsic base', async () => {
+    const shield = makeArmor({ slot: "shield", db: 20, bonus: 0 });
+    const actor = makeCreatureActor(
+      { total_db: 50, magic: 0, shield_bonus: 0, armor_type: 8 },
+      [shield]
+    );
+    await ArmorInfoService.updateActorArmorInfo(actor);
+    const payload = actor.getLastUpdatePayload();
+    expect(payload).not.toHaveProperty("system.armor_info.armor_type");
+    expect(payload["system.armor_info.shield_bonus"]).toBe(20);
+    expect(payload["system.armor_info.magic"]).toBe(0);
+    expect(payload["system.armor_info.total_db"]).toBe(70);
+  });
+
+  test('creature + shield with material bonus: total_db includes intrinsic + magic + shield', async () => {
+    const shield = makeArmor({ slot: "shield", db: 20, bonus: 10 });
+    const actor = makeCreatureActor(
+      { total_db: 50, magic: 0, shield_bonus: 0, armor_type: 1 },
+      [shield]
+    );
+    await ArmorInfoService.updateActorArmorInfo(actor);
+    const payload = actor.getLastUpdatePayload();
+    expect(payload["system.armor_info.shield_bonus"]).toBe(20);
+    expect(payload["system.armor_info.magic"]).toBe(10);
+    expect(payload["system.armor_info.total_db"]).toBe(80);
+  });
+
+  test('creature + body armor: sets armor_type from body item', async () => {
+    const body = makeArmor({ slot: "body", at: 12, bonus: 0 });
+    const actor = makeCreatureActor(
+      { total_db: 0, magic: 0, shield_bonus: 0, armor_type: 1 },
+      [body]
+    );
+    await ArmorInfoService.updateActorArmorInfo(actor);
+    const payload = actor.getLastUpdatePayload();
+    expect(payload["system.armor_info.armor_type"]).toBe(12);
+  });
+});
