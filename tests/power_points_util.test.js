@@ -1,7 +1,7 @@
 /**
  * Tests for spell adder selection (getMatchingSpellAdder).
  */
-import { getMatchingSpellAdder } from "../module/actors/utils/power_points_util.js";
+import { getMatchingSpellAdder, validatePpForSpellCastAfterDialog } from "../module/actors/utils/power_points_util.js";
 
 function mockActor(realm, itemList) {
   return {
@@ -102,5 +102,35 @@ describe("getMatchingSpellAdder", () => {
     const r = getMatchingSpellAdder(actor);
     expect(r.usesRemaining).toBe(2);
     expect(r.value).toBe(2);
+  });
+});
+
+describe("validatePpForSpellCastAfterDialog", () => {
+  beforeAll(() => {
+    global.game.i18n.format = (key) => key;
+  });
+
+  beforeEach(() => {
+    global.ui.notifications.warn.mockClear();
+  });
+
+  test("allows when noPP (spell adder / no consumption)", () => {
+    const actor = { name: "A", system: { attributes: { power_points: { current: 0 } } } };
+    const spell = { name: "S" };
+    expect(validatePpForSpellCastAfterDialog(actor, spell, 5, true)).toBe(true);
+    expect(global.ui.notifications.warn).not.toHaveBeenCalled();
+  });
+
+  test("blocks when must spend PP and current is too low", () => {
+    const actor = { name: "A", system: { attributes: { power_points: { current: 2 } } } };
+    const spell = { name: "S" };
+    expect(validatePpForSpellCastAfterDialog(actor, spell, 5, false)).toBe(false);
+    expect(global.ui.notifications.warn).toHaveBeenCalled();
+  });
+
+  test("allows when current PP >= spell level", () => {
+    const actor = { name: "A", system: { attributes: { power_points: { current: 5 } } } };
+    const spell = { name: "S" };
+    expect(validatePpForSpellCastAfterDialog(actor, spell, 5, false)).toBe(true);
   });
 });

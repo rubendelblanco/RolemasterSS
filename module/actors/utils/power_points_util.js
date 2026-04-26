@@ -134,6 +134,31 @@ export async function consumeSpellAdderUse(item) {
 }
 
 /**
+ * After the casting dialog: if this resolution will spend PP (noPP is false), require current PP ≥ spell level.
+ * Needed because the pre-dialog check allows opening the menu when a spell adder exists, even at 0 PP,
+ * so a normal "Cast" (without using the adder) must be blocked here.
+ * @param {Actor} actor
+ * @param {Item} spell
+ * @param {number} spellLevel
+ * @param {boolean} noPP - true when PP are not consumed (no_pp, !consume, or cast used spell adder)
+ * @returns {boolean} false if blocked (notification shown)
+ */
+export function validatePpForSpellCastAfterDialog(actor, spell, spellLevel, noPP) {
+  if (noPP) return true;
+  const currentPP = parseInt(actor?.system?.attributes?.power_points?.current ?? 0, 10) || 0;
+  if (currentPP < spellLevel) {
+    ui.notifications.warn(
+      game.i18n.format("rmss.spells.insufficient_power", {
+        actorName: actor.name,
+        spellName: spell.name
+      })
+    );
+    return false;
+  }
+  return true;
+}
+
+/**
  * Effective max power points considering equipped PP multiplier items.
  * Formula: base * highestMultiplier
  * @param {Actor} actor

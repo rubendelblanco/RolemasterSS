@@ -144,7 +144,8 @@ export class RMSSWeaponSkillManager {
      * @param {Actor} actor
      * @param {Actor} enemy
      * @param {Item} weapon
-     * @param {Object} [spellOptions] - Pre-filled values from casting options: { ob, hitsTaken, bleeding, stunnedPenalty, penaltyValue, bonusValue }
+     * @param {Object} [spellOptions] - Pre-filled values from casting options: { ob, hitsTaken, bleeding, stunnedPenalty, penaltyValue, bonusValue }.
+     *   bonusValue already includes ActiveEffect "Bonus" via cast total. Movement activity is applied here like weapon attacks.
      */
     static async attackMessagePopup(actor, enemy, weapon, spellOptionsOrTokenData = null) {
         // Get the real actor from the game if passed through socketlib
@@ -173,6 +174,10 @@ export class RMSSWeaponSkillManager {
             bleeding = spellOptions.bleeding ?? 0;
             penaltyValue = spellOptions.penaltyValue ?? 0;
             bonusValue = spellOptions.bonusValue ?? 0;
+            // Activity vs movement (matches non-spell path; "Bonus" effects are already in bonusValue from cast total)
+            bonusValue -= Math.round(
+                (1 - (realActor.system.attributes.movement_rate.current / realActor.system.attributes.movement_rate.value)) * 100
+            );
             const stunEffect = realEnemy ? Utils.getEffectByName(realEnemy, "Stunned") : [];
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
         } else {
@@ -199,6 +204,7 @@ export class RMSSWeaponSkillManager {
         const armorInfo = enemyForTemplate?.system?.armor_info ?? {};
         const targetArmorType = armorInfo.armor_type ?? armorInfo.armor_info?.armor_type ?? 1;
 
+        const areaElementalBall = spellOptions?.areaElementalBall === true;
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: realActor,
             enemy: enemyForTemplate,
@@ -211,6 +217,7 @@ export class RMSSWeaponSkillManager {
             penaltyValue,
             facingValue,
             targetArmorType: Math.max(1, Math.min(20, targetArmorType)),
+            areaElementalBall
         });
 
         let confirmed = await new Promise((resolve) => {

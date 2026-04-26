@@ -67,24 +67,39 @@ describe('ManeuverPenaltiesService', () => {
         });
     });
 
+    describe('getManeuverPenalties - ActiveEffect Bonus', () => {
+        test('sums flags.rmss.value from effects named Bonus', () => {
+            const b1 = { name: 'Bonus', flags: { rmss: { value: 10 } } };
+            const b2 = { name: 'Bonus', flags: { rmss: { value: 5 } } };
+            const actor = createActor(100, 100, [b1, b2]);
+            const p = ManeuverPenaltiesService.getManeuverPenalties(actor, { spellType: 'BE' });
+            expect(p.activeBonus).toBe(15);
+        });
+    });
+
     describe('getManeuverPenalties - null/undefined actor', () => {
         test('null actor returns zeros', () => {
             const penalties = ManeuverPenaltiesService.getManeuverPenalties(null);
-            expect(penalties).toEqual({ hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0 });
+            expect(penalties).toEqual({ hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0 });
         });
     });
 
     describe('getTotalAutoPenalty', () => {
         test('sums all penalties with penaltyEffect clamped to min 0', () => {
-            const penalties = { hitsTaken: -10, bleeding: -5, stunned: 0, penaltyEffect: -20 };
+            const penalties = { hitsTaken: -10, bleeding: -5, stunned: 0, penaltyEffect: -20, activeBonus: 0 };
             const total = ManeuverPenaltiesService.getTotalAutoPenalty(penalties);
             expect(total).toBe(-10 + -5 + 0 + -20);
         });
 
         test('positive penaltyEffect is treated as 0', () => {
-            const penalties = { hitsTaken: -10, bleeding: 0, stunned: 0, penaltyEffect: 5 };
+            const penalties = { hitsTaken: -10, bleeding: 0, stunned: 0, penaltyEffect: 5, activeBonus: 0 };
             const total = ManeuverPenaltiesService.getTotalAutoPenalty(penalties);
             expect(total).toBe(-10 + 0 + 0 + 0); // Math.min(0, 5) = 0
+        });
+
+        test('activeBonus is added in full (can be positive)', () => {
+            const penalties = { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 20 };
+            expect(ManeuverPenaltiesService.getTotalAutoPenalty(penalties)).toBe(20);
         });
     });
 });

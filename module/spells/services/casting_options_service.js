@@ -38,9 +38,21 @@ export default class CastingOptionsService {
      * @param {string} [params.spellAdderItemName] - Name of the equipped spell adder item (if available)
      * @param {number} [params.spellAdderUsesRemaining] - Daily uses remaining for the spell adder
      * @param {number} [params.spellAdderUsesMax] - Total daily uses for the spell adder
+     * @param {number} [params.spellLevel=1] - PP cost; compared to current PP when spendPp is true
+     * @param {boolean} [params.spendPp=true] - If true, "Cast" is hidden when current PP &lt; spellLevel (use Spell Adder or close)
      * @returns {Promise<{totalModifier: number, options: Object, useSpellAdder?: boolean}|null>}
      */
-    static async showCastingOptionsDialog({ realm, spellType, spellName, actor = null, spellAdderItemName = null, spellAdderUsesRemaining = 0, spellAdderUsesMax = 0 }) {
+    static async showCastingOptionsDialog({
+        realm,
+        spellType,
+        spellName,
+        actor = null,
+        spellAdderItemName = null,
+        spellAdderUsesRemaining = 0,
+        spellAdderUsesMax = 0,
+        spellLevel = 1,
+        spendPp = true
+    }) {
         const modifiers = await this.loadModifiers();
         if (!modifiers) {
             ui.notifications.error("Failed to load casting modifiers");
@@ -48,7 +60,9 @@ export default class CastingOptionsService {
         }
 
         const normalizedRealm = this._normalizeRealm(realm);
-        const autoPenalties = (actor != null) ? ManeuverPenaltiesService.getManeuverPenalties(actor, { spellType: spellType }) : { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0 };
+        const autoPenalties = (actor != null)
+            ? ManeuverPenaltiesService.getManeuverPenalties(actor, { spellType: spellType })
+            : { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0 };
         const showAutoPenalties = actor != null;
         const handsOccupied = (actor != null) ? EquipmentService.getHandsOccupiedForCasting(actor) : 0;
         const spellTypeUpper = String(spellType ?? "").toUpperCase();
@@ -56,18 +70,33 @@ export default class CastingOptionsService {
             actor != null
             && (actor.type === "npc" || actor.type === "creature")
             && !["BE", "DE"].includes(spellTypeUpper);
-        const content = this._buildDialogContent(normalizedRealm, spellType, modifiers, autoPenalties, showAutoPenalties, handsOccupied, showPublicRollCheckbox);
+        const level = Math.max(0, parseInt(String(spellLevel), 10) || 0);
+        const currentPP = actor
+            ? (parseInt(actor.system?.attributes?.power_points?.current ?? 0, 10) || 0)
+            : Number.POSITIVE_INFINITY;
+        const insufficientPp = spendPp && actor && currentPP < level;
+        const content = this._buildDialogContent(
+            normalizedRealm,
+            spellType,
+            modifiers,
+            autoPenalties,
+            showAutoPenalties,
+            handsOccupied,
+            showPublicRollCheckbox,
+            insufficientPp
+        );
 
-        const buttons = {
-            cast: {
+        const buttons = {};
+        if (!insufficientPp) {
+            buttons.cast = {
                 icon: '<i class="fas fa-magic"></i>',
                 label: game.i18n.localize("rmss.spells.cast"),
                 callback: (html) => {
                     const result = this._calculateModifiers(html, normalizedRealm, spellType, modifiers, autoPenalties, showPublicRollCheckbox);
                     resolve(result);
                 }
-            }
-        };
+            };
+        }
         if (spellAdderItemName) {
             const usesLabel = spellAdderUsesMax > 0 ? ` [${spellAdderUsesRemaining}/${spellAdderUsesMax}]` : "";
             buttons.spellAdder = {
@@ -80,6 +109,18 @@ export default class CastingOptionsService {
                 }
             };
         }
+        if (insufficientPp && !spellAdderItemName) {
+            buttons.closeOnly = {
+                icon: '<i class="fas fa-times"></i>',
+                label: game.i18n.localize("rmss.dialog.cancel"),
+                callback: () => resolve(null)
+            };
+        }
+
+        let defaultButton = "cast";
+        if (insufficientPp) {
+            defaultButton = spellAdderItemName ? "spellAdder" : "closeOnly";
+        }
 
         let resolve;
         return new Promise((res) => {
@@ -88,7 +129,7 @@ export default class CastingOptionsService {
                 title: game.i18n.localize("rmss.spells.casting_options"),
                 content: content,
                 buttons,
-                default: "cast",
+                default: defaultButton,
                 close: () => resolve(null)
             }, {
                 classes: ["rmss", "casting-options-dialog"],
@@ -101,12 +142,12 @@ export default class CastingOptionsService {
      * Build the HTML content for the casting options dialog.
      * @param {number} [handsOccupied] - Actor's occupied hands (0-2) for pre-selecting hands option
      */
-    static _buildDialogContent(realm, spellType, modifiers, autoPenalties = {}, showAutoPenalties = false, handsOccupied = 0, showPublicRollCheckbox = false) {
+    static _buildDialogContent(realm, spellType, modifiers, autoPenalties = {}, showAutoPenalties = false, handsOccupied = 0, showPublicRollCheckbox = false, insufficientPpForNormalCast = false) {
         const subtletyPenalty = this._getSubtletyPenalty(realm, spellType, modifiers);
         const handsModifiers = this._getHandsModifiers(realm, modifiers);
         const voiceModifiers = this._getVoiceModifiers(realm, modifiers);
         const fmt = (n) => (n >= 0 ? `+${n}` : `${n}`);
-        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0 } = autoPenalties;
+        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0, activeBonus = 0 } = autoPenalties;
         const penaltyDisplay = Math.min(0, penaltyEffect);
         const autoPenaltiesBlock = showAutoPenalties ? `
                 <div class="form-group" style="font-size:0.9em; color:#555;">
@@ -114,6 +155,7 @@ export default class CastingOptionsService {
                     <div>${game.i18n.localize("rmss.maneuvers.bleeding")}: ${fmt(bleeding)}</div>
                     <div>${game.i18n.localize("rmss.maneuvers.stunned")}: ${fmt(stunned)}</div>
                     ${penaltyEffect !== 0 ? `<div>${game.i18n.localize("rmss.combat.penalty")}: ${fmt(penaltyDisplay)}</div>` : ""}
+                    ${activeBonus !== 0 ? `<div>${game.i18n.localize("rmss.maneuvers.active_effect_bonus")}: ${fmt(activeBonus)}</div>` : ""}
                 </div>
 ` : "";
         const handsHintBlock = showAutoPenalties ? `
@@ -126,8 +168,17 @@ export default class CastingOptionsService {
         const handsOneSelected = defaultHands === "one" ? " selected" : "";
         const handsNoneSelected = defaultHands === "none" ? " selected" : "";
 
+        const insufficientPpHtml = insufficientPpForNormalCast
+            ? `
+                <div class="form-group rmss-casting-insufficient-pp" style="padding:8px 10px; margin-bottom:6px; background:rgba(200, 65, 15, 0.18); border:1px solid #c2410c; color:#9a3412; border-radius:5px; font-size:0.95em; font-weight:600; line-height:1.35;">
+                    ${game.i18n.localize("rmss.spells.casting_options_insufficient_pp")}
+                </div>
+`
+            : "";
+
         return `
             <form class="casting-options-form">
+                ${insufficientPpHtml}
                 ${autoPenaltiesBlock}
                 ${handsHintBlock}
                 <div class="form-group">
@@ -206,8 +257,9 @@ export default class CastingOptionsService {
                         const bleedingMod = ${bleeding};
                         const stunnedMod = ${stunned};
                         const penaltyEffectMod = Math.min(0, ${penaltyEffect});
+                        const activeBonusMod = ${activeBonus};
                         
-                        const total = subtletyMod + handsMod + voiceMod + prepMod + otherMods + hitsTakenMod + bleedingMod + stunnedMod + penaltyEffectMod;
+                        const total = subtletyMod + handsMod + voiceMod + prepMod + otherMods + hitsTakenMod + bleedingMod + stunnedMod + penaltyEffectMod + activeBonusMod;
                         const sign = total >= 0 ? '+' : '';
                         document.getElementById('casting-total-modifier').innerHTML = '<strong>' + sign + total + '</strong>';
                     };

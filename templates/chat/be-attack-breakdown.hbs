@@ -1,0 +1,55 @@
+{{!-- BE: d100 + diff → EAR, −DB, = índice, celda de tabla --}}
+<div style="border: 1px solid #555; margin-bottom:8px; border-radius:8px; padding:10px 12px; background: rgba(0,0,0,0.28); box-shadow:0 0 6px rgba(0,0,0,0.45); font-family: 'Signika', sans-serif; color:#e8e8e8; font-size:0.95em; line-height:1.55;">
+  <div style="font-weight:700; color:#ffd35c; margin-bottom:6px; border-bottom:1px solid #444; padding-bottom:4px;">
+    {{ localize "rmss.spells.be_attack_breakdown_title"}}
+  </div>
+  <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
+    <img src="{{actorImg}}" width="40" height="40" style="border-radius:6px; border:1px solid #555;" alt="">
+    <span style="color:#f5d76e;">{{spellName}}</span>
+    <span style="color:#999;">vs</span>
+    <img src="{{targetImg}}" width="40" height="40" style="border-radius:6px; border:1px solid #555;" alt="">
+    <span style="color:#f5d76e;">{{targetName}}</span>
+  </div>
+  <div style="text-align:left; color:#fff;">
+    <div>
+      <span style="color:#9cf;">{{ localize "rmss.spells.be_attack_breakdown_step_roll"}}</span>
+      {{naturalRoll}}{{#if isExplosive}} <span style="color:#ff9f4a;">→ {{rollTotal}}</span> <span style="color:#999;font-size:0.88em;">({{ localize "rmss.spells.open_ended_short"}})</span>{{/if}}
+    </div>
+    <div>
+      <span style="color:#9cf;">{{ localize "rmss.spells.be_attack_breakdown_step_diff"}}</span> <strong>{{diffFmt}}</strong>
+    </div>
+    {{#if isUm}}
+    <div>
+      <span style="color:#9cf;">{{ localize "rmss.spells.be_attack_breakdown_step_ear"}}</span>
+      <strong style="color:#7cfcb0;">{{baseEnergy}}</strong>
+      <span style="color:#8ec5ff; font-size:0.9em;"> — {{ localize "rmss.spells.unmodified"}}</span>
+    </div>
+    {{else}}
+    <div>
+      <span style="color:#9cf;">{{ localize "rmss.spells.be_attack_breakdown_subtotal_mod"}}</span> <strong>{{finalResult}}</strong>
+    </div>
+    <div>
+      <span style="color:#9cf;">{{ localize "rmss.spells.be_attack_breakdown_step_ear"}}</span> <strong style="color:#7cfcb0;">{{baseEnergy}}</strong>
+    </div>
+    {{/if}}
+    {{#if isAreaBall}}
+    <div><span style="color:#9cf;">{{ localize "rmss.spells.be_attack_breakdown_step_db_no_shield"}}</span> <strong style="color:#f8a0a0;">{{targetDefense}}</strong></div>
+    {{#if hasCenterBonus}}
+    <div><span style="color:#9cf;">{{ localize "rmss.spells.be_attack_breakdown_step_center"}}</span> <strong style="color:#7cfcb0;">+{{centerBonus}}</strong></div>
+    {{/if}}
+    {{else}}
+    <div><span style="color:#9cf;">{{ localize "rmss.spells.be_attack_breakdown_step_db"}}</span> <strong style="color:#f8a0a0;">{{targetDefense}}</strong></div>
+    {{#if hasAreaPenalty}}
+    <div><span style="color:#9cf;">{{ localize "rmss.spells.be_attack_breakdown_step_area_multi"}}</span> <strong style="color:#f8a0a0;">−{{areaPenalty}}</strong></div>
+    {{/if}}
+    {{/if}}
+    <div style="margin-top:4px; padding-top:4px; border-top:1px solid #3a3a3a;">
+      <span style="color:#ccc;">{{ localize "rmss.spells.be_attack_breakdown_index"}}</span>
+      <strong style="color:#ffe066; font-size:1.05em;">{{finalForTarget}}</strong>
+    </div>
+    <div>
+      <span style="color:#aaa;">{{ localize "rmss.spells.be_attack_breakdown_table_cell"}}</span>
+      <strong style="color:#fff; font-size:1.1em;">{{tableCellDisplay}}</strong>
+    </div>
+  </div>
+</div>

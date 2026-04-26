@@ -14,8 +14,16 @@ import FacingService from "../../combat/services/facing_service.js";
 import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
 import { socket } from "../../../rmss.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
-import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
+import { getMatchingSpellAdder, consumeSpellAdderUse, validatePpForSpellCastAfterDialog } from "../../actors/utils/power_points_util.js";
 import Utils from "../../utils.js";
+import {
+    getLatestCircleTemplateForUser,
+    getTokensInsideTemplate,
+    getCircleEpicenter,
+    sortTokensByEpicenter,
+    isTokenAtEpicenter,
+    getAreaDefenseDb
+} from "../../combat/services/area_spell_resolution_service.js";
 
 export default class BaseElementalSpellService {
 
@@ -60,7 +68,9 @@ export default class BaseElementalSpellService {
             actor,
             spellAdderItemName: spellAdder?.item?.name ?? null,
             spellAdderUsesRemaining: spellAdder?.usesRemaining ?? 0,
-            spellAdderUsesMax: spellAdder?.value ?? 0
+            spellAdderUsesMax: spellAdder?.value ?? 0,
+            spellLevel,
+            spendPp: !noPP
         });
 
         if (castingOptions === null) return;
@@ -68,12 +78,11 @@ export default class BaseElementalSpellService {
             noPP = true;
             if (spellAdder?.item) await consumeSpellAdderUse(spellAdder.item);
         }
-
-        const targets = Array.from(game.user.targets);
-        if (targets.length === 0) {
-            ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_targets"));
+        if (!validatePpForSpellCastAfterDialog(actor, spell, spellLevel, noPP)) {
             return;
         }
+
+        const isBallSpell = Array.isArray(CONFIG.rmss?.ballTables) && CONFIG.rmss.ballTables.includes(attackTableName);
 
         // Skill bonus: from enchantment always 0; otherwise from skill for characters, spell maneuver modifier for creatures/NPCs
         let skillBonus;
@@ -103,90 +112,372 @@ export default class BaseElementalSpellService {
         const penaltyValue = Math.min(0, penaltyEffect);
         const restModifier = totalCastingModifier - hitsTaken - bleeding - penaltyValue;
         const virtualWeapon = { type: "spell", system: { attack_table: spell.system?.attack_table } };
-        const firstTarget = targets[0];
-        const enemyActor = firstTarget.actor;
-        if (!enemyActor?.system?.armor_info) {
+
+        if (isBallSpell) {
+            return BaseElementalSpellService._castBaseElementalBallSpell({
+                actor,
+                spell,
+                spellListName,
+                spellLevel,
+                skillBonus,
+                castingModifier,
+                totalCastingModifier,
+                virtualWeapon,
+                attackTableName,
+                enchantmentAttackBonus,
+                noPP,
+                hitsTaken,
+                bleeding,
+                stunned,
+                penaltyEffect,
+                penaltyValue,
+                restModifier
+            });
+        }
+
+        const targets = Array.from(game.user.targets);
+        if (targets.length === 0) {
+            ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_targets"));
+            return;
+        }
+
+        return BaseElementalSpellService._castBeNonBallSpell({
+            actor,
+            spell,
+            spellListName,
+            spellLevel,
+            skillBonus,
+            castingModifier,
+            totalCastingModifier,
+            virtualWeapon,
+            attackTableName,
+            enchantmentAttackBonus,
+            noPP,
+            targets,
+            hitsTaken,
+            bleeding,
+            stunned,
+            penaltyEffect,
+            penaltyValue,
+            restModifier
+        });
+    }
+
+    /**
+     * BE non-bola: confirmación con cada defensor, una tirada compartida, resolución por blanco.
+     */
+    static async _castBeNonBallSpell({
+        actor,
+        spell,
+        spellListName,
+        spellLevel,
+        skillBonus,
+        castingModifier,
+        totalCastingModifier,
+        virtualWeapon,
+        attackTableName,
+        enchantmentAttackBonus,
+        noPP,
+        targets,
+        hitsTaken,
+        bleeding,
+        stunned,
+        penaltyEffect,
+        penaltyValue,
+        restModifier
+    }) {
+        const casterToken = canvas.tokens.controlled.find((t) => t.actor?.id === actor.id) ?? actor.getActiveTokens?.()?.[0];
+        const validTargets = targets.filter((t) => t.actor?.system?.armor_info);
+        if (validTargets.length === 0) {
             ui.notifications.warn("Target must have armor info for attack confirmation.");
             return;
         }
 
-        const casterToken = canvas.tokens.controlled.find(t => t.actor?.id === actor.id) ?? actor.getActiveTokens?.()?.[0];
-        const defenderToken = firstTarget;
-        const facingValue = (casterToken && defenderToken) ? FacingService.calculateFacing(casterToken, defenderToken) : null;
-
-        // Rotate caster token to face the target
-        if (casterToken && defenderToken) {
-            const rotation = FacingService.getRotationToFaceTarget(casterToken, defenderToken);
-            if (rotation !== null) {
-                const doc = casterToken.document ?? casterToken;
-                try {
-                    await doc.update({ rotation });
-                } catch (e) {
-                    console.warn("[RMSS] Could not rotate caster token:", e);
+        // --- Multi-target: confirm for each, then one shared d100, then per-target baseEnergy from each diff
+        if (validTargets.length > 1) {
+            const perIndexDiff = new Map();
+            for (let i = 0; i < validTargets.length; i++) {
+                const target = validTargets[i];
+                const enemyAct = target.actor;
+                if (Utils.isTargetDefeated(enemyAct)) {
+                    continue;
+                }
+                const facingValue = casterToken && target
+                    ? FacingService.calculateFacing(casterToken, target)
+                    : null;
+                if (casterToken && target) {
+                    const rotation = FacingService.getRotationToFaceTarget(casterToken, target);
+                    if (rotation !== null) {
+                        const doc = casterToken.document ?? casterToken;
+                        try {
+                            await doc.update({ rotation });
+                        } catch (e) {
+                            console.warn("[RMSS] Could not rotate caster token:", e);
+                        }
+                    }
+                }
+                const spellOptions = {
+                    ob: skillBonus + enchantmentAttackBonus,
+                    hitsTaken,
+                    bleeding,
+                    penaltyValue,
+                    bonusValue: restModifier,
+                    ...(facingValue !== null && { facingValue })
+                };
+                if (!game.user.isGM) {
+                    ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
+                }
+                const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemyAct, virtualWeapon, spellOptions);
+                if (gmResponse?.confirmed) {
+                    perIndexDiff.set(i, gmResponse.diff ?? 0);
                 }
             }
-        }
+            if (perIndexDiff.size === 0) {
+                return;
+            }
 
-        const spellOptions = {
-            ob: skillBonus + enchantmentAttackBonus,
-            hitsTaken,
-            bleeding,
-            penaltyValue,
-            bonusValue: restModifier,
-            ...(facingValue !== null && { facingValue })
-        };
+            const activeSorted = [...perIndexDiff.keys()].sort((a, b) => a - b);
+            const firstIndexGlobal = activeSorted[0];
 
-        if (Utils.isTargetDefeated(enemyActor)) {
-            ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
-            return;
-        }
+            const roll = await new Roll("1d100x>95").evaluate();
+            const naturalRoll = roll.dice[0].results[0].result;
+            const rollTotal = naturalRoll === 100 ? 100 : roll.total;
 
-        if (!game.user.isGM) {
-            ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
-        }
-        const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemyActor, virtualWeapon, spellOptions);
-        if (!gmResponse?.confirmed) return;
+            if (game.dice3d) {
+                await game.dice3d.showForRoll(roll, game.user, true);
+            }
 
-        const diff = gmResponse.diff ?? 0;
+            if (!noPP) {
+                const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
+                const newPP = Math.max(0, currentPP - spellLevel);
+                await actor.update({ "system.attributes.power_points.current": newPP });
+            }
 
-        const roll = await new Roll("1d100x>95").evaluate();
-        const naturalRoll = roll.dice[0].results[0].result;
-        const rollTotal = naturalRoll === 100 ? 100 : roll.total;
+            const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
+            if (!attackTable) {
+                ui.notifications.error(`Attack table not found: ${attackTableName}`);
+                return;
+            }
+            const maximum = await RMSSTableManager.getAttackTableMaxResult(virtualWeapon);
+            const clamps = RMSSTableManager.getSpellModifiedClamps(attackTable, maximum);
+            const CENTRAL_TARGET_PENALTY = 0;
+            const AREA_TARGET_PENALTY = 20;
 
-        if (game.dice3d) {
-            await game.dice3d.showForRoll(roll, game.user, true);
-        }
+            let anySuccess = false;
+            for (const i of activeSorted) {
+                const target = validTargets[i];
+                const enemyActor = target.actor;
+                if (!enemyActor?.system?.armor_info) continue;
 
-        if (!noPP) {
-            const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
-            const newPP = Math.max(0, currentPP - spellLevel);
-            await actor.update({ "system.attributes.power_points.current": newPP });
-        }
+                const diff = perIndexDiff.get(i) ?? 0;
+                const finalResult = naturalRoll + diff;
+                const umResult = RMSSTableManager.findUnmodifiedAttack(attackTableName, naturalRoll, attackTable);
+                const isUm = umResult != null;
+                const baseEnergy = isUm
+                    ? umResult.attack
+                    : Math.min(Math.max(finalResult, clamps.min), clamps.max);
 
-        const finalResult = naturalRoll + diff;
+                const fCheckRow = RMSSTableManager.findAttackTableRow(attackTableName, attackTable, baseEnergy);
+                const fCheckDamage = fCheckRow?.["1"];
+                if (fCheckDamage === "F") {
+                    if (i === firstIndexGlobal) {
+                        const failureResult = await SpellFailureService.rollFailure(
+                            "BE",
+                            "spectacular_failure",
+                            totalCastingModifier
+                        );
+                        await BaseElementalSpellService._createChatMessage({
+                            actor,
+                            spell,
+                            spellListName,
+                            skillBonus,
+                            castingModifier,
+                            hitsTaken,
+                            bleeding,
+                            stunned,
+                            penaltyEffect,
+                            naturalRoll,
+                            rollTotal,
+                            finalResult,
+                            baseEnergy,
+                            isUm,
+                            failureResult,
+                            isSpellFailure: true
+                        });
+                        return;
+                    }
+                    continue;
+                }
 
-        const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
-        if (!attackTable) {
-            ui.notifications.error(`Attack table not found: ${attackTableName}`);
-            return;
-        }
+                const targetDefense = parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0;
+                const areaPenalty = i === 0 ? CENTRAL_TARGET_PENALTY : AREA_TARGET_PENALTY;
+                let finalForTarget = baseEnergy - targetDefense - areaPenalty;
+                finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(
+                    finalForTarget,
+                    isUm,
+                    maximum,
+                    attackTable
+                );
 
-        // Apply UM from attack table (01-04, 96-97, 98-99, 100-100 in fire_ball, etc.)
-        // This is the "Energy Potential" - single roll for all targets
-        const maximum = await RMSSTableManager.getAttackTableMaxResult(virtualWeapon);
-        const umResult = RMSSTableManager.findUnmodifiedAttack(attackTableName, naturalRoll, attackTable);
-        const isUm = umResult != null;
-        const baseEnergy = isUm ? umResult.attack : Math.min(Math.max(finalResult, 1), maximum);
+                const attackResult = await RMSSTableManager.getAttackTableResult(
+                    virtualWeapon,
+                    attackTable,
+                    finalForTarget,
+                    enemyActor,
+                    actor
+                );
 
-        // Check for global Fumble (F): only when base roll is in F range - affects everyone
-        const armorTypeForFCheck = 1;
-        const fCheckRow = RMSSTableManager.findAttackTableRow(attackTableName, attackTable, baseEnergy);
-        const fCheckDamage = fCheckRow?.[String(armorTypeForFCheck)];
-        const isGlobalFumble = fCheckDamage === "F";
+                const isNullResult =
+                    attackResult.damage === "-" ||
+                    attackResult.damage === 0 ||
+                    attackResult.damage === "0" ||
+                    attackResult.damage == null;
+                if (isNullResult) {
+                    continue;
+                }
 
-        if (isGlobalFumble) {
-            const failureResult = await SpellFailureService.rollFailure("BE", "spectacular_failure", totalCastingModifier);
-            await this._createChatMessage({
+                let criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
+                    attackResult.damage,
+                    attackTable.critical_severity || null
+                );
+                criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(
+                    criticalResult,
+                    enemyActor
+                );
+                if (criticalResult.criticals === "fumble") {
+                    continue;
+                }
+
+                anySuccess = true;
+
+                await BaseElementalSpellService._postBeAttackBreakdown({
+                    actor,
+                    target,
+                    spell,
+                    naturalRoll,
+                    rollTotal,
+                    diff,
+                    isUm,
+                    baseEnergy,
+                    finalResult,
+                    targetDefense,
+                    areaPenalty,
+                    isAreaBall: false,
+                    centerBonus: 0,
+                    finalForTarget,
+                    tableCellRaw: attackResult.damage
+                });
+
+                if (!RMSSWeaponCriticalManager.hasResolvableCriticalForChat(criticalResult)) {
+                    const damageToApply = parseInt(criticalResult.damage, 10);
+                    if (!isNaN(damageToApply) && damageToApply > 0) {
+                        await RMSSWeaponCriticalManager.updateTokenOrActorHits(enemyActor, damageToApply, actor.id);
+                        if (actor.type === "character") {
+                            await ExperienceManager.applyExperience(actor, criticalResult.damage);
+                        }
+                    }
+                    await RMSSWeaponCriticalManager.getHpOnlyDamageMessage(
+                        attackResult.damage,
+                        criticalResult,
+                        actor,
+                        target
+                    );
+                } else {
+                    await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, target, false);
+                }
+            }
+
+            if (anySuccess) {
+                // Per-target chat already posted; no aggregate card for N>1 to avoid a single misleading baseEnergy
+            }
+        } else {
+            // --- Single target: same order as before (confirm → roll → rest)
+            const firstTarget = validTargets[0];
+            const enemyActor = firstTarget.actor;
+            const facingValue = casterToken && firstTarget
+                ? FacingService.calculateFacing(casterToken, firstTarget)
+                : null;
+            if (casterToken && firstTarget) {
+                const rotation = FacingService.getRotationToFaceTarget(casterToken, firstTarget);
+                if (rotation !== null) {
+                    const doc = casterToken.document ?? casterToken;
+                    try {
+                        await doc.update({ rotation });
+                    } catch (e) {
+                        console.warn("[RMSS] Could not rotate caster token:", e);
+                    }
+                }
+            }
+            const spellOptions = {
+                ob: skillBonus + enchantmentAttackBonus,
+                hitsTaken,
+                bleeding,
+                penaltyValue,
+                bonusValue: restModifier,
+                ...(facingValue !== null && { facingValue })
+            };
+            if (Utils.isTargetDefeated(enemyActor)) {
+                ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
+                return;
+            }
+            if (!game.user.isGM) {
+                ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
+            }
+            const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemyActor, virtualWeapon, spellOptions);
+            if (!gmResponse?.confirmed) {
+                return;
+            }
+            const diff = gmResponse.diff ?? 0;
+
+            const roll = await new Roll("1d100x>95").evaluate();
+            const naturalRoll = roll.dice[0].results[0].result;
+            const rollTotal = naturalRoll === 100 ? 100 : roll.total;
+            if (game.dice3d) {
+                await game.dice3d.showForRoll(roll, game.user, true);
+            }
+            if (!noPP) {
+                const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
+                const newPP = Math.max(0, currentPP - spellLevel);
+                await actor.update({ "system.attributes.power_points.current": newPP });
+            }
+            const finalResult = naturalRoll + diff;
+            const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
+            if (!attackTable) {
+                ui.notifications.error(`Attack table not found: ${attackTableName}`);
+                return;
+            }
+            const maximum = await RMSSTableManager.getAttackTableMaxResult(virtualWeapon);
+            const umResult = RMSSTableManager.findUnmodifiedAttack(attackTableName, naturalRoll, attackTable);
+            const isUm = umResult != null;
+            const clamps = RMSSTableManager.getSpellModifiedClamps(attackTable, maximum);
+            const baseEnergy = isUm
+                ? umResult.attack
+                : Math.min(Math.max(finalResult, clamps.min), clamps.max);
+            const fCheckRow = RMSSTableManager.findAttackTableRow(attackTableName, attackTable, baseEnergy);
+            const fCheckDamage = fCheckRow?.["1"];
+            if (fCheckDamage === "F") {
+                const failureResult = await SpellFailureService.rollFailure("BE", "spectacular_failure", totalCastingModifier);
+                await BaseElementalSpellService._createChatMessage({
+                    actor,
+                    spell,
+                    spellListName,
+                    skillBonus,
+                    castingModifier,
+                    hitsTaken,
+                    bleeding,
+                    stunned,
+                    penaltyEffect,
+                    naturalRoll,
+                    rollTotal,
+                    finalResult,
+                    baseEnergy,
+                    isUm,
+                    failureResult,
+                    isSpellFailure: true
+                });
+                return;
+            }
+            await BaseElementalSpellService._createChatMessage({
                 actor,
                 spell,
                 spellListName,
@@ -201,45 +492,18 @@ export default class BaseElementalSpellService {
                 finalResult,
                 baseEnergy,
                 isUm,
-                failureResult,
-                isSpellFailure: true
+                failureResult: null,
+                isSpellFailure: false
             });
-            return;
-        }
-
-        await this._createChatMessage({
-            actor,
-            spell,
-            spellListName,
-            skillBonus,
-            castingModifier,
-            hitsTaken,
-            bleeding,
-            stunned,
-            penaltyEffect,
-            naturalRoll,
-            rollTotal,
-            finalResult,
-            baseEnergy,
-            isUm,
-            failureResult: null,
-            isSpellFailure: false
-        });
-
-        // Per-target resolution: baseEnergy - (target defense) - 20 for non-central targets
-        const CENTRAL_TARGET_PENALTY = 0;
-        const AREA_TARGET_PENALTY = 20;
-
-        for (let i = 0; i < targets.length; i++) {
-            const target = targets[i];
-            const enemyActor = target.actor;
-            if (!enemyActor?.system?.armor_info) continue;
-
             const targetDefense = parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0;
-            const areaPenalty = i === 0 ? CENTRAL_TARGET_PENALTY : AREA_TARGET_PENALTY;
+            const areaPenalty = 0;
             let finalForTarget = baseEnergy - targetDefense - areaPenalty;
-            finalForTarget = Math.max(1, Math.min(finalForTarget, maximum));
-
+            finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(
+                    finalForTarget,
+                    isUm,
+                    maximum,
+                    attackTable
+                );
             const attackResult = await RMSSTableManager.getAttackTableResult(
                 virtualWeapon,
                 attackTable,
@@ -247,40 +511,63 @@ export default class BaseElementalSpellService {
                 enemyActor,
                 actor
             );
-
-            const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
-            if (isNullResult) continue;
-
-            let criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
-                attackResult.damage,
-                attackTable.critical_severity || null
-            );
-            criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemyActor);
-
-            // Per-target F (high defense): spell had no effect on this target, skip
-            if (criticalResult.criticals === "fumble") continue;
-
-            if (!RMSSWeaponCriticalManager.hasResolvableCriticalForChat(criticalResult)) {
-                const damageToApply = parseInt(criticalResult.damage);
-                if (!isNaN(damageToApply) && damageToApply > 0) {
-                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(enemyActor, damageToApply, actor.id);
-                    if (actor.type === "character") {
-                        await ExperienceManager.applyExperience(actor, criticalResult.damage);
+            const isNullResult =
+                attackResult.damage === "-" ||
+                attackResult.damage === 0 ||
+                attackResult.damage === "0" ||
+                attackResult.damage == null;
+            if (!isNullResult) {
+                let criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
+                    attackResult.damage,
+                    attackTable.critical_severity || null
+                );
+                criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemyActor);
+                if (criticalResult.criticals !== "fumble") {
+                    await BaseElementalSpellService._postBeAttackBreakdown({
+                        actor,
+                        target: firstTarget,
+                        spell,
+                        naturalRoll,
+                        rollTotal,
+                        diff: gmResponse.diff ?? 0,
+                        isUm,
+                        baseEnergy,
+                        finalResult,
+                        targetDefense,
+                        areaPenalty: 0,
+                        isAreaBall: false,
+                        centerBonus: 0,
+                        finalForTarget,
+                        tableCellRaw: attackResult.damage
+                    });
+                    if (!RMSSWeaponCriticalManager.hasResolvableCriticalForChat(criticalResult)) {
+                        const damageToApply = parseInt(criticalResult.damage, 10);
+                        if (!isNaN(damageToApply) && damageToApply > 0) {
+                            await RMSSWeaponCriticalManager.updateTokenOrActorHits(enemyActor, damageToApply, actor.id);
+                            if (actor.type === "character") {
+                                await ExperienceManager.applyExperience(actor, criticalResult.damage);
+                            }
+                        }
+                        await RMSSWeaponCriticalManager.getHpOnlyDamageMessage(
+                            attackResult.damage,
+                            criticalResult,
+                            actor,
+                            firstTarget
+                        );
+                    } else {
+                        await RMSSWeaponCriticalManager.getCriticalMessage(
+                            attackResult.damage,
+                            criticalResult,
+                            actor,
+                            firstTarget,
+                            false
+                        );
                     }
                 }
-                await RMSSWeaponCriticalManager.getHpOnlyDamageMessage(
-                    attackResult.damage,
-                    criticalResult,
-                    actor,
-                    target
-                );
-                continue;
             }
-
-            await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, target, false);
         }
 
-        // Award spell XP on success
+        // Award spell XP and finish (non-ball, single and multi)
         let spellXp = 0;
         if (actor.type === "character") {
             const casterLevel = actor.system.attributes?.level?.value ?? 1;
@@ -305,6 +592,326 @@ export default class BaseElementalSpellService {
 
         // Execute spell macro on success (via item.use: item, actor, token)
         await spell.use();
+    }
+
+    /**
+     * BE ball spell: requires a circle measured template; one EAR per token inside; +20 at geometric center; DB without shield.
+     */
+    static async _castBaseElementalBallSpell({
+        actor,
+        spell,
+        spellListName,
+        spellLevel,
+        skillBonus,
+        castingModifier,
+        totalCastingModifier,
+        virtualWeapon,
+        attackTableName,
+        enchantmentAttackBonus,
+        noPP,
+        hitsTaken,
+        bleeding,
+        stunned,
+        penaltyEffect,
+        penaltyValue,
+        restModifier
+    }) {
+        const template = getLatestCircleTemplateForUser(game.user.id);
+        if (!template) {
+            ui.notifications.warn(game.i18n.localize("rmss.spells.be_area_no_circle_template"));
+            return;
+        }
+        const epicenter = getCircleEpicenter(template);
+        if (!epicenter) {
+            ui.notifications.warn(game.i18n.localize("rmss.spells.be_area_no_circle_template"));
+            return;
+        }
+        let areaTokens = getTokensInsideTemplate(template);
+        areaTokens = areaTokens.filter((t) => t.actor && !Utils.isTargetDefeated(t.actor));
+        areaTokens = sortTokensByEpicenter(areaTokens, epicenter.x, epicenter.y);
+        if (areaTokens.length === 0) {
+            ui.notifications.warn(game.i18n.localize("rmss.spells.be_area_no_tokens_in_template"));
+            return;
+        }
+
+        const casterToken = canvas.tokens.controlled.find((t) => t.actor?.id === actor.id) ?? actor.getActiveTokens?.()?.[0];
+        const perIndexDiff = new Map();
+        for (let i = 0; i < areaTokens.length; i++) {
+            const target = areaTokens[i];
+            const enemyAct = target.actor;
+            if (!enemyAct?.system?.armor_info) continue;
+            if (Utils.isTargetDefeated(enemyAct)) {
+                continue;
+            }
+            const facingValue = casterToken && target ? FacingService.calculateFacing(casterToken, target) : null;
+            if (casterToken && target) {
+                const rotation = FacingService.getRotationToFaceTarget(casterToken, target);
+                if (rotation !== null) {
+                    const doc = casterToken.document ?? casterToken;
+                    try {
+                        await doc.update({ rotation });
+                    } catch (e) {
+                        console.warn("[RMSS] Could not rotate caster token:", e);
+                    }
+                }
+            }
+            const spellOptions = {
+                ob: skillBonus + enchantmentAttackBonus,
+                hitsTaken,
+                bleeding,
+                penaltyValue,
+                bonusValue: restModifier,
+                areaElementalBall: true,
+                ...(facingValue !== null && { facingValue })
+            };
+            if (!game.user.isGM) {
+                ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
+            }
+            const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemyAct, virtualWeapon, spellOptions);
+            if (gmResponse?.confirmed) {
+                perIndexDiff.set(i, gmResponse.diff ?? 0);
+            }
+        }
+        if (perIndexDiff.size === 0) {
+            return;
+        }
+
+        const activeSorted = [...perIndexDiff.keys()].sort((a, b) => a - b);
+        const firstIndexGlobal = activeSorted[0];
+
+        const roll = await new Roll("1d100x>95").evaluate();
+        const naturalRoll = roll.dice[0].results[0].result;
+        const rollTotal = naturalRoll === 100 ? 100 : roll.total;
+        if (game.dice3d) {
+            await game.dice3d.showForRoll(roll, game.user, true);
+        }
+        if (!noPP) {
+            const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0, 10);
+            const newPP = Math.max(0, currentPP - spellLevel);
+            await actor.update({ "system.attributes.power_points.current": newPP });
+        }
+
+        const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
+        if (!attackTable) {
+            ui.notifications.error(`Attack table not found: ${attackTableName}`);
+            return;
+        }
+        const maximum = await RMSSTableManager.getAttackTableMaxResult(virtualWeapon);
+
+        for (const i of activeSorted) {
+            const target = areaTokens[i];
+            const enemyActorT = target.actor;
+            if (!enemyActorT?.system?.armor_info) continue;
+
+            const diff = perIndexDiff.get(i) ?? 0;
+            const finalResult = naturalRoll + diff;
+            const { attackColumnValue, isUm } = RMSSTableManager.resolveBallEarAttackValue(
+                attackTableName,
+                naturalRoll,
+                finalResult,
+                attackTable
+            );
+
+            if (RMSSTableManager.isBallGlobalFailureRow(attackTableName, attackTable, attackColumnValue)) {
+                if (i === firstIndexGlobal) {
+                    const failureResult = await SpellFailureService.rollFailure(
+                        "BE",
+                        "spectacular_failure",
+                        totalCastingModifier
+                    );
+                    await BaseElementalSpellService._createChatMessage({
+                        actor,
+                        spell,
+                        spellListName,
+                        skillBonus,
+                        castingModifier,
+                        hitsTaken,
+                        bleeding,
+                        stunned,
+                        penaltyEffect,
+                        naturalRoll,
+                        rollTotal,
+                        finalResult,
+                        baseEnergy: attackColumnValue,
+                        isUm,
+                        failureResult,
+                        isSpellFailure: true
+                    });
+                    return;
+                }
+                continue;
+            }
+
+            const centerBonus = isTokenAtEpicenter(target, epicenter.x, epicenter.y) ? 20 : 0;
+            const targetDefense = getAreaDefenseDb(enemyActorT);
+            let finalForTarget = attackColumnValue - targetDefense + centerBonus;
+            finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(
+                    finalForTarget,
+                    isUm,
+                    maximum,
+                    attackTable
+                );
+
+            const attackResult = await RMSSTableManager.getAttackTableResult(
+                virtualWeapon,
+                attackTable,
+                finalForTarget,
+                enemyActorT,
+                actor
+            );
+
+            const isNullResult =
+                attackResult.damage === "-" ||
+                attackResult.damage === 0 ||
+                attackResult.damage === "0" ||
+                attackResult.damage == null;
+            if (isNullResult) continue;
+
+            let criticalResult = RMSSWeaponCriticalManager.decomposeCriticalResult(
+                attackResult.damage,
+                attackTable.critical_severity || null
+            );
+            criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(
+                criticalResult,
+                enemyActorT
+            );
+
+            if (criticalResult.criticals === "fumble") continue;
+
+            await BaseElementalSpellService._postBeAttackBreakdown({
+                actor,
+                target,
+                spell,
+                naturalRoll,
+                rollTotal,
+                diff,
+                isUm,
+                baseEnergy: attackColumnValue,
+                finalResult,
+                targetDefense,
+                areaPenalty: 0,
+                isAreaBall: true,
+                centerBonus,
+                finalForTarget,
+                tableCellRaw: attackResult.damage
+            });
+
+            if (!RMSSWeaponCriticalManager.hasResolvableCriticalForChat(criticalResult)) {
+                const damageToApply = parseInt(criticalResult.damage, 10);
+                if (!isNaN(damageToApply) && damageToApply > 0) {
+                    await RMSSWeaponCriticalManager.updateTokenOrActorHits(enemyActorT, damageToApply, actor.id);
+                    if (actor.type === "character") {
+                        await ExperienceManager.applyExperience(actor, criticalResult.damage);
+                    }
+                }
+                await RMSSWeaponCriticalManager.getHpOnlyDamageMessage(
+                    attackResult.damage,
+                    criticalResult,
+                    actor,
+                    target
+                );
+                continue;
+            }
+
+            await RMSSWeaponCriticalManager.getCriticalMessage(
+                attackResult.damage,
+                criticalResult,
+                actor,
+                target,
+                false
+            );
+        }
+
+        let spellXp = 0;
+        if (actor.type === "character") {
+            const casterLevel = actor.system.attributes?.level?.value ?? 1;
+            const xp = ExperiencePointsCalculator.calculateSpellExpPoints(casterLevel, spellLevel);
+            if (xp > 0) {
+                spellXp = xp;
+                const totalExpActor = parseInt(actor.system.attributes.experience_points.value, 10) + xp;
+                await actor.update({ "system.attributes.experience_points.value": totalExpActor });
+                const breakDown = { maneuver: 0, spell: xp, critical: 0, kill: 0, bonus: 0, misc: 0 };
+                await sendExpMessage(actor, breakDown, xp);
+            }
+        }
+
+        if (game.combat?.started) {
+            CombatHistoryTracker.get().recordSpellCast(actor.id, spellLevel, spellXp);
+        }
+
+        const sourceToken = getActorToken(actor);
+        if (sourceToken) {
+            triggerAutoAnimations(sourceToken, spell, areaTokens);
+        }
+
+        await spell.use();
+    }
+
+    /**
+     * Public chat card: d100 + confirm mod. → EAR — DB — índice en tabla — celda (alineado a ataques con arma).
+     */
+    static async _postBeAttackBreakdown({
+        actor,
+        target,
+        spell,
+        naturalRoll,
+        rollTotal,
+        diff,
+        isUm,
+        baseEnergy,
+        finalResult,
+        targetDefense,
+        areaPenalty = 0,
+        isAreaBall = false,
+        centerBonus = 0,
+        finalForTarget,
+        tableCellRaw
+    }) {
+        const tokenOrActor = target;
+        const enemy = tokenOrActor?.actor ?? tokenOrActor;
+        const diffNum = diff ?? 0;
+        const diffFmt = diffNum >= 0 ? `+${diffNum}` : `${diffNum}`;
+        const isExplosive = naturalRoll !== 100 && rollTotal !== naturalRoll;
+        const hasAreaPenalty = !isAreaBall && areaPenalty > 0;
+        const hasCenterLine = isAreaBall && centerBonus > 0;
+        const ap = Math.max(0, areaPenalty);
+        const tableCellDisplay = tableCellRaw == null || tableCellRaw === "" ? "—" : String(tableCellRaw);
+        const actorImg = actor?.img || "icons/svg/mystery-man.svg";
+        const targetName = enemy?.name || tokenOrActor?.name || "";
+        let targetImg = enemy?.img;
+        if (!targetImg && tokenOrActor) {
+            targetImg = tokenOrActor.document?.texture?.src || tokenOrActor.texture?.src || tokenOrActor.img;
+        }
+        if (!targetImg) targetImg = "icons/svg/mystery-man.svg";
+
+        const html = await renderTemplate("systems/rmss/templates/chat/be-attack-breakdown.hbs", {
+            actorImg,
+            targetImg,
+            targetName,
+            spellName: spell?.name || "",
+            naturalRoll,
+            rollTotal,
+            isExplosive,
+            diff: diffNum,
+            diffFmt,
+            finalResult,
+            isUm,
+            baseEnergy,
+            targetDefense,
+            areaPenalty: ap,
+            hasAreaPenalty,
+            isAreaBall,
+            centerBonus,
+            hasCenterBonus: hasCenterLine,
+            finalForTarget,
+            tableCellDisplay
+        });
+        await ChatMessage.create(
+            withPublicRollMode({
+                content: html,
+                speaker: "Game Master"
+            })
+        );
     }
 
     static async _createChatMessage({

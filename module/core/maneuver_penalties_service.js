@@ -5,6 +5,7 @@
  * - bleeding: Sangrado (hits/rnd)
  * - stunned: Aturdido
  * - penaltyEffect: Penalización heridas (ActiveEffect "Penalty")
+ * - activeBonus: Suma de flags.rmss.value de ActiveEffect "Bonus" (tiradas de habilidad, casteo, etc.)
  */
 import { RMSSWeaponSkillManager } from "../combat/rmss_weapon_skill_manager.js";
 import Utils from "../utils.js";
@@ -16,11 +17,11 @@ export default class ManeuverPenaltiesService {
      * @param {Actor} actor
      * @param {Object} [options]
      * @param {string} [options.spellType] - "BE" or "DE" for elemental spells (uses -5/-10/-20 instead of -10/-20/-30)
-     * @returns {{ hitsTaken: number, bleeding: number, stunned: number, penaltyEffect: number }}
+     * @returns {{ hitsTaken: number, bleeding: number, stunned: number, penaltyEffect: number, activeBonus: number }}
      */
     static getManeuverPenalties(actor, options = {}) {
         if (!actor) {
-            return { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0 };
+            return { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0 };
         }
 
         const hitsTaken = (options.spellType === "BE" || options.spellType === "DE")
@@ -50,7 +51,13 @@ export default class ManeuverPenaltiesService {
             penaltyEffect += (effect.flags?.rmss?.value ?? 0);
         });
 
-        return { hitsTaken, bleeding, stunned, penaltyEffect };
+        let activeBonus = 0;
+        const bonusEffects = Utils.getEffectByName(actor, "Bonus");
+        bonusEffects.forEach((effect) => {
+            activeBonus += effect.flags?.rmss?.value ?? 0;
+        });
+
+        return { hitsTaken, bleeding, stunned, penaltyEffect, activeBonus };
     }
 
     /**
@@ -71,7 +78,7 @@ export default class ManeuverPenaltiesService {
      * Sum of maneuver penalties for total modifier (penaltyEffect is applied as Math.min(0, penaltyEffect)).
      */
     static getTotalAutoPenalty(penalties) {
-        const { hitsTaken, bleeding, stunned, penaltyEffect } = penalties;
-        return hitsTaken + bleeding + stunned + Math.min(0, penaltyEffect);
+        const { hitsTaken, bleeding, stunned, penaltyEffect, activeBonus = 0 } = penalties;
+        return hitsTaken + bleeding + stunned + Math.min(0, penaltyEffect) + activeBonus;
     }
 }

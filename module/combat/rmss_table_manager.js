@@ -22,7 +22,34 @@ const findAttackTableRow = (tableName, attackTable, result) => {
     throw new Error(`No matching row found in attack table ${tableName} for result ${result}`);
 }
 
+/**
+ * @param {string[]} umArray
+ * @returns {Array<{ lo: number, hi: number }>}
+ */
+const parseUnmodifiedTramos = (umArray) => {
+    if (!Array.isArray(umArray) || umArray.length === 0) {
+        return [];
+    }
+    return umArray.map((rangeStr) => {
+        const p = String(rangeStr).split("-").map((x) => parseInt(x, 10));
+        const lo = p[0];
+        const hi = p.length > 1 ? p[1] : p[0];
+        return { lo, hi: Number.isNaN(hi) ? lo : hi };
+    });
+};
+
 export default class RMSSTableManager {
+    /**
+     * Dado el natural, ¿entra en algún tramo `um`? (Misma lectura que `findUnmodifiedAttack`, sin tocar `rows`.)
+     * @param {number} n
+     * @param {string[]|{um?: string[]}} umSource - tramos o objeto con clave `um`
+     * @returns {boolean}
+     */
+    static isNaturalInUnmodifiedRanges(n, umSource) {
+        const ums = Array.isArray(umSource) ? umSource : (umSource?.um ?? []);
+        const ranges = parseUnmodifiedTramos(ums);
+        return ranges.some(({ lo, hi }) => n >= lo && n <= hi);
+    }
     static findUnmodifiedAttack (tableName, baseAttack, attackTable) {
         let umResult  = null;
         const um = attackTable.um || [];
@@ -69,14 +96,19 @@ export default class RMSSTableManager {
         }
     }
 
-    static async getAttackTableMaxResult(weapon) {
-        const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
+    /**
+     * Tope de columna Result (p. ej. 100) a partir de datos ya cargados.
+     * @param {object} attackTable
+     * @returns {number}
+     */
+    static getAttackTableMaxResultFromData(attackTable) {
+        if (!attackTable?.rows?.length) {
+            return 100;
+        }
         let maximum = 1;
-
         for (const element of attackTable.rows) {
             const range = element.Result.split("-");
             const isRange = range.length > 1;
-
             if (isRange) {
                 const lowerBound = parseInt(range[0], 10);
                 const upperBound = parseInt(range[1], 10);
@@ -84,15 +116,100 @@ export default class RMSSTableManager {
                 if (limit > maximum) {
                     maximum = limit;
                 }
-            } else  {
-                const value = parseInt(range[0], 10);
-                if (value > maximum) {
-                    maximum = value;
+            } else {
+                const v = parseInt(range[0], 10);
+                if (v > maximum) {
+                    maximum = v;
                 }
             }
         }
-
         return maximum;
+    }
+
+    /**
+     * Enteros 1..tableMax que no caen en ningún tramo `um` (sólo con natural en UM
+     * se usan filas de esos tramos). En rama modificada no se mezclan: solo el complemento.
+     * @param {object} attackTable
+     * @param {number} tableMax
+     * @returns {{ min: number, max: number }}
+     */
+    static getResultIndexBoundsOutsideUnmodified(attackTable, tableMax) {
+        const ums = Array.isArray(attackTable?.um) ? attackTable.um : [];
+        const ranges = parseUnmodifiedTramos(ums);
+        const inUm = (n) => ranges.some(({ lo, hi }) => n >= lo && n <= hi);
+        let minI = null;
+        let maxI = null;
+        for (let n = 1; n <= tableMax; n++) {
+            if (!inUm(n)) {
+                if (minI === null) {
+                    minI = n;
+                }
+                maxI = n;
+            }
+        }
+        if (minI === null) {
+            return { min: 1, max: tableMax };
+        }
+        return { min: minI, max: maxI };
+    }
+
+    /**
+     * Mín / máx estrictos para rama de ataque modificada (no UM). Base = complemento
+     * de `um` en 1..tableMax. `modified_result_clamps` en JSON no puede bajar el mínimo
+     * bajo el derivado (eso metería en tramos reservados a natural UM) ni subir el máx.
+     * sobre el derivado; solo puede **estrechar** (min más alto o max más bajo) si hace
+     * falta regla de mesa.
+     * @param {object} attackTable
+     * @param {number} tableMax
+     * @returns {{ min: number, max: number }}
+     */
+    static getSpellModifiedClamps(attackTable, tableMax) {
+        const d = RMSSTableManager.getResultIndexBoundsOutsideUnmodified(attackTable, tableMax);
+        const o = attackTable?.modified_result_clamps;
+        if (!o || typeof o !== "object") {
+            return { min: d.min, max: d.max };
+        }
+        let minV = d.min;
+        let maxV = d.max;
+        if (o.min != null && o.min !== "" && !Number.isNaN(Number(o.min))) {
+            const w = Number(o.min);
+            minV = Math.max(d.min, w);
+        }
+        if (o.max != null && o.max !== "" && !Number.isNaN(Number(o.max))) {
+            const w = Number(o.max);
+            maxV = Math.min(d.max, w);
+        }
+        if (minV > maxV) {
+            return d;
+        }
+        return { min: minV, max: maxV };
+    }
+
+    /**
+     * Índice hacia `findAttackTableRow` (columna Result) para daño: en rama no UM, tope
+     * al máx. de rama modificada (ver `getSpellModifiedClamps`); con UM, al tope de tabla.
+     * @param {number} value
+     * @param {boolean} isUm
+     * @param {number} tableMax - p. ej. 100, de `getAttackTableMaxResult[FromData]`
+     * @param {object} [attackTable] - si falta, tope !UM=95 (sólo compat; ideal: siempre pasar tabla)
+     * @returns {number}
+     */
+    static capSpellDamageLookupIndex(value, isUm, tableMax, attackTable = null) {
+        if (isUm) {
+            return Math.max(1, Math.min(value, tableMax));
+        }
+        const cap = attackTable
+            ? RMSSTableManager.getSpellModifiedClamps(attackTable, tableMax).max
+            : 95;
+        return Math.max(1, Math.min(value, cap));
+    }
+
+    static async getAttackTableMaxResult(weapon) {
+        const attackTable = await RMSSTableManager.loadAttackTable(weapon.system.attack_table);
+        if (!attackTable) {
+            return 1;
+        }
+        return RMSSTableManager.getAttackTableMaxResultFromData(attackTable);
     }
 
     static async getAttackTableResult(weapon, attackTable, totalAttack, enemy, attacker, armorTypeOverride = null){
@@ -221,6 +338,38 @@ export default class RMSSTableManager {
         }
 
         return criticalResult;
+    }
+
+    /**
+     * BE area ball: EAR = natural si está en `um` (sólo así se usan filas UM); si no, total
+     * mod. acotado estrictamente fuera de `um` (nunca 01–04 ni 96+ con puro modificador).
+     * @param {string} tableName
+     * @param {number} naturalRoll
+     * @param {number} modifiedTotal - naturalRoll + diff (diff from confirm dialog)
+     * @param {object} attackTable
+     * @returns {{ attackColumnValue: number, isUm: boolean }}
+     */
+    static resolveBallEarAttackValue(tableName, naturalRoll, modifiedTotal, attackTable) {
+        const umResult = RMSSTableManager.findUnmodifiedAttack(tableName, naturalRoll, attackTable);
+        if (umResult) {
+            return { attackColumnValue: naturalRoll, isUm: true };
+        }
+        const tableMax = RMSSTableManager.getAttackTableMaxResultFromData(attackTable);
+        const { min, max } = RMSSTableManager.getSpellModifiedClamps(attackTable, tableMax);
+        const capped = Math.min(Math.max(modifiedTotal, min), max);
+        return { attackColumnValue: capped, isUm: false };
+    }
+
+    /**
+     * Fire-ball style global failure: row for this attack column at AT 1 is "F".
+     * @param {string} tableName
+     * @param {object} attackTable
+     * @param {number} attackColumnValue
+     * @returns {boolean}
+     */
+    static isBallGlobalFailureRow(tableName, attackTable, attackColumnValue) {
+        const row = findAttackTableRow(tableName, attackTable, attackColumnValue);
+        return row?.["1"] === "F";
     }
 
 }

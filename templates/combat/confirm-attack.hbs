@@ -1,6 +1,12 @@
 <form id="rmss-attack-melee-confirmation"
       style="background: #9a9991; color: #222; border: 1px solid #444; border-radius: 8px; padding: 12px; font-family: 'Signika', sans-serif;">
 
+    {{#if areaElementalBall}}
+    <p style="margin:0 0 10px 0; padding:8px; background:#e8e4d8; border:1px solid #666; border-radius:4px; font-size:0.95em;">
+        {{ localize "rmss.spells.be_area_confirm_hint" }}
+    </p>
+    {{/if}}
+
     <!-- Attacker section -->
     <h3 style="display:flex; align-items:center; gap:8px; border-bottom:2px solid #555; padding-bottom:4px; color:#b00; text-shadow: 1px 1px 0 #fff;">
         <img src="{{actor.img}}" alt="{{actor.name}}" width="45" height="45"
@@ -70,7 +76,7 @@
         <input type="number" id="target-at" value="{{targetArmorType}}"
                style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
         <label for="target-db">{{ localize "rmss.combat.db" }}</label>
-        <input type="number" class="calculable is-positive" id="target-db" value="{{enemy.system.armor_info.total_db}}"
+        <input type="number" class="calculable is-positive" id="target-db" value="{{#if areaElementalBall}}0{{else}}{{enemy.system.armor_info.total_db}}{{/if}}"
                style="width:70px; text-align:center; border:1px solid #666; background:#f5f5f5;">
         <label for="target-cover">{{ localize "rmss.combat.cover" }}</label>
         <select class="calculable" id="target-cover"

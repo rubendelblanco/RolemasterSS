@@ -14,7 +14,7 @@ import FacingService from "../../combat/services/facing_service.js";
 import { ExperienceManager } from "../../sheets/experience/rmss_experience_manager.js";
 import { socket } from "../../../rmss.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
-import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
+import { getMatchingSpellAdder, consumeSpellAdderUse, validatePpForSpellCastAfterDialog } from "../../actors/utils/power_points_util.js";
 import Utils from "../../utils.js";
 
 export default class DirectedElementalSpellService {
@@ -87,13 +87,18 @@ export default class DirectedElementalSpellService {
             actor,
             spellAdderItemName: spellAdder?.item?.name ?? null,
             spellAdderUsesRemaining: spellAdder?.usesRemaining ?? 0,
-            spellAdderUsesMax: spellAdder?.value ?? 0
+            spellAdderUsesMax: spellAdder?.value ?? 0,
+            spellLevel,
+            spendPp: !noPP
         });
 
         if (castingOptions === null) return;
         if (castingOptions.useSpellAdder) {
             noPP = true;
             if (spellAdder?.item) await consumeSpellAdderUse(spellAdder.item);
+        }
+        if (!validatePpForSpellCastAfterDialog(actor, spell, spellLevel, noPP)) {
+            return;
         }
 
         const targets = Array.from(game.user.targets);
@@ -180,7 +185,10 @@ export default class DirectedElementalSpellService {
         const maximum = await RMSSTableManager.getAttackTableMaxResult(virtualWeapon);
         const umResult = RMSSTableManager.findUnmodifiedAttack(attackTableName, naturalRoll, attackTable);
         const isUm = umResult != null;
-        const baseEnergy = isUm ? umResult.attack : Math.min(Math.max(finalResult, 1), maximum);
+        const clamps = RMSSTableManager.getSpellModifiedClamps(attackTable, maximum);
+        const baseEnergy = isUm
+            ? umResult.attack
+            : Math.min(Math.max(finalResult, clamps.min), clamps.max);
 
         const armorTypeForFCheck = 1;
         const fCheckRow = RMSSTableManager.findAttackTableRow(attackTableName, attackTable, baseEnergy);
@@ -235,7 +243,12 @@ export default class DirectedElementalSpellService {
             const targetDefense = parseInt(targetActor.system.armor_info?.total_db ?? 0) || 0;
             const areaPenalty = i === 0 ? 0 : 20;
             let finalForTarget = baseEnergy - targetDefense - areaPenalty;
-            finalForTarget = Math.max(1, Math.min(finalForTarget, maximum));
+            finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(
+                finalForTarget,
+                isUm,
+                maximum,
+                attackTable
+            );
 
             const attackResult = await RMSSTableManager.getAttackTableResult(
                 virtualWeapon,

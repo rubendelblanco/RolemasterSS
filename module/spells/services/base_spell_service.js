@@ -1,9 +1,33 @@
+import RMSSTableManager from "../../combat/rmss_table_manager.js";
+
 /**
  * Service to handle base spell operations.
  * Manages loading, accessing, and querying base spell data.
  */
 export default class BaseSpellService {
-    
+    /**
+     * Tramos UM por defecto para d100 de hechizo base (misma idea que `um` en tablas de armas:
+     * sólo el natural entra ahí; rama mod. = complemento, vía `getSpellModifiedClamps`).
+     */
+    static SPELL_D100_UM = Object.freeze(["01-02", "96-100"]);
+
+    static _resolveSpellD100Um(optionalUm) {
+        if (optionalUm == null) {
+            return BaseSpellService.SPELL_D100_UM;
+        }
+        if (Array.isArray(optionalUm)) {
+            return optionalUm;
+        }
+        if (Array.isArray(optionalUm?.um)) {
+            return optionalUm.um;
+        }
+        return BaseSpellService.SPELL_D100_UM;
+    }
+
+    static _spellTableStub(um) {
+        return { um, modified_result_clamps: null };
+    }
+
     static _baseSpellsCache = null;
     
     /**
@@ -158,40 +182,36 @@ export default class BaseSpellService {
     }
     
     /**
-     * Check if a natural roll result is in an unmodified range.
-     * Unmodified ranges: 01-02 and 96-100
-     * Modified range: 03-95
-     * @param {number} naturalRoll - The natural roll result (1-100)
-     * @returns {boolean} True if the roll is in an unmodified range
+     * @param {number} naturalRoll
+     * @param {string[]|{um: string[]}|null} [optionalUm] - Misma forma que tramos de tabla; por defecto `SPELL_D100_UM`.
+     * @returns {boolean}
      */
-    static isUnmodifiedRoll(naturalRoll) {
-        // Unmodified ranges: 01-02 and 96-100
-        return naturalRoll <= 2 || naturalRoll >= 96;
+    static isUnmodifiedRoll(naturalRoll, optionalUm = null) {
+        return RMSSTableManager.isNaturalInUnmodifiedRanges(
+            naturalRoll,
+            { um: BaseSpellService._resolveSpellD100Um(optionalUm) }
+        );
     }
-    
+
     /**
-     * Normalize spell roll result according to unmodified roll rules.
-     * - If naturalRoll is in unmodified ranges (100, 98-99, 96-97, 01-02), 
-     *   return it without modification.
-     * - Otherwise, apply modifier and limit to 3-95 range.
-     * 
-     * @param {number} naturalRoll - The natural roll result (1-100)
-     * @param {number} modifier - The modifier to apply (can be negative)
-     * @returns {number} The normalized result to look up in the table
+     * Normaliza el d100: si el natural entra en `um`, el resultado es el natural; si no,
+     * aplica el modificador y recorta al complemento de `um` en 1..100 (v. gr. 03-95
+     * con el `SPELL_D100_UM` por defecto) — nunca se “entra” en tramos UM vía mod.
+     * @param {number} naturalRoll
+     * @param {number} modifier
+     * @param {string[]|{um: string[]}|null} [optionalUm]
+     * @returns {number}
      */
-    static normalizeSpellRollResult(naturalRoll, modifier) {
-        // Check if roll is unmodified
-        if (this.isUnmodifiedRoll(naturalRoll)) {
-            // Unmodified rolls use the natural result directly
+    static normalizeSpellRollResult(naturalRoll, modifier, optionalUm = null) {
+        const ums = BaseSpellService._resolveSpellD100Um(optionalUm);
+        const tableStub = BaseSpellService._spellTableStub(ums);
+        if (RMSSTableManager.isNaturalInUnmodifiedRanges(naturalRoll, { um: ums })) {
             return naturalRoll;
         }
-        
-        // Apply modifier to non-unmodified rolls
-        const modifiedResult = naturalRoll + modifier;
-        
-        // Limit to valid range for modified rolls (3-95)
-        // Note: 96-100 are reserved for unmodified natural rolls
-        return Math.max(3, Math.min(95, modifiedResult));
+        const modified = naturalRoll + modifier;
+        const tMax = 100;
+        const { min, max } = RMSSTableManager.getSpellModifiedClamps(tableStub, tMax);
+        return Math.max(min, Math.min(max, modified));
     }
     
     /**

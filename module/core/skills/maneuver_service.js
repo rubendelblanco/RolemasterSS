@@ -52,7 +52,7 @@ export default class ManeuverService {
     /**
      * Get auto-calculated penalties from actor state (all 4 maneuver penalties).
      * @param {Actor} actor
-     * @returns {{ hitsTaken: number, bleeding: number, stunned: number, penaltyEffect: number }}
+     * @returns {{ hitsTaken: number, bleeding: number, stunned: number, penaltyEffect: number, activeBonus: number }}
      */
     static getAutoPenalties(actor) {
         return ManeuverPenaltiesService.getManeuverPenalties(actor);
@@ -100,7 +100,7 @@ export default class ManeuverService {
      * Show the maneuver options dialog.
      * @private
      */
-    static async _showManeuverOptionsDialog(actor, { skillName, skillBonus, hitsTaken, bleeding, stunned, penaltyEffect, offensiveCombatSkill = false }) {
+    static async _showManeuverOptionsDialog(actor, { skillName, skillBonus, hitsTaken, bleeding, stunned, penaltyEffect, activeBonus, offensiveCombatSkill = false }) {
         const content = this._buildDialogContent(actor, {
             skillName,
             skillBonus,
@@ -108,6 +108,7 @@ export default class ManeuverService {
             bleeding,
             stunned,
             penaltyEffect: penaltyEffect ?? 0,
+            activeBonus: activeBonus ?? 0,
             offensiveCombatSkill
         });
 
@@ -120,7 +121,7 @@ export default class ManeuverService {
                         icon: '<i class="fas fa-dice"></i>',
                         label: game.i18n.localize("rmss.maneuvers.roll"),
                         callback: (html) => {
-                            resolve(this._calculateModifiers(html, { hitsTaken, bleeding, stunned, penaltyEffect }, actor, offensiveCombatSkill) ?? null);
+                            resolve(this._calculateModifiers(html, { hitsTaken, bleeding, stunned, penaltyEffect, activeBonus }, actor, offensiveCombatSkill) ?? null);
                         }
                     },
                     cancel: {
@@ -131,7 +132,7 @@ export default class ManeuverService {
                 },
                 default: "roll",
                 close: () => resolve(null),
-                render: (html) => this._setupManeuverDialogListeners(html, { skillBonus, hitsTaken, bleeding, stunned, penaltyEffect })
+                render: (html) => this._setupManeuverDialogListeners(html, { skillBonus, hitsTaken, bleeding, stunned, penaltyEffect, activeBonus: activeBonus ?? 0 })
             }, {
                 classes: ["rmss", "maneuver-options-dialog"],
                 width: 420
@@ -143,7 +144,7 @@ export default class ManeuverService {
      * Attach change listeners to update total modifier display.
      * @private
      */
-    static _setupManeuverDialogListeners(html, { skillBonus, hitsTaken, bleeding, stunned, penaltyEffect = 0 }) {
+    static _setupManeuverDialogListeners(html, { skillBonus, hitsTaken, bleeding, stunned, penaltyEffect = 0, activeBonus = 0 }) {
         const form = html.find(".maneuver-options-form")[0];
         if (!form) return;
 
@@ -154,7 +155,7 @@ export default class ManeuverService {
             const dark = DARKNESS_ADVANTAGEOUS[form.querySelector('[name="darkness"]')?.value] ?? 0;
             const other = parseInt(form.querySelector('[name="otherMods"]')?.value) || 0;
             const penaltyMod = Math.min(0, penaltyEffect);
-            const total = skillBonus + hitsTaken + bleeding + stunned + penaltyMod + diff + combat + light + dark + other;
+            const total = skillBonus + hitsTaken + bleeding + stunned + penaltyMod + activeBonus + diff + combat + light + dark + other;
             const sign = total >= 0 ? "+" : "";
             const span = form.querySelector("#maneuver-total-modifier");
             if (span) span.innerHTML = `<strong>${sign}${total}</strong>`;
@@ -168,7 +169,7 @@ export default class ManeuverService {
      * Build dialog HTML content.
      * @private
      */
-    static _buildDialogContent(actor, { skillName, skillBonus, hitsTaken, bleeding, stunned, penaltyEffect = 0, offensiveCombatSkill = false }) {
+    static _buildDialogContent(actor, { skillName, skillBonus, hitsTaken, bleeding, stunned, penaltyEffect = 0, activeBonus = 0, offensiveCombatSkill = false }) {
         const showPublicRollCheckbox = actor && (actor.type === "npc" || actor.type === "creature") && !offensiveCombatSkill;
         const fmt = (n) => (n >= 0 ? `+${n}` : `${n}`);
         const sel = (k, def) => (k === def ? " selected" : "");
@@ -198,6 +199,7 @@ export default class ManeuverService {
                     <div>${game.i18n.localize("rmss.maneuvers.bleeding")}: ${fmt(bleeding)}</div>
                     <div>${game.i18n.localize("rmss.maneuvers.stunned")}: ${fmt(stunned)}</div>
                     ${penaltyEffect !== 0 ? `<div>${game.i18n.localize("rmss.combat.penalty")}: ${fmt(penaltyDisplay)}</div>` : ""}
+                    ${activeBonus !== 0 ? `<div>${game.i18n.localize("rmss.maneuvers.active_effect_bonus")}: ${fmt(activeBonus)}</div>` : ""}
                 </div>
                 <hr style="margin:8px 0; border:none; border-top:1px solid #ccc;">
                 <div class="form-group">
@@ -301,12 +303,15 @@ export default class ManeuverService {
 
         const isExplosive = rollTotal !== naturalRoll;
         const fmt = (n) => (n >= 0 ? `+${n}` : `${n}`);
-        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0 } = autoPenalties;
+        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0, activeBonus = 0 } = autoPenalties;
         const penaltyLines = [
             hitsTaken !== 0 ? `<div>💔 ${game.i18n.localize("rmss.maneuvers.hits_taken")}: <strong>${fmt(hitsTaken)}</strong></div>` : "",
             bleeding !== 0 ? `<div>🩸 ${game.i18n.localize("rmss.maneuvers.bleeding")}: <strong>${fmt(bleeding)}</strong></div>` : "",
             stunned !== 0 ? `<div>😵 ${game.i18n.localize("rmss.maneuvers.stunned")}: <strong>${fmt(stunned)}</strong></div>` : "",
-            penaltyEffect !== 0 ? `<div>🩹 ${game.i18n.localize("rmss.combat.penalty")}: <strong>${fmt(Math.min(0, penaltyEffect))}</strong></div>` : ""
+            penaltyEffect !== 0 ? `<div>🩹 ${game.i18n.localize("rmss.combat.penalty")}: <strong>${fmt(Math.min(0, penaltyEffect))}</strong></div>` : "",
+            activeBonus !== 0
+                ? `<div>➕ ${game.i18n.localize("rmss.maneuvers.active_effect_bonus")}: <strong>${fmt(activeBonus)}</strong></div>`
+                : ""
         ].filter(Boolean).join("");
         const content = `
             <div style="border: 1px solid #555; border-radius: 8px; padding: 8px 10px; background: rgba(0,0,0,0.25); box-shadow: 0 0 6px rgba(0,0,0,0.4);">

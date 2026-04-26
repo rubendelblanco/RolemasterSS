@@ -74,10 +74,15 @@ describe('BaseSpellService.isUnmodifiedRoll', () => {
     expect(BaseSpellService.isUnmodifiedRoll(100)).toBe(true);
   });
 
-  test('3-95 are modified', () => {
+  test('3-95 are modified (tramos por defecto 01-02 y 96-100)', () => {
     expect(BaseSpellService.isUnmodifiedRoll(3)).toBe(false);
     expect(BaseSpellService.isUnmodifiedRoll(50)).toBe(false);
     expect(BaseSpellService.isUnmodifiedRoll(95)).toBe(false);
+  });
+
+  const FIREBALL_STYLE_UM = ['01-04', '96-97', '98-99', '100-100'];
+  test('con tramos 01-04, natural 3 count como UM en ese esquema', () => {
+    expect(BaseSpellService.isUnmodifiedRoll(3, FIREBALL_STYLE_UM)).toBe(true);
   });
 });
 
@@ -94,9 +99,14 @@ describe('BaseSpellService.normalizeSpellRollResult', () => {
     expect(BaseSpellService.normalizeSpellRollResult(50, -10)).toBe(40);
   });
 
-  test('modified results clamped to 3-95', () => {
+  test('rama modificada: complemento de tramos `um` (por defecto 3-95, no entrar a UM vía mod.)', () => {
     expect(BaseSpellService.normalizeSpellRollResult(10, -50)).toBe(3);
     expect(BaseSpellService.normalizeSpellRollResult(90, +50)).toBe(95);
+  });
+
+  const FIREBALL_STYLE_UM = ['01-04', '96-97', '98-99', '100-100'];
+  test('con `um` estilo fire_ball, (10) + (-10) no pisa 01-04: recorte a 5..95', () => {
+    expect(BaseSpellService.normalizeSpellRollResult(10, -10, FIREBALL_STYLE_UM)).toBe(5);
   });
 
   test('zero modifier returns natural roll (within 3-95)', () => {
