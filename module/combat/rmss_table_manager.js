@@ -199,15 +199,7 @@ export default class RMSSTableManager {
             speaker,
             rolls: roll && !suppressRollAttachment ? [roll] : undefined
         };
-        if (expData?.actorId) {
-            const actor = game.actors.get(expData.actorId);
-            if (actor) {
-                const whispers = new Set();
-                game.users.filter(u => actor.testUserPermission(u, "OWNER")).forEach(u => whispers.add(u.id));
-                game.users.filter(u => u.isGM).forEach(u => whispers.add(u.id));
-                msgData.whisper = Array.from(whispers);
-            }
-        }
+        // Critical table results are always public so all players at the table see them.
         await ChatMessage.create(withPublicRollMode(msgData));
     }
 

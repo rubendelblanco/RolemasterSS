@@ -3,6 +3,7 @@ import Utils from "../utils.js";
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
 import { shouldDeferTickToNextRound } from "./combat_tick_policy.js";
+import { withPublicRollMode } from "../chat/chatMessages.js";
 
 /**
  * @class RMSSEffectApplier
@@ -317,19 +318,9 @@ export class RMSSEffectApplier {
 
         const content = await renderTemplate(templatePath, templateData);
 
-        const msgData = {
-            speaker: 'Game Master',
+        await ChatMessage.create(withPublicRollMode({
+            speaker: "Game Master",
             content
-        };
-        if (expData?.actorId) {
-            const killerActor = game.actors.get(expData.actorId);
-            if (killerActor) {
-                const whispers = new Set();
-                game.users.filter(u => killerActor.testUserPermission(u, "OWNER")).forEach(u => whispers.add(u.id));
-                game.users.filter(u => u.isGM).forEach(u => whispers.add(u.id));
-                msgData.whisper = Array.from(whispers);
-            }
-        }
-        await ChatMessage.create(msgData);
+        }));
     }
 }
