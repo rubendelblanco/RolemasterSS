@@ -1084,6 +1084,7 @@
             "casting_penalty": "Casting Penalty",
             "unmodified": "Unmodified",
             "open_ended_short": "open-ended",
+            "be_attack_byline": "<b>{a}</b> casts <b>{b}</b>",
             "be_attack_breakdown_title": "Elemental attack — table resolution",
             "be_attack_breakdown_step_roll": "d100 (natural):",
             "be_attack_breakdown_step_diff": "Mod. (from confirm):",

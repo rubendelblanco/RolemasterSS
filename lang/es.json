@@ -1084,6 +1084,7 @@
       "casting_penalty": "Penalización de lanzamiento",
       "unmodified": "Sin modificar",
       "open_ended_short": "tirada abierta",
+      "be_attack_byline": "<b>{a}</b> lanza <b>{b}</b>",
       "be_attack_breakdown_title": "Ataque elemental — resolución de tabla",
       "be_attack_breakdown_step_roll": "d100 (natural):",
       "be_attack_breakdown_step_diff": "Mod. (del confirm.):",

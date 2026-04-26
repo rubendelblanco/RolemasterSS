@@ -679,9 +679,11 @@ export default class BaseElementalSpellService {
         const activeSorted = [...perIndexDiff.keys()].sort((a, b) => a - b);
         const firstIndexGlobal = activeSorted[0];
 
-        const roll = await new Roll("1d100x>95").evaluate();
+        // Area ball: closed 1d100 (no open-ended). Modified branch is capped outside `um` (e.g. 95 max);
+        // a high open roll would not raise the table index, only add noise. One die for the whole template.
+        const roll = await new Roll("1d100").evaluate();
         const naturalRoll = roll.dice[0].results[0].result;
-        const rollTotal = naturalRoll === 100 ? 100 : roll.total;
+        const rollTotal = naturalRoll;
         if (game.dice3d) {
             await game.dice3d.showForRoll(roll, game.user, true);
         }
@@ -876,6 +878,22 @@ export default class BaseElementalSpellService {
         const hasCenterLine = isAreaBall && centerBonus > 0;
         const ap = Math.max(0, areaPenalty);
         const tableCellDisplay = tableCellRaw == null || tableCellRaw === "" ? "—" : String(tableCellRaw);
+        const esc = (x) => (foundry.utils?.escapeHTML ? foundry.utils.escapeHTML(String(x == null ? "" : x)) : String(x));
+        const actorName = actor?.name || "";
+        const publicBylineHtml = game.i18n.format("rmss.spells.be_attack_byline", {
+            a: esc(actorName),
+            b: esc(spell?.name || "")
+        });
+        let publicRollSummaryHtml;
+        if (isExplosive) {
+            publicRollSummaryHtml = `${esc(naturalRoll)} <span style="color:#ff9f4a;">→ ${esc(rollTotal)}</span> → <b>${esc(
+                String(finalForTarget)
+            )}</b> — <b>${esc(tableCellDisplay)}</b>`;
+        } else {
+            publicRollSummaryHtml = `${esc(naturalRoll)} → <b>${esc(
+                String(finalForTarget)
+            )}</b> — <b>${esc(tableCellDisplay)}</b>`;
+        }
         const actorImg = actor?.img || "icons/svg/mystery-man.svg";
         const targetName = enemy?.name || tokenOrActor?.name || "";
         let targetImg = enemy?.img;
@@ -885,6 +903,9 @@ export default class BaseElementalSpellService {
         if (!targetImg) targetImg = "icons/svg/mystery-man.svg";
 
         const html = await renderTemplate("systems/rmss/templates/chat/be-attack-breakdown.hbs", {
+            actorName,
+            publicBylineHtml,
+            publicRollSummaryHtml,
             actorImg,
             targetImg,
             targetName,

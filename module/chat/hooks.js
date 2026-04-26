@@ -173,6 +173,9 @@ async function onCriticalRollClick(ev) {
 }
 
 Hooks.on("renderChatMessage", (message, html, data) => {
+    if (!game.user.isGM) {
+        html.find(".rmss-chat-gm-only").remove();
+    }
     // Attacker owner or GM; runs outside combat too (chat/hooks always loads)
     html.find(".chat-critical-roll").each(function () {
         const attackerId = this.dataset.attacker;
