@@ -85,6 +85,10 @@
     <section class="sheet-body">
         <div class="tab skills" data-group="primary" data-tab="Skills">
             {{> "systems/rmss/templates/sheets/actors/parts/npc-skills.hbs" }}
+            <h2>{{ localize "rmss.item.description" }}</h2>
+            <div class="description-editor-wrapper {{#unless system.description}}empty-description{{/unless}}">
+                {{editor enrichedDescription target="system.description" button=true owner=true editable=true}}
+            </div>
         </div>
         <div class="tab equipment" data-group="primary" data-tab="Equipment">
             <div class="container">
