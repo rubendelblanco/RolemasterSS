@@ -10,7 +10,7 @@
           "apparent_age": 0,
           "actual_age": 0,
           "height": "",
-          "weight": "",
+          "weight": 0,
           "hair": "",
           "eyes": "",
           "personality": "",
@@ -268,7 +268,9 @@
         },
         "movement_rate": {
           "value": 0,
-          "current": 0
+          "current": 0,
+          "weight_penalty": 0,
+          "effective_value": 0
         },
         "fate_points": {
           "value": 0

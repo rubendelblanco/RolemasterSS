@@ -168,6 +168,11 @@ export class RMSSWeaponSkillManager {
 
         const facingValue = (tokenData?.facingValue ?? FacingService.FACING.FRONT) || "";
 
+        // Movement budget for this round: weight-penalized effective_value when present
+        // (characters), falling back to the raw value (npc/creature, unaffected by encumbrance).
+        const move = realActor.system.attributes.movement_rate;
+        const moveMax = move.effective_value ?? move.value;
+
         if (spellOptions) {
             ob = spellOptions.ob ?? 0;
             hitsTaken = spellOptions.hitsTaken ?? 0;
@@ -176,12 +181,12 @@ export class RMSSWeaponSkillManager {
             bonusValue = spellOptions.bonusValue ?? 0;
             // Activity vs movement (matches non-spell path; "Bonus" effects are already in bonusValue from cast total)
             bonusValue -= Math.round(
-                (1 - (realActor.system.attributes.movement_rate.current / realActor.system.attributes.movement_rate.value)) * 100
+                (1 - (move.current / moveMax)) * 100
             );
             const stunEffect = realEnemy ? Utils.getEffectByName(realEnemy, "Stunned") : [];
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
         } else {
-            const moveRatio = (realActor.system.attributes.movement_rate.current / realActor.system.attributes.movement_rate.value);
+            const moveRatio = (move.current / moveMax);
             if (moveRatio < 0.5) {
                 ui.notifications.warn("Unable to attack (activity behind 50%)", {localize: true});
                 return null;
@@ -196,7 +201,7 @@ export class RMSSWeaponSkillManager {
             const stunEffect = Utils.getEffectByName(enemy, "Stunned");
             bonusValue = 0;
             bonusEffects.forEach((bonus) => { bonusValue += bonus.flags.rmss.value; });
-            bonusValue -= Math.round((1 - (realActor.system.attributes.movement_rate.current / realActor.system.attributes.movement_rate.value)) * 100);
+            bonusValue -= Math.round((1 - (move.current / moveMax)) * 100);
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
         }
 

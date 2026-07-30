@@ -36,6 +36,9 @@ export class RMSSActor extends Actor {
     // Calculate Stat Bonuses for the Actor
     this.calculateStatBonuses(actorData);
 
+    // Calculate Movement Rate penalty from carried weight (needs strength.stat_bonus above)
+    this.calculateEncumbrance(actorData);
+
     // Calculate Resistance Rolls for the Actor
     this.calculateResistanceRolls(actorData);
 
@@ -168,6 +171,44 @@ export class RMSSActor extends Actor {
     actorData.system.stats.strength.stat_bonus = Number(systemData.stats.strength.racial_bonus)
                                                + Number(systemData.stats.strength.special_bonus)
                                                + Number(systemData.stats.strength.basic_bonus);
+  }
+
+  // Weight penalty (encumbrance): carrying more than 10% of body weight (only items marked
+  // "worn" count; armor you have equipped is exempt like any worn clothing, but unequipped
+  // spare armor still counts; transports never count, and items stashed inside a transport
+  // are carried by the mount, not the character) penalizes Movement Rate in steps of -8 per
+  // multiple of capacity exceeded, reduced by Strength stat_bonus * 3. Characters only.
+  calculateEncumbrance(actorData) {
+    const move = actorData.system.attributes?.movement_rate;
+    if (!move) return;
+
+    const bodyWeight = Number(actorData.system.role_traits?.weight);
+    if (!Number.isFinite(bodyWeight) || bodyWeight <= 0) {
+      move.weight_penalty = 0;
+      move.effective_value = Number(move.value) || 0;
+      return;
+    }
+
+    const capacity = bodyWeight * 0.10;
+    const carriedWeight = actorData.items.reduce((sum, item) => {
+      if (item.type === "transport" || item.system?.worn !== true) return sum;
+      if (item.type === "armor" && item.system?.equipped === true) return sum;
+      const containerId = item.flags?.rmss?.containerId;
+      if (containerId && actorData.items.get(containerId)?.type === "transport") return sum;
+      const w = Number(item.system?.weight);
+      return sum + (Number.isFinite(w) ? w : 0);
+    }, 0);
+
+    const ratio = carriedWeight / capacity;
+    const tier = ratio > 1 ? Math.ceil(ratio) - 1 : 0;
+    const rawPenalty = tier * 8;
+
+    const strBonus = Number(actorData.system.stats?.strength?.stat_bonus) || 0;
+    const negation = Math.max(0, strBonus) * 3;
+    const finalPenalty = Math.max(0, rawPenalty - negation);
+
+    move.weight_penalty = finalPenalty;
+    move.effective_value = Math.max(0, (Number(move.value) || 0) - finalPenalty);
   }
 
   // Calculate each Resistance Roll with the formula on the character sheet.

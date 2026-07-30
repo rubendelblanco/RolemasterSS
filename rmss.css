@@ -1394,6 +1394,14 @@ li.item.contained span.description {
     border-color: #c0392b;
 }
 
+.rmss-progress-thin.over-capacity .rmss-progress-bar {
+    background: #c0392b;
+}
+
+.rmss-progress-thin.over-capacity {
+    border-color: #c0392b;
+}
+
 tr.contained-item td.indent {
     padding-left: 1.5em;
     opacity: 0.9;
@@ -2170,6 +2178,25 @@ button.rmss-crit-reenable-local:hover {
 /* Inputs de movement rate */
 .header-text input {
     text-align: center;
+}
+
+/* Fate Points / Long Rest / Movement Rate / Encumbrance box: left-align instead of the default center */
+.movement-info-container .header-text {
+    text-align: left;
+}
+
+/* Weight-penalty pill under the encumbrance bar */
+.encumbrance-penalty-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: #c0392b;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-shadow: none;
 }
 
 .resource-entry {

@@ -65,6 +65,38 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const experiencePoints = parseInt(context.system?.attributes?.experience_points?.value) || 0;
     context.experienceProgress = ExperiencePointsCalculator.getExperienceProgress(experiencePoints);
 
+    // Encumbrance: carried weight (only items marked "worn" count; equipped armor is exempt
+    // like any worn clothing, but unequipped spare armor still counts; transports never count,
+    // and items stashed inside a transport are carried by the mount, not the character) vs.
+    // the weight the character can carry with zero net Movement penalty once their
+    // Strength-based negation (stat_bonus * 3) is factored in — i.e. base capacity (10% body
+    // weight) times however many -8 tiers Strength fully cancels out. This is the number that
+    // matters to the player, not the raw 10% figure.
+    if (actorData.type === "character") {
+      const bodyWeight = Number(context.system.role_traits?.weight);
+      const capacity = Number.isFinite(bodyWeight) && bodyWeight > 0 ? bodyWeight * 0.10 : 0;
+      const carriedWeight = this.actor.items.reduce((sum, item) => {
+        if (item.type === "transport" || item.system?.worn !== true) return sum;
+        if (item.type === "armor" && item.system?.equipped === true) return sum;
+        const containerId = item.flags?.rmss?.containerId;
+        if (containerId && this.actor.items.get(containerId)?.type === "transport") return sum;
+        const w = Number(item.system?.weight);
+        return sum + (Number.isFinite(w) ? w : 0);
+      }, 0);
+      const strBonus = Number(context.system.stats?.strength?.stat_bonus) || 0;
+      const negation = Math.max(0, strBonus) * 3;
+      const noPenaltyWeight = capacity * (Math.floor(negation / 8) + 1);
+      const usedPercent = noPenaltyWeight > 0 ? Math.round((carriedWeight / noPenaltyWeight) * 100) : 0;
+      context.encumbrance = {
+        carriedWeight: Math.round(carriedWeight * 100) / 100,
+        noPenaltyWeight: Math.round(noPenaltyWeight * 100) / 100,
+        isConfigured: capacity > 0,
+        isOverCapacity: usedPercent > 100,
+        usedPercent,
+        barPercent: Math.max(0, Math.min(100, usedPercent))
+      };
+    }
+
     // Return the enriched context to the template
     return context;
   }

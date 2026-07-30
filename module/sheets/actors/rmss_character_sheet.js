@@ -14,12 +14,21 @@ export default class RMSSCharacterSheet extends ActorSheet {
         super.activateListeners(html);
         this._registerItemListeners(html);
 
+        // Toggle "worn" (carried on the body) independently of "equipped" (in hand). Used by
+        // items/herbs (their only state) and weapons (which also have their own "equipped" control).
+        html.find(".worn-toggle").click(async ev => {
+            const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
+            if (!item) return;
+            await ItemService.toggleWorn(item);
+        });
+
         // Equip/Unequip Weapon/Armor, or toggle Worn for items
         html.find(".equippable").click(async ev => {
             const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
             if (!item) return;
-            // Items, herbs, transports use "worn"; weapons and armor use "equipped"
-            if (["item", "herb_or_poison", "transport"].includes(item.type)) {
+            // Items and herbs use "worn" only; weapons and armor use "equipped" (weapons also have
+            // their own separate "worn" control, handled above).
+            if (["item", "herb_or_poison"].includes(item.type)) {
                 await ItemService.toggleWorn(item);
                 return;
             }
@@ -57,7 +66,9 @@ export default class RMSSCharacterSheet extends ActorSheet {
                         ui.notifications.warn(game.i18n.localize("rmss.equipment.weapon_bonus_no_second_weapon"));
                     }
                 }
-                await item.update({ system: { equipped: true } });
+                // A weapon in hand, or armor being worn, is necessarily carried too.
+                const equipUpdate = ["weapon", "armor"].includes(item.type) ? { equipped: true, worn: true } : { equipped: true };
+                await item.update({ system: equipUpdate });
                 if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(this.actor);
             }
         });
@@ -78,7 +89,8 @@ export default class RMSSCharacterSheet extends ActorSheet {
                     return;
                 }
             }
-            await this.actor.update({"system.attributes.movement_rate.current": this.actor.system.attributes.movement_rate.value});
+            const move = this.actor.system.attributes.movement_rate;
+            await this.actor.update({"system.attributes.movement_rate.current": move.effective_value ?? move.value});
         });
 
         html.find("#movement-rate-current").on("change", async ev => {
@@ -442,6 +454,21 @@ export default class RMSSCharacterSheet extends ActorSheet {
         return super._onDropItem(event, data);
     }
 
+    /**
+     * A freshly acquired weapon/armor/item/herb is carried by the character by default.
+     * Transports are never "worn".
+     * @override
+     */
+    async _onDropItemCreate(itemData, event) {
+        const items = Array.isArray(itemData) ? itemData : [itemData];
+        for (const d of items) {
+            if (["weapon", "armor", "item", "herb_or_poison"].includes(d?.type)) {
+                foundry.utils.setProperty(d, "system.worn", true);
+            }
+        }
+        return super._onDropItemCreate(itemData, event);
+    }
+
     async _onContainerRowDrop(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -478,7 +505,11 @@ export default class RMSSCharacterSheet extends ActorSheet {
         if (sourceItem.parent?.id === this.actor.id) {
             await sourceItem.setFlag("rmss", "containerId", container.id);
         } else {
-            const newItem = await this.actor.createEmbeddedDocuments("Item", [sourceItem.toObject()]);
+            const sourceData = sourceItem.toObject();
+            if (["weapon", "armor", "item", "herb_or_poison"].includes(sourceData.type)) {
+                foundry.utils.setProperty(sourceData, "system.worn", true);
+            }
+            const newItem = await this.actor.createEmbeddedDocuments("Item", [sourceData]);
             await newItem[0].setFlag("rmss", "containerId", container.id);
         }
 
