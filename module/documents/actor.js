@@ -173,9 +173,11 @@ export class RMSSActor extends Actor {
                                                + Number(systemData.stats.strength.basic_bonus);
   }
 
-  // Weight penalty (encumbrance): carrying more than 10% of body weight (excluding armor)
-  // penalizes Movement Rate in steps of -8 per multiple of capacity exceeded, reduced by
-  // Strength stat_bonus * 3. Characters only.
+  // Weight penalty (encumbrance): carrying more than 10% of body weight (only items marked
+  // "worn" count; armor you have equipped is exempt like any worn clothing, but unequipped
+  // spare armor still counts; transports never count, and items stashed inside a transport
+  // are carried by the mount, not the character) penalizes Movement Rate in steps of -8 per
+  // multiple of capacity exceeded, reduced by Strength stat_bonus * 3. Characters only.
   calculateEncumbrance(actorData) {
     const move = actorData.system.attributes?.movement_rate;
     if (!move) return;
@@ -189,7 +191,10 @@ export class RMSSActor extends Actor {
 
     const capacity = bodyWeight * 0.10;
     const carriedWeight = actorData.items.reduce((sum, item) => {
-      if (item.type === "armor") return sum;
+      if (item.type === "transport" || item.system?.worn !== true) return sum;
+      if (item.type === "armor" && item.system?.equipped === true) return sum;
+      const containerId = item.flags?.rmss?.containerId;
+      if (containerId && actorData.items.get(containerId)?.type === "transport") return sum;
       const w = Number(item.system?.weight);
       return sum + (Number.isFinite(w) ? w : 0);
     }, 0);

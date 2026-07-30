@@ -4,6 +4,7 @@
         <th></th>
         <th>{{ localize "rmss.pc_sheet_items.item_name" }}</th>
         <th>{{ localize "rmss.pc_sheet_items.equipped" }}</th>
+        <th>{{ localize "rmss.pc_sheet_items.worn" }}</th>
         <th>{{ localize "rmss.weapon.breakage_range" }}</th>
         <th>{{ localize "rmss.weapon.fumble_range" }}</th>
         <th>{{ localize "rmss.weapon.strength" }}</th>
@@ -38,11 +39,26 @@
             <span title="{{localize "rmss.weapon.natural_always_equipped"}}">—</span>
             {{else}}
             {{#if weapon.system.equipped}}
-            <a class="equippable" data-item-id="{{weapon._id}}">
+            <a class="equippable" data-item-id="{{weapon._id}}" title="{{localize 'rmss.pc_sheet_items.equipped'}}">
+                <i class="fa-solid fa-hand-fist"></i>
+            </a>
+            {{else}}
+            <a class="equippable" data-item-id="{{weapon._id}}" title="{{localize 'rmss.pc_sheet_items.equipped'}}">
+                <i class="fa-regular fa-hand"></i>
+            </a>
+            {{/if}}
+            {{/if}}
+        </td>
+        <td>
+            {{#if weapon.system.isNaturalWeapon}}
+            <span title="{{localize "rmss.weapon.natural_always_equipped"}}">—</span>
+            {{else}}
+            {{#if weapon.system.worn}}
+            <a class="worn-toggle" data-item-id="{{weapon._id}}" title="{{localize 'rmss.pc_sheet_items.worn'}}">
                 <i class="fa-regular fa-square-check"></i>
             </a>
             {{else}}
-            <a class="equippable" data-item-id="{{weapon._id}}">
+            <a class="worn-toggle" data-item-id="{{weapon._id}}" title="{{localize 'rmss.pc_sheet_items.worn'}}">
                 <i class="fa-regular fa-square"></i>
             </a>
             {{/if}}

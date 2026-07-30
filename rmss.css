@@ -2180,6 +2180,25 @@ button.rmss-crit-reenable-local:hover {
     text-align: center;
 }
 
+/* Fate Points / Long Rest / Movement Rate / Encumbrance box: left-align instead of the default center */
+.movement-info-container .header-text {
+    text-align: left;
+}
+
+/* Weight-penalty pill under the encumbrance bar */
+.encumbrance-penalty-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: #c0392b;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-shadow: none;
+}
+
 .resource-entry {
     display: flex;
     flex-direction: column;

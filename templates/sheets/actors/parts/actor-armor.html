@@ -4,6 +4,7 @@
         <th></th>
         <th>{{ localize "rmss.pc_sheet_items.item_name" }}</th>
         <th>{{ localize "rmss.pc_sheet_items.equipped" }}</th>
+        <th>{{ localize "rmss.pc_sheet_items.worn" }}</th>
         <th>{{ localize "rmss.armor.at" }}</th>
         <th>{{ localize "rmss.pc_sheet_items.quantity" }}</th>
         <th>{{ localize "rmss.pc_sheet_items.weight" }}</th>
@@ -28,10 +29,21 @@
             {{/times}}
           </div>
           {{/if}}</td>
-        {{#if equipable.system.equipped}}
-          <td><a class="equippable" data-item-id="{{equipable._id}}"><i class="fa-regular fa-square-check"></i></a></td>
+        <td>
+          <a class="equippable" data-item-id="{{equipable._id}}" title="{{localize 'rmss.pc_sheet_items.equipped'}}">
+            {{#if (eq equipable.system.armorSlot "helmet")}}
+              <i class="fa-{{#if equipable.system.equipped}}solid{{else}}regular{{/if}} fa-helmet-battle"></i>
+            {{else if (eq equipable.system.armorSlot "shield")}}
+              <i class="fa-{{#if equipable.system.equipped}}solid{{else}}regular{{/if}} fa-shield"></i>
+            {{else}}
+              <i class="fa-{{#if equipable.system.equipped}}solid{{else}}regular{{/if}} fa-user"></i>
+            {{/if}}
+          </a>
+        </td>
+        {{#if equipable.system.worn}}
+          <td><a class="worn-toggle" data-item-id="{{equipable._id}}" title="{{localize 'rmss.pc_sheet_items.worn'}}"><i class="fa-regular fa-square-check"></i></a></td>
         {{else}}
-          <td><a class="equippable" data-item-id="{{equipable._id}}"><i class="fa-regular fa-square"></i></a></td>
+          <td><a class="worn-toggle" data-item-id="{{equipable._id}}" title="{{localize 'rmss.pc_sheet_items.worn'}}"><i class="fa-regular fa-square"></i></a></td>
         {{/if}}
         <td>{{equipable.system.at}}</td>
         <td>{{equipable.system.quantity}}</td>

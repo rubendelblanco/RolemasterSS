@@ -34,17 +34,7 @@
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{group.container.system.description}}"></i>
           {{/if}}</strong></td>
-        <td>
-            {{#if group.container.system.worn}}
-            <a class="equippable" data-item-id="{{group.container._id}}">
-                <i class="fa-regular fa-square-check"></i>
-            </a>
-            {{else}}
-            <a class="equippable" data-item-id="{{group.container._id}}">
-                <i class="fa-regular fa-square"></i>
-            </a>
-            {{/if}}
-        </td>
+        <td>—</td>
         <td>{{group.container.system.quantity}}</td>
         <td>{{formatNumber group.container.system.weight}}</td>
         <td>
@@ -86,17 +76,7 @@
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{item.system.description}}"></i>
           {{/if}}<a class="remove-from-container item-control" data-item-id="{{item._id}}" title="{{localize 'rmss.container.remove_from_container'}}"><i class="fas fa-box-open"></i></a></td>
-        <td>
-            {{#if item.system.worn}}
-            <a class="equippable" data-item-id="{{item._id}}">
-                <i class="fa-regular fa-square-check"></i>
-            </a>
-            {{else}}
-            <a class="equippable" data-item-id="{{item._id}}">
-                <i class="fa-regular fa-square"></i>
-            </a>
-            {{/if}}
-        </td>
+        <td>—</td>
         <td>{{item.system.quantity}}</td>
         <td>{{formatNumber item.system.weight}}</td>
         <td>

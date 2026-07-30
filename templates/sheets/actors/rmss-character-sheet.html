@@ -45,7 +45,7 @@
 
       <!-- Name, XP and Level Section-->
 
-      <div class="header-container">
+      <div class="header-container movement-info-container">
         <!-- Fate Points row -->
         {{#if fateIcons.length}}
         <div class="header-text flexrow fate-points-row">
@@ -88,9 +88,17 @@
 
         {{#if encumbrance.isConfigured}}
         <div class="header-text flexrow">
-          <label>{{ localize "rmss.encumbrance.label" }}
+          <label><i class="fa-solid fa-weight-hanging" aria-hidden="true"></i> 
             <span>{{encumbrance.carriedWeight}} / {{encumbrance.noPenaltyWeight}} kg</span>
           </label>
+          {{#if system.attributes.movement_rate.weight_penalty}}
+            <div class="header-text flexrow">
+              <span class="encumbrance-penalty-badge" title="{{ localize 'rmss.encumbrance.penalty_tooltip' }}">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                -{{system.attributes.movement_rate.weight_penalty}} {{ localize "rmss.encumbrance.mr_penalty_suffix" }}
+              </span>
+            </div>
+          {{/if}}
         </div>
         <div class="header-text flexrow">
           <div class="rmss-progress-thin {{#if encumbrance.isOverCapacity}}over-capacity{{/if}}">
@@ -98,11 +106,6 @@
               <span class="rmss-progress-bar-text">{{encumbrance.usedPercent}}%</span>
             </div>
           </div>
-          {{#if system.attributes.movement_rate.weight_penalty}}
-          <span title="{{ localize 'rmss.encumbrance.penalty_tooltip' }}">
-            -{{system.attributes.movement_rate.weight_penalty}} {{ localize "rmss.encumbrance.mr_penalty_suffix" }}
-          </span>
-          {{/if}}
         </div>
         {{/if}}
       </div>
@@ -131,10 +134,12 @@
             </div>
           </div>
         </div>
+        {{#if system.levelUp.isLevelingUp}}
         <div class="header-text flexrow">
           <label for="development-points">{{ localize "rmss.experience.dps" }} </label>
           <input type="text" value="{{system.levelUp.developmentPoints}}" id="development-points" name="system.levelUp.developmentPoints" data-dtype="Number"/>
         </div>
+        {{/if}}
       </div>
     </div>
   </header>
