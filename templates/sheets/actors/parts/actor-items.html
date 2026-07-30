@@ -93,17 +93,7 @@
             {{/times}}
           </div>
           {{/if}}</td>
-        <td>
-            {{#if item.system.worn}}
-            <a class="equippable" data-item-id="{{item._id}}">
-                <i class="fa-regular fa-square-check"></i>
-            </a>
-            {{else}}
-            <a class="equippable" data-item-id="{{item._id}}">
-                <i class="fa-regular fa-square"></i>
-            </a>
-            {{/if}}
-        </td>
+        <td>—</td>
         <td>{{item.system.quantity}}</td>
         <td>{{formatNumber item.system.weight}}</td>
         <td>

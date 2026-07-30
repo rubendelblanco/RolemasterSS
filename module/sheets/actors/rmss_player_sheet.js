@@ -66,20 +66,27 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     context.experienceProgress = ExperiencePointsCalculator.getExperienceProgress(experiencePoints);
 
     // Encumbrance: carried weight (only items marked "worn" count; equipped armor is exempt
-    // like any worn clothing, but unequipped spare armor still counts; transports never count,
-    // and items stashed inside a transport are carried by the mount, not the character) vs.
-    // the weight the character can carry with zero net Movement penalty once their
+    // like any worn clothing, but unequipped spare armor still counts; transports never count)
+    // vs. the weight the character can carry with zero net Movement penalty once their
     // Strength-based negation (stat_bonus * 3) is factored in — i.e. base capacity (10% body
     // weight) times however many -8 tiers Strength fully cancels out. This is the number that
-    // matters to the player, not the raw 10% figure.
+    // matters to the player, not the raw 10% figure. An item inside a container inherits the
+    // container's own "worn" state (see actor.js#calculateEncumbrance for the full rationale).
     if (actorData.type === "character") {
       const bodyWeight = Number(context.system.role_traits?.weight);
       const capacity = Number.isFinite(bodyWeight) && bodyWeight > 0 ? bodyWeight * 0.10 : 0;
       const carriedWeight = this.actor.items.reduce((sum, item) => {
-        if (item.type === "transport" || item.system?.worn !== true) return sum;
+        if (item.type === "transport") return sum;
         if (item.type === "armor" && item.system?.equipped === true) return sum;
+
         const containerId = item.flags?.rmss?.containerId;
-        if (containerId && this.actor.items.get(containerId)?.type === "transport") return sum;
+        if (containerId) {
+          const container = this.actor.items.get(containerId);
+          if (!container || container.type === "transport" || container.system?.worn !== true) return sum;
+        } else if (item.system?.worn !== true) {
+          return sum;
+        }
+
         const w = Number(item.system?.weight);
         return sum + (Number.isFinite(w) ? w : 0);
       }, 0);
