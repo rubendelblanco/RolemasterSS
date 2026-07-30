@@ -78,7 +78,8 @@ export default class RMSSCharacterSheet extends ActorSheet {
                     return;
                 }
             }
-            await this.actor.update({"system.attributes.movement_rate.current": this.actor.system.attributes.movement_rate.value});
+            const move = this.actor.system.attributes.movement_rate;
+            await this.actor.update({"system.attributes.movement_rate.current": move.effective_value ?? move.value});
         });
 
         html.find("#movement-rate-current").on("change", async ev => {

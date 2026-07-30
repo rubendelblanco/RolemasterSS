@@ -86,10 +86,25 @@
                  />
         </div>
 
+        {{#if encumbrance.isConfigured}}
         <div class="header-text flexrow">
-          <label for="development-points">{{ localize "rmss.experience.dps" }} </label>
-          <input type="text" value="{{system.levelUp.developmentPoints}}" id="development-points" name="system.levelUp.developmentPoints" data-dtype="Number"/>
+          <label>{{ localize "rmss.encumbrance.label" }}
+            <span>{{encumbrance.carriedWeight}} / {{encumbrance.noPenaltyWeight}} kg</span>
+          </label>
         </div>
+        <div class="header-text flexrow">
+          <div class="rmss-progress-thin {{#if encumbrance.isOverCapacity}}over-capacity{{/if}}">
+            <div class="rmss-progress-bar" style="width: {{encumbrance.barPercent}}%;">
+              <span class="rmss-progress-bar-text">{{encumbrance.usedPercent}}%</span>
+            </div>
+          </div>
+          {{#if system.attributes.movement_rate.weight_penalty}}
+          <span title="{{ localize 'rmss.encumbrance.penalty_tooltip' }}">
+            -{{system.attributes.movement_rate.weight_penalty}} {{ localize "rmss.encumbrance.mr_penalty_suffix" }}
+          </span>
+          {{/if}}
+        </div>
+        {{/if}}
       </div>
 
       <div class="header-container">
@@ -109,12 +124,16 @@
           <input id="experience-points" name="system.attributes.experience_points.value" data-dtype="Number" type="text"
                  value="{{system.attributes.experience_points.value}}" />
         </div>
-        <div class="header-text flexrow">
+        <div class="header-text flexrow experience-progress-container">
           <div class="rmss-progress-thin">
             <div class="rmss-progress-bar" style="width: {{experienceProgress}}%;">
               <span class="rmss-progress-bar-text">{{experienceProgress}}%</span>
             </div>
           </div>
+        </div>
+        <div class="header-text flexrow">
+          <label for="development-points">{{ localize "rmss.experience.dps" }} </label>
+          <input type="text" value="{{system.levelUp.developmentPoints}}" id="development-points" name="system.levelUp.developmentPoints" data-dtype="Number"/>
         </div>
       </div>
     </div>

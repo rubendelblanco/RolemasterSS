@@ -139,6 +139,11 @@
       "transports": "Transportes",
       "wealth": "Dinero"
     },
+    "encumbrance": {
+      "label": "Carga",
+      "penalty_tooltip": "Penalización al Movimiento base por ir sobrecargado (se reduce con la bonificación de Fuerza)",
+      "mr_penalty_suffix": "Mov"
+    },
     "pc_sheet_fixed_info": {
       "race": "Raza",
       "profession": "Profesión",
@@ -193,7 +198,7 @@
       "apparent_age": "Edad aparente",
       "actual_age": "Edad real",
       "height": "Altura",
-      "weight": "Peso",
+      "weight": "Peso (kg)",
       "hair": "Cabello",
       "eyes": "Ojos",
       "personality": "Personalidad",

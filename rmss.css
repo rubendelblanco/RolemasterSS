@@ -1394,6 +1394,14 @@ li.item.contained span.description {
     border-color: #c0392b;
 }
 
+.rmss-progress-thin.over-capacity .rmss-progress-bar {
+    background: #c0392b;
+}
+
+.rmss-progress-thin.over-capacity {
+    border-color: #c0392b;
+}
+
 tr.contained-item td.indent {
     padding-left: 1.5em;
     opacity: 0.9;

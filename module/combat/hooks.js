@@ -172,7 +172,7 @@ export function registerCombatHooks() {
             const move = actor?.system?.attributes.movement_rate;
             if (!move) continue;
 
-            await actor.update({ "system.attributes.movement_rate.current": move.value });
+            await actor.update({ "system.attributes.movement_rate.current": move.effective_value ?? move.value });
         }
 
         ui.notifications.info("⚔️ Se ha restaurado el movimiento de todos los personajes.");

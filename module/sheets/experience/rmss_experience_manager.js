@@ -503,9 +503,10 @@ export default class ExperiencePointsCalculator {
      */
     static _updateExperienceProgressBar(html, experiencePoints) {
         const progress = ExperiencePointsCalculator.getExperienceProgress(experiencePoints);
-        const progressBar = html.find(".rmss-progress-bar");
-        const progressBarText = html.find(".rmss-progress-bar-text");
-        
+        const container = html.find(".experience-progress-container");
+        const progressBar = container.find(".rmss-progress-bar");
+        const progressBarText = container.find(".rmss-progress-bar-text");
+
         if (progressBar.length && progressBarText.length) {
             progressBar.css("width", `${progress}%`);
             progressBarText.text(`${progress}%`);

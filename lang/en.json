@@ -139,6 +139,11 @@
             "transports": "Transports",
             "wealth": "Wealth"
         },
+        "encumbrance": {
+            "label": "Encumbrance",
+            "penalty_tooltip": "Movement Rate penalty from being overloaded (reduced by Strength bonus)",
+            "mr_penalty_suffix": "MR"
+        },
         "pc_sheet_fixed_info": {
             "race": "Race",
             "profession": "Profession",
@@ -193,7 +198,7 @@
             "apparent_age": "Apparent Age",
             "actual_age": "Actual Age",
             "height": "Height",
-            "weight": "Weight",
+            "weight": "Weight (kg)",
             "hair": "Hair",
             "eyes": "Eyes",
             "personality": "Personality",
