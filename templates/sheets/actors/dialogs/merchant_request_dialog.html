@@ -1,0 +1,31 @@
+<p class="notes">
+  {{ hint }}
+</p>
+<div class="merchant-sell-form flexcol">
+  <div class="flexrow">
+    <label>{{ localize "rmss.pc_sheet_items.item_name" }}</label>
+    <span>{{item.name}}</span>
+  </div>
+  <div class="flexrow">
+    <label>{{ localize "rmss.pc_sheet_items.cost" }}</label>
+    <span>{{unitCost}} <span>{{localize (concat "rmss.currency_type_abb." currencyType)}}</span> {{ localize "rmss.merchant.each" }}</span>
+  </div>
+  <div class="flexrow">
+    <label for="qty">{{ localize "rmss.pc_sheet_items.quantity" }}</label>
+    <input type="number" name="qty" min="1" max="{{maxQty}}" value="1"/>
+    <span>/ {{maxQty}}</span>
+  </div>
+  <div class="flexrow">
+    <label for="buyer">{{ localize "rmss.merchant.buyer" }}</label>
+    <select name="buyer">
+      {{#each buyers as |buyer|}}
+      <option value="{{buyer.uuid}}">{{buyer.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+</div>
+<footer class="sheet-footer flexrow">
+  <button type="button" class="confirm-request">
+    <i class="fas fa-hand-point-right"></i> {{ localize "rmss.merchant.confirm_request" }}
+  </button>
+</footer>

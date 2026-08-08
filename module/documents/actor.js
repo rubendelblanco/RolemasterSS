@@ -21,6 +21,7 @@ export class RMSSActor extends Actor {
     this._prepareCharacterData(actorData);
     this._prepareNpcData(actorData);
     this._prepareCreatureData(actorData);
+    this._prepareMerchantData(actorData);
   }
 
   /**
@@ -70,6 +71,15 @@ export class RMSSActor extends Actor {
     if (actorData.type !== "creature") return;
     this.calculateSkillCategoryStatBonuses();
     this.calculateSkillBonuses();
+  }
+
+  /**
+   * Prepare Merchant specific data. A shop has no stats/skills/combat — reserved
+   * for future derived data (e.g. total inventory value) if ever needed.
+   * @param {Actor} actorData
+   */
+  _prepareMerchantData(actorData) {
+    if (actorData.type !== "merchant") return;
   }
 
   _getStatBasicBonusFromTable(value){

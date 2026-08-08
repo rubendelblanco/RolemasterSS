@@ -3799,3 +3799,61 @@ button.rmss-crit-reenable-local:hover {
   width: 100%;
   max-width: 28rem;
 }
+
+/* ================================
+   Merchant sheet
+   ================================ */
+.rmss.sheet.merchant .sheet-header .container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.rmss.sheet.merchant .item-sell {
+  color: var(--rmss-tab-gold, #c8a861);
+}
+.rmss.sheet.merchant .item-sell:hover {
+  color: var(--rmss-tab-gold-active, #e3c978);
+}
+.rmss.sheet.merchant .item-request {
+  color: var(--rmss-tab-gold, #c8a861);
+}
+.rmss.sheet.merchant .item-request:hover {
+  color: var(--rmss-tab-gold-active, #e3c978);
+}
+.rmss.sheet.merchant table.items {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* ================================
+   Merchant purchase request (chat card)
+   ================================ */
+.rmss-merchant-request .rmss-merchant-request-title {
+  margin: 0 0 0.25rem;
+  color: var(--rmss-tab-gold, #c8a861);
+}
+.rmss-merchant-request .rmss-merchant-request-body {
+  margin: 0 0 0.5rem;
+}
+.rmss-merchant-request .rmss-merchant-request-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+.rmss-merchant-request .rmss-merchant-request-actions button {
+  flex: 1;
+}
+.rmss-merchant-request .rmss-merchant-request-status {
+  margin: 0;
+  font-style: italic;
+}
+.rmss-merchant-request .rmss-merchant-request-status.pending {
+  color: var(--rmss-tab-gold, #c8a861);
+}
+.rmss-merchant-request .rmss-merchant-request-status.approved {
+  color: #4caf50;
+}
+.rmss-merchant-request .rmss-merchant-request-status.rejected,
+.rmss-merchant-request .rmss-merchant-request-status.stock_changed {
+  color: var(--color-text-danger, #c62828);
+}

@@ -1,6 +1,31 @@
 // Listen for click events on chat buttons
 import { RMSSWeaponCriticalManager } from "../combat/rmss_weapon_critical_manager.js";
 import { socket } from "../../rmss.js";
+import MerchantService from "../actors/services/merchant_service.js";
+
+/** Guards against a double-click firing resolveRequest twice on the same card. */
+const MERCHANT_REQUEST_IN_FLIGHT = new Set();
+
+/**
+ * @param {JQuery.Event} ev
+ * @param {"accept"|"reject"} decision
+ */
+async function onMerchantRequestDecision(ev, decision) {
+    ev.preventDefault();
+    if (!game.user.isGM) return;
+
+    const messageId = ev.currentTarget.closest(".message")?.dataset?.messageId;
+    const message = messageId ? game.messages.get(messageId) : null;
+    if (!message) return;
+
+    if (MERCHANT_REQUEST_IN_FLIGHT.has(message.id)) return;
+    MERCHANT_REQUEST_IN_FLIGHT.add(message.id);
+    try {
+        await MerchantService.resolveRequest(message, decision);
+    } finally {
+        MERCHANT_REQUEST_IN_FLIGHT.delete(message.id);
+    }
+}
 
 /** Same message+slot cannot start two critical flows before the first await (disabled alone is not enough). */
 const CRITICAL_ROLL_IN_FLIGHT = new Set();
@@ -189,6 +214,9 @@ Hooks.on("renderChatMessage", (message, html, data) => {
     });
 
     html.find(".chat-critical-roll").off(CRIT_CLICK_NS).on(CRIT_CLICK_NS, onCriticalRollClick);
+
+    html.find(".merchant-request-accept").off("click.rmssMerchantRequest").on("click.rmssMerchantRequest", ev => onMerchantRequestDecision(ev, "accept"));
+    html.find(".merchant-request-reject").off("click.rmssMerchantRequest").on("click.rmssMerchantRequest", ev => onMerchantRequestDecision(ev, "reject"));
 
     html.find('.click-to-toggle').on('click', (event) => {
         const breakdown = html.find('.breakdown-details');

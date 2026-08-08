@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "npc", "creature"],
+    "types": ["character", "npc", "creature", "merchant"],
     "templates": {
       "role_traits": {
         "role_traits": {
@@ -326,6 +326,11 @@
       },
       "bonus_xp": "",
       "treasure": ""
+    },
+    "merchant": {
+      "templates": ["money"],
+      "attributes": {},
+      "description": ""
     }
   },
   "Item": {
@@ -361,11 +366,7 @@
         "capacityType": "weight",
         "allowedTags": null
       },
-      "currency_type": {
-        "type": "string",
-        "default": "gp",
-        "label": "RMSS.CurrencyType"
-      },
+      "currency_type": "gold",
       "magical": false,
       "holy": false,
       "unholy": false,

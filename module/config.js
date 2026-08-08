@@ -22,6 +22,23 @@ rmss.currency_type_abb = {
   iron: "rmss.currency_type_abb.iron"
 };
 
+/**
+ * Cascading 1:10 currency exchange table (Rolemaster standard denominations).
+ * Values are in "base units" (1 iron = 1 base unit), highest value first to
+ * match the money template's field order. Used to convert a mixed-denomination
+ * money object into a single comparable integer, and to re-mint change after a sale.
+ */
+rmss.currency_exchange_rates = {
+  mithril: 10000000,
+  platinum: 1000000,
+  gold: 100000,
+  silver: 10000,
+  bronze: 1000,
+  copper: 100,
+  tin: 10,
+  iron: 1
+};
+
 rmss.stats = {
   agility: {
     fullname: "Agility",

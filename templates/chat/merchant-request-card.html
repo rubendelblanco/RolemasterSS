@@ -1,0 +1,13 @@
+<div class="rmss-merchant-request">
+  <h4 class="rmss-merchant-request-title"><i class="fas fa-hand-holding-dollar"></i> {{ localize "rmss.merchant.request_card_title" }}</h4>
+  <p class="rmss-merchant-request-body">{{{bodyHtml}}}</p>
+  {{#if pending}}
+  <div class="rmss-merchant-request-actions rmss-chat-gm-only">
+    <button type="button" class="merchant-request-accept"><i class="fas fa-check"></i> {{ localize "rmss.merchant.accept" }}</button>
+    <button type="button" class="merchant-request-reject"><i class="fas fa-times"></i> {{ localize "rmss.merchant.reject" }}</button>
+  </div>
+  <p class="rmss-merchant-request-status pending">{{ localize "rmss.merchant.request_pending" }}</p>
+  {{else}}
+  <p class="rmss-merchant-request-status {{statusClass}}">{{statusMessage}}</p>
+  {{/if}}
+</div>
