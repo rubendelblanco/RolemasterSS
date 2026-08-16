@@ -1,4 +1,5 @@
 import LootService from "../services/loot_service.js";
+import ItemService from "../services/item_service.js";
 
 /**
  * Player-facing dialog to request taking an item from a loot container. Like
@@ -31,7 +32,9 @@ export default class LootItemRequestDialog extends Application {
             .map(t => t.actor)
             .filter(a => a && a.type === "character" && a.isOwner);
 
-        const maxQty = Number(this.item.system.quantity) || 0;
+        const stockQty = Number(this.item.system.quantity) || 0;
+        // Weapons/armor are always individual, unique instances — one at a time, never a stack.
+        const maxQty = ItemService.isStackable(this.item) ? stockQty : Math.min(stockQty, 1);
 
         return {
             item: this.item,

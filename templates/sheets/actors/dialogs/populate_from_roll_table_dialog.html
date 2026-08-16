@@ -1,0 +1,51 @@
+<div class="rmss-request-dialog-body flexcol">
+  <p class="notes">
+    {{ localize "rmss.populate_table.hint" }}
+  </p>
+
+  <div class="rmss-request-form flexcol">
+    <div class="rmss-request-row">
+      <label for="tableId">{{ localize "rmss.populate_table.table" }}</label>
+      <select name="tableId">
+        {{#each tables as |t|}}
+        <option value="{{t.id}}">{{t.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="rmss-request-row">
+      <label for="draws">{{ localize "rmss.populate_table.draws" }}</label>
+      <input type="number" name="draws" min="1" value="1"/>
+    </div>
+    <div class="rmss-request-row">
+      <label>{{ localize "rmss.populate_table.formula" }}</label>
+      <span class="rmss-request-value populate-table-formula">{{initialFormula}}</span>
+    </div>
+    <div class="rmss-request-row">
+      <label for="resetWhenExhausted">{{ localize "rmss.populate_table.reset_when_exhausted" }}</label>
+      <input type="checkbox" name="resetWhenExhausted"/>
+    </div>
+    <div class="rmss-request-row">
+      <label for="quantityFormula">{{ localize "rmss.populate_table.quantity" }}</label>
+      <input type="text" name="quantityFormula" value="1"/>
+    </div>
+    <div class="rmss-request-row">
+      <label for="clearItems">{{ localize "rmss.populate_table.clear_items" }}</label>
+      <select name="clearItems">
+        <option value="keep">{{ localize "rmss.populate_table.clear_items_keep" }}</option>
+        <option value="clear">{{ localize "rmss.populate_table.clear_items_clear" }}</option>
+      </select>
+    </div>
+    <div class="rmss-request-row">
+      <label for="duplicateItems">{{ localize "rmss.populate_table.duplicate_items" }}</label>
+      <select name="duplicateItems">
+        <option value="add">{{ localize "rmss.populate_table.duplicate_items_add" }}</option>
+        <option value="ignore">{{ localize "rmss.populate_table.duplicate_items_ignore" }}</option>
+      </select>
+    </div>
+  </div>
+</div>
+<footer class="rmss-request-footer">
+  <button type="button" class="confirm-populate">
+    <i class="fas fa-dice-d20"></i> {{ localize "rmss.populate_table.confirm" }}
+  </button>
+</footer>

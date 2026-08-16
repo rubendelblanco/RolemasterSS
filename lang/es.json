@@ -418,6 +418,25 @@
       "request_stock_changed": "Este item ya no está disponible; la solicitud no se pudo completar.",
       "request_entity_missing": "El origen, el receptor o el item ya no existen; la solicitud no se pudo completar."
     },
+    "populate_table": {
+      "button": "Poblar desde Tabla Aleatoria",
+      "dialog_title": "Poblar desde Tabla Aleatoria",
+      "hint": "Saca items de una Roll Table directamente a estas existencias.",
+      "table": "Tabla Aleatoria",
+      "draws": "Número de tiradas en la tabla",
+      "formula": "Fórmula de la Tabla",
+      "reset_when_exhausted": "Reiniciar al agotarse",
+      "quantity": "Cantidad de Items",
+      "clear_items": "Vaciar Items",
+      "clear_items_keep": "Mantener Items",
+      "clear_items_clear": "Vaciar Items",
+      "duplicate_items": "Items Duplicados",
+      "duplicate_items_add": "Sumar Cantidad",
+      "duplicate_items_ignore": "No Añadir",
+      "confirm": "Poblar",
+      "no_table_selected": "No se ha seleccionado tabla aleatoria.",
+      "result": "Añadidos {added} item(s); {skipped} omitidos (sin item enlazado, tipo incorrecto, o duplicado)."
+    },
     "item": {
       "tab_details": "Detalles",
       "tab_modifiers": "Modificadores",

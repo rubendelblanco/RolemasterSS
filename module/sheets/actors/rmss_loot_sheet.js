@@ -1,5 +1,6 @@
 import LootItemRequestDialog from "../../actors/dialogs/loot_item_request_dialog.js";
 import LootMoneyRequestDialog from "../../actors/dialogs/loot_money_request_dialog.js";
+import PopulateFromRollTableDialog from "../../actors/dialogs/populate_from_roll_table_dialog.js";
 
 /**
  * Sheet for the "loot" actor type (a fixed container — chest, stash, cache...).
@@ -43,6 +44,8 @@ export default class RMSSLootSheet extends ActorSheet {
             html.find(".take-money").click(ev => this._onTakeMoneyClick(ev));
             return;
         }
+
+        html.find(".populate-from-table").click(() => new PopulateFromRollTableDialog(this.actor).render(true));
 
         html.find(".item-control.item-edit").click(ev => {
             const itemId = ev.currentTarget.closest("[data-item-id]")?.dataset.itemId;

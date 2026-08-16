@@ -53,8 +53,10 @@ export default class SellToMerchantDialog extends Application {
             .filter(i => ["item", "weapon", "armor", "herb_or_poison"].includes(i.type))
             .filter(i => !(i.type === "weapon" && i.system.isNaturalWeapon))
             .map(i => {
-                const maxQty = Number(i.system.quantity) || 0;
-                const unitCost = ItemService.getUnitCost(i, maxQty);
+                const stockQty = Number(i.system.quantity) || 0;
+                const unitCost = ItemService.getUnitCost(i, stockQty);
+                // Weapons/armor are always individual, unique instances — one at a time, never a stack.
+                const maxQty = ItemService.isStackable(i) ? stockQty : Math.min(stockQty, 1);
                 return {
                     id: i.id,
                     name: i.name,

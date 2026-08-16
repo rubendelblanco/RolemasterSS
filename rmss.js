@@ -76,6 +76,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/actors/dialogs/loot_item_request_dialog.html",
     "systems/rmss/templates/sheets/actors/dialogs/loot_money_request_dialog.html",
     "systems/rmss/templates/sheets/actors/dialogs/sell_to_merchant_dialog.html",
+    "systems/rmss/templates/sheets/actors/dialogs/populate_from_roll_table_dialog.html",
     "systems/rmss/templates/chat/request-card.html",
     "systems/rmss/templates/sheets/items/parts/item-tags.hbs",
     "systems/rmss/templates/sheets/items/parts/container-allowed-tags.hbs",

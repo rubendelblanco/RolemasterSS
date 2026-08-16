@@ -50,6 +50,7 @@ export default class MerchantService {
   static async _executeSale(merchantActor, item, buyerActor, quantity, { notify = false } = {}) {
     const totalQty = Number(item.system.quantity) || 0;
     quantity = Math.max(1, Math.min(Number(quantity) || 0, totalQty));
+    if (!ItemService.isStackable(item)) quantity = 1; // weapons/armor: one at a time, never a stack
     if (totalQty <= 0 || quantity <= 0) {
       if (notify) ui.notifications.warn(game.i18n.localize("rmss.merchant.out_of_stock"));
       console.warn("[RMSS] merchant sale blocked: out of stock", { itemId: item.id, itemName: item.name, totalQty, requestedQty: quantity });
@@ -137,6 +138,7 @@ export default class MerchantService {
 
     const totalQty = Number(item.system.quantity) || 0;
     quantity = Math.max(1, Math.min(Number(quantity) || 0, totalQty));
+    if (!ItemService.isStackable(item)) quantity = 1; // weapons/armor: one at a time, never a stack
     if (totalQty <= 0 || quantity <= 0) {
       ui.notifications.warn(game.i18n.localize("rmss.merchant.out_of_stock"));
       return;
@@ -249,6 +251,7 @@ export default class MerchantService {
 
     const totalQty = Number(item.system.quantity) || 0;
     quantity = Math.max(1, Math.min(Number(quantity) || 0, totalQty));
+    if (!ItemService.isStackable(item)) quantity = 1; // weapons/armor: one at a time, never a stack
     if (totalQty <= 0 || quantity <= 0) {
       ui.notifications.warn(game.i18n.localize("rmss.merchant.out_of_stock"));
       return;
@@ -351,6 +354,7 @@ export default class MerchantService {
   static async _executeBuyback(sellerActor, item, merchantActor, quantity) {
     const totalQty = Number(item.system.quantity) || 0;
     quantity = Math.max(1, Math.min(Number(quantity) || 0, totalQty));
+    if (!ItemService.isStackable(item)) quantity = 1; // weapons/armor: one at a time, never a stack
     if (totalQty <= 0 || quantity <= 0) {
       console.warn("[RMSS] merchant buyback blocked: item no longer available", {
         itemId: item.id, itemName: item.name, totalQty, requestedQty: quantity

@@ -22,6 +22,21 @@ export default class ItemService {
     }
 
     /**
+     * Whether an item can be bought/sold/taken/populated in a quantity > 1.
+     * Weapons and armor are always individual, unique instances — no quantity field
+     * on their own sheet, no "split stack" control, each one has its own bonus/
+     * material/quality — so they never stack, regardless of their own data.
+     * Generic items/herbs stack by default but can opt out individually via their
+     * own "is_stackable" checkbox (e.g. a unique quest item of type "item").
+     * @param {Item} item
+     * @returns {boolean}
+     */
+    static isStackable(item) {
+        if (item.type === "weapon" || item.type === "armor") return false;
+        return item.system?.is_stackable !== false;
+    }
+
+    /**
      * Per-unit price of an item, normalizing two different conventions used across
      * item types: weapon/armor sheets store the price directly in `system.unitCost`
      * (their sheets never populate `system.cost` — see rmss_weapon_sheet.js /
@@ -36,6 +51,23 @@ export default class ItemService {
             return Number(item.system.unitCost) || 0;
         }
         return totalQty > 0 ? Number(((Number(item.system.cost) || 0) / totalQty).toFixed(2)) : 0;
+    }
+
+    /**
+     * Per-unit weight of an item — the mirror-image inconsistency of getUnitCost:
+     * weapon/armor sheets store weight directly in `system.weight` and never populate
+     * `system.unitWeight` (their quantity is always 1 through their own sheet, so this
+     * has never surfaced as a bug — but code that stacks weapon/armor quantity, like
+     * RollTableStockService, needs the real per-unit value up front).
+     * @param {Item} item
+     * @param {number} totalQty - item.system.quantity, already resolved by the caller
+     * @returns {number}
+     */
+    static getUnitWeight(item, totalQty) {
+        if (item.type === "weapon" || item.type === "armor") {
+            return Number(item.system.weight) || 0;
+        }
+        return totalQty > 0 ? Number(((Number(item.system.weight) || 0) / totalQty).toFixed(2)) : 0;
     }
 
     /**

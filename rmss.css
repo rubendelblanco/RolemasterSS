@@ -3891,6 +3891,23 @@ button.rmss-crit-reenable-local:hover {
   filter: brightness(1.25);
 }
 
+/* Populate-from-table trigger — shared "button link" look, used on both the
+   merchant and loot sheets (GM-only). */
+.rmss.sheet .populate-from-table {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rmss-progress-fill);
+  border-radius: 3px;
+  color: var(--rmss-progress-fill);
+  cursor: pointer;
+}
+.rmss.sheet .populate-from-table:hover {
+  filter: brightness(1.25);
+}
+
 /* ================================
    Request dialogs — shared by the merchant sell/request popups and the
    loot item/money request popups (all four use class "rmss-request-dialog").

@@ -134,6 +134,28 @@ describe('LootService.requestItem', () => {
     const [payload] = ChatMessage.create.mock.calls[0];
     expect(payload.flags.rmss.lootItemRequest.quantity).toBe(3);
   });
+
+  test('weapon/armor: requested quantity is clamped to 1, never a stack', async () => {
+    const sword = makeItem({ type: 'weapon', system: { quantity: 3, weight: 4 } });
+    const chest = makeChest([sword]);
+    const receiver = makeReceiver();
+
+    await LootService.requestItem(chest, sword, receiver, 3);
+
+    const [payload] = ChatMessage.create.mock.calls[0];
+    expect(payload.flags.rmss.lootItemRequest.quantity).toBe(1);
+  });
+
+  test('generic item marked is_stackable: false is also clamped to 1', async () => {
+    const relic = makeItem({ type: 'item', system: { quantity: 3, is_stackable: false } });
+    const chest = makeChest([relic]);
+    const receiver = makeReceiver();
+
+    await LootService.requestItem(chest, relic, receiver, 3);
+
+    const [payload] = ChatMessage.create.mock.calls[0];
+    expect(payload.flags.rmss.lootItemRequest.quantity).toBe(1);
+  });
 });
 
 describe('LootService.resolveItemRequest', () => {

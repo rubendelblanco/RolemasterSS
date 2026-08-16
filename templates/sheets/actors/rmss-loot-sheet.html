@@ -22,6 +22,9 @@
 
   <section class="sheet-body">
     <div class="tab stock" data-group="primary" data-tab="Stock">
+      {{#if isGM}}
+      <a class="populate-from-table"><i class="fas fa-dice-d20"></i> {{ localize "rmss.populate_table.button" }}</a>
+      {{/if}}
       {{#each stock as |items type|}}
       {{#if items.length}}
       <table class="items">

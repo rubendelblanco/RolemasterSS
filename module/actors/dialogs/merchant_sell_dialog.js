@@ -30,8 +30,10 @@ export default class MerchantSellDialog extends Application {
             .map(t => t.actor)
             .filter(a => a && a.type === "character");
 
-        const maxQty = Number(this.item.system.quantity) || 0;
-        const unitCost = ItemService.getUnitCost(this.item, maxQty);
+        const stockQty = Number(this.item.system.quantity) || 0;
+        const unitCost = ItemService.getUnitCost(this.item, stockQty);
+        // Weapons/armor are always individual, unique instances — one at a time, never a stack.
+        const maxQty = ItemService.isStackable(this.item) ? stockQty : Math.min(stockQty, 1);
 
         return {
             item: this.item,

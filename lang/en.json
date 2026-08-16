@@ -418,6 +418,25 @@
             "request_stock_changed": "This item is no longer available; the request could not be completed.",
             "request_entity_missing": "The source, receiver, or item no longer exists; the request could not be completed."
         },
+        "populate_table": {
+            "button": "Populate from Rollable Table",
+            "dialog_title": "Populate from Rollable Table",
+            "hint": "Draw items from a Roll Table straight into this stock.",
+            "table": "Rollable Table",
+            "draws": "Number of requests from table",
+            "formula": "Roll Table formula",
+            "reset_when_exhausted": "Reset once all drawn",
+            "quantity": "Quantity of Items",
+            "clear_items": "Clear Items",
+            "clear_items_keep": "Keep Items",
+            "clear_items_clear": "Clear Items",
+            "duplicate_items": "Duplicate Items",
+            "duplicate_items_add": "Add Quantity",
+            "duplicate_items_ignore": "Do Not Add",
+            "confirm": "Populate",
+            "no_table_selected": "No rollable table selected.",
+            "result": "Populated {added} item(s); {skipped} skipped (no linked item, wrong type, or duplicate)."
+        },
         "item": {
             "tab_details": "Details",
             "tab_modifiers": "Modifiers",

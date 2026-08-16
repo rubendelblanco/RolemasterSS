@@ -280,6 +280,28 @@ describe('MerchantService.requestItem (player request)', () => {
     expect(payload.flags.rmss.merchantRequest.quantity).toBe(5);
   });
 
+  test('weapon/armor: requested quantity is clamped to 1, never a stack, even if more is asked and available', async () => {
+    const sword = makeItem({ type: 'weapon', system: { quantity: 3, cost: 0, unitCost: 30, weight: 4 } });
+    const merchant = makeMerchant([sword]);
+    const buyer = makeBuyer();
+
+    await MerchantService.requestItem(merchant, sword, buyer, 3);
+
+    const [payload] = ChatMessage.create.mock.calls[0];
+    expect(payload.flags.rmss.merchantRequest.quantity).toBe(1);
+  });
+
+  test('generic item marked is_stackable: false (e.g. a unique quest item) is also clamped to 1', async () => {
+    const relic = makeItem({ type: 'item', system: { quantity: 3, cost: 30, is_stackable: false } });
+    const merchant = makeMerchant([relic]);
+    const buyer = makeBuyer();
+
+    await MerchantService.requestItem(merchant, relic, buyer, 3);
+
+    const [payload] = ChatMessage.create.mock.calls[0];
+    expect(payload.flags.rmss.merchantRequest.quantity).toBe(1);
+  });
+
   test('weapon/armor stock: prices from system.unitCost, not system.cost', async () => {
     const armor = makeItem({ type: 'armor', system: { quantity: 1, cost: 0, unitCost: 60, weight: 8, currency_type: 'gold' } });
     const merchant = makeMerchant([armor]);

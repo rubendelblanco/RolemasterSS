@@ -1,6 +1,7 @@
 import MerchantSellDialog from "../../actors/dialogs/merchant_sell_dialog.js";
 import MerchantRequestDialog from "../../actors/dialogs/merchant_request_dialog.js";
 import SellToMerchantDialog from "../../actors/dialogs/sell_to_merchant_dialog.js";
+import PopulateFromRollTableDialog from "../../actors/dialogs/populate_from_roll_table_dialog.js";
 
 /**
  * Sheet for the "merchant" actor type (a shop/vendor). Extends ActorSheet directly
@@ -46,6 +47,7 @@ export default class RMSSMerchantSheet extends ActorSheet {
 
         html.find(".item-sell").click(ev => this._onSellClick(ev));
         html.find(".item-consumable-toggle").click(ev => this._onConsumableToggleClick(ev));
+        html.find(".populate-from-table").click(() => new PopulateFromRollTableDialog(this.actor).render(true));
 
         html.find(".item-control.item-edit").click(ev => {
             const itemId = ev.currentTarget.closest("[data-item-id]")?.dataset.itemId;

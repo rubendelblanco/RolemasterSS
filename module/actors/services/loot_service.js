@@ -31,6 +31,7 @@ export default class LootService {
 
     const totalQty = Number(item.system.quantity) || 0;
     quantity = Math.max(1, Math.min(Number(quantity) || 0, totalQty));
+    if (!ItemService.isStackable(item)) quantity = 1; // weapons/armor: one at a time, never a stack
     if (totalQty <= 0 || quantity <= 0) {
       ui.notifications.warn(game.i18n.localize("rmss.loot.out_of_stock"));
       return;
@@ -118,6 +119,7 @@ export default class LootService {
   static async _executeItemTransfer(sourceActor, item, receiverActor, quantity) {
     const totalQty = Number(item.system.quantity) || 0;
     quantity = Math.max(1, Math.min(Number(quantity) || 0, totalQty));
+    if (!ItemService.isStackable(item)) quantity = 1; // weapons/armor: one at a time, never a stack
     if (totalQty <= 0 || quantity <= 0) {
       console.warn("[RMSS] loot item transfer blocked: out of stock", { itemId: item.id, itemName: item.name, totalQty, requestedQty: quantity });
       return { success: false, reason: "out_of_stock" };
