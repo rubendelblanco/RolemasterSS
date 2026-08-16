@@ -316,7 +316,8 @@
       "player_characrer": "Personaje jugador de RMSS",
       "npc": "NPC de RMSS",
       "creature": "Criatura de RMSS",
-      "merchant": "Comercio de RMSS"
+      "merchant": "Comercio de RMSS",
+      "loot": "Botín de RMSS"
     },
     "currency_type": {
       "mithril": "Monedas de Mithril",
@@ -337,6 +338,11 @@
       "copper": "mc",
       "tin": "me",
       "iron": "mh"
+    },
+    "request_card": {
+      "accept": "Aceptar",
+      "reject": "Rechazar",
+      "pending": "Esperando confirmación del Game Master..."
     },
     "merchant": {
       "tab_stock": "Existencias",
@@ -360,15 +366,38 @@
       "no_character_available": "No tienes ningún personaje con token en esta escena.",
       "request_card_title": "Solicitud de Compra",
       "request_card_body": "<strong>{buyer}</strong> quiere comprar <strong>{qty}x {item}</strong> a <strong>{merchant}</strong> por {cost} {currency}.",
-      "accept": "Aceptar",
-      "reject": "Rechazar",
-      "request_pending": "Esperando confirmación del Game Master...",
-      "request_approved": "Aprobado",
-      "request_rejected": "Rechazado",
       "request_rejected_msg": "El Game Master ha rechazado la compra de {item}.",
       "request_stock_changed": "Las existencias o los fondos han cambiado desde que se hizo la solicitud; la transacción no se pudo completar.",
       "insufficient_funds_short": "El comprador no puede permitirse esta compra (fondos insuficientes).",
       "request_entity_missing": "El mercader, el comprador o el item ya no existen; la transacción no se pudo completar."
+    },
+    "loot": {
+      "tab_stock": "Existencias",
+      "tab_money": "Dinero",
+      "take_item_tooltip": "Coger item",
+      "take_item_dialog_title": "Coger Item",
+      "take_item_dialog_hint": "Elige la cantidad. El Game Master debe confirmarlo antes de que sea tuyo.",
+      "confirm_take": "Enviar Solicitud",
+      "receiver": "Personaje",
+      "take_money_tooltip": "Coger dinero",
+      "take_money_dialog_title": "Coger Dinero",
+      "take_money_dialog_hint": "Elige cuánto de cada moneda quieres coger. El Game Master debe confirmarlo antes de que sea tuyo.",
+      "no_receiver_selected": "No se ha seleccionado personaje.",
+      "no_character_available": "No tienes ningún personaje con token en esta escena.",
+      "out_of_stock": "Este item ya no está disponible.",
+      "no_money_selected": "Selecciona al menos una moneda para coger.",
+      "request_sent": "Solicitud enviada al Game Master.",
+      "item_request_card_title": "Solicitud de Botín",
+      "item_request_card_body": "<strong>{receiver}</strong> quiere coger <strong>{qty}x {item}</strong> de <strong>{source}</strong>.",
+      "item_request_rejected_msg": "El Game Master ha rechazado coger {item}.",
+      "item_taken_success": "{receiver} ha cogido {qty}x {item}.",
+      "money_request_card_title": "Solicitud de Dinero del Botín",
+      "money_request_card_body": "<strong>{receiver}</strong> quiere coger <strong>{breakdown}</strong> de <strong>{source}</strong>.",
+      "money_request_rejected_msg": "El Game Master ha rechazado esta solicitud de dinero.",
+      "money_taken_success": "{receiver} ha cogido {breakdown}.",
+      "money_request_stock_changed": "Esas monedas ya no están disponibles; la solicitud no se pudo completar.",
+      "request_stock_changed": "Este item ya no está disponible; la solicitud no se pudo completar.",
+      "request_entity_missing": "El origen, el receptor o el item ya no existen; la solicitud no se pudo completar."
     },
     "item": {
       "tab_details": "Detalles",

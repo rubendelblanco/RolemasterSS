@@ -316,7 +316,8 @@
             "player_characrer": "RMSS Player Character",
             "npc": "RMSS NPC",
             "creature": "RMSS Creature",
-            "merchant": "RMSS Merchant"
+            "merchant": "RMSS Merchant",
+            "loot": "RMSS Loot"
         },
         "currency_type": {
             "mithril": "Mithril pieces",
@@ -337,6 +338,11 @@
             "copper": "cp",
             "tin": "tp",
             "iron": "ip"
+        },
+        "request_card": {
+            "accept": "Accept",
+            "reject": "Reject",
+            "pending": "Awaiting Game Master confirmation..."
         },
         "merchant": {
             "tab_stock": "Stock",
@@ -360,15 +366,38 @@
             "no_character_available": "You have no character token on this scene.",
             "request_card_title": "Purchase Request",
             "request_card_body": "<strong>{buyer}</strong> wants to buy <strong>{qty}x {item}</strong> from <strong>{merchant}</strong> for {cost} {currency}.",
-            "accept": "Accept",
-            "reject": "Reject",
-            "request_pending": "Awaiting Game Master confirmation...",
-            "request_approved": "Approved",
-            "request_rejected": "Rejected",
             "request_rejected_msg": "The Game Master rejected the purchase of {item}.",
             "request_stock_changed": "Stock or funds changed since the request was made; the transaction could not be completed.",
             "insufficient_funds_short": "The buyer cannot afford this purchase (insufficient funds).",
             "request_entity_missing": "The merchant, buyer, or item no longer exists; the transaction could not be completed."
+        },
+        "loot": {
+            "tab_stock": "Stock",
+            "tab_money": "Money",
+            "take_item_tooltip": "Take item",
+            "take_item_dialog_title": "Take Item",
+            "take_item_dialog_hint": "Choose quantity. The Game Master must confirm before it's yours.",
+            "confirm_take": "Send Request",
+            "receiver": "Character",
+            "take_money_tooltip": "Take money",
+            "take_money_dialog_title": "Take Money",
+            "take_money_dialog_hint": "Choose how much of each coin to take. The Game Master must confirm before it's yours.",
+            "no_receiver_selected": "No character selected.",
+            "no_character_available": "You have no character token on this scene.",
+            "out_of_stock": "This item is no longer available.",
+            "no_money_selected": "Select at least one coin to take.",
+            "request_sent": "Request sent to the Game Master.",
+            "item_request_card_title": "Loot Request",
+            "item_request_card_body": "<strong>{receiver}</strong> wants to take <strong>{qty}x {item}</strong> from <strong>{source}</strong>.",
+            "item_request_rejected_msg": "The Game Master rejected taking {item}.",
+            "item_taken_success": "{receiver} took {qty}x {item}.",
+            "money_request_card_title": "Loot Money Request",
+            "money_request_card_body": "<strong>{receiver}</strong> wants to take <strong>{breakdown}</strong> from <strong>{source}</strong>.",
+            "money_request_rejected_msg": "The Game Master rejected this money request.",
+            "money_taken_success": "{receiver} took {breakdown}.",
+            "money_request_stock_changed": "Those coins are no longer available; the request could not be completed.",
+            "request_stock_changed": "This item is no longer available; the request could not be completed.",
+            "request_entity_missing": "The source, receiver, or item no longer exists; the request could not be completed."
         },
         "item": {
             "tab_details": "Details",

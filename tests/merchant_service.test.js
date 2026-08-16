@@ -98,7 +98,7 @@ beforeEach(() => {
   game.users = [{ id: 'gm1', isGM: true }];
   game.i18n.format = jest.fn((key, data) => `${key}::${JSON.stringify(data ?? {})}`);
   // Returns the render data as JSON so tests can assert on it directly instead of
-  // depending on real Handlebars/the merchant-request-card.html template.
+  // depending on real Handlebars/the request-card.html template.
   global.renderTemplate = jest.fn(async (_path, data) => JSON.stringify(data));
   global.fromUuid = jest.fn(async () => null);
   global.foundry.utils.duplicate = (obj) => JSON.parse(JSON.stringify(obj));
@@ -321,6 +321,27 @@ describe('MerchantService.resolveRequest (GM accept/reject)', () => {
     const [{ content, flags }] = message.update.mock.calls[0];
     expect(JSON.parse(content)).toEqual(expect.objectContaining({ pending: false, statusClass: 'approved' }));
     expect(flags.rmss.merchantRequest).toEqual(expect.objectContaining({ resolved: true, decision: 'accept' }));
+  });
+
+  test('accept: partial fulfillment reports the quantity actually sold, not the originally requested one', async () => {
+    // Only 2 left by accept time (someone else bought 8 in the meantime), but the
+    // card still remembers the original request for 5 — the message must say 2.
+    const item = makeItem({ system: { quantity: 2, cost: 10, weight: 1 } });
+    const merchant = makeMerchant([item]);
+    const buyer = makeBuyer();
+    global.fromUuid = jest.fn(async (uuid) => ({ [item.uuid]: item, [buyer.uuid]: buyer }[uuid] ?? null));
+
+    const message = makeMessage({
+      resolved: false, itemUuid: item.uuid, merchantActorUuid: merchant.uuid, buyerActorUuid: buyer.uuid,
+      quantity: 5, itemName: item.name, buyerName: buyer.name, bodyHtml: '<p>quote</p>'
+    });
+
+    await MerchantService.resolveRequest(message, 'accept');
+
+    expect(buyer.createEmbeddedDocuments).toHaveBeenCalledWith('Item', [
+      expect.objectContaining({ system: expect.objectContaining({ quantity: 2 }) })
+    ]);
+    expect(game.i18n.format).toHaveBeenCalledWith('rmss.merchant.sale_success', expect.objectContaining({ qty: 2 }));
   });
 
   test('accept: re-validates at resolution time — stock/funds changed since the request means no sale', async () => {

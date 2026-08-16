@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "npc", "creature", "merchant"],
+    "types": ["character", "npc", "creature", "merchant", "loot"],
     "templates": {
       "role_traits": {
         "role_traits": {
@@ -330,6 +330,10 @@
     "merchant": {
       "templates": ["money"],
       "attributes": {},
+      "description": ""
+    },
+    "loot": {
+      "templates": ["money"],
       "description": ""
     }
   },

@@ -1,6 +1,7 @@
 import CurrencyService from "./currency_service.js";
+import RequestCardService from "../../chat/request_card_service.js";
 
-const REQUEST_TEMPLATE = "systems/rmss/templates/chat/merchant-request-card.html";
+const REQUEST_KIND = "merchantRequest";
 
 /**
  * Sale orchestration for merchant actors. Direct sale (sellItem) is GM-only: the GM
@@ -40,7 +41,9 @@ export default class MerchantService {
    * Core sale mutation, shared by the GM's direct sell dialog and by an approved
    * player request. Re-validates stock/funds against current state before mutating
    * anything, since a request may sit unresolved for a while.
-   * @returns {Promise<{success: boolean, reason?: string}>}
+   * @returns {Promise<{success: boolean, reason?: string, quantity?: number}>} On success,
+   *   `quantity` is how many actually changed hands — may be less than requested if stock
+   *   shrank between the request and the GM's accept, so callers can report the true amount.
    */
   static async _executeSale(merchantActor, item, buyerActor, quantity, { notify = false } = {}) {
     const totalQty = Number(item.system.quantity) || 0;
@@ -108,7 +111,7 @@ export default class MerchantService {
         game.i18n.format("rmss.merchant.sale_success", { qty: quantity, item: item.name, buyer: buyerActor.name })
       );
     }
-    return { success: true };
+    return { success: true, quantity };
   }
 
   /**
@@ -152,29 +155,20 @@ export default class MerchantService {
       currency: currencyAbb
     });
 
-    const content = await renderTemplate(REQUEST_TEMPLATE, { pending: true, bodyHtml });
-
-    const whispers = new Set();
-    game.users.filter(u => u.isGM).forEach(u => whispers.add(u.id));
-    game.users.filter(u => buyerActor.testUserPermission(u, "OWNER")).forEach(u => whispers.add(u.id));
-
-    await ChatMessage.create({
-      content,
-      speaker: { alias: merchantActor.name },
-      whisper: Array.from(whispers),
-      flags: {
-        rmss: {
-          merchantRequest: {
-            merchantActorUuid: merchantActor.uuid,
-            itemUuid: item.uuid,
-            buyerActorUuid: buyerActor.uuid,
-            quantity,
-            itemName: item.name,
-            buyerName: buyerActor.name,
-            bodyHtml,
-            resolved: false
-          }
-        }
+    await RequestCardService.post({
+      requestKind: REQUEST_KIND,
+      title: game.i18n.localize("rmss.merchant.request_card_title"),
+      icon: "fa-hand-holding-dollar",
+      bodyHtml,
+      speakerActor: merchantActor,
+      receiverActor: buyerActor,
+      data: {
+        merchantActorUuid: merchantActor.uuid,
+        itemUuid: item.uuid,
+        buyerActorUuid: buyerActor.uuid,
+        quantity,
+        itemName: item.name,
+        buyerName: buyerActor.name
       }
     });
 
@@ -188,60 +182,47 @@ export default class MerchantService {
    * @param {"accept"|"reject"} decision
    */
   static async resolveRequest(message, decision) {
-    if (!game.user.isGM) return;
+    await RequestCardService.resolve(message, REQUEST_KIND, decision, {
+      rejectedMessage: (data) => game.i18n.format("rmss.merchant.request_rejected_msg", { item: data.itemName }),
+      onAccept: async (data) => {
+        // Resolve by UUID (not game.actors.get/items.get by bare id): an unlinked token's
+        // actor/items live in its ActorDelta, a different document than the world actor
+        // that a bare id would resolve to. fromUuid follows that delta correctly.
+        const item = await fromUuid(data.itemUuid);
+        const merchantActor = item?.parent ?? await fromUuid(data.merchantActorUuid);
+        const buyerActor = await fromUuid(data.buyerActorUuid);
 
-    const data = message.getFlag("rmss", "merchantRequest");
-    if (!data || data.resolved) return;
+        let result;
+        if (!merchantActor || !buyerActor || !item) {
+          console.warn("[RMSS] merchant request could not be resolved: missing entity", {
+            merchantActor: !!merchantActor, buyerActor: !!buyerActor, item: !!item, data
+          });
+          result = { success: false, reason: "not_found" };
+        } else {
+          result = await this._executeSale(merchantActor, item, buyerActor, data.quantity);
+        }
 
-    let statusClass, statusMessage;
-    if (decision === "reject") {
-      statusClass = "rejected";
-      statusMessage = game.i18n.format("rmss.merchant.request_rejected_msg", { item: data.itemName });
-    } else {
-      // Resolve by UUID (not game.actors.get/items.get by bare id): an unlinked token's
-      // actor/items live in its ActorDelta, a different document than the world actor
-      // that a bare id would resolve to. fromUuid follows that delta correctly.
-      const item = await fromUuid(data.itemUuid);
-      const merchantActor = item?.parent ?? await fromUuid(data.merchantActorUuid);
-      const buyerActor = await fromUuid(data.buyerActorUuid);
-
-      let result;
-      if (!merchantActor || !buyerActor || !item) {
-        console.warn("[RMSS] merchant request could not be resolved: missing entity", {
-          merchantActor: !!merchantActor, buyerActor: !!buyerActor, item: !!item, data
-        });
-        result = { success: false, reason: "not_found" };
-      } else {
-        result = await this._executeSale(merchantActor, item, buyerActor, data.quantity);
+        if (result.success) {
+          return {
+            statusClass: "approved",
+            // result.quantity (not data.quantity): stock may have shrunk since the
+            // request, so the card must report what was actually handed over.
+            statusMessage: game.i18n.format("rmss.merchant.sale_success", {
+              qty: result.quantity, item: data.itemName, buyer: data.buyerName
+            })
+          };
+        }
+        return {
+          statusClass: "stock_changed",
+          statusMessage: game.i18n.localize(
+            result.reason === "insufficient_funds"
+              ? "rmss.merchant.insufficient_funds_short"
+              : result.reason === "not_found"
+                ? "rmss.merchant.request_entity_missing"
+                : "rmss.merchant.request_stock_changed"
+          )
+        };
       }
-
-      if (result.success) {
-        statusClass = "approved";
-        statusMessage = game.i18n.format("rmss.merchant.sale_success", {
-          qty: data.quantity, item: data.itemName, buyer: data.buyerName
-        });
-      } else {
-        statusClass = "stock_changed";
-        statusMessage = game.i18n.localize(
-          result.reason === "insufficient_funds"
-            ? "rmss.merchant.insufficient_funds_short"
-            : result.reason === "not_found"
-              ? "rmss.merchant.request_entity_missing"
-              : "rmss.merchant.request_stock_changed"
-        );
-      }
-    }
-
-    const content = await renderTemplate(REQUEST_TEMPLATE, {
-      pending: false,
-      bodyHtml: data.bodyHtml,
-      statusClass,
-      statusMessage
-    });
-
-    await message.update({
-      content,
-      flags: { rmss: { merchantRequest: { ...data, resolved: true, decision } } }
     });
   }
 }

@@ -1,0 +1,27 @@
+<p class="notes">
+  {{ hint }}
+</p>
+<div class="merchant-sell-form flexcol">
+  <div class="flexrow">
+    <label>{{ localize "rmss.pc_sheet_items.item_name" }}</label>
+    <span>{{item.name}}</span>
+  </div>
+  <div class="flexrow">
+    <label for="qty">{{ localize "rmss.pc_sheet_items.quantity" }}</label>
+    <input type="number" name="qty" min="1" max="{{maxQty}}" value="1"/>
+    <span>/ {{maxQty}}</span>
+  </div>
+  <div class="flexrow">
+    <label for="receiver">{{ localize "rmss.loot.receiver" }}</label>
+    <select name="receiver">
+      {{#each receivers as |receiver|}}
+      <option value="{{receiver.uuid}}">{{receiver.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+</div>
+<footer class="sheet-footer flexrow">
+  <button type="button" class="confirm-take">
+    <i class="fas fa-hand-point-right"></i> {{ localize "rmss.loot.confirm_take" }}
+  </button>
+</footer>

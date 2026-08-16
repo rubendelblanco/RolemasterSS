@@ -3809,16 +3809,18 @@ button.rmss-crit-reenable-local:hover {
   gap: 1rem;
 }
 .rmss.sheet.merchant .item-sell {
-  color: var(--rmss-tab-gold, #c8a861);
+  color: var(--rmss-progress-fill);
 }
 .rmss.sheet.merchant .item-sell:hover {
-  color: var(--rmss-tab-gold-active, #e3c978);
+  color: var(--rmss-progress-fill);
+  filter: brightness(1.25);
 }
 .rmss.sheet.merchant .item-request {
-  color: var(--rmss-tab-gold, #c8a861);
+  color: var(--rmss-progress-fill);
 }
 .rmss.sheet.merchant .item-request:hover {
-  color: var(--rmss-tab-gold-active, #e3c978);
+  color: var(--rmss-progress-fill);
+  filter: brightness(1.25);
 }
 .rmss.sheet.merchant table.items {
   width: 100%;
@@ -3826,34 +3828,70 @@ button.rmss-crit-reenable-local:hover {
 }
 
 /* ================================
-   Merchant purchase request (chat card)
+   Loot sheet (fixed container: chest, stash...)
    ================================ */
-.rmss-merchant-request .rmss-merchant-request-title {
+.rmss.sheet.loot .sheet-header .container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.rmss.sheet.loot table.items {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.rmss.sheet.loot .item-take {
+  color: var(--rmss-progress-fill);
+}
+.rmss.sheet.loot .item-take:hover {
+  color: var(--rmss-progress-fill);
+  filter: brightness(1.25);
+}
+.rmss.sheet.loot .take-money {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rmss-progress-fill);
+  border-radius: 3px;
+  color: var(--rmss-progress-fill);
+  cursor: pointer;
+}
+.rmss.sheet.loot .take-money:hover {
+  color: var(--rmss-progress-fill);
+  border-color: var(--rmss-progress-fill);
+  filter: brightness(1.25);
+}
+
+/* ================================
+   Request card (chat card) — shared by merchant purchases and loot pickups
+   ================================ */
+.rmss-request-card .rmss-request-card-title {
   margin: 0 0 0.25rem;
   color: var(--rmss-tab-gold, #c8a861);
 }
-.rmss-merchant-request .rmss-merchant-request-body {
+.rmss-request-card .rmss-request-card-body {
   margin: 0 0 0.5rem;
 }
-.rmss-merchant-request .rmss-merchant-request-actions {
+.rmss-request-card .rmss-request-card-actions {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 0.25rem;
 }
-.rmss-merchant-request .rmss-merchant-request-actions button {
+.rmss-request-card .rmss-request-card-actions button {
   flex: 1;
 }
-.rmss-merchant-request .rmss-merchant-request-status {
+.rmss-request-card .rmss-request-card-status {
   margin: 0;
   font-style: italic;
 }
-.rmss-merchant-request .rmss-merchant-request-status.pending {
+.rmss-request-card .rmss-request-card-status.pending {
   color: var(--rmss-tab-gold, #c8a861);
 }
-.rmss-merchant-request .rmss-merchant-request-status.approved {
+.rmss-request-card .rmss-request-card-status.approved {
   color: #4caf50;
 }
-.rmss-merchant-request .rmss-merchant-request-status.rejected,
-.rmss-merchant-request .rmss-merchant-request-status.stock_changed {
+.rmss-request-card .rmss-request-card-status.rejected,
+.rmss-request-card .rmss-request-card-status.stock_changed {
   color: var(--color-text-danger, #c62828);
 }

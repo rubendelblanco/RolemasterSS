@@ -2,28 +2,41 @@
 import { RMSSWeaponCriticalManager } from "../combat/rmss_weapon_critical_manager.js";
 import { socket } from "../../rmss.js";
 import MerchantService from "../actors/services/merchant_service.js";
+import LootService from "../actors/services/loot_service.js";
 
-/** Guards against a double-click firing resolveRequest twice on the same card. */
-const MERCHANT_REQUEST_IN_FLIGHT = new Set();
+/** requestKind (stamped on the button by request-card.html) -> resolver. */
+const REQUEST_RESOLVERS = {
+    merchantRequest: (message, decision) => MerchantService.resolveRequest(message, decision),
+    lootItemRequest: (message, decision) => LootService.resolveItemRequest(message, decision),
+    lootMoneyRequest: (message, decision) => LootService.resolveMoneyRequest(message, decision)
+};
+
+/** Guards against a double-click firing the same resolver twice on the same card. */
+const REQUEST_CARD_IN_FLIGHT = new Set();
 
 /**
  * @param {JQuery.Event} ev
  * @param {"accept"|"reject"} decision
  */
-async function onMerchantRequestDecision(ev, decision) {
+async function onRequestCardDecision(ev, decision) {
     ev.preventDefault();
     if (!game.user.isGM) return;
 
-    const messageId = ev.currentTarget.closest(".message")?.dataset?.messageId;
+    const button = ev.currentTarget;
+    const messageId = button.closest(".message")?.dataset?.messageId;
     const message = messageId ? game.messages.get(messageId) : null;
     if (!message) return;
 
-    if (MERCHANT_REQUEST_IN_FLIGHT.has(message.id)) return;
-    MERCHANT_REQUEST_IN_FLIGHT.add(message.id);
+    const resolver = REQUEST_RESOLVERS[button.dataset.requestKind];
+    if (!resolver) return;
+
+    const lockKey = `${message.id}:${button.dataset.requestKind}`;
+    if (REQUEST_CARD_IN_FLIGHT.has(lockKey)) return;
+    REQUEST_CARD_IN_FLIGHT.add(lockKey);
     try {
-        await MerchantService.resolveRequest(message, decision);
+        await resolver(message, decision);
     } finally {
-        MERCHANT_REQUEST_IN_FLIGHT.delete(message.id);
+        REQUEST_CARD_IN_FLIGHT.delete(lockKey);
     }
 }
 
@@ -215,8 +228,8 @@ Hooks.on("renderChatMessage", (message, html, data) => {
 
     html.find(".chat-critical-roll").off(CRIT_CLICK_NS).on(CRIT_CLICK_NS, onCriticalRollClick);
 
-    html.find(".merchant-request-accept").off("click.rmssMerchantRequest").on("click.rmssMerchantRequest", ev => onMerchantRequestDecision(ev, "accept"));
-    html.find(".merchant-request-reject").off("click.rmssMerchantRequest").on("click.rmssMerchantRequest", ev => onMerchantRequestDecision(ev, "reject"));
+    html.find(".rmss-request-accept").off("click.rmssRequestCard").on("click.rmssRequestCard", ev => onRequestCardDecision(ev, "accept"));
+    html.find(".rmss-request-reject").off("click.rmssRequestCard").on("click.rmssRequestCard", ev => onRequestCardDecision(ev, "reject"));
 
     html.find('.click-to-toggle').on('click', (event) => {
         const breakdown = html.find('.breakdown-details');
