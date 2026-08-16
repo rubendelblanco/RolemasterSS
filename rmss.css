@@ -3828,6 +3828,87 @@ button.rmss-crit-reenable-local:hover {
 }
 
 /* ================================
+   Request dialogs — shared by the merchant sell/request popups and the
+   loot item/money request popups (all four use class "rmss-request-dialog").
+   ================================ */
+.rmss-request-dialog .window-content {
+  padding: 0.75rem 1rem;
+}
+.rmss-request-dialog .notes {
+  margin: 0 0 0.75rem;
+  font-size: 0.9em;
+  color: var(--color-text-light-6, #999);
+}
+.rmss-request-dialog .rmss-request-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border-light-tertiary, rgba(0, 0, 0, 0.2));
+}
+.rmss-request-dialog .rmss-request-item-icon {
+  border: 1px solid var(--rmss-progress-fill);
+  border-radius: 4px;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+.rmss-request-dialog .rmss-request-item-title {
+  font-size: 1.15em;
+  font-weight: 600;
+}
+.rmss-request-dialog .rmss-request-form {
+  gap: 0.6rem;
+}
+.rmss-request-dialog .rmss-request-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.rmss-request-dialog .rmss-request-row label {
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: var(--color-text-light-6, #777);
+}
+.rmss-request-dialog .rmss-request-row select {
+  min-width: 10rem;
+}
+.rmss-request-dialog .rmss-request-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.rmss-request-dialog .rmss-request-qty input {
+  width: 4rem;
+  text-align: center;
+}
+.rmss-request-dialog .rmss-request-value {
+  font-weight: 500;
+}
+.rmss-request-dialog .rmss-request-hint {
+  color: var(--color-text-light-6, #999);
+  font-size: 0.9em;
+}
+.rmss-request-dialog .rmss-request-money-row input {
+  width: 4.5rem;
+  text-align: center;
+}
+.rmss-request-dialog .rmss-request-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--color-border-light-tertiary, rgba(0, 0, 0, 0.2));
+}
+.rmss-request-dialog .rmss-request-footer button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+}
+
+/* ================================
    Loot sheet (fixed container: chest, stash...)
    ================================ */
 .rmss.sheet.loot .sheet-header .container {

@@ -18,7 +18,7 @@ export default class MerchantSellDialog extends Application {
             template: "systems/rmss/templates/sheets/actors/dialogs/merchant_sell_dialog.html",
             width: 400,
             height: "auto",
-            classes: ["rmss", "merchant-sell-dialog"]
+            classes: ["rmss", "rmss-request-dialog"]
         });
     }
 

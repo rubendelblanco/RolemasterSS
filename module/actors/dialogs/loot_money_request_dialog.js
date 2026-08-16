@@ -21,7 +21,7 @@ export default class LootMoneyRequestDialog extends Application {
             template: "systems/rmss/templates/sheets/actors/dialogs/loot_money_request_dialog.html",
             width: 400,
             height: "auto",
-            classes: ["rmss", "loot-request-dialog"]
+            classes: ["rmss", "rmss-request-dialog"]
         });
     }
 
@@ -37,6 +37,7 @@ export default class LootMoneyRequestDialog extends Application {
         }));
 
         return {
+            source: { img: this.sourceActor.img, name: this.sourceActor.name },
             denominations,
             receivers,
             hint: game.i18n.localize("rmss.loot.take_money_dialog_hint")

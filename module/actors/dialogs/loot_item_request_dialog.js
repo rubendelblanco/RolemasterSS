@@ -20,7 +20,7 @@ export default class LootItemRequestDialog extends Application {
             template: "systems/rmss/templates/sheets/actors/dialogs/loot_item_request_dialog.html",
             width: 400,
             height: "auto",
-            classes: ["rmss", "loot-request-dialog"]
+            classes: ["rmss", "rmss-request-dialog"]
         });
     }
 
