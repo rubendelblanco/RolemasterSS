@@ -3,6 +3,86 @@
  */
 import ItemService from '../module/actors/services/item_service.js';
 
+describe('ItemService.isStackable', () => {
+  test('weapon is never stackable, regardless of its own is_stackable flag', () => {
+    expect(ItemService.isStackable({ type: 'weapon', system: {} })).toBe(false);
+    expect(ItemService.isStackable({ type: 'weapon', system: { is_stackable: true } })).toBe(false);
+  });
+
+  test('armor is never stackable, regardless of its own is_stackable flag', () => {
+    expect(ItemService.isStackable({ type: 'armor', system: {} })).toBe(false);
+    expect(ItemService.isStackable({ type: 'armor', system: { is_stackable: true } })).toBe(false);
+  });
+
+  test('generic item/herb_or_poison default to stackable when is_stackable is unset', () => {
+    expect(ItemService.isStackable({ type: 'item', system: {} })).toBe(true);
+    expect(ItemService.isStackable({ type: 'herb_or_poison', system: {} })).toBe(true);
+  });
+
+  test('generic item/herb_or_poison respect an explicit is_stackable: false (e.g. a unique quest item)', () => {
+    expect(ItemService.isStackable({ type: 'item', system: { is_stackable: false } })).toBe(false);
+    expect(ItemService.isStackable({ type: 'herb_or_poison', system: { is_stackable: false } })).toBe(false);
+  });
+
+  test('generic item with is_stackable explicitly true is stackable', () => {
+    expect(ItemService.isStackable({ type: 'item', system: { is_stackable: true } })).toBe(true);
+  });
+});
+
+describe('ItemService.getUnitCost', () => {
+  test('weapon: reads system.unitCost directly (its sheet never populates system.cost)', () => {
+    const weapon = { type: 'weapon', system: { unitCost: 25, cost: 0, quantity: 1 } };
+    expect(ItemService.getUnitCost(weapon, 1)).toBe(25);
+  });
+
+  test('armor: reads system.unitCost directly, same as weapon', () => {
+    const armor = { type: 'armor', system: { unitCost: 40, cost: 0, quantity: 1 } };
+    expect(ItemService.getUnitCost(armor, 1)).toBe(40);
+  });
+
+  test('generic item: derives unit cost from total system.cost / quantity', () => {
+    const item = { type: 'item', system: { cost: 50, unitCost: 0, quantity: 10 } };
+    expect(ItemService.getUnitCost(item, 10)).toBe(5);
+  });
+
+  test('herb_or_poison: same total/quantity convention as generic item', () => {
+    const herb = { type: 'herb_or_poison', system: { cost: 12, quantity: 4 } };
+    expect(ItemService.getUnitCost(herb, 4)).toBe(3);
+  });
+
+  test('generic item with zero quantity returns 0 instead of dividing by zero', () => {
+    const item = { type: 'item', system: { cost: 50, quantity: 0 } };
+    expect(ItemService.getUnitCost(item, 0)).toBe(0);
+  });
+
+  test('weapon with missing unitCost defaults to 0', () => {
+    const weapon = { type: 'weapon', system: { quantity: 1 } };
+    expect(ItemService.getUnitCost(weapon, 1)).toBe(0);
+  });
+});
+
+describe('ItemService.getUnitWeight', () => {
+  test('weapon: reads system.weight directly (its sheet never populates system.unitWeight)', () => {
+    const weapon = { type: 'weapon', system: { weight: 5, unitWeight: 0, quantity: 1 } };
+    expect(ItemService.getUnitWeight(weapon, 1)).toBe(5);
+  });
+
+  test('armor: reads system.weight directly, same as weapon', () => {
+    const armor = { type: 'armor', system: { weight: 12, unitWeight: 0, quantity: 1 } };
+    expect(ItemService.getUnitWeight(armor, 1)).toBe(12);
+  });
+
+  test('generic item: derives unit weight from total system.weight / quantity', () => {
+    const item = { type: 'item', system: { weight: 10, unitWeight: 0, quantity: 5 } };
+    expect(ItemService.getUnitWeight(item, 5)).toBe(2);
+  });
+
+  test('generic item with zero quantity returns 0 instead of dividing by zero', () => {
+    const item = { type: 'item', system: { weight: 10, quantity: 0 } };
+    expect(ItemService.getUnitWeight(item, 0)).toBe(0);
+  });
+});
+
 describe('ItemService.normalizeItemFormData', () => {
   test('calculates totalWeight and totalCost from unit values', () => {
     const formData = {

@@ -3799,3 +3799,282 @@ button.rmss-crit-reenable-local:hover {
   width: 100%;
   max-width: 28rem;
 }
+
+/* ================================
+   Merchant sheet
+   ================================ */
+.rmss.sheet.merchant .sheet-header .container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.rmss.sheet.merchant .item-sell {
+  color: var(--rmss-progress-fill);
+}
+.rmss.sheet.merchant .item-sell:hover {
+  color: var(--rmss-progress-fill);
+  filter: brightness(1.25);
+}
+.rmss.sheet.merchant .item-request {
+  color: var(--rmss-progress-fill);
+}
+.rmss.sheet.merchant .item-request:hover {
+  color: var(--rmss-progress-fill);
+  filter: brightness(1.25);
+}
+.rmss.sheet.merchant table.items {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.rmss.sheet.merchant .item-consumable-cell {
+  text-align: center;
+}
+.rmss.sheet.merchant .item-consumable-toggle {
+  color: var(--color-text-light-6, #999);
+  opacity: 0.5;
+}
+.rmss.sheet.merchant .item-consumable-toggle:hover {
+  opacity: 0.8;
+}
+.rmss.sheet.merchant .item-consumable-toggle.active {
+  color: var(--rmss-progress-fill);
+  opacity: 1;
+}
+.rmss.sheet.merchant .item-consumable-indicator {
+  color: var(--rmss-progress-fill);
+}
+.rmss.sheet.merchant .merchant-buy-rate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.rmss.sheet.merchant .merchant-buy-rate label {
+  font-weight: 600;
+}
+.rmss.sheet.merchant .merchant-buy-rate input[type="number"] {
+  width: 4rem;
+  text-align: center;
+}
+.rmss.sheet.merchant .merchant-description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 0.5rem 0.5rem;
+}
+.rmss.sheet.merchant .merchant-description label {
+  font-weight: 600;
+}
+.rmss.sheet.merchant .merchant-description textarea {
+  resize: vertical;
+}
+.rmss.sheet.merchant .merchant-description-display {
+  padding: 0.5rem 0.5rem;
+  font-size: 1.1em;
+  font-style: italic;
+  color: var(--color-text-dark-primary, #191813);
+  background-color: burlywood;
+}
+
+.rmss.sheet.merchant .sell-item-to-merchant {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rmss-progress-fill);
+  border-radius: 3px;
+  color: var(--rmss-progress-fill);
+  cursor: pointer;
+}
+.rmss.sheet.merchant .sell-item-to-merchant:hover {
+  filter: brightness(1.25);
+}
+
+/* Populate-from-table trigger — shared "button link" look, used on both the
+   merchant and loot sheets (GM-only). */
+.rmss.sheet .populate-from-table {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rmss-progress-fill);
+  border-radius: 3px;
+  color: var(--rmss-progress-fill);
+  cursor: pointer;
+}
+.rmss.sheet .populate-from-table:hover {
+  filter: brightness(1.25);
+}
+
+/* ================================
+   Request dialogs — shared by the merchant sell/request popups and the
+   loot item/money request popups (all four use class "rmss-request-dialog").
+   ================================ */
+.rmss-request-dialog .window-content {
+  padding: 0.75rem 1rem;
+}
+.rmss-request-dialog .notes {
+  margin: 0 0 0.75rem;
+  font-size: 0.9em;
+  color: var(--color-text-light-6, #999);
+}
+.rmss-request-dialog .rmss-request-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border-light-tertiary, rgba(0, 0, 0, 0.2));
+}
+.rmss-request-dialog .rmss-request-item-icon {
+  border: 1px solid var(--rmss-progress-fill);
+  border-radius: 4px;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+.rmss-request-dialog .rmss-request-item-title {
+  font-size: 1.15em;
+  font-weight: 600;
+}
+.rmss-request-dialog .rmss-request-form {
+  gap: 0.6rem;
+}
+.rmss-request-dialog .rmss-request-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.rmss-request-dialog .rmss-request-row label {
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: var(--color-text-light-6, #777);
+}
+.rmss-request-dialog .rmss-request-row select {
+  min-width: 10rem;
+}
+.rmss-request-dialog .rmss-request-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.rmss-request-dialog .rmss-request-qty input {
+  width: 4rem;
+  text-align: center;
+}
+.rmss-request-dialog .rmss-request-value {
+  font-weight: 500;
+}
+.rmss-request-dialog .rmss-request-hint {
+  color: var(--color-text-light-6, #999);
+  font-size: 0.9em;
+}
+.rmss-request-dialog .rmss-request-money-row input {
+  width: 4.5rem;
+  text-align: center;
+}
+.rmss-request-dialog .rmss-request-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--color-border-light-tertiary, rgba(0, 0, 0, 0.2));
+}
+.rmss-request-dialog .rmss-request-footer button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+}
+
+/* ================================
+   Loot sheet (fixed container: chest, stash...)
+   ================================ */
+.rmss.sheet.loot .sheet-header .container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.rmss.sheet.loot table.items {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.rmss.sheet.loot .item-take {
+  color: var(--rmss-progress-fill);
+}
+.rmss.sheet.loot .item-take:hover {
+  color: var(--rmss-progress-fill);
+  filter: brightness(1.25);
+}
+.rmss.sheet.loot .take-money {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rmss-progress-fill);
+  border-radius: 3px;
+  color: var(--rmss-progress-fill);
+  cursor: pointer;
+}
+.rmss.sheet.loot .take-money:hover {
+  color: var(--rmss-progress-fill);
+  border-color: var(--rmss-progress-fill);
+  filter: brightness(1.25);
+}
+
+/* ================================
+   Request card (chat card) — shared by merchant purchases and loot pickups
+   ================================ */
+.rmss-request-card .rmss-request-card-title {
+  margin: 0 0 0.25rem;
+  color: var(--rmss-tab-gold, #c8a861);
+}
+.rmss-request-card .rmss-request-card-body {
+  margin: 0 0 0.5rem;
+}
+.rmss-request-card .rmss-request-card-line {
+  margin: 0 0 0.2rem;
+}
+.rmss-request-card .rmss-request-card-line:last-child {
+  margin-bottom: 0;
+}
+.rmss-request-card .rmss-request-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.rmss-request-card .rmss-request-chip-img {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  object-fit: cover;
+  border: 1px solid var(--rmss-progress-fill);
+  vertical-align: middle;
+}
+.rmss-request-card .rmss-request-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+.rmss-request-card .rmss-request-card-actions button {
+  flex: 1;
+}
+.rmss-request-card .rmss-request-card-status {
+  margin: 0;
+  font-style: italic;
+}
+.rmss-request-card .rmss-request-card-status.pending {
+  color: var(--rmss-tab-gold, #c8a861);
+}
+.rmss-request-card .rmss-request-card-status.approved {
+  color: #4caf50;
+}
+.rmss-request-card .rmss-request-card-status.rejected,
+.rmss-request-card .rmss-request-card-status.stock_changed {
+  color: var(--color-text-danger, #c62828);
+}

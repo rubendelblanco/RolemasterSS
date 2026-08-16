@@ -1,0 +1,32 @@
+<div class="rmss-request-dialog-body flexcol">
+  <p class="notes">
+    {{ hint }}
+  </p>
+
+  <div class="rmss-request-item-header">
+    <img class="rmss-request-item-icon" src="{{source.img}}" alt="{{source.name}}" width="48" height="48"/>
+    <div class="rmss-request-item-title">{{source.name}}</div>
+  </div>
+
+  <div class="rmss-request-form flexcol">
+    {{#each denominations as |denom|}}
+    <div class="rmss-request-row rmss-request-money-row">
+      <label for="amount.{{denom.key}}">{{denom.label}}</label>
+      <input type="number" name="amount.{{denom.key}}" min="0" max="{{denom.available}}" value="{{denom.available}}"/>
+    </div>
+    {{/each}}
+    <div class="rmss-request-row">
+      <label for="receiver">{{ localize "rmss.loot.receiver" }}</label>
+      <select name="receiver">
+        {{#each receivers as |receiver|}}
+        <option value="{{receiver.uuid}}">{{receiver.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+</div>
+<footer class="rmss-request-footer">
+  <button type="button" class="confirm-take">
+    <i class="fas fa-hand-point-right"></i> {{ localize "rmss.loot.confirm_take" }}
+  </button>
+</footer>

@@ -1,0 +1,37 @@
+<div class="rmss-request-dialog-body flexcol">
+  <p class="notes">
+    {{ hint }}
+  </p>
+
+  <div class="rmss-request-item-header">
+    <img class="rmss-request-item-icon" src="{{item.img}}" alt="{{item.name}}" width="48" height="48"/>
+    <div class="rmss-request-item-title">{{item.name}}</div>
+  </div>
+
+  <div class="rmss-request-form flexcol">
+    <div class="rmss-request-row">
+      <label>{{ localize "rmss.pc_sheet_items.cost" }}</label>
+      <span class="rmss-request-value">{{unitCost}} {{localize (concat "rmss.currency_type_abb." currencyType)}} <span class="rmss-request-hint">{{ localize "rmss.merchant.each" }}</span></span>
+    </div>
+    <div class="rmss-request-row">
+      <label for="qty">{{ localize "rmss.pc_sheet_items.quantity" }}</label>
+      <div class="rmss-request-qty">
+        <input type="number" name="qty" min="1" max="{{maxQty}}" value="1"/>
+        <span class="rmss-request-hint">/ {{maxQty}}</span>
+      </div>
+    </div>
+    <div class="rmss-request-row">
+      <label for="buyer">{{ localize "rmss.merchant.buyer" }}</label>
+      <select name="buyer">
+        {{#each buyers as |buyer|}}
+        <option value="{{buyer.uuid}}">{{buyer.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+</div>
+<footer class="rmss-request-footer">
+  <button type="button" class="confirm-request">
+    <i class="fas fa-hand-point-right"></i> {{ localize "rmss.merchant.confirm_request" }}
+  </button>
+</footer>

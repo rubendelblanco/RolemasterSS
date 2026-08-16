@@ -1,0 +1,13 @@
+<div class="rmss-request-card">
+  <h4 class="rmss-request-card-title"><i class="{{icon}}"></i> {{title}}</h4>
+  <div class="rmss-request-card-body">{{{bodyHtml}}}</div>
+  {{#if pending}}
+  <div class="rmss-request-card-actions rmss-chat-gm-only">
+    <button type="button" class="rmss-request-accept" data-request-kind="{{requestKind}}"><i class="fas fa-check"></i> {{ localize "rmss.request_card.accept" }}</button>
+    <button type="button" class="rmss-request-reject" data-request-kind="{{requestKind}}"><i class="fas fa-times"></i> {{ localize "rmss.request_card.reject" }}</button>
+  </div>
+  <p class="rmss-request-card-status pending">{{ localize "rmss.request_card.pending" }}</p>
+  {{else}}
+  <p class="rmss-request-card-status {{statusClass}}">{{statusMessage}}</p>
+  {{/if}}
+</div>

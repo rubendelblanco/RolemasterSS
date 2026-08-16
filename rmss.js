@@ -26,6 +26,8 @@ import { RMSSWeaponSkillManager } from "./module/combat/rmss_weapon_skill_manage
 import { RMSSWeaponCriticalManager } from "./module/combat/rmss_weapon_critical_manager.js";
 import RMSSNpcSheet from "./module/sheets/actors/rmss_npc_sheet.js";
 import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
+import RMSSMerchantSheet from "./module/sheets/actors/rmss_merchant_sheet.js";
+import RMSSLootSheet from "./module/sheets/actors/rmss_loot_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 import utils from "./module/utils.js";
 import { createProfession, createProfessionDialog } from "./module/tools/profession_creator.js";
@@ -69,6 +71,13 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/items/rmss-macro-editor.hbs",
     "systems/rmss/templates/sheets/actors/dialogs/weapon_preference_dialog.html",
     "systems/rmss/templates/sheets/actors/dialogs/stat_assignment_dialog.html",
+    "systems/rmss/templates/sheets/actors/dialogs/merchant_sell_dialog.html",
+    "systems/rmss/templates/sheets/actors/dialogs/merchant_request_dialog.html",
+    "systems/rmss/templates/sheets/actors/dialogs/loot_item_request_dialog.html",
+    "systems/rmss/templates/sheets/actors/dialogs/loot_money_request_dialog.html",
+    "systems/rmss/templates/sheets/actors/dialogs/sell_to_merchant_dialog.html",
+    "systems/rmss/templates/sheets/actors/dialogs/populate_from_roll_table_dialog.html",
+    "systems/rmss/templates/chat/request-card.html",
     "systems/rmss/templates/sheets/items/parts/item-tags.hbs",
     "systems/rmss/templates/sheets/items/parts/container-allowed-tags.hbs",
     "systems/rmss/templates/sheets/items/parts/passive-modifiers.hbs",
@@ -388,6 +397,8 @@ Hooks.once("init", function () {
   Actors.registerSheet("rmss", RMSSPlayerSheet, { makeDefault: true, label: "rmss.entity_sheet.player_character", types: ["character"] });
   Actors.registerSheet("rmss", RMSSNpcSheet, { makeDefault: true, label: "rmss.entity_sheet.npc", types: ["npc"] });
   Actors.registerSheet("rmss", RMSSCreatureSheet, { makeDefault: true, label: "rmss.entity_sheet.creature", types: ["creature"] });
+  Actors.registerSheet("rmss", RMSSMerchantSheet, { makeDefault: true, label: "rmss.entity_sheet.merchant", types: ["merchant"] });
+  Actors.registerSheet("rmss", RMSSLootSheet, { makeDefault: true, label: "rmss.entity_sheet.loot", types: ["loot"] });
 
 
   // Preload Handlebars Templates

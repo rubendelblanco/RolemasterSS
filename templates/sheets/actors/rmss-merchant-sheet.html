@@ -1,0 +1,117 @@
+<form class="merchant-sheet {{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <div class="container">
+      <div>
+        <div class="actor-icon">
+          <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+        </div>
+      </div>
+      <div class="header-container">
+        <div class="header-text flexrow">
+          <label for="character-name">{{ localize "rmss.player_character.name" }}</label>
+          <input id="character-name" name="name" type="text" value="{{actor.name}}"/>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {{#if isGM}}
+  <div class="merchant-description">
+    <label for="description">{{ localize "rmss.merchant.description" }}</label>
+    <textarea name="system.description" rows="2">{{system.description}}</textarea>
+  </div>
+  {{else}}
+  {{#if system.description}}
+  <div class="merchant-description-display">{{system.description}}</div>
+  {{/if}}
+  {{/if}}
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="Stock"><i class="fa-solid fa-boxes-stacked"></i> {{ localize "rmss.merchant.tab_stock" }}</a>
+    <a class="item" data-tab="Till"><i class="fa-solid fa-coins"></i> {{ localize "rmss.merchant.tab_till" }}</a>
+  </nav>
+
+  <section class="sheet-body">
+    <div class="tab stock" data-group="primary" data-tab="Stock">
+      {{#if isGM}}
+      <a class="populate-from-table"><i class="fas fa-dice-d20"></i> {{ localize "rmss.populate_table.button" }}</a>
+      {{else}}
+      {{#if system.buysFromPlayers}}
+      <a class="sell-item-to-merchant"><i class="fas fa-sack-dollar"></i> {{ localize "rmss.merchant.sell_to_merchant_tooltip" }}</a>
+      {{/if}}
+      {{/if}}
+      {{#each stock as |items type|}}
+      {{#if items.length}}
+      <table class="items">
+        <thead>
+        <tr>
+          <th></th>
+          <th>{{ localize "rmss.pc_sheet_items.item_name" }}</th>
+          <th>{{ localize "rmss.merchant.consume" }}</th>
+          <th>{{ localize "rmss.pc_sheet_items.quantity" }}</th>
+          <th>{{ localize "rmss.item.unitCost" }}</th>
+          <th>{{ localize "rmss.item.cost" }}</th>
+          <th>{{ localize "rmss.item.unitWeight" }}</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each items as |item|}}
+        <tr data-item-id="{{item.id}}">
+          <td><span class="list-item-icon-wrap{{#if item.system.magical}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{item.img}}" alt="{{item.name}}" width="32" height="32"/></span></td>
+          <td>{{item.name}}{{#if item.system.description}}
+            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{item.system.description}}"></i>
+            {{/if}}</td>
+          <td class="item-consumable-cell">
+            {{#if ../../isGM}}
+            <a class="item-consumable-toggle{{#if item.flags.rmss.consumable}} active{{/if}}" data-item-id="{{item.id}}" title="{{ localize 'rmss.merchant.consumable_tooltip' }}">
+              <i class="fas fa-utensils"></i>
+            </a>
+            {{else}}
+            {{#if item.flags.rmss.consumable}}
+            <i class="fas fa-utensils item-consumable-indicator" title="{{ localize 'rmss.merchant.consumable_tooltip' }}"></i>
+            {{/if}}
+            {{/if}}
+          </td>
+          <td>{{item.system.quantity}}</td>
+          <td>{{formatNumber item.system.unitCost}} <span>{{localize (concat "rmss.currency_type_abb." item.system.currency_type)}}</span></td>
+          <td>{{formatNumber item.system.cost}} <span>{{localize (concat "rmss.currency_type_abb." item.system.currency_type)}}</span></td>
+          <td>{{formatNumber item.system.unitWeight}}</td>
+          <td class="item-controls">
+            {{#if ../../isGM}}
+            <a class="item-sell" data-item-id="{{item.id}}" title="{{ localize 'rmss.merchant.sell_tooltip' }}">
+              <i class="fas fa-hand-holding-dollar"></i>
+            </a>
+            <a class="item-control item-edit" data-item-id="{{item.id}}" title="Edit Item"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" data-item-id="{{item.id}}" title="Delete Item"><i class="fas fa-trash"></i></a>
+            {{else}}
+            <a class="item-request" data-item-id="{{item.id}}" title="{{ localize 'rmss.merchant.request_tooltip' }}">
+              <i class="fas fa-hand-point-right"></i>
+            </a>
+            {{/if}}
+          </td>
+        </tr>
+        {{/each}}
+        </tbody>
+      </table>
+      {{/if}}
+      {{/each}}
+    </div>
+
+    <div class="tab till" data-group="primary" data-tab="Till">
+      {{#if isGM}}
+      <div class="merchant-buy-rate">
+        <label for="buysFromPlayers">{{ localize "rmss.merchant.buys_from_players" }}</label>
+        <input type="checkbox" name="system.buysFromPlayers" {{checked system.buysFromPlayers}}/>
+      </div>
+      {{/if}}
+      {{#if (or isGM system.buysFromPlayers)}}
+      <div class="merchant-buy-rate">
+        <label for="buyRate">{{ localize "rmss.merchant.buy_rate" }}</label>
+        <input type="number" name="system.buyRate" min="0" value="{{system.buyRate}}"/> %
+      </div>
+      {{/if}}
+      {{> "systems/rmss/templates/sheets/actors/parts/actor-money.html" }}
+    </div>
+  </section>
+</form>
