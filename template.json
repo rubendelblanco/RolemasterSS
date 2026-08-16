@@ -331,7 +331,8 @@
       "templates": ["money"],
       "attributes": {},
       "description": "",
-      "buyRate": 50
+      "buyRate": 50,
+      "buysFromPlayers": false
     },
     "loot": {
       "templates": ["money"],

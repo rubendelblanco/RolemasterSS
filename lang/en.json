@@ -371,6 +371,8 @@
             "insufficient_funds_short": "The buyer cannot afford this purchase (insufficient funds).",
             "request_entity_missing": "The merchant, buyer, or item no longer exists; the transaction could not be completed.",
             "buy_rate": "Buy rate",
+            "buys_from_players": "Buys goods from players",
+            "description": "Description",
             "sell_to_merchant_tooltip": "Sell item to this merchant",
             "no_merchant_selected": "No merchant selected.",
             "no_sellable_items": "That character has nothing to sell.",

@@ -15,6 +15,17 @@
     </div>
   </header>
 
+  {{#if isGM}}
+  <div class="merchant-description">
+    <label for="description">{{ localize "rmss.merchant.description" }}</label>
+    <textarea name="system.description" rows="2">{{system.description}}</textarea>
+  </div>
+  {{else}}
+  {{#if system.description}}
+  <div class="merchant-description-display">{{system.description}}</div>
+  {{/if}}
+  {{/if}}
+
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="Stock"><i class="fa-solid fa-boxes-stacked"></i> {{ localize "rmss.merchant.tab_stock" }}</a>
     <a class="item" data-tab="Till"><i class="fa-solid fa-coins"></i> {{ localize "rmss.merchant.tab_till" }}</a>
@@ -23,7 +34,9 @@
   <section class="sheet-body">
     <div class="tab stock" data-group="primary" data-tab="Stock">
       {{#unless isGM}}
+      {{#if system.buysFromPlayers}}
       <a class="sell-item-to-merchant"><i class="fas fa-sack-dollar"></i> {{ localize "rmss.merchant.sell_to_merchant_tooltip" }}</a>
+      {{/if}}
       {{/unless}}
       {{#each stock as |items type|}}
       {{#if items.length}}
@@ -72,10 +85,18 @@
     </div>
 
     <div class="tab till" data-group="primary" data-tab="Till">
+      {{#if isGM}}
+      <div class="merchant-buy-rate">
+        <label for="buysFromPlayers">{{ localize "rmss.merchant.buys_from_players" }}</label>
+        <input type="checkbox" name="system.buysFromPlayers" {{checked system.buysFromPlayers}}/>
+      </div>
+      {{/if}}
+      {{#if (or isGM system.buysFromPlayers)}}
       <div class="merchant-buy-rate">
         <label for="buyRate">{{ localize "rmss.merchant.buy_rate" }}</label>
-        <input type="number" name="system.buyRate" min="0" max="100" value="{{system.buyRate}}"/> %
+        <input type="number" name="system.buyRate" min="0" value="{{system.buyRate}}"/> %
       </div>
+      {{/if}}
       {{> "systems/rmss/templates/sheets/actors/parts/actor-money.html" }}
     </div>
   </section>

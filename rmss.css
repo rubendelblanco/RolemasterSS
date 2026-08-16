@@ -3835,9 +3835,28 @@ button.rmss-crit-reenable-local:hover {
 .rmss.sheet.merchant .merchant-buy-rate label {
   font-weight: 600;
 }
-.rmss.sheet.merchant .merchant-buy-rate input {
+.rmss.sheet.merchant .merchant-buy-rate input[type="number"] {
   width: 4rem;
   text-align: center;
+}
+.rmss.sheet.merchant .merchant-description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 0.5rem 0.5rem;
+}
+.rmss.sheet.merchant .merchant-description label {
+  font-weight: 600;
+}
+.rmss.sheet.merchant .merchant-description textarea {
+  resize: vertical;
+}
+.rmss.sheet.merchant .merchant-description-display {
+  padding: 0.5rem 0.5rem;
+  font-size: 1.1em;
+  font-style: italic;
+  color: var(--color-text-dark-primary, #191813);
+  background-color: burlywood;
 }
 
 .rmss.sheet.merchant .sell-item-to-merchant {

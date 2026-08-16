@@ -371,6 +371,8 @@
       "insufficient_funds_short": "El comprador no puede permitirse esta compra (fondos insuficientes).",
       "request_entity_missing": "El mercader, el comprador o el item ya no existen; la transacción no se pudo completar.",
       "buy_rate": "Tasa de recompra",
+      "buys_from_players": "Compra mercancía a los jugadores",
+      "description": "Descripción",
       "sell_to_merchant_tooltip": "Vender item a este mercader",
       "no_merchant_selected": "No se ha seleccionado mercader.",
       "no_sellable_items": "Ese personaje no tiene nada que vender.",
