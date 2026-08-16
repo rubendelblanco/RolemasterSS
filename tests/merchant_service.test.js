@@ -41,6 +41,7 @@ function makeItem(overrides = {}) {
     id: 'item1',
     uuid: 'Actor.merchant1.Item.item1',
     name: 'Healing Herb',
+    img: 'icons/item1.webp',
     flags: {},
     system: {
       quantity: 10,
@@ -67,6 +68,7 @@ function makeBuyer(overrides = {}) {
     id: 'buyer1',
     uuid: 'Actor.buyer1',
     name: 'Zirga',
+    img: 'icons/buyer1.webp',
     system: { money: { mithril: 0, platinum: 0, gold: 0, silver: 20, bronze: 0, copper: 0, tin: 0, iron: 0 }, ...system },
     createEmbeddedDocuments: jest.fn().mockResolvedValue([]),
     testUserPermission: jest.fn(() => true),
@@ -228,7 +230,12 @@ describe('MerchantService.requestItem (player request)', () => {
       buyerName: buyer.name,
       resolved: false
     }));
-    expect(typeof payload.flags.rmss.merchantRequest.bodyHtml).toBe('string');
+    const bodyHtml = payload.flags.rmss.merchantRequest.bodyHtml;
+    expect(typeof bodyHtml).toBe('string');
+    // Buyer and item show up as avatar/icon chips, not just plain text.
+    expect(bodyHtml).toContain(buyer.img);
+    expect(bodyHtml).toContain(item.img);
+    expect(bodyHtml).toContain('rmss-request-chip');
 
     // Nothing actually changes hands until the GM accepts.
     expect(buyer.createEmbeddedDocuments).not.toHaveBeenCalled();

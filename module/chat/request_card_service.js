@@ -10,6 +10,23 @@ const CARD_TEMPLATE = "systems/rmss/templates/chat/request-card.html";
  */
 export default class RequestCardService {
 
+  /**
+   * Inline "avatar + name" fragment for a chat card body — lets a GM triaging
+   * several pending cards tell characters/items apart at a glance instead of
+   * reading plain names. Safe to drop into a bodyHtml built via game.i18n.format.
+   * @param {string} img
+   * @param {string} name
+   */
+  static chip(img, name) {
+    return `<span class="rmss-request-chip"><img class="rmss-request-chip-img" src="${img}" alt=""/>${this._escapeHtml(name)}</span>`;
+  }
+
+  static _escapeHtml(text) {
+    return String(text).replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[c]));
+  }
+
   /** GMs + current owners of receiverActor, deduped. */
   static whisperTargets(receiverActor) {
     const ids = new Set();

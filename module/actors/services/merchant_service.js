@@ -147,9 +147,9 @@ export default class MerchantService {
     // changes before the GM resolves it — the re-validation in _executeSale still
     // protects against actually completing a sale that no longer holds up.
     const bodyHtml = game.i18n.format("rmss.merchant.request_card_body", {
-      buyer: buyerActor.name,
+      buyer: RequestCardService.chip(buyerActor.img, buyerActor.name),
       qty: quantity,
-      item: item.name,
+      item: RequestCardService.chip(item.img, item.name),
       merchant: merchantActor.name,
       cost: saleCost,
       currency: currencyAbb
@@ -158,7 +158,7 @@ export default class MerchantService {
     await RequestCardService.post({
       requestKind: REQUEST_KIND,
       title: game.i18n.localize("rmss.merchant.request_card_title"),
-      icon: "fa-hand-holding-dollar",
+      icon: "fas fa-hand-holding-dollar",
       bodyHtml,
       speakerActor: merchantActor,
       receiverActor: buyerActor,

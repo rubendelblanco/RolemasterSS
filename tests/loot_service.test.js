@@ -32,6 +32,7 @@ function makeItem(overrides = {}) {
     id: 'item1',
     uuid: 'Actor.chest1.Item.item1',
     name: 'Old Sword',
+    img: 'icons/item1.webp',
     flags: {},
     system: { quantity: 4, cost: 40, weight: 8, unitCost: 10, unitWeight: 2, currency_type: 'silver', ...system },
     ...rest
@@ -45,7 +46,7 @@ function makeItem(overrides = {}) {
 function makeReceiver(overrides = {}) {
   const { system, ...rest } = overrides;
   const receiver = {
-    id: 'receiver1', uuid: 'Actor.receiver1', name: 'Zirga',
+    id: 'receiver1', uuid: 'Actor.receiver1', name: 'Zirga', img: 'icons/receiver1.webp',
     system: { money: { mithril: 0, platinum: 0, gold: 0, silver: 0, bronze: 0, copper: 0, tin: 0, iron: 0 }, ...system },
     createEmbeddedDocuments: jest.fn().mockResolvedValue([]),
     testUserPermission: jest.fn(() => true),
@@ -114,6 +115,10 @@ describe('LootService.requestItem', () => {
       quantity: 2, itemName: item.name, receiverName: receiver.name, resolved: false
     }));
     expect(payload.flags.rmss.lootItemRequest.cost).toBeUndefined();
+
+    const bodyHtml = payload.flags.rmss.lootItemRequest.bodyHtml;
+    expect(bodyHtml).toContain(receiver.img);
+    expect(bodyHtml).toContain(item.img);
 
     expect(receiver.createEmbeddedDocuments).not.toHaveBeenCalled();
     expect(item.update).not.toHaveBeenCalled();
@@ -257,6 +262,7 @@ describe('LootService.requestMoney', () => {
     expect(payload.flags.rmss.lootMoneyRequest.amounts).toEqual({
       mithril: 0, platinum: 0, gold: 2, silver: 2, bronze: 0, copper: 0, tin: 0, iron: 0
     });
+    expect(payload.flags.rmss.lootMoneyRequest.bodyHtml).toContain(receiver.img);
   });
 
   test('selecting nothing (all zero) warns and posts no card', async () => {

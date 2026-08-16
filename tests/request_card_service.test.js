@@ -29,6 +29,23 @@ function makeMessage(data) {
   };
 }
 
+describe('RequestCardService.chip', () => {
+  test('renders an avatar image plus the name', () => {
+    const html = RequestCardService.chip('icons/zirga.webp', 'Zirga');
+    expect(html).toContain('src="icons/zirga.webp"');
+    expect(html).toContain('>Zirga<');
+    expect(html).toContain('class="rmss-request-chip"');
+  });
+
+  test('escapes HTML-significant characters in the name', () => {
+    const html = RequestCardService.chip('icons/x.webp', '<script>alert(1)</script> & "Bob"');
+    expect(html).not.toContain('<script>');
+    expect(html).toContain('&lt;script&gt;');
+    expect(html).toContain('&amp;');
+    expect(html).toContain('&quot;Bob&quot;');
+  });
+});
+
 describe('RequestCardService.whisperTargets', () => {
   test('dedupes GMs and the receiver\'s owners', () => {
     game.users = [

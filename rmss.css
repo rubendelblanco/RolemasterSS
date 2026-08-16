@@ -3954,6 +3954,27 @@ button.rmss-crit-reenable-local:hover {
 .rmss-request-card .rmss-request-card-body {
   margin: 0 0 0.5rem;
 }
+.rmss-request-card .rmss-request-card-line {
+  margin: 0 0 0.2rem;
+}
+.rmss-request-card .rmss-request-card-line:last-child {
+  margin-bottom: 0;
+}
+.rmss-request-card .rmss-request-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.rmss-request-card .rmss-request-chip-img {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  object-fit: cover;
+  border: 1px solid var(--rmss-progress-fill);
+  vertical-align: middle;
+}
 .rmss-request-card .rmss-request-card-actions {
   display: flex;
   gap: 0.5rem;

@@ -36,16 +36,16 @@ export default class LootService {
     }
 
     const bodyHtml = game.i18n.format("rmss.loot.item_request_card_body", {
-      receiver: receiverActor.name,
+      receiver: RequestCardService.chip(receiverActor.img, receiverActor.name),
       qty: quantity,
-      item: item.name,
+      item: RequestCardService.chip(item.img, item.name),
       source: sourceActor.name
     });
 
     await RequestCardService.post({
       requestKind: ITEM_REQUEST_KIND,
       title: game.i18n.localize("rmss.loot.item_request_card_title"),
-      icon: "fa-hand",
+      icon: "fa-duotone fa-solid fa-treasure-chest",
       bodyHtml,
       speakerActor: sourceActor,
       receiverActor,
@@ -182,7 +182,7 @@ export default class LootService {
     }
 
     const bodyHtml = game.i18n.format("rmss.loot.money_request_card_body", {
-      receiver: receiverActor.name,
+      receiver: RequestCardService.chip(receiverActor.img, receiverActor.name),
       source: sourceActor.name,
       breakdown: this._formatMoneyBreakdown(normalized)
     });
@@ -190,7 +190,7 @@ export default class LootService {
     await RequestCardService.post({
       requestKind: MONEY_REQUEST_KIND,
       title: game.i18n.localize("rmss.loot.money_request_card_title"),
-      icon: "fa-coins",
+      icon: "fas fa-coins",
       bodyHtml,
       speakerActor: sourceActor,
       receiverActor,

@@ -1,6 +1,6 @@
 <div class="rmss-request-card">
-  <h4 class="rmss-request-card-title"><i class="fas {{icon}}"></i> {{title}}</h4>
-  <p class="rmss-request-card-body">{{{bodyHtml}}}</p>
+  <h4 class="rmss-request-card-title"><i class="{{icon}}"></i> {{title}}</h4>
+  <div class="rmss-request-card-body">{{{bodyHtml}}}</div>
   {{#if pending}}
   <div class="rmss-request-card-actions rmss-chat-gm-only">
     <button type="button" class="rmss-request-accept" data-request-kind="{{requestKind}}"><i class="fas fa-check"></i> {{ localize "rmss.request_card.accept" }}</button>
