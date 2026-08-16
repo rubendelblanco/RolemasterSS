@@ -372,6 +372,8 @@
       "request_entity_missing": "El mercader, el comprador o el item ya no existen; la transacción no se pudo completar.",
       "buy_rate": "Tasa de recompra",
       "buys_from_players": "Compra mercancía a los jugadores",
+      "consume": "Consumir",
+      "consumable_tooltip": "Se consume al instante (comida, alojamiento, servicios...) en vez de ir a la mochila del comprador",
       "description": "Descripción",
       "sell_to_merchant_tooltip": "Vender item a este mercader",
       "no_merchant_selected": "No se ha seleccionado mercader.",

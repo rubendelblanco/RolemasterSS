@@ -45,6 +45,7 @@ export default class RMSSMerchantSheet extends ActorSheet {
         }
 
         html.find(".item-sell").click(ev => this._onSellClick(ev));
+        html.find(".item-consumable-toggle").click(ev => this._onConsumableToggleClick(ev));
 
         html.find(".item-control.item-edit").click(ev => {
             const itemId = ev.currentTarget.closest("[data-item-id]")?.dataset.itemId;
@@ -63,6 +64,14 @@ export default class RMSSMerchantSheet extends ActorSheet {
         const item = this.actor.items.get(itemId);
         if (!item) return;
         new MerchantSellDialog(this.actor, item).render(true);
+    }
+
+    async _onConsumableToggleClick(ev) {
+        ev.preventDefault();
+        const itemId = ev.currentTarget.closest("[data-item-id]")?.dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        if (!item) return;
+        await item.setFlag("rmss", "consumable", !item.getFlag("rmss", "consumable"));
     }
 
     _onRequestClick(ev) {

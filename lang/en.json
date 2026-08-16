@@ -372,6 +372,8 @@
             "request_entity_missing": "The merchant, buyer, or item no longer exists; the transaction could not be completed.",
             "buy_rate": "Buy rate",
             "buys_from_players": "Buys goods from players",
+            "consume": "Consume",
+            "consumable_tooltip": "Consumed on the spot (food, lodging, services...) instead of going to the buyer's inventory",
             "description": "Description",
             "sell_to_merchant_tooltip": "Sell item to this merchant",
             "no_merchant_selected": "No merchant selected.",

@@ -78,16 +78,20 @@ export default class MerchantService {
       return { success: false, reason: "insufficient_funds" };
     }
 
-    // Grant the item to the buyer.
-    const newItemData = foundry.utils.duplicate(item.toObject());
-    delete newItemData._id;
-    newItemData.system.quantity = quantity;
-    newItemData.system.unitCost = unitCost;
-    newItemData.system.unitWeight = unitWeight;
-    newItemData.system.cost = saleCost;
-    newItemData.system.weight = saleWeight;
-    if (newItemData.flags?.rmss?.containerId) delete newItemData.flags.rmss.containerId;
-    await buyerActor.createEmbeddedDocuments("Item", [newItemData]);
+    // Grant the item to the buyer — unless it's consumed on the spot (food, lodging,
+    // services...), in which case only the money changes hands; nothing is added to
+    // their inventory. Toggled per stock item on the merchant sheet (flags.rmss.consumable).
+    if (item.getFlag("rmss", "consumable") !== true) {
+      const newItemData = foundry.utils.duplicate(item.toObject());
+      delete newItemData._id;
+      newItemData.system.quantity = quantity;
+      newItemData.system.unitCost = unitCost;
+      newItemData.system.unitWeight = unitWeight;
+      newItemData.system.cost = saleCost;
+      newItemData.system.weight = saleWeight;
+      if (newItemData.flags?.rmss?.containerId) delete newItemData.flags.rmss.containerId;
+      await buyerActor.createEmbeddedDocuments("Item", [newItemData]);
+    }
 
     // Decrement (or remove) the merchant's stock.
     const remaining = totalQty - quantity;

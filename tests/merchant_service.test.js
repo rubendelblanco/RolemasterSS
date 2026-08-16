@@ -59,6 +59,12 @@ function makeItem(overrides = {}) {
   }));
   item.update = jest.fn(async (data) => { applyPathUpdate(item, data); return item; });
   item.delete = jest.fn(async () => { item.deleted = true; return item; });
+  item.getFlag = jest.fn((scope, key) => item.flags?.[scope]?.[key]);
+  item.setFlag = jest.fn(async (scope, key, value) => {
+    item.flags[scope] = item.flags[scope] ?? {};
+    item.flags[scope][key] = value;
+    return item;
+  });
   return item;
 }
 
@@ -160,6 +166,22 @@ describe('MerchantService.sellItem (GM direct sale)', () => {
 
     expect(item.delete).toHaveBeenCalled();
     expect(item.update).not.toHaveBeenCalled();
+  });
+
+  test('consumable item (food, lodging...): money changes hands but nothing is added to the buyer\'s inventory', async () => {
+    const item = makeItem();
+    item.flags.rmss = { consumable: true };
+    const merchant = makeMerchant([item]);
+    const buyer = makeBuyer();
+
+    const result = await MerchantService.sellItem(merchant, item, buyer, 3);
+
+    expect(result).toBe(true);
+    expect(buyer.createEmbeddedDocuments).not.toHaveBeenCalled();
+    // Stock still depletes and money still moves, same as a normal sale.
+    expect(item.update).toHaveBeenCalledWith(expect.objectContaining({ 'system.quantity': 7 }));
+    expect(buyer.system.money.silver).toBe(5);
+    expect(merchant.system.money.silver).toBe(15);
   });
 
   test('out of stock: no mutation, warns and returns false', async () => {

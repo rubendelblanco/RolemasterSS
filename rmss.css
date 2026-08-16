@@ -3826,6 +3826,23 @@ button.rmss-crit-reenable-local:hover {
   width: 100%;
   margin-bottom: 1rem;
 }
+.rmss.sheet.merchant .item-consumable-cell {
+  text-align: center;
+}
+.rmss.sheet.merchant .item-consumable-toggle {
+  color: var(--color-text-light-6, #999);
+  opacity: 0.5;
+}
+.rmss.sheet.merchant .item-consumable-toggle:hover {
+  opacity: 0.8;
+}
+.rmss.sheet.merchant .item-consumable-toggle.active {
+  color: var(--rmss-progress-fill);
+  opacity: 1;
+}
+.rmss.sheet.merchant .item-consumable-indicator {
+  color: var(--rmss-progress-fill);
+}
 .rmss.sheet.merchant .merchant-buy-rate {
   display: flex;
   align-items: center;

@@ -45,6 +45,7 @@
         <tr>
           <th></th>
           <th>{{ localize "rmss.pc_sheet_items.item_name" }}</th>
+          <th>{{ localize "rmss.merchant.consume" }}</th>
           <th>{{ localize "rmss.pc_sheet_items.quantity" }}</th>
           <th>{{ localize "rmss.item.unitCost" }}</th>
           <th>{{ localize "rmss.item.cost" }}</th>
@@ -59,6 +60,17 @@
           <td>{{item.name}}{{#if item.system.description}}
             <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{item.system.description}}"></i>
             {{/if}}</td>
+          <td class="item-consumable-cell">
+            {{#if ../../isGM}}
+            <a class="item-consumable-toggle{{#if item.flags.rmss.consumable}} active{{/if}}" data-item-id="{{item.id}}" title="{{ localize 'rmss.merchant.consumable_tooltip' }}">
+              <i class="fas fa-utensils"></i>
+            </a>
+            {{else}}
+            {{#if item.flags.rmss.consumable}}
+            <i class="fas fa-utensils item-consumable-indicator" title="{{ localize 'rmss.merchant.consumable_tooltip' }}"></i>
+            {{/if}}
+            {{/if}}
+          </td>
           <td>{{item.system.quantity}}</td>
           <td>{{formatNumber item.system.unitCost}} <span>{{localize (concat "rmss.currency_type_abb." item.system.currency_type)}}</span></td>
           <td>{{formatNumber item.system.cost}} <span>{{localize (concat "rmss.currency_type_abb." item.system.currency_type)}}</span></td>
