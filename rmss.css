@@ -3826,6 +3826,34 @@ button.rmss-crit-reenable-local:hover {
   width: 100%;
   margin-bottom: 1rem;
 }
+.rmss.sheet.merchant .merchant-buy-rate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.rmss.sheet.merchant .merchant-buy-rate label {
+  font-weight: 600;
+}
+.rmss.sheet.merchant .merchant-buy-rate input {
+  width: 4rem;
+  text-align: center;
+}
+
+.rmss.sheet.merchant .sell-item-to-merchant {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rmss-progress-fill);
+  border-radius: 3px;
+  color: var(--rmss-progress-fill);
+  cursor: pointer;
+}
+.rmss.sheet.merchant .sell-item-to-merchant:hover {
+  filter: brightness(1.25);
+}
 
 /* ================================
    Request dialogs — shared by the merchant sell/request popups and the

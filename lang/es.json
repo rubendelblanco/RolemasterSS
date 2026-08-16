@@ -369,7 +369,22 @@
       "request_rejected_msg": "El Game Master ha rechazado la compra de {item}.",
       "request_stock_changed": "Las existencias o los fondos han cambiado desde que se hizo la solicitud; la transacción no se pudo completar.",
       "insufficient_funds_short": "El comprador no puede permitirse esta compra (fondos insuficientes).",
-      "request_entity_missing": "El mercader, el comprador o el item ya no existen; la transacción no se pudo completar."
+      "request_entity_missing": "El mercader, el comprador o el item ya no existen; la transacción no se pudo completar.",
+      "buy_rate": "Tasa de recompra",
+      "sell_to_merchant_tooltip": "Vender item a este mercader",
+      "no_merchant_selected": "No se ha seleccionado mercader.",
+      "no_sellable_items": "Ese personaje no tiene nada que vender.",
+      "sell_request_dialog_title": "Vender a Mercader",
+      "sell_request_dialog_hint": "Elige tu personaje, el item y la cantidad. El Game Master debe confirmar la venta antes de que tenga efecto.",
+      "sell_dialog_to": "Vendiendo a",
+      "sell_dialog_seller": "Personaje",
+      "sell_dialog_offer": "Oferta",
+      "confirm_sell_request": "Enviar Oferta",
+      "sell_request_card_title": "Oferta de Venta",
+      "sell_request_card_body": "<div class=\"rmss-request-card-line\">{seller} quiere vender</div><div class=\"rmss-request-card-line\">{item} <strong>x{qty}</strong></div><div class=\"rmss-request-card-line\">a <strong>{merchant}</strong> por {cost} {currency}</div>",
+      "sell_request_rejected_msg": "El Game Master ha rechazado la venta de {item}.",
+      "sell_success": "Vendido {qty}x {item} a {merchant}.",
+      "merchant_insufficient_funds_short": "La caja del mercader no puede permitirse esta compra (fondos insuficientes)."
     },
     "loot": {
       "tab_stock": "Existencias",

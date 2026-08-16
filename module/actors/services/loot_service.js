@@ -1,4 +1,5 @@
 import RequestCardService from "../../chat/request_card_service.js";
+import ItemService from "./item_service.js";
 
 const ITEM_REQUEST_KIND = "lootItemRequest";
 const MONEY_REQUEST_KIND = "lootMoneyRequest";
@@ -126,9 +127,8 @@ export default class LootService {
     // proportional purely for downstream bookkeeping (e.g. later appraisal/sale),
     // it is never charged to the receiver here.
     const totalWeight = Number(item.system.weight) || 0;
-    const totalCost = Number(item.system.cost) || 0;
     const unitWeight = totalQty > 0 ? Number((totalWeight / totalQty).toFixed(2)) : 0;
-    const unitCost = totalQty > 0 ? Number((totalCost / totalQty).toFixed(2)) : 0;
+    const unitCost = ItemService.getUnitCost(item, totalQty);
     const takenWeight = Number((unitWeight * quantity).toFixed(2));
     const takenCost = Number((unitCost * quantity).toFixed(2));
 

@@ -22,6 +22,23 @@ export default class ItemService {
     }
 
     /**
+     * Per-unit price of an item, normalizing two different conventions used across
+     * item types: weapon/armor sheets store the price directly in `system.unitCost`
+     * (their sheets never populate `system.cost` — see rmss_weapon_sheet.js /
+     * rmss_armor_sheet.js), while generic item/herb sheets store the *total* stack
+     * price in `system.cost` and unitCost is derived by dividing by quantity.
+     * @param {Item} item
+     * @param {number} totalQty - item.system.quantity, already resolved by the caller
+     * @returns {number}
+     */
+    static getUnitCost(item, totalQty) {
+        if (item.type === "weapon" || item.type === "armor") {
+            return Number(item.system.unitCost) || 0;
+        }
+        return totalQty > 0 ? Number(((Number(item.system.cost) || 0) / totalQty).toFixed(2)) : 0;
+    }
+
+    /**
      * Open a dialog to transfer an item from one actor to another.
      *
      * The dialog lets the user select quantity and target actor.

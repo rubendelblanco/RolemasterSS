@@ -1,4 +1,5 @@
 import MerchantService from "../services/merchant_service.js";
+import ItemService from "../services/item_service.js";
 
 /**
  * Player-facing dialog to request a purchase from a merchant actor. Unlike
@@ -32,7 +33,7 @@ export default class MerchantRequestDialog extends Application {
             .filter(a => a && a.type === "character" && a.isOwner);
 
         const maxQty = Number(this.item.system.quantity) || 0;
-        const unitCost = maxQty > 0 ? Number((this.item.system.cost / maxQty).toFixed(2)) : 0;
+        const unitCost = ItemService.getUnitCost(this.item, maxQty);
 
         return {
             item: this.item,

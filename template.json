@@ -330,7 +330,8 @@
     "merchant": {
       "templates": ["money"],
       "attributes": {},
-      "description": ""
+      "description": "",
+      "buyRate": 50
     },
     "loot": {
       "templates": ["money"],

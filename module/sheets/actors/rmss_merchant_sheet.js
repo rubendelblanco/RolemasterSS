@@ -1,5 +1,6 @@
 import MerchantSellDialog from "../../actors/dialogs/merchant_sell_dialog.js";
 import MerchantRequestDialog from "../../actors/dialogs/merchant_request_dialog.js";
+import SellToMerchantDialog from "../../actors/dialogs/sell_to_merchant_dialog.js";
 
 /**
  * Sheet for the "merchant" actor type (a shop/vendor). Extends ActorSheet directly
@@ -37,8 +38,9 @@ export default class RMSSMerchantSheet extends ActorSheet {
         super.activateListeners(html);
 
         if (!game.user.isGM) {
-            // Players can only request a purchase; the GM confirms it from the chat card.
+            // Players can only request a purchase or offer to sell; the GM confirms either from the chat card.
             html.find(".item-request").click(ev => this._onRequestClick(ev));
+            html.find(".sell-item-to-merchant").click(ev => this._onSellItemClick(ev));
             return;
         }
 
@@ -77,5 +79,18 @@ export default class RMSSMerchantSheet extends ActorSheet {
         }
 
         new MerchantRequestDialog(this.actor, item).render(true);
+    }
+
+    _onSellItemClick(ev) {
+        ev.preventDefault();
+
+        const hasOwnedCharacterOnScene = canvas.tokens.placeables
+            .some(t => t.actor?.type === "character" && t.actor.isOwner);
+        if (!hasOwnedCharacterOnScene) {
+            ui.notifications.warn(game.i18n.localize("rmss.merchant.no_character_available"));
+            return;
+        }
+
+        new SellToMerchantDialog(this.actor).render(true);
     }
 }

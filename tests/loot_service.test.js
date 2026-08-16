@@ -168,6 +168,24 @@ describe('LootService.resolveItemRequest', () => {
     expect(JSON.parse(content)).toEqual(expect.objectContaining({ statusClass: 'approved' }));
   });
 
+  test('accept: weapon/armor keeps its real unitCost on the receiver\'s copy (bookkeeping only, nothing charged)', async () => {
+    const weapon = makeItem({ type: 'weapon', system: { quantity: 1, cost: 0, unitCost: 30, weight: 2 } });
+    const chest = makeChest([weapon]);
+    const receiver = makeReceiver();
+    global.fromUuid = jest.fn(async (uuid) => ({ [weapon.uuid]: weapon, [receiver.uuid]: receiver }[uuid] ?? null));
+
+    const message = makeMessage({
+      resolved: false, itemUuid: weapon.uuid, sourceActorUuid: chest.uuid, receiverActorUuid: receiver.uuid,
+      quantity: 1, itemName: weapon.name, receiverName: receiver.name, bodyHtml: '<p>q</p>'
+    });
+
+    await LootService.resolveItemRequest(message, 'accept');
+
+    expect(receiver.createEmbeddedDocuments).toHaveBeenCalledWith('Item', [
+      expect.objectContaining({ system: expect.objectContaining({ unitCost: 30 }) })
+    ]);
+  });
+
   test('accept: partial fulfillment reports the quantity actually taken, not the originally requested one', async () => {
     // Only 1 left by accept time (someone else took 3 in the meantime), but the
     // card still remembers the original request for 3 — the message must say 1.

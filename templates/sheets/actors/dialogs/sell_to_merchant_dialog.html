@@ -1,0 +1,42 @@
+<div class="rmss-request-dialog-body flexcol">
+  <p class="notes">
+    {{ hint }}
+  </p>
+
+  <div class="rmss-request-item-header">
+    <div class="rmss-request-item-title">{{ localize "rmss.merchant.sell_dialog_to" }} {{merchantName}} ({{buyRate}}%)</div>
+  </div>
+
+  <div class="rmss-request-form flexcol">
+    {{#if (gt sellers.length 1)}}
+    <div class="rmss-request-row">
+      <label for="seller">{{ localize "rmss.merchant.sell_dialog_seller" }}</label>
+      <select name="seller">
+        {{#each sellers as |s|}}
+        <option value="{{s.uuid}}">{{s.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    {{/if}}
+    <div class="rmss-request-row">
+      <label for="item">{{ localize "rmss.pc_sheet_items.item_name" }}</label>
+      <select name="item"></select>
+    </div>
+    <div class="rmss-request-row">
+      <label for="qty">{{ localize "rmss.pc_sheet_items.quantity" }}</label>
+      <div class="rmss-request-qty">
+        <input type="number" name="qty" min="1" value="1"/>
+        <span class="rmss-request-hint">/ <span class="sell-max-qty">0</span></span>
+      </div>
+    </div>
+    <div class="rmss-request-row">
+      <label>{{ localize "rmss.merchant.sell_dialog_offer" }}</label>
+      <span class="rmss-request-value"><span class="sell-offer-amount">0</span> <span class="sell-offer-currency"></span></span>
+    </div>
+  </div>
+</div>
+<footer class="rmss-request-footer">
+  <button type="button" class="confirm-sell-request">
+    <i class="fas fa-hand-point-right"></i> {{ localize "rmss.merchant.confirm_sell_request" }}
+  </button>
+</footer>

@@ -3,6 +3,38 @@
  */
 import ItemService from '../module/actors/services/item_service.js';
 
+describe('ItemService.getUnitCost', () => {
+  test('weapon: reads system.unitCost directly (its sheet never populates system.cost)', () => {
+    const weapon = { type: 'weapon', system: { unitCost: 25, cost: 0, quantity: 1 } };
+    expect(ItemService.getUnitCost(weapon, 1)).toBe(25);
+  });
+
+  test('armor: reads system.unitCost directly, same as weapon', () => {
+    const armor = { type: 'armor', system: { unitCost: 40, cost: 0, quantity: 1 } };
+    expect(ItemService.getUnitCost(armor, 1)).toBe(40);
+  });
+
+  test('generic item: derives unit cost from total system.cost / quantity', () => {
+    const item = { type: 'item', system: { cost: 50, unitCost: 0, quantity: 10 } };
+    expect(ItemService.getUnitCost(item, 10)).toBe(5);
+  });
+
+  test('herb_or_poison: same total/quantity convention as generic item', () => {
+    const herb = { type: 'herb_or_poison', system: { cost: 12, quantity: 4 } };
+    expect(ItemService.getUnitCost(herb, 4)).toBe(3);
+  });
+
+  test('generic item with zero quantity returns 0 instead of dividing by zero', () => {
+    const item = { type: 'item', system: { cost: 50, quantity: 0 } };
+    expect(ItemService.getUnitCost(item, 0)).toBe(0);
+  });
+
+  test('weapon with missing unitCost defaults to 0', () => {
+    const weapon = { type: 'weapon', system: { quantity: 1 } };
+    expect(ItemService.getUnitCost(weapon, 1)).toBe(0);
+  });
+});
+
 describe('ItemService.normalizeItemFormData', () => {
   test('calculates totalWeight and totalCost from unit values', () => {
     const formData = {

@@ -86,7 +86,9 @@ function makeMerchant(items, overrides = {}) {
     uuid: 'Actor.merchant1',
     name: 'Shopkeep',
     items: { get: (id) => itemsById.get(id) },
-    system: { money: { silver: 0 }, ...system },
+    system: { money: { silver: 0 }, buyRate: 50, ...system },
+    createEmbeddedDocuments: jest.fn().mockResolvedValue([]),
+    testUserPermission: jest.fn(() => true),
     ...rest
   };
   merchant.update = jest.fn(async (data) => { applyPathUpdate(merchant, data); return merchant; });
@@ -255,6 +257,18 @@ describe('MerchantService.requestItem (player request)', () => {
     const [payload] = ChatMessage.create.mock.calls[0];
     expect(payload.flags.rmss.merchantRequest.quantity).toBe(5);
   });
+
+  test('weapon/armor stock: prices from system.unitCost, not system.cost', async () => {
+    const armor = makeItem({ type: 'armor', system: { quantity: 1, cost: 0, unitCost: 60, weight: 8, currency_type: 'gold' } });
+    const merchant = makeMerchant([armor]);
+    const buyer = makeBuyer();
+
+    await MerchantService.requestItem(merchant, armor, buyer, 1);
+
+    const [payload] = ChatMessage.create.mock.calls[0];
+    const bodyHtml = payload.flags.rmss.merchantRequest.bodyHtml;
+    expect(bodyHtml).toContain('"cost":60');
+  });
 });
 
 describe('MerchantService.resolveRequest (GM accept/reject)', () => {
@@ -378,6 +392,214 @@ describe('MerchantService.resolveRequest (GM accept/reject)', () => {
     });
 
     await expect(MerchantService.resolveRequest(message, 'accept')).resolves.not.toThrow();
+
+    const [{ content }] = message.update.mock.calls[0];
+    expect(JSON.parse(content)).toEqual(expect.objectContaining({ statusClass: 'stock_changed' }));
+  });
+});
+
+function makeSeller(overrides = {}) {
+  return makeBuyer({ id: 'seller1', uuid: 'Actor.seller1', name: 'Zirga', img: 'icons/seller1.webp', ...overrides });
+}
+
+describe('MerchantService.requestSell (player sells to merchant)', () => {
+  test('requires a merchant, does not touch chat', async () => {
+    const item = makeItem({ uuid: 'Actor.seller1.Item.item1' });
+    const seller = makeSeller();
+    item.parent = seller;
+
+    await MerchantService.requestSell(seller, item, null, 1);
+
+    expect(ui.notifications.warn).toHaveBeenCalledWith('rmss.merchant.no_merchant_selected');
+    expect(ChatMessage.create).not.toHaveBeenCalled();
+  });
+
+  test('out of stock: warns, does not post a chat card', async () => {
+    const item = makeItem({ uuid: 'Actor.seller1.Item.item1', system: { quantity: 0 } });
+    const seller = makeSeller();
+    const merchant = makeMerchant([]);
+    item.parent = seller;
+
+    await MerchantService.requestSell(seller, item, merchant, 1);
+
+    expect(ui.notifications.warn).toHaveBeenCalledWith('rmss.merchant.out_of_stock');
+    expect(ChatMessage.create).not.toHaveBeenCalled();
+  });
+
+  test('posts a whispered chat card offering buyRate% of the item\'s cost, without mutating anything', async () => {
+    const item = makeItem({ uuid: 'Actor.seller1.Item.item1' }); // qty 10, cost 50 -> unit 5
+    const seller = makeSeller();
+    const merchant = makeMerchant([], { system: { buyRate: 50 } }); // pays 50%
+    item.parent = seller;
+    game.users = [{ id: 'gm1', isGM: true }, { id: 'player1', isGM: false }];
+    seller.testUserPermission = jest.fn((user) => user.id === 'player1');
+
+    await MerchantService.requestSell(seller, item, merchant, 4);
+
+    expect(ChatMessage.create).toHaveBeenCalledTimes(1);
+    const [payload] = ChatMessage.create.mock.calls[0];
+
+    expect(payload.whisper.sort()).toEqual(['gm1', 'player1']);
+    expect(payload.flags.rmss.merchantSellRequest).toEqual(expect.objectContaining({
+      sellerActorUuid: seller.uuid,
+      itemUuid: item.uuid,
+      merchantActorUuid: merchant.uuid,
+      quantity: 4,
+      itemName: item.name,
+      sellerName: seller.name,
+      merchantName: merchant.name,
+      resolved: false
+    }));
+    const bodyHtml = payload.flags.rmss.merchantSellRequest.bodyHtml;
+    // Offer = unit 5 * 50% * qty 4 = 10, embedded in the (mocked) formatted body.
+    expect(bodyHtml).toContain('"cost":10');
+    expect(bodyHtml).toContain(seller.img);
+    expect(bodyHtml).toContain(item.img);
+
+    expect(merchant.createEmbeddedDocuments).not.toHaveBeenCalled();
+    expect(item.update).not.toHaveBeenCalled();
+    expect(item.delete).not.toHaveBeenCalled();
+    expect(merchant.update).not.toHaveBeenCalled();
+  });
+
+  test('clamps the requested quantity to available stock', async () => {
+    const item = makeItem({ uuid: 'Actor.seller1.Item.item1', system: { quantity: 3, cost: 15, weight: 1.5 } });
+    const seller = makeSeller();
+    const merchant = makeMerchant([]);
+    item.parent = seller;
+
+    await MerchantService.requestSell(seller, item, merchant, 999);
+
+    const [payload] = ChatMessage.create.mock.calls[0];
+    expect(payload.flags.rmss.merchantSellRequest.quantity).toBe(3);
+  });
+
+  test('weapon/armor: prices from system.unitCost, not system.cost (their sheets never populate cost)', async () => {
+    // A weapon's own sheet only ever writes system.unitCost; system.cost stays 0.
+    const weapon = makeItem({
+      uuid: 'Actor.seller1.Item.item1', type: 'weapon',
+      system: { quantity: 1, cost: 0, unitCost: 30, weight: 2, currency_type: 'gold' }
+    });
+    const seller = makeSeller();
+    const merchant = makeMerchant([], { system: { buyRate: 50 } });
+    weapon.parent = seller;
+
+    await MerchantService.requestSell(seller, weapon, merchant, 1);
+
+    const [payload] = ChatMessage.create.mock.calls[0];
+    const bodyHtml = payload.flags.rmss.merchantSellRequest.bodyHtml;
+    // Offer = unitCost 30 * 50% * qty 1 = 15, NOT 0 (which is what system.cost/quantity would give).
+    expect(bodyHtml).toContain('"cost":15');
+  });
+});
+
+describe('MerchantService.resolveSellRequest (GM accept/reject)', () => {
+  function makeMessage(data) {
+    return {
+      getFlag: jest.fn((scope, key) => (scope === 'rmss' && key === 'merchantSellRequest' ? data : undefined)),
+      update: jest.fn().mockResolvedValue(undefined)
+    };
+  }
+
+  test('reject: marks the card rejected without touching any actor', async () => {
+    const item = makeItem({ uuid: 'Actor.seller1.Item.item1' });
+    const seller = makeSeller();
+    const merchant = makeMerchant([]);
+    item.parent = seller;
+    const message = makeMessage({
+      resolved: false, itemUuid: item.uuid, sellerActorUuid: seller.uuid, merchantActorUuid: merchant.uuid,
+      quantity: 2, itemName: item.name, sellerName: seller.name, merchantName: merchant.name, bodyHtml: '<p>quote</p>'
+    });
+
+    await MerchantService.resolveSellRequest(message, 'reject');
+
+    expect(item.update).not.toHaveBeenCalled();
+    expect(merchant.update).not.toHaveBeenCalled();
+    expect(merchant.createEmbeddedDocuments).not.toHaveBeenCalled();
+
+    const [{ content, flags }] = message.update.mock.calls[0];
+    expect(JSON.parse(content)).toEqual(expect.objectContaining({ pending: false, statusClass: 'rejected' }));
+    expect(flags.rmss.merchantSellRequest).toEqual(expect.objectContaining({ resolved: true, decision: 'reject' }));
+  });
+
+  test('accept: resolves seller/item/merchant by UUID, moves the item to stock, pays the seller from the till', async () => {
+    const item = makeItem({ uuid: 'Actor.seller1.Item.item1' }); // qty 10, cost 50, silver -> unit 5
+    const seller = makeSeller();
+    // Kept under 100 sp so the change stays in silver (CurrencyService.spend remints the
+    // *entire* remainder greedily, so a bigger till would convert some of it into gold).
+    const merchant = makeMerchant([], { system: { money: { silver: 10 }, buyRate: 50 } });
+    item.parent = seller; // item lives on the SELLER, not the merchant
+    global.fromUuid = jest.fn(async (uuid) => ({ [item.uuid]: item, [merchant.uuid]: merchant }[uuid] ?? null));
+
+    const message = makeMessage({
+      resolved: false, itemUuid: item.uuid, sellerActorUuid: seller.uuid, merchantActorUuid: merchant.uuid,
+      quantity: 2, itemName: item.name, sellerName: seller.name, merchantName: merchant.name, bodyHtml: '<p>quote</p>'
+    });
+
+    await MerchantService.resolveSellRequest(message, 'accept');
+
+    // Item moves to the merchant's stock (full listed value there), not the seller's.
+    expect(merchant.createEmbeddedDocuments).toHaveBeenCalledWith('Item', [
+      expect.objectContaining({ system: expect.objectContaining({ quantity: 2, unitCost: 5, cost: 10 }) })
+    ]);
+    expect(item.update).toHaveBeenCalledWith(expect.objectContaining({ 'system.quantity': 8 }));
+    // Merchant pays 50% of unit cost * qty = 5 sp out of its till; seller is credited that.
+    expect(merchant.system.money.silver).toBe(5);
+    expect(seller.system.money.silver).toBeGreaterThan(0);
+
+    const [{ content, flags }] = message.update.mock.calls[0];
+    expect(JSON.parse(content)).toEqual(expect.objectContaining({ pending: false, statusClass: 'approved' }));
+    expect(flags.rmss.merchantSellRequest).toEqual(expect.objectContaining({ resolved: true, decision: 'accept' }));
+  });
+
+  test('accept: partial fulfillment reports the quantity actually sold, not the originally requested one', async () => {
+    const item = makeItem({ uuid: 'Actor.seller1.Item.item1', system: { quantity: 2, cost: 10, weight: 1 } });
+    const seller = makeSeller();
+    const merchant = makeMerchant([], { system: { money: { silver: 100 }, buyRate: 50 } });
+    item.parent = seller;
+    global.fromUuid = jest.fn(async (uuid) => ({ [item.uuid]: item, [merchant.uuid]: merchant }[uuid] ?? null));
+
+    const message = makeMessage({
+      resolved: false, itemUuid: item.uuid, sellerActorUuid: seller.uuid, merchantActorUuid: merchant.uuid,
+      quantity: 5, itemName: item.name, sellerName: seller.name, merchantName: merchant.name, bodyHtml: '<p>quote</p>'
+    });
+
+    await MerchantService.resolveSellRequest(message, 'accept');
+
+    expect(merchant.createEmbeddedDocuments).toHaveBeenCalledWith('Item', [
+      expect.objectContaining({ system: expect.objectContaining({ quantity: 2 }) })
+    ]);
+    expect(game.i18n.format).toHaveBeenCalledWith('rmss.merchant.sell_success', expect.objectContaining({ qty: 2 }));
+  });
+
+  test('accept: re-validates at resolution time — merchant\'s till can no longer afford it', async () => {
+    const item = makeItem({ uuid: 'Actor.seller1.Item.item1', system: { quantity: 10, cost: 50000, weight: 5 } }); // now very expensive
+    const seller = makeSeller();
+    const merchant = makeMerchant([], { system: { money: { silver: 20 }, buyRate: 50 } }); // till too small
+    item.parent = seller;
+    global.fromUuid = jest.fn(async (uuid) => ({ [item.uuid]: item, [merchant.uuid]: merchant }[uuid] ?? null));
+
+    const message = makeMessage({
+      resolved: false, itemUuid: item.uuid, sellerActorUuid: seller.uuid, merchantActorUuid: merchant.uuid,
+      quantity: 1, itemName: item.name, sellerName: seller.name, merchantName: merchant.name, bodyHtml: '<p>quote</p>'
+    });
+
+    await MerchantService.resolveSellRequest(message, 'accept');
+
+    expect(merchant.createEmbeddedDocuments).not.toHaveBeenCalled();
+    expect(item.update).not.toHaveBeenCalled();
+    const [{ content }] = message.update.mock.calls[0];
+    expect(JSON.parse(content)).toEqual(expect.objectContaining({ pending: false, statusClass: 'stock_changed' }));
+  });
+
+  test('accept: missing entity is reported, not thrown', async () => {
+    global.fromUuid = jest.fn().mockResolvedValue(null);
+    const message = makeMessage({
+      resolved: false, itemUuid: 'Actor.gone.Item.gone', sellerActorUuid: 'Actor.gone', merchantActorUuid: 'Actor.merchant1',
+      quantity: 1, itemName: 'Ghost Item', sellerName: 'Zirga', merchantName: 'Shopkeep', bodyHtml: '<p>quote</p>'
+    });
+
+    await expect(MerchantService.resolveSellRequest(message, 'accept')).resolves.not.toThrow();
 
     const [{ content }] = message.update.mock.calls[0];
     expect(JSON.parse(content)).toEqual(expect.objectContaining({ statusClass: 'stock_changed' }));

@@ -1,7 +1,9 @@
 import CurrencyService from "./currency_service.js";
+import ItemService from "./item_service.js";
 import RequestCardService from "../../chat/request_card_service.js";
 
 const REQUEST_KIND = "merchantRequest";
+const SELL_REQUEST_KIND = "merchantSellRequest";
 
 /**
  * Sale orchestration for merchant actors. Direct sale (sellItem) is GM-only: the GM
@@ -55,9 +57,8 @@ export default class MerchantService {
     }
 
     // Unit cost/weight math, same approach as ItemService.splitStack.
-    const totalCost = Number(item.system.cost) || 0;
     const totalWeight = Number(item.system.weight) || 0;
-    const unitCost = totalQty > 0 ? Number((totalCost / totalQty).toFixed(2)) : 0;
+    const unitCost = ItemService.getUnitCost(item, totalQty);
     const unitWeight = totalQty > 0 ? Number((totalWeight / totalQty).toFixed(2)) : 0;
     const saleCost = Number((unitCost * quantity).toFixed(2));
     const saleWeight = Number((unitWeight * quantity).toFixed(2));
@@ -137,8 +138,7 @@ export default class MerchantService {
       return;
     }
 
-    const totalCost = Number(item.system.cost) || 0;
-    const unitCost = totalQty > 0 ? Number((totalCost / totalQty).toFixed(2)) : 0;
+    const unitCost = ItemService.getUnitCost(item, totalQty);
     const saleCost = Number((unitCost * quantity).toFixed(2));
     const denomination = item.system.currency_type;
     const currencyAbb = game.i18n.localize(`rmss.currency_type_abb.${denomination}`);
@@ -224,5 +224,188 @@ export default class MerchantService {
         };
       }
     });
+  }
+
+  // --- Selling TO a merchant (player -> merchant, reverse direction) --------
+
+  /**
+   * Player-facing: posts a chat card requesting to sell `quantity` units of the
+   * player's own `item` to `merchantActor`, at merchantActor's buyRate (a % of
+   * the item's listed cost). Nothing is mutated until the GM accepts.
+   * @param {Actor} sellerActor
+   * @param {Item} item
+   * @param {Actor} merchantActor
+   * @param {number} quantity
+   */
+  static async requestSell(sellerActor, item, merchantActor, quantity) {
+    if (!merchantActor) {
+      ui.notifications.warn(game.i18n.localize("rmss.merchant.no_merchant_selected"));
+      return;
+    }
+
+    const totalQty = Number(item.system.quantity) || 0;
+    quantity = Math.max(1, Math.min(Number(quantity) || 0, totalQty));
+    if (totalQty <= 0 || quantity <= 0) {
+      ui.notifications.warn(game.i18n.localize("rmss.merchant.out_of_stock"));
+      return;
+    }
+
+    const unitCost = ItemService.getUnitCost(item, totalQty);
+    const buyRate = Number(merchantActor.system.buyRate) || 0;
+    const offerCost = Number((unitCost * buyRate / 100 * quantity).toFixed(2));
+    const denomination = item.system.currency_type;
+    const currencyAbb = game.i18n.localize(`rmss.currency_type_abb.${denomination}`);
+
+    // Quoted offer is frozen into the card at request time — the re-validation in
+    // _executeBuyback still protects against the merchant's till no longer covering it.
+    const bodyHtml = game.i18n.format("rmss.merchant.sell_request_card_body", {
+      seller: RequestCardService.chip(sellerActor.img, sellerActor.name),
+      item: RequestCardService.chip(item.img, item.name),
+      qty: quantity,
+      merchant: merchantActor.name,
+      cost: offerCost,
+      currency: currencyAbb
+    });
+
+    await RequestCardService.post({
+      requestKind: SELL_REQUEST_KIND,
+      title: game.i18n.localize("rmss.merchant.sell_request_card_title"),
+      icon: "fas fa-sack-dollar",
+      bodyHtml,
+      speakerActor: sellerActor,
+      receiverActor: sellerActor,
+      data: {
+        sellerActorUuid: sellerActor.uuid,
+        itemUuid: item.uuid,
+        merchantActorUuid: merchantActor.uuid,
+        quantity,
+        itemName: item.name,
+        sellerName: sellerActor.name,
+        merchantName: merchantActor.name
+      }
+    });
+
+    ui.notifications.info(game.i18n.localize("rmss.merchant.request_sent"));
+  }
+
+  /**
+   * GM decision on a pending sell request.
+   * @param {ChatMessage} message
+   * @param {"accept"|"reject"} decision
+   */
+  static async resolveSellRequest(message, decision) {
+    await RequestCardService.resolve(message, SELL_REQUEST_KIND, decision, {
+      rejectedMessage: (data) => game.i18n.format("rmss.merchant.sell_request_rejected_msg", { item: data.itemName }),
+      onAccept: async (data) => {
+        // Resolve by UUID, not by bare id: an unlinked token's items/money live in
+        // its ActorDelta, a different document than the world actor a bare id would hit.
+        const item = await fromUuid(data.itemUuid);
+        const sellerActor = item?.parent ?? await fromUuid(data.sellerActorUuid);
+        const merchantActor = await fromUuid(data.merchantActorUuid);
+
+        let result;
+        if (!sellerActor || !merchantActor || !item) {
+          console.warn("[RMSS] merchant sell request could not be resolved: missing entity", {
+            sellerActor: !!sellerActor, merchantActor: !!merchantActor, item: !!item, data
+          });
+          result = { success: false, reason: "not_found" };
+        } else {
+          result = await this._executeBuyback(sellerActor, item, merchantActor, data.quantity);
+        }
+
+        if (result.success) {
+          return {
+            statusClass: "approved",
+            // result.quantity (not data.quantity): stock may have shrunk since the
+            // request, so the card must report what was actually handed over.
+            statusMessage: game.i18n.format("rmss.merchant.sell_success", {
+              qty: result.quantity, item: data.itemName, merchant: data.merchantName
+            })
+          };
+        }
+        return {
+          statusClass: "stock_changed",
+          statusMessage: game.i18n.localize(
+            result.reason === "insufficient_funds"
+              ? "rmss.merchant.merchant_insufficient_funds_short"
+              : result.reason === "not_found"
+                ? "rmss.merchant.request_entity_missing"
+                : "rmss.merchant.request_stock_changed"
+          )
+        };
+      }
+    });
+  }
+
+  /**
+   * Core buyback mutation: moves `quantity` units of `item` from sellerActor to
+   * merchantActor's stock, paying sellerActor merchantActor.system.buyRate% of the
+   * item's listed unit cost out of the merchant's own till. Re-validates stock/funds
+   * against current state before mutating anything, mirroring _executeSale.
+   * @returns {Promise<{success: boolean, reason?: string, quantity?: number}>}
+   */
+  static async _executeBuyback(sellerActor, item, merchantActor, quantity) {
+    const totalQty = Number(item.system.quantity) || 0;
+    quantity = Math.max(1, Math.min(Number(quantity) || 0, totalQty));
+    if (totalQty <= 0 || quantity <= 0) {
+      console.warn("[RMSS] merchant buyback blocked: item no longer available", {
+        itemId: item.id, itemName: item.name, totalQty, requestedQty: quantity
+      });
+      return { success: false, reason: "out_of_stock" };
+    }
+
+    // Unit cost/weight math, same approach as ItemService.splitStack.
+    const totalWeight = Number(item.system.weight) || 0;
+    const unitCost = ItemService.getUnitCost(item, totalQty);
+    const unitWeight = totalQty > 0 ? Number((totalWeight / totalQty).toFixed(2)) : 0;
+    const buyRate = Number(merchantActor.system.buyRate) || 0;
+    const unitOffer = Number((unitCost * buyRate / 100).toFixed(2));
+    const offerCost = Number((unitOffer * quantity).toFixed(2));
+    const takenWeight = Number((unitWeight * quantity).toFixed(2));
+    const denomination = item.system.currency_type;
+
+    // Affordability check first — nothing is mutated until we know the merchant's till can pay.
+    const rate = CONFIG.rmss.currency_exchange_rates[denomination] || 1;
+    const priceInBaseUnits = offerCost * rate;
+    const { success, newMoney } = CurrencyService.spend(merchantActor.system.money, priceInBaseUnits);
+    if (!success) {
+      console.warn("[RMSS] merchant buyback blocked: insufficient till funds", {
+        merchantId: merchantActor.id, merchantName: merchantActor.name, denomination, rate,
+        offerCost, priceInBaseUnits, merchantMoney: merchantActor.system.money,
+        merchantTotalBaseUnits: CurrencyService.toBaseUnits(merchantActor.system.money)
+      });
+      return { success: false, reason: "insufficient_funds" };
+    }
+
+    // Add the item to the merchant's stock, still listed at its own (undiscounted) value.
+    const newItemData = foundry.utils.duplicate(item.toObject());
+    delete newItemData._id;
+    newItemData.system.quantity = quantity;
+    newItemData.system.unitCost = unitCost;
+    newItemData.system.unitWeight = unitWeight;
+    newItemData.system.cost = Number((unitCost * quantity).toFixed(2));
+    newItemData.system.weight = takenWeight;
+    if (newItemData.flags?.rmss?.containerId) delete newItemData.flags.rmss.containerId;
+    await merchantActor.createEmbeddedDocuments("Item", [newItemData]);
+
+    // Decrement (or remove) the seller's stock.
+    const remaining = totalQty - quantity;
+    if (remaining <= 0) {
+      await item.delete();
+    } else {
+      await item.update({
+        "system.quantity": remaining,
+        "system.unitCost": unitCost,
+        "system.unitWeight": unitWeight,
+        "system.cost": Number((unitCost * remaining).toFixed(2)),
+        "system.weight": Number((unitWeight * remaining).toFixed(2))
+      });
+    }
+
+    // Debit the merchant's till last, then credit the seller.
+    await merchantActor.update({ "system.money": newMoney });
+    await CurrencyService.creditTill(sellerActor, denomination, offerCost);
+
+    return { success: true, quantity };
   }
 }

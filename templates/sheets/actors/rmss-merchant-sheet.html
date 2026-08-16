@@ -22,6 +22,9 @@
 
   <section class="sheet-body">
     <div class="tab stock" data-group="primary" data-tab="Stock">
+      {{#unless isGM}}
+      <a class="sell-item-to-merchant"><i class="fas fa-sack-dollar"></i> {{ localize "rmss.merchant.sell_to_merchant_tooltip" }}</a>
+      {{/unless}}
       {{#each stock as |items type|}}
       {{#if items.length}}
       <table class="items">
@@ -69,6 +72,10 @@
     </div>
 
     <div class="tab till" data-group="primary" data-tab="Till">
+      <div class="merchant-buy-rate">
+        <label for="buyRate">{{ localize "rmss.merchant.buy_rate" }}</label>
+        <input type="number" name="system.buyRate" min="0" max="100" value="{{system.buyRate}}"/> %
+      </div>
       {{> "systems/rmss/templates/sheets/actors/parts/actor-money.html" }}
     </div>
   </section>

@@ -369,7 +369,22 @@
             "request_rejected_msg": "The Game Master rejected the purchase of {item}.",
             "request_stock_changed": "Stock or funds changed since the request was made; the transaction could not be completed.",
             "insufficient_funds_short": "The buyer cannot afford this purchase (insufficient funds).",
-            "request_entity_missing": "The merchant, buyer, or item no longer exists; the transaction could not be completed."
+            "request_entity_missing": "The merchant, buyer, or item no longer exists; the transaction could not be completed.",
+            "buy_rate": "Buy rate",
+            "sell_to_merchant_tooltip": "Sell item to this merchant",
+            "no_merchant_selected": "No merchant selected.",
+            "no_sellable_items": "That character has nothing to sell.",
+            "sell_request_dialog_title": "Sell to Merchant",
+            "sell_request_dialog_hint": "Choose your character, item and quantity. The Game Master must confirm the sale before it takes effect.",
+            "sell_dialog_to": "Selling to",
+            "sell_dialog_seller": "Character",
+            "sell_dialog_offer": "Offer",
+            "confirm_sell_request": "Send Offer",
+            "sell_request_card_title": "Sale Offer",
+            "sell_request_card_body": "<div class=\"rmss-request-card-line\">{seller} wants to sell</div><div class=\"rmss-request-card-line\">{item} <strong>x{qty}</strong></div><div class=\"rmss-request-card-line\">to <strong>{merchant}</strong> for {cost} {currency}</div>",
+            "sell_request_rejected_msg": "The Game Master rejected the sale of {item}.",
+            "sell_success": "Sold {qty}x {item} to {merchant}.",
+            "merchant_insufficient_funds_short": "The merchant's till cannot afford this purchase (insufficient funds)."
         },
         "loot": {
             "tab_stock": "Stock",

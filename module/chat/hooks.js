@@ -7,6 +7,7 @@ import LootService from "../actors/services/loot_service.js";
 /** requestKind (stamped on the button by request-card.html) -> resolver. */
 const REQUEST_RESOLVERS = {
     merchantRequest: (message, decision) => MerchantService.resolveRequest(message, decision),
+    merchantSellRequest: (message, decision) => MerchantService.resolveSellRequest(message, decision),
     lootItemRequest: (message, decision) => LootService.resolveItemRequest(message, decision),
     lootMoneyRequest: (message, decision) => LootService.resolveMoneyRequest(message, decision)
 };
