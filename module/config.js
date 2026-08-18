@@ -237,18 +237,24 @@ rmss.passive_modifier_actions = {
 
 /** Slaying weapon creature types (for autocomplete). Includes general types, professions, and undead creature names (kebab-case). */
 rmss.slaying_types = [
-  "dragon", "undead", "orc", "troll", "demon", "vampire", "lycanthrope",
-  "snake", "spider", "elemental", "witch", "evil", "humanoid",
-  "fighter", "rogue", "thief", "layman", "warrior-monk", "cleric", "druid", "animist", "magician", "illusionist",
-  "mentalist", "lay healer", "seer", "alchemist", "ranger", "paladin", "dabbler", "monk", "bard", "magent",
-  "armsmaster", "healer", "sorcerer", "mystic", "warlock", "enchanter", "astrologer", "conjuror", "famulus", "manipulator",
-  "necromancer", "runemaster", "burglar", "barbarian", "archmage", "delver", "nightblade",
-  "animal", "bear", "wolf", "tiger", "lion", "shapeshifter","magehunter","chaotic","wizard",
-  "apparition", "black-paladin",
-  "ghost", "ghoul", "lich", "mummy","skeleton", "wight", "wraith", "wrath",
-  "zombie", "construct","elf","dwarf","human","halfling","gnome","orc","troll","ogre","giant","centaur",
-  "minotaur","cyclops","good","underground-creature", "demon-first-pale","demon-second-pale","demon-third-pale","demon-fourth-pale",
-  "demon-fifth-pale","demon-sixth-pale","demon-beyond-pale","fire-elemental","water-elemental","air-elemental","earth-elemental"
+  "air-elemental", "alchemist", "amphibian", "angel", "animal", "animist", "apparition", "aquatic",
+  "arachnid", "archmage", "armsmaster", "astrologer", "avian", "banshee", "barbarian", "bard",
+  "basilisk", "bear", "black-paladin", "bugbear", "burglar", "canine", "centaur", "chaotic",
+  "chimera", "cleric", "cockatrice", "conjuror", "construct", "cyclops", "dabbler", "daemon",
+  "delver", "demon", "demon-beyond-pale", "demon-fifth-pale", "demon-first-pale", "demon-fourth-pale", "demon-second-pale", "demon-sixth-pale",
+  "demon-third-pale", "devil", "dragon", "druid", "dwarf", "earth-elemental", "elemental", "elf",
+  "enchanter", "equine", "evil", "fae", "famulus", "feline", "fighter", "fire-elemental",
+  "fungus", "genie", "ghost", "ghoul", "giant", "gnoll", "gnome", "goblin",
+  "good", "gorgon", "griffin", "halfling", "harpy", "healer", "hobgoblin", "horror",
+  "human", "humanoid", "hydra", "illusionist", "imp", "insect", "kobold", "kraken",
+  "lay healer", "layman", "lich", "lion", "lizardman", "lycanthrope", "magehunter", "magent",
+  "magician", "manipulator", "manticore", "medusa", "mentalist", "minotaur", "mold", "monk",
+  "mummy", "mystic", "naga", "necromancer", "nightblade", "ogre", "ooze", "orc",
+  "paladin", "pegasus", "phoenix", "plant", "ranger", "reptile", "revenant", "roc",
+  "rodent", "rogue", "runemaster", "seer", "shapeshifter", "skeleton", "snake", "sorcerer",
+  "sphinx", "spider", "thief", "tiger", "treant", "troll", "undead", "underground-creature",
+  "unicorn", "vampire", "warlock", "warrior-monk", "water-elemental", "wight", "witch", "wizard",
+  "wolf", "wraith", "wrath", "wyvern", "zombie"
 ];
 
 /**

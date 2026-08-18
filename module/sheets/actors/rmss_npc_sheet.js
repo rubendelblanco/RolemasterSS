@@ -3,6 +3,7 @@ import ItemService from "../../actors/services/item_service.js";
 import SkillDropHandler from "../../actors/drop_handlers/skill_drop_handler.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
+import { bindCreatureTagsEditor, getCreatureTagsArray, getCreatureTagListId } from "./creature_tags_ui.js";
 
 export default class RMSSNpcSheet extends RMSSCharacterSheet {
     static get defaultOptions() {
@@ -62,6 +63,7 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
+        bindCreatureTagsEditor(this, html);
         html.find('.npc-skill-calc').on('blur', '[contenteditable="true"]', async (event) => {
             const skillCalc = $(event.currentTarget).closest('.npc-skill-calc');
             const rankBonus = parseInt(skillCalc.find('.npc-item-rank-bonus').text()) || 0;
@@ -112,6 +114,8 @@ export default class RMSSNpcSheet extends RMSSCharacterSheet {
         context.system = actorData.system;
         context.flags = actorData.flags;
         context.enrichedDescription = enrichedDescription;
+        context.creatureTags = getCreatureTagsArray(actorData.system);
+        context.creatureTagListId = getCreatureTagListId(this.actor);
 
         //effects
         context.effects = this.actor.effects.contents;

@@ -2,6 +2,7 @@ import RMSSCharacterSheet from "./rmss_character_sheet.js";
 import ItemService from "../../actors/services/item_service.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
+import { bindCreatureTagsEditor, getCreatureTagsArray, getCreatureTagListId } from "./creature_tags_ui.js";
 
 export default class RMSSCreatureSheet extends RMSSCharacterSheet {
     static get defaultOptions() {
@@ -61,6 +62,7 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
+        bindCreatureTagsEditor(this, html);
         const saveCreatureAttack = async (event) => {
             const attackCalc = $(event.currentTarget).closest('.creature-attack-calc');
             const attackBonus = parseInt(attackCalc.find('.creature-attack-bonus').text().trim(), 10) || 0;
@@ -147,6 +149,8 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
         context.flags = actorData.flags;
         context.enrichedDescription = enrichedDescription;
         context.initiative_codes = CONFIG.rmss.creature_speed;
+        context.creatureTags = getCreatureTagsArray(actorData.system);
+        context.creatureTagListId = getCreatureTagListId(this.actor);
 
         //effects
         context.effects = this.actor.effects.contents;

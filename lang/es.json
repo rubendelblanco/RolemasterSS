@@ -1077,7 +1077,9 @@
       "sex": "Sexo",
       "sex_male": "Masculino",
       "sex_female": "Femenino",
-      "sex_other": "Otro"
+      "sex_other": "Otro",
+      "creature_tags": "Etiquetas de criatura",
+      "creature_tags_placeholder": "ej. dragón, muerto viviente, orco — Intro para añadir"
     },
     "effects": {
       "effects": "Efectos activos"

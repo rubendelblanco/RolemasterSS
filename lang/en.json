@@ -1077,7 +1077,9 @@
             "sex": "Sex",
             "sex_male": "Male",
             "sex_female": "Female",
-            "sex_other": "Other"
+            "sex_other": "Other",
+            "creature_tags": "Creature tags",
+            "creature_tags_placeholder": "e.g. dragon, undead, orc — Enter to add"
         },
         "effects": {
             "effects": "Active effects"

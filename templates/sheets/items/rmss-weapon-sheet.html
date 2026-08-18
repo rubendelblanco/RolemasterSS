@@ -181,12 +181,28 @@
                 <tr>
                     <th>{{localize "rmss.item.modifiers_slaying"}}</th>
                     <td colspan="4">
-                        <input type="text" name="system.slaying" value="{{system.slaying}}" placeholder="{{localize "rmss.item.modifiers_slaying_placeholder"}}" list="rmss-slaying-types-{{item.id}}"/>
-                        <datalist id="rmss-slaying-types-{{item.id}}">
-                            {{#each config.slaying_types as |type|}}
-                            <option value="{{type}}"/>
-                            {{/each}}
-                        </datalist>
+                        <div class="rmss-weapon-slaying">
+                            <div class="rmss-tag-chips">
+                                {{#each weaponSlaying}}
+                                <span class="rmss-tag-chip" data-tag-index="{{@index}}">
+                                    <span class="rmss-tag-label">{{this}}</span>
+                                    {{#if ../editable}}
+                                    <button type="button" class="weapon-slaying-remove" data-action="weapon-slaying-remove" title="{{localize 'rmss.item.item_tags_remove'}}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    {{/if}}
+                                </span>
+                                {{/each}}
+                            </div>
+                            {{#if editable}}
+                            <input type="text" class="rmss-weapon-slaying-input" list="rmss-slaying-types-{{weaponSlayingListId}}" placeholder="{{localize "rmss.item.modifiers_slaying_placeholder"}}" autocomplete="off"/>
+                            <datalist id="rmss-slaying-types-{{weaponSlayingListId}}">
+                                {{#each config.slaying_types as |type|}}
+                                <option value="{{type}}"/>
+                                {{/each}}
+                            </datalist>
+                            {{/if}}
+                        </div>
                     </td>
                 </tr>
                 <tr>

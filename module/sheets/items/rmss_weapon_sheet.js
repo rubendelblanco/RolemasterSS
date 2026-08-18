@@ -2,6 +2,7 @@
 
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
+import { bindWeaponSlayingEditor, getWeaponSlayingArray, getWeaponSlayingListId } from "./weapon_slaying_ui.js";
 import { castEnchantmentFromItem } from "./cast_enchantment_from_item.js";
 import {
   buildEnchantmentList,
@@ -74,6 +75,8 @@ export default class RMSSWeaponSheet extends ItemSheet {
       item: baseData.item,
       itemTags: getItemTagsArray(system),
       itemTagListId: getItemTagListId(this.item),
+      weaponSlaying: getWeaponSlayingArray(system),
+      weaponSlayingListId: getWeaponSlayingListId(this.item),
       system: { ...system, material, bonus, magical, weapon_effects },
       config: CONFIG.rmss,
       user: game.user,
@@ -135,27 +138,8 @@ export default class RMSSWeaponSheet extends ItemSheet {
     html.find("[data-action='remove-bonus-skill']").on("click", this._onRemoveBonusSkill.bind(this));
     this._setupEnchantmentsDropZone(html);
     bindItemTagsEditor(this, html);
+    bindWeaponSlayingEditor(this, html);
     bindPassiveModifiersEditor(this, html);
-
-    const slayingNs = ".rmssWeaponSlayingTag";
-    html.off(`keydown${slayingNs}`, 'input[name="system.slaying"]');
-    html.on(`keydown${slayingNs}`, 'input[name="system.slaying"]', async (ev) => {
-      if (ev.key !== "Enter") return;
-      ev.preventDefault();
-      ev.stopPropagation();
-      const v = String(ev.currentTarget.value ?? "").trim();
-      if (!v) return; // Enter sin texto: no enviar el formulario
-      const tags = [...getItemTagsArray(this.item.system)];
-      const lower = tags.map((t) => t.toLowerCase());
-      if (lower.includes(v.toLowerCase())) {
-        await this.item.update({ "system.slaying": "" });
-        this.render(false);
-        return;
-      }
-      tags.push(v);
-      await this.item.update({ "system.tags": tags, "system.slaying": "" });
-      this.render(false);
-    });
   }
 
   _getBonusSkillsArray() {

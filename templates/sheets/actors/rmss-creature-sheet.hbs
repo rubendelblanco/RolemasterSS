@@ -132,6 +132,31 @@
             </div>
         </div>
         <div class="tab status-record" data-group="primary" data-tab="StatusRecord">
+            <div class="form-group rmss-creature-tags-row">
+                <label>{{localize "rmss.npc.creature_tags"}}</label>
+                <div class="rmss-creature-tags">
+                    <div class="rmss-tag-chips">
+                        {{#each creatureTags}}
+                        <span class="rmss-tag-chip" data-tag-index="{{@index}}">
+                            <span class="rmss-tag-label">{{this}}</span>
+                            {{#if ../editable}}
+                            <button type="button" class="creature-tag-remove" data-action="creature-tag-remove" title="{{localize 'rmss.item.item_tags_remove'}}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            {{/if}}
+                        </span>
+                        {{/each}}
+                    </div>
+                    {{#if editable}}
+                    <input type="text" class="rmss-creature-tag-input" list="rmss-creature-tags-{{creatureTagListId}}" placeholder="{{localize 'rmss.npc.creature_tags_placeholder'}}" autocomplete="off"/>
+                    <datalist id="rmss-creature-tags-{{creatureTagListId}}">
+                        {{#each config.slaying_types as |type|}}
+                        <option value="{{type}}"/>
+                        {{/each}}
+                    </datalist>
+                    {{/if}}
+                </div>
+            </div>
             {{> "systems/rmss/templates/sheets/actors/rmss-critical-codes.hbs" }}
             {{> "systems/rmss/templates/sheets/actors/parts/active-effects.hbs" }}
         </div>
