@@ -301,7 +301,8 @@
           "critical_table": "-",
           "stun_bleeding": "-"
         }
-      }
+      },
+      "creature_tags": []
     },
     "creature":{
       "templates": ["armor_info", "fixed_info"],
@@ -325,7 +326,8 @@
         }
       },
       "bonus_xp": "",
-      "treasure": ""
+      "treasure": "",
+      "creature_tags": []
     },
     "merchant": {
       "templates": ["money"],
@@ -480,7 +482,7 @@
       "spell_adder_realm": "",
       "pp_multiplier_profession": "",
       "spell_adder_profession": "",
-      "slaying": "",
+      "slaying": [],
       "ammoType": "",
       "weapon_effects": {
         "increased_initiative": "",

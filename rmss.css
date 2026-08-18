@@ -3800,6 +3800,71 @@ button.rmss-crit-reenable-local:hover {
   max-width: 28rem;
 }
 
+/* Weapon sheet: system.slaying chips (same look as system.tags chips above) */
+.rmss.sheet.item .rmss-weapon-slaying .rmss-tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.25rem 0 0.5rem;
+  align-items: center;
+}
+.rmss.sheet.item .rmss-weapon-slaying .weapon-slaying-remove {
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--color-text-light-6);
+  cursor: pointer;
+  font-size: 0.85em;
+}
+.rmss.sheet.item .rmss-weapon-slaying .weapon-slaying-remove:hover {
+  color: var(--color-text-danger);
+}
+.rmss.sheet.item .rmss-weapon-slaying-input {
+  width: 100%;
+  max-width: 20rem;
+}
+
+/* NPC/Creature sheet: system.creature_tags chips */
+.npc-sheet .rmss-creature-tags-row {
+  align-items: center;
+  flex-wrap: wrap;
+}
+.npc-sheet .rmss-creature-tags .rmss-tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin: 0 0.35rem;
+}
+.npc-sheet .rmss-creature-tags .rmss-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1rem 0.4rem 0.1rem 0.5rem;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  font-size: var(--font-size-13);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.npc-sheet .rmss-creature-tags .creature-tag-remove {
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--color-text-light-6);
+  cursor: pointer;
+  font-size: 0.85em;
+}
+.npc-sheet .rmss-creature-tags .creature-tag-remove:hover {
+  color: var(--color-text-danger);
+}
+.npc-sheet .rmss-creature-tag-input {
+  max-width: 12rem;
+}
+
 /* ================================
    Merchant sheet
    ================================ */

@@ -10,6 +10,8 @@ import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import EquipmentService from "../actors/services/equipment_service.js";
 import { shiftSeverity, effectWeaponShiftMilderProcedureI } from "./weapon_effects_service.js";
 import { withPublicRollMode } from "../chat/chatMessages.js";
+import { getWeaponSlayingArray } from "../sheets/items/weapon_slaying_ui.js";
+import { getCreatureTagsArray } from "../sheets/actors/creature_tags_ui.js";
 
 
 /* ---------------------------------------------
@@ -561,13 +563,41 @@ export class RMSSWeaponCriticalManager {
         return { ...criticalResult, criticals: filtered };
     }
 
-    static getDefaultCriticalSubtype(attackerId, critType) {
+    /**
+     * The attacker's weapon (or the one identified by weaponItemId, falling back to the
+     * first equipped weapon) for a large-creature critical decision.
+     */
+    static _resolveCriticalWeapon(attackerId, weaponItemId = null) {
+        const actor = Utils.getActor(attackerId);
+        if (!actor?.items) return null;
+        const weapons = EquipmentService.getEquippedWeapons(actor);
+        return (weaponItemId && weapons.find((w) => (w.id ?? w._id) === weaponItemId)) || weapons[0] || null;
+    }
+
+    /**
+     * True when the attacker's weapon has a Slaying tag matching one of the target's
+     * creature tags (e.g. a "dragon slayer" weapon vs. a creature tagged "dragon").
+     * Independent of the target's own critical-table setting — Slaying always applies
+     * against a matching creature, regardless of whether it's flagged Large/Superlarge.
+     */
+    static weaponSlaysEnemy(attackerId, enemy, weaponItemId = null) {
+        if (!enemy?.system) return false;
+        const weapon = RMSSWeaponCriticalManager._resolveCriticalWeapon(attackerId, weaponItemId);
+        if (!weapon?.system) return false;
+        const weaponSlaying = getWeaponSlayingArray(weapon.system).map((t) => t.toLowerCase());
+        if (weaponSlaying.length === 0) return false;
+        const creatureTags = getCreatureTagsArray(enemy.system).map((t) => t.toLowerCase());
+        return weaponSlaying.some((t) => creatureTags.includes(t));
+    }
+
+    static getDefaultCriticalSubtype(attackerId, critType, enemy, weaponItemId = null) {
         const subtypes = rmss.large_critical_types[critType];
         if (!subtypes || subtypes.length === 0) return "normal";
-        const actor = Utils.getActor(attackerId);
-        if (!actor?.items) return "normal";
-        const weapons = EquipmentService.getEquippedWeapons(actor);
-        const weapon = weapons[0];
+        // Slaying takes priority over holy/mithril/magic.
+        if (subtypes.includes("slaying") && RMSSWeaponCriticalManager.weaponSlaysEnemy(attackerId, enemy, weaponItemId)) {
+            return "slaying";
+        }
+        const weapon = RMSSWeaponCriticalManager._resolveCriticalWeapon(attackerId, weaponItemId);
         if (!weapon?.system) return "normal";
         // Holy and unholy weapons both hit as sacred (same combat effect)
         if (weapon.system.holy === true || weapon.system.unholy === true) return subtypes.includes("holy") ? "holy" : "normal";
@@ -687,6 +717,10 @@ export class RMSSWeaponCriticalManager {
 
     static async criticalMessagePopup(enemy, damage, severity, critType, attackerId = null, weaponItemId = null, attackerUuid = null) {
         let modifier = 0;
+        // A matching Slaying weapon always resolves on the Superlarge critical table,
+        // regardless of the target's own Critical Table setting (RMSS: Slaying overrides
+        // the normal/large/superlarge choice whenever the weapon's tag matches the target).
+        const slayingMatch = MELEE_CRIT_TYPES.has(critType) && RMSSWeaponCriticalManager.weaponSlaysEnemy(attackerId, enemy, weaponItemId);
         if ((enemy.type === "creature" || enemy.type === "npc") && severity != null && severity !== "null") {
             if (enemy.system.attributes.critical_codes.critical_procedure === "I") {
                 const S = ["A","B","C","D","E"];
@@ -700,8 +734,9 @@ export class RMSSWeaponCriticalManager {
                 else severity = S[Math.max(0, S.indexOf(severity) - 1)];
             }
 
-            // Default critical table from defender: la → large, sl → superlarge
-            const criticalTable = enemy.system.attributes.critical_codes?.critical_table ?? "-";
+            // Default critical table from defender: la → large, sl → superlarge.
+            // A Slaying match forces superlarge even if the defender is set to normal/large.
+            const criticalTable = slayingMatch ? "sl" : (enemy.system.attributes.critical_codes?.critical_table ?? "-");
             if (criticalTable === "la" || criticalTable === "sl") {
                 const isSpell = SPELL_CRIT_TYPES.has(critType);
                 const isMelee = MELEE_CRIT_TYPES.has(critType);
@@ -720,9 +755,9 @@ export class RMSSWeaponCriticalManager {
             : (CONFIG.rmss.criticalSubtypes ?? {});
         const subCritType = largeSubtypes.length > 0 && largeSubtypes.includes("normal") ? "normal" : (Object.keys(subcritdict)[0] ?? "");
         const criticalHasSubtypes = largeSubtypes.length > 0;
-        const defaultSubtype = criticalHasSubtypes ? RMSSWeaponCriticalManager.getDefaultCriticalSubtype(attackerId, critType) : "normal";
+        const defaultSubtype = criticalHasSubtypes ? RMSSWeaponCriticalManager.getDefaultCriticalSubtype(attackerId, critType, enemy, weaponItemId) : "normal";
         const enemyCriticalTable = enemy?.system?.attributes?.critical_codes?.critical_table;
-        const useLargeCreatureSeverityLabels = ["la", "sl"].includes(enemyCriticalTable);
+        const useLargeCreatureSeverityLabels = ["la", "sl"].includes(enemyCriticalTable) || slayingMatch;
         const initialContext = {
             enemy: enemy,
             damage: damage,

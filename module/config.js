@@ -246,7 +246,7 @@ rmss.slaying_types = [
   "animal", "bear", "wolf", "tiger", "lion", "shapeshifter","magehunter","chaotic","wizard",
   "apparition", "black-paladin",
   "ghost", "ghoul", "lich", "mummy","skeleton", "wight", "wraith", "wrath",
-  "zombie", "construct","elf","dwarf","human","halfling","gnome","orc","troll","ogre","giant","centaur",
+  "zombie", "construct","elf","dwarf","human","halfling","gnome","ogre","giant","centaur",
   "minotaur","cyclops","good","underground-creature", "demon-first-pale","demon-second-pale","demon-third-pale","demon-fourth-pale",
   "demon-fifth-pale","demon-sixth-pale","demon-beyond-pale","fire-elemental","water-elemental","air-elemental","earth-elemental"
 ];
