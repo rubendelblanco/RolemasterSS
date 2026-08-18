@@ -1,6 +1,12 @@
 import ResistanceRollService from "./resistance_roll_service.js";
 import { rmss } from "../../config.js";
 
+/** Keys of Actor#system.resistance_rolls (character sheet only — npc/creature don't have this template). */
+const RESISTANCE_ROLL_KEYS = [
+    "channeling", "essence", "mentalism", "chann_ess", "chann_ment", "ess_ment",
+    "arcane", "poison", "disease", "fear"
+];
+
 /**
  * Service to handle the RMSS Effects popup with tabs for Critical and Resistance Roll.
  */
@@ -22,6 +28,12 @@ export default class EffectsPopupService {
             .filter(c => c.actor?.type === "character")
             .map(c => ({ id: c.actor.id, name: c.actor.name }));
 
+        const resistanceOptions = RESISTANCE_ROLL_KEYS.map((key) => ({
+            key,
+            label: game.i18n.localize(`rmss.pc_sheet_resistances.${key}`),
+            total: actor.system?.resistance_rolls?.[key]?.total ?? 0
+        }));
+
         const context = {
             token: token.document,
             actorImg: actor.img,
@@ -33,7 +45,8 @@ export default class EffectsPopupService {
             subcritdict: CONFIG.rmss.criticalSubtypes,
             critModifier: criticalOptions.modifier ?? 0,
             criticalHasSubtypes: (rmss.large_critical_types[criticalOptions.critType ?? 'K'] || []).length > 0,
-            pcCombatants
+            pcCombatants,
+            resistanceOptions
         };
 
         const htmlContent = await renderTemplate(
@@ -157,7 +170,20 @@ export default class EffectsPopupService {
         };
 
         html.find("#rr-attacker-level, #rr-defender-level, #rr-modifier").on("input", updateRRDisplay);
-        
+
+        // Resistance category select: "custom" leaves the modifier free to type; any other
+        // option locks it to that category's actual total from the character sheet.
+        html.find("#rr-modifier-select").on("change", (event) => {
+            const modifierInput = html.find("#rr-modifier");
+            const isCustom = event.target.value === "custom";
+            modifierInput.prop("disabled", !isCustom);
+            if (!isCustom) {
+                const total = parseInt(event.target.selectedOptions[0]?.dataset.value, 10) || 0;
+                modifierInput.val(total);
+            }
+            updateRRDisplay();
+        });
+
         // Initial calculation
         updateRRDisplay();
     }

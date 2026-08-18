@@ -88,7 +88,13 @@
             </div>
 
             <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
-                <label for="rr-modifier" style="min-width: 120px;">{{ localize "rmss.combat.rr_modifier" }}</label>
+                <label for="rr-modifier-select" style="min-width: 120px;">{{ localize "rmss.combat.rr_modifier" }}</label>
+                <select id="rr-modifier-select">
+                    <option value="custom">{{ localize "rmss.combat.rr_modifier_custom" }}</option>
+                    {{#each resistanceOptions}}
+                    <option value="{{this.key}}" data-value="{{this.total}}">{{this.label}} ({{this.total}})</option>
+                    {{/each}}
+                </select>
                 <input type="number" id="rr-modifier" data-dtype="Number" value="0" style="width: 60px;">
             </div>
 

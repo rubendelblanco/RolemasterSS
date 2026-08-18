@@ -967,6 +967,7 @@
             "attacker_level": "Attacker Level",
             "defender_level": "Defender Level",
             "rr_modifier": "Modifier",
+            "rr_modifier_custom": "Custom",
             "rr_target": "RR to beat",
             "rr_success": "RESISTED!",
             "rr_failed": "FAILED!",

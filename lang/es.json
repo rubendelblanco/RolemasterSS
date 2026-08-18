@@ -967,6 +967,7 @@
       "attacker_level": "Nivel Atacante",
       "defender_level": "Nivel Defensor",
       "rr_modifier": "Modificador",
+      "rr_modifier_custom": "Personalizado",
       "rr_target": "RR a superar",
       "rr_success": "¡RESISTIDO!",
       "rr_failed": "¡FALLADO!",
