@@ -62,7 +62,12 @@ System for playing **Rolemaster Standard System** in Foundry Virtual Tabletop. B
 - **Unit tests** (Jest) with GitHub Actions pipeline.
 - **Embedded macros** in items with integrated editor.
 
-## Scripting API (traps/hazards)
+## Scripting API
+
+`game.rmss` exposes a small API for macros and scene triggers to talk to the system without
+reaching into internal classes.
+
+### Traps and hazards
 
 For traps and hazards driven by scene triggers (native Region Behavior "Execute Script",
 Monk's Active Tiles, a macro...), `game.rmss` exposes two functions that reuse the normal
@@ -96,6 +101,46 @@ combat resolution (GM confirmation, chat cards, etc.) instead of duplicating it:
 Both resolve the triggering token's actor and skip already-defeated targets; look up the
 token variable your trigger module provides (e.g. Monk's Active Tiles exposes it as `token`
 and inside `args[0].token`).
+
+### Macro helpers
+
+General-purpose helpers meant for macros (hotbar buttons, item macros, etc.):
+
+- **`game.rmss.getActorSex(actor)`** — normalized sex ("male"/"female"/"other") for any actor
+  type (character, npc, creature).
+
+- **`game.rmss.castSpellFromHotbar(actorId, itemId)`** — cast a spell from a hotbar macro
+  (routes to the Force/BE/DE/instant service based on the spell, same as casting it from the
+  character sheet). Use this instead of calling `spell.use()` directly so targeting context is
+  set up correctly for Force spells.
+
+  ```js
+  await game.rmss.castSpellFromHotbar(actor.id, "<spellItemId>");
+  ```
+
+- **`game.rmss.createProfession(professionKey, options?)`** — create a profession item from
+  the built-in profession data (`options.openSheet` to open its sheet after creating it).
+  Returns the created `Item`, or `null` if `professionKey` isn't recognized.
+
+  ```js
+  await game.rmss.createProfession("Cleric");
+  ```
+
+- **`game.rmss.createProfessionDialog()`** — same as above, but shows a dialog to pick the
+  profession first.
+
+- **`game.rmss.applySpellHealHits(options)`** — heal hit points on 1–`maxTargets` targeted
+  tokens as GM (for healing-spell macros).
+
+  ```js
+  await game.rmss.applySpellHealHits({ amountPerTarget: 20, maxTargets: 1 });
+  ```
+
+- **`game.rmss.findAmmoStacksOnActor(actorId, ammoTag)`** — ammo item stacks on an actor
+  matching a tag from `CONFIG.rmss.ammunition_types` (e.g. `"arrow"`) with quantity > 0.
+
+- **`game.rmss.findAmmoStacksForWeapon(actorId, weaponItemId)`** — same, but resolved from a
+  specific missile weapon's own `system.ammoType` instead of a tag you pick yourself.
 
 ## Development
 
