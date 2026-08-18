@@ -341,6 +341,36 @@ Hooks.once("init", function () {
       if (!actor || !weapon) return [];
       const { findAmmoStacksForWeapon } = await import("./module/actors/utils/ammunition_util.js");
       return findAmmoStacksForWeapon(actor, weapon);
+    },
+    /**
+     * Fire a trap/hazard attack from a scene trigger script (Region Behavior "Execute Script",
+     * Monk's Active Tiles, a macro...) through the normal weapon-attack pipeline — attack roll,
+     * GM confirmation, critical roll/confirmation, Slaying matching, all reused as-is.
+     * The trap is a hidden npc actor with one equipped weapon (its OB/attack table/critical
+     * type/Slaying tags define the trap), or a hidden creature actor with a natural
+     * creature_attack (no Slaying support there, it's a plain natural attack). Example, from a tile trigger:
+     * `await game.rmss.triggerTrapAttack("<trapActorId>", token);`
+     * @param {string} trapActorId - Actor id of the trap actor
+     * @param {string|Token|TokenDocument} target - The token that triggered the trap (or its id)
+     * @param {string} [weaponItemId] - Pick a specific equipped weapon when the trap has more than one
+     * @returns {Promise<void>}
+     */
+    async triggerTrapAttack(trapActorId, target, weaponItemId = null) {
+      const { default: TrapAttackService } = await import("./module/combat/services/trap_attack_service.js");
+      return TrapAttackService.trigger(trapActorId, target, weaponItemId);
+    },
+    /**
+     * Fire a critical directly from a scene trigger script — no attack roll, just "apply
+     * severity X of critical table Y" (e.g. a dart trap: severity "C" on the "P" puncture
+     * table). See `CONFIG.rmss.criticalDictionary` for valid critType codes. Example:
+     * `await game.rmss.triggerTrapCritical(token, { severity: "C", critType: "P" });`
+     * @param {string|Token|TokenDocument} target - The token that triggered the trap (or its id)
+     * @param {{ severity: string, critType: string, damage?: number, modifier?: number, trapActorId?: string|null }} options
+     * @returns {Promise<void>}
+     */
+    async triggerTrapCritical(target, options) {
+      const { default: TrapAttackService } = await import("./module/combat/services/trap_attack_service.js");
+      return TrapAttackService.triggerCritical(target, options);
     }
   };
 
