@@ -91,10 +91,11 @@ export default class RaceService {
             "system.resistance_rolls.channeling.race_mod": itemData.system.rr_mods.chan,
             "system.resistance_rolls.essence.race_mod": itemData.system.rr_mods.ess,
             "system.resistance_rolls.mentalism.race_mod": itemData.system.rr_mods.ment,
-            "system.resistance_rolls.chann_es.race_mod": itemData.system.rr_mods.chan + itemData.system.rr_mods.ess,
+            "system.resistance_rolls.chann_ess.race_mod": itemData.system.rr_mods.chan + itemData.system.rr_mods.ess,
+            "system.resistance_rolls.chann_ment.race_mod": itemData.system.rr_mods.chan + itemData.system.rr_mods.ment,
             "system.resistance_rolls.ess_ment.race_mod": itemData.system.rr_mods.ess + itemData.system.rr_mods.ment,
             "system.resistance_rolls.arcane.race_mod":
-                itemData.system.rr_mods.chan + itemData.system.rr_mods.ment + itemData.system.rr_mods.chan,
+                itemData.system.rr_mods.chan + itemData.system.rr_mods.ess + itemData.system.rr_mods.ment,
             "system.resistance_rolls.poison.race_mod": itemData.system.rr_mods.poison,
             "system.resistance_rolls.disease.race_mod": itemData.system.rr_mods.disease
         };
