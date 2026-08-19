@@ -998,11 +998,13 @@ Hooks.once("init", function () {
     await syncHitsAndPowerPointsFromSkills(actor);
   });
 
-  // Hook: closeApplication - delete temp spell item when sheet closed without saving
+  // Hook: closeApplication - delete temp spell item when sheet closed without saving.
+  // Was gated on `app.constructor?.name === "ItemSheet"`, but RMSS registers its own sheet
+  // classes (e.g. RMSSSpellSheet) instead of the core one, so that check never matched and
+  // this never ran. The flag check alone is enough to identify our temporary bridge item.
   Hooks.on("closeApplication", (app, html) => {
-    if (app.constructor?.name !== "ItemSheet") return;
     const item = app.item ?? app.object;
-    if (item?.getFlag("rmss", "embeddedSpellEdit")) {
+    if (item?.getFlag && item.getFlag("rmss", "embeddedSpellEdit")) {
       item.delete().catch(() => {});
     }
   });

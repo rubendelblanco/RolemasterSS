@@ -343,7 +343,10 @@ export default class RMSSSpellListSheet extends ItemSheet {
                 }
             }
         });
-        const tempItem = await Item.create(createData);
+        // temporary: true — this is a throw-away bridge Item just to show the full spell sheet;
+        // saves sync back into spellList.system.spells (see the updateItem hook in rmss.js).
+        // Without it, Foundry persists a real Item in the world directory on every open/edit.
+        const tempItem = await Item.create(createData, { temporary: true });
 
         tempItem.sheet.render(true);
         this.render(false);
