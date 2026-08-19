@@ -24,6 +24,11 @@ export default class ForceSpellService {
      * @param {Item} params.spell - The spell being cast
      * @param {string} params.spellListName - Name of the spell list (to find matching skill)
      * @param {string} params.spellListRealm - Realm of the spell list
+     * @returns {Promise<boolean>} true once the cast actually committed (PP spent / dice rolled)
+     *   — including a spell failure or fumble, which still burns the attempt — false if it
+     *   aborted before that point (insufficient PP, dialog cancelled). Callers that consume a
+     *   one-shot resource (e.g. a potion, see castEnchantmentFromItem) should only do so when
+     *   this returns true.
      */
     static async castForceSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0 }) {
         const spellLevel = spell.system?.level ?? 1;
@@ -39,7 +44,7 @@ export default class ForceSpellService {
                         spellName: spell.name
                     })
                 );
-                return;
+                return false;
             }
         }
 
@@ -59,7 +64,7 @@ export default class ForceSpellService {
         });
 
         if (castingOptions === null) {
-            return;
+            return false;
         }
 
         if (castingOptions.useSpellAdder) {
@@ -67,7 +72,7 @@ export default class ForceSpellService {
             if (spellAdder?.item) await consumeSpellAdderUse(spellAdder.item);
         }
         if (!validatePpForSpellCastAfterDialog(actor, spell, spellLevel, noPP)) {
-            return;
+            return false;
         }
 
         let totalCastingModifier = castingOptions.totalModifier;
@@ -306,6 +311,10 @@ export default class ForceSpellService {
 
             await spell.use();
         }
+
+        // PP was already spent above regardless of outcome (success, failure, or fumble all
+        // burn the attempt) — this is the "the cast committed" signal, not "it succeeded".
+        return true;
     }
 
     /**

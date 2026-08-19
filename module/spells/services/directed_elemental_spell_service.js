@@ -27,12 +27,16 @@ export default class DirectedElementalSpellService {
      * @param {Item} params.spell - The DE spell
      * @param {string} params.spellListName - Name of the spell list (for context)
      * @param {string} params.spellListRealm - Realm of the spell list
+     * @returns {Promise<boolean>} true once the cast actually committed (PP spent / dice rolled),
+     *   including a spell-failure outcome — false if it aborted before that point. Callers that
+     *   consume a one-shot resource (e.g. a potion, see castEnchantmentFromItem) should only do
+     *   so when this returns true.
      */
     static async castDirectedElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0 }) {
         const attackTableName = spell.system?.attack_table;
         if (!attackTableName || !CONFIG.rmss?.boltTables?.includes(attackTableName)) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_attack_table"));
-            return;
+            return false;
         }
 
         const skillName = spell.system?.skillName;
@@ -40,7 +44,7 @@ export default class DirectedElementalSpellService {
         // Characters and NPCs need a skill (unless from enchantment); creatures don't have skills
         if (!fromEnchantment && !isCreature && !skillName) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_skill"));
-            return;
+            return false;
         }
 
         const spellLevel = spell.system?.level ?? 1;
@@ -56,7 +60,7 @@ export default class DirectedElementalSpellService {
                         spellName: spell.name
                     })
                 );
-                return;
+                return false;
             }
         }
 
@@ -92,19 +96,19 @@ export default class DirectedElementalSpellService {
             spendPp: !noPP
         });
 
-        if (castingOptions === null) return;
+        if (castingOptions === null) return false;
         if (castingOptions.useSpellAdder) {
             noPP = true;
             if (spellAdder?.item) await consumeSpellAdderUse(spellAdder.item);
         }
         if (!validatePpForSpellCastAfterDialog(actor, spell, spellLevel, noPP)) {
-            return;
+            return false;
         }
 
         const targets = Array.from(game.user.targets);
         if (targets.length === 0) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.de_no_targets"));
-            return;
+            return false;
         }
 
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
@@ -118,7 +122,7 @@ export default class DirectedElementalSpellService {
         const enemyActor = firstTarget.actor;
         if (!enemyActor?.system?.armor_info) {
             ui.notifications.warn("Target must have armor info for attack confirmation.");
-            return;
+            return false;
         }
 
         const casterToken = canvas.tokens.controlled.find(t => t.actor?.id === actor.id) ?? actor.getActiveTokens?.()?.[0];
@@ -149,14 +153,14 @@ export default class DirectedElementalSpellService {
 
         if (Utils.isTargetDefeated(enemyActor)) {
             ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
-            return;
+            return false;
         }
 
         if (!game.user.isGM) {
             ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
         }
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemyActor, virtualWeapon, spellOptions);
-        if (!gmResponse?.confirmed) return;
+        if (!gmResponse?.confirmed) return false;
 
         const diff = gmResponse.diff ?? 0;
 
@@ -179,7 +183,7 @@ export default class DirectedElementalSpellService {
         const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
         if (!attackTable) {
             ui.notifications.error(`Attack table not found: ${attackTableName}`);
-            return;
+            return true;
         }
 
         const maximum = await RMSSTableManager.getAttackTableMaxResult(virtualWeapon);
@@ -214,7 +218,7 @@ export default class DirectedElementalSpellService {
                 failureResult,
                 isSpellFailure: true
             });
-            return;
+            return true;
         }
 
         await this._createChatMessage({
@@ -312,6 +316,7 @@ export default class DirectedElementalSpellService {
         }
 
         await spell.use();
+        return true;
     }
 
     static async _createChatMessage({

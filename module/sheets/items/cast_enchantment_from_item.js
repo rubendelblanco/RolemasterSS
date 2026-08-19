@@ -73,19 +73,26 @@ export async function castEnchantmentFromItem(actor, item, enchantmentIndex) {
   const spellListRealm = enchantment.realm || actor.system?.fixed_info?.realm || "essence";
 
   const fromEnchantmentOpt = { consumePowerPoints: false, fromEnchantment: true, enchantmentAttackBonus: Number(enchantment.attackBonus) || 0 };
+  // wasCast: whether the cast actually committed (dice rolled) vs. aborted before that point
+  // (e.g. a BE ball spell with no area template placed yet, or a cancelled casting-options
+  // dialog). Only consume the enchantment's use/charge/potion when this is true — otherwise a
+  // cancelled or blocked cast would burn the item/charge for nothing.
+  let wasCast;
   if (spellDoc.system?.instant) {
     const InstantSpellService = (await import("../../spells/services/instant_spell_service.js")).default;
-    await InstantSpellService.castInstantSpell({ actor, spell: spellDoc, ...fromEnchantmentOpt });
+    wasCast = await InstantSpellService.castInstantSpell({ actor, spell: spellDoc, ...fromEnchantmentOpt });
   } else if (spellDoc.system?.type === "BE") {
     const BaseElementalSpellService = (await import("../../spells/services/base_elemental_spell_service.js")).default;
-    await BaseElementalSpellService.castBaseElementalSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
+    wasCast = await BaseElementalSpellService.castBaseElementalSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
   } else if (spellDoc.system?.type === "DE") {
     const DirectedElementalSpellService = (await import("../../spells/services/directed_elemental_spell_service.js")).default;
-    await DirectedElementalSpellService.castDirectedElementalSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
+    wasCast = await DirectedElementalSpellService.castDirectedElementalSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
   } else {
     const ForceSpellService = (await import("../../spells/services/force_spell_service.js")).default;
-    await ForceSpellService.castForceSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
+    wasCast = await ForceSpellService.castForceSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
   }
+
+  if (!wasCast) return {};
 
   const usage = enchantment.usage ?? "passive";
   const isPotion = itemHasPotionTag(item);

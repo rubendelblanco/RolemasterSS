@@ -35,12 +35,17 @@ export default class BaseElementalSpellService {
      * @param {Item} params.spell - The BE spell
      * @param {string} params.spellListName - Name of the spell list (for skill bonus)
      * @param {string} params.spellListRealm - Realm of the spell list
+     * @returns {Promise<boolean>} true once the cast actually committed (PP spent / dice rolled),
+     *   including a spell-failure outcome — false if it aborted before that point (missing attack
+     *   table, insufficient PP, dialog cancelled, no targets/area template, GM didn't confirm...).
+     *   Callers that consume a one-shot resource (e.g. a potion, see castEnchantmentFromItem)
+     *   should only do so when this returns true.
      */
     static async castBaseElementalSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0 }) {
         const attackTableName = spell.system?.attack_table;
         if (!attackTableName) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_attack_table"));
-            return;
+            return false;
         }
 
         const spellLevel = spell.system?.level ?? 1;
@@ -56,7 +61,7 @@ export default class BaseElementalSpellService {
                         spellName: spell.name
                     })
                 );
-                return;
+                return false;
             }
         }
 
@@ -73,13 +78,13 @@ export default class BaseElementalSpellService {
             spendPp: !noPP
         });
 
-        if (castingOptions === null) return;
+        if (castingOptions === null) return false;
         if (castingOptions.useSpellAdder) {
             noPP = true;
             if (spellAdder?.item) await consumeSpellAdderUse(spellAdder.item);
         }
         if (!validatePpForSpellCastAfterDialog(actor, spell, spellLevel, noPP)) {
-            return;
+            return false;
         }
 
         const isBallSpell = Array.isArray(CONFIG.rmss?.ballTables) && CONFIG.rmss.ballTables.includes(attackTableName);
@@ -138,7 +143,7 @@ export default class BaseElementalSpellService {
         const targets = Array.from(game.user.targets);
         if (targets.length === 0) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.be_no_targets"));
-            return;
+            return false;
         }
 
         return BaseElementalSpellService._castBeNonBallSpell({
@@ -190,7 +195,7 @@ export default class BaseElementalSpellService {
         const validTargets = targets.filter((t) => t.actor?.system?.armor_info);
         if (validTargets.length === 0) {
             ui.notifications.warn("Target must have armor info for attack confirmation.");
-            return;
+            return false;
         }
 
         // --- Multi-target: confirm for each, then one shared d100, then per-target baseEnergy from each diff
@@ -233,7 +238,7 @@ export default class BaseElementalSpellService {
                 }
             }
             if (perIndexDiff.size === 0) {
-                return;
+                return false;
             }
 
             const activeSorted = [...perIndexDiff.keys()].sort((a, b) => a - b);
@@ -256,7 +261,7 @@ export default class BaseElementalSpellService {
             const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
             if (!attackTable) {
                 ui.notifications.error(`Attack table not found: ${attackTableName}`);
-                return;
+                return true;
             }
             const maximum = await RMSSTableManager.getAttackTableMaxResult(virtualWeapon);
             const clamps = RMSSTableManager.getSpellModifiedClamps(attackTable, maximum);
@@ -304,7 +309,7 @@ export default class BaseElementalSpellService {
                             failureResult,
                             isSpellFailure: true
                         });
-                        return;
+                        return true;
                     }
                     continue;
                 }
@@ -418,14 +423,14 @@ export default class BaseElementalSpellService {
             };
             if (Utils.isTargetDefeated(enemyActor)) {
                 ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
-                return;
+                return false;
             }
             if (!game.user.isGM) {
                 ui.notifications.info(game.i18n.localize("rmss.combat.awaiting_gm_confirmation"));
             }
             const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemyActor, virtualWeapon, spellOptions);
             if (!gmResponse?.confirmed) {
-                return;
+                return false;
             }
             const diff = gmResponse.diff ?? 0;
 
@@ -444,7 +449,7 @@ export default class BaseElementalSpellService {
             const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
             if (!attackTable) {
                 ui.notifications.error(`Attack table not found: ${attackTableName}`);
-                return;
+                return true;
             }
             const maximum = await RMSSTableManager.getAttackTableMaxResult(virtualWeapon);
             const umResult = RMSSTableManager.findUnmodifiedAttack(attackTableName, naturalRoll, attackTable);
@@ -475,7 +480,7 @@ export default class BaseElementalSpellService {
                     failureResult,
                     isSpellFailure: true
                 });
-                return;
+                return true;
             }
             await BaseElementalSpellService._createChatMessage({
                 actor,
@@ -592,6 +597,7 @@ export default class BaseElementalSpellService {
 
         // Execute spell macro on success (via item.use: item, actor, token)
         await spell.use();
+        return true;
     }
 
     /**
@@ -619,19 +625,19 @@ export default class BaseElementalSpellService {
         const template = getLatestCircleTemplateForUser(game.user.id);
         if (!template) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.be_area_no_circle_template"));
-            return;
+            return false;
         }
         const epicenter = getCircleEpicenter(template);
         if (!epicenter) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.be_area_no_circle_template"));
-            return;
+            return false;
         }
         let areaTokens = getTokensInsideTemplate(template);
         areaTokens = areaTokens.filter((t) => t.actor && !Utils.isTargetDefeated(t.actor));
         areaTokens = sortTokensByEpicenter(areaTokens, epicenter.x, epicenter.y);
         if (areaTokens.length === 0) {
             ui.notifications.warn(game.i18n.localize("rmss.spells.be_area_no_tokens_in_template"));
-            return;
+            return false;
         }
 
         const casterToken = canvas.tokens.controlled.find((t) => t.actor?.id === actor.id) ?? actor.getActiveTokens?.()?.[0];
@@ -673,7 +679,7 @@ export default class BaseElementalSpellService {
             }
         }
         if (perIndexDiff.size === 0) {
-            return;
+            return false;
         }
 
         const activeSorted = [...perIndexDiff.keys()].sort((a, b) => a - b);
@@ -696,7 +702,7 @@ export default class BaseElementalSpellService {
         const attackTable = await RMSSTableManager.loadAttackTable(attackTableName);
         if (!attackTable) {
             ui.notifications.error(`Attack table not found: ${attackTableName}`);
-            return;
+            return true;
         }
         const maximum = await RMSSTableManager.getAttackTableMaxResult(virtualWeapon);
 
@@ -739,7 +745,7 @@ export default class BaseElementalSpellService {
                         failureResult,
                         isSpellFailure: true
                     });
-                    return;
+                    return true;
                 }
                 continue;
             }
@@ -847,6 +853,7 @@ export default class BaseElementalSpellService {
         }
 
         await spell.use();
+        return true;
     }
 
     /**
