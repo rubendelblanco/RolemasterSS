@@ -18,11 +18,51 @@ export function normalizeEnchantments(raw) {
 }
 
 /**
+ * Item-level shared charge pool (e.g. an artifact's "40 charges/week" shared by several
+ * "pooled"-usage enchantments at different costs each). Normalizes missing/malformed data.
+ * @param {object} system - item.system
+ * @returns {{current: number, max: number}}
+ */
+export function getChargePool(system) {
+  const pool = system?.magic?.chargePool ?? {};
+  const max = Math.max(0, Number(pool.max) || 0);
+  const current = Math.min(max, Math.max(0, Number(pool.current) || 0));
+  return { current, max };
+}
+
+/**
+ * Advance an artifact's periodic pool recharge by one long rest (this system has no
+ * calendar/day tracking, so a long rest is the only "time passes" signal it has).
+ * `rechargeDays <= 0` means no periodic recharge is configured for this item — most items,
+ * including ones with a pool but no set schedule — so nothing changes (null).
+ * @param {object} magic - item.system.magic
+ * @returns {{current: number, daysUntilRecharge: number}|null} New chargePool.current and
+ *   daysUntilRecharge to write, or null if this item has no periodic recharge configured.
+ */
+export function advanceArtifactRecharge(magic) {
+  const rechargeDays = Math.max(0, Number(magic?.rechargeDays) || 0);
+  if (rechargeDays <= 0) return null;
+
+  const max = Math.max(0, Number(magic?.chargePool?.max) || 0);
+  const current = Math.min(max, Math.max(0, Number(magic?.chargePool?.current) || 0));
+  const daysUntilRecharge = Math.max(0, Number(magic?.daysUntilRecharge) || 0);
+
+  const remaining = daysUntilRecharge - 1;
+  if (remaining <= 0) {
+    return { current: max, daysUntilRecharge: rechargeDays };
+  }
+  return { current, daysUntilRecharge: remaining };
+}
+
+/**
  * Build enchantmentList for sheet template (labels, usage, canUse, etc.).
  * @param {Array} rawEnchantments
+ * @param {{current?: number, max?: number}} [chargePool] - Item-level shared pool for "pooled" usage
+ *   entries (e.g. an artifact with N power points shared across several spells at different costs).
  * @returns {Array}
  */
-export function buildEnchantmentList(rawEnchantments) {
+export function buildEnchantmentList(rawEnchantments, chargePool = {}) {
+  const poolCurrent = Number(chargePool?.current) || 0;
   const enchantments = normalizeEnchantments(rawEnchantments);
   return enchantments.map((e) => {
     const realm = e.realm ?? "";
@@ -42,15 +82,18 @@ export function buildEnchantmentList(rawEnchantments) {
     const usesRemaining = Math.min(Number(e.usesRemaining) ?? usesPerDay, usesPerDay);
     const chargesMax = Number(e.chargesMax) || (usage === "charged" ? 10 : 0);
     const charges = Math.min(Number(e.charges) ?? chargesMax, chargesMax);
+    const poolCost = Math.max(1, Number(e.poolCost) || 1);
     const canUse =
       usage !== "passive" &&
       ((usage === "daily" && usesRemaining > 0) ||
         (usage === "charged" && charges > 0) ||
+        (usage === "pooled" && poolCurrent >= poolCost) ||
         usage === "single");
     const usageLabels = {
       passive: () => game.i18n.localize("rmss.item.enchantment_usage_passive") || "Passive",
       daily: () => `${usesRemaining}/${usesPerDay}`,
       charged: () => `${charges}/${chargesMax}`,
+      pooled: () => `${poolCost} ${game.i18n.localize("rmss.item.enchantments_pool_cost_unit") || "pts"}`,
       single: () => game.i18n.localize("rmss.item.enchantment_usage_single") || "Single use"
     };
     const usageLabel = usageLabels[usage]?.() ?? "—";
@@ -68,6 +111,7 @@ export function buildEnchantmentList(rawEnchantments) {
       usesRemaining,
       chargesMax,
       charges,
+      poolCost,
       attackBonus,
       canUse,
       usageLabel

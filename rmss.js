@@ -35,6 +35,7 @@ import {ContainerHandler} from "./module/actors/utils/container_handler.js";
 import { syncHitsAndPowerPointsFromSkills } from "./module/actors/utils/hits_pp_sync.js";
 import EffectsPopupService from "./module/core/rolls/effects_popup_service.js";
 import ExperiencePointsCalculator from "./module/sheets/experience/rmss_experience_manager.js";
+import { advanceArtifactRecharge } from "./module/sheets/items/enchantment_utils.js";
 
 export let socket;
 
@@ -723,6 +724,21 @@ Hooks.once("init", function () {
         const spellAdder = Number(item.system?.spell_adder) || 0;
         if (spellAdder > 0 && Number(item.system?.spell_adder_uses_remaining) !== spellAdder) {
           await item.update({ "system.spell_adder_uses_remaining": spellAdder });
+        }
+
+        // Artifact power pool: periodic recharge every N days (rechargeDays), tracked by
+        // daysUntilRecharge counting down one per long rest — this system has no calendar,
+        // a long rest is the only "time passes" signal available.
+        const recharge = advanceArtifactRecharge(item.system?.magic);
+        if (recharge) {
+          const currentPool = Number(item.system?.magic?.chargePool?.current) || 0;
+          const currentDays = Number(item.system?.magic?.daysUntilRecharge) || 0;
+          if (recharge.current !== currentPool || recharge.daysUntilRecharge !== currentDays) {
+            await item.update({
+              "system.magic.chargePool.current": recharge.current,
+              "system.magic.daysUntilRecharge": recharge.daysUntilRecharge
+            });
+          }
         }
       }
     }

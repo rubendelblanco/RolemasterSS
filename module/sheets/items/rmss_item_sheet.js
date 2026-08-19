@@ -3,10 +3,11 @@ import { bindContainerAllowedTagsEditor, getContainerAllowedTagListId, getContai
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
-import { castEnchantmentFromItem } from "./cast_enchantment_from_item.js";
+import { castEnchantmentFromItem, itemHasArtifactTag } from "./cast_enchantment_from_item.js";
 import {
   buildEnchantmentList,
   buildSpellDataForStorage,
+  getChargePool,
   getPowerModifierMode,
   normalizeEnchantments,
   onClearPowerModifierProfession,
@@ -66,7 +67,8 @@ export default class RMSSItemSheet extends ItemSheet {
       idx
     }));
 
-    const enchantmentList = buildEnchantmentList(system.magic?.enchantments);
+    const chargePool = getChargePool(system);
+    const enchantmentList = buildEnchantmentList(system.magic?.enchantments, chargePool);
     const powerModifierMode = getPowerModifierMode(system);
     const ppMultiplierProfessionName = await resolveProfessionName(system.pp_multiplier_profession ?? "");
     const spellAdderProfessionName = await resolveProfessionName(system.spell_adder_profession ?? "");
@@ -89,6 +91,8 @@ export default class RMSSItemSheet extends ItemSheet {
       containerStats,
       bonusSkillsList,
       enchantmentList,
+      chargePool,
+      isArtifact: itemHasArtifactTag(item),
       weightCostMultiplier: item._getWeightReductionModifier?.() ?? 1,
       powerModifierMode,
       ppMultiplierProfessionName,
@@ -324,6 +328,7 @@ export default class RMSSItemSheet extends ItemSheet {
       usesRemaining: 1,
       chargesMax: 10,
       charges: 10,
+      poolCost: 1,
       attackBonus: 0
     });
     await this.item.update({ "system.magic.enchantments": enchantments });
@@ -344,7 +349,7 @@ export default class RMSSItemSheet extends ItemSheet {
       const field = rest.slice(dotPos + 1);
       if (!Number.isInteger(idx) || idx < 0 || idx >= enchantments.length) continue;
       let val = formData[key];
-      if (["usesPerDay", "usesRemaining", "chargesMax", "charges", "attackBonus"].includes(field)) val = Number(val) || 0;
+      if (["usesPerDay", "usesRemaining", "chargesMax", "charges", "poolCost", "attackBonus"].includes(field)) val = Number(val) || 0;
       enchantments[idx][field] = val;
       delete formData[key];
     }

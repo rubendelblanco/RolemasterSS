@@ -218,7 +218,8 @@ rmss.enchantment_usage = {
   "passive": "rmss.item.enchantment_usage_passive",
   "daily": "rmss.item.enchantment_usage_daily",
   "charged": "rmss.item.enchantment_usage_charged",
-  "single": "rmss.item.enchantment_usage_single"
+  "single": "rmss.item.enchantment_usage_single",
+  "pooled": "rmss.item.enchantment_usage_pooled"
 }
 
 /** Passive item modifiers (system.passive_modifiers → Actor ActiveEffects when worn/equipped). */
@@ -262,7 +263,7 @@ rmss.slaying_types = [
  * Use for compendia, macros, containers `allowedTags`, or future sheet filters — same kebab-case style as slaying_types.
  */
 rmss.item_type_tags = [
-  "accessory", "ammo", "antidote", "arrow", "bandage", "bolt", "book", "bullet",
+  "accessory", "ammo", "antidote", "artifact", "arrow", "bandage", "bolt", "book", "bullet",
   "clothing", "component", "consumable", "container", "crafting", "dart", "drink", "explosive",
   "food", "fuel", "herb", "jewelry", "key", "kit", "light", "lock", "map",
   "material", "oil", "part", "poison", "powder", "potion", "quest", "quarrel", "rope", "rune",

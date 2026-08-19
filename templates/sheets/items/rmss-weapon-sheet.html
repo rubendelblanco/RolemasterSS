@@ -355,6 +355,37 @@
             </div>
         </div>
         <div class="tab rmss-tab-magic" data-tab="magic" data-group="primary">
+            {{#if isArtifact}}
+            <div class="rmss-charge-pool">
+                <label>{{localize "rmss.item.enchantments_pool"}}</label>
+                {{#if editable}}
+                <input type="number" name="system.magic.chargePool.current" value="{{chargePool.current}}" data-dtype="Number" min="0"/>
+                <span class="rmss-enchantment-slash">/</span>
+                <input type="number" name="system.magic.chargePool.max" value="{{chargePool.max}}" data-dtype="Number" min="0"/>
+                {{else}}
+                <span>{{chargePool.current}}/{{chargePool.max}}</span>
+                {{/if}}
+                <label class="rmss-charge-pool-level-label">{{localize "rmss.item.enchantments_cast_level"}}</label>
+                {{#if editable}}
+                <input type="number" name="system.magic.castLevel" value="{{system.magic.castLevel}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_cast_level_hint'}}"/>
+                {{else}}
+                <span>{{system.magic.castLevel}}</span>
+                {{/if}}
+                <label class="rmss-charge-pool-level-label">{{localize "rmss.item.enchantments_recharge_days"}}</label>
+                {{#if editable}}
+                <input type="number" name="system.magic.rechargeDays" value="{{system.magic.rechargeDays}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_recharge_days_hint'}}"/>
+                {{else}}
+                <span>{{system.magic.rechargeDays}}</span>
+                {{/if}}
+                <span class="rmss-enchantment-slash">→</span>
+                {{#if editable}}
+                <input type="number" name="system.magic.daysUntilRecharge" value="{{system.magic.daysUntilRecharge}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_days_until_recharge_hint'}}"/>
+                {{else}}
+                <span>{{system.magic.daysUntilRecharge}}</span>
+                {{/if}}
+                <p class="notes">{{localize "rmss.item.enchantments_pool_hint"}}</p>
+            </div>
+            {{/if}}
             <div class="rmss-enchantments-drop-zone drop-target" data-drop-zone="enchantments">
                 <div class="rmss-enchantments-header">
                     <span>{{localize "rmss.item.enchantments_level"}}</span>
@@ -388,6 +419,9 @@
                             {{/if}}
                             {{#if (eq enchantment.usage "charged")}}
                             <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.charges" value="{{enchantment.charges}}" data-dtype="Number" min="0" max="{{enchantment.chargesMax}}" title="{{localize 'rmss.item.enchantments_charges'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.chargesMax" value="{{enchantment.chargesMax}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges_max'}}" placeholder="—"/></span>
+                            {{/if}}
+                            {{#if (eq enchantment.usage "pooled")}}
+                            <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.poolCost" value="{{enchantment.poolCost}}" data-dtype="Number" min="1" title="{{localize 'rmss.item.enchantments_pool_cost'}}"/></span>
                             {{/if}}
                         </div>
                         {{else}}
