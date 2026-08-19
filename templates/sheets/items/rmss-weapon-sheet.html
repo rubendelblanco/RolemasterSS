@@ -179,8 +179,10 @@
                     <td class="rmss-text-center"><input type="checkbox" name="system.of_changing" {{checked system.of_changing}}/></td>
                 </tr>
                 <tr>
-                    <th>{{localize "rmss.item.modifiers_slaying"}}</th>
-                    <td colspan="4">
+                    <th colspan="5">{{localize "rmss.item.modifiers_slaying"}}</th>
+                </tr>
+                <tr>
+                    <td colspan="5">
                         <div class="rmss-weapon-slaying">
                             <div class="rmss-tag-chips">
                                 {{#each weaponSlaying}}
@@ -203,6 +205,27 @@
                             </datalist>
                             {{/if}}
                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label class="rmss-is-slaying-label" title="{{#if weaponSlaying.length}}{{localize 'rmss.item.modifiers_is_slaying_hint'}}{{else}}{{localize 'rmss.item.modifiers_is_slaying_needs_tags'}}{{/if}}">
+                            {{#if weaponSlaying.length}}
+                            <input type="checkbox" name="system.isSlaying" {{checked system.isSlaying}}/>
+                            {{else}}
+                            <input type="hidden" name="system.isSlaying" value="false" data-dtype="Boolean"/>
+                            <input type="checkbox" {{checked system.isSlaying}} disabled/>
+                            {{/if}}
+                            {{localize "rmss.item.modifiers_is_slaying"}}
+                        </label>
+                    </td>
+                    <td colspan="3">
+                        <label class="rmss-slaying-bonus-label">{{localize "rmss.item.modifiers_slaying_bonus"}}</label>
+                        {{#if editable}}
+                        <input type="number" class="rmss-slaying-bonus-input" name="system.slaying_bonus" value="{{system.slaying_bonus}}" data-dtype="Number" title="{{localize 'rmss.item.modifiers_slaying_bonus_hint'}}"/>
+                        {{else}}
+                        <span>{{system.slaying_bonus}}</span>
+                        {{/if}}
                     </td>
                 </tr>
                 <tr>
@@ -265,6 +288,24 @@
                     <td colspan="2">{{localize "rmss.item.weapon_effects_weapon_of_bleeding"}}
                         <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_weapon_of_bleeding_hint'}}"></i></td>
                     <td colspan="3"><input type="checkbox" name="system.weapon_effects.weapon_of_bleeding" {{checked system.weapon_effects.weapon_of_bleeding}}/></td>
+                </tr>
+                <tr>
+                    <td colspan="2">{{localize "rmss.item.weapon_effects_damage_multiplier"}}
+                        <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_damage_multiplier_hint'}}"></i></td>
+                    <td colspan="3">
+                        <select name="system.weapon_effects.damage_multiplier" data-dtype="Number">
+                            <option value="1" {{#if (eq system.weapon_effects.damage_multiplier 1)}}selected{{/if}}>x1</option>
+                            <option value="2" {{#if (eq system.weapon_effects.damage_multiplier 2)}}selected{{/if}}>x2</option>
+                            <option value="3" {{#if (eq system.weapon_effects.damage_multiplier 3)}}selected{{/if}}>x3</option>
+                            <option value="4" {{#if (eq system.weapon_effects.damage_multiplier 4)}}selected{{/if}}>x4</option>
+                            <option value="5" {{#if (eq system.weapon_effects.damage_multiplier 5)}}selected{{/if}}>x5</option>
+                            <option value="6" {{#if (eq system.weapon_effects.damage_multiplier 6)}}selected{{/if}}>x6</option>
+                            <option value="7" {{#if (eq system.weapon_effects.damage_multiplier 7)}}selected{{/if}}>x7</option>
+                            <option value="8" {{#if (eq system.weapon_effects.damage_multiplier 8)}}selected{{/if}}>x8</option>
+                            <option value="9" {{#if (eq system.weapon_effects.damage_multiplier 9)}}selected{{/if}}>x9</option>
+                            <option value="10" {{#if (eq system.weapon_effects.damage_multiplier 10)}}selected{{/if}}>x10</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <th colspan="5">{{localize "rmss.item.modifiers_power_modifier"}}</th>

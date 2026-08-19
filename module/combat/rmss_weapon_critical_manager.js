@@ -575,15 +575,18 @@ export class RMSSWeaponCriticalManager {
     }
 
     /**
-     * True when the attacker's weapon has a Slaying tag matching one of the target's
-     * creature tags (e.g. a "dragon slayer" weapon vs. a creature tagged "dragon").
-     * Independent of the target's own critical-table setting — Slaying always applies
-     * against a matching creature, regardless of whether it's flagged Large/Superlarge.
+     * True when the attacker's weapon is flagged as a Slayer (system.isSlaying) AND has a
+     * tag matching one of the target's creature tags (e.g. a "dragon slayer" weapon vs. a
+     * creature tagged "dragon"). Independent of the target's own critical-table setting —
+     * Slaying always applies against a matching creature, regardless of whether it's flagged
+     * Large/Superlarge. isSlaying is a separate toggle from the tags themselves: a weapon can
+     * have tags (and even a slaying_bonus, see RMSSWeaponSkillManager) purely for the OB bonus
+     * without forcing the Slaying critical column — that's what isSlaying gates.
      */
     static weaponSlaysEnemy(attackerId, enemy, weaponItemId = null) {
         if (!enemy?.system) return false;
         const weapon = RMSSWeaponCriticalManager._resolveCriticalWeapon(attackerId, weaponItemId);
-        if (!weapon?.system) return false;
+        if (!weapon?.system?.isSlaying) return false;
         const weaponSlaying = getWeaponSlayingArray(weapon.system).map((t) => t.toLowerCase());
         if (weaponSlaying.length === 0) return false;
         const creatureTags = getCreatureTagsArray(enemy.system).map((t) => t.toLowerCase());
@@ -717,10 +720,17 @@ export class RMSSWeaponCriticalManager {
 
     static async criticalMessagePopup(enemy, damage, severity, critType, attackerId = null, weaponItemId = null, attackerUuid = null) {
         let modifier = 0;
+        const isMeleeCrit = MELEE_CRIT_TYPES.has(critType);
         // A matching Slaying weapon always resolves on the Superlarge critical table,
         // regardless of the target's own Critical Table setting (RMSS: Slaying overrides
         // the normal/large/superlarge choice whenever the weapon's tag matches the target).
-        const slayingMatch = MELEE_CRIT_TYPES.has(critType) && RMSSWeaponCriticalManager.weaponSlaysEnemy(attackerId, enemy, weaponItemId);
+        const slayingMatch = isMeleeCrit && RMSSWeaponCriticalManager.weaponSlaysEnemy(attackerId, enemy, weaponItemId);
+        // Weapons with a fixed damage multiplier (e.g. "does double concussion hit damage")
+        // pre-select the multiplier below instead of always defaulting to x1 — melee only,
+        // a spell critical has no physical weapon behind it.
+        const criticalWeapon = isMeleeCrit ? RMSSWeaponCriticalManager._resolveCriticalWeapon(attackerId, weaponItemId) : null;
+        const damageMultiplier = Math.max(1, Math.min(10, Number(criticalWeapon?.system?.weapon_effects?.damage_multiplier) || 1));
+        const initialDamage = (Number(damage) || 0) * damageMultiplier;
         if ((enemy.type === "creature" || enemy.type === "npc") && severity != null && severity !== "null") {
             if (enemy.system.attributes.critical_codes.critical_procedure === "I") {
                 const S = ["A","B","C","D","E"];
@@ -761,6 +771,8 @@ export class RMSSWeaponCriticalManager {
         const initialContext = {
             enemy: enemy,
             damage: damage,
+            damageMultiplier,
+            initialDamage,
             severity: useLargeCreatureSeverityLabels ? defaultSubtype : severity,
             originalSeverity: severityForModifier,
             critType: critType,

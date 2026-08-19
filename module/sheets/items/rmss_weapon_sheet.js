@@ -59,7 +59,8 @@ export default class RMSSWeaponSheet extends ItemSheet {
         effect_weapon_critical_type: "",
         effect_weapon_fixed_severity: "",
         increased_critical: false,
-        weapon_of_bleeding: false
+        weapon_of_bleeding: false,
+        damage_multiplier: 1
       },
       system.weapon_effects ?? {},
       { inplace: false }

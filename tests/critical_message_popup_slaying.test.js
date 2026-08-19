@@ -1,8 +1,11 @@
 /**
  * Integration tests for RMSSWeaponCriticalManager.criticalMessagePopup: a matching Slaying
- * weapon must force the Superlarge melee critical table (and the Slaying subtype) even when
- * the target's own "Critical Table" setting is Normal — RMSS Slaying overrides that setting,
- * it doesn't depend on it.
+ * weapon (system.isSlaying === true AND a matching tag) must force the Superlarge melee
+ * critical table (and the Slaying subtype) even when the target's own "Critical Table"
+ * setting is Normal — RMSS Slaying overrides that setting, it doesn't depend on it.
+ * isSlaying is a separate toggle from the tags themselves — a matching tag alone (isSlaying
+ * false/unset) must NOT force the Slaying critical column; that's an OB-bonus-only weapon
+ * (see rmss_weapon_skill_manager.test.js for slaying_bonus, which doesn't depend on isSlaying).
  */
 import { jest } from '@jest/globals';
 import { RMSSWeaponCriticalManager } from '../module/combat/rmss_weapon_critical_manager.js';
@@ -58,8 +61,8 @@ describe('criticalMessagePopup: Slaying overrides the target critical table', ()
         jest.restoreAllMocks();
     });
 
-    test('slaying match forces superlarge_melee/slaying even when the target table is Normal ("-")', async () => {
-        mockAttackerWithWeapon({ slaying: ['orc'] });
+    test('slaying match (isSlaying true) forces superlarge_melee/slaying even when the target table is Normal ("-")', async () => {
+        mockAttackerWithWeapon({ slaying: ['orc'], isSlaying: true });
         const enemy = creatureEnemy({ criticalTable: '-', creatureTags: ['orc'] });
         const ctx = await popupContext(enemy);
         expect(ctx.critType).toBe('superlarge_melee');
@@ -68,8 +71,16 @@ describe('criticalMessagePopup: Slaying overrides the target critical table', ()
         expect(ctx.useLargeCreatureSeverityLabels).toBe(true);
     });
 
+    test('matching tag but isSlaying false/unset: does NOT force Slaying — just an OB-bonus-only weapon', async () => {
+        mockAttackerWithWeapon({ slaying: ['orc'] });
+        const enemy = creatureEnemy({ criticalTable: '-', creatureTags: ['orc'] });
+        const ctx = await popupContext(enemy);
+        expect(ctx.critType).toBe('K');
+        expect(ctx.useLargeCreatureSeverityLabels).toBe(false);
+    });
+
     test('no slaying match and target table Normal: critType is left as the raw melee code', async () => {
-        mockAttackerWithWeapon({ slaying: ['dragon'] });
+        mockAttackerWithWeapon({ slaying: ['dragon'], isSlaying: true });
         const enemy = creatureEnemy({ criticalTable: '-', creatureTags: ['orc'] });
         const ctx = await popupContext(enemy);
         expect(ctx.critType).toBe('K');
@@ -77,7 +88,7 @@ describe('criticalMessagePopup: Slaying overrides the target critical table', ()
     });
 
     test('target already set to Large, weapon not slaying: uses large_melee but not the slaying subtype', async () => {
-        mockAttackerWithWeapon({ slaying: ['dragon'], magical: true });
+        mockAttackerWithWeapon({ slaying: ['dragon'], isSlaying: true, magical: true });
         const enemy = creatureEnemy({ criticalTable: 'la', creatureTags: ['orc'] });
         const ctx = await popupContext(enemy);
         expect(ctx.critType).toBe('large_melee');
@@ -85,7 +96,7 @@ describe('criticalMessagePopup: Slaying overrides the target critical table', ()
     });
 
     test('slaying match on a target already set to Large still forces superlarge (not large)', async () => {
-        mockAttackerWithWeapon({ slaying: ['orc'] });
+        mockAttackerWithWeapon({ slaying: ['orc'], isSlaying: true });
         const enemy = creatureEnemy({ criticalTable: 'la', creatureTags: ['orc'] });
         const ctx = await popupContext(enemy);
         expect(ctx.critType).toBe('superlarge_melee');
@@ -93,7 +104,7 @@ describe('criticalMessagePopup: Slaying overrides the target critical table', ()
     });
 
     test('a non-melee critical type is not affected by slaying (spell crits have no slaying column)', async () => {
-        mockAttackerWithWeapon({ slaying: ['orc'] });
+        mockAttackerWithWeapon({ slaying: ['orc'], isSlaying: true });
         const enemy = creatureEnemy({ criticalTable: '-', creatureTags: ['orc'] });
         const ctx = await popupContext(enemy, 'heat');
         expect(ctx.critType).toBe('heat');
