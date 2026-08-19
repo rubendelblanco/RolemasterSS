@@ -1,0 +1,292 @@
+{
+  "name": "Resistencia a Hechizos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Abierto 2.10 - Resistencia a Hechizos. Hechizos para resistir y cancelar ataques de hechizos elementales y básicos por reino, incluyendo las familias Protección, Escudo y Resistencia.",
+    "spells": [
+      {
+        "name": "01. Protección I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Resta 5 a las tiradas de ataque elementales contra el lanzador y suma 5 a todas las RR del lanzador contra hechizos."
+        }
+      },
+      {
+        "name": "02. Cancelar Mentalismo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 hechizo",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cuando el lanzador es objetivo de un hechizo de Mentalismo, el hechizo \"entrante\" debe superar primero una RR antes de que el lanzador haga la suya. A efectos de RR, cada hechizo usa un nivel igual al de su lanzador. Si el hechizo \"entrante\" supera la RR, puede afectar al lanzador de este hechizo con normalidad; en caso contrario, el hechizo entrante no tiene efecto sobre este objetivo."
+        }
+      },
+      {
+        "name": "04. Cancelar Esencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 hechizo",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cancelar Mentalismo, salvo que afecta a hechizos del reino de la Esencia."
+        }
+      },
+      {
+        "name": "05. Protección II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Protección I, salvo que los bonos son de 10."
+        }
+      },
+      {
+        "name": "06. Cancelar Canalización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 hechizo",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cancelar Mentalismo, salvo que afecta a hechizos del reino de la Canalización."
+        }
+      },
+      {
+        "name": "08. Escudo Mental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un escudo resplandeciente frente al lanzador. El escudo resta 10 a todas las tiradas de ataque frontales de Mentalismo sobre el lanzador (básicas y elementales). Además, si el lanzador no realiza ninguna otra acción durante la ronda, puede \"parar\" (como con un escudo normal) un ataque de hechizo. El bono de parada es igual a 10 más el rango de habilidad del lanzador en esta lista de hechizos."
+        }
+      },
+      {
+        "name": "10. Escudo de Esencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo Mental, salvo que solo es eficaz contra hechizos de Esencia."
+        }
+      },
+      {
+        "name": "11. Protección III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Protección I, salvo que los bonos son de 15."
+        }
+      },
+      {
+        "name": "13. Escudo de Canalización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo Mental, salvo que solo es eficaz contra hechizos de Canalización."
+        }
+      },
+      {
+        "name": "15. Escudo de Hechizos II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo Mental, salvo que es eficaz contra dos cualesquiera de los tres reinos."
+        }
+      },
+      {
+        "name": "17. Protección V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Protección I, salvo que los bonos son de 25."
+        }
+      },
+      {
+        "name": "19. Escudo de Hechizos Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escudo Mental, salvo que es eficaz contra todos los hechizos."
+        }
+      },
+      {
+        "name": "20. Resistencia al Mentalismo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da un bono especial de +50 a todas las RR contra todos los hechizos de Mentalismo."
+        }
+      },
+      {
+        "name": "25. Resistencia a la Esencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistencia al Mentalismo, salvo que solo es eficaz contra hechizos de Esencia."
+        }
+      },
+      {
+        "name": "30. Resistencia a la Canalización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistencia al Mentalismo, salvo que solo es eficaz contra hechizos de Canalización."
+        }
+      },
+      {
+        "name": "50. Resistencia Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistencia al Mentalismo, salvo que es eficaz contra dos de los tres reinos."
+        }
+      }
+    ]
+  }
+}

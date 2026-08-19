@@ -1,0 +1,394 @@
+{
+  "name": "Cloaking",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Mentalism 2.4 - Cloaking. Spells for hiding, disguising and duplicating the caster, and for shifting probable attacks off-target, including the Cloaking, Cloaking Sphere, Facades, Shadow Mentalist and Displacement families. Special Notes: (1) Cloaking spells are not Invisibility spells and none of the normal rules for invisibility apply (e.g., the caster does not become \"visible\" when he attacks or is hit, etc.). (2) See Section 15.14 (p. 98) for more on illusions.",
+    "spells": [
+      {
+        "name": "01. Blur",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes caster to appear blurred to attackers, subtracting 10 from all attacks directed at the caster."
+        }
+      },
+      {
+        "name": "02. Shadow",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster and objects on his person appear to be a shadow; and thus are almost invisible in dark areas (e.g., in many situations this could be handled with a special bonus between +25 and +75 to Stalking/Hiding maneuvers)."
+        }
+      },
+      {
+        "name": "03. Unseen",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "object",
+          "duration": "24 hours",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A single object is made invisible (1 garment, 1 naked body, etc.); until 24 hours pass or the object is struck by a violent blow (being hit by a weapon, falling, etc.) or the object makes a violent move (i.e., an attack). See Section 15.5 (p. 96) for more on Invisibility."
+        }
+      },
+      {
+        "name": "04. Cloaking I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl(C)",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -50] Target makes an RR. Failure results in the caster being invisible to the target; others see the caster normally. If the caster makes an obvious action (e.g., talking, moving an object, etc.), the target may make another RR (the GM may deem it appropriate to apply modifiers to this RR based upon the action the caster takes). If the caster attacks the target, he may make another RR with a special modifier of +50. If the caster begins to concentrate (50% activity), he can extend the duration of this spell indefinitely (as long as he can concentrate)."
+        }
+      },
+      {
+        "name": "05. Facades I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 hr/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A limited illusion that allows the caster to look like any humanoid figure within 20% of his own size. See Section 15.14 (p. 98) for more on illusions."
+        }
+      },
+      {
+        "name": "06. Cloaking III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "3 targets",
+          "duration": "1 min/lvl(C)",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking I, except the caster can affect 3 targets (the caster makes one BAR that applies to all targets)."
+        }
+      },
+      {
+        "name": "07. Cloaking Sphere I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking I, except every target in the area of effect must make a RR (one BAR a round for all targets). Once a target makes a successful RR, he need not make another RR against the spell."
+        }
+      },
+      {
+        "name": "08. Cloaking V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "5 targets",
+          "duration": "1 min/lvl(C)",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking I, except the caster can affect 5 targets (the caster makes one BAR that applies to all targets)."
+        }
+      },
+      {
+        "name": "09. Cloaking Sphere II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "20'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking Sphere I, except for the area of effect."
+        }
+      },
+      {
+        "name": "10. Shadow Mentalist I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a duplicate of the caster; if he concentrates, it will move as he wills; otherwise, it does exactly as he does. The duplicate is limited to moving within the area of effect. If the caster concentrates, he can \"merge\" the duplicate with himself and then split back apart again (making it difficult to discern which one is the \"real\" caster)."
+        }
+      },
+      {
+        "name": "11. Facades II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 hr/lvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Facades I, except illusion may include sounds and voices."
+        }
+      },
+      {
+        "name": "12. Cloaking X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "10 targets",
+          "duration": "1 min/lvl(C)",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking I, except the caster can affect 10 targets (the caster makes one BAR that applies to all targets)."
+        }
+      },
+      {
+        "name": "13. Cloaking Sphere III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "30'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking Sphere I, except for the area of effect."
+        }
+      },
+      {
+        "name": "14. Displacement I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster appears to be offset from where he really is. All attacks have no effect 10% of the time (no normal RRs). Each time a foe misses him, the chance of \"no effect\" for that foe goes down by 5%."
+        }
+      },
+      {
+        "name": "15. Camouflage",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster and objects on his person take on the visual texture, color, and form of surrounding area. Caster is nearly invisible when motionless (a special bonus of +200 to all Hiding maneuvers) and has a special bonus of +50 to Stalking maneuvers (if he concentrates). This spell is not cumulative with Shadow."
+        }
+      },
+      {
+        "name": "16. Cloaking XX",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "20 targets",
+          "duration": "1 min/lvl(C)",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking I, except the caster can affect 20 targets (the caster makes one Base Attack Roll that applies to all targets)."
+        }
+      },
+      {
+        "name": "18. Displacement II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Displacement I, except \"no effect\" chance is 20%."
+        }
+      },
+      {
+        "name": "19. Cloaking Sphere V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking Sphere I, except for the area of effect."
+        }
+      },
+      {
+        "name": "20. Shadow Mentalist II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shadow Mentalist I, except there are two duplicates."
+        }
+      },
+      {
+        "name": "25. Displacement III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Displacement I, except \"no effect\" chance is 30%."
+        }
+      },
+      {
+        "name": "30. Camouflage True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Camouflage, except doesn't require concentration while moving and the Stalking bonus is 75."
+        }
+      },
+      {
+        "name": "50. True Cloaking",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/lvl(C)",
+          "range": "sight",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking I, except the caster can affect as many targets as he has levels and the range is only limited to the caster's field of vision."
+        }
+      }
+    ]
+  }
+}

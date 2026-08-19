@@ -1,0 +1,309 @@
+{
+  "name": "Ilusiones",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Abierto 2.8 - Ilusiones. Hechizos para crear y mover imágenes ilusorias, sonidos, espejismos y fantasmas, con variantes retardadas/activadas. Notas Especiales: (1) Si se puede elegir más de una opción, la misma opción puede elegirse más de una vez. Por ejemplo, si hubiera dos opciones disponibles, el alcance de una Ilusión podría duplicarse a 100' y luego duplicarse de nuevo a 200'. (2) Las ilusiones creadas con hechizos de esta lista son \"reales\" en la medida en que pueden verse y/u oírse. Detectar que una ilusión es solo eso solo puede lograrse mediante hechizos o mediante el uso de sentidos contradictorios (es decir, extiendes la mano y no sientes nada). (3) Ver Sec. 15.14 (p. 98) para más información sobre ilusiones.",
+    "spells": [
+      {
+        "name": "01. Curvatura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1000 pies cúb.",
+          "duration": "10 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que un objeto inanimado (de hasta 1000 pies cúbicos) parezca estar 10' a un lado de su ubicación real."
+        }
+      },
+      {
+        "name": "03. Espejismo de Luz/Sonido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea cualquier imagen o escena simple e inmóvil de hasta 10' de radio, o cualquier sonido constante (incluyendo repetitivo) proveniente de un área de 10' de radio."
+        }
+      },
+      {
+        "name": "05. Ilusión II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea una imagen o escena simple e inmóvil en un área de hasta 10' de radio. Además, puede elegirse una de las siguientes opciones: a) puede añadirse sonido a la ilusión, o b) la duración puede duplicarse, o c) el alcance puede duplicarse, o d) el radio de efecto puede duplicarse. Nótese que todas las partes del área de efecto deben estar dentro del alcance del hechizo."
+        }
+      },
+      {
+        "name": "06. Fantasma I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea la imagen de un objeto o ser, que se moverá como el lanzador quiera mientras se concentre. Cuando el lanzador deja de concentrarse, la imagen permanece, pero deja de moverse (el lanzador puede retomar la concentración más tarde y volver a mover el fantasma). La imagen debe caber dentro del área de efecto."
+        }
+      },
+      {
+        "name": "07. Encanto de Luz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objeto",
+          "duration": "1 día/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Este hechizo solo puede lanzarse sobre un objeto inanimado de hasta 10 lb./nivel del lanzador. El hechizo altera la apariencia visual del objeto, ocultando su aspecto real."
+        }
+      },
+      {
+        "name": "08. Ilusión III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión II, salvo que pueden elegirse dos de las opciones."
+        }
+      },
+      {
+        "name": "10. Ilusión en Espera I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Espejismo de Luz/Sonido, salvo que el hechizo puede retrasarse hasta 24 horas o hasta que se active por: a) un período de tiempo, b) movimientos específicos, o c) sonidos específicos."
+        }
+      },
+      {
+        "name": "11. Ilusión IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión II, salvo que pueden elegirse tres de las opciones."
+        }
+      },
+      {
+        "name": "12. Fantasma II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma I, salvo que además puede elegirse una de las siguientes opciones: a) puede añadirse sonido, o b) la duración puede duplicarse, o c) el radio de la esfera que limita el tamaño de la imagen puede duplicarse, o d) el alcance puede duplicarse, o e) puede crearse y moverse otra imagen (todos los fantasmas separados que se muevan deben estar dentro del campo de visión del lanzador y dentro del alcance del hechizo)."
+        }
+      },
+      {
+        "name": "14. Ilusión en Espera II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Una Ilusión II, pero puede retrasarse como en Ilusión en Espera I."
+        }
+      },
+      {
+        "name": "15. Ilusión V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión II, salvo que pueden elegirse cuatro de las opciones."
+        }
+      },
+      {
+        "name": "17. Fantasma III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma II, salvo que pueden elegirse dos de las opciones."
+        }
+      },
+      {
+        "name": "19. Ilusión en Espera III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión III, salvo que puede retrasarse como en Ilusión en Espera I."
+        }
+      },
+      {
+        "name": "20. Ilusión VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión II, salvo que pueden elegirse seis de las opciones."
+        }
+      },
+      {
+        "name": "25. Ilusión en Espera V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión V, salvo que puede retrasarse como en Ilusión en Espera I."
+        }
+      },
+      {
+        "name": "30. Ilusión X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ilusión II, salvo que pueden elegirse nueve de las opciones."
+        }
+      },
+      {
+        "name": "50. Fantasma V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fantasma II, salvo que pueden elegirse cuatro de las opciones."
+        }
+      }
+    ]
+  }
+}

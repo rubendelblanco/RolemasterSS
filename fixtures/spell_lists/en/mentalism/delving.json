@@ -1,0 +1,309 @@
+{
+  "name": "Delving",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Mentalism 2.6 - Delving. Spells for reading the history, origin, curses and powers of items, and for viewing past events associated with an item or place. Special Notes: (1) A \"curse\" is usually something that is detrimental and magical in nature (e.g., delivered from the Curses spell list, see Spell Law: Of Channeling Section 10.1, p. 62). The GM may decide that the \"curse\" spells on this spell list apply only to magical curses. (2) See Section 15.13 (p. 98) for more on information spells.",
+    "spells": [
+      {
+        "name": "01. Item Feel",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster receives basic idea of item's purpose, if any."
+        }
+      },
+      {
+        "name": "02. Detect Power",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl(C)",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detects power in an object, but not what realm or how much; caster may concentrate on a different object each round."
+        }
+      },
+      {
+        "name": "03. Origins",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives a general idea of the place of origin of an item."
+        }
+      },
+      {
+        "name": "05. Detect Curse",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detects if a curse is on an item."
+        }
+      },
+      {
+        "name": "06. Power Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives the origins of an item's power."
+        }
+      },
+      {
+        "name": "07. Rock Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 rock",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives details of where, when, and how the examined piece of rock was worked."
+        }
+      },
+      {
+        "name": "08. Item Vision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 object",
+          "duration": "varies",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives a vision of a significant event in the item's past."
+        }
+      },
+      {
+        "name": "10. Delving",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives significant details about an item's construction and purpose (not specific powers)."
+        }
+      },
+      {
+        "name": "11. Past Vision I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gets a vision up to 1 hour per level into the past. The desired time can be set within ±30 min. The vision must be associated with an item or place. The vision can last up to 1 minute per level if the caster concentrates and remains inactive."
+        }
+      },
+      {
+        "name": "13. Item Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives major abilities and powers of an item."
+        }
+      },
+      {
+        "name": "15. Death's Memory",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives a vision of how someone died and an image of their killer. This spell must be cast within 24 hours of the death. In addition, this spell must be cast at the place of death or in the presence of the dead body."
+        }
+      },
+      {
+        "name": "17. Past Hold",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When cast just before a Past Vision spell, it allows caster to lock onto a specific event in an item's past, and then examine that event with a Past Vision."
+        }
+      },
+      {
+        "name": "19. Item Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "6\"",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives a complete rundown on an item's construction, powers, and purpose (may be modified if an item is extremely powerful)."
+        }
+      },
+      {
+        "name": "20. Past Vision II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Past Vision I, except time range is 1 day per level (with an error of ±1 hour) and the vision can last up to 10 minutes per level."
+        }
+      },
+      {
+        "name": "25. Past Vision III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Past Vision I, except time range is 1 month per level (with an error of ±1 day) and the vision can last up to 1 hour per level."
+        }
+      },
+      {
+        "name": "30. Past Vision IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Past Vision I, except time range is 1 year per level (with an error of ±1 week) and the vision can last up to 5 hours per level."
+        }
+      },
+      {
+        "name": "50. Past Vision True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Past Vision I, except time range is 10 years per level (with an error of ±1 month) and vision can last up to 10 hours per level (each hour of the past event takes only 10 minutes real time)."
+        }
+      }
+    ]
+  }
+}

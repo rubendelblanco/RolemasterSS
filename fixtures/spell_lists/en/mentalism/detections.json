@@ -1,0 +1,326 @@
+{
+  "name": "Detections",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Mentalism 2.7 - Detections. Spells for detecting active spells and items by realm, emotion, invisibility, evil, traps, power level, spell type, and for locating objects. Special Notes: (1) \"Evil\" (for the Detect Evil spell) is defined as something that causes (or is a source of) intentional suffering, injury, or destruction. See Section 15.2 (p. 96). (2) For more information about invisibility, see Section 15.5 (p. 96). (3) When using the Location spell, the caster must provide an unambiguous description of the object being sought. This includes a minimum of: the item's dimensions (within 10% of actual size) and at least two other identifying attributes (e.g., color, weight, shape, texture, etc.). Often, it will take more than two other attributes to make the description \"unique\" (i.e., no other item can possibly match the description).",
+    "spells": [
+      {
+        "name": "01. Detect Mentalism",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detects any active spell or item from the Mentalism realm; caster can concentrate on a 5' radius area each round."
+        }
+      },
+      {
+        "name": "02. Detect Essence",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Mentalism, except realm is Essence."
+        }
+      },
+      {
+        "name": "03. Detect Channeling",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Mentalism, except realm is Channeling."
+        }
+      },
+      {
+        "name": "04. Detect Emotion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Mentalism, except caster can detect extremes of emotion and which emotions they are (e.g., hatred, love, sadness, etc.). If there are no extremes of emotion (i.e., only normal feelings), this spell detects nothing."
+        }
+      },
+      {
+        "name": "05. Detect Invisible",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Mentalism, except detects all invisible things; all attacks against something so detected are at -50."
+        }
+      },
+      {
+        "name": "06. Detect Evil",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Mentalism, except detects if a being is evil or an item created by evil or long used by a very evil person."
+        }
+      },
+      {
+        "name": "07. Detect Traps",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Mentalism, except that it gives a 75% chance of detecting a trap (trap sophistication modifiers may reduce or enhance this chance)."
+        }
+      },
+      {
+        "name": "08. Perceive Power I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Mentalism, except it will give an estimate of the power (i.e., level) of the person or item or spell examined."
+        }
+      },
+      {
+        "name": "10. Power Typing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Mentalism, except it analyzes general spell type (in item or cast) and what list it was cast from. In the case of a person it gives the person's profession."
+        }
+      },
+      {
+        "name": "11. Perceive Power II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl(C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Perceive Power I, except range is 100' and area is 10' radius."
+        }
+      },
+      {
+        "name": "13. See Invisible",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Invisible, except caster can see invisible things anywhere he can normally see. In addition, his attacks suffer no penalties against invisible targets he can see."
+        }
+      },
+      {
+        "name": "15. Detect Spell",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Mentalism, except caster becomes aware of any spells cast in the area. The caster will know the spell type and the list it was cast from."
+        }
+      },
+      {
+        "name": "16. Perceive Power III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "50'R",
+          "duration": "1 min/lvl(C)",
+          "range": "500'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Perceive Power II, except range is 500' and area is 50' radius."
+        }
+      },
+      {
+        "name": "18. Spell Typing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Power Typing, except exact spell type is known for every spell thrown in the area."
+        }
+      },
+      {
+        "name": "20. Perceive Power True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "300'R",
+          "duration": "1 min/lvl(C)",
+          "range": "1 mile",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Perceive Power III, except range is 1 mile and area of effect is 300' radius."
+        }
+      },
+      {
+        "name": "25. Location",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "500'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives the direction and distance to any specific object or place that the caster is familiar with or has had described in detail."
+        }
+      },
+      {
+        "name": "30. Detect True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Mentalism, except any of the lower level \"detect\" spells can be used, one per round."
+        }
+      },
+      {
+        "name": "50. Awareness",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any or all of the lower level non-Location spells on this list may be used simultaneously."
+        }
+      }
+    ]
+  }
+}

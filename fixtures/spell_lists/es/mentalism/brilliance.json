@@ -1,0 +1,343 @@
+{
+  "name": "Brillantez",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Abierto 2.3 - Brillantez. Hechizos para crear y controlar luz y oscuridad, auras, y ataques basados en luz como Descarga de Choque, Fuegos Solares y Mano de Fuego. Notas Especiales: Ninguno de los hechizos de Aura (Aura Propia y Aura Verdadera) es acumulativo entre sí ni con el hechizo Desenfoque.",
+    "spells": [
+      {
+        "name": "01. Luz Proyectada",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "haz de 50'",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un haz de luz (como una linterna) surge de la palma del lanzador. Este haz tiene un alcance efectivo de 50'. Cuando cierra la mano en un puño, la luz se \"apaga\" hasta que vuelve a abrir el puño."
+        }
+      },
+      {
+        "name": "02. Resplandor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causa un pequeño punto de luz de 1\" de diámetro que brilla suavemente. Este hechizo proporciona suficiente luz para que la Visión Nocturna funcione correctamente, pero no la suficiente como para permitir mucha movilidad en la oscuridad."
+        }
+      },
+      {
+        "name": "03. Luz I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Ilumina un área de 10' de radio alrededor del punto tocado. Si el punto está sobre un objeto o ser móvil, se moverá con él."
+        }
+      },
+      {
+        "name": "04. Aura Propia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causa un aura brillante alrededor del lanzador, haciéndolo parecer más poderoso y restando 5 a todos los ataques."
+        }
+      },
+      {
+        "name": "05. Erupción de Luz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod. RR: -10] Causa una esfera de 10' de radio de luz intensa. Todos los que estén dentro quedan aturdidos 1 ronda por cada 10 puntos de fallo."
+        }
+      },
+      {
+        "name": "06. Descarga de Choque",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "DE",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un rayo de luz intensa y cargada sale disparado de la palma del lanzador. Los resultados se determinan en la Tabla de Ataque de Descarga de Choque 13.8 (p. 87)."
+        }
+      },
+      {
+        "name": "07. Oscuridad I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "10'R",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Luz, salvo que crea un radio de 10' de oscuridad normal. Ver Sección 15.12 (p. 98)."
+        }
+      },
+      {
+        "name": "08. Aura Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Aura Propia, salvo que hace que el lanzador parezca extremadamente poderoso y resta 15 a todos los ataques."
+        }
+      },
+      {
+        "name": "10. Luz V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "50'R",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Luz I, salvo que el radio es de 50'."
+        }
+      },
+      {
+        "name": "11. Oscuridad V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "50'R",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oscuridad I, salvo que el radio es de 50'."
+        }
+      },
+      {
+        "name": "13. Tinte",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1000 pies cúb.",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causa que cualquier objeto de hasta 1000 pies cúbicos brille con el color que se desee."
+        }
+      },
+      {
+        "name": "15. Baliza",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "5 mi R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un rayo de luz de cualquier color surge de la mano del lanzador. Este rayo puede llegar a tener hasta 5 millas de longitud."
+        }
+      },
+      {
+        "name": "16. Oscuridad Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "100'R/nvl",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oscuridad I, salvo que el radio es de 100' por nivel."
+        }
+      },
+      {
+        "name": "18. Luz Absoluta",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "100'R",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Luz I, salvo que el radio es de 100' y equivale a plena luz de día. Toda oscuridad creada mágicamente queda anulada durante la duración."
+        }
+      },
+      {
+        "name": "19. Oscuridad Absoluta",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "100'R",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Oscurece un radio de 100'; ninguna luz no mágica puede existir en el área y la luz mágica (salvo Luz Absoluta) debe superar una RR o queda anulada."
+        }
+      },
+      {
+        "name": "20. Fuegos Solares",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 punto",
+          "duration": "C",
+          "range": "500'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Enfoca la luz solar como una lente; debe enfocarse inicialmente sobre un punto fijo. Tras 1 ronda puede moverse a un ritmo de 1' por ronda. Quemará a través de un diámetro de 1' a un ritmo de 1' por ronda (madera), 4\" por ronda (piedra) o 1\" por ronda (metal). Este hechizo no puede usarse eficazmente en combate (los enemigos pueden apartarse fácilmente). Sin embargo, si se usa sobre un enemigo inmóvil, ver Mano de Fuego para el proceso de resolución del daño."
+        }
+      },
+      {
+        "name": "25. Fuegos Solares Verdaderos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 punto",
+          "duration": "C",
+          "range": "500'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fuegos Solares, salvo que no necesita luz solar."
+        }
+      },
+      {
+        "name": "30. Mano de Fuego",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 punto",
+          "duration": "1 rnd/nvl",
+          "range": "6\"",
+          "type": "DE",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fuegos Solares, salvo que el alcance y el foco son 6\" desde la palma abierta del lanzador (el brazo del lanzador es inmune) y puede moverse 10' por ronda. Puede usarse en combate cuerpo a cuerpo, golpeando en la Tabla de Ataque de Rayo de Fuego 13.5, p. 84 (inflige el doble de golpes de conmoción) con un OB igual a (30 + el bono de habilidad de hechizo dirigido del lanzador con Mano de Fuego). Si el ataque falla estrepitosamente (01-02 UM), el lanzador sufre automáticamente un Crítico de Calor 'C'."
+        }
+      },
+      {
+        "name": "50. Mano de Fuego Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 punto",
+          "duration": "C",
+          "range": "6\"",
+          "type": "DE",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Mano de Fuego, salvo que no necesita luz solar."
+        }
+      }
+    ]
+  }
+}

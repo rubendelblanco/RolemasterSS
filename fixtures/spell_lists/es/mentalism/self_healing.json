@@ -1,0 +1,292 @@
+{
+  "name": "Autocuración",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Abierto 2.9 - Autocuración. Hechizos para tratar las propias heridas del lanzador: coagulación, alivio del dolor, reparación de fracturas, músculos, nervios, ojo/oído, venas/arterias, animación suspendida, reimplantación de miembros y regeneración. Notas Especiales: Ver RMFRP Sección 24.1 (p. 75) para más información sobre curación.",
+    "spells": [
+      {
+        "name": "02. Coagular I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Coagula una herida para reducir el sangrado (es decir, el daño en golpes por ronda) en uno, mientras el lanzador se concentre o esté inmóvil. Este efecto se vuelve permanente tras una hora. Si el lanzador está inconsciente, el hechizo funciona sin necesidad de concentración."
+        }
+      },
+      {
+        "name": "04. Coagular III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Coagular I, salvo que el sangrado se reduce hasta en 3 golpes por ronda."
+        }
+      },
+      {
+        "name": "05. Alivio del Dolor I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cura 1 golpe por minuto mientras el lanzador se concentre. Si el lanzador está inconsciente, este hechizo funciona sin necesidad de concentración."
+        }
+      },
+      {
+        "name": "06. Reparar Fractura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Concentrarse con este hechizo durante 2 horas reparará un hueso fracturado (aunque no uno astillado o destruido)."
+        }
+      },
+      {
+        "name": "07. Reparar Corte I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Coagular I, salvo que el efecto es permanente de inmediato."
+        }
+      },
+      {
+        "name": "08. Reparar Músculo/Tendón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Fractura, salvo que pueden repararse músculos o tendones dañados."
+        }
+      },
+      {
+        "name": "10. Reparar Nervio Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Repara el daño menor a un nervio. Requiere un período de recuperación de 1 día. Se define daño menor como cualquier daño nervioso que resulte en penalizaciones de hasta -20."
+        }
+      },
+      {
+        "name": "11. Reparar Ojo/Oído",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Concentrarse con este hechizo durante 2 horas al día durante 1-10 días (dependiendo de la gravedad) reparará cualquier daño externo en el oído del lanzador (incluida la pérdida de la oreja) o en el ojo (incluyendo arañazos en la córnea, extracción de cuerpos extraños, etc.)."
+        }
+      },
+      {
+        "name": "12. Reparar Vena/Arteria",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Fractura, salvo que repara una vena o una arteria."
+        }
+      },
+      {
+        "name": "13. Alivio del Dolor II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio del Dolor I, salvo que se curan 2 golpes por minuto."
+        }
+      },
+      {
+        "name": "15. Autoconservación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Al recibir un golpe mortal, el lanzador entra en un estado de animación suspendida. El lanzador permanecerá en este estado hasta que sea curado o su cerebro sea destruido."
+        }
+      },
+      {
+        "name": "17. Autounión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reimplantar un miembro seccionado; el miembro queda totalmente funcional tras 1-10 días (el lanzador debe concentrarse con este hechizo 2 horas cada día)."
+        }
+      },
+      {
+        "name": "20. Alivio del Dolor Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio del Dolor I, salvo que cura 1 golpe por ronda."
+        }
+      },
+      {
+        "name": "25. Regeneración de Miembro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Concentrarse con este hechizo durante 2 horas al día durante 10-100 días regenerará un miembro."
+        }
+      },
+      {
+        "name": "30. Regeneración de Órgano",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Tras la destrucción de cualquier órgano (excepto el cerebro), el lanzador puede usar Autoconservación y este hechizo. El órgano se regenera tras 10-100 días de inactividad total."
+        }
+      },
+      {
+        "name": "50. Regeneración Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Regeneración de Órgano, salvo que todo el daño (excepto el cerebro) se regenera en 10-100 días."
+        }
+      }
+    ]
+  }
+}

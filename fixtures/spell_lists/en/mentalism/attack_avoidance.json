@@ -1,0 +1,275 @@
+{
+  "name": "Attack Avoidance",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Mentalism 2.2 - Attack Avoidance. Spells for deflecting missiles, melee attacks, and elemental attack spells; includes Shield and Still Air.",
+    "spells": [
+      {
+        "name": "01. Turn Missile",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 missile",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can deflect any one missile that passes within 100' of him (caster must be able to see the missile). This causes 20 to be subtracted from the missile's attack."
+        }
+      },
+      {
+        "name": "02. Turn Blade",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 attack",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Turn Missile, except applies to a melee attack."
+        }
+      },
+      {
+        "name": "03. Shield",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates an invisible force shield in front of the caster. This functions as a normal shield (subtracting 25 from appropriate attacks, etc.), except it does not occupy a hand. This spell cannot be combined with a \"real\" shield."
+        }
+      },
+      {
+        "name": "05. Deflect I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 missile",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Turn Missile except 100 is subtracted from the attack."
+        }
+      },
+      {
+        "name": "06. Bladeturn I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 attack",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can deflect any one melee attack that he can see (and is within range). This causes 50 to be subtracted from the attack."
+        }
+      },
+      {
+        "name": "08. Aim Untrue I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 missile",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can deflect any one missile that passes within 100' of him (caster must be able to see the missile). This causes the missile to automatically miss its target."
+        }
+      },
+      {
+        "name": "10. Still Air",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1\"R/lvl",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a pocket of still air 1\" per level on all sides of the caster, that no outside gas can come into. Normally, one person will consume all of the oxygen in the pocket over the course of the spell (1 minute per level)."
+        }
+      },
+      {
+        "name": "11. Deflect II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "2 missiles",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Deflect I, except affects 2 missiles."
+        }
+      },
+      {
+        "name": "13. Spell Deflect I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Deflects one elemental spell against caster. The attack roll has -50 added to it (must be in the caster's field of vision)."
+        }
+      },
+      {
+        "name": "15. Bladeturn II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "2 attacks",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Bladeturn I, except affects 2 melee attacks."
+        }
+      },
+      {
+        "name": "18. Deflect III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "3 missiles",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Deflect I, except affects 3 missiles."
+        }
+      },
+      {
+        "name": "20. Spell Deflect II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "2 spells",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Deflect I, except affects 2 elemental attack spells."
+        }
+      },
+      {
+        "name": "25. Bladeturn III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "3 attacks",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Bladeturn I, except affects 3 melee attacks."
+        }
+      },
+      {
+        "name": "30. Spell Deflect III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "3 spells",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Spell Deflect I, except affects 3 elemental attack spells."
+        }
+      },
+      {
+        "name": "50. Deflect True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "3 attacks",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Deflect I, Bladeturn I, and Spell Deflect I; except any 3 attacks can be deflected."
+        }
+      }
+    ]
+  }
+}

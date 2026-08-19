@@ -1,0 +1,292 @@
+{
+  "name": "Self Healing",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Mentalism 2.9 - Self Healing. Spells for treating the caster's own wounds: clotting, pain relief, fracture, muscle, nerve, eye/ear, vein/artery repair, suspended animation, limb reattachment, and regeneration. Special Notes: See RMFRP Section 24.1 (p. 75) for more on healing.",
+    "spells": [
+      {
+        "name": "02. Clot I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Clots a wound to reduce bleeding (i.e., hits per round damage) by one as long as caster concentrates or is immobile. This effect is permanent after an hour. If caster is unconscious, spell will operate without concentration."
+        }
+      },
+      {
+        "name": "04. Clot III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Clot I, except bleeding is reduced by up to 3 hits per round."
+        }
+      },
+      {
+        "name": "05. Pain Relief I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Heals 1 hit per minute for as long as the caster concentrates. If caster is unconscious, this spell will operate without concentration."
+        }
+      },
+      {
+        "name": "06. Fracture Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Concentrating with this spell for 2 hours will repair a broken bone (though not a shattered or destroyed bone)."
+        }
+      },
+      {
+        "name": "07. Cut Repair I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Clot I, except it is permanent immediately."
+        }
+      },
+      {
+        "name": "08. Muscle/Tendon Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fracture Repair, except damaged muscles or tendons may be repaired."
+        }
+      },
+      {
+        "name": "10. Minor Nerve Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Repairs minor damage to one nerve. Requires a 1 day recovery period. Minor damage is defined as any nerve damage that results in penalties up to -20."
+        }
+      },
+      {
+        "name": "11. Eye/Ear Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Concentrating with this spell for 2 hours per day for 1-10 days (depending on the severity) will repair any external damage to the caster's ear (including ear loss) or eye (including corneal scratches, removal of foreign objects, etc.)."
+        }
+      },
+      {
+        "name": "12. Vein/Artery Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fracture Repair, except repairs a vein or an artery."
+        }
+      },
+      {
+        "name": "13. Pain Relief II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Pain Relief I, except 2 hits per minute are healed."
+        }
+      },
+      {
+        "name": "15. Self Keeping",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Upon receiving a death blow, the caster goes into a state of suspended animation. The caster will remain in this state until he is cured or his brain is destroyed."
+        }
+      },
+      {
+        "name": "17. Self Joining",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to reattach a severed limb; limb is fully functional after 1-10 days (caster must concentrate with this spell 2 hours each day)."
+        }
+      },
+      {
+        "name": "20. Pain Relief True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Pain Relief I, except heals 1 hit per round."
+        }
+      },
+      {
+        "name": "25. Limb Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Concentrating with this spell for 2 hours per day for 10-100 days will regenerate a limb."
+        }
+      },
+      {
+        "name": "30. Organ Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "After any organ (except brain) is destroyed, the caster may use Self Keeping and this spell. The organ is regenerated after 10-100 days of complete inactivity."
+        }
+      },
+      {
+        "name": "50. Regeneration True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Organ Regeneration, except all damage (except brain) is regenerated in 10-100 days."
+        }
+      }
+    ]
+  }
+}

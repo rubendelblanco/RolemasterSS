@@ -1,0 +1,377 @@
+{
+  "name": "Anticipations",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Mentalism 2.1 - Anticipations. Spells for anticipating missile, melee, and spell attacks, sensing hostility, guessing between limited options, gazing into probable futures, and perceiving the recent history of a room or place. Special Notes: (1) When using Guess, the caster must have a limited number of options (i.e., finite and countable); after casting, the caster may not cast another Guess for the same information until his skill rank for this list has increased. (2) When dealing with Dreams, a GM should use symbology (see Section 15.16, p. 99). (3) See Section 15.13 (p. 98) for more on information spells.",
+    "spells": [
+      {
+        "name": "01. Anticipate Missile",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 missile",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is aware of any missiles being fired at him this round. If the caster is currently capable of moving, he gets a special bonus of +50 to his DB against the missile attack of his choice. It is assumed that the caster moves at least slightly to attempt to avoid the attack."
+        }
+      },
+      {
+        "name": "02. Anticipate Blow",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 attack",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Anticipate Missile, except applies to melee attacks."
+        }
+      },
+      {
+        "name": "03. Guess",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When faced with a choice about which he has little or no information (e.g., which corridor leads outside the quickest) the caster may cast this spell and the Gamemaster will determine which way he goes, biasing the choice favorable by 25% (e.g, roll 1-100: correct on 26-100, incorrect on 01-25)."
+        }
+      },
+      {
+        "name": "04. Anticipate Spell",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 spell",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Anticipate Missile, except applies to spell attacks. Caster gets a special bonus of +50 to his DB against a directed elemental attack; or +20 against an area elemental attack; or a basic spell attack suffers a special penalty of -10."
+        }
+      },
+      {
+        "name": "05. Intuitions I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains a vision of what will probably happen in the next minute if he takes a specified action."
+        }
+      },
+      {
+        "name": "06. Anticipate Hostility",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "10'R",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is aware of any being within the area of effect that has hostile intentions towards him. The hostility must be directed specifically at the caster or the spell reveals nothing. The being's hostility must be active (i.e., driving the being to perform aggressive actions), not passive (i.e., hate exists, but no action is planned)."
+        }
+      },
+      {
+        "name": "08. Dream I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "sleep",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster has a dream relating to a topic decided upon just before retiring. This spell can only be used once per night. The caster must sleep a minimum of one normal sleep cycle."
+        }
+      },
+      {
+        "name": "09. Room Feel I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1'R/lvl",
+          "duration": "varies",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster has a vision of what has occurred in a room or place; limited to up to 1 minute per level into the past. The size of the room is limited to the area of effect."
+        }
+      },
+      {
+        "name": "10. Anticipations",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Predicts most probable actions of a being (the target) in the next round; specifics are not learned (e.g., attack in melee, cast a spell; but no detail on attack target or what spell). This results in the caster being able to declare his statement of intent for the round after hearing what the target has decided to do. Note that the target is free to change his declared action with the requisite penalties."
+        }
+      },
+      {
+        "name": "11. Intuitions II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Intuitions I, except caster gets to gaze 2 minutes into the future."
+        }
+      },
+      {
+        "name": "12. Room Feel II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Room Feel I, except limit is 1 hour per level."
+        }
+      },
+      {
+        "name": "13. Anticipate Hostility True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'R/lvl",
+          "duration": "1 min/lvl(C)",
+          "range": "10'/lvl",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Anticipate Hostility, except for area of effect, duration and range."
+        }
+      },
+      {
+        "name": "14. Dream II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "sleep",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dream I, except limit is 2 dreams/night on different topics."
+        }
+      },
+      {
+        "name": "15. Spell Anticipation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Anticipations, except if action is to cast a spell, the spell to be cast and target are learned."
+        }
+      },
+      {
+        "name": "16. Room Feel III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Room Feel I, except limit is 1 day per level."
+        }
+      },
+      {
+        "name": "17. Dream III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "sleep",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dream I, except limit is 3 dreams/night on different topics."
+        }
+      },
+      {
+        "name": "19. Room Feel True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Room Feel I, except limit is 1 week per level."
+        }
+      },
+      {
+        "name": "20. Intuitions True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Intuitions I, except time limit extends 1 minute per level into the future."
+        }
+      },
+      {
+        "name": "25. Anticipations True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Anticipations, except caster can predict actions of all beings within 100' of him."
+        }
+      },
+      {
+        "name": "30. Dream V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "sleep",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Dream I, except limit is 5 dreams/night on any combination of topics the caster chooses."
+        }
+      },
+      {
+        "name": "50. Spell Anticipation True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Anticipations True, except spell types and targets are learned."
+        }
+      }
+    ]
+  }
+}

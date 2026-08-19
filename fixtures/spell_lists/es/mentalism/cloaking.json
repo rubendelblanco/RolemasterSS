@@ -1,0 +1,394 @@
+{
+  "name": "Encubrimiento",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Abierto 2.4 - Encubrimiento. Hechizos para ocultar, disfrazar y duplicar al lanzador, y para desviar ataques probables, incluyendo las familias Encubrimiento, Esfera de Encubrimiento, Fachadas, Mentalista Sombra y Desplazamiento. Notas Especiales: (1) Los hechizos de Encubrimiento no son hechizos de Invisibilidad y ninguna de las reglas normales de invisibilidad se aplica (p.ej., el lanzador no se vuelve \"visible\" al atacar o ser golpeado, etc.). (2) Ver Sección 15.14 (p. 98) para más información sobre ilusiones.",
+    "spells": [
+      {
+        "name": "01. Desenfoque",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que el lanzador aparezca desenfocado ante los atacantes, restando 10 a todos los ataques dirigidos contra él."
+        }
+      },
+      {
+        "name": "02. Sombra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador y los objetos que lleva encima parecen una sombra, y por tanto son casi invisibles en zonas oscuras (p.ej., en muchas situaciones esto podría gestionarse con un bono especial de entre +25 y +75 a maniobras de Acecho/Ocultación)."
+        }
+      },
+      {
+        "name": "03. No Visto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "object",
+          "duration": "24 horas",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un único objeto se vuelve invisible (1 prenda, 1 cuerpo desnudo, etc.); hasta que pasen 24 horas o el objeto reciba un golpe violento (ser golpeado por un arma, una caída, etc.) o el objeto realice un movimiento violento (es decir, un ataque). Ver Sección 15.5 (p. 96) para más información sobre la Invisibilidad."
+        }
+      },
+      {
+        "name": "04. Encubrimiento I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl(C)",
+          "range": "10'/nvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod. RR: -50] El objetivo hace una RR. El fallo hace que el lanzador quede invisible para el objetivo; los demás lo ven con normalidad. Si el lanzador realiza una acción evidente (p.ej., hablar, mover un objeto, etc.), el objetivo puede hacer otra RR (el DJ puede aplicar modificadores a esta RR según la acción realizada). Si el lanzador ataca al objetivo, este puede hacer otra RR con un modificador especial de +50. Si el lanzador empieza a concentrarse (50% de actividad), puede extender la duración del hechizo indefinidamente (mientras pueda seguir concentrado)."
+        }
+      },
+      {
+        "name": "05. Fachadas I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 hr/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Una ilusión limitada que permite al lanzador parecerse a cualquier figura humanoide dentro de un 20% de su propio tamaño. Ver Sección 15.14 (p. 98) para más información sobre ilusiones."
+        }
+      },
+      {
+        "name": "06. Encubrimiento III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "3 objetivos",
+          "duration": "1 min/nvl(C)",
+          "range": "10'/nvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encubrimiento I, salvo que el lanzador puede afectar a 3 objetivos (el lanzador hace una única tirada de ataque base que se aplica a todos los objetivos)."
+        }
+      },
+      {
+        "name": "07. Esfera de Encubrimiento I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encubrimiento I, salvo que cada objetivo dentro del área de efecto debe hacer una RR (una única tirada de ataque base por ronda para todos los objetivos). Una vez que un objetivo hace una RR con éxito, no necesita volver a tirar contra el hechizo."
+        }
+      },
+      {
+        "name": "08. Encubrimiento V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "5 objetivos",
+          "duration": "1 min/nvl(C)",
+          "range": "10'/nvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encubrimiento I, salvo que el lanzador puede afectar a 5 objetivos (el lanzador hace una única tirada de ataque base que se aplica a todos los objetivos)."
+        }
+      },
+      {
+        "name": "09. Esfera de Encubrimiento II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "20'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Esfera de Encubrimiento I, salvo por el área de efecto."
+        }
+      },
+      {
+        "name": "10. Mentalista Sombra I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un duplicado del lanzador; si este se concentra, el duplicado se mueve según su voluntad; en caso contrario, hace exactamente lo mismo que él. El duplicado solo puede moverse dentro del área de efecto. Si el lanzador se concentra, puede \"fusionar\" el duplicado consigo mismo y luego volver a separarlo (dificultando saber cuál es el lanzador \"real\")."
+        }
+      },
+      {
+        "name": "11. Fachadas II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 hr/nvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fachadas I, salvo que la ilusión puede incluir sonidos y voces."
+        }
+      },
+      {
+        "name": "12. Encubrimiento X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "10 objetivos",
+          "duration": "1 min/nvl(C)",
+          "range": "10'/nvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encubrimiento I, salvo que el lanzador puede afectar a 10 objetivos (el lanzador hace una única tirada de ataque base que se aplica a todos los objetivos)."
+        }
+      },
+      {
+        "name": "13. Esfera de Encubrimiento III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "30'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Esfera de Encubrimiento I, salvo por el área de efecto."
+        }
+      },
+      {
+        "name": "14. Desplazamiento I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador parece estar desplazado de donde realmente está. Todos los ataques no tienen efecto un 10% de las veces (sin RR normales). Cada vez que un enemigo falla contra él, la probabilidad de \"sin efecto\" para ese enemigo baja un 5%."
+        }
+      },
+      {
+        "name": "15. Camuflaje",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador y los objetos que lleva encima adoptan la textura visual, el color y la forma del entorno. El lanzador es casi invisible cuando está inmóvil (bono especial de +200 a todas las maniobras de Ocultación) y tiene un bono especial de +50 a maniobras de Acecho (si se concentra). Este hechizo no es acumulable con Sombra."
+        }
+      },
+      {
+        "name": "16. Encubrimiento XX",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "20 objetivos",
+          "duration": "1 min/nvl(C)",
+          "range": "10'/nvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encubrimiento I, salvo que el lanzador puede afectar a 20 objetivos (el lanzador hace una única Tirada de Ataque Base que se aplica a todos los objetivos)."
+        }
+      },
+      {
+        "name": "18. Desplazamiento II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desplazamiento I, salvo que la probabilidad de \"sin efecto\" es del 20%."
+        }
+      },
+      {
+        "name": "19. Esfera de Encubrimiento V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Esfera de Encubrimiento I, salvo por el área de efecto."
+        }
+      },
+      {
+        "name": "20. Mentalista Sombra II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Mentalista Sombra I, salvo que hay dos duplicados."
+        }
+      },
+      {
+        "name": "25. Desplazamiento III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desplazamiento I, salvo que la probabilidad de \"sin efecto\" es del 30%."
+        }
+      },
+      {
+        "name": "30. Camuflaje Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Camuflaje, salvo que no requiere concentración al moverse y el bono de Acecho es 75."
+        }
+      },
+      {
+        "name": "50. Encubrimiento Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "1 min/nvl(C)",
+          "range": "vista",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encubrimiento I, salvo que el lanzador puede afectar a tantos objetivos como niveles tenga y el alcance está limitado únicamente al campo de visión del lanzador."
+        }
+      }
+    ]
+  }
+}

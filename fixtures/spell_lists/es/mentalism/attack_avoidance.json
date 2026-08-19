@@ -1,0 +1,275 @@
+{
+  "name": "Evasión de Ataques",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Abierto 2.2 - Evasión de Ataques. Hechizos para desviar proyectiles, ataques cuerpo a cuerpo y hechizos de ataque elementales; incluye Escudo y Aire Quieto.",
+    "spells": [
+      {
+        "name": "01. Desviar Proyectil",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 proyectil",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede desviar un proyectil que pase a menos de 100' de él (debe poder ver el proyectil). Esto resta 20 al ataque del proyectil."
+        }
+      },
+      {
+        "name": "02. Desviar Hoja",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 ataque",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Proyectil, salvo que se aplica a un ataque cuerpo a cuerpo."
+        }
+      },
+      {
+        "name": "03. Escudo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un escudo de fuerza invisible frente al lanzador. Funciona como un escudo normal (restando 25 a los ataques correspondientes, etc.), salvo que no ocupa una mano. Este hechizo no puede combinarse con un escudo \"real\"."
+        }
+      },
+      {
+        "name": "05. Desviar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 proyectil",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Proyectil, salvo que se resta 100 al ataque."
+        }
+      },
+      {
+        "name": "06. Desviar Hoja I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 ataque",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede desviar un ataque cuerpo a cuerpo que pueda ver (y esté dentro del alcance). Esto resta 50 al ataque."
+        }
+      },
+      {
+        "name": "08. Puntería Falsa I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 proyectil",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede desviar un proyectil que pase a menos de 100' de él (debe poder ver el proyectil). Esto hace que el proyectil falle automáticamente su objetivo."
+        }
+      },
+      {
+        "name": "10. Aire Quieto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1\"R/nvl",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea una bolsa de aire quieto de 1\" por nivel alrededor del lanzador, en la que no puede entrar gas exterior. Normalmente, una persona consumirá todo el oxígeno de la bolsa a lo largo del hechizo (1 minuto por nivel)."
+        }
+      },
+      {
+        "name": "11. Desviar II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "2 proyectiles",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar I, salvo que afecta a 2 proyectiles."
+        }
+      },
+      {
+        "name": "13. Desviar Hechizo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Desvía un hechizo elemental contra el lanzador. Se suma -50 a la tirada de ataque (debe estar en el campo de visión del lanzador)."
+        }
+      },
+      {
+        "name": "15. Desviar Hoja II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "2 ataques",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hoja I, salvo que afecta a 2 ataques cuerpo a cuerpo."
+        }
+      },
+      {
+        "name": "18. Desviar III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "3 proyectiles",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar I, salvo que afecta a 3 proyectiles."
+        }
+      },
+      {
+        "name": "20. Desviar Hechizo II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "2 hechizos",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hechizo I, salvo que afecta a 2 hechizos de ataque elementales."
+        }
+      },
+      {
+        "name": "25. Desviar Hoja III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "3 ataques",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hoja I, salvo que afecta a 3 ataques cuerpo a cuerpo."
+        }
+      },
+      {
+        "name": "30. Desviar Hechizo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "3 hechizos",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar Hechizo I, salvo que afecta a 3 hechizos de ataque elementales."
+        }
+      },
+      {
+        "name": "50. Desviar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "3 ataques",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desviar I, Desviar Hoja I y Desviar Hechizo I; salvo que se pueden desviar 3 ataques cualesquiera."
+        }
+      }
+    ]
+  }
+}

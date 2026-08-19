@@ -1,0 +1,377 @@
+{
+  "name": "Anticipaciones",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Abierto 2.1 - Anticipaciones. Hechizos para anticipar ataques de proyectiles, cuerpo a cuerpo y hechizos, sentir hostilidad, adivinar entre opciones limitadas, vislumbrar futuros probables y percibir la historia reciente de una sala o lugar. Notas Especiales: (1) Al usar Adivinar, el lanzador debe enfrentarse a un número limitado de opciones (es decir, finito y contable); tras lanzarlo, no puede volver a lanzar Adivinar para la misma información hasta que su rango de habilidad en esta lista haya aumentado. (2) Al tratar con Sueños, el DJ debería usar simbología (ver Sección 15.16, p. 99). (3) Ver Sección 15.13 (p. 98) para más información sobre hechizos de información.",
+    "spells": [
+      {
+        "name": "01. Anticipar Proyectil",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 proyectil",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador es consciente de cualquier proyectil que le disparen esta ronda. Si el lanzador puede moverse en ese momento, obtiene un bono especial de +50 a su DB contra el ataque de proyectil que elija. Se asume que el lanzador se mueve al menos ligeramente para intentar evitar el ataque."
+        }
+      },
+      {
+        "name": "02. Anticipar Golpe",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 ataque",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Anticipar Proyectil, salvo que se aplica a ataques cuerpo a cuerpo."
+        }
+      },
+      {
+        "name": "03. Adivinar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Ante una elección sobre la que tiene poca o ninguna información (p.ej., qué pasillo lleva antes al exterior), el lanzador puede lanzar este hechizo y el Gamemaster determinará qué camino toma, favoreciendo la elección correcta en un 25% (p.ej., tirada 1-100: acierta en 26-100, falla en 01-25)."
+        }
+      },
+      {
+        "name": "04. Anticipar Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 hechizo",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Anticipar Proyectil, salvo que se aplica a ataques de hechizo. El lanzador obtiene un bono especial de +50 a su DB contra un ataque elemental dirigido; o +20 contra un ataque elemental de área; o un ataque de hechizo básico sufre una penalización especial de -10."
+        }
+      },
+      {
+        "name": "05. Intuiciones I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene una visión de lo que probablemente sucederá en el próximo minuto si toma una acción especificada."
+        }
+      },
+      {
+        "name": "06. Anticipar Hostilidad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "10'R",
+          "duration": "—",
+          "range": "10'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador es consciente de cualquier ser dentro del área de efecto que tenga intenciones hostiles hacia él. La hostilidad debe estar dirigida específicamente al lanzador o el hechizo no revela nada. La hostilidad del ser debe ser activa (es decir, impulsa al ser a realizar acciones agresivas), no pasiva (es decir, existe odio, pero no hay ninguna acción planeada)."
+        }
+      },
+      {
+        "name": "08. Sueño I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "sueño",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador tiene un sueño relacionado con un tema decidido justo antes de acostarse. Este hechizo solo puede usarse una vez por noche. El lanzador debe dormir un mínimo de un ciclo de sueño normal."
+        }
+      },
+      {
+        "name": "09. Sentir el Lugar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1'R/nvl",
+          "duration": "varía",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador tiene una visión de lo que ha ocurrido en una sala o lugar; limitado hasta 1 minuto por nivel hacia el pasado. El tamaño de la sala está limitado por el área de efecto."
+        }
+      },
+      {
+        "name": "10. Anticipaciones",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Predice las acciones más probables de un ser (el objetivo) en la próxima ronda; no se aprenden detalles concretos (p.ej., atacar cuerpo a cuerpo, lanzar un hechizo; pero no el objetivo del ataque ni qué hechizo). Esto permite al lanzador declarar su declaración de intenciones para la ronda después de oír lo que el objetivo ha decidido hacer. Nótese que el objetivo es libre de cambiar su acción declarada con las penalizaciones correspondientes."
+        }
+      },
+      {
+        "name": "11. Intuiciones II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Intuiciones I, salvo que el lanzador puede vislumbrar 2 minutos hacia el futuro."
+        }
+      },
+      {
+        "name": "12. Sentir el Lugar II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir el Lugar I, salvo que el límite es 1 hora por nivel."
+        }
+      },
+      {
+        "name": "13. Anticipar Hostilidad Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'R/nvl",
+          "duration": "1 min/nvl(C)",
+          "range": "10'/nvl",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Anticipar Hostilidad, salvo por el área de efecto, la duración y el alcance."
+        }
+      },
+      {
+        "name": "14. Sueño II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "sueño",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sueño I, salvo que el límite es 2 sueños/noche sobre temas diferentes."
+        }
+      },
+      {
+        "name": "15. Anticipación de Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Anticipaciones, salvo que si la acción es lanzar un hechizo, se aprenden el hechizo a lanzar y el objetivo."
+        }
+      },
+      {
+        "name": "16. Sentir el Lugar III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir el Lugar I, salvo que el límite es 1 día por nivel."
+        }
+      },
+      {
+        "name": "17. Sueño III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "sueño",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sueño I, salvo que el límite es 3 sueños/noche sobre temas diferentes."
+        }
+      },
+      {
+        "name": "19. Sentir el Lugar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir el Lugar I, salvo que el límite es 1 semana por nivel."
+        }
+      },
+      {
+        "name": "20. Intuiciones Verdaderas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Intuiciones I, salvo que el límite temporal se extiende 1 minuto por nivel hacia el futuro."
+        }
+      },
+      {
+        "name": "25. Anticipaciones Verdaderas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "100'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Anticipaciones, salvo que el lanzador puede predecir las acciones de todos los seres a 100' de él."
+        }
+      },
+      {
+        "name": "30. Sueño V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "sueño",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sueño I, salvo que el límite es 5 sueños/noche sobre cualquier combinación de temas que el lanzador elija."
+        }
+      },
+      {
+        "name": "50. Anticipación de Hechizo Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "100'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Anticipaciones Verdaderas, salvo que se aprenden los tipos de hechizo y los objetivos."
+        }
+      }
+    ]
+  }
+}

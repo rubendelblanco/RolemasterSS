@@ -1,0 +1,309 @@
+{
+  "name": "Escudriñar",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Abierto 2.6 - Escudriñar. Hechizos para leer la historia, el origen, las maldiciones y los poderes de objetos, y para visionar eventos pasados asociados a un objeto o lugar. Notas Especiales: (1) Una \"maldición\" suele ser algo perjudicial y de naturaleza mágica (p.ej., procedente de la lista de hechizos Maldiciones, ver Spell Law: Of Channeling Sección 10.1, p. 62). El DJ puede decidir que los hechizos de \"maldición\" de esta lista solo se apliquen a maldiciones mágicas. (2) Ver Sección 15.13 (p. 98) para más información sobre hechizos de información.",
+    "spells": [
+      {
+        "name": "01. Sentir el Objeto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador recibe una idea básica del propósito del objeto, si lo tiene."
+        }
+      },
+      {
+        "name": "02. Detectar Poder",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl(C)",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detecta poder en un objeto, pero no de qué reino ni cuánto; el lanzador puede concentrarse en un objeto diferente cada ronda."
+        }
+      },
+      {
+        "name": "03. Orígenes",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da una idea general del lugar de origen de un objeto."
+        }
+      },
+      {
+        "name": "05. Detectar Maldición",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detecta si un objeto tiene una maldición."
+        }
+      },
+      {
+        "name": "06. Saber del Poder",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da los orígenes del poder de un objeto."
+        }
+      },
+      {
+        "name": "07. Saber de la Roca",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 roca",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da detalles de dónde, cuándo y cómo fue trabajado el fragmento de roca examinado."
+        }
+      },
+      {
+        "name": "08. Visión del Objeto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objeto",
+          "duration": "varía",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da una visión de un evento significativo en el pasado del objeto."
+        }
+      },
+      {
+        "name": "10. Escudriñar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da detalles significativos sobre la construcción y el propósito de un objeto (no sus poderes concretos)."
+        }
+      },
+      {
+        "name": "11. Visión del Pasado I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene una visión de hasta 1 hora por nivel hacia el pasado. El momento deseado puede fijarse con un margen de ±30 min. La visión debe estar asociada a un objeto o lugar. La visión puede durar hasta 1 minuto por nivel si el lanzador se concentra y permanece inactivo."
+        }
+      },
+      {
+        "name": "13. Saber del Objeto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da las habilidades y poderes principales de un objeto."
+        }
+      },
+      {
+        "name": "15. Memoria de la Muerte",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da una visión de cómo murió alguien y una imagen de su asesino. Este hechizo debe lanzarse dentro de las 24 horas siguientes a la muerte. Además, debe lanzarse en el lugar de la muerte o en presencia del cadáver."
+        }
+      },
+      {
+        "name": "17. Sujeción del Pasado",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Lanzado justo antes de un hechizo de Visión del Pasado, permite al lanzador fijarse en un evento concreto del pasado de un objeto, para luego examinar ese evento con una Visión del Pasado."
+        }
+      },
+      {
+        "name": "19. Análisis del Objeto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "6\"",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da un desglose completo de la construcción, poderes y propósito de un objeto (puede modificarse si un objeto es extremadamente poderoso)."
+        }
+      },
+      {
+        "name": "20. Visión del Pasado II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión del Pasado I, salvo que el rango temporal es de 1 día por nivel (con un margen de error de ±1 hora) y la visión puede durar hasta 10 minutos por nivel."
+        }
+      },
+      {
+        "name": "25. Visión del Pasado III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión del Pasado I, salvo que el rango temporal es de 1 mes por nivel (con un margen de error de ±1 día) y la visión puede durar hasta 1 hora por nivel."
+        }
+      },
+      {
+        "name": "30. Visión del Pasado IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión del Pasado I, salvo que el rango temporal es de 1 año por nivel (con un margen de error de ±1 semana) y la visión puede durar hasta 5 horas por nivel."
+        }
+      },
+      {
+        "name": "50. Visión del Pasado Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión del Pasado I, salvo que el rango temporal es de 10 años por nivel (con un margen de error de ±1 mes) y la visión puede durar hasta 10 horas por nivel (cada hora del evento pasado equivale solo a 10 minutos de tiempo real)."
+        }
+      }
+    ]
+  }
+}

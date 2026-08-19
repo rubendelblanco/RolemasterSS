@@ -1,0 +1,292 @@
+{
+  "name": "Resistencia al Daño",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Abierto 2.5 - Resistencia al Daño. Hechizos para resistir el calor y el frío, soportar golpes de conmoción adicionales, aliviar el aturdimiento, retrasar y neutralizar venenos, y despertar de un sueño no natural. Notas Especiales: Para más información sobre curación, ver RMFRP Sección 24.1 (p. 75).",
+    "spells": [
+      {
+        "name": "01. Resistencia al Calor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador queda protegido del calor natural hasta 170°F (se trata como si estuviera a 70°F). Para temperaturas superiores a 170°F, se restan 100°F para determinar la temperatura efectiva sobre el lanzador. También recibe +20 a todas las RR contra hechizos y ataques de calor (+20 DB contra ataques elementales de fuego y calor)."
+        }
+      },
+      {
+        "name": "02. Resistencia al Frío",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador queda protegido del frío natural hasta 20°F (se trata como si estuviera a 70°F). Para temperaturas inferiores a 20°F, se suman 50°F para determinar la temperatura efectiva sobre el lanzador. También recibe +20 a todas las RR contra hechizos y ataques de frío (+20 DB contra ataques elementales de frío)."
+        }
+      },
+      {
+        "name": "05. Insensibilidad I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede soportar un 25% adicional de su total de golpes de conmoción (redondeado) antes de desmayarse. Los golpes se siguen recibiendo y permanecen cuando la duración expira."
+        }
+      },
+      {
+        "name": "06. Alivio del Aturdimiento I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Alivia 1 ronda de aturdimiento acumulado."
+        }
+      },
+      {
+        "name": "07. Resistir Veneno",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Retrasa el efecto de un veneno mientras el lanzador se concentre."
+        }
+      },
+      {
+        "name": "10. Insensibilidad II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Insensibilidad I, salvo que puede soportarse un 50% adicional de golpes."
+        }
+      },
+      {
+        "name": "11. Alivio del Aturdimiento III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio del Aturdimiento I, salvo que se alivian 3 rondas."
+        }
+      },
+      {
+        "name": "12. Neutralizar Veneno",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Tiene un 50% de probabilidad de neutralizar un veneno (modificado por la potencia del veneno) si el lanzador está inconsciente o se concentra durante una hora. En cualquier caso, retrasa el veneno mientras el lanzador pueda concentrarse."
+        }
+      },
+      {
+        "name": "14. Despertar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Despierta al lanzador de cualquier sueño no natural (p.ej., hechizo de Sueño, droga somnífera, etc.). El lanzador tarda una ronda en despertar."
+        }
+      },
+      {
+        "name": "15. Insensibilidad III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Insensibilidad I, salvo que puede soportarse un 75% adicional de golpes."
+        }
+      },
+      {
+        "name": "17. Resistencia al Calor Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistencia al Calor, salvo que el lanzador es inmune al calor natural y sufre un 50% del daño normal de hechizos de calor."
+        }
+      },
+      {
+        "name": "18. Resistencia al Frío Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resistencia al Frío, salvo que el lanzador también es inmune al frío natural y sufre un 50% del daño normal de hechizos de frío."
+        }
+      },
+      {
+        "name": "20. Insensibilidad IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Insensibilidad I, salvo que puede soportarse un 100% adicional de golpes."
+        }
+      },
+      {
+        "name": "25. Neutralizar Veneno Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Neutralizar Veneno, salvo que la probabilidad de neutralización es del 100% (modificada)."
+        }
+      },
+      {
+        "name": "30. Despertar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Despertar, salvo que no hay retraso y puede usarse con sueño normal, configurándose para activarse ante cualquier actividad (p.ej., ataque, peligro, etc.)."
+        }
+      },
+      {
+        "name": "50. Insensibilidad Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Insensibilidad IV, salvo que el lanzador ignora todo el dolor. Permanecerá activo hasta que reciba más de: [2 x golpes normales + Constitución Temporal]. Ignora todas las penalizaciones por heridas (es decir, modificaciones negativas a las acciones). Al superar este límite, no se desmaya; muere por shock del sistema."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "name": "Brilliance",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Mentalism 2.3 - Brilliance. Spells for creating and controlling light and darkness, auras, and light-based attacks including Shock Bolt, Sunfires and Hand of Fire. Special Notes: None of the Aura spells (Self Aura and True Aura) are cumulative with each other or with the Blur spell.",
+    "spells": [
+      {
+        "name": "01. Projected Light",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "50' beam",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A beam of light (like a flashlight) springs from the caster's palm. This beam has a 50' effective range. When his hand is made into a fist, the light will \"shut off\" until the fist is opened again."
+        }
+      },
+      {
+        "name": "02. Glow",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes a small, 1\" diameter point of light that will glow softly. This spell provides enough light for Nightvision to work properly; but not enough light to allow much mobility in the dark."
+        }
+      },
+      {
+        "name": "03. Light I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Lights a 10' radius area about the point touched. If the point is on a mobile object or being, it will move with the object/being."
+        }
+      },
+      {
+        "name": "04. Self Aura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes a bright aura about the caster, making him appear more powerful and subtracting 5 from all attacks."
+        }
+      },
+      {
+        "name": "05. Light Eruption",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -10] Causes a 10' radius sphere of intense light. All within are stunned for 1 round per 10 failure."
+        }
+      },
+      {
+        "name": "06. Shock Bolt",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "DE",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A bolt of intense, charged light is shot from the palm of the caster. Results are determined on the Shock Bolt Attack Table 13.8 (p. 87)."
+        }
+      },
+      {
+        "name": "07. Darkness I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "10'R",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Light, except a 10' radius of normal darkness is created. See Section 15.12 (p. 98)."
+        }
+      },
+      {
+        "name": "08. True Aura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Self Aura, except it makes him appear extremely powerful and subtracts 15 from all attacks."
+        }
+      },
+      {
+        "name": "10. Light V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "50'R",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Light I, except radius is 50'."
+        }
+      },
+      {
+        "name": "11. Darkness V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "50'R",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Darkness I, except radius is 50'."
+        }
+      },
+      {
+        "name": "13. Hue",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1000 cu'",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes any object up to 1000 cubic feet to glow with any desired color."
+        }
+      },
+      {
+        "name": "15. Beacon",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "5 mi R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Ray of light of any color springs from caster's hand. This ray can be up to 5 miles long."
+        }
+      },
+      {
+        "name": "16. Greater Darkness",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "100'R/lvl",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Darkness I, except radius is 100' per level."
+        }
+      },
+      {
+        "name": "18. Utterlight",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "100'R",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Light I, except radius is 100' and it is equivalent to full daylight. All magically created darkness is nullified for the duration."
+        }
+      },
+      {
+        "name": "19. Utterdark",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "100'R",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Darkens a 100' radius, no non-magical light can exist in the area and magic light (except for Utterlight) must make a RR or it is canceled."
+        }
+      },
+      {
+        "name": "20. Sunfires",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 point",
+          "duration": "C",
+          "range": "500'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Focuses sunlight as a lens, must be focused initially on a fixed point. After 1 round it can be moved at a rate of 1' per round. It will burn through a 1' diameter at a rate of 1' per round (for wood), 4\" per round (for stone), or 1\" per round (for metal). This spell cannot be used effectively in combat (as foes can easily move out of the way). However, if used on an immobile foe, see Hand of Fire for damage resolution process."
+        }
+      },
+      {
+        "name": "25. Sunfires True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 point",
+          "duration": "C",
+          "range": "500'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sunfires, except doesn't need sunlight."
+        }
+      },
+      {
+        "name": "30. Hand of Fire",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 point",
+          "duration": "1 rnd/lvl",
+          "range": "6\"",
+          "type": "DE",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sunfires, except the range and focus is 6\" from open palm of caster (caster's arm is immune) and it can be moved 10' per round. It can be used in melee; striking on the Fire Bolt Attack Table 13.5, p. 84, (deliver double concussion hits) with an OB equal to (30 + caster's directed spell skill bonus with Hand of Fire). If the attack is fumbled (01-02 UM), the caster takes an automatic 'C' Heat Critical."
+        }
+      },
+      {
+        "name": "50. Hand of Fire True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 point",
+          "duration": "C",
+          "range": "6\"",
+          "type": "DE",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hand of Fire, except doesn't need sunlight."
+        }
+      }
+    ]
+  }
+}

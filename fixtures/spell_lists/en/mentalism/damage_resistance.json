@@ -1,0 +1,292 @@
+{
+  "name": "Damage Resistance",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Mentalism 2.5 - Damage Resistance. Spells for resisting heat and cold, sustaining extra concussion hits, relieving stun, delaying and neutralizing poison, and waking from unnatural sleep. Special Notes: For more on healing, see RMFRP Section 24.1 (p. 75).",
+    "spells": [
+      {
+        "name": "01. Heat Resistance",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is protected from natural heat up to 170°F (treat as if target were in 70°F temperature). For temperatures above 170°F, subtract 100°F to determine the effective temperature for the target. Caster also receives +20 to all RRs versus heat spells and heat attacks (+20 DB versus elemental fire and heat attacks)."
+        }
+      },
+      {
+        "name": "02. Cold Resistance",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is protected from natural cold down to 20°F (treat as if target were in 70°F temperature). For temperatures below 20°F, add 50°F to determine the effective temperature for the target. Caster also receives +20 to all RRs versus cold spells and cold attacks (+20 DB versus elemental cold and cold attacks)."
+        }
+      },
+      {
+        "name": "05. Unpain I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is able to sustain an additional 25% of his total concussion hits (round off) before passing out. Hits are still taken and remain when the duration expires."
+        }
+      },
+      {
+        "name": "06. Stun Relief I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Relieves 1 round's worth of accumulated stun."
+        }
+      },
+      {
+        "name": "07. Resist Poison",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Delays the effect of a poison as long as the caster concentrates."
+        }
+      },
+      {
+        "name": "10. Unpain II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unpain I, except 50% additional hits may be sustained."
+        }
+      },
+      {
+        "name": "11. Stun Relief III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stun Relief I, except 3 rounds are relieved."
+        }
+      },
+      {
+        "name": "12. Neutralize Poison",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Has a 50% chance of neutralizing a poison (modified by potency of the poison) if the caster is unconscious or concentrates for one hour. In any case, it delays the poison for as long as the caster can concentrate."
+        }
+      },
+      {
+        "name": "14. Awake",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Will awaken the caster from any unnatural sleep (e.g., Sleep spell, sleeping drug, etc.). Caster takes one round to awaken."
+        }
+      },
+      {
+        "name": "15. Unpain III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unpain I, except 75% additional hits may be sustained."
+        }
+      },
+      {
+        "name": "17. Heat Resistance True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Heat Resistance, except caster is immune to natural heat and takes 50% normal damage from heat spells."
+        }
+      },
+      {
+        "name": "18. Cold Resistance True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cold Resistance, except caster is also immune to natural cold and takes 50% normal damage from cold spells."
+        }
+      },
+      {
+        "name": "20. Unpain IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unpain I, except 100% additional hits may be sustained."
+        }
+      },
+      {
+        "name": "25. Neutralize Poison True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Neutralize Poison, except chance of neutralization is 100% (modified)."
+        }
+      },
+      {
+        "name": "30. Awake True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Awake, except there is no delay and it can be used with normal sleep and set to be triggered by any activity (e.g., attack, danger, etc.)."
+        }
+      },
+      {
+        "name": "50. Unpain True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unpain IV, except caster ignores all pain. He will be active until he takes more than: [2 x normal hits + Temporary Constitution]. He ignores all penalties due to wounds (i.e., negative modifications to actions). When he exceeds this limit, he does not pass out; he dies from system shock."
+        }
+      }
+    ]
+  }
+}

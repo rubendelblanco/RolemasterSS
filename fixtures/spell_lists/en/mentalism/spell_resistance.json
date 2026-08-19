@@ -1,0 +1,292 @@
+{
+  "name": "Spell Resistance",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Mentalism 2.10 - Spell Resistance. Spells for resisting and canceling elemental and base spell attacks by realm, including the Protection, Shield and Resistance families.",
+    "spells": [
+      {
+        "name": "01. Protection I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Subtracts 5 from elemental attack rolls against the caster and adds 5 to all of the caster's RRs vs. spells."
+        }
+      },
+      {
+        "name": "02. Cancel Mentalism",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 spell",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When the caster is a target of a Mentalism spell, the \"incoming\" spell must first make an RR before the caster makes an RR. For RR purposes, each spell uses a level equal its caster's level. If the \"incoming\" spell passes the RR, it may target the caster of this spell normally; otherwise the incoming spell has no effect on this target."
+        }
+      },
+      {
+        "name": "04. Cancel Essence",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 spell",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cancel Mentalism, except affects spells from the realm of Essence."
+        }
+      },
+      {
+        "name": "05. Protection II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Protection I, except bonuses are 10."
+        }
+      },
+      {
+        "name": "06. Cancel Channeling",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 spell",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cancel Mentalism, except affects spells from the realm of Channeling."
+        }
+      },
+      {
+        "name": "08. Mind Shield",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a shimmering shield in front of the caster. The shield subtracts 10 from all frontal Mentalism attack rolls on the caster (base and elemental). In addition, if the caster performs no other actions during a round, he can \"parry\" (as with a normal shield) one spell attack. The parry bonus is equal to 10 plus the caster's skill rank with this spell list."
+        }
+      },
+      {
+        "name": "10. Essence Shield",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Shield, except is effective only against Essence spells."
+        }
+      },
+      {
+        "name": "11. Protection III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Protection I, except bonuses are 15."
+        }
+      },
+      {
+        "name": "13. Channeling Shield",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Shield, except is effective only against Channeling spells."
+        }
+      },
+      {
+        "name": "15. Spell Shield II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Shield, except it is effective against any two of the three realms."
+        }
+      },
+      {
+        "name": "17. Protection V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Protection I, except bonuses are 25."
+        }
+      },
+      {
+        "name": "19. Spell Shield True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Shield, except is effective against all spells."
+        }
+      },
+      {
+        "name": "20. Mentalism Resistance",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives a special bonus of +50 to all RRs against all Mentalism spells."
+        }
+      },
+      {
+        "name": "25. Essence Resistance",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mentalism Resistance, except is only effective against Essence spells."
+        }
+      },
+      {
+        "name": "30. Channeling Resistance",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mentalism Resistance, except is only effective against Channeling spells."
+        }
+      },
+      {
+        "name": "50. Resistance True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mentalism Resistance, except is effective against two of the three realms."
+        }
+      }
+    ]
+  }
+}

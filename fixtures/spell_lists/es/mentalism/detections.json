@@ -1,0 +1,326 @@
+{
+  "name": "Detecciones",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Abierto 2.7 - Detecciones. Hechizos para detectar hechizos y objetos activos por reino, emociones, invisibilidad, maldad, trampas, nivel de poder, tipo de hechizo, y para localizar objetos. Notas Especiales: (1) \"Maldad\" (para el hechizo Detectar Maldad) se define como algo que causa (o es fuente de) sufrimiento, daño o destrucción intencionados. Ver Sección 15.2 (p. 96). (2) Para más información sobre invisibilidad, ver Sección 15.5 (p. 96). (3) Al usar el hechizo Localización, el lanzador debe proporcionar una descripción inequívoca del objeto buscado. Esto incluye como mínimo: las dimensiones del objeto (con un margen del 10% del tamaño real) y al menos otros dos atributos identificativos (p.ej., color, peso, forma, textura, etc.). A menudo, harán falta más de dos atributos adicionales para que la descripción sea \"única\" (es decir, que ningún otro objeto pueda coincidir con ella).",
+    "spells": [
+      {
+        "name": "01. Detectar Mentalismo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detecta cualquier hechizo u objeto activo del reino del Mentalismo; el lanzador puede concentrarse en un área de 5' de radio cada ronda."
+        }
+      },
+      {
+        "name": "02. Detectar Esencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Mentalismo, salvo que el reino es la Esencia."
+        }
+      },
+      {
+        "name": "03. Detectar Canalización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Mentalismo, salvo que el reino es la Canalización."
+        }
+      },
+      {
+        "name": "04. Detectar Emoción",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Mentalismo, salvo que el lanzador puede detectar emociones extremas y cuáles son (p.ej., odio, amor, tristeza, etc.). Si no hay emociones extremas (es decir, solo sentimientos normales), este hechizo no detecta nada."
+        }
+      },
+      {
+        "name": "05. Detectar Invisible",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Mentalismo, salvo que detecta todas las cosas invisibles; todos los ataques contra algo así detectado sufren -50."
+        }
+      },
+      {
+        "name": "06. Detectar Maldad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Mentalismo, salvo que detecta si un ser es malvado o si un objeto fue creado por el mal o usado durante mucho tiempo por una persona muy malvada."
+        }
+      },
+      {
+        "name": "07. Detectar Trampas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Mentalismo, salvo que da un 75% de probabilidad de detectar una trampa (los modificadores por sofisticación de la trampa pueden reducir o aumentar esta probabilidad)."
+        }
+      },
+      {
+        "name": "08. Percibir Poder I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Mentalismo, salvo que da una estimación del poder (es decir, nivel) de la persona, objeto o hechizo examinado."
+        }
+      },
+      {
+        "name": "10. Tipificar Poder",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Mentalismo, salvo que analiza el tipo general de hechizo (en un objeto o lanzado) y de qué lista procede. En el caso de una persona, indica su profesión."
+        }
+      },
+      {
+        "name": "11. Percibir Poder II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir Poder I, salvo que el alcance es de 100' y el área es de 10' de radio."
+        }
+      },
+      {
+        "name": "13. Ver Invisible",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Invisible, salvo que el lanzador puede ver cosas invisibles en cualquier lugar en el que pueda ver normalmente. Además, sus ataques no sufren penalización contra objetivos invisibles que pueda ver."
+        }
+      },
+      {
+        "name": "15. Detectar Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Mentalismo, salvo que el lanzador se percata de cualquier hechizo lanzado en el área. El lanzador sabrá el tipo de hechizo y la lista de la que procede."
+        }
+      },
+      {
+        "name": "16. Percibir Poder III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "50'R",
+          "duration": "1 min/nvl(C)",
+          "range": "500'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir Poder II, salvo que el alcance es de 500' y el área es de 50' de radio."
+        }
+      },
+      {
+        "name": "18. Tipificar Hechizo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Tipificar Poder, salvo que se conoce el tipo exacto de cada hechizo lanzado en el área."
+        }
+      },
+      {
+        "name": "20. Percibir Poder Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "300'R",
+          "duration": "1 min/nvl(C)",
+          "range": "1 milla",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir Poder III, salvo que el alcance es de 1 milla y el área de efecto es de 300' de radio."
+        }
+      },
+      {
+        "name": "25. Localización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "500'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da la dirección y la distancia hasta cualquier objeto o lugar específico que el lanzador conozca o que le hayan descrito con detalle."
+        }
+      },
+      {
+        "name": "30. Detectar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Mentalismo, salvo que puede usarse cualquiera de los hechizos de \"detectar\" de nivel inferior, uno por ronda."
+        }
+      },
+      {
+        "name": "50. Consciencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Puede usarse simultáneamente cualquiera o todos los hechizos de nivel inferior de esta lista que no sean Localización."
+        }
+      }
+    ]
+  }
+}
