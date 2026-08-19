@@ -3826,6 +3826,21 @@ button.rmss-crit-reenable-local:hover {
   max-width: 20rem;
 }
 
+/* Weapon sheet: system.isSlaying — toggles whether the tags below force the Slaying critical
+   column; independent of system.slaying_bonus (replacement OB, "+10, +25 vs Orcs") below,
+   which applies on a tag match regardless of this checkbox */
+.rmss.sheet.item .rmss-is-slaying-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.rmss.sheet.item .rmss-slaying-bonus-label {
+  margin-right: 0.5rem;
+}
+.rmss.sheet.item .rmss-slaying-bonus-input {
+  width: 4rem;
+}
+
 /* NPC/Creature sheet: system.creature_tags chips */
 .npc-sheet .rmss-creature-tags-row {
   align-items: center;

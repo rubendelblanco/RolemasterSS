@@ -9,6 +9,8 @@ import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
 import { tryConsumeMissileAmmo } from "../actors/utils/ammunition_util.js";
 import { withPublicRollMode } from "../chat/chatMessages.js";
+import { getWeaponSlayingArray } from "../sheets/items/weapon_slaying_ui.js";
+import { getCreatureTagsArray } from "../sheets/actors/creature_tags_ui.js";
 
 export class RMSSWeaponSkillManager {
 
@@ -201,6 +203,7 @@ export class RMSSWeaponSkillManager {
             const stunEffect = Utils.getEffectByName(enemy, "Stunned");
             bonusValue = 0;
             bonusEffects.forEach((bonus) => { bonusValue += bonus.flags.rmss.value; });
+            bonusValue += RMSSWeaponSkillManager._getSlayingBonusDelta(weapon, realEnemy, enemy);
             bonusValue -= Math.round((1 - (move.current / moveMax)) * 100);
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
         }
@@ -310,18 +313,23 @@ export class RMSSWeaponSkillManager {
         return confirmed;
     }
 
+    /**
+     * @param {Item} weapon
+     * @param {Actor} actor - the attacker
+     * @returns {number}
+     */
     static _getOffensiveBonusFromWeapon(weapon, actor) {
         // Handle creature_attack: they have bonus directly in system.bonus
         if (weapon.type === "creature_attack") {
             return weapon.system.bonus ?? 0;
         }
-        
+
         // Handle weapon: they use offensive_skill to get bonus from a skill item
         const skillId = weapon.system.offensive_skill;
         if (!skillId || !actor.items) {
             return 0;
         }
-        
+
         // Handle both Collection (with .get()) and Array (with .find())
         let skillItem;
         if (typeof actor.items.get === 'function') {
@@ -334,12 +342,48 @@ export class RMSSWeaponSkillManager {
             console.warn("[RMSS] actor.items is neither a Collection nor an Array", actor.items);
             return 0;
         }
-        
+
         if (!skillItem) {
             return 0;
         }
-        
+
         return skillItem.system.total_bonus ?? 0;
+    }
+
+    /**
+     * "+10, +25 vs Orcs" weapons: reuses the SAME Slaying tags (system.slaying) instead of a
+     * second tag list — a weapon that's both a Slayer of and has a special bonus against a
+     * creature type is targeting the same tags either way, no point typing them twice. On a
+     * match, the weapon's own magic-bonus portion of the OB is REPLACED (not added to) by
+     * slaying_bonus — this returns the delta to add on top of the normal OB (0 when no match),
+     * meant to be added into the confirm-attack "misc" field rather than mixed into the OB.
+     * Independent of system.isSlaying: applies purely on a tag match.
+     * @param {Item} weapon
+     * @param {...(Actor|null|undefined)} enemyCandidates - checked in order; tags from every
+     *   candidate with a .system are combined, since a socket-resolved enemy actor can miss
+     *   tags an unlinked token's own actor instance has (or vice versa).
+     * @returns {number}
+     */
+    static _getSlayingBonusDelta(weapon, ...enemyCandidates) {
+        const slayingTags = getWeaponSlayingArray(weapon.system).map((t) => t.toLowerCase());
+        const slayingBonus = Number(weapon.system.slaying_bonus) || 0;
+        if (slayingTags.length === 0 || slayingBonus === 0) {
+            return 0;
+        }
+
+        const creatureTags = new Set();
+        for (const enemy of enemyCandidates) {
+            if (enemy?.system) {
+                getCreatureTagsArray(enemy.system).forEach((t) => creatureTags.add(t.toLowerCase()));
+            }
+        }
+
+        if (!slayingTags.some((t) => creatureTags.has(t))) {
+            return 0;
+        }
+
+        const normalWeaponBonus = Number(weapon.system.bonus) || 0;
+        return slayingBonus - normalWeaponBonus;
     }
 
     static _getHitsPenalty(actor) {

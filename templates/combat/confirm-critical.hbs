@@ -6,18 +6,22 @@
             <label for="damage">{{ localize "rmss.combat.damage" }}</label>
             <input class="is-positive" type="hidden" id="damage-base" data-dtype="Number" name="damage-base"
                 value="{{damage}}">
-            <input class="is-positive" type="number" id="damage" data-dtype="Number" name="damage" value="{{damage}}">
+            <input class="is-positive" type="number" id="damage" data-dtype="Number" name="damage" value="{{initialDamage}}">
         </div>
 
         <div style="flex-direction: row; align-items: center; gap: 0.5em;">
             <label for="damage-mult">{{ localize "rmss.combat.multiplier" }}</label>
             <select id="damage-mult">
-                <option value="1">x1</option>
-                <option value="2">x2</option>
-                <option value="3">x3</option>
-                <option value="4">x4</option>
-                <option value="5">x5</option>
-                <option value="6">x6</option>
+                <option value="1" {{#if (eq damageMultiplier 1)}}selected{{/if}}>x1</option>
+                <option value="2" {{#if (eq damageMultiplier 2)}}selected{{/if}}>x2</option>
+                <option value="3" {{#if (eq damageMultiplier 3)}}selected{{/if}}>x3</option>
+                <option value="4" {{#if (eq damageMultiplier 4)}}selected{{/if}}>x4</option>
+                <option value="5" {{#if (eq damageMultiplier 5)}}selected{{/if}}>x5</option>
+                <option value="6" {{#if (eq damageMultiplier 6)}}selected{{/if}}>x6</option>
+                <option value="7" {{#if (eq damageMultiplier 7)}}selected{{/if}}>x7</option>
+                <option value="8" {{#if (eq damageMultiplier 8)}}selected{{/if}}>x8</option>
+                <option value="9" {{#if (eq damageMultiplier 9)}}selected{{/if}}>x9</option>
+                <option value="10" {{#if (eq damageMultiplier 10)}}selected{{/if}}>x10</option>
             </select>
         </div>
 
