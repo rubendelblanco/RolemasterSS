@@ -16,7 +16,7 @@
     "description": "Mentalismo Cerrado 3.7 - Transformación. Hechizos para alterar la propia forma del lanzador: bonos de equilibrio y contorsión, cambio de rostro, respirar bajo el agua/en gas, transformarse en una raza humanoide o cualquier forma orgánica, formas sólida/líquida/de niebla, y maestría completa de la metamorfosis. Notas Especiales: Ver Sección 15.20 (p. 100) para más información sobre las habilidades ganadas/retenidas al cambiar de forma.",
     "spells": [
       {
-        "name": "01. Equilibrio *",
+        "name": "01. Equilibrio",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

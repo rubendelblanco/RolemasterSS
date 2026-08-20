@@ -84,7 +84,7 @@
         }
       },
       {
-        "name": "05. Sentir-Falso: Raza •",
+        "name": "05. Sentir-Falso: Raza",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -187,7 +187,7 @@
         }
       },
       {
-        "name": "11. Sentir-Falso: Vocación •",
+        "name": "11. Sentir-Falso: Vocación",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -256,7 +256,7 @@
         }
       },
       {
-        "name": "15. Sentir-Falso: Poder •",
+        "name": "15. Sentir-Falso: Poder",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -342,7 +342,7 @@
         }
       },
       {
-        "name": "20. Sentir-Falso •",
+        "name": "20. Sentir-Falso",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -377,7 +377,7 @@
         }
       },
       {
-        "name": "30. Sentir-Falso Verdadero •",
+        "name": "30. Sentir-Falso Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

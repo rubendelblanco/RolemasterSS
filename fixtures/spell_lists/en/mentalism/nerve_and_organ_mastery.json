@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "09. Joining *",
+        "name": "09. Joining",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "11. Suspend Life I *",
+        "name": "11. Suspend Life I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "17. Suspend Life II *",
+        "name": "17. Suspend Life II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -322,7 +322,7 @@
         }
       },
       {
-        "name": "20. Joining True *",
+        "name": "20. Joining True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

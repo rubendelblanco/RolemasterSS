@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "09. Reimplantar *",
+        "name": "09. Reimplantar",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "11. Suspender la Vida I *",
+        "name": "11. Suspender la Vida I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "17. Suspender la Vida II *",
+        "name": "17. Suspender la Vida II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -322,7 +322,7 @@
         }
       },
       {
-        "name": "20. Reimplantar Verdadero *",
+        "name": "20. Reimplantar Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

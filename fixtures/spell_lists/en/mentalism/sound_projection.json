@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "03. Song Sounding II *",
+        "name": "03. Song Sounding II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "04. Song II *",
+        "name": "04. Song II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -118,7 +118,7 @@
         }
       },
       {
-        "name": "07. Great Song I *",
+        "name": "07. Great Song I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "08. Song Sounding III *",
+        "name": "08. Song Sounding III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "10. Song III *",
+        "name": "10. Song III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "11. Silent Song *",
+        "name": "11. Silent Song",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "12. Song Sounding IV *",
+        "name": "12. Song Sounding IV",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "14. Song V *",
+        "name": "14. Song V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "15. Great Song V *",
+        "name": "15. Great Song V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -271,7 +271,7 @@
         }
       },
       {
-        "name": "16. Song Sounding V *",
+        "name": "16. Song Sounding V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -305,7 +305,7 @@
         }
       },
       {
-        "name": "18. Song X *",
+        "name": "18. Song X",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -322,7 +322,7 @@
         }
       },
       {
-        "name": "20. Song Sounding VII *",
+        "name": "20. Song Sounding VII",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -339,7 +339,7 @@
         }
       },
       {
-        "name": "25. Great Song True *",
+        "name": "25. Great Song True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -356,7 +356,7 @@
         }
       },
       {
-        "name": "30. Song Sounding X *",
+        "name": "30. Song Sounding X",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -373,7 +373,7 @@
         }
       },
       {
-        "name": "50. Song Mastery *",
+        "name": "50. Song Mastery",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

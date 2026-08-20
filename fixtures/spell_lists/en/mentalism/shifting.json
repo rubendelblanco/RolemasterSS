@@ -16,7 +16,7 @@
     "description": "Closed Mentalism 3.7 - Shifting. Spells for altering the caster's own form: balance and contortion bonuses, face shifting, breathing water/gas, changing into a humanoid race or any organic form, solid/liquid/mist forms, and full shapeshifting mastery. Special Notes: See Section 15.20 (p. 100) for more on the abilities gained/retained when changing forms.",
     "spells": [
       {
-        "name": "01. Balance *",
+        "name": "01. Balance",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

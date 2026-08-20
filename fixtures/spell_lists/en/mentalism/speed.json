@@ -16,7 +16,7 @@
     "description": "Closed Mentalism 3.9 - Speed. Spells for tireless running/swimming/sprinting and boosting the caster's own activity rate (the Speed and Haste families), plus rapid reading. Special Notes: Only one Haste or Speed spell may be in effect on an individual at any given time. In addition, Speed requires a 50% activity penalty after the spell effects end; casting a Speed or Haste spell at that point will only bring a person to normal activity, rather than extending the 200% activity time (50% x 2 = 100%).",
     "spells": [
       {
-        "name": "01. Run *",
+        "name": "01. Run",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "03. Speed I *",
+        "name": "03. Speed I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "05. Speed II *",
+        "name": "05. Speed II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -84,7 +84,7 @@
         }
       },
       {
-        "name": "06. Haste I *",
+        "name": "06. Haste I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -101,7 +101,7 @@
         }
       },
       {
-        "name": "07. Speed III *",
+        "name": "07. Speed III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -118,7 +118,7 @@
         }
       },
       {
-        "name": "08. Sprint *",
+        "name": "08. Sprint",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "09. Haste II *",
+        "name": "09. Haste II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "10. Fast Swim *",
+        "name": "10. Fast Swim",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "11. Speed V *",
+        "name": "11. Speed V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "12. Haste III *",
+        "name": "12. Haste III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "15. Haste V *",
+        "name": "15. Haste V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "17. Fast Sprint *",
+        "name": "17. Fast Sprint",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "20. Speed X *",
+        "name": "20. Speed X",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "25. Haste X *",
+        "name": "25. Haste X",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -271,7 +271,7 @@
         }
       },
       {
-        "name": "30. Speed True *",
+        "name": "30. Speed True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "50. Haste True *",
+        "name": "50. Haste True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

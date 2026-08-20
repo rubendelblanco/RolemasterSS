@@ -16,7 +16,7 @@
     "description": "Open Mentalism 2.5 - Damage Resistance. Spells for resisting heat and cold, sustaining extra concussion hits, relieving stun, delaying and neutralizing poison, and waking from unnatural sleep. Special Notes: For more on healing, see RMFRP Section 24.1 (p. 75).",
     "spells": [
       {
-        "name": "01. Heat Resistance *",
+        "name": "01. Heat Resistance",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Cold Resistance *",
+        "name": "02. Cold Resistance",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "05. Unpain I *",
+        "name": "05. Unpain I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "06. Stun Relief I *",
+        "name": "06. Stun Relief I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -84,7 +84,7 @@
         }
       },
       {
-        "name": "07. Resist Poison *",
+        "name": "07. Resist Poison",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -101,7 +101,7 @@
         }
       },
       {
-        "name": "10. Unpain II *",
+        "name": "10. Unpain II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -118,7 +118,7 @@
         }
       },
       {
-        "name": "11. Stun Relief III *",
+        "name": "11. Stun Relief III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "12. Neutralize Poison *",
+        "name": "12. Neutralize Poison",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "14. Awake *",
+        "name": "14. Awake",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "15. Unpain III *",
+        "name": "15. Unpain III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "17. Heat Resistance True *",
+        "name": "17. Heat Resistance True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "18. Cold Resistance True *",
+        "name": "18. Cold Resistance True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "20. Unpain IV *",
+        "name": "20. Unpain IV",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "25. Neutralize Poison True *",
+        "name": "25. Neutralize Poison True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "30. Awake True *",
+        "name": "30. Awake True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -271,7 +271,7 @@
         }
       },
       {
-        "name": "50. Unpain True *",
+        "name": "50. Unpain True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

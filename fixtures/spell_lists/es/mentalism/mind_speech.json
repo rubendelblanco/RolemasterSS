@@ -16,7 +16,7 @@
     "description": "Lista Base de Mentalista 5.4 - Habla Mental. Hechizos para telepatía con otros lanzadores de hechizos o cualquier ser, prepararse para recibir dicho contacto, y difundir pensamientos a un área amplia. Notas Especiales: Salvo donde se indique que la comunicación es \"unidireccional\", los hechizos de esta lista crean una comunicación \"bidireccional\" entre el objetivo y el lanzador. El lanzador no necesita hablar en voz alta. El objetivo sí habla en voz alta, pero en realidad el lanzador está leyendo los pensamientos del objetivo (aunque algunos objetivos pueden aprender a usar la comunicación mental; se presupone que cualquier lanzador que conozca esta lista tiene esta capacidad).",
     "spells": [
       {
-        "name": "01. Lengua Mentalista *",
+        "name": "01. Lengua Mentalista",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "03. Lengua Mental I *",
+        "name": "03. Lengua Mental I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -101,7 +101,7 @@
         }
       },
       {
-        "name": "06. Lengua Mental II *",
+        "name": "06. Lengua Mental II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "09. Habla Mental I *",
+        "name": "09. Habla Mental I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "10. Lengua Mental III *",
+        "name": "10. Lengua Mental III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "12. Habla Mental II *",
+        "name": "12. Habla Mental II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "13. Habla de Amistad *",
+        "name": "13. Habla de Amistad",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "15. Habla Mental III *",
+        "name": "15. Habla Mental III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "16. Lengua en Espera *",
+        "name": "16. Lengua en Espera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "18. Lengua Mental IV *",
+        "name": "18. Lengua Mental IV",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -305,7 +305,7 @@
         }
       },
       {
-        "name": "19. Habla de Amistad Verdadera *",
+        "name": "19. Habla de Amistad Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -322,7 +322,7 @@
         }
       },
       {
-        "name": "20. Habla Mental Verdadera *",
+        "name": "20. Habla Mental Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -339,7 +339,7 @@
         }
       },
       {
-        "name": "25. Lengua Mental Verdadera *",
+        "name": "25. Lengua Mental Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -356,7 +356,7 @@
         }
       },
       {
-        "name": "30. Habla en Espera *",
+        "name": "30. Habla en Espera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -373,7 +373,7 @@
         }
       },
       {
-        "name": "50. Habla Mental Lejana *",
+        "name": "50. Habla Mental Lejana",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

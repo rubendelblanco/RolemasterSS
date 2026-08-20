@@ -16,7 +16,7 @@
     "description": "Mentalismo Cerrado 3.9 - Velocidad. Hechizos para correr/nadar/esprintar sin cansarse y para potenciar el ritmo de actividad del propio lanzador (las familias Speed y Haste), además de lectura rápida. Notas Especiales: Solo puede haber un hechizo Haste o Speed activo sobre un individuo a la vez. Además, Speed exige una penalización de actividad del 50% tras terminar el hechizo; lanzar un Speed o Haste en ese momento solo llevará a la persona a actividad normal, en lugar de extender el tiempo de actividad al 200% (50% x 2 = 100%).",
     "spells": [
       {
-        "name": "01. Correr *",
+        "name": "01. Correr",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "03. Velocidad I *",
+        "name": "03. Velocidad I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "05. Velocidad II *",
+        "name": "05. Velocidad II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -84,7 +84,7 @@
         }
       },
       {
-        "name": "06. Prisa I *",
+        "name": "06. Prisa I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -101,7 +101,7 @@
         }
       },
       {
-        "name": "07. Velocidad III *",
+        "name": "07. Velocidad III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -118,7 +118,7 @@
         }
       },
       {
-        "name": "08. Esprintar *",
+        "name": "08. Esprintar",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "09. Prisa II *",
+        "name": "09. Prisa II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "10. Nado Rápido *",
+        "name": "10. Nado Rápido",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "11. Velocidad V *",
+        "name": "11. Velocidad V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "12. Prisa III *",
+        "name": "12. Prisa III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "15. Prisa V *",
+        "name": "15. Prisa V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "17. Esprint Rápido *",
+        "name": "17. Esprint Rápido",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "20. Velocidad X *",
+        "name": "20. Velocidad X",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "25. Prisa X *",
+        "name": "25. Prisa X",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -271,7 +271,7 @@
         }
       },
       {
-        "name": "30. Velocidad Verdadera *",
+        "name": "30. Velocidad Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "50. Prisa Verdadera *",
+        "name": "50. Prisa Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

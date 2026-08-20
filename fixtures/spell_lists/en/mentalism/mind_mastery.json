@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Presence * •",
+        "name": "02. Presence",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -85,7 +85,7 @@
         }
       },
       {
-        "name": "06. Misfeel Kind •",
+        "name": "06. Misfeel Kind",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -137,7 +137,7 @@
         }
       },
       {
-        "name": "09. Misfeel Calling •",
+        "name": "09. Misfeel Calling",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -172,7 +172,7 @@
         }
       },
       {
-        "name": "11. Misfeel Power •",
+        "name": "11. Misfeel Power",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -224,7 +224,7 @@
         }
       },
       {
-        "name": "15. Unpresence •",
+        "name": "15. Unpresence",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -276,7 +276,7 @@
         }
       },
       {
-        "name": "18. Misfeel •",
+        "name": "18. Misfeel",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

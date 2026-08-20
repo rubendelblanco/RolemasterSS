@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Stun Relief I *",
+        "name": "02. Stun Relief I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "04. Regeneration I *",
+        "name": "04. Regeneration I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "08. Stun Relief III *",
+        "name": "08. Stun Relief III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "10. Regeneration II *",
+        "name": "10. Regeneration II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "13. Stun Relief V *",
+        "name": "13. Stun Relief V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "14. Long Stun Relief *",
+        "name": "14. Long Stun Relief",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "15. Regeneration III *",
+        "name": "15. Regeneration III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "19. Stun Relief X *",
+        "name": "19. Stun Relief X",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -356,7 +356,7 @@
         }
       },
       {
-        "name": "50. Stun Relief True *",
+        "name": "50. Stun Relief True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

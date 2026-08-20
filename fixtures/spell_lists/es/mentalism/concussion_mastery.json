@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Alivio del Aturdimiento I *",
+        "name": "02. Alivio del Aturdimiento I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "04. Regeneración I *",
+        "name": "04. Regeneración I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "08. Alivio del Aturdimiento III *",
+        "name": "08. Alivio del Aturdimiento III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "10. Regeneración II *",
+        "name": "10. Regeneración II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "13. Alivio del Aturdimiento V *",
+        "name": "13. Alivio del Aturdimiento V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "14. Alivio del Aturdimiento a Distancia *",
+        "name": "14. Alivio del Aturdimiento a Distancia",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "15. Regeneración III *",
+        "name": "15. Regeneración III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "19. Alivio del Aturdimiento X *",
+        "name": "19. Alivio del Aturdimiento X",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -356,7 +356,7 @@
         }
       },
       {
-        "name": "50. Alivio del Aturdimiento Verdadero *",
+        "name": "50. Alivio del Aturdimiento Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

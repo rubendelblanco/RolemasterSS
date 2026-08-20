@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "11. Fusión Preparada *",
+        "name": "11. Fusión Preparada",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "50. Fusión Preparada Verdadera *",
+        "name": "50. Fusión Preparada Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

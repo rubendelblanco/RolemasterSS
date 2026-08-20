@@ -16,7 +16,7 @@
     "description": "Mentalismo Abierto 2.5 - Resistencia al Daño. Hechizos para resistir el calor y el frío, soportar golpes de conmoción adicionales, aliviar el aturdimiento, retrasar y neutralizar venenos, y despertar de un sueño no natural. Notas Especiales: Para más información sobre curación, ver RMFRP Sección 24.1 (p. 75).",
     "spells": [
       {
-        "name": "01. Resistencia al Calor *",
+        "name": "01. Resistencia al Calor",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Resistencia al Frío *",
+        "name": "02. Resistencia al Frío",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "05. Insensibilidad I *",
+        "name": "05. Insensibilidad I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "06. Alivio del Aturdimiento I *",
+        "name": "06. Alivio del Aturdimiento I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -84,7 +84,7 @@
         }
       },
       {
-        "name": "07. Resistir Veneno *",
+        "name": "07. Resistir Veneno",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -101,7 +101,7 @@
         }
       },
       {
-        "name": "10. Insensibilidad II *",
+        "name": "10. Insensibilidad II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -118,7 +118,7 @@
         }
       },
       {
-        "name": "11. Alivio del Aturdimiento III *",
+        "name": "11. Alivio del Aturdimiento III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "12. Neutralizar Veneno *",
+        "name": "12. Neutralizar Veneno",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "14. Despertar *",
+        "name": "14. Despertar",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "15. Insensibilidad III *",
+        "name": "15. Insensibilidad III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "17. Resistencia al Calor Verdadera *",
+        "name": "17. Resistencia al Calor Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "18. Resistencia al Frío Verdadera *",
+        "name": "18. Resistencia al Frío Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "20. Insensibilidad IV *",
+        "name": "20. Insensibilidad IV",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "25. Neutralizar Veneno Verdadero *",
+        "name": "25. Neutralizar Veneno Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "30. Despertar Verdadero *",
+        "name": "30. Despertar Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -271,7 +271,7 @@
         }
       },
       {
-        "name": "50. Insensibilidad Verdadera *",
+        "name": "50. Insensibilidad Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

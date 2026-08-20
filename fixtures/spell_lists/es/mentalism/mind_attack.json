@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "10. Grito Mental I *",
+        "name": "10. Grito Mental I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "15. Grito Mental II *",
+        "name": "15. Grito Mental II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "19. Grito Mental III *",
+        "name": "19. Grito Mental III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -322,7 +322,7 @@
         }
       },
       {
-        "name": "25. Gran Grito *",
+        "name": "25. Gran Grito",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -339,7 +339,7 @@
         }
       },
       {
-        "name": "30. Grito Mental Verdadero *",
+        "name": "30. Grito Mental Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -356,7 +356,7 @@
         }
       },
       {
-        "name": "50. Grito Verdadero *",
+        "name": "50. Grito Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

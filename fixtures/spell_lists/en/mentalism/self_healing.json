@@ -16,7 +16,7 @@
     "description": "Open Mentalism 2.9 - Self Healing. Spells for treating the caster's own wounds: clotting, pain relief, fracture, muscle, nerve, eye/ear, vein/artery repair, suspended animation, limb reattachment, and regeneration. Special Notes: See RMFRP Section 24.1 (p. 75) for more on healing.",
     "spells": [
       {
-        "name": "02. Clot I *",
+        "name": "02. Clot I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "04. Clot III *",
+        "name": "04. Clot III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "05. Pain Relief I *",
+        "name": "05. Pain Relief I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -84,7 +84,7 @@
         }
       },
       {
-        "name": "07. Cut Repair I *",
+        "name": "07. Cut Repair I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -101,7 +101,7 @@
         }
       },
       {
-        "name": "08. Muscle/Tendon Repair *",
+        "name": "08. Muscle/Tendon Repair",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "12. Vein/Artery Repair *",
+        "name": "12. Vein/Artery Repair",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "13. Pain Relief II *",
+        "name": "13. Pain Relief II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "15. Self Keeping *",
+        "name": "15. Self Keeping",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "17. Self Joining *",
+        "name": "17. Self Joining",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "20. Pain Relief True *",
+        "name": "20. Pain Relief True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

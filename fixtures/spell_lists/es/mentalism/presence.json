@@ -16,7 +16,7 @@
     "description": "Lista Base de Mentalista 5.5 - Presencia. Hechizos para sentir la presencia sintiente, analizar/almacenar/transferir patrones mentales de seres, y encontrar/apuntar hacia un patrón mental almacenado a alcance creciente.",
     "spells": [
       {
-        "name": "01. Presencia * •",
+        "name": "01. Presencia",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -34,7 +34,7 @@
         }
       },
       {
-        "name": "02. Percibir I *",
+        "name": "02. Percibir I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -51,7 +51,7 @@
         }
       },
       {
-        "name": "03. Impronta Mental *",
+        "name": "03. Impronta Mental",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -85,7 +85,7 @@
         }
       },
       {
-        "name": "05. Percibir III *",
+        "name": "05. Percibir III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -102,7 +102,7 @@
         }
       },
       {
-        "name": "06. Tipificar Mente *",
+        "name": "06. Tipificar Mente",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -153,7 +153,7 @@
         }
       },
       {
-        "name": "09. Presencia Verdadera *",
+        "name": "09. Presencia Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -170,7 +170,7 @@
         }
       },
       {
-        "name": "10. Percepción *",
+        "name": "10. Percepción",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -204,7 +204,7 @@
         }
       },
       {
-        "name": "12. Percibir a Distancia *",
+        "name": "12. Percibir a Distancia",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -221,7 +221,7 @@
         }
       },
       {
-        "name": "13. Percibir V *",
+        "name": "13. Percibir V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -238,7 +238,7 @@
         }
       },
       {
-        "name": "14. Percibir en Masa *",
+        "name": "14. Percibir en Masa",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -255,7 +255,7 @@
         }
       },
       {
-        "name": "15. Tipificar Mente Verdadera *",
+        "name": "15. Tipificar Mente Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -306,7 +306,7 @@
         }
       },
       {
-        "name": "20. Percepción Verdadera *",
+        "name": "20. Percepción Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

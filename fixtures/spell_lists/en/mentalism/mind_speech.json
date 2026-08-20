@@ -16,7 +16,7 @@
     "description": "Mentalist Base 5.4 - Mind Speech. Spells for mental telepathy with other spell casters or any being, preparing to receive such contact, and broadcasting thoughts to a wide area. Special Notes: Except where communication is noted as being only \"one-way,\" the spells above create a \"two-way\" communication between the target (and the caster). The caster is not required to speak verbally. The target speaks verbally, but the caster is actually reading the thoughts of the target (though some targets may learn to use mental communication—any caster who knows this list is presumed to have this ability).",
     "spells": [
       {
-        "name": "01. Mentalist Tongue *",
+        "name": "01. Mentalist Tongue",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "03. Mind Tongue I *",
+        "name": "03. Mind Tongue I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -101,7 +101,7 @@
         }
       },
       {
-        "name": "06. Mind Tongue II *",
+        "name": "06. Mind Tongue II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "09. Mind Speech I *",
+        "name": "09. Mind Speech I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "10. Mind Tongue III *",
+        "name": "10. Mind Tongue III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "12. Mind Speech II *",
+        "name": "12. Mind Speech II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "13. Friend Speech *",
+        "name": "13. Friend Speech",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "15. Mind Speech III *",
+        "name": "15. Mind Speech III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "16. Waiting Tongue *",
+        "name": "16. Waiting Tongue",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "18. Mind Tongue IV *",
+        "name": "18. Mind Tongue IV",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -305,7 +305,7 @@
         }
       },
       {
-        "name": "19. Friend Speech True *",
+        "name": "19. Friend Speech True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -322,7 +322,7 @@
         }
       },
       {
-        "name": "20. Mind Speech True *",
+        "name": "20. Mind Speech True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -339,7 +339,7 @@
         }
       },
       {
-        "name": "25. Mind Tongue True *",
+        "name": "25. Mind Tongue True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -356,7 +356,7 @@
         }
       },
       {
-        "name": "30. Waiting Speech *",
+        "name": "30. Waiting Speech",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -373,7 +373,7 @@
         }
       },
       {
-        "name": "50. Far Mind Speech *",
+        "name": "50. Far Mind Speech",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

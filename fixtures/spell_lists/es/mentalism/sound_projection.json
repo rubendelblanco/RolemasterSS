@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "03. Sonoridad de Canción II *",
+        "name": "03. Sonoridad de Canción II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "04. Canción II *",
+        "name": "04. Canción II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -118,7 +118,7 @@
         }
       },
       {
-        "name": "07. Gran Canción I *",
+        "name": "07. Gran Canción I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "08. Sonoridad de Canción III *",
+        "name": "08. Sonoridad de Canción III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "10. Canción III *",
+        "name": "10. Canción III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "11. Canción Silenciosa *",
+        "name": "11. Canción Silenciosa",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "12. Sonoridad de Canción IV *",
+        "name": "12. Sonoridad de Canción IV",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "14. Canción V *",
+        "name": "14. Canción V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "15. Gran Canción V *",
+        "name": "15. Gran Canción V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -271,7 +271,7 @@
         }
       },
       {
-        "name": "16. Sonoridad de Canción V *",
+        "name": "16. Sonoridad de Canción V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -305,7 +305,7 @@
         }
       },
       {
-        "name": "18. Canción X *",
+        "name": "18. Canción X",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -322,7 +322,7 @@
         }
       },
       {
-        "name": "20. Sonoridad de Canción VII *",
+        "name": "20. Sonoridad de Canción VII",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -339,7 +339,7 @@
         }
       },
       {
-        "name": "25. Gran Canción Verdadera *",
+        "name": "25. Gran Canción Verdadera",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -356,7 +356,7 @@
         }
       },
       {
-        "name": "30. Sonoridad de Canción X *",
+        "name": "30. Sonoridad de Canción X",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -373,7 +373,7 @@
         }
       },
       {
-        "name": "50. Maestría de la Canción *",
+        "name": "50. Maestría de la Canción",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

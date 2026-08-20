@@ -16,7 +16,7 @@
     "description": "Open Mentalism 2.1 - Anticipations. Spells for anticipating missile, melee, and spell attacks, sensing hostility, guessing between limited options, gazing into probable futures, and perceiving the recent history of a room or place. Special Notes: (1) When using Guess, the caster must have a limited number of options (i.e., finite and countable); after casting, the caster may not cast another Guess for the same information until his skill rank for this list has increased. (2) When dealing with Dreams, a GM should use symbology (see Section 15.16, p. 99). (3) See Section 15.13 (p. 98) for more on information spells.",
     "spells": [
       {
-        "name": "01. Anticipate Missile *",
+        "name": "01. Anticipate Missile",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Anticipate Blow *",
+        "name": "02. Anticipate Blow",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "03. Guess *",
+        "name": "03. Guess",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "04. Anticipate Spell *",
+        "name": "04. Anticipate Spell",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "10. Anticipations *",
+        "name": "10. Anticipations",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "15. Spell Anticipation *",
+        "name": "15. Spell Anticipation",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -322,7 +322,7 @@
         }
       },
       {
-        "name": "25. Anticipations True *",
+        "name": "25. Anticipations True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -356,7 +356,7 @@
         }
       },
       {
-        "name": "50. Spell Anticipation True *",
+        "name": "50. Spell Anticipation True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

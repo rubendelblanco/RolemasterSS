@@ -16,7 +16,7 @@
     "description": "Mentalismo Cerrado 3.5 - Movimiento. Hechizos para saltar, caídas seguras, levitación, vuelo, movimiento bajo el agua, fundirse en material sólido y atravesarlo. Notas Especiales: Ver Sección 15.6 (p. 97) para notas sobre límites de carga para hechizos de movimiento.",
     "spells": [
       {
-        "name": "01. Salto *",
+        "name": "01. Salto",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Aterrizaje *",
+        "name": "02. Aterrizaje",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "08. Zambullida Larga *",
+        "name": "08. Zambullida Larga",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "12. Aterrizaje Verdadero *",
+        "name": "12. Aterrizaje Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

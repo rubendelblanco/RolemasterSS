@@ -16,7 +16,7 @@
     "description": "Mentalist Base 5.5 - Presence. Spells for sensing sentient presence, analyzing/storing/transferring mental patterns of beings, and finding/pointing toward a stored mental pattern at increasing range.",
     "spells": [
       {
-        "name": "01. Presence * •",
+        "name": "01. Presence",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -34,7 +34,7 @@
         }
       },
       {
-        "name": "02. Feel I *",
+        "name": "02. Feel I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -51,7 +51,7 @@
         }
       },
       {
-        "name": "03. Mind Store *",
+        "name": "03. Mind Store",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -85,7 +85,7 @@
         }
       },
       {
-        "name": "05. Feel III *",
+        "name": "05. Feel III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -102,7 +102,7 @@
         }
       },
       {
-        "name": "06. Mind Typing *",
+        "name": "06. Mind Typing",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -153,7 +153,7 @@
         }
       },
       {
-        "name": "09. Presence True *",
+        "name": "09. Presence True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -170,7 +170,7 @@
         }
       },
       {
-        "name": "10. Awareness *",
+        "name": "10. Awareness",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -204,7 +204,7 @@
         }
       },
       {
-        "name": "12. Long Feel *",
+        "name": "12. Long Feel",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -221,7 +221,7 @@
         }
       },
       {
-        "name": "13. Feel V *",
+        "name": "13. Feel V",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -238,7 +238,7 @@
         }
       },
       {
-        "name": "14. Mass Feel *",
+        "name": "14. Mass Feel",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -255,7 +255,7 @@
         }
       },
       {
-        "name": "15. Mind Typing True *",
+        "name": "15. Mind Typing True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -306,7 +306,7 @@
         }
       },
       {
-        "name": "20. Awareness True *",
+        "name": "20. Awareness True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

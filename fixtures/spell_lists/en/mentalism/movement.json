@@ -16,7 +16,7 @@
     "description": "Closed Mentalism 3.5 - Movement. Spells for leaping, safe falls, levitation, flight, underwater movement, merging into and passing through solid material. Special Notes: See Section 15.6 (p. 97) for notes on encumbrance limits for movement spells.",
     "spells": [
       {
-        "name": "01. Leaping *",
+        "name": "01. Leaping",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Landing *",
+        "name": "02. Landing",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "08. Long Dive *",
+        "name": "08. Long Dive",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "12. Landing True *",
+        "name": "12. Landing True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

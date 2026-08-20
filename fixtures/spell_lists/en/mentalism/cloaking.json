@@ -16,7 +16,7 @@
     "description": "Open Mentalism 2.4 - Cloaking. Spells for hiding, disguising and duplicating the caster, and for shifting probable attacks off-target, including the Cloaking, Cloaking Sphere, Facades, Shadow Mentalist and Displacement families. Special Notes: (1) Cloaking spells are not Invisibility spells and none of the normal rules for invisibility apply (e.g., the caster does not become \"visible\" when he attacks or is hit, etc.). (2) See Section 15.14 (p. 98) for more on illusions.",
     "spells": [
       {
-        "name": "01. Blur *",
+        "name": "01. Blur",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

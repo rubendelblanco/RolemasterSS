@@ -16,7 +16,7 @@
     "description": "Mentalismo Abierto 2.9 - Autocuración. Hechizos para tratar las propias heridas del lanzador: coagulación, alivio del dolor, reparación de fracturas, músculos, nervios, ojo/oído, venas/arterias, animación suspendida, reimplantación de miembros y regeneración. Notas Especiales: Ver RMFRP Sección 24.1 (p. 75) para más información sobre curación.",
     "spells": [
       {
-        "name": "02. Coagular I *",
+        "name": "02. Coagular I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "04. Coagular III *",
+        "name": "04. Coagular III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "05. Alivio del Dolor I *",
+        "name": "05. Alivio del Dolor I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -84,7 +84,7 @@
         }
       },
       {
-        "name": "07. Reparar Corte I *",
+        "name": "07. Reparar Corte I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -101,7 +101,7 @@
         }
       },
       {
-        "name": "08. Reparar Músculo/Tendón *",
+        "name": "08. Reparar Músculo/Tendón",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "12. Reparar Vena/Arteria *",
+        "name": "12. Reparar Vena/Arteria",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "13. Alivio del Dolor II *",
+        "name": "13. Alivio del Dolor II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "15. Autoconservación *",
+        "name": "15. Autoconservación",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "17. Autounión *",
+        "name": "17. Autounión",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "20. Alivio del Dolor Verdadero *",
+        "name": "20. Alivio del Dolor Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

@@ -16,7 +16,7 @@
     "description": "Mentalismo Abierto 2.2 - Evasión de Ataques. Hechizos para desviar proyectiles, ataques cuerpo a cuerpo y hechizos de ataque elementales; incluye Escudo y Aire Quieto.",
     "spells": [
       {
-        "name": "01. Desviar Proyectil *",
+        "name": "01. Desviar Proyectil",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Desviar Hoja *",
+        "name": "02. Desviar Hoja",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "03. Escudo *",
+        "name": "03. Escudo",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "05. Desviar I *",
+        "name": "05. Desviar I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -84,7 +84,7 @@
         }
       },
       {
-        "name": "06. Desviar Hoja I *",
+        "name": "06. Desviar Hoja I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -101,7 +101,7 @@
         }
       },
       {
-        "name": "08. Puntería Falsa I *",
+        "name": "08. Puntería Falsa I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -118,7 +118,7 @@
         }
       },
       {
-        "name": "10. Aire Quieto *",
+        "name": "10. Aire Quieto",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "11. Desviar II *",
+        "name": "11. Desviar II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "13. Desviar Hechizo I *",
+        "name": "13. Desviar Hechizo I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "15. Desviar Hoja II *",
+        "name": "15. Desviar Hoja II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "18. Desviar III *",
+        "name": "18. Desviar III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "20. Desviar Hechizo II *",
+        "name": "20. Desviar Hechizo II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "25. Desviar Hoja III *",
+        "name": "25. Desviar Hoja III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "30. Desviar Hechizo III *",
+        "name": "30. Desviar Hechizo III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "50. Desviar Verdadero *",
+        "name": "50. Desviar Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "18. Mind's Song *",
+        "name": "18. Mind's Song",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "30. Mind's Song True *",
+        "name": "30. Mind's Song True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

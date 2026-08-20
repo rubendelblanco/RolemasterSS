@@ -16,7 +16,7 @@
     "description": "Open Mentalism 2.2 - Attack Avoidance. Spells for deflecting missiles, melee attacks, and elemental attack spells; includes Shield and Still Air.",
     "spells": [
       {
-        "name": "01. Turn Missile *",
+        "name": "01. Turn Missile",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Turn Blade *",
+        "name": "02. Turn Blade",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -50,7 +50,7 @@
         }
       },
       {
-        "name": "03. Shield *",
+        "name": "03. Shield",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -67,7 +67,7 @@
         }
       },
       {
-        "name": "05. Deflect I *",
+        "name": "05. Deflect I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -84,7 +84,7 @@
         }
       },
       {
-        "name": "06. Bladeturn I *",
+        "name": "06. Bladeturn I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -101,7 +101,7 @@
         }
       },
       {
-        "name": "08. Aim Untrue I *",
+        "name": "08. Aim Untrue I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -118,7 +118,7 @@
         }
       },
       {
-        "name": "10. Still Air *",
+        "name": "10. Still Air",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -135,7 +135,7 @@
         }
       },
       {
-        "name": "11. Deflect II *",
+        "name": "11. Deflect II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "13. Spell Deflect I *",
+        "name": "13. Spell Deflect I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "15. Bladeturn II *",
+        "name": "15. Bladeturn II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "name": "18. Deflect III *",
+        "name": "18. Deflect III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -203,7 +203,7 @@
         }
       },
       {
-        "name": "20. Spell Deflect II *",
+        "name": "20. Spell Deflect II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "25. Bladeturn III *",
+        "name": "25. Bladeturn III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -237,7 +237,7 @@
         }
       },
       {
-        "name": "30. Spell Deflect III *",
+        "name": "30. Spell Deflect III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -254,7 +254,7 @@
         }
       },
       {
-        "name": "50. Deflect True *",
+        "name": "50. Deflect True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

@@ -169,7 +169,7 @@
         }
       },
       {
-        "name": "11. Ready Merge *",
+        "name": "11. Ready Merge",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "50. Ready Merge True *",
+        "name": "50. Ready Merge True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

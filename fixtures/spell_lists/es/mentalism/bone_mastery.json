@@ -84,7 +84,7 @@
         }
       },
       {
-        "name": "05. Preservación de Miembro *",
+        "name": "05. Preservación de Miembro",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "09. Reimplantar *",
+        "name": "09. Reimplantar",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -305,7 +305,7 @@
         }
       },
       {
-        "name": "20. Reimplantar Verdadero *",
+        "name": "20. Reimplantar Verdadero",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

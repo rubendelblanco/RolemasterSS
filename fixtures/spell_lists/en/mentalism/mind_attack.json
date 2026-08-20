@@ -152,7 +152,7 @@
         }
       },
       {
-        "name": "10. Mind Shout I *",
+        "name": "10. Mind Shout I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -220,7 +220,7 @@
         }
       },
       {
-        "name": "15. Mind Shout II *",
+        "name": "15. Mind Shout II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -288,7 +288,7 @@
         }
       },
       {
-        "name": "19. Mind Shout III *",
+        "name": "19. Mind Shout III",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -322,7 +322,7 @@
         }
       },
       {
-        "name": "25. Great Shout *",
+        "name": "25. Great Shout",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -339,7 +339,7 @@
         }
       },
       {
-        "name": "30. Mind Shout True *",
+        "name": "30. Mind Shout True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -356,7 +356,7 @@
         }
       },
       {
-        "name": "50. Shout True *",
+        "name": "50. Shout True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,

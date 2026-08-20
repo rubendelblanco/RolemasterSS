@@ -33,7 +33,7 @@
         }
       },
       {
-        "name": "02. Presencia * •",
+        "name": "02. Presencia",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -85,7 +85,7 @@
         }
       },
       {
-        "name": "06. Sentir-Falso: Raza •",
+        "name": "06. Sentir-Falso: Raza",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -137,7 +137,7 @@
         }
       },
       {
-        "name": "09. Sentir-Falso: Vocación •",
+        "name": "09. Sentir-Falso: Vocación",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -172,7 +172,7 @@
         }
       },
       {
-        "name": "11. Sentir-Falso: Poder •",
+        "name": "11. Sentir-Falso: Poder",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -224,7 +224,7 @@
         }
       },
       {
-        "name": "15. Ausencia de Presencia •",
+        "name": "15. Ausencia de Presencia",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -276,7 +276,7 @@
         }
       },
       {
-        "name": "18. Sentir-Falso •",
+        "name": "18. Sentir-Falso",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
