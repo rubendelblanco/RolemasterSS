@@ -10,6 +10,58 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 - **spell_lists/es/channeling/** – Spell lists en español (Canalización)
 - **spell_lists/en/arcane/** – Spell lists en inglés (Arcano, Magehunter)
 - **spell_lists/es/arcane/** – Spell lists en español (Arcano, Magehunter)
+- **spell_lists/en/mentalism/** – Spell lists en inglés (Mentalismo)
+- **spell_lists/es/mentalism/** – Spell lists en español (Mentalismo)
+
+### Attack Avoidance (Open Mentalism 2.2)
+
+- `spell_lists/en/mentalism/attack_avoidance.json` – 15 hechizos de desviar proyectiles, ataques cuerpo a cuerpo y hechizos elementales, más Shield y Still Air (inglés)
+- `spell_lists/es/mentalism/attack_avoidance.json` – Evasión de Ataques, traducida al español
+
+### Anticipations (Open Mentalism 2.1)
+
+- `spell_lists/en/mentalism/anticipations.json` – 21 hechizos de anticipar ataques, sentir hostilidad, adivinar, intuiciones, sueños y sentir el lugar (inglés)
+- `spell_lists/es/mentalism/anticipations.json` – Anticipaciones, traducida al español
+
+### Brilliance (Open Mentalism 2.3)
+
+- `spell_lists/en/mentalism/brilliance.json` – 19 hechizos de luz, oscuridad, auras y ataques de luz (Shock Bolt, Sunfires, Hand of Fire) (inglés)
+- `spell_lists/es/mentalism/brilliance.json` – Brillantez, traducida al español
+
+### Cloaking (Open Mentalism 2.4)
+
+- `spell_lists/en/mentalism/cloaking.json` – 22 hechizos de ocultación, disfraz, duplicados y desplazamiento (Cloaking, Facades, Shadow Mentalist, Displacement) (inglés)
+- `spell_lists/es/mentalism/cloaking.json` – Encubrimiento, traducida al español
+
+### Damage Resistance (Open Mentalism 2.5)
+
+- `spell_lists/en/mentalism/damage_resistance.json` – 16 hechizos de resistencia al calor/frío, golpes extra, aturdimiento, venenos y despertar (inglés)
+- `spell_lists/es/mentalism/damage_resistance.json` – Resistencia al Daño, traducida al español
+
+### Delving (Open Mentalism 2.6)
+
+- `spell_lists/en/mentalism/delving.json` – 17 hechizos para escudriñar objetos y ver eventos pasados (Past Vision) (inglés)
+- `spell_lists/es/mentalism/delving.json` – Escudriñar, traducida al español
+
+### Detections (Open Mentalism 2.7)
+
+- `spell_lists/en/mentalism/detections.json` – 18 hechizos de detección por reino, emoción, invisibilidad, maldad, trampas, poder y localización (inglés)
+- `spell_lists/es/mentalism/detections.json` – Detecciones, traducida al español
+
+### Illusions (Open Mentalism 2.8)
+
+- `spell_lists/en/mentalism/illusions.json` – 17 hechizos de ilusiones, espejismos y fantasmas, con variantes retardadas (inglés)
+- `spell_lists/es/mentalism/illusions.json` – Ilusiones, traducida al español
+
+### Self Healing (Open Mentalism 2.9)
+
+- `spell_lists/en/mentalism/self_healing.json` – 16 hechizos de autocuración: coagulación, dolor, fracturas, nervios, regeneración (inglés)
+- `spell_lists/es/mentalism/self_healing.json` – Autocuración, traducida al español
+
+### Spell Resistance (Open Mentalism 2.10)
+
+- `spell_lists/en/mentalism/spell_resistance.json` – 16 hechizos de protección y resistencia contra hechizos por reino (Protection, Shield, Resistance) (inglés)
+- `spell_lists/es/mentalism/spell_resistance.json` – Resistencia a Hechizos, traducida al español
 
 ### Concussion's Ways (Open Channeling 2.2)
 
@@ -251,8 +303,13 @@ Crea un macro en Foundry y ejecútalo para importar el fixture.
 // Crea el item en el directorio de Items del mundo. Luego puedes arrastrarlo a un compendio.
 // Usa "es" o "en" según el idioma que quieras:
 const fixture = await fetch("/systems/rmss/fixtures/spell_lists/es/essence/detecting_ways.json").then(r => r.json());
-const item = await Item.create(fixture);
-ui.notifications.info(`"${item.name}" creada en Items. Arrástrala a un compendio si quieres.`);
+const existing = game.items.find(i => i.type === "spell_list" && i.name === fixture.name);
+if (existing) {
+  ui.notifications.warn(`"${fixture.name}" ya existe en Items. No se ha duplicado.`);
+} else {
+  const item = await Item.create(fixture);
+  ui.notifications.info(`"${item.name}" creada en Items. Arrástrala a un compendio si quieres.`);
+}
 ```
 
 **Opción B – Importar en un compendio existente:**
@@ -266,8 +323,13 @@ const pack = game.packs.get(PACK_ID);
 if (!pack) {
   ui.notifications.error(`Compendio "${PACK_ID}" no encontrado. Crea uno primero.`);
 } else {
-  await pack.importDocument(fixture);
-  ui.notifications.info(`"${fixture.name}" importada en ${pack.metadata.label}.`);
+  const already = (await pack.getIndex()).some(e => e.name === fixture.name);
+  if (already) {
+    ui.notifications.warn(`"${fixture.name}" ya existe en ${pack.metadata.label}. No se ha duplicado.`);
+  } else {
+    await pack.importDocument(fixture);
+    ui.notifications.info(`"${fixture.name}" importada en ${pack.metadata.label}.`);
+  }
 }
 ```
 
@@ -275,9 +337,9 @@ if (!pack) {
 
 ```javascript
 // Crea todos los spell lists de una carpeta en el mundo (o en un compendio).
-// Cambia FOLDER por: essence, channeling o arcane según la carpeta que quieras.
+// Cambia FOLDER por: essence, channeling, arcane o mentalism según la carpeta que quieras.
 const LANG = "es";
-const FOLDER = `spell_lists/${LANG}/essence`;  // essence | channeling | arcane
+const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism
 const PACK_ID = null;  // "world.spell-lists" para importar en compendio; null para crear en Items
 
 const FILES_BY_FOLDER = {
@@ -290,28 +352,43 @@ const FILES_BY_FOLDER = {
     "spell_reins", "spirit_mastery"
   ],
   channeling: ["concussion_ways", "dark_channels", "curses", "dark_lore", "disease", "necromancy", "wounding"],
-  arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"]
+  arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"],
+  mentalism: [
+    "attack_avoidance", "anticipations", "brilliance", "cloaking",
+    "damage_resistance", "delving", "detections", "illusions",
+    "self_healing", "spell_resistance"
+  ]
 };
 
 const FILES = FILES_BY_FOLDER[FOLDER.split("/").pop()] || FILES_BY_FOLDER.essence;
 const base = `/systems/rmss/fixtures/${FOLDER}/`;
-let created = 0, failed = [];
-for (const f of FILES) {
-  try {
-    const data = await fetch(base + f + ".json").then(r => r.json());
-    if (PACK_ID) {
-      const pack = game.packs.get(PACK_ID);
-      if (pack) { await pack.importDocument(data); created++; }
-      else { failed.push(f + ": compendio no encontrado"); }
-    } else {
-      await Item.create(data);
+
+// Nombres ya existentes, para no duplicar spell lists ya importadas.
+const pack = PACK_ID ? game.packs.get(PACK_ID) : null;
+if (PACK_ID && !pack) {
+  ui.notifications.error(`Compendio "${PACK_ID}" no encontrado. Crea uno primero.`);
+} else {
+  const existingNames = pack
+    ? new Set((await pack.getIndex()).map(e => e.name))
+    : new Set(game.items.filter(i => i.type === "spell_list").map(i => i.name));
+
+  let created = 0, skipped = 0, failed = [];
+  for (const f of FILES) {
+    try {
+      const data = await fetch(base + f + ".json").then(r => r.json());
+      if (existingNames.has(data.name)) {
+        skipped++;
+        continue;
+      }
+      if (pack) { await pack.importDocument(data); }
+      else { await Item.create(data); }
       created++;
+    } catch (e) {
+      failed.push(f + ": " + e.message);
     }
-  } catch (e) {
-    failed.push(f + ": " + e.message);
   }
+  ui.notifications.info(`Importados ${created}, omitidos ${skipped} (ya existían).${failed.length ? " Fallos: " + failed.join("; ") : ""}`);
 }
-ui.notifications.info(`Importados ${created} spell lists.${failed.length ? " Fallos: " + failed.join("; ") : ""}`);
 ```
 
 Para ver el ID de un compendio: clic derecho → Edit → el ID aparece en la configuración.
