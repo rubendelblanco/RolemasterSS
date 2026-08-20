@@ -1,0 +1,394 @@
+{
+  "name": "Mind Speech",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalist Base 5.4 - Mind Speech. Spells for mental telepathy with other spell casters or any being, preparing to receive such contact, and broadcasting thoughts to a wide area. Special Notes: Except where communication is noted as being only \"one-way,\" the spells above create a \"two-way\" communication between the target (and the caster). The caster is not required to speak verbally. The target speaks verbally, but the caster is actually reading the thoughts of the target (though some targets may learn to use mental communication—any caster who knows this list is presumed to have this ability).",
+    "spells": [
+      {
+        "name": "01. Mentalist Tongue *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 1,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may mentally speak with another spell caster of the Mentalism realm."
+        }
+      },
+      {
+        "name": "02. Prepare Mind I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster enters a trance-like state to prepare his mind to be the recipient for a Mind Tongue spell. While he is under the effects of this spell, any \"incoming\" Mind Tongue spell has its range increased by 10 times."
+        }
+      },
+      {
+        "name": "03. Mind Tongue I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 3,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may mentally speak with any one thinking being. They must be able to see each other or the caster must know the exact location of the target or the caster must use Focus Mind to locate the target (in all cases, the target must be within range)."
+        }
+      },
+      {
+        "name": "04. Focus Mind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When this spell is cast, the next Mind Tongue spell (cast within one minute of this spell) will be able to focus in on a specific person as its target. The person must be Mind Stored (see the Presence spell list). This spell allows certain spells to work even if the caster doesn't know the target's exact location."
+        }
+      },
+      {
+        "name": "05. Prepare Mind II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Prepare Mind I, except range is increased by 20 times."
+        }
+      },
+      {
+        "name": "06. Mind Tongue II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 6,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "500'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Tongue I, except range is 500'."
+        }
+      },
+      {
+        "name": "08. Prepare Mind III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Prepare Mind I, except range is increased by 50 times."
+        }
+      },
+      {
+        "name": "09. Mind Speech I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can broadcast thoughts to minds of all within range. This is a \"one-way\" communication."
+        }
+      },
+      {
+        "name": "10. Mind Tongue III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "1000'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Tongue I, except range is 1,000'."
+        }
+      },
+      {
+        "name": "11. Prepare Mind IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Prepare Mind I, except range is increased by 100 times."
+        }
+      },
+      {
+        "name": "12. Mind Speech II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 12,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Speech I, except area of effect is 100' radius."
+        }
+      },
+      {
+        "name": "13. Friend Speech *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 13,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Speech, except caster can limit broadcast to desired beings."
+        }
+      },
+      {
+        "name": "14. Prepare Mind V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Prepare Mind I, except range is increased by 500 times."
+        }
+      },
+      {
+        "name": "15. Mind Speech III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "300'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Speech I, except area of effect is 300' radius."
+        }
+      },
+      {
+        "name": "16. Waiting Tongue *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 16,
+          "area_of_effect": "10'R",
+          "duration": "varies",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A 25-word mental message can be delayed. The triggering area must be no larger than 10' radius and the trigger can be any of the following: a fixed time period up to 24 hours, specified movements, specified sounds, touch, reading, or by a specific Mind Stored person entering the area."
+        }
+      },
+      {
+        "name": "17. Prepare Mind True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Prepare Mind I, except range is increased by 1,000 times."
+        }
+      },
+      {
+        "name": "18. Mind Tongue IV *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 18,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "1 mile",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Tongue I, except range is 1 mile."
+        }
+      },
+      {
+        "name": "19. Friend Speech True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 19,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Friend Speech, except area of effect is 100' radius."
+        }
+      },
+      {
+        "name": "20. Mind Speech True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "2000'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Speech I, except area of effect is 2,000' radius."
+        }
+      },
+      {
+        "name": "25. Mind Tongue True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 25,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "1 mile/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Tongue I, except range is 1 mile per level."
+        }
+      },
+      {
+        "name": "30. Waiting Speech *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "varies",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waiting Tongue, except it is broadcast to all within a 300' radius."
+        }
+      },
+      {
+        "name": "50. Far Mind Speech *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "1 mile/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Speech I, except area of effect can be up to 1 mile per level from caster."
+        }
+      }
+    ]
+  }
+}

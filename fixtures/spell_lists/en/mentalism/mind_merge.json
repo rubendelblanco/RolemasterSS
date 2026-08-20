@@ -1,0 +1,309 @@
+{
+  "name": "Mind Merge",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalist Base 5.3 - Mind Merge. Spells for reading emotions/thoughts, merging minds and exchanging power points with another Mentalist, preparing to be a target, switching minds, scanning/probing memories, and stealing thoughts.",
+    "spells": [
+      {
+        "name": "01. Empathy",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target/rnd",
+          "duration": "1 rnd/lvl(C)",
+          "range": "10'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster learns target's basic feelings. The caster can concentrate on a new target each round."
+        }
+      },
+      {
+        "name": "02. Read Emotions",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target/rnd",
+          "duration": "1 rnd/lvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster learns target's emotions in detail. The caster can concentrate on a new target each round."
+        }
+      },
+      {
+        "name": "03. Merge With Mentalist",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows two Mentalism spell users to communicate mentally and exchange power points."
+        }
+      },
+      {
+        "name": "04. Focus Merge",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When cast before (within 1 minute) a Mind Merge spell or a Ready Merge spell (an 11th+ level spell on this spell list in Spell Law), this spell allows the caster to focus on a specific person as the target (that he has Mind Stored previously). This spell allows certain spells to work even if the caster doesn't know the target's exact location."
+        }
+      },
+      {
+        "name": "05. Thoughts",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target/rnd",
+          "duration": "1 rnd/lvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster receives surface thoughts from target. If target makes his RR by more than 25 he realizes that someone is trying to read his thoughts. The caster can concentrate on a new target each round."
+        }
+      },
+      {
+        "name": "06. Mind Merge I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster and target to interchange thoughts; if both are Mentalism spell users they can interchange power points. They must be able to see each other or the caster must know the exact location of the target or the caster must use Focus Merge to locate the target (in all cases, the target must be within range)."
+        }
+      },
+      {
+        "name": "07. Prepare Merge",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster prepares himself to be the target of a Mind Merge spell or Ready Merge spell (an 11th+ level spell on this spell list in Spell Law), thus, increases the range of the \"incoming\" spell. The increased range is equal to the original range times the number of power points used to cast the Prepare Merge spell (e.g., if a caster uses 18 PPs, the range is 18 times normal)."
+        }
+      },
+      {
+        "name": "08. Mind Merge II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Merge I, except range is 100'."
+        }
+      },
+      {
+        "name": "10. Inner Thoughts",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target/rnd",
+          "duration": "1 rnd/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As in Thoughts, except caster also learns reasoning and thought patterns behind surface thoughts."
+        }
+      },
+      {
+        "name": "11. Ready Merge *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 11,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "100'/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As in Mind Merge I, except for range and caster and target must have Merged before and it is instantaneous."
+        }
+      },
+      {
+        "name": "13. Mind Switch",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "1 day",
+          "range": "touch",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target and caster switch minds and spell casting abilities. Target (in caster's body) is in a coma if he is not also a Mentalist. If the target is unwilling, he may make a new RR every hour."
+        }
+      },
+      {
+        "name": "15. Mind Scan",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target/rnd",
+          "duration": "1 rnd/lvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As in Inner Thoughts, except caster can also scan target's conscious memories, at a rate of 1 scene every round."
+        }
+      },
+      {
+        "name": "18. Mind Merge True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "50'/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Merge I, except for range and caster must know the exact location of the target mentally or through some other means."
+        }
+      },
+      {
+        "name": "20. Mind Probe",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target/rnd",
+          "duration": "1 rnd/lvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As in Mind Scan, except caster can probe target's subconscious memories (i.e., all experiences)."
+        }
+      },
+      {
+        "name": "25. Mind Switch True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "varies",
+          "range": "touch",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As in Mind Switch, except lasts until the caster decides to return to his own body."
+        }
+      },
+      {
+        "name": "30. Thought Steal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can remove one thought or memory from the target's mind each round."
+        }
+      },
+      {
+        "name": "50. Ready Merge True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "caster+1 tgt",
+          "duration": "C",
+          "range": "unlimited",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As in Ready Merge, except range is unlimited."
+        }
+      }
+    ]
+  }
+}

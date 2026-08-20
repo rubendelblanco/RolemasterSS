@@ -1,0 +1,377 @@
+{
+  "name": "Control de los Sentidos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Mentalista 5.6 - Control de los Sentidos. Hechizos para atacar y controlar los sentidos de un objetivo: distracción, adormecimiento, visión borrosa, sensaciones falsas, ataques de sonido y luz, torpeza, alucinaciones, sobrecarga/privación sensorial, y control total de la realidad percibida por un objetivo. Notas Especiales: Todas las sensaciones creadas por los hechizos de esta lista son estrictamente mentales (es decir, no reales). Por ejemplo, el sonido creado con Ataque Auditivo solo se oye dentro de la cabeza del objetivo (y funciona incluso con una persona sorda).",
+    "spells": [
+      {
+        "name": "01. Distracción",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo sufre una penalización especial de -30 a todas las acciones."
+        }
+      },
+      {
+        "name": "02. Adormecer",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un miembro aleatorio del objetivo queda adormecido e inútil. Si es una pierna, el objetivo pierde el 40% de su movimiento. Si es un brazo, sufre una penalización especial de -40 al combate cuerpo a cuerpo y a distancia con ese brazo."
+        }
+      },
+      {
+        "name": "03. Visión Borrosa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo sufre una penalización especial de -100 a su OB con ataques de proyectiles y de -50 en cualquier otra acción."
+        }
+      },
+      {
+        "name": "04. Control Menor de Sentidos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causa sensaciones falsas y menores en uno de estos sentidos: olfato, gusto o tacto (p.ej., un olor apestoso, un sabor salado, o un picor)."
+        }
+      },
+      {
+        "name": "05. Ataque Auditivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un sonido fuerte aturde al objetivo."
+        }
+      },
+      {
+        "name": "06. Control Auditivo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que el objetivo oiga cualquier sonido que se desee."
+        }
+      },
+      {
+        "name": "07. Torpeza",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo se le cae el arma u objeto de las manos. El objetivo debe tirar en la Tabla de Torpeza correspondiente."
+        }
+      },
+      {
+        "name": "08. Control Visual",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que el objetivo vea lo que el lanzador desee."
+        }
+      },
+      {
+        "name": "09. Ataque Visual",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Una luz intensa ciega al objetivo."
+        }
+      },
+      {
+        "name": "10. Aturdir Nervios",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo queda totalmente adormecido. Sufre una penalización especial de -75 a todas las acciones y queda aturdido."
+        }
+      },
+      {
+        "name": "11. Alucinación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo ve a un enemigo inexistente. Debe luchar contra él hasta que sea \"derrotado\" (es decir, reciba suficiente daño como para caer). El enemigo tiene las mismas capacidades que el objetivo, pero no hace daño (es decir, siempre falla)."
+        }
+      },
+      {
+        "name": "12. Alucinación Burlona",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alucinación, pero nunca atacará. Solo se burlará del personaje (parando todos los ataques contra él)."
+        }
+      },
+      {
+        "name": "13. Control de Sentidos II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Control Menor de Sentidos, salvo que puede afectar a dos sentidos cualesquiera (incluyendo vista y oído)."
+        }
+      },
+      {
+        "name": "15. Sobrecarga Sensorial",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Este hechizo sobrecarga los sentidos del objetivo. Si falla la RR por 50 o menos, queda aturdido durante la duración. Si falla por más de 50, queda inconsciente."
+        }
+      },
+      {
+        "name": "16. Control de Sentidos III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Control de Sentidos II, salvo que afecta a tres sentidos cualesquiera."
+        }
+      },
+      {
+        "name": "18. Control de Sentidos IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Control de Sentidos II, salvo que afecta a cuatro sentidos cualesquiera."
+        }
+      },
+      {
+        "name": "19. Privación Sensorial",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Privación sensorial total, es decir, sin entrada sensorial alguna. Cada día de privación otorga una probabilidad del 5% (acumulativa) de locura temporal."
+        }
+      },
+      {
+        "name": "20. Control de Sentidos V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Control de Sentidos II, salvo que afecta a todos los sentidos."
+        }
+      },
+      {
+        "name": "25. Control a Distancia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "300'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Control de Sentidos V, salvo que el alcance inicial es de 300'. Tras el lanzamiento inicial, el lanzador puede controlar los sentidos que recibe el objetivo a un alcance de 1 milla por nivel del lanzador."
+        }
+      },
+      {
+        "name": "30. Control de Sentidos Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "300'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Control a Distancia, salvo que el lanzador puede \"programar\" la entrada sensorial (es decir, el sentido X se recibirá al alcanzar el punto Y) y la concentración solo se requiere para \"programar\" la entrada en memoria, y la duración es de 10 minutos por nivel del lanzador."
+        }
+      },
+      {
+        "name": "50. Mundo Privado",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "P (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo vive en su propio mundo de fantasía, totalmente controlado por el lanzador mientras se concentra. Mientras está en la fantasía, el objetivo no recibe ninguna entrada sensorial del mundo real."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "name": "Mind Control",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalist Base 5.2 - Mind Control. Spells for controlling a target's mind and behavior: forced answers, sleep, charm, calm, confusion, fear, suggestion, holding, emotion control, coma, geas, and total mind control/mastery.",
+    "spells": [
+      {
+        "name": "01. Question",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target must answer a single-concept question truthfully (though he must be able to understand the question)."
+        }
+      },
+      {
+        "name": "02. Sleep",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target falls into natural sleep. The first round is a magical sleep (the target cannot be awakened through normal means)."
+        }
+      },
+      {
+        "name": "03. Charm Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Humanoid target believes caster is a good friend."
+        }
+      },
+      {
+        "name": "04. Calm",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target will take no offensive action, and he will fight only in self-defense."
+        }
+      },
+      {
+        "name": "05. Confusion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is incapable of making decisions or initiating action; but he may continue to fight current foes or in self-defense."
+        }
+      },
+      {
+        "name": "06. Fear",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "1 min/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target fears caster and attempts to flee. Fleeing usually equates to running at maximum pace away from the caster."
+        }
+      },
+      {
+        "name": "07. Suggestion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target will follow a single suggested act that is not completely alien to him (e.g., no suicide suggestions, no blinding himself, etc.)."
+        }
+      },
+      {
+        "name": "08. Hold Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is held to 25% of normal action."
+        }
+      },
+      {
+        "name": "09. Emotions",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes any desired emotion. Possible emotions include hate, love, sadness, anger, etc."
+        }
+      },
+      {
+        "name": "10. Master of Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target must obey the caster as specified in Suggestion."
+        }
+      },
+      {
+        "name": "11. Coma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "1 day/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: +20] Target falls into a coma."
+        }
+      },
+      {
+        "name": "12. True Charm",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Charm Kind, except works on any sentient creature."
+        }
+      },
+      {
+        "name": "14. Hold True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hold Kind, except any sentient being can be affected."
+        }
+      },
+      {
+        "name": "15. Geas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is given 1 task. Failure results in a penalty determined by GM (task must be within target's capabilities). If the target ignores the task, he will suffer the same effects of failure."
+        }
+      },
+      {
+        "name": "16. Hold Kind True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -20] Target is totally paralyzed (0% action)."
+        }
+      },
+      {
+        "name": "18. Mind Break",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is a blathering idiot. He may be led around but he can take no action."
+        }
+      },
+      {
+        "name": "20. True Sleep",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "1 min/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -20] Target is unconscious and unwakeable."
+        }
+      },
+      {
+        "name": "25. True Geas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Geas, except failure is punished by the target suffering five 'E' criticals (choose which critical types randomly)."
+        }
+      },
+      {
+        "name": "30. Mind Control True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl (C)",
+          "range": "300'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When he concentrates, caster has total control of target's mind. After the initial casting, the range for control is 1 mile per level of the caster."
+        }
+      },
+      {
+        "name": "50. Mind Master",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "P (C)",
+          "range": "300'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Control True, except duration is permanent (until dispelled). The caster need only concentrate to give commands. Only one target can be controlled in this fashion at a time."
+        }
+      }
+    ]
+  }
+}

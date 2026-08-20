@@ -113,6 +113,26 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 - `spell_lists/en/mentalism/telekinesis.json` – 23 hechizos de mover objetos a distancia (Telekinesis), inmovilizarlos (Staying) y lanzarlos como ataque (Hurling) (inglés)
 - `spell_lists/es/mentalism/telekinesis.json` – Telekinesis, traducida al español
 
+### Listas base de profesión (Mentalismo)
+
+Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base"` y `system.profession`, y viven en `spell_lists/{lang}/mentalism/`.
+
+**Lay Healer (Curandero) Base 4.1–4.6:**
+- `blood_mastery.json` – Blood Mastery / Maestría de la Sangre (4.1)
+- `bone_mastery.json` – Bone Mastery / Maestría del Hueso (4.2)
+- `concussion_mastery.json` – Concussion Mastery / Maestría de Conmoción (4.3)
+- `muscle_mastery.json` – Muscle Mastery / Maestría del Músculo (4.4)
+- `nerve_and_organ_mastery.json` – Nerve and Organ Mastery / Maestría de Nervios y Órganos (4.5)
+- `prosthetics.json` – Prosthetics / Prótesis (4.6)
+
+**Mentalist (Mentalista) Base 5.1–5.6:**
+- `mind_attack.json` – Mind Attack / Ataque Mental (5.1)
+- `mind_control.json` – Mind Control / Control Mental (5.2)
+- `mind_merge.json` – Mind Merge / Fusión Mental (5.3)
+- `mind_speech.json` – Mind Speech / Habla Mental (5.4)
+- `presence.json` – Presence / Presencia (5.5)
+- `sense_control.json` – Sense Control / Control de los Sentidos (5.6)
+
 ### Concussion's Ways (Open Channeling 2.2)
 
 - `spell_lists/en/channeling/concussion_ways.json` – 20 hechizos de curación de golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración (inglés)
@@ -408,7 +428,10 @@ const FILES_BY_FOLDER = {
     "damage_resistance", "delving", "detections", "illusions",
     "self_healing", "spell_resistance", "gas_manipulation", "liquid_manipulation",
     "mind_mastery", "minds_door", "movement", "sense_mastery", "shifting",
-    "solid_manipulation", "speed", "telekinesis"
+    "solid_manipulation", "speed", "telekinesis",
+    "blood_mastery", "bone_mastery", "concussion_mastery", "muscle_mastery",
+    "nerve_and_organ_mastery", "prosthetics",
+    "mind_attack", "mind_control", "mind_merge", "mind_speech", "presence", "sense_control"
   ]
 };
 

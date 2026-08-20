@@ -1,0 +1,309 @@
+{
+  "name": "Fusión Mental",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Mentalista 5.3 - Fusión Mental. Hechizos para leer emociones/pensamientos, fusionar mentes e intercambiar puntos de poder con otro Mentalista, prepararse para ser objetivo, intercambiar mentes, escanear/sondear la memoria, y robar pensamientos.",
+    "spells": [
+      {
+        "name": "01. Empatía",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo/rnd",
+          "duration": "1 rnd/nvl(C)",
+          "range": "10'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador aprende los sentimientos básicos del objetivo. El lanzador puede concentrarse en un nuevo objetivo cada ronda."
+        }
+      },
+      {
+        "name": "02. Leer Emociones",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo/rnd",
+          "duration": "1 rnd/nvl(C)",
+          "range": "50'",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador aprende las emociones del objetivo en detalle. El lanzador puede concentrarse en un nuevo objetivo cada ronda."
+        }
+      },
+      {
+        "name": "03. Fusión con Mentalista",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite a dos usuarios de hechizos de Mentalismo comunicarse mentalmente e intercambiar puntos de poder."
+        }
+      },
+      {
+        "name": "04. Fusión de Enfoque",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cuando se lanza antes (dentro de 1 minuto) de un hechizo de Fusión Mental o de Fusión Preparada (un hechizo de nivel 11+ de esta lista en Spell Law), este hechizo permite al lanzador enfocarse en una persona concreta como objetivo (de la que tenga la Impronta Mental almacenada previamente). Este hechizo permite que ciertos hechizos funcionen incluso si el lanzador no conoce la ubicación exacta del objetivo."
+        }
+      },
+      {
+        "name": "05. Pensamientos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo/rnd",
+          "duration": "1 rnd/nvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador recibe los pensamientos superficiales del objetivo. Si el objetivo supera su RR por más de 25, se da cuenta de que alguien está intentando leer sus pensamientos. El lanzador puede concentrarse en un nuevo objetivo cada ronda."
+        }
+      },
+      {
+        "name": "06. Fusión Mental I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador y al objetivo intercambiar pensamientos; si ambos son usuarios de hechizos de Mentalismo pueden intercambiar puntos de poder. Deben poder verse el uno al otro, o el lanzador debe conocer la ubicación exacta del objetivo, o el lanzador debe usar Fusión de Enfoque para localizarlo (en todos los casos, el objetivo debe estar dentro del alcance)."
+        }
+      },
+      {
+        "name": "07. Preparar Fusión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador se prepara para ser el objetivo de un hechizo de Fusión Mental o de Fusión Preparada (un hechizo de nivel 11+ de esta lista en Spell Law), aumentando así el alcance del hechizo \"entrante\". El aumento de alcance es igual al alcance original multiplicado por el número de PP usados para lanzar Preparar Fusión (p.ej., si el lanzador usa 18 PP, el alcance es 18 veces el normal)."
+        }
+      },
+      {
+        "name": "08. Fusión Mental II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fusión Mental I, salvo que el alcance es de 100'."
+        }
+      },
+      {
+        "name": "10. Pensamientos Internos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo/rnd",
+          "duration": "1 rnd/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pensamientos, salvo que el lanzador también aprende el razonamiento y los patrones de pensamiento detrás de los pensamientos superficiales."
+        }
+      },
+      {
+        "name": "11. Fusión Preparada *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 11,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "100'/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fusión Mental I, salvo por el alcance; el lanzador y el objetivo deben haberse fusionado antes, y es instantáneo."
+        }
+      },
+      {
+        "name": "13. Intercambio Mental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster+1 obj",
+          "duration": "1 día",
+          "range": "touch",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo y el lanzador intercambian mentes y capacidades de lanzar hechizos. El objetivo (en el cuerpo del lanzador) queda en coma si no es también Mentalista. Si el objetivo no está dispuesto, puede hacer una nueva RR cada hora."
+        }
+      },
+      {
+        "name": "15. Escaneo Mental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo/rnd",
+          "duration": "1 rnd/nvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pensamientos Internos, salvo que el lanzador también puede escanear los recuerdos conscientes del objetivo, a un ritmo de 1 escena por ronda."
+        }
+      },
+      {
+        "name": "18. Fusión Mental Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "50'/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fusión Mental I, salvo por el alcance; el lanzador debe conocer la ubicación exacta del objetivo mentalmente o por algún otro medio."
+        }
+      },
+      {
+        "name": "20. Sonda Mental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo/rnd",
+          "duration": "1 rnd/nvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Escaneo Mental, salvo que el lanzador puede sondear los recuerdos subconscientes del objetivo (es decir, todas sus experiencias)."
+        }
+      },
+      {
+        "name": "25. Intercambio Mental Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster+1 obj",
+          "duration": "varía",
+          "range": "touch",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Intercambio Mental, salvo que dura hasta que el lanzador decida volver a su propio cuerpo."
+        }
+      },
+      {
+        "name": "30. Robo de Pensamiento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/nvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede eliminar un pensamiento o recuerdo de la mente del objetivo cada ronda."
+        }
+      },
+      {
+        "name": "50. Fusión Preparada Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "unlimited",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fusión Preparada, salvo que el alcance es ilimitado."
+        }
+      }
+    ]
+  }
+}

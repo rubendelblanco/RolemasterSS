@@ -1,0 +1,343 @@
+{
+  "name": "Prótesis",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Lay Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Curandero 4.6 - Prótesis. Hechizos para medir, moldear y ajustar miembros artificiales (madera, cristal, metal, materiales encantados), cubrirlos con carne artificial, y animarlos durante duraciones crecientes. Notas Especiales: Una vez creado, un miembro falso deja de ser mágico. Sin embargo, la animación del miembro sí es mágica (y puede disiparse). Al resistir Cancelar y Disipar, un miembro falso animado recibe un modificador adicional de +50 a su RR.",
+    "spells": [
+      {
+        "name": "01. Medir",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador conoce las dimensiones exactas necesarias para hacer un miembro falso para el objetivo."
+        }
+      },
+      {
+        "name": "02. Moldear Madera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 hr/nvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede moldear madera objetivo (hasta 4 pies cúbicos) como si fuera arcilla mientras se concentra. Normalmente tarda 1 día (aproximadamente 8 horas) en moldear un miembro artificial. Al finalizar el tiempo de moldeado, la madera vuelve a su dureza normal."
+        }
+      },
+      {
+        "name": "03. Ajustar Madera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador acopla un miembro de madera (artificial) al cuerpo. El proceso tarda 1 hora. Este hechizo debe lanzarse antes de poder lanzar un hechizo de Animación."
+        }
+      },
+      {
+        "name": "04. Animación I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "8 hrs",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite a quien lo lleva operar un miembro artificial a voluntad durante 8 horas."
+        }
+      },
+      {
+        "name": "05. Moldear Cristal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 hr/nvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Moldear Madera, salvo que funciona con cristal. El proceso tarda 2 días (aproximadamente 8 horas por día) en moldear."
+        }
+      },
+      {
+        "name": "06. Ajustar Cristal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ajustar Madera, salvo que permite al lanzador ajustar un miembro de cristal."
+        }
+      },
+      {
+        "name": "07. Animación II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "24 hrs",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animación I, salvo que la duración es de 24 horas."
+        }
+      },
+      {
+        "name": "08. Moldear Metal Normal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1 hr/nvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Moldear Madera, salvo que implica metales básicos y el proceso tarda 4 días (aproximadamente 8 horas por día)."
+        }
+      },
+      {
+        "name": "09. Ajustar Metal Normal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ajustar Madera; permite al lanzador ajustar un miembro de metal normal."
+        }
+      },
+      {
+        "name": "10. Carne Artificial",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 hr/nvl (C)",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Este hechizo permite al lanzador convertir arcilla en suficiente carne artificial para cubrir un miembro artificial (el miembro debe estar presente en el momento de lanzarlo). La carne es solo semirrealista (similar al plástico). El proceso tarda 2 días (aproximadamente 8 horas cada día), pero puede requerir más tiempo para miembros más grandes (a discreción del DJ)."
+        }
+      },
+      {
+        "name": "11. Animación III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 semana",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animación I, salvo que la duración es de 1 semana."
+        }
+      },
+      {
+        "name": "13. Ajustar Materiales Encantados",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ajustar Madera; salvo que permite al lanzador ajustar miembros de materiales encantados (el miembro debe crearse por algún otro medio)."
+        }
+      },
+      {
+        "name": "15. Animación IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 mes",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animación I, salvo que la duración es de 1 mes."
+        }
+      },
+      {
+        "name": "17. Animación V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "3 meses",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animación I, salvo que la duración es de 3 meses."
+        }
+      },
+      {
+        "name": "19. Animación VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "6 meses",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animación I, salvo que la duración es de 6 meses."
+        }
+      },
+      {
+        "name": "20. Carne Artificial Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 hr/nvl (C)",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Carne Artificial, salvo que puede crearse y trabajarse carne sintética perfectamente realista. Este proceso tarda 10-100 días, dependiendo de la cantidad de carne necesaria."
+        }
+      },
+      {
+        "name": "25. Animación VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 año",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animación I, salvo que la duración es de 1 año."
+        }
+      },
+      {
+        "name": "30. Animación VIII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 año/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animación I, salvo que la duración es de 1 año por nivel del lanzador."
+        }
+      },
+      {
+        "name": "50. Animación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Animación, salvo que la duración es permanente."
+        }
+      }
+    ]
+  }
+}

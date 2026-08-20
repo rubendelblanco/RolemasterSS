@@ -1,0 +1,378 @@
+{
+  "name": "Presence",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalist Base 5.5 - Presence. Spells for sensing sentient presence, analyzing/storing/transferring mental patterns of beings, and finding/pointing toward a stored mental pattern at increasing range.",
+    "spells": [
+      {
+        "name": "01. Presence * •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "no_pp": true,
+          "level": 1,
+          "area_of_effect": "10'R/lvl",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is aware of the presence of all sentient/thinking beings within his range."
+        }
+      },
+      {
+        "name": "02. Feel I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gets general idea of the race and level of one being. The target must first be located by Presence or Presence True."
+        }
+      },
+      {
+        "name": "03. Mind Store *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Feel I, except caster stores mental pattern of target. This can be used with other spells (both on this list and others). The caster can only have as many patterns stored as the sum of his Memory and Presence temporary stats (not the bonuses). The caster can choose to release a stored pattern at any given time (the GM should require that a character keep track of all the patterns he has stored)."
+        }
+      },
+      {
+        "name": "04. Transfer Mind Store",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can transfer a copy of any one Mind Stored person to another caster from the Mentalism realm (i.e., both casters now have the person stored). The target of this spell must know the Mind Store spell."
+        }
+      },
+      {
+        "name": "05. Feel III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 5,
+          "area_of_effect": "3 targets",
+          "duration": "—",
+          "range": "10'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Feel I, except analyzes 3 targets at once (all targets must be within range)."
+        }
+      },
+      {
+        "name": "06. Mind Typing *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "10'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Feel I, except caster learns race, profession, and level of target."
+        }
+      },
+      {
+        "name": "07. Finding I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "100'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gets direction and distance to any unshielded mind that he has a mental pattern of (from Mind Store)."
+        }
+      },
+      {
+        "name": "08. Direction I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "1000'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gets direction to any unshielded mind which he has a mental pattern of (from Mind Store)."
+        }
+      },
+      {
+        "name": "09. Presence True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "100'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Can get presences in one 50' radius. The caster can concentrate on one 50' radius area each round."
+        }
+      },
+      {
+        "name": "10. Awareness *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Presence, plus a general knowledge of the target's actions. In a tactical situation, the caster can declare his actions after learning one of the target's actions for the round (and when he wants to perform the action). This does not prevent the target from changing his action (with the appropriate penalty for cancelling his action, see RMFRP p. 54)."
+        }
+      },
+      {
+        "name": "11. Direction II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "1 mile/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Direction I, except range is 1 mile per level."
+        }
+      },
+      {
+        "name": "12. Long Feel *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Feel I, except that range is 100' per level."
+        }
+      },
+      {
+        "name": "13. Feel V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 13,
+          "area_of_effect": "5 targets",
+          "duration": "—",
+          "range": "10'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Feel I, except analyzes 5 targets at once (all targets must be within range)."
+        }
+      },
+      {
+        "name": "14. Mass Feel *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 14,
+          "area_of_effect": "1 target/rnd",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Feel I, except caster may \"feel\" one target per round."
+        }
+      },
+      {
+        "name": "15. Mind Typing True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Typing, except range is 100' per level."
+        }
+      },
+      {
+        "name": "18. Finding II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "1 mile/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Finding I, except range is 1 mile per level."
+        }
+      },
+      {
+        "name": "19. Feel X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10 targets",
+          "duration": "—",
+          "range": "10'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Feel I, except analyzes 10 targets at once (all targets must be within range)."
+        }
+      },
+      {
+        "name": "20. Awareness True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "10'/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Awareness, except that caster learns all actions of the target."
+        }
+      },
+      {
+        "name": "25. Finding III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "5 miles/lvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Finding I, except range is 5 miles per level."
+        }
+      },
+      {
+        "name": "30. Direction True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "unlimited",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Direction I, except no range limitations."
+        }
+      },
+      {
+        "name": "50. Finding True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "unlimited",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Finding I, except no range limitations."
+        }
+      }
+    ]
+  }
+}

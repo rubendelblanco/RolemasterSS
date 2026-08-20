@@ -1,0 +1,394 @@
+{
+  "name": "Nerve and Organ Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Lay Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lay Healer Base 4.5 - Nerve and Organ Mastery. Spells for understanding and repairing nerve, ear, nose, eye, and brain damage, transplanting and regenerating organs, curing paralysis, suspending life, and reattaching severed limbs. Special Notes: (1) See RMFRP Section 24.1 (p. 75) for more on damage and healing. (2) Some spells on this list require an operation to be effective. These spells have the same name as other healing spells (from the Channeling realm) and the GM may decide that the operation is not required.",
+    "spells": [
+      {
+        "name": "01. Nerve/Organ Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster acquires complete understanding of any nerve and/or organ damage; including the tools and methods required for healing; caster does not receive the skill or power necessary to perform the cure."
+        }
+      },
+      {
+        "name": "02. Numbing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to stop or reduce feeling in a specific area of the body (2 cu\" per level). Works to reduce pain with minor side effects (e.g., -10 to actions)."
+        }
+      },
+      {
+        "name": "03. Minor Nerve Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair minor nerve damage. Recovery time is 1-10 days. Minor nerve damage is defined as any nerve damage that results in a penalty up to -20."
+        }
+      },
+      {
+        "name": "04. Minor Ear/Nose Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair any exterior ear damage short of complete ear loss or any nose damage short of complete nose loss. Requires 1-60 minutes, depending on damage."
+        }
+      },
+      {
+        "name": "05. Organ Preservation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 day/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to prevent the deterioration of any specific organ (e.g., eye, ear, liver), even if it is \"outside\" of its body."
+        }
+      },
+      {
+        "name": "06. Minor Eye Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair any minor eye damage (e.g., corneal scratch or removal of foreign object)."
+        }
+      },
+      {
+        "name": "07. Major Nerve Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Nerve Repair, except that caster can repair any nerve damage. This spell will not repair destroyed nerves. Recovery time is 1-10 days."
+        }
+      },
+      {
+        "name": "08. Major Ear Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Ear Repair, except caster can repair any interior or exterior damage. Hearing is restored in 1-10 days. Note that complete replacement of ear is an exception."
+        }
+      },
+      {
+        "name": "09. Joining *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to reattach 1 severed limb. Requires the use of the other 3 Lay Healer Joining spells to make limb fully functional. Limb is fully functional after 10-100 days."
+        }
+      },
+      {
+        "name": "10. Major Eye Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Eye Repair, except caster can repair any eye damage short of total eye loss (i.e., eye's destruction precludes repair). Recovery time is 1-10 days."
+        }
+      },
+      {
+        "name": "11. Suspend Life I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "1 hr/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is kept in a state of suspended animation and prevented from dying for the duration of this spell (i.e., the body is \"preserved\" and the \"soul\" will not leave the body). Also requires the use of the other Suspend Life I (on the Blood Mastery list)."
+        }
+      },
+      {
+        "name": "12. Nerve Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Major Nerve Repair, except that recovery is instantaneous."
+        }
+      },
+      {
+        "name": "13. Organ Transplant",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to transplant a healthy organ (not including brain or nervous system) into the target. Requires a 1 hour operation. Recovery time is 1-10 days. There is a chance that the target's body will reject the new organ: 10% if it is from the same race as the target, 50% if from a similar race. Will not transplant blood or muscles."
+        }
+      },
+      {
+        "name": "14. Organ Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair any organ (not brain or nervous system) that has not been completely destroyed. Requires a 1-10 hour operation. Recovery: 1-10 days."
+        }
+      },
+      {
+        "name": "15. Minor Brain Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair minor brain damage (including recovery from coma). Lost experience is not restored (% lost permanently dependent on severity of damage). Requires a 1 hour operation. Recovery time is 1-10 days."
+        }
+      },
+      {
+        "name": "16. Paralysis Cures",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to cure paralysis in 1 target (recovery time of 1-10 days). Paralysis must have resulted from a spell or disease (not a poison)."
+        }
+      },
+      {
+        "name": "17. Suspend Life II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Suspend Life I, except for duration and the requirement of the Suspend Life II spell (on the Blood Mastery spell list)."
+        }
+      },
+      {
+        "name": "18. Rapid Organ Transplant",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Organ Transplant, except recovery time is only 1-10 hours."
+        }
+      },
+      {
+        "name": "20. Joining True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Joining, except caster must cast the other 3 Lay Healer Joining True spells and the limb is fully functional in 10 minutes."
+        }
+      },
+      {
+        "name": "25. Nerve Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to regenerate lost nerve. Regrowth takes 1-10 days, depending on extent of loss."
+        }
+      },
+      {
+        "name": "30. Organ Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to completely regenerate lost organ. This process takes 1-10 hours. Recovery time takes 1-10 days. The target remains in coma during recovery (this spell will not regenerate the brain)."
+        }
+      },
+      {
+        "name": "50. Brain Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to regenerate brain tissue in 1-10 hours. Recovery time is 1-10 days (target is in coma during recovery). Note that lost experience is not restored (the % lost permanently depends on severity of damage)."
+        }
+      }
+    ]
+  }
+}

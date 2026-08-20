@@ -1,0 +1,377 @@
+{
+  "name": "Mind Attack",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalist Base 5.1 - Mind Attack. Direct mental attack spells: stunning, hesitation, pain, electricity criticals, paralysis, and mass mind-shout attacks.",
+    "spells": [
+      {
+        "name": "01. Jolts I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is stunned."
+        }
+      },
+      {
+        "name": "02. Hesitation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target hesitates in any nondefensive action. He suffers a -20 to initiative rolls and he must parry with at least half of his OB."
+        }
+      },
+      {
+        "name": "03. Minor Pain",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target takes 25% of his remaining concussion hits (i.e., those not already taken)."
+        }
+      },
+      {
+        "name": "04. Shock A",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target takes an 'A' Electricity critical strike."
+        }
+      },
+      {
+        "name": "05. Jolts III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "3 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jolts I, except for duration."
+        }
+      },
+      {
+        "name": "07. Paralyze I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is paralyzed."
+        }
+      },
+      {
+        "name": "08. Shock B",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shock A, except Electricity critical is a 'B'."
+        }
+      },
+      {
+        "name": "09. Major Pain",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Pain, except 50% of remaining concussion hits are taken."
+        }
+      },
+      {
+        "name": "10. Mind Shout I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "10'R",
+          "duration": "1 rnd/10 fail",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Everyone except the caster within the area of effect is a target, all failing to resist are stunned."
+        }
+      },
+      {
+        "name": "11. Jolts V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "5 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jolts I, except for duration."
+        }
+      },
+      {
+        "name": "12. Paralyze III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "3 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Paralyze I, except duration is 3 rounds per 10 failure."
+        }
+      },
+      {
+        "name": "13. Shock C",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shock A, except Electricity critical is a 'C'."
+        }
+      },
+      {
+        "name": "15. Mind Shout II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "50'R",
+          "duration": "1 rnd/10 fail",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Shout I, except area of effect is 50' radius."
+        }
+      },
+      {
+        "name": "16. Shock D",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shock A, except Electricity critical is a 'D'."
+        }
+      },
+      {
+        "name": "17. Paralyze V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "5 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Paralyze I, except duration is 5 rounds per 10 failure."
+        }
+      },
+      {
+        "name": "18. Jolts X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "10 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jolts I, except for duration."
+        }
+      },
+      {
+        "name": "19. Mind Shout III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 19,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/10 fail",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Shout I, except area of effect is 100' radius."
+        }
+      },
+      {
+        "name": "20. Shock E",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shock A, except Electricity critical is an 'E'."
+        }
+      },
+      {
+        "name": "25. Great Shout *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 25,
+          "area_of_effect": "50'R",
+          "duration": "1 rnd/10 fail",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Shout I, except area of effect is 50' radius and any target failing by more than 50 is unconscious for eight hours."
+        }
+      },
+      {
+        "name": "30. Mind Shout True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 30,
+          "area_of_effect": "300'R",
+          "duration": "1 rnd/10 fail",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Shout I, except area of effect is 300' radius."
+        }
+      },
+      {
+        "name": "50. Shout True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "50'R",
+          "duration": "varies",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind Shout (50' radius), except targets failing by 1-50 are unconscious, and targets failing by more than 50 are dead. RRs for Mentalism spell users are modified by -20."
+        }
+      }
+    ]
+  }
+}

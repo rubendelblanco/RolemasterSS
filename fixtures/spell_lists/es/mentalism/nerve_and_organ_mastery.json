@@ -1,0 +1,394 @@
+{
+  "name": "Maestría de Nervios y Órganos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Lay Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Curandero 4.5 - Maestría de Nervios y Órganos. Hechizos para entender y reparar daño en nervios, oído, nariz, ojo y cerebro, trasplantar y regenerar órganos, curar parálisis, suspender la vida y reimplantar miembros seccionados. Notas Especiales: (1) Ver RMFRP Sección 24.1 (p. 75) para más información sobre daño y curación. (2) Algunos hechizos de esta lista requieren una operación para ser efectivos. Estos hechizos comparten nombre con otros hechizos de curación (del reino de Canalización) y el DJ puede decidir que la operación no sea necesaria.",
+    "spells": [
+      {
+        "name": "01. Saber de Nervio/Órgano",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador adquiere una comprensión completa de cualquier daño en nervios y/u órganos, incluidas las herramientas y métodos necesarios para curarlo; el lanzador no recibe la habilidad ni el poder necesarios para realizar la cura."
+        }
+      },
+      {
+        "name": "02. Adormecer",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador detener o reducir la sensibilidad en un área específica del cuerpo (2 pulg. cúb. por nivel). Sirve para reducir el dolor con efectos secundarios menores (p.ej., -10 a las acciones)."
+        }
+      },
+      {
+        "name": "03. Reparación Menor de Nervio",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar daño nervioso menor. El tiempo de recuperación es de 1-10 días. Se define daño nervioso menor como cualquier daño nervioso que resulte en una penalización de hasta -20."
+        }
+      },
+      {
+        "name": "04. Reparación Menor de Oído/Nariz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar cualquier daño exterior en el oído (salvo la pérdida completa) o daño en la nariz (salvo la pérdida completa). Requiere 1-60 minutos, dependiendo del daño."
+        }
+      },
+      {
+        "name": "05. Preservación de Órgano",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador evitar el deterioro de cualquier órgano específico (p.ej., ojo, oído, hígado), incluso fuera del cuerpo."
+        }
+      },
+      {
+        "name": "06. Reparación Menor de Ojo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar cualquier daño ocular menor (p.ej., arañazo en la córnea o extracción de un cuerpo extraño)."
+        }
+      },
+      {
+        "name": "07. Reparación Mayor de Nervio",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparación Menor de Nervio, salvo que el lanzador puede reparar cualquier daño nervioso. Este hechizo no repara nervios destruidos. El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "08. Reparación Mayor de Oído",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparación Menor de Oído, salvo que el lanzador puede reparar cualquier daño interior o exterior. El oído se restaura en 1-10 días. La reposición completa del oído es una excepción."
+        }
+      },
+      {
+        "name": "09. Reimplantar *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reimplantar 1 miembro seccionado. Requiere el uso de los otros 3 hechizos Reimplantar de Curandero para que el miembro sea totalmente funcional. El miembro es totalmente funcional tras 10-100 días."
+        }
+      },
+      {
+        "name": "10. Reparación Mayor de Ojo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparación Menor de Ojo, salvo que el lanzador puede reparar cualquier daño ocular salvo la pérdida total del ojo (su destrucción impide la reparación). El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "11. Suspender la Vida I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 hr/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo queda en un estado de animación suspendida y se le impide morir durante la duración de este hechizo (es decir, el cuerpo se \"preserva\" y el \"alma\" no abandonará el cuerpo). También requiere el uso del otro Suspender la Vida I (de la lista Maestría de la Sangre)."
+        }
+      },
+      {
+        "name": "12. Reparar Nervio Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparación Mayor de Nervio, salvo que la recuperación es instantánea."
+        }
+      },
+      {
+        "name": "13. Trasplante de Órgano",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador trasplantar un órgano sano (sin incluir el cerebro o el sistema nervioso) al objetivo. Requiere una operación de 1 hora. El tiempo de recuperación es de 1-10 días. Existe la posibilidad de que el cuerpo del objetivo rechace el nuevo órgano: 10% si es de la misma raza que el objetivo, 50% si es de una raza similar. No permite trasplantar sangre ni músculos."
+        }
+      },
+      {
+        "name": "14. Reparar Órgano",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar cualquier órgano (no el cerebro ni el sistema nervioso) que no haya sido destruido por completo. Requiere una operación de 1-10 horas. Recuperación: 1-10 días."
+        }
+      },
+      {
+        "name": "15. Reparación Menor de Cerebro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar daño cerebral menor (incluida la recuperación de un coma). La experiencia perdida no se restaura (el % perdido de forma permanente depende de la gravedad del daño). Requiere una operación de 1 hora. El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "16. Curas de Parálisis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador curar la parálisis de 1 objetivo (tiempo de recuperación de 1-10 días). La parálisis debe haber sido causada por un hechizo o enfermedad (no por un veneno)."
+        }
+      },
+      {
+        "name": "17. Suspender la Vida II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Suspender la Vida I, salvo por la duración y el requisito del hechizo Suspender la Vida II (de la lista Maestría de la Sangre)."
+        }
+      },
+      {
+        "name": "18. Trasplante Rápido de Órgano",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Trasplante de Órgano, salvo que el tiempo de recuperación es de tan solo 1-10 horas."
+        }
+      },
+      {
+        "name": "20. Reimplantar Verdadero *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reimplantar, salvo que el lanzador debe lanzar los otros 3 hechizos Reimplantar Verdadero de Curandero y el miembro es totalmente funcional en 10 minutos."
+        }
+      },
+      {
+        "name": "25. Regeneración de Nervio",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar un nervio perdido. El recrecimiento tarda 1-10 días, dependiendo de la extensión de la pérdida."
+        }
+      },
+      {
+        "name": "30. Regeneración de Órgano",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar por completo un órgano perdido. Este proceso tarda 1-10 horas. El tiempo de recuperación es de 1-10 días. El objetivo permanece en coma durante la recuperación (este hechizo no regenera el cerebro)."
+        }
+      },
+      {
+        "name": "50. Regeneración de Cerebro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar tejido cerebral en 1-10 horas. El tiempo de recuperación es de 1-10 días (el objetivo está en coma durante la recuperación). La experiencia perdida no se restaura (el % perdido de forma permanente depende de la gravedad del daño)."
+        }
+      }
+    ]
+  }
+}

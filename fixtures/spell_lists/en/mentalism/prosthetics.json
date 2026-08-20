@@ -1,0 +1,343 @@
+{
+  "name": "Prosthetics",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Lay Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lay Healer Base 4.6 - Prosthetics. Spells for measuring, molding and fitting artificial limbs (wood, glass, metal, enchanted materials), covering them with artificial flesh, and animating them for increasing durations. Special Notes: Once created, a false limb is no longer magical. However, the animation of the limb is magical (and can be dispelled). When resisting Cancel and Dispel, an animated false limb gets an additional +50 RR modification.",
+    "spells": [
+      {
+        "name": "01. Measure",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster knows the proper dimensions needed to make a false limb for the target."
+        }
+      },
+      {
+        "name": "02. Mold Wood",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "1 hr/lvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may mold target wood (up to 4 cubic feet) as if it were clay when he concentrates. It normally takes 1 day (approximately 8 hours) to mold an artificial limb. At the end of the molding time, the target wood returns its normal hardness."
+        }
+      },
+      {
+        "name": "03. Fit Wood",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster attaches a wooden (artificial) limb to a body. Process takes 1 hour. This spell must be cast before an Animation spell can be cast."
+        }
+      },
+      {
+        "name": "04. Animation I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "8 hrs",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows wearer to operate an artificial limb at will for 8 hours."
+        }
+      },
+      {
+        "name": "05. Mold Glass",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 hr/lvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mold Wood, except works on glass. The process takes 2 days (approximately 8 hours per day) to mold."
+        }
+      },
+      {
+        "name": "06. Fit Glass",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fit Wood; except allows caster to fit a glass limb."
+        }
+      },
+      {
+        "name": "07. Animation II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "24 hrs",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animation I, except duration is 24 hours."
+        }
+      },
+      {
+        "name": "08. Mold Normal Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1 hr/lvl (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mold Wood, except involves basic metals and the process takes 4 days (approximately 8 hours per day)."
+        }
+      },
+      {
+        "name": "09. Fit Normal Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fit Wood; allows caster to fit a normal metal limb."
+        }
+      },
+      {
+        "name": "10. Artificial Flesh",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 hr/lvl (C)",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "This spell enables caster to convert clay into enough artificial flesh to cover one artificial limb (limb must be present at the time of casting). The flesh is only semi-realistic (similar to plastic). The process takes 2 days (approximately 8 hours each day), but might require more for larger limbs (GM's discretion)."
+        }
+      },
+      {
+        "name": "11. Animation III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "1 week",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animation I, except duration is 1 week."
+        }
+      },
+      {
+        "name": "13. Fit Enchanted Materials",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "P",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fit Wood; except allows caster to fit limbs of enchanted materials (the limb must be created through some other means)."
+        }
+      },
+      {
+        "name": "15. Animation IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "1 month",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animation I, except duration is 1 month."
+        }
+      },
+      {
+        "name": "17. Animation V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "3 months",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animation I, except duration is 3 months."
+        }
+      },
+      {
+        "name": "19. Animation VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "6 months",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animation I, except duration is 6 months."
+        }
+      },
+      {
+        "name": "20. Artificial Flesh True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 hr/lvl (C)",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Artificial Flesh, except perfectly realistic synthetic flesh can be made and worked. This process takes 10-100 days, depending on amount of flesh needed."
+        }
+      },
+      {
+        "name": "25. Animation VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "1 year",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animation I, except duration is 1 year."
+        }
+      },
+      {
+        "name": "30. Animation VIII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "1 year/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animation I, except duration is 1 year per caster's level."
+        }
+      },
+      {
+        "name": "50. Animation True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Animation, except duration is permanent."
+        }
+      }
+    ]
+  }
+}

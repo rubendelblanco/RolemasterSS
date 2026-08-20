@@ -1,0 +1,394 @@
+{
+  "name": "Habla Mental",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Mentalista 5.4 - Habla Mental. Hechizos para telepatía con otros lanzadores de hechizos o cualquier ser, prepararse para recibir dicho contacto, y difundir pensamientos a un área amplia. Notas Especiales: Salvo donde se indique que la comunicación es \"unidireccional\", los hechizos de esta lista crean una comunicación \"bidireccional\" entre el objetivo y el lanzador. El lanzador no necesita hablar en voz alta. El objetivo sí habla en voz alta, pero en realidad el lanzador está leyendo los pensamientos del objetivo (aunque algunos objetivos pueden aprender a usar la comunicación mental; se presupone que cualquier lanzador que conozca esta lista tiene esta capacidad).",
+    "spells": [
+      {
+        "name": "01. Lengua Mentalista *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 1,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede hablar mentalmente con otro lanzador de hechizos del reino del Mentalismo."
+        }
+      },
+      {
+        "name": "02. Preparar Mente I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador entra en un estado similar al trance para preparar su mente y recibir un hechizo de Lengua Mental. Mientras está bajo los efectos de este hechizo, cualquier hechizo de Lengua Mental \"entrante\" ve su alcance multiplicado por 10."
+        }
+      },
+      {
+        "name": "03. Lengua Mental I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 3,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede hablar mentalmente con cualquier ser pensante. Deben poder verse el uno al otro, o el lanzador debe conocer la ubicación exacta del objetivo, o el lanzador debe usar Enfocar Mente para localizarlo (en todos los casos, el objetivo debe estar dentro del alcance)."
+        }
+      },
+      {
+        "name": "04. Enfocar Mente",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Al lanzar este hechizo, el próximo hechizo de Lengua Mental (lanzado dentro del minuto siguiente) podrá enfocarse en una persona concreta como objetivo. La persona debe tener la Impronta Mental almacenada (ver la lista de hechizos Presencia). Este hechizo permite que ciertos hechizos funcionen incluso si el lanzador no conoce la ubicación exacta del objetivo."
+        }
+      },
+      {
+        "name": "05. Preparar Mente II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Preparar Mente I, salvo que el alcance se multiplica por 20."
+        }
+      },
+      {
+        "name": "06. Lengua Mental II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 6,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "500'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Lengua Mental I, salvo que el alcance es de 500'."
+        }
+      },
+      {
+        "name": "08. Preparar Mente III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Preparar Mente I, salvo que el alcance se multiplica por 50."
+        }
+      },
+      {
+        "name": "09. Habla Mental I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede difundir pensamientos a las mentes de todos dentro del alcance. Esta es una comunicación \"unidireccional\"."
+        }
+      },
+      {
+        "name": "10. Lengua Mental III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "1000'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Lengua Mental I, salvo que el alcance es de 1000'."
+        }
+      },
+      {
+        "name": "11. Preparar Mente IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Preparar Mente I, salvo que el alcance se multiplica por 100."
+        }
+      },
+      {
+        "name": "12. Habla Mental II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 12,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Habla Mental I, salvo que el área de efecto es de 100' de radio."
+        }
+      },
+      {
+        "name": "13. Habla de Amistad *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 13,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Habla Mental, salvo que el lanzador puede limitar la difusión a los seres que desee."
+        }
+      },
+      {
+        "name": "14. Preparar Mente V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Preparar Mente I, salvo que el alcance se multiplica por 500."
+        }
+      },
+      {
+        "name": "15. Habla Mental III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "300'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Habla Mental I, salvo que el área de efecto es de 300' de radio."
+        }
+      },
+      {
+        "name": "16. Lengua en Espera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 16,
+          "area_of_effect": "10'R",
+          "duration": "varía",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un mensaje mental de 25 palabras puede retrasarse. El área de activación no puede superar los 10' de radio, y el disparador puede ser cualquiera de los siguientes: un período de tiempo fijo de hasta 24 horas, movimientos específicos, sonidos específicos, tacto, lectura, o la entrada en el área de una persona concreta con Impronta Mental almacenada."
+        }
+      },
+      {
+        "name": "17. Preparar Mente Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Preparar Mente I, salvo que el alcance se multiplica por 1000."
+        }
+      },
+      {
+        "name": "18. Lengua Mental IV *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 18,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "1 milla",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Lengua Mental I, salvo que el alcance es de 1 milla."
+        }
+      },
+      {
+        "name": "19. Habla de Amistad Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 19,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Habla de Amistad, salvo que el área de efecto es de 100' de radio."
+        }
+      },
+      {
+        "name": "20. Habla Mental Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "2000'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Habla Mental I, salvo que el área de efecto es de 2000' de radio."
+        }
+      },
+      {
+        "name": "25. Lengua Mental Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 25,
+          "area_of_effect": "caster+1 obj",
+          "duration": "C",
+          "range": "1 milla/nvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Lengua Mental I, salvo que el alcance es de 1 milla por nivel."
+        }
+      },
+      {
+        "name": "30. Habla en Espera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Lengua en Espera, salvo que se difunde a todos dentro de un radio de 300'."
+        }
+      },
+      {
+        "name": "50. Habla Mental Lejana *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "1 milla/nvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Habla Mental I, salvo que el área de efecto puede llegar hasta 1 milla por nivel desde el lanzador."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "name": "Ataque Mental",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Mentalista 5.1 - Ataque Mental. Hechizos de ataque mental directo: aturdimiento, vacilación, dolor, críticos de electricidad, parálisis, y ataques masivos de grito mental.",
+    "spells": [
+      {
+        "name": "01. Sacudidas I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo queda aturdido."
+        }
+      },
+      {
+        "name": "02. Vacilación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo vacila en cualquier acción no defensiva. Sufre -20 a sus tiradas de iniciativa y debe parar con al menos la mitad de su OB."
+        }
+      },
+      {
+        "name": "03. Dolor Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo pierde el 25% de sus golpes de conmoción restantes (es decir, los que aún no ha recibido)."
+        }
+      },
+      {
+        "name": "04. Descarga A",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo sufre un crítico de Electricidad 'A'."
+        }
+      },
+      {
+        "name": "05. Sacudidas III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "3 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sacudidas I, salvo por la duración."
+        }
+      },
+      {
+        "name": "07. Paralizar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo queda paralizado."
+        }
+      },
+      {
+        "name": "08. Descarga B",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Descarga A, salvo que el crítico de Electricidad es 'B'."
+        }
+      },
+      {
+        "name": "09. Dolor Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dolor Menor, salvo que pierde el 50% de sus golpes de conmoción restantes."
+        }
+      },
+      {
+        "name": "10. Grito Mental I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "10'R",
+          "duration": "1 rnd/10 fallo",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Todos salvo el lanzador dentro del área de efecto son objetivos; todos los que fallan al resistir quedan aturdidos."
+        }
+      },
+      {
+        "name": "11. Sacudidas V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "5 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sacudidas I, salvo por la duración."
+        }
+      },
+      {
+        "name": "12. Paralizar III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "3 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Paralizar I, salvo que la duración es de 3 rondas por cada 10 puntos de fallo."
+        }
+      },
+      {
+        "name": "13. Descarga C",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Descarga A, salvo que el crítico de Electricidad es 'C'."
+        }
+      },
+      {
+        "name": "15. Grito Mental II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "50'R",
+          "duration": "1 rnd/10 fallo",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Grito Mental I, salvo que el área de efecto es de 50' de radio."
+        }
+      },
+      {
+        "name": "16. Descarga D",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Descarga A, salvo que el crítico de Electricidad es 'D'."
+        }
+      },
+      {
+        "name": "17. Paralizar V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "5 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Paralizar I, salvo que la duración es de 5 rondas por cada 10 puntos de fallo."
+        }
+      },
+      {
+        "name": "18. Sacudidas X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 rnd/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sacudidas I, salvo por la duración."
+        }
+      },
+      {
+        "name": "19. Grito Mental III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 19,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/10 fallo",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Grito Mental I, salvo que el área de efecto es de 100' de radio."
+        }
+      },
+      {
+        "name": "20. Descarga E",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Descarga A, salvo que el crítico de Electricidad es 'E'."
+        }
+      },
+      {
+        "name": "25. Gran Grito *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 25,
+          "area_of_effect": "50'R",
+          "duration": "1 rnd/10 fallo",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Grito Mental I, salvo que el área de efecto es de 50' de radio y cualquier objetivo que falle por más de 50 queda inconsciente durante ocho horas."
+        }
+      },
+      {
+        "name": "30. Grito Mental Verdadero *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 30,
+          "area_of_effect": "300'R",
+          "duration": "1 rnd/10 fallo",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Grito Mental I, salvo que el área de efecto es de 300' de radio."
+        }
+      },
+      {
+        "name": "50. Grito Verdadero *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "50'R",
+          "duration": "varía",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Grito Mental (radio de 50'), salvo que los objetivos que fallen por 1-50 quedan inconscientes, y los que fallen por más de 50 mueren. Las RR de los usuarios de hechizos de Mentalismo reciben un modificador de -20."
+        }
+      }
+    ]
+  }
+}

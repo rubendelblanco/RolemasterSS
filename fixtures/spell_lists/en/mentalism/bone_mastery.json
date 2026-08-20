@@ -1,0 +1,377 @@
+{
+  "name": "Bone Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Lay Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lay Healer Base 4.2 - Bone Mastery. Spells for understanding and repairing fractures, cartilage, skulls, joints, transplanting and regenerating bone, and reattaching severed limbs. Special Notes: (1) See RMFRP Section 24.1 (p. 75) for more on damage and healing. (2) Some spells on this list require an operation to be effective. These spells have the same name as other healing spells (from the Channeling realm) and the GM may decide that the operation is not required.",
+    "spells": [
+      {
+        "name": "01. Bone Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster acquires complete understanding of any bone damage, including the tools and methods required for healing. Caster does not receive the skill or power to perform the cure."
+        }
+      },
+      {
+        "name": "02. Minor Fracture Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to mend one simple fracture (not compound fracture, shatters, joint damage, etc.). Recovery time is 1 day. Will not work on skull fractures."
+        }
+      },
+      {
+        "name": "03. Cartilage Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair all the cartilage around one joint. Recovery time is one day."
+        }
+      },
+      {
+        "name": "04. Major Fracture Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Fracture Repair, except caster can also repair compound fractures."
+        }
+      },
+      {
+        "name": "05. Limb Preservation *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 day/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to prevent the deterioration of 1 limb (even while severed). Requires the use of Limb Preservation from the Muscle Mastery spell list as well."
+        }
+      },
+      {
+        "name": "06. Skull Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to mend one fracture in a skull (but not a shattered area). Recovery time is 1-10 days."
+        }
+      },
+      {
+        "name": "07. Joint Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair one broken (but not shattered) joint. Recovery time is 1-10 days."
+        }
+      },
+      {
+        "name": "08. Minor Fracture Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Fracture Repair, except recovery is instantaneous."
+        }
+      },
+      {
+        "name": "09. Joining *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to reattach 1 severed limb. Also requires the use of the other 3 Lay Healer Joining spells to make limb fully functional. Limb is fully functional after 10-100 days."
+        }
+      },
+      {
+        "name": "10. Cartilage Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cartilage Repair, except recovery is instantaneous."
+        }
+      },
+      {
+        "name": "11. Major Fracture Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Major Fracture Repair, except recovery is instantaneous."
+        }
+      },
+      {
+        "name": "12. Skull Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Skull Repair, except recovery is instantaneous."
+        }
+      },
+      {
+        "name": "13. Bone Transplant",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to transplant a healthy bone. This requires a 1 hour operation. Recovery time is 1-10 days. There is a chance that the target's body will reject the new bone: 10% if bone is from the same race as the target, 50% if the bone is from some other similar race."
+        }
+      },
+      {
+        "name": "14. Shatter Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to repair any 1 broken or shattered bone (even in the skull). This requires a 1 hour operation. Recovery time is 1-10 days."
+        }
+      },
+      {
+        "name": "15. Joint Repair True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Joint Repair, except that recovery is instantaneous."
+        }
+      },
+      {
+        "name": "17. Rapid Bone Transplant",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Bone Transplant, except with a recovery time of 1-10 hours."
+        }
+      },
+      {
+        "name": "18. Rapid Shatter Repair",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shatter Repair, except with a recovery time of 1-10 hours."
+        }
+      },
+      {
+        "name": "20. Joining True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Joining, except caster must cast the other 3 Lay Healer Joining True spells and the limb is fully functional in 10 minutes."
+        }
+      },
+      {
+        "name": "25. Cartilage Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to regenerate 1 section of cartilage in target's body. Recovery time is 1-10 days."
+        }
+      },
+      {
+        "name": "30. Bone Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to regenerate 1 lost bone. Recovery time is 1-10 days."
+        }
+      },
+      {
+        "name": "50. Skeletal Regeneration",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to regenerate any part (or all) of a skeleton (including cartilage) in 1-10 days, depending on the severity of the damage."
+        }
+      }
+    ]
+  }
+}

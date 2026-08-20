@@ -1,0 +1,360 @@
+{
+  "name": "Control Mental",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Mentalista 5.2 - Control Mental. Hechizos para controlar la mente y el comportamiento de un objetivo: respuestas forzadas, sueño, encanto, calma, confusión, miedo, sugestión, retención, control emocional, coma, geas y control/dominio mental total.",
+    "spells": [
+      {
+        "name": "01. Pregunta",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo debe responder con sinceridad a una pregunta de un solo concepto (aunque debe poder entender la pregunta)."
+        }
+      },
+      {
+        "name": "02. Sueño",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo cae en un sueño natural. La primera ronda es un sueño mágico (el objetivo no puede despertarse por medios normales)."
+        }
+      },
+      {
+        "name": "03. Encanto de Especie",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo humanoide cree que el lanzador es un buen amigo."
+        }
+      },
+      {
+        "name": "04. Calma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo no realizará ninguna acción ofensiva, y solo luchará en defensa propia."
+        }
+      },
+      {
+        "name": "05. Confusión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo es incapaz de tomar decisiones o iniciar una acción; pero puede seguir luchando contra enemigos actuales o en defensa propia."
+        }
+      },
+      {
+        "name": "06. Miedo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo teme al lanzador e intenta huir. Huir normalmente equivale a correr al máximo ritmo alejándose del lanzador."
+        }
+      },
+      {
+        "name": "07. Sugestión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo seguirá un único acto sugerido que no sea completamente ajeno a él (p.ej., nada de sugerencias suicidas, cegarse a sí mismo, etc.)."
+        }
+      },
+      {
+        "name": "08. Retener Especie",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo queda reducido al 25% de su actividad normal."
+        }
+      },
+      {
+        "name": "09. Emociones",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Provoca cualquier emoción deseada. Emociones posibles incluyen odio, amor, tristeza, ira, etc."
+        }
+      },
+      {
+        "name": "10. Amo de la Especie",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo debe obedecer al lanzador tal como se especifica en Sugestión."
+        }
+      },
+      {
+        "name": "11. Coma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod. RR: +20] El objetivo cae en coma."
+        }
+      },
+      {
+        "name": "12. Encanto Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Encanto de Especie, salvo que funciona con cualquier criatura sintiente."
+        }
+      },
+      {
+        "name": "14. Retención Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Retener Especie, salvo que puede afectar a cualquier ser sintiente."
+        }
+      },
+      {
+        "name": "15. Geas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Se le impone al objetivo 1 tarea. El fallo resulta en una penalización determinada por el DJ (la tarea debe estar dentro de las capacidades del objetivo). Si el objetivo ignora la tarea, sufrirá los mismos efectos que el fallo."
+        }
+      },
+      {
+        "name": "16. Retener Especie Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod. RR: -20] El objetivo queda totalmente paralizado (0% de actividad)."
+        }
+      },
+      {
+        "name": "18. Quiebre Mental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo queda como un idiota balbuceante. Puede ser conducido de un lado a otro, pero no puede realizar ninguna acción."
+        }
+      },
+      {
+        "name": "20. Sueño Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/10 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod. RR: -20] El objetivo queda inconsciente e imposible de despertar."
+        }
+      },
+      {
+        "name": "25. Geas Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Geas, salvo que el fallo se castiga con cinco críticos 'E' (elegidos de forma aleatoria)."
+        }
+      },
+      {
+        "name": "30. Control Mental Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl (C)",
+          "range": "300'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Mientras se concentre, el lanzador tiene control total de la mente del objetivo. Tras el lanzamiento inicial, el alcance del control es de 1 milla por nivel del lanzador."
+        }
+      },
+      {
+        "name": "50. Maestro de la Mente",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "P (C)",
+          "range": "300'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Control Mental Verdadero, salvo que la duración es permanente (hasta que se disipe). El lanzador solo necesita concentrarse para dar órdenes. Solo puede controlarse un objetivo de esta forma a la vez."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "name": "Sense Control",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalist Base 5.6 - Sense Control. Spells for attacking and controlling a target's senses: distraction, numbing, blurred vision, false sensations, sound and light attacks, fumbling, hallucinations, sensory overload/deprivation, and total control of a target's perceived reality. Special Notes: All of the sensations created by spells on this list are strictly mental (i.e., not real). For example, the sound created with Audio Attack is heard only in the target's head (and it will work on a deaf person).",
+    "spells": [
+      {
+        "name": "01. Distraction",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target suffers a special modification of -30 to all actions."
+        }
+      },
+      {
+        "name": "02. Numbing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Random limb of target's is numb and useless. If the limb is a leg, the target loses 40% of his movement. If the limb is an arm, the target suffers a special modification of -40 to melee and missile fire with that arm."
+        }
+      },
+      {
+        "name": "03. Blur Vision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target has a special modification of -100 to his OB for missile attacks and -50 for all other actions."
+        }
+      },
+      {
+        "name": "04. Minor Sense Control",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes minor, false sensations in any one of: smell, taste, or touch (e.g., a stinky smell, a salty taste, or an itch)."
+        }
+      },
+      {
+        "name": "05. Audio Attack",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Loud sound stuns target."
+        }
+      },
+      {
+        "name": "06. Audio Control",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes target to hear any sound(s) desired."
+        }
+      },
+      {
+        "name": "07. Fumble",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target fumbles weapon or item in hands. The target should roll on the appropriate Fumble Table."
+        }
+      },
+      {
+        "name": "08. Vision Control",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes target to see whatever the caster desires."
+        }
+      },
+      {
+        "name": "09. Vision Attack",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Bright light blinds target."
+        }
+      },
+      {
+        "name": "10. Nerve Stun",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is totally numbed. He suffers a special modification of -75 to all actions and he is stunned."
+        }
+      },
+      {
+        "name": "11. Hallucination",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target sees a nonexistent foe. He must fight him until the foe is \"defeated\" (i.e., takes damage that would drop him). Foe has same capabilities as target but does no damage (i.e., always misses)."
+        }
+      },
+      {
+        "name": "12. Taunting Hallucination",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hallucination, but will never attack. He will only taunt the character (parrying all attacks against him)."
+        }
+      },
+      {
+        "name": "13. Sense Control II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Sense Control, except may affect any two senses (including sight and hearing)."
+        }
+      },
+      {
+        "name": "15. Sensory Overload",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "This spell overloads the target's senses. If the RR fails by 50 or less, the target is stunned for the duration. If the RR fails by more than 50, he is unconscious."
+        }
+      },
+      {
+        "name": "16. Sense Control III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Same as Sense Control II, except affects any three senses."
+        }
+      },
+      {
+        "name": "18. Sense Control IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Same as Sense Control II, except affects any four senses."
+        }
+      },
+      {
+        "name": "19. Sensory Deprivation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "1 day/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Total sensory deprivation, i.e., no sensory input. Every day of deprivation gives a 5% chance (cumulative) of temporary insanity."
+        }
+      },
+      {
+        "name": "20. Sense Control V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Same as Sense Control II, except affects all senses."
+        }
+      },
+      {
+        "name": "25. Long Control",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "300'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sense Control V, except initial range is 300'. After the initial casting, the caster can control the senses that the target receives at a range of 1 mile per level of the caster."
+        }
+      },
+      {
+        "name": "30. Sense Control True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "300'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Control, except caster can \"program\" sensory input (i.e., sense X will be received upon reaching point Y) and concentration is only required to \"program\" memory input and the duration is 10 minutes per level of the caster."
+        }
+      },
+      {
+        "name": "50. Private World",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "P (C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target lives in own fantasy world, totally controlled by caster when he concentrates. While in the fantasy, the target receives no sensory input from the real world."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "name": "Maestría del Músculo",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Lay Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Curandero 4.4 - Maestría del Músculo. Hechizos para entender y reparar esguinces, músculos y tendones, trasplantar y regenerar tejido muscular/tendinoso, y reimplantar miembros seccionados. Notas Especiales: (1) Ver RMFRP Sección 24.1 (p. 75) para más información sobre daño y curación. (2) Algunos hechizos de esta lista requieren una operación para ser efectivos. Estos hechizos comparten nombre con otros hechizos de curación (del reino de Canalización) y el DJ puede decidir que la operación no sea necesaria.",
+    "spells": [
+      {
+        "name": "01. Reparar Esguince",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar (no reemplazar) un esguince. Requiere una operación de una hora."
+        }
+      },
+      {
+        "name": "02. Saber de Músculo/Tendón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador adquiere una comprensión completa de cualquier daño muscular y/o tendinoso, incluidas las herramientas y métodos necesarios para curarlo. El lanzador no recibe la habilidad ni el poder necesarios para realizar la cura."
+        }
+      },
+      {
+        "name": "03. Reparar Músculo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar 1 músculo dañado. Requiere una operación de 1 minuto. El tiempo de recuperación es de 1 día por músculo reparado."
+        }
+      },
+      {
+        "name": "04. Reparar Tendón I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar 1 tendón dañado. Requiere una operación de 1 minuto. El tiempo de recuperación es de 1 día por tendón reparado."
+        }
+      },
+      {
+        "name": "05. Preservación de Miembro *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador evitar el deterioro de 1 miembro (incluso seccionado). También requiere el uso de Preservación de Miembro de la lista Maestría del Hueso."
+        }
+      },
+      {
+        "name": "06. Reparar Músculo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Músculo I, salvo que el lanzador puede reparar 3 músculos dañados."
+        }
+      },
+      {
+        "name": "07. Reparar Tendón III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Tendón I, salvo que el lanzador puede reparar 3 tendones dañados."
+        }
+      },
+      {
+        "name": "08. Reparar Músculo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Músculo, salvo que el tiempo de recuperación es instantáneo."
+        }
+      },
+      {
+        "name": "09. Reimplantar *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reimplantar 1 miembro seccionado. También requiere el uso de los otros 3 hechizos Reimplantar de Curandero para que el miembro sea totalmente funcional. El miembro es totalmente funcional tras 10-100 días."
+        }
+      },
+      {
+        "name": "10. Reparar Tendón Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Tendón, salvo que el tiempo de recuperación es instantáneo."
+        }
+      },
+      {
+        "name": "11. Reparar Estructura Blanda",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar todo el daño en tendones y músculos del cuerpo del objetivo. Requiere una operación de 1 hora. El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "12. Trasplante de Músculo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador trasplantar un músculo sano al objetivo. Requiere una operación de 1 hora. El tiempo de recuperación es de 1-10 días. Existe la posibilidad de que el cuerpo del objetivo rechace el nuevo músculo: 10% si es de la misma raza que el objetivo, 50% si es de una raza similar."
+        }
+      },
+      {
+        "name": "14. Regeneración de Músculo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar 1 músculo. El recrecimiento tarda 1-10 días, dependiendo de la extensión de la pérdida."
+        }
+      },
+      {
+        "name": "15. Regeneración de Tendón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar 1 tendón. El recrecimiento tarda 1-10 días, dependiendo de la extensión de la pérdida."
+        }
+      },
+      {
+        "name": "17. Trasplante Rápido de Músculo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Trasplante de Músculo, salvo que el tiempo de recuperación es de 1-10 horas."
+        }
+      },
+      {
+        "name": "18. Regeneración Rápida de Músculo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Regeneración de Músculo, salvo que el tiempo de recuperación es de 1-10 horas."
+        }
+      },
+      {
+        "name": "19. Regeneración Rápida de Tendón",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Regeneración de Tendón, salvo que el tiempo de recuperación es de 1-10 horas."
+        }
+      },
+      {
+        "name": "20. Reimplantar Verdadero *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reimplantar, salvo que el lanzador debe lanzar los otros 3 hechizos Reimplantar Verdadero de Curandero y el miembro es totalmente funcional en 10 minutos."
+        }
+      },
+      {
+        "name": "25. Regeneración de Músculo Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Regeneración de Músculo, salvo que el recrecimiento tarda 10 minutos."
+        }
+      },
+      {
+        "name": "30. Regeneración de Tendón Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Regeneración de Tendón, salvo que el recrecimiento tarda 10 minutos."
+        }
+      },
+      {
+        "name": "50. Reparar Estructura Blanda Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Estructura Blanda, salvo que todos los tendones y músculos del cuerpo del objetivo se reparan (no reemplazan). Requiere una operación de 10 minutos. El tiempo de recuperación es de 1-10 días."
+        }
+      }
+    ]
+  }
+}

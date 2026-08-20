@@ -1,0 +1,360 @@
+{
+  "name": "Maestría de la Sangre",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Lay Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Curandero 4.1 - Maestría de la Sangre. Hechizos para detener hemorragias, reparar vasos/venas/arterias, reimplantar miembros seccionados, suspender la vida para evitar la muerte, eliminar coágulos y restaurar la sangre. Notas Especiales: (1) Ver RMFRP Sección 24.1 (p. 75) para más información sobre curación. (2) Cuando una herida sangrante no especifica si es una vena o una arteria, tira d100. Un 01-60 resulta en vena; 61 o más resulta en arteria.",
+    "spells": [
+      {
+        "name": "01. Detener Flujo III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede detener el sangrado de una herida que sangra hasta 3 golpes por ronda (total). El objetivo no puede moverse o el sangrado se reanudará al ritmo anterior."
+        }
+      },
+      {
+        "name": "02. Coagulación I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede detener el sangrado de una herida que sangra 1 golpe por ronda. Durante 1 hora, el objetivo puede moverse como mucho a paso de marcha o el sangrado se reanudará al ritmo anterior."
+        }
+      },
+      {
+        "name": "03. Reparar Corte I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador detener el sangrado de 1 herida que sangra a ritmo de 1 golpe por ronda."
+        }
+      },
+      {
+        "name": "04. Coagulación III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Coagulación I, salvo que el lanzador puede detener hasta 3 golpes por ronda (total) de sangrado en una herida."
+        }
+      },
+      {
+        "name": "05. Reparación Menor de Vaso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar por completo un vaso sanguíneo menor dañado (un vaso que sangra hasta 3 golpes por ronda, no arterias o venas principales)."
+        }
+      },
+      {
+        "name": "06. Reparar Corte III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Corte I, salvo que el lanzador puede reparar heridas que sangren hasta 3 golpes por ronda (total); pueden curarse tres heridas de 1 golpe por ronda, o una de 3 golpes por ronda, o una de 2 y una de 1 golpe por ronda."
+        }
+      },
+      {
+        "name": "07. Reparar Vena",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede reparar una vena dañada. El objetivo no puede moverse (por sus propios medios) sin reabrir la herida. El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "08. Reparación Arterial",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar una arteria dañada. El objetivo no puede moverse (por sus propios medios) sin reabrir la herida. El tiempo de recuperación es de 1-10 días, dependiendo del tamaño de la arteria y la gravedad del daño."
+        }
+      },
+      {
+        "name": "09. Reimplantar *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reimplantar 1 miembro seccionado. También requiere el uso de los otros 3 hechizos Reimplantar de Curandero para que el miembro sea totalmente funcional. El miembro es totalmente funcional tras 10-100 días."
+        }
+      },
+      {
+        "name": "10. Detener Flujo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detener Flujo III, salvo que se detiene toda la pérdida de sangre (es decir, golpes por ronda) de una herida."
+        }
+      },
+      {
+        "name": "11. Suspender la Vida I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 hr/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo queda en un estado de animación suspendida y se le impide morir durante la duración de este hechizo (es decir, el cuerpo se \"preserva\" y el \"alma\" no abandonará el cuerpo). También requiere el uso del otro hechizo Suspender la Vida I (de la lista Maestría de Nervios y Órganos)."
+        }
+      },
+      {
+        "name": "12. Coagulación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Coagulación I, salvo que se detiene toda la pérdida de sangre (es decir, golpes por ronda) de una herida."
+        }
+      },
+      {
+        "name": "13. Descoagular",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador eliminar un coágulo de sangre. Contrarresta la Maldición de Coagulación (de la lista de Clérigo Malvado, Maldiciones). Este hechizo no tiene efecto sobre heridas sangrantes que ya han coagulado (es decir, los \"coágulos\" aquí se refieren solo a la coagulación interna)."
+        }
+      },
+      {
+        "name": "15. Reparar Corte Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Corte I, salvo que detiene el sangrado y cierra la herida por completo."
+        }
+      },
+      {
+        "name": "17. Suspender la Vida II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Suspender la Vida I, salvo por la duración y el requisito del otro hechizo Suspender la Vida II (de la lista Maestría de Nervios y Órganos)."
+        }
+      },
+      {
+        "name": "19. Descoagular Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Descoagular, salvo que afecta a todos los coágulos de sangre del objetivo."
+        }
+      },
+      {
+        "name": "20. Reimplantar Verdadero *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reimplantar, salvo que el lanzador debe lanzar los otros 3 hechizos Reimplantar Verdadero de Curandero y el miembro es totalmente funcional en 10 minutos."
+        }
+      },
+      {
+        "name": "25. Regulaciones",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador controlar todo el flujo sanguíneo interno y externo del objetivo. Mientras el objetivo permanezca inmóvil, el sangrado puede detenerse hasta que las heridas puedan curarse."
+        }
+      },
+      {
+        "name": "30. Sangre Nueva",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador restaurar toda la sangre en el cuerpo de 1 objetivo. El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "50. Reparación de Sangre Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador lanzar uno de los hechizos de nivel inferior de esta lista cada ronda."
+        }
+      }
+    ]
+  }
+}

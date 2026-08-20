@@ -1,0 +1,377 @@
+{
+  "name": "Maestría del Hueso",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Lay Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Curandero 4.2 - Maestría del Hueso. Hechizos para entender y reparar fracturas, cartílago, cráneo, articulaciones, trasplantar y regenerar hueso, y reimplantar miembros seccionados. Notas Especiales: (1) Ver RMFRP Sección 24.1 (p. 75) para más información sobre daño y curación. (2) Algunos hechizos de esta lista requieren una operación para ser efectivos. Estos hechizos comparten nombre con otros hechizos de curación (del reino de Canalización) y el DJ puede decidir que la operación no sea necesaria.",
+    "spells": [
+      {
+        "name": "01. Saber del Hueso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador adquiere una comprensión completa de cualquier daño óseo, incluidas las herramientas y métodos necesarios para curarlo. El lanzador no recibe la habilidad ni el poder para realizar la cura."
+        }
+      },
+      {
+        "name": "02. Reparación Menor de Fractura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador sanar una fractura simple (no fractura compuesta, astillamientos, daño articular, etc.). El tiempo de recuperación es de 1 día. No funciona en fracturas de cráneo."
+        }
+      },
+      {
+        "name": "03. Reparar Cartílago",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar todo el cartílago alrededor de una articulación. El tiempo de recuperación es de un día."
+        }
+      },
+      {
+        "name": "04. Reparación Mayor de Fractura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparación Menor de Fractura, salvo que el lanzador también puede reparar fracturas compuestas."
+        }
+      },
+      {
+        "name": "05. Preservación de Miembro *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 día/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador evitar el deterioro de 1 miembro (incluso seccionado). También requiere el uso de Preservación de Miembro de la lista Maestría del Músculo."
+        }
+      },
+      {
+        "name": "06. Reparar Cráneo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador sanar una fractura en el cráneo (pero no una zona astillada). El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "07. Reparar Articulación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar una articulación rota (pero no astillada). El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "08. Reparación Menor de Fractura Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparación Menor de Fractura, salvo que la recuperación es instantánea."
+        }
+      },
+      {
+        "name": "09. Reimplantar *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reimplantar 1 miembro seccionado. También requiere el uso de los otros 3 hechizos Reimplantar de Curandero para que el miembro sea totalmente funcional. El miembro es totalmente funcional tras 10-100 días."
+        }
+      },
+      {
+        "name": "10. Reparar Cartílago Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Cartílago, salvo que la recuperación es instantánea."
+        }
+      },
+      {
+        "name": "11. Reparación Mayor de Fractura Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparación Mayor de Fractura, salvo que la recuperación es instantánea."
+        }
+      },
+      {
+        "name": "12. Reparar Cráneo Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Cráneo, salvo que la recuperación es instantánea."
+        }
+      },
+      {
+        "name": "13. Trasplante de Hueso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador trasplantar un hueso sano. Requiere una operación de 1 hora. El tiempo de recuperación es de 1-10 días. Existe la posibilidad de que el cuerpo del objetivo rechace el nuevo hueso: 10% si es de la misma raza que el objetivo, 50% si es de una raza similar."
+        }
+      },
+      {
+        "name": "14. Reparar Astillamiento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador reparar un hueso roto o astillado (incluso en el cráneo). Requiere una operación de 1 hora. El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "15. Reparar Articulación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Articulación, salvo que la recuperación es instantánea."
+        }
+      },
+      {
+        "name": "17. Trasplante Rápido de Hueso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Trasplante de Hueso, salvo que el tiempo de recuperación es de 1-10 horas."
+        }
+      },
+      {
+        "name": "18. Reparación Rápida de Astillamiento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reparar Astillamiento, salvo que el tiempo de recuperación es de 1-10 horas."
+        }
+      },
+      {
+        "name": "20. Reimplantar Verdadero *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Reimplantar, salvo que el lanzador debe lanzar los otros 3 hechizos Reimplantar Verdadero de Curandero y el miembro es totalmente funcional en 10 minutos."
+        }
+      },
+      {
+        "name": "25. Regeneración de Cartílago",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar 1 sección de cartílago en el cuerpo del objetivo. El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "30. Regeneración de Hueso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar 1 hueso perdido. El tiempo de recuperación es de 1-10 días."
+        }
+      },
+      {
+        "name": "50. Regeneración Esquelética",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador regenerar cualquier parte (o la totalidad) de un esqueleto (incluido el cartílago) en 1-10 días, dependiendo de la gravedad del daño."
+        }
+      }
+    ]
+  }
+}

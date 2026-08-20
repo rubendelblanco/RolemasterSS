@@ -1,0 +1,378 @@
+{
+  "name": "Presencia",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Mentalist",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Mentalista 5.5 - Presencia. Hechizos para sentir la presencia sintiente, analizar/almacenar/transferir patrones mentales de seres, y encontrar/apuntar hacia un patrón mental almacenado a alcance creciente.",
+    "spells": [
+      {
+        "name": "01. Presencia * •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "no_pp": true,
+          "level": 1,
+          "area_of_effect": "10'R/nvl",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador es consciente de la presencia de todos los seres sintientes/pensantes dentro de su alcance."
+        }
+      },
+      {
+        "name": "02. Percibir I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene una idea general de la raza y el nivel de un ser. El objetivo debe haber sido localizado previamente mediante Presencia o Presencia Verdadera."
+        }
+      },
+      {
+        "name": "03. Impronta Mental *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir I, salvo que el lanzador almacena el patrón mental del objetivo. Puede usarse con otros hechizos (tanto de esta lista como de otras). El lanzador solo puede tener tantos patrones almacenados como la suma de sus atributos temporales de Memoria y Presencia (no los bonos). El lanzador puede liberar un patrón almacenado en cualquier momento (el DJ debería exigir que el personaje lleve constancia de todos los patrones que tiene almacenados)."
+        }
+      },
+      {
+        "name": "04. Transferir Impronta Mental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede transferir una copia de cualquier persona con Impronta Mental almacenada a otro lanzador del reino del Mentalismo (es decir, ambos lanzadores tendrán la persona almacenada). El objetivo de este hechizo debe conocer el hechizo Impronta Mental."
+        }
+      },
+      {
+        "name": "05. Percibir III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 5,
+          "area_of_effect": "3 objetivos",
+          "duration": "—",
+          "range": "10'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir I, salvo que analiza 3 objetivos a la vez (todos los objetivos deben estar dentro del alcance)."
+        }
+      },
+      {
+        "name": "06. Tipificar Mente *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "10'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir I, salvo que el lanzador aprende la raza, la profesión y el nivel del objetivo."
+        }
+      },
+      {
+        "name": "07. Localización I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "100'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene la dirección y distancia hasta cualquier mente sin protección de la que tenga un patrón mental (de Impronta Mental)."
+        }
+      },
+      {
+        "name": "08. Dirección I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "1000'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene la dirección hasta cualquier mente sin protección de la que tenga un patrón mental (de Impronta Mental)."
+        }
+      },
+      {
+        "name": "09. Presencia Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "100'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite obtener presencias en un radio de 50'. El lanzador puede concentrarse en un área de 50' de radio cada ronda."
+        }
+      },
+      {
+        "name": "10. Percepción *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "10'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Presencia, además de un conocimiento general de las acciones del objetivo. En una situación táctica, el lanzador puede declarar sus acciones tras conocer una de las acciones del objetivo para la ronda (y cuándo quiere realizarla). Esto no impide que el objetivo cambie su acción (con la penalización correspondiente por cancelar su acción, ver RMFRP p. 54)."
+        }
+      },
+      {
+        "name": "11. Dirección II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "1 milla/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dirección I, salvo que el alcance es de 1 milla por nivel."
+        }
+      },
+      {
+        "name": "12. Percibir a Distancia *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir I, salvo que el alcance es de 100' por nivel."
+        }
+      },
+      {
+        "name": "13. Percibir V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 13,
+          "area_of_effect": "5 objetivos",
+          "duration": "—",
+          "range": "10'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir I, salvo que analiza 5 objetivos a la vez (todos los objetivos deben estar dentro del alcance)."
+        }
+      },
+      {
+        "name": "14. Percibir en Masa *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 14,
+          "area_of_effect": "1 objetivo/rnd",
+          "duration": "C",
+          "range": "10'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir I, salvo que el lanzador puede \"percibir\" un objetivo por ronda."
+        }
+      },
+      {
+        "name": "15. Tipificar Mente Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Tipificar Mente, salvo que el alcance es de 100' por nivel."
+        }
+      },
+      {
+        "name": "18. Localización II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "1 milla/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Localización I, salvo que el alcance es de 1 milla por nivel."
+        }
+      },
+      {
+        "name": "19. Percibir X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10 objetivos",
+          "duration": "—",
+          "range": "10'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percibir I, salvo que analiza 10 objetivos a la vez (todos los objetivos deben estar dentro del alcance)."
+        }
+      },
+      {
+        "name": "20. Percepción Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "10'/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Percepción, salvo que el lanzador aprende todas las acciones del objetivo."
+        }
+      },
+      {
+        "name": "25. Localización III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "5 millas/nvl",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Localización I, salvo que el alcance es de 5 millas por nivel."
+        }
+      },
+      {
+        "name": "30. Dirección Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "unlimited",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dirección I, salvo que no tiene límite de alcance."
+        }
+      },
+      {
+        "name": "50. Localización Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "unlimited",
+          "type": "P",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Localización I, salvo que no tiene límite de alcance."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "name": "Maestría de Conmoción",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Lay Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Curandero 4.3 - Maestría de Conmoción. Hechizos para curar golpes de conmoción, aliviar el aturdimiento acumulado, curar congelación/quemaduras, despertar objetivos al instante, y regeneración gradual de daño. Notas Especiales: Ver RMFRP Sección 24.1 (p. 75) para más información sobre daño y curación.",
+    "spells": [
+      {
+        "name": "01. Curación I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo cura d10 golpes de conmoción."
+        }
+      },
+      {
+        "name": "02. Alivio del Aturdimiento I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo se libera de 1 ronda de aturdimiento acumulado."
+        }
+      },
+      {
+        "name": "03. Alivio de Frío/Quemadura I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo cura un área de hasta congelación leve o quemaduras de 1er grado."
+        }
+      },
+      {
+        "name": "04. Regeneración I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Reduce el daño que tiene el objetivo en 1 golpe cada minuto mientras el lanzador se concentre. Si el lanzador está inconsciente, este hechizo funciona sin necesidad de concentración."
+        }
+      },
+      {
+        "name": "05. Despertar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo despierta al instante."
+        }
+      },
+      {
+        "name": "06. Alivio de Frío/Quemadura II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio de Frío/Quemadura I, salvo que cura 2 áreas de daño leve o 1 área de daño moderado (p.ej., quemadura de 2º grado)."
+        }
+      },
+      {
+        "name": "07. Curación V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Curación I, salvo que cura 5d10 golpes."
+        }
+      },
+      {
+        "name": "08. Alivio del Aturdimiento III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio del Aturdimiento I, salvo que se alivian 3 rondas de aturdimiento."
+        }
+      },
+      {
+        "name": "09. Alivio de Frío/Quemadura III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio de Frío/Quemadura I, salvo que cura 3 áreas de daño leve o 1 área de daño grave (p.ej., quemadura de 3er grado) o una combinación de 1 área leve y 1 moderada."
+        }
+      },
+      {
+        "name": "10. Regeneración II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Regeneración I, salvo que la reducción de daño es de 2 golpes por minuto."
+        }
+      },
+      {
+        "name": "11. Curación X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Curación I, salvo que cura 10d10 golpes."
+        }
+      },
+      {
+        "name": "12. Alivio de Frío/Quemadura IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio de Frío/Quemadura I, salvo que cura 4 áreas leves, o 2 moderadas, o 1 leve y 1 grave, o 2 leves y 1 moderada."
+        }
+      },
+      {
+        "name": "13. Alivio del Aturdimiento V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio del Aturdimiento I, salvo que el objetivo se libera de 5 rondas de aturdimiento acumulado."
+        }
+      },
+      {
+        "name": "14. Alivio del Aturdimiento a Distancia *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio del Aturdimiento I, salvo que 1 objetivo dentro de 100' del lanzador se libera de 1 ronda de aturdimiento acumulado."
+        }
+      },
+      {
+        "name": "15. Regeneración III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Regeneración I, salvo que la reducción de daño es de 3 golpes por minuto."
+        }
+      },
+      {
+        "name": "17. Curación XV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Curación I, salvo que cura 15d10 golpes."
+        }
+      },
+      {
+        "name": "19. Alivio del Aturdimiento X *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio del Aturdimiento I, salvo que el objetivo se libera de 10 rondas de aturdimiento acumulado."
+        }
+      },
+      {
+        "name": "20. Curación XX",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Curación I, salvo que cura 20d10 golpes."
+        }
+      },
+      {
+        "name": "25. Curación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Curación I, salvo que el objetivo cura todos los golpes de conmoción."
+        }
+      },
+      {
+        "name": "30. Alivio de Frío/Quemadura Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio de Frío/Quemadura I, salvo que el objetivo se libera de todas las quemaduras o congelaciones."
+        }
+      },
+      {
+        "name": "50. Alivio del Aturdimiento Verdadero *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Alivio del Aturdimiento I, salvo que el objetivo se cura de todos los efectos de aturdimiento."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "name": "Concussion Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Lay Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lay Healer Base 4.3 - Concussion Mastery. Spells for healing concussion hits, relieving accumulated stun, healing frostbite/burns, waking targets instantly, and gradual damage regeneration. Special Notes: See RMFRP Section 24.1 (p. 75) for more on damage and healing.",
+    "spells": [
+      {
+        "name": "01. Healing I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is healed of d10 concussion hits."
+        }
+      },
+      {
+        "name": "02. Stun Relief I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is relieved of 1 round's worth of accumulated stun."
+        }
+      },
+      {
+        "name": "03. Frost/Burn Relief I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is healed of one area of up to mild frostbite or 1st degree burns."
+        }
+      },
+      {
+        "name": "04. Regeneration I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Will reduce damage target has by 1 hit every minute as long as the caster concentrates. If caster is unconscious this spell will operate without concentration."
+        }
+      },
+      {
+        "name": "05. Awakening",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is instantly awake."
+        }
+      },
+      {
+        "name": "06. Frost/Burn Relief II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Frost/Burn Relief I, except heals 2 areas of mild damage or 1 area of moderate damage (e.g., 2nd degree burn)."
+        }
+      },
+      {
+        "name": "07. Healing V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Healing I, except heals 5d10 hits."
+        }
+      },
+      {
+        "name": "08. Stun Relief III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stun Relief I, except 3 rounds of stun effects are relieved."
+        }
+      },
+      {
+        "name": "09. Frost/Burn Relief III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Frost/Burn Relief I, except heals 3 areas of mild damage or 1 area of severe damage (e.g., 3rd degree burn) or combination of 1 mild and 1 moderate area."
+        }
+      },
+      {
+        "name": "10. Regeneration II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Regeneration I, except damage reduction is 2 hits per minute."
+        }
+      },
+      {
+        "name": "11. Healing X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Healing I, except heals 10d10 hits."
+        }
+      },
+      {
+        "name": "12. Frost/Burn Relief IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Frost/Burn Relief I, except heals 4 mild or 2 moderate or 1 mild and 1 severe or 2 mild and 1 moderate area(s) of damage."
+        }
+      },
+      {
+        "name": "13. Stun Relief V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stun Relief I, except target is relieved of 5 rounds of accumulated stun effects."
+        }
+      },
+      {
+        "name": "14. Long Stun Relief *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stun Relief I, except 1 target within 100' of caster is relieved of 1 round accumulated stun effects."
+        }
+      },
+      {
+        "name": "15. Regeneration III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Regeneration I, except damage reduction is 3 hits per minute."
+        }
+      },
+      {
+        "name": "17. Healing XV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Healing I, except heals 15d10 hits."
+        }
+      },
+      {
+        "name": "19. Stun Relief X *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stun Relief I, except target is relieved of 10 rounds of accumulated stun effects."
+        }
+      },
+      {
+        "name": "20. Healing XX",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Healing I, except heals 20d10 hits."
+        }
+      },
+      {
+        "name": "25. True Healing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Healing I, except target healed of all concussion hits."
+        }
+      },
+      {
+        "name": "30. Frost/Burn Relief True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Frost/Burn Relief I, except target relieved of all burns or frostbite."
+        }
+      },
+      {
+        "name": "50. Stun Relief True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stun Relief I, except target healed of all stun effects."
+        }
+      }
+    ]
+  }
+}
