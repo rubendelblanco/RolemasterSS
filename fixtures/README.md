@@ -133,6 +133,14 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 - `presence.json` – Presence / Presencia (5.5)
 - `sense_control.json` – Sense Control / Control de los Sentidos (5.6)
 
+**Bard (Bardo) Base 6.1–6.6:**
+- `controlling_songs.json` – Controlling Songs / Canciones de Control (6.1)
+- `entertaining_ways.json` – Entertaining Ways / Artes del Entretenimiento (6.2)
+- `item_lore.json` – Item Lore / Saber de Objetos (6.3)
+- `lores.json` – Lores / Saberes (6.4)
+- `sound_control.json` – Sound Control / Control del Sonido (6.5)
+- `sound_projection.json` – Sound Projection / Proyección del Sonido (6.6)
+
 ### Concussion's Ways (Open Channeling 2.2)
 
 - `spell_lists/en/channeling/concussion_ways.json` – 20 hechizos de curación de golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración (inglés)
@@ -431,7 +439,8 @@ const FILES_BY_FOLDER = {
     "solid_manipulation", "speed", "telekinesis",
     "blood_mastery", "bone_mastery", "concussion_mastery", "muscle_mastery",
     "nerve_and_organ_mastery", "prosthetics",
-    "mind_attack", "mind_control", "mind_merge", "mind_speech", "presence", "sense_control"
+    "mind_attack", "mind_control", "mind_merge", "mind_speech", "presence", "sense_control",
+    "controlling_songs", "entertaining_ways", "item_lore", "lores", "sound_control", "sound_projection"
   ]
 };
 

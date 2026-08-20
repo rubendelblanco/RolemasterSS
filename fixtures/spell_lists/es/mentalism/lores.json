@@ -1,0 +1,326 @@
+{
+  "name": "Saberes",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Bardo 6.4 - Saberes. Hechizos para memoria total, aprender idiomas más rápido, identificar idiomas y traducciones, lectura rápida, y escanear la mente de un objetivo en busca de un conocimiento específico.",
+    "spells": [
+      {
+        "name": "01. Recordar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador acceder a su memoria como si tuviera memoria total. Cualquier tirada de habilidad que involucre Memoria recibe un bono especial. Si la habilidad usa Memoria como uno de sus atributos aplicables (habilidades de Ciencia/Analíticas), el bono es +10. Si la usa como dos de sus atributos aplicables (habilidades de Saber), el bono es +25; si la usa como los tres atributos aplicables (es decir, una tirada pura de \"memoria\"), el bono es +50."
+        }
+      },
+      {
+        "name": "02. Aprender Idioma II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Duplica el ritmo al que el lanzador puede aprender un idioma. Cada rango de idioma desarrollado (es decir, PD gastados) resulta en dos rangos aprendidos. Se asume que este hechizo está lanzado y activo mientras se aprende el idioma, es decir, cuando se asignan los puntos de desarrollo."
+        }
+      },
+      {
+        "name": "03. Saber de Idiomas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador aprende en qué idioma está escrito un texto, y el autor si fue notable o el lanzador ha visto su obra."
+        }
+      },
+      {
+        "name": "04. Saber Mental I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/nvl(C)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede escanear la mente del objetivo y recibir parte de su conocimiento (consciente e inconsciente) sobre un tema muy específico. Por cada dato de conocimiento sobre el tema hay un 10% de probabilidad de que el lanzador lo aprenda (se tira por cada dato una vez por ronda)."
+        }
+      },
+      {
+        "name": "05. Estudio II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede leer al doble del ritmo normal (resultando en 2 páginas por minuto mientras este hechizo esté activo)."
+        }
+      },
+      {
+        "name": "07. Aprender Idioma III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Aprender Idioma II, salvo que el ritmo se triplica (y se ganan tres rangos por cada uno)."
+        }
+      },
+      {
+        "name": "08. Saber Mental III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/nvl(C)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber Mental I, salvo que la probabilidad es del 30% por cada dato de conocimiento."
+        }
+      },
+      {
+        "name": "10. Estudio III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Estudio II, salvo que el lanzador puede leer a tres veces el ritmo normal (es decir, 3 páginas por minuto)."
+        }
+      },
+      {
+        "name": "11. Origen del Pasaje",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede leer un texto y saber si es una traducción; y si lo es, cuál era el idioma original y posiblemente el autor, si fue notable o el lanzador ha visto su obra."
+        }
+      },
+      {
+        "name": "12. Aprender Idioma IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Aprender Idioma II, salvo que el ritmo se cuadruplica (con cuatro rangos desarrollados por cada uno)."
+        }
+      },
+      {
+        "name": "13. Saber Mental V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/nvl(C)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber Mental I, salvo que la probabilidad es del 50% por cada dato de conocimiento."
+        }
+      },
+      {
+        "name": "15. Estudio V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Estudio II, salvo que el lanzador lee a cinco veces el ritmo normal (es decir, 5 páginas por minuto)."
+        }
+      },
+      {
+        "name": "17. Estudio X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Estudio II, salvo que el lanzador lee a diez veces el ritmo normal (es decir, 10 páginas por minuto)."
+        }
+      },
+      {
+        "name": "18. Saber Mental VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/nvl(C)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber Mental I, salvo que la probabilidad es del 70% por cada dato de conocimiento."
+        }
+      },
+      {
+        "name": "20. Estudio Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Estudio II, salvo que el lanzador puede leer tan rápido como pueda mirar la página."
+        }
+      },
+      {
+        "name": "25. Aprender Idioma V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Aprender Idioma II, salvo que el ritmo se quintuplica (y cinco rangos por cada uno)."
+        }
+      },
+      {
+        "name": "30. Saber Mental Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/nvl(C)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Saber Mental I, salvo que se obtiene todo el conocimiento."
+        }
+      },
+      {
+        "name": "50. Aprender Idioma Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Si el lanzador tiene acceso a un ser que conoce cierto idioma, puede aprenderlo tan bien como lo conoce ese ser. Debe tocarlo y concentrarse durante 8 horas consecutivas."
+        }
+      }
+    ]
+  }
+}

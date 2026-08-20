@@ -1,0 +1,394 @@
+{
+  "name": "Entertaining Ways",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Bard Base 6.2 - Entertaining Ways. Spells for stage effects (light, sound, music), enhancing performance skill, making objects/targets vanish or hidden, and enthralling an audience.",
+    "spells": [
+      {
+        "name": "01. Spotlight",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl(C)",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster is lit by a bright circle of light. At the time of casting, the caster designates his \"front\" and the light will shine from that direction. The caster can change his \"front\" by concentrating (the light will blink off and another will blink on)."
+        }
+      },
+      {
+        "name": "02. Dim Lights",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "10'R/lvl",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "All non-magical light sources in the area of effect are dimmed to the luminosity of soft candle light."
+        }
+      },
+      {
+        "name": "03. Hush",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R/lvl",
+          "duration": "10 min/lvl(C)",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "For the duration of this spell, all sounds in the area of effect are no louder than a whisper. The caster is immune to the effects of this spell. In addition, the caster can designate up to one extra target per level to be immune to the effects of the spell. By concentrating for 1 round, caster may designate the extra targets."
+        }
+      },
+      {
+        "name": "04. Fanfare",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'R",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A fanfare of music plays. The caster may designate one instrument (that will make the sounds of the fanfare) for every five levels of experience (or portion thereof). The volume of the fanfare cannot exceed that which would be normally made by the designated instrument(s)."
+        }
+      },
+      {
+        "name": "05. Showman I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster receives a special bonus of +5 to all performing skills (in the Artistic/Active category) for the duration of this spell."
+        }
+      },
+      {
+        "name": "06. Legerdemain",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can make any one target (up to 1 pound per level of the caster) he touches vanish. The caster must designate a location for the target to \"reappear\" in (the location must be within the caster's line of sight). The object is teleported to the designated location at the time of casting."
+        }
+      },
+      {
+        "name": "07. Enthrall I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target of this spell is enthralled with the caster (for as long as the caster is performing or for the duration of this spell, whichever is shorter). While enthralled, the target is limited to only 20% of his normal activity."
+        }
+      },
+      {
+        "name": "08. Hidden Pocket",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 object",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can place any one inanimate object (up to 1 cubic foot per level of the caster) into any available container. The container opening must be large enough to fit at least one dimension of the object. When the container is examined, it will appear empty to all normal perception (including feeling). The caster may pluck the item from the container at any time (up to the duration of the spell). If the object is not taken from the container before the duration is up, the object appears in the container as if it were there all along."
+        }
+      },
+      {
+        "name": "09. Lightshow",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "5'R",
+          "duration": "1 rnd/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can create a colored light that will shine in the area of effect. The caster can change the color of the light by concentrating. The light can take any form the caster desires, but the light will not illuminate more than the area of effect. For example, several small spheres of various colors can float around the caster's feet, or five red beams can flash back and forth across the caster's body."
+        }
+      },
+      {
+        "name": "10. Showman II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Showman I, except bonus is +10."
+        }
+      },
+      {
+        "name": "11. Music",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster may designate any music to be played as if he were playing that music (and he must have played the music at least once). The music will play continuously for the duration of the spell. If the musical score finishes before the duration is over, the music will repeat as many times as needed. The caster can designate singing instead of an instrument."
+        }
+      },
+      {
+        "name": "12. Enthrall V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "5 targets",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Enthrall I, except affects 5 targets."
+        }
+      },
+      {
+        "name": "13. Volunteer from the Audience",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target of this spell will perform any actions that the caster dictates to him (for the duration of this spell). If the target of this spell has previously been a \"volunteer\" for the caster, he suffers an RR modification of -1 for each previous time he was a successful target. If the action(s) is something that is completely alien to the target, he may make another RR with a special +50 modification."
+        }
+      },
+      {
+        "name": "14. Lovely Assistant",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target of this spell (which may be the caster) has his appearance enhanced. Treat as a temporary +25 to Appearance (to a maximum of 101). If the target's Appearance rises over 100, the appearance will cause all who view the target to be distracted (treat as a special -10 modification to all maneuvers involving Awareness skills while the target is in sight). This spell enhances facial/body appearance, and clothing appearance."
+        }
+      },
+      {
+        "name": "15. Showman III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Showman I, except bonus is +15."
+        }
+      },
+      {
+        "name": "16. Orchestra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "5'R",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Music, except caster may designate one instrument per five levels of experience (or portion thereof). All instruments (including vocals) will play as if the caster were playing them simultaneously."
+        }
+      },
+      {
+        "name": "17. Enthrall X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "10 targets",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Enthrall I, except affects 10 targets."
+        }
+      },
+      {
+        "name": "18. Disappear",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Legerdemain, except affects any target up to the caster's own mass."
+        }
+      },
+      {
+        "name": "20. Showman IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Showman I, except bonus is +20."
+        }
+      },
+      {
+        "name": "25. Mass Enthrall",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Enthrall I, except affects a number of targets equal to the caster's level."
+        }
+      },
+      {
+        "name": "30. Disappear True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disappear, except may affect any one living creature or an inanimate object up to 100 pounds per level of the caster."
+        }
+      },
+      {
+        "name": "50. Showman True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Showman I, except bonus is +25."
+        }
+      }
+    ]
+  }
+}

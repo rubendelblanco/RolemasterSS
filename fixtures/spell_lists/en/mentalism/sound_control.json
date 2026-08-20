@@ -1,0 +1,326 @@
+{
+  "name": "Sound Control",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Bard Base 6.5 - Sound Control. Spells for muffling and manipulating sound, sonic attacks (stunning, deafening), sound-based cracking/shattering of material, and delayed sound triggers.",
+    "spells": [
+      {
+        "name": "01. Quiet I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1'R",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any sounds originating within the area of effect cannot be heard outside the area of effect. This results in a special bonus of +25 to Stalking maneuvers."
+        }
+      },
+      {
+        "name": "02. Sonic Law I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1'R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may manipulate sound within the area of effect. He can create any single sound he wants, and, if he desires, that sound can be heard outside the area of effect."
+        }
+      },
+      {
+        "name": "04. Silence I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Quiet I, except area of effect is 10' radius."
+        }
+      },
+      {
+        "name": "05. Sonic Law II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sonic Law I, except area of effect is 10' radius."
+        }
+      },
+      {
+        "name": "06. Sudden Sound",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes a very loud, sudden sound next to the target's ears. The target is stunned for the duration."
+        }
+      },
+      {
+        "name": "07. Deafen",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/5 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target cannot hear sounds occurring more than 6\" from his ears."
+        }
+      },
+      {
+        "name": "08. Cracks",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1000 cu'",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Certain sound waves cause any cracks or flaws in solid, inanimate material (up to 1,000 cubic feet) to expand to their limit. See Section 15.7 (p. 97) for more on material integrity and cracks."
+        }
+      },
+      {
+        "name": "10. Silence III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "50'R",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Silence I, except area of effect is 50' radius."
+        }
+      },
+      {
+        "name": "11. Sonic Law III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sonic Law I, except area of effect is 100' radius."
+        }
+      },
+      {
+        "name": "13. Shatter Blast",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes a non-metal, inanimate object to shatter (up to 1 cubic foot in size). All within a 5' radius take an 'A' Impact critical (someone holding the object takes a 'C')."
+        }
+      },
+      {
+        "name": "14. Waiting Sound",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A set series of sounds can be concentrated upon and then delayed up to 24 hours or until triggered by a specified sound."
+        }
+      },
+      {
+        "name": "15. Sonic Law IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "10'R/lvl",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sonic Law I, except area of effect is 10' radius per level of the caster."
+        }
+      },
+      {
+        "name": "16. Long Sudden Sound",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/5 fail",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sudden Sound, except for range."
+        }
+      },
+      {
+        "name": "18. Mind's Song *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 18,
+          "area_of_effect": "20'R",
+          "duration": "1 rnd/5fail",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "All targets within the area of effect are stunned due to ultrasonics (this includes animals)."
+        }
+      },
+      {
+        "name": "20. Crumble",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1000 cu'",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cracks, except material with cracks will crumble to dust. See Section 15.7 (p. 97) for more on material integrity and cracks."
+        }
+      },
+      {
+        "name": "25. Silence True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "100'R",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Silence I, except area of effect is 100' radius."
+        }
+      },
+      {
+        "name": "30. Mind's Song True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 30,
+          "area_of_effect": "50'R",
+          "duration": "1 rnd/5 fail",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind's Song, except for area of effect."
+        }
+      },
+      {
+        "name": "50. Sonic Law True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "10'/lvl",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sonic Law I, except sounds can be programmed, delayed (up to 24 hours), there can be more than one sound at a time, and sounds are instantly changeable."
+        }
+      }
+    ]
+  }
+}

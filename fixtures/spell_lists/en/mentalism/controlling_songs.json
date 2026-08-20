@@ -1,0 +1,343 @@
+{
+  "name": "Controlling Songs",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Bard Base 6.1 - Controlling Songs. Spells for controlling a target through song/performance: calming, holding, stunning, sleep, charm, fear, forgetting, panic, mastery, seeking, coma, and slaying songs. Special Notes: All of the spells on this list require that the Bard provide some form of entertainment for the target (this is the \"concentration\" duration). This could take the form of singing, musical instrument, oratory, dance, tale telling, juggling, etc.",
+    "spells": [
+      {
+        "name": "01. Calm Song",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target is calmed and cannot take aggressive (offensive) action, while caster concentrates."
+        }
+      },
+      {
+        "name": "02. Holding Song",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song, except target only has 25% of his normal activity each round."
+        }
+      },
+      {
+        "name": "03. Stun Song",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song, except target is stunned."
+        }
+      },
+      {
+        "name": "05. Sleep Song",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song, except target falls into a light sleep. Target gets another RR if someone attempts to wake him while this spell is still active. When the duration is up, the target can be awakened normally."
+        }
+      },
+      {
+        "name": "06. Charm Song",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song, except target believes caster is a good friend."
+        }
+      },
+      {
+        "name": "07. Fear's Song",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song, except target fears caster and tries to flee from him. Fleeing usually equates to moving at maximum pace away from the caster."
+        }
+      },
+      {
+        "name": "08. Calm Song True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song, except after the caster stops concentrating the effect will continue for as many rounds as the caster has already concentrated. For example, if the caster sings to a target for 3 rounds, the target will be calmed for those 3 rounds plus the following 3 rounds."
+        }
+      },
+      {
+        "name": "09. Stun Song True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song True, except target is stunned."
+        }
+      },
+      {
+        "name": "10. Forgetting Song",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "P",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target will forget what transpired in a certain period of time specified by the caster (the beginning of the time period must be within 1 day per level of the caster in the past). The length of the \"forgetting\" time period is equal to the amount of time the caster plays/sings (concentrates)."
+        }
+      },
+      {
+        "name": "11. Charm Song True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 target",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song True, except target believes caster is his good friend."
+        }
+      },
+      {
+        "name": "12. Panic's Song",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song, except target panics (routs) and flees, dropping or throwing away most of his equipment to speed his departure. This results in moving at maximum pace without thought toward direction moved (so long as it is away from the caster)."
+        }
+      },
+      {
+        "name": "13. Song of Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song, except target must obey the caster. He will not do anything that is completely alien to him (e.g., no suicide orders, blinding himself, etc.)."
+        }
+      },
+      {
+        "name": "15. Sleep Song True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song True, except target falls asleep (as in Sleep Song)."
+        }
+      },
+      {
+        "name": "17. Panic's Song True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song True, except target panics and flees (as in Panic's Song)."
+        }
+      },
+      {
+        "name": "19. Song of Seeking",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target must perform a task specified by the caster. Failure to complete the task results in a penalty determined by the GM (ignoring the task suffers the same effects as failure). Completing the task must be within the target's capabilities. The effects of this spell last until the task is completed."
+        }
+      },
+      {
+        "name": "20. Song True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "C(x3)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As any one of the Song True spells above (caster's choice), except when the caster stops concentrating, the duration of the spell is twice the time the caster has already concentrated."
+        }
+      },
+      {
+        "name": "25. Song of Mastery True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Song True, except target must obey caster."
+        }
+      },
+      {
+        "name": "30. Song of Coma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target falls into a deep coma, from which he will awaken only if the caster cancels this spell or the spell is dispelled."
+        }
+      },
+      {
+        "name": "50. Slaying Song",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Song of Coma, except target dies instantly if his RR failure is more than 50."
+        }
+      }
+    ]
+  }
+}

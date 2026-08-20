@@ -1,0 +1,394 @@
+{
+  "name": "Sound Projection",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Bard Base 6.6 - Sound Projection. Spells for projecting the voice (whispering, amplifying), extending the range/targets/secrecy of Controlling Songs spells, and a mastery spell combining the list. Special Notes: Many of the spells on this list are designed for use with spells on the Controlling Songs spell list.",
+    "spells": [
+      {
+        "name": "01. Long Whisper I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 point",
+          "duration": "C",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can whisper and the whisper can be heard at any point he chooses within the range."
+        }
+      },
+      {
+        "name": "02. Sounding II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster's voice is amplified two times. This is useful for talking to large crowds."
+        }
+      },
+      {
+        "name": "03. Song Sounding II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 3,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Doubles the range of a spell on the Controlling Songs spell list. The spell from that list must be cast within one minute after completing this spell."
+        }
+      },
+      {
+        "name": "04. Song II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 4,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows the caster to affect 2 targets with a spell off the Controlling Songs spell list. The spell from that list must be cast within 1 minute after completing this spell."
+        }
+      },
+      {
+        "name": "05. Long Whisper III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 point",
+          "duration": "C",
+          "range": "300'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Whisper I, except range is 300'."
+        }
+      },
+      {
+        "name": "06. Sounding V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sounding II, except amplification is five times."
+        }
+      },
+      {
+        "name": "07. Great Song I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 7,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Song II, except everyone within a 10' radius of the caster is a target."
+        }
+      },
+      {
+        "name": "08. Song Sounding III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 8,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Song Sounding II, except range is three times normal."
+        }
+      },
+      {
+        "name": "09. Long Whisper V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 point",
+          "duration": "C",
+          "range": "500'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Whisper I, except range is 500'."
+        }
+      },
+      {
+        "name": "10. Song III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Song II, except 3 targets may be affected."
+        }
+      },
+      {
+        "name": "11. Silent Song *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 11,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "When this spell is cast with a spell off the Controlling Songs spell list, no one but the target(s) will hear the song. The spell from the Controlling Songs list must be cast within 1 minute after completing this spell."
+        }
+      },
+      {
+        "name": "12. Song Sounding IV *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 12,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Song Sounding II, except range is four times normal."
+        }
+      },
+      {
+        "name": "13. Long Whisper X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 point",
+          "duration": "C",
+          "range": "1000'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Whisper I, except range is 1,000'."
+        }
+      },
+      {
+        "name": "14. Song V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 14,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Song II, except 5 targets may be affected."
+        }
+      },
+      {
+        "name": "15. Great Song V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Great Song I, except area of effect is 50' radius."
+        }
+      },
+      {
+        "name": "16. Song Sounding V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 16,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Song Sounding II, except range is five times normal."
+        }
+      },
+      {
+        "name": "17. Long Whisper True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 point",
+          "duration": "C",
+          "range": "100'/lvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Whisper I, except range is 100' per level of the caster."
+        }
+      },
+      {
+        "name": "18. Song X *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 18,
+          "area_of_effect": "1 spell",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Song II, except 10 targets may be affected."
+        }
+      },
+      {
+        "name": "20. Song Sounding VII *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Song Sounding II, except range is seven times normal."
+        }
+      },
+      {
+        "name": "25. Great Song True *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 25,
+          "area_of_effect": "mult. tgts",
+          "duration": "varies",
+          "range": "100'R",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Great Song I, except area of effect is 5' radius per level."
+        }
+      },
+      {
+        "name": "30. Song Sounding X *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 30,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Song Sounding II, except range is ten times normal."
+        }
+      },
+      {
+        "name": "50. Song Mastery *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any of the spells above can be cast at a rate of one per round for the duration of the spell. Any controlling songs must be cast separately (taking up time out of the duration) and additional power points must be expended for them."
+        }
+      }
+    ]
+  }
+}

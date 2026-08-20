@@ -1,0 +1,360 @@
+{
+  "name": "Item Lore",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Bard Base 6.3 - Item Lore. Spells for assessing the value of an item, detecting and analyzing its magical abilities, learning its origins, significance, curses, and past events. Special Notes: See Section 15.13 (p. 98) for more on information spells.",
+    "spells": [
+      {
+        "name": "01. Jewel/Metal Assessment",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can assess the value of jewels and metals to within 10% of their actual value. This spell allows the caster to calculate different values for the different cultures he is familiar with. This spell only assesses the value of the materials (not the craftsmanship)."
+        }
+      },
+      {
+        "name": "02. Item Assessment",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Jewel and Metal Assessment, except will determine the value of the object including the craftsmanship of the object. Magic capabilities are not included."
+        }
+      },
+      {
+        "name": "03. Detect Power",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 object",
+          "duration": "1 rnd/lvl(C)",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detects power in an item, but not the realm or how much. One item can be examined each round by concentrating."
+        }
+      },
+      {
+        "name": "04. Item Analysis I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster has a 10% chance for each ability of determining what enchanted abilities the item has. Once an Item Analysis spell has been cast on an item, it may not be cast on that item again until the caster has reached a new level of experience."
+        }
+      },
+      {
+        "name": "05. Assessment True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Item Assessment, except anything can be assessed (livestock, houses, boats, etc.)."
+        }
+      },
+      {
+        "name": "06. Significance",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Determines if the item examined has any cultural or historical significance, but not specifically what significance."
+        }
+      },
+      {
+        "name": "07. Item Analysis II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Item Analysis I, except there is a 20% chance for each ability."
+        }
+      },
+      {
+        "name": "08. Origins",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives the area of origin of the item, the race of the being who made it, and when it was made (within 100 years)."
+        }
+      },
+      {
+        "name": "09. Item Vision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives a vision of the most significant event in the item's past. The event cannot have occurred more than 1 hour per level of the caster in the past."
+        }
+      },
+      {
+        "name": "10. Item Analysis III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Item Analysis I, except there is a 30% chance for each ability."
+        }
+      },
+      {
+        "name": "11. Detect Curse",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Determines if an item has a curse on it."
+        }
+      },
+      {
+        "name": "13. Significance True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Significance, except it determines the exact cultural and historical significance."
+        }
+      },
+      {
+        "name": "15. Item Analysis IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Item Analysis I, except there is a 40% chance for each ability."
+        }
+      },
+      {
+        "name": "16. Death's Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives a vision of how someone died and an image of their killer. When this spell is cast, the caster must be touching an object that had significance in the death (i.e., the murder weapon, the body, etc.)."
+        }
+      },
+      {
+        "name": "17. Item Vision True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Item Vision, except without a time limit."
+        }
+      },
+      {
+        "name": "18. Item Analysis V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Item Analysis I, except there is a 50% chance for each ability."
+        }
+      },
+      {
+        "name": "20. Item Analysis VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Item Analysis I, except there is a 60% chance for each ability."
+        }
+      },
+      {
+        "name": "25. Origins True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Origins, except it gives the exact place of origin, the being who made it, and when it was made."
+        }
+      },
+      {
+        "name": "30. Item Analysis VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Item Analysis I, except there is a 70% chance for each ability."
+        }
+      },
+      {
+        "name": "50. Item Analysis True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Item Analysis I, except all abilities are known automatically."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "name": "Control del Sonido",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Bardo 6.5 - Control del Sonido. Hechizos para amortiguar y manipular el sonido, ataques sónicos (aturdir, ensordecer), agrietar/desmoronar materiales mediante sonido, y sonidos con activación retardada.",
+    "spells": [
+      {
+        "name": "01. Silencio I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1'R",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquier sonido originado dentro del área de efecto no puede oírse fuera de ella. Esto otorga un bono especial de +25 a maniobras de Acecho."
+        }
+      },
+      {
+        "name": "02. Ley Sónica I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1'R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede manipular el sonido dentro del área de efecto. Puede crear cualquier sonido único que desee, y, si lo desea, ese sonido puede oírse fuera del área de efecto."
+        }
+      },
+      {
+        "name": "04. Silencio I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Silencio I (nivel 1), salvo que el área de efecto es de 10' de radio."
+        }
+      },
+      {
+        "name": "05. Ley Sónica II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ley Sónica I, salvo que el área de efecto es de 10' de radio."
+        }
+      },
+      {
+        "name": "06. Sonido Súbito",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causa un sonido súbito y muy fuerte junto a los oídos del objetivo. El objetivo queda aturdido durante la duración."
+        }
+      },
+      {
+        "name": "07. Ensordecer",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/5 fallo",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo no puede oír sonidos que ocurran a más de 6\" de sus oídos."
+        }
+      },
+      {
+        "name": "08. Grietas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1000 pies cúb.",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Ciertas ondas sonoras hacen que las grietas o defectos en material sólido e inanimado (hasta 1000 pies cúbicos) se extiendan hasta su límite. Ver Sección 15.7 (p. 97) para más información sobre integridad de materiales y grietas."
+        }
+      },
+      {
+        "name": "10. Silencio III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "50'R",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Silencio I, salvo que el área de efecto es de 50' de radio."
+        }
+      },
+      {
+        "name": "11. Ley Sónica III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ley Sónica I, salvo que el área de efecto es de 100' de radio."
+        }
+      },
+      {
+        "name": "13. Estallido Trizador",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que un objeto inanimado no metálico se haga añicos (hasta 1 pie cúbico de tamaño). Todos dentro de un radio de 5' sufren un crítico de Impacto 'A' (quien sostenga el objeto sufre un 'C')."
+        }
+      },
+      {
+        "name": "14. Sonido en Espera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Puede concentrarse en una serie fija de sonidos y retrasarlos hasta 24 horas o hasta que se activen por un sonido específico."
+        }
+      },
+      {
+        "name": "15. Ley Sónica IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "10'R/nvl",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ley Sónica I, salvo que el área de efecto es de 10' de radio por nivel del lanzador."
+        }
+      },
+      {
+        "name": "16. Sonido Súbito a Distancia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 rnd/5 fallo",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sonido Súbito, salvo por el alcance."
+        }
+      },
+      {
+        "name": "18. Canción de la Mente *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 18,
+          "area_of_effect": "20'R",
+          "duration": "1 rnd/5fallo",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Todos los objetivos dentro del área de efecto quedan aturdidos por ultrasonidos (incluidos animales)."
+        }
+      },
+      {
+        "name": "20. Desmoronar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1000 pies cúb.",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Grietas, salvo que el material con grietas se desmorona hasta convertirse en polvo. Ver Sección 15.7 (p. 97) para más información sobre integridad de materiales y grietas."
+        }
+      },
+      {
+        "name": "25. Silencio Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "100'R",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Silencio I, salvo que el área de efecto es de 100' de radio."
+        }
+      },
+      {
+        "name": "30. Canción de la Mente Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 30,
+          "area_of_effect": "50'R",
+          "duration": "1 rnd/5 fallo",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de la Mente, salvo por el área de efecto."
+        }
+      },
+      {
+        "name": "50. Ley Sónica Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "10'/nvl",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ley Sónica I, salvo que los sonidos pueden programarse, retrasarse (hasta 24 horas), puede haber más de un sonido a la vez, y los sonidos son cambiables al instante."
+        }
+      }
+    ]
+  }
+}

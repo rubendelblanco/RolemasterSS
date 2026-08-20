@@ -1,0 +1,343 @@
+{
+  "name": "Canciones de Control",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Bardo 6.1 - Canciones de Control. Hechizos para controlar a un objetivo mediante canción/actuación: calmar, retener, aturdir, dormir, encantar, aterrorizar, olvidar, causar pánico, dominar, buscar, provocar coma y matar con la canción. Notas Especiales: Todos los hechizos de esta lista requieren que el Bardo proporcione algún tipo de entretenimiento al objetivo (esta es la duración de \"concentración\"). Puede tomar la forma de canto, instrumento musical, oratoria, danza, narración de historias, malabares, etc.",
+    "spells": [
+      {
+        "name": "01. Canción de Calma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo queda calmado y no puede realizar acciones agresivas (ofensivas) mientras el lanzador se concentre."
+        }
+      },
+      {
+        "name": "02. Canción de Retención",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma, salvo que el objetivo solo tiene un 25% de su actividad normal cada ronda."
+        }
+      },
+      {
+        "name": "03. Canción de Aturdimiento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma, salvo que el objetivo queda aturdido."
+        }
+      },
+      {
+        "name": "05. Canción de Sueño",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma, salvo que el objetivo cae en un sueño ligero. El objetivo hace otra RR si alguien intenta despertarlo mientras el hechizo sigue activo. Al terminar la duración, el objetivo puede despertarse con normalidad."
+        }
+      },
+      {
+        "name": "06. Canción de Encanto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma, salvo que el objetivo cree que el lanzador es un buen amigo."
+        }
+      },
+      {
+        "name": "07. Canción del Miedo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma, salvo que el objetivo teme al lanzador e intenta huir de él. Huir normalmente equivale a moverse al ritmo máximo alejándose del lanzador."
+        }
+      },
+      {
+        "name": "08. Canción de Calma Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objetivo",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma, salvo que tras dejar de concentrarse, el efecto continúa durante tantas rondas como el lanzador ya se hubiera concentrado. Por ejemplo, si el lanzador canta al objetivo durante 3 rondas, este quedará calmado esas 3 rondas más las 3 siguientes."
+        }
+      },
+      {
+        "name": "09. Canción de Aturdimiento Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma Verdadera, salvo que el objetivo queda aturdido."
+        }
+      },
+      {
+        "name": "10. Canción del Olvido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objetivo",
+          "duration": "P",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo olvidará lo sucedido durante un período de tiempo especificado por el lanzador (el inicio del período debe estar dentro de 1 día por nivel del lanzador hacia el pasado). La duración del período \"olvidado\" es igual al tiempo que el lanzador toca/canta (se concentra)."
+        }
+      },
+      {
+        "name": "11. Canción de Encanto Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objetivo",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma Verdadera, salvo que el objetivo cree que el lanzador es su buen amigo."
+        }
+      },
+      {
+        "name": "12. Canción de Pánico",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma, salvo que el objetivo entra en pánico y huye, soltando o arrojando la mayor parte de su equipo para acelerar su huida. Esto se traduce en moverse al ritmo máximo sin pensar en la dirección (mientras se aleje del lanzador)."
+        }
+      },
+      {
+        "name": "13. Canción de Dominio",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "C",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma, salvo que el objetivo debe obedecer al lanzador. No hará nada que le sea completamente ajeno (p.ej., nada de órdenes suicidas, cegarse a sí mismo, etc.)."
+        }
+      },
+      {
+        "name": "15. Canción de Sueño Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma Verdadera, salvo que el objetivo se queda dormido (como en Canción de Sueño)."
+        }
+      },
+      {
+        "name": "17. Canción de Pánico Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma Verdadera, salvo que el objetivo entra en pánico y huye (como en Canción de Pánico)."
+        }
+      },
+      {
+        "name": "19. Canción de Búsqueda",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo debe realizar una tarea especificada por el lanzador. No completar la tarea resulta en una penalización determinada por el DJ (ignorarla sufre los mismos efectos que fallarla). Completar la tarea debe estar dentro de las capacidades del objetivo. Los efectos de este hechizo duran hasta que se complete la tarea."
+        }
+      },
+      {
+        "name": "20. Canción Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objetivo",
+          "duration": "C(x3)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como cualquiera de los hechizos \"Verdadera\" de Canción anteriores (a elección del lanzador), salvo que cuando el lanzador deja de concentrarse, la duración del hechizo es el doble del tiempo que ya llevaba concentrándose."
+        }
+      },
+      {
+        "name": "25. Canción de Dominio Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "C(x2)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción de Calma Verdadera, salvo que el objetivo debe obedecer al lanzador."
+        }
+      },
+      {
+        "name": "30. Canción del Coma",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo cae en un coma profundo, del que solo despertará si el lanzador cancela el hechizo o este es disipado."
+        }
+      },
+      {
+        "name": "50. Canción Mortal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción del Coma, salvo que el objetivo muere instantáneamente si el fallo de su RR es superior a 50."
+        }
+      }
+    ]
+  }
+}

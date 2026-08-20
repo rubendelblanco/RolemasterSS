@@ -1,0 +1,326 @@
+{
+  "name": "Lores",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Bard Base 6.4 - Lores. Spells for total recall, learning languages faster, identifying languages and translations, rapid reading, and scanning a target's mind for specific knowledge.",
+    "spells": [
+      {
+        "name": "01. Recall",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows the caster to access his memory as if he had total recall. Any skill resolution involving Memory gets a special bonus. If the skill uses Memory as one of its applicable stats (Science/Analytic skills), the bonus is +10. If the skill uses Memory as two of its applicable stats (Lore skills), the bonus is +25, if the skill uses Memory as all three of its applicable stats (i.e., a straight \"memory\" check), the bonus is +50."
+        }
+      },
+      {
+        "name": "02. Learn Language II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Doubles the rate at which the caster can learn a language. Every rank of language developed (i.e., DPs spent), results in two ranks being learned. It is assumed that this spell is cast and in effect while the language is being learned—that is, whenever the development points are allocated."
+        }
+      },
+      {
+        "name": "03. Language Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster learns what language a piece of text is written in, and the author if he was noteworthy or the caster has seen his work."
+        }
+      },
+      {
+        "name": "04. Mind's Lore I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl(C)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can scan the target's mind and receive some of the target's knowledge (conscious and unconscious) concerning one very specific topic. For each bit of knowledge on the topic, there is a 10% chance that the caster will learn it (roll for each bit once per round)."
+        }
+      },
+      {
+        "name": "05. Study II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can read at double the normal rate (resulting in 2 pages per minute while this spell is active)."
+        }
+      },
+      {
+        "name": "07. Learn Language III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Learn Language II, except rate is tripled (and three ranks are gained for every one)."
+        }
+      },
+      {
+        "name": "08. Mind's Lore III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl(C)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind's Lore I, except chance is 30% for each bit of knowledge."
+        }
+      },
+      {
+        "name": "10. Study III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Study II, except caster can read at three times normal rate (i.e., 3 pages per minute)."
+        }
+      },
+      {
+        "name": "11. Passage Origin",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can read a piece of text and tell if it is a translation; and if so, what the original language was and possibly the author if he was noteworthy or the caster has seen his work."
+        }
+      },
+      {
+        "name": "12. Learn Language IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Learn Language II, except rate is four times normal (with four ranks developed for every one)."
+        }
+      },
+      {
+        "name": "13. Mind's Lore V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl(C)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind's Lore I, except chance is 50% for each bit of knowledge."
+        }
+      },
+      {
+        "name": "15. Study V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Study II, except caster reads at five times normal rate (i.e., 5 pages per minute)."
+        }
+      },
+      {
+        "name": "17. Study X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Study II, except caster reads at ten times normal rate (i.e., 10 pages per minute)."
+        }
+      },
+      {
+        "name": "18. Mind's Lore VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl(C)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind's Lore I, except chance is 70% for each bit of knowledge."
+        }
+      },
+      {
+        "name": "20. Study True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Study II, except caster can read as fast as he can glance at a page."
+        }
+      },
+      {
+        "name": "25. Learn Language V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Learn Language II, except rate is five times normal (and five ranks for every one)."
+        }
+      },
+      {
+        "name": "30. Mind's Lore True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target",
+          "duration": "1 rnd/lvl(C)",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind's Lore I, except all knowledge is obtained."
+        }
+      },
+      {
+        "name": "50. Learn Language True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "If the caster has access to a being that knows a certain language, he can learn the language as well as the given being knows it. He must touch the being and concentrate for 8 consecutive hours."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "name": "Saber de Objetos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Bardo 6.3 - Saber de Objetos. Hechizos para valorar un objeto, detectar y analizar sus habilidades mágicas, conocer sus orígenes, su significado, maldiciones y eventos pasados. Notas Especiales: Ver Sección 15.13 (p. 98) para más información sobre hechizos de información.",
+    "spells": [
+      {
+        "name": "01. Valorar Joya/Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede valorar joyas y metales con un margen del 10% de su valor real. Este hechizo le permite calcular valores diferentes según las distintas culturas que conoce. Solo valora el material (no la artesanía)."
+        }
+      },
+      {
+        "name": "02. Valorar Objeto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Valorar Joya/Metal, salvo que determina el valor del objeto incluyendo su artesanía. No incluye capacidades mágicas."
+        }
+      },
+      {
+        "name": "03. Detectar Poder",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 objeto",
+          "duration": "1 rnd/nvl(C)",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detecta poder en un objeto, pero no de qué reino ni cuánto. Puede examinarse un objeto por ronda mediante concentración."
+        }
+      },
+      {
+        "name": "04. Análisis del Objeto I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador tiene un 10% de probabilidad por cada habilidad de determinar qué habilidades encantadas tiene el objeto. Una vez lanzado un hechizo de Análisis del Objeto sobre un objeto, no puede volver a lanzarse sobre él hasta que el lanzador alcance un nuevo nivel de experiencia."
+        }
+      },
+      {
+        "name": "05. Valoración Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Valorar Objeto, salvo que puede valorarse cualquier cosa (ganado, casas, barcos, etc.)."
+        }
+      },
+      {
+        "name": "06. Significado",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Determina si el objeto examinado tiene algún significado cultural o histórico, pero no cuál exactamente."
+        }
+      },
+      {
+        "name": "07. Análisis del Objeto II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis del Objeto I, salvo que la probabilidad por habilidad es del 20%."
+        }
+      },
+      {
+        "name": "08. Orígenes",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da el área de origen del objeto, la raza de quien lo hizo, y cuándo fue hecho (con un margen de 100 años)."
+        }
+      },
+      {
+        "name": "09. Visión del Objeto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da una visión del evento más significativo en el pasado del objeto. El evento no puede haber ocurrido más de 1 hora por nivel del lanzador hacia el pasado."
+        }
+      },
+      {
+        "name": "10. Análisis del Objeto III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis del Objeto I, salvo que la probabilidad por habilidad es del 30%."
+        }
+      },
+      {
+        "name": "11. Detectar Maldición",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Determina si un objeto tiene una maldición."
+        }
+      },
+      {
+        "name": "13. Significado Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Significado, salvo que determina el significado cultural e histórico exacto."
+        }
+      },
+      {
+        "name": "15. Análisis del Objeto IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis del Objeto I, salvo que la probabilidad por habilidad es del 40%."
+        }
+      },
+      {
+        "name": "16. Saber de la Muerte",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da una visión de cómo murió alguien y una imagen de su asesino. Al lanzar este hechizo, el lanzador debe estar tocando un objeto con relevancia en la muerte (p.ej., el arma homicida, el cuerpo, etc.)."
+        }
+      },
+      {
+        "name": "17. Visión del Objeto Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión del Objeto, salvo que no tiene límite temporal."
+        }
+      },
+      {
+        "name": "18. Análisis del Objeto V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis del Objeto I, salvo que la probabilidad por habilidad es del 50%."
+        }
+      },
+      {
+        "name": "20. Análisis del Objeto VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis del Objeto I, salvo que la probabilidad por habilidad es del 60%."
+        }
+      },
+      {
+        "name": "25. Orígenes Verdaderos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Orígenes, salvo que da el lugar exacto de origen, quién lo hizo y cuándo se hizo."
+        }
+      },
+      {
+        "name": "30. Análisis del Objeto VII",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis del Objeto I, salvo que la probabilidad por habilidad es del 70%."
+        }
+      },
+      {
+        "name": "50. Análisis del Objeto Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Análisis del Objeto I, salvo que todas las habilidades se conocen automáticamente."
+        }
+      }
+    ]
+  }
+}

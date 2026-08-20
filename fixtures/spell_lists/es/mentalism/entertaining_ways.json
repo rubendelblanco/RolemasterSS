@@ -1,0 +1,394 @@
+{
+  "name": "Artes del Entretenimiento",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Bardo 6.2 - Artes del Entretenimiento. Hechizos para efectos escénicos (luz, sonido, música), potenciar la habilidad interpretativa, hacer desaparecer u ocultar objetos/objetivos, y cautivar al público.",
+    "spells": [
+      {
+        "name": "01. Foco de Luz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl(C)",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador queda iluminado por un círculo de luz brillante. Al lanzar el hechizo, el lanzador designa su \"frente\" y la luz brillará desde esa dirección. Puede cambiar su \"frente\" concentrándose (la luz se apagará y otra se encenderá)."
+        }
+      },
+      {
+        "name": "02. Atenuar Luces",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "10'R/nvl",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Todas las fuentes de luz no mágicas dentro del área de efecto se atenúan hasta la luminosidad de una vela suave."
+        }
+      },
+      {
+        "name": "03. Silencio Suave",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R/nvl",
+          "duration": "10 min/nvl(C)",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Durante la duración de este hechizo, ningún sonido dentro del área de efecto supera el volumen de un susurro. El lanzador es inmune a los efectos de este hechizo. Además, puede designar hasta un objetivo adicional por nivel para que también sea inmune. Concentrándose durante 1 ronda, el lanzador puede designar a esos objetivos adicionales."
+        }
+      },
+      {
+        "name": "04. Fanfarria",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'R",
+          "duration": "1 rnd/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Suena una fanfarria musical. El lanzador puede designar un instrumento (que emitirá los sonidos de la fanfarria) por cada cinco niveles de experiencia (o fracción). El volumen de la fanfarria no puede superar el que produciría normalmente el instrumento designado."
+        }
+      },
+      {
+        "name": "05. Artista I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador recibe un bono especial de +5 a todas las habilidades interpretativas (categoría Artística/Activa) durante la duración de este hechizo."
+        }
+      },
+      {
+        "name": "06. Prestidigitación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede hacer desaparecer cualquier objetivo que toque (de hasta 1 libra por nivel del lanzador). Debe designar un lugar donde el objetivo \"reaparecerá\" (el lugar debe estar dentro de su línea de visión). El objeto se teletransporta al lugar designado en el momento de lanzar el hechizo."
+        }
+      },
+      {
+        "name": "07. Cautivar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo de este hechizo queda cautivado por el lanzador (mientras dure su actuación o la duración del hechizo, lo que sea más corto). Mientras está cautivado, el objetivo queda limitado al 20% de su actividad normal."
+        }
+      },
+      {
+        "name": "08. Bolsillo Oculto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 objeto",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede colocar un objeto inanimado (de hasta 1 pie cúbico por nivel del lanzador) dentro de cualquier contenedor disponible. La abertura del contenedor debe ser lo bastante grande para al menos una dimensión del objeto. Al examinarlo, el contenedor parecerá vacío a cualquier percepción normal (incluido el tacto). El lanzador puede sacar el objeto del contenedor en cualquier momento (dentro de la duración del hechizo). Si el objeto no se retira antes de que termine la duración, aparece en el contenedor como si siempre hubiera estado allí."
+        }
+      },
+      {
+        "name": "09. Espectáculo de Luces",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "5'R",
+          "duration": "1 rnd/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede crear una luz de color que brille en el área de efecto. Puede cambiar el color de la luz concentrándose. La luz puede tomar cualquier forma que el lanzador desee, pero no iluminará más allá del área de efecto. Por ejemplo, varias esferas pequeñas de distintos colores pueden flotar alrededor de los pies del lanzador, o cinco rayos rojos pueden destellar de un lado a otro de su cuerpo."
+        }
+      },
+      {
+        "name": "10. Artista II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Artista I, salvo que el bono es +10."
+        }
+      },
+      {
+        "name": "11. Música",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede designar cualquier pieza musical para que suene como si él mismo la estuviera tocando (debe haberla tocado al menos una vez). La música sonará continuamente durante la duración del hechizo. Si la pieza termina antes de que acabe la duración, se repetirá tantas veces como sea necesario. El lanzador puede designar canto en lugar de un instrumento."
+        }
+      },
+      {
+        "name": "12. Cautivar V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "5 objetivos",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cautivar I, salvo que afecta a 5 objetivos."
+        }
+      },
+      {
+        "name": "13. Voluntario del Público",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo de este hechizo realizará cualquier acción que el lanzador le dicte (durante la duración del hechizo). Si el objetivo ya ha sido \"voluntario\" del lanzador antes, sufre un modificador de RR de -1 por cada vez anterior que fue objetivo exitoso. Si la acción es algo completamente ajeno al objetivo, puede hacer otra RR con un modificador especial de +50."
+        }
+      },
+      {
+        "name": "14. Encantador Asistente",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objetivo de este hechizo (que puede ser el propio lanzador) ve su apariencia mejorada. Se trata como un +25 temporal a Apariencia (hasta un máximo de 101). Si la Apariencia del objetivo sube de 100, provocará que todos los que lo miren se distraigan (se trata como un modificador especial de -10 a todas las maniobras que impliquen habilidades de Percepción mientras el objetivo esté a la vista). Este hechizo mejora la apariencia facial/corporal y la de la ropa."
+        }
+      },
+      {
+        "name": "15. Artista III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Artista I, salvo que el bono es +15."
+        }
+      },
+      {
+        "name": "16. Orquesta",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "5'R",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Música, salvo que el lanzador puede designar un instrumento por cada cinco niveles de experiencia (o fracción). Todos los instrumentos (incluida la voz) sonarán como si el lanzador los estuviera tocando simultáneamente."
+        }
+      },
+      {
+        "name": "17. Cautivar X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "10 objetivos",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cautivar I, salvo que afecta a 10 objetivos."
+        }
+      },
+      {
+        "name": "18. Desaparecer",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 objetivo",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prestidigitación, salvo que afecta a cualquier objetivo de hasta la propia masa del lanzador."
+        }
+      },
+      {
+        "name": "20. Artista IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Artista I, salvo que el bono es +20."
+        }
+      },
+      {
+        "name": "25. Cautivar en Masa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo/nvl",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cautivar I, salvo que afecta a un número de objetivos igual al nivel del lanzador."
+        }
+      },
+      {
+        "name": "30. Desaparecer Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desaparecer, salvo que puede afectar a cualquier criatura viva u objeto inanimado de hasta 100 libras por nivel del lanzador."
+        }
+      },
+      {
+        "name": "50. Artista Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Artista I, salvo que el bono es +25."
+        }
+      }
+    ]
+  }
+}

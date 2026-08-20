@@ -1,0 +1,394 @@
+{
+  "name": "Proyección del Sonido",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Bard",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Bardo 6.6 - Proyección del Sonido. Hechizos para proyectar la voz (susurrar, amplificar), ampliar el alcance/objetivos/secretismo de los hechizos de Canciones de Control, y un hechizo de maestría que combina la lista. Notas Especiales: Muchos de los hechizos de esta lista están pensados para usarse junto a hechizos de la lista Canciones de Control.",
+    "spells": [
+      {
+        "name": "01. Susurro Lejano I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 punto",
+          "duration": "C",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede susurrar y el susurro se oirá en cualquier punto que elija dentro del alcance."
+        }
+      },
+      {
+        "name": "02. Sonoridad II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "La voz del lanzador se amplifica al doble. Es útil para hablar a grandes multitudes."
+        }
+      },
+      {
+        "name": "03. Sonoridad de Canción II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 3,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Duplica el alcance de un hechizo de la lista Canciones de Control. El hechizo de esa lista debe lanzarse dentro del minuto siguiente a completar este."
+        }
+      },
+      {
+        "name": "04. Canción II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 4,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador afectar a 2 objetivos con un hechizo de la lista Canciones de Control. El hechizo de esa lista debe lanzarse dentro del minuto siguiente a completar este."
+        }
+      },
+      {
+        "name": "05. Susurro Lejano III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 punto",
+          "duration": "C",
+          "range": "300'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Susurro Lejano I, salvo que el alcance es de 300'."
+        }
+      },
+      {
+        "name": "06. Sonoridad V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sonoridad II, salvo que la amplificación es de cinco veces."
+        }
+      },
+      {
+        "name": "07. Gran Canción I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 7,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción II, salvo que todos dentro de un radio de 10' del lanzador son objetivos."
+        }
+      },
+      {
+        "name": "08. Sonoridad de Canción III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 8,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sonoridad de Canción II, salvo que el alcance es tres veces el normal."
+        }
+      },
+      {
+        "name": "09. Susurro Lejano V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 punto",
+          "duration": "C",
+          "range": "500'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Susurro Lejano I, salvo que el alcance es de 500'."
+        }
+      },
+      {
+        "name": "10. Canción III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción II, salvo que pueden afectarse 3 objetivos."
+        }
+      },
+      {
+        "name": "11. Canción Silenciosa *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 11,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cuando este hechizo se lanza junto con un hechizo de la lista Canciones de Control, nadie salvo el/los objetivo(s) oirá la canción. El hechizo de esa lista debe lanzarse dentro del minuto siguiente a completar este."
+        }
+      },
+      {
+        "name": "12. Sonoridad de Canción IV *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 12,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sonoridad de Canción II, salvo que el alcance es cuatro veces el normal."
+        }
+      },
+      {
+        "name": "13. Susurro Lejano X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 punto",
+          "duration": "C",
+          "range": "1000'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Susurro Lejano I, salvo que el alcance es de 1000'."
+        }
+      },
+      {
+        "name": "14. Canción V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 14,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción II, salvo que pueden afectarse 5 objetivos."
+        }
+      },
+      {
+        "name": "15. Gran Canción V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Gran Canción I, salvo que el área de efecto es de 50' de radio."
+        }
+      },
+      {
+        "name": "16. Sonoridad de Canción V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 16,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sonoridad de Canción II, salvo que el alcance es cinco veces el normal."
+        }
+      },
+      {
+        "name": "17. Susurro Lejano Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 punto",
+          "duration": "C",
+          "range": "100'/nvl",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Susurro Lejano I, salvo que el alcance es de 100' por nivel del lanzador."
+        }
+      },
+      {
+        "name": "18. Canción X *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 18,
+          "area_of_effect": "1 hechizo",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Canción II, salvo que pueden afectarse 10 objetivos."
+        }
+      },
+      {
+        "name": "20. Sonoridad de Canción VII *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sonoridad de Canción II, salvo que el alcance es siete veces el normal."
+        }
+      },
+      {
+        "name": "25. Gran Canción Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 25,
+          "area_of_effect": "obj. múlt.",
+          "duration": "varía",
+          "range": "100'R",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Gran Canción I, salvo que el área de efecto es de 5' de radio por nivel."
+        }
+      },
+      {
+        "name": "30. Sonoridad de Canción X *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 30,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sonoridad de Canción II, salvo que el alcance es diez veces el normal."
+        }
+      },
+      {
+        "name": "50. Maestría de la Canción *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 rnd/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquiera de los hechizos anteriores puede lanzarse a razón de uno por ronda durante la duración de este hechizo. Cualquier canción de control debe lanzarse por separado (consumiendo tiempo de la duración) y requiere puntos de poder adicionales."
+        }
+      }
+    ]
+  }
+}
