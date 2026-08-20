@@ -1,0 +1,326 @@
+{
+  "name": "Mind's Door",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Mentalism 3.4 - Mind's Door. Teleportation spells for the caster and inanimate objects, both direct (blocked by barriers) and through barriers (the Long Door family), plus cooperative teleportation with an intelligent target (Mind's Door). Special Notes: See Section 15.6 (p. 97) for notes on encumbrance limits for movement spells.",
+    "spells": [
+      {
+        "name": "02. Leave Item I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster \"teleports\" a single inanimate object to a point up to 100' away from its current location. There can be no intervening barriers in a direct line between the target and the point (for these purposes, a barrier is anything the object could not physically go through). The object has a maximum weight limit of 1 pound per level of the caster."
+        }
+      },
+      {
+        "name": "04. Long Door Item I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leave Item I, except the object can pass through barriers by specifying exact direction and distance. If the arrival point coincides with solid or liquid material, the object does not move (though the caster loses the PPs)."
+        }
+      },
+      {
+        "name": "05. Leaving I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster \"teleports\" to a point up to 100' away, but there can be no intervening barriers directly between the target and the point (for these purposes a barrier is anything he could not physically go through; a closed door is a barrier, a pit is not)."
+        }
+      },
+      {
+        "name": "06. Leave Item III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leave Item I, except object can be moved up to 300'."
+        }
+      },
+      {
+        "name": "07. Long Door Item V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Door Item I, except for range."
+        }
+      },
+      {
+        "name": "08. Leaving III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leaving I, except caster can move 300'."
+        }
+      },
+      {
+        "name": "09. Leave Item V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leave Item I, except object can be moved up to 500'."
+        }
+      },
+      {
+        "name": "10. Minor Long Door",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leaving, except caster can move 50' and he can pass through barriers by specifying exact direction and distance. If the arrival point coincides with solid or liquid material, the caster does not move. In addition, he is stunned d10 rounds, and the PPs for this spell are still expended."
+        }
+      },
+      {
+        "name": "11. Leaving V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leaving I, except caster can move 500'."
+        }
+      },
+      {
+        "name": "12. Long Door I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Door, except caster can move 100'."
+        }
+      },
+      {
+        "name": "13. Long Door Item X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Door Item I, except for range."
+        }
+      },
+      {
+        "name": "15. Lord Leaving",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leaving, except caster can move 100' per level up to 2,000'."
+        }
+      },
+      {
+        "name": "16. Long Door III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Door, except caster can move 300'."
+        }
+      },
+      {
+        "name": "18. Long Door V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Long Door, except caster can move 500'."
+        }
+      },
+      {
+        "name": "20. Mind's Door I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "If caster has established mental contact with a target (an intelligent being) that will cooperate, the caster can teleport to the target's location or the target can teleport to the caster's location. There is no chance of failure and the movement limit is 1 mile."
+        }
+      },
+      {
+        "name": "25. Leaving True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leaving, except movement is limited only by the barrier restriction (on a flat plain this would be the horizon)."
+        }
+      },
+      {
+        "name": "30. Mind's Door II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind's Door I, except limit is 10 miles per level."
+        }
+      },
+      {
+        "name": "50. Mind's Door True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "varies",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mind's Door, except that there is no movement limit."
+        }
+      }
+    ]
+  }
+}

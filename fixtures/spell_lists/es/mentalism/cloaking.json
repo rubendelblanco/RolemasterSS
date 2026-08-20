@@ -16,11 +16,11 @@
     "description": "Mentalismo Abierto 2.4 - Encubrimiento. Hechizos para ocultar, disfrazar y duplicar al lanzador, y para desviar ataques probables, incluyendo las familias Encubrimiento, Esfera de Encubrimiento, Fachadas, Mentalista Sombra y Desplazamiento. Notas Especiales: (1) Los hechizos de Encubrimiento no son hechizos de Invisibilidad y ninguna de las reglas normales de invisibilidad se aplica (p.ej., el lanzador no se vuelve \"visible\" al atacar o ser golpeado, etc.). (2) Ver Sección 15.14 (p. 98) para más información sobre ilusiones.",
     "spells": [
       {
-        "name": "01. Desenfoque",
+        "name": "01. Desenfoque *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 1,
           "area_of_effect": "caster",
           "duration": "1 min/nvl",

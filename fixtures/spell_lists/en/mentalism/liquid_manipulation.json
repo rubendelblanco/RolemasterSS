@@ -1,0 +1,343 @@
+{
+  "name": "Liquid Manipulation",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Mentalism 3.2 - Liquid Manipulation. Spells for heating, freezing, clearing, desalinating and evaporating liquids, creating water walls and corridors, water bolt attacks, calming water, whirlpools, waves, and water bubbles for underwater travel. Special Notes: (1) Unless otherwise stated, after the duration of any spell above, the material returns to its natural state. For example, water boiled with the Boil Water spell will begin to cool after the duration of the spell. (2) Unless specifically stated, all of the spells on this list apply to any liquid (not just water).",
+    "spells": [
+      {
+        "name": "01. Boil Water",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "P",
+          "range": "2'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Heats 1 cubic foot of liquid per level to boiling, at a rate of 50° per round of concentration. Caster is immune to the heat."
+        }
+      },
+      {
+        "name": "02. Freeze Water",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "P",
+          "range": "2'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Boil Water, except the liquid can be cooled until frozen."
+        }
+      },
+      {
+        "name": "03. Clear Water",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "P",
+          "range": "2'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Boil Water, except that it clears liquid of all sediment."
+        }
+      },
+      {
+        "name": "05. Desalination",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "P",
+          "range": "2'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Boil Water, except that it removes all dissolved substances from the liquid."
+        }
+      },
+      {
+        "name": "06. Waterwall",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "10'x10'x1'",
+          "duration": "C",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a 10'x10'x1' wall of churning water (a water source must be within 10'). All attacks through the wall suffer a -80 penalty, and all movement is reduced by 80%."
+        }
+      },
+      {
+        "name": "07. Evaporation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "P",
+          "range": "2'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Boil Water, except all the liquid is evaporated at a rate of 1 cubic foot per round of concentration."
+        }
+      },
+      {
+        "name": "08. Water Corridor I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "100'x3'x10'",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a corridor through liquid up to 100' long, 3' wide, and 10' deep (must be open at the top)."
+        }
+      },
+      {
+        "name": "09. Water Bolt",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 target",
+          "duration": "—",
+          "range": "100'",
+          "type": "DE",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A bolt of water is shot from the palm of the caster (a water source must be within 10'). Attack results are determined using the Water Bolt Attack Table 13.9 (p. 88)."
+        }
+      },
+      {
+        "name": "10. Curved Waterwall",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10'x20'x1'",
+          "duration": "C",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waterwall, except wall is 10'x20'x1' and can be curved up to a semicircle."
+        }
+      },
+      {
+        "name": "11. Calm Water",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "All water within a 100' radius is calmed. Waves are cut by 20' in the center of the area of effect (less towards the perimeter). This will negate the effects of currents in the area of effect."
+        }
+      },
+      {
+        "name": "13. Waterwall True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'x10'x1'",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waterwall, except has a set duration."
+        }
+      },
+      {
+        "name": "15. Water Corridor III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "300'x4'x50'",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Water Corridor I, except limit is 300'x4'x50' deep."
+        }
+      },
+      {
+        "name": "17. Whirlpool",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "20'R(200'R)",
+          "duration": "C",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a 20' radius whirlpool that will draw in any unpowered objects up to 200' away. Powered objects may make a very hard movement maneuver to resist the pull of the whirlpool."
+        }
+      },
+      {
+        "name": "18. Wave",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "(1'x10')/lvl",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a wave moving away from the caster. Wave is 1' high per level at the center and 10' per level wide."
+        }
+      },
+      {
+        "name": "19. Water Bubble",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a bubble of air (10' radius) around the caster and others. The bubble will carry them in up to 100' of water (air is resuscitated). The caster must concentrate to move the bubble (without concentration it will simply rise to the surface). At the end of the duration, the bubble will begin to rise to the surface. All objects inside the bubble will rise with it. After reaching the surface, the bubble will burst."
+        }
+      },
+      {
+        "name": "20. Calm Water True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "100'R/lvl",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Calm Water, except radius is 100' per level and waves are cut by 50'."
+        }
+      },
+      {
+        "name": "25. Water Corridor True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "(100'/lvlx6'x100')",
+          "duration": "C",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Water Corridor, except limit is 100' per level x 6' x 100' deep."
+        }
+      },
+      {
+        "name": "30. Water Bubble True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "20'R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Water Bubble, except radius is 20' and there is no depth limitation."
+        }
+      },
+      {
+        "name": "50. Water Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "10'/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can use one of the lower spells on this list each round, with a range of 10' per level."
+        }
+      }
+    ]
+  }
+}

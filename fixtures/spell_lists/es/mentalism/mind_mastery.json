@@ -1,0 +1,383 @@
+{
+  "name": "Maestría Mental",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Cerrado 3.3 - Maestría Mental. Hechizos para almacenar un hechizo para usarlo después, sentir presencia, resistir ataques mentales (Muro Interior), potenciar tiradas de Memoria/Razonamiento/Autodisciplina, observación intensa, disfrazar raza/profesión/nivel/presencia (la familia Sentir-Falso) y reflejar ataques mentales.",
+    "spells": [
+      {
+        "name": "01. Almacenar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 hechizo",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede lanzar este hechizo junto con cualquier hechizo que quiera almacenar. El hechizo a almacenar debe lanzarse dentro del minuto siguiente a lanzar Almacenar. El hechizo almacenado puede lanzarse más tarde como un hechizo instantáneo. Almacenar cuesta el mismo número de PP que el hechizo almacenado. No puede lanzarse ningún otro hechizo mientras haya uno almacenado."
+        }
+      },
+      {
+        "name": "02. Presencia * •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "no_pp": true,
+          "level": 2,
+          "area_of_effect": "20'R",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador es consciente de la presencia de todos los seres sintientes/pensantes dentro de 20'."
+        }
+      },
+      {
+        "name": "03. Muro Interior I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene un bono especial de +5 a sus RR contra ataques mentales."
+        }
+      },
+      {
+        "name": "05. Recordar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador acceder a su memoria como si tuviera memoria total. Cualquier tirada de habilidad que involucre Memoria recibe un bono especial. Si la habilidad usa Memoria como uno de sus atributos aplicables (habilidades de Ciencia/Analíticas), el bono es +10. Si la usa como dos de sus atributos aplicables (habilidades de Saber), el bono es +25; si la usa como los tres atributos aplicables (es decir, una tirada pura de \"memoria\"), el bono es +50."
+        }
+      },
+      {
+        "name": "06. Sentir-Falso: Raza •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 6,
+          "area_of_effect": "C",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A efectos de detecciones mentales o mágicas, el lanzador parece ser de cualquier raza que conozca."
+        }
+      },
+      {
+        "name": "07. Observación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "1 ronda (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene información o datos observando a una persona u objeto con concentración intensa durante una ronda. Da al lanzador un bono especial de +50 a sus bonos de habilidad de Percepción/Búsqueda."
+        }
+      },
+      {
+        "name": "08. Muro Interior II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro Interior I, salvo que el bono es +10."
+        }
+      },
+      {
+        "name": "09. Sentir-Falso: Vocación •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 9,
+          "area_of_effect": "C",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir-Falso: Raza, salvo que la profesión del lanzador puede parecer cualquier profesión que conozca."
+        }
+      },
+      {
+        "name": "10. Correlación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador es capaz de correlacionar hechos conocidos para obtener conclusiones. Cualquier tirada de habilidad que involucre Razonamiento recibe un bono especial. Si la habilidad usa Razonamiento como uno de sus atributos aplicables (habilidades de Saber), el bono es +10. Si lo usa como dos de sus atributos aplicables (habilidades de Ciencia/Analíticas), el bono es +25; si lo usa como los tres atributos aplicables (es decir, una tirada pura de \"razonamiento\"), el bono es +50."
+        }
+      },
+      {
+        "name": "11. Sentir-Falso: Poder •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir-Falso: Raza, salvo que el nivel del lanzador puede parecer cualquier nivel entre 1 y el doble de su nivel actual."
+        }
+      },
+      {
+        "name": "12. Resolución",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador es capaz de concentrarse y controlarse intensamente durante una situación o maniobra. Cualquier tirada de habilidad que involucre Autodisciplina recibe un bono especial. Si la habilidad usa Autodisciplina como uno de sus atributos aplicables (habilidades de Percepción/Búsqueda), el bono es +10. Si lo usa como dos de sus atributos aplicables (habilidades de Autocontrol), el bono es +25; si lo usa como los tres atributos aplicables (es decir, una tirada pura de \"autodisciplina\"), el bono es +50."
+        }
+      },
+      {
+        "name": "13. Muro Interior III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro Interior I, salvo que el bono es +15."
+        }
+      },
+      {
+        "name": "15. Ausencia de Presencia •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir-Falso: Raza, salvo que el lanzador parece no tener presencia (es decir, no puede ser detectado por hechizos de Presencia)."
+        }
+      },
+      {
+        "name": "16. Muro Interior V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro Interior I, salvo que el bono es +25."
+        }
+      },
+      {
+        "name": "17. Recuerdo Total",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Recordar, salvo que el recuerdo es casi automático y los bonos especiales son +20, +50 y +100."
+        }
+      },
+      {
+        "name": "18. Sentir-Falso •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador usar todos los hechizos \"Sentir-Falso\" a la vez. No incluye el uso de Ausencia de Presencia."
+        }
+      },
+      {
+        "name": "19. Muro Interior Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro Interior I, salvo que el bono es +50."
+        }
+      },
+      {
+        "name": "20. Observación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 ronda (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Observación, salvo que se percibe prácticamente cada detalle incluso en una situación amplia. El bono especial es +100."
+        }
+      },
+      {
+        "name": "25. Correlación Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Correlación, salvo que obtener conclusiones es casi automático y los bonos especiales son +20, +50 y +100."
+        }
+      },
+      {
+        "name": "30. Resolución Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Resolución, salvo que el enfoque/control es casi total y los bonos especiales son +20, +50 y +100."
+        }
+      },
+      {
+        "name": "50. Mentemejo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador refleja todos los ataques mentales de vuelta contra el atacante, que debe entonces hacer una RR contra su propio hechizo."
+        }
+      }
+    ]
+  }
+}

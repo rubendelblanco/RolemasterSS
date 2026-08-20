@@ -1,0 +1,343 @@
+{
+  "name": "Movimiento",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Cerrado 3.5 - Movimiento. Hechizos para saltar, caídas seguras, levitación, vuelo, movimiento bajo el agua, fundirse en material sólido y atravesarlo. Notas Especiales: Ver Sección 15.6 (p. 97) para notas sobre límites de carga para hechizos de movimiento.",
+    "spells": [
+      {
+        "name": "01. Salto *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador saltar 50' lateralmente o 20' verticalmente."
+        }
+      },
+      {
+        "name": "02. Aterrizaje *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador aterrizar sin daño en una caída de hasta 20' por nivel, y restar esa distancia a la gravedad de cualquier caída mayor."
+        }
+      },
+      {
+        "name": "03. Levitación I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador moverse verticalmente hacia arriba y hacia abajo 10' por ronda. El hechizo no proporciona ningún medio de movimiento horizontal."
+        }
+      },
+      {
+        "name": "04. Deriva del Viento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador se vuelve ingrávido, pero no tiene control mágico del movimiento. El peso vuelve gradualmente al finalizar la duración."
+        }
+      },
+      {
+        "name": "05. Movimiento Submarino",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede actuar bajo el agua como si estuviera en tierra firme."
+        }
+      },
+      {
+        "name": "06. Volar I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Levitación I, salvo que el lanzador puede volar a un ritmo de 15' por ronda (es decir, 1 mph)."
+        }
+      },
+      {
+        "name": "07. Levitación V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Levitación I, salvo que el ritmo es de 50' por ronda."
+        }
+      },
+      {
+        "name": "08. Zambullida Larga *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede zambullirse con seguridad por el aire hasta 50' por nivel. Al final de la zambullida, debe caer en agua lo bastante profunda para la zambullida (al menos 2' de agua por cada 50' recorridos)."
+        }
+      },
+      {
+        "name": "10. Fusión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede fundirse en cualquier material sólido e inanimado. Mientras está fundido, no puede moverse ni percibir. Al emerger del material, puede hacerlo por cualquier lado o cara del mismo. El lanzador no puede moverse \"a través\" de material con un grosor mayor que su propio tamaño corporal más 2 pies. Puede salir en cualquier momento hasta 10 minutos por nivel."
+        }
+      },
+      {
+        "name": "11. Volar II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Volar I, salvo que el ritmo es de 75' por ronda."
+        }
+      },
+      {
+        "name": "12. Aterrizaje Verdadero *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Aterrizaje, salvo que el lanzador puede aterrizar sin daño de cualquier caída el 99% de las veces."
+        }
+      },
+      {
+        "name": "13. Levitación XX",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Levitación I, salvo que el ritmo es de 200' por ronda."
+        }
+      },
+      {
+        "name": "14. Atravesar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede atravesar cualquier material inanimado de hasta 1' por nivel del lanzador; tarda 1 ronda en atravesar 2'."
+        }
+      },
+      {
+        "name": "15. Volar III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Volar I, salvo que el ritmo es de 300' por ronda."
+        }
+      },
+      {
+        "name": "17. Gran Fusión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fusión, salvo que el lanzador puede girar dentro del material y ver el exterior si está a menos de 6\" de la superficie."
+        }
+      },
+      {
+        "name": "20. Fusión Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Gran Fusión, salvo que el lanzador puede lanzarse hechizos a sí mismo mientras está fundido."
+        }
+      },
+      {
+        "name": "25. Volar IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Volar III, salvo que el ritmo es de 400' por ronda."
+        }
+      },
+      {
+        "name": "30. Atravesar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Atravesar, salvo que el lanzador puede atravesar tanto material como la duración permita, a un ritmo de 10' por ronda."
+        }
+      },
+      {
+        "name": "50. Maestro del Movimiento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede usar las habilidades de cualquiera de los hechizos de esta lista cada ronda."
+        }
+      }
+    ]
+  }
+}

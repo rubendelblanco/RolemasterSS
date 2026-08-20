@@ -1,0 +1,383 @@
+{
+  "name": "Mind Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Mentalism 3.3 - Mind Mastery. Spells for storing a spell for later use, sensing presence, resisting mind attacks (Inner Wall), boosting Memory/Reasoning/Self Discipline skill checks, intense observation, disguising race/profession/level/presence (the Misfeel family), and reflecting mind attacks.",
+    "spells": [
+      {
+        "name": "01. Storing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 spell",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may cast this spell with any spell he wants to store. The spell to be stored must be cast within one minute after the Spell Store is cast. The stored spell may be cast later as an instantaneous spell. The Storing spell costs the same number of PPs as the spell stored. No other spell may be cast while a spell is stored."
+        }
+      },
+      {
+        "name": "02. Presence * •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "no_pp": true,
+          "level": 2,
+          "area_of_effect": "20'R",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is aware of the presence of all sentient/thinking beings within 20'."
+        }
+      },
+      {
+        "name": "03. Inner Wall I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gets a special bonus of +5 to his RRs versus mind attacks."
+        }
+      },
+      {
+        "name": "05. Recall",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows the caster to access his memory as if he had total recall. Any skill resolution involving Memory gets a special bonus. If the skill uses Memory as one of its applicable stats (Science/Analytic skills), the bonus is +10. If the skill uses Memory as two of its applicable stats (Lore skills), the bonus is +25, if the skill uses Memory as all three of its applicable stats (i.e., a straight \"memory\" check), the bonus is +50."
+        }
+      },
+      {
+        "name": "06. Misfeel Kind •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 6,
+          "area_of_effect": "C",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "For the purposes of mental or magical detections, the caster appears to be of any race he is familiar with."
+        }
+      },
+      {
+        "name": "07. Observation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "1 round (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains insight or facts by observing a person or thing with intense concentration for one round. Gives the caster a special bonus of +50 to his Awareness/Searching skill bonuses."
+        }
+      },
+      {
+        "name": "08. Inner Wall II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Inner Wall I, except bonus is +10."
+        }
+      },
+      {
+        "name": "09. Misfeel Calling •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 9,
+          "area_of_effect": "C",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Misfeel Kind, except caster's profession may appear to be of any profession that he is familiar with."
+        }
+      },
+      {
+        "name": "10. Correlation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is able to correlate known facts to obtain conclusions. Any skill resolution involving Reasoning gets a special bonus. If the skill uses Reasoning as one of its applicable stats (Lore skills), the bonus is +10. If the skill uses Reasoning as two of its applicable stats (Science/Analytic skills), the bonus is +25, if the skill uses Reasoning as all three of its applicable stats (i.e., a straight \"reasoning\" check), the bonus is +50."
+        }
+      },
+      {
+        "name": "11. Misfeel Power •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Misfeel Kind, except caster's level may appear to any level from 1 to double his current level."
+        }
+      },
+      {
+        "name": "12. Resolve",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is able to intensely focus and control himself for one situation or maneuver. Any skill resolution involving Self Discipline gets a special bonus. If the skill uses Self Discipline as one of its applicable stats (Awareness/Searching skills), the bonus is +10. If the skill uses Self Discipline as two of its applicable stats (Self Control skills), the bonus is +25, if the skill uses Self Discipline as all three of its applicable stats (i.e., a straight \"self discipline\" check), the bonus is +50."
+        }
+      },
+      {
+        "name": "13. Inner Wall III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Inner Wall I, except bonus is +15."
+        }
+      },
+      {
+        "name": "15. Unpresence •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Misfeel Kind, except caster appears to have no presence (i.e., he cannot be detected by Presence spells)."
+        }
+      },
+      {
+        "name": "16. Inner Wall V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Inner Wall I, except bonus is +25."
+        }
+      },
+      {
+        "name": "17. Total Recall",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Recall, except recall is nearly automatic and the special bonuses are +20, +50, and +100."
+        }
+      },
+      {
+        "name": "18. Misfeel •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to use all of the \"Misfeel\" spells at once. Does not include the use of Unpresence."
+        }
+      },
+      {
+        "name": "19. Inner Wall True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Inner Wall I, except bonus is +50."
+        }
+      },
+      {
+        "name": "20. Observation True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 round (C)",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Observation, except virtually every detail in even a large situation is noticed. The special bonus is +100."
+        }
+      },
+      {
+        "name": "25. Correlation True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Correlation, except obtaining conclusions is nearly automatic and the special bonuses are +20, +50, and +100."
+        }
+      },
+      {
+        "name": "30. Resolve True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Resolve, except focus/control is nearly total and the special bonuses are +20, +50, and +100."
+        }
+      },
+      {
+        "name": "50. Mirrormind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster reflects all mind attacks back on the attacker who must then make a RR against his own spell."
+        }
+      }
+    ]
+  }
+}

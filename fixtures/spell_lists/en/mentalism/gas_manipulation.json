@@ -1,0 +1,377 @@
+{
+  "name": "Gas Manipulation",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Mentalism 3.1 - Gas Manipulation. Spells for creating and dispelling fog, controlling air movement and walls of churning air, creating vacuums, warming and oxygenating air, and mastering clouds. Special Notes: (1) All vacuums created by spells on this list also create a loud noise. The larger the radius the louder the noise. The GM may wish to rule that all within the radius must make a second RR or be deafened for 1 round per 10 failure (RR attack level equals the radius of the vacuum). (2) An elemental creature made of a gas will be cut to 20% activity if attacked with an Air Stop spell (and the creature fits into the area of effect). A Vacuum spell cast upon an elemental creature made of gas will result in a Slaying Critical on the creature.",
+    "spells": [
+      {
+        "name": "01. Condensation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 cu' water",
+          "duration": "P",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Condenses 1 cubic foot of water from the surrounding air. Water condenses gradually into the caster's hands and may be funneled into any suitable receptacle."
+        }
+      },
+      {
+        "name": "02. Warm Air",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "24 hr",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Warms 1 cubic foot per level of air (any inanimate gas) up to 100°F above normal."
+        }
+      },
+      {
+        "name": "03. Fog I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates dense fog in a 10' radius; normal visibility is 1'. See Section 15.12 (p. 98)."
+        }
+      },
+      {
+        "name": "04. Airwall",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'x10'x3'",
+          "duration": "C",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a 10'x10'x3' wall of dense churning air: cuts all movement and attacks through it by 50% (i.e., -50 to attacks)."
+        }
+      },
+      {
+        "name": "05. Air Stop I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Stops generalized air movement (e.g., wind) up to winds of 30 mph and cuts higher winds by 30 mph in a 10' radius."
+        }
+      },
+      {
+        "name": "06. Vacuum I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "5'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a 5' radius near vacuum, all in radius take an 'A' Impact critical, as air leaves and rushes back in."
+        }
+      },
+      {
+        "name": "07. Fog V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "50'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fog I, except radius is 50'."
+        }
+      },
+      {
+        "name": "08. Unfog V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "50'R",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "All fog is dissipated in a 50' radius."
+        }
+      },
+      {
+        "name": "09. Curved Airwall",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "10'x20'x3'",
+          "duration": "C",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Airwall, except wall is 10'x20'x3' and can be curved up to a semicircle."
+        }
+      },
+      {
+        "name": "10. Airwall True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10'x10'x3'",
+          "duration": "1 min/lvl",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Airwall, but has a set duration of 1 minute per level and doesn't require concentration."
+        }
+      },
+      {
+        "name": "11. Fog X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "100'R",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fog I, except radius is 100'."
+        }
+      },
+      {
+        "name": "12. Air Stop V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Air Stop I, except radius is 50'."
+        }
+      },
+      {
+        "name": "13. Unfog X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "100'R",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unfog V, except radius is 100'."
+        }
+      },
+      {
+        "name": "14. Vacuum II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "10'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Vacuum I, except radius is 10'."
+        }
+      },
+      {
+        "name": "15. Gas-Air",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "All gas within 10' radius of caster is converted to breathable air."
+        }
+      },
+      {
+        "name": "17. Whirling Winds",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a whirlwind about caster; it moves with the caster and has a 10' radius. No missile attacks can penetrate it and any movement or melee (except for caster's) into or through it is cut by 80%."
+        }
+      },
+      {
+        "name": "18. Vacuum IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "20'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Vacuum I, except radius is 20'."
+        }
+      },
+      {
+        "name": "20. Oxygenation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a 50' radius of high oxygen content air; all within receive a 20 bonus to their OBs and fire attacks deliver double damage."
+        }
+      },
+      {
+        "name": "25. Fog True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "100'/lvl",
+          "duration": "1 hr/lvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fog I, except duration is 1 hour per level and radius is 100' per level."
+        }
+      },
+      {
+        "name": "30. Unfog True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "100'/lvl",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unfog, except radius is 100' per level."
+        }
+      },
+      {
+        "name": "50. Cloud Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1000'R/lvl",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster has complete control of clouds within area of effect (includes fog); he can control storm clouds and cause them to rain, but he can't create them."
+        }
+      }
+    ]
+  }
+}

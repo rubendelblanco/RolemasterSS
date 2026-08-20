@@ -1,0 +1,326 @@
+{
+  "name": "La Puerta de la Mente",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Cerrado 3.4 - La Puerta de la Mente. Hechizos de teletransporte para el lanzador y objetos inanimados, tanto directos (bloqueados por barreras) como a través de barreras (la familia Puerta Larga), además de teletransporte cooperativo con un objetivo inteligente (Puerta de la Mente). Notas Especiales: Ver Sección 15.6 (p. 97) para notas sobre límites de carga para hechizos de movimiento.",
+    "spells": [
+      {
+        "name": "02. Dejar Objeto I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador \"teletransporta\" un único objeto inanimado a un punto de hasta 100' de su ubicación actual. No puede haber barreras intermedias en línea directa entre el objetivo y el punto (a estos efectos, una barrera es cualquier cosa que el objeto no pudiera atravesar físicamente). El objeto tiene un límite de peso máximo de 1 libra por nivel del lanzador."
+        }
+      },
+      {
+        "name": "04. Puerta Larga de Objeto I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "10'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dejar Objeto I, salvo que el objeto puede atravesar barreras especificando dirección y distancia exactas. Si el punto de llegada coincide con material sólido o líquido, el objeto no se mueve (aunque el lanzador pierde los PP)."
+        }
+      },
+      {
+        "name": "05. Partir I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador \"teletransporta\" hasta un punto de hasta 100' de distancia, pero no puede haber barreras intermedias directamente entre el objetivo y el punto (a estos efectos una barrera es cualquier cosa que no pudiera atravesar físicamente; una puerta cerrada es una barrera, un foso no)."
+        }
+      },
+      {
+        "name": "06. Dejar Objeto III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dejar Objeto I, salvo que el objeto puede moverse hasta 300'."
+        }
+      },
+      {
+        "name": "07. Puerta Larga de Objeto V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga de Objeto I, salvo por el alcance."
+        }
+      },
+      {
+        "name": "08. Partir III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Partir I, salvo que el lanzador puede moverse 300'."
+        }
+      },
+      {
+        "name": "09. Dejar Objeto V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dejar Objeto I, salvo que el objeto puede moverse hasta 500'."
+        }
+      },
+      {
+        "name": "10. Puerta Larga Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Partir, salvo que el lanzador puede moverse 50' y puede atravesar barreras especificando dirección y distancia exactas. Si el punto de llegada coincide con material sólido o líquido, el lanzador no se mueve. Además, queda aturdido d10 rondas, y los PP de este hechizo se consumen igualmente."
+        }
+      },
+      {
+        "name": "11. Partir V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Partir I, salvo que el lanzador puede moverse 500'."
+        }
+      },
+      {
+        "name": "12. Puerta Larga I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga, salvo que el lanzador puede moverse 100'."
+        }
+      },
+      {
+        "name": "13. Puerta Larga de Objeto X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga de Objeto I, salvo por el alcance."
+        }
+      },
+      {
+        "name": "15. Partir Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Partir, salvo que el lanzador puede moverse 100' por nivel hasta 2000'."
+        }
+      },
+      {
+        "name": "16. Puerta Larga III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga, salvo que el lanzador puede moverse 300'."
+        }
+      },
+      {
+        "name": "18. Puerta Larga V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga, salvo que el lanzador puede moverse 500'."
+        }
+      },
+      {
+        "name": "20. Puerta de la Mente I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Si el lanzador ha establecido contacto mental con un objetivo (un ser inteligente) que coopere, el lanzador puede teletransportarse a la ubicación del objetivo, o el objetivo puede teletransportarse a la ubicación del lanzador. No hay posibilidad de fallo y el límite de movimiento es 1 milla."
+        }
+      },
+      {
+        "name": "25. Partir Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Partir, salvo que el movimiento solo está limitado por la restricción de barreras (en una llanura, esto sería el horizonte)."
+        }
+      },
+      {
+        "name": "30. Puerta de la Mente II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta de la Mente I, salvo que el límite es 10 millas por nivel."
+        }
+      },
+      {
+        "name": "50. Puerta de la Mente Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "varía",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta de la Mente, salvo que no hay límite de movimiento."
+        }
+      }
+    ]
+  }
+}

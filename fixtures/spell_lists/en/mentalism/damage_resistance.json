@@ -16,11 +16,11 @@
     "description": "Open Mentalism 2.5 - Damage Resistance. Spells for resisting heat and cold, sustaining extra concussion hits, relieving stun, delaying and neutralizing poison, and waking from unnatural sleep. Special Notes: For more on healing, see RMFRP Section 24.1 (p. 75).",
     "spells": [
       {
-        "name": "01. Heat Resistance",
+        "name": "01. Heat Resistance *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 1,
           "area_of_effect": "caster",
           "duration": "1 min/lvl",
@@ -33,11 +33,11 @@
         }
       },
       {
-        "name": "02. Cold Resistance",
+        "name": "02. Cold Resistance *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 2,
           "area_of_effect": "caster",
           "duration": "1 min/lvl",
@@ -50,11 +50,11 @@
         }
       },
       {
-        "name": "05. Unpain I",
+        "name": "05. Unpain I *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 5,
           "area_of_effect": "caster",
           "duration": "1 min/lvl",
@@ -67,11 +67,11 @@
         }
       },
       {
-        "name": "06. Stun Relief I",
+        "name": "06. Stun Relief I *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 6,
           "area_of_effect": "caster",
           "duration": "—",
@@ -84,11 +84,11 @@
         }
       },
       {
-        "name": "07. Resist Poison",
+        "name": "07. Resist Poison *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 7,
           "area_of_effect": "caster",
           "duration": "C",
@@ -101,11 +101,11 @@
         }
       },
       {
-        "name": "10. Unpain II",
+        "name": "10. Unpain II *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 10,
           "area_of_effect": "caster",
           "duration": "1 min/lvl",
@@ -118,11 +118,11 @@
         }
       },
       {
-        "name": "11. Stun Relief III",
+        "name": "11. Stun Relief III *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 11,
           "area_of_effect": "caster",
           "duration": "—",
@@ -135,11 +135,11 @@
         }
       },
       {
-        "name": "12. Neutralize Poison",
+        "name": "12. Neutralize Poison *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 12,
           "area_of_effect": "caster",
           "duration": "varies",
@@ -152,11 +152,11 @@
         }
       },
       {
-        "name": "14. Awake",
+        "name": "14. Awake *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 14,
           "area_of_effect": "caster",
           "duration": "—",
@@ -169,11 +169,11 @@
         }
       },
       {
-        "name": "15. Unpain III",
+        "name": "15. Unpain III *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 15,
           "area_of_effect": "caster",
           "duration": "1 min/lvl",
@@ -186,11 +186,11 @@
         }
       },
       {
-        "name": "17. Heat Resistance True",
+        "name": "17. Heat Resistance True *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 17,
           "area_of_effect": "caster",
           "duration": "1 min/lvl",
@@ -203,11 +203,11 @@
         }
       },
       {
-        "name": "18. Cold Resistance True",
+        "name": "18. Cold Resistance True *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 18,
           "area_of_effect": "caster",
           "duration": "1 min/lvl",
@@ -220,11 +220,11 @@
         }
       },
       {
-        "name": "20. Unpain IV",
+        "name": "20. Unpain IV *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 20,
           "area_of_effect": "caster",
           "duration": "1 min/lvl",
@@ -237,11 +237,11 @@
         }
       },
       {
-        "name": "25. Neutralize Poison True",
+        "name": "25. Neutralize Poison True *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 25,
           "area_of_effect": "caster",
           "duration": "varies",
@@ -254,11 +254,11 @@
         }
       },
       {
-        "name": "30. Awake True",
+        "name": "30. Awake True *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 30,
           "area_of_effect": "caster",
           "duration": "—",
@@ -271,11 +271,11 @@
         }
       },
       {
-        "name": "50. Unpain True",
+        "name": "50. Unpain True *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 50,
           "area_of_effect": "caster",
           "duration": "1 min/lvl",

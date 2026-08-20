@@ -16,11 +16,11 @@
     "description": "Mentalismo Abierto 2.9 - Autocuración. Hechizos para tratar las propias heridas del lanzador: coagulación, alivio del dolor, reparación de fracturas, músculos, nervios, ojo/oído, venas/arterias, animación suspendida, reimplantación de miembros y regeneración. Notas Especiales: Ver RMFRP Sección 24.1 (p. 75) para más información sobre curación.",
     "spells": [
       {
-        "name": "02. Coagular I",
+        "name": "02. Coagular I *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 2,
           "area_of_effect": "caster",
           "duration": "varía",
@@ -33,11 +33,11 @@
         }
       },
       {
-        "name": "04. Coagular III",
+        "name": "04. Coagular III *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 4,
           "area_of_effect": "caster",
           "duration": "varía",
@@ -50,11 +50,11 @@
         }
       },
       {
-        "name": "05. Alivio del Dolor I",
+        "name": "05. Alivio del Dolor I *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 5,
           "area_of_effect": "caster",
           "duration": "C",
@@ -84,11 +84,11 @@
         }
       },
       {
-        "name": "07. Reparar Corte I",
+        "name": "07. Reparar Corte I *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 7,
           "area_of_effect": "caster",
           "duration": "—",
@@ -101,11 +101,11 @@
         }
       },
       {
-        "name": "08. Reparar Músculo/Tendón",
+        "name": "08. Reparar Músculo/Tendón *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 8,
           "area_of_effect": "caster",
           "duration": "varía",
@@ -152,11 +152,11 @@
         }
       },
       {
-        "name": "12. Reparar Vena/Arteria",
+        "name": "12. Reparar Vena/Arteria *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 12,
           "area_of_effect": "caster",
           "duration": "varía",
@@ -169,11 +169,11 @@
         }
       },
       {
-        "name": "13. Alivio del Dolor II",
+        "name": "13. Alivio del Dolor II *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 13,
           "area_of_effect": "caster",
           "duration": "C",
@@ -186,11 +186,11 @@
         }
       },
       {
-        "name": "15. Autoconservación",
+        "name": "15. Autoconservación *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 15,
           "area_of_effect": "caster",
           "duration": "varía",
@@ -203,11 +203,11 @@
         }
       },
       {
-        "name": "17. Autounión",
+        "name": "17. Autounión *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 17,
           "area_of_effect": "caster",
           "duration": "varía",
@@ -220,11 +220,11 @@
         }
       },
       {
-        "name": "20. Alivio del Dolor Verdadero",
+        "name": "20. Alivio del Dolor Verdadero *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 20,
           "area_of_effect": "caster",
           "duration": "C",

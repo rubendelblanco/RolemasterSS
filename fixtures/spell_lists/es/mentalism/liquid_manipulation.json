@@ -1,0 +1,343 @@
+{
+  "name": "Manipulación de Líquidos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Cerrado 3.2 - Manipulación de Líquidos. Hechizos para calentar, congelar, clarificar, desalinizar y evaporar líquidos, crear muros y corredores de agua, ataques de Rayo de Agua, calmar aguas, remolinos, olas y burbujas de aire para viajar bajo el agua. Notas Especiales: (1) Salvo que se indique lo contrario, tras la duración de cualquiera de estos hechizos, el material vuelve a su estado natural. Por ejemplo, el agua hervida con Hervir Agua empezará a enfriarse al terminar la duración del hechizo. (2) Salvo que se indique específicamente, todos los hechizos de esta lista se aplican a cualquier líquido (no solo agua).",
+    "spells": [
+      {
+        "name": "01. Hervir Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "P",
+          "range": "2'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Calienta 1 pie cúbico de líquido por nivel hasta hervir, a un ritmo de 50° por ronda de concentración. El lanzador es inmune al calor."
+        }
+      },
+      {
+        "name": "02. Congelar Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "P",
+          "range": "2'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Hervir Agua, salvo que el líquido puede enfriarse hasta congelarse."
+        }
+      },
+      {
+        "name": "03. Clarificar Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "P",
+          "range": "2'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Hervir Agua, salvo que limpia el líquido de todo sedimento."
+        }
+      },
+      {
+        "name": "05. Desalinización",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "P",
+          "range": "2'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Hervir Agua, salvo que elimina todas las sustancias disueltas del líquido."
+        }
+      },
+      {
+        "name": "06. Muro de Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "10'x10'x1'",
+          "duration": "C",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un muro de 10'x10'x1' de agua agitada (debe haber una fuente de agua a menos de 10'). Todos los ataques que lo atraviesan sufren una penalización de -80, y todo movimiento se reduce en un 80%."
+        }
+      },
+      {
+        "name": "07. Evaporación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "P",
+          "range": "2'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Hervir Agua, salvo que todo el líquido se evapora a un ritmo de 1 pie cúbico por ronda de concentración."
+        }
+      },
+      {
+        "name": "08. Corredor de Agua I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "100'x3'x10'",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un corredor a través de un líquido de hasta 100' de largo, 3' de ancho y 10' de profundidad (debe estar abierto por arriba)."
+        }
+      },
+      {
+        "name": "09. Rayo de Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 objetivo",
+          "duration": "—",
+          "range": "100'",
+          "type": "DE",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Un rayo de agua sale disparado de la palma del lanzador (debe haber una fuente de agua a menos de 10'). Los resultados del ataque se determinan con la Tabla de Ataque de Rayo de Agua 13.9 (p. 88)."
+        }
+      },
+      {
+        "name": "10. Muro de Agua Curvo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10'x20'x1'",
+          "duration": "C",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Agua, salvo que el muro es de 10'x20'x1' y puede curvarse hasta formar un semicírculo."
+        }
+      },
+      {
+        "name": "11. Calmar Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "100'R",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Toda el agua dentro de un radio de 100' se calma. Las olas se reducen 20' en el centro del área de efecto (menos hacia el perímetro). Esto anula los efectos de las corrientes en el área de efecto."
+        }
+      },
+      {
+        "name": "13. Muro de Agua Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'x10'x1'",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Agua, salvo que tiene una duración fija."
+        }
+      },
+      {
+        "name": "15. Corredor de Agua III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "300'x4'x50'",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Corredor de Agua I, salvo que el límite es 300'x4'x50' de profundidad."
+        }
+      },
+      {
+        "name": "17. Remolino",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "20'R(200'R)",
+          "duration": "C",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un remolino de 20' de radio que arrastrará hacia dentro cualquier objeto sin propulsión propia hasta 200' de distancia. Los objetos con propulsión propia pueden hacer una maniobra de movimiento muy difícil para resistir la atracción del remolino."
+        }
+      },
+      {
+        "name": "18. Ola",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "(1'x10')/nvl",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea una ola que se aleja del lanzador. La ola tiene 1' de altura por nivel en el centro y 10' de ancho por nivel."
+        }
+      },
+      {
+        "name": "19. Burbuja de Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea una burbuja de aire (10' de radio) alrededor del lanzador y otros. La burbuja los transportará por hasta 100' de agua (el aire se renueva). El lanzador debe concentrarse para mover la burbuja (sin concentración simplemente ascenderá a la superficie). Al finalizar la duración, la burbuja empezará a subir a la superficie. Todos los objetos dentro de la burbuja subirán con ella. Al alcanzar la superficie, la burbuja estallará."
+        }
+      },
+      {
+        "name": "20. Calmar Agua Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "100'R/nvl",
+          "duration": "C",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Calmar Agua, salvo que el radio es de 100' por nivel y las olas se reducen 50'."
+        }
+      },
+      {
+        "name": "25. Corredor de Agua Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "(100'/nvlx6'x100')",
+          "duration": "C",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Corredor de Agua, salvo que el límite es 100' por nivel x 6' x 100' de profundidad."
+        }
+      },
+      {
+        "name": "30. Burbuja de Agua Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "20'R",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Burbuja de Agua, salvo que el radio es de 20' y no hay límite de profundidad."
+        }
+      },
+      {
+        "name": "50. Maestría del Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl",
+          "range": "10'/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede usar uno de los hechizos de nivel inferior de esta lista cada ronda, con un alcance de 10' por nivel."
+        }
+      }
+    ]
+  }
+}

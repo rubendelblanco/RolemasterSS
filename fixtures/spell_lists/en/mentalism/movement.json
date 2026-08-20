@@ -1,9 +1,9 @@
 {
-  "name": "Self Healing",
+  "name": "Movement",
   "type": "spell_list",
   "img": "systems/rmss/assets/default/spell.svg",
   "system": {
-    "type": "open",
+    "type": "closed",
     "realm": "mentalism",
     "profession": "",
     "is_container": true,
@@ -13,10 +13,27 @@
       "capacityType": "quantity",
       "allowedTags": ["spell"]
     },
-    "description": "Open Mentalism 2.9 - Self Healing. Spells for treating the caster's own wounds: clotting, pain relief, fracture, muscle, nerve, eye/ear, vein/artery repair, suspended animation, limb reattachment, and regeneration. Special Notes: See RMFRP Section 24.1 (p. 75) for more on healing.",
+    "description": "Closed Mentalism 3.5 - Movement. Spells for leaping, safe falls, levitation, flight, underwater movement, merging into and passing through solid material. Special Notes: See Section 15.6 (p. 97) for notes on encumbrance limits for movement spells.",
     "spells": [
       {
-        "name": "02. Clot I *",
+        "name": "01. Leaping *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "1 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to leap 50' laterally or 20' vertically."
+        }
+      },
+      {
+        "name": "02. Landing *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
@@ -26,70 +43,104 @@
           "duration": "varies",
           "range": "self",
           "type": "U",
-          "subType": "s",
+          "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Clots a wound to reduce bleeding (i.e., hits per round damage) by one as long as caster concentrates or is immobile. This effect is permanent after an hour. If caster is unconscious, spell will operate without concentration."
+          "description": "Allows caster to land safely in a fall up to 20' per level, and to take that distance off the severity of any longer fall."
         }
       },
       {
-        "name": "04. Clot III *",
+        "name": "03. Levitation I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": true,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to move up and down vertically 10' per round. The spell does not provide a means for horizontal movement."
+        }
+      },
+      {
+        "name": "04. Wind Drift",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
           "level": 4,
           "area_of_effect": "caster",
-          "duration": "varies",
+          "duration": "1 min/lvl",
           "range": "self",
           "type": "U",
-          "subType": "s",
+          "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "As Clot I, except bleeding is reduced by up to 3 hits per round."
+          "description": "Caster becomes weightless, but has no magical movement control. Weight gradually returns at the end of the duration."
         }
       },
       {
-        "name": "05. Pain Relief I *",
+        "name": "05. Underwater Movement",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": true,
+          "instant": false,
           "level": 5,
           "area_of_effect": "caster",
-          "duration": "C",
+          "duration": "10 min/lvl",
           "range": "self",
           "type": "U",
-          "subType": "s",
+          "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Heals 1 hit per minute for as long as the caster concentrates. If caster is unconscious, this spell will operate without concentration."
+          "description": "Caster can take actions underwater as if on land."
         }
       },
       {
-        "name": "06. Fracture Repair",
+        "name": "06. Fly I",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
           "instant": false,
           "level": 6,
           "area_of_effect": "caster",
-          "duration": "varies",
+          "duration": "1 min/lvl",
           "range": "self",
           "type": "U",
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Concentrating with this spell for 2 hours will repair a broken bone (though not a shattered or destroyed bone)."
+          "description": "As Levitation I, except caster can fly at a rate of 15' per round (i.e., 1 mph)."
         }
       },
       {
-        "name": "07. Cut Repair I *",
+        "name": "07. Levitation V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Levitation I, except rate is 50' per round."
+        }
+      },
+      {
+        "name": "08. Long Dive *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
           "instant": true,
-          "level": 7,
+          "level": 8,
           "area_of_effect": "caster",
           "duration": "—",
           "range": "self",
@@ -97,194 +148,194 @@
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "As Clot I, except it is permanent immediately."
+          "description": "Caster can safely dive through the air up to 50' per level. At the end of the dive, the caster must land in water that is deep enough for the dive (at least 2' of water per 50' dived)."
         }
       },
       {
-        "name": "08. Muscle/Tendon Repair *",
-        "img": "systems/rmss/assets/default/spell.svg",
-        "system": {
-          "favorite": false,
-          "instant": true,
-          "level": 8,
-          "area_of_effect": "caster",
-          "duration": "varies",
-          "range": "self",
-          "type": "U",
-          "subType": "-",
-          "attack_table": "",
-          "skillName": "",
-          "description": "As Fracture Repair, except damaged muscles or tendons may be repaired."
-        }
-      },
-      {
-        "name": "10. Minor Nerve Repair",
+        "name": "10. Merging",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
           "instant": false,
           "level": 10,
           "area_of_effect": "caster",
-          "duration": "varies",
+          "duration": "10 min/lvl",
           "range": "self",
           "type": "U",
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Repairs minor damage to one nerve. Requires a 1 day recovery period. Minor damage is defined as any nerve damage that results in penalties up to -20."
+          "description": "Caster can merge into any solid, inanimate material. While merged, the caster cannot move or perceive. When the caster emerges from the material, he can emerge from any side or face of the material. The caster cannot move \"through\" material greater in width than his own body size plus 2 feet. The caster can exit at any time up to 10 minutes per level."
         }
       },
       {
-        "name": "11. Eye/Ear Repair",
+        "name": "11. Fly II",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
           "instant": false,
           "level": 11,
           "area_of_effect": "caster",
-          "duration": "varies",
+          "duration": "1 min/lvl",
           "range": "self",
           "type": "U",
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Concentrating with this spell for 2 hours per day for 1-10 days (depending on the severity) will repair any external damage to the caster's ear (including ear loss) or eye (including corneal scratches, removal of foreign objects, etc.)."
+          "description": "As Fly I, except rate is 75' per round."
         }
       },
       {
-        "name": "12. Vein/Artery Repair *",
+        "name": "12. Landing True *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
           "instant": true,
           "level": 12,
           "area_of_effect": "caster",
-          "duration": "varies",
+          "duration": "—",
           "range": "self",
           "type": "U",
-          "subType": "s",
+          "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "As Fracture Repair, except repairs a vein or an artery."
+          "description": "As Landing, except caster can land safely from any fall 99% of the time."
         }
       },
       {
-        "name": "13. Pain Relief II *",
+        "name": "13. Levitation XX",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": true,
+          "instant": false,
           "level": 13,
           "area_of_effect": "caster",
-          "duration": "C",
+          "duration": "1 min/lvl",
           "range": "self",
           "type": "U",
-          "subType": "s",
+          "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "As Pain Relief I, except 2 hits per minute are healed."
+          "description": "As Levitation I, except rate is 200' per round."
         }
       },
       {
-        "name": "15. Self Keeping *",
+        "name": "14. Passing",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": true,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can pass through any inanimate material up to 1' per level of the caster; it takes 1 round to pass through 2'."
+        }
+      },
+      {
+        "name": "15. Fly III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
           "level": 15,
           "area_of_effect": "caster",
-          "duration": "varies",
+          "duration": "1 min/lvl",
           "range": "self",
           "type": "U",
-          "subType": "s",
+          "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Upon receiving a death blow, the caster goes into a state of suspended animation. The caster will remain in this state until he is cured or his brain is destroyed."
+          "description": "As Fly I, except rate is 300' per round."
         }
       },
       {
-        "name": "17. Self Joining *",
+        "name": "17. Great Merge",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": true,
+          "instant": false,
           "level": 17,
           "area_of_effect": "caster",
-          "duration": "varies",
+          "duration": "10 min/lvl",
           "range": "self",
           "type": "U",
-          "subType": "s",
+          "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Allows caster to reattach a severed limb; limb is fully functional after 1-10 days (caster must concentrate with this spell 2 hours each day)."
+          "description": "As Merging, except caster can turn within the material and can see outside if within 6\" of the surface."
         }
       },
       {
-        "name": "20. Pain Relief True *",
+        "name": "20. Merge True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": true,
+          "instant": false,
           "level": 20,
           "area_of_effect": "caster",
-          "duration": "C",
+          "duration": "10 min/lvl",
           "range": "self",
           "type": "U",
-          "subType": "s",
+          "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "As Pain Relief I, except heals 1 hit per round."
+          "description": "As Great Merge, except caster can cast spells on himself while merged."
         }
       },
       {
-        "name": "25. Limb Regeneration",
+        "name": "25. Fly IV",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
           "instant": false,
           "level": 25,
           "area_of_effect": "caster",
-          "duration": "varies",
+          "duration": "1 min/lvl",
           "range": "self",
           "type": "U",
           "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "Concentrating with this spell for 2 hours per day for 10-100 days will regenerate a limb."
+          "description": "As Fly III, except rate is 400' per round."
         }
       },
       {
-        "name": "30. Organ Regeneration",
+        "name": "30. Passing True",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
           "instant": false,
           "level": 30,
           "area_of_effect": "caster",
-          "duration": "varies",
+          "duration": "1 min/lvl",
           "range": "self",
           "type": "U",
-          "subType": "s",
+          "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "After any organ (except brain) is destroyed, the caster may use Self Keeping and this spell. The organ is regenerated after 10-100 days of complete inactivity."
+          "description": "As Passing, except caster can pass through as much material as the duration allows at a rate of 10' per round."
         }
       },
       {
-        "name": "50. Regeneration True",
+        "name": "50. Master of Movement",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
           "instant": false,
           "level": 50,
           "area_of_effect": "caster",
-          "duration": "varies",
+          "duration": "1 min/lvl",
           "range": "self",
           "type": "U",
-          "subType": "s",
+          "subType": "-",
           "attack_table": "",
           "skillName": "",
-          "description": "As Organ Regeneration, except all damage (except brain) is regenerated in 10-100 days."
+          "description": "Caster may use the abilities of any one of the spells on this list each round."
         }
       }
     ]

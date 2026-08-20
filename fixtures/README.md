@@ -63,6 +63,31 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 - `spell_lists/en/mentalism/spell_resistance.json` – 16 hechizos de protección y resistencia contra hechizos por reino (Protection, Shield, Resistance) (inglés)
 - `spell_lists/es/mentalism/spell_resistance.json` – Resistencia a Hechizos, traducida al español
 
+### Gas Manipulation (Closed Mentalism 3.1)
+
+- `spell_lists/en/mentalism/gas_manipulation.json` – 21 hechizos de niebla, muros de aire, vacíos, calentar/oxigenar aire y maestría de nubes (inglés)
+- `spell_lists/es/mentalism/gas_manipulation.json` – Manipulación de Gases, traducida al español
+
+### Liquid Manipulation (Closed Mentalism 3.2)
+
+- `spell_lists/en/mentalism/liquid_manipulation.json` – 19 hechizos de hervir/congelar/clarificar líquidos, muros y corredores de agua, Water Bolt, calmar aguas, remolinos, olas y burbujas de aire (inglés)
+- `spell_lists/es/mentalism/liquid_manipulation.json` – Manipulación de Líquidos, traducida al español
+
+### Mind Mastery (Closed Mentalism 3.3)
+
+- `spell_lists/en/mentalism/mind_mastery.json` – 21 hechizos de almacenar hechizos, sentir presencia, resistir ataques mentales (Inner Wall), potenciar Memoria/Razonamiento/Autodisciplina, observación y la familia Misfeel (inglés)
+- `spell_lists/es/mentalism/mind_mastery.json` – Maestría Mental, traducida al español
+
+### Mind's Door (Closed Mentalism 3.4)
+
+- `spell_lists/en/mentalism/minds_door.json` – 18 hechizos de teletransporte del lanzador y objetos, directo y a través de barreras (Long Door), y teletransporte cooperativo (Mind's Door) (inglés)
+- `spell_lists/es/mentalism/minds_door.json` – La Puerta de la Mente, traducida al español
+
+### Movement (Closed Mentalism 3.5)
+
+- `spell_lists/en/mentalism/movement.json` – 19 hechizos de saltar, caídas seguras, levitación, vuelo, movimiento submarino, fundirse en material y atravesarlo (inglés)
+- `spell_lists/es/mentalism/movement.json` – Movimiento, traducida al español
+
 ### Concussion's Ways (Open Channeling 2.2)
 
 - `spell_lists/en/channeling/concussion_ways.json` – 20 hechizos de curación de golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración (inglés)
@@ -356,7 +381,8 @@ const FILES_BY_FOLDER = {
   mentalism: [
     "attack_avoidance", "anticipations", "brilliance", "cloaking",
     "damage_resistance", "delving", "detections", "illusions",
-    "self_healing", "spell_resistance"
+    "self_healing", "spell_resistance", "gas_manipulation", "liquid_manipulation",
+    "mind_mastery", "minds_door", "movement"
   ]
 };
 

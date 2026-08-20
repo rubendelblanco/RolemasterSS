@@ -1,0 +1,377 @@
+{
+  "name": "Manipulación de Gases",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Cerrado 3.1 - Manipulación de Gases. Hechizos para crear y disipar niebla, controlar el movimiento del aire y muros de aire agitado, crear vacíos, calentar y oxigenar el aire, y dominar las nubes. Notas Especiales: (1) Todos los vacíos creados por los hechizos de esta lista también generan un ruido fuerte. Cuanto mayor sea el radio, más fuerte el ruido. El DJ puede decidir que todos los que estén dentro del radio deban hacer una segunda RR o quedar ensordecidos 1 ronda por cada 10 puntos de fallo (el nivel de ataque de la RR es igual al radio del vacío). (2) Una criatura elemental hecha de gas verá su actividad reducida al 20% si es atacada con un hechizo de Detener Aire (y la criatura cabe en el área de efecto). Un hechizo de Vacío lanzado sobre una criatura elemental de gas resultará en un Crítico de Exterminio sobre la criatura.",
+    "spells": [
+      {
+        "name": "01. Condensación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 pie cúb. agua",
+          "duration": "P",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Condensa 1 pie cúbico de agua a partir del aire circundante. El agua se condensa gradualmente en las manos del lanzador y puede canalizarse hacia cualquier recipiente adecuado."
+        }
+      },
+      {
+        "name": "02. Aire Cálido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "24 hr",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Calienta 1 pie cúbico de aire por nivel (cualquier gas inanimado) hasta 100°F por encima de lo normal."
+        }
+      },
+      {
+        "name": "03. Niebla I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "10'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea niebla densa en un radio de 10'; la visibilidad normal es de 1'. Ver Sección 15.12 (p. 98)."
+        }
+      },
+      {
+        "name": "04. Muro de Aire",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'x10'x3'",
+          "duration": "C",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un muro de 10'x10'x3' de aire denso y agitado: reduce en un 50% todo movimiento y ataque que lo atraviese (es decir, -50 a los ataques)."
+        }
+      },
+      {
+        "name": "05. Detener Aire I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Detiene el movimiento general del aire (p.ej., viento) de hasta 30 mph, y reduce vientos superiores en 30 mph en un radio de 10'."
+        }
+      },
+      {
+        "name": "06. Vacío I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "5'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un casi-vacío de 5' de radio; todos dentro del radio sufren un crítico de Impacto 'A', al salir el aire y volver a entrar de golpe."
+        }
+      },
+      {
+        "name": "07. Niebla V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "50'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Niebla I, salvo que el radio es de 50'."
+        }
+      },
+      {
+        "name": "08. Disipar Niebla V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "50'R",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Toda la niebla se disipa en un radio de 50'."
+        }
+      },
+      {
+        "name": "09. Muro de Aire Curvo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "10'x20'x3'",
+          "duration": "C",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Aire, salvo que el muro es de 10'x20'x3' y puede curvarse hasta formar un semicírculo."
+        }
+      },
+      {
+        "name": "10. Muro de Aire Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10'x10'x3'",
+          "duration": "1 min/nvl",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Aire, pero tiene una duración fija de 1 minuto por nivel y no requiere concentración."
+        }
+      },
+      {
+        "name": "11. Niebla X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "100'R",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Niebla I, salvo que el radio es de 100'."
+        }
+      },
+      {
+        "name": "12. Detener Aire V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detener Aire I, salvo que el radio es de 50'."
+        }
+      },
+      {
+        "name": "13. Disipar Niebla X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "100'R",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Niebla V, salvo que el radio es de 100'."
+        }
+      },
+      {
+        "name": "14. Vacío II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "10'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Vacío I, salvo que el radio es de 10'."
+        }
+      },
+      {
+        "name": "15. Aire-Gas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Todo el gas dentro de un radio de 10' del lanzador se convierte en aire respirable."
+        }
+      },
+      {
+        "name": "17. Vientos Arremolinados",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un torbellino alrededor del lanzador; se mueve con él y tiene un radio de 10'. Ningún ataque de proyectil puede penetrarlo, y cualquier movimiento o ataque cuerpo a cuerpo (salvo el del lanzador) que entre o lo atraviese se reduce en un 80%."
+        }
+      },
+      {
+        "name": "18. Vacío IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "20'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Vacío I, salvo que el radio es de 20'."
+        }
+      },
+      {
+        "name": "20. Oxigenación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "50'R",
+          "duration": "C",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un radio de 50' de aire con alto contenido de oxígeno; todos dentro reciben un bono de 20 a su OB y los ataques de fuego infligen el doble de daño."
+        }
+      },
+      {
+        "name": "25. Niebla Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "100'/nvl",
+          "duration": "1 hr/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Niebla I, salvo que la duración es de 1 hora por nivel y el radio de 100' por nivel."
+        }
+      },
+      {
+        "name": "30. Disipar Niebla Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "100'/nvl",
+          "duration": "P",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disipar Niebla, salvo que el radio es de 100' por nivel."
+        }
+      },
+      {
+        "name": "50. Maestría de las Nubes",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1000'R/nvl",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador tiene control total de las nubes dentro del área de efecto (incluida la niebla); puede controlar nubes de tormenta y hacer que llueva, pero no puede crearlas."
+        }
+      }
+    ]
+  }
+}

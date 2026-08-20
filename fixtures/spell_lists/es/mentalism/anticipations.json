@@ -16,11 +16,11 @@
     "description": "Mentalismo Abierto 2.1 - Anticipaciones. Hechizos para anticipar ataques de proyectiles, cuerpo a cuerpo y hechizos, sentir hostilidad, adivinar entre opciones limitadas, vislumbrar futuros probables y percibir la historia reciente de una sala o lugar. Notas Especiales: (1) Al usar Adivinar, el lanzador debe enfrentarse a un número limitado de opciones (es decir, finito y contable); tras lanzarlo, no puede volver a lanzar Adivinar para la misma información hasta que su rango de habilidad en esta lista haya aumentado. (2) Al tratar con Sueños, el DJ debería usar simbología (ver Sección 15.16, p. 99). (3) Ver Sección 15.13 (p. 98) para más información sobre hechizos de información.",
     "spells": [
       {
-        "name": "01. Anticipar Proyectil",
+        "name": "01. Anticipar Proyectil *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 1,
           "area_of_effect": "1 proyectil",
           "duration": "—",
@@ -33,11 +33,11 @@
         }
       },
       {
-        "name": "02. Anticipar Golpe",
+        "name": "02. Anticipar Golpe *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 2,
           "area_of_effect": "1 ataque",
           "duration": "—",
@@ -50,11 +50,11 @@
         }
       },
       {
-        "name": "03. Adivinar",
+        "name": "03. Adivinar *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 3,
           "area_of_effect": "caster",
           "duration": "—",
@@ -67,11 +67,11 @@
         }
       },
       {
-        "name": "04. Anticipar Hechizo",
+        "name": "04. Anticipar Hechizo *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 4,
           "area_of_effect": "1 hechizo",
           "duration": "—",
@@ -152,11 +152,11 @@
         }
       },
       {
-        "name": "10. Anticipaciones",
+        "name": "10. Anticipaciones *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 10,
           "area_of_effect": "caster",
           "duration": "—",
@@ -237,11 +237,11 @@
         }
       },
       {
-        "name": "15. Anticipación de Hechizo",
+        "name": "15. Anticipación de Hechizo *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 15,
           "area_of_effect": "caster",
           "duration": "—",
@@ -322,11 +322,11 @@
         }
       },
       {
-        "name": "25. Anticipaciones Verdaderas",
+        "name": "25. Anticipaciones Verdaderas *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 25,
           "area_of_effect": "caster",
           "duration": "—",
@@ -356,11 +356,11 @@
         }
       },
       {
-        "name": "50. Anticipación de Hechizo Verdadera",
+        "name": "50. Anticipación de Hechizo Verdadera *",
         "img": "systems/rmss/assets/default/spell.svg",
         "system": {
           "favorite": false,
-          "instant": false,
+          "instant": true,
           "level": 50,
           "area_of_effect": "caster",
           "duration": "—",
