@@ -1,0 +1,411 @@
+{
+  "name": "Maestría de Venenos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Magent",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Magente 7.6 - Maestría de Venenos. Hechizos para identificar, aplicar, preparar mágicamente, analizar, retrasar, neutralizar, transferir y transformar venenos en veneno de contacto/sangre/nubes tóxicas. Notas Especiales: Cualquier hechizo de esta lista que requiera que el lanzador toque un veneno le otorga automáticamente inmunidad a sus efectos durante la duración del hechizo.",
+    "spells": [
+      {
+        "name": "01. Saber de Venenos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador sabe qué tipo(s) de veneno se necesitan para lograr un efecto concreto. El DJ puede considerar apropiado dar al lanzador un bono de +25 a su habilidad de Saber de Venenos."
+        }
+      },
+      {
+        "name": "02. Resistencia a Venenos I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Durante la duración del hechizo, el lanzador obtiene una RR adicional contra venenos."
+        }
+      },
+      {
+        "name": "03. Aplicar Veneno I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 veneno",
+          "duration": "varía",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Este hechizo hace que una dosis de veneno se adhiera a una superficie sólida inanimada. El veneno se desgastará con normalidad."
+        }
+      },
+      {
+        "name": "04. Preparar Veneno V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 veneno",
+          "duration": "varía",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Este hechizo prepara mágicamente un veneno (de hasta nivel 5 de potencia). Normalmente requiere d100 minutos de concentración antes de completarse. El lanzador debe tener el veneno en su forma bruta antes de lanzar este hechizo (es decir, el hechizo no \"crea\" el veneno, solo lo prepara)."
+        }
+      },
+      {
+        "name": "05. Análisis de Veneno",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 veneno",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede analizar un veneno para determinar sus efectos exactos y qué antídotos son necesarios."
+        }
+      },
+      {
+        "name": "06. Retrasar Veneno *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "1 hora/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Durante la duración de este hechizo, se cancelan todos los efectos de un único veneno. El veneno seguirá presente en el lanzador y hará efecto con normalidad tras la duración (aunque puede volver a lanzar el hechizo para seguir retrasando los efectos)."
+        }
+      },
+      {
+        "name": "07. Transferir Veneno I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 veneno",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede transferir una dosis de veneno de cualquier objetivo que esté tocando hacia sí mismo. Por ejemplo, si un compañero ha sido alcanzado por una flecha envenenada, el lanzador puede tocarlo y transferir el veneno a sí mismo (donde podrá retrasar sus efectos o neutralizarlo)."
+        }
+      },
+      {
+        "name": "08. Aplicar Veneno II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 veneno",
+          "duration": "varía",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Aplicar Veneno I, salvo que afecta a dos dosis (aunque pueden aplicarse a superficies distintas)."
+        }
+      },
+      {
+        "name": "09. Neutralizar Veneno",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Si el lanzador se concentra, este hechizo tiene un 50% de probabilidad de neutralizar un veneno en su interior (modificado por la potencia del veneno). En cualquier caso, retrasa los efectos del veneno durante la duración del hechizo."
+        }
+      },
+      {
+        "name": "10. Preparar Veneno X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 veneno",
+          "duration": "varía",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Preparar Veneno V, salvo que afecta a venenos de hasta nivel 10 de potencia."
+        }
+      },
+      {
+        "name": "11. Ponzoña",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 veneno",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede convertir cualquier veneno que esté tocando en una ponzoña. El veneno pasará a ser efectivo al introducirse en el torrente sanguíneo de la víctima (independientemente de su método normal de afectar al objetivo)."
+        }
+      },
+      {
+        "name": "12. Aplicar Veneno III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 veneno",
+          "duration": "varía",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Aplicar Veneno II, salvo que afecta hasta a tres dosis."
+        }
+      },
+      {
+        "name": "13. Neutralizar Veneno Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Neutralizar Veneno, salvo que la probabilidad de neutralización es del 100% (modificada por la potencia del veneno)."
+        }
+      },
+      {
+        "name": "14. Transferir Veneno II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 veneno",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede transferir una dosis de veneno de cualquier objetivo que esté tocando a cualquier otro objetivo que también esté tocando."
+        }
+      },
+      {
+        "name": "15. Toque Ponzoñoso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Este hechizo permite al lanzador cubrir las manos del objetivo con un veneno. El objetivo no se ve afectado por el veneno."
+        }
+      },
+      {
+        "name": "16. Preparar Veneno Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 veneno",
+          "duration": "varía",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Preparar Veneno V, salvo que afecta a cualquier veneno."
+        }
+      },
+      {
+        "name": "17. Aplicar Veneno IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 veneno",
+          "duration": "varía",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Aplicar Veneno II, salvo que afecta hasta a cuatro dosis."
+        }
+      },
+      {
+        "name": "18. Veneno de Contacto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 veneno",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ponzoña, salvo que convierte el veneno en un veneno de contacto (un veneno que afecta a su víctima al entrar en contacto con su piel, independientemente de su método normal de afectar al objetivo)."
+        }
+      },
+      {
+        "name": "19. Transferir Veneno III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 veneno",
+          "duration": "P",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede transferir una dosis de veneno de cualquier objetivo que esté tocando a cualquier otro objetivo dentro del alcance del hechizo."
+        }
+      },
+      {
+        "name": "20. Aliento Ponzoñoso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede ingerir una dosis de veneno. Durante la duración de este hechizo, no se verá afectado por él. En cualquier momento antes de que expire la duración, el lanzador puede intentar transferir el veneno a un único objetivo. El objetivo no debe estar a más de 5' y la boca del lanzador debe poder administrar el veneno (mediante un beso, un susurro, escupiendo, etc.). El objetivo obtiene una RR para evitar los efectos de este hechizo (además de la RR contra el propio veneno)."
+        }
+      },
+      {
+        "name": "25. Mirada Ponzoñosa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Aliento Ponzoñoso, salvo que el lanzador puede transferir el veneno a cualquier objetivo dentro del alcance. El lanzador debe poder lanzar una mirada malévola evidente hacia el objetivo. El objetivo obtiene una RR para resistir los efectos de este hechizo (además de la RR contra el veneno)."
+        }
+      },
+      {
+        "name": "30. Nube Ponzoñosa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "10 min/nvl",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede dispersar un veneno en una nube de niebla. El tamaño de la niebla es de 1' de radio por dosis de veneno usada. El veneno permanecerá en el área con normalidad hasta que expire la duración del hechizo (es decir, la niebla estará sujeta al viento, etc.). Al expirar la duración, el veneno se dispersa."
+        }
+      },
+      {
+        "name": "50. Visión Ponzoñosa",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 objetivo",
+          "duration": "10 min/nvl",
+          "range": "10'/nvl",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Mirada Ponzoñosa, salvo por el alcance."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,411 @@
+{
+  "name": "Poison Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Magent",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Magent Base 7.6 - Poison Mastery. Spells for identifying, applying, magically preparing, analyzing, delaying, neutralizing, transferring and transforming poisons into venoms/contact poisons/clouds. Special Notes: Any spell on this list that requires the caster to touch a poison automatically gives the caster immunity to the effects of the poison for the duration of the spell.",
+    "spells": [
+      {
+        "name": "01. Poison Lore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster knows what type of poison(s) are needed to achieve a particular effect. The GM may deem it appropriate to give the caster a bonus of +25 to his Poison Lore skill."
+        }
+      },
+      {
+        "name": "02. Poison Resistance I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "For the duration of the spell, the caster gets an additional RR versus poison(s)."
+        }
+      },
+      {
+        "name": "03. Apply Poison I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 poison",
+          "duration": "varies",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "This spell causes one dose of a poison to adhere to an inanimate solid surface. The poison will wear off normally."
+        }
+      },
+      {
+        "name": "04. Work Poison V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 poison",
+          "duration": "varies",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "This spell magically prepares a poison (up to 5th level in potency). This spell normally requires d100 minutes of concentration before completion. Note that the caster must have the poison in its raw form before casting this spell (i.e., the spell does not \"create\" the poison; it merely prepares it)."
+        }
+      },
+      {
+        "name": "05. Poison Analysis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 poison",
+          "duration": "—",
+          "range": "self",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may analyze a poison to determine exact effects and what antidotes are necessary."
+        }
+      },
+      {
+        "name": "06. Delay Poison *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "1 hour/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "s",
+          "attack_table": "",
+          "skillName": "",
+          "description": "For the duration of this spell, all effects from a single poison are cancelled. Note that the poison will still be in the caster and take effect normally after the duration (though he may cast the spell again to continue to delay the effects)."
+        }
+      },
+      {
+        "name": "07. Transfer Poison I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 poison",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can transfer a single dose of a poison from any target that he is touching into himself. For example, if a companion has been struck by a poison arrow, the caster can touch the companion and transfer the poison into himself (where he can delay the effects, or neutralize it)."
+        }
+      },
+      {
+        "name": "08. Apply Poison II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 poison",
+          "duration": "varies",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Apply Poison I, except affects two doses (though they can be applied to different surfaces)."
+        }
+      },
+      {
+        "name": "09. Neutralize Poison",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "If the caster concentrates, this spell has a 50% chance of neutralizing a poison inside himself (modified by the potency of the poison). In any case, it delays the effects of the poison for the duration of the spell."
+        }
+      },
+      {
+        "name": "10. Work Poison X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 poison",
+          "duration": "varies",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Work Poison V, except affects poisons up to 10th level of potency."
+        }
+      },
+      {
+        "name": "11. Venom",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 poison",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can convert any poison that he is touching into a venom. The poison will now be effective when introduced into the victim's blood stream (regardless of its normal method of affecting the target)."
+        }
+      },
+      {
+        "name": "12. Apply Poison III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 poison",
+          "duration": "varies",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Apply Poison II, except affects up to three doses."
+        }
+      },
+      {
+        "name": "13. Neutralize Poison True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Neutralize Poison, except chance of neutralizing is 100% (modified by the potency of the poison)."
+        }
+      },
+      {
+        "name": "14. Transfer Poison II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1 poison",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can transfer a single dose of a poison from any target he is touching to any other target that he is touching."
+        }
+      },
+      {
+        "name": "15. Venom's Touch",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "This spell allows the caster to coat the target's hands with a poison. The target is unaffected by the poison."
+        }
+      },
+      {
+        "name": "16. Work Poison True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 poison",
+          "duration": "varies",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Work Poison V, except affects any poison."
+        }
+      },
+      {
+        "name": "17. Apply Poison IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 poison",
+          "duration": "varies",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Apply Poison II, except affects up to four doses."
+        }
+      },
+      {
+        "name": "18. Contact Poison",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 poison",
+          "duration": "P",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Venom, except converts the poison into a contact poison (a poison that affects its victim upon contact with the victim's skin—regardless of its normal method of affecting the target)."
+        }
+      },
+      {
+        "name": "19. Transfer Poison III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "1 poison",
+          "duration": "P",
+          "range": "10'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can transfer a single dose of a poison in any target he is touching into any other target within range of the spell."
+        }
+      },
+      {
+        "name": "20. Venom's Breath",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can ingest a single dose of a poison. For the duration of this spell, he will be unaffected by the poison. Anytime before the duration expires, the caster can attempt to transfer the poison to a single target. The target must be no further away than 5' and the caster's mouth must be capable of delivering the poison (either through a kiss, a whisper, spitting, etc.). The target gets an RR to avoid the effects of this spell (in addition to the RR for the poison)."
+        }
+      },
+      {
+        "name": "25. Venom's Glare",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Venom's Breath, except the caster can transfer the poison to any single target within the range. The caster must be able to cast an obvious, evil glare at the target. The target gets an RR to resist the effects of this spell (in addition to the RR for the poison)."
+        }
+      },
+      {
+        "name": "30. Venom's Cloud",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varies",
+          "duration": "10 min/lvl",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster can disperse a poison into a misty cloud. The size of the mist is 1' radius per dose of the poison used. The poison will linger in the area normally until the duration of the spell expires (i.e., the mist will be subject to wind, etc.). When the duration expires, the poison disperses."
+        }
+      },
+      {
+        "name": "50. Venom's Sight",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 target",
+          "duration": "10 min/lvl",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Venom's Glare, except for the range."
+        }
+      }
+    ]
+  }
+}

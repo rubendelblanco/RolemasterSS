@@ -1,0 +1,394 @@
+{
+  "name": "Escapes",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Magent",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Magente 7.3 - Escapes. Hechizos para forzar/abrir cerraduras, escapar de ataduras y mordazas, teletransportar al lanzador u objetos pequeños (incluso a través de barreras), atravesar material, aplanarse y abrir portales temporales. Notas Especiales: Cada cerradura y trampa se valora según la dificultad para forzarla/desactivarla. Se aplican los modificadores de dificultad estándar: Rutinaria (+30), Fácil (+20), Sencilla (+10), Media (0), Difícil (-10), Muy Difícil (-20), Extremadamente Difícil (-30), Locura Absoluta (-50), Absurda (al menos -70). Algunos modificadores sugeridos: Grillete Simple (Fácil), Candado (Media a Difícil), Cerradura de Cilindro (Difícil a Extremadamente Difícil), Cerradura de Doble Llave (Locura Absoluta). Si se usa un hechizo (p.ej., Abrir Cerradura I) para intentar forzar/desactivar un dispositivo, la probabilidad de éxito del hechizo se modifica a la mitad del modificador indicado arriba.",
+    "spells": [
+      {
+        "name": "01. Saber de Cerraduras",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 cerradura",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da al lanzador un bono especial de +20 para forzar la cerradura analizada. Si el lanzador comparte la información obtenida de este hechizo, esa persona recibe un bono especial de +10 para forzar la cerradura analizada."
+        }
+      },
+      {
+        "name": "02. Abrir Cerradura I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 cerradura",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Este hechizo tiene un 30% de probabilidad de abrir cualquier cerradura no mágica. Si no se abre, hay un 10% de probabilidad de que cualquier trampa asociada se active. Las tiradas son abiertas, y la sofisticación de la cerradura puede modificar la tirada."
+        }
+      },
+      {
+        "name": "03. Desamordazar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquier cobertura menor sobre la cabeza del lanzador hecha de material orgánico se afloja. Incluye mordazas o vendas en los ojos."
+        }
+      },
+      {
+        "name": "04. Dejar Objeto I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador \"teletransporta\" un único objeto inanimado a un punto de hasta 100' de su ubicación actual. No puede haber barreras intermedias en línea directa entre el objetivo y el punto (a estos efectos, una barrera es cualquier cosa que el objeto no pudiera atravesar físicamente). El objeto tiene un límite de peso máximo de 1 libra por nivel del lanzador."
+        }
+      },
+      {
+        "name": "05. Abrir Cerradura II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 cerradura",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Abrir Cerradura I, salvo que tiene un 50% de probabilidad de abrir la cerradura (y un 8% de probabilidad de activar trampas)."
+        }
+      },
+      {
+        "name": "06. Desatar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquier cuerda (o atadura similar) que ate al lanzador se desata. Este hechizo sufre la penalización estándar por no tener una mano libre (si las manos del lanzador están atadas)."
+        }
+      },
+      {
+        "name": "07. Puerta Larga Menor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador se teletransporta a un punto de hasta 50' de distancia. Puede atravesar objetos especificando la distancia y dirección exactas del viaje. Si el punto de llegada coincide con material sólido o líquido, el lanzador no se mueve. En su lugar, queda aturdido 1-10 rondas (los PP se gastan igualmente)."
+        }
+      },
+      {
+        "name": "08. Abrir Cerradura III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 cerradura",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Abrir Cerradura I, salvo que tiene un 70% de probabilidad de abrir la cerradura (y un 6% de probabilidad de activar trampas)."
+        }
+      },
+      {
+        "name": "09. Soltar Ataduras",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cada cerradura/grillete que ata al lanzador tiene un 75% de probabilidad de abrirse (modificado por la sofisticación de la cerradura)."
+        }
+      },
+      {
+        "name": "10. Partir I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador se teletransporta a una ubicación de hasta 100' de distancia. No puede haber barreras intermedias entre el lanzador y el punto. Una barrera se define como cualquier cosa que el lanzador no pudiera atravesar físicamente (p.ej., una puerta cerrada es una barrera, un foso no)."
+        }
+      },
+      {
+        "name": "11. Atravesar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede atravesar cualquier material inanimado a un ritmo de 5' por minuto."
+        }
+      },
+      {
+        "name": "12. Puerta Larga de Objeto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 objeto",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Dejar Objeto, salvo que el objeto puede atravesar barreras especificando dirección y distancia exactas. Si el punto de llegada coincide con material sólido o líquido, el objeto no se mueve (aunque el lanzador pierde los PP del hechizo)."
+        }
+      },
+      {
+        "name": "13. Abrir Cerradura IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 cerradura",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Abrir Cerradura I, salvo que tiene un 90% de probabilidad de abrir la cerradura (y un 4% de probabilidad de activar trampas)."
+        }
+      },
+      {
+        "name": "14. Puerta Larga I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga Menor, salvo que el lanzador puede moverse 100'."
+        }
+      },
+      {
+        "name": "15. Soltar Ataduras Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Soltar Ataduras, salvo que también funciona con grilletes fijos (es decir, remachados)."
+        }
+      },
+      {
+        "name": "16. Partir II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Partir I, salvo que el lanzador puede moverse 200'."
+        }
+      },
+      {
+        "name": "18. Aplanamiento",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador se aplana de lado hasta quedar en solo dos dimensiones. Así puede deslizarse por grietas (y no puede verse de perfil)."
+        }
+      },
+      {
+        "name": "19. Puerta Larga II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga Menor, salvo que el lanzador puede moverse 200'."
+        }
+      },
+      {
+        "name": "20. Atravesar Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Atravesar, salvo que el ritmo es de 10' por minuto."
+        }
+      },
+      {
+        "name": "25. Portal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "3'x6'x3'",
+          "duration": "1 rnd/nvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Abre un portal de 3' x 6' x 3' en cualquier superficie sólida. Al finalizar la duración, la superficie vuelve a su estado anterior. Si alguien está en el área de efecto cuando el hechizo termina, es empujado de vuelta a su punto de entrada."
+        }
+      },
+      {
+        "name": "30. Abrir Cerradura Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "5'R/nvl",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Abrir Cerradura III, salvo que afecta a todas las cerraduras del área de efecto."
+        }
+      },
+      {
+        "name": "50. Teletransporte I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta Larga Menor, salvo que el alcance de movimiento es de 10 millas por nivel. Puede ser muy arriesgado dependiendo de la familiaridad del lanzador con el lugar de destino. Las probabilidades de fallo son: nunca visto el lugar (pero se lo han descrito) = 50%; estado brevemente (una hora o menos) = 25%; estudiado (estado 24 horas) = 10%; estudiado a fondo (7 días) = 1%; vivido allí (al menos un año) = 0,01%. El margen de error se determina entonces con un d100 (abierto) para calcular el número de pies (la dirección del error se determina al azar)."
+        }
+      }
+    ]
+  }
+}

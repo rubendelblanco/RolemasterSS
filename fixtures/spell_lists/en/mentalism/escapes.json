@@ -1,0 +1,394 @@
+{
+  "name": "Escapes",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Magent",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Magent Base 7.3 - Escapes. Spells for picking/unlocking locks, escaping bonds and gags, teleporting the caster or small objects (including through barriers), passing through material, flattening, and opening temporary portals. Special Notes: Each lock and trap is rated according to the difficulty in unlocking/disarming it. The standard difficulty modifiers apply: Routine (+30), Easy (+20), Light (+10), Medium (0), Hard (-10), Very Hard (-20), Extremely Hard (-30), Sheer Folly (-50), Absurd (at least -70). Some suggested difficulty modifiers are: Simple Shackle Lock (Easy), Padlock (Medium to Hard), Tumbler Lock (Hard to Extremely Hard), Double Key Tumbler (Sheer Folly). If a spell (e.g., Unlock I) is used to attempt to unlock/disarm a device, the chance of the spell successfully operating the lock is modified by half of the modifier given above.",
+    "spells": [
+      {
+        "name": "01. Locklore",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 lock",
+          "duration": "—",
+          "range": "touch",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives the caster a special +20 bonus for picking the lock analyzed. If the caster describes the information gained from this spell, that person will get a special +10 bonus to picking the lock analyzed."
+        }
+      },
+      {
+        "name": "02. Unlock I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 lock",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "This spell has a 30% chance of opening any non-magical lock. If the lock is not unlocked, there is a 10% chance that any traps associated with it are set off. Rolls are open-ended, and the sophistication of the lock may modify the roll."
+        }
+      },
+      {
+        "name": "03. Ungag",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any minor covering on the head of the caster made of organic material is loosened. This includes any gags or blindfolds."
+        }
+      },
+      {
+        "name": "04. Leave Item I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster \"teleports\" a single, inanimate object to a point up to 100' away from its current location. There can be no intervening barriers in a direct line between the target and the point (for these purposes, a barrier is anything the object could not physically go through). The object has a maximum weight limit of 1 pound per level of the caster."
+        }
+      },
+      {
+        "name": "05. Unlock II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 lock",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unlock I, except has a 50% chance of opening the lock (and an 8% chance of setting off traps)."
+        }
+      },
+      {
+        "name": "06. Untie",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any ropes (or similar bindings) that are binding the caster are untied. Note that this spell will suffer the standard penalty for the caster not having a free hand (if the caster's hands have been tied)."
+        }
+      },
+      {
+        "name": "07. Minor Long Door",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is teleported to a point up to 50' away. The caster can pass through objects by specifying the exact distance and direction to be travelled. If the arrival point coincides with solid or liquid material, the caster does not move. Instead, he is stunned for 1-10 rounds (the PPs are still spent for this spell)."
+        }
+      },
+      {
+        "name": "08. Unlock III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "1 lock",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unlock I, except has a 70% chance of opening the lock (and a 6% chance of setting off traps)."
+        }
+      },
+      {
+        "name": "09. Unbind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Each lock/shackle binding the caster has a 75% chance of opening (modified by the sophistication of the lock)."
+        }
+      },
+      {
+        "name": "10. Leaving I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The caster teleports to a location up to 100' away. There can be no intervening barriers between the caster and the point. A barrier is defined as anything the caster could not physically go through (e.g., a closed door is a barrier, a pit is not)."
+        }
+      },
+      {
+        "name": "11. Passing",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can pass through any inanimate material at the rate of 5' per minute."
+        }
+      },
+      {
+        "name": "12. Item Long Door",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "1 object",
+          "duration": "—",
+          "range": "50'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leave Item, except the object can pass through barriers by specifying exact direction and distance. If the arrival point coincides with solid or liquid material, the object does not move (though the caster loses the PPs for the spell)."
+        }
+      },
+      {
+        "name": "13. Unlock IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "1 lock",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unlock I, except has a 90% chance of opening the lock (and a 4% chance of setting off traps)."
+        }
+      },
+      {
+        "name": "14. Long Door I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Long Door, except caster can move 100'."
+        }
+      },
+      {
+        "name": "15. Unbind True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unbind, except will also work on fixed shackles (i.e., those that have been rivetted shut)."
+        }
+      },
+      {
+        "name": "16. Leaving II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Leaving I, except caster can move 200'."
+        }
+      },
+      {
+        "name": "18. Flattening",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster is flattened on his side until he has only two dimensions. Thus, he can slide through cracks (and cannot be seen from the side)."
+        }
+      },
+      {
+        "name": "19. Long Door II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Long Door, except caster can move 200'."
+        }
+      },
+      {
+        "name": "20. Passing True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Passing, except rate is 10' per minute."
+        }
+      },
+      {
+        "name": "25. Portal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "3'x6'x3'",
+          "duration": "1 rnd/lvl",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Opens a 3' x 6' x 3' portal in any solid surface. At the end of the duration, the surface is returned to its previous state. If anyone is in the area of effect when the spell effect ends, he is forced back to his point of entry."
+        }
+      },
+      {
+        "name": "30. Unlock True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "5'R/lvl",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unlock III, except affects all locks in the area of effect."
+        }
+      },
+      {
+        "name": "50. Teleport I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Minor Long Door, except movement range is 10 miles per level. This can be very risky depending on the caster's familiarity with the destination's locale. The following chances for failure exist: Never seen the place (but has had described) = 50%; been briefly (one hour or less) = 25%; Studied (been in for 24 hours) = 10%; Studied carefully (7 days) = 1%; Lived in (for at least one year) = 0.01%. The amount of error is then determined by making a d100 (open-ended) to determine the number of feet (determine the direction of error randomly)."
+        }
+      }
+    ]
+  }
+}

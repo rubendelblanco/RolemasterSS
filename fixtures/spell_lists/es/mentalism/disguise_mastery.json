@@ -1,0 +1,416 @@
+{
+  "name": "Maestría del Disfraz",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Magent",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Magente 7.2 - Maestría del Disfraz. Hechizos para estudiar y disfrazarse físicamente de una persona, fachadas ilusorias, engañar la detección de raza/profesión/nivel/presencia (la familia Sentir-Falso), ocultar la implicación ante hechizos de adivinación, y no-detección total.",
+    "spells": [
+      {
+        "name": "01. Estudiar Disfraz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "500'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador estudia a una persona para usarla con hechizos de disfraz posteriores de esta lista. El lanzador solo puede tener tantos disfraces estudiados como niveles tenga."
+        }
+      },
+      {
+        "name": "02. Encanto de Luz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objeto",
+          "duration": "1 día/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cambia la apariencia visual de un objeto. El objetivo del hechizo no puede pesar más de 10 libras por nivel del lanzador."
+        }
+      },
+      {
+        "name": "03. Fachada I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 hora/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador tiene una ilusión limitada sobre sí mismo que le permite parecerse a cualquier raza humanoide dentro de un 20% de su propio tamaño. La ilusión se mueve con el lanzador."
+        }
+      },
+      {
+        "name": "04. Asesino Sombrío",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Todas las acciones realizadas (mientras este hechizo esté activo) quedan \"ensombrecidas\" ante hechizos de adivinación. A efectos de un hechizo de adivinación, la información obtenida sobre el lanzador quedará envuelta en sombras. Por ejemplo, un Recuerdo de la Muerte lanzado en la escena de un asesinato podría revelar una figura sombría realizando los actos (pero sin detalles sobre su identidad)."
+        }
+      },
+      {
+        "name": "05. Sentir-Falso: Raza •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "A efectos de detecciones mentales o mágicas, el lanzador parece ser de cualquier raza que elija (el tipo racial debe seleccionarse al lanzar el hechizo)."
+        }
+      },
+      {
+        "name": "06. Fachada II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "1 hora/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fachada I, salvo que se añade un sentido extra."
+        }
+      },
+      {
+        "name": "07. Disfraz I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador cambia físicamente para adoptar la forma y apariencia visual de una persona estudiada. Es estrictamente un cambio físico. El lanzador debe haber lanzado antes Estudiar Disfraz sobre esa persona."
+        }
+      },
+      {
+        "name": "08. Asesino Desconocido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Asesino Sombrío, salvo que no se revela absolutamente ninguna información sobre el lanzador. Por ejemplo, un Recuerdo de la Muerte lanzado en la escena de un asesinato podría mostrar a la víctima desplomándose con un cuchillo en el pecho (pero sin rastro del asesino)."
+        }
+      },
+      {
+        "name": "09. Fachada III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "1 hora/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fachada I, salvo que se añaden dos sentidos extra."
+        }
+      },
+      {
+        "name": "10. Disfraz II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disfraz I, salvo que el lanzador también adopta las características vocales de la persona (es decir, suena como ella)."
+        }
+      },
+      {
+        "name": "11. Sentir-Falso: Vocación •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir-Falso: Raza, salvo que el lanzador parece tener la profesión que elija."
+        }
+      },
+      {
+        "name": "12. Lengua Mental",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster+1 objetivo",
+          "duration": "C",
+          "range": "20'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede hablar mentalmente con un objetivo; para el objetivo, parecerá que se están comunicando con normalidad (es decir, verbalmente)."
+        }
+      },
+      {
+        "name": "13. Disfraz III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disfraz II, salvo que el lanzador también adopta los manierismos evidentes de la persona. Por ejemplo, si la persona era zurda, el lanzador es zurdo; si cojea, el lanzador cojeará."
+        }
+      },
+      {
+        "name": "14. Fachada V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "1 hora/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Fachada I, salvo que se incluyen todos los sentidos."
+        }
+      },
+      {
+        "name": "15. Sentir-Falso: Poder •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir-Falso: Raza, salvo que el lanzador parece tener el nivel que elija (desde el nivel 1 hasta el doble de su nivel real)."
+        }
+      },
+      {
+        "name": "16. Disfraz IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disfraz III, salvo que el lanzador también adopta manierismos sutiles de la persona. Esto lo hace prácticamente indetectable salvo para sus allegados más cercanos."
+        }
+      },
+      {
+        "name": "17. Ausencia de Presencia",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir-Falso: Raza, salvo que el lanzador parece no tener presencia (para hechizos de detección de presencia)."
+        }
+      },
+      {
+        "name": "18. Asesino Falso",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Asesino Sombrío, salvo que todas las acciones realizadas mientras este hechizo esté activo parecerán ser obra del chivo expiatorio actualmente estudiado (ver Estudiar al Chivo Expiatorio en Maestría del Asesinato)."
+        }
+      },
+      {
+        "name": "19. Disfraz V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Disfraz IV, salvo que se obtienen incluso los manierismos más sutiles."
+        }
+      },
+      {
+        "name": "20. Sentir-Falso •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como todos los hechizos Sentir-Falso de esta lista a la vez."
+        }
+      },
+      {
+        "name": "25. No Detección",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador y los objetos que lleva encima no pueden ser detectados por ningún hechizo de Detectar..."
+        }
+      },
+      {
+        "name": "30. Sentir-Falso Verdadero •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sentir-Falso, salvo que el lanzador no necesita concentrarse."
+        }
+      },
+      {
+        "name": "50. Maestría del Disfraz",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede usar cualquier hechizo de nivel inferior de esta lista, uno por ronda."
+        }
+      }
+    ]
+  }
+}

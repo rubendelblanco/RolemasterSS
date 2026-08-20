@@ -1,0 +1,416 @@
+{
+  "name": "Disguise Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Magent",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Magent Base 7.2 - Disguise Mastery. Spells for studying and physically disguising as a person, illusory facades, misleading race/profession/level/presence detection (the Misfeel family), obscuring involvement from divination, and full nondetection.",
+    "spells": [
+      {
+        "name": "01. Study Disguise",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "500'",
+          "type": "I",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster studies a person for use with disguise spells later on this list. The caster can only have as many disguises studied as he has levels."
+        }
+      },
+      {
+        "name": "02. Light Glamour",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 object",
+          "duration": "1 day/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Changes the visual appearance of one object. The target of the spell must be no larger than 10 pounds per level of the caster."
+        }
+      },
+      {
+        "name": "03. Facade I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "1 hour/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster has a limited illusion on himself that allows him to look like any humanoid race within 20% of his own size. The illusion moves as the caster moves."
+        }
+      },
+      {
+        "name": "04. Shadow Assassin",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "All deeds performed (while this spell is active) are \"shadowed\" to divination spells. For the purposes of a divination spell, the information gained about the caster will be shrouded in shadows. For example, a Death's Memory cast on the scene of a murder might reveal a shadowy figure performing the deeds (but no details about the identity of the figure)."
+        }
+      },
+      {
+        "name": "05. Misfeel Kind •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "For the purposes of mental or magical detections, the caster appears to be of any race he chooses (racial type must be selected at the time of casting)."
+        }
+      },
+      {
+        "name": "06. Facade II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "1 hour/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Facade I, except one extra sense is added."
+        }
+      },
+      {
+        "name": "07. Disguise I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster physically changes to take on the form and visual appearance of any one studied person. This is strictly a physical change. The caster must already have cast a Study Disguise on this person."
+        }
+      },
+      {
+        "name": "08. Unknown Assassin",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shadow Assassin, except absolutely no information about the caster will be revealed. For example, a Death's Memory cast on the scene of a murder might show the victim collapsing with a knife in his chest (but no sign of the assassin)."
+        }
+      },
+      {
+        "name": "09. Facade III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "1 hour/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Facade I, except two extra senses are added."
+        }
+      },
+      {
+        "name": "10. Disguise II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disguise I, except caster also takes on the vocal characteristics (i.e., he sounds like the person)."
+        }
+      },
+      {
+        "name": "11. Misfeel Calling •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Misfeel Kind, except caster appears to be of any profession he chooses."
+        }
+      },
+      {
+        "name": "12. Mind Tongue",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster+1 target",
+          "duration": "C",
+          "range": "20'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may mentally speak with one target; to the target it will seem as if they are communicating normally (i.e., verbally)."
+        }
+      },
+      {
+        "name": "13. Disguise III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disguise II, except caster also takes on the obvious mannerisms of the person. For example, if the person was left-handed, the caster is left-handed; if the person has a limp, the caster will have a limp."
+        }
+      },
+      {
+        "name": "14. Facade V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "1 hour/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Facade I, except all senses are included."
+        }
+      },
+      {
+        "name": "15. Misfeel Power •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Misfeel Kind, except caster appears to be of any level he chooses (ranging from first level to twice his actual level)."
+        }
+      },
+      {
+        "name": "16. Disguise IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disguise III, except caster also takes on subtle mannerisms of the person. This makes him virtually undetectable to all but the closest of associates."
+        }
+      },
+      {
+        "name": "17. Unpresence",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Misfeel Kind, except caster appears to have no presence (for presence detecting spells)."
+        }
+      },
+      {
+        "name": "18. False Assassin",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Shadow Assassin, except all deeds performed while this spell is active will appear as if the currently studied patsy is performing them (see Study Patsy on Assassination Mastery)."
+        }
+      },
+      {
+        "name": "19. Disguise V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disguise IV, except even very subtle mannerisms are gained."
+        }
+      },
+      {
+        "name": "20. Misfeel •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As all of the Misfeel spells on this list at the same time."
+        }
+      },
+      {
+        "name": "25. Nondetect",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster and objects on his person cannot be detected by any Detect... spells."
+        }
+      },
+      {
+        "name": "30. Misfeel True •",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "no_pp": true,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Misfeel, except caster need not concentrate."
+        }
+      },
+      {
+        "name": "50. Disguise Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may use any lower level spell on this list, one per round."
+        }
+      }
+    ]
+  }
+}

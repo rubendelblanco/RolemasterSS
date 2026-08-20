@@ -1,0 +1,411 @@
+{
+  "name": "Maestría del Asesinato",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Magent",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Lista Base de Magente 7.1 - Maestría del Asesinato. Hechizos para ocultar armas, estudiar a un objetivo para hechizos posteriores, potenciar ataques/emboscadas/puntería con proyectiles, fabricar pruebas, y resolver ataques contra una víctima estudiada como ataques de exterminio.",
+    "spells": [
+      {
+        "name": "01. Objeto Oculto I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 objeto",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El objeto objetivo (no mayor que una daga) queda camuflado para parecer parte de la ropa o la piel del lanzador. Es una ilusión para todos los sentidos (incluido el tacto), y puede detectarse como tal. El objeto permanece oculto hasta que se retire del lugar o expire la duración."
+        }
+      },
+      {
+        "name": "02. Estudiar al Chivo Expiatorio",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 objetivo",
+          "duration": "48 hr",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[Mod. RR: -50] Al lanzarse sobre una persona, permanece activo 24 horas. Tras pasar 24 horas (pero antes de que pasen otras 24), el lanzador debe volver a lanzarlo sobre la misma persona. Mientras está activo, registra información sobre las actividades de la persona. Al lanzarse por segunda vez, esa información se revela al lanzador. Esta información se usa para hechizos posteriores de esta lista y de otras (ver las listas Desorientaciones y Maestría del Disfraz). El lanzador solo puede tener un \"chivo expiatorio\" estudiado a la vez."
+        }
+      },
+      {
+        "name": "03. Ataque Certero I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El próximo ataque del lanzador (dentro del minuto siguiente a lanzar este hechizo) recibe un bono de +25."
+        }
+      },
+      {
+        "name": "04. Emboscada Abierta I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Si el próximo ataque del lanzador (dentro del minuto siguiente a lanzar este hechizo) obtiene bono de \"flanco\" o \"retaguardia\", puede usar su habilidad de Emboscada con un bono de +1 (incluso si el objetivo es consciente del lanzador)."
+        }
+      },
+      {
+        "name": "05. Puntería I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Tras lanzar este hechizo (dentro del minuto siguiente), el lanzador puede disparar un arma a distancia contra un objetivo inmóvil (o que se mueva de forma predecible). La tirada para resolver cualquier crítico resultante puede modificarse hacia arriba o abajo en 1 (como si usara la habilidad de Emboscada)."
+        }
+      },
+      {
+        "name": "06. Crear Evidencia I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede lanzar este hechizo para crear una pieza de evidencia física (no móvil) que implique al chivo expiatorio actualmente estudiado (ver Estudiar al Chivo Expiatorio). Puede incluir una huella dactilar, una huella de pisada, etc. (pero debe ser algo que normalmente no pueda moverse de la escena del crimen). La evidencia se trata como circunstancial (es decir, una buena coartada podría librar al chivo expiatorio)."
+        }
+      },
+      {
+        "name": "07. Objeto Oculto II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 objeto",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Objeto Oculto I, salvo que afecta a un objeto de hasta el tamaño de una espada."
+        }
+      },
+      {
+        "name": "08. Ataque Certero II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ataque Certero I, salvo que el bono es +50."
+        }
+      },
+      {
+        "name": "09. Emboscada Abierta II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Emboscada Abierta I, salvo que el modificador es +2."
+        }
+      },
+      {
+        "name": "10. Puntería II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puntería I, salvo que el modificador es +2."
+        }
+      },
+      {
+        "name": "11. Reacciones Fulgurantes *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene un bono de +10 a su(s) tirada(s) de iniciativa esta ronda."
+        }
+      },
+      {
+        "name": "12. Crear Evidencia II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Crear Evidencia I, salvo que se crean dos piezas de evidencia; una de ellas incriminatoria (es decir, el chivo expiatorio necesitará más que una buena coartada)."
+        }
+      },
+      {
+        "name": "13. Ataque Certero III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ataque Certero I, salvo que el bono es +75."
+        }
+      },
+      {
+        "name": "14. Emboscada Abierta III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Emboscada Abierta I, salvo que el modificador es +3."
+        }
+      },
+      {
+        "name": "15. Puntería III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puntería I, salvo que el modificador es +3."
+        }
+      },
+      {
+        "name": "16. Objeto Oculto Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 objeto",
+          "duration": "10 min/nvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Objeto Oculto I, salvo que el objeto puede ser de cualquier tamaño (siempre que su mayor dimensión sea menor que la del lanzador)."
+        }
+      },
+      {
+        "name": "17. Estudiar a la Víctima",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 objetivo",
+          "duration": "varía",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Estudiar al Chivo Expiatorio, salvo que la información obtenida es necesaria para los hechizos de Ataque de Exterminio de esta lista."
+        }
+      },
+      {
+        "name": "18. Crear Evidencia III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Crear Evidencia I, salvo que se crean tres piezas de evidencia; dos de ellas incriminatorias."
+        }
+      },
+      {
+        "name": "19. Ataque Certero Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ataque Certero I, salvo que el bono es +100."
+        }
+      },
+      {
+        "name": "20. Ataque de Exterminio",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El próximo ataque (dentro del minuto siguiente a lanzar este hechizo) contra la víctima actualmente Estudiada (ver el hechizo de nivel 17 de esta lista) se resolverá como un ataque de exterminio. El ataque debe producirse antes de que termine la duración de este hechizo."
+        }
+      },
+      {
+        "name": "25. Emboscada Abierta Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Emboscada Abierta I, salvo que el modificador es +5."
+        }
+      },
+      {
+        "name": "30. Puntería Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puntería I, salvo que el modificador es +5."
+        }
+      },
+      {
+        "name": "50. Ataque de Exterminio Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ataque de Exterminio, salvo que todos los ataques contra la víctima se resuelven como ataques de exterminio (durante la duración del hechizo)."
+        }
+      }
+    ]
+  }
+}

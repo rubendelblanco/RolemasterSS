@@ -1,0 +1,411 @@
+{
+  "name": "Assassination Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Magent",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Magent Base 7.1 - Assassination Mastery. Spells for concealing weapons, studying a target for later spells, boosting attacks/ambushes/missile targeting, fabricating evidence, and resolving attacks against a studied victim as slaying attacks.",
+    "spells": [
+      {
+        "name": "01. Concealed Object I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 object",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Target object (no larger than a dagger) is camouflaged to appear as part of the caster's clothing or skin. This is an illusion to all senses (including feel), and can be detected as an illusion. The object will remain concealed until taken from the location, or the duration expires."
+        }
+      },
+      {
+        "name": "02. Study Patsy",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 target",
+          "duration": "48 hr",
+          "range": "10'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -50] When this spell is cast on a person, it remains active for 24 hours. After 24 hours has passed (but before another 24 hours has passed), the caster must cast this spell again on the same person. During the time the spell is active, it is recording information concerning the activities of the person. When the spell is cast the second time, the information about those activities is revealed to the caster. This information is used for spells later on this list and spells on other lists (see the Misdirections and Disguise Mastery spell lists). The caster can only have one \"patsy\" studied at a time."
+        }
+      },
+      {
+        "name": "03. Well-Aimed Attack I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The next attack made by the caster (within one minute of casting this spell), receives a bonus of +25."
+        }
+      },
+      {
+        "name": "04. Open Ambush I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "If the next attack made by the caster (within one minute of casting this spell) gets a \"flank\" or \"rear\" bonus, he may use his Ambush skill with a bonus of +1 (even if the target is aware of the caster)."
+        }
+      },
+      {
+        "name": "05. Targeting I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "After this spell is cast (within one minute of casting this spell), the caster may fire a missile weapon at a non-moving target (or at a target that is moving predictably). The roll to resolve any resulting critical may be modified up or down by 1 (as if using Ambush skill)."
+        }
+      },
+      {
+        "name": "06. Create Evidence I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may cast this spell to create one piece of physical evidence (non-mobile) that implicates the currently studied patsy (see Study Patsy). This could include a fingerprint, a footprint, etc (but must be something that cannot normally be moved from the scene of the crime). The evidence should be treated as circumstantial (i.e., a good alibi might get the patsy off the hook)."
+        }
+      },
+      {
+        "name": "07. Concealed Object II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 object",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Concealed Object I, except will affect an object up to a sword in size."
+        }
+      },
+      {
+        "name": "08. Well-Aimed Attack II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Well-Aimed Attack I, except bonus is +50."
+        }
+      },
+      {
+        "name": "09. Open Ambush II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Open Ambush I, except the modification is +2."
+        }
+      },
+      {
+        "name": "10. Targeting II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Targeting I, except the modification is +2."
+        }
+      },
+      {
+        "name": "11. Lightning Reactions *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "—",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gets a bonus of +10 to his initiative roll(s) this round."
+        }
+      },
+      {
+        "name": "12. Create Evidence II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Create Evidence I, except two pieces of evidence are created; one piece of evidence is incriminating (i.e., patsy will need more than a good alibi)."
+        }
+      },
+      {
+        "name": "13. Well-Aimed Attack III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Well-Aimed Attack I, except bonus is +75."
+        }
+      },
+      {
+        "name": "14. Open Ambush III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Open Ambush I, except the modification is +3."
+        }
+      },
+      {
+        "name": "15. Targeting III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Targeting I, except the modification is +3."
+        }
+      },
+      {
+        "name": "16. Concealed Object True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "1 object",
+          "duration": "10 min/lvl",
+          "range": "touch",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Concealed Object I, except object may be of any size (so long as the largest dimension of the object is smaller than the caster)."
+        }
+      },
+      {
+        "name": "17. Study Victim",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "1 target",
+          "duration": "varies",
+          "range": "50'",
+          "type": "P",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Study Patsy, except the information it gathers is required for use with the Slaying Attack spells later on this list."
+        }
+      },
+      {
+        "name": "18. Create Evidence III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Create Evidence I, except three pieces of evidence are created; two of which are incriminating."
+        }
+      },
+      {
+        "name": "19. Well-Aimed Attack True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Well-Aimed Attack I, except bonus is +100."
+        }
+      },
+      {
+        "name": "20. Slaying Attack",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The next attack made (within one minute of casting this spell) against the currently Studied victim (see the 17th level spell on this list) will be resolved as a slaying attack. The attack must occur before the duration of this spell is up."
+        }
+      },
+      {
+        "name": "25. Open Ambush True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Open Ambush I, except the modification is +5."
+        }
+      },
+      {
+        "name": "30. Targeting True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Targeting I, except the modification is +5."
+        }
+      },
+      {
+        "name": "50. Slaying Attack True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Slaying Attack, except all attacks made against the victim will be resolved as slaying attacks (for the duration of the spell)."
+        }
+      }
+    ]
+  }
+}

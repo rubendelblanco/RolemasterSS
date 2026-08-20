@@ -141,6 +141,14 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 - `sound_control.json` – Sound Control / Control del Sonido (6.5)
 - `sound_projection.json` – Sound Projection / Proyección del Sonido (6.6)
 
+**Magent (Magente) Base 7.1–7.6:**
+- `assassination_mastery.json` – Assassination Mastery / Maestría del Asesinato (7.1)
+- `disguise_mastery.json` – Disguise Mastery / Maestría del Disfraz (7.2)
+- `escapes.json` – Escapes / Escapes (7.3)
+- `gathering_secrets.json` – Gathering Secrets / Recopilación de Secretos (7.4)
+- `misdirections.json` – Misdirections / Desorientaciones (7.5)
+- `poison_mastery.json` – Poison Mastery / Maestría de Venenos (7.6)
+
 ### Concussion's Ways (Open Channeling 2.2)
 
 - `spell_lists/en/channeling/concussion_ways.json` – 20 hechizos de curación de golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración (inglés)
@@ -440,7 +448,8 @@ const FILES_BY_FOLDER = {
     "blood_mastery", "bone_mastery", "concussion_mastery", "muscle_mastery",
     "nerve_and_organ_mastery", "prosthetics",
     "mind_attack", "mind_control", "mind_merge", "mind_speech", "presence", "sense_control",
-    "controlling_songs", "entertaining_ways", "item_lore", "lores", "sound_control", "sound_projection"
+    "controlling_songs", "entertaining_ways", "item_lore", "lores", "sound_control", "sound_projection",
+    "assassination_mastery", "disguise_mastery", "escapes", "gathering_secrets", "misdirections", "poison_mastery"
   ]
 };
 

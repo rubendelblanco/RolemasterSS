@@ -1,0 +1,394 @@
+{
+  "name": "Misdirections",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "mentalism",
+    "profession": "Magent",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Magent Base 7.5 - Misdirections. Spells for false credentials, false identification (Eyewitness), invisibility to specific targets (Cloaking/Cloaking Sphere), skewed perception (Misleading), object invisibility (Unseen), and dodging attacks via displacement. Special Notes: (1) Many of these spells affect a target(s) perception of a situation. The duration for the spell is how long they will incorrectly perceive the situation. At the end of the duration, if the situation has ended, the target will remember the situation incorrectly (as that was how he perceived it). (2) See Section 15.5 (p. 96) for more information on invisibility (including the effects of invisibility and how to detect it). (3) If the caster has a currently studied patsy (see the Study Patsy spell on the Assassination Mastery list), all Eyewitness spells may cause the targets to perceive the caster as the patsy (the caster can choose whether to be seen as the patsy or not).",
+    "spells": [
+      {
+        "name": "01. False Credentials",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 target",
+          "duration": "1 min/lvl",
+          "range": "50'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -20] Target will think that the caster has the proper credentials for the current situation (this could include passwords or documents)."
+        }
+      },
+      {
+        "name": "02. Unseen I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "1 object",
+          "duration": "24 hours",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "One object (e.g., 1 garment, 1 naked body, or 1 weapon) is made invisible. The object will remain invisible until 24 hours pass, or the object is struck by a violent blow (being hit by a weapon, falling, etc.), or the object makes a violent move (i.e., an attack)."
+        }
+      },
+      {
+        "name": "03. Eyewitness III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "3 targets",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -20] Up to three targets will incorrectly identify the caster as someone else (all three will describe the caster in the same fashion)."
+        }
+      },
+      {
+        "name": "04. Cloaking III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "3 targets",
+          "duration": "1 min/lvl(C)",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -50] The caster is invisible to the targets of this spell. Others see the caster normally. If the caster makes an obvious action (e.g., talking, moving an object, etc.), the target may make another RR (the GM may deem it appropriate to apply modifiers based upon the action the caster takes). If the caster attacks the target, he may make another RR with a special +50 modifier. If the caster begins to concentrate, he can extend the duration of this spell indefinitely (as long as he can concentrate)."
+        }
+      },
+      {
+        "name": "05. Misleading I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "1 target",
+          "duration": "1 min/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "The target's perception is skewed for the duration of the spell. All maneuvers involving Awareness/Searching skill receive a special modification of -10 (this applies to orientation rolls as well)."
+        }
+      },
+      {
+        "name": "06. Unseen II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "2 objects",
+          "duration": "24 hours",
+          "range": "touch",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Unseen I, except affects two objects."
+        }
+      },
+      {
+        "name": "07. Cloaking V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "5 targets",
+          "duration": "1 min/lvl(C)",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking III, except affects 5 targets."
+        }
+      },
+      {
+        "name": "08. Eyewitness V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "5 targets",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Eyewitness III, except affects 5 targets."
+        }
+      },
+      {
+        "name": "09. Cloaking Sphere I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "10'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -50] As Cloaking III, except every target in the area of effect must make a RR (one BAR per round for all targets). Once a target makes a successful RR, he need not make another against this spell."
+        }
+      },
+      {
+        "name": "10. Misleading III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 target",
+          "duration": "1 min/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Misleading I, except penalties are -30."
+        }
+      },
+      {
+        "name": "11. Cloaking X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10 targets",
+          "duration": "1 min/lvl(C)",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking III, except affects 10 targets."
+        }
+      },
+      {
+        "name": "12. Displacement I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster appears to be offset from where he really is. All attacks have no effect 10% of the time (no normal RRs). Each time a foe misses him, the chance of \"no effect\" for that foe goes down by 5%."
+        }
+      },
+      {
+        "name": "13. Eyewitness X",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10 targets",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Eyewitness III, except affects 10 targets."
+        }
+      },
+      {
+        "name": "14. Cloaking Sphere II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "20'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking Sphere I, except for area of effect."
+        }
+      },
+      {
+        "name": "15. Misleading V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "1 target",
+          "duration": "1 min/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Misleading I, except penalties are -50."
+        }
+      },
+      {
+        "name": "16. Cloaking XX",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "20 targets",
+          "duration": "1 min/lvl(C)",
+          "range": "10'/lvl",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking III, except affects 20 targets."
+        }
+      },
+      {
+        "name": "18. Mass Eyewitness",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Eyewitness III, except affects 1 target per level of the caster."
+        }
+      },
+      {
+        "name": "19. Cloaking Sphere III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "30'R",
+          "duration": "C",
+          "range": "self",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking Sphere I, except for area of effect."
+        }
+      },
+      {
+        "name": "20. Misleading True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 target",
+          "duration": "1 min/10 fail",
+          "range": "100'",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Misleading I, except penalties are -100."
+        }
+      },
+      {
+        "name": "25. Displacement II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Displacement I, except base chance of missing is 20%."
+        }
+      },
+      {
+        "name": "30. True Cloaking",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 target/lvl",
+          "duration": "1 min/lvl(C)",
+          "range": "varies",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cloaking III, except the caster can affect as many targets as he has levels and the range is only limited to the caster's field of vision."
+        }
+      },
+      {
+        "name": "50. Eyewitness True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "special",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "[RR Mod: -50] As Eyewitness III, except affects everyone who sees the caster."
+        }
+      }
+    ]
+  }
+}
