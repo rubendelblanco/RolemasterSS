@@ -1,0 +1,411 @@
+{
+  "name": "Telekinesis",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Cerrado 3.10 - Telekinesis. Hechizos para mover objetos a distancia (Telekinesis), inmovilizar objetos con presión direccional (Sujeción) y lanzar objetos como ataques a distancia (Lanzamiento), más un hechizo de maestría que combina toda la lista.",
+    "spells": [
+      {
+        "name": "01. Telekinesis I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 lb",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede mover un objeto, de hasta 1 libra de masa, hasta 1' por segundo (sin aceleración). Si el lanzador deja de concentrarse antes de que termine la duración, el objeto permanece inmóvil como si tuviera un hechizo de Sujeción con el mismo límite de peso lanzado sobre él."
+        }
+      },
+      {
+        "name": "02. Sujeción II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "5 lbs",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Ejerce 5 libras de presión sobre una persona u objeto. El objeto no puede moverse solo con Sujeción, y la presión solo puede aplicarse en una dirección."
+        }
+      },
+      {
+        "name": "03. Telekinesis II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "5 lbs",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telekinesis I, salvo que el límite de masa es de 5 libras."
+        }
+      },
+      {
+        "name": "04. Sujeción III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "25 lbs",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sujeción II, salvo que el límite de presión es de 25 libras."
+        }
+      },
+      {
+        "name": "05. Sujeción Mayor II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl",
+          "range": "varía",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sujeción II, salvo que pueden afectarse 2 objetos con 5 libras de presión total, o Sujeción II puede usarse hasta 200'."
+        }
+      },
+      {
+        "name": "06. Telekinesis Mayor II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl(C)",
+          "range": "varía",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telekinesis I, salvo que pueden moverse 2 objetos con 5 libras de masa total, o Telekinesis I puede usarse a 200'."
+        }
+      },
+      {
+        "name": "07. Telekinesis III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "25 lbs",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telekinesis I, salvo que el límite de masa es de 25 libras."
+        }
+      },
+      {
+        "name": "08. Sujeción IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "50 lbs",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sujeción II, salvo que el límite de presión es de 50 libras."
+        }
+      },
+      {
+        "name": "09. Telekinesis IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "50 lbs",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telekinesis I, salvo que el límite de masa es de 50 libras."
+        }
+      },
+      {
+        "name": "10. Lanzamiento I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 lb",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede \"lanzar\" un objeto (que se encuentre dentro de 10' de él) de 1 libra o menos con fuerza suficiente para realizar un ataque en la Tabla de Ataque con Arma Arrojadiza RMFRP A-10.9.4 (p. 223) o en la Tabla de Ataque de Honda de Arms Law 2.24 (p. 53). Se trata como un ataque de honda con alcance corto 11-100', medio 101-200' y largo 201'-300'. El OB del lanzador es su bono de habilidad de hechizo dirigido con este hechizo."
+        }
+      },
+      {
+        "name": "11. Sujeción V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "100 lbs",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sujeción II, salvo que el límite de presión es de 100 libras."
+        }
+      },
+      {
+        "name": "12. Telekinesis V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "100 lbs",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telekinesis I, salvo que el límite de masa es de 100 libras."
+        }
+      },
+      {
+        "name": "13. Lanzamiento II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "5 lbs",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Lanzamiento I, salvo que el límite de masa es de 5 libras e inflige el doble de golpes de conmoción normales."
+        }
+      },
+      {
+        "name": "14. Sujeción VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "200 lbs",
+          "duration": "1 min/nvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sujeción II, salvo que el límite de presión es de 200 libras."
+        }
+      },
+      {
+        "name": "15. Sujeción Mayor III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl",
+          "range": "varía",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sujeción Mayor II, salvo que pueden afectarse 3 objetos con 25 libras de presión total, o Sujeción I puede usarse hasta 300'."
+        }
+      },
+      {
+        "name": "16. Telekinesis Mayor III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "varía",
+          "duration": "1 min/nvl(C)",
+          "range": "varía",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telekinesis I, salvo que pueden moverse 3 objetos con 25 libras de masa total, o Telekinesis I puede usarse hasta 300'."
+        }
+      },
+      {
+        "name": "17. Telekinesis VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "200 lbs",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telekinesis I, salvo que el límite de masa es de 200 libras."
+        }
+      },
+      {
+        "name": "18. Lanzamiento III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "25 lbs",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Lanzamiento II, salvo que el límite es de 25 libras e inflige el triple de golpes de conmoción normales."
+        }
+      },
+      {
+        "name": "19. Sujeción Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "20 lbs/nvl",
+          "duration": "1 min/nvl",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Sujeción II, salvo que el límite de presión es de 20 libras por nivel."
+        }
+      },
+      {
+        "name": "20. Telekinesis Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "20 lbs/nvl",
+          "duration": "1 min/nvl(C)",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Telekinesis I, salvo que el límite de masa es de 20 libras por nivel."
+        }
+      },
+      {
+        "name": "25. Lanzamiento Mayor III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varía",
+          "duration": "—",
+          "range": "varía",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Lanzamiento I, salvo que el objeto a lanzar puede estar hasta 300' de distancia, o el lanzador puede lanzar 3 objetos que estén hasta 100' de distancia (contra el mismo objetivo)."
+        }
+      },
+      {
+        "name": "30. Lanzamiento IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "50 lbs",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Lanzamiento II, salvo que el límite es de 50 libras, inflige cuatro veces los golpes de conmoción normales y el OB recibe un bono adicional de +50."
+        }
+      },
+      {
+        "name": "50. Maestría de la Telekinesis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varía",
+          "duration": "1 rnd/nvl",
+          "range": "300'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cada ronda, el lanzador puede usar cualquier hechizo de nivel inferior de esta lista con un alcance de 300'."
+        }
+      }
+    ]
+  }
+}

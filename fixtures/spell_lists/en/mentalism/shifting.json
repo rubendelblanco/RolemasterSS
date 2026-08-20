@@ -1,0 +1,275 @@
+{
+  "name": "Shifting",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Mentalism 3.7 - Shifting. Spells for altering the caster's own form: balance and contortion bonuses, face shifting, breathing water/gas, changing into a humanoid race or any organic form, solid/liquid/mist forms, and full shapeshifting mastery. Special Notes: See Section 15.20 (p. 100) for more on the abilities gained/retained when changing forms.",
+    "spells": [
+      {
+        "name": "01. Balance *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "varies",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Gives a special bonus of +50 to any rolls for one slow maneuver requiring balance (e.g., walking a 3\" beam, etc.)."
+        }
+      },
+      {
+        "name": "02. Contraction",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to disjoint limbs, contract muscles, etc. to escape manacles/ropes and to slip through small places. Gives a special bonus of +25 to +50 to Contortions maneuvers."
+        }
+      },
+      {
+        "name": "03. Face Shifting",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Allows caster to alter the form of his face. The caster may specify a specific person, but the change will not be exact."
+        }
+      },
+      {
+        "name": "05. Waterlungs",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "For the duration, the caster can breathe water but not air."
+        }
+      },
+      {
+        "name": "07. Change to Kind",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can alter his form to the form of any desired humanoid race. The form cannot be a specific form. For example, a human caster could take on the form of a Dwarf, but not the Dwarven king. Only physical form is gained (e.g., a target who becomes a Dwarf would not receive the Dwarves' ability to see in the dark). The caster can only alter his size by up to 25%."
+        }
+      },
+      {
+        "name": "08. Gaslungs",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waterlungs, except caster can breathe any gas as normal air."
+        }
+      },
+      {
+        "name": "10. Greater Face Shifting",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 hr/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Face Shifting, except lasts 1 hour per level."
+        }
+      },
+      {
+        "name": "11. Changing Lungs",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waterlungs, except caster can breathe any air, water, and/or gas, at will."
+        }
+      },
+      {
+        "name": "13. Change",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Change to Kind, except alteration can be to any organic form within 50% to 200% of the caster's current mass; does not confer any special abilities."
+        }
+      },
+      {
+        "name": "15. Solid Form",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster becomes as if made of very dense stone (cannot move or cast spells)."
+        }
+      },
+      {
+        "name": "18. Shapechanging",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Change, except caster may assume a different form anytime during the spell. The change takes one round of concentration."
+        }
+      },
+      {
+        "name": "20. Waterform",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster takes the form of a liquid mass, able to seep through cracks as well as water. As a fluid, he can move through water at a rate of 10 mph. The caster may not cast spells while in this form."
+        }
+      },
+      {
+        "name": "25. Mistform",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster takes the form of a mist, able to fly at a rate of 20 mph. The caster may seep through cracks, extend himself to become virtually invisible, etc. The caster may not cast spells in this form."
+        }
+      },
+      {
+        "name": "30. Form Master",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Waterform and Mistform, except the two forms are interchangeable at will. Changing from one form to another takes one round of concentration."
+        }
+      },
+      {
+        "name": "50. Change Master",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Changing and Form Master, except all forms are interchangeable at will. Each change takes one round of concentration. The caster may vary his mass between 10% and 1000% of his own mass."
+        }
+      }
+    ]
+  }
+}

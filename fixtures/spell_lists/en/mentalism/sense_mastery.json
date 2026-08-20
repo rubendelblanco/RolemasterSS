@@ -1,0 +1,394 @@
+{
+  "name": "Sense Mastery",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Mentalism 3.6 - Sense Mastery. Spells for enhancing hearing, sight (night/side/water/fog/dark vision), smell and touch, detecting and dispelling illusions, remote sensing (Mentalist Ear/Eye), and merging senses with a known subject.",
+    "spells": [
+      {
+        "name": "01. Sly Ears",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains double normal hearing. This results in a special bonus of +50 to Awareness/Searching and Awareness/Senses skills involving only hearing (or +5 for Alertness skill). This bonus is +25 to such skills involving hearing and other senses (or +3 for Alertness skill)."
+        }
+      },
+      {
+        "name": "02. Nightvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can see 100' on a clear night as if it were day. At least some small amount of residual light is required for this spell to work. See Section 15.12 (p. 98)."
+        }
+      },
+      {
+        "name": "03. Sidevision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster has a 300° field of vision. The flank bonus is reduced to +5 and the rear bonus is reduced to +15."
+        }
+      },
+      {
+        "name": "04. Detect Illusion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "5'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can check one object or place (up to a 5' radius) and tell if it is an illusion or has an illusion on it."
+        }
+      },
+      {
+        "name": "05. Watervision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nightvision, except affects vision underwater (and other liquids)."
+        }
+      },
+      {
+        "name": "06. Scent",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Sly Ears except caster gains an extremely acute sense of smell and the bonuses indicated apply to Awareness skills involving smelling."
+        }
+      },
+      {
+        "name": "07. Fogvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nightvision, except works in any precipitation or gas. See Section 15.12 (p. 98)."
+        }
+      },
+      {
+        "name": "08. Touch",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster gains extreme tactile sensitivity. This results in a special bonus of +25 to all actions that depend on tactile sense (e.g., pick locks, disarm traps, etc.)."
+        }
+      },
+      {
+        "name": "09. Darkvision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nightvision, except no light is required and caster can see even in magically created darkness."
+        }
+      },
+      {
+        "name": "10. Mentalist Ear",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl(C)",
+          "range": "100'/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can pick a point up to 100' per level away and he will hear as if he were at that point (there can be intervening objects such as walls); he must have been at the location before or the location must be within his field of vision."
+        }
+      },
+      {
+        "name": "11. Mentalist Eye",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl(C)",
+          "range": "100'/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mentalist Ear, except caster can see instead of listening."
+        }
+      },
+      {
+        "name": "12. Disillusion",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "100'R",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "For the duration of the spell, one illusion within the area of effect ceases to exist (for the caster only). Caster must know that something is an illusion before this spell is cast."
+        }
+      },
+      {
+        "name": "13. Detect Illusion True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "5'R",
+          "duration": "1 min/lvl(C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Detect Illusion, except caster can check one object or place per round."
+        }
+      },
+      {
+        "name": "14. Vision",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As all lower level Vision spells functioning at the same time."
+        }
+      },
+      {
+        "name": "15. Nightvision True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Nightvision, except range is the range of normal daylight vision."
+        }
+      },
+      {
+        "name": "17. Disillusion True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "100'R",
+          "duration": "1 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Disillusion, except all illusions within range cease to exist for the caster. Caster need not be aware of any illusions within the range before casting this spell."
+        }
+      },
+      {
+        "name": "18. Watervision True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Watervision, except range is the range of normal daylight vision."
+        }
+      },
+      {
+        "name": "19. Fogvision True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Fogvision, except range is the range of normal daylight vision."
+        }
+      },
+      {
+        "name": "20. Vision True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "10 min/lvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As all lower level Vision True spells functioning at the same time."
+        }
+      },
+      {
+        "name": "25. Mentalist Ear True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl(C)",
+          "range": "1 mi/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mentalist Ear, except range is 1 mile per level."
+        }
+      },
+      {
+        "name": "30. Mentalist Eye True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "1 min/lvl(C)",
+          "range": "1 mi/lvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mentalist Eye, except range is 1 mile per level."
+        }
+      },
+      {
+        "name": "50. Sensory Merge",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "unlimited",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can \"merge\" his senses with those of a subject whose exact location is known. Exact location can be established through a prior arrangement. If target of spell is not at the specified location, the PPs for this spell are still expended."
+        }
+      }
+    ]
+  }
+}

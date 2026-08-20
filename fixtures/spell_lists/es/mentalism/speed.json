@@ -1,0 +1,309 @@
+{
+  "name": "Velocidad",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Cerrado 3.9 - Velocidad. Hechizos para correr/nadar/esprintar sin cansarse y para potenciar el ritmo de actividad del propio lanzador (las familias Speed y Haste), además de lectura rápida. Notas Especiales: Solo puede haber un hechizo Haste o Speed activo sobre un individuo a la vez. Además, Speed exige una penalización de actividad del 50% tras terminar el hechizo; lanzar un Speed o Haste en ese momento solo llevará a la persona a actividad normal, en lugar de extender el tiempo de actividad al 200% (50% x 2 = 100%).",
+    "spells": [
+      {
+        "name": "01. Correr *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede correr (doble ritmo de marcha) sin cansarse (es decir, gasta puntos de agotamiento como si caminara), pero en cuanto se detiene o realiza cualquier otra acción, el hechizo se cancela."
+        }
+      },
+      {
+        "name": "02. Lectura Rápida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador lee 10 páginas por minuto."
+        }
+      },
+      {
+        "name": "03. Velocidad I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Durante la duración del hechizo, el lanzador tiene un 200% de actividad durante una ronda. Después, debe pasar tantas rondas en reposo (máximo 50% de actividad) como rondas estuvo bajo los efectos de Velocidad."
+        }
+      },
+      {
+        "name": "05. Velocidad II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "2 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad I, salvo que la duración es de 2 rondas."
+        }
+      },
+      {
+        "name": "06. Prisa I *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "1 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad I, salvo que no requiere rondas de descanso."
+        }
+      },
+      {
+        "name": "07. Velocidad III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "3 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad I, salvo que la duración es de tres rondas."
+        }
+      },
+      {
+        "name": "08. Esprintar *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Correr, salvo que el lanzador puede moverse a 3x el ritmo de marcha."
+        }
+      },
+      {
+        "name": "09. Prisa II *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "2 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prisa I, salvo que la duración es de 2 rondas."
+        }
+      },
+      {
+        "name": "10. Nado Rápido *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Correr, salvo que el lanzador nada al doble del ritmo normal."
+        }
+      },
+      {
+        "name": "11. Velocidad V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "5 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad I, salvo que la duración es de 5 rondas."
+        }
+      },
+      {
+        "name": "12. Prisa III *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 12,
+          "area_of_effect": "caster",
+          "duration": "3 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prisa I, salvo que la duración es de 3 rondas."
+        }
+      },
+      {
+        "name": "15. Prisa V *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "5 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prisa I, salvo que la duración es de 5 rondas."
+        }
+      },
+      {
+        "name": "17. Esprint Rápido *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 17,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Correr, salvo que el lanzador puede moverse a 4x el ritmo de marcha."
+        }
+      },
+      {
+        "name": "20. Velocidad X *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "10 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad I, salvo que la duración es de 10 rondas."
+        }
+      },
+      {
+        "name": "25. Prisa X *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "10 rnd",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prisa I, salvo que la duración es de 10 rondas."
+        }
+      },
+      {
+        "name": "30. Velocidad Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "especial",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Velocidad I, salvo que la duración se mantiene hasta que el lanzador duerma, descanse o cancele el hechizo (con un máximo de 8 horas)."
+        }
+      },
+      {
+        "name": "50. Prisa Verdadera *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "especial",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Prisa I, salvo que la duración se mantiene hasta que el lanzador duerma, descanse o cancele el hechizo (con un máximo de 8 horas)."
+        }
+      }
+    ]
+  }
+}

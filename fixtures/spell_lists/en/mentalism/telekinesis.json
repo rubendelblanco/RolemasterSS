@@ -1,0 +1,411 @@
+{
+  "name": "Telekinesis",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Mentalism 3.10 - Telekinesis. Spells for moving objects at a distance (Telekinesis), pinning objects in place with directional pressure (Staying), and hurling objects as ranged attacks (Hurling), plus a mastery spell combining the whole list.",
+    "spells": [
+      {
+        "name": "01. Telekinesis I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 lb",
+          "duration": "1 min/lvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster can move one object, up to 1 pound in mass, up to 1' per second (with no acceleration). If the caster stops concentration before the duration is up, the object remains stationary as if it had a Staying spell with an equal weight limit cast upon it."
+        }
+      },
+      {
+        "name": "02. Staying II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "5 lbs",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Exerts 5 pounds of pressure on a person or object. Object cannot be moved by Staying alone and pressure can only be in one direction."
+        }
+      },
+      {
+        "name": "03. Telekinesis II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "5 lbs",
+          "duration": "1 min/lvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except mass limit is 5 pounds."
+        }
+      },
+      {
+        "name": "04. Staying III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "25 lbs",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying II, except pressure limit is 25 pounds."
+        }
+      },
+      {
+        "name": "05. Greater Staying II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "varies",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying II, except 2 objects may be affected with 5 pounds total pressure or Staying II can be used to 200'."
+        }
+      },
+      {
+        "name": "06. Greater Telekinesis II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl(C)",
+          "range": "varies",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except 2 objects of 5 pounds total mass may be moved or Telekinesis I can be used at 200'."
+        }
+      },
+      {
+        "name": "07. Telekinesis III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "25 lbs",
+          "duration": "1 min/lvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except mass limit is 25 pounds."
+        }
+      },
+      {
+        "name": "08. Staying IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "50 lbs",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying II, except pressure limit is 50 pounds."
+        }
+      },
+      {
+        "name": "09. Telekinesis IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "50 lbs",
+          "duration": "1 min/lvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except mass limit is 50 pounds."
+        }
+      },
+      {
+        "name": "10. Hurling I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "1 lb",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Caster may \"hurl\" one object (that starts within 10' of him) of 1 pound or less with sufficient force to deliver an attack on either the RMFRP Missile Weapon Attack Table A-10.9.4 (p. 223) or the Arms Law Sling Attack Table 2.24 (p. 53). Treat as a sling attack with a short range of 11-100', a medium range of 101-200', and a long range of 201'-300'. The caster's OB is his directed spell skill with this spell."
+        }
+      },
+      {
+        "name": "11. Staying V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "100 lbs",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying II, except pressure limit is 100 pounds."
+        }
+      },
+      {
+        "name": "12. Telekinesis V",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "100 lbs",
+          "duration": "1 min/lvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except mass limit is 100 pounds."
+        }
+      },
+      {
+        "name": "13. Hurling II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "5 lbs",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hurling I, except mass limit is 5 pounds and it delivers double normal concussion hits."
+        }
+      },
+      {
+        "name": "14. Staying VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "200 lbs",
+          "duration": "1 min/lvl",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying II, except pressure limit is 200 pounds."
+        }
+      },
+      {
+        "name": "15. Greater Staying III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl",
+          "range": "varies",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Greater Staying II, except 3 objects may be affected with 25 pounds total pressure or Staying I can be used to 300'."
+        }
+      },
+      {
+        "name": "16. Greater Telekinesis III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "varies",
+          "duration": "1 min/lvl(C)",
+          "range": "varies",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except 3 objects of 25 pounds total mass may be moved or Telekinesis I can be used to 300'."
+        }
+      },
+      {
+        "name": "17. Telekinesis VI",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "200 lbs",
+          "duration": "1 min/lvl(C)",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except mass limit is 200 pounds."
+        }
+      },
+      {
+        "name": "18. Hurling III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "25 lbs",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hurling II, except limit is 25 pounds and delivers triple normal concussion hits."
+        }
+      },
+      {
+        "name": "19. Staying True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "20 lbs/lvl",
+          "duration": "1 min/lvl",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Staying II, except pressure limit is 20 pounds per level."
+        }
+      },
+      {
+        "name": "20. Telekinesis True",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "20 lbs/lvl",
+          "duration": "1 min/lvl(C)",
+          "range": "300'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Telekinesis I, except mass limit is 20 pounds per level."
+        }
+      },
+      {
+        "name": "25. Greater Hurling III",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varies",
+          "duration": "—",
+          "range": "varies",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hurling I, except the object to be hurled may start up to 300' away or the caster may hurl 3 objects that start up to 100' away (at the same target)."
+        }
+      },
+      {
+        "name": "30. Hurling IV",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "50 lbs",
+          "duration": "—",
+          "range": "10'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Hurling II, except limit is 50 pounds and it delivers four times normal concussion hits and the OB has an additional +50 bonus."
+        }
+      },
+      {
+        "name": "50. Telekinesis Mastery",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "varies",
+          "duration": "1 rnd/lvl",
+          "range": "300'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Each round, the caster may use any lower level spell on this list with a range of 300'."
+        }
+      }
+    ]
+  }
+}

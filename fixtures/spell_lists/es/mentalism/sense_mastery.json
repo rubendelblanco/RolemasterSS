@@ -1,0 +1,394 @@
+{
+  "name": "Maestría de los Sentidos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Cerrado 3.6 - Maestría de los Sentidos. Hechizos para potenciar el oído, la vista (visión nocturna/lateral/acuática/de niebla/en oscuridad), el olfato y el tacto, detectar y disipar ilusiones, percepción remota (Oído/Ojo Mentalista) y fundir los sentidos con los de un sujeto conocido.",
+    "spells": [
+      {
+        "name": "01. Oídos Sutiles",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador duplica su oído normal. Esto le otorga un bono especial de +50 a las habilidades de Percepción/Búsqueda y Percepción/Sentidos que impliquen solo el oído (o +5 a la habilidad de Alerta). El bono es de +25 en habilidades que impliquen el oído junto a otros sentidos (o +3 a la habilidad de Alerta)."
+        }
+      },
+      {
+        "name": "02. Visión Nocturna",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede ver hasta 100' en una noche despejada como si fuera de día. Se requiere al menos una pequeña cantidad de luz residual para que este hechizo funcione. Ver Sección 15.12 (p. 98)."
+        }
+      },
+      {
+        "name": "03. Visión Lateral",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador tiene un campo de visión de 300°. El bono de flanco se reduce a +5 y el bono de retaguardia se reduce a +15."
+        }
+      },
+      {
+        "name": "04. Detectar Ilusión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "5'R",
+          "duration": "—",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede examinar un objeto o lugar (hasta 5' de radio) y determinar si es una ilusión o tiene una ilusión encima."
+        }
+      },
+      {
+        "name": "05. Visión Acuática",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión Nocturna, salvo que afecta a la visión bajo el agua (y otros líquidos)."
+        }
+      },
+      {
+        "name": "06. Olfato",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oídos Sutiles, salvo que el lanzador obtiene un olfato extremadamente agudo y los bonos indicados se aplican a las habilidades de Percepción que impliquen oler."
+        }
+      },
+      {
+        "name": "07. Visión en Niebla",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión Nocturna, salvo que funciona en cualquier precipitación o gas. Ver Sección 15.12 (p. 98)."
+        }
+      },
+      {
+        "name": "08. Tacto",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador obtiene una sensibilidad táctil extrema. Esto otorga un bono especial de +25 a todas las acciones que dependan del sentido del tacto (p.ej., forzar cerraduras, desactivar trampas, etc.)."
+        }
+      },
+      {
+        "name": "09. Visión en Oscuridad",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión Nocturna, salvo que no requiere luz alguna y el lanzador puede ver incluso en oscuridad creada mágicamente."
+        }
+      },
+      {
+        "name": "10. Oído Mentalista",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl(C)",
+          "range": "100'/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede elegir un punto de hasta 100' por nivel de distancia y oirá como si estuviera en ese punto (puede haber objetos intermedios como paredes); debe haber estado antes en ese lugar o el lugar debe estar dentro de su campo de visión."
+        }
+      },
+      {
+        "name": "11. Ojo Mentalista",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl(C)",
+          "range": "100'/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oído Mentalista, salvo que el lanzador puede ver en lugar de escuchar."
+        }
+      },
+      {
+        "name": "12. Desilusión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "100'R",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Durante la duración del hechizo, una ilusión dentro del área de efecto deja de existir (solo para el lanzador). El lanzador debe saber que algo es una ilusión antes de lanzar este hechizo."
+        }
+      },
+      {
+        "name": "13. Detectar Ilusión Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "5'R",
+          "duration": "1 min/nvl(C)",
+          "range": "100'",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Detectar Ilusión, salvo que el lanzador puede examinar un objeto o lugar por ronda."
+        }
+      },
+      {
+        "name": "14. Visión",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como todos los hechizos de Visión de nivel inferior funcionando a la vez."
+        }
+      },
+      {
+        "name": "15. Visión Nocturna Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión Nocturna, salvo que el alcance es el de la visión diurna normal."
+        }
+      },
+      {
+        "name": "17. Desilusión Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "100'R",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Desilusión, salvo que todas las ilusiones dentro del alcance dejan de existir para el lanzador. El lanzador no necesita ser consciente de ninguna ilusión dentro del alcance antes de lanzar este hechizo."
+        }
+      },
+      {
+        "name": "18. Visión Acuática Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión Acuática, salvo que el alcance es el de la visión diurna normal."
+        }
+      },
+      {
+        "name": "19. Visión en Niebla Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Visión en Niebla, salvo que el alcance es el de la visión diurna normal."
+        }
+      },
+      {
+        "name": "20. Visión Verdadera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como todos los hechizos de Visión Verdadera de nivel inferior funcionando a la vez."
+        }
+      },
+      {
+        "name": "25. Oído Mentalista Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl(C)",
+          "range": "1 mi/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Oído Mentalista, salvo que el alcance es de 1 milla por nivel."
+        }
+      },
+      {
+        "name": "30. Ojo Mentalista Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl(C)",
+          "range": "1 mi/nvl",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ojo Mentalista, salvo que el alcance es de 1 milla por nivel."
+        }
+      },
+      {
+        "name": "50. Fusión Sensorial",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "unlimited",
+          "type": "F",
+          "subType": "m",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede \"fundir\" sus sentidos con los de un sujeto cuya ubicación exacta conoce. La ubicación exacta puede establecerse mediante un acuerdo previo. Si el objetivo del hechizo no está en la ubicación especificada, los PP de este hechizo se consumen igualmente."
+        }
+      }
+    ]
+  }
+}

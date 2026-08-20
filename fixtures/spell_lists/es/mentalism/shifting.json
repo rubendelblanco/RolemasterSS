@@ -1,0 +1,275 @@
+{
+  "name": "Transformación",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Cerrado 3.7 - Transformación. Hechizos para alterar la propia forma del lanzador: bonos de equilibrio y contorsión, cambio de rostro, respirar bajo el agua/en gas, transformarse en una raza humanoide o cualquier forma orgánica, formas sólida/líquida/de niebla, y maestría completa de la metamorfosis. Notas Especiales: Ver Sección 15.20 (p. 100) para más información sobre las habilidades ganadas/retenidas al cambiar de forma.",
+    "spells": [
+      {
+        "name": "01. Equilibrio *",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": true,
+          "level": 1,
+          "area_of_effect": "caster",
+          "duration": "varía",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Da un bono especial de +50 a cualquier tirada para una maniobra lenta que requiera equilibrio (p.ej., caminar por una viga de 3\", etc.)."
+        }
+      },
+      {
+        "name": "02. Contracción",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "caster",
+          "duration": "C",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador dislocar extremidades, contraer músculos, etc. para escapar de grilletes/cuerdas y deslizarse por espacios pequeños. Da un bono especial de +25 a +50 a maniobras de Contorsión."
+        }
+      },
+      {
+        "name": "03. Cambio de Rostro",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Permite al lanzador alterar la forma de su rostro. El lanzador puede especificar una persona concreta, pero el cambio no será exacto."
+        }
+      },
+      {
+        "name": "05. Pulmones de Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Durante la duración, el lanzador puede respirar agua pero no aire."
+        }
+      },
+      {
+        "name": "07. Cambio a Especie",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador puede alterar su forma a la de cualquier raza humanoide que desee. La forma no puede ser específica. Por ejemplo, un lanzador humano podría tomar la forma de un Enano, pero no la del rey enano. Solo se obtiene la forma física (p.ej., un objetivo que se convierte en Enano no recibiría la habilidad de los Enanos de ver en la oscuridad). El lanzador solo puede alterar su tamaño hasta un 25%."
+        }
+      },
+      {
+        "name": "08. Pulmones de Gas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pulmones de Agua, salvo que el lanzador puede respirar cualquier gas como si fuera aire normal."
+        }
+      },
+      {
+        "name": "10. Cambio de Rostro Mayor",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "caster",
+          "duration": "1 hr/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cambio de Rostro, salvo que dura 1 hora por nivel."
+        }
+      },
+      {
+        "name": "11. Pulmones Cambiantes",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Pulmones de Agua, salvo que el lanzador puede respirar cualquier aire, agua y/o gas, a voluntad."
+        }
+      },
+      {
+        "name": "13. Transformación",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Cambio a Especie, salvo que la alteración puede ser a cualquier forma orgánica dentro del 50% al 200% de la masa actual del lanzador; no confiere habilidades especiales."
+        }
+      },
+      {
+        "name": "15. Forma Sólida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador queda como si estuviera hecho de piedra muy densa (no puede moverse ni lanzar hechizos)."
+        }
+      },
+      {
+        "name": "18. Metamorfosis",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "caster",
+          "duration": "10 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Transformación, salvo que el lanzador puede adoptar una forma diferente en cualquier momento durante el hechizo. El cambio requiere una ronda de concentración."
+        }
+      },
+      {
+        "name": "20. Forma Acuática",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador toma la forma de una masa líquida, capaz de filtrarse por grietas igual que el agua. Como fluido, puede moverse por el agua a un ritmo de 10 mph. El lanzador no puede lanzar hechizos mientras tenga esta forma."
+        }
+      },
+      {
+        "name": "25. Forma de Niebla",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "El lanzador toma la forma de niebla, capaz de volar a un ritmo de 20 mph. El lanzador puede filtrarse por grietas, extenderse hasta volverse prácticamente invisible, etc. El lanzador no puede lanzar hechizos con esta forma."
+        }
+      },
+      {
+        "name": "30. Maestro de Formas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Forma Acuática y Forma de Niebla, salvo que ambas formas son intercambiables a voluntad. Cambiar de una forma a otra requiere una ronda de concentración."
+        }
+      },
+      {
+        "name": "50. Maestro del Cambio",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "caster",
+          "duration": "1 min/nvl",
+          "range": "self",
+          "type": "U",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Metamorfosis y Maestro de Formas, salvo que todas las formas son intercambiables a voluntad. Cada cambio requiere una ronda de concentración. El lanzador puede variar su masa entre el 10% y el 1000% de su propia masa."
+        }
+      }
+    ]
+  }
+}

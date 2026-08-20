@@ -88,6 +88,31 @@ Esta carpeta contiene datos JSON generados a partir de manuales de Rolemaster pa
 - `spell_lists/en/mentalism/movement.json` – 19 hechizos de saltar, caídas seguras, levitación, vuelo, movimiento submarino, fundirse en material y atravesarlo (inglés)
 - `spell_lists/es/mentalism/movement.json` – Movimiento, traducida al español
 
+### Sense Mastery (Closed Mentalism 3.6)
+
+- `spell_lists/en/mentalism/sense_mastery.json` – 22 hechizos de potenciar oído/vista/olfato/tacto, detectar/disipar ilusiones, Mentalist Ear/Eye y fusión sensorial (inglés)
+- `spell_lists/es/mentalism/sense_mastery.json` – Maestría de los Sentidos, traducida al español
+
+### Shifting (Closed Mentalism 3.7)
+
+- `spell_lists/en/mentalism/shifting.json` – 15 hechizos para alterar la propia forma: equilibrio, contorsión, cambio de rostro, respirar agua/gas, cambiar de raza o forma orgánica, formas sólida/líquida/niebla (inglés)
+- `spell_lists/es/mentalism/shifting.json` – Transformación, traducida al español
+
+### Solid Manipulation (Closed Mentalism 3.8)
+
+- `spell_lists/en/mentalism/solid_manipulation.json` – 21 hechizos de calentar/enfriar/fundir piedra-metal-sólidos, agrietar/desmoronar, romper madera/metal/cerraduras, puertas y moldeado (inglés)
+- `spell_lists/es/mentalism/solid_manipulation.json` – Manipulación de Sólidos, traducida al español
+
+### Speed (Closed Mentalism 3.9)
+
+- `spell_lists/en/mentalism/speed.json` – 17 hechizos de correr/nadar/esprintar sin cansarse y potenciar el ritmo de actividad propio (Speed, Haste) (inglés)
+- `spell_lists/es/mentalism/speed.json` – Velocidad, traducida al español
+
+### Telekinesis (Closed Mentalism 3.10)
+
+- `spell_lists/en/mentalism/telekinesis.json` – 23 hechizos de mover objetos a distancia (Telekinesis), inmovilizarlos (Staying) y lanzarlos como ataque (Hurling) (inglés)
+- `spell_lists/es/mentalism/telekinesis.json` – Telekinesis, traducida al español
+
 ### Concussion's Ways (Open Channeling 2.2)
 
 - `spell_lists/en/channeling/concussion_ways.json` – 20 hechizos de curación de golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración (inglés)
@@ -382,7 +407,8 @@ const FILES_BY_FOLDER = {
     "attack_avoidance", "anticipations", "brilliance", "cloaking",
     "damage_resistance", "delving", "detections", "illusions",
     "self_healing", "spell_resistance", "gas_manipulation", "liquid_manipulation",
-    "mind_mastery", "minds_door", "movement"
+    "mind_mastery", "minds_door", "movement", "sense_mastery", "shifting",
+    "solid_manipulation", "speed", "telekinesis"
   ]
 };
 

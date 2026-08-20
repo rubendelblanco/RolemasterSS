@@ -1,0 +1,377 @@
+{
+  "name": "Manipulación de Sólidos",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Mentalismo Cerrado 3.8 - Manipulación de Sólidos. Hechizos para calentar, enfriar y fundir piedra/metal/material sólido, extender grietas y desmoronar material, romper madera/metal/cerraduras, crear puertas a través de material sólido, moldear sólidos como si fueran arcilla, y transmutación de material sólido. Notas Especiales: Ver Sección 15.7 (p. 97) para notas sobre construcción y destrucción de materiales sólidos.",
+    "spells": [
+      {
+        "name": "01. Calentar Piedra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "24 hr",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Calienta 1 pie cúbico de piedra por nivel hasta 100°F, a un ritmo de 1 pie cúbico por ronda de concentración (sin concentración, el material mantiene su temperatura actual durante el resto de la duración)."
+        }
+      },
+      {
+        "name": "02. Calentar Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "6 pulg. cúb./nvl",
+          "duration": "24 hr",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Calentar Piedra, salvo que pueden calentarse 6 pulgadas cúbicas de metal por nivel cada ronda."
+        }
+      },
+      {
+        "name": "03. Calentar Sólido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "24 hr",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Calentar Piedra, salvo que puede afectar a cualquier material sólido, inanimado y no metálico."
+        }
+      },
+      {
+        "name": "04. Ardor de Piedra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Calentar Piedra, salvo que el límite de temperatura es 500°F. Además, el lanzador debe concentrarse durante 1 ronda para subir la temperatura 50°F (hasta el máximo). El lanzador solo necesita tocar el objetivo al lanzar el hechizo."
+        }
+      },
+      {
+        "name": "05. Ardor de Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "6 pulg. cúb./nvl",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ardor de Piedra, salvo que pueden calentarse 6 pulgadas cúbicas de metal por nivel."
+        }
+      },
+      {
+        "name": "06. Ardor de Sólido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ardor de Piedra, salvo que afecta a cualquier material sólido, inanimado y no metálico."
+        }
+      },
+      {
+        "name": "07. Enfriar Sólido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "24 horas",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Calentar Piedra, salvo que enfría cualquier material sólido e inanimado hasta 0°F."
+        }
+      },
+      {
+        "name": "09. Congelar Sólido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ardor de Piedra, salvo que la temperatura puede bajarse hasta -200°F a un ritmo de 100°F por ronda."
+        }
+      },
+      {
+        "name": "10. Llamada de Grietas",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10'x10'x10'",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Cualquier grieta o defecto previo en el material, dentro de una sección de hasta 10'x10'x10', se extenderá hasta su límite."
+        }
+      },
+      {
+        "name": "11. Fundir Sólido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 pie cúb./nvl",
+          "duration": "1 min/nvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Ardor de Sólido, salvo que el único límite de temperatura es el punto de fusión del sólido (es decir, hasta que el sólido se funde). Afecta a 6 pulgadas cúbicas de metal o 1 pie cúbico de cualquier otro material."
+        }
+      },
+      {
+        "name": "13. Desmoronar",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'x10'x10'",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Llamada de Grietas, salvo que el material con grietas se desmorona hasta convertirse en polvo."
+        }
+      },
+      {
+        "name": "14. Romper Arco",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1' diám. madera",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Rompe un trozo de madera de hasta 1' de diámetro."
+        }
+      },
+      {
+        "name": "15. Puerta de Piedra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "3'x6'x1'",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un vano de 3'x6'x1' a través de la piedra."
+        }
+      },
+      {
+        "name": "16. Puerta de Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "3'x6'x1'",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta de Piedra, salvo que el vano puede ser a través de metal."
+        }
+      },
+      {
+        "name": "17. Romper Hoja",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "3\" diám. metal",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Romper Arco, salvo que puede romperse una pieza de metal. Afecta a metales de hasta 3\" de diámetro."
+        }
+      },
+      {
+        "name": "18. Romper Cerradura",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 cerradura",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Hace que una cerradura se rompa. Puede romperse tanto cerrada como abierta (independientemente de su estado en el momento de lanzar el hechizo)."
+        }
+      },
+      {
+        "name": "19. Puerta Sólida",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Puerta de Piedra, salvo que el vano puede estar en cualquier material sólido e inanimado y puede medir 3'x6' con una profundidad de 1' por nivel (para piedra) o 3\" por nivel (para el resto de materiales)."
+        }
+      },
+      {
+        "name": "20. Moldear Piedra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 pie cúb.",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Moldeando con sus manos, el lanzador puede dar forma a 1 pie cúbico de piedra como si fuera masilla o arcilla. Al finalizar la duración del hechizo, la piedra se endurecerá a su consistencia normal."
+        }
+      },
+      {
+        "name": "25. Moldear Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 pie cúb.",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Moldear Piedra, salvo que el lanzador puede moldear metal."
+        }
+      },
+      {
+        "name": "30. Moldear Sólido",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 pie cúb.",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Moldear Piedra, salvo que el lanzador puede moldear cualquier material sólido e inanimado."
+        }
+      },
+      {
+        "name": "50. Transmutación de Sólidos",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 oz",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Puede transmutar 1 onza de material sólido en otro material no mágico (el lanzador debe disponer de una muestra del material). Este hechizo requiere 8 horas de concentración continua e ininterrumpida."
+        }
+      }
+    ]
+  }
+}

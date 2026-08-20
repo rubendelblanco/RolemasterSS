@@ -1,0 +1,377 @@
+{
+  "name": "Solid Manipulation",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "mentalism",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Mentalism 3.8 - Solid Manipulation. Spells for warming, heating, cooling, chilling and melting stone/metal/solid material, extending cracks and crumbling material, breaking wood/metal/locks, creating doorways through solid material, molding solids like clay, and transmuting solid material. Special Notes: See Section 15.7 (p. 97) for notes on construction and destruction of solid materials.",
+    "spells": [
+      {
+        "name": "01. Warm Stone",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "24 hr",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Warms 1 cubic foot of stone per level up to 100°F at a rate of 1 cubic foot per round of concentration (without concentration, the material will remain at its current temperature for the remainder of the duration)."
+        }
+      },
+      {
+        "name": "02. Warm Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "6 cu\"/lvl",
+          "duration": "24 hr",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Warm Stone, except 6 cubic inches of metal per level can be warmed each round."
+        }
+      },
+      {
+        "name": "03. Warm Solid",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "24 hr",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Warm Stone, except can affect any solid, inanimate, non-metal material."
+        }
+      },
+      {
+        "name": "04. Heat Stone",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Warm Stone except temperature limit is 500°F. In addition, caster must concentrate for 1 round to raise the temperature 50°F (up to the maximum). Caster need only touch the target when the spell is cast."
+        }
+      },
+      {
+        "name": "05. Heat Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "6 cu\"/lvl",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Heat Stone, except 6 cubic inches of metal per level can be heated."
+        }
+      },
+      {
+        "name": "06. Heat Solid",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 6,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Heat Stone, except affects any solid, inanimate, non-metal material."
+        }
+      },
+      {
+        "name": "07. Cool Solid",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "24 hours",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Warm Stone, except chills any solid, inanimate material down to 0°F."
+        }
+      },
+      {
+        "name": "09. Chill Solid",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 9,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Heat Stone, except temperature can be lowered to -200°F at a rate of 100°F per round."
+        }
+      },
+      {
+        "name": "10. Cracks Call",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "10'x10'x10'",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Any previous cracks or flaws in material up to a 10'x10'x10' section will extend to their limit."
+        }
+      },
+      {
+        "name": "11. Melt Solid",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "1 cu'/lvl",
+          "duration": "1 min/lvl",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Heat Solid, except the only limit to the temperature is the melting point of the solid (i.e., until the solid melts). Will affect 6 cubic inches of metal or 1 cubic foot of any other material."
+        }
+      },
+      {
+        "name": "13. Crumble",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'x10'x10'",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Cracks Call, except material with cracks will crumble to dust."
+        }
+      },
+      {
+        "name": "14. Bowbreak",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 14,
+          "area_of_effect": "1' dia wood",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Will break a piece of wood up to 1' in diameter."
+        }
+      },
+      {
+        "name": "15. Stone Door",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "3'x6'x1'",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Creates a 3'x6'x1' doorway through stone."
+        }
+      },
+      {
+        "name": "16. Metal Door",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 16,
+          "area_of_effect": "3'x6'x1'",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stone Door, except doorway can be through metal."
+        }
+      },
+      {
+        "name": "17. Bladebreak",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "3\" dia metal",
+          "duration": "—",
+          "range": "100'",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Bowbreak, except a piece of metal can be broken. Will affect metals up to 3\" in diameter."
+        }
+      },
+      {
+        "name": "18. Lockbreak",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "1 lock",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Causes a lock to break. The lock can be broken in a locked or unlocked state (regardless of its state at the time the spell is cast)."
+        }
+      },
+      {
+        "name": "19. Solid Door",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 19,
+          "area_of_effect": "varies",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Stone Door, except doorway can be in any inanimate, solid material and it can be 3'x6' with a depth of 1' per level (for stone) or 3\" per level (for all other materials)."
+        }
+      },
+      {
+        "name": "20. Mold Stone",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "1 cu'",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "By molding with his hands, caster may shape 1 cubic foot of stone as if it were putty or clay. At the end of the spell's duration, the stone will harden to normal consistency."
+        }
+      },
+      {
+        "name": "25. Mold Metal",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "1 cu'",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mold Stone, except caster may mold metal."
+        }
+      },
+      {
+        "name": "30. Mold Solid",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "1 cu'",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "As Mold Stone, except caster may mold any inanimate, solid material."
+        }
+      },
+      {
+        "name": "50. Solid Transmutation",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "1 oz",
+          "duration": "P",
+          "range": "touch",
+          "type": "F",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "May transmute 1 oz. of solid material into another non-magical material (the caster must have a sample of the material available). This spell takes 8 hours of continuous, uninterrupted concentration."
+        }
+      }
+    ]
+  }
+}
