@@ -432,7 +432,8 @@
             "confirm_give": "Send",
             "insufficient_funds": "You no longer have that much money to send.",
             "request_entity_missing": "The sender or recipient no longer exists; the transfer could not be completed.",
-            "chat_message": "<strong>{sender}</strong> has transferred money to <strong>{receiver}</strong>: {breakdown}"
+            "chat_title": "Money Transfer",
+            "chat_verb": "has transferred money to"
         },
         "populate_table": {
             "button": "Populate from Rollable Table",

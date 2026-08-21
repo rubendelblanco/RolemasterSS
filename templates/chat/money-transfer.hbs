@@ -1,0 +1,37 @@
+<div style="border: 1px solid #444; margin-bottom:10px; border-radius: 8px; padding: 10px; background: rgba(0,0,0,0.3); box-shadow: 0 0 6px rgba(0,0,0,0.5); font-family: 'Signika', sans-serif;">
+
+    <div style="text-align:center; font-weight:700; font-size:1.05em; color:#ffd35c; text-shadow:0 0 6px #000; margin-bottom:8px; border-bottom:1px solid #444; padding-bottom:6px;">
+        <i class="fas fa-coins"></i> {{localize "rmss.money_transfer.chat_title"}}
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+        <div style="text-align: center;">
+            {{#if senderImg}}
+            <img title="{{senderName}}" src="{{senderImg}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #666;">
+            {{else}}
+            <div style="width:50px; height:50px; margin:0 auto; display:flex; align-items:center; justify-content:center; border-radius:6px; border:1px solid #666; background:rgba(255,255,255,0.05);">
+                <i class="fas fa-crown" style="font-size:1.4em; color:#ffd35c;"></i>
+            </div>
+            {{/if}}
+            <div style="font-size: 1.05em; color: #fff;">{{senderName}}</div>
+        </div>
+        <div style="text-align: center; color: #ccc; font-size: 0.85em; max-width: 120px;">
+            {{localize "rmss.money_transfer.chat_verb"}}
+            <div style="color: #ffcc00; font-size: 1.3em; text-shadow: 0 0 6px #000;"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div style="text-align: center;">
+            <img title="{{receiverName}}" src="{{receiverImg}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #666;">
+            <div style="font-size: 1.05em; color: #fff;">{{receiverName}}</div>
+        </div>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">
+        {{#each denominations as |denom|}}
+        <div style="display:flex; align-items:center; gap:6px; background:rgba(255,255,255,0.06); border:1px solid #3a3a3a; border-radius:6px; padding:4px 8px;">
+            <img src="{{denom.icon}}" width="22" height="22" style="border-radius:3px;">
+            <strong style="color:#ffe066;">{{denom.qty}}</strong>
+            <span style="color:#ccc; font-size:0.9em;">{{denom.label}}</span>
+        </div>
+        {{/each}}
+    </div>
+</div>

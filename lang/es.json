@@ -432,7 +432,8 @@
       "confirm_give": "Enviar",
       "insufficient_funds": "Ya no tienes esa cantidad de dinero para enviar.",
       "request_entity_missing": "El remitente o el destinatario ya no existen; la transferencia no se pudo completar.",
-      "chat_message": "<strong>{sender}</strong> ha transferido dinero a <strong>{receiver}</strong>: {breakdown}"
+      "chat_title": "Transferencia de Dinero",
+      "chat_verb": "ha transferido dinero a"
     },
     "populate_table": {
       "button": "Poblar desde Tabla Aleatoria",

@@ -77,14 +77,6 @@ export default class CurrencyService {
     return normalized;
   }
 
-  /** "3 gp, 12 cp" style summary, skipping zero denominations. */
-  static formatBreakdown(amounts) {
-    return Object.entries(amounts)
-      .filter(([, qty]) => qty > 0)
-      .map(([denom, qty]) => `${qty} ${game.i18n.localize(`rmss.currency_type_abb.${denom}`)}`)
-      .join(", ");
-  }
-
   /**
    * Player-facing: give some of sourceActor's own money to any actor with a token on
    * the current scene (PC, NPC, or creature). Unlike LootService's request/approve flow,
@@ -146,13 +138,25 @@ export default class CurrencyService {
     if (Object.keys(sourceUpdate).length) await sourceActor.update(sourceUpdate);
     if (Object.keys(receiverUpdate).length) await receiverActor.update(receiverUpdate);
 
+    const denominationBreakdown = denominations
+      .map((denom) => ({
+        icon: `systems/rmss/assets/images/currency/${denom}.webp`,
+        qty: Number(amounts?.[denom]) || 0,
+        label: game.i18n.localize(`rmss.currency_type_abb.${denom}`)
+      }))
+      .filter((d) => d.qty > 0);
+
+    const content = await renderTemplate("systems/rmss/templates/chat/money-transfer.hbs", {
+      senderName: sourceActor.name,
+      senderImg: sourceActor.img,
+      receiverName: receiverActor.name,
+      receiverImg: receiverActor.img,
+      denominations: denominationBreakdown
+    });
+
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: sourceActor }),
-      content: game.i18n.format("rmss.money_transfer.chat_message", {
-        sender: sourceActor.name,
-        receiver: receiverActor.name,
-        breakdown: this.formatBreakdown(amounts)
-      })
+      content
     });
 
     return { success: true };
