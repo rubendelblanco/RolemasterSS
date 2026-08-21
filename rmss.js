@@ -515,7 +515,7 @@ Hooks.once("init", function () {
   });
 
   Handlebars.registerHelper("noPpMarker", function () {
-    return new Handlebars.SafeString('<i class="fa-solid fa-circle spell-no-pp-marker"></i>');
+    return new Handlebars.SafeString('<span class="spell-no-pp-marker">&bull;</span>');
   });
 
   Handlebars.registerHelper("percentage", function (a, b) {
