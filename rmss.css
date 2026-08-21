@@ -4105,6 +4105,23 @@ button.rmss-crit-reenable-local:hover {
   filter: brightness(1.25);
 }
 
+.money-give {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rmss-progress-fill);
+  border-radius: 3px;
+  color: var(--rmss-progress-fill);
+  cursor: pointer;
+}
+.money-give:hover {
+  color: var(--rmss-progress-fill);
+  border-color: var(--rmss-progress-fill);
+  filter: brightness(1.25);
+}
+
 /* ================================
    Request card (chat card) — shared by merchant purchases and loot pickups
    ================================ */

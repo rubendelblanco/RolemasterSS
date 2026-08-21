@@ -418,6 +418,22 @@
       "request_stock_changed": "Este item ya no está disponible; la solicitud no se pudo completar.",
       "request_entity_missing": "El origen, el receptor o el item ya no existen; la solicitud no se pudo completar."
     },
+    "money_transfer": {
+      "give_money_tooltip": "Dar dinero",
+      "dialog_title": "Dar Dinero",
+      "dialog_hint": "Elige cuánto de cada moneda quieres enviar y a quién.",
+      "recipient": "Destinatario",
+      "group_pcs": "Personajes Jugadores",
+      "group_npcs": "PNJs",
+      "group_creatures": "Criaturas",
+      "no_targets_available": "No hay otros tokens disponibles en esta escena.",
+      "no_receiver_selected": "No se ha seleccionado destinatario.",
+      "no_money_selected": "Selecciona al menos una moneda para enviar.",
+      "confirm_give": "Enviar",
+      "insufficient_funds": "Ya no tienes esa cantidad de dinero para enviar.",
+      "request_entity_missing": "El remitente o el destinatario ya no existen; la transferencia no se pudo completar.",
+      "chat_message": "<strong>{sender}</strong> ha transferido dinero a <strong>{receiver}</strong>: {breakdown}"
+    },
     "populate_table": {
       "button": "Poblar desde Tabla Aleatoria",
       "dialog_title": "Poblar desde Tabla Aleatoria",

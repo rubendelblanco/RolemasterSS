@@ -1,0 +1,54 @@
+<div class="rmss-request-dialog-body flexcol">
+  <p class="notes">
+    {{ hint }}
+  </p>
+
+  <div class="rmss-request-item-header">
+    <img class="rmss-request-item-icon" src="{{source.img}}" alt="{{source.name}}" width="48" height="48"/>
+    <div class="rmss-request-item-title">{{source.name}}</div>
+  </div>
+
+  <div class="rmss-request-form flexcol">
+    {{#each denominations as |denom|}}
+    <div class="rmss-request-row rmss-request-money-row">
+      <label for="amount.{{denom.key}}">{{denom.label}} ({{denom.available}})</label>
+      <input type="number" name="amount.{{denom.key}}" min="0" max="{{denom.available}}" value="0"/>
+    </div>
+    {{/each}}
+    <div class="rmss-request-row">
+      <label for="receiver">{{ localize "rmss.money_transfer.recipient" }}</label>
+      {{#if hasReceivers}}
+      <select name="receiver">
+        {{#if pcs.length}}
+        <optgroup label="{{ localize 'rmss.money_transfer.group_pcs' }}">
+          {{#each pcs as |a|}}
+          <option value="{{a.uuid}}">{{a.name}}</option>
+          {{/each}}
+        </optgroup>
+        {{/if}}
+        {{#if npcs.length}}
+        <optgroup label="{{ localize 'rmss.money_transfer.group_npcs' }}">
+          {{#each npcs as |a|}}
+          <option value="{{a.uuid}}">{{a.name}}</option>
+          {{/each}}
+        </optgroup>
+        {{/if}}
+        {{#if creatures.length}}
+        <optgroup label="{{ localize 'rmss.money_transfer.group_creatures' }}">
+          {{#each creatures as |a|}}
+          <option value="{{a.uuid}}">{{a.name}}</option>
+          {{/each}}
+        </optgroup>
+        {{/if}}
+      </select>
+      {{else}}
+      <p class="notes">{{ localize "rmss.money_transfer.no_targets_available" }}</p>
+      {{/if}}
+    </div>
+  </div>
+</div>
+<footer class="rmss-request-footer">
+  <button type="button" class="confirm-give" {{#unless hasReceivers}}disabled{{/unless}}>
+    <i class="fas fa-hand-holding-dollar"></i> {{ localize "rmss.money_transfer.confirm_give" }}
+  </button>
+</footer>

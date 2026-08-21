@@ -35,6 +35,7 @@ import {ContainerHandler} from "./module/actors/utils/container_handler.js";
 import { syncHitsAndPowerPointsFromSkills } from "./module/actors/utils/hits_pp_sync.js";
 import EffectsPopupService from "./module/core/rolls/effects_popup_service.js";
 import ExperiencePointsCalculator from "./module/sheets/experience/rmss_experience_manager.js";
+import CurrencyService from "./module/actors/services/currency_service.js";
 
 export let socket;
 
@@ -1152,5 +1153,8 @@ Hooks.once("init", function () {
         `${qty}x ${sourceItem.name} transferido de ${sourceActor.name} a ${targetActor.name}`
     );
   });
+
+  // Register GM-only money give handler
+  socket.register("doMoneyGive", (payload) => CurrencyService.executeGive(payload));
 
 });

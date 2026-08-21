@@ -1,4 +1,5 @@
 import ItemService from "../../actors/services/item_service.js";
+import GiveMoneyDialog from "../../actors/dialogs/give_money_dialog.js";
 import { castEnchantmentFromItem, getUsableEnchantmentsForItem } from "../items/cast_enchantment_from_item.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
@@ -540,6 +541,7 @@ export default class RMSSCharacterSheet extends ActorSheet {
     _registerItemListeners(html) {
         html.find(".spell-favorite, .skill-favorite").click(ev => this._onItemFavoriteClick(ev));
         html.find(".item-give").click(ev => this._onItemGiveClick(ev));
+        html.find(".money-give").click(ev => this._onMoneyGiveClick(ev));
         html.find(".item-cast-magic").on("click", ev => this._onItemCastMagicClick(ev));
         html.find(".split-stack").click(ev => this._onItemSplitClick(ev));
         html.find(".wearable").click(ev => this._onItemWearableClick(ev));
@@ -574,6 +576,11 @@ export default class RMSSCharacterSheet extends ActorSheet {
         const itemId = ev.currentTarget.dataset.itemId;
         const item = this.actor.items.get(itemId);
         if (item) await ItemService.giveItem(this.actor, item);
+    }
+
+    _onMoneyGiveClick(ev) {
+        ev.preventDefault();
+        new GiveMoneyDialog(this.actor).render(true);
     }
 
     async _onItemCastMagicClick(ev) {

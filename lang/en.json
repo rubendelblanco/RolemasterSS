@@ -418,6 +418,22 @@
             "request_stock_changed": "This item is no longer available; the request could not be completed.",
             "request_entity_missing": "The source, receiver, or item no longer exists; the request could not be completed."
         },
+        "money_transfer": {
+            "give_money_tooltip": "Give money",
+            "dialog_title": "Give Money",
+            "dialog_hint": "Choose how much of each coin to send, and pick a recipient.",
+            "recipient": "Recipient",
+            "group_pcs": "Player Characters",
+            "group_npcs": "NPCs",
+            "group_creatures": "Creatures",
+            "no_targets_available": "No other tokens available on this scene.",
+            "no_receiver_selected": "No recipient selected.",
+            "no_money_selected": "Select at least one coin to send.",
+            "confirm_give": "Send",
+            "insufficient_funds": "You no longer have that much money to send.",
+            "request_entity_missing": "The sender or recipient no longer exists; the transfer could not be completed.",
+            "chat_message": "<strong>{sender}</strong> has transferred money to <strong>{receiver}</strong>: {breakdown}"
+        },
         "populate_table": {
             "button": "Populate from Rollable Table",
             "dialog_title": "Populate from Rollable Table",
