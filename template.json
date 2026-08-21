@@ -279,7 +279,7 @@
       "description": ""
     },
     "npc":{
-      "templates": ["armor_info", "fixed_info"],
+      "templates": ["armor_info", "fixed_info", "money"],
       "attributes": {
         "initiative": {
           "value": 0,
@@ -305,7 +305,7 @@
       "creature_tags": []
     },
     "creature":{
-      "templates": ["armor_info", "fixed_info"],
+      "templates": ["armor_info", "fixed_info", "money"],
       "attributes": {
         "initiative": {
           "value": 0,
