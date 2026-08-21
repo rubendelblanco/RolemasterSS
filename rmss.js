@@ -36,6 +36,7 @@ import { syncHitsAndPowerPointsFromSkills } from "./module/actors/utils/hits_pp_
 import EffectsPopupService from "./module/core/rolls/effects_popup_service.js";
 import ExperiencePointsCalculator from "./module/sheets/experience/rmss_experience_manager.js";
 import CurrencyService from "./module/actors/services/currency_service.js";
+import { isIdentityHidden } from "./module/actors/utils/item_identity_util.js";
 
 export let socket;
 
@@ -544,6 +545,22 @@ Hooks.once("init", function () {
     const args = Array.from(arguments).slice(0, -1);
     // Join all parts together and return the result
     return args.join('');
+  });
+
+  // Same "magical glow" border shown on actor equipment lists, but for the
+  // Items sidebar directory — Foundry's own UI, so it's added via hook rather
+  // than a system template. Skipped (no glow) for unidentified items unless
+  // the viewer is the GM, matching the equipment-list behavior.
+  Hooks.on("renderItemDirectory", (app, html) => {
+    const root = html instanceof HTMLElement ? html : html[0];
+    if (!root) return;
+    for (const entry of root.querySelectorAll("[data-entry-id]")) {
+      const item = game.items.get(entry.dataset.entryId);
+      const img = item ? entry.querySelector("img") : null;
+      if (!img) continue;
+      const showGlow = !!item.system?.magical && !isIdentityHidden(item);
+      img.classList.toggle("rmss-directory-magical", showGlow);
+    }
   });
 
   Hooks.on("renderTokenHUD", (app, html, data) => {

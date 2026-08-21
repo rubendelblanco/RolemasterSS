@@ -2067,7 +2067,8 @@ button.rmss-crit-reenable-local:hover {
 
 /* Ítems mágicos (checkbox Modifiers): borde en iconos de listas de PJ / PNJ / criatura */
 .actor-sheet .list-item-icon-wrap--magical .list-item-icon,
-.npc-sheet .list-item-icon-wrap--magical .list-item-icon {
+.npc-sheet .list-item-icon-wrap--magical .list-item-icon,
+.rmss-directory-magical {
     box-sizing: border-box;
     border: 2px solid rgb(0, 202, 252);
     border-radius: 2px;
