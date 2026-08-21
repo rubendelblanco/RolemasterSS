@@ -21,7 +21,7 @@
     <tbody>
     {{#each weapons as |weapon id|}}
     <tr draggable="true" data-type="Item" data-item-id="{{weapon._id}}" data-uuid="Actor.{{weapon.actorId}}.Item.{{weapon._id}}">
-        <td><span class="list-item-icon-wrap{{#if weapon.rmssShowMagicalGlow}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{weapon.img}}" alt="{{weapon.rmssDisplayName}}" width="32" height="32"/></span></td>
+        <td><span class="list-item-icon-wrap {{weapon.rmssGlowClass}}"><img class="list-item-icon" src="{{weapon.img}}" alt="{{weapon.rmssDisplayName}}" width="32" height="32"/></span></td>
         <td class="clickable offensive-skill rmss-weapon-name-cell" data-item-id="{{weapon._id}}">
           <div class="rmss-weapon-name-line">{{weapon.rmssDisplayName}} <i class="fa-solid fa-sword"></i>{{#if weapon.system.description}}
           <i class="fas fa-info-circle spell-info-icon"

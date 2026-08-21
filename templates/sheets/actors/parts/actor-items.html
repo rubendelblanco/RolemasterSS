@@ -28,7 +28,7 @@
             <i class="fas fa-chevron-{{#if group.isCollapsed}}right{{else}}down{{/if}}"></i>
           </button>
           {{/if}}
-          <span class="list-item-icon-wrap{{#if group.container.rmssShowMagicalGlow}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{group.container.img}}" alt="{{group.container.rmssDisplayName}}" width="32" height="32"/></span>
+          <span class="list-item-icon-wrap {{group.container.rmssGlowClass}}"><img class="list-item-icon" src="{{group.container.img}}" alt="{{group.container.rmssDisplayName}}" width="32" height="32"/></span>
         </td>
         <td><strong>{{group.container.rmssDisplayName}}{{#if group.capacityMax}} <span class="container-capacity-badge">({{group.capacityUsed}}/{{group.capacityMax}}{{#if (eq group.capacityType "weight")}} kg{{else}}{{/if}})</span>{{/if}}{{#if group.container.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
@@ -81,7 +81,7 @@
     {{#each group.contents as |item|}}
     <tr class="contained-item {{#if group.isCollapsed}}is-collapsed{{/if}}" data-item-id="{{item._id}}" draggable="true"
         data-type="Item" data-uuid="Actor.{{item.actorId}}.Item.{{item._id}}">
-        <td class="indent"><span class="list-item-icon-wrap{{#if item.rmssShowMagicalGlow}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{item.img}}" alt="{{item.rmssDisplayName}}" width="32" height="32"/></span></td>
+        <td class="indent"><span class="list-item-icon-wrap {{item.rmssGlowClass}}"><img class="list-item-icon" src="{{item.img}}" alt="{{item.rmssDisplayName}}" width="32" height="32"/></span></td>
         <td class="indent">{{item.rmssDisplayName}}{{#if item.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{item.system.description}}"></i>
@@ -139,7 +139,7 @@
     {{!-- ==================== LOOSE ITEMS ==================== --}}
     {{#each looseGear as |item|}}
     <tr draggable="true" data-type="Item" data-item-id="{{item._id}}" data-uuid="Actor.{{item.actorId}}.Item.{{item._id}}">
-        <td><span class="list-item-icon-wrap{{#if item.rmssShowMagicalGlow}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{item.img}}" alt="{{item.rmssDisplayName}}" width="32" height="32"/></span></td>
+        <td><span class="list-item-icon-wrap {{item.rmssGlowClass}}"><img class="list-item-icon" src="{{item.img}}" alt="{{item.rmssDisplayName}}" width="32" height="32"/></span></td>
         <td>{{item.rmssDisplayName}}{{#if item.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{item.system.description}}"></i>

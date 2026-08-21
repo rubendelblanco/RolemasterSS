@@ -2065,12 +2065,32 @@ button.rmss-crit-reenable-local:hover {
     cursor: pointer;
 }
 
-/* Ítems mágicos (checkbox Modifiers): borde en iconos de listas de PJ / PNJ / criatura */
+/* Ítems mágicos/sagrados/exterminadores (checkboxes Modifiers): borde en iconos
+   de listas de PJ / PNJ / criatura, y en el directorio de Items (rmss.js hook).
+   list-item-icon-wrap--magical is the older class name, still used as-is by
+   merchant/loot/transport/favorites lists that don't go through
+   attachIdentityDisplayFlags — kept as an alias so those keep working. */
+.actor-sheet .rmss-glow--magical .list-item-icon,
+.npc-sheet .rmss-glow--magical .list-item-icon,
 .actor-sheet .list-item-icon-wrap--magical .list-item-icon,
 .npc-sheet .list-item-icon-wrap--magical .list-item-icon,
-.rmss-directory-magical {
+.rmss-directory-glow--magical {
     box-sizing: border-box;
     border: 2px solid rgb(0, 202, 252);
+    border-radius: 2px;
+}
+.actor-sheet .rmss-glow--consecrated .list-item-icon,
+.npc-sheet .rmss-glow--consecrated .list-item-icon,
+.rmss-directory-glow--consecrated {
+    box-sizing: border-box;
+    border: 2px solid #00ffd0;
+    border-radius: 2px;
+}
+.actor-sheet .rmss-glow--slaying .list-item-icon,
+.npc-sheet .rmss-glow--slaying .list-item-icon,
+.rmss-directory-glow--slaying {
+    box-sizing: border-box;
+    border: 2px solid #ff1e00;
     border-radius: 2px;
 }
 

@@ -36,7 +36,7 @@ import { syncHitsAndPowerPointsFromSkills } from "./module/actors/utils/hits_pp_
 import EffectsPopupService from "./module/core/rolls/effects_popup_service.js";
 import ExperiencePointsCalculator from "./module/sheets/experience/rmss_experience_manager.js";
 import CurrencyService from "./module/actors/services/currency_service.js";
-import { isIdentityHidden } from "./module/actors/utils/item_identity_util.js";
+import { getItemGlowClass } from "./module/actors/utils/item_identity_util.js";
 
 export let socket;
 
@@ -547,10 +547,10 @@ Hooks.once("init", function () {
     return args.join('');
   });
 
-  // Same "magical glow" border shown on actor equipment lists, but for the
-  // Items sidebar directory — Foundry's own UI, so it's added via hook rather
-  // than a system template. Skipped (no glow) for unidentified items unless
-  // the viewer is the GM, matching the equipment-list behavior.
+  // Same magical/consecrated icon glow shown on actor equipment lists, but for
+  // the Items sidebar directory — Foundry's own UI, so it's added via hook
+  // rather than a system template. No glow for unidentified items unless the
+  // viewer is the GM, matching the equipment-list behavior.
   Hooks.on("renderItemDirectory", (app, html) => {
     const root = html instanceof HTMLElement ? html : html[0];
     if (!root) return;
@@ -558,8 +558,9 @@ Hooks.once("init", function () {
       const item = game.items.get(entry.dataset.entryId);
       const img = item ? entry.querySelector("img") : null;
       if (!img) continue;
-      const showGlow = !!item.system?.magical && !isIdentityHidden(item);
-      img.classList.toggle("rmss-directory-magical", showGlow);
+      img.classList.remove("rmss-directory-glow--magical", "rmss-directory-glow--consecrated");
+      const glow = getItemGlowClass(item).replace("rmss-glow--", "rmss-directory-glow--");
+      if (glow) img.classList.add(glow);
     }
   });
 
