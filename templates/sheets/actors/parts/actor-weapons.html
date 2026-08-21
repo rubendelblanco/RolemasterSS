@@ -21,9 +21,9 @@
     <tbody>
     {{#each weapons as |weapon id|}}
     <tr draggable="true" data-type="Item" data-item-id="{{weapon._id}}" data-uuid="Actor.{{weapon.actorId}}.Item.{{weapon._id}}">
-        <td><span class="list-item-icon-wrap{{#if weapon.system.magical}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{weapon.img}}" alt="{{weapon.name}}" width="32" height="32"/></span></td>
+        <td><span class="list-item-icon-wrap{{#if weapon.rmssShowMagicalGlow}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{weapon.img}}" alt="{{weapon.rmssDisplayName}}" width="32" height="32"/></span></td>
         <td class="clickable offensive-skill rmss-weapon-name-cell" data-item-id="{{weapon._id}}">
-          <div class="rmss-weapon-name-line">{{weapon.name}} <i class="fa-solid fa-sword"></i>{{#if weapon.system.description}}
+          <div class="rmss-weapon-name-line">{{weapon.rmssDisplayName}} <i class="fa-solid fa-sword"></i>{{#if weapon.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{weapon.system.description}}"></i>
           {{/if}}</div>
@@ -69,10 +69,10 @@
         <td>{{weapon.system.strength}}</td>
         <td>{{weapon.system.quantity}}</td>
         <td>{{formatNumber weapon.system.weight}}</td>
-        <td>{{#if (gt weapon.system.unitCost 0)}}
-            {{weapon.system.unitCost}} <span>{{localize (concat "rmss.currency_type_abb." weapon.system.currency_type)}}</span>
+        <td>{{#if (gt weapon.rmssDisplayUnitCost 0)}}
+            {{weapon.rmssDisplayUnitCost}} <span>{{localize (concat "rmss.currency_type_abb." weapon.system.currency_type)}}</span>
             {{else}}
-            {{weapon.system.unitCost}}
+            {{weapon.rmssDisplayUnitCost}}
             {{/if}}
         </td>
         <td class="item-controls">

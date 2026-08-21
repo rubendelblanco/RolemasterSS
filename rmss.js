@@ -82,6 +82,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rmss/templates/sheets/items/parts/item-tags.hbs",
     "systems/rmss/templates/sheets/items/parts/container-allowed-tags.hbs",
     "systems/rmss/templates/sheets/items/parts/passive-modifiers.hbs",
+    "systems/rmss/templates/sheets/items/parts/unidentified-item-body.html",
   ];
   return loadTemplates(templatePaths);
 }

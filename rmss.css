@@ -4000,6 +4000,27 @@ button.rmss-crit-reenable-local:hover {
   font-size: 0.9em;
   color: var(--color-text-light-6, #999);
 }
+
+/* ================================
+   Unidentified item: reduced sheet body shown to non-GM viewers when
+   system.identified is false — image/name masked in the header already.
+   ================================ */
+.rmss-unidentified-name {
+  font-style: italic;
+  opacity: 0.85;
+}
+.rmss-unidentified-body {
+  padding: 0.5rem 0.75rem;
+}
+.rmss-unidentified-hint {
+  font-style: italic;
+  font-size: 0.9em;
+  color: var(--color-text-light-6, #999);
+  margin-bottom: 0.75rem;
+}
+.rmss-unidentified-description {
+  margin-top: 0.25rem;
+}
 .rmss-request-dialog .rmss-request-item-header {
   display: flex;
   align-items: center;

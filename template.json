@@ -353,7 +353,7 @@
         "description_secret": "",
         "value_identified": 0,
         "value_unidentified": 0,
-        "identified": false
+        "identified": true
       }
     },
     "item": {

@@ -1,0 +1,11 @@
+<div class="rmss-unidentified-body">
+    <p class="notes rmss-unidentified-hint">{{localize "rmss.item.unidentified_hint"}}</p>
+    {{#if equipFieldName}}
+    <div class="form-group">
+        <label>{{localize equipLabelKey}}</label>
+        <input type="checkbox" name="{{equipFieldName}}" {{checked equipChecked}} {{#unless editable}}disabled{{/unless}}/>
+    </div>
+    {{/if}}
+    <label>{{localize "rmss.item.description"}}</label>
+    <div class="rmss-unidentified-description">{{{enrichedDescription}}}</div>
+</div>

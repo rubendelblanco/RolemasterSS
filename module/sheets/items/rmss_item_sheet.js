@@ -20,6 +20,7 @@ import {
   mergePassiveModifiersFormData
 } from "../../actors/services/passive_item_modifiers_service.js";
 import { bindPassiveModifiersEditor } from "./passive_modifiers_ui.js";
+import { isIdentityHidden, getUnidentifiedDisplayName } from "../../actors/utils/item_identity_util.js";
 
 export default class RMSSItemSheet extends ItemSheet {
 
@@ -34,10 +35,17 @@ export default class RMSSItemSheet extends ItemSheet {
     });
   }
 
+  /** @override */
+  get title() {
+    if (isIdentityHidden(this.item)) return getUnidentifiedDisplayName(this.item);
+    return super.title;
+  }
+
   async getData() {
     const base = await super.getData();
     const item = base.item;
     const system = item.system;
+    const identityHidden = isIdentityHidden(item);
 
     const enrichedDescription = await TextEditor.enrichHTML(item.system.description, { async: true });
     const secretDescription = await TextEditor.enrichHTML(item.system.description_secret, { async: true });
@@ -76,6 +84,11 @@ export default class RMSSItemSheet extends ItemSheet {
       editable: this.isEditable,
       item,
       system,
+      identityHidden,
+      displayName: identityHidden ? getUnidentifiedDisplayName(item) : item.name,
+      equipFieldName: "system.worn",
+      equipLabelKey: "rmss.item.worn",
+      equipChecked: !!system.worn,
       itemTags: getItemTagsArray(system),
       itemTagListId: getItemTagListId(item),
       containerAllowedTags: getContainerAllowedTagsArray(system),
@@ -504,7 +517,7 @@ export default class RMSSItemSheet extends ItemSheet {
 
   _getHeaderButtons() {
     const buttons = super._getHeaderButtons();
-    if (this.isEditable) {
+    if (this.isEditable && !isIdentityHidden(this.item)) {
       buttons.unshift({
         label: "Macro",
         class: "item-macro-button",

@@ -1,6 +1,7 @@
 import { socket } from "../../../rmss.js";
 import { attachItemMagicActionFlags } from "../../sheets/items/cast_enchantment_from_item.js";
 import { ContainerHandler } from "../utils/container_handler.js";
+import { attachIdentityDisplayFlags } from "../utils/item_identity_util.js";
 
 /**
  * Service to handle skill-related operations on items.
@@ -269,6 +270,11 @@ export default class ItemService {
                 case "creature_attack": creature_attacks.push(item); break;
                 case "transport":       transports.push(item); break;
             }
+        }
+
+        // Mask name/magical-glow for unidentified items (identified === false), for anyone but the GM
+        for (const i of [...gear, ...weapons, ...armor, ...herbs]) {
+            attachIdentityDisplayFlags(i);
         }
 
         // Spell list name/realm for casting (Record tab favorites, etc.)

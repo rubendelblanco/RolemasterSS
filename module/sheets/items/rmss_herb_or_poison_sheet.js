@@ -2,8 +2,15 @@
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import ItemService from "../../actors/services/item_service.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
+import { isIdentityHidden, getUnidentifiedDisplayName } from "../../actors/utils/item_identity_util.js";
 
 export default class RMSSHerbAndPoisonSheet extends ItemSheet {
+
+  /** @override */
+  get title() {
+    if (isIdentityHidden(this.item)) return getUnidentifiedDisplayName(this.item);
+    return super.title;
+  }
 
   // Set the height and width
   static get defaultOptions() {
@@ -33,10 +40,16 @@ export default class RMSSHerbAndPoisonSheet extends ItemSheet {
     const system = baseData.item.system;
     let enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
     let secretDescription = await TextEditor.enrichHTML(this.item.system.description_secret, {async: true});
+    const identityHidden = isIdentityHidden(baseData.item);
     let sheetData = {
       owner: this.item.isOwner,
       editable: this.isEditable,
       item: baseData.item,
+      identityHidden,
+      displayName: identityHidden ? getUnidentifiedDisplayName(baseData.item) : baseData.item.name,
+      equipFieldName: null,
+      equipLabelKey: null,
+      equipChecked: false,
       system,
       itemTags: getItemTagsArray(system),
       itemTagListId: getItemTagListId(this.item),
@@ -52,7 +65,7 @@ export default class RMSSHerbAndPoisonSheet extends ItemSheet {
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
 
-    if (this.isEditable) {
+    if (this.isEditable && !isIdentityHidden(this.item)) {
       buttons.unshift({
         label: "Macro",
         class: "item-macro-button",

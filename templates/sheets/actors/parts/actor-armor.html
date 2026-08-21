@@ -17,8 +17,8 @@
     <tbody>
   {{#each armor as |equipable id|}}
   <tr draggable="true" data-type="Item" data-item-id="{{equipable._id}}" data-uuid="Actor.{{equipable.actorId}}.Item.{{equipable._id}}">
-        <td><span class="list-item-icon-wrap{{#if equipable.system.magical}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{equipable.img}}" alt="{{equipable.name}}" width="32" height="32"/></span></td>
-        <td>{{equipable.name}}{{#if equipable.system.description}}
+        <td><span class="list-item-icon-wrap{{#if equipable.rmssShowMagicalGlow}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{equipable.img}}" alt="{{equipable.rmssDisplayName}}" width="32" height="32"/></span></td>
+        <td>{{equipable.rmssDisplayName}}{{#if equipable.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{equipable.system.description}}"></i>
           {{/if}}
@@ -48,10 +48,10 @@
         <td>{{equipable.system.at}}</td>
         <td>{{equipable.system.quantity}}</td>
         <td>{{formatNumber equipable.system.weight}}</td>
-        <td>{{#if (gt equipable.system.unitCost 0)}}
-          {{equipable.system.unitCost}} <span>{{localize (concat "rmss.currency_type_abb." equipable.system.currency_type)}}</span>
+        <td>{{#if (gt equipable.rmssDisplayUnitCost 0)}}
+          {{equipable.rmssDisplayUnitCost}} <span>{{localize (concat "rmss.currency_type_abb." equipable.system.currency_type)}}</span>
           {{else}}
-          {{equipable.system.unitCost}}
+          {{equipable.rmssDisplayUnitCost}}
           {{/if}}</td>
         <td class="item-controls">
           {{#if equipable.rmssShowItemMagicAction}}

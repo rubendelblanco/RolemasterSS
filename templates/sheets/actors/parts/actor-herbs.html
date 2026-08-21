@@ -15,8 +15,8 @@
     <tbody>
     {{#each herbs as |herb id|}}
     <tr draggable="true" data-type="Item" data-item-id="{{herb._id}}" data-uuid="Actor.{{herb.actorId}}.Item.{{herb._id}}">
-      <td><span class="list-item-icon-wrap"><img class="list-item-icon" src="{{herb.img}}" alt="{{herb.name}}" width="32" height="32"/></span></td>
-      <td>{{herb.name}}{{#if herb.system.description}}
+      <td><span class="list-item-icon-wrap"><img class="list-item-icon" src="{{herb.img}}" alt="{{herb.rmssDisplayName}}" width="32" height="32"/></span></td>
+      <td>{{herb.rmssDisplayName}}{{#if herb.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{herb.system.description}}"></i>
           {{/if}}</td>
@@ -24,7 +24,7 @@
       <td>{{herb.system.codes}}</td>
       <td>{{herb.system.af}}</td>
       <td>{{formatNumber herb.system.weight}}</td>
-      <td>{{herb.system.cost}} <span>{{localize (concat "rmss.currency_type_abb." herb.system.currency_type)}}</span></td>
+      <td>{{herb.rmssDisplayCost}} <span>{{localize (concat "rmss.currency_type_abb." herb.system.currency_type)}}</span></td>
       <td>
           {{#if (gt system.quantity 1)}}
           <a class="item-control split-stack" data-item-id="{{herb._id}}" title="Split pile">

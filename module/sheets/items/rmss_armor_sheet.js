@@ -18,8 +18,15 @@ import {
   mergePassiveModifiersFormData
 } from "../../actors/services/passive_item_modifiers_service.js";
 import { bindPassiveModifiersEditor } from "./passive_modifiers_ui.js";
+import { isIdentityHidden, getUnidentifiedDisplayName } from "../../actors/utils/item_identity_util.js";
 
 export default class RMSSArmorSheet extends ItemSheet {
+
+  /** @override */
+  get title() {
+    if (isIdentityHidden(this.item)) return getUnidentifiedDisplayName(this.item);
+    return super.title;
+  }
 
   // Set the height and width
   static get defaultOptions() {
@@ -41,6 +48,7 @@ export default class RMSSArmorSheet extends ItemSheet {
   async getData() {
     const baseData = await super.getData();
     const system = baseData.item.system;
+    const identityHidden = isIdentityHidden(baseData.item);
 
     const { material, bonus, magical, bonusEditable, magicalEditable, materialsOptions } = this._resolveArmorMaterial(system);
     const enchantmentList = buildEnchantmentList(system.magic?.enchantments);
@@ -53,6 +61,11 @@ export default class RMSSArmorSheet extends ItemSheet {
       owner: this.item.isOwner,
       editable: this.isEditable,
       item: baseData.item,
+      identityHidden,
+      displayName: identityHidden ? getUnidentifiedDisplayName(baseData.item) : baseData.item.name,
+      equipFieldName: "system.equipped",
+      equipLabelKey: "rmss.item.equipped",
+      equipChecked: !!system.equipped,
       itemTags: getItemTagsArray(system),
       itemTagListId: getItemTagListId(this.item),
       system: { ...system, material, bonus, magical },
@@ -408,7 +421,7 @@ export default class RMSSArmorSheet extends ItemSheet {
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
 
-    if (this.isEditable) {
+    if (this.isEditable && !isIdentityHidden(this.item)) {
       buttons.unshift({
         label: "Macro",
         class: "item-macro-button",

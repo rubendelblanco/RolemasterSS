@@ -20,8 +20,15 @@ import {
   mergePassiveModifiersFormData
 } from "../../actors/services/passive_item_modifiers_service.js";
 import { bindPassiveModifiersEditor } from "./passive_modifiers_ui.js";
+import { isIdentityHidden, getUnidentifiedDisplayName } from "../../actors/utils/item_identity_util.js";
 
 export default class RMSSWeaponSheet extends ItemSheet {
+
+  /** @override */
+  get title() {
+    if (isIdentityHidden(this.item)) return getUnidentifiedDisplayName(this.item);
+    return super.title;
+  }
 
   // Set the height and width
   static get defaultOptions() {
@@ -43,6 +50,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
   async getData() {
     const baseData = await super.getData();
     const system = baseData.item.system;
+    const identityHidden = isIdentityHidden(baseData.item);
 
     const armsTables = (await game.rmss?.attackTableIndex || []).sort((a, b) =>
       (game.i18n.localize(`rmss.attack_table.${a}`) || a).localeCompare(game.i18n.localize(`rmss.attack_table.${b}`) || b, game.i18n.lang)
@@ -74,6 +82,11 @@ export default class RMSSWeaponSheet extends ItemSheet {
       owner: this.item.isOwner,
       editable: this.isEditable,
       item: baseData.item,
+      identityHidden,
+      displayName: identityHidden ? getUnidentifiedDisplayName(baseData.item) : baseData.item.name,
+      equipFieldName: system.isNaturalWeapon ? null : "system.equipped",
+      equipLabelKey: "rmss.weapon.equipped",
+      equipChecked: !!system.equipped,
       itemTags: getItemTagsArray(system),
       itemTagListId: getItemTagListId(this.item),
       weaponSlaying: getWeaponSlayingArray(system),
@@ -431,7 +444,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
 
-    if (this.isEditable) {
+    if (this.isEditable && !isIdentityHidden(this.item)) {
       buttons.unshift({
         label: "Macro",
         class: "item-macro-button",

@@ -1,9 +1,12 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+        <img src="{{item.img}}" data-edit="img" title="{{displayName}}" height="64" width="64"/>
+        <h1>{{#if identityHidden}}<span class="rmss-unidentified-name">{{displayName}}</span>{{else}}<input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/>{{/if}}</h1>
     </header>
 
+    {{#if identityHidden}}
+    {{> "systems/rmss/templates/sheets/items/parts/unidentified-item-body.html" }}
+    {{else}}
     <!-- Tabs -->
     <nav class="sheet-tabs tabs rmss-item-tabs" data-group="primary">
         <a class="item active" data-tab="details">{{localize "rmss.item.tab_details"}}</a>
@@ -103,6 +106,16 @@
                 {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
                 {{#if user.isGM}}
                 <h2>{{localize "rmss.item.secret_info"}}</h2>
+                <div class="form-group">
+                    <label>{{localize "rmss.item.identified"}}</label>
+                    <input type="checkbox" name="system.identified" {{checked system.identified}}/>
+                </div>
+                {{#unless system.identified}}
+                <div class="form-group">
+                    <label>{{localize "rmss.item.value_unidentified"}}</label>
+                    <input type="number" name="system.value_unidentified" value="{{system.value_unidentified}}" data-dtype="Number" min="0" step="0.01"/>
+                </div>
+                {{/unless}}
                 <div class="description-editor-wrapper"></div>
                 {{editor secretDescription
                 target="system.description_secret"
@@ -301,4 +314,5 @@
         {{/if}}
 
     </section>
+    {{/if}}
 </form>

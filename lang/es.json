@@ -629,7 +629,14 @@
       "container": "Contenedor",
       "details": "Detalles",
       "is_stackable": "Es apilable",
-      "secret_info": "Información secreta"
+      "secret_info": "Información secreta",
+      "unidentified_item": "Objeto Desconocido",
+      "unidentified_weapon": "Arma Desconocida",
+      "unidentified_armor": "Armadura Desconocida",
+      "unidentified_herb": "Hierba/Veneno Desconocido",
+      "unidentified_hint": "Este objeto todavía no ha sido identificado. Se desconoce su verdadera naturaleza y propiedades.",
+      "identified": "Identificado",
+      "value_unidentified": "Valor aparente (sin identificar)"
     },
     "creature": {
       "bonus_experience": "PE Bonus",

@@ -629,7 +629,14 @@
             "container": "Container",
             "details": "Details",
             "is_stackable": "Is stackable",
-            "secret_info": "Secret Info"	
+            "secret_info": "Secret Info",
+            "unidentified_item": "Unknown Item",
+            "unidentified_weapon": "Unknown Weapon",
+            "unidentified_armor": "Unknown Armor",
+            "unidentified_herb": "Unknown Herb/Poison",
+            "unidentified_hint": "This item hasn't been identified yet. Its true nature and properties are unknown.",
+            "identified": "Identified",
+            "value_unidentified": "Apparent value (unidentified)"
         },
         "creature": {
             "bonus_experience": "XP Bonus",
