@@ -518,7 +518,6 @@
             "pp_realm_channeling_mentalism": "Channeling/Mentalism",
             "pp_realm_profession": "Profession",
             "modifiers_breakage": "Breakage",
-            "modifiers_weight_reduction": "Weight %",
             "modifiers_total": "Total",
             "modifiers_bonus": "Bonus",
             "modifiers_bonus_skill": "Bonus skill",
@@ -1359,14 +1358,6 @@
             "sweeps": "Sweeps",
             "tiny": "Tiny",
             "unbalance": "Unbalance"
-        },
-        "weight_reduction": {
-            "p95_100": "95%-100% (1.5×)",
-            "p80_94": "80%-94% (4×)",
-            "p60_79": "60%-79% (8×)",
-            "p40_59": "40%-59% (20×)",
-            "p20_39": "20%-39% (100×)",
-            "p0_19": "0%-19% (500×)"
         }
     }
 }

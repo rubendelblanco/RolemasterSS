@@ -143,13 +143,6 @@
                     <td class="rmss-text-center"><input type="checkbox" name="system.of_changing" {{checked system.of_changing}}/></td>
                 </tr>
                 <tr>
-                    <th>{{localize "rmss.item.modifiers_weight_reduction"}}</th>
-                    <td class="rmss-weight-cell" colspan="3">
-                        <input type="number" name="system.weight_percent" value="{{or system.weight_percent 100}}" min="0" max="100" step="1" data-dtype="Number" title="0-19: 500× | 20-39: 100× | 40-59: 20× | 60-79: 8× | 80-94: 4× | 95-100: 1×"/>
-                        <span class="rmss-weight-multiplier">{{weightCostMultiplier}}×</span>
-                    </td>
-                </tr>
-                <tr>
                     <th colspan="2">{{localize "rmss.item.modifiers_power_modifier"}}</th>
                     <td colspan="2"><div class="rmss-power-modifier-row">
                         <select name="system._powerModifierMode" class="rmss-power-modifier-select">

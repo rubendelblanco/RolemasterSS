@@ -3317,17 +3317,6 @@ button.rmss-crit-reenable-local:hover {
   text-align: center;
 }
 
-.rmss-modifiers-table .rmss-weight-cell {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.rmss-modifiers-table .rmss-weight-cell input[type="number"] {
-  width: 4rem;
-  text-align: center;
-}
-
 .rmss-modifiers-table select {
   min-width: 10rem;
   max-width: 100%;

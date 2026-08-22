@@ -103,7 +103,6 @@ export default class RMSSItemSheet extends ItemSheet {
       containerStats,
       bonusSkillsList,
       enchantmentList,
-      weightCostMultiplier: item._getWeightReductionModifier?.() ?? 1,
       powerModifierMode,
       ppMultiplierProfessionName,
       spellAdderProfessionName,

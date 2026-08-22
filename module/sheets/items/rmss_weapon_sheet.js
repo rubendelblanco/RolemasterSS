@@ -105,7 +105,6 @@ export default class RMSSWeaponSheet extends ItemSheet {
       bonusEditable,
       magicalEditable,
       rmss_weapon_total: bonus,
-      weightCostMultiplier: this.item._getWeightReductionModifier?.() ?? 1,
       bonusSkillsList: this._getBonusSkillsArray(),
       enchantmentList,
       powerModifierMode,
@@ -144,7 +143,6 @@ export default class RMSSWeaponSheet extends ItemSheet {
     html.find("[data-action='delete-enchantment']").on("click", this._onDeleteEnchantment.bind(this));
     html.find("[data-action='use-enchantment']").on("click", this._onUseEnchantment.bind(this));
     html.find("[data-action='open-spell-link']").on("click", this._onOpenSpellLink.bind(this));
-    html.find('input[name="system.weight_percent"]').on("input", this._onWeightPercentInput.bind(this));
     this._setupHolyUnholyExclusive(html);
     this._setupPPExclusive(html);
     setupPowerModifierProfessionDropZones(html, this);
@@ -232,14 +230,6 @@ export default class RMSSWeaponSheet extends ItemSheet {
 
   _setupPPExclusive(html) {
     // Power modifier mode is now handled by a single select; no-op for backwards compat
-  }
-
-  _onWeightPercentInput(event) {
-    const input = event.currentTarget;
-    const percent = input.value;
-    const modifier = this.item.constructor.getWeightModifierFromPercent(percent);
-    const span = input.closest("td")?.querySelector(".rmss-weight-multiplier");
-    if (span) span.textContent = `${modifier}×`;
   }
 
   async _onOpenSpellLink(event) {

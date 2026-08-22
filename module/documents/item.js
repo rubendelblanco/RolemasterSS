@@ -19,22 +19,6 @@ import { normalizeTagArray } from "../sheets/items/item_tags_ui.js";
 
 export class RMSSItem extends Item {
 
-  /** Weight reduction cost modifier from table 08-02 (Weight Decreases Due to Material and Design). */
-  _getWeightReductionModifier() {
-    return RMSSItem.getWeightModifierFromPercent(this.system.weight_percent);
-  }
-
-  /** Static: compute weight cost modifier from a raw percent value (for live UI updates). */
-  static getWeightModifierFromPercent(percent) {
-    const wr = CONFIG.rmss?.weight_reduction;
-    if (!wr) return 1;
-    const p = Number(percent) || 100;
-    for (const entry of Object.values(wr)) {
-      if (p >= entry.min && p <= entry.max) return entry.modifier;
-    }
-    return p >= 95 ? 1 : 500;
-  }
-
   /** @override */
   prepareData() {
     // Prepare data for the item. Calling the super version of this executes

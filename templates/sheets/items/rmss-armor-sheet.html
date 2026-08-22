@@ -114,17 +114,12 @@
                     <td class="rmss-text-center rmss-text-strong">{{rmss_armor_total}}</td>
                 </tr>
                 <tr>
-                    <th>{{localize "rmss.item.modifiers_weight_reduction"}}</th>
                     <th class="rmss-text-center">{{localize "rmss.item.modifiers_magical"}}</th>
                     <th class="rmss-text-center">{{localize "rmss.item.modifiers_holy"}}</th>
                     <th class="rmss-text-center">{{localize "rmss.item.modifiers_unholy"}}</th>
                     <th class="rmss-text-center">{{localize "rmss.item.modifiers_of_changing"}}</th>
                 </tr>
                 <tr>
-                    <td class="rmss-weight-cell">
-                        <input type="number" name="system.weight_percent" value="{{or system.weight_percent 100}}" min="0" max="100" step="1" data-dtype="Number" title="0-19: 500× | 20-39: 100× | 40-59: 20× | 60-79: 8× | 80-94: 4× | 95-100: 1×"/>
-                        <span class="rmss-weight-multiplier">{{weightCostMultiplier}}×</span>
-                    </td>
                     <td class="rmss-text-center">
                         {{#if magicalEditable}}
                         <input type="checkbox" name="system.magical" {{checked system.magical}}/>
