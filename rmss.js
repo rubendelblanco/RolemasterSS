@@ -374,6 +374,41 @@ Hooks.once("init", function () {
     async triggerTrapCritical(target, options) {
       const { default: TrapAttackService } = await import("./module/combat/services/trap_attack_service.js");
       return TrapAttackService.triggerCritical(target, options);
+    },
+    /**
+     * Roll a Resistance Roll against a target and get the outcome back, for spell/item
+     * macros that branch on it ("if resisted do A, if not do B"). Rolls immediately (no
+     * chat-button step) and still posts the usual RR result card to chat. Example, inside
+     * a spell macro after `spellContext` targets are known:
+     * ```
+     * for (const target of Array.from(game.user.targets)) {
+     *   const { success } = await game.rmss.rollResistance({
+     *     target,
+     *     attackerLevel: actor.system.attributes.level.value
+     *   });
+     *   if (success) { / * A: resisted * / } else { / * B: failed * / }
+     * }
+     * ```
+     * @param {{ target: string|Token|TokenDocument, attackerLevel: number, defenderLevel?: number, modifier?: number }} options
+     *   - target: the resisting token (or its id). defenderLevel defaults to that token's actor level if omitted.
+     * @returns {Promise<{ success: boolean, finalRoll: number, rrTarget: number }|null>} null if target not found
+     */
+    async rollResistance({ target, attackerLevel, defenderLevel, modifier = 0 }) {
+      const token = typeof target === "string"
+        ? (canvas.tokens?.get(target) ?? canvas.scene?.tokens?.get(target) ?? null)
+        : (target ?? null);
+      if (!token) {
+        ui.notifications.error("Resistance roll: token not found.");
+        return null;
+      }
+
+      const { default: EffectsPopupService } = await import("./module/core/rolls/effects_popup_service.js");
+      const { default: ResistanceRollService } = await import("./module/core/rolls/resistance_roll_service.js");
+
+      const resolvedDefenderLevel = defenderLevel ?? (parseInt(token.actor?.system?.attributes?.level?.value, 10) || 1);
+      const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, resolvedDefenderLevel, modifier);
+      const result = await EffectsPopupService.executeResistanceRoll(token.id, attackerLevel, resolvedDefenderLevel, modifier, rrTarget);
+      return { ...result, rrTarget };
     }
   };
 

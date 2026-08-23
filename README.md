@@ -142,6 +142,22 @@ General-purpose helpers meant for macros (hotbar buttons, item macros, etc.):
 - **`game.rmss.findAmmoStacksForWeapon(actorId, weaponItemId)`** — same, but resolved from a
   specific missile weapon's own `system.ammoType` instead of a tag you pick yourself.
 
+- **`game.rmss.rollResistance({ target, attackerLevel, defenderLevel?, modifier? })`** — rolls
+  a Resistance Roll against `target` (a Token/TokenDocument, or its id) and returns
+  `{ success, finalRoll, rrTarget }` immediately, so a spell/item macro can branch on the
+  outcome. `defenderLevel` defaults to the target's own actor level if omitted. Posts the same
+  RR result card to chat as the Token HUD's Effects popup.
+
+  ```js
+  for (const target of Array.from(game.user.targets)) {
+    const { success } = await game.rmss.rollResistance({
+      target,
+      attackerLevel: actor.system.attributes.level.value
+    });
+    if (success) { /* target resisted */ } else { /* effect takes hold */ }
+  }
+  ```
+
 ## Development
 
 ```bash
