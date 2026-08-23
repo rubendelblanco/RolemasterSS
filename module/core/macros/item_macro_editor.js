@@ -1,4 +1,5 @@
 import { bindMacroDropZone } from "../../sheets/items/macro_drop_util.js";
+import { persistItemRmssFlag } from "../../sheets/items/embedded_spell_flag_util.js";
 
 export default class ItemMacroEditor extends Application {
 
@@ -100,7 +101,7 @@ export default class ItemMacroEditor extends Application {
         }
 
         // Save the macro to the item's flags.
-        await this.item.setFlag("rmss", "macro", macroData);
+        await persistItemRmssFlag(this.item, "macro", macroData);
 
         ui.notifications.info(`Macro saved for ${this.item.name}`);
 
@@ -154,7 +155,7 @@ export default class ItemMacroEditor extends Application {
 
         if (confirmed) {
             // Remove the macro data from the item's flags.
-            await this.item.unsetFlag("rmss", "macro");
+            await persistItemRmssFlag(this.item, "macro", undefined);
             ui.notifications.info("Macro deleted");
             this.render(); // Refresh the window.
         }

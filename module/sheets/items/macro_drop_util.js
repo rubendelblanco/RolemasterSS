@@ -3,6 +3,7 @@
  * (or the item macro editor window) to link it as that item's embedded macro
  * (system.flags.rmss.macro), instead of copy-pasting the command by hand.
  */
+import { persistItemRmssFlag } from "./embedded_spell_flag_util.js";
 
 /**
  * @param {{item: Item, render: Function}} sheet - an ItemSheet subclass or ItemMacroEditor (both expose .item and .render)
@@ -35,7 +36,7 @@ export function bindMacroDropZone(sheet, html) {
       return;
     }
 
-    await sheet.item.setFlag("rmss", "macro", {
+    await persistItemRmssFlag(sheet.item, "macro", {
       name: macro.name,
       command: macro.command,
       type: "script"
