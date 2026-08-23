@@ -409,6 +409,41 @@ Hooks.once("init", function () {
       const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, resolvedDefenderLevel, modifier);
       const result = await EffectsPopupService.executeResistanceRoll(token.id, attackerLevel, resolvedDefenderLevel, modifier, rrTarget);
       return { ...result, rrTarget };
+    },
+    /**
+     * Schedule a macro-style command to run automatically once combat reaches a future
+     * round — for spells with a casting delay (e.g. a 2-round summon: place a marker on
+     * round 1, the creature actually appears when round 2 begins, with no one having to
+     * remember to run a second macro). Survives reloads/disconnects (stored on the Combat
+     * document) and is cleaned up automatically when the encounter ends. Example:
+     * ```
+     * await game.rmss.scheduleDelayedAction({
+     *   roundsFromNow: 1,
+     *   context: { x: token.x, y: token.y, casterId: actor.id, elementalActorId: "<id>" },
+     *   command: `
+     *     const elemental = game.actors.get(context.elementalActorId);
+     *     await elemental.getTokenDocument({ x: context.x, y: context.y }).then(d =>
+     *       canvas.scene.createEmbeddedDocuments("Token", [d.toObject()]));
+     *   `
+     * });
+     * ```
+     * @param {{ combat?: Combat, roundsFromNow?: number, atRound?: number, command: string, context?: object }} options
+     * @returns {Promise<string>} the pending action's id, for game.rmss.cancelDelayedAction
+     */
+    async scheduleDelayedAction(options) {
+      const { scheduleDelayedAction } = await import("./module/combat/delayed_action_service.js");
+      return scheduleDelayedAction(options);
+    },
+    /**
+     * Cancel a delayed action scheduled with game.rmss.scheduleDelayedAction (e.g. the
+     * caster was interrupted before it could go off).
+     * @param {string} id
+     * @param {Combat} [combat] - defaults to game.combat
+     * @returns {Promise<void>}
+     */
+    async cancelDelayedAction(id, combat = game.combat) {
+      const { cancelDelayedAction } = await import("./module/combat/delayed_action_service.js");
+      return cancelDelayedAction(combat, id);
     }
   };
 

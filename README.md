@@ -158,6 +158,27 @@ General-purpose helpers meant for macros (hotbar buttons, item macros, etc.):
   }
   ```
 
+- **`game.rmss.scheduleDelayedAction({ combat?, roundsFromNow?, atRound?, command, context? })`**
+  — schedules `command` (a JS code string, same as an item macro) to run automatically once
+  combat reaches a future round — for spells with a casting delay (e.g. a 2-round summon:
+  place a marker on round 1, the creature appears on its own when round 2 begins). Stored on
+  the Combat document, so it survives a reload/disconnect and is cleaned up when the encounter
+  ends. `context` is a plain-data object passed into `command` as the `context` argument;
+  `game`/`canvas`/`ui`/etc. are available as usual globals. Returns the pending action's id —
+  pass it to `game.rmss.cancelDelayedAction(id)` if the caster gets interrupted first.
+
+  ```js
+  await game.rmss.scheduleDelayedAction({
+    roundsFromNow: 1,
+    context: { x: token.x, y: token.y, elementalActorId: "<id>" },
+    command: `
+      const elemental = game.actors.get(context.elementalActorId);
+      const tokenDoc = await elemental.getTokenDocument({ x: context.x, y: context.y });
+      await canvas.scene.createEmbeddedDocuments("Token", [tokenDoc.toObject()]);
+    `
+  });
+  ```
+
 ## Development
 
 ```bash
