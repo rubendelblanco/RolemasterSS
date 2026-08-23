@@ -198,7 +198,11 @@ Hooks.once("ready", async function() {
 
   // Single delegated listener for every .spell-info-icon across all sheets (27+ spots):
   // the hover tooltip clips long descriptions, so clicking the icon instead opens the
-  // full text in a scrollable dialog.
+  // full text in a scrollable dialog. Registered on the CAPTURE phase: the icon usually
+  // sits inside a row/cell that has its own click handler (e.g. the weapon name cell,
+  // which triggers an attack) bound directly on that element — closer to the click target
+  // than document.body, so it fires before a normal bubble-phase listener here ever could.
+  // Intercepting on the way down (capture) stops it before it reaches that handler at all.
   document.body.addEventListener("click", (ev) => {
     const icon = ev.target.closest(".spell-info-icon");
     if (!icon) return;
@@ -211,7 +215,7 @@ Hooks.once("ready", async function() {
       content: `<div class="rmss-item-description-modal">${description}</div>`,
       buttons: {}
     }, { width: 420, resizable: true }).render(true);
-  });
+  }, true);
 });
 
 // Hook the init function and set up our system
