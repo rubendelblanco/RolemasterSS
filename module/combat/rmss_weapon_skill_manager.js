@@ -18,7 +18,15 @@ export class RMSSWeaponSkillManager {
         const facingValue = (attackerToken && defenderToken)
             ? FacingService.calculateFacing(attackerToken, defenderToken)
             : null;
-        const tokenData = facingValue !== null ? { facingValue } : null;
+        // Sent through the socket so the GM-side handler can re-resolve the real actors by
+        // token uuid instead of game.actors.get(id) -- for an unlinked token that returns the
+        // base world actor and silently drops whatever that specific instance's ActorDelta
+        // overrides (e.g. a bumped armor_type on just this creature).
+        const tokenData = {
+            facingValue,
+            attackerTokenUuid: attackerToken?.document?.uuid ?? attackerToken?.uuid ?? null,
+            enemyTokenUuid: defenderToken?.document?.uuid ?? defenderToken?.uuid ?? null
+        };
 
         // Rotate attacker token to face the defender
         if (attackerToken && defenderToken) {
@@ -150,18 +158,27 @@ export class RMSSWeaponSkillManager {
      *   bonusValue already includes ActiveEffect "Bonus" via cast total. Movement activity is applied here like weapon attacks.
      */
     static async attackMessagePopup(actor, enemy, weapon, spellOptionsOrTokenData = null) {
-        // Get the real actor from the game if passed through socketlib
-        const realActor = (actor.id && game.actors) ? game.actors.get(actor.id) : actor;
-        if (!realActor) {
-            console.error("[RMSS] Could not get the real actor", actor);
-            return null;
-        }
-
         let ob, hitsTaken, bleeding, penaltyValue, bonusValue, stunnedValue;
         const spellOptions = spellOptionsOrTokenData?.ob !== undefined ? spellOptionsOrTokenData : null;
         const tokenData = spellOptionsOrTokenData?.facingValue !== undefined ? spellOptionsOrTokenData : null;
 
-        const realEnemy = (enemy?.id && game.actors) ? game.actors.get(enemy.id) : enemy;
+        // Re-resolve real actors after crossing socketlib (which serializes Documents to
+        // plain data, losing class methods AND any unlinked-token ActorDelta). Prefer the
+        // token's own uuid when we have one -- it correctly threads through the delta;
+        // game.actors.get(id) would return the base world actor and silently drop whatever
+        // that specific token instance overrides (e.g. a bumped armor_type on just this orc).
+        const realActor = await RMSSWeaponSkillManager._resolveRealActor(actor, tokenData?.attackerTokenUuid);
+        if (!realActor) {
+            console.error("[RMSS] Could not get the real actor", actor);
+            return null;
+        }
+        const realEnemy = await RMSSWeaponSkillManager._resolveRealActor(enemy, tokenData?.enemyTokenUuid);
+
+        // Same idea for the weapon: unlike actor/enemy this was never re-fetched at all, so a
+        // player-initiated attack (which actually crosses the socket, unlike a GM-initiated one)
+        // was using a de-hydrated weapon snapshot -- wrong/missing offensive_skill lookup and
+        // slaying bonus.
+        const realWeapon = (weapon?.id && realActor?.items?.get) ? (realActor.items.get(weapon.id) ?? weapon) : weapon;
 
         if (Utils.isTargetDefeated(realEnemy)) {
             ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
@@ -193,17 +210,17 @@ export class RMSSWeaponSkillManager {
                 ui.notifications.warn("Unable to attack (activity behind 50%)", {localize: true});
                 return null;
             }
-            ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, realActor);
+            ob = RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(realWeapon, realActor);
             const maneuverPenalties = ManeuverPenaltiesService.getManeuverPenalties(realActor);
             const { hitsTaken: ht, bleeding: bl, penaltyEffect } = maneuverPenalties;
             hitsTaken = ht;
             bleeding = bl;
             penaltyValue = Math.min(0, penaltyEffect);
             const bonusEffects = Utils.getEffectByName(realActor, "Bonus");
-            const stunEffect = Utils.getEffectByName(enemy, "Stunned");
+            const stunEffect = Utils.getEffectByName(realEnemy, "Stunned");
             bonusValue = 0;
             bonusEffects.forEach((bonus) => { bonusValue += bonus.flags.rmss.value; });
-            bonusValue += RMSSWeaponSkillManager._getSlayingBonusDelta(weapon, realEnemy, enemy);
+            bonusValue += RMSSWeaponSkillManager._getSlayingBonusDelta(realWeapon, realEnemy, enemy);
             bonusValue -= Math.round((1 - (move.current / moveMax)) * 100);
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
         }
@@ -216,7 +233,7 @@ export class RMSSWeaponSkillManager {
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: realActor,
             enemy: enemyForTemplate,
-            weapon: weapon,
+            weapon: realWeapon,
             ob: ob,
             hitsTaken,
             bleeding,
@@ -311,6 +328,27 @@ export class RMSSWeaponSkillManager {
             }).render(true);
         });
         return confirmed;
+    }
+
+    /**
+     * Re-resolve a live Actor document after it's crossed socketlib, which serializes
+     * Documents to plain data -- losing class methods and, critically, any unlinked
+     * token's ActorDelta overrides. game.actors.get(id) alone would return the base world
+     * actor for those, silently discarding whatever that specific token instance changed
+     * (e.g. one particular orc with a bumped armor_type). Prefer resolving via the
+     * originating token's own uuid when we have one; fall back to game.actors.get(id)
+     * otherwise (also covers non-Actor callers that never had a token to begin with).
+     * @param {Actor|object} candidate - the (possibly de-hydrated) actor received over the socket
+     * @param {string|null} [tokenUuid] - the originating token's document uuid, if known
+     * @returns {Promise<Actor|object|null>}
+     */
+    static async _resolveRealActor(candidate, tokenUuid = null) {
+        if (tokenUuid) {
+            const tokenDoc = await fromUuid(tokenUuid);
+            if (tokenDoc?.actor) return tokenDoc.actor;
+        }
+        if (candidate?.id && game.actors) return game.actors.get(candidate.id) ?? candidate;
+        return candidate ?? null;
     }
 
     /**
