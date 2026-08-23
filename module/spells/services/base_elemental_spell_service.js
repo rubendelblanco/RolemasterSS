@@ -852,6 +852,18 @@ export default class BaseElementalSpellService {
             triggerAutoAnimations(sourceToken, spell, areaTokens);
         }
 
+        // Store area context for item macro (see Item._executeItemMacro JSDoc): captured now,
+        // at the moment of actual resolution, so the macro doesn't have to re-query the canvas
+        // for the circle template later — by then it may have been moved/deleted (e.g. the GM
+        // clearing it right after seeing the chat result) and the macro would silently fall back
+        // to an arbitrary point instead of the real impact location.
+        game.rmss = game.rmss || {};
+        game.rmss.lastSpellContext = {
+            areaEpicenter: { x: epicenter.x, y: epicenter.y },
+            areaDiameter: template.document.distance * 2,
+            targetTokenUuids: areaTokens.map((t) => t.document.uuid)
+        };
+
         await spell.use();
         return true;
     }

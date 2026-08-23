@@ -171,9 +171,14 @@ export class RMSSItem extends Item {
    * - item: this Item
    * - actor: owner actor
    * - token: caster's active token
-   * - spellContext: {SpellContext|null} Set by Force (F) spells with targets before use().
-   *   Use spellContext?.targetRRs to roll RR per target and apply effects (e.g. Sleep).
-   *   null for non-Force spells or when no targets. Safe to ignore.
+   * - spellContext: {SpellContext|null} Set right before use().
+   *   Force (F) spells with targets: spellContext.targetRRs — roll RR per target and apply
+   *   effects (e.g. Sleep).
+   *   BE ball (area) spells: spellContext.areaEpicenter {x,y}, spellContext.areaDiameter
+   *   (grid units), spellContext.targetTokenUuids — the exact impact point/targets used by
+   *   the mechanical resolution, frozen at that moment (safer than re-deriving from the live
+   *   canvas template later, which may have moved or been deleted by then).
+   *   null for other spell types or when there's nothing to report. Safe to ignore.
    */
   async _executeItemMacro() {
     const macroData = this.getFlag("rmss", "macro");
