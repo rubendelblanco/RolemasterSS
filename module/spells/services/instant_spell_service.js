@@ -65,6 +65,11 @@ export default class InstantSpellService {
             triggerAutoAnimations(sourceToken, spell, Array.from(game.user.targets));
         }
 
+        // Item macros need the real caster token even when `spell` is a detached/temp Item
+        // with no .actor (e.g. cast from a potion enchantment) — see Item._executeItemMacro.
+        game.rmss = game.rmss || {};
+        game.rmss.lastCasterToken = sourceToken ?? null;
+
         await spell.use();
 
         let spellXp = 0;

@@ -595,6 +595,11 @@ export default class BaseElementalSpellService {
             triggerAutoAnimations(sourceToken, spell, targets);
         }
 
+        // Item macros need the real caster token even when `spell` is a detached/temp Item
+        // with no .actor (e.g. cast from a potion enchantment) — see Item._executeItemMacro.
+        game.rmss = game.rmss || {};
+        game.rmss.lastCasterToken = sourceToken ?? null;
+
         // Execute spell macro on success (via item.use: item, actor, token)
         await spell.use();
         return true;
@@ -863,6 +868,9 @@ export default class BaseElementalSpellService {
             areaDiameter: template.document.distance * 2,
             targetTokenUuids: areaTokens.map((t) => t.document.uuid)
         };
+        // Item macros need the real caster token even when `spell` is a detached/temp Item
+        // with no .actor (e.g. cast from a potion enchantment) — see Item._executeItemMacro.
+        game.rmss.lastCasterToken = sourceToken ?? null;
 
         await spell.use();
         return true;

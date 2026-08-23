@@ -315,6 +315,11 @@ export default class DirectedElementalSpellService {
             triggerAutoAnimations(sourceToken, spell, targets);
         }
 
+        // Item macros need the real caster token even when `spell` is a detached/temp Item
+        // with no .actor (e.g. cast from a potion enchantment) — see Item._executeItemMacro.
+        game.rmss = game.rmss || {};
+        game.rmss.lastCasterToken = sourceToken ?? null;
+
         await spell.use();
         return true;
     }

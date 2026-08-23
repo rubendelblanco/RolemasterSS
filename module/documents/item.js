@@ -170,7 +170,10 @@ export class RMSSItem extends Item {
    * Macro variables:
    * - item: this Item
    * - actor: owner actor
-   * - token: caster's active token
+   * - token: caster's active token, resolved from game.rmss.lastCasterToken (set by the
+   *   casting service right before use()) when available, falling back to
+   *   this.actor?.getActiveTokens()?.[0] — the former also covers detached/temporary spell
+   *   Items (e.g. cast from a potion enchantment), which have no .actor at all.
    * - spellContext: {SpellContext|null} Set right before use().
    *   Force (F) spells with targets: spellContext.targetRRs — roll RR per target and apply
    *   effects (e.g. Sleep).
@@ -192,13 +195,19 @@ export class RMSSItem extends Item {
       });
 
       const spellContext = game.rmss?.lastSpellContext ?? null;
+      // Prefer the caster token the casting service already resolved (game.rmss.lastCasterToken):
+      // this.actor is null for a detached/temporary spell Item (e.g. cast from a potion
+      // enchantment, see resolveSpellForEnchantment), so this.actor?.getActiveTokens() would
+      // silently come back empty and the macro would think no token was selected at all.
+      const token = game.rmss?.lastCasterToken ?? this.actor?.getActiveTokens()?.[0] ?? null;
       await macro.execute({
         item: this,
         actor: this.actor,
-        token: this.actor?.getActiveTokens()?.[0],
+        token,
         spellContext
       });
       if (game.rmss?.lastSpellContext) game.rmss.lastSpellContext = null;
+      if (game.rmss?.lastCasterToken) game.rmss.lastCasterToken = null;
     } catch (err) {
       console.error("Error executing item macro:", err);
       ui.notifications.error(`Macro error: ${err.message}`);
