@@ -774,6 +774,13 @@
     padding: 2px;
 }
 
+.rmss-weapon-attack-icon {
+    color: #8b2e2e;
+    border: 1px solid #8b2e2e;
+    border-radius: 3px;
+    padding: 2px;
+}
+
 .spell-info-icon {
     position: relative;
     cursor: pointer; color: #4b4a44; font-size: 0.9em;
