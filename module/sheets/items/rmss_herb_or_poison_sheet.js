@@ -3,6 +3,7 @@ import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import ItemService from "../../actors/services/item_service.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 import { isIdentityHidden, getUnidentifiedDisplayName } from "../../actors/utils/item_identity_util.js";
+import { bindMacroDropZone } from "./macro_drop_util.js";
 
 export default class RMSSHerbAndPoisonSheet extends ItemSheet {
 
@@ -84,5 +85,6 @@ export default class RMSSHerbAndPoisonSheet extends ItemSheet {
   activateListeners(html) {
     super.activateListeners(html);
     bindItemTagsEditor(this, html);
+    bindMacroDropZone(this, html);
   }
 }

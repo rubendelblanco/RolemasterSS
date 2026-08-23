@@ -1,5 +1,6 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
+import { bindMacroDropZone } from "../items/macro_drop_util.js";
 
 export default class RMSSSpellSheet extends ItemSheet {
 
@@ -89,6 +90,7 @@ export default class RMSSSpellSheet extends ItemSheet {
       await this._onSubmit(ev);
       await this.render(false);
     });
+    bindMacroDropZone(this, html);
   }
 
   /** @override */

@@ -635,7 +635,9 @@
             "unidentified_herb": "Unknown Herb/Poison",
             "unidentified_hint": "This item hasn't been identified yet. Its true nature and properties are unknown.",
             "identified": "Identified",
-            "value_unidentified": "Apparent value (unidentified)"
+            "value_unidentified": "Apparent value (unidentified)",
+            "macro_drop_linked": "Macro \"{macroName}\" linked to {itemName}.",
+            "macro_drop_script_only": "Only script-type macros can be linked to an item."
         },
         "creature": {
             "bonus_experience": "XP Bonus",

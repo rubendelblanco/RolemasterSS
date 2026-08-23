@@ -1,3 +1,5 @@
+import { bindMacroDropZone } from "../../sheets/items/macro_drop_util.js";
+
 export default class ItemMacroEditor extends Application {
 
     /**
@@ -53,6 +55,8 @@ export default class ItemMacroEditor extends Application {
     /** @override */
     activateListeners(html) {
         super.activateListeners(html);
+
+        bindMacroDropZone(this, html);
 
         // Event listener for "Save Macro" button.
         html.find('.save-macro').click(this._onSaveMacro.bind(this));

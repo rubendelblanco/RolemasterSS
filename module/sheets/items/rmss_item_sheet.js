@@ -22,6 +22,7 @@ import {
 import { bindPassiveModifiersEditor } from "./passive_modifiers_ui.js";
 import { isIdentityHidden, getUnidentifiedDisplayName } from "../../actors/utils/item_identity_util.js";
 import { computeItemAutoName } from "./item_auto_name_util.js";
+import { bindMacroDropZone } from "./macro_drop_util.js";
 
 export default class RMSSItemSheet extends ItemSheet {
 
@@ -115,6 +116,8 @@ export default class RMSSItemSheet extends ItemSheet {
   activateListeners(html) {
     super.activateListeners(html);
     if (!this.isEditable) return;
+
+    bindMacroDropZone(this, html);
 
     // --- Effects ---
     html.find(".effect-control").click(this._onEffectControl.bind(this));

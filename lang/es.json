@@ -635,7 +635,9 @@
       "unidentified_herb": "Hierba/Veneno Desconocido",
       "unidentified_hint": "Este objeto todavía no ha sido identificado. Se desconoce su verdadera naturaleza y propiedades.",
       "identified": "Identificado",
-      "value_unidentified": "Valor aparente (sin identificar)"
+      "value_unidentified": "Valor aparente (sin identificar)",
+      "macro_drop_linked": "Macro \"{macroName}\" vinculada a {itemName}.",
+      "macro_drop_script_only": "Solo se pueden vincular macros de tipo script a un objeto."
     },
     "creature": {
       "bonus_experience": "PE Bonus",

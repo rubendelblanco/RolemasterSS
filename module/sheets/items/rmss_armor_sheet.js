@@ -20,6 +20,7 @@ import {
 import { bindPassiveModifiersEditor } from "./passive_modifiers_ui.js";
 import { isIdentityHidden, getUnidentifiedDisplayName } from "../../actors/utils/item_identity_util.js";
 import { computeWeaponArmorAutoName } from "./item_auto_name_util.js";
+import { bindMacroDropZone } from "./macro_drop_util.js";
 
 export default class RMSSArmorSheet extends ItemSheet {
 
@@ -115,6 +116,7 @@ export default class RMSSArmorSheet extends ItemSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+    bindMacroDropZone(this, html);
     html.find("[data-action='delete-enchantment']").on("click", this._onDeleteEnchantment.bind(this));
     html.find("[data-action='use-enchantment']").on("click", this._onUseEnchantment.bind(this));
     html.find("[data-action='open-spell-link']").on("click", this._onOpenSpellLink.bind(this));
