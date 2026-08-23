@@ -1,4 +1,5 @@
 import { buildEnchantmentList, resolveSpellForEnchantment } from "./enchantment_utils.js";
+import { isIdentityHidden } from "../../actors/utils/item_identity_util.js";
 
 /**
  * @param {Item|{ system?: object }} itemOrSystem
@@ -40,7 +41,10 @@ export function attachItemMagicActionFlags(itemPlain) {
     return;
   }
   const usable = getUsableEnchantmentsForItem(itemPlain);
-  itemPlain.rmssShowItemMagicAction = usable.length > 0;
+  // An unidentified item's magic is unknown to the player — no action icon to use it,
+  // that'd be a dead giveaway that it does something. GMs still see/use it (isIdentityHidden
+  // is false for them regardless of the flag) e.g. to test the enchantment.
+  itemPlain.rmssShowItemMagicAction = usable.length > 0 && !isIdentityHidden(itemPlain);
   const list = buildEnchantmentList(itemPlain.system?.magic?.enchantments);
   const hasSingleUsable = usable.some(u => (list[u.index]?.usage ?? "passive") === "single");
   itemPlain.rmssItemMagicIsPotion = itemHasPotionTag(itemPlain) && hasSingleUsable;
@@ -60,6 +64,11 @@ export async function castEnchantmentFromItem(actor, item, enchantmentIndex) {
 
   if (!actor || !(actor instanceof Actor)) {
     ui.notifications.warn(game.i18n.localize("rmss.item.enchantment_need_actor") || "Item must be owned by an actor to use enchantment.");
+    return {};
+  }
+
+  if (isIdentityHidden(item)) {
+    ui.notifications.warn(game.i18n.localize("rmss.item.enchantment_not_identified") || "This item hasn't been identified yet.");
     return {};
   }
 

@@ -591,6 +591,7 @@
             "enchantments_charges": "Charges",
             "enchantment_use": "Use",
             "enchantment_need_actor": "Item must be owned by an actor to use this enchantment.",
+            "enchantment_not_identified": "This item hasn't been identified yet.",
             "enchantment_spell_not_found": "Spell not found. The actor must own the spell to use this enchantment.",
             "cast_magic_tooltip": "Cast spell from this item's enchantment",
             "cast_magic_modal_title": "Choose enchantment to cast",

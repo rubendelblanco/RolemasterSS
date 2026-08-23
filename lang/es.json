@@ -591,6 +591,7 @@
       "enchantments_charges": "Cargas",
       "enchantment_use": "Usar",
       "enchantment_need_actor": "El objeto debe pertenecer a un actor para usar este encantamiento.",
+      "enchantment_not_identified": "Este objeto todavía no ha sido identificado.",
             "enchantment_spell_not_found": "Hechizo no encontrado. El actor debe poseer el hechizo para usar este encantamiento.",
             "cast_magic_tooltip": "Lanzar hechizo desde el encantamiento de este objeto",
             "cast_magic_modal_title": "Elegir encantamiento a lanzar",
