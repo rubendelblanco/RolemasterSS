@@ -1,5 +1,6 @@
 // Our Item Sheet extends the default
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
+import { buildDeleteConfirmContent } from "../items/item_delete_confirm_util.js";
 
 export default class RMSSSpellListSheet extends ItemSheet {
     // Default options
@@ -56,7 +57,7 @@ export default class RMSSSpellListSheet extends ItemSheet {
 
             const confirmed = await Dialog.confirm({
                 title: game.i18n.localize("rmss.dialogs.confirm_delete_title"),
-                content: game.i18n.format("rmss.dialogs.confirm_delete_spell_from_list", { name: spell.name }),
+                content: buildDeleteConfirmContent(spell.img, game.i18n.format("rmss.dialogs.confirm_delete_spell_from_list", { name: spell.name })),
                 defaultYes: false
             });
 
@@ -359,7 +360,7 @@ export default class RMSSSpellListSheet extends ItemSheet {
         if (!spell) return;
         const confirmed = await Dialog.confirm({
             title: game.i18n.localize("rmss.dialogs.confirm_delete_title"),
-            content: game.i18n.format("rmss.dialogs.confirm_delete_spell_from_list", { name: spell.name }),
+            content: buildDeleteConfirmContent(spell.img, game.i18n.format("rmss.dialogs.confirm_delete_spell_from_list", { name: spell.name })),
             defaultYes: false
         });
         if (confirmed) {

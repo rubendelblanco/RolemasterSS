@@ -779,6 +779,12 @@
     cursor: pointer; color: #4b4a44; font-size: 0.9em;
 }
 
+.rmss-item-description-modal {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 4px 2px;
+}
+
 .spell-no-pp-marker {
     font-size: 1.5em;
     font-weight: bold;

@@ -195,6 +195,23 @@ Hooks.once("ready", async function() {
     const list = await response2.json();
     game.rmss.criticalTableIndex = list;
   }
+
+  // Single delegated listener for every .spell-info-icon across all sheets (27+ spots):
+  // the hover tooltip clips long descriptions, so clicking the icon instead opens the
+  // full text in a scrollable dialog.
+  document.body.addEventListener("click", (ev) => {
+    const icon = ev.target.closest(".spell-info-icon");
+    if (!icon) return;
+    ev.preventDefault();
+    ev.stopPropagation();
+    const description = icon.dataset.tooltip;
+    if (!description) return;
+    new Dialog({
+      title: game.i18n.localize("rmss.dialogs.item_description_title"),
+      content: `<div class="rmss-item-description-modal">${description}</div>`,
+      buttons: {}
+    }, { width: 420, resizable: true }).render(true);
+  });
 });
 
 // Hook the init function and set up our system

@@ -4,6 +4,7 @@ import { castEnchantmentFromItem, getUsableEnchantmentsForItem } from "../items/
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
+import { buildDeleteConfirmContent } from "../items/item_delete_confirm_util.js";
 
 import ArmorInfoService from "../../actors/services/armor_info_service.js";
 
@@ -108,7 +109,7 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
             const confirmed = await Dialog.confirm({
                 title: game.i18n.localize("rmss.dialogs.confirm_delete_title"),
-                content: game.i18n.format("rmss.dialogs.confirm_delete_item", { name: item.name }),
+                content: buildDeleteConfirmContent(item.img, game.i18n.format("rmss.dialogs.confirm_delete_item", { name: item.name })),
                 defaultYes: false
             });
 

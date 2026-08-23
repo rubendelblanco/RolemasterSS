@@ -1120,7 +1120,8 @@
         "dialogs": {
             "confirm_delete_title": "Confirm Deletion",
             "confirm_delete_item": "Are you sure you want to delete \"{name}\"?",
-            "confirm_delete_spell_from_list": "Are you sure you want to remove \"{name}\" from this spell list?"
+            "confirm_delete_spell_from_list": "Are you sure you want to remove \"{name}\" from this spell list?",
+            "item_description_title": "Description"
         },
         "profession": {
             "description": "Description",
