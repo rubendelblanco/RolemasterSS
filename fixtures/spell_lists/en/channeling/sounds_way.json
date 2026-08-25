@@ -1,0 +1,35 @@
+{
+  "name": "Sound's Way",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Open Channeling 2.8 - Sound's Way. Spells of speech, silence, soundwalls, quiet zones, and sounding.",
+    "spells": [
+      { "name": "01. Speech I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 1, "area_of_effect": "1 target", "duration": "C", "range": "10'", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Target is able to communicate basic ideas in the language of a specific being (e.g., hungry, thirsty, bathroom, peace, etc.). For the duration of the spell, the target has the equivalent of skill rank 2 in the language." } },
+      { "name": "03. Quiet I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 3, "area_of_effect": "1 target", "duration": "1 min/lvl", "range": "100'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "Creates a 1 foot radius area around the target, into and out of which sound cannot travel; if the point is on a mobile object or being, it will move with the object/being. +25 to any Stalking maneuvers." } },
+      { "name": "05. Soundwall I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 5, "area_of_effect": "20'x20'", "duration": "10 min/lvl", "range": "100'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "Creates a plane (up to 20' x 20'), through which sound will not pass." } },
+      { "name": "06. Speech II", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 6, "area_of_effect": "1 target", "duration": "C", "range": "10'", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "As Speech I, except target can communicate in more complex concepts, although there is a good chance of misinterpretations. For the duration of the spell, the target has the equivalent of skill rank 4 in the language." } },
+      { "name": "07. Silence I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 7, "area_of_effect": "10'R", "duration": "1 min/lvl", "range": "100'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "As Quiet I, except radius is 10'." } },
+      { "name": "08. Quiet III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 8, "area_of_effect": "3 targets", "duration": "1 min/lvl", "range": "100'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "As Quiet I, except 3 targets can be affected." } },
+      { "name": "10. Soundwall V", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 10, "area_of_effect": "(20'x20')x5", "duration": "10 min/lvl", "range": "100'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "As Soundwall I, except 5 such walls are created. Each Soundwall must be connected to at least one other Soundwall." } },
+      { "name": "11. Quiet V", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 11, "area_of_effect": "5 targets", "duration": "1 min/lvl", "range": "100'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "As Quiet I, except 5 targets may be affected." } },
+      { "name": "13. Silence V", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 13, "area_of_effect": "50'R", "duration": "1 min/lvl", "range": "100'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "As Silence I, except radius is 50'." } },
+      { "name": "15. Speech III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 15, "area_of_effect": "1 target", "duration": "C", "range": "10'", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "As Speech II, except target is reasonably fluent in the language. Target's accent is imperfect, but there is only a slight chance of misinterpretation. For the duration of the spell, the target has the equivalent of skill rank 6 in the language." } },
+      { "name": "17. Sounding", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 17, "area_of_effect": "1 target", "duration": "1 min/lvl", "range": "10'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "Target can speak at 5 times his normal loudness." } },
+      { "name": "20. Silence X", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 20, "area_of_effect": "100'R", "duration": "1 min/lvl", "range": "100'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "As Silence I, except radius is 100'." } },
+      { "name": "25. Mass Soundwalls", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 25, "area_of_effect": "varies", "duration": "10 min/lvl", "range": "100'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "As Soundwall V, except as many Soundwalls as the target's level can be created." } },
+      { "name": "30. Mass Quiet", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 30, "area_of_effect": "varies", "duration": "1 min/lvl", "range": "100'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "As Quiet I, except as many targets as the target's level can be affected." } },
+      { "name": "50. Speech True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 50, "area_of_effect": "1 target", "duration": "1 min/lvl", "range": "100'", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "As Speech III, except for the duration and the target speaks the specified language as if he were a native. For the duration of the spell, the target has the equivalent of skill rank 8 in the language." } }
+    ]
+  }
+}

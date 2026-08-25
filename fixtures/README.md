@@ -149,15 +149,55 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 - `misdirections.json` – Misdirections / Desorientaciones (7.5)
 - `poison_mastery.json` – Poison Mastery / Maestría de Venenos (7.6)
 
+### Barrier Law (Open Channeling 2.1)
+
+- `spell_lists/en/channeling/barrier_law.json` – 18 hechizos de muros de luz, aire, agua, madera, tierra, hielo, piedra y fuerza (inglés)
+- `spell_lists/es/channeling/barrier_law.json` – Ley de las Barreras, traducida al español
+
 ### Concussion's Ways (Open Channeling 2.2)
 
 - `spell_lists/en/channeling/concussion_ways.json` – 20 hechizos de curación de golpes de conmoción, congelación, quemaduras, irritaciones menores, aturdimiento y regeneración (inglés)
 - `spell_lists/es/channeling/concussion_ways.json` – Vías de la conmoción, traducida al español
 
+### Detection Mastery (Open Channeling 2.3)
+
+- `spell_lists/en/channeling/detection_mastery.json` – 19 hechizos pasivos de detección de reinos, vida, maldiciones, no muertos, trampas, invisibilidad, venenos, poder y localización (inglés)
+- `spell_lists/es/channeling/detection_mastery.json` – Maestría de Detección, traducida al español
+
+### Light's Way (Open Channeling 2.4)
+
+- `spell_lists/en/channeling/lights_way.json` – 19 hechizos de luz, auras, rayo de choque, bengalas y llamada del rayo (inglés)
+- `spell_lists/es/channeling/lights_way.json` – Camino de la Luz, traducida al español
+
+### Lofty Movements (Open Channeling 2.5)
+
+- `spell_lists/en/channeling/lofty_movements.json` – 18 hechizos para caminar/correr por bordes, ramas, piedra, agua y viento, fundirse en material orgánico y regresar a un santuario (inglés)
+- `spell_lists/es/channeling/lofty_movements.json` – Movimientos Elevados, traducida al español
+
+### Nature's Law (Open Channeling 2.6)
+
+- `spell_lists/en/channeling/natures_law.json` – 17 hechizos de saber sobre plantas/hierbas/piedras, lenguas animales y vegetales, dominio y empatía animal (inglés)
+- `spell_lists/es/channeling/natures_law.json` – Ley de la Naturaleza, traducida al español
+
+### Purifications (Open Channeling 2.7)
+
+- `spell_lists/en/channeling/purifications.json` – 19 hechizos de purificación y resistencia a enfermedad y veneno, preservación de comida y cura de enfermedades mentales (inglés)
+- `spell_lists/es/channeling/purifications.json` – Purificaciones, traducida al español
+
+### Sound's Way (Open Channeling 2.8)
+
+- `spell_lists/en/channeling/sounds_way.json` – 15 hechizos de habla, silencio, muros de sonido y amplificación de voz (inglés)
+- `spell_lists/es/channeling/sounds_way.json` – Camino del Sonido, traducida al español
+
 ### Spell Defense (Open Channeling 2.9)
 
 - `spell_lists/en/channeling/spell_defense.json` – 22 hechizos de protección, cancelación, disipación y resistencia por reino (inglés)
 - `spell_lists/es/channeling/spell_defense.json` – Defensa contra Hechizos, traducida al español
+
+### Weather Ways (Open Channeling 2.10)
+
+- `spell_lists/en/channeling/weather_ways.json` – 16 hechizos para predecir y llamar al clima: brisas, niebla, precipitación, viento, tormentas y cielos despejados (inglés)
+- `spell_lists/es/channeling/weather_ways.json` – Caminos del Tiempo, traducida al español
 
 ### Blood Law (Closed Channeling 3.1)
 
@@ -169,10 +209,25 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 - `spell_lists/en/channeling/bone_law.json` – 22 hechizos de fracturas, cartílago, cráneo, articulaciones, astillamientos, preservación y reimplantación de miembros (inglés)
 - `spell_lists/es/channeling/bone_law.json` – Ley del Hueso, traducida al español
 
+### Calm Spirits (Closed Channeling 3.3)
+
+- `spell_lists/en/channeling/calm_spirits.json` – 18 hechizos de ataque mental para calmar animales y personas, y retener a humanoides (inglés)
+- `spell_lists/es/channeling/calm_spirits.json` – Espíritus Calmados, traducida al español
+
 ### Creations (Closed Channeling 3.4)
 
 - `spell_lists/en/channeling/creations.json` – 21 hechizos de sustento, agua, comida, fuego, pan de camino, hierbas, plantas y animales (inglés)
 - `spell_lists/es/channeling/creations.json` – Creaciones, traducida al español
+
+### Locating Ways (Closed Channeling 3.5)
+
+- `spell_lists/en/channeling/locating_ways.json` – 18 hechizos de rutas, guía divina, localización de objetos/lugares y memoria de trayecto (inglés)
+- `spell_lists/es/channeling/locating_ways.json` – Caminos de Localización, traducida al español
+
+### Lore (Closed Channeling 3.6)
+
+- `spell_lists/en/channeling/lore.json` – 17 hechizos para detectar el mal, maldiciones y emociones, y averiguar la naturaleza de objetos sagrados/oscuros, venenos, maldiciones y vidas (inglés)
+- `spell_lists/es/channeling/lore.json` – Saber, traducida al español
 
 ### Muscle Law (Closed Channeling 3.7)
 
@@ -183,6 +238,16 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 
 - `spell_lists/en/channeling/nerve_law.json` – 18 hechizos de nervios, cerebro, parálisis, psicosis, preservación y reimplantación de miembros (inglés)
 - `spell_lists/es/channeling/nerve_law.json` – Ley del Nervio, traducida al español
+
+### Organ Law (Closed Channeling 3.9)
+
+- `spell_lists/en/channeling/organ_law.json` – 15 hechizos para reparar, trasplantar y regenerar nariz, oídos, ojos, corazón, pulmones y otros órganos (inglés)
+- `spell_lists/es/channeling/organ_law.json` – Ley de los Órganos, traducida al español
+
+### Symbolic Ways (Closed Channeling 3.10)
+
+- `spell_lists/en/channeling/symbolic_ways.json` – 19 hechizos para grabar/eliminar hechizos en Símbolos, analizarlos, y preparar el siguiente hechizo del lanzador (inglés)
+- `spell_lists/es/channeling/symbolic_ways.json` – Caminos Simbólicos, traducida al español
 
 ### Dark Channels (Closed Channeling, Evil)
 
@@ -437,7 +502,12 @@ const FILES_BY_FOLDER = {
     "lofty_bridge", "rapid_ways", "shield_mastery", "spell_enhancement",
     "spell_reins", "spirit_mastery"
   ],
-  channeling: ["concussion_ways", "dark_channels", "curses", "dark_lore", "disease", "necromancy", "wounding"],
+  channeling: [
+    "concussion_ways", "dark_channels", "curses", "dark_lore", "disease", "necromancy", "wounding",
+    "barrier_law", "detection_mastery", "lights_way", "lofty_movements", "natures_law",
+    "purifications", "sounds_way", "weather_ways",
+    "calm_spirits", "locating_ways", "lore", "organ_law", "symbolic_ways"
+  ],
   arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"],
   mentalism: [
     "attack_avoidance", "anticipations", "brilliance", "cloaking",

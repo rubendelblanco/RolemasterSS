@@ -1,0 +1,38 @@
+{
+  "name": "Espíritus Calmados",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Canalización Cerrada 3.3 - Espíritus Calmados. Hechizos de ataque mental para calmar animales y personas, y retener a humanoides a una fracción de su acción normal.",
+    "spells": [
+      { "name": "01. Calma Animal I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 1, "area_of_effect": "1 objetivo", "duration": "2 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "El animal objetivo no realizará ninguna acción agresiva/ofensiva, y solo luchará si es atacado." } },
+      { "name": "02. Calma I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 2, "area_of_effect": "1 objetivo", "duration": "1 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "El objetivo no realizará ninguna acción agresiva/ofensiva, y solo luchará si es atacado." } },
+      { "name": "03. Calma Animal III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 3, "area_of_effect": "3 objetivos", "duration": "2 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Como Calma Animal I, salvo que pueden afectarse 3 objetivos." } },
+      { "name": "04. Calma II", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 4, "area_of_effect": "2 objetivos", "duration": "1 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Como Calma I, salvo que pueden afectarse 2 objetivos." } },
+      { "name": "05. Retener a los de su Especie", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 5, "area_of_effect": "1 objetivo", "duration": "C", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "El objetivo humanoide queda reducido al 25% de su acción normal." } },
+      { "name": "06. Calma III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 6, "area_of_effect": "3 objetivos", "duration": "1 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Como Calma I, salvo que pueden afectarse 3 objetivos." } },
+      { "name": "07. Calma Animal V", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 7, "area_of_effect": "5 objetivos", "duration": "2 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Como Calma Animal I, salvo que pueden afectarse 5 objetivos." } },
+      { "name": "08. Calma IV", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 8, "area_of_effect": "4 objetivos", "duration": "1 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Como Calma I, salvo que pueden afectarse 4 objetivos." } },
+      { "name": "09. Calma V", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 9, "area_of_effect": "5 objetivos", "duration": "1 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Como Calma I, salvo que pueden afectarse 5 objetivos." } },
+      { "name": "10. Calma Animal Masiva I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 10, "area_of_effect": "varía", "duration": "2 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "El lanzador puede calmar a un número de animales igual a su nivel." } },
+      { "name": "11. Retención Verdadera", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 11, "area_of_effect": "1 objetivo", "duration": "C", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Como Retener a los de su Especie, salvo que afecta a cualquier objetivo." } },
+      { "name": "12. Calma X", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 12, "area_of_effect": "10 objetivos", "duration": "1 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Como Calma I, salvo que pueden afectarse 10 objetivos." } },
+      { "name": "15. Grito de Calma", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 15, "area_of_effect": "varía", "duration": "1 min/nvl", "range": "50'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Todos los objetivos dentro del radio deben resistir o quedan calmados." } },
+      { "name": "18. Calma Animal Masiva II", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 18, "area_of_effect": "varía", "duration": "2 min/nvl", "range": "10'/nvl", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Como Calma Animal Masiva I, salvo que las TR se modifican en -20 y el alcance es 10'/nvl." } },
+      { "name": "20. Calma del Señor", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 20, "area_of_effect": "varía", "duration": "1 min/nvl", "range": "10'/nvl", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Permite al lanzador calmar hasta 20 objetivos." } },
+      { "name": "25. Calma Prolongada", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 25, "area_of_effect": "1 objetivo", "duration": "1 día/nvl", "range": "300'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "El lanzador puede calmar a cualquier 1 objetivo." } },
+      { "name": "30. Calma Masiva", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 30, "area_of_effect": "varía", "duration": "1 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "El lanzador puede calmar a un número de objetivos igual a su nivel." } },
+      { "name": "50. Calma Verdadera", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 50, "area_of_effect": "1 objetivo", "duration": "P", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "El lanzador puede calmar a cualquier 1 objetivo." } }
+    ]
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "name": "Ley de las Barreras",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "open",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Canalización Abierta 2.1 - Ley de las Barreras. Hechizos para crear muros de luz, aire, agua, madera, tierra, hielo, piedra y fuerza que bloquean el movimiento y los ataques.",
+    "spells": [
+      {
+        "name": "01. Muro de Luz I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 1,
+          "area_of_effect": "20'x20'x1\"",
+          "duration": "C",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un muro negro e insustancial de hasta 20' x 20' x 1\" que la luz no puede atravesar (no dificulta el movimiento, pero bloquea la visión)."
+        }
+      },
+      {
+        "name": "02. Muro de Aire",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 2,
+          "area_of_effect": "10'x10'x3'",
+          "duration": "C",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un muro de aire denso y turbulento de hasta 10' x 10' x 3'. Este muro reduce todo movimiento a través de él en un 50%. Además, todos los ataques a través del muro sufren una penalización de -50."
+        }
+      },
+      {
+        "name": "03. Muro de Luz II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 3,
+          "area_of_effect": "20'x20'x1\"",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Luz I, salvo por la duración."
+        }
+      },
+      {
+        "name": "04. Muro de Agua",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 4,
+          "area_of_effect": "10'x10'x1'",
+          "duration": "C",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un muro de agua de hasta 10' x 10' x 1'. Este muro reduce todo movimiento a través de él en un 80%. Además, todos los ataques a través del muro sufren una penalización de -80."
+        }
+      },
+      {
+        "name": "05. Muro de Madera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 5,
+          "area_of_effect": "10'x20'x2\"",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Crea un muro de madera de hasta 10' x 20' x 2\". Este muro puede quemarse, cortarse con hacha, o derribarse (si no está apuntalado de alguna forma)."
+        }
+      },
+      {
+        "name": "07. Muro de Tierra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 7,
+          "area_of_effect": "10'x10'x(3' base/1' cima)",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Madera, salvo que el muro está hecho de tierra compactada y mide hasta 10' x 10' x (3' en la base, 1' en la cima)."
+        }
+      },
+      {
+        "name": "08. Muro de Hielo I",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 8,
+          "area_of_effect": "10'x10'x(2' base/1' cima)",
+          "duration": "P",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Madera, salvo que el muro está hecho de hielo y mide hasta 10' x 10' x (2' en la base, 1' en la cima). Puede derretirse, picarse o derribarse (si no está apuntalado de alguna forma)."
+        }
+      },
+      {
+        "name": "10. Foso Barrera",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 10,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Abre un foso (500 pies cúbicos en piedra; 1000 pies cúbicos en tierra o hielo). El foso entero debe estar dentro de los 50' del lanzador. No puede abrirse un foso salvo en una superficie horizontal con una inclinación menor de 45°."
+        }
+      },
+      {
+        "name": "11. Muro de Aire Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 11,
+          "area_of_effect": "10'x10'x3'",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Aire, salvo por la duración."
+        }
+      },
+      {
+        "name": "12. Muro de Piedra",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 12,
+          "area_of_effect": "10'x10'x1'",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Madera, salvo que el muro está hecho de piedra y mide hasta 10' x 10' x 1'. Puede picarse hasta atravesarse."
+        }
+      },
+      {
+        "name": "13. Muro de Agua Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 13,
+          "area_of_effect": "10'x10'x1'",
+          "duration": "1 min/nvl",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Agua, salvo por la duración."
+        }
+      },
+      {
+        "name": "15. Muro de Madera Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 15,
+          "area_of_effect": "10'x20'x2\"",
+          "duration": "P",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Madera, salvo por la duración."
+        }
+      },
+      {
+        "name": "17. Muro de Tierra Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 17,
+          "area_of_effect": "10'x10'x(3' base/1' cima)",
+          "duration": "P",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Tierra, salvo por la duración."
+        }
+      },
+      {
+        "name": "18. Muro de Hielo II",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 18,
+          "area_of_effect": "20'x20'x(4' base/2' cima)",
+          "duration": "P",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Hielo I, salvo que el muro mide hasta 20' x 20' x (4' en la base, 2' en la cima)."
+        }
+      },
+      {
+        "name": "20. Muro de Piedra Verdadero",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 20,
+          "area_of_effect": "10'x10'x1'",
+          "duration": "P",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como Muro de Piedra, salvo por la duración."
+        }
+      },
+      {
+        "name": "25. Fusionar Muros",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 25,
+          "area_of_effect": "varía",
+          "duration": "P",
+          "range": "toque",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Fusiona 2 muros en contacto (la costura puede tener hasta 20' de largo) o fusiona una sección de bloques de piedra (hasta 100 pies cúbicos)."
+        }
+      },
+      {
+        "name": "30. Muro Curvo",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 30,
+          "area_of_effect": "varía",
+          "duration": "varía",
+          "range": "50'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Como cualquiera de los hechizos de \"muro\" de nivel inferior de esta lista, salvo que el muro puede curvarse hasta formar un semicírculo."
+        }
+      },
+      {
+        "name": "50. Muro de Fuerza",
+        "img": "systems/rmss/assets/default/spell.svg",
+        "system": {
+          "favorite": false,
+          "instant": false,
+          "level": 50,
+          "area_of_effect": "10'x20'x1\"",
+          "duration": "1 asalto/nvl",
+          "range": "100'",
+          "type": "E",
+          "subType": "-",
+          "attack_table": "",
+          "skillName": "",
+          "description": "Canalizando directamente el poder de su deidad, el lanzador crea un muro transparente de \"fuerza\" absolutamente infranqueable por cualquiera o cualquier cosa. Puede medir hasta 10' x 20' x 1\"."
+        }
+      }
+    ]
+  }
+}

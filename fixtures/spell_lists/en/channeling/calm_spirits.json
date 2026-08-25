@@ -1,0 +1,38 @@
+{
+  "name": "Calm Spirits",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.3 - Calm Spirits. Mental attack spells to calm animals and people, and hold humanoids to a fraction of their normal action.",
+    "spells": [
+      { "name": "01. Animal Calming I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 1, "area_of_effect": "1 target", "duration": "2 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Target animal will take no aggressive/offensive action, and will fight only if attacked." } },
+      { "name": "02. Calm I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 2, "area_of_effect": "1 target", "duration": "1 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Target will take no aggressive/offensive action, and will fight only if attacked." } },
+      { "name": "03. Animal Calming III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 3, "area_of_effect": "3 targets", "duration": "2 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "As Animal Calming I, except 3 targets may be affected." } },
+      { "name": "04. Calm II", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 4, "area_of_effect": "2 targets", "duration": "1 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "As Calm I, except 2 targets may be affected." } },
+      { "name": "05. Hold Kind", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 5, "area_of_effect": "1 target", "duration": "C", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Humanoid target is held to 25% of normal action." } },
+      { "name": "06. Calm III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 6, "area_of_effect": "3 targets", "duration": "1 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "As Calm I, except 3 targets may be affected." } },
+      { "name": "07. Animal Calming V", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 7, "area_of_effect": "5 targets", "duration": "2 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "As Animal Calming I, except 5 targets may be affected." } },
+      { "name": "08. Calm IV", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 8, "area_of_effect": "4 targets", "duration": "1 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "As Calm I, except 4 targets may be affected." } },
+      { "name": "09. Calm V", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 9, "area_of_effect": "5 targets", "duration": "1 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "As Calm I, except 5 targets may be affected." } },
+      { "name": "10. Mass Animal Calming I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 10, "area_of_effect": "varies", "duration": "2 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Caster can calm a number of animals equal to his level." } },
+      { "name": "11. True Hold", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 11, "area_of_effect": "1 target", "duration": "C", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "As Hold Kind, except it will affect any target." } },
+      { "name": "12. Calm X", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 12, "area_of_effect": "10 targets", "duration": "1 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "As Calm I, except that 10 targets may be affected." } },
+      { "name": "15. Shout of Calming", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 15, "area_of_effect": "varies", "duration": "1 min/lvl", "range": "50'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "All targets in radius must resist or they are calmed." } },
+      { "name": "18. Mass Animal Calming II", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 18, "area_of_effect": "varies", "duration": "2 min/lvl", "range": "10'/lvl", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "As Mass Animal Calming I, except RRs are modified by -20 and the range is 10'/lvl." } },
+      { "name": "20. Lord Calm", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 20, "area_of_effect": "varies", "duration": "1 min/lvl", "range": "10'/lvl", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Allows Caster to calm up to 20 targets." } },
+      { "name": "25. Long Calm", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 25, "area_of_effect": "1 target", "duration": "1 day/lvl", "range": "300'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Caster can calm any 1 target." } },
+      { "name": "30. Mass Calm", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 30, "area_of_effect": "varies", "duration": "1 min/lvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Caster can calm a number of targets equal to his level." } },
+      { "name": "50. Calm True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 50, "area_of_effect": "1 target", "duration": "P", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Caster can calm any 1 target." } }
+    ]
+  }
+}

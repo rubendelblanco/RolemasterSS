@@ -1,0 +1,35 @@
+{
+  "name": "Organ Law",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "closed",
+    "realm": "channeling",
+    "profession": "",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Closed Channeling 3.9 - Organ Law. Spells to repair, transplant, and regenerate the nose, ears, eyes, heart, lungs and other organs.",
+    "spells": [
+      { "name": "01. Organ Lore", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 1, "area_of_effect": "1 target", "duration": "—", "range": "touch", "type": "I", "subType": "-", "attack_table": "", "skillName": "", "description": "Caster acquires complete understanding of any organ damage, including the tools and the methods required for healing; caster does not receive the skill or power to perform the cure." } },
+      { "name": "03. Nasal Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 3, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Allows caster to repair any nose damage short of complete nose loss; requires 6d60 minutes depending on damage." } },
+      { "name": "05. Minor Ear Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 5, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Caster can repair any external damage, including ear loss (regeneration takes 1d10 hours)." } },
+      { "name": "06. Minor Eye Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 6, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Allows caster to repair any minor eye damage (e.g., corneal scratch, removal of foreign object, etc.)." } },
+      { "name": "09. Major Ear Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 9, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "As Minor Ear Repair except that caster can repair any interior or exterior damage; hearing is restored in 1-10 days (note that complete replacement of the inner ear is an exception)." } },
+      { "name": "11. Major Eye Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 11, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "As Minor Eye Repair, except that caster can repair any eye damage short of total eye loss (e.g., eye's destruction precludes repair); recovery time: 1-10 days." } },
+      { "name": "14. Heart Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 14, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Allows caster to repair any heart damage short of total loss or destruction (i.e., replacement); requires 1-10 hour operation and 1-100 day recovery time." } },
+      { "name": "15. Lung Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 15, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Allows caster to repair any lung damage short of total loss or destruction (i.e., replacement); requires a 1-10 hour operation and 1-100 day recovery time." } },
+      { "name": "16. Organ Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 16, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Allows caster to repair any internal or external organ damage (not including the brain or nervous system); requires a 1-10 hour operation and 1-10 day recovery time." } },
+      { "name": "17. Nose Regeneration", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 17, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Allows target to regenerate 1 lost nose; regrowth takes 1-10 days." } },
+      { "name": "18. Organ Transplant", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 18, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Allows caster to transplant 1 healthy organ; operation takes 1 hour; recovery time: 1-10 days; chance of rejection is 10% if same race, 50% if other humanoid." } },
+      { "name": "20. Eye & Ear Regeneration", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 20, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Allows target to regenerate 1 lost eye or ear (including inner ear); regrowth takes 1-10 days, depending on loss." } },
+      { "name": "25. Organ Repair True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 25, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "As Organ Repair, except recovery time is 10 minutes and no operation is required." } },
+      { "name": "30. Heart Regeneration", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 30, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Allows caster to regenerate heart; regrowth takes 1-10 days." } },
+      { "name": "50. Organ Regeneration", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 50, "area_of_effect": "1 target", "duration": "P", "range": "touch", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Allows caster to regenerate any internal or external organ (not including the brain or nervous system); regrowth takes 1-10 days." } }
+    ]
+  }
+}
