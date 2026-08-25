@@ -259,6 +259,16 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 - `holy_shields.json` – Holy Shields / Escudos Sagrados (6.5)
 - `inspiring_ways.json` – Inspiring Ways / Caminos Inspiradores (6.6)
 
+### Listas base de profesión — Guardabosques (Canalización)
+
+**Ranger Base 7.1–7.6:**
+- `inner_walls.json` – Inner Walls / Murallas Interiores (7.1)
+- `moving_ways.json` – Moving Ways / Caminos del Movimiento (7.2)
+- `natures_guises.json` – Nature's Guises / Disfraces de la Naturaleza (7.3)
+- `natures_summons.json` – Nature's Summons / Invocaciones de la Naturaleza (7.4)
+- `natures_way.json` – Nature's Way / Vía de la Naturaleza (7.5)
+- `path_mastery.json` – Path Mastery / Maestría del Camino (7.6)
+
 ### Dark Channels (Closed Channeling, Evil)
 
 - `spell_lists/en/channeling/dark_channels.json` – 17 hechizos de aturdimiento, sueño, ceguera, canalización de hechizos a otros, destrucción del alma y comunión con deidades malvadas (inglés)
@@ -517,7 +527,8 @@ const FILES_BY_FOLDER = {
     "barrier_law", "detection_mastery", "lights_way", "lofty_movements", "natures_law",
     "purifications", "sounds_way", "weather_ways",
     "calm_spirits", "locating_ways", "lore", "organ_law", "symbolic_ways",
-    "communion", "exorcisms", "holy_arms", "holy_healing", "holy_shields", "inspiring_ways"
+    "communion", "exorcisms", "holy_arms", "holy_healing", "holy_shields", "inspiring_ways",
+    "inner_walls", "moving_ways", "natures_guises", "natures_summons", "natures_way", "path_mastery"
   ],
   arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"],
   mentalism: [
