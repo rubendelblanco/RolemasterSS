@@ -269,6 +269,16 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 - `natures_way.json` – Nature's Way / Vía de la Naturaleza (7.5)
 - `path_mastery.json` – Path Mastery / Maestría del Camino (7.6)
 
+### Listas base de profesión — Sanador (Canalización)
+
+**Healer Base 8.1–8.6:**
+- `blood_ways.json` – Blood Ways / Vías de la Sangre (8.1)
+- `bone_ways.json` – Bone Ways / Vías del Hueso (8.2)
+- `cleansing.json` – Cleansing / Purificación (8.3)
+- `muscle_ways.json` – Muscle Ways / Vías del Músculo (8.4)
+- `organ_ways.json` – Organ Ways / Vías de los Órganos (8.5)
+- `surface_ways.json` – Surface Ways / Vías de la Superficie (8.6)
+
 ### Dark Channels (Closed Channeling, Evil)
 
 - `spell_lists/en/channeling/dark_channels.json` – 17 hechizos de aturdimiento, sueño, ceguera, canalización de hechizos a otros, destrucción del alma y comunión con deidades malvadas (inglés)
@@ -528,7 +538,8 @@ const FILES_BY_FOLDER = {
     "purifications", "sounds_way", "weather_ways",
     "calm_spirits", "locating_ways", "lore", "organ_law", "symbolic_ways",
     "communion", "exorcisms", "holy_arms", "holy_healing", "holy_shields", "inspiring_ways",
-    "inner_walls", "moving_ways", "natures_guises", "natures_summons", "natures_way", "path_mastery"
+    "inner_walls", "moving_ways", "natures_guises", "natures_summons", "natures_way", "path_mastery",
+    "blood_ways", "bone_ways", "cleansing", "muscle_ways", "organ_ways", "surface_ways"
   ],
   arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"],
   mentalism: [

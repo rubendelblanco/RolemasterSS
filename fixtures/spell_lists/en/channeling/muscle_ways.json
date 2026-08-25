@@ -1,0 +1,39 @@
+{
+  "name": "Muscle Ways",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Healer Base List 8.4 - Muscle Ways. Self-healing spells for sprains, muscles and tendons, their regeneration, and reattaching a severed limb (Joining, shared with Blood/Bone/Organ Ways).",
+    "spells": [
+      { "name": "01. Sprain Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 1, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can repair 1 sprain (no recovery time)." } },
+      { "name": "02. Muscle Repair I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 2, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can repair 1 damaged muscle. Recovery time is 5-50 minutes." } },
+      { "name": "03. Tendon Repair I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 3, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can repair 1 damaged tendon. Recovery time is 5-50 minutes." } },
+      { "name": "04. Muscle Repair III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 4, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Muscle Repair I, except caster can repair 3 damaged muscles." } },
+      { "name": "05. Tendon Repair III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 5, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Tendon Repair I, except caster can repair 3 damaged tendons." } },
+      { "name": "07. Joining", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 7, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Allows caster to reattach a severed limb. Also requires the use of Bone Ways, Blood Ways, and Organ Ways Joining spells to restore limb to functional status. Limb will be fully functional in 1-10 days." } },
+      { "name": "08. Muscle Repair True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 8, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Muscle Repair I, except recovery is instantaneous." } },
+      { "name": "09. Tendon Repair True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 9, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Tendon Repair I, except recovery is instantaneous." } },
+      { "name": "11. Mass Muscle Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 11, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can repair a number of damaged muscles equal to his level. Recovery time is 5-50 minutes." } },
+      { "name": "12. Muscle Regeneration", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 12, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can regenerate any 1 muscle. Recovery time is 5-50 minutes." } },
+      { "name": "13. Mass Tendon Repair", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 13, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can repair a number of damaged tendons equal to his level. Recovery time is 5-50 minutes." } },
+      { "name": "14. Tendon Regeneration", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 14, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can regenerate any 1 tendon. Recovery time is 5-50 minutes." } },
+      { "name": "15. Joining True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 15, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Joining, except caster must cast the other 3 Healer Joining True spells and recovery is instantaneous." } },
+      { "name": "17. Rapid Muscle Regeneration", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 17, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Muscle Regeneration, except recovery time is 1-10 minutes." } },
+      { "name": "19. Rapid Tendon Regeneration", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 19, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Tendon Regeneration, except recovery time is 1-10 minutes." } },
+      { "name": "20. Regeneration True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 20, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can regenerate any 1 muscle or tendon. Recovery time is instantaneous." } },
+      { "name": "25. Total Muscle Regeneration", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 25, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can regenerate all of the muscles in his body. Recovery time is 5-50 minutes." } },
+      { "name": "30. Total Tendon Regeneration", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 30, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can regenerate all of the tendons in his body. Recovery time is 5-50 minutes." } },
+      { "name": "50. Mass Repairs True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 50, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster can repair a number of damaged muscles and/or tendons equal to his level. Recovery is instantaneous." } }
+    ]
+  }
+}

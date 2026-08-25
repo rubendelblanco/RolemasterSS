@@ -1,0 +1,40 @@
+{
+  "name": "Surface Ways",
+  "type": "spell_list",
+  "img": "systems/rmss/assets/default/spell.svg",
+  "system": {
+    "type": "base",
+    "realm": "channeling",
+    "profession": "Healer",
+    "is_container": true,
+    "container": {
+      "maxCapacity": 50,
+      "usedCapacity": 0,
+      "capacityType": "quantity",
+      "allowedTags": ["spell"]
+    },
+    "description": "Healer Base List 8.6 - Surface Ways. Self-healing spells for concussion hits, frostbite/burns, stun, regeneration over time, and waking from unnatural sleep.",
+    "spells": [
+      { "name": "01. Heal I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 1, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster is healed of d10 concussion hits." } },
+      { "name": "02. Frost/Burn Relief I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 2, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Will heal one area of mild frostbite or a 1st degree burn." } },
+      { "name": "03. Stun Relief I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 3, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster is relieved of 1 round's worth of accumulated stun effects." } },
+      { "name": "04. Regenerate I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 4, "area_of_effect": "caster", "duration": "C", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Reduces damage by 1 hit every round as long as caster concentrates. If caster is unconscious, this spell will operate without concentration." } },
+      { "name": "05. Frost/Burn Relief II", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 5, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Frost/Burn Relief I, except 2 areas of mild damage or 1 area of moderate damage (e.g., 2nd degree burn) are healed." } },
+      { "name": "06. Awake", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 6, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster is instantly awake from any unnatural sleep (e.g., Sleep spell, sleeping drug, etc.). Caster takes one round to awaken." } },
+      { "name": "07. Heal V", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 7, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Heal I, except caster can heal 5d10 concussion hits." } },
+      { "name": "08. Frost/Burn Relief III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 8, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Frost/Burn Relief I, except 3 areas of mild damage or 1 area of severe damage (e.g., 3rd degree burn) or a combination of 1 mild and 1 moderate area can be healed." } },
+      { "name": "09. Stun Relief III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 9, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Stun Relief I, except caster is relieved of 3 rounds accumulated stun effects." } },
+      { "name": "10. Regenerate II", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 10, "area_of_effect": "caster", "duration": "C", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Regenerate I, except 2 hits are healed every round." } },
+      { "name": "11. Frost/Burn Relief V", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 11, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Frost/Burn Relief I, except the area(s) of damage that can be healed are: 5 mild and 1 severe or 1 mild and 2 moderate or 1 moderate and 1 severe, etc." } },
+      { "name": "12. Heal X", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 12, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Heal I, except caster can heal 10d10 concussion hits." } },
+      { "name": "13. Stun Relief V", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 13, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Stun Relief I, except caster is relieved of 5 rounds accumulated stun effects." } },
+      { "name": "15. Regenerate III", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 15, "area_of_effect": "caster", "duration": "C", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Regenerate I, except 3 hits are healed every round." } },
+      { "name": "17. Heal XV", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 17, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Heal I, except caster can heal 15d10 concussion hits." } },
+      { "name": "19. Stun Relief X", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 19, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Stun Relief I, except caster is relieved of 10 rounds accumulated stun effects." } },
+      { "name": "20. Heal XX", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 20, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Heal I, except caster can heal 20d10 concussion hits." } },
+      { "name": "25. Heal True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 25, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "As Heal I, except caster is healed of all concussion hits." } },
+      { "name": "30. Frost/Burn Relief True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 30, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster is relieved of all burns and/or frostbite." } },
+      { "name": "50. Stun Relief True", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 50, "area_of_effect": "caster", "duration": "P", "range": "self", "type": "U", "subType": "s", "attack_table": "", "skillName": "", "description": "Caster is relieved of all accumulated stun effects." } }
+    ]
+  }
+}
