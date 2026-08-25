@@ -249,6 +249,16 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 - `spell_lists/en/channeling/symbolic_ways.json` – 19 hechizos para grabar/eliminar hechizos en Símbolos, analizarlos, y preparar el siguiente hechizo del lanzador (inglés)
 - `spell_lists/es/channeling/symbolic_ways.json` – Caminos Simbólicos, traducida al español
 
+### Listas base de profesión — Paladín (Canalización)
+
+**Paladin Base 6.1–6.6:**
+- `communion.json` – Communion / Comunión (6.1)
+- `exorcisms.json` – Exorcisms / Exorcismos (6.2)
+- `holy_arms.json` – Holy Arms / Armas Sagradas (6.3)
+- `holy_healing.json` – Holy Healing / Curación Sagrada (6.4)
+- `holy_shields.json` – Holy Shields / Escudos Sagrados (6.5)
+- `inspiring_ways.json` – Inspiring Ways / Caminos Inspiradores (6.6)
+
 ### Dark Channels (Closed Channeling, Evil)
 
 - `spell_lists/en/channeling/dark_channels.json` – 17 hechizos de aturdimiento, sueño, ceguera, canalización de hechizos a otros, destrucción del alma y comunión con deidades malvadas (inglés)
@@ -506,7 +516,8 @@ const FILES_BY_FOLDER = {
     "concussion_ways", "dark_channels", "curses", "dark_lore", "disease", "necromancy", "wounding",
     "barrier_law", "detection_mastery", "lights_way", "lofty_movements", "natures_law",
     "purifications", "sounds_way", "weather_ways",
-    "calm_spirits", "locating_ways", "lore", "organ_law", "symbolic_ways"
+    "calm_spirits", "locating_ways", "lore", "organ_law", "symbolic_ways",
+    "communion", "exorcisms", "holy_arms", "holy_healing", "holy_shields", "inspiring_ways"
   ],
   arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"],
   mentalism: [
