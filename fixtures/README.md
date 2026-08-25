@@ -289,6 +289,13 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 - `solid_destruction.json` – Solid Destruction / Destrucción de Sólidos (9.5)
 - `soul_destruction.json` – Soul Destruction / Destrucción del Alma (9.6)
 
+### Listas base de profesión — Clérigo (Canalización)
+
+**Cleric Base 5.1, 5.5, 5.6:**
+- `channels.json` – Channels / Canales (5.1)
+- `repulsions.json` – Repulsions / Repulsiones (5.5)
+- `summons.json` – Summons / Invocaciones (5.6)
+
 ### Dark Channels (Closed Channeling, Evil)
 
 - `spell_lists/en/channeling/dark_channels.json` – 17 hechizos de aturdimiento, sueño, ceguera, canalización de hechizos a otros, destrucción del alma y comunión con deidades malvadas (inglés)
@@ -339,6 +346,11 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 - `spell_lists/en/channeling/herb_mastery.json` – 19 hechizos para entender, mejorar, localizar y preparar hierbas (inglés)
 - `spell_lists/es/channeling/herb_mastery.json` – Dominio de Hierbas, traducida al español
 
+### Nature's Lore (Animist Base List 4.3)
+
+- `spell_lists/en/channeling/natures_lore.json` – 23 hechizos para detectar trampas y magia, hallar caminos y accidentes geográficos, predecir el tiempo, monitorizar un área, y comulgar con elementales y estanques de agua (inglés)
+- `spell_lists/es/channeling/natures_lore.json` – Saber de la Naturaleza, traducida al español
+
 ### Nature's Movement/Senses (Animist Base List 4.4)
 
 - `spell_lists/en/channeling/natures_movement_senses.json` – 23 hechizos de movimiento, sentidos y atributos físicos animales (inglés)
@@ -348,6 +360,11 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 
 - `spell_lists/en/channeling/natures_protection.json` – 23 hechizos de protección, resistencia elemental, ilusiones, cambio de forma y escudo orgánico (inglés)
 - `spell_lists/es/channeling/natures_protection.json` – Protección de la Naturaleza, traducida al español
+
+### Plant Mastery (Animist Base List 4.6)
+
+- `spell_lists/en/channeling/plant_mastery.json` – 22 hechizos de comunión, control y curación de plantas, Muro de Espinas y Control de Plantas (inglés)
+- `spell_lists/es/channeling/plant_mastery.json` – Maestría de Plantas, traducida al español
 
 ### Detecting Ways (Open Essence 2.2)
 
@@ -550,7 +567,8 @@ const FILES_BY_FOLDER = {
     "communion", "exorcisms", "holy_arms", "holy_healing", "holy_shields", "inspiring_ways",
     "inner_walls", "moving_ways", "natures_guises", "natures_summons", "natures_way", "path_mastery",
     "blood_ways", "bone_ways", "cleansing", "muscle_ways", "organ_ways", "surface_ways",
-    "flesh_destruction", "fluid_destruction", "gas_destruction", "mind_destruction", "solid_destruction", "soul_destruction"
+    "flesh_destruction", "fluid_destruction", "gas_destruction", "mind_destruction", "solid_destruction", "soul_destruction",
+    "natures_lore", "plant_mastery", "channels", "repulsions", "summons"
   ],
   arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"],
   mentalism: [
