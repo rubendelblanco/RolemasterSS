@@ -279,6 +279,16 @@ Igual que las Magehunter Base Lists de `arcane/`, estas usan `system.type: "base
 - `organ_ways.json` – Organ Ways / Vías de los Órganos (8.5)
 - `surface_ways.json` – Surface Ways / Vías de la Superficie (8.6)
 
+### Listas base de profesión — Hechicero (Canalización)
+
+**Sorcerer Base 9.1–9.6:**
+- `flesh_destruction.json` – Flesh Destruction / Destrucción de la Carne (9.1)
+- `fluid_destruction.json` – Fluid Destruction / Destrucción de Fluidos (9.2)
+- `gas_destruction.json` – Gas Destruction / Destrucción de Gases (9.3)
+- `mind_destruction.json` – Mind Destruction / Destrucción de la Mente (9.4)
+- `solid_destruction.json` – Solid Destruction / Destrucción de Sólidos (9.5)
+- `soul_destruction.json` – Soul Destruction / Destrucción del Alma (9.6)
+
 ### Dark Channels (Closed Channeling, Evil)
 
 - `spell_lists/en/channeling/dark_channels.json` – 17 hechizos de aturdimiento, sueño, ceguera, canalización de hechizos a otros, destrucción del alma y comunión con deidades malvadas (inglés)
@@ -539,7 +549,8 @@ const FILES_BY_FOLDER = {
     "calm_spirits", "locating_ways", "lore", "organ_law", "symbolic_ways",
     "communion", "exorcisms", "holy_arms", "holy_healing", "holy_shields", "inspiring_ways",
     "inner_walls", "moving_ways", "natures_guises", "natures_summons", "natures_way", "path_mastery",
-    "blood_ways", "bone_ways", "cleansing", "muscle_ways", "organ_ways", "surface_ways"
+    "blood_ways", "bone_ways", "cleansing", "muscle_ways", "organ_ways", "surface_ways",
+    "flesh_destruction", "fluid_destruction", "gas_destruction", "mind_destruction", "solid_destruction", "soul_destruction"
   ],
   arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"],
   mentalism: [
