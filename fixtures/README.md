@@ -553,6 +553,40 @@ Non-profession Essence lists from Training Packages (Essence Companion 14.1). Tr
 - `spell_lists/en/essence/training-packages/travelers_ways.json`
 - `spell_lists/es/essence/training-packages/travelers_ways.json`
 
+### Open lists (Essence Companion)
+
+A second, separate "Open Essence" section from the Essence Companion (14.2), distinct from the 2.1–2.10 Open lists above (which come from core Spell Law). Kept directly in `essence/` (not under `training-packages/`) since these are genuine Open lists, not Training Package lists.
+
+#### Air Mastery (14.2.1)
+22 spells — purifying and controlling air, resisting choking and turbulence, whispering and tracking by scent, flying, and assuming a gaseous form.
+- `spell_lists/en/essence/air_mastery.json`
+- `spell_lists/es/essence/air_mastery.json`
+
+#### Allurement (14.2.2)
+23 spells — charming people, animals, and plants, seducing, suggesting, and binding a target with a geas.
+- `spell_lists/en/essence/allurement.json`
+- `spell_lists/es/essence/allurement.json`
+
+#### Fey Conjury (14.2.3)
+22 spells — detecting, calling, summoning, challenging, commanding, binding, and banishing fey, and producing animals and forging a soul link.
+- `spell_lists/en/essence/fey_conjury.json`
+- `spell_lists/es/essence/fey_conjury.json`
+
+#### Shadow Mastery (14.2.4)
+19 spells — creating, thickening, cursing, and banishing shadows and darkness, teleporting between shadows, seeing in the dark, and animating a shadow servant.
+- `spell_lists/en/essence/shadow_mastery.json`
+- `spell_lists/es/essence/shadow_mastery.json`
+
+#### Sound Mastery (14.2.5)
+23 spells — enhancing and projecting hearing and voice, silencing and walling off sound, deafening and muting a target, and shattering objects with sound.
+- `spell_lists/en/essence/sound_mastery.json`
+- `spell_lists/es/essence/sound_mastery.json`
+
+#### Sustain Body (14.2.6)
+21 spells — forgoing breath, sleep, and food, resisting temperature, damage, poison, disease, aging, and critical effects, and entering a state of suspended animation.
+- `spell_lists/en/essence/sustain_body.json`
+- `spell_lists/es/essence/sustain_body.json`
+
 ## Mentalism
 
 ### Open lists
@@ -881,7 +915,8 @@ const FILES_BY_FOLDER = {
     "dispelling_ways", "gate_mastery", "invisible_ways", "living_change",
     "lofty_bridge", "rapid_ways", "shield_mastery", "spell_enhancement",
     "spell_reins", "spirit_mastery",
-    "dark_summons", "darkness", "entity_summons", "matter_disruption", "physical_erosion"
+    "dark_summons", "darkness", "entity_summons", "matter_disruption", "physical_erosion",
+    "air_mastery", "allurement", "fey_conjury", "shadow_mastery", "sound_mastery", "sustain_body"
   ],
   "training-packages": [
     "arachnemancy", "brewing_lore", "guildcraft_mastery", "hearth_magic", "magical_ropes",
