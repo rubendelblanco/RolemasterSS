@@ -499,6 +499,60 @@ Every list below is available in both languages, at the same relative path under
 - `spell_lists/en/essence/physical_erosion.json`
 - `spell_lists/es/essence/physical_erosion.json`
 
+### Training Package lists
+
+Non-profession Essence lists from Training Packages (Essence Companion 14.1). Treated as `system.type: "open"` like any other Essence list, and kept in their own `training-packages/` subfolder to keep them visually separate from the core Open/Closed lists above. Training Package school-casting lists (Corpist Casting, Crystalist Casting, Herbalist Casting, Nomenist Casting) are intentionally excluded — they belong to the catalyst-casting schools of magic, which this project does not implement.
+
+#### Arachnemancy (14.1.1)
+23 spells — bonding with a spider familiar, spinning and controlling webs and web ropes, controlling and summoning spiders, and mimicking spider abilities such as climbing and poison.
+- `spell_lists/en/essence/training-packages/arachnemancy.json`
+- `spell_lists/es/essence/training-packages/arachnemancy.json`
+
+#### Brewing Lore (14.1.2)
+23 spells — identifying and brewing drugs, poisons, and stimulants, distilling alcohol, and preparing potions from herbs and other ingredients.
+- `spell_lists/en/essence/training-packages/brewing_lore.json`
+- `spell_lists/es/essence/training-packages/brewing_lore.json`
+
+#### Guildcraft Mastery (14.1.5)
+23 spells — analyzing, copying, protecting, warding, and preserving books and manuscripts, repelling vermin, and recording spell lists into a spell book.
+- `spell_lists/en/essence/training-packages/guildcraft_mastery.json`
+- `spell_lists/es/essence/training-packages/guildcraft_mastery.json`
+
+#### Hearth Magic (14.1.6)
+23 spells — preparing, preserving, dehydrating, and cooking food and drink, controlling temperature and water, foraging, and detecting poison.
+- `spell_lists/en/essence/training-packages/hearth_magic.json`
+- `spell_lists/es/essence/training-packages/hearth_magic.json`
+
+#### Magical Ropes (14.1.8)
+20 spells — animating, strengthening, and multiplying ropes, and creating and controlling flying carpets.
+- `spell_lists/en/essence/training-packages/magical_ropes.json`
+- `spell_lists/es/essence/training-packages/magical_ropes.json`
+
+#### Mending Ways (14.1.9)
+23 spells — mending broken string, cloth, wood, metal, stone, and crystal items, mundane or magical, restoring physical integrity but not any lost enchantment.
+- `spell_lists/en/essence/training-packages/mending_ways.json`
+- `spell_lists/es/essence/training-packages/mending_ways.json`
+
+#### Mirror Magic (14.1.10)
+23 spells — creating, enruning, and scrying through mirrors, stealing and trapping reflections, traveling between linked mirrors, and entering the Mirror World.
+- `spell_lists/en/essence/training-packages/mirror_magic.json`
+- `spell_lists/es/essence/training-packages/mirror_magic.json`
+
+#### Ocean Law (14.1.12)
+23 spells — navigating, maintaining, and steering a vessel, predicting and controlling weather at sea, and purifying seawater.
+- `spell_lists/en/essence/training-packages/ocean_law.json`
+- `spell_lists/es/essence/training-packages/ocean_law.json`
+
+#### Predictions (14.1.13)
+22 spells — reading a studied person, gaining insight into patterns, prophecies, and difficult choices, and locating people and paths.
+- `spell_lists/en/essence/training-packages/predictions.json`
+- `spell_lists/es/essence/training-packages/predictions.json`
+
+#### Traveler's Ways (14.1.14)
+23 spells — practical needs of the road: navigation, repairs, protection from vermin and weather, and moving cargo and pack animals.
+- `spell_lists/en/essence/training-packages/travelers_ways.json`
+- `spell_lists/es/essence/training-packages/travelers_ways.json`
+
 ## Mentalism
 
 ### Open lists
@@ -814,9 +868,9 @@ if (!pack) {
 
 ```javascript
 // Creates every spell list in a folder in the world (or in a compendium).
-// Change FOLDER to: essence, channeling, arcane or mentalism.
+// Change FOLDER to: essence, channeling, arcane, mentalism, or essence/training-packages.
 const LANG = "es";
-const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism
+const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages
 const PACK_ID = null;  // "world.spell-lists" to import into a compendium; null to create in Items
 
 const FILES_BY_FOLDER = {
@@ -828,6 +882,10 @@ const FILES_BY_FOLDER = {
     "lofty_bridge", "rapid_ways", "shield_mastery", "spell_enhancement",
     "spell_reins", "spirit_mastery",
     "dark_summons", "darkness", "entity_summons", "matter_disruption", "physical_erosion"
+  ],
+  "training-packages": [
+    "arachnemancy", "brewing_lore", "guildcraft_mastery", "hearth_magic", "magical_ropes",
+    "mending_ways", "mirror_magic", "ocean_law", "predictions", "travelers_ways"
   ],
   channeling: [
     "barrier_law", "concussion_ways", "detection_mastery", "lights_way", "lofty_movements", "natures_law",
