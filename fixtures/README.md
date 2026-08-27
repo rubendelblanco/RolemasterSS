@@ -646,6 +646,16 @@ A second, separate "Closed Essence" section from the Essence Companion (14.3), d
 - `spell_lists/en/essence/water_mastery.json`
 - `spell_lists/es/essence/water_mastery.json`
 
+### Listas base de profesión — Runemago (Essence Companion)
+
+**Runemage Base 14.4.1–14.4.6:** Hybrid Essence/Channeling profession centered on the power of written and spoken language — runes, symbols, true names, and wards.
+- `commanding_will.json` – Commanding Will / Voluntad de Mando (14.4.1)
+- `inscriptions.json` – Inscriptions / Inscripciones (14.4.2)
+- `nomenclature_mastery.json` – Nomenclature Mastery / Maestría de los Nombres (14.4.3)
+- `physical_manipulations.json` – Physical Manipulations / Manipulaciones Físicas (14.4.4)
+- `symbolism.json` – Symbolism / Simbolismo (14.4.5)
+- `warding_ways.json` – Warding Ways / Vías de Protección (14.4.6)
+
 ## Mentalism
 
 ### Open lists
@@ -977,7 +987,8 @@ const FILES_BY_FOLDER = {
     "dark_summons", "darkness", "entity_summons", "matter_disruption", "physical_erosion",
     "air_mastery", "allurement", "fey_conjury", "shadow_mastery", "sound_mastery", "sustain_body",
     "circle_mastery", "counterspells", "earth_mastery", "elemental_summons", "familiar_mastery",
-    "fire_mastery", "light_mastery", "magic_staff", "matter_shaping", "mechanisms_way", "water_mastery"
+    "fire_mastery", "light_mastery", "magic_staff", "matter_shaping", "mechanisms_way", "water_mastery",
+    "commanding_will", "inscriptions", "nomenclature_mastery", "physical_manipulations", "symbolism", "warding_ways"
   ],
   "training-packages": [
     "arachnemancy", "brewing_lore", "guildcraft_mastery", "hearth_magic", "magical_ropes",
