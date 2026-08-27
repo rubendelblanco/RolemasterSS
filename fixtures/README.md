@@ -587,6 +587,65 @@ A second, separate "Open Essence" section from the Essence Companion (14.2), dis
 - `spell_lists/en/essence/sustain_body.json`
 - `spell_lists/es/essence/sustain_body.json`
 
+### Closed lists (Essence Companion)
+
+A second, separate "Closed Essence" section from the Essence Companion (14.3), distinct from any core Spell Law Closed Essence lists. Kept directly in `essence/` (not under `training-packages/`) since these are genuine Closed lists, not Training Package lists.
+
+#### Circle Mastery (14.3.1)
+23 spells — drawing magic circles that protect, contain, bind, drain, or embed other spells, and linking circles into a power matrix.
+- `spell_lists/en/essence/circle_mastery.json`
+- `spell_lists/es/essence/circle_mastery.json`
+
+#### Counterspells (14.3.2)
+23 spells — studying and detecting spells and spelltraps, embedding counterspells and spelltraps on a target, and reflecting or reversing an incoming spell.
+- `spell_lists/en/essence/counterspells.json`
+- `spell_lists/es/essence/counterspells.json`
+
+#### Earth Mastery (14.3.3)
+23 spells — digging, tunneling, and walling off earth and stone, animating earthen hands and arms, phasing through earth, and toughening the caster's own skin.
+- `spell_lists/en/essence/earth_mastery.json`
+- `spell_lists/es/essence/earth_mastery.json`
+
+#### Elemental Summons (14.3.4)
+19 spells — repelling, controlling, banishing, and summoning Elemental Servants, Weak, Strong, and Guardian elementals, and communicating with elementals.
+- `spell_lists/en/essence/elemental_summons.json`
+- `spell_lists/es/essence/elemental_summons.json`
+
+#### Familiar Mastery (14.3.5)
+21 spells — calling, locating, extending the range of, and sharing senses/resistance with a familiar, binding a true familiar, and sharing souls between caster and familiar.
+- `spell_lists/en/essence/familiar_mastery.json`
+- `spell_lists/es/essence/familiar_mastery.json`
+
+#### Fire Mastery (14.3.6)
+23 spells — summoning and controlling flame, igniting and cauterizing, resisting heat, wreathing the caster in fire, and attacking with fire bolts and fireballs.
+- `spell_lists/en/essence/fire_mastery.json`
+- `spell_lists/es/essence/fire_mastery.json`
+
+#### Light Mastery (14.3.7)
+23 spells — creating light, auras, and flares, blinding and stunning with bursts of light, and projecting a beacon visible for miles.
+- `spell_lists/en/essence/light_mastery.json`
+- `spell_lists/es/essence/light_mastery.json`
+
+#### Magic Staff (14.3.8)
+22 spells — creating and progressively enchanting a caster's own staff into an adder, a spell store, a guardian, a hammerstaff, or a beaststaff.
+- `spell_lists/en/essence/magic_staff.json`
+- `spell_lists/es/essence/magic_staff.json`
+
+#### Matter Shaping (14.3.9)
+23 spells — storing and designing shapes, molding and shaping gas, liquid, and solid matter, altering density and flexibility, and changing matter between states.
+- `spell_lists/en/essence/matter_shaping.json`
+- `spell_lists/es/essence/matter_shaping.json`
+
+#### Mechanism's Way (14.3.10)
+22 spells — analyzing, weakening, warping, improving, and trapping mechanisms, and inflicting or delaying temporary structural flaws on objects and structures.
+- `spell_lists/en/essence/mechanisms_way.json`
+- `spell_lists/es/essence/mechanisms_way.json`
+
+#### Water Mastery (14.3.11)
+23 spells — purifying, dehydrating, and calming water, swimming without tiring, assuming a liquid form, raising waves and whirlpools, and controlling rain.
+- `spell_lists/en/essence/water_mastery.json`
+- `spell_lists/es/essence/water_mastery.json`
+
 ## Mentalism
 
 ### Open lists
@@ -916,7 +975,9 @@ const FILES_BY_FOLDER = {
     "lofty_bridge", "rapid_ways", "shield_mastery", "spell_enhancement",
     "spell_reins", "spirit_mastery",
     "dark_summons", "darkness", "entity_summons", "matter_disruption", "physical_erosion",
-    "air_mastery", "allurement", "fey_conjury", "shadow_mastery", "sound_mastery", "sustain_body"
+    "air_mastery", "allurement", "fey_conjury", "shadow_mastery", "sound_mastery", "sustain_body",
+    "circle_mastery", "counterspells", "earth_mastery", "elemental_summons", "familiar_mastery",
+    "fire_mastery", "light_mastery", "magic_staff", "matter_shaping", "mechanisms_way", "water_mastery"
   ],
   "training-packages": [
     "arachnemancy", "brewing_lore", "guildcraft_mastery", "hearth_magic", "magical_ropes",

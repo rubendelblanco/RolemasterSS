@@ -8,7 +8,7 @@
     "profession": "",
     "is_container": true,
     "container": { "maxCapacity": 50, "usedCapacity": 0, "capacityType": "quantity", "allowedTags": ["spell"] },
-    "description": "Essencia Abierta 14.2.2 - Seducción. Hechizos para encantar a personas, animales y plantas, seducir, sugestionar, y atar a un objetivo con un geas.",
+    "description": "Esencia Abierta 14.2.2 - Seducción. Hechizos para encantar a personas, animales y plantas, seducir, sugestionar, y atar a un objetivo con un geas.",
     "spells": [
       { "name": "01. Empatía I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 1, "area_of_effect": "sí mismo", "duration": "1 min/nvl", "range": "sí mismo", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "Durante la duración, el lanzador obtiene un bonificador de +5 a todas las habilidades de la categoría Influencia (y cualquier otra habilidad relacionada con la interacción con personas)." } },
       { "name": "02. Encantar Sexo Opuesto I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 2, "area_of_effect": "1 objetivo", "duration": "10 min/nvl", "range": "100'", "type": "F", "subType": "m", "attack_table": "", "skillName": "", "description": "Un objetivo humanoide del sexo opuesto cree que el lanzador es un buen amigo. La TR del objetivo puede modificarse por prejuicios raciales." } },

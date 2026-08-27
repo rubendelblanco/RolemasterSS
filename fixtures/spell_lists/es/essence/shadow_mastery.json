@@ -8,7 +8,7 @@
     "profession": "",
     "is_container": true,
     "container": { "maxCapacity": 50, "usedCapacity": 0, "capacityType": "quantity", "allowedTags": ["spell"] },
-    "description": "Essencia Abierta 14.2.4 - Maestría de las Sombras. Hechizos para crear, espesar, maldecir y desterrar sombras y oscuridad, teletransportarse entre sombras, ver en la oscuridad, y animar un sirviente de sombra.",
+    "description": "Esencia Abierta 14.2.4 - Maestría de las Sombras. Hechizos para crear, espesar, maldecir y desterrar sombras y oscuridad, teletransportarse entre sombras, ver en la oscuridad, y animar un sirviente de sombra.",
     "spells": [
       { "name": "01. Sombras", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 1, "area_of_effect": "1 objetivo", "duration": "10 min/nvl", "range": "10'", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "El objetivo y todos los objetos que lleve encima parecen una sombra, y por tanto son casi invisibles en zonas oscuras." } },
       { "name": "02. Oscuridad I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 2, "area_of_effect": "10' de radio", "duration": "10 min/nvl", "range": "toque", "type": "E", "subType": "-", "attack_table": "", "skillName": "", "description": "Oscurece un radio de 10' alrededor del punto tocado." } },

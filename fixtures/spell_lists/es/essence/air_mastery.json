@@ -8,7 +8,7 @@
     "profession": "",
     "is_container": true,
     "container": { "maxCapacity": 50, "usedCapacity": 0, "capacityType": "quantity", "allowedTags": ["spell"] },
-    "description": "Essencia Abierta 14.2.1 - Maestría del Aire. Hechizos para purificar y controlar el aire, resistir la asfixia y la turbulencia, susurrar y rastrear por olfato, volar, y adoptar forma gaseosa.",
+    "description": "Esencia Abierta 14.2.1 - Maestría del Aire. Hechizos para purificar y controlar el aire, resistir la asfixia y la turbulencia, susurrar y rastrear por olfato, volar, y adoptar forma gaseosa.",
     "spells": [
       { "name": "01. Céfiro", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": true, "level": 1, "area_of_effect": "objetivo", "duration": "1 min/nvl", "range": "10'", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "El lanzador puede correr una categoría de ritmo mejor de lo normalmente permitido por su armadura y carga. Por ejemplo, un hombre sin armadura podría moverse a x6 su ritmo base (gastando 75 puntos de agotamiento por asalto) en vez de x5. Si el lanzador deja de correr, el hechizo termina. El hechizo no otorga ningún modificador a la dificultad de la maniobra ni bonificaciones de agotamiento." } },
       { "name": "02. Aliento Prolongado I", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 2, "area_of_effect": "lanzador", "duration": "1 min/nvl", "range": "sí mismo", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "El lanzador no necesita respirar durante la duración de este hechizo." } },

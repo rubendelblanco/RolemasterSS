@@ -8,7 +8,7 @@
     "profession": "",
     "is_container": true,
     "container": { "maxCapacity": 50, "usedCapacity": 0, "capacityType": "quantity", "allowedTags": ["spell"] },
-    "description": "Essencia Abierta 14.2.3 - Conjuro Feérico. Hechizos para detectar, llamar, invocar, desafiar, ordenar, atar y desterrar a las hadas, además de producir animales y forjar un vínculo de almas.",
+    "description": "Esencia Abierta 14.2.3 - Conjuro Feérico. Hechizos para detectar, llamar, invocar, desafiar, ordenar, atar y desterrar a las hadas, además de producir animales y forjar un vínculo de almas.",
     "spells": [
       { "name": "01. Detectar Hada", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 1, "area_of_effect": "1 hada", "duration": "—", "range": "100'", "type": "I", "subType": "-", "attack_table": "", "skillName": "", "description": "El lanzador detecta cualquier hada dentro del área de efecto, así como cualquier objeto estrechamente asociado con ella." } },
       { "name": "02. Llamar Hada Local", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 2, "area_of_effect": "1 hada", "duration": "—", "range": "5 millas", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "El hada apropiada más cercana recibirá una petición o llamada de socorro del lanzador. Que decida responder o no depende de la relación del lanzador con el hada y de la actitud actual de esta. A menudo, si el hada se presenta, regateará mucho antes de ofrecer ayuda, a menos que ya esté asociada con el lanzador." } },

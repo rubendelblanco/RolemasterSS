@@ -8,7 +8,7 @@
     "profession": "",
     "is_container": true,
     "container": { "maxCapacity": 50, "usedCapacity": 0, "capacityType": "quantity", "allowedTags": ["spell"] },
-    "description": "Essencia Abierta 14.2.5 - Maestría del Sonido. Hechizos para potenciar y proyectar el oído y la voz, silenciar y amurallar el sonido, ensordecer y enmudecer a un objetivo, y hacer añicos objetos con sonido.",
+    "description": "Esencia Abierta 14.2.5 - Maestría del Sonido. Hechizos para potenciar y proyectar el oído y la voz, silenciar y amurallar el sonido, ensordecer y enmudecer a un objetivo, y hacer añicos objetos con sonido.",
     "spells": [
       { "name": "01. Oídos Astutos", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 1, "area_of_effect": "1 objetivo", "duration": "10 min/nvl", "range": "10'", "type": "U", "subType": "-", "attack_table": "", "skillName": "", "description": "El objetivo obtiene el doble de audición normal. Esto se traduce en +50 a maniobras de Percepción que involucren solo el oído; +25 si involucran el oído y otros sentidos." } },
       { "name": "02. Control de Volumen", "img": "systems/rmss/assets/default/spell.svg", "system": { "favorite": false, "instant": false, "level": 2, "area_of_effect": "1 objetivo", "duration": "10 min/nvl", "range": "10'", "type": "F", "subType": "-", "attack_table": "", "skillName": "", "description": "El lanzador puede modificar el volumen de todos los ruidos naturales producidos por el objetivo entre x0,5 y x2 del volumen original (el volumen debe elegirse en el momento de lanzarlo)." } },
