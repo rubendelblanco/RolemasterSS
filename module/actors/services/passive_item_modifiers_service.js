@@ -84,15 +84,37 @@ export function mergePassiveModifiersFormData(formData, item) {
 }
 
 /**
+ * EffectChangeData's mode field was renamed to a string `type` in Foundry v14
+ * (CONST.ACTIVE_EFFECT_CHANGE_TYPES replaces CONST.ACTIVE_EFFECT_MODES, with
+ * different underlying values) - detect which schema this Foundry build uses
+ * so passive modifiers keep working on both v13 and v14 hosts.
+ * @returns {{ key: "mode"|"type", ADD: number|string, OVERRIDE: number|string }}
+ */
+function getActiveEffectChangeSchema() {
+  if (CONST.ACTIVE_EFFECT_CHANGE_TYPES) {
+    return {
+      key: "type",
+      ADD: CONST.ACTIVE_EFFECT_CHANGE_TYPES.ADD,
+      OVERRIDE: CONST.ACTIVE_EFFECT_CHANGE_TYPES.OVERRIDE
+    };
+  }
+  return {
+    key: "mode",
+    ADD: CONST.ACTIVE_EFFECT_MODES?.ADD ?? 2,
+    OVERRIDE: CONST.ACTIVE_EFFECT_MODES?.OVERRIDE ?? 5
+  };
+}
+
+/**
  * @param {object} mod — normalized modifier
- * @returns {Array<{ key: string, mode: number, value: number }>}
+ * @returns {Array<{ key: string, value: number } & ({ mode: number } | { type: string })>}
  */
 export function buildChangesForModifier(mod) {
-  const ADD = CONST.ACTIVE_EFFECT_MODES?.ADD ?? 2;
-  const OVERRIDE = CONST.ACTIVE_EFFECT_MODES?.OVERRIDE ?? 5;
+  const schema = getActiveEffectChangeSchema();
+  const modeKey = schema.key;
 
   const action = mod.action ?? "add";
-  const mode = action === "override" ? OVERRIDE : ADD;
+  const mode = action === "override" ? schema.OVERRIDE : schema.ADD;
   const rawVal = Number(mod.value);
   if (!Number.isFinite(rawVal)) return [];
   const val = action === "subtract" ? -rawVal : rawVal;
@@ -101,13 +123,13 @@ export function buildChangesForModifier(mod) {
 
   switch (target) {
     case "armor_magic":
-      return [{ key: "system.armor_info.magic", mode, value: val }];
+      return [{ key: "system.armor_info.magic", [modeKey]: mode, value: val }];
     case "initiative":
-      return [{ key: "system.attributes.initiative.value", mode, value: val }];
+      return [{ key: "system.attributes.initiative.value", [modeKey]: mode, value: val }];
     case "stat_special": {
       const stat = mod.statKey || "strength";
       if (!CONFIG.rmss?.stats?.[stat]) return [];
-      return [{ key: `system.stats.${stat}.special_bonus`, mode, value: val }];
+      return [{ key: `system.stats.${stat}.special_bonus`, [modeKey]: mode, value: val }];
     }
     case "resistance_roll": {
       const rr = mod.rrKey ?? "essence";
@@ -116,7 +138,7 @@ export function buildChangesForModifier(mod) {
         .filter((k) => RESISTANCE_ROLL_KEYS.includes(k))
         .map((k) => ({
           key: `system.resistance_rolls.${k}.race_mod`,
-          mode,
+          [modeKey]: mode,
           value: val
         }));
     }

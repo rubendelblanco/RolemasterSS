@@ -162,7 +162,7 @@ export class RMSSEffectApplier {
         await entity.createEmbeddedDocuments("ActiveEffect", [{
             name: "Dying",
             img: `${CONFIG.rmss.paths.icons_folder}dead-head.svg`,
-            origin: entity.id,
+            origin: entity.uuid,
             disabled: false,
             flags: { rmss },
             duration: { rounds, startRound: game.combat ? game.combat.round : 0 }
@@ -202,7 +202,7 @@ export class RMSSEffectApplier {
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "Stunned",
                 img: `${CONFIG.rmss.paths.icons_folder}stunned.svg`,
-                origin: entity.id,
+                origin: entity.uuid,
                 disabled: false,
                 ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
                 duration: {
@@ -228,7 +228,7 @@ export class RMSSEffectApplier {
         await entity.createEmbeddedDocuments("ActiveEffect", [{
             name: "Bleeding",
             img: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
-            origin: entity.id,
+            origin: entity.uuid,
             description,
             disabled: false,
             flags: { rmss: { value: rate, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity) } },
@@ -251,7 +251,7 @@ export class RMSSEffectApplier {
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "Penalty",
                 img: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
-                origin: entity.id,
+                origin: entity.uuid,
                 description,
                 disabled: false,
                 flags: { rmss },
@@ -263,7 +263,7 @@ export class RMSSEffectApplier {
         await entity.createEmbeddedDocuments("ActiveEffect", [{
             name: "Penalty",
             img: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
-            origin: entity.id,
+            origin: entity.uuid,
             description,
             disabled: false,
             flags: { rmss: { value: penalty, permanentPenalty: true } },
@@ -282,7 +282,7 @@ export class RMSSEffectApplier {
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "Parry",
                 img: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
-                origin: entity.id,
+                origin: entity.uuid,
                 disabled: false,
                 ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
                 duration: { rounds, startRound: game.combat ? game.combat.round : 0 }
@@ -301,7 +301,7 @@ export class RMSSEffectApplier {
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "No parry",
                 img: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
-                origin: entity.id,
+                origin: entity.uuid,
                 disabled: false,
                 ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
                 duration: { rounds: r, startRound: game.combat ? game.combat.round : 0 }
@@ -319,7 +319,7 @@ export class RMSSEffectApplier {
         await attacker.createEmbeddedDocuments("ActiveEffect", [{
             name: "Bonus",
             img: `${CONFIG.rmss.paths.icons_folder}bonus.svg`,
-            origin: originId,
+            origin: attacker.uuid,
             description,
             disabled: false,
             flags: { rmss },
