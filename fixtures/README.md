@@ -656,6 +656,16 @@ A second, separate "Closed Essence" section from the Essence Companion (14.3), d
 - `symbolism.json` – Symbolism / Simbolismo (14.4.5)
 - `warding_ways.json` – Warding Ways / Vías de Protección (14.4.6)
 
+### Listas base de profesión — Moldeador de Mana (Essence Companion)
+
+**Mana Molder Base 14.5.1–14.5.6:** Pure Essence profession centered on Mana Forms — solid manifestations of the Essence used to create temporary items, force fields, servants, warriors, and glyphs.
+- `mana_barriers.json` – Mana Barriers / Barreras de Mana (14.5.1)
+- `mana_items.json` – Mana Items / Objetos de Mana (14.5.2)
+- `mana_molding.json` – Mana Molding / Modelado de Mana (14.5.3)
+- `mana_servants.json` – Mana Servants / Sirvientes de Mana (14.5.4)
+- `mana_warriors.json` – Mana Warriors / Guerreros de Mana (14.5.5)
+- `glyphs.json` – Glyphs / Glifos (14.5.6)
+
 ## Mentalism
 
 ### Open lists
@@ -988,7 +998,8 @@ const FILES_BY_FOLDER = {
     "air_mastery", "allurement", "fey_conjury", "shadow_mastery", "sound_mastery", "sustain_body",
     "circle_mastery", "counterspells", "earth_mastery", "elemental_summons", "familiar_mastery",
     "fire_mastery", "light_mastery", "magic_staff", "matter_shaping", "mechanisms_way", "water_mastery",
-    "commanding_will", "inscriptions", "nomenclature_mastery", "physical_manipulations", "symbolism", "warding_ways"
+    "commanding_will", "inscriptions", "nomenclature_mastery", "physical_manipulations", "symbolism", "warding_ways",
+    "mana_barriers", "mana_items", "mana_molding", "mana_servants", "mana_warriors", "glyphs"
   ],
   "training-packages": [
     "arachnemancy", "brewing_lore", "guildcraft_mastery", "hearth_magic", "magical_ropes",
