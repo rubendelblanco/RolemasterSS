@@ -893,11 +893,23 @@
       },
       "D": {
         "text": "Sin piedad, golpeas y aplastas su tráquea. Luego siguen 16 lentos y agonizantes asaltos hasta su final.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 18
+            }
+          }
+        ]
       },
       "E": {
         "text": "Una patada a los riñones lo hace caer de rodillas. Agarras su cabeza y le rompes el cuello. Muerto en 9 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       }
     },
     {
@@ -964,6 +976,9 @@
             "BONUS": {
               "VALUE": 10,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 12
             }
           }
         ]
@@ -1014,11 +1029,23 @@
       },
       "D": {
         "text": "Una patada circular en la parte posterior de su cabeza lo golpea con tanta fuerza que rebota contra el suelo. Muerto en 9 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       },
       "E": {
         "text": "Vaya, ¡es posible meter la nariz de alguien en su cerebro! Está en el suelo y muerto en 6 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       }
     },
     {
@@ -1044,15 +1071,33 @@
       },
       "C": {
         "text": "¡Buena combinación! Lo barres al suelo y le das un golpe con el talón en las costillas. Morirá en 4 segundos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 4
+            }
+          }
+        ]
       },
       "D": {
         "text": "Un golpe en forma de lanza al plexo solar le pulveriza el corazón. Muere al instante. Eso fue cruel.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "E": {
         "text": "Lo desarmas, tomas su propia arma y lo matas con ella. Puedes lanzar su cadáver 1.5 metros si lo deseas.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       }
     }
   ],

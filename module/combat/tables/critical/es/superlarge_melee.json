@@ -369,6 +369,9 @@
             "BONUS": {
               "ROUNDS": 1,
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -597,7 +600,10 @@
         "text": "Tu arma está en su cuello, pero su perdición son sus ojos. Cae y muere en 3 asaltos.",
         "metadata": [
           {
-            "HP": "35"
+            "HP": "35",
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       }
@@ -608,7 +614,11 @@
       "A": {
         "text": "Clásico. Secciotas venas y una arteria en su pierna. Sí, cae y muere en 12 asaltos.",
         "metadata": [
-          {}
+          {
+            "DEAD": {
+              "ROUNDS": 12
+            }
+          }
         ]
       },
       "B": {
@@ -618,6 +628,9 @@
             "BONUS": {
               "0": "5",
               "VALUE": 25,
+              "ROUNDS": 1
+            },
+            "DEAD": {
               "ROUNDS": 1
             }
           }
@@ -672,13 +685,22 @@
       },
       "B": {
         "text": "Un destello de intuición te revela su punto débil. Golpeas y lo destruyes. Está muerto.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "C": {
         "text": "Finalmente, uno de tus golpes en su cuello da en el blanco. Cae y muere en 1 asalto. ¡Dulce!",
         "metadata": [
           {
-            "HP": "5"
+            "HP": "5",
+            "DEAD": {
+              "ROUNDS": 1
+            }
           }
         ]
       },
@@ -698,6 +720,9 @@
               "0": "3",
               "1": "5",
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -774,7 +799,10 @@
             "STUN": {
               "ROUNDS": 6
             },
-            "NP": "6"
+            "NP": "6",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }
@@ -1000,7 +1028,10 @@
         "text": "Pasando su guardia lo destripas. Muere en 4 asaltos, pero cae sobre ti. Muy sucio.",
         "metadata": [
           {
-            "HP": "35"
+            "HP": "35",
+            "DEAD": {
+              "ROUNDS": 4
+            }
           }
         ]
       }
@@ -1030,19 +1061,31 @@
             "BONUS": {
               "ROUNDS": 1,
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
       },
       "C": {
         "text": "Con sus propios huesos clavados a través de ambos pulmones, muere después de 18 asaltos en coma.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 18
+            }
+          }
+        ]
       },
       "D": {
         "text": "Su espíritu está roto y también su columna. Muere en 2 asaltos. Pareces un héroe épico.",
         "metadata": [
           {
-            "HP": "50"
+            "HP": "50",
+            "DEAD": {
+              "ROUNDS": 2
+            }
           }
         ]
       },

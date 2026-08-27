@@ -611,7 +611,18 @@
         ]
       },
       "E": {
-        "text": "Lo lanzas sobre tu hombro y cae en la dirección que quieras, a unos 3 metros. Si lo deseas muere a causa del impacto. Si no, cae inconsciente. ¡Eres un maestro!"
+        "text": "Lo lanzas sobre tu hombro y cae en la dirección que quieras, a unos 3 metros. Si lo deseas muere a causa del impacto. Si no, cae inconsciente. ¡Eres un maestro!",
+        "metadata": [
+          {
+            "DESC": "Muere por el impacto",
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          },
+          {
+            "DESC": "Cae inconsciente en su lugar"
+          }
+        ]
       }
     },
     {
@@ -1038,10 +1049,28 @@
         ]
       },
       "C": {
-        "text": "Lanzas a tu enemigo contra la superficie sólida que desees. Fractura craneal. Si tiene yelmo cae en coma. Si no, muerte tras 1 asalto."
+        "text": "Lanzas a tu enemigo contra la superficie sólida que desees. Fractura craneal. Si tiene yelmo cae en coma. Si no, muerte tras 1 asalto.",
+        "metadata": [
+          {
+            "DESC": "Con yelmo, en coma"
+          },
+          {
+            "DESC": "Sin yelmo, muere en 1 asalto",
+            "DEAD": {
+              "ROUNDS": 1
+            }
+          }
+        ]
       },
       "D": {
-        "text": "No tienes piedad. Tu ataque rompe las costillas de tu enemigo. Lo lanzas al suelo sobre su estómago y lo empalas con sus propias costillas fracturadas. Muere después de 6 asaltos."
+        "text": "No tienes piedad. Tu ataque rompe las costillas de tu enemigo. Lo lanzas al suelo sobre su estómago y lo empalas con sus propias costillas fracturadas. Muere después de 6 asaltos.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "E": {
         "text": "Apresas a tu enemigo con firmeza, le barres los pies y entonces te dejas caer sobre él en el suelo. El impacto le rompe el cuello y ... muere en el acto.",
@@ -1050,6 +1079,9 @@
             "BONUS": {
               "ROUNDS": 1,
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1062,7 +1094,14 @@
         "text": "Lanzamiento primoroso. Tu enemigo cae inconsciente en la presa controlada. Puedes acabar con él o mantenerlo inmóvil e indefenso."
       },
       "B": {
-        "text": "Fabuloso lanzamiento que hace volar a tu enemigo. Se rompe el cuello en el impacto y muere. ¡Eres la muerte personificada!"
+        "text": "Fabuloso lanzamiento que hace volar a tu enemigo. Se rompe el cuello en el impacto y muere. ¡Eres la muerte personificada!",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "C": {
         "text": "Haces caer a tu enemigo contra el suelo golpeando con tu rodilla su espalda. Le rompes la columna y lo dejas paralítico de hombros para abajo. La misericordia no tiene cabida en tu corazón."
@@ -1077,6 +1116,9 @@
             "BONUS": {
               "ROUNDS": 1,
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]

@@ -634,14 +634,14 @@
       "B": {
         "text": "Grab loose piece of foe's garments and use it to throw him around. Foe is confused.",
         "metadata": [
-		{
-			"HP": 7,
-			"STUN":{
-				"ROUNDS": 1
-			},
-			"NP": 1
-		}
-		]
+          {
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": 1
+          }
+        ]
       },
       "C": {
         "text": "Strike to foe's ribs. Foe's ribs crack and foe shows the pain. His war effort is impaired.",
@@ -1048,7 +1048,14 @@
         ]
       },
       "E": {
-        "text": "Solid strike snaps foe's neck. He falls back 5 feet, spins, and tumbles to the ground. He dies of shock and suffocation in 3 rounds."
+        "text": "Solid strike snaps foe's neck. He falls back 5 feet, spins, and tumbles to the ground. He dies of shock and suffocation in 3 rounds.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 3
+            }
+          }
+        ]
       }
     },
     {
@@ -1076,6 +1083,9 @@
           {
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 12
             }
           }
         ]
@@ -1087,6 +1097,9 @@
             "BONUS": {
               "ROUNDS": 2,
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]

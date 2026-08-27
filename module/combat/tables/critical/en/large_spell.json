@@ -237,6 +237,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -408,7 +411,13 @@
       "upper": "98",
       "A": {
         "text": "Strike lands and tears down into foe's neck. This vicious blast crushes foe's neck and shatters his spine. He falls unmoving and dies in 3 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 3
+            }
+          }
+        ]
       },
       "B": {
         "text": "You are a mighty enchanter. Your strike hits foe's chest and neck. His neck is broken. Foe drops and dies.",
@@ -416,6 +425,9 @@
           {
             "BONUS": {
               "VALUE": 15
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -438,11 +450,23 @@
       "upper": "100",
       "A": {
         "text": "You step into the right spot and rip open foe's side. Your blow shatters some ribs. Foe dies in 6 painful rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "B": {
         "text": "Perfect aim. Foe's carotid artery and jugular vein are torn open. Foe drops and dies in 3 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 3
+            }
+          }
+        ]
       },
       "C": {
         "text": "",
@@ -559,6 +583,9 @@
             "HP": 10,
             "P": {
               "ROUNDS": 50
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -569,13 +596,22 @@
       "upper": "999",
       "A": {
         "text": "Foe lowers his eyes within your reach and you strike with great skill and fury. Foe dies instantly.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "B": {
         "text": "Impact of blast drives content of skull in all directions. Foe falls and flails around violently. He dies instantly.",
         "metadata": [
           {
-            "HP": 50
+            "HP": 50,
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       }

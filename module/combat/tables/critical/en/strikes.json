@@ -893,11 +893,23 @@
       },
       "D": {
         "text": "Open-handed blow to foe's adam's apple crushes foe's windpipe. Foe dies in 18 rounds of shock and asphyxiation.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 18
+            }
+          }
+        ]
       },
       "E": {
         "text": "Round house kick to kidneys drops foe to his knees. You grip foe's neck and snap it very effectively. Foe dies in 9 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       }
     },
     {
@@ -964,6 +976,9 @@
             "BONUS": {
               "VALUE": 10,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 12
             }
           }
         ]
@@ -1014,11 +1029,23 @@
       },
       "D": {
         "text": "Round house kick catches foe in back of head. You slam foe's head into the ground. Severe concussion. Foe dies of hemorrhage in 9 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       },
       "E": {
         "text": "Double palmstrike to foe's nose breaks cartilage and drives bone into brain. The effects are rapid. Foe dies after 6 rounds prone and immobile.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       }
     },
     {
@@ -1044,15 +1071,33 @@
       },
       "C": {
         "text": "Sweep lays foe out and heel strike to foe's sternum collapses the ribcage. Foe is helpless and dies in 4 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 4
+            }
+          }
+        ]
       },
       "D": {
         "text": "Gooosh! Awesome spear hand strike finds seam, penetrates solar plexus and ruptures the heart. Foe dies instantly.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "E": {
         "text": "Disarm foe and use his weapon to kill him. A follow-up strike breaks his neck and you send him 5 feet in any direction. He is dead twice.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       }
     }
   ],

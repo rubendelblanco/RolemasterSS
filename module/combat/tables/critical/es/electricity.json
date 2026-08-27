@@ -664,6 +664,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 2
             }
           }
         ]
@@ -978,7 +981,13 @@
       },
       "E": {
         "text": "Tu rayo reorganiza por completo su sistema nervioso. Colapsa y morirá en 12 asaltos por shock masivo.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 12
+            }
+          }
+        ]
       }
     },
     {
@@ -1050,12 +1059,24 @@
               "ROUNDS": 9
             },
             "HPR": "6"
+          },
+          {
+            "DESC": "Sin armadura, muere en 12 asaltos",
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       },
       "E": {
         "text": "La descarga trepa desde el hombro hasta la columna. El enemigo cae con la cadera y la espalda destrozadas, muriendo en 12 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 12
+            }
+          }
+        ]
       }
     },
     {
@@ -1107,7 +1128,10 @@
         "text": "La descarga desgarra órganos vitales. Los ojos del rival saltan de sus órbitas y muere tras 9 asaltos inactivo.",
         "metadata": [
           {
-            "HP": "25"
+            "HP": "25",
+            "DEAD": {
+              "ROUNDS": 9
+            }
           }
         ]
       }
@@ -1130,19 +1154,31 @@
         "text": "La red nerviosa del rival se sobrecarga: su corazón se detiene y reinicia varias veces. Morirá en 9 asaltos.",
         "metadata": [
           {
-            "HP": 15
+            "HP": 15,
+            "DEAD": {
+              "ROUNDS": 9
+            }
           }
         ]
       },
       "C": {
         "text": "El calor sostenido funde metal, tela y piel. Los ojos del rival saltan de su cabeza y perece en 3 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 3
+            }
+          }
+        ]
       },
       "D": {
         "text": "El enemigo retrocede 10 pies. El daño nervioso y la fractura de cadera y brazo le causan la muerte en 3 asaltos de agonía.",
         "metadata": [
           {
-            "HP": "20"
+            "HP": "20",
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       },
@@ -1152,6 +1188,9 @@
           {
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1164,7 +1203,10 @@
         "text": "La cabeza del enemigo se enciende y su ropa prende fuego. Cae inconsciente y muere en 6 asaltos por daño nervioso.",
         "metadata": [
           {
-            "HP": 20
+            "HP": 20,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1174,6 +1216,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1185,6 +1230,9 @@
             "BONUS": {
               "VALUE": 10,
               "ROUNDS": 3
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -1195,6 +1243,9 @@
           {
             "BONUS": {
               "VALUE": 15
+            },
+            "DEAD": {
+              "ROUNDS": 2
             }
           }
         ]

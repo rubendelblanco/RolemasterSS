@@ -369,6 +369,9 @@
             "BONUS": {
               "ROUNDS": 1,
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -597,7 +600,10 @@
         "text": "Your weapon is in his neck, but his\ndoom is his eyes. He falls and dies\nin 3 rounds.",
         "metadata": [
           {
-            "HP": "35"
+            "HP": "35",
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       }
@@ -608,7 +614,11 @@
       "A": {
         "text": "Classic. You sever veins and an\nartery in his leg. Yes, he falls and\ndies in 12 rounds.",
         "metadata": [
-          {}
+          {
+            "DEAD": {
+              "ROUNDS": 12
+            }
+          }
         ]
       },
       "B": {
@@ -618,6 +628,9 @@
             "BONUS": {
               "0": "5",
               "VALUE": 25,
+              "ROUNDS": 1
+            },
+            "DEAD": {
               "ROUNDS": 1
             }
           }
@@ -672,13 +685,22 @@
       },
       "B": {
         "text": "A flash of intuition reveals his\nweak spot to you. You strike and\ndestroy it. He’s dead.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "C": {
         "text": "Finally, one of your blows to his\nneck strikes true. He falls and dies\nin 1 round. Sweet!",
         "metadata": [
           {
-            "HP": "5"
+            "HP": "5",
+            "DEAD": {
+              "ROUNDS": 1
+            }
           }
         ]
       },
@@ -698,6 +720,9 @@
               "0": "3",
               "1": "5",
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -774,7 +799,10 @@
             "STUN": {
               "ROUNDS": 6
             },
-            "NP": "6"
+            "NP": "6",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }
@@ -1000,7 +1028,10 @@
         "text": "Stepping past his guard you gut him. He dies in 4 rds, but he falls all over you. Very messy.",
         "metadata": [
           {
-            "HP": "35"
+            "HP": "35",
+            "DEAD": {
+              "ROUNDS": 4
+            }
           }
         ]
       }
@@ -1030,19 +1061,31 @@
             "BONUS": {
               "ROUNDS": 1,
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
       },
       "C": {
         "text": "With his own bones driven\nthrough both his lungs, he dies\nafter 18 rounds of coma.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 18
+            }
+          }
+        ]
       },
       "D": {
         "text": "His spirit is broken and so is his spine. He dies in 2 rounds. You look like an epic hero.",
         "metadata": [
           {
-            "HP": "50"
+            "HP": "50",
+            "DEAD": {
+              "ROUNDS": 2
+            }
           }
         ]
       },

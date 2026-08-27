@@ -690,7 +690,10 @@
         "text": "Las ropas combustibles del adversario lo convierten en una antorcha viviente. Corre una corta distancia, cae y muere en 6 rondas de agonía.",
         "metadata": [
           {
-            "HP": 25
+            "HP": 25,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }
@@ -958,7 +961,10 @@
         "text": "El enemigo inhala llamas que escaldan sus pulmones y garganta. Permanece activo agonizando durante 12 rondas mientras arde por dentro, antes de morir.",
         "metadata": [
           {
-            "HP": "20"
+            "HP": "20",
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       }
@@ -1011,6 +1017,12 @@
           {
             "DESC": "Con armadura abdominal",
             "HPR": 2
+          },
+          {
+            "DESC": "Sin armadura abdominal, muere en 12 asaltos",
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       },
@@ -1087,13 +1099,26 @@
       },
       "D": {
         "text": "Las llamas asaltan despiadadamente la parte superior del cuerpo. Si porta yelmo completo, queda cegado y cae en coma por 2 días. Si no, muere en 6 rondas por shock y daño cerebral severo.",
-        "metadata": []
+        "metadata": [
+          {
+            "DESC": "Con yelmo completo"
+          },
+          {
+            "DESC": "Sin yelmo, muere en 6 asaltos",
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "E": {
         "text": "El adversario es incinerado ante tus propios ojos. Permanece en pie durante 6 rondas, consumiéndose, antes de caer y morir. Un pequeño fuego persiste entre sus restos. Un final verdaderamente horrible.",
         "metadata": [
           {
-            "HP": "25"
+            "HP": "25",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }
@@ -1121,19 +1146,38 @@
             "HPR": 12,
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 9
             }
           }
         ]
       },
       "C": {
         "text": "El calor intenso funde metal, tela y piel en una masa irreconocible. El enemigo es irreconocible. Sin armadura en el pecho muere al instante. Con ella, sufre 9 rondas de agonía ardiente.",
-        "metadata": []
+        "metadata": [
+          {
+            "DESC": "Con armadura en el pecho, muere tras 9 asaltos",
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          },
+          {
+            "DESC": "Sin armadura en el pecho, muere al instante",
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "D": {
         "text": "El adversario queda atrapado en el horno infernal creado por tu ataque. Sus órganos internos son destruidos y su sangre hierve en sus venas. No tiene esperanza de supervivencia y muere tras 6 rondas.",
         "metadata": [
           {
-            "HP": "25"
+            "HP": "25",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1172,8 +1216,21 @@
         "text": "Golpe devastador a la cabeza del adversario. Si porta yelmo, su cabeza se cocina lentamente y muere en 2 rondas de agonía. Sin yelmo, muere instantáneamente carbonizado.",
         "metadata": [
           {
+            "DESC": "Con yelmo, muere en 2 asaltos",
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 2
+            }
+          },
+          {
+            "DESC": "Sin yelmo, muere al instante",
+            "BONUS": {
+              "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1184,6 +1241,9 @@
           {
             "BONUS": {
               "VALUE": 15
+            },
+            "DEAD": {
+              "ROUNDS": 2
             }
           }
         ]

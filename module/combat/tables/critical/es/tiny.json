@@ -1017,7 +1017,14 @@
         ]
       },
       "E": {
-        "text": "Golpe mortal en la cabeza que lo derriba. Se parte la cabeza cuando cae al suelo. Muere después de 9 asaltos."
+        "text": "Golpe mortal en la cabeza que lo derriba. Se parte la cabeza cuando cae al suelo. Muere después de 9 asaltos.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       }
     },
     {
@@ -1057,8 +1064,15 @@
         "text": "Impacto grave en la cabeza. Si tiene yelmo cae inconsciente durante 1-10 días. Sin yelmo, es caro data vermibus.",
         "metadata": [
           {
+            "DESC": "Con yelmo",
             "HP": 25,
             "HPR": 1
+          },
+          {
+            "DESC": "Sin yelmo, muere en el acto",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -1082,7 +1096,10 @@
         "text": "Es tan fácil que no entiendes cómo no lo has hecho antes. Sajas la arteria de su cuello. Muerto en 6 asaltos.",
         "metadata": [
           {
-            "HPR": 20
+            "HPR": 20,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }

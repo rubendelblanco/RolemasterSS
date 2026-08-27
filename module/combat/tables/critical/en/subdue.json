@@ -1104,7 +1104,10 @@
         "text": "Your haste to get the advantage makes your attack deadly. You snap foe's neck. Foe falls and dies in 15 rounds.",
         "metadata": [
           {
-            "HP": 25
+            "HP": 25,
+            "DEAD": {
+              "ROUNDS": 15
+            }
           }
         ]
       }

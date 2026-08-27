@@ -662,7 +662,14 @@
         "text": "Masterful strike to foe's head. If he has no helm, he is dead. If he has a helm, he is knocked out for 4 hours.",
         "metadata": [
           {
+            "DESC": "With helm, knocked out",
             "HP": 20
+          },
+          {
+            "DESC": "Without helm, dies instantly",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -960,7 +967,10 @@
         "text": "Blow to foe's armpit. Crush ribs and destroy organs. Foe dies in 3 rounds.",
         "metadata": [
           {
-            "HP": 30
+            "HP": 30,
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       }
@@ -1015,7 +1025,14 @@
         "text": "Blow to foe's neck. If foe has a throat protector, he is paralyzed from the neck down. If not, he dies in two rounds.",
         "metadata": [
           {
+            "DESC": "With throat protector, paralyzed",
             "HP": 25
+          },
+          {
+            "DESC": "Without throat protector, dies in 2 rounds",
+            "DEAD": {
+              "ROUNDS": 2
+            }
           }
         ]
       },
@@ -1062,18 +1079,31 @@
         "text": "Blow to thigh. Compound fracture severs an artery. Foe goes down hard and dies in 12 rounds.",
         "metadata": [
           {
-            "HP": 9
+            "HP": 9,
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       },
       "D": {
-        "text": "Strike comes down on the shield shoulder of foe. Arm shatters. Foe dies from shock and blood loss in 9 rounds."
+        "text": "Strike comes down on the shield shoulder of foe. Arm shatters. Foe dies from shock and blood loss in 9 rounds.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       },
       "E": {
         "text": "Blast to foe's back. A bone is driven into vital organs. Foe is down and dies in six rounds.",
         "metadata": [
           {
-            "HP": 25
+            "HP": 25,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }
@@ -1085,9 +1115,16 @@
         "text": "Blow to foe's head. If foe has no helm, he is dead. If foe has a helm, he is knocked down.",
         "metadata": [
           {
+            "DESC": "With helm, knocked down",
             "HP": 20,
             "STUN": {
               "ROUNDS": 6
+            }
+          },
+          {
+            "DESC": "Without helm, dies instantly",
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1098,6 +1135,9 @@
           {
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]
@@ -1111,6 +1151,9 @@
           {
             "BONUS": {
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -1119,9 +1162,23 @@
         "text": "Blow to foe's face. If visored, the visor is driven into his face and foe dies in 10 rounds. Without a visor, he dies instantly. You have half the round left.",
         "metadata": [
           {
+            "DESC": "Visored, dies in 10 rounds",
             "HP": 30,
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 10
+            }
+          },
+          {
+            "DESC": "Without visor, dies instantly",
+            "HP": 30,
+            "BONUS": {
+              "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1137,6 +1194,9 @@
             "HP": 50,
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1168,7 +1228,10 @@
         "text": "Blast to foe's heart. It stops. He dies. You consider yourself to be deadly. Fine work. You are ready to slay.",
         "metadata": [
           {
-            "HP": 25
+            "HP": 25,
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -1183,6 +1246,9 @@
             "HP": 35,
             "STUN": {
               "ROUNDS": 2
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]

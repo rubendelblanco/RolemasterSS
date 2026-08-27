@@ -238,7 +238,10 @@
         "text": "Hundes el pecho de tu enemigo con un golpe preciso. Sus pulmones quedan destruidas y su corazón se para. Muere después de 6 asaltos de respiración jadeante.",
         "metadata": [
           {
-            "HP": 30
+            "HP": 30,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -392,7 +395,13 @@
       "upper": "98",
       "A": {
         "text": "Tu acometida impacta contra el cráneo. Daño cerebral. Grandes fracturas en el cráneo. Cae y muere después de 6 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "B": {
         "text": "El disparo aterriza contra el pecho. El peso de tu hechizo acaba con la vida de tu enemigo instantáneamente.",
@@ -432,7 +441,10 @@
         "text": "Impacto en la cabeza. Oído interno destruido. Muere después de 6 asaltos de inactividad.",
         "metadata": [
           {
-            "HP": 20
+            "HP": 20,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -586,7 +598,10 @@
         "text": "Golpeas la cara y cuello de tu enemigo. La energía rocía su garganta. Sistema nervioso destruido. Muere después de 9 asaltos de inactividad.",
         "metadata": [
           {
-            "HP": "50"
+            "HP": "50",
+            "DEAD": {
+              "ROUNDS": 9
+            }
           }
         ]
       },
@@ -608,7 +623,13 @@
       "upper": "999",
       "A": {
         "text": "Fracturas partes del esqueleto de tu enemigo. Corazón y pulmones dañados. Tu enemigo cae muerto. Su sangre llena todo el suelo.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "B": {
         "text": "El impacto atraviesa los ojos de tu enemigo saliendo por detrás de manera horrible. Muere en el acto. Su terrible cuerpo cae al suelo en medio de crujidos.",
@@ -616,6 +637,9 @@
           {
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]

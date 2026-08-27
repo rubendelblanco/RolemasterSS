@@ -611,7 +611,18 @@
         ]
       },
       "E": {
-        "text": "Perfect throw sends foe flying over your shoulder. He lands how you want him to, within 10 feet. If you like, he dies on impact. If not, he is knocked out."
+        "text": "Perfect throw sends foe flying over your shoulder. He lands how you want him to, within 10 feet. If you like, he dies on impact. If not, he is knocked out.",
+        "metadata": [
+          {
+            "DESC": "Killed on impact",
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          },
+          {
+            "DESC": "Knocked out instead"
+          }
+        ]
       }
     },
     {
@@ -1038,10 +1049,28 @@
         ]
       },
       "C": {
-        "text": "Throw foe against a hard surface of your choice. Crack skull. If foe has helm, he is in a coma. If no helm, he dies in 1 round."
+        "text": "Throw foe against a hard surface of your choice. Crack skull. If foe has helm, he is in a coma. If no helm, he dies in 1 round.",
+        "metadata": [
+          {
+            "DESC": "With helm, in a coma"
+          },
+          {
+            "DESC": "Without helm, dies in 1 round",
+            "DEAD": {
+              "ROUNDS": 1
+            }
+          }
+        ]
       },
       "D": {
-        "text": "Your attack breaks foe's ribs. You throw him down and impale him on his broken ribs. He dies in 6 rounds."
+        "text": "Your attack breaks foe's ribs. You throw him down and impale him on his broken ribs. He dies in 6 rounds.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "E": {
         "text": "You grapple your foe firmly, sweep his feet out from under him and then throw him to the ground. The impact breaks his neck. He dies instantly.",
@@ -1050,6 +1079,9 @@
             "BONUS": {
               "ROUNDS": 1,
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1062,7 +1094,14 @@
         "text": "Snazzy throw. Foe is knocked down with a controlled grip. You may finish him or hold him immobile and helpless."
       },
       "B": {
-        "text": "Fabulous throw sends foe flying. Foe's neck is broken on impact and he dies after rolling 15 feet. You are a mighty warrior to all who see your work."
+        "text": "Fabulous throw sends foe flying. Foe's neck is broken on impact and he dies after rolling 15 feet. You are a mighty warrior to all who see your work.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "C": {
         "text": "Bring foe down with your knee under his back. You break his back and paralyze him from the shoulders down. You take a deadly looking stance."
@@ -1077,6 +1116,9 @@
             "BONUS": {
               "ROUNDS": 1,
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]

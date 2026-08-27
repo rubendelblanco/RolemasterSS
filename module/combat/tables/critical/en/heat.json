@@ -689,7 +689,10 @@
         "text": "Foe's combustible garments turn him into a torch. He runs a short distance, drops and dies in 6 rounds.",
         "metadata": [
           {
-            "HP": 25
+            "HP": 25,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }
@@ -957,7 +960,10 @@
         "text": "Foe inhales flames scalding lungs and throat Foe is active for 12 rnds (while he burns), then dies.",
         "metadata": [
           {
-            "HP": "20"
+            "HP": "20",
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       }
@@ -1010,6 +1016,12 @@
           {
             "DESC": "With abdominal armor",
             "HPR": 2
+          },
+          {
+            "DESC": "Without abdominal armor, dies in 12 rounds",
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       },
@@ -1086,13 +1098,26 @@
       },
       "D": {
         "text": "Flames assault upper body. If foe has a full helm, he is blinded and in a coma for 2 days. If not, he dies in 6 rounds due to shock and brain damage.",
-        "metadata": []
+        "metadata": [
+          {
+            "DESC": "With full helm"
+          },
+          {
+            "DESC": "Without helm, dies in 6 rounds",
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "E": {
         "text": "Foe is cremated before your very eyes. He remains standing for 6 rounds and then drops and dies. A small fire lingers over the remains. A horrible end.",
         "metadata": [
           {
-            "HP": "25"
+            "HP": "25",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }
@@ -1120,19 +1145,38 @@
             "HPR": 12,
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 9
             }
           }
         ]
       },
       "C": {
         "text": "Intense heat fuses metal, cloth and skin. Foe is unrecognizable. If no chest armor he is dead instantly. Otherwise he dies after 9 rounds of burning.",
-        "metadata": []
+        "metadata": [
+          {
+            "DESC": "With chest armor, dies after 9 rounds of burning",
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          },
+          {
+            "DESC": "Without chest armor, dies instantly",
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "D": {
         "text": "Foe is trapped in the furnace made by your attack. Organs are destroyed and foe's blood boils. He has no hope of survival and dies in 6 inactive rounds.",
         "metadata": [
           {
-            "HP": "25"
+            "HP": "25",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1171,8 +1215,21 @@
         "text": "Strike to foe's head. If he has a helmet, his head is broiled and he dies in 2 rnds. If no helmet he dies instantly.",
         "metadata": [
           {
+            "DESC": "With helmet, dies in 2 rounds",
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 2
+            }
+          },
+          {
+            "DESC": "Without helmet, dies instantly",
+            "BONUS": {
+              "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1183,6 +1240,9 @@
           {
             "BONUS": {
               "VALUE": 15
+            },
+            "DEAD": {
+              "ROUNDS": 2
             }
           }
         ]

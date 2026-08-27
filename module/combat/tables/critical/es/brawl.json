@@ -634,6 +634,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 10
             }
           }
         ]
@@ -1142,16 +1145,37 @@
         "text": "¡Guay! Si tiene yelmo, cae inconsciente durante 1-10 días. Si no tiene yelmo, colapsas el cráneo y queda en estado de muerte cerebral.",
         "metadata": [
           {
+            "DESC": "Con yelmo",
             "HP": 25,
             "HPR": 1
+          },
+          {
+            "DESC": "Sin yelmo, muerte cerebral",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
       "D": {
-        "text": "Así es como se hace. Inmovilizas su brazo y le aplastas la sie, matándolo en el acto."
+        "text": "Así es como se hace. Inmovilizas su brazo y le aplastas la sie, matándolo en el acto.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "E": {
-        "text": "Tu violencia te impresiona hastaa ti. Desearía no haberse cruzado en tu camino. Muere en el acto."
+        "text": "Tu violencia te impresiona hastaa ti. Desearía no haberse cruzado en tu camino. Muere en el acto.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       }
     }
   ],

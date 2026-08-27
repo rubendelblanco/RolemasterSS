@@ -664,6 +664,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 2
             }
           }
         ]
@@ -978,7 +981,13 @@
       },
       "E": {
         "text": "Blast hits shoulder. Foe conducts your strike well. His nervous system is rearranged. He drops and dies of shock and nerve damage in 12 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 12
+            }
+          }
+        ]
       }
     },
     {
@@ -1050,12 +1059,24 @@
               "ROUNDS": 9
             },
             "HPR": "6"
+          },
+          {
+            "DESC": "Without armor, dies in 12 rounds",
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       },
       "E": {
         "text": "Strike seeks out the shoulder and then his spine. Foe drops, hip and backbone shattered, and dies in 12 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 12
+            }
+          }
+        ]
       }
     },
     {
@@ -1107,7 +1128,10 @@
         "text": "Blast rends foe's body, causing fatal damage to organs. His eyes pop out and he dies in 9 inactive rounds. So much for the Govenor's pardon.",
         "metadata": [
           {
-            "HP": "25"
+            "HP": "25",
+            "DEAD": {
+              "ROUNDS": 9
+            }
           }
         ]
       }
@@ -1130,19 +1154,31 @@
         "text": "Strike overloads foe's nervous system. His heart stops and restarts several times. He drops and dies in 9 rounds.",
         "metadata": [
           {
-            "HP": 15
+            "HP": 15,
+            "DEAD": {
+              "ROUNDS": 9
+            }
           }
         ]
       },
       "C": {
         "text": "Sustained heat of the onslaught fuses metal, cloth, and skin. Foe's eyes pop out of his head. He dies in 3 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 3
+            }
+          }
+        ]
       },
       "D": {
         "text": "Foe reels back 10 feet. Nerve damage and shock combined with broken hip and arm spell death in 3 painful rnds.",
         "metadata": [
           {
-            "HP": "20"
+            "HP": "20",
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       },
@@ -1152,6 +1188,9 @@
           {
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1164,7 +1203,10 @@
         "text": "Foe's head is ablaze. Garments catch fire. Foe falls unconscious and dies in 6 rounds from nerve damage.",
         "metadata": [
           {
-            "HP": 20
+            "HP": 20,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1174,6 +1216,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1185,6 +1230,9 @@
             "BONUS": {
               "VALUE": 10,
               "ROUNDS": 3
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -1195,6 +1243,9 @@
           {
             "BONUS": {
               "VALUE": 15
+            },
+            "DEAD": {
+              "ROUNDS": 2
             }
           }
         ]

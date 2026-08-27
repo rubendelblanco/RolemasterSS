@@ -324,27 +324,43 @@
       "upper": "66",
       "A": {
         "text": "Eso fue rápido. El golpe en su cuello aplasta su vena yugular. Cae y muere en 6 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "B": {
         "text": "Eso fue frío. El golpe en su abdomen destruye órganos. Cae con estrépito. Muere en 3 asaltos.",
         "metadata": [
           {
-            "HP": "30"
+            "HP": "30",
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       },
       "C": {
         "text": "Eres la muerte instantánea para él con 2 golpes en su corazón. Está tan muerto y tú no.",
         "metadata": [
-          {}
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
         ]
       },
       "D": {
         "text": "Sin dudarlo se lo metes entre los ojos. Está muerto y aún te queda medio asalto.",
         "metadata": [
           {
-            "HP": "20"
+            "HP": "20",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -422,6 +438,9 @@
             "BONUS": {
               "VALUE": 10,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -553,6 +572,9 @@
             "BONUS": {
               "VALUE": 15,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -607,7 +629,13 @@
       },
       "D": {
         "text": "Victorioso ante dios. Tu arma en su pecho lo derriba durante 2 asaltos y muerto en 6.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "E": {
         "text": "Esa sangre viene de una arteria en su pierna. Se retuerce en el suelo durante 12 asaltos muriendo.",
@@ -621,7 +649,10 @@
         "text": "Hundiendo tu arma en su corazón cae sobre ti completamente muerto. Quedas inmovilizado 6 asaltos y recibes 20 PV de daño.",
         "metadata": [
           {
-            "HP": "20"
+            "HP": "20",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -653,13 +684,22 @@
             "BONUS": {
               "VALUE": 25,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]
       },
       "E": {
         "text": "Esa es un arma de matar genuina la que tienes ahí. Pedazos de cráneo vuelan por el aire. Cae muerto al instante.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       }
     },
     {
@@ -673,6 +713,9 @@
             "BONUS": {
               "VALUE": 20,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]
@@ -697,7 +740,10 @@
             "STUN": {
               "ROUNDS": 6
             },
-            "NP": "6"
+            "NP": "6",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -718,7 +764,13 @@
       },
       "E": {
         "text": "Pedazos de pómulo y cráneo llenan el aire. Está muerto en 1 asalto. Intenta sacar tu arma.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 1
+            }
+          }
+        ]
       }
     },
     {
@@ -793,15 +845,33 @@
       "upper": "175",
       "A": {
         "text": "Tu golpe clava huesos en sus riñones e hígado. Cae y muere en 6 asaltos. No es de extrañar.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "B": {
         "text": "Su mandíbula destrozada termina en su cerebro. Muerto antes de tocar el suelo, ¡te queda medio asalto para actuar!",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "C": {
         "text": "No hay palabra para lo que le has hecho a su abdomen. Cae y muere en 6 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "D": {
         "text": "Interceptando su golpe mortal aplastas el lateral de su cabeza. Se ha ido y te queda medio asalto.",
@@ -814,6 +884,9 @@
             "BONUS": {
               "ROUNDS": 1,
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 5
             }
           }
         ]
@@ -830,6 +903,9 @@
             "BONUS": {
               "VALUE": 15,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 12
             }
           }
         ]
@@ -842,6 +918,9 @@
             "BONUS": {
               "VALUE": 20,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -854,6 +933,9 @@
             "PE": {
               "VALUE": -20,
               "ROUNDS": 2
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]
@@ -911,6 +993,9 @@
             "BONUS": {
               "VALUE": 15,
               "ROUNDS": 2
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -929,7 +1014,13 @@
       },
       "E": {
         "text": "Eso le echó la cabeza hacia atrás. Incluso le rompió el cuello. Cae y muere. Golpe extra para ti.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       }
     },
     {
@@ -955,6 +1046,9 @@
             "BONUS": {
               "VALUE": 25,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]

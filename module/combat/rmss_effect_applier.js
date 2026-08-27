@@ -22,6 +22,7 @@ import { withPublicRollMode } from "../chat/chatMessages.js";
  *  - **NP (No Parry)** → Temporarily disables parry actions.
  *  - **BONUS** → Grants a temporary bonus effect (e.g., magical or situational).
  *  - **HP** → Applies direct hit point damage to the target.
+ *  - **DEAD** → `{ROUNDS: 0}` kills outright; `{ROUNDS: N}` creates a "Dying" effect that kills the actor when it expires (see combat_turn_tick.js).
  *
  * The class is designed for modularity and can be easily extended to include
  * new critical types or special-case logic (e.g., Fear, Poison, or Spell effects).
@@ -70,6 +71,7 @@ export class RMSSEffectApplier {
                 case "P": await this._applyParry(entity, value); break;
                 case "NP": await this._applyNoParry(entity, value); break;
                 case "BONUS": await this._applyBonus(entity, value, critical.text, effectiveOriginId); break;
+                case "DEAD": await this._applyDeath(entity, value, effectiveOriginId); break;
             }
         }
     }
@@ -89,6 +91,20 @@ export class RMSSEffectApplier {
         const next = Number(newHits);
         if (!Number.isFinite(prior) || !Number.isFinite(next)) return false;
         if (next > 0 || prior <= 0) return false;
+
+        await RMSSEffectApplier._executeDeath(actor, attackerId, preferredToken);
+        return true;
+    }
+
+    /**
+     * Kill an actor outright: awards killer XP (if applicable) and marks the token dead.
+     * Shared end-state for HP-loss death and critical-triggered death (instant or delayed via "Dying").
+     * @param {Actor} actor
+     * @param {string|null} attackerId
+     * @param {Token|TokenDocument|null} [preferredToken]
+     */
+    static async _executeDeath(actor, attackerId, preferredToken = null) {
+        if (actor.effects.find(e => e.name === "Dead")) return;
 
         const fromPreferred = preferredToken?.actor?.id === actor?.id ? preferredToken : null;
         const tokens = actor.getActiveTokens(true);
@@ -115,7 +131,42 @@ export class RMSSEffectApplier {
             }
         }
         if (selected) await RMSSEffectApplier._markTokenAsDead(selected, expData);
-        return true;
+    }
+
+    /**
+     * Handle the "DEAD" critical metadata: kills outright ({ROUNDS: 0}) or creates a
+     * "Dying" ActiveEffect that kills the actor when its rounds run out (see combat_turn_tick.js).
+     * @param {Actor} entity
+     * @param {{ROUNDS?: number|string}} data
+     * @param {string|null} originId
+     */
+    static async _applyDeath(entity, data, originId = null) {
+        // Already dead (e.g. HP metadata on the same critical zeroed hits first) - nothing to do.
+        if (entity.effects.find(e => e.name === "Dead")) return;
+
+        const rounds = parseInt(data?.ROUNDS) || 0;
+
+        if (rounds <= 0) {
+            await RMSSEffectApplier._executeDeath(entity, originId);
+            return;
+        }
+
+        const existing = entity.effects.find(e => e.name === "Dying");
+        if (existing) {
+            const total = Math.min(existing.duration.rounds || 0, rounds);
+            await existing.update({ "duration.rounds": total });
+            return;
+        }
+
+        const rmss = { attackerId: originId ?? null, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity) };
+        await entity.createEmbeddedDocuments("ActiveEffect", [{
+            name: "Dying",
+            icon: `${CONFIG.rmss.paths.icons_folder}dead-head.svg`,
+            origin: entity.id,
+            disabled: false,
+            flags: { rmss },
+            duration: { rounds, startRound: game.combat ? game.combat.round : 0 }
+        }]);
     }
 
     static async _applyHPDamage(entity, hp, originId = null) {

@@ -997,7 +997,10 @@
         "text": "El ataque a la cara y garganta es definitivo. El enemigo aun estará activo pero morirá en 12 asaltos.",
         "metadata": [
           {
-            "HP": "17"
+            "HP": "17",
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       }
@@ -1065,16 +1068,29 @@
         "text": "El golpe en el pecho produce muchísimo dolor. Si tenía ropa de abrigo caerá inconsciente. Si no, morirá en 12 asaltos.",
         "metadata": [
           {
+            "DESC": "Con ropa de abrigo",
             "HP": "25",
             "PE": {
               "VALUE": -40
+            }
+          },
+          {
+            "DESC": "Sin ropa de abrigo, muere en 12 asaltos",
+            "DEAD": {
+              "ROUNDS": 12
             }
           }
         ]
       },
       "E": {
         "text": "Tu cruel tormenta embrolla a tu enemigo y le roba todo el calor del cuerpo. Cae y muere después de 9 asaltos de inactividad.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       }
     },
     {
@@ -1134,7 +1150,10 @@
         "text": "Eliminas el calor de toda la parte inferior del cuerpo de tu enemigo. Todos los órganos vitales son destruidos. Queda inmóvil y muere en 9 asaltos.",
         "metadata": [
           {
-            "HP": "18"
+            "HP": "18",
+            "DEAD": {
+              "ROUNDS": 9
+            }
           }
         ]
       },
@@ -1142,7 +1161,10 @@
         "text": "Empujas hacia atrás y desequilibras a tu enemigo. La sangre de sus extremidades se congela. Muere después de 6 asaltos de agonía.",
         "metadata": [
           {
-            "HP": "19"
+            "HP": "19",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }
@@ -1162,13 +1184,26 @@
       },
       "B": {
         "text": "La explosión golpe al cuello y la clavícula. Si tiene armadura en el cuello bloqueará el ataque pero quedará inconsciente. Si no tiene armadura, se le congelará y morirá en 9 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DESC": "Con armadura en el cuello"
+          },
+          {
+            "DESC": "Cuello expuesto, muere en 9 asaltos",
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       },
       "C": {
         "text": "Tu acometida congela el torso y cabeza de tu enemigo que aunque permanece en pie durante un momento cae en shock y muere 6 asaltos después.",
         "metadata": [
           {
-            "HP": "18"
+            "HP": "18",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1176,7 +1211,10 @@
         "text": "Los pulmones y corazón de tu enemigo son congelados en un instante por tu explosión ártica. Está acabado: muere de shock y asfixia después de 6 asaltos.\n",
         "metadata": [
           {
-            "HP": "19"
+            "HP": "19",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1187,6 +1225,9 @@
             "HP": "20",
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1209,6 +1250,9 @@
           {
             "BONUS": {
               "VALUE": 5
+            },
+            "DEAD": {
+              "ROUNDS": 1
             }
           }
         ]

@@ -1017,7 +1017,14 @@
         ]
       },
       "E": {
-        "text": "Head strike is deadly. Slash open foe's head and send him down. He hits hard. The shock of your strike and the concussion of the fall is too much for him to handle. He dies in 9 rounds"
+        "text": "Head strike is deadly. Slash open foe's head and send him down. He hits hard. The shock of your strike and the concussion of the fall is too much for him to handle. He dies in 9 rounds",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       }
     },
     {
@@ -1057,8 +1064,15 @@
         "text": "Severe head strike. If foe has a helm he is unconscious for 1-10 days. Without a helm, foe is dead.",
         "metadata": [
           {
+            "DESC": "With helm",
             "HP": 25,
             "HPR": 1
+          },
+          {
+            "DESC": "Without helm, dies instantly",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -1082,7 +1096,10 @@
         "text": "Unbelievable strike to foe's neck. Vein and artery severed. Foe dies after 6 rounds of inactivity.",
         "metadata": [
           {
-            "HPR": 20
+            "HPR": 20,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }

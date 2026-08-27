@@ -634,6 +634,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 10
             }
           }
         ]
@@ -1142,16 +1145,37 @@
         "text": "Mighty strike crashes into foe's head. If he has a helmet, he is unconscious for 1-10 days. If he has no helmet, skull collapses and brain is dead.",
         "metadata": [
           {
+            "DESC": "With helmet",
             "HP": 25,
             "HPR": 1
+          },
+          {
+            "DESC": "Without helmet, brain is dead",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
       "D": {
-        "text": "Grip foe's arm and pound on foe's head. One shot hits hard. Crushing strike to foe's temple. Foe dies instantly."
+        "text": "Grip foe's arm and pound on foe's head. One shot hits hard. Crushing strike to foe's temple. Foe dies instantly.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "E": {
-        "text": "Your strike is frightening. Foe's head snaps to one side. Foe cannot breathe. He looks upon the world one last time and then dies. You are horrified at his doom."
+        "text": "Your strike is frightening. Foe's head snaps to one side. Foe cannot breathe. He looks upon the world one last time and then dies. You are horrified at his doom.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       }
     }
   ],

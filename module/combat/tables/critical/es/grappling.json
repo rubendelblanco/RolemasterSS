@@ -1024,6 +1024,12 @@
               "ROUNDS": 3
             },
             "NP": 3
+          },
+          {
+            "DESC": "Sin armadura en el cuello, muere en 6 asaltos",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1034,6 +1040,9 @@
             "HP": 3,
             "STUN": {
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 9
             }
           }
         ]
@@ -1080,6 +1089,12 @@
               "ROUNDS": 5
             },
             "NP": 5
+          },
+          {
+            "DESC": "Sin armadura en el cuello, muere en el acto",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },

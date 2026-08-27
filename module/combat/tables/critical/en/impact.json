@@ -632,7 +632,17 @@
       },
       "D": {
         "text": "Snap foe's head back. Foe falls unconscious onto ground breaking a leg and hand. Without helm he dies .",
-        "metadata": []
+        "metadata": [
+          {
+            "DESC": "With helm"
+          },
+          {
+            "DESC": "Without helm, dies",
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "E": {
         "text": "Head strike. Foe's skull is crushed. Any helmet worn is driven into the side of foe's head.",
@@ -1014,17 +1024,20 @@
               "ROUNDS": 12
             },
             "DESC": "With abdominal armor"
+          },
+          {
+            "DESC": "Without abdominal armor, dies in 6 rounds"
           }
-		  {
-			"DESC": "Without abdominal armor, dies in 6 rounds"
-		  }
         ]
       },
       "E": {
         "text": "Foe is thrown down. Two ribs protrude from his chest. Organs are destroyed. Foe's eyes glaze when death comes in 3 rnds.",
         "metadata": [
           {
-            "HP": "50"
+            "HP": "50",
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       }
@@ -1076,7 +1089,10 @@
         "text": "Foe's face, jaw and neck shatter. He stumbles back a few steps. He falls and dies after 3 rounds of inactivity. Sad.",
         "metadata": [
           {
-            "HP": 50
+            "HP": 50,
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       },
@@ -1111,7 +1127,10 @@
         "text": "This sudden tempest breaks foe's neck. He cannot breath. He drops and dies after a futile 12 round struggle. Close his eyes.",
         "metadata": [
           {
-            "HP": 25
+            "HP": 25,
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       },
@@ -1119,7 +1138,10 @@
         "text": "Savage impact ruptures internal organs and breaks many bones. Foe falls and dies..",
         "metadata": [
           {
-            "HP": 50
+            "HP": 50,
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -1127,7 +1149,10 @@
         "text": "Bash in foe's side. Bones are broken by the concussion. One of them is driven into a kidney. Foe goes into shock, drops, and dies in 8 rounds.",
         "metadata": [
           {
-            "HP": 25
+            "HP": 25,
+            "DEAD": {
+              "ROUNDS": 8
+            }
           }
         ]
       },
@@ -1137,6 +1162,9 @@
           {
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -1149,7 +1177,14 @@
         "text": "Foe slams to ground from brutal strike. His rib cage is fractured. With armor, he is only knocked out; if no armor, foe dies in 3 rnds from internal bleeding.",
         "metadata": [
           {
+            "DESC": "With armor",
             "HP": 25
+          },
+          {
+            "DESC": "Without armor, dies in 3 rounds",
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       },
@@ -1167,6 +1202,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1177,13 +1215,22 @@
           {
             "BONUS": {
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
       },
       "E": {
         "text": "Blast breaks close to thirty bones in foe's skeleton. He is dead a moment later. His body is difficult to gather up. Very little of his equipment in intact.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       }
     }
   ],

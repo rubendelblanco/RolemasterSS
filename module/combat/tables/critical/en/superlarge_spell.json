@@ -238,7 +238,10 @@
         "text": "Collapse foe's chest with perfect placement. His lungs are destroyed and his heart stops. He dies after 6 rounds of wheezing.",
         "metadata": [
           {
-            "HP": 30
+            "HP": 30,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -392,7 +395,13 @@
       "upper": "98",
       "A": {
         "text": "Your onslaught lands against foe's skull. Brain is damaged. Swelling fractures his skull. Foe drops and dies in 6 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "B": {
         "text": "Shot lands against foe's chest. Strike infests foe with terminal poison. The full burden of the enchantment ends his life instantly.",
@@ -432,7 +441,10 @@
         "text": "Blast to foe's head. Inner ear destroyed. Foe dies in 6 inactive rounds.",
         "metadata": [
           {
-            "HP": 20
+            "HP": 20,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -586,7 +598,10 @@
         "text": "Hammer foe's neck and face. The energy engulfs his throat. Nerves are destroyed. Foe dies after 9 inactive rounds.",
         "metadata": [
           {
-            "HP": "50"
+            "HP": "50",
+            "DEAD": {
+              "ROUNDS": 9
+            }
           }
         ]
       },
@@ -608,7 +623,13 @@
       "upper": "999",
       "A": {
         "text": "Shatter parts of foe's skeleton. Heart and lungs are damaged. Foe falls dead. His blood pours out onto the floor.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "B": {
         "text": "Blast goes in through foe's eye and comes out ugly. Foe dies instantly. His terrible bulk comes crashing down.",
@@ -616,6 +637,9 @@
           {
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]

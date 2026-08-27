@@ -997,7 +997,10 @@
         "text": "Assault to throat and face is terminal. Foe is still active but dies in 12 rounds.",
         "metadata": [
           {
-            "HP": "17"
+            "HP": "17",
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       }
@@ -1065,16 +1068,29 @@
         "text": "Chest hit causes much pain. If foe is warmly clothed he is knocked out. If not he dies of shock in 12 rounds.",
         "metadata": [
           {
+            "DESC": "Warmly clothed",
             "HP": "25",
             "PE": {
               "VALUE": -40
+            }
+          },
+          {
+            "DESC": "Not warmly clothed, dies of shock in 12 rounds",
+            "DEAD": {
+              "ROUNDS": 12
             }
           }
         ]
       },
       "E": {
         "text": "Your ruthless tempest entangles foe and steals the warmth from his body. He drops and dies in 9 inactive rounds",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       }
     },
     {
@@ -1134,7 +1150,10 @@
         "text": "All warmth is driven from foe's lower body. Vital organs are destroyed. Foe is immobile, and dies in 9 rounds.",
         "metadata": [
           {
-            "HP": "18"
+            "HP": "18",
+            "DEAD": {
+              "ROUNDS": 9
+            }
           }
         ]
       },
@@ -1142,7 +1161,10 @@
         "text": "Push foe backwards and off balance. The blood in foe's extremeties is frozen. He dies in 6 rounds of agony.",
         "metadata": [
           {
-            "HP": "19"
+            "HP": "19",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }
@@ -1162,13 +1184,26 @@
       },
       "B": {
         "text": "Blast foe's neck and collarbone. Neck armor will block the attack, but foe is knocked out. If the neck is exposed it freezes solid and foe dies in 9 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DESC": "With neck armor"
+          },
+          {
+            "DESC": "Neck exposed, dies in 9 rounds",
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       },
       "C": {
         "text": "Your onslaught freezes foe's torso and head. Foe remains standing for a moment. He goes into shock and dies 6 rounds later.",
         "metadata": [
           {
-            "HP": "18"
+            "HP": "18",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1176,7 +1211,10 @@
         "text": "Foe's heart and lungs are suddenly frozen by your arctic blast. Foe is finished. He dies of shock and suffocation in 6 rounds.",
         "metadata": [
           {
-            "HP": "19"
+            "HP": "19",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1187,6 +1225,9 @@
             "HP": "20",
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1209,6 +1250,9 @@
           {
             "BONUS": {
               "VALUE": 5
+            },
+            "DEAD": {
+              "ROUNDS": 1
             }
           }
         ]

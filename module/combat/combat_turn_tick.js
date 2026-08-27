@@ -58,6 +58,24 @@ export async function processCombatantTurnEnd(combat, finishedCombatantId) {
     // One decrement per name for Stunned/Parry/No parry/Bonus; multiple "Penalty" effects each tick separately.
     const tickedNames = { Stunned: false, "No parry": false, Parry: false, Bonus: false };
 
+    // "Dying" (delayed death from a critical): decrement rounds, kill the actor when it expires.
+    for (const effect of [...actor.effects]) {
+        if (effect.name !== "Dying") continue;
+        if (shouldSkipEffectTick(effect, combat)) continue;
+
+        const remaining = (effect.duration.rounds || 0) - 1;
+        const attackerId = effect.flags?.rmss?.attackerId ?? CombatHistoryTracker.get().getLastAttacker(actor.id) ?? null;
+        if (remaining <= 0) {
+            await effect.delete();
+            await RMSSEffectApplier._executeDeath(actor, attackerId, combatant.token ?? null);
+        } else {
+            await effect.update({ "duration.rounds": remaining });
+            if (effect.flags?.rmss?.tickDeferredUntilRound != null) {
+                await effect.unsetFlag("rmss", "tickDeferredUntilRound");
+            }
+        }
+    }
+
     let bleedTotal = 0;
     for (const effect of actor.effects) {
         if (effect.name !== "Bleeding") continue;
@@ -95,7 +113,7 @@ export async function processCombatantTurnEnd(combat, finishedCombatantId) {
 
     for (const effect of [...actor.effects]) {
         const name = effect.name;
-        if (name === "Bleeding" || name === "Dead") continue;
+        if (name === "Bleeding" || name === "Dead" || name === "Dying") continue;
 
         if (tickedNames.hasOwnProperty(name) && tickedNames[name]) continue;
 

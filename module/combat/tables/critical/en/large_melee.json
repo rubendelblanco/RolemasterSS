@@ -324,27 +324,43 @@
       "upper": "66",
       "A": {
         "text": "That was quick. Blow to his neck crushes his jugular vein. Falls and dies in 6 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "B": {
         "text": "That was cold. Blow to his abdomen destroys organs. Falls down with a crash. Dies in 3 rd.",
         "metadata": [
           {
-            "HP": "30"
+            "HP": "30",
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       },
       "C": {
         "text": "You are instant death to him with 2 blows to his heart. He is so dead and you are not.",
         "metadata": [
-          {}
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
         ]
       },
       "D": {
         "text": "Without hesitation you put it between his eyes. He's dead and you even have half a round left.",
         "metadata": [
           {
-            "HP": "20"
+            "HP": "20",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -422,6 +438,9 @@
             "BONUS": {
               "VALUE": 10,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -553,6 +572,9 @@
             "BONUS": {
               "VALUE": 15,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -607,7 +629,13 @@
       },
       "D": {
         "text": "Victorious before god. Your weapon to his chest puts him down for 2 rds and dead in 6.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "E": {
         "text": "That blood comes from an artery in his leg. He writhes on the ground for 12 rounds dying.",
@@ -621,7 +649,10 @@
         "text": "Plunging your weapon through his heart he falls on you quite dead. You are pinned 6 rds and you take 20HP of damage.",
         "metadata": [
           {
-            "HP": "20"
+            "HP": "20",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -653,13 +684,22 @@
             "BONUS": {
               "VALUE": 25,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]
       },
       "E": {
         "text": "That's a genuine slaying weapon you have there. Skull parts fly in the air. He falls dead instantly.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       }
     },
     {
@@ -673,6 +713,9 @@
             "BONUS": {
               "VALUE": 20,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]
@@ -697,7 +740,10 @@
             "STUN": {
               "ROUNDS": 6
             },
-            "NP": "6"
+            "NP": "6",
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -718,7 +764,13 @@
       },
       "E": {
         "text": "Pieces of cheekbone and skull fill the air. He's dead in 1 round. Try to dislodge your weapon.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 1
+            }
+          }
+        ]
       }
     },
     {
@@ -793,15 +845,33 @@
       "upper": "175",
       "A": {
         "text": "Your blow drives bones into his kidneys and liver. He falls and dies in 6 rds. No wonder.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "B": {
         "text": "His shattered jaw ends up in his brain. Dead before he hits the ground, half a round left to act!",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "C": {
         "text": "There's no word for what you have done to his abdomen. He drops and dies in 6 rounds.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "D": {
         "text": "Intercepting his deadly blow you crush the side of his head. He's gone and you have half a round left.",
@@ -814,6 +884,9 @@
             "BONUS": {
               "ROUNDS": 1,
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 5
             }
           }
         ]
@@ -830,6 +903,9 @@
             "BONUS": {
               "VALUE": 15,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 12
             }
           }
         ]
@@ -842,6 +918,9 @@
             "BONUS": {
               "VALUE": 20,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -854,6 +933,9 @@
             "PE": {
               "VALUE": -20,
               "ROUNDS": 2
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]
@@ -911,6 +993,9 @@
             "BONUS": {
               "VALUE": 15,
               "ROUNDS": 2
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -929,7 +1014,13 @@
       },
       "E": {
         "text": "That snapped his head back. It even broke his neck. Drops and dies. Bonus swing for you.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       }
     },
     {
@@ -955,6 +1046,9 @@
             "BONUS": {
               "VALUE": 25,
               "ROUNDS": 1
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]

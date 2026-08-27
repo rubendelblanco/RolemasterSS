@@ -633,7 +633,15 @@
       },
       "B": {
         "text": "No debería vestir ropa tan holgada. Lo agarras y lo zarandeas. Está confuso y se tambalea.",
-        "metadata": []
+        "metadata": [
+          {
+            "HP": 7,
+            "STUN": {
+              "ROUNDS": 1
+            },
+            "NP": 1
+          }
+        ]
       },
       "C": {
         "text": "Golpe en las costillas que rompe unas cuantas.  No le ha hecho mucha gracia. Estaba en la cresta de la ola hasta que te conoció.",
@@ -1040,7 +1048,14 @@
         ]
       },
       "E": {
-        "text": "Su cabeza no parece girar del todo bien. Le rompes el cuello. Cae y muere en 3 asaltos.\r\n"
+        "text": "Su cabeza no parece girar del todo bien. Le rompes el cuello. Cae y muere en 3 asaltos.\r\n",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 3
+            }
+          }
+        ]
       }
     },
     {
@@ -1068,6 +1083,9 @@
           {
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 12
             }
           }
         ]
@@ -1079,6 +1097,9 @@
             "BONUS": {
               "ROUNDS": 2,
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]

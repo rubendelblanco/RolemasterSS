@@ -686,6 +686,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]
@@ -985,7 +988,14 @@
         ]
       },
       "E": {
-        "text": "Golpe en la espalda que secciona una vena. Tu enemigo cae de rodillas y muere después de 12 asaltos."
+        "text": "Golpe en la espalda que secciona una vena. Tu enemigo cae de rodillas y muere después de 12 asaltos.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 12
+            }
+          }
+        ]
       }
     },
     {
@@ -1010,11 +1020,18 @@
         "text": "Golpe en la cabeza. Si no tiene yelmo, muere. Si lo tiene, cae de rodillas.",
         "metadata": [
           {
+            "DESC": "Con yelmo",
             "HP": 6,
             "STUN": {
               "ROUNDS": 2
             },
             "NP": 2
+          },
+          {
+            "DESC": "Sin yelmo, muere en el acto",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -1022,11 +1039,18 @@
         "text": "¡Golpe en la cabeza! Si no tiene yelmo muere. El yelmo queda destrozado, toda una sorpresa.",
         "metadata": [
           {
+            "DESC": "Con yelmo (destruido)",
             "HP": 6,
             "STUN": {
               "ROUNDS": 2
             },
             "NP": 2
+          },
+          {
+            "DESC": "Sin yelmo, muere en el acto",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -1039,7 +1063,14 @@
         ]
       },
       "E": {
-        "text": "El golpe impacta justo en la clavícula. Tu enemigo cae y muere después de 12 asaltos."
+        "text": "El golpe impacta justo en la clavícula. Tu enemigo cae y muere después de 12 asaltos.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 12
+            }
+          }
+        ]
       }
     },
     {
@@ -1094,16 +1125,40 @@
         ]
       },
       "C": {
-        "text": "Golpe en el pecho. Si tiene armadura pectoral cae y muere en 9 asaltos. Si no, muere en el acto."
+        "text": "Golpe en el pecho. Si tiene armadura pectoral cae y muere en 9 asaltos. Si no, muere en el acto.",
+        "metadata": [
+          {
+            "DESC": "Con armadura pectoral, muere en 9 asaltos",
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          },
+          {
+            "DESC": "Sin armadura pectoral, muere en el acto",
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "D": {
-        "text": "Acabas de esparcir sus entrañas por todo el suelo. El enemigo lucha con normalidad durante 6 asaltos, momento en el que muere."
+        "text": "Acabas de esparcir sus entrañas por todo el suelo. El enemigo lucha con normalidad durante 6 asaltos, momento en el que muere.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "E": {
         "text": "Tu arma pasa a través del brazo saliendo por el otro lado. Tu enemigo muerte en 12 asaltos.",
         "metadata": [
           {
             "STUN": {
+              "ROUNDS": 12
+            },
+            "DEAD": {
               "ROUNDS": 12
             }
           }
@@ -1131,6 +1186,9 @@
           {
             "BONUS": {
               "VALUE": 9
+            },
+            "DEAD": {
+              "ROUNDS": 9
             }
           }
         ]
@@ -1139,7 +1197,14 @@
         "text": "Golpe en el cuello que rompe la columna vertebral y secciona la espina dorsal. Queda paralítico de cuello hacia abajo."
       },
       "D": {
-        "text": "El golpe se interna en el pecho de tu enemigo, emergiendo por el otro lado. Cae y muere después de 6 asaltos. Se acabó."
+        "text": "El golpe se interna en el pecho de tu enemigo, emergiendo por el otro lado. Cae y muere después de 6 asaltos. Se acabó.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "E": {
         "text": "Impacto que atraviesa el corazón; tu enemigo retrocede 3 metros en busca de un sitio donde morir. Tu arma queda atrapada en el cuerpo."
@@ -1149,7 +1214,14 @@
       "lower": "100",
       "upper": "100",
       "A": {
-        "text": "Golpe qie atraviesa el cuello y secciona una vena y un arteria. La sangre lo salpica todo. Está muerto, señor."
+        "text": "Golpe qie atraviesa el cuello y secciona una vena y un arteria. La sangre lo salpica todo. Está muerto, señor.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "B": {
         "text": "Nunca olvidarás este golpe. Atraviesa su ojo; muere de forma instantánea. Nunca supo lo que le golpeó.\r\n** Revisar libro: Todos los aliados +10 **",
@@ -1158,6 +1230,9 @@
             "DESC": "Todos los aliados bonificación +10",
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1169,6 +1244,9 @@
             "BONUS": {
               "ROUNDS": 6,
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1189,6 +1267,9 @@
           {
             "BONUS": {
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]

@@ -237,6 +237,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -408,7 +411,13 @@
       "upper": "98",
       "A": {
         "text": "El ataque impacta alcanzando el cuello de tu enemigo. Este ataque con mala intención aplasta el cuello y rompe la columna de tu enemigo. Cae inmóvil y muere después de 3 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 3
+            }
+          }
+        ]
       },
       "B": {
         "text": "Eres un hechicero poderoso. Tu ataque impacta en el pecho y el cuello, rompiéndolo. Cae y muere.",
@@ -416,6 +425,9 @@
           {
             "BONUS": {
               "VALUE": 15
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -438,11 +450,23 @@
       "upper": "100",
       "A": {
         "text": "Te colocas a su derecha y desgarras todo su costado, rompiendo algunas costillas. Tu enemigo muere después de 6 dolorosos asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "B": {
         "text": "Puntería perfecta. Seccionas la carótida y la yugular. Cae y muere después de 3 asaltos.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 3
+            }
+          }
+        ]
       },
       "C": {
         "text": "",
@@ -559,6 +583,9 @@
             "HP": 10,
             "P": {
               "ROUNDS": 50
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -569,13 +596,22 @@
       "upper": "999",
       "A": {
         "text": "Tu enemigo cierra los ojos cuando le golpeas con destreza y furia. Muere en el acto.",
-        "metadata": []
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "B": {
         "text": "Impacto que manda el contenido de su cráneo en todas direcciones. Cae y se convulsiona con violencia. Muere en el acto.",
         "metadata": [
           {
-            "HP": 50
+            "HP": 50,
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       }

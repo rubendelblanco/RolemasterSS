@@ -686,6 +686,9 @@
           {
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]
@@ -985,7 +988,14 @@
         ]
       },
       "E": {
-        "text": "Strike to foe's back severs a vein. Foe goes to his knees and dies in 12 rounds."
+        "text": "Strike to foe's back severs a vein. Foe goes to his knees and dies in 12 rounds.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 12
+            }
+          }
+        ]
       }
     },
     {
@@ -1010,11 +1020,18 @@
         "text": "Strike to foe's head. If foe has no helm he dies. If foe has helm, he falls to his knees.",
         "metadata": [
           {
+            "DESC": "With helm",
             "HP": 6,
             "STUN": {
               "ROUNDS": 2
             },
             "NP": 2
+          },
+          {
+            "DESC": "Without helm, dies instantly",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -1022,11 +1039,18 @@
         "text": "Strike impacts on foe's head. If he has no helm, he dies. Helm is destroyed.",
         "metadata": [
           {
+            "DESC": "With helm (destroyed)",
             "HP": 6,
             "STUN": {
               "ROUNDS": 2
             },
             "NP": 2
+          },
+          {
+            "DESC": "Without helm, dies instantly",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -1039,7 +1063,14 @@
         ]
       },
       "E": {
-        "text": "Strike plunges in just below foe's collarbone Foe drops and dies in 12 rounds."
+        "text": "Strike plunges in just below foe's collarbone Foe drops and dies in 12 rounds.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 12
+            }
+          }
+        ]
       }
     },
     {
@@ -1094,16 +1125,40 @@
         ]
       },
       "C": {
-        "text": "Strike to chest. If foe has plate chest armor, he drops and dies in 9 rounds. If not, he dies instantly."
+        "text": "Strike to chest. If foe has plate chest armor, he drops and dies in 9 rounds. If not, he dies instantly.",
+        "metadata": [
+          {
+            "DESC": "With plate chest armor, dies in 9 rounds",
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          },
+          {
+            "DESC": "Without plate chest armor, dies instantly",
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "D": {
-        "text": "Strike through foe's side spills his guts on the floor. Foe fights on normally for 6 rounds, then dies."
+        "text": "Strike through foe's side spills his guts on the floor. Foe fights on normally for 6 rounds, then dies.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "E": {
         "text": "Your weapon passes through the arm and sticks out the other side. Foe dies in 12 rounds.",
         "metadata": [
           {
             "STUN": {
+              "ROUNDS": 12
+            },
+            "DEAD": {
               "ROUNDS": 12
             }
           }
@@ -1131,6 +1186,9 @@
           {
             "BONUS": {
               "VALUE": 9
+            },
+            "DEAD": {
+              "ROUNDS": 9
             }
           }
         ]
@@ -1139,7 +1197,14 @@
         "text": "Strike through foe's neck breaks backbone and severs spine. Foe is paralyzed from the neck down."
       },
       "D": {
-        "text": "Strike plunges into doomed foe's chest and emerges from the other side. Foe drops and dies in 6 rounds."
+        "text": "Strike plunges into doomed foe's chest and emerges from the other side. Foe drops and dies in 6 rounds.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "E": {
         "text": "Shot through heart sends foe reeling back 10 feet to a place suitable for death. Your weapon is stuck in reeling foe."
@@ -1149,7 +1214,14 @@
       "lower": "100",
       "upper": "100",
       "A": {
-        "text": "Strike through neck. Sever vein and artery. Foe cannot breath. Foe drops and dies of heart failure."
+        "text": "Strike through neck. Sever vein and artery. Foe cannot breath. Foe drops and dies of heart failure.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 0
+            }
+          }
+        ]
       },
       "B": {
         "text": "Strike plunges into foe's eye. Foe dies instantly. Foe remains standing for a moment until he realizes this.",
@@ -1158,6 +1230,9 @@
             "DESC": "All allies get +10 for one round",
             "BONUS": {
               "VALUE": 10
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1169,6 +1244,9 @@
             "BONUS": {
               "ROUNDS": 6,
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1189,6 +1267,9 @@
           {
             "BONUS": {
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]

@@ -963,7 +963,10 @@
             "STUN": {
               "ROUNDS": 12
             },
-            "NP": 12
+            "NP": 12,
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       }
@@ -1023,7 +1026,10 @@
             "STUN": {
               "ROUNDS": 6
             },
-            "NP": 6
+            "NP": 6,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1035,7 +1041,10 @@
             "STUN": {
               "ROUNDS": 12
             },
-            "NP": 12
+            "NP": 12,
+            "DEAD": {
+              "ROUNDS": 9
+            }
           }
         ]
       }
@@ -1087,7 +1096,10 @@
         "text": "Tajo en la parte alta de la pierna, que la amputa. El enemigo cae inmediantamente y muere después de 6 asaltos debido al shock y a la hemorragia. No puede hacer mucho más.",
         "metadata": [
           {
-            "HP": 20
+            "HP": 20,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1099,7 +1111,10 @@
             "STUN": {
               "ROUNDS": 9
             },
-            "NP": 9
+            "NP": 9,
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       },
@@ -1134,7 +1149,10 @@
         "text": "Impaciente, le abres la cabeza a tu enemigo causándole daño masivo cerebral. Cae y muere después de 6 asaltos.",
         "metadata": [
           {
-            "HP": 20
+            "HP": 20,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       },
@@ -1146,7 +1164,10 @@
             "STUN": {
               "ROUNDS": 12
             },
-            "NP": 12
+            "NP": 12,
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       },
@@ -1154,7 +1175,10 @@
         "text": "Corte en el costado. Muere en 2 asaltos debido al daño de ógranos internos. Cae inconsciente inmediatamente.",
         "metadata": [
           {
-            "HP": 20
+            "HP": 20,
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       },
@@ -1166,7 +1190,14 @@
       "lower": "100",
       "upper": "100",
       "A": {
-        "text": "El corte secciona la arteria carótida y  la vena yugular. Muere después de 6 asaltos de agonía y sangre."
+        "text": "El corte secciona la arteria carótida y  la vena yugular. Muere después de 6 asaltos de agonía y sangre.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 6
+            }
+          }
+        ]
       },
       "B": {
         "text": "Cansado de todo esto, destripas a tu enemigo matándolo en el acto."
@@ -1187,7 +1218,10 @@
         "text": "Empalas a tu enemigo en el corazón, destruyéndoselo. Muere en el acto. Ha sido tan fácil ...",
         "metadata": [
           {
-            "HP": 12
+            "HP": 12,
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -1199,7 +1233,10 @@
             "STUN": {
               "ROUNDS": 12
             },
-            "NP": 12
+            "NP": 12,
+            "DEAD": {
+              "ROUNDS": 24
+            }
           }
         ]
       }

@@ -662,7 +662,14 @@
         "text": "Golpe maestro en la cabeza. Si no lleva yelmo, muere. Si tiene, cae inconsciente durante 4 horas.",
         "metadata": [
           {
+            "DESC": "Con yelmo, inconsciente",
             "HP": 20
+          },
+          {
+            "DESC": "Sin yelmo, muere en el acto",
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -960,7 +967,10 @@
         "text": "Golpe en la axila que destroza costillas y órganos internos. Tu enemigo muerte después de 3 asaltos.",
         "metadata": [
           {
-            "HP": 30
+            "HP": 30,
+            "DEAD": {
+              "ROUNDS": 3
+            }
           }
         ]
       }
@@ -1015,7 +1025,14 @@
         "text": "Golpe en el cuello. Si tiene protector queda paralizado de cuello para abajo. Si no, muere en 2 asaltos.",
         "metadata": [
           {
+            "DESC": "Con protector de garganta, paralizado",
             "HP": 25
+          },
+          {
+            "DESC": "Sin protector de garganta, muere en 2 asaltos",
+            "DEAD": {
+              "ROUNDS": 2
+            }
           }
         ]
       },
@@ -1062,18 +1079,31 @@
         "text": "Golpe en el muslo. Fractura múltiple que secciona una arteria. Cae con dureza al suelo y muerte en 12 asaltos.",
         "metadata": [
           {
-            "HP": 9
+            "HP": 9,
+            "DEAD": {
+              "ROUNDS": 12
+            }
           }
         ]
       },
       "D": {
-        "text": "El escudo cuelga de tu brazo roto.Tu enemigo muerte del shock y de la hemorragia después de 9 asaltos."
+        "text": "El escudo cuelga de tu brazo roto.Tu enemigo muerte del shock y de la hemorragia después de 9 asaltos.",
+        "metadata": [
+          {
+            "DEAD": {
+              "ROUNDS": 9
+            }
+          }
+        ]
       },
       "E": {
         "text": "Te deslizas hasta situarte en su espalda. El golpe hace que una vértebra se clave en un órgano interno. Está caído y muere en 6 asaltos.",
         "metadata": [
           {
-            "HP": 25
+            "HP": 25,
+            "DEAD": {
+              "ROUNDS": 6
+            }
           }
         ]
       }
@@ -1085,9 +1115,16 @@
         "text": "Golpe en la cabeza. Si no tiene yelmo, muere. Si tiene, cae inconsciente.",
         "metadata": [
           {
+            "DESC": "Con yelmo, derribado",
             "HP": 20,
             "STUN": {
               "ROUNDS": 6
+            }
+          },
+          {
+            "DESC": "Sin yelmo, muere en el acto",
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1098,6 +1135,9 @@
           {
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]
@@ -1111,6 +1151,9 @@
           {
             "BONUS": {
               "VALUE": 25
+            },
+            "DEAD": {
+              "ROUNDS": 3
             }
           }
         ]
@@ -1119,9 +1162,23 @@
         "text": "Golpe en la cara. Si lleva visor, éste se le clava, causando la muerte en 10 asaltos. Sin un visor, muere en el acto. Aún te queda la mitad del asalto.",
         "metadata": [
           {
+            "DESC": "Con visor, muere en 10 asaltos",
             "HP": 30,
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 10
+            }
+          },
+          {
+            "DESC": "Sin visor, muere en el acto",
+            "HP": 30,
+            "BONUS": {
+              "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1137,6 +1194,9 @@
             "HP": 50,
             "BONUS": {
               "VALUE": 20
+            },
+            "DEAD": {
+              "ROUNDS": 0
             }
           }
         ]
@@ -1168,7 +1228,10 @@
         "text": "Impacto en el corazón, que lo detiene. Muere. Te consideras un ser mortífero.",
         "metadata": [
           {
-            "HP": 25
+            "HP": 25,
+            "DEAD": {
+              "ROUNDS": 0
+            }
           }
         ]
       },
@@ -1183,6 +1246,9 @@
             "HP": 35,
             "STUN": {
               "ROUNDS": 2
+            },
+            "DEAD": {
+              "ROUNDS": 6
             }
           }
         ]

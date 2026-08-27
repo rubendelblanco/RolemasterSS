@@ -1104,7 +1104,10 @@
         "text": "Las prisas por obtener la ventaja hace que tu ataque sea mortal. Le partes el cuello. Cae y muere después de 15 asaltos.",
         "metadata": [
           {
-            "HP": 25
+            "HP": 25,
+            "DEAD": {
+              "ROUNDS": 15
+            }
           }
         ]
       }
