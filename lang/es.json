@@ -793,7 +793,8 @@
       "description": "Descripción",
       "progression": "Progresión habilidad",
       "category_progression": "Progresión categoría",
-      "skill_tab": "Sección"
+      "skill_tab": "Sección",
+      "name_locked_in_compendium": "El nombre no se puede editar mientras este ítem esté en un compendio, ya que las fichas de personaje lo referencian por su slug."
     },
     "skill": {
       "favorite": "¿Favorito?",

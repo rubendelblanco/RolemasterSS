@@ -792,7 +792,8 @@
             "total_bonus": "Total Bonus",
             "description": "Description",
             "progression": "Category progression",
-            "skill_tab": "Skill tab"
+            "skill_tab": "Skill tab",
+            "name_locked_in_compendium": "The name cannot be edited while this item lives in a compendium, since character sheets reference it by slug."
         },
         "skill": {
             "favorite": "Favorite?",

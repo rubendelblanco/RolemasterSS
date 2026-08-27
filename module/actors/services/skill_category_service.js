@@ -1,7 +1,20 @@
 // module/actors/services/skill_category_service.js
 import RankCalculator from "../../core/skills/rmss_rank_calculator.js";
+import * as CONFIG from "../../config.js";
 
 export default class SkillCategoryService {
+    /**
+     * Resolve the progression formula for a skill category's own rank bonus
+     * (e.g. "standard", "limited", "special", "combined"). Returns undefined
+     * for "none"/unrecognized values, meaning the category has no self bonus.
+     */
+    static _resolveOwnProgression(progressionData) {
+        const key = (progressionData || "").toLowerCase();
+        const entry = Object.values(CONFIG.rmss.skill_category_progression)
+            .find(e => e.data === key);
+        return entry?.progression;
+    }
+
     /**
      * Apply a skill category item to the actor.
      * Ensures it is not duplicated and calculates initial rank bonus.
@@ -19,12 +32,13 @@ export default class SkillCategoryService {
         // Let Foundry create the item - call the parent class method to avoid infinite loop
         await ActorSheet.prototype._onDropItem.call(actor.sheet, event, data);
 
-        // Handle standard progression - calculate initial bonus based on initial ranks
-        if (itemData.system.progression?.toLowerCase() === "standard") {
+        // Calculate initial bonus based on initial ranks, for any progression that grants a self bonus
+        const progression = this._resolveOwnProgression(itemData.system.progression);
+        if (progression) {
             const item = actor.items.find(i => i.name === itemData.name);
             if (item) {
                 const initialRanks = Number(item.system.ranks) || 0;
-                await RankCalculator.applyAbsoluteRanksAndBonus(item, initialRanks, "-15*2*1*0.5*0");
+                await RankCalculator.applyAbsoluteRanksAndBonus(item, initialRanks, progression);
             }
         }
     }
@@ -32,9 +46,10 @@ export default class SkillCategoryService {
     /**
      * Handle a click on a skill category's "new rank" button.
      *
-     * This method manages rank progression for skill categories using the standard
-     * progression value ("-15*2*1*0.5*0"). It updates the new rank value and
-     * applies bonuses using the RankCalculator.
+     * This method manages rank progression for skill categories, resolving the
+     * category's own progression formula (standard/limited/special/combined) from
+     * config. Categories set to "none" get no self bonus. Updates the new rank
+     * value and applies bonuses using the RankCalculator.
      *
      * @param {Actor} actor - The Foundry actor.
      * @param {Item} item - The skill category item clicked.
@@ -42,7 +57,7 @@ export default class SkillCategoryService {
      * @returns {Promise<void>} Resolves when updates are complete.
      */
     static async handleSkillCategoryRankClick(actor, item, clickedValue) {
-        const progressionValue = "-15*2*1*0.5*0";
+        const progressionValue = this._resolveOwnProgression(item.system.progression);
         const current = Number(item.system.new_ranks?.value || 0);
         const costString = RankCalculator.getEffectiveDevelopmentCost(actor, item);
         const available = String(costString).split("/").length;
@@ -59,14 +74,14 @@ export default class SkillCategoryService {
                 if (pay === "refunded") {
                     const toSubtract = Math.min(current, available);
                     await item.update({ "system.new_ranks.value": 0 });
-                    if (item.system.progression?.toLowerCase?.() === "standard" && toSubtract) {
+                    if (progressionValue && toSubtract) {
                         await RankCalculator.applyRanksAndBonus(item, -toSubtract, progressionValue);
                     }
                     return;
                 }
 
                 await item.update({ "system.new_ranks.value": next });
-                if (item.system.progression?.toLowerCase?.() === "standard") {
+                if (progressionValue) {
                     await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
                 }
                 return;
@@ -75,7 +90,7 @@ export default class SkillCategoryService {
             case "3": {
                 const toSubtract = Math.min(current, available);
                 await item.update({ "system.new_ranks.value": 0 });
-                if (item.system.progression?.toLowerCase?.() === "standard" && toSubtract) {
+                if (progressionValue && toSubtract) {
                     await RankCalculator.applyRanksAndBonus(item, -toSubtract, progressionValue);
                 }
                 return;

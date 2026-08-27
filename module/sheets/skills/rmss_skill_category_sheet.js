@@ -1,5 +1,6 @@
 import RankCalculator from '../../core/skills/rmss_rank_calculator.js';
 import * as CONFIG from "../../config.js";
+import SkillCategoryService from '../../actors/services/skill_category_service.js';
 
 // Our Item Sheet extends the default
 export default class RMSSSkillCategorySheet extends ItemSheet {
@@ -78,7 +79,8 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
       category_progression: applicableCategoryProgression,
       skill_progression: applicableSkillProgression,
       enrichedDescription: enrichedDescription,
-      skill_tab: CONFIG.rmss.skill_tab
+      skill_tab: CONFIG.rmss.skill_tab,
+      isCompendiumItem: !!this.item.pack
     };
     return sheetData;
   }
@@ -165,9 +167,10 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
       const raw = ev.currentTarget.value;
       const total = Number(raw);
 
-      if (this.item.system.progression?.toLowerCase() === "standard") {
+      const progression = SkillCategoryService._resolveOwnProgression(this.item.system.progression);
+      if (progression) {
         if (Number.isNaN(total)) return;
-        RankCalculator.applyAbsoluteRanksAndBonus(this.item, total, "-15*2*1*0.5*0");
+        RankCalculator.applyAbsoluteRanksAndBonus(this.item, total, progression);
       }
     })
 
@@ -177,18 +180,19 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
       this._setApplicableStat(this.item, ev);
     });
 
-    html.find('select[name="system.progression"]').change(ev => {
+    html.find('select[name="system.progression"]').change(async ev => {
       const selection = ev.currentTarget.value;
-      let total_ranks = document.querySelector('[name="system.ranks"]').value;
+      const total_ranks = document.querySelector('[name="system.ranks"]').value;
 
-      if (selection==="standard") {
-        RankCalculator.calculateRanksBonus(this.item, total_ranks, "-15*2*1*0.5*0");
+      const progression = SkillCategoryService._resolveOwnProgression(selection);
+      if (progression) {
+        await this.item.update({ 'system.progression': selection });
+        await RankCalculator.applyAbsoluteRanksAndBonus(this.item, Number(total_ranks) || 0, progression);
       }
       else {
-        this.item.update({ 'system.rank_bonus': 0 });
-        this.item.update({ 'system.ranks': 0 });
-        this.item.update({ 'system.progression': selection });
-        console.log(this.item);
+        await this.item.update({ 'system.rank_bonus': 0 });
+        await this.item.update({ 'system.ranks': 0 });
+        await this.item.update({ 'system.progression': selection });
       }
     });
 
@@ -204,9 +208,9 @@ export default class RMSSSkillCategorySheet extends ItemSheet {
         if (!actor.system.levelUp.isLevelingUp) return;
       }
 
-      var selected_cat = html.find('select[name="system.progression"]').val();
+      const selected_cat = html.find('select[name="system.progression"]').val();
 
-      if (selected_cat !== "Standard") {
+      if (!SkillCategoryService._resolveOwnProgression(selected_cat)) {
         return false;
       }
 
