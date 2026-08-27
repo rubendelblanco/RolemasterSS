@@ -161,7 +161,7 @@ export class RMSSEffectApplier {
         const rmss = { attackerId: originId ?? null, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity) };
         await entity.createEmbeddedDocuments("ActiveEffect", [{
             name: "Dying",
-            icon: `${CONFIG.rmss.paths.icons_folder}dead-head.svg`,
+            img: `${CONFIG.rmss.paths.icons_folder}dead-head.svg`,
             origin: entity.id,
             disabled: false,
             flags: { rmss },
@@ -201,7 +201,7 @@ export class RMSSEffectApplier {
             const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "Stunned",
-                icon: `${CONFIG.rmss.paths.icons_folder}stunned.svg`,
+                img: `${CONFIG.rmss.paths.icons_folder}stunned.svg`,
                 origin: entity.id,
                 disabled: false,
                 ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
@@ -227,7 +227,7 @@ export class RMSSEffectApplier {
         }
         await entity.createEmbeddedDocuments("ActiveEffect", [{
             name: "Bleeding",
-            icon: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
+            img: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
             origin: entity.id,
             description,
             disabled: false,
@@ -250,7 +250,7 @@ export class RMSSEffectApplier {
             };
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "Penalty",
-                icon: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
+                img: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
                 origin: entity.id,
                 description,
                 disabled: false,
@@ -262,7 +262,7 @@ export class RMSSEffectApplier {
 
         await entity.createEmbeddedDocuments("ActiveEffect", [{
             name: "Penalty",
-            icon: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
+            img: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
             origin: entity.id,
             description,
             disabled: false,
@@ -281,7 +281,7 @@ export class RMSSEffectApplier {
             const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "Parry",
-                icon: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
+                img: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
                 origin: entity.id,
                 disabled: false,
                 ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
@@ -300,7 +300,7 @@ export class RMSSEffectApplier {
             const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
             await entity.createEmbeddedDocuments("ActiveEffect", [{
                 name: "No parry",
-                icon: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
+                img: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
                 origin: entity.id,
                 disabled: false,
                 ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
@@ -318,7 +318,7 @@ export class RMSSEffectApplier {
         const rmss = { value, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, attacker) };
         await attacker.createEmbeddedDocuments("ActiveEffect", [{
             name: "Bonus",
-            icon: `${CONFIG.rmss.paths.icons_folder}bonus.svg`,
+            img: `${CONFIG.rmss.paths.icons_folder}bonus.svg`,
             origin: originId,
             description,
             disabled: false,
@@ -339,7 +339,7 @@ export class RMSSEffectApplier {
         // 1) Create overlay effect ON THE TOKEN (not actor)
         await token.actor.createEmbeddedDocuments("ActiveEffect", [{
             name: "Dead",
-            icon: globalThis.CONFIG.controlIcons.defeated,  // core skull
+            img: globalThis.CONFIG.controlIcons.defeated,  // core skull
             origin: actor.uuid,
             disabled: false,
             flags: { core: { overlay: true } },
