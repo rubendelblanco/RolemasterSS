@@ -5,10 +5,12 @@ import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import { castEnchantmentFromItem, itemHasArtifactTag } from "./cast_enchantment_from_item.js";
 import {
+  bindRechargeProgressEditor,
   buildEnchantmentList,
   buildSpellDataForStorage,
   getChargePool,
   getPowerModifierMode,
+  getRechargeProgress,
   normalizeEnchantments,
   onClearPowerModifierProfession,
   resolveProfessionName,
@@ -79,6 +81,7 @@ export default class RMSSItemSheet extends ItemSheet {
 
     const chargePool = getChargePool(system);
     const enchantmentList = buildEnchantmentList(system.magic?.enchantments, chargePool);
+    const rechargeProgress = getRechargeProgress(system.magic);
     const powerModifierMode = getPowerModifierMode(system);
     const ppMultiplierProfessionName = await resolveProfessionName(system.pp_multiplier_profession ?? "");
     const spellAdderProfessionName = await resolveProfessionName(system.spell_adder_profession ?? "");
@@ -107,6 +110,7 @@ export default class RMSSItemSheet extends ItemSheet {
       bonusSkillsList,
       enchantmentList,
       chargePool,
+      rechargeProgress,
       isArtifact: itemHasArtifactTag(item),
       powerModifierMode,
       ppMultiplierProfessionName,
@@ -135,6 +139,7 @@ export default class RMSSItemSheet extends ItemSheet {
     this._setupPPExclusive(html);
     setupPowerModifierProfessionDropZones(html, this);
     html.find("[data-action='clear-power-modifier-profession']").on("click", ev => onClearPowerModifierProfession(ev, this));
+    bindRechargeProgressEditor(this, html);
     // --- Bonus skill drop zones ---
     this._setupBonusSkillDropZones(html);
     // Bind to document: el html del sheet puede no incluir el tab Modifiers en algunas configuraciones

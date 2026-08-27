@@ -55,6 +55,61 @@ export function advanceArtifactRecharge(magic) {
 }
 
 /**
+ * Recharge countdown expressed as forward progress instead of a bare "days left" number,
+ * so the sheet can drive a slider/progress bar that fills up as the artifact charges
+ * (dragging right = closer to recharge), rather than a countdown that drains left.
+ * @param {object} magic - item.system.magic
+ * @returns {{rechargeDays: number, daysUntilRecharge: number, progress: number}} progress is
+ *   0..rechargeDays, where rechargeDays itself means "recharges now".
+ */
+export function getRechargeProgress(magic) {
+  const rechargeDays = Math.max(0, Number(magic?.rechargeDays) || 0);
+  const daysUntilRecharge = Math.min(rechargeDays, Math.max(0, Number(magic?.daysUntilRecharge) || 0));
+  const progress = rechargeDays > 0 ? rechargeDays - daysUntilRecharge : 0;
+  return { rechargeDays, daysUntilRecharge, progress };
+}
+
+/**
+ * Inverse of {@link getRechargeProgress}: turn a slider position back into daysUntilRecharge.
+ * @param {number} rechargeDays
+ * @param {number} progress - 0..rechargeDays
+ * @returns {number} daysUntilRecharge to persist
+ */
+export function progressToDaysUntilRecharge(rechargeDays, progress) {
+  const days = Math.max(0, Number(rechargeDays) || 0);
+  const p = Math.min(days, Math.max(0, Number(progress) || 0));
+  return days - p;
+}
+
+/**
+ * @param {ItemSheet} sheet
+ * @param {jQuery} html
+ */
+export function bindRechargeProgressEditor(sheet, html) {
+  if (!sheet.isEditable) return;
+
+  const ns = ".rmssRechargeProgressUi";
+  const slider = html.find(".rmss-recharge-slider");
+  if (!slider.length) return;
+
+  const setFill = (el) => {
+    const max = Number(el.max) || 0;
+    const pct = max > 0 ? (Number(el.value) / max) * 100 : 0;
+    el.style.setProperty("--rmss-recharge-fill", `${pct}%`);
+  };
+  slider.each((_, el) => setFill(el));
+
+  slider.off(`input${ns}`).on(`input${ns}`, (ev) => setFill(ev.currentTarget));
+
+  slider.off(`change${ns}`).on(`change${ns}`, async (ev) => {
+    const el = ev.currentTarget;
+    const rechargeDays = Number(el.max) || 0;
+    const daysUntilRecharge = progressToDaysUntilRecharge(rechargeDays, el.value);
+    await sheet.item.update({ "system.magic.daysUntilRecharge": daysUntilRecharge });
+  });
+}
+
+/**
  * Build enchantmentList for sheet template (labels, usage, canUse, etc.).
  * @param {Array} rawEnchantments
  * @param {{current?: number, max?: number}} [chargePool] - Item-level shared pool for "pooled" usage

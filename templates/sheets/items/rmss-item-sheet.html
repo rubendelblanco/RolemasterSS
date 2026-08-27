@@ -253,12 +253,14 @@
                 {{else}}
                 <span>{{system.magic.rechargeDays}}</span>
                 {{/if}}
-                <span class="rmss-enchantment-slash">→</span>
-                {{#if editable}}
-                <input type="number" name="system.magic.daysUntilRecharge" value="{{system.magic.daysUntilRecharge}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_days_until_recharge_hint'}}"/>
-                {{else}}
-                <span>{{system.magic.daysUntilRecharge}}</span>
-                {{/if}}
+                <div class="rmss-recharge-progress" title="{{localize 'rmss.item.enchantments_days_until_recharge_hint'}}">
+                    {{#if editable}}
+                    <input type="range" class="rmss-recharge-slider" min="0" max="{{rechargeProgress.rechargeDays}}" value="{{rechargeProgress.progress}}" {{#if (eq rechargeProgress.rechargeDays 0)}}disabled{{/if}}/>
+                    {{else}}
+                    <div class="rmss-progress-thin rmss-recharge-bar"><div class="rmss-progress-bar" style="width: {{percentage rechargeProgress.progress rechargeProgress.rechargeDays}}%"></div></div>
+                    {{/if}}
+                    <span class="rmss-recharge-progress-label">{{rechargeProgress.daysUntilRecharge}}/{{rechargeProgress.rechargeDays}}</span>
+                </div>
                 <p class="notes">{{localize "rmss.item.enchantments_pool_hint"}}</p>
             </div>
             {{/if}}

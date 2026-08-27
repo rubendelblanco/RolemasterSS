@@ -5,10 +5,12 @@ import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_t
 import { bindWeaponSlayingEditor, getWeaponSlayingArray, getWeaponSlayingListId } from "./weapon_slaying_ui.js";
 import { castEnchantmentFromItem, itemHasArtifactTag } from "./cast_enchantment_from_item.js";
 import {
+  bindRechargeProgressEditor,
   buildEnchantmentList,
   buildSpellDataForStorage,
   getChargePool,
   getPowerModifierMode,
+  getRechargeProgress,
   normalizeEnchantments,
   onClearPowerModifierProfession,
   resolveProfessionName,
@@ -78,6 +80,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
     );
     const chargePool = getChargePool(system);
     const enchantmentList = buildEnchantmentList(system.magic?.enchantments, chargePool);
+    const rechargeProgress = getRechargeProgress(system.magic);
     const powerModifierMode = getPowerModifierMode(system);
     const ppMultiplierProfessionName = await resolveProfessionName(system.pp_multiplier_profession ?? "");
     const spellAdderProfessionName = await resolveProfessionName(system.spell_adder_profession ?? "");
@@ -111,6 +114,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
       bonusSkillsList: this._getBonusSkillsArray(),
       enchantmentList,
       chargePool,
+      rechargeProgress,
       isArtifact: itemHasArtifactTag(this.item),
       powerModifierMode,
       ppMultiplierProfessionName,
@@ -153,6 +157,7 @@ export default class RMSSWeaponSheet extends ItemSheet {
     this._setupPPExclusive(html);
     setupPowerModifierProfessionDropZones(html, this);
     html.find("[data-action='clear-power-modifier-profession']").on("click", ev => onClearPowerModifierProfession(ev, this));
+    bindRechargeProgressEditor(this, html);
     this._setupBonusSkillDropZones(html);
     html.find("[data-action='remove-bonus-skill']").on("click", this._onRemoveBonusSkill.bind(this));
     this._setupEnchantmentsDropZone(html);

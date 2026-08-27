@@ -3652,6 +3652,86 @@ button.rmss-crit-reenable-local:hover {
   margin: 0;
 }
 
+/* Recharge progress: fills up as the artifact charges toward its next recharge
+   (dragging right = closer to recharge), rather than draining down like a countdown. */
+.rmss-recharge-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.35rem;
+}
+
+.rmss-recharge-slider {
+  --rmss-recharge-fill: 0%;
+  width: 6rem;
+  height: 0.6rem;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 5px;
+  background: linear-gradient(
+    to right,
+    var(--rmss-progress-fill) var(--rmss-recharge-fill),
+    var(--rmss-progress-bg) var(--rmss-recharge-fill)
+  );
+}
+
+.rmss-recharge-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--rmss-progress-fill);
+  border: 1px solid #fff;
+  cursor: grab;
+  transition: transform 0.1s, background 0.2s;
+}
+
+.rmss-recharge-slider::-webkit-slider-thumb:active {
+  transform: scale(1.15);
+  cursor: grabbing;
+}
+
+.rmss-recharge-slider::-moz-range-thumb {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--rmss-progress-fill);
+  border: 1px solid #fff;
+  cursor: grab;
+  transition: transform 0.1s, background 0.2s;
+}
+
+.rmss-recharge-slider::-moz-range-thumb:active {
+  transform: scale(1.15);
+  cursor: grabbing;
+}
+
+.rmss-recharge-slider::-moz-range-track {
+  height: 0.6rem;
+  border-radius: 5px;
+  background: transparent;
+}
+
+.rmss-recharge-slider:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rmss-recharge-bar {
+  width: 6rem;
+  height: 0.6rem;
+  margin-bottom: 0;
+}
+
+.rmss-recharge-progress-label {
+  font-size: 0.85em;
+  color: var(--color-text-dark-inactive);
+  white-space: nowrap;
+}
+
 /* Enchantments */
 .rmss-enchantments-header {
   display: grid;

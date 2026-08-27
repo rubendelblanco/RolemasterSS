@@ -3,10 +3,12 @@ import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 import { castEnchantmentFromItem, itemHasArtifactTag } from "./cast_enchantment_from_item.js";
 import {
+  bindRechargeProgressEditor,
   buildEnchantmentList,
   buildSpellDataForStorage,
   getChargePool,
   getPowerModifierMode,
+  getRechargeProgress,
   normalizeEnchantments,
   onClearPowerModifierProfession,
   resolveProfessionName,
@@ -56,6 +58,7 @@ export default class RMSSArmorSheet extends ItemSheet {
     const { material, bonus, magical, bonusEditable, magicalEditable, materialsOptions } = this._resolveArmorMaterial(system);
     const chargePool = getChargePool(system);
     const enchantmentList = buildEnchantmentList(system.magic?.enchantments, chargePool);
+    const rechargeProgress = getRechargeProgress(system.magic);
     const powerModifierMode = getPowerModifierMode(system);
     const ppMultiplierProfessionName = await resolveProfessionName(system.pp_multiplier_profession ?? "");
     const spellAdderProfessionName = await resolveProfessionName(system.spell_adder_profession ?? "");
@@ -86,6 +89,7 @@ export default class RMSSArmorSheet extends ItemSheet {
       bonusSkillsList: this._getBonusSkillsArray(),
       enchantmentList,
       chargePool,
+      rechargeProgress,
       isArtifact: itemHasArtifactTag(this.item),
       powerModifierMode,
       ppMultiplierProfessionName,
@@ -128,6 +132,7 @@ export default class RMSSArmorSheet extends ItemSheet {
     this._setupPPExclusive(html);
     setupPowerModifierProfessionDropZones(html, this);
     html.find("[data-action='clear-power-modifier-profession']").on("click", ev => onClearPowerModifierProfession(ev, this));
+    bindRechargeProgressEditor(this, html);
     this._setupBonusSkillDropZones(html);
     html.find("[data-action='remove-bonus-skill']").on("click", this._onRemoveBonusSkill.bind(this));
     this._setupEnchantmentsDropZone(html);
