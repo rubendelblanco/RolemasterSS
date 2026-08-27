@@ -420,7 +420,8 @@
       "height": 0,
       "weight": 0,
       "capacity": 0,
-      "offensive_bonus": 0
+      "offensive_bonus": 0,
+      "tags": []
     },
     "armor": {
       "templates": ["item"],
