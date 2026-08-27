@@ -666,6 +666,16 @@ A second, separate "Closed Essence" section from the Essence Companion (14.3), d
 - `mana_warriors.json` – Mana Warriors / Guerreros de Mana (14.5.5)
 - `glyphs.json` – Glyphs / Glifos (14.5.6)
 
+### Listas base de profesión — Guerrero Mago (Essence Companion)
+
+**Warrior Mage Base 14.6.1–14.6.6:** Hybrid warrior/spellcaster profession centered on combat maneuver spells, combat illusions, spell defense, personal enhancements, a single enchanted weapon, and mental fortitude.
+- `combat_ways.json` – Combat Ways / Vías de Combate (14.6.1)
+- `combat_illusions.json` – Combat Illusions / Ilusiones de Combate (14.6.2)
+- `spell_defense.json` – Spell Defense / Defensa de Hechizos (14.6.3)
+- `warriors_enhancements.json` – Warrior's Enhancements / Mejoras del Guerrero (14.6.4)
+- `warriors_weapon.json` – Warrior's Weapon / Arma del Guerrero (14.6.5)
+- `will_of_the_warrior.json` – Will of the Warrior / Voluntad del Guerrero (14.6.6)
+
 ## Mentalism
 
 ### Open lists
@@ -999,7 +1009,8 @@ const FILES_BY_FOLDER = {
     "circle_mastery", "counterspells", "earth_mastery", "elemental_summons", "familiar_mastery",
     "fire_mastery", "light_mastery", "magic_staff", "matter_shaping", "mechanisms_way", "water_mastery",
     "commanding_will", "inscriptions", "nomenclature_mastery", "physical_manipulations", "symbolism", "warding_ways",
-    "mana_barriers", "mana_items", "mana_molding", "mana_servants", "mana_warriors", "glyphs"
+    "mana_barriers", "mana_items", "mana_molding", "mana_servants", "mana_warriors", "glyphs",
+    "combat_ways", "combat_illusions", "spell_defense", "warriors_enhancements", "warriors_weapon", "will_of_the_warrior"
   ],
   "training-packages": [
     "arachnemancy", "brewing_lore", "guildcraft_mastery", "hearth_magic", "magical_ropes",
