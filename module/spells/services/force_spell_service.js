@@ -24,13 +24,16 @@ export default class ForceSpellService {
      * @param {Item} params.spell - The spell being cast
      * @param {string} params.spellListName - Name of the spell list (to find matching skill)
      * @param {string} params.spellListRealm - Realm of the spell list
+     * @param {number} [params.casterLevelOverride] - Artifact fixed cast level (e.g. "30th level
+     *   effect" items): when > 0, used instead of the actor's real level for the RR the target
+     *   must beat (and its display), leaving XP awards tied to the actor's real level.
      * @returns {Promise<boolean>} true once the cast actually committed (PP spent / dice rolled)
      *   — including a spell failure or fumble, which still burns the attempt — false if it
      *   aborted before that point (insufficient PP, dialog cancelled). Callers that consume a
      *   one-shot resource (e.g. a potion, see castEnchantmentFromItem) should only do so when
      *   this returns true.
      */
-    static async castForceSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0 }) {
+    static async castForceSpell({ actor, spell, spellListName, spellListRealm, consumePowerPoints = true, fromEnchantment = false, enchantmentAttackBonus = 0, casterLevelOverride = 0 }) {
         const spellLevel = spell.system?.level ?? 1;
         let noPP = !consumePowerPoints || spell.system?.no_pp === true;
         let spellAdder = null;
@@ -156,12 +159,17 @@ export default class ForceSpellService {
         let isFumble = false;
         let targetRRs = [];
         let failureResult = null;
+        // Artifact fixed cast level ("30th level effect") overrides the actor's real level only
+        // for the RR the target must beat — XP awards below stay tied to the actor's real level.
+        const effectiveCasterLevel = casterLevelOverride > 0
+            ? casterLevelOverride
+            : (actor.system.attributes?.level?.value ?? 1);
 
         if (isForceSpell && hasTargets) {
             // Determine realm: use spell list realm, or fall back to actor's realm for base lists
             const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
             const realm = this._normalizeRealm(effectiveRealm);
-            const casterLevel = actor.system.attributes?.level?.value ?? 1;
+            const casterLevel = effectiveCasterLevel;
             
             // Process each target separately (different armor types)
             for (const target of targets) {
@@ -264,7 +272,7 @@ export default class ForceSpellService {
             targetRRs,
             maneuverResult,
             failureResult,
-            casterLevel: actor.system.attributes?.level?.value ?? 1,
+            casterLevel: effectiveCasterLevel,
             publicToPlayers: publicRollToPlayers
         });
 
@@ -301,7 +309,7 @@ export default class ForceSpellService {
             // Store RR context for item macro (see Item._executeItemMacro JSDoc; e.g. Dormir V: roll RR per target, apply sleep if failed)
             game.rmss = game.rmss || {};
             game.rmss.lastSpellContext = targetRRs.length > 0
-                ? { targetRRs, casterLevel: actor.system.attributes?.level?.value ?? 1 }
+                ? { targetRRs, casterLevel: effectiveCasterLevel }
                 : null;
 
             const sourceToken = getActorToken(actor);

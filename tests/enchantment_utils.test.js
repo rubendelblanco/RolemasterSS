@@ -4,7 +4,9 @@
 import {
   normalizeEnchantments,
   getPowerModifierMode,
-  buildEnchantmentList
+  buildEnchantmentList,
+  getChargePool,
+  advanceArtifactRecharge
 } from '../module/sheets/items/enchantment_utils.js';
 
 // buildEnchantmentList needs CONFIG.rmss and game.i18n
@@ -162,5 +164,90 @@ describe('buildEnchantmentList', () => {
 
     const onlyList = buildEnchantmentList([{ spellListUuid: "list-1" }]);
     expect(onlyList[0].spellLinkUuid).toBe("list-1");
+  });
+
+  describe('pooled usage (artifact shared charge pool)', () => {
+    test('canUse is true when the pool has enough for this enchantment\'s cost', () => {
+      const result = buildEnchantmentList([{ usage: "pooled", poolCost: 5 }], { current: 10, max: 40 });
+      expect(result[0].canUse).toBe(true);
+    });
+
+    test('canUse is false when the pool does not have enough for the cost', () => {
+      const result = buildEnchantmentList([{ usage: "pooled", poolCost: 5 }], { current: 3, max: 40 });
+      expect(result[0].canUse).toBe(false);
+    });
+
+    test('canUse is true at the exact boundary (pool current === cost)', () => {
+      const result = buildEnchantmentList([{ usage: "pooled", poolCost: 5 }], { current: 5, max: 40 });
+      expect(result[0].canUse).toBe(true);
+    });
+
+    test('defaults to a chargePool of 0/0 (nothing usable) when not provided', () => {
+      const result = buildEnchantmentList([{ usage: "pooled", poolCost: 1 }]);
+      expect(result[0].canUse).toBe(false);
+    });
+
+    test('poolCost defaults to 1 and is floored at 1', () => {
+      expect(buildEnchantmentList([{ usage: "pooled" }])[0].poolCost).toBe(1);
+      expect(buildEnchantmentList([{ usage: "pooled", poolCost: 0 }])[0].poolCost).toBe(1);
+      expect(buildEnchantmentList([{ usage: "pooled", poolCost: -3 }])[0].poolCost).toBe(1);
+    });
+
+    test('usageLabel shows the cost in points', () => {
+      const result = buildEnchantmentList([{ usage: "pooled", poolCost: 5 }], { current: 10, max: 40 });
+      expect(result[0].usageLabel).toBe("5 rmss.item.enchantments_pool_cost_unit");
+    });
+  });
+});
+
+describe('getChargePool', () => {
+  test('reads current/max from system.magic.chargePool', () => {
+    expect(getChargePool({ magic: { chargePool: { current: 15, max: 40 } } })).toEqual({ current: 15, max: 40 });
+  });
+
+  test('defaults to 0/0 when missing', () => {
+    expect(getChargePool({})).toEqual({ current: 0, max: 0 });
+    expect(getChargePool(null)).toEqual({ current: 0, max: 0 });
+    expect(getChargePool({ magic: {} })).toEqual({ current: 0, max: 0 });
+  });
+
+  test('clamps current to max (never above) and to 0 (never negative)', () => {
+    expect(getChargePool({ magic: { chargePool: { current: 999, max: 40 } } })).toEqual({ current: 40, max: 40 });
+    expect(getChargePool({ magic: { chargePool: { current: -5, max: 40 } } })).toEqual({ current: 0, max: 40 });
+  });
+});
+
+describe('advanceArtifactRecharge', () => {
+  test('returns null when rechargeDays is not set (no periodic recharge configured)', () => {
+    expect(advanceArtifactRecharge({ chargePool: { current: 10, max: 40 }, rechargeDays: 0, daysUntilRecharge: 0 })).toBeNull();
+    expect(advanceArtifactRecharge({ chargePool: { current: 10, max: 40 } })).toBeNull();
+    expect(advanceArtifactRecharge(null)).toBeNull();
+  });
+
+  test('just decrements daysUntilRecharge when still above 1, pool untouched', () => {
+    const result = advanceArtifactRecharge({ chargePool: { current: 10, max: 40 }, rechargeDays: 7, daysUntilRecharge: 5 });
+    expect(result).toEqual({ current: 10, daysUntilRecharge: 4 });
+  });
+
+  test('refills the pool to max and resets the counter to rechargeDays when it reaches 0', () => {
+    const result = advanceArtifactRecharge({ chargePool: { current: 3, max: 40 }, rechargeDays: 7, daysUntilRecharge: 1 });
+    expect(result).toEqual({ current: 40, daysUntilRecharge: 7 });
+  });
+
+  test('a stale/already-0 counter refills on the very next rest instead of going negative', () => {
+    const result = advanceArtifactRecharge({ chargePool: { current: 0, max: 40 }, rechargeDays: 7, daysUntilRecharge: 0 });
+    expect(result).toEqual({ current: 40, daysUntilRecharge: 7 });
+  });
+
+  test('a fresh item with rechargeDays set but daysUntilRecharge unset starts a cycle on the first rest', () => {
+    const result = advanceArtifactRecharge({ chargePool: { current: 40, max: 40 }, rechargeDays: 7, daysUntilRecharge: 0 });
+    expect(result).toEqual({ current: 40, daysUntilRecharge: 7 });
+  });
+
+  test('supports any period, not just weekly (e.g. 1 day, 30 days)', () => {
+    expect(advanceArtifactRecharge({ chargePool: { current: 2, max: 10 }, rechargeDays: 1, daysUntilRecharge: 1 }))
+      .toEqual({ current: 10, daysUntilRecharge: 1 });
+    expect(advanceArtifactRecharge({ chargePool: { current: 2, max: 10 }, rechargeDays: 30, daysUntilRecharge: 15 }))
+      .toEqual({ current: 2, daysUntilRecharge: 14 });
   });
 });

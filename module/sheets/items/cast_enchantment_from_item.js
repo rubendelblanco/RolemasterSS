@@ -3,13 +3,32 @@ import { isIdentityHidden } from "../../actors/utils/item_identity_util.js";
 
 /**
  * @param {Item|{ system?: object }} itemOrSystem
+ * @param {string} tag
  * @returns {boolean}
  */
-export function itemHasPotionTag(itemOrSystem) {
+function itemHasTag(itemOrSystem, tag) {
   const sys = itemOrSystem?.system ?? itemOrSystem;
   const tags = sys?.tags;
   if (!Array.isArray(tags)) return false;
-  return tags.some(t => String(t).trim().toLowerCase() === "potion");
+  return tags.some(t => String(t).trim().toLowerCase() === tag);
+}
+
+/**
+ * @param {Item|{ system?: object }} itemOrSystem
+ * @returns {boolean}
+ */
+export function itemHasPotionTag(itemOrSystem) {
+  return itemHasTag(itemOrSystem, "potion");
+}
+
+/**
+ * Artifacts unlock the shared charge pool ("pooled" enchantment usage) and the fixed cast
+ * level override — both stay at their inert defaults (0) on regular items.
+ * @param {Item|{ system?: object }} itemOrSystem
+ * @returns {boolean}
+ */
+export function itemHasArtifactTag(itemOrSystem) {
+  return itemHasTag(itemOrSystem, "artifact");
 }
 
 /**
@@ -82,6 +101,10 @@ export async function castEnchantmentFromItem(actor, item, enchantmentIndex) {
   const spellListRealm = enchantment.realm || actor.system?.fixed_info?.realm || "essence";
 
   const fromEnchantmentOpt = { consumePowerPoints: false, fromEnchantment: true, enchantmentAttackBonus: Number(enchantment.attackBonus) || 0 };
+  // Artifact fixed cast level: only meaningful for Force spells today (the only place caster
+  // level drives a mechanic — the RR the target must beat). BE/DE damage isn't level-scaled in
+  // this system (their book-listed "+N" is already the enchantment's attackBonus).
+  const artifactCastLevel = itemHasArtifactTag(item) ? Math.max(0, Number(item.system.magic?.castLevel) || 0) : 0;
   // wasCast: whether the cast actually committed (dice rolled) vs. aborted before that point
   // (e.g. a BE ball spell with no area template placed yet, or a cancelled casting-options
   // dialog). Only consume the enchantment's use/charge/potion when this is true — otherwise a
@@ -98,7 +121,7 @@ export async function castEnchantmentFromItem(actor, item, enchantmentIndex) {
     wasCast = await DirectedElementalSpellService.castDirectedElementalSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
   } else {
     const ForceSpellService = (await import("../../spells/services/force_spell_service.js")).default;
-    wasCast = await ForceSpellService.castForceSpell({ actor, spell: spellDoc, spellListName, spellListRealm, ...fromEnchantmentOpt });
+    wasCast = await ForceSpellService.castForceSpell({ actor, spell: spellDoc, spellListName, spellListRealm, casterLevelOverride: artifactCastLevel, ...fromEnchantmentOpt });
   }
 
   if (!wasCast) return {};
@@ -114,6 +137,17 @@ export async function castEnchantmentFromItem(actor, item, enchantmentIndex) {
     }
     await item.delete();
     return { itemDeleted: true, applied: true };
+  }
+
+  if (usage === "pooled") {
+    // Shared item-level pool (e.g. an artifact with N power points split across several
+    // spells at different costs each) — the enchantment itself carries no per-use state,
+    // only its poolCost; what gets spent is system.magic.chargePool, not this enchantment.
+    const pool = item.system.magic?.chargePool ?? { current: 0, max: 0 };
+    const cost = Math.max(1, Number(enchantment.poolCost) || 1);
+    const newCurrent = Math.max(0, (Number(pool.current) || 0) - cost);
+    await item.update({ "system.magic.chargePool.current": newCurrent });
+    return { applied: true };
   }
 
   if (usage === "single") {

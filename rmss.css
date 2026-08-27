@@ -3619,6 +3619,39 @@ button.rmss-crit-reenable-local:hover {
   min-width: 7rem;
 }
 
+/* Artifact shared charge pool ("pooled" enchantment usage) */
+.rmss-charge-pool {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-light-primary);
+}
+
+.rmss-charge-pool label {
+  font-weight: bold;
+  font-size: var(--rmss-font-size-sm);
+}
+
+.rmss-charge-pool-level-label {
+  margin-left: 0.75rem;
+}
+
+.rmss-charge-pool input[type="number"] {
+  width: 3.5rem;
+  padding: 0.1rem 0.2rem;
+  font-size: 0.9em;
+}
+
+.rmss-charge-pool .notes {
+  flex-basis: 100%;
+  font-size: 0.85em;
+  color: var(--color-text-dark-inactive);
+  margin: 0;
+}
+
 /* Enchantments */
 .rmss-enchantments-header {
   display: grid;
