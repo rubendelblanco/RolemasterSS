@@ -21,6 +21,7 @@ import RMSSSkillSheet from "./module/sheets/skills/rmss_skill_sheet.js";
 import RMSSRaceSheet from "./module/sheets/items/rmss_race_sheet.js";
 import RMSSProfessionSheet from "./module/sheets/items/rmss_profession_sheet.js";
 import RMSSPlayerSheet from "./module/sheets/actors/rmss_player_sheet.js";
+import RMSSWardensChromeSheet from "./module/sheets/actors/rmss_wardens_chrome_sheet.js";
 import RMSSActorSheetConfig from "./module/sheets/actors/rmss_player_sheet_config.js";
 import { RMSSWeaponSkillManager } from "./module/combat/rmss_weapon_skill_manager.js";
 import { RMSSWeaponCriticalManager } from "./module/combat/rmss_weapon_critical_manager.js";
@@ -520,6 +521,7 @@ Hooks.once("init", function () {
 
   // Actors
   Actors.registerSheet("rmss", RMSSPlayerSheet, { makeDefault: true, label: "rmss.entity_sheet.player_character", types: ["character"] });
+  Actors.registerSheet("rmss", RMSSWardensChromeSheet, { makeDefault: false, label: "rmss.entity_sheet.player_character_wardens_chrome", types: ["character"] });
   Actors.registerSheet("rmss", RMSSNpcSheet, { makeDefault: true, label: "rmss.entity_sheet.npc", types: ["npc"] });
   Actors.registerSheet("rmss", RMSSCreatureSheet, { makeDefault: true, label: "rmss.entity_sheet.creature", types: ["creature"] });
   Actors.registerSheet("rmss", RMSSMerchantSheet, { makeDefault: true, label: "rmss.entity_sheet.merchant", types: ["merchant"] });

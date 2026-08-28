@@ -1,134 +1,32 @@
-<form class="actor-sheet {{cssClass}}" autocomplete="off">
-  <!-- Header Section-->
+<form class="actor-sheet wardens-chrome {{cssClass}}" autocomplete="off">
+  <!-- Header Section (Warden's Chrome) -->
 
-  <header class="sheet-header">
+  <header class="sheet-header wc-header">
 
-    <div class="container">
-
-      <!-- Actor Icon Section-->
-      <div>
-        <div class="actor-icon">
+    <div class="wc-top">
+      <div class="wc-portrait-wrap">
+        <div class="actor-icon wc-portrait">
           <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
         </div>
+        <div class="wc-level-badge">{{system.attributes.level.value}}</div>
       </div>
 
-      <!-- Resource Boxes Section-->
-
-      <div class="header-container">
-        <div class="resource-entry">
-          <div class="header-text flexrow">
-            <label for="system.attributes.hits.current">
-          {{ localize "rmss.player_character.resources.hits" }}
-            </label>
-          </div>
-          <div class="resource-values">
-            <input name="system.attributes.hits.current"
-                   id="system.attributes.hits.current"
-                   type="number"
-                   value="{{system.attributes.hits.current}}" />/<input name="system.attributes.hits.max"
-                   type="number" value="{{system.attributes.hits.max}}" />
-          </div>
-        </div>
-        <div class="resource-entry">
-          <div class="header-text flexrow">
-            <label for="rmss.player_character.resources.power_points">
-          {{ localize "rmss.player_character.resources.power_points" }}
-            </label>
-          </div>
-          <div class="resource-values">
-            <div id="rmss.player_character.resources.power_points" class="pp-values"><input name="system.attributes.power_points.current" type="Number"
-                value="{{system.attributes.power_points.current}}" />/<input name="system.attributes.power_points.max"
-                type="Number" value="{{system.attributes.power_points.max}}" /></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Name, XP and Level Section-->
-
-      <div class="header-container movement-info-container">
-        <!-- Fate Points row -->
-        {{#if fateIcons.length}}
-        <div class="header-text flexrow fate-points-row">
-          <label>{{ localize "rmss.pc_sheet_fixed_info.fate_points" }}</label>
-          <div class="fate-icons">
-            {{#each fateIcons as |index|}}
-            {{#unless (lt ../system.attributes.fate_points.value index)}}
-            <i class="fa-solid fa-skull" data-index="{{index}}"></i>
-            {{else}}
-            <i class="fa-regular fa-skull" data-index="{{index}}"></i>
-            {{/unless}}
-            {{/each}}
-          </div>
-        </div>
-        {{/if}}
-
-        <!-- Long rest -->
-        <div class="header-text flexrow long-rest-row">
-          <label>{{ localize "rmss.long_rest.label" }}</label>
-          <button type="button" class="long-rest-btn" data-action="long-rest"
-                  title="{{ localize 'rmss.long_rest.title' }}">
-            <i class="fa-solid fa-bed"></i>
-          </button>
-        </div>
-
-        <!-- Movement Rate row -->
+      <div class="wc-name-block">
         <div class="header-text flexrow">
-          <label for="movement-rate-value"><a class="item-roll"> {{ localize "rmss.pc_sheet_fixed_info.movement_rate" }}
-            <i class="fa fa-refresh" aria-hidden="true"></i></a>
-          </label>
-          <input id="movement-rate-current"
-                 name="system.attributes.movement_rate.current"
-                 data-dtype="Number"
-                 type="text"
-                 value="{{system.attributes.movement_rate.current}}"
-                 />/
-          <input id="movement-rate-value" name="system.attributes.movement_rate.value" data-dtype="Number" type="text"
-                 value="{{system.attributes.movement_rate.value}}" />
+          <label for="character-name" class="wc-sr-only">{{ localize "rmss.player_character.name" }}</label>
+          <input id="character-name" class="wc-name-input" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize Name }}" />
         </div>
-
-        {{#if encumbrance.isConfigured}}
-        <div class="header-text flexrow">
-          <label><i class="fa-solid fa-weight-hanging" aria-hidden="true"></i> 
-            <span>{{encumbrance.carriedWeight}} / {{encumbrance.noPenaltyWeight}} kg</span>
-          </label>
-          {{#if system.attributes.movement_rate.weight_penalty}}
-            <div class="header-text flexrow">
-              <span class="encumbrance-penalty-badge" title="{{ localize 'rmss.encumbrance.penalty_tooltip' }}">
-                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-                -{{system.attributes.movement_rate.weight_penalty}} {{ localize "rmss.encumbrance.mr_penalty_suffix" }}
-              </span>
-            </div>
-          {{/if}}
+        <div class="wc-name-sub">
+          <span>{{ localize "rmss.player_character.level" }}
+            <input id="level" name="system.attributes.level.value" data-dtype="Number" type="text"
+                   value="{{system.attributes.level.value}}" readonly
+                   title="{{ localize 'rmss.player_character.level_readonly_hint' }}" /></span>
+          <span>{{ localize "rmss.player_character.experience" }}
+            <input id="experience-points" name="system.attributes.experience_points.value" data-dtype="Number" type="text"
+                   value="{{system.attributes.experience_points.value}}" /></span>
         </div>
-        <div class="header-text flexrow">
-          <div class="rmss-progress-thin {{#if encumbrance.isOverCapacity}}over-capacity{{/if}}">
-            <div class="rmss-progress-bar" style="width: {{encumbrance.barPercent}}%;">
-              <span class="rmss-progress-bar-text">{{encumbrance.usedPercent}}%</span>
-            </div>
-          </div>
-        </div>
-        {{/if}}
-      </div>
-
-      <div class="header-container">
-        <div class="header-text flexrow">
-          <label for="character-name">{{ localize "rmss.player_character.name" }}</label>
-          <input id="character-name" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize Name }}" />
-        </div>
-
-        <div class="header-text flexrow">
-          <label for="level">{{ localize "rmss.player_character.level" }}</label>
-          <input id="level" name="system.attributes.level.value" data-dtype="Number" type="text"
-                 value="{{system.attributes.level.value}}" readonly
-                 title="{{ localize 'rmss.player_character.level_readonly_hint' }}" />
-        </div>
-        <div class="header-text flexrow">
-          <label for="experience-points">{{ localize "rmss.player_character.experience" }}</label>
-          <input id="experience-points" name="system.attributes.experience_points.value" data-dtype="Number" type="text"
-                 value="{{system.attributes.experience_points.value}}" />
-        </div>
-        <div class="header-text flexrow experience-progress-container">
-          <div class="rmss-progress-thin">
+        <div class="header-text flexrow experience-progress-container wc-xp-bar">
+          <div class="rmss-progress-thin wc-header-bar">
             <div class="rmss-progress-bar" style="width: {{experienceProgress}}%;">
               <span class="rmss-progress-bar-text">{{experienceProgress}}%</span>
             </div>
@@ -138,6 +36,78 @@
         <div class="header-text flexrow">
           <label for="development-points">{{ localize "rmss.experience.dps" }} </label>
           <input type="text" value="{{system.levelUp.developmentPoints}}" id="development-points" name="system.levelUp.developmentPoints" data-dtype="Number"/>
+        </div>
+        {{/if}}
+      </div>
+
+      <div class="wc-chip">
+        <div class="wc-chip-row">
+          <div class="wc-chip-stat">
+            <div class="wc-chip-label"><i class="fa-solid fa-heart" aria-hidden="true"></i> {{ localize "rmss.player_character.resources.hits" }}</div>
+            <div class="resource-values wc-chip-val">
+              <input name="system.attributes.hits.current" id="system.attributes.hits.current" type="number"
+                     value="{{system.attributes.hits.current}}" />/<input name="system.attributes.hits.max" type="number" value="{{system.attributes.hits.max}}" />
+            </div>
+            <div class="rmss-progress-thin wc-hits-bar wc-header-bar">
+              <div class="rmss-progress-bar" style="width: {{percentage system.attributes.hits.current system.attributes.hits.max}}%;"></div>
+            </div>
+          </div>
+          <div class="wc-chip-stat">
+            <div class="wc-chip-label"><i class="fa-solid fa-bolt" aria-hidden="true"></i> {{ localize "rmss.player_character.resources.power_points" }}</div>
+            <div id="rmss.player_character.resources.power_points" class="pp-values wc-chip-val">
+              <input name="system.attributes.power_points.current" type="Number" value="{{system.attributes.power_points.current}}" />/<input name="system.attributes.power_points.max" type="Number" value="{{system.attributes.power_points.max}}" />
+            </div>
+            <div class="rmss-progress-thin wc-pp-bar wc-header-bar">
+              <div class="rmss-progress-bar" style="width: {{percentage system.attributes.power_points.current system.attributes.power_points.max}}%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wc-chip">
+        <div class="wc-chip-row">
+          {{#if fateIcons.length}}
+          <div class="wc-chip-stat fate-points-row">
+            <div class="wc-chip-label">{{ localize "rmss.pc_sheet_fixed_info.fate_points" }}</div>
+            <div class="fate-icons wc-fate">
+              {{#each fateIcons as |index|}}
+              {{#unless (lt ../system.attributes.fate_points.value index)}}
+              <i class="fa-solid fa-skull" data-index="{{index}}"></i>
+              {{else}}
+              <i class="fa-regular fa-skull" data-index="{{index}}"></i>
+              {{/unless}}
+              {{/each}}
+            </div>
+          </div>
+          {{/if}}
+          <div class="wc-chip-stat">
+            <div class="wc-chip-label"><a class="item-roll">{{ localize "rmss.pc_sheet_fixed_info.movement_rate" }} <i class="fa fa-refresh" aria-hidden="true"></i></a></div>
+            <div class="wc-chip-val">
+              <input id="movement-rate-current" name="system.attributes.movement_rate.current" data-dtype="Number" type="text" value="{{system.attributes.movement_rate.current}}" />/<input id="movement-rate-value" name="system.attributes.movement_rate.value" data-dtype="Number" type="text" value="{{system.attributes.movement_rate.value}}" />
+            </div>
+          </div>
+          <div class="long-rest-row wc-rest-btn-wrap">
+            <button type="button" class="long-rest-btn wc-rest-btn" data-action="long-rest" title="{{ localize 'rmss.long_rest.title' }}">
+              <i class="fa-solid fa-bed"></i>
+            </button>
+          </div>
+        </div>
+        {{#if encumbrance.isConfigured}}
+        <div class="header-text flexrow wc-weight-row">
+          <div class="wc-chip-label"><i class="fa-solid fa-weight-hanging" aria-hidden="true"></i>
+            <span>{{encumbrance.carriedWeight}} / {{encumbrance.noPenaltyWeight}} kg</span>
+            {{#if system.attributes.movement_rate.weight_penalty}}
+            <span class="encumbrance-penalty-badge" title="{{ localize 'rmss.encumbrance.penalty_tooltip' }}">
+              <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+              -{{system.attributes.movement_rate.weight_penalty}} {{ localize "rmss.encumbrance.mr_penalty_suffix" }}
+            </span>
+            {{/if}}
+          </div>
+          <div class="rmss-progress-thin wc-weight-bar wc-header-bar {{#if encumbrance.isOverCapacity}}over-capacity{{/if}}">
+            <div class="rmss-progress-bar" style="width: {{encumbrance.barPercent}}%;">
+              <span class="rmss-progress-bar-text">{{encumbrance.usedPercent}}%</span>
+            </div>
+          </div>
         </div>
         {{/if}}
       </div>

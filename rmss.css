@@ -4332,3 +4332,224 @@ button.rmss-crit-reenable-local:hover {
 .rmss-request-card .rmss-request-card-status.stock_changed {
   color: var(--color-text-danger, #c62828);
 }
+
+/* ================================================================
+   WARDEN'S CHROME - alternate player sheet skin
+   Same markup/partials/listeners as the default sheet; everything
+   here is scoped under .wardens-chrome so the default sheet is
+   never touched. Fonts loaded once, tokens kept local to this block.
+   ================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+.wardens-chrome {
+  --wc-bg: oklch(0.22 0.035 315);
+  --wc-bg-chip: oklch(0.28 0.04 310);
+  --wc-bg-chip-2: oklch(0.24 0.04 310);
+  --wc-border: oklch(0.5 0.06 60 / 0.35);
+  --wc-text: oklch(0.93 0.01 90);
+  --wc-text-dim: oklch(0.68 0.03 300);
+  --wc-accent: oklch(0.78 0.13 75);
+  --wc-accent-strong: oklch(0.62 0.14 60);
+  --wc-card-bg: oklch(0.95 0.02 85);
+  --wc-card-bg-2: oklch(0.9 0.025 80);
+  --wc-card-text: oklch(0.24 0.03 60);
+  --wc-card-text-dim: oklch(0.4 0.03 65);
+  --wc-hits: oklch(0.6 0.16 30);
+  --wc-hits-2: oklch(0.72 0.16 75);
+  --wc-pp: oklch(0.55 0.13 280);
+  --wc-pp-2: oklch(0.68 0.12 210);
+  font-family: 'Manrope', sans-serif;
+  color: var(--wc-text);
+  background: var(--wc-bg);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wardens-chrome, .wardens-chrome * { box-sizing: border-box; }
+
+.wardens-chrome a { color: var(--wc-accent); }
+.wardens-chrome a:hover { color: oklch(0.85 0.14 75); }
+
+/* ---- header ---- */
+.wardens-chrome .wc-header { border: none; padding: 0; margin: 0; width: 100%; }
+.wardens-chrome .wc-top { display: flex; align-items: stretch; gap: 12px; width: 100%; }
+
+/* align-self: flex-start so this doesn't stretch to the row's full height (the level
+   badge is positioned relative to this box, and needs it sized to the portrait itself) */
+.wardens-chrome .wc-portrait-wrap { position: relative; flex-shrink: 0; align-self: flex-start; }
+/* No overflow: hidden here - the ring is circular via border-radius on the box itself,
+   and the img below carries its own border-radius for the mask. Clipping the wrapper would
+   also clip the base sheet's :hover img{scale(2)} zoom, defeating it entirely. */
+/* position + z-index so this can be raised above the (absolutely-positioned, thus
+   always-on-top-by-default) level badge while zoomed - see :hover rule below. */
+.wardens-chrome .wc-portrait {
+  position: relative; z-index: 1;
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 3px solid var(--wc-accent);
+  box-shadow: 0 0 0 3px var(--wc-bg), 0 4px 12px oklch(0 0 0 / 0.5);
+}
+.wardens-chrome .wc-portrait img { width: 100%; height: 100%; object-fit: cover; border: none; border-radius: 50%; }
+/* above the level badge (z-index: 2) so the zoomed portrait isn't cut off by it */
+.wardens-chrome .wc-portrait:hover { z-index: 1001; }
+.wardens-chrome .wc-portrait:hover img { box-shadow: 0 0 0 3px var(--wc-bg), 0 8px 24px oklch(0 0 0 / 0.6); }
+.wardens-chrome .wc-level-badge {
+  position: absolute; right: -5px; bottom: -5px; z-index: 2; width: 25px; height: 25px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, oklch(0.85 0.13 80), var(--wc-accent-strong) 70%);
+  border: 2px solid var(--wc-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; color: oklch(0.24 0.05 60);
+}
+
+.wardens-chrome .wc-name-block { display: flex; flex-direction: column; justify-content: center; gap: 3px; min-width: 180px; }
+.wardens-chrome .wc-name-input {
+  font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; background: transparent; border: none;
+  color: var(--wc-text); padding: 0; width: 100%;
+}
+.wardens-chrome .wc-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.wardens-chrome .wc-name-sub { display: flex; gap: 12px; font-size: 11px; color: var(--wc-text-dim); text-transform: uppercase; letter-spacing: 0.03em; }
+.wardens-chrome .wc-name-sub span { display: flex; align-items: center; gap: 4px; }
+.wardens-chrome .wc-name-sub input {
+  background: transparent; border: none; border-bottom: 1px solid var(--wc-border); color: var(--wc-text);
+  width: 3.4em; font-size: 11px; padding: 0 2px; text-align: right;
+}
+.wardens-chrome .wc-xp-bar { width: 100%; max-width: 220px; margin: 3px 0 0; }
+
+.wardens-chrome .wc-chip {
+  flex: 1 1 0; min-width: 0; border-radius: 10px; padding: 8px 12px;
+  background: linear-gradient(160deg, var(--wc-bg-chip), var(--wc-bg-chip-2));
+  border: 1px solid var(--wc-border);
+  display: flex; flex-direction: column; gap: 6px; justify-content: center;
+}
+.wardens-chrome .wc-chip-row { display: flex; align-items: center; gap: 12px; }
+.wardens-chrome .wc-chip-stat { flex: 1; min-width: 0; }
+.wardens-chrome .wc-chip-label {
+  font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--wc-text-dim);
+  display: flex; align-items: center; gap: 5px; white-space: nowrap;
+}
+.wardens-chrome .wc-chip-label i, .wardens-chrome .wc-chip-label .fa-refresh { color: var(--wc-accent); font-size: 11px; }
+.wardens-chrome .wc-chip-label a { color: var(--wc-text-dim); }
+.wardens-chrome .wc-chip-val { font-family: 'Cinzel', serif; font-size: 15px; font-weight: 700; margin-top: 2px; display: flex; align-items: baseline; }
+.wardens-chrome .wc-chip-val input {
+  background: transparent; border: none; color: var(--wc-text); font-family: 'Cinzel', serif; font-weight: 700;
+  font-size: 15px; width: 2.6em; padding: 0; text-align: center;
+}
+.wardens-chrome .resource-values, .wardens-chrome .pp-values { display: flex; align-items: baseline; }
+
+/* justify-content: flex-start overrides the base .fate-points-row .fate-icons rule's
+   flex-end (right-aligned skulls) - here they should sit next to their label instead. */
+.wardens-chrome .wc-fate { display: flex; justify-content: flex-start; gap: 3px; margin-top: 2px; }
+.wardens-chrome .wc-fate i { color: var(--wc-text-dim); font-size: 12px; cursor: pointer; }
+.wardens-chrome .wc-fate i.fa-solid { color: var(--wc-accent); }
+
+.wardens-chrome .wc-rest-btn-wrap { display: flex; align-items: center; }
+.wardens-chrome .wc-rest-btn {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--wc-accent-strong);
+  border: 1px solid var(--wc-accent); display: flex; align-items: center; justify-content: center;
+  color: oklch(0.2 0.03 60); cursor: pointer; padding: 0;
+}
+.wardens-chrome .wc-rest-btn:hover { background: var(--wc-accent); }
+
+.wardens-chrome .wc-weight-row { flex-direction: column; align-items: stretch; gap: 3px; margin-top: 6px; }
+.wardens-chrome .wc-weight-row .encumbrance-penalty-badge { color: oklch(0.65 0.16 30); margin-left: 6px; }
+
+/* progress bars (Hits/PP/XP/weight) reused everywhere via .rmss-progress-thin/.rmss-progress-bar.
+   Track uses a translucent light overlay (not a near-black fill) so it stays visible against
+   the chip background even at low/zero percentages, where there's no colored fill to rely on. */
+.wardens-chrome .rmss-progress-thin {
+  height: 6px; width: 100%; border-radius: 4px; background: oklch(1 0 0 / 0.07);
+  border: 1px solid oklch(1 0 0 / 0.2); margin-bottom: 0; overflow: hidden;
+}
+.wardens-chrome .rmss-progress-bar {
+  height: 100%; border-radius: 3px 0 0 3px; background: linear-gradient(90deg, var(--wc-hits), var(--wc-hits-2));
+  display: flex; align-items: center; justify-content: flex-end;
+}
+.wardens-chrome .wc-xp-bar .rmss-progress-bar { background: linear-gradient(90deg, oklch(0.6 0.12 250), oklch(0.75 0.12 210)); }
+.wardens-chrome .wc-pp-bar .rmss-progress-bar { background: linear-gradient(90deg, var(--wc-pp), var(--wc-pp-2)); }
+.wardens-chrome .wc-weight-bar .rmss-progress-bar { background: linear-gradient(90deg, oklch(0.62 0.11 150), oklch(0.75 0.13 130)); }
+.wardens-chrome .rmss-progress-thin.over-capacity .rmss-progress-bar { background: linear-gradient(90deg, oklch(0.55 0.19 25), oklch(0.65 0.19 40)); }
+.wardens-chrome .rmss-progress-bar-text { font-size: 9px; color: var(--wc-text); padding-right: 4px; text-shadow: 0 1px 2px oklch(0 0 0 / 0.6); }
+
+/* Header resource bars (Hits/PP/XP/Weight): taller than the generic thin bar so they're
+   legible, and the value is already shown as text next to the label - no need to also
+   cram a percentage inside the bar itself, so that text is hidden here specifically.
+   The fill's height is pinned in px rather than left at the generic rule's height:100% -
+   the XP/Weight tracks sit inside a flex column (.wc-xp-bar/.wc-weight-row are flex
+   containers), and a percentage height on a flex item's child doesn't reliably resolve
+   there, leaving the fill collapsed to 0 even though its width was correct. */
+.wardens-chrome .wc-header-bar { height: 9px; border-radius: 5px; }
+.wardens-chrome .wc-header-bar .rmss-progress-bar { height: 9px; border-radius: 4px 0 0 4px; }
+.wardens-chrome .wc-header-bar .rmss-progress-bar-text { display: none; }
+
+/* Level/XP bar: kept taller than the other header bars specifically so its percentage
+   (the one number the player actually watches round to round) fits and stays legible. */
+.wardens-chrome .wc-xp-bar .rmss-progress-thin { height: 14px; border-radius: 7px; }
+.wardens-chrome .wc-xp-bar .rmss-progress-bar { height: 14px; border-radius: 6px 0 0 6px; }
+.wardens-chrome .wc-xp-bar .rmss-progress-bar-text { display: block; }
+
+/* ---- primary + sub tab nav ---- */
+.wardens-chrome .sheet-tabs {
+  display: flex; gap: 3px; border: none; margin: 0; padding: 0;
+}
+.wardens-chrome .sheet-tabs .item {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--wc-text-dim); padding: 7px 13px; border-radius: 8px 8px 0 0; display: flex; align-items: center; gap: 6px;
+}
+.wardens-chrome .sheet-tabs .item.active {
+  color: var(--wc-text); background: var(--wc-bg-chip-2); box-shadow: inset 0 1px 0 oklch(0.6 0.08 60 / 0.3);
+}
+.wardens-chrome .sub-tabs {
+  display: flex; gap: 14px; background: oklch(0.17 0.02 300); border-radius: 10px; padding: 6px 12px; margin-bottom: 8px;
+}
+.wardens-chrome .sub-tabs .item {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em; color: var(--wc-text-dim); display: flex; align-items: center; gap: 5px;
+}
+.wardens-chrome .sub-tabs .item.active { color: var(--wc-accent); }
+
+/* ---- content area ---- */
+.wardens-chrome .sheet-body {
+  flex: 1; min-height: 0; overflow-y: auto; border-radius: 12px; padding: 14px 16px;
+  background: linear-gradient(175deg, var(--wc-card-bg), var(--wc-card-bg-2));
+  color: var(--wc-card-text);
+  box-shadow: 0 8px 20px oklch(0 0 0 / 0.35), inset 0 1px 0 oklch(1 0 0 / 0.5);
+}
+.wardens-chrome .sheet-body h2 { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.06em; color: var(--wc-card-text-dim); border-bottom: 1px solid oklch(0.5 0.04 65); padding-bottom: 4px; }
+.wardens-chrome .sheet-body a { color: oklch(0.42 0.1 45); }
+.wardens-chrome .sheet-body a:hover { color: oklch(0.32 0.1 45); }
+
+/* ---- attributes table (actor-stats.html) ---- */
+.wardens-chrome .stat-block .stat-row {
+  border-bottom: 1px solid oklch(0.75 0.02 80);
+}
+.wardens-chrome .stat-block li.stat-row:first-child {
+  border-bottom: 1.5px solid oklch(0.5 0.04 65);
+}
+.wardens-chrome .stat-block .stat-header {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.03em; color: oklch(0.42 0.1 45); text-transform: uppercase;
+}
+.wardens-chrome .stat-block .stat-name { color: var(--wc-card-text); font-size: 12.5px; }
+.wardens-chrome .stat-block input {
+  background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px; color: var(--wc-card-text);
+}
+.wardens-chrome .stat-block input.stat-temp { font-weight: 700; }
+
+/* ---- skills table (actor-skill-list.hbs) ---- */
+.wardens-chrome .skills-table {
+  border-collapse: collapse; width: 100%;
+}
+.wardens-chrome .skills-table thead th {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: oklch(0.42 0.1 45);
+  text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); padding-bottom: 6px; text-align: center;
+}
+.wardens-chrome .skills-table .skill-row { border-bottom: 1px solid oklch(0.75 0.02 80); }
+.wardens-chrome .skills-table .skill-row:hover { background: oklch(0.85 0.02 80 / 0.5); }
+.wardens-chrome .skills-table .skill-name-cell a.item-roll { color: var(--wc-card-text); font-weight: 600; }
+.wardens-chrome .skills-table .list-item-icon { border-radius: 50%; border: 1px solid oklch(1 0 0 / 0.6); }
+.wardens-chrome .skills-table td { color: oklch(0.35 0.03 60); }
+
+/* ---- default RMSS window chrome for this sheet ---- */
+.rmss .window-content:has(.wardens-chrome) {
+  background: oklch(0.22 0.035 315);
+}
