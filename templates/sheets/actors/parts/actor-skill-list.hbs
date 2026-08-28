@@ -4,21 +4,21 @@
             <th>{{ localize "rmss.pc_sheet_skills.favorite" }}</th>
             <th></th>
             <th>{{ localize "rmss.pc_sheet_skills.skill_name" }}</th>
-            <th>{{ localize "rmss.pc_sheet_skill_categories.dev_cost" }}</th>
-            <th>{{ localize "rmss.pc_sheet_skills.ranks" }}</th>
+            <th class="sortable-header" data-sort-key="development_cost">{{ localize "rmss.pc_sheet_skill_categories.dev_cost" }}</th>
+            <th class="sortable-header" data-sort-key="ranks">{{ localize "rmss.pc_sheet_skills.ranks" }}</th>
             <th>{{ localize "rmss.pc_sheet_skills.new_ranks" }}</th>
             <th>{{ localize "rmss.pc_sheet_skills.rank_bonus" }}</th>
             <th>{{ localize "rmss.pc_sheet_skills.category_bonus" }}</th>
             <th>{{ localize "rmss.pc_sheet_skills.item_bonus" }}</th>
             <th>{{ localize "rmss.pc_sheet_skills.special_bonus" }}</th>
             <th>{{ localize "rmss.pc_sheet_skills.special_bonus" }}</th>
-            <th>{{ localize "rmss.pc_sheet_skills.total_bonus" }}</th>
+            <th class="sortable-header" data-sort-key="total_bonus">{{ localize "rmss.pc_sheet_skills.total_bonus" }}</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         {{#each skills as |skill id|}}
-        <tr class="skill-row" draggable="true" data-type="Item" data-uuid="Actor.{{skill.actorId}}.Item.{{skill._id}}" data-item-id="{{skill._id}}" data-category-group="{{skill.categoryGroup}}">
+        <tr class="skill-row" draggable="true" data-type="Item" data-uuid="Actor.{{skill.actorId}}.Item.{{skill._id}}" data-item-id="{{skill._id}}" data-category-group="{{skill.categoryGroup}}" data-total-bonus="{{skill.system.total_bonus}}" data-development-cost="{{skill.system.development_cost}}" data-ranks="{{skill.system.ranks}}">
             <td data-search="{{skill.name}}">
                 {{#if skill.system.favorite}}
             <a class="skill-favorite" data-item-id="{{skill._id}}"><i class="fa-regular fa-square-check"></i></a>

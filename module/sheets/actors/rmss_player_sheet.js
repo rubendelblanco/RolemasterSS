@@ -306,6 +306,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     });
 
     this._registerSkillCategoryGroupFilter(html);
+    this._registerSkillSortListeners(html);
     this._registerSkillListeners(html);
     this._registerWeaponPreferenceListener(html);
     this._registerStatAssignmentListener(html);
@@ -463,6 +464,68 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       if (ev.key === "Escape") { $search.val(""); applyFilter(); }
     });
     $categorySelect.on("change", applyFilter);
+  }
+
+  /**
+   * Compares two sortable-column values that may be a plain number ("45") or a "/"-delimited
+   * numeric progression (development cost, e.g. "1/3/7") - element-by-element, so ties on the
+   * first number fall through to the next. A plain number is just a one-element progression,
+   * so this covers both cases with one comparator.
+   */
+  static _compareSortValues(a, b) {
+    const partsA = String(a ?? "").split("/").map(Number);
+    const partsB = String(b ?? "").split("/").map(Number);
+    const len = Math.max(partsA.length, partsB.length);
+    for (let i = 0; i < len; i++) {
+      const va = Number.isFinite(partsA[i]) ? partsA[i] : 0;
+      const vb = Number.isFinite(partsB[i]) ? partsB[i] : 0;
+      if (va !== vb) return va - vb;
+    }
+    return 0;
+  }
+
+  /**
+   * Skills/Spells/Languages tables: click a .sortable-header th to sort its own table's rows
+   * by the matching data-<key> attribute on each row. Three-state cycle - descending,
+   * ascending, then back to the table's original (alphabetical) order - so getting back to
+   * the default doesn't require closing and reopening the sheet. Driven generically by
+   * data-sort-key, so a new sortable column is just a matching data-* attribute away.
+   */
+  _registerSkillSortListeners(html) {
+    html.find(".skills-table").each((_, table) => {
+      const tbody = table.querySelector("tbody");
+      if (!tbody) return;
+      Array.from(tbody.querySelectorAll(":scope > tr.skill-row")).forEach((row, i) => {
+        row.dataset.originalIndex = i;
+      });
+    });
+    html.find(".skills-table th.sortable-header").each((_, th) => {
+      th.addEventListener("click", () => this._onSkillSortHeaderClick(th));
+    });
+  }
+
+  _onSkillSortHeaderClick(th) {
+    const table = th.closest("table");
+    const tbody = table?.querySelector("tbody");
+    const key = th.dataset.sortKey;
+    if (!tbody || !key) return;
+
+    const attr = `data-${key.replace(/_/g, "-")}`;
+    const nextDirByCurrent = { "": "desc", desc: "asc", asc: "" };
+    const nextDir = nextDirByCurrent[th.dataset.sortDir || ""];
+
+    table.querySelectorAll("th.sortable-header").forEach(other => {
+      if (other !== th) delete other.dataset.sortDir;
+    });
+    if (nextDir) th.dataset.sortDir = nextDir; else delete th.dataset.sortDir;
+
+    const rows = Array.from(tbody.querySelectorAll(":scope > tr.skill-row"));
+    rows.sort((a, b) => {
+      if (!nextDir) return Number(a.dataset.originalIndex) - Number(b.dataset.originalIndex);
+      const cmp = RMSSPlayerSheet._compareSortValues(a.getAttribute(attr), b.getAttribute(attr));
+      return nextDir === "desc" ? -cmp : cmp;
+    });
+    rows.forEach(row => tbody.appendChild(row));
   }
 
   _registerStatListeners(html) {

@@ -440,6 +440,13 @@
 .skills-table th:nth-child(12) { width: 9%; }
 .skills-table th:nth-child(13) { width: 8%; }
 
+/* Sortable column headers (Total Bonus): click toggles descending/ascending, the arrow
+   reflects data-sort-dir set by the click handler - pure CSS, no extra markup needed. */
+.skills-table th.sortable-header { cursor: pointer; user-select: none; }
+.skills-table th.sortable-header::after { content: ""; margin-left: 4px; opacity: 0.5; font-size: 0.85em; }
+.skills-table th.sortable-header[data-sort-dir="desc"]::after { content: "▼"; opacity: 1; }
+.skills-table th.sortable-header[data-sort-dir="asc"]::after { content: "▲"; opacity: 1; }
+
 /* Skill categories reuse .skills-table for all its styling (font, hover, name alignment,
    header color...) via the .skillcat-table companion class, but the column layout is
    different (no favorite/icon columns, 12 columns instead of 13) - override the per-column
@@ -4793,6 +4800,8 @@ button.rmss-crit-reenable-local:hover {
   font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: #ffffff;
   text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); padding-bottom: 6px; text-align: center;
 }
+.wardens-chrome .skills-table th.sortable-header:hover { color: var(--wc-accent); }
+.wardens-chrome .skills-table th.sortable-header[data-sort-dir]::after { color: var(--wc-accent); }
 /* Favorite header (1st column) dropped for the same reason as the spells table - the
    checkbox icon underneath is self-explanatory. */
 .wardens-chrome .skills-table thead th:nth-child(1) { font-size: 0; }
