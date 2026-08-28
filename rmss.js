@@ -520,8 +520,8 @@ Hooks.once("init", function () {
   Items.registerSheet("rmss", RMSSProfessionSheet, { makeDefault: true, label: "rmss.entity_sheet.profession", types: ["profession"] })
 
   // Actors
-  Actors.registerSheet("rmss", RMSSPlayerSheet, { makeDefault: true, label: "rmss.entity_sheet.player_character", types: ["character"] });
-  Actors.registerSheet("rmss", RMSSWardensChromeSheet, { makeDefault: false, label: "rmss.entity_sheet.player_character_wardens_chrome", types: ["character"] });
+  Actors.registerSheet("rmss", RMSSPlayerSheet, { makeDefault: false, label: "rmss.entity_sheet.player_character", types: ["character"] });
+  Actors.registerSheet("rmss", RMSSWardensChromeSheet, { makeDefault: true, label: "rmss.entity_sheet.player_character_wardens_chrome", types: ["character"] });
   Actors.registerSheet("rmss", RMSSNpcSheet, { makeDefault: true, label: "rmss.entity_sheet.npc", types: ["npc"] });
   Actors.registerSheet("rmss", RMSSCreatureSheet, { makeDefault: true, label: "rmss.entity_sheet.creature", types: ["creature"] });
   Actors.registerSheet("rmss", RMSSMerchantSheet, { makeDefault: true, label: "rmss.entity_sheet.merchant", types: ["merchant"] });
