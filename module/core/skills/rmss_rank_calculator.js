@@ -39,11 +39,17 @@ export default class RankCalculator {
      * @returns {string} - The progression string (e.g. "-15*2*1*0.5*0").
      */
     static getCategoryProgression(categorySkill, config) {
-        if (categorySkill.system.skill_progression.split("*").length > 1) {
-            // special progression (e.g. PP dev or body dev)
-            return categorySkill.system.skill_progression;
+        const skillProgression = categorySkill.system.skill_progression;
+        // Categories created before this field existed on the data model have it unset -
+        // fall back to "standard" rather than crashing on click.
+        if (!skillProgression) {
+            return config.rmss.skill_progression.standard.progression;
         }
-        return config.rmss.skill_progression[categorySkill.system.skill_progression].progression;
+        if (skillProgression.split("*").length > 1) {
+            // special progression (e.g. PP dev or body dev)
+            return skillProgression;
+        }
+        return config.rmss.skill_progression[skillProgression].progression;
     }
 
     /**

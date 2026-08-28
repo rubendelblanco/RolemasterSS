@@ -233,7 +233,7 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
         const type = header.dataset.type;
 
         // Grab any data associated with this control.
-        const data = duplicate(header.dataset);
+        const data = foundry.utils.duplicate(header.dataset);
 
         // Initialize a default name.
         const name = `New ${type.capitalize()}`;

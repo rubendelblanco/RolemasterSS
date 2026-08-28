@@ -426,8 +426,8 @@
     background-image: var(--rmss-row-highlight);
 }
 
-.skills-table th:nth-child(1) { width: 5%; }
-.skills-table th:nth-child(2) { width: 3%; }
+.skills-table th:nth-child(1) { width: 3%; }
+.skills-table th:nth-child(2) { width: 5%; }
 .skills-table th:nth-child(3) { width: 11%; }
 .skills-table th:nth-child(4) { width: 5%; }
 .skills-table th:nth-child(5) { width: 8%; }
@@ -4430,6 +4430,13 @@ button.rmss-crit-reenable-local:hover {
 }
 .wardens-chrome .wc-xp-bar { width: 100%; max-width: 220px; margin: 3px 0 0; }
 
+/* Development points input (only shown while leveling up) - fell back to the browser's
+   default (black) input text color against the dark header, unreadable. */
+.wardens-chrome #development-points {
+  background: transparent; border: none; border-bottom: 1px solid var(--wc-border); color: var(--wc-text);
+  width: 3.4em; font-size: 11px; padding: 0 2px; text-align: right;
+}
+
 .wardens-chrome .wc-chip {
   flex: 1 1 0; min-width: 0; border-radius: 10px; padding: 8px 12px;
   background: linear-gradient(160deg, var(--wc-bg-chip), var(--wc-bg-chip-2));
@@ -4765,8 +4772,19 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .skills-table td:nth-child(12) { font-family: 'Cinzel', serif; font-weight: 700; color: oklch(0.42 0.1 45); }
 .wardens-chrome .skills-table .skill-favorite i { color: oklch(0.55 0.03 65); font-size: 12px; }
 .wardens-chrome .skills-table .skill-favorite .fa-square-check { color: var(--wc-accent-strong); }
-.wardens-chrome .skills-table .skill-newrank i { color: oklch(0.6 0.03 60 / 0.55); font-size: 10px; }
-.wardens-chrome .skills-table .skill-newrank .fa-square-check { color: oklch(0.55 0.13 45); }
+/* Rank pips as filled diamonds (design prototype), not FA checkbox glyphs - content: none
+   on the icon's own ::before (that's where FA draws the actual glyph) removes it outright,
+   and the <i> element is repurposed as a plain box drawn via clip-path instead. */
+.wardens-chrome .skills-table .skill-newrank { display: inline-flex; gap: 3px; align-items: center; }
+.wardens-chrome .skills-table .skill-newrank i {
+  display: inline-block; width: 9px; height: 9px; flex-shrink: 0;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  background: oklch(0.7 0.02 80); border: 1px solid oklch(0.4 0.04 65);
+}
+.wardens-chrome .skills-table .skill-newrank i::before { content: none !important; }
+.wardens-chrome .skills-table .skill-newrank .fa-square-check {
+  background: oklch(0.55 0.13 45); border-color: oklch(0.4 0.13 40);
+}
 .wardens-chrome .skills-table .item-edit i, .wardens-chrome .skills-table .item-delete i {
   color: oklch(0.55 0.03 65); font-size: 11px; transition: color 0.15s ease;
 }

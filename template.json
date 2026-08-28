@@ -533,6 +533,8 @@
       "app_stat_3": "None",
       "development_cost": "0",
       "ranks": 0,
+      "progression": "none",
+      "skill_progression": "standard",
       "new_ranks": {
         "value": 0,
         "max": 3,

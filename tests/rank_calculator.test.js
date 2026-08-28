@@ -161,4 +161,9 @@ describe('RankCalculator.getCategoryProgression', () => {
     const cat = { system: { skill_progression: "-20*3*2*1*0" } };
     expect(RankCalculator.getCategoryProgression(cat, config)).toBe("-20*3*2*1*0");
   });
+
+  test('falls back to standard when skill_progression is unset (pre-existing categories)', () => {
+    const cat = { system: {} };
+    expect(RankCalculator.getCategoryProgression(cat, config)).toBe("-15*2*1*0.5*0");
+  });
 });
