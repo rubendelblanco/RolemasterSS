@@ -4436,7 +4436,9 @@ button.rmss-crit-reenable-local:hover {
   background: transparent; border: none; color: var(--wc-text); font-family: 'Cinzel', serif; font-weight: 700;
   font-size: 15px; width: 2.6em; padding: 0; text-align: center;
 }
-.wardens-chrome .resource-values, .wardens-chrome .pp-values { display: flex; align-items: baseline; }
+/* justify-content: center explicit here - the base .resource-values rule centers it (Hits),
+   but there is no equivalent base rule for .pp-values, so Power Points was left-aligned. */
+.wardens-chrome .resource-values, .wardens-chrome .pp-values { display: flex; align-items: baseline; justify-content: center; }
 
 /* justify-content: flex-start overrides the base .fate-points-row .fate-icons rule's
    flex-end (right-aligned skulls) - here they should sit next to their label instead. */
