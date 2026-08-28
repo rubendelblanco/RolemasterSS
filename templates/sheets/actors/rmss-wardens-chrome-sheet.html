@@ -118,15 +118,18 @@
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     {{!-- Default tab is specified in actor-sheet.mjs --}}
-    <a class="item" data-tab="Record"><i class="fa-regular fa-circle-user"></i> {{ localize "rmss.pc_sheet_tabs.record" }}</a>
-    <a class="item" data-tab="SkillCategory"><i class="fa-regular fa-list"></i> {{ localize "rmss.pc_sheet_tabs.skill_categories" }}</a>
-    <a class="item" data-tab="Skills"><i class="fa fa-cogs" aria-hidden="true"></i>
+    {{!-- Hand-drawn line icons matching the Warden's Chrome design prototype, not the
+         default sheet's Font Awesome set - kept as inline SVG so they inherit currentColor
+         and restyle with the rest of this tab bar (see .wc-tab-icon in rmss.css). --}}
+    <a class="item" data-tab="Record"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg> {{ localize "rmss.pc_sheet_tabs.record" }}</a>
+    <a class="item" data-tab="SkillCategory"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg> {{ localize "rmss.pc_sheet_tabs.skill_categories" }}</a>
+    <a class="item" data-tab="Skills"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>
       {{ localize "rmss.pc_sheet_tabs.skills" }}</a>
-    <a class="item" data-tab="Equipment"><i class="fa-solid fa-backpack"></i> {{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
-    <a class="item" data-tab="Spells"><i class="fa-solid fa-scroll"></i> {{ localize "rmss.pc_sheet_tabs.spells" }}</a>
-    <a class="item" data-tab="StatusRecord"><i class="fa-solid fa-person-rays"></i>
+    <a class="item" data-tab="Equipment"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 7v10l8 4 8-4V7"/></svg> {{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
+    <a class="item" data-tab="Spells"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 17.5v-13z"/><path d="M4 17.5A2.5 2.5 0 016.5 15H20"/></svg> {{ localize "rmss.pc_sheet_tabs.spells" }}</a>
+    <a class="item" data-tab="StatusRecord"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/><path d="M18 5l2 2-2 2"/></svg>
       {{ localize "rmss.pc_sheet_tabs.status_record" }}</a>
-    <a class="item" data-tab="ExperiencePoints"><i class="fa-solid fa-brain"></i>
+    <a class="item" data-tab="ExperiencePoints"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
       {{ localize "rmss.pc_sheet_tabs.experience_points" }}</a>
   </nav>
   <!-- Body Section-->

@@ -4491,24 +4491,41 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .wc-xp-bar .rmss-progress-bar { height: 14px; border-radius: 6px 0 0 6px; }
 .wardens-chrome .wc-xp-bar .rmss-progress-bar-text { display: block; }
 
-/* ---- primary + sub tab nav ---- */
+/* ---- primary + sub tab nav ----
+   Fully re-scoped (background/border/hover/icon color included, not just layout) - the
+   base .sheet-tabs rule paints a warm gold/bronze gradient bar meant for the default sheet;
+   left unscoped, that bar was bleeding through underneath this theme's own plum active-tab
+   styling, so the bar and the active pill looked like two different skins stitched together. */
 .wardens-chrome .sheet-tabs {
-  display: flex; gap: 3px; border: none; margin: 0; padding: 0;
+  display: flex; gap: 3px; border: none; margin: 0; padding: 5px; border-radius: 12px;
+  background: linear-gradient(90deg, var(--wc-bg-chip), var(--wc-bg-chip-2));
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.04), 0 2px 6px oklch(0 0 0 / 0.3);
 }
 .wardens-chrome .sheet-tabs .item {
   font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;
-  color: var(--wc-text-dim); padding: 7px 13px; border-radius: 8px 8px 0 0; display: flex; align-items: center; gap: 6px;
+  color: var(--wc-text-dim); padding: 7px 13px; border-radius: 8px; display: flex; align-items: center; gap: 6px;
+  border-bottom: 2px solid transparent; background: transparent;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 }
+.wardens-chrome .sheet-tabs .item .wc-tab-icon { width: 12px; height: 12px; flex-shrink: 0; color: var(--wc-text-dim); transition: color 0.15s ease; }
+.wardens-chrome .sheet-tabs .item:hover { color: var(--wc-text); background: oklch(1 0 0 / 0.06); }
+.wardens-chrome .sheet-tabs .item:hover .wc-tab-icon { color: var(--wc-accent); }
 .wardens-chrome .sheet-tabs .item.active {
-  color: var(--wc-text); background: var(--wc-bg-chip-2); box-shadow: inset 0 1px 0 oklch(0.6 0.08 60 / 0.3);
+  color: var(--wc-text); background: var(--wc-bg); border-bottom-color: var(--wc-accent);
+  box-shadow: inset 0 1px 0 oklch(0.6 0.08 60 / 0.3);
 }
+.wardens-chrome .sheet-tabs .item.active .wc-tab-icon { color: var(--wc-accent); }
+
 .wardens-chrome .sub-tabs {
-  display: flex; gap: 14px; background: oklch(0.17 0.02 300); border-radius: 10px; padding: 6px 12px; margin-bottom: 8px;
+  display: flex; gap: 14px; background: oklch(0.17 0.02 300); border: none; border-radius: 10px;
+  padding: 6px 12px; margin-bottom: 8px;
 }
 .wardens-chrome .sub-tabs .item {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.02em; color: var(--wc-text-dim); display: flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em; color: var(--wc-text-dim);
+  display: flex; align-items: center; gap: 5px; background: transparent; border-bottom: 2px solid transparent;
 }
-.wardens-chrome .sub-tabs .item.active { color: var(--wc-accent); }
+.wardens-chrome .sub-tabs .item:hover { color: var(--wc-text); background: oklch(1 0 0 / 0.05); border-bottom-color: transparent; }
+.wardens-chrome .sub-tabs .item.active { color: var(--wc-accent); background: oklch(1 0 0 / 0.08); border-bottom-color: var(--wc-accent); }
 
 /* ---- content area ---- */
 .wardens-chrome .sheet-body {
