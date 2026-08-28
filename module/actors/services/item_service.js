@@ -370,6 +370,22 @@ export default class ItemService {
         });
         playerskill.sort((a, b) => a.name.localeCompare(b.name));
 
+        // Group skill categories by the text before "•" in their localized name (e.g.
+        // "Armadura • Ligera" / "Armadura • Media" / "Armadura • Pesada" all group under
+        // "Armadura") so the Skills tab can offer a coarse category filter without listing
+        // every granular variant - too much granularity there just overwhelms the player.
+        const categoryGroupOf = (categoryItem) => {
+            const localized = game.i18n.localize(`rmss.skill_categories_names.${categoryItem.system.slug}`) || categoryItem.name;
+            const bulletIndex = localized.indexOf("•");
+            return bulletIndex === -1 ? localized.trim() : localized.slice(0, bulletIndex).trim();
+        };
+        const categoryGroupById = new Map(skillcat.map(c => [c.id, categoryGroupOf(c)]));
+        const skillCategoryGroups = [...new Set(skillcat.map(c => categoryGroupOf(c)))]
+            .sort((a, b) => a.localeCompare(b, game.i18n.lang));
+        for (const skill of [...playerskill, ...spellskill, ...languageskill]) {
+            skill.categoryGroup = categoryGroupById.get(skill.system.category) || "";
+        }
+
         // Map spells to lists (filter by skill rank: only show spells up to level = skill ranks)
         const spellistsWithContents = this._mapSpellsToLists(actor, spellists, spells);
 
@@ -413,6 +429,7 @@ export default class ItemService {
             looseHerbs,
             looseWeapons,
             skillcat,
+            skillCategoryGroups,
             hasWeaponCategories,
             showWeaponPrefAssign,
             playerskill,

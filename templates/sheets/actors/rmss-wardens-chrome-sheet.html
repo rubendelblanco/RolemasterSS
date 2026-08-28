@@ -210,13 +210,21 @@
         <a class="item" data-tab="spells-skills"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 17.5v-13z"/></svg> {{ localize "rmss.skills_tabs.spells" }}</a>
         <a class="item" data-tab="languages-skills"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.5 8.5 0 01-11.4 8L3 21l1.5-6.6A8.5 8.5 0 1121 11.5z"/></svg> {{ localize "rmss.skills_tabs.languages" }}</a>
       </nav>
-      {{> "systems/rmss/templates/sheets/actors/parts/search-text.hbs"
-      id="mod-search-form-actor-skills"
-      targetSelector=".skills-table [data-search]"
-      targetDataAttribute="search"
-      debounce="50"
-      placeholder="Search skill..."
-      }}
+      <div class="wc-skills-filter-row">
+        <select id="skill-category-group-filter" class="wc-skill-category-filter">
+          <option value="">{{ localize "rmss.pc_sheet_skills.all_categories" }}</option>
+          {{#each skillCategoryGroups as |group|}}
+          <option value="{{group}}">{{group}}</option>
+          {{/each}}
+        </select>
+        {{> "systems/rmss/templates/sheets/actors/parts/search-text.hbs"
+        id="mod-search-form-actor-skills"
+        targetSelector=".skills-table [data-search]"
+        targetDataAttribute="search"
+        debounce="50"
+        placeholder="Search skill..."
+        }}
+      </div>
       <section class="sub-tab-content">
         <div class="tab" data-group="skills-tabs" data-tab="skills-skills">
           {{> "systems/rmss/templates/sheets/actors/parts/actor-skill-list.hbs" skills=playerskill}}

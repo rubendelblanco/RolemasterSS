@@ -242,7 +242,8 @@
           "item_bonus": "Item Bonus",
           "special_bonus": "Special Bonus",
           "total_bonus": "Total Bonus",
-          "add_skill": "Add Skill"  
+          "add_skill": "Add Skill",
+          "all_categories": "All Categories"
         },
         "pc_sheet_skill_categories": {
             "skillcat_name": "Skill Category Name",

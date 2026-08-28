@@ -299,15 +299,13 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     ExperiencePointsCalculator.loadListeners(html, this.actor);
 
     Hooks.on("renderActorSheet", (app, html, data) => {
-      InputTextSearchStrategy.create("mod-search-form-actor-skills").load(html);
-    });
-    Hooks.on("renderActorSheet", (app, html, data) => {
       InputTextSearchStrategy.create("mod-search-form-actor-skill-categories").load(html);
     });
     Hooks.on("renderActorSheet", (app, html, data) => {
       InputTextSearchStrategy.create("mod-search-form-actor-spells").load(html);
     });
 
+    this._registerSkillCategoryGroupFilter(html);
     this._registerSkillListeners(html);
     this._registerWeaponPreferenceListener(html);
     this._registerStatAssignmentListener(html);
@@ -426,6 +424,41 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
         spellListRealm
       });
     }
+  }
+
+  /**
+   * Skills tab: combine the free-text search with the coarse category-group dropdown
+   * (Warden's Chrome only - the filter <select> doesn't exist in the default sheet's markup).
+   * Both conditions apply together (AND), so this replaces the generic InputTextSearchStrategy
+   * for this one search box rather than running alongside it - that strategy toggles display
+   * per matching [data-search] cell independently, which would fight this filter over the
+   * same elements instead of combining with it.
+   */
+  _registerSkillCategoryGroupFilter(html) {
+    const $search = html.find("#mod-search-form-actor-skills input[type='text']");
+    const $categorySelect = html.find("#skill-category-group-filter");
+    if (!$search.length && !$categorySelect.length) return;
+
+    const applyFilter = () => {
+      const query = ($search.val() || "").toLowerCase().trim();
+      const group = $categorySelect.val() || "";
+      html.find(".skills-table tbody tr.skill-row").each((_, row) => {
+        const name = row.querySelector("[data-search]")?.dataset.search || "";
+        const matchesText = !query || name.toLowerCase().includes(query);
+        const matchesGroup = !group || row.dataset.categoryGroup === group;
+        row.style.display = (matchesText && matchesGroup) ? "" : "none";
+      });
+    };
+
+    let debounceTimer;
+    $search.on("input", () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(applyFilter, 50);
+    });
+    $search.on("keydown", ev => {
+      if (ev.key === "Escape") { $search.val(""); applyFilter(); }
+    });
+    $categorySelect.on("change", applyFilter);
   }
 
   _registerStatListeners(html) {

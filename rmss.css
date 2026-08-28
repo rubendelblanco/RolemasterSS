@@ -4835,6 +4835,21 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .search-bar input[type="text"]::placeholder { color: var(--wc-text-dim); font-style: italic; }
 .wardens-chrome .search-bar input[type="text"]:focus { border-color: var(--wc-accent); box-shadow: 0 0 0 2px oklch(0.78 0.13 75 / 0.25); }
 
+/* Skills tab: category-group filter sits to the left of the search bar, same row. */
+.wardens-chrome .wc-skills-filter-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.wardens-chrome .wc-skills-filter-row .search-bar { flex: 1; margin-bottom: 0; }
+.wardens-chrome .wc-skill-category-filter {
+  background: oklch(0.24 0.02 300); border: 1px solid oklch(0.4 0.04 300); border-radius: 999px;
+  color: var(--wc-text); font-size: 11px; padding: 6px 10px; flex: 0 0 auto; max-width: 160px;
+}
+.wardens-chrome .wc-skill-category-filter:focus { border-color: var(--wc-accent); box-shadow: 0 0 0 2px oklch(0.78 0.13 75 / 0.25); }
+/* The open dropdown's <option> list doesn't inherit the select's background in most
+   engines, so it fell back to a system white background - with our light text color on
+   top of that, the option labels were unreadable. */
+.wardens-chrome .wc-skill-category-filter option {
+  background: oklch(0.2 0.03 300); color: var(--wc-text);
+}
+
 /* ---- equipment tables (actor-weapons/items/armor/herbs/transport.html - table.items is
    shared by all four) ---- */
 .wardens-chrome table.weapons, .wardens-chrome table.items { border-collapse: collapse; width: 100%; }

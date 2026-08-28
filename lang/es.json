@@ -242,7 +242,8 @@
       "item_bonus": "Bono de ítem",
       "special_bonus": "Bono especial",
       "total_bonus": "Bono total",
-      "add_skill": "Agregar habilidad"
+      "add_skill": "Agregar habilidad",
+      "all_categories": "Todas las categorías"
     },
     "pc_sheet_skill_categories": {
       "skillcat_name": "Nombre de categoría de habilidad",
