@@ -660,7 +660,7 @@
 
 .spell-grid-container {
     display: grid;
-    grid-template-columns: [img] 9% [favorite] 3% [name] 38% [area_of_effect] 10% [duration] 10% [range] 10% [type] 10% [controls] 10%;
+    grid-template-columns: [favorite] 3% [img] 9% [name] 38% [area_of_effect] 10% [duration] 10% [range] 10% [type] 10% [controls] 10%;
 }
 
 /* Headings: first 8 direct children */
@@ -4758,9 +4758,12 @@ button.rmss-crit-reenable-local:hover {
 }
 .wardens-chrome .skills-table th, .wardens-chrome .skills-table td { padding: 5px 4px; }
 .wardens-chrome .skills-table thead th {
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: oklch(0.42 0.1 45);
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: #ffffff;
   text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); padding-bottom: 6px; text-align: center;
 }
+/* Favorite header (1st column) dropped for the same reason as the spells table - the
+   checkbox icon underneath is self-explanatory. */
+.wardens-chrome .skills-table thead th:nth-child(1) { font-size: 0; }
 .wardens-chrome .skills-table .skill-row { border-bottom: 1px solid oklch(0.75 0.02 80); }
 .wardens-chrome .skills-table .skill-row:hover { background: oklch(0.78 0.13 75 / 0.16); }
 /* color: inherit - the designation color-coding (Occupational/Everyman/Restricted) is an
@@ -4806,7 +4809,7 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome table.weapons th, .wardens-chrome table.items th,
 .wardens-chrome table.weapons td, .wardens-chrome table.items td { padding: 5px 4px; }
 .wardens-chrome table.weapons thead th, .wardens-chrome table.items thead th {
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: oklch(0.42 0.1 45);
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: #ffffff;
   text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); padding-bottom: 6px;
 }
 .wardens-chrome table.weapons tbody tr, .wardens-chrome table.items tbody tr { border-bottom: 1px solid oklch(0.75 0.02 80); }
@@ -4845,6 +4848,57 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .money-field input {
   background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px; color: var(--wc-card-text);
 }
+
+/* ---- spells tab (actor-spells.html) ----
+   The per-type cast icon colors (spell-cast-force/utility/elemental/directed) are a real
+   signal - which realm/kind of spell this is - so they're left as-is rather than folded
+   into the theme's single accent color, same call as the skill designation colors. */
+.wardens-chrome .spell-list-container { margin-bottom: 16px; }
+.wardens-chrome .spell-list-container:last-child { margin-bottom: 0; }
+.wardens-chrome .spell-list-title {
+  background: none; border-bottom: 1.5px solid oklch(0.5 0.04 65); padding: 0 0 6px;
+  margin: 0 0 6px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+}
+.wardens-chrome .spell-list-name { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.03em; color: oklch(0.42 0.1 45); float: none; }
+.wardens-chrome .spell-list-level-input, .wardens-chrome .spell-list-modifier-input { margin-left: 0; color: var(--wc-card-text-dim); font-size: 11px; }
+.wardens-chrome .spell-list-level-input input, .wardens-chrome .spell-list-modifier-input input {
+  background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px; color: var(--wc-card-text);
+}
+.wardens-chrome .spell-list-actions { margin-left: auto; }
+.wardens-chrome .spell-list-actions .item-edit, .wardens-chrome .spell-list-actions .item-delete {
+  color: oklch(0.55 0.03 65); transition: color 0.15s ease;
+}
+.wardens-chrome .spell-list-actions .item-edit:hover, .wardens-chrome .spell-list-actions .item-delete:hover { color: var(--wc-accent-strong); }
+
+.wardens-chrome .spell-list-container .spell-grid-container { margin-left: 0; }
+.wardens-chrome .spell-grid-container > .spell-grid-heading {
+  font-family: 'Cinzel', serif; font-size: 9.5px; letter-spacing: 0.02em; color: oklch(0.42 0.1 45);
+  text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); background-image: none; box-shadow: none;
+}
+.wardens-chrome .spell-row { border-bottom: 1px solid oklch(0.75 0.02 80); }
+.wardens-chrome .spell-grid-container > .spell-row:nth-child(odd),
+.wardens-chrome .spell-grid-container > .spell-row:nth-child(even) { background-image: none; background-color: transparent; }
+.wardens-chrome .spell-row:hover { background-color: oklch(0.78 0.13 75 / 0.16); }
+.wardens-chrome .spell-row > div { border-bottom: none; box-shadow: none; color: oklch(0.35 0.03 60); font-size: 11.5px; }
+.wardens-chrome .spell-row .list-item-icon { border-radius: 50%; border: 1.5px solid oklch(1 0 0 / 0.6); box-shadow: 0 1px 3px oklch(0 0 0 / 0.25); }
+.wardens-chrome .spell-row .spell-cast { color: var(--wc-card-text); font-weight: 600; }
+.wardens-chrome .spell-row .spell-cast:hover { color: oklch(0.42 0.1 45); }
+/* Name column (3rd) - left-align instead of the base grid's centered cells, like every
+   other name column on this sheet (skills, equipment, favorites). */
+.wardens-chrome .spell-grid-container > .spell-grid-heading:nth-child(3),
+.wardens-chrome .spell-row > div:nth-child(3) { justify-content: flex-start; text-align: left; }
+/* Favorite column (now 1st, moved before the icon for consistency with the skills table)
+   is only 3% wide - "Favorite"/"Favorito" doesn't fit and was bleeding into the name column
+   next to it. The checkbox icon underneath is self-explanatory (the icon column has no
+   header either), so drop the label instead of fighting the width for a locale-length fix. */
+.wardens-chrome .spell-grid-container > .spell-grid-heading:nth-child(1) { font-size: 0; }
+.wardens-chrome .spell-row .spell-info-icon { color: oklch(0.55 0.03 65); }
+.wardens-chrome .spell-favorite i { color: oklch(0.55 0.03 65); }
+.wardens-chrome .spell-favorite i.fa-square-check { color: var(--wc-accent-strong); filter: none; }
+.wardens-chrome .spell-row-actions .item-edit, .wardens-chrome .spell-row-actions .item-view, .wardens-chrome .spell-row-actions .item-delete {
+  color: oklch(0.55 0.03 65); transition: color 0.15s ease;
+}
+.wardens-chrome .spell-row-actions a:hover { color: var(--wc-accent-strong); }
 
 /* ---- default RMSS window chrome for this sheet ---- */
 .rmss .window-content:has(.wardens-chrome) {

@@ -15,7 +15,12 @@ placeholder="Search spell..."
       {{#if (eq list.system.type "base")}}
       Base {{list.system.profession}}
       {{else}}
-      {{list.system.spell_list_type}} {{list.system.realm}}
+      {{#if (eq list.system.realm "essence")}}Essence{{/if}}
+      {{#if (eq list.system.realm "channeling")}}Channeling{{/if}}
+      {{#if (eq list.system.realm "mentalism")}}Mentalism{{/if}}
+      {{#if (eq list.system.realm "arcane")}}Arcane{{/if}}
+      {{#if (eq list.system.type "open")}}Open{{/if}}
+      {{#if (eq list.system.type "closed")}}Closed{{/if}}
       {{/if}}
       ){{#if list.system.description}}
       <i class="fas fa-info-circle spell-info-icon"
@@ -50,8 +55,8 @@ placeholder="Search spell..."
 
   <div class="spell-grid-container">
     <!-- Column headings -->
-    <div class="spell-grid-heading"></div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.favorite" }}</div>
+    <div class="spell-grid-heading"></div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.name" }}</div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.area_of_effect" }}</div>
     <div class="spell-grid-heading">{{ localize "rmss.pc_sheet_spell.duration" }}</div>
@@ -62,10 +67,6 @@ placeholder="Search spell..."
     <!-- Spells inside the list -->
     {{#each list.contents as |spell|}}
     <div class="spell-row" draggable="true" data-type="Item" data-uuid="Actor.{{list.actorId}}.Item.{{spell._id}}" data-item-id="{{spell._id}}">
-    <div data-search="{{spell.name}}">
-      <span class="list-item-icon-wrap"><img class="list-item-icon" src="{{spell.img}}" alt="{{spell.name}}" width="32" height="32"/></span>
-    </div>
-
     {{#if spell.system.favorite}}
     <div data-search="{{spell.name}}">
       <a class="spell-favorite" data-item-id="{{spell._id}}">
@@ -79,6 +80,10 @@ placeholder="Search spell..."
       </a>
     </div>
     {{/if}}
+
+    <div data-search="{{spell.name}}">
+      <span class="list-item-icon-wrap"><img class="list-item-icon" src="{{spell.img}}" alt="{{spell.name}}" width="32" height="32"/></span>
+    </div>
 
     <div data-search="{{spell.name}}" style="display: flex; align-items: center; gap: 0.5em;">
       {{#if (eq spell.system.type "F")}}
