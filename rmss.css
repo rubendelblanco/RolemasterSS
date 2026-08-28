@@ -269,6 +269,15 @@
     font-size: var(--rmss-font-size-sm);
 }
 
+/* Warden's Chrome-only affordances (card expand toggle / inline field labels for the
+   collapsed breakdown fields) - the default table sheet already labels every column via
+   the header row above, so these stay hidden here and are only switched on under
+   .wardens-chrome. */
+.stat-expand-toggle,
+.stat-name-label {
+    display: none;
+}
+
 .fixed-info-container {
     flex-grow: 3;
     flex-direction: row;
@@ -4540,21 +4549,76 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .sheet-body a { color: oklch(0.42 0.1 45); }
 .wardens-chrome .sheet-body a:hover { color: oklch(0.32 0.1 45); }
 
-/* ---- attributes table (actor-stats.html) ---- */
-.wardens-chrome .stat-block .stat-row {
-  border-bottom: 1px solid oklch(0.75 0.02 80);
+/* ---- Record tab layout (fixed-info sidebar next to the stat cards) ----
+   .container has no gap of its own; the default sheet gets visual separation almost by
+   accident from the .fixed-info-section/.stat-block outline+margin, both removed here. */
+.wardens-chrome .container { gap: 18px; }
+
+/* ---- attributes cards (actor-stats.html) ----
+   The real data model has 7 fields per stat (name, temp, potential, basic/racial/special
+   bonus, total) - too many to show on a compact card at once. Only the two numbers actually
+   read during play (temp, total bonus) stay always visible; the rest (mostly only touched at
+   character creation) live behind a per-card expand toggle. Field order in the markup is
+   fixed (name, temp, potential, basic, racial, special, total), so cells are addressed by
+   position rather than by a dedicated class. */
+.wardens-chrome .stat-block { outline: none; margin: 0; padding: 0; border: none; }
+.wardens-chrome .stat-block .stat-assignment-button-row { margin-bottom: 8px; }
+.wardens-chrome .stat-block ol {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; list-style: none; margin: 0; padding: 0;
 }
-.wardens-chrome .stat-block li.stat-row:first-child {
-  border-bottom: 1.5px solid oklch(0.5 0.04 65);
+.wardens-chrome .stat-block li.stat-row:first-child { display: none; } /* header row - not used in card layout */
+.wardens-chrome .stat-block li.stat-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px 4px; align-items: center;
+  border: 1px solid oklch(0.55 0.04 65 / 0.4); border-radius: 10px; padding: 7px 8px 8px;
+  background: linear-gradient(160deg, oklch(1 0 0 / 0.55), oklch(1 0 0 / 0.25));
 }
-.wardens-chrome .stat-block .stat-header {
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.03em; color: oklch(0.42 0.1 45); text-transform: uppercase;
+.wardens-chrome .stat-block .stat-name { color: var(--wc-card-text); font-size: 12.5px; width: auto; }
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(1) {
+  grid-column: 1 / -1; grid-row: 1;
+  font-family: 'Cinzel', serif; font-size: 9.5px; letter-spacing: 0.03em; text-transform: uppercase;
+  color: var(--wc-card-text-dim); display: flex; align-items: center; gap: 4px; white-space: nowrap; overflow: hidden;
 }
-.wardens-chrome .stat-block .stat-name { color: var(--wc-card-text); font-size: 12.5px; }
+.wardens-chrome .stat-block .stat-expand-toggle {
+  display: inline-block; color: oklch(0.55 0.03 65); font-size: 9px; cursor: pointer; padding: 2px; transition: transform 0.15s ease;
+}
+.wardens-chrome .stat-block li.stat-row.expanded .stat-expand-toggle { transform: rotate(90deg); }
+.wardens-chrome .stat-block .roll-stat { color: var(--wc-accent-strong); font-size: 10px; cursor: pointer; }
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(2) { grid-column: 1 / 3; grid-row: 2; }
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(7) {
+  grid-column: 3 / 5; grid-row: 2;
+  font-family: 'Cinzel', serif; font-size: 15px; font-weight: 700; color: oklch(0.42 0.1 45);
+  display: flex; align-items: center; justify-content: center;
+}
+.wardens-chrome .stat-block input.stat-temp {
+  width: 100%; font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; text-align: center;
+  background: transparent; border: none; color: var(--wc-card-text); padding: 0;
+}
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(3) { grid-column: 1; grid-row: 3; }
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(4) { grid-column: 2; grid-row: 3; }
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(5) { grid-column: 3; grid-row: 3; }
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(6) { grid-column: 4; grid-row: 3; }
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(3),
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(4),
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(5),
+.wardens-chrome .stat-block li.stat-row > .stat-name:nth-child(6) { display: none; }
+.wardens-chrome .stat-block li.stat-row.expanded > .stat-name:nth-child(3),
+.wardens-chrome .stat-block li.stat-row.expanded > .stat-name:nth-child(4),
+.wardens-chrome .stat-block li.stat-row.expanded > .stat-name:nth-child(5),
+.wardens-chrome .stat-block li.stat-row.expanded > .stat-name:nth-child(6) {
+  display: flex; flex-direction: column; align-items: center; gap: 1px; margin-top: 4px;
+}
+.wardens-chrome .stat-block .stat-name-label {
+  display: block; font-size: 8px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--wc-card-text-dim);
+}
+.wardens-chrome .stat-block li.stat-row.expanded > .stat-name:nth-child(3) input,
+.wardens-chrome .stat-block li.stat-row.expanded > .stat-name:nth-child(4) input,
+.wardens-chrome .stat-block li.stat-row.expanded > .stat-name:nth-child(5) input,
+.wardens-chrome .stat-block li.stat-row.expanded > .stat-name:nth-child(6) input {
+  width: 2.4em; text-align: center; font-size: 11px; padding: 0;
+}
 .wardens-chrome .stat-block input {
   background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px; color: var(--wc-card-text);
 }
-.wardens-chrome .stat-block input.stat-temp { font-weight: 700; }
 
 /* ---- skills table (actor-skill-list.hbs) ---- */
 .wardens-chrome .skills-table {

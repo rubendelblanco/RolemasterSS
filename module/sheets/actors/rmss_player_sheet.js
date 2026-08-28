@@ -430,6 +430,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
   _registerStatListeners(html) {
     html.find(".fa-dice.roll-stat").click(ev => this._onStatRollClick(ev));
+    html.find(".stat-expand-toggle").click(ev => ev.currentTarget.closest("li.stat-row")?.classList.toggle("expanded"));
   }
 
   async _onStatRollClick(ev) {
