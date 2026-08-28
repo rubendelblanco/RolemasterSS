@@ -440,6 +440,23 @@
 .skills-table th:nth-child(12) { width: 9%; }
 .skills-table th:nth-child(13) { width: 8%; }
 
+/* Skill categories reuse .skills-table for all its styling (font, hover, name alignment,
+   header color...) via the .skillcat-table companion class, but the column layout is
+   different (no favorite/icon columns, 12 columns instead of 13) - override the per-column
+   widths here rather than fork the whole ruleset. */
+.skillcat-table th:nth-child(1) { width: 10%; }
+.skillcat-table th:nth-child(2) { width: 10%; }
+.skillcat-table th:nth-child(3) { width: 8%; }
+.skillcat-table th:nth-child(4) { width: 8%; }
+.skillcat-table th:nth-child(5) { width: 8%; }
+.skillcat-table th:nth-child(6) { width: 8%; }
+.skillcat-table th:nth-child(7) { width: 8%; }
+.skillcat-table th:nth-child(8) { width: 8%; }
+.skillcat-table th:nth-child(9) { width: 8%; }
+.skillcat-table th:nth-child(10) { width: 8%; }
+.skillcat-table th:nth-child(11) { width: 8%; }
+.skillcat-table th:nth-child(12) { width: 8%; }
+
 .skills-table .skill-row {
     cursor: grab;
 }
@@ -4901,18 +4918,10 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .spell-row-actions a:hover { color: var(--wc-accent-strong); }
 
 /* ---- skill categories tab (actor-skill-categories.html) ----
-   Row cells are targeted by their own class (category-name, category-stats, ...) rather
-   than nth-child/direct-child, since the markup nests them inside <tr><table> in a way
-   that may or may not survive HTML parsing as direct children of the grid container. */
-.wardens-chrome .skillcat-grid-heading {
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: #ffffff;
-  text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); background-image: none; padding-bottom: 6px; text-align: center;
-}
-.wardens-chrome .skillcat-grid-container [class^="category-"] {
-  border-bottom: 1px solid oklch(0.75 0.02 80); background-image: none; color: oklch(0.35 0.03 60); font-size: 11.5px;
-}
-.wardens-chrome .category-name { text-align: left; align-items: flex-start; color: var(--wc-card-text); font-weight: 600; }
-.wardens-chrome tr.item-categories-skill:hover [class^="category-"] { background: oklch(0.78 0.13 75 / 0.16); }
+   Now a real <table class="skills-table skillcat-table"> (see the width override near the
+   base .skills-table rules) so it inherits the same header/hover/name-alignment/edit-delete
+   styling as the actual Skills tab for free - only the rank-pip diamonds need their own
+   rule since .skillcategory-newrank is a distinct class from the skills' .skill-newrank. */
 .wardens-chrome .skillcategory-newrank { display: inline-flex; gap: 3px; align-items: center; justify-content: center; }
 .wardens-chrome .skillcategory-newrank i {
   display: inline-block; width: 9px; height: 9px; flex-shrink: 0;
@@ -4921,10 +4930,9 @@ button.rmss-crit-reenable-local:hover {
 }
 .wardens-chrome .skillcategory-newrank i::before { content: none !important; }
 .wardens-chrome .skillcategory-newrank .fa-square-check { background: oklch(0.55 0.13 45); border-color: oklch(0.4 0.13 40); }
-.wardens-chrome .skillcat-grid-container .item-edit, .wardens-chrome .skillcat-grid-container .item-delete {
-  color: oklch(0.55 0.03 65); transition: color 0.15s ease;
-}
-.wardens-chrome .skillcat-grid-container a:hover { color: var(--wc-accent-strong); }
+/* Category name has no roll link to inherit weight/color from (unlike a skill row), so
+   give it the same bold treatment directly. */
+.wardens-chrome .skillcat-table .skill-name-cell { color: var(--wc-card-text); font-weight: 600; }
 .wardens-chrome .weapon-pref-header { margin-bottom: 8px; }
 
 /* ---- status record tab (active-effects.hbs) ---- */
