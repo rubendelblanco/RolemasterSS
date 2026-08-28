@@ -2058,19 +2058,28 @@ button.rmss-crit-reenable-local:hover {
 /* Tablas de equipment: permitir que el icono ampliado no se recorte */
 .actor-sheet table.items,
 .actor-sheet table.weapons,
-.actor-sheet .skills-table {
+.actor-sheet .skills-table,
+.actor-sheet .favorite-skills-table,
+.actor-sheet .favorite-spells-table,
+.actor-sheet .favorite-equipped-table {
     overflow: visible;
 }
 
 .actor-sheet table.items tbody,
 .actor-sheet table.weapons tbody,
-.actor-sheet .skills-table tbody {
+.actor-sheet .skills-table tbody,
+.actor-sheet .favorite-skills-table tbody,
+.actor-sheet .favorite-spells-table tbody,
+.actor-sheet .favorite-equipped-table tbody {
     overflow: visible;
 }
 
 .actor-sheet table.items tr,
 .actor-sheet table.weapons tr,
-.actor-sheet .skills-table tr {
+.actor-sheet .skills-table tr,
+.actor-sheet .favorite-skills-table tr,
+.actor-sheet .favorite-spells-table tr,
+.actor-sheet .favorite-equipped-table tr {
     overflow: visible;
     position: relative;
 }
@@ -2078,14 +2087,20 @@ button.rmss-crit-reenable-local:hover {
 /* z-index al hacer hover en la fila para que el icono ampliado no quede tapado (incl. items en contenedores) */
 .actor-sheet table.items tr:hover,
 .actor-sheet table.weapons tr:hover,
-.actor-sheet .skills-table tr:hover {
+.actor-sheet .skills-table tr:hover,
+.actor-sheet .favorite-skills-table tr:hover,
+.actor-sheet .favorite-spells-table tr:hover,
+.actor-sheet .favorite-equipped-table tr:hover {
     z-index: 10;
 }
 
 .actor-sheet table.items td:first-child,
 .actor-sheet table.items td.indent,
 .actor-sheet table.weapons td:first-child,
-.actor-sheet .skills-table td:first-child {
+.actor-sheet .skills-table td:first-child,
+.actor-sheet .favorite-skills-table td:first-child,
+.actor-sheet .favorite-spells-table td:first-child,
+.actor-sheet .favorite-equipped-table td:first-child {
     overflow: visible !important;
     vertical-align: middle;
 }
