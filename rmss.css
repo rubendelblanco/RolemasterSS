@@ -4439,7 +4439,7 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .wc-portrait img { width: 100%; height: 100%; object-fit: cover; border: none; border-radius: 50%; }
 /* above the level badge (z-index: 2) so the zoomed portrait isn't cut off by it */
 .wardens-chrome .wc-portrait:hover { z-index: 1001; }
-.wardens-chrome .wc-portrait:hover img { box-shadow: 0 0 0 3px var(--wc-bg), 0 8px 24px oklch(0 0 0 / 0.6); }
+.wardens-chrome .wc-portrait:hover img { box-shadow: 0 0 0 3px var(--wc-bg), 0 0 18px oklch(0.8 0.15 200 / 0.5), 0 8px 24px oklch(0 0 0 / 0.6); }
 .wardens-chrome .wc-level-badge {
   position: absolute; right: -5px; bottom: -5px; z-index: 2; width: 25px; height: 25px; border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, oklch(0.85 0.13 80), var(--wc-accent-strong) 70%);
@@ -4984,6 +4984,41 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .experience-sheet .total { color: var(--wc-card-text-dim); font-size: 11px; }
 .wardens-chrome .experience-sheet .exp-total-sum { font-family: 'Cinzel', serif; color: oklch(0.42 0.1 45); font-size: 14px; }
 .wardens-chrome .experience-sheet button { border-radius: 4px; border: none; padding: 4px 10px; cursor: pointer; }
+
+/* ---- holographic hover sheen (portrait + every list/table item icon) ----
+   The sheen lives on the WRAPPER (.wc-portrait / .list-item-icon-wrap), not the <img> itself
+   - ::before doesn't render on replaced elements like img. It's self-clipped to a circle via
+   clip-path rather than the wrapper's own overflow:hidden, because that overflow is
+   deliberately visible so the existing hover-zoom (transform: scale(2)) isn't clipped by its
+   own box - the two effects would otherwise fight over the same property. It also gets its
+   own matching scale(2) transform + a z-index above the zoomed img's (1000/1001) so the
+   sheen visibly rides along on top of the enlarged image instead of staying pinned small
+   underneath it. */
+.wardens-chrome .wc-portrait::before,
+.wardens-chrome .list-item-icon-wrap::before {
+  content: ''; position: absolute; inset: 0; z-index: 1002; pointer-events: none;
+  clip-path: circle(50%);
+  background: linear-gradient(115deg,
+    transparent 20%,
+    oklch(0.75 0.15 280 / 0.55) 35%,
+    oklch(0.85 0.15 200 / 0.6) 50%,
+    oklch(0.8 0.15 90 / 0.55) 65%,
+    transparent 80%);
+  background-size: 250% 250%;
+  background-repeat: no-repeat;
+  background-position: -30% -30%;
+  opacity: 0;
+  transition: opacity 0.35s ease, background-position 0.6s ease, transform 0.25s ease;
+}
+.wardens-chrome .wc-portrait:hover::before {
+  opacity: 1; background-position: 130% 130%;
+  transform: scale(2); transform-origin: left center;
+}
+.wardens-chrome .list-item-icon-wrap:hover::before {
+  opacity: 1; background-position: 130% 130%;
+  transform: scale(2); transform-origin: left center;
+}
+.wardens-chrome .list-item-icon-wrap:hover .list-item-icon { box-shadow: 0 0 14px oklch(0.8 0.15 200 / 0.55), 0 0 10px oklch(0 0 0 / 0.4); }
 
 /* ---- default RMSS window chrome for this sheet ---- */
 .rmss .window-content:has(.wardens-chrome) {
