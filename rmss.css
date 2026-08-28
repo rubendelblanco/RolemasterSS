@@ -4559,9 +4559,111 @@ button.rmss-crit-reenable-local:hover {
    column next to the fixed-info sidebar. */
 .wardens-chrome .wc-stats-section { margin-bottom: 14px; }
 .wardens-chrome .wc-stats-section h2 { margin: 0 0 8px; }
-/* .container has no gap of its own; the default sheet gets visual separation almost by
-   accident from the .fixed-info-section/.stat-block outline+margin, both removed here. */
-.wardens-chrome .container { gap: 18px; }
+
+/* Priority-ordered rows: quick-access favorites, then combat vitals, then reference
+   identity/recovery data, then roleplay flavor last - see the record-tab priority
+   discussion. Each row's cards share the row's height equally. */
+.wardens-chrome .wc-record-row { display: flex; align-items: stretch; gap: 14px; margin-bottom: 14px; }
+.wardens-chrome .wc-record-row > .wc-record-card { flex: 1; min-width: 0; }
+.wardens-chrome .wc-record-row-3 > .wc-record-card { flex-basis: 0; }
+.wardens-chrome .wc-record-card {
+  border: 1px solid oklch(0.55 0.04 65 / 0.35); border-radius: 10px; padding: 10px 12px;
+  background: linear-gradient(160deg, oklch(1 0 0 / 0.5), oklch(1 0 0 / 0.22));
+}
+.wardens-chrome .wc-record-card h2 { margin: 0 0 8px; }
+.wardens-chrome .wc-record-card:last-child { margin-bottom: 0; }
+
+/* The label/input "sections" (fixed-info, armor, race-stat, role-traits, background) are
+   shared with the default sheet and were completely unstyled there (no CSS ever targeted
+   .label-name) - turned into a clean label|value grid here, addressed by nth-child since
+   the same .label-name class covers both the label cell and the value cell. */
+.wardens-chrome .fixed-info-section,
+.wardens-chrome .armor-block,
+.wardens-chrome .race-stat-fixed-info-block,
+.wardens-chrome .role-traits-block,
+.wardens-chrome .background-info-block {
+  display: grid; grid-template-columns: auto 1fr; gap: 5px 10px; align-items: center;
+  outline: none; margin: 0; padding: 0;
+}
+.wardens-chrome .fixed-info-section > .label-name:nth-child(odd),
+.wardens-chrome .armor-block > .label-name:nth-child(odd),
+.wardens-chrome .race-stat-fixed-info-block > .label-name:nth-child(odd),
+.wardens-chrome .role-traits-block > .label-name:nth-child(odd),
+.wardens-chrome .background-info-block > .label-name:nth-child(odd) {
+  color: var(--wc-card-text-dim); font-size: 11px; white-space: nowrap;
+}
+.wardens-chrome .fixed-info-section > .label-name:nth-child(even),
+.wardens-chrome .armor-block > .label-name:nth-child(even),
+.wardens-chrome .race-stat-fixed-info-block > .label-name:nth-child(even),
+.wardens-chrome .role-traits-block > .label-name:nth-child(even),
+.wardens-chrome .background-info-block > .label-name:nth-child(even) {
+  width: auto;
+}
+.wardens-chrome .fixed-info-section input, .wardens-chrome .fixed-info-section select,
+.wardens-chrome .armor-block input,
+.wardens-chrome .race-stat-fixed-info-block input,
+.wardens-chrome .role-traits-block input,
+.wardens-chrome .background-info-block input {
+  width: 100%; background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px;
+  color: var(--wc-card-text); font-size: 12px; padding: 1px 4px;
+}
+
+/* Resistance rolls table - already a 4-col grid, just re-themed. */
+.wardens-chrome .resistances-grid-container {
+  outline: none; margin: 0; padding: 0; gap: 3px 6px; font-size: 11.5px; color: var(--wc-card-text);
+}
+.wardens-chrome .resistances-grid-heading {
+  font-family: 'Cinzel', serif; font-size: 9.5px; letter-spacing: 0.02em; text-transform: uppercase;
+  color: oklch(0.42 0.1 45); border-bottom: 1.5px solid oklch(0.5 0.04 65); background-image: none; padding-bottom: 4px;
+}
+.wardens-chrome .resistance-input { width: auto; }
+.wardens-chrome .resistance-input input {
+  width: 100%; background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px;
+  color: var(--wc-card-text); font-size: 11px; padding: 1px 3px; text-align: center;
+}
+
+/* Favorite skills/spells/items tables (Record tab quick-actions row). */
+.wardens-chrome .favorite-skills-table, .wardens-chrome .favorite-spells-table, .wardens-chrome .favorite-equipped-table {
+  width: 100%; border-collapse: collapse;
+}
+.wardens-chrome .favorite-skills-table thead th, .wardens-chrome .favorite-spells-table thead th, .wardens-chrome .favorite-equipped-table thead th {
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.02em; color: oklch(0.42 0.1 45);
+  text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); padding-bottom: 5px; text-align: center;
+}
+.wardens-chrome .favorite-skills-table tbody tr, .wardens-chrome .favorite-spells-table tbody tr, .wardens-chrome .favorite-equipped-table tbody tr {
+  border-bottom: 1px solid oklch(0.75 0.02 80);
+}
+.wardens-chrome .favorite-skills-table tbody tr:hover, .wardens-chrome .favorite-spells-table tbody tr:hover, .wardens-chrome .favorite-equipped-table tbody tr:hover {
+  background: oklch(0.78 0.13 75 / 0.16);
+}
+.wardens-chrome .favorite-skills-table td, .wardens-chrome .favorite-spells-table td, .wardens-chrome .favorite-equipped-table td {
+  color: oklch(0.35 0.03 60); font-size: 11.5px; padding: 4px 3px;
+}
+.wardens-chrome .favorite-record-name-block a, .wardens-chrome .favorite-equipped-table .rmss-weapon-name-cell {
+  color: var(--wc-card-text); font-weight: 600;
+}
+.wardens-chrome .favorite-record-name-block a:hover { color: oklch(0.42 0.1 45); }
+.wardens-chrome .favorite-skills-table .list-item-icon, .wardens-chrome .favorite-spells-table .list-item-icon, .wardens-chrome .favorite-equipped-table .list-item-icon {
+  border-radius: 50%; border: 1.5px solid oklch(1 0 0 / 0.6); box-shadow: 0 1px 3px oklch(0 0 0 / 0.25);
+}
+/* These tables now live in a 1/3-width card each - trimmed down to icon + name + the one
+   stat actually worth a glance here (the rest is a click away on the full item/spell sheet). */
+.wardens-chrome .favorite-skills-table th:nth-child(3),
+.wardens-chrome .favorite-skills-table td:nth-child(3) { display: none; }
+.wardens-chrome .favorite-spells-table th:nth-child(3),
+.wardens-chrome .favorite-spells-table td:nth-child(3),
+.wardens-chrome .favorite-spells-table th:nth-child(4),
+.wardens-chrome .favorite-spells-table td:nth-child(4),
+.wardens-chrome .favorite-spells-table th:nth-child(5),
+.wardens-chrome .favorite-spells-table td:nth-child(5),
+.wardens-chrome .favorite-spells-table th:nth-child(6),
+.wardens-chrome .favorite-spells-table td:nth-child(6) { display: none; }
+.wardens-chrome .favorite-equipped-table th:nth-child(4),
+.wardens-chrome .favorite-equipped-table td:nth-child(4),
+.wardens-chrome .favorite-equipped-table th:nth-child(5),
+.wardens-chrome .favorite-equipped-table td:nth-child(5),
+.wardens-chrome .favorite-equipped-table th:nth-child(6),
+.wardens-chrome .favorite-equipped-table td:nth-child(6) { display: none; }
 
 /* ---- attributes cards (actor-stats.html) ----
    The real data model has 7 fields per stat (name, temp, potential, basic/racial/special

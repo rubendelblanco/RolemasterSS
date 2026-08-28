@@ -131,6 +131,12 @@
       "favorite_skills": "Habilidades favoritas",
       "favorite_spells": "Hechizos favoritos",
       "equipped_items": "Objetos equipados",
+      "armor_and_defense": "Armadura y defensa",
+      "resistances": "Tiradas de resistencia",
+      "identity": "Identidad",
+      "recovery": "Recuperación",
+      "appearance_and_traits": "Apariencia y rasgos",
+      "background": "Trasfondo",
       "description": "Descripción"
     },
     "pc_sheet_tabs": {

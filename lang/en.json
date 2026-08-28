@@ -131,6 +131,12 @@
             "favorite_skills": "Favorite Skills",
             "favorite_spells": "Favorite Spells",
             "equipped_items": "Equipped Items",
+            "armor_and_defense": "Armor & Defense",
+            "resistances": "Resistance Rolls",
+            "identity": "Identity",
+            "recovery": "Recovery",
+            "appearance_and_traits": "Appearance & Traits",
+            "background": "Background",
             "description": "Description"
         },
         "pc_sheet_tabs": {
