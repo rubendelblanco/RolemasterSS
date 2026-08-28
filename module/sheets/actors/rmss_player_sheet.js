@@ -445,7 +445,11 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       html.find(".skills-table tbody tr.skill-row").each((_, row) => {
         const name = row.querySelector("[data-search]")?.dataset.search || "";
         const matchesText = !query || name.toLowerCase().includes(query);
-        const matchesGroup = !group || row.dataset.categoryGroup === group;
+        // The category filter is only visible/meaningful on the Skills > Skills sub-tab -
+        // ignore it entirely for rows in the Spell Lists / Languages panes so an invisible
+        // leftover selection doesn't silently filter those too.
+        const isSkillsPane = !!row.closest('[data-tab="skills-skills"]');
+        const matchesGroup = !group || !isSkillsPane || row.dataset.categoryGroup === group;
         row.style.display = (matchesText && matchesGroup) ? "" : "none";
       });
     };

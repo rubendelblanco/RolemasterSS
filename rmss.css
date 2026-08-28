@@ -4841,8 +4841,14 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .wc-skill-category-filter {
   background: oklch(0.24 0.02 300); border: 1px solid oklch(0.4 0.04 300); border-radius: 999px;
   color: var(--wc-text); font-size: 11px; padding: 6px 10px; flex: 0 0 auto; max-width: 160px;
+  display: none; /* shown only while the Skills > Skills sub-tab is active, see below */
 }
 .wardens-chrome .wc-skill-category-filter:focus { border-color: var(--wc-accent); box-shadow: 0 0 0 2px oklch(0.78 0.13 75 / 0.25); }
+/* Most skills live in the Skills > Skills sub-tab - the category-group filter only makes
+   sense there, so it stays hidden on the Spell Lists / Languages sub-tabs. */
+.wardens-chrome nav[data-group="skills-tabs"]:has(a[data-tab="skills-skills"].active) ~ .wc-skills-filter-row .wc-skill-category-filter {
+  display: inline-block;
+}
 /* The open dropdown's <option> list doesn't inherit the select's background in most
    engines, so it fell back to a system white background - with our light text color on
    top of that, the option labels were unreadable. */
