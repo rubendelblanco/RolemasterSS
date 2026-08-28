@@ -136,22 +136,22 @@
   <section class="sheet-body">
     <div class="tab record" data-group="primary" data-tab="Record">
       <div class="wc-stats-section">
-        <h2>{{ localize "rmss.pc_sheet_record.attributes" }}</h2>
+        <h2><i class="fa-solid fa-chart-simple" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.attributes" }}</h2>
         {{> "systems/rmss/templates/sheets/actors/parts/actor-stats.html" }}
       </div>
 
       {{!-- Row 1: quick-access actions - what actually gets clicked during play --}}
       <div class="wc-record-row wc-record-row-3">
         <div class="wc-record-card">
-          <h2>{{ localize "rmss.pc_sheet_record.favorite_skills" }}</h2>
+          <h2><i class="fa-solid fa-star" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.favorite_skills" }}</h2>
           {{> "systems/rmss/templates/sheets/actors/parts/actor-fav-skills.html" }}
         </div>
         <div class="wc-record-card">
-          <h2>{{ localize "rmss.pc_sheet_record.favorite_spells" }}</h2>
+          <h2><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.favorite_spells" }}</h2>
           {{> "systems/rmss/templates/sheets/actors/parts/actor-fav-spells.html" }}
         </div>
         <div class="wc-record-card">
-          <h2>{{ localize "rmss.pc_sheet_record.equipped_items" }}</h2>
+          <h2><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.equipped_items" }}</h2>
           {{> "systems/rmss/templates/sheets/actors/parts/actor-fav-items.html" }}
         </div>
       </div>
@@ -159,11 +159,11 @@
       {{!-- Row 2: combat vitals - checked whenever the character is attacked or resisting --}}
       <div class="wc-record-row">
         <div class="wc-record-card">
-          <h2>{{ localize "rmss.pc_sheet_record.armor_and_defense" }}</h2>
+          <h2><i class="fa-solid fa-shield" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.armor_and_defense" }}</h2>
           {{> "systems/rmss/templates/sheets/actors/parts/actor-armor-info.html" }}
         </div>
         <div class="wc-record-card">
-          <h2>{{ localize "rmss.pc_sheet_record.resistances" }}</h2>
+          <h2><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.resistances" }}</h2>
           {{> "systems/rmss/templates/sheets/actors/parts/actor-resistance.html" }}
         </div>
       </div>
@@ -171,11 +171,11 @@
       {{!-- Row 3: mechanical identity - reference data, set once and rarely revisited --}}
       <div class="wc-record-row">
         <div class="wc-record-card">
-          <h2>{{ localize "rmss.pc_sheet_record.identity" }}</h2>
+          <h2><i class="fa-solid fa-id-card" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.identity" }}</h2>
           {{> "systems/rmss/templates/sheets/actors/parts/actor-fixed-info.html" }}
         </div>
         <div class="wc-record-card">
-          <h2>{{ localize "rmss.pc_sheet_record.recovery" }}</h2>
+          <h2><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.recovery" }}</h2>
           {{> "systems/rmss/templates/sheets/actors/parts/actor-race-stat-fixed-info.html" }}
         </div>
       </div>
@@ -183,17 +183,17 @@
       {{!-- Row 4: roleplay flavor - least consulted during actual play, so it sits last --}}
       <div class="wc-record-row">
         <div class="wc-record-card">
-          <h2>{{ localize "rmss.pc_sheet_record.appearance_and_traits" }}</h2>
+          <h2><i class="fa-solid fa-user" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.appearance_and_traits" }}</h2>
           {{> "systems/rmss/templates/sheets/actors/parts/actor-role-traits.html" }}
         </div>
         <div class="wc-record-card">
-          <h2>{{ localize "rmss.pc_sheet_record.background" }}</h2>
+          <h2><i class="fa-solid fa-scroll" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.background" }}</h2>
           {{> "systems/rmss/templates/sheets/actors/parts/actor-background-info.html" }}
         </div>
       </div>
 
       <div class="wc-record-card">
-        <h2>{{ localize "rmss.pc_sheet_record.description" }}</h2>
+        <h2><i class="fa-solid fa-feather" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_record.description" }}</h2>
         <div class="description-editor-wrapper {{#unless system.description}}empty-description{{/unless}}">
           {{editor enrichedDescription target="system.description" button=true owner=true editable=true}}
         </div>

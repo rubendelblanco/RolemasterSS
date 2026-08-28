@@ -4550,6 +4550,7 @@ button.rmss-crit-reenable-local:hover {
   box-shadow: 0 8px 20px oklch(0 0 0 / 0.35), inset 0 1px 0 oklch(1 0 0 / 0.5);
 }
 .wardens-chrome .sheet-body h2 { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.06em; color: var(--wc-card-text-dim); border-bottom: 1px solid oklch(0.5 0.04 65); padding-bottom: 4px; }
+.wardens-chrome .sheet-body h2 i { color: oklch(0.55 0.13 45); margin-right: 3px; font-size: 0.9em; }
 .wardens-chrome .sheet-body a { color: oklch(0.42 0.1 45); }
 .wardens-chrome .sheet-body a:hover { color: oklch(0.32 0.1 45); }
 
