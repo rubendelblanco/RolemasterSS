@@ -4453,6 +4453,7 @@ button.rmss-crit-reenable-local:hover {
   color: oklch(0.2 0.03 60); cursor: pointer; padding: 0;
 }
 .wardens-chrome .wc-rest-btn:hover { background: var(--wc-accent); }
+.wardens-chrome .wc-rest-btn .wc-tab-icon { width: 13px; height: 13px; }
 
 .wardens-chrome .wc-weight-row { flex-direction: column; align-items: stretch; gap: 3px; margin-top: 6px; }
 .wardens-chrome .wc-weight-row .encumbrance-penalty-badge { color: oklch(0.65 0.16 30); margin-left: 6px; }
@@ -4524,6 +4525,7 @@ button.rmss-crit-reenable-local:hover {
   font-size: 11px; font-weight: 600; letter-spacing: 0.02em; color: var(--wc-text-dim);
   display: flex; align-items: center; gap: 5px; background: transparent; border-bottom: 2px solid transparent;
 }
+.wardens-chrome .sub-tabs .item .wc-tab-icon { width: 15px; height: 15px; stroke-width: 3; flex-shrink: 0; color: inherit; }
 .wardens-chrome .sub-tabs .item:hover { color: var(--wc-text); background: oklch(1 0 0 / 0.05); border-bottom-color: transparent; }
 .wardens-chrome .sub-tabs .item.active { color: var(--wc-accent); background: oklch(1 0 0 / 0.08); border-bottom-color: var(--wc-accent); }
 
@@ -4558,15 +4560,84 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .skills-table {
   border-collapse: collapse; width: 100%;
 }
+.wardens-chrome .skills-table th, .wardens-chrome .skills-table td { padding: 5px 4px; }
 .wardens-chrome .skills-table thead th {
   font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: oklch(0.42 0.1 45);
   text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); padding-bottom: 6px; text-align: center;
 }
 .wardens-chrome .skills-table .skill-row { border-bottom: 1px solid oklch(0.75 0.02 80); }
-.wardens-chrome .skills-table .skill-row:hover { background: oklch(0.85 0.02 80 / 0.5); }
-.wardens-chrome .skills-table .skill-name-cell a.item-roll { color: var(--wc-card-text); font-weight: 600; }
-.wardens-chrome .skills-table .list-item-icon { border-radius: 50%; border: 1px solid oklch(1 0 0 / 0.6); }
-.wardens-chrome .skills-table td { color: oklch(0.35 0.03 60); }
+.wardens-chrome .skills-table .skill-row:hover { background: oklch(0.78 0.13 75 / 0.16); }
+/* color: inherit - the designation color-coding (Occupational/Everyman/Restricted) is an
+   inline style on the <td> itself; hardcoding a color here would silently erase that signal. */
+.wardens-chrome .skills-table .skill-name-cell a.item-roll { color: inherit; font-weight: 600; }
+.wardens-chrome .skills-table .skill-name-cell a.item-roll:hover { color: oklch(0.42 0.1 45); }
+.wardens-chrome .skills-table .list-item-icon { border-radius: 50%; border: 1.5px solid oklch(1 0 0 / 0.6); box-shadow: 0 1px 3px oklch(0 0 0 / 0.25); }
+.wardens-chrome .skills-table td { color: oklch(0.35 0.03 60); font-size: 12px; }
+.wardens-chrome .skills-table td:nth-child(12) { font-family: 'Cinzel', serif; font-weight: 700; color: oklch(0.42 0.1 45); }
+.wardens-chrome .skills-table .skill-favorite i { color: oklch(0.55 0.03 65); font-size: 12px; }
+.wardens-chrome .skills-table .skill-favorite .fa-square-check { color: var(--wc-accent-strong); }
+.wardens-chrome .skills-table .skill-newrank i { color: oklch(0.6 0.03 60 / 0.55); font-size: 10px; }
+.wardens-chrome .skills-table .skill-newrank .fa-square-check { color: oklch(0.55 0.13 45); }
+.wardens-chrome .skills-table .item-edit i, .wardens-chrome .skills-table .item-delete i {
+  color: oklch(0.55 0.03 65); font-size: 11px; transition: color 0.15s ease;
+}
+.wardens-chrome .skills-table .item-edit:hover i, .wardens-chrome .skills-table .item-delete:hover i { color: var(--wc-accent-strong); }
+.wardens-chrome .skills-table .spell-info-icon { color: oklch(0.55 0.03 65); }
+
+/* ---- search bar (skills sub-tab and others reusing search-text.hbs) ---- */
+.wardens-chrome .search-bar { padding: 0; margin-bottom: 8px; }
+.wardens-chrome .search-bar input[type="text"] {
+  background: oklch(0.24 0.02 300); border: 1px solid oklch(0.4 0.04 300); border-radius: 999px;
+  color: var(--wc-text); font-size: 11px; padding: 6px 14px; box-shadow: none;
+}
+.wardens-chrome .search-bar input[type="text"]::placeholder { color: var(--wc-text-dim); font-style: italic; }
+.wardens-chrome .search-bar input[type="text"]:focus { border-color: var(--wc-accent); box-shadow: 0 0 0 2px oklch(0.78 0.13 75 / 0.25); }
+
+/* ---- equipment tables (actor-weapons/items/armor/herbs/transport.html - table.items is
+   shared by all four) ---- */
+.wardens-chrome table.weapons, .wardens-chrome table.items { border-collapse: collapse; width: 100%; }
+.wardens-chrome table.weapons th, .wardens-chrome table.items th,
+.wardens-chrome table.weapons td, .wardens-chrome table.items td { padding: 5px 4px; }
+.wardens-chrome table.weapons thead th, .wardens-chrome table.items thead th {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: oklch(0.42 0.1 45);
+  text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); padding-bottom: 6px;
+}
+.wardens-chrome table.weapons tbody tr, .wardens-chrome table.items tbody tr { border-bottom: 1px solid oklch(0.75 0.02 80); }
+.wardens-chrome table.weapons tbody tr:hover, .wardens-chrome table.items tbody tr:hover { background: oklch(0.78 0.13 75 / 0.16); }
+.wardens-chrome table.weapons td, .wardens-chrome table.items td { color: oklch(0.35 0.03 60); font-size: 12px; }
+.wardens-chrome table.weapons .list-item-icon, .wardens-chrome table.items .list-item-icon {
+  border-radius: 50%; border: 1.5px solid oklch(1 0 0 / 0.6); box-shadow: 0 1px 3px oklch(0 0 0 / 0.25);
+}
+.wardens-chrome table.weapons .rmss-weapon-name-cell, .wardens-chrome table.items td strong { color: var(--wc-card-text); font-weight: 600; }
+.wardens-chrome table.weapons .rmss-weapon-attack-icon, .wardens-chrome table.weapons .spell-info-icon,
+.wardens-chrome table.items .spell-info-icon { color: oklch(0.55 0.03 65); }
+.wardens-chrome table.weapons .equippable, .wardens-chrome table.weapons .worn-toggle,
+.wardens-chrome table.items .equippable, .wardens-chrome table.items .remove-from-container { color: oklch(0.55 0.03 65); }
+.wardens-chrome table.weapons .equippable .fa-hand-fist,
+.wardens-chrome table.weapons .worn-toggle .fa-square-check,
+.wardens-chrome table.items .equippable .fa-square-check { color: var(--wc-accent-strong); }
+.wardens-chrome table.weapons .item-controls a, .wardens-chrome table.items .item-controls a { color: oklch(0.55 0.03 65); transition: color 0.15s ease; }
+.wardens-chrome table.weapons .item-controls a:hover, .wardens-chrome table.items .item-controls a:hover { color: var(--wc-accent-strong); }
+.wardens-chrome table.weapons th a.item-create, .wardens-chrome table.items th a.item-create {
+  color: var(--wc-card-text-dim); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
+}
+.wardens-chrome table.weapons th a.item-create:hover, .wardens-chrome table.items th a.item-create:hover { color: oklch(0.42 0.1 45); }
+/* container rows - kept as a distinct tint (was a flat blue) so "this is a container" still
+   reads at a glance, just in the theme's own bronze rather than a clashing primary blue. */
+.wardens-chrome tr.container-row { background-color: oklch(0.55 0.13 45 / 0.12); }
+.wardens-chrome tr.container-row.over-capacity { background-color: oklch(0.55 0.19 25 / 0.18); }
+.wardens-chrome .container-capacity-badge { color: oklch(0.5 0.05 65); }
+.wardens-chrome button.container-collapse-toggle:hover { color: oklch(0.42 0.1 45); }
+
+/* ---- wealth sub-tab (actor-money.html) ---- */
+.wardens-chrome .money-give {
+  border-color: var(--wc-border); color: var(--wc-card-text-dim); background: oklch(1 0 0 / 0.3);
+}
+.wardens-chrome .money-give:hover { color: oklch(0.42 0.1 45); border-color: oklch(0.5 0.04 65); filter: none; }
+.wardens-chrome .money-field label { color: var(--wc-card-text-dim); }
+.wardens-chrome .money-field input {
+  background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px; color: var(--wc-card-text);
+}
 
 /* ---- default RMSS window chrome for this sheet ---- */
 .rmss .window-content:has(.wardens-chrome) {

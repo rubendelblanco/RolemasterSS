@@ -88,7 +88,7 @@
           </div>
           <div class="long-rest-row wc-rest-btn-wrap">
             <button type="button" class="long-rest-btn wc-rest-btn" data-action="long-rest" title="{{ localize 'rmss.long_rest.title' }}">
-              <i class="fa-solid fa-bed"></i>
+              <svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/><path d="M18.5 2.5l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></svg>
             </button>
           </div>
         </div>
@@ -170,9 +170,9 @@
 
     <div class="tab skills" data-group="primary" data-tab="Skills">
       <nav class="sub-tabs tabs" data-group="skills-tabs">
-        <a class="item" data-tab="skills-skills"><i class="fa-regular fa-gear"></i> {{ localize "rmss.skills_tabs.skills" }}</a>
-        <a class="item" data-tab="spells-skills"><i class="fad fa-scroll"></i> {{ localize "rmss.skills_tabs.spells" }}</a>
-        <a class="item" data-tab="languages-skills"><i class="fa-solid fa-comments"></i>  {{ localize "rmss.skills_tabs.languages" }}</a>
+        <a class="item" data-tab="skills-skills"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9M4.6 9a1.7 1.7 0 00-.3-1.9"/></svg> {{ localize "rmss.skills_tabs.skills" }}</a>
+        <a class="item" data-tab="spells-skills"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 17.5v-13z"/></svg> {{ localize "rmss.skills_tabs.spells" }}</a>
+        <a class="item" data-tab="languages-skills"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.5 8.5 0 01-11.4 8L3 21l1.5-6.6A8.5 8.5 0 1121 11.5z"/></svg> {{ localize "rmss.skills_tabs.languages" }}</a>
       </nav>
       {{> "systems/rmss/templates/sheets/actors/parts/search-text.hbs"
       id="mod-search-form-actor-skills"
@@ -196,12 +196,12 @@
 
     <div class="tab equipment" data-group="primary" data-tab="Equipment">
       <nav class="sub-tabs tabs" data-group="equipment-tabs">
-        <a class="item" data-tab="equipment-weapons"><i class="fa-solid fa-sword"></i> {{ localize "rmss.pc_sheet_tabs.weapons" }}</a>
-        <a class="item" data-tab="equipment-items"><i class="fa-solid fa-box"></i> {{ localize "rmss.pc_sheet_tabs.items" }}</a>
-        <a class="item" data-tab="equipment-armor"><i class="fa-solid fa-shield"></i> {{ localize "rmss.pc_sheet_tabs.armor" }}</a>
-        <a class="item" data-tab="equipment-herbs"><i class="fa-solid fa-flask"></i> {{ localize "rmss.pc_sheet_tabs.herbs" }}</a>
-        <a class="item" data-tab="equipment-transports"><i class="fa-solid fa-horse"></i> {{ localize "rmss.pc_sheet_tabs.transports" }}</a>
-        <a class="item" data-tab="equipment-wealth"><i class="fa-solid fa-coins"></i> {{ localize "rmss.pc_sheet_tabs.wealth" }}</a>
+        <a class="item" data-tab="equipment-weapons"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 5L8 16"/><path d="M5 19l3-3"/><path d="M6 12l6 6"/></svg> {{ localize "rmss.pc_sheet_tabs.weapons" }}</a>
+        <a class="item" data-tab="equipment-items"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8V6a6 6 0 0112 0v2"/><rect x="4" y="8" width="16" height="12" rx="2"/></svg> {{ localize "rmss.pc_sheet_tabs.items" }}</a>
+        <a class="item" data-tab="equipment-armor"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg> {{ localize "rmss.pc_sheet_tabs.armor" }}</a>
+        <a class="item" data-tab="equipment-herbs"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20c0-8 5-14 14-15-1 9-7 14-15 15z"/><path d="M8 17c3-3 6-6 9-11"/></svg> {{ localize "rmss.pc_sheet_tabs.herbs" }}</a>
+        <a class="item" data-tab="equipment-transports"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="6" cy="12" rx="2.5" ry="5"/><ellipse cx="18" cy="12" rx="2.5" ry="5"/><path d="M9 12h6"/></svg> {{ localize "rmss.pc_sheet_tabs.transports" }}</a>
+        <a class="item" data-tab="equipment-wealth"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="9" r="5"/><circle cx="15" cy="15" r="5"/></svg> {{ localize "rmss.pc_sheet_tabs.wealth" }}</a>
       </nav>
       <section class="sub-tab-content">
         <div class="tab" data-group="equipment-tabs" data-tab="equipment-weapons">
