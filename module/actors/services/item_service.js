@@ -379,11 +379,18 @@ export default class ItemService {
             const bulletIndex = localized.indexOf("•");
             return bulletIndex === -1 ? localized.trim() : localized.slice(0, bulletIndex).trim();
         };
+        // Keyed by slug primarily - that's what _classifySkill below actually relies on to
+        // resolve a skill's category (system.category, the item id, isn't reliably kept in
+        // sync on every skill), so slug is the field guaranteed to match. Kept a fallback by
+        // id too in case a skill only has the id set.
+        const categoryGroupBySlug = new Map(skillcat.map(c => [c.system.slug, categoryGroupOf(c)]));
         const categoryGroupById = new Map(skillcat.map(c => [c.id, categoryGroupOf(c)]));
         const skillCategoryGroups = [...new Set(skillcat.map(c => categoryGroupOf(c)))]
             .sort((a, b) => a.localeCompare(b, game.i18n.lang));
         for (const skill of [...playerskill, ...spellskill, ...languageskill]) {
-            skill.categoryGroup = categoryGroupById.get(skill.system.category) || "";
+            skill.categoryGroup = categoryGroupBySlug.get(skill.system.categorySlug)
+                ?? categoryGroupById.get(skill.system.category)
+                ?? "";
         }
 
         // Map spells to lists (filter by skill rank: only show spells up to level = skill ranks)
