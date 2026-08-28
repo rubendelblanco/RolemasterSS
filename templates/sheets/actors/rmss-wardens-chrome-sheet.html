@@ -135,6 +135,10 @@
   <!-- Body Section-->
   <section class="sheet-body">
     <div class="tab record" data-group="primary" data-tab="Record">
+      <div class="wc-stats-section">
+        <h2>{{ localize "rmss.pc_sheet_record.attributes" }}</h2>
+        {{> "systems/rmss/templates/sheets/actors/parts/actor-stats.html" }}
+      </div>
       <div class="container">
         <div class="fixed-info-container">
           {{> "systems/rmss/templates/sheets/actors/parts/actor-fixed-info.html" }}
@@ -146,8 +150,6 @@
         </div>
 
         <div class="stat-container">
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-stats.html" }}
-
           <div class="favorite-container">
             <h2>{{ localize "rmss.pc_sheet_record.favorite_skills" }}</h2>
             {{> "systems/rmss/templates/sheets/actors/parts/actor-fav-skills.html" }}

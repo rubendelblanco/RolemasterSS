@@ -103,14 +103,23 @@
         "agility": "Agilidad",
         "agility_short": "Ag",
         "constitution": "Constitución",
+        "constitution_short": "Co",
         "memory": "Memoria",
+        "memory_short": "Me",
         "reasoning": "Razonamiento",
+        "reasoning_short": "Rz",
         "self_discipline": "Auto disciplina",
+        "self_discipline_short": "AD",
         "empathy": "Empatía",
+        "empathy_short": "Em",
         "intuition": "Intuición",
+        "intuition_short": "In",
         "presence": "Presencia",
+        "presence_short": "Pr",
         "quickness": "Rapidez",
+        "quickness_short": "Ra",
         "strength": "Fuerza",
+        "strength_short": "Fu",
         "stat_total": "Total"
       }
     },
@@ -118,6 +127,7 @@
       "import_skillcat": "Importar"
     },
     "pc_sheet_record": {
+      "attributes": "Atributos",
       "favorite_skills": "Habilidades favoritas",
       "favorite_spells": "Hechizos favoritos",
       "equipped_items": "Objetos equipados",

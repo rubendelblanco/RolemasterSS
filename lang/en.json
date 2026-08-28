@@ -103,14 +103,23 @@
                 "agility": "Agility",
                 "agility_short": "Ag",
                 "constitution": "Constitution",
+                "constitution_short": "Co",
                 "memory": "Memory",
+                "memory_short": "Me",
                 "reasoning": "Reasoning",
+                "reasoning_short": "Re",
                 "self_discipline": "Self Discipline",
+                "self_discipline_short": "SD",
                 "empathy": "Empathy",
+                "empathy_short": "Em",
                 "intuition": "Intuition",
+                "intuition_short": "In",
                 "presence": "Presence",
+                "presence_short": "Pr",
                 "quickness": "Quickness",
+                "quickness_short": "Qu",
                 "strength": "Strength",
+                "strength_short": "St",
                 "stat_total": "Total"
             }
         },
@@ -118,6 +127,7 @@
             "import_skillcat": "Import"
         },
         "pc_sheet_record": {
+            "attributes": "Attributes",
             "favorite_skills": "Favorite Skills",
             "favorite_spells": "Favorite Spells",
             "equipped_items": "Equipped Items",
