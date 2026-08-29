@@ -5050,6 +5050,44 @@ button.rmss-crit-reenable-local:hover {
 }
 .wardens-chrome .list-item-icon-wrap:hover .list-item-icon { box-shadow: 0 0 14px oklch(0.8 0.15 200 / 0.55), 0 0 10px oklch(0 0 0 / 0.4); }
 
+/* ---- NPC sheet (rmss-npc-wardens-chrome-sheet.hbs) ----
+   Most of this tab set reuses the exact same partials as the player sheet (weapons/items/
+   armor/herbs/money/spells/active-effects), so it's already themed via the class-based rules
+   above with zero extra work - only the NPC-specific bits need their own styling here. */
+.wardens-chrome .skills-grid-container-npc {
+  background: linear-gradient(160deg, oklch(1 0 0 / 0.5), oklch(1 0 0 / 0.22));
+  border: 1px solid oklch(0.55 0.04 65 / 0.35); border-radius: 10px; padding: 8px 12px; margin-bottom: 14px;
+}
+.wardens-chrome .skills-grid-container-npc .skills-grid-heading {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: #ffffff;
+  text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); background-image: none; padding-bottom: 6px;
+}
+.wardens-chrome .skills-grid-container-npc > div { border-bottom: 1px solid oklch(0.75 0.02 80); color: oklch(0.35 0.03 60); font-size: 11.5px; }
+.wardens-chrome .skills-name-left-align { text-align: left; }
+.wardens-chrome .skills-grid-container-npc .item-roll { color: var(--wc-card-text); font-weight: 600; }
+.wardens-chrome .skills-grid-container-npc .item-roll:hover { color: oklch(0.42 0.1 45); }
+.wardens-chrome .skills-grid-container-npc [contenteditable="true"] {
+  background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px;
+}
+.wardens-chrome .skills-grid-container-npc .item-delete { color: oklch(0.55 0.03 65); transition: color 0.15s ease; }
+.wardens-chrome .skills-grid-container-npc .item-delete:hover { color: var(--wc-accent-strong); }
+
+.wardens-chrome .rmss-creature-tags .rmss-tag-chip {
+  background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); color: var(--wc-card-text);
+}
+.wardens-chrome .rmss-creature-tag-input {
+  background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px; color: var(--wc-card-text);
+}
+
+.wardens-chrome .critical-codes { border: none; padding: 0; }
+.wardens-chrome .critical-codes h3 {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.02em; color: var(--wc-card-text-dim);
+  text-transform: uppercase; font-weight: 600;
+}
+.wardens-chrome .critical-codes select {
+  background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px; color: var(--wc-card-text);
+}
+
 /* ---- default RMSS window chrome for this sheet ---- */
 .rmss .window-content:has(.wardens-chrome) {
   background: oklch(0.22 0.035 315);

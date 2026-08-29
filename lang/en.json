@@ -333,6 +333,7 @@
             "player_characrer": "RMSS Player Character",
             "player_character_wardens_chrome": "RMSS Player Character (Warden's Chrome)",
             "npc": "RMSS NPC",
+            "npc_wardens_chrome": "RMSS NPC (Warden's Chrome)",
             "creature": "RMSS Creature",
             "merchant": "RMSS Merchant",
             "loot": "RMSS Loot"
