@@ -5,7 +5,7 @@ import CastingOptionsService from "./casting_options_service.js";
 import StaticManeuverService from "./static_maneuver_service.js";
 import SpellFailureService from "./spell_failure_service.js";
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
-import { sendExpMessage, whisperIdsForNpcRollPrivacy, dice3dSynchronizeForNpcRoll } from "../../chat/chatMessages.js";
+import { sendExpMessage, whisperIdsForNpcRollPrivacy, dice3dSynchronizeForNpcRoll, chatMessageOtherStyle } from "../../chat/chatMessages.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 import Utils from "../../utils.js";
 import { getMatchingSpellAdder, consumeSpellAdderUse, validatePpForSpellCastAfterDialog } from "../../actors/utils/power_points_util.js";
@@ -549,7 +549,7 @@ export default class ForceSpellService {
         await ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ actor }),
             content: content,
-            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+            ...chatMessageOtherStyle(),
             ...(whisper ? { whisper } : {})
         });
     }

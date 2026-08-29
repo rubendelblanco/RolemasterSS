@@ -1,5 +1,7 @@
 // Our Item Sheet extends the default
 import RankCalculator from "../../core/skills/rmss_rank_calculator.js";
+import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
+import { bindMacroDropZone } from "../items/macro_drop_util.js";
 
 export default class RMSSSkillSheet extends ItemSheet {
 
@@ -44,6 +46,8 @@ export default class RMSSSkillSheet extends ItemSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+
+    bindMacroDropZone(this, html);
 
     const actor = this.item.actor;
 // If the skill is not owned by an actor (compendium, etc.), stop here
@@ -180,5 +184,25 @@ export default class RMSSSkillSheet extends ItemSheet {
     });
 
     console.log(`rmss | rmss_skill_sheet | Updated category bonus, development cost and category for ${this.object.name}`);
+  }
+
+  /** @override */
+  _getHeaderButtons() {
+    let buttons = super._getHeaderButtons();
+
+    if (this.isEditable) {
+      buttons.unshift({
+        label: "Macro",
+        class: "item-macro-button",
+        icon: "fas fa-code",
+        onclick: ev => this._onOpenMacroEditor(ev)
+      });
+    }
+
+    return buttons;
+  }
+
+  _onOpenMacroEditor(event) {
+    new ItemMacroEditor(this.item).render(true);
   }
 }

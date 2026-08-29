@@ -1,5 +1,6 @@
 import ResistanceRollService from "./resistance_roll_service.js";
 import { rmss } from "../../config.js";
+import { chatMessageOtherStyle } from "../../chat/chatMessages.js";
 
 /** Keys of Actor#system.resistance_rolls (character sheet only — npc/creature don't have this template). */
 const RESISTANCE_ROLL_KEYS = [
@@ -240,7 +241,7 @@ export default class EffectsPopupService {
         await ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ token: token.document }),
             content: content,
-            type: CONST.CHAT_MESSAGE_TYPES.OTHER
+            ...chatMessageOtherStyle()
         });
 
         return { rrTarget };
@@ -350,7 +351,7 @@ export default class EffectsPopupService {
         await ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ token: token.document }),
             content: content,
-            type: CONST.CHAT_MESSAGE_TYPES.OTHER
+            ...chatMessageOtherStyle()
         });
     }
 }

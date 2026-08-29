@@ -5,7 +5,7 @@
 import ManeuverPenaltiesService from "../maneuver_penalties_service.js";
 import SkillManeuverService from "./skill_maneuver_service.js";
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
-import { sendExpMessage, whisperIdsForNpcRollPrivacy, dice3dSynchronizeForNpcRoll } from "../../chat/chatMessages.js";
+import { sendExpMessage, whisperIdsForNpcRollPrivacy, dice3dSynchronizeForNpcRoll, chatMessageOtherStyle } from "../../chat/chatMessages.js";
 
 /** Difficulty modifiers */
 const DIFFICULTY = {
@@ -344,14 +344,52 @@ export default class ManeuverService {
             </div>
         `;
 
+        // Run the skill's own attached macro (if any), same mechanism spells/weapons use.
+        // Deliberately NOT skill.use() - for skills that also fires "rmssItemUsed", which
+        // combat/hooks.js bridges back into rollManeuver (that's what makes a skill dragged
+        // to the hotbar re-open this same dialog); calling the full use() here would recurse.
+        await skill._executeItemMacro();
+        this._playSkillUseVfx(actor, skill);
+
         const whisper = whisperIdsForNpcRollPrivacy(actor, publicRollToPlayers);
         await ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ actor }),
             content,
-            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+            ...chatMessageOtherStyle(),
             ...(whisper ? { whisper } : {})
         });
 
         return true;
+    }
+
+    /**
+     * Float the skill's own icon up from its actor's token and fade it out - generic
+     * "what is this character doing" feedback for every skill roll, no per-skill setup.
+     * No-op if the Sequencer module isn't active or the actor has no token on the scene.
+     * @private
+     */
+    static _playSkillUseVfx(actor, skill) {
+        if (!game.modules.get("sequencer")?.active) return;
+        const token = actor?.getActiveTokens()?.[0];
+        if (!token || !skill.img) return;
+
+        try {
+            const floatDistance = canvas.grid.size * 1.5;
+            const targetY = token.center.y - floatDistance;
+
+            new Sequence()
+                .effect()
+                    .file(skill.img)
+                    .atLocation(token)
+                    .scaleToObject(0.8)
+                    .shape("circle", { radius: 0.5, gridUnits: true, isMask: true })
+                    .moveTowards({ x: token.center.x, y: targetY }, { rotate: false, ease: "easeOutSine" })
+                    .duration(2000)
+                    .fadeIn(300)
+                    .fadeOut(800)
+                    .play();
+        } catch (err) {
+            console.error("[RMSS] Skill use VFX error:", err);
+        }
     }
 }

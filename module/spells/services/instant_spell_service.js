@@ -1,5 +1,5 @@
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
-import { sendExpMessage, isNpcOrCreatureActor, whisperIdsForNpcRollPrivacy } from "../../chat/chatMessages.js";
+import { sendExpMessage, isNpcOrCreatureActor, whisperIdsForNpcRollPrivacy, chatMessageOtherStyle } from "../../chat/chatMessages.js";
 import { triggerAutoAnimations, getActorToken } from "../../autoanimations_integration.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 import { getMatchingSpellAdder, consumeSpellAdderUse } from "../../actors/utils/power_points_util.js";
@@ -201,7 +201,7 @@ export default class InstantSpellService {
         await ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ actor }),
             content,
-            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+            ...chatMessageOtherStyle(),
             ...(whisper ? { whisper } : {})
         });
     }

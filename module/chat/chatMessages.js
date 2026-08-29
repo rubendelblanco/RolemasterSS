@@ -37,6 +37,18 @@ export function withPublicRollMode(messageData) {
     return data;
 }
 
+/**
+ * Cross-version-safe {style|type} field for a "plain" ChatMessage. Foundry v13 removed
+ * CONST.CHAT_MESSAGE_TYPES entirely in favor of CONST.CHAT_MESSAGE_STYLES (the ChatMessage
+ * field itself was renamed type -> style). Spread the result into ChatMessage.create() data.
+ * @returns {{style: number}|{type: number}}
+ */
+export function chatMessageOtherStyle() {
+    return CONST.CHAT_MESSAGE_STYLES
+        ? { style: CONST.CHAT_MESSAGE_STYLES.OTHER }
+        : { type: CONST.CHAT_MESSAGE_TYPES.OTHER };
+}
+
 //Called when a experience info message is sended
 export async function sendExpMessage(actor, expBreakdown, expAmount) {
     const templatePath = "systems/rmss/templates/chat/exp-message.hbs";
