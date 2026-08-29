@@ -2,6 +2,7 @@ import { socket } from "../../../rmss.js";
 import { attachItemMagicActionFlags } from "../../sheets/items/cast_enchantment_from_item.js";
 import { ContainerHandler } from "../utils/container_handler.js";
 import { attachIdentityDisplayFlags } from "../utils/item_identity_util.js";
+import RankCalculator from "../../core/skills/rmss_rank_calculator.js";
 
 /**
  * Service to handle skill-related operations on items.
@@ -387,10 +388,19 @@ export default class ItemService {
         const categoryGroupById = new Map(skillcat.map(c => [c.id, categoryGroupOf(c)]));
         const skillCategoryGroups = [...new Set(skillcat.map(c => categoryGroupOf(c)))]
             .sort((a, b) => a.localeCompare(b, game.i18n.lang));
+        // Max ranks buyable this level-up session: one per tier in the (effective)
+        // development cost string, capped at 3 (e.g. a single-number cost like "3"
+        // only allows 1 rank, "3/5" allows 2, "3/5/7" allows 3).
         for (const skill of [...playerskill, ...spellskill, ...languageskill]) {
             skill.categoryGroup = categoryGroupBySlug.get(skill.system.categorySlug)
                 ?? categoryGroupById.get(skill.system.category)
                 ?? "";
+            const costString = RankCalculator.getEffectiveDevelopmentCost(actor, skill);
+            skill.newRankMax = Math.min(3, String(costString).split("/").length);
+        }
+        for (const category of skillcat) {
+            const costString = RankCalculator.getEffectiveDevelopmentCost(actor, category);
+            category.newRankMax = Math.min(3, String(costString).split("/").length);
         }
 
         // Map spells to lists (filter by skill rank: only show spells up to level = skill ranks)

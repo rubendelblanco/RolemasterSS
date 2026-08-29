@@ -44,57 +44,58 @@ export default class SkillCategoryService {
     }
 
     /**
-     * Handle a click on a skill category's "new rank" button.
-     *
-     * This method manages rank progression for skill categories, resolving the
-     * category's own progression formula (standard/limited/special/combined) from
-     * config. Categories set to "none" get no self bonus. Updates the new rank
-     * value and applies bonuses using the RankCalculator.
+     * Handle a click on a skill category's "new rank" button: buy the next
+     * rank for this level-up session, if development points allow and the
+     * category's development cost still has an unbought tier (max 3 ranks
+     * per level). Resolves the category's own progression formula
+     * (standard/limited/special/combined) from config; categories set to
+     * "none" get no self bonus but still track new_ranks/spend points.
      *
      * @param {Actor} actor - The Foundry actor.
      * @param {Item} item - The skill category item clicked.
-     * @param {string} clickedValue - The clicked value ("0", "1", "2", "3").
-     * @returns {Promise<void>} Resolves when updates are complete.
+     * @returns {Promise<"bought"|false>}
      */
-    static async handleSkillCategoryRankClick(actor, item, clickedValue) {
+    static async handleSkillCategoryRankClick(actor, item) {
         const progressionValue = this._resolveOwnProgression(item.system.progression);
         const current = Number(item.system.new_ranks?.value || 0);
         const costString = RankCalculator.getEffectiveDevelopmentCost(actor, item);
-        const available = String(costString).split("/").length;
+        const available = Math.min(3, String(costString).split("/").length);
 
-        switch (clickedValue) {
-            case "0":
-            case "1":
-            case "2": {
-                const next = current + 1;
+        if (current >= available) return false;
 
-                const pay = await RankCalculator.payDevelopmentCost(actor, item, next);
-                if (pay === false) return;
+        const next = current + 1;
+        const pay = await RankCalculator.payDevelopmentCost(actor, item, next);
+        if (pay === false) return false;
 
-                if (pay === "refunded") {
-                    const toSubtract = Math.min(current, available);
-                    await item.update({ "system.new_ranks.value": 0 });
-                    if (progressionValue && toSubtract) {
-                        await RankCalculator.applyRanksAndBonus(item, -toSubtract, progressionValue);
-                    }
-                    return;
-                }
-
-                await item.update({ "system.new_ranks.value": next });
-                if (progressionValue) {
-                    await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
-                }
-                return;
-            }
-
-            case "3": {
-                const toSubtract = Math.min(current, available);
-                await item.update({ "system.new_ranks.value": 0 });
-                if (progressionValue && toSubtract) {
-                    await RankCalculator.applyRanksAndBonus(item, -toSubtract, progressionValue);
-                }
-                return;
-            }
+        await item.update({ "system.new_ranks.value": next });
+        if (progressionValue) {
+            await RankCalculator.applyRanksAndBonus(item, +1, progressionValue);
         }
+        return "bought";
+    }
+
+    /**
+     * Handle a right-click on a skill category's "new rank" button: undo the
+     * last rank bought this level-up session (one step), refunding its cost.
+     *
+     * @param {Actor} actor - The Foundry actor.
+     * @param {Item} item - The skill category item.
+     * @returns {Promise<boolean>} true if a rank was undone.
+     */
+    static async handleSkillCategoryRankUndo(actor, item) {
+        const current = Number(item.system.new_ranks?.value || 0);
+        if (current <= 0) return false;
+
+        const progressionValue = this._resolveOwnProgression(item.system.progression);
+        const costString = RankCalculator.getEffectiveDevelopmentCost(actor, item);
+        const devCostArr = String(costString).split("/").map(Number);
+        const refund = devCostArr[current - 1] || 0;
+
+        await actor.update({ "system.levelUp.developmentPoints": actor.system.levelUp.developmentPoints + refund });
+        await item.update({ "system.new_ranks.value": current - 1 });
+        if (progressionValue) {
+            await RankCalculator.applyRanksAndBonus(item, -1, progressionValue);
+        }
+        return true;
     }
 }

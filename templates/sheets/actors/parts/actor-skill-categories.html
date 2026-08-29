@@ -44,12 +44,11 @@ placeholder="Search skill category..."
                 {{#if (eq skill_category.system.progression "none")}}
                 na
                 {{else}}
-                {{#switch skill_category.system.new_ranks.value}}
-                    {{#case 0}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}" value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
-                    {{#case 1}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}" value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
-                    {{#case 2}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}" value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
-                    {{#case 3}} <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}" value="{{skill_category.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}}
-                {{/switch}}
+                <a class="skillcategory-newrank" data-item-id="{{skill_category._id}}" value="{{skill_category.system.new_ranks.value}}">
+                    {{#times skill_category.newRankMax}}
+                    {{#if (lt this ../system.new_ranks.value)}}<i class="fa-regular fa-square-check"></i>{{else}}<i class="fa-regular fa-square"></i>{{/if}}
+                    {{/times}}
+                </a>
                 {{/if}}
             </td>
             <td data-search="{{localize (concat 'rmss.skill_categories_names.' skill_category.system.slug)}}">{{skill_category.system.rank_bonus}}</td>

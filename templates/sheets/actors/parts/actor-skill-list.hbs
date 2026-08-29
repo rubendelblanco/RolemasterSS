@@ -36,12 +36,11 @@
             <td data-search="{{skill.name}}">{{skill.system.development_cost}}</td>
             <td data-search="{{skill.name}}">{{skill.system.ranks}}</td>
             <td data-search="{{skill.name}}">
-                {{#switch skill.system.new_ranks.value}}
-                    {{#case 0}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}" value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
-                    {{#case 1}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}" value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
-                    {{#case 2}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}" value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
-                    {{#case 3}} <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}" value="{{skill.system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}}
-                {{/switch}}
+                <a class="skill-newrank" data-category-id="{{skill.system.category}}" data-item-id="{{skill._id}}" value="{{skill.system.new_ranks.value}}">
+                    {{#times skill.newRankMax}}
+                    {{#if (lt this ../system.new_ranks.value)}}<i class="fa-regular fa-square-check"></i>{{else}}<i class="fa-regular fa-square"></i>{{/if}}
+                    {{/times}}
+                </a>
             </td>
             <td data-search="{{skill.name}}">{{skill.system.rank_bonus}}</td>
             <td data-search="{{skill.name}}">{{skill.system.category_bonus}}</td>

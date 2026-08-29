@@ -364,7 +364,18 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
   _registerSkillListeners(html) {
     html.find(".skill-newrank").click(ev => this._onSkillRankClick(ev));
+    html.find(".skill-newrank").on("contextmenu", ev => this._onSkillRankRightClick(ev));
     html.find(".skillcategory-newrank").click(ev => this._onSkillCategoryRankClick(ev));
+    html.find(".skillcategory-newrank").on("contextmenu", ev => this._onSkillCategoryRankRightClick(ev));
+  }
+
+  _playRankSound(direction) {
+    const src = direction === "up"
+      ? "systems/rmss/assets/sounds/range_up.mp3"
+      : "systems/rmss/assets/sounds/range_down.mp3";
+    foundry.audio.AudioHelper.play({ src, volume: 0.8, loop: false }).catch(err => {
+      console.error("Sound error:", err);
+    });
   }
 
   _registerWeaponPreferenceListener(html) {
@@ -547,9 +558,20 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
     const item = this.actor.items.get(ev.currentTarget.dataset.itemId);
     const category = this.actor.items.get(ev.currentTarget.dataset.categoryId);
-    const clickedValue = ev.currentTarget.getAttribute("value");
 
-    await SkillService.handleSkillRankClick(this.actor, item, category, clickedValue);
+    const result = await SkillService.handleSkillRankClick(this.actor, item, category);
+    if (result === "bought") this._playRankSound("up");
+  }
+
+  async _onSkillRankRightClick(ev) {
+    ev.preventDefault();
+    if (!this.actor.system.levelUp.isLevelingUp) return;
+
+    const item = this.actor.items.get(ev.currentTarget.dataset.itemId);
+    const category = this.actor.items.get(ev.currentTarget.dataset.categoryId);
+
+    const undone = await SkillService.handleSkillRankUndo(this.actor, item, category);
+    if (undone) this._playRankSound("down");
   }
 
   async _onSkillCategoryRankClick(ev) {
@@ -557,8 +579,18 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
     const itemId = ev.currentTarget.dataset.itemId;
     const item = this.actor.items.get(itemId);
-    const clickedValue = ev.currentTarget.getAttribute("value");
-    await SkillCategoryService.handleSkillCategoryRankClick(this.actor, item, clickedValue);
+    const result = await SkillCategoryService.handleSkillCategoryRankClick(this.actor, item);
+    if (result === "bought") this._playRankSound("up");
+  }
+
+  async _onSkillCategoryRankRightClick(ev) {
+    ev.preventDefault();
+    if (!this.actor.system.levelUp.isLevelingUp) return;
+
+    const itemId = ev.currentTarget.dataset.itemId;
+    const item = this.actor.items.get(itemId);
+    const undone = await SkillCategoryService.handleSkillCategoryRankUndo(this.actor, item);
+    if (undone) this._playRankSound("down");
   }
 
   async _onItemFavoriteClick(ev) {
