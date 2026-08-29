@@ -349,7 +349,7 @@ export default class ManeuverService {
         // combat/hooks.js bridges back into rollManeuver (that's what makes a skill dragged
         // to the hotbar re-open this same dialog); calling the full use() here would recurse.
         await skill._executeItemMacro();
-        this._playSkillUseVfx(actor, skill);
+        this._playSkillUseVfx(actor, skill, maneuverResult);
 
         const whisper = whisperIdsForNpcRollPrivacy(actor, publicRollToPlayers);
         await ChatMessage.create({
@@ -363,12 +363,37 @@ export default class ManeuverService {
     }
 
     /**
-     * Float the skill's own icon up from its actor's token and fade it out - generic
-     * "what is this character doing" feedback for every skill roll, no per-skill setup.
-     * No-op if the Sequencer module isn't active or the actor has no token on the scene.
+     * Green/yellow/red/purple for success/partial/failure/unusual event, matching the exact
+     * colors the maneuver result already uses in the chat card (rmss.css .maneuver-result.result-*).
+     * Null only when there's no result at all (e.g. table failed to load).
      * @private
      */
-    static _playSkillUseVfx(actor, skill) {
+    static _resultBorderColor(maneuverResult) {
+        switch (SkillManeuverService.getResultClass(maneuverResult?.code)) {
+            case "result-success":
+            case "result-critical-success":
+                return 0x228b22;
+            case "result-partial":
+                return 0xcc9900;
+            case "result-failure":
+            case "result-critical-failure":
+                return 0xcc0000;
+            case "result-unusual":
+                return 0x8b008b;
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * Float the skill's own icon up from its actor's token and fade it out - generic
+     * "what is this character doing" feedback for every skill roll, no per-skill setup.
+     * Rimmed in green/yellow/red for success/partial/failure so the outcome reads at a
+     * glance on the map. No-op if the Sequencer module isn't active or the actor has no
+     * token on the scene.
+     * @private
+     */
+    static _playSkillUseVfx(actor, skill, maneuverResult) {
         if (!game.modules.get("sequencer")?.active) return;
         const token = actor?.getActiveTokens()?.[0];
         if (!token || !skill.img) return;
@@ -376,8 +401,9 @@ export default class ManeuverService {
         try {
             const floatDistance = canvas.grid.size * 1.5;
             const targetY = token.center.y - floatDistance;
+            const borderColor = this._resultBorderColor(maneuverResult);
 
-            new Sequence()
+            const effect = new Sequence()
                 .effect()
                     .file(skill.img)
                     .atLocation(token)
@@ -387,7 +413,13 @@ export default class ManeuverService {
                     .duration(2000)
                     .fadeIn(300)
                     .fadeOut(800)
-                    .play();
+                    .opacity(0.8);
+
+            if (borderColor !== null) {
+                effect.filter("Glow", { color: borderColor, distance: 6, outerStrength: 6, innerStrength: 0, quality: 0.9 });
+            }
+
+            effect.play();
         } catch (err) {
             console.error("[RMSS] Skill use VFX error:", err);
         }
