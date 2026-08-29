@@ -413,10 +413,14 @@ export default class ManeuverService {
                     .duration(2000)
                     .fadeIn(300)
                     .fadeOut(800)
-                    .opacity(0.8);
+                    .opacity(1.0);
 
             if (borderColor !== null) {
-                effect.filter("Glow", { color: borderColor, distance: 6, outerStrength: 6, innerStrength: 0, quality: 0.9 });
+                // Explicit stroked ring (not isMask) traced along the same circle used to crop
+                // the icon above - reads as a solid frame regardless of whether the icon itself
+                // has transparency, unlike a Glow filter (which traces alpha edges and barely
+                // shows on opaque icons).
+                effect.shape("circle", { radius: 0.5, gridUnits: true, lineColor: borderColor, lineSize: 6, fillAlpha: 0 });
             }
 
             effect.play();
