@@ -89,11 +89,6 @@ export default class RMSSSkillSheet extends ItemSheet {
       await RankCalculator.applyAbsoluteRanksAndBonus(this.item, total, progression);
     })
 
-    html.find('select[name="system.categorySlug"]').on("change", async ev => {
-      const newSlug = ev.target.value;
-      await this.prepareSelectedSkillCategoryBonus(newSlug);
-    });
-
     // Catch the event when the user clicks one of the New Ranks Checkboxes in a Skill.
     // It will increment by one or wrap back to zero on a value of three
     html.find(".skillsheet-newrank").click(ev => {
@@ -158,32 +153,29 @@ export default class RMSSSkillSheet extends ItemSheet {
     }
   }
 
-  // Populate the Skill Category Bonus field on the Skill Sheet.
-  // Iterate through the owned skill categories and if one of them matches the item id of currently
-  // selected skill category then set the Skill Category Bonus field to the Total Bonus field of the Skill Category
-  async prepareSelectedSkillCategoryBonus(selected_skillCatSlug) {
-    if (!this.item?.parent) {
-      console.log("Skill has no owner");
-      return;
+  /**
+   * When the category dropdown changes, also fold in the derived fields (bonus, dev cost,
+   * category id) that used to be set via a separate change-listener update - that ran
+   * alongside Foundry's own submitOnChange update for the same field, firing two updates
+   * (and two re-renders) per change, which is what made the dropdown visibly flicker.
+   * @override
+   */
+  async _updateObject(event, formData) {
+    const newSlug = formData["system.categorySlug"];
+    if (newSlug && this.item?.parent) {
+      const categoryItem = this.item.parent.items.find(i =>
+          i.type === "skill_category" &&
+          i.system?.slug === newSlug
+      );
+      if (categoryItem) {
+        formData["system.category_bonus"] = categoryItem.system.total_bonus;
+        formData["system.development_cost"] = categoryItem.system.development_cost;
+        formData["system.category"] = categoryItem.id;
+      } else {
+        console.warn(`Skill category not found for slug: ${newSlug}`);
+      }
     }
-    const actor = this.item.parent;
-    const categoryItem = actor.items.find(i =>
-        i.type === "skill_category" &&
-        i.system?.slug === selected_skillCatSlug
-    );
-
-    if (!categoryItem) {
-      console.warn(`Skill category not found for slug: ${selected_skillCatSlug}`);
-      return;
-    }
-
-    await this.object.update({
-      "system.category_bonus": categoryItem.system.total_bonus,
-      "system.development_cost": categoryItem.system.development_cost,
-      "system.category": categoryItem.id
-    });
-
-    console.log(`rmss | rmss_skill_sheet | Updated category bonus, development cost and category for ${this.object.name}`);
+    return super._updateObject(event, formData);
   }
 
   /** @override */
