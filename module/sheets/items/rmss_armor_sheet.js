@@ -214,7 +214,14 @@ export default class RMSSArmorSheet extends ItemSheet {
   }
 
   _setupPPExclusive(html) {
-    // Power modifier mode is now handled by a single select; no-op for backwards compat
+    // Submitting the form is not enough on its own: the multiplier/spell-adder number
+    // inputs only exist in the DOM inside the matching {{#if powerModifierMode}} block, so
+    // switching mode needs an explicit re-render to make that input (with its default value)
+    // appear at all - relying on submitOnChange's implicit render was not reliable enough.
+    html.find(".rmss-power-modifier-select").on("change", async (ev) => {
+      await this._onSubmit(ev);
+      await this.render(false);
+    });
   }
 
   async _onOpenSpellLink(event) {
@@ -326,7 +333,8 @@ export default class RMSSArmorSheet extends ItemSheet {
     delete formData["system._powerModifierMode"];
     if (mode !== undefined) {
       if (mode === "multiplier") {
-        if (formData["system.pp_multiplier"] === undefined) formData["system.pp_multiplier"] = 2;
+        const currentMult = Number(formData["system.pp_multiplier"]);
+        if (!Number.isFinite(currentMult) || currentMult < 2) formData["system.pp_multiplier"] = 2;
         formData["system.spell_adder"] = 0;
         formData["system.spell_adder_realm"] = "";
       } else if (mode === "spell_adder") {

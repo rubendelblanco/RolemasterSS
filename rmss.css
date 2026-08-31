@@ -3944,6 +3944,90 @@ button.rmss-crit-reenable-local:hover {
   background-color: transparent;
 }
 
+/* Row holding spell-adder pips / pp-multiplier badge (mutually exclusive) plus any passive
+   modifier badges - all independent of each other, wraps to a second line if needed. */
+.actor-sheet .item-power-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px;
+  margin-top: 2px;
+}
+.actor-sheet .item-power-badges .spell-adder-pips,
+.actor-sheet .item-power-badges .item-pp-multiplier {
+  margin-top: 0;
+}
+
+/* Magic item charges: at-a-glance pool + per-enchantment daily/charged counts, same
+   placement as spell-adder pips. Wraps to a second line if the row runs out of room. */
+.actor-sheet .item-charge-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px;
+  margin-top: 2px;
+}
+.actor-sheet .item-charge-pool,
+.actor-sheet .item-charge-badge,
+.actor-sheet .item-pp-multiplier {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.actor-sheet .item-charge-pool i,
+.actor-sheet .item-charge-badge i,
+.actor-sheet .item-pp-multiplier i {
+  font-size: 9px;
+}
+.actor-sheet .item-charge-pool {
+  color: #b8860b;
+  border: 1px solid #b8860b;
+}
+.actor-sheet .item-charge-badge--daily {
+  color: #0e7c86;
+  border: 1px solid #0e7c86;
+}
+.actor-sheet .item-charge-badge--charged {
+  color: #7b2cbf;
+  border: 1px solid #7b2cbf;
+}
+/* Power point multiplier: mutually exclusive with spell-adder pips on the same item -
+   same slot in the row, just whichever of the two applies. */
+.actor-sheet .item-pp-multiplier {
+  color: #c1121f;
+  border: 1px solid #c1121f;
+  margin-top: 2px;
+}
+
+/* Passive worn/equipped modifiers (e.g. "+5 Initiative"): green when it's a bonus, red
+   when it's a penalty - same colors as the level-up stat gain/loss messages. */
+.actor-sheet .item-passive-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.actor-sheet .item-passive-badge i {
+  font-size: 9px;
+}
+.actor-sheet .item-passive-badge--positive {
+  color: #228b22;
+  border: 1px solid #228b22;
+}
+.actor-sheet .item-passive-badge--negative {
+  color: #cc0000;
+  border: 1px solid #cc0000;
+}
+
 /* Item sheet: system.tags chips + autocomplete */
 .rmss.sheet.item .rmss-item-tags .notes,
 .rmss.sheet.item .rmss-container-allowed-tags .notes {

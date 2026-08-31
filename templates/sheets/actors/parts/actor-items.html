@@ -86,11 +86,43 @@
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{item.system.description}}"></i>
           {{/if}}<a class="remove-from-container item-control" data-item-id="{{item._id}}" title="{{localize 'rmss.container.remove_from_container'}}"><i class="fas fa-box-open"></i></a>
-          {{#if (gt item.system.spell_adder 0)}}
-          <div class="spell-adder-pips">
-            {{#times item.system.spell_adder}}
-            <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
-            {{/times}}
+          {{#if (or (or (or (gt item.system.spell_adder 0) (gt item.system.pp_multiplier 1)) item.rmssPassiveBadges.length) item.rmssSkillBonusBadges.length)}}
+          <div class="item-power-badges">
+            {{#if (gt item.system.spell_adder 0)}}
+            <div class="spell-adder-pips">
+              {{#times item.system.spell_adder}}
+              <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
+              {{/times}}
+            </div>
+            {{else if (gt item.system.pp_multiplier 1)}}
+            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=item.system.pp_multiplier}}">
+              <i class="fas fa-star"></i> x{{item.system.pp_multiplier}}
+            </span>
+            {{/if}}
+            {{#each item.rmssPassiveBadges as |badge|}}
+            <span class="item-passive-badge item-passive-badge--{{#if badge.positive}}positive{{else}}negative{{/if}}" data-tooltip="{{badge.tooltip}}">
+              <i class="fas {{badge.icon}}"></i> {{badge.sign}}{{badge.value}}
+            </span>
+            {{/each}}
+            {{#each item.rmssSkillBonusBadges as |badge|}}
+            <span class="item-passive-badge item-passive-badge--{{#if badge.positive}}positive{{else}}negative{{/if}}" data-tooltip="{{badge.tooltip}}">
+              <i class="fas fa-graduation-cap"></i> {{badge.sign}}{{badge.value}}
+            </span>
+            {{/each}}
+          </div>
+          {{/if}}
+          {{#if (or item.rmssChargePool item.rmssEnchantmentCharges.length)}}
+          <div class="item-charge-badges">
+            {{#if item.rmssChargePool}}
+            <span class="item-charge-pool" data-tooltip="{{localize 'rmss.item.charge_pool_tooltip' current=item.rmssChargePool.current max=item.rmssChargePool.max}}">
+              <i class="fas fa-bolt"></i> {{item.rmssChargePool.current}}/{{item.rmssChargePool.max}}
+            </span>
+            {{/if}}
+            {{#each item.rmssEnchantmentCharges as |charge|}}
+            <span class="item-charge-badge item-charge-badge--{{charge.usage}}" data-tooltip="{{charge.tooltip}}">
+              <i class="fas {{charge.icon}}"></i> {{charge.current}}
+            </span>
+            {{/each}}
           </div>
           {{/if}}</td>
         <td>—</td>
@@ -144,11 +176,43 @@
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{item.system.description}}"></i>
           {{/if}}
-          {{#if (gt item.system.spell_adder 0)}}
-          <div class="spell-adder-pips">
-            {{#times item.system.spell_adder}}
-            <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
-            {{/times}}
+          {{#if (or (or (or (gt item.system.spell_adder 0) (gt item.system.pp_multiplier 1)) item.rmssPassiveBadges.length) item.rmssSkillBonusBadges.length)}}
+          <div class="item-power-badges">
+            {{#if (gt item.system.spell_adder 0)}}
+            <div class="spell-adder-pips">
+              {{#times item.system.spell_adder}}
+              <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
+              {{/times}}
+            </div>
+            {{else if (gt item.system.pp_multiplier 1)}}
+            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=item.system.pp_multiplier}}">
+              <i class="fas fa-star"></i> x{{item.system.pp_multiplier}}
+            </span>
+            {{/if}}
+            {{#each item.rmssPassiveBadges as |badge|}}
+            <span class="item-passive-badge item-passive-badge--{{#if badge.positive}}positive{{else}}negative{{/if}}" data-tooltip="{{badge.tooltip}}">
+              <i class="fas {{badge.icon}}"></i> {{badge.sign}}{{badge.value}}
+            </span>
+            {{/each}}
+            {{#each item.rmssSkillBonusBadges as |badge|}}
+            <span class="item-passive-badge item-passive-badge--{{#if badge.positive}}positive{{else}}negative{{/if}}" data-tooltip="{{badge.tooltip}}">
+              <i class="fas fa-graduation-cap"></i> {{badge.sign}}{{badge.value}}
+            </span>
+            {{/each}}
+          </div>
+          {{/if}}
+          {{#if (or item.rmssChargePool item.rmssEnchantmentCharges.length)}}
+          <div class="item-charge-badges">
+            {{#if item.rmssChargePool}}
+            <span class="item-charge-pool" data-tooltip="{{localize 'rmss.item.charge_pool_tooltip' current=item.rmssChargePool.current max=item.rmssChargePool.max}}">
+              <i class="fas fa-bolt"></i> {{item.rmssChargePool.current}}/{{item.rmssChargePool.max}}
+            </span>
+            {{/if}}
+            {{#each item.rmssEnchantmentCharges as |charge|}}
+            <span class="item-charge-badge item-charge-badge--{{charge.usage}}" data-tooltip="{{charge.tooltip}}">
+              <i class="fas {{charge.icon}}"></i> {{charge.current}}
+            </span>
+            {{/each}}
           </div>
           {{/if}}</td>
         <td>
