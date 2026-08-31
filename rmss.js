@@ -618,8 +618,13 @@ Hooks.once("init", function () {
   });
 
   Handlebars.registerHelper("percentage", function (a, b) {
-    if (typeof a !== "number" || typeof b !== "number" || b === 0) return 0;
-    return Math.round((a / b) * 100);
+    // Coerce rather than require typeof "number": a value submitted through an <input> with
+    // no data-dtype="Number" hint round-trips as a string, and the strict check used to just
+    // return 0 forever for that actor once that happened (e.g. hits/PP bars stuck empty).
+    const numA = Number(a);
+    const numB = Number(b);
+    if (!Number.isFinite(numA) || !Number.isFinite(numB) || numB === 0) return 0;
+    return Math.round((numA / numB) * 100);
   });
 
   Handlebars.registerHelper("times", function (n, options) {
