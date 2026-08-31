@@ -66,7 +66,7 @@ function getGlowClass(item, hidden) {
   return "";
 }
 
-const TOOLTIP_MAX_WORDS = 500;
+const TOOLTIP_MAX_WORDS = 100;
 
 /**
  * @param {string} html
