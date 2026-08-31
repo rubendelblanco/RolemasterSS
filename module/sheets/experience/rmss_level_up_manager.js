@@ -138,7 +138,7 @@ export default class LevelUpManager {
      * @returns {Promise<{dice1:number, dice2:number, inc:number, newTemp:number}>}
      */
     static async _rollAndApplyStatGain(actor, statName, stat) {
-        const roll = await new Roll("2d10").roll();
+        const roll = await new Roll("2d10").evaluate();
         const results = roll.terms[0].results.map(r => r.result);
         const increment = this._checkTheRolls(actor, results, stat);
         await actor.update({ [`system.stats.${statName}.temp`]: stat.temp });
@@ -153,6 +153,13 @@ export default class LevelUpManager {
         const statLabel = game.i18n.localize(`rmss.player_character.attribute.${statName}`) || statName;
         const actorName = actor?.name || "";
         const actorImg = actor?.img || "";
+        const isDecrease = inc < 0;
+        const statNameHtml = isDecrease
+            ? `<span style="color:#cc0000; font-weight:bold;">${statLabel}</span>`
+            : `<span style="color:#228b22; font-weight:bold;">${statLabel}</span>`;
+        const resultText = isDecrease
+            ? game.i18n.format("rmss.chat.stat_loss_result", { value: newTemp, amount: Math.abs(inc) })
+            : game.i18n.format("rmss.chat.stat_gain_result", { value: newTemp, inc });
 
         const content = `
             <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
@@ -160,7 +167,7 @@ export default class LevelUpManager {
                 ${actorImg ? `<img src="${actorImg}" style="width: 48px; height: 48px; border-radius: 4px; object-fit: cover;" />` : ""}
                 <div>
                   <p style="color: #333; font-size: 16px; margin: 0;">
-                    <b>${statLabel}</b> ${game.i18n.format("rmss.chat.stat_gain_result", { value: newTemp, inc })}
+                    ${statNameHtml} ${resultText}
                   </p>
                   ${actorName ? `<p style="color: #555; font-size: 14px; margin: 4px 0 0 0;">${actorName}</p>` : ""}
                 </div>
@@ -213,8 +220,12 @@ export default class LevelUpManager {
         if (results.length === 0) return;
 
         const rows = results.map(r => {
+            const isDecrease = r.inc < 0;
+            const color = isDecrease ? "#cc0000" : "#228b22";
             const sign = r.inc >= 0 ? "+" : "";
-            return `<tr style="border-bottom: 1px solid #e0e0e0;"><td style="padding: 4px 8px;">${r.label}</td><td style="text-align: center; padding: 4px 8px;">${r.dice1} / ${r.dice2}</td><td style="text-align: center; padding: 4px 8px;">${sign}${r.inc}</td><td style="text-align: center; padding: 4px 8px;"><strong>${r.newTemp}</strong></td></tr>`;
+            const labelCell = `<span style="color:${color}; font-weight:bold;">${r.label}</span>`;
+            const gainCell = `<span style="color:${color}; font-weight:bold;">${sign}${r.inc}</span>`;
+            return `<tr style="border-bottom: 1px solid #e0e0e0;"><td style="padding: 4px 8px;">${labelCell}</td><td style="text-align: center; padding: 4px 8px;">${r.dice1} / ${r.dice2}</td><td style="text-align: center; padding: 4px 8px;">${gainCell}</td><td style="text-align: center; padding: 4px 8px;"><strong>${r.newTemp}</strong></td></tr>`;
         }).join("");
 
         const actorName = actor?.name || "";
