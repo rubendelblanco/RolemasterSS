@@ -18,18 +18,22 @@ export default class RMSSCharacterSheet extends ActorSheet {
         this._registerItemListeners(html);
 
         // The hover tooltip on the info icon is a short excerpt (see excerptIfTooLong in
-        // item_identity_util.js) - clicking it opens the full, untruncated description instead.
-        html.find(".spell-info-icon").click(ev => {
+        // item_identity_util.js) - clicking it opens the full, untruncated description instead,
+        // enriched and wrapped exactly like the item sheet's own description editor output
+        // (TextEditor.enrichHTML + .editor-content, same classes on the window) so it reads
+        // identically, not just as a plain-text dump.
+        html.find(".spell-info-icon").click(async ev => {
             const itemId = ev.currentTarget.getAttribute("data-item-id");
             const item = this.actor.items.get(itemId);
             if (!item) return;
+            const enriched = await TextEditor.enrichHTML(getFullDescriptionHtml(item), { async: true });
             new Dialog({
                 title: item.name,
-                content: `<div class="rmss-item-description-dialog">${getFullDescriptionHtml(item)}</div>`,
+                content: `<div class="editor-content">${enriched}</div>`,
                 buttons: {
                     close: { label: game.i18n.localize("rmss.dialog.cancel") }
                 }
-            }, { width: 480 }).render(true);
+            }, { width: 480, classes: ["rmss", "sheet", "item"] }).render(true);
         });
 
         // Toggle "worn" (carried on the body) independently of "equipped" (in hand). Used by
