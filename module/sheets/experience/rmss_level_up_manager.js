@@ -46,11 +46,15 @@ export default class LevelUpManager {
         }
 
         ChatMessage.create({
+            speaker: ChatMessage.getSpeaker({ actor }),
             content: `
                 <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
-                  <p style="color: #333; font-size: 16px;">
-                  <b>${actor.name}</b> ${message}
-                   </p>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    ${actor.img ? `<img src="${actor.img}" style="width: 48px; height: 48px; border-radius: 4px; object-fit: cover;" />` : ""}
+                    <p style="color: #333; font-size: 16px; margin: 0;">
+                      <b>${actor.name}</b> ${message}
+                    </p>
+                  </div>
                 </div>`
         });
 
@@ -61,6 +65,33 @@ export default class LevelUpManager {
             actor.system.levelUp.isLevelZero = true; //first level. From 0 to 1.
         }
         LevelUpManager.calculateDevelopmentPoints(actor);
+        LevelUpManager.chatLevelUpReady(actor);
+    }
+
+    // Closing "here's what you can do now" message, shown once all the level-up
+    // announcements above have posted.
+    static chatLevelUpReady(actor) {
+        const actorName = actor?.name || "";
+        const actorImg = actor?.img || "";
+
+        ChatMessage.create({
+            speaker: ChatMessage.getSpeaker({ actor }),
+            content: `
+                <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+                  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    ${actorImg ? `<img src="${actorImg}" style="width: 48px; height: 48px; border-radius: 4px; object-fit: cover;" />` : ""}
+                    <p style="color: #333; font-size: 16px; margin: 0;">
+                      <b>${actorName}</b> ${game.i18n.localize("rmss.chat.level_up_ready_title")}
+                    </p>
+                  </div>
+                  <p style="color: #333; font-size: 14px; margin: 4px 0;">${game.i18n.localize("rmss.chat.level_up_ready_intro")}</p>
+                  <p style="color: #333; font-size: 14px; margin: 4px 0;">
+                    <b>${game.i18n.localize("rmss.chat.level_up_ready_option_a")}<br>
+                    ${game.i18n.localize("rmss.chat.level_up_ready_option_b")}</b>
+                  </p>
+                  <p style="color: #333; font-size: 17px; margin: 8px 0 0 0;">${game.i18n.localize("rmss.chat.level_up_ready_footer")}</p>
+                </div>`
+        });
     }
 
     //calculate the stat gain as seen on RMSS Core Law page 37
@@ -101,47 +132,125 @@ export default class LevelUpManager {
         return {"dice1":rolls[0], "dice2":rolls[1], "inc":increment};
     }
 
-    static async handleStatRoll(actor, statName, stat) {
+    /**
+     * Roll 2d10, apply the gain to stat.temp and persist it. Pure roll+persist step,
+     * no chat message - callers decide how to present the result (single card vs. table).
+     * @returns {Promise<{dice1:number, dice2:number, inc:number, newTemp:number}>}
+     */
+    static async _rollAndApplyStatGain(actor, statName, stat) {
         const roll = await new Roll("2d10").roll();
         const results = roll.terms[0].results.map(r => r.result);
         const increment = this._checkTheRolls(actor, results, stat);
+        await actor.update({ [`system.stats.${statName}.temp`]: stat.temp });
+        return { ...increment, newTemp: stat.temp };
+    }
+
+    static async handleStatRoll(actor, statName, stat) {
+        const { dice1, dice2, inc, newTemp } = await this._rollAndApplyStatGain(actor, statName, stat);
         const input = document.querySelector(`[name="system.stats.${statName}.temp"]`);
-        if (input) input.value = stat.temp;
-        actor.update({ [`system.stats.${statName}.temp`]: stat.temp });
+        if (input) input.value = newTemp;
+
+        const statLabel = game.i18n.localize(`rmss.player_character.attribute.${statName}`) || statName;
+        const actorName = actor?.name || "";
+        const actorImg = actor?.img || "";
 
         const content = `
             <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
-              <p style="color: #333; font-size: 16px;">
-                <b>${statName}</b> vale ahora ${stat.temp} (aumenta ${increment.inc})
-              </p>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+                ${actorImg ? `<img src="${actorImg}" style="width: 48px; height: 48px; border-radius: 4px; object-fit: cover;" />` : ""}
+                <div>
+                  <p style="color: #333; font-size: 16px; margin: 0;">
+                    <b>${statLabel}</b> ${game.i18n.format("rmss.chat.stat_gain_result", { value: newTemp, inc })}
+                  </p>
+                  ${actorName ? `<p style="color: #555; font-size: 14px; margin: 4px 0 0 0;">${actorName}</p>` : ""}
+                </div>
+              </div>
             </div>
             <div class="dice-tooltip expanded" style="display: block;">
               <section class="tooltip-part">
                 <div class="dice">
                   <ol class="dice-rolls">
-                    <li class="roll die d10">${increment.dice1}</li>
-                    <li class="roll die d10">${increment.dice2}</li>
+                    <li class="roll die d10">${dice1}</li>
+                    <li class="roll die d10">${dice2}</li>
                   </ol>
                 </div>
               </section>
             </div>
           `;
 
-        ChatMessage.create({ content });
+        ChatMessage.create({
+            speaker: actor ? ChatMessage.getSpeaker({ actor }) : ChatMessage.getSpeaker(),
+            content
+        });
     }
 
-    //Stat gain rolls for the character when level up!
+    //Stat gain rolls for the character when level up! One consolidated chat message for all
+    //stats instead of one per stat.
     static async calculateStatGainRolls(actor) {
         let stats = actor.system.stats;
+        const results = [];
 
         for (const [statName, stat] of Object.entries(stats)) {
             const expectedProperties = ['shortname', 'temp', 'potential', 'basic_bonus', 'racial_bonus', 'stat_bonus'];
             const hasExpectedProperties = expectedProperties.every(prop => prop in stat);
             //Avoid unexpected assignments
-            if (hasExpectedProperties) {
-                await this.handleStatRoll(actor, statName, stat);
-            }
+            if (!hasExpectedProperties) continue;
+
+            const { dice1, dice2, inc, newTemp } = await this._rollAndApplyStatGain(actor, statName, stat);
+            results.push({
+                label: game.i18n.localize(`rmss.player_character.attribute.${statName}`) || statName,
+                dice1,
+                dice2,
+                inc,
+                newTemp
+            });
         }
+
+        this._chatStatGainRolls(actor, results);
+    }
+
+    static _chatStatGainRolls(actor, results) {
+        if (results.length === 0) return;
+
+        const rows = results.map(r => {
+            const sign = r.inc >= 0 ? "+" : "";
+            return `<tr style="border-bottom: 1px solid #e0e0e0;"><td style="padding: 4px 8px;">${r.label}</td><td style="text-align: center; padding: 4px 8px;">${r.dice1} / ${r.dice2}</td><td style="text-align: center; padding: 4px 8px;">${sign}${r.inc}</td><td style="text-align: center; padding: 4px 8px;"><strong>${r.newTemp}</strong></td></tr>`;
+        }).join("");
+
+        const actorName = actor?.name || "";
+        const actorImg = actor?.img || "";
+
+        const content = `
+            <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                ${actorImg ? `<img src="${actorImg}" style="width: 48px; height: 48px; border-radius: 4px; object-fit: cover;" />` : ""}
+                <div>
+                  <p style="color: #333; font-size: 16px; margin: 0;">
+                    <b>${game.i18n.localize("rmss.chat.stat_gain_rolls_title")}</b>
+                  </p>
+                  ${actorName ? `<p style="color: #555; font-size: 14px; margin: 4px 0 0 0;">${actorName}</p>` : ""}
+                </div>
+              </div>
+              <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                <thead>
+                  <tr style="border-bottom: 1px solid #ccc;">
+                    <th style="text-align: left; padding: 4px 8px;">${game.i18n.localize("rmss.chat.stat_gain_rolls_stat")}</th>
+                    <th style="text-align: center; padding: 4px 8px;">${game.i18n.localize("rmss.chat.stat_gain_rolls_dice")}</th>
+                    <th style="text-align: center; padding: 4px 8px;">${game.i18n.localize("rmss.chat.stat_gain_rolls_gain")}</th>
+                    <th style="text-align: center; padding: 4px 8px;">${game.i18n.localize("rmss.chat.stat_gain_rolls_new_temp")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${rows}
+                </tbody>
+              </table>
+            </div>
+        `;
+
+        ChatMessage.create({
+            speaker: actor ? ChatMessage.getSpeaker({ actor }) : ChatMessage.getSpeaker(),
+            content
+        });
     }
 
     static calculateDevelopmentPoints(actor) {
@@ -153,18 +262,28 @@ export default class LevelUpManager {
         const dps = Math.floor((agilityTemp+constitutionTemp+memoryTemp+reasoningTemp+selfDisciplineTemp)/5);
 
         actor.system.levelUp.developmentPoints= dps;
-        this.chatDevelopmentPoints(dps)
+        this.chatDevelopmentPoints(actor, dps)
         document.querySelector(`#development-points`).value = dps;
         actor.update({'system.levelUp.developmentPoints': dps});
     }
 
-    static chatDevelopmentPoints(points){
+    static chatDevelopmentPoints(actor, points){
+        const actorName = actor?.name || "";
+        const actorImg = actor?.img || "";
+
         ChatMessage.create({
+            speaker: actor ? ChatMessage.getSpeaker({ actor }) : ChatMessage.getSpeaker(),
             content: `
                 <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
-                  <p style="color: #333; font-size: 16px;">
-                  Points remaining: <b>${points}</b>
-                   </p>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    ${actorImg ? `<img src="${actorImg}" style="width: 48px; height: 48px; border-radius: 4px; object-fit: cover;" />` : ""}
+                    <div>
+                      <p style="color: #333; font-size: 16px; margin: 0;">
+                        ${game.i18n.format("rmss.chat.dev_points_remaining", { points })}
+                      </p>
+                      ${actorName ? `<p style="color: #555; font-size: 14px; margin: 4px 0 0 0;">${actorName}</p>` : ""}
+                    </div>
+                  </div>
                 </div>`
         });
     }
