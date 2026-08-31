@@ -430,7 +430,7 @@
                     {{#if editable}}
                     <input type="range" class="rmss-recharge-slider" min="0" max="{{rechargeProgress.rechargeDays}}" value="{{rechargeProgress.progress}}" {{#if (eq rechargeProgress.rechargeDays 0)}}disabled{{/if}}/>
                     {{else}}
-                    <div class="rmss-progress-thin rmss-recharge-bar"><div class="rmss-progress-bar" style="width: {{percentage rechargeProgress.progress rechargeProgress.rechargeDays}}%"></div></div>
+                    <div class="rmss-progress-thin rmss-recharge-bar"><div class="rmss-progress-bar" style="width: {{rmssPercentage rechargeProgress.progress rechargeProgress.rechargeDays}}%"></div></div>
                     {{/if}}
                     <span class="rmss-recharge-progress-label">{{rechargeProgress.daysUntilRecharge}}/{{rechargeProgress.rechargeDays}}</span>
                 </div>

@@ -39,7 +39,7 @@
               <input name="system.attributes.hits.current" type="Number" value="{{system.attributes.hits.current}}" />/<input name="system.attributes.hits.max" type="Number" value="{{system.attributes.hits.max}}" />
             </div>
             <div class="rmss-progress-thin wc-hits-bar wc-header-bar">
-              <div class="rmss-progress-bar" style="width: {{percentage system.attributes.hits.current system.attributes.hits.max}}%;"></div>
+              <div class="rmss-progress-bar" style="width: {{rmssPercentage system.attributes.hits.current system.attributes.hits.max}}%;"></div>
             </div>
           </div>
           <div class="wc-chip-stat">
@@ -48,7 +48,7 @@
               <input name="system.attributes.power_points.current" type="Number" value="{{system.attributes.power_points.current}}" />/<input name="system.attributes.power_points.max" type="Number" value="{{system.attributes.power_points.max}}" />
             </div>
             <div class="rmss-progress-thin wc-pp-bar wc-header-bar">
-              <div class="rmss-progress-bar" style="width: {{percentage system.attributes.power_points.current system.attributes.power_points.max}}%;"></div>
+              <div class="rmss-progress-bar" style="width: {{rmssPercentage system.attributes.power_points.current system.attributes.power_points.max}}%;"></div>
             </div>
           </div>
         </div>

@@ -617,7 +617,13 @@ Hooks.once("init", function () {
     return new Handlebars.SafeString('<span class="spell-no-pp-marker">&bull;</span>');
   });
 
-  Handlebars.registerHelper("percentage", function (a, b) {
+  // Namespaced (not "percentage") - a generic name like that is exactly the kind another
+  // installed module is liable to also register, silently overwriting whichever one runs
+  // last via Handlebars.registerHelper (no collision warning, no error - it just clobbers).
+  // That's precisely what was happening here: a different module's own 3-arg (value, min,
+  // max) "percentage" helper was winning, making every bar on the sheet (hits/PP/recharge/
+  // capacity) compute nonsense against our 2-arg (current, max) calls.
+  Handlebars.registerHelper("rmssPercentage", function (a, b) {
     // Coerce rather than require typeof "number": a value submitted through an <input> with
     // no data-dtype="Number" hint round-trips as a string, and the strict check used to just
     // return 0 forever for that actor once that happened (e.g. hits/PP bars stuck empty).
