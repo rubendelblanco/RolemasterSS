@@ -178,19 +178,20 @@ export function attachItemMagicActionFlags(itemPlain) {
     }
     : null;
 
-  // At-a-glance Slaying bonus (e.g. "+10, +25 vs Orcs" weapons): the delta the weapon's OB
-  // gets bumped to against a matching creature tag, on top of the flat bonus badge above -
-  // see _getSlayingBonusDelta in rmss_weapon_skill_manager.js for the actual combat math.
+  // At-a-glance Slaying bonus (e.g. "+10, +25 vs Orcs" weapons): the actual system.slaying_bonus
+  // field value (what's printed on the weapon, what the player expects to see) - NOT the delta
+  // used internally for the combat math (see _getSlayingBonusDelta in rmss_weapon_skill_manager.js),
+  // which would read as a different, confusing number here.
   const slayingTags = itemPlain.type === "weapon" ? getWeaponSlayingArray(itemPlain.system) : [];
-  const slayingDelta = slayingTags.length > 0 ? (Number(itemPlain.system?.slaying_bonus) || 0) - flatBonus : 0;
-  itemPlain.rmssSlayingBadge = (slayingDelta !== 0 && !identityHidden)
+  const slayingBonus = Number(itemPlain.system?.slaying_bonus) || 0;
+  itemPlain.rmssSlayingBadge = (slayingTags.length > 0 && slayingBonus !== 0 && !identityHidden)
     ? {
-      value: slayingDelta,
-      sign: slayingDelta >= 0 ? "+" : "",
-      positive: slayingDelta >= 0,
+      value: slayingBonus,
+      sign: slayingBonus >= 0 ? "+" : "",
+      positive: slayingBonus >= 0,
       tooltip: game.i18n.format("rmss.item.slaying_badge_tooltip", {
-        sign: slayingDelta >= 0 ? "+" : "",
-        value: slayingDelta,
+        sign: slayingBonus >= 0 ? "+" : "",
+        value: slayingBonus,
         tags: slayingTags.join(", ")
       })
     }
