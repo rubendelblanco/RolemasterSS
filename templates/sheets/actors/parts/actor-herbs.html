@@ -16,9 +16,9 @@
     {{#each herbs as |herb id|}}
     <tr draggable="true" data-type="Item" data-item-id="{{herb._id}}" data-uuid="Actor.{{herb.actorId}}.Item.{{herb._id}}">
       <td><span class="list-item-icon-wrap"><img class="list-item-icon" src="{{herb.img}}" alt="{{herb.rmssDisplayName}}" width="32" height="32"/></span></td>
-      <td>{{herb.rmssDisplayName}}{{#if herb.system.description}}
+      <td>{{herb.rmssDisplayName}}{{#if herb.rmssTooltipDescription}}
           <i class="fas fa-info-circle spell-info-icon"
-             data-tooltip="{{herb.system.description}}"></i>
+             data-tooltip="{{herb.rmssTooltipDescription}}"></i>
           {{/if}}</td>
       <td>{{herb.system.quantity}}</td>
       <td>{{herb.system.codes}}</td>

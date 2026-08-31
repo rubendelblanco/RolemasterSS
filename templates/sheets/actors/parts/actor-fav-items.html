@@ -19,8 +19,8 @@
             <a class="item-edit favorite-equipped-open" data-item-id="{{equipable._id}}" title="{{ localize 'rmss.pc_sheet_items.open_item_sheet' }}">
               <span class="favorite-equipped-label">{{equipable.name}}</span>
             </a>
-            {{#if equipable.system.description}}
-            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{equipable.system.description}}"></i>
+            {{#if equipable.rmssTooltipDescription}}
+            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{equipable.rmssTooltipDescription}}"></i>
             {{/if}}
           </div>
           {{#if (or (or (or (or (gt equipable.system.spell_adder 0) (gt equipable.system.pp_multiplier 1)) equipable.rmssPassiveBadges.length) equipable.rmssSkillBonusBadges.length) equipable.rmssBonusBadge)}}
@@ -95,8 +95,8 @@
       <td><span class="list-item-icon-wrap{{#if weapon.system.magical}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{weapon.img}}" alt="{{weapon.name}}" width="32" height="32"/></span></td>
       <td class="favorite-record-name-td clickable offensive-skill rmss-weapon-name-cell" data-item-id="{{weapon._id}}">
         <div class="favorite-record-name-block">
-          <div class="rmss-weapon-name-line favorite-record-name-line">{{weapon.name}} <i class="fa-solid fa-sword rmss-weapon-attack-icon"></i>{{#if weapon.system.description}}
-            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{weapon.system.description}}"></i>
+          <div class="rmss-weapon-name-line favorite-record-name-line">{{weapon.name}} <i class="fa-solid fa-sword rmss-weapon-attack-icon"></i>{{#if weapon.rmssTooltipDescription}}
+            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{weapon.rmssTooltipDescription}}"></i>
           {{/if}}</div>
           {{#if (or (or (or (or (or (gt weapon.system.spell_adder 0) (gt weapon.system.pp_multiplier 1)) weapon.rmssPassiveBadges.length) weapon.rmssSkillBonusBadges.length) weapon.rmssBonusBadge) weapon.rmssSlayingBadge)}}
           <div class="item-power-badges">

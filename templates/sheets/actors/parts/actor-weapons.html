@@ -23,9 +23,9 @@
     <tr draggable="true" data-type="Item" data-item-id="{{weapon._id}}" data-uuid="Actor.{{weapon.actorId}}.Item.{{weapon._id}}">
         <td><span class="list-item-icon-wrap {{weapon.rmssGlowClass}}"><img class="list-item-icon" src="{{weapon.img}}" alt="{{weapon.rmssDisplayName}}" width="32" height="32"/></span></td>
         <td class="clickable offensive-skill rmss-weapon-name-cell" data-item-id="{{weapon._id}}">
-          <div class="rmss-weapon-name-line">{{weapon.rmssDisplayName}} <i class="fa-solid fa-sword rmss-weapon-attack-icon"></i>{{#if weapon.system.description}}
+          <div class="rmss-weapon-name-line">{{weapon.rmssDisplayName}} <i class="fa-solid fa-sword rmss-weapon-attack-icon"></i>{{#if weapon.rmssTooltipDescription}}
           <i class="fas fa-info-circle spell-info-icon"
-             data-tooltip="{{weapon.system.description}}"></i>
+             data-tooltip="{{weapon.rmssTooltipDescription}}"></i>
           {{/if}}</div>
           {{#if (or (or (or (or (or (gt weapon.system.spell_adder 0) (gt weapon.system.pp_multiplier 1)) weapon.rmssPassiveBadges.length) weapon.rmssSkillBonusBadges.length) weapon.rmssBonusBadge) weapon.rmssSlayingBadge)}}
           <div class="item-power-badges">

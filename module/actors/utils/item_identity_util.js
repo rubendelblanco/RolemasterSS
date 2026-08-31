@@ -66,6 +66,30 @@ function getGlowClass(item, hidden) {
   return "";
 }
 
+const TOOLTIP_MAX_WORDS = 500;
+
+/**
+ * @param {string} html
+ * @returns {string} plain text, tags stripped and whitespace collapsed
+ */
+function stripHtmlToText(html) {
+  return String(html ?? "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+/**
+ * A very long description blows up the tooltip past the screen - cut it down to a plain-text
+ * excerpt (tags stripped; safe against truncation leaving a broken/unclosed tag behind) once
+ * it crosses TOOLTIP_MAX_WORDS. Short descriptions are returned as-is, rich HTML intact.
+ * @param {string} html
+ * @returns {string}
+ */
+function excerptIfTooLong(html) {
+  const words = stripHtmlToText(html).split(" ").filter(Boolean);
+  if (words.length <= TOOLTIP_MAX_WORDS) return html;
+  const hint = game.i18n.localize("rmss.item.tooltip_truncated_hint");
+  return `${words.slice(0, TOOLTIP_MAX_WORDS).join(" ")}... ${hint}`;
+}
+
 /**
  * Mutates a plain item object (as used in actor sheet templates) with the
  * display-name and icon-glow fields the templates read.
@@ -81,6 +105,16 @@ export function attachIdentityDisplayFlags(itemPlain) {
   // (a suspiciously high price is itself a clue that the object is special).
   itemPlain.rmssDisplayCost = hidden ? (Number(itemPlain.system?.value_unidentified) || 0) : (Number(itemPlain.system?.cost) || 0);
   itemPlain.rmssDisplayUnitCost = hidden ? (Number(itemPlain.system?.value_unidentified) || 0) : (Number(itemPlain.system?.unitCost) || 0);
+
+  // Tooltip blurb: description is always visible, description_secret only reveals once
+  // identified (or for the GM, since `hidden` is already false for them) - same reasoning
+  // as the glow/name masking above, just for the item's own text instead.
+  const description = itemPlain.system?.description ?? "";
+  const secret = itemPlain.system?.description_secret ?? "";
+  const combinedDescription = (!hidden && secret)
+    ? (description ? `${description}<hr>${secret}` : secret)
+    : description;
+  itemPlain.rmssTooltipDescription = excerptIfTooLong(combinedDescription);
 }
 
 /**
