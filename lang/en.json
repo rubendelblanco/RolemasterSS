@@ -668,7 +668,6 @@
             "details": "Details",
             "is_stackable": "Is stackable",
             "secret_info": "Secret Info",
-            "tooltip_truncated_hint": "(click to see more)",
             "unidentified_item": "Unknown Item",
             "unidentified_weapon": "Unknown Weapon",
             "unidentified_armor": "Unknown Armor",

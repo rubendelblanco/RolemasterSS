@@ -31,7 +31,7 @@
           <span class="list-item-icon-wrap{{#if group.container.system.magical}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{group.container.img}}" alt="{{group.container.name}}" width="32" height="32"/></span>
         </td>
         <td><strong>{{group.container.name}}{{#if group.capacityMax}} <span class="container-capacity-badge">({{group.capacityUsed}}/{{group.capacityMax}}{{#if (eq group.capacityType "weight")}} kg{{else}}{{/if}})</span>{{/if}}{{#if group.container.system.description}}
-          <i class="fas fa-info-circle spell-info-icon" data-item-id="{{group.container._id}}"
+          <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{group.container.system.description}}"></i>
           {{/if}}</strong></td>
         <td>—</td>
@@ -73,7 +73,7 @@
         data-type="Item" data-uuid="Actor.{{item.actorId}}.Item.{{item._id}}">
         <td class="indent"><span class="list-item-icon-wrap{{#if item.system.magical}} list-item-icon-wrap--magical{{/if}}"><img class="list-item-icon" src="{{item.img}}" alt="{{item.name}}" width="32" height="32"/></span></td>
         <td class="indent">{{item.name}}{{#if item.system.description}}
-          <i class="fas fa-info-circle spell-info-icon" data-item-id="{{item._id}}"
+          <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{item.system.description}}"></i>
           {{/if}}<a class="remove-from-container item-control" data-item-id="{{item._id}}" title="{{localize 'rmss.container.remove_from_container'}}"><i class="fas fa-box-open"></i></a></td>
         <td>—</td>

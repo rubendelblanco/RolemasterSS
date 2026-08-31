@@ -18,9 +18,9 @@
   {{#each armor as |equipable id|}}
   <tr draggable="true" data-type="Item" data-item-id="{{equipable._id}}" data-uuid="Actor.{{equipable.actorId}}.Item.{{equipable._id}}">
         <td><span class="list-item-icon-wrap {{equipable.rmssGlowClass}}"><img class="list-item-icon" src="{{equipable.img}}" alt="{{equipable.rmssDisplayName}}" width="32" height="32"/></span></td>
-        <td>{{equipable.rmssDisplayName}}{{#if equipable.rmssTooltipDescription}}
-          <i class="fas fa-info-circle spell-info-icon" data-item-id="{{equipable._id}}"
-             data-tooltip="{{equipable.rmssTooltipDescription}}"></i>
+        <td>{{equipable.rmssDisplayName}}{{#if equipable.system.description}}
+          <i class="fas fa-info-circle spell-info-icon"
+             data-tooltip="{{equipable.system.description}}"></i>
           {{/if}}
           {{#if (or (or (or (or (gt equipable.system.spell_adder 0) (gt equipable.system.pp_multiplier 1)) equipable.rmssPassiveBadges.length) equipable.rmssSkillBonusBadges.length) equipable.rmssBonusBadge)}}
           <div class="item-power-badges">

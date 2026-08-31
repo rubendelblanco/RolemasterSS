@@ -66,46 +66,6 @@ function getGlowClass(item, hidden) {
   return "";
 }
 
-const TOOLTIP_MAX_WORDS = 100;
-
-/**
- * A very long description blows up the tooltip past the screen - cut it down to an excerpt
- * once it crosses TOOLTIP_MAX_WORDS. Short descriptions are returned as-is, rich HTML intact.
- *
- * The excerpt itself splits on block-level breaks (</p>, </div>, </li>, <br>, headings) into
- * paragraph-ish chunks, strips any remaining inline tags (bold, links, ...) inside each chunk,
- * then rejoins the kept chunks with our own <br><br> - real line breaks, safe against
- * truncation ever leaving an unclosed tag behind (unlike cutting the raw rich HTML).
- * @param {string} html
- * @returns {string}
- */
-function excerptIfTooLong(html) {
-  const paragraphs = String(html ?? "")
-    .split(/<\/(?:p|div|li|h[1-6])>|<br\s*\/?>/gi)
-    .map((p) => p.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim())
-    .filter(Boolean);
-
-  const totalWords = paragraphs.reduce((sum, p) => sum + p.split(" ").length, 0);
-  if (totalWords <= TOOLTIP_MAX_WORDS) return html;
-
-  let remaining = TOOLTIP_MAX_WORDS;
-  const kept = [];
-  for (const p of paragraphs) {
-    if (remaining <= 0) break;
-    const words = p.split(" ");
-    if (words.length <= remaining) {
-      kept.push(words.join(" "));
-      remaining -= words.length;
-    } else {
-      kept.push(`${words.slice(0, remaining).join(" ")}...`);
-      remaining = 0;
-    }
-  }
-
-  const hint = game.i18n.localize("rmss.item.tooltip_truncated_hint");
-  return `${kept.join("<br><br>")} ${hint}`;
-}
-
 /**
  * Mutates a plain item object (as used in actor sheet templates) with the
  * display-name and icon-glow fields the templates read.
@@ -121,26 +81,6 @@ export function attachIdentityDisplayFlags(itemPlain) {
   // (a suspiciously high price is itself a clue that the object is special).
   itemPlain.rmssDisplayCost = hidden ? (Number(itemPlain.system?.value_unidentified) || 0) : (Number(itemPlain.system?.cost) || 0);
   itemPlain.rmssDisplayUnitCost = hidden ? (Number(itemPlain.system?.value_unidentified) || 0) : (Number(itemPlain.system?.unitCost) || 0);
-
-  // Tooltip blurb: excerpted for the hover tooltip (see excerptIfTooLong). The full,
-  // untruncated version is available on demand via getFullDescriptionHtml(item) - used by
-  // the "click the info icon" full-description dialog in RMSSCharacterSheet.
-  itemPlain.rmssTooltipDescription = excerptIfTooLong(getFullDescriptionHtml(itemPlain));
-}
-
-/**
- * Full description + secret half (once identified, or for the GM) - untruncated, for a
- * "see everything" dialog. Same identity gate as everything else here.
- * @param {Item|{system?: object}} item
- * @returns {string}
- */
-export function getFullDescriptionHtml(item) {
-  const hidden = isIdentityHidden(item);
-  const description = item?.system?.description ?? "";
-  const secret = item?.system?.description_secret ?? "";
-  return (!hidden && secret)
-    ? (description ? `${description}<hr>${secret}` : secret)
-    : description;
 }
 
 /**
