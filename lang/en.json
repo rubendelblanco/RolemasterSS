@@ -562,6 +562,7 @@
             "bonus_skill_badge_tooltip": "{skill}: {sign}{value}",
             "weapon_bonus_tooltip": "Offensive Bonus (OB): {sign}{value}",
             "armor_bonus_tooltip": "Defensive Bonus (DB): {sign}{value}",
+            "slaying_badge_tooltip": "Slaying bonus vs {tags}: {sign}{value}",
             "passive_mod_rr.essence": "Essence",
             "passive_mod_rr.channeling": "Channeling",
             "passive_mod_rr.mentalism": "Mentalism",

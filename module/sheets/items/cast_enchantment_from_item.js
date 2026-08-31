@@ -1,6 +1,7 @@
 import { buildEnchantmentList, resolveSpellForEnchantment, getChargePool, normalizeEnchantments } from "./enchantment_utils.js";
 import { isIdentityHidden } from "../../actors/utils/item_identity_util.js";
 import { normalizePassiveModifiers } from "../../actors/services/passive_item_modifiers_service.js";
+import { getWeaponSlayingArray } from "./weapon_slaying_ui.js";
 
 /**
  * At-a-glance bonus-skill badges (e.g. "+10 Stalking/Hiding") from system.bonus_skills:
@@ -136,6 +137,7 @@ export function attachItemMagicActionFlags(itemPlain) {
     itemPlain.rmssPassiveBadges = [];
     itemPlain.rmssSkillBonusBadges = [];
     itemPlain.rmssBonusBadge = null;
+    itemPlain.rmssSlayingBadge = null;
     return;
   }
   const usable = getUsableEnchantmentsForItem(itemPlain);
@@ -172,6 +174,24 @@ export function attachItemMagicActionFlags(itemPlain) {
       tooltip: game.i18n.format(isArmor ? "rmss.item.armor_bonus_tooltip" : "rmss.item.weapon_bonus_tooltip", {
         sign: flatBonus >= 0 ? "+" : "",
         value: flatBonus
+      })
+    }
+    : null;
+
+  // At-a-glance Slaying bonus (e.g. "+10, +25 vs Orcs" weapons): the delta the weapon's OB
+  // gets bumped to against a matching creature tag, on top of the flat bonus badge above -
+  // see _getSlayingBonusDelta in rmss_weapon_skill_manager.js for the actual combat math.
+  const slayingTags = itemPlain.type === "weapon" ? getWeaponSlayingArray(itemPlain.system) : [];
+  const slayingDelta = slayingTags.length > 0 ? (Number(itemPlain.system?.slaying_bonus) || 0) - flatBonus : 0;
+  itemPlain.rmssSlayingBadge = (slayingDelta !== 0 && !identityHidden)
+    ? {
+      value: slayingDelta,
+      sign: slayingDelta >= 0 ? "+" : "",
+      positive: slayingDelta >= 0,
+      tooltip: game.i18n.format("rmss.item.slaying_badge_tooltip", {
+        sign: slayingDelta >= 0 ? "+" : "",
+        value: slayingDelta,
+        tags: slayingTags.join(", ")
       })
     }
     : null;

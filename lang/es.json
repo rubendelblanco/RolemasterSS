@@ -562,6 +562,7 @@
             "bonus_skill_badge_tooltip": "{skill}: {sign}{value}",
             "weapon_bonus_tooltip": "Bonificador Ofensivo (OB): {sign}{value}",
             "armor_bonus_tooltip": "Bonificador Defensivo (DB): {sign}{value}",
+            "slaying_badge_tooltip": "Bonificador de exterminio contra {tags}: {sign}{value}",
             "passive_mod_rr.essence": "Esencia",
             "passive_mod_rr.channeling": "Canalización",
             "passive_mod_rr.mentalism": "Mentalismo",
