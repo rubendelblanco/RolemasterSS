@@ -122,15 +122,25 @@ export function attachIdentityDisplayFlags(itemPlain) {
   itemPlain.rmssDisplayCost = hidden ? (Number(itemPlain.system?.value_unidentified) || 0) : (Number(itemPlain.system?.cost) || 0);
   itemPlain.rmssDisplayUnitCost = hidden ? (Number(itemPlain.system?.value_unidentified) || 0) : (Number(itemPlain.system?.unitCost) || 0);
 
-  // Tooltip blurb: description is always visible, description_secret only reveals once
-  // identified (or for the GM, since `hidden` is already false for them) - same reasoning
-  // as the glow/name masking above, just for the item's own text instead.
-  const description = itemPlain.system?.description ?? "";
-  const secret = itemPlain.system?.description_secret ?? "";
-  const combinedDescription = (!hidden && secret)
+  // Tooltip blurb: excerpted for the hover tooltip (see excerptIfTooLong). The full,
+  // untruncated version is available on demand via getFullDescriptionHtml(item) - used by
+  // the "click the info icon" full-description dialog in RMSSCharacterSheet.
+  itemPlain.rmssTooltipDescription = excerptIfTooLong(getFullDescriptionHtml(itemPlain));
+}
+
+/**
+ * Full description + secret half (once identified, or for the GM) - untruncated, for a
+ * "see everything" dialog. Same identity gate as everything else here.
+ * @param {Item|{system?: object}} item
+ * @returns {string}
+ */
+export function getFullDescriptionHtml(item) {
+  const hidden = isIdentityHidden(item);
+  const description = item?.system?.description ?? "";
+  const secret = item?.system?.description_secret ?? "";
+  return (!hidden && secret)
     ? (description ? `${description}<hr>${secret}` : secret)
     : description;
-  itemPlain.rmssTooltipDescription = excerptIfTooLong(combinedDescription);
 }
 
 /**

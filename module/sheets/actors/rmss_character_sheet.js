@@ -5,6 +5,7 @@ import EquipmentService from "../../actors/services/equipment_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
 import { buildDeleteConfirmContent } from "../items/item_delete_confirm_util.js";
+import { getFullDescriptionHtml } from "../../actors/utils/item_identity_util.js";
 
 import ArmorInfoService from "../../actors/services/armor_info_service.js";
 
@@ -15,6 +16,21 @@ export default class RMSSCharacterSheet extends ActorSheet {
     activateListeners(html) {
         super.activateListeners(html);
         this._registerItemListeners(html);
+
+        // The hover tooltip on the info icon is a short excerpt (see excerptIfTooLong in
+        // item_identity_util.js) - clicking it opens the full, untruncated description instead.
+        html.find(".spell-info-icon").click(ev => {
+            const itemId = ev.currentTarget.getAttribute("data-item-id");
+            const item = this.actor.items.get(itemId);
+            if (!item) return;
+            new Dialog({
+                title: item.name,
+                content: `<div class="rmss-item-description-dialog">${getFullDescriptionHtml(item)}</div>`,
+                buttons: {
+                    close: { label: game.i18n.localize("rmss.dialog.cancel") }
+                }
+            }, { width: 480 }).render(true);
+        });
 
         // Toggle "worn" (carried on the body) independently of "equipped" (in hand). Used by
         // items/herbs (their only state) and weapons (which also have their own "equipped" control).
