@@ -630,7 +630,11 @@ Hooks.once("init", function () {
     const numA = Number(a);
     const numB = Number(b);
     if (!Number.isFinite(numA) || !Number.isFinite(numB) || numB === 0) return 0;
-    return Math.round((numA / numB) * 100);
+    // Clamped to [0, 100]: negative hits are a normal RMSS state (bleeding/unconscious/dying
+    // thresholds below 0), and a negative width is invalid CSS that renders inconsistently
+    // across browsers instead of just showing an empty bar. Also guards the current > max
+    // case (a temporary bonus, say) from overflowing the bar past its own container.
+    return Math.max(0, Math.min(100, Math.round((numA / numB) * 100)));
   });
 
   Handlebars.registerHelper("times", function (n, options) {
