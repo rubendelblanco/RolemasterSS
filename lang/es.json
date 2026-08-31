@@ -205,6 +205,9 @@
     },
     "pc_sheet_role_traits": {
       "appearance": "Apariencia",
+      "appearance_roll_title": "Tirada de Apariencia",
+      "appearance_roll_confirm": "¿Calcular apariencia? Esto tira 5d10 y lo suma a (Presencia Potencial - 25), sobrescribiendo el valor actual.",
+      "appearance_roll_result": "ha tirado <strong>{total}</strong> (5d10) + {potential} de Presencia Potencial - 25 = Apariencia <strong>{value}</strong>",
       "sex": "Sexo",
       "sex_options": {
         "male": "Hombre",

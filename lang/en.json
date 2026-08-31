@@ -205,6 +205,9 @@
         },
         "pc_sheet_role_traits": {
             "appearance": "Appearance",
+            "appearance_roll_title": "Roll Appearance",
+            "appearance_roll_confirm": "Calculate Appearance? This rolls 5d10 and adds it to (Potential Presence - 25), overwriting the current value.",
+            "appearance_roll_result": "rolled <strong>{total}</strong> (5d10) + {potential} Presence Potential - 25 = Appearance <strong>{value}</strong>",
             "sex": "Sex",
             "sex_options": {
                 "male": "Male",

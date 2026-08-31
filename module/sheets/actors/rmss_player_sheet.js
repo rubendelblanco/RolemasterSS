@@ -15,6 +15,7 @@ import StatAssignmentDialog from "../../actors/dialogs/stat_assignment_dialog.js
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 import RaceService from "../../actors/services/race_service.js";
 import { getEffectivePowerPointsMaxForSheet } from "../../actors/utils/power_points_util.js";
+import { chatMessageOtherStyle } from "../../chat/chatMessages.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -542,6 +543,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   _registerStatListeners(html) {
     html.find(".fa-dice.roll-stat").click(ev => this._onStatRollClick(ev));
     html.find(".stat-expand-toggle").click(ev => ev.currentTarget.closest("li.stat-row")?.classList.toggle("expanded"));
+    html.find(".roll-appearance").click(ev => this._onAppearanceRollClick(ev));
   }
 
   async _onStatRollClick(ev) {
@@ -551,6 +553,47 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     if (!input) return;
 
     await StatService.handleStatRoll(this.actor, clickedElement, input);
+  }
+
+  /**
+   * Appearance = Potential Presence - 25 + 5d10. Confirm first since it overwrites
+   * whatever's currently in the field.
+   */
+  async _onAppearanceRollClick(ev) {
+    ev.preventDefault();
+    const confirmed = await Dialog.confirm({
+      title: game.i18n.localize("rmss.pc_sheet_role_traits.appearance_roll_title"),
+      content: `<p>${game.i18n.localize("rmss.pc_sheet_role_traits.appearance_roll_confirm")}</p>`,
+      defaultYes: true
+    });
+    if (!confirmed) return;
+
+    const potentialPresence = Number(this.actor.system.stats?.presence?.potential) || 0;
+    const roll = await new Roll("5d10").evaluate();
+    if (game.dice3d) await game.dice3d.showForRoll(roll, game.user, true);
+
+    const appearance = potentialPresence - 25 + roll.total;
+    await this.actor.update({ "system.role_traits.appearance": appearance });
+
+    const actorImg = this.actor.img || "";
+    const content = `
+      <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          ${actorImg ? `<img src="${actorImg}" style="width: 48px; height: 48px; border-radius: 4px; object-fit: cover;" />` : ""}
+          <p style="color: #333; font-size: 16px; margin: 0;">
+            <b>${this.actor.name}</b> ${game.i18n.format("rmss.pc_sheet_role_traits.appearance_roll_result", {
+              total: roll.total,
+              potential: potentialPresence,
+              value: appearance
+            })}
+          </p>
+        </div>
+      </div>`;
+    ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content,
+      ...chatMessageOtherStyle()
+    });
   }
 
   async _onSkillRankClick(ev) {

@@ -959,6 +959,11 @@
     cursor: pointer;
 }
 
+.roll-appearance {
+    cursor: pointer;
+    margin-right: 4px;
+}
+
 .human-body svg:hover path {
     fill: #ff7d16;
 }
@@ -4831,6 +4836,7 @@ button.rmss-crit-reenable-local:hover {
 }
 .wardens-chrome .stat-block li.stat-row.expanded .stat-expand-toggle { transform: rotate(90deg); }
 .wardens-chrome .stat-block .roll-stat { color: var(--wc-accent-strong); font-size: 10px; cursor: pointer; }
+.wardens-chrome .roll-appearance { color: var(--wc-accent-strong); }
 /* Abbreviated stat name (fits the narrower 10-across card) instead of the full localized
    name used by the default table sheet - text-transform: none so the mixed-case abbreviation
    (e.g. "Ag", "SD") isn't forced to all-caps by the header's uppercase styling. */
