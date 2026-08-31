@@ -69,25 +69,41 @@ function getGlowClass(item, hidden) {
 const TOOLTIP_MAX_WORDS = 100;
 
 /**
- * @param {string} html
- * @returns {string} plain text, tags stripped and whitespace collapsed
- */
-function stripHtmlToText(html) {
-  return String(html ?? "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-}
-
-/**
- * A very long description blows up the tooltip past the screen - cut it down to a plain-text
- * excerpt (tags stripped; safe against truncation leaving a broken/unclosed tag behind) once
- * it crosses TOOLTIP_MAX_WORDS. Short descriptions are returned as-is, rich HTML intact.
+ * A very long description blows up the tooltip past the screen - cut it down to an excerpt
+ * once it crosses TOOLTIP_MAX_WORDS. Short descriptions are returned as-is, rich HTML intact.
+ *
+ * The excerpt itself splits on block-level breaks (</p>, </div>, </li>, <br>, headings) into
+ * paragraph-ish chunks, strips any remaining inline tags (bold, links, ...) inside each chunk,
+ * then rejoins the kept chunks with our own <br><br> - real line breaks, safe against
+ * truncation ever leaving an unclosed tag behind (unlike cutting the raw rich HTML).
  * @param {string} html
  * @returns {string}
  */
 function excerptIfTooLong(html) {
-  const words = stripHtmlToText(html).split(" ").filter(Boolean);
-  if (words.length <= TOOLTIP_MAX_WORDS) return html;
+  const paragraphs = String(html ?? "")
+    .split(/<\/(?:p|div|li|h[1-6])>|<br\s*\/?>/gi)
+    .map((p) => p.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+
+  const totalWords = paragraphs.reduce((sum, p) => sum + p.split(" ").length, 0);
+  if (totalWords <= TOOLTIP_MAX_WORDS) return html;
+
+  let remaining = TOOLTIP_MAX_WORDS;
+  const kept = [];
+  for (const p of paragraphs) {
+    if (remaining <= 0) break;
+    const words = p.split(" ");
+    if (words.length <= remaining) {
+      kept.push(words.join(" "));
+      remaining -= words.length;
+    } else {
+      kept.push(`${words.slice(0, remaining).join(" ")}...`);
+      remaining = 0;
+    }
+  }
+
   const hint = game.i18n.localize("rmss.item.tooltip_truncated_hint");
-  return `${words.slice(0, TOOLTIP_MAX_WORDS).join(" ")}... ${hint}`;
+  return `${kept.join("<br><br>")} ${hint}`;
 }
 
 /**
