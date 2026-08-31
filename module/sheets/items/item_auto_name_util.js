@@ -1,30 +1,18 @@
 /**
  * Auto-append a magic bonus to an item's display name so a GM doesn't have to
- * hand-type "Broadsword +5" every time — save with the bonus set and it's added
- * (or updated/removed) automatically. Any previously-appended suffix is stripped
- * before recomputing, so bumping the bonus never stacks duplicate suffixes.
+ * hand-type it every time — save with the bonus set and it's added (or updated/
+ * removed) automatically. Any previously-appended suffix is stripped before
+ * recomputing, so bumping the bonus never stacks duplicate suffixes.
  *
- * The suffix formats are distinctive on purpose (bare " +N" for weapon/armor,
- * " +N (Skill)" for a single bonus_skills entry) so stripping them back off is
- * safe and won't eat into a legitimate name that happens to end similarly.
+ * The suffix format is distinctive on purpose (" +N (Skill)" for a single
+ * bonus_skills entry) so stripping it back off is safe and won't eat into a
+ * legitimate name that happens to end similarly.
  */
 
-const WEAPON_ARMOR_SUFFIX_RE = /\s+[+-]\d+$/;
 const ITEM_SUFFIX_RE = /\s+[+-]\d+\s+\([^)]*\)$/;
 
 function formatSigned(n) {
   return n >= 0 ? `+${n}` : `${n}`;
-}
-
-/**
- * @param {string} currentName - the name as submitted/stored (may already carry a suffix)
- * @param {number} bonus - system.bonus after form normalization
- * @returns {string} recomputed name
- */
-export function computeWeaponArmorAutoName(currentName, bonus) {
-  const base = String(currentName ?? "").replace(WEAPON_ARMOR_SUFFIX_RE, "").trimEnd();
-  const n = Number(bonus) || 0;
-  return n !== 0 ? `${base} ${formatSigned(n)}` : base;
 }
 
 /**

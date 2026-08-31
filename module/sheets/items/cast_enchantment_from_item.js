@@ -135,6 +135,7 @@ export function attachItemMagicActionFlags(itemPlain) {
     itemPlain.rmssEnchantmentCharges = [];
     itemPlain.rmssPassiveBadges = [];
     itemPlain.rmssSkillBonusBadges = [];
+    itemPlain.rmssBonusBadge = null;
     return;
   }
   const usable = getUsableEnchantmentsForItem(itemPlain);
@@ -157,6 +158,23 @@ export function attachItemMagicActionFlags(itemPlain) {
 
   // At-a-glance bonus-skill badges (e.g. "+10 Stalking/Hiding"), same gate.
   itemPlain.rmssSkillBonusBadges = identityHidden ? [] : buildBonusSkillBadges(itemPlain.system);
+
+  // At-a-glance flat weapon OB / armor DB bonus. Used to be baked into the item's name as
+  // " +N"/" -N" (item_auto_name_util.js) - a badge instead, same gate as everything else.
+  const flatBonus = Number(itemPlain.system?.bonus) || 0;
+  const isArmor = itemPlain.type === "armor";
+  itemPlain.rmssBonusBadge = (flatBonus !== 0 && !identityHidden)
+    ? {
+      value: flatBonus,
+      sign: flatBonus >= 0 ? "+" : "",
+      positive: flatBonus >= 0,
+      icon: isArmor ? "fa-shield-halved" : "fa-sword",
+      tooltip: game.i18n.format(isArmor ? "rmss.item.armor_bonus_tooltip" : "rmss.item.weapon_bonus_tooltip", {
+        sign: flatBonus >= 0 ? "+" : "",
+        value: flatBonus
+      })
+    }
+    : null;
 
   // Per-enchantment charge counts (daily/charged usage). The badge itself only shows the
   // current count - this is meant as a quick "still got some?" glance, not a full readout -

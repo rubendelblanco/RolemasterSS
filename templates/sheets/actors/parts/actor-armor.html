@@ -22,8 +22,13 @@
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{equipable.system.description}}"></i>
           {{/if}}
-          {{#if (or (or (or (gt equipable.system.spell_adder 0) (gt equipable.system.pp_multiplier 1)) equipable.rmssPassiveBadges.length) equipable.rmssSkillBonusBadges.length)}}
+          {{#if (or (or (or (or (gt equipable.system.spell_adder 0) (gt equipable.system.pp_multiplier 1)) equipable.rmssPassiveBadges.length) equipable.rmssSkillBonusBadges.length) equipable.rmssBonusBadge)}}
           <div class="item-power-badges">
+            {{#if equipable.rmssBonusBadge}}
+            <span class="item-passive-badge item-passive-badge--{{#if equipable.rmssBonusBadge.positive}}positive{{else}}negative{{/if}}" data-tooltip="{{equipable.rmssBonusBadge.tooltip}}">
+              <i class="fas {{equipable.rmssBonusBadge.icon}}"></i> {{equipable.rmssBonusBadge.sign}}{{equipable.rmssBonusBadge.value}}
+            </span>
+            {{/if}}
             {{#if (gt equipable.system.spell_adder 0)}}
             <div class="spell-adder-pips">
               {{#times equipable.system.spell_adder}}

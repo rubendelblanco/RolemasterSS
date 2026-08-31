@@ -27,8 +27,13 @@
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{weapon.system.description}}"></i>
           {{/if}}</div>
-          {{#if (or (or (or (gt weapon.system.spell_adder 0) (gt weapon.system.pp_multiplier 1)) weapon.rmssPassiveBadges.length) weapon.rmssSkillBonusBadges.length)}}
+          {{#if (or (or (or (or (gt weapon.system.spell_adder 0) (gt weapon.system.pp_multiplier 1)) weapon.rmssPassiveBadges.length) weapon.rmssSkillBonusBadges.length) weapon.rmssBonusBadge)}}
           <div class="item-power-badges">
+            {{#if weapon.rmssBonusBadge}}
+            <span class="item-passive-badge item-passive-badge--{{#if weapon.rmssBonusBadge.positive}}positive{{else}}negative{{/if}}" data-tooltip="{{weapon.rmssBonusBadge.tooltip}}">
+              <i class="fas {{weapon.rmssBonusBadge.icon}}"></i> {{weapon.rmssBonusBadge.sign}}{{weapon.rmssBonusBadge.value}}
+            </span>
+            {{/if}}
             {{#if (gt weapon.system.spell_adder 0)}}
             <div class="spell-adder-pips">
               {{#times weapon.system.spell_adder}}

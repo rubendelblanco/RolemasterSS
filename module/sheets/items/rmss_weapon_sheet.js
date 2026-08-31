@@ -24,7 +24,6 @@ import {
 } from "../../actors/services/passive_item_modifiers_service.js";
 import { bindPassiveModifiersEditor } from "./passive_modifiers_ui.js";
 import { isIdentityHidden, getUnidentifiedDisplayName } from "../../actors/utils/item_identity_util.js";
-import { computeWeaponArmorAutoName } from "./item_auto_name_util.js";
 import { bindMacroDropZone } from "./macro_drop_util.js";
 
 export default class RMSSWeaponSheet extends ItemSheet {
@@ -399,9 +398,6 @@ export default class RMSSWeaponSheet extends ItemSheet {
     }
     this._mergeEnchantmentFormData(formData);
     mergePassiveModifiersFormData(formData, this.item);
-
-    const effectiveBonus = formData["system.bonus"] !== undefined ? formData["system.bonus"] : this.item.system?.bonus;
-    formData.name = computeWeaponArmorAutoName(formData.name ?? this.item.name, effectiveBonus);
 
     return super._updateObject(event, formData);
   }
