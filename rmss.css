@@ -1472,8 +1472,11 @@ tr.contained-item.is-collapsed {
 }
 
 .container-icon-cell .list-item-icon-wrap {
-    flex: 1 1 0;
-    min-width: 0;
+    /* Sized to the icon itself, not stretched to fill the cell - flex:1 1 0 grew this box
+       past the 32px icon (the collapse-toggle button eats the rest of the cell width),
+       which threw off the hover sheen (::before, inset:0) so it rendered to the right of
+       the actual icon instead of hugging it. */
+    flex: 0 0 auto;
 }
 
 button.container-collapse-toggle {
