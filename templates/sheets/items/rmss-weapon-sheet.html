@@ -13,41 +13,42 @@
     </nav>
     <div class="sheet-content">
         <div class="tab rmss-tab-details" data-tab="details" data-group="primary">
-        <!-- Contenedor general -->
-        <div class="rmss-weapon-selectors-row">
-            <div>
-                <div>{{localize "rmss.weapon.attack_table"}}</div>
-                <select name="system.attack_table" class="app-stat-selector" value="{{system.attack_table}}" itemid="{{ item._id }}">
-                    {{#each armsTables as |key|}}
-                    <option value="{{key}}" {{#if (eq key ../system.attack_table)}}selected{{/if}}>
-                    {{localize (concat "rmss.attack_table." key)}}
-                    </option>
-                    {{/each}}
-                </select>
-            </div>
-            {{#if (or (eq item.actor.type "npc") (eq item.actor.type "character"))}}
-            <div>
-                <div>{{localize "rmss.weapon.skill"}}</div>
-                <select name="system.offensive_skill" class="app-stat-selector" value="{{system.offensive_skill}}" itemid="{{ item._id }}">
-                    {{#each offensiveSkills}}
-                    <option value="{{this.id}}" {{#if (eq this.id ../system.offensive_skill)}}selected{{/if}}>{{this.name}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            {{/if}}
-            <div>
-                <div>{{localize "rmss.weapon.default_critical"}}</div>
-                <select name="system.critical_type" class="app-stat-selector" value="{{system.critical_type}}" itemid="{{ item._id }}">
-                    {{#each criticalTables as |key|}}
-                    <option value="{{key}}" {{#if (eq key ../system.critical_type)}}selected{{/if}}>
-                    {{localize (concat "rmss.critical_table." key)}}
-                    </option>
-                    {{/each}}
-                </select>
-            </div>
-        </div>
 
-        <div>
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-crosshairs"></i> {{localize "rmss.item.section_weapon_stats"}}</h3>
+            <div class="rmss-weapon-selectors-row">
+                <div>
+                    <div>{{localize "rmss.weapon.attack_table"}}</div>
+                    <select name="system.attack_table" class="app-stat-selector" value="{{system.attack_table}}" itemid="{{ item._id }}">
+                        {{#each armsTables as |key|}}
+                        <option value="{{key}}" {{#if (eq key ../system.attack_table)}}selected{{/if}}>
+                        {{localize (concat "rmss.attack_table." key)}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </div>
+                {{#if (or (eq item.actor.type "npc") (eq item.actor.type "character"))}}
+                <div>
+                    <div>{{localize "rmss.weapon.skill"}}</div>
+                    <select name="system.offensive_skill" class="app-stat-selector" value="{{system.offensive_skill}}" itemid="{{ item._id }}">
+                        {{#each offensiveSkills}}
+                        <option value="{{this.id}}" {{#if (eq this.id ../system.offensive_skill)}}selected{{/if}}>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                {{/if}}
+                <div>
+                    <div>{{localize "rmss.weapon.default_critical"}}</div>
+                    <select name="system.critical_type" class="app-stat-selector" value="{{system.critical_type}}" itemid="{{ item._id }}">
+                        {{#each criticalTables as |key|}}
+                        <option value="{{key}}" {{#if (eq key ../system.critical_type)}}selected{{/if}}>
+                        {{localize (concat "rmss.critical_table." key)}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+
             <table>
                 <tr>
                     <th>{{localize "rmss.weapon.equipped"}}</th>
@@ -99,6 +100,12 @@
                     </td>
                 </tr>
                 {{/if}}
+            </table>
+        </div>
+
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-coins"></i> {{localize "rmss.item.section_logistics"}}</h3>
+            <table>
                 <tr class="rmss-cost-row">
                     <th>{{localize "rmss.weapon.cost"}}</th>
                     <td colspan="2">
@@ -116,11 +123,21 @@
                     </td>
                 </tr>
             </table>
-                {{> rmssItemTags}}
-                {{localize "rmss.item.description"}}
-                {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
-            {{#if user.isGM}}
-            <h2>{{localize "rmss.item.secret_info"}}</h2>
+        </div>
+
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-tags"></i> {{localize "rmss.item.section_properties"}}</h3>
+            {{> rmssItemTags}}
+        </div>
+
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-scroll"></i> {{localize "rmss.item.description"}}</h3>
+            {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+        </div>
+
+        {{#if user.isGM}}
+        <div class="rmss-detail-section rmss-detail-section--secret">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-user-secret"></i> {{localize "rmss.item.secret_info"}}</h3>
             <div class="form-group">
                 <label>{{localize "rmss.item.identified"}}</label>
                 <input type="checkbox" name="system.identified" {{checked system.identified}}/>
@@ -138,8 +155,8 @@
             owner=owner
             editable=true}}
             </div>
-            {{/if}}
         </div>
+        {{/if}}
         </div>
         <div class="tab rmss-tab-modifiers" data-tab="modifiers" data-group="primary">
 
@@ -418,89 +435,95 @@
         </div>
         <div class="tab rmss-tab-magic" data-tab="magic" data-group="primary">
             {{#if isArtifact}}
-            <div class="rmss-charge-pool">
-                <label>{{localize "rmss.item.enchantments_pool"}}</label>
-                {{#if editable}}
-                <input type="number" name="system.magic.chargePool.current" value="{{chargePool.current}}" data-dtype="Number" min="0"/>
-                <span class="rmss-enchantment-slash">/</span>
-                <input type="number" name="system.magic.chargePool.max" value="{{chargePool.max}}" data-dtype="Number" min="0"/>
-                {{else}}
-                <span>{{chargePool.current}}/{{chargePool.max}}</span>
-                {{/if}}
-                <label class="rmss-charge-pool-level-label">{{localize "rmss.item.enchantments_cast_level"}}</label>
-                {{#if editable}}
-                <input type="number" name="system.magic.castLevel" value="{{system.magic.castLevel}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_cast_level_hint'}}"/>
-                {{else}}
-                <span>{{system.magic.castLevel}}</span>
-                {{/if}}
-                <label class="rmss-charge-pool-level-label">{{localize "rmss.item.enchantments_recharge_days"}}</label>
-                {{#if editable}}
-                <input type="number" name="system.magic.rechargeDays" value="{{system.magic.rechargeDays}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_recharge_days_hint'}}"/>
-                {{else}}
-                <span>{{system.magic.rechargeDays}}</span>
-                {{/if}}
-                <div class="rmss-recharge-progress" title="{{localize 'rmss.item.enchantments_days_until_recharge_hint'}}">
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-battery-full"></i> {{localize "rmss.item.section_charge_pool"}}</h3>
+                <div class="rmss-charge-pool">
+                    <label>{{localize "rmss.item.enchantments_pool"}}</label>
                     {{#if editable}}
-                    <input type="range" class="rmss-recharge-slider" min="0" max="{{rechargeProgress.rechargeDays}}" value="{{rechargeProgress.progress}}" {{#if (eq rechargeProgress.rechargeDays 0)}}disabled{{/if}}/>
+                    <input type="number" name="system.magic.chargePool.current" value="{{chargePool.current}}" data-dtype="Number" min="0"/>
+                    <span class="rmss-enchantment-slash">/</span>
+                    <input type="number" name="system.magic.chargePool.max" value="{{chargePool.max}}" data-dtype="Number" min="0"/>
                     {{else}}
-                    <div class="rmss-progress-thin rmss-recharge-bar"><div class="rmss-progress-bar" style="width: {{rmssPercentage rechargeProgress.progress rechargeProgress.rechargeDays}}%"></div></div>
+                    <span>{{chargePool.current}}/{{chargePool.max}}</span>
                     {{/if}}
-                    <span class="rmss-recharge-progress-label">{{rechargeProgress.daysUntilRecharge}}/{{rechargeProgress.rechargeDays}}</span>
+                    <label class="rmss-charge-pool-level-label">{{localize "rmss.item.enchantments_cast_level"}}</label>
+                    {{#if editable}}
+                    <input type="number" name="system.magic.castLevel" value="{{system.magic.castLevel}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_cast_level_hint'}}"/>
+                    {{else}}
+                    <span>{{system.magic.castLevel}}</span>
+                    {{/if}}
+                    <label class="rmss-charge-pool-level-label">{{localize "rmss.item.enchantments_recharge_days"}}</label>
+                    {{#if editable}}
+                    <input type="number" name="system.magic.rechargeDays" value="{{system.magic.rechargeDays}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_recharge_days_hint'}}"/>
+                    {{else}}
+                    <span>{{system.magic.rechargeDays}}</span>
+                    {{/if}}
+                    <div class="rmss-recharge-progress" title="{{localize 'rmss.item.enchantments_days_until_recharge_hint'}}">
+                        {{#if editable}}
+                        <input type="range" class="rmss-recharge-slider" min="0" max="{{rechargeProgress.rechargeDays}}" value="{{rechargeProgress.progress}}" {{#if (eq rechargeProgress.rechargeDays 0)}}disabled{{/if}}/>
+                        {{else}}
+                        <div class="rmss-progress-thin rmss-recharge-bar"><div class="rmss-progress-bar" style="width: {{rmssPercentage rechargeProgress.progress rechargeProgress.rechargeDays}}%"></div></div>
+                        {{/if}}
+                        <span class="rmss-recharge-progress-label">{{rechargeProgress.daysUntilRecharge}}/{{rechargeProgress.rechargeDays}}</span>
+                    </div>
+                    <p class="notes">{{localize "rmss.item.enchantments_pool_hint"}}</p>
                 </div>
-                <p class="notes">{{localize "rmss.item.enchantments_pool_hint"}}</p>
             </div>
             {{/if}}
-            <div class="rmss-enchantments-drop-zone drop-target" data-drop-zone="enchantments">
-                <div class="rmss-enchantments-header">
-                    <span>{{localize "rmss.item.enchantments_level"}}</span>
-                    <span>{{localize "rmss.item.enchantments_spell"}}</span>
-                    <span>{{localize "rmss.item.enchantments_realm"}}</span>
-                    <span>{{localize "rmss.item.enchantments_list_type"}}</span>
-                    <span>{{localize "rmss.item.enchantments_spell_list"}}</span>
-                    <span>{{localize "rmss.item.enchantments_attack_bonus"}}</span>
-                    <span>{{localize "rmss.item.enchantments_usage"}}</span>
-                    <span>{{localize "rmss.item.enchantments_view_spell"}}</span>
-                    <span></span>
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-wand-magic-sparkles"></i> {{localize "rmss.item.section_enchantments"}}</h3>
+                <div class="rmss-enchantments-drop-zone drop-target" data-drop-zone="enchantments">
+                    <div class="rmss-enchantments-header">
+                        <span>{{localize "rmss.item.enchantments_level"}}</span>
+                        <span>{{localize "rmss.item.enchantments_spell"}}</span>
+                        <span>{{localize "rmss.item.enchantments_realm"}}</span>
+                        <span>{{localize "rmss.item.enchantments_list_type"}}</span>
+                        <span>{{localize "rmss.item.enchantments_spell_list"}}</span>
+                        <span>{{localize "rmss.item.enchantments_attack_bonus"}}</span>
+                        <span>{{localize "rmss.item.enchantments_usage"}}</span>
+                        <span>{{localize "rmss.item.enchantments_view_spell"}}</span>
+                        <span></span>
+                    </div>
+                    {{#each enchantmentList as |enchantment idx|}}
+                    <div class="rmss-enchantment-row" data-enchantment-index="{{idx}}">
+                        <span class="rmss-text-center">{{enchantment.level}}</span>
+                        <span class="rmss-enchantment-spell-cell">{{enchantment.spell}}{{#if enchantment.canUse}} <button type="button" class="rmss-enchantment-use" data-action="use-enchantment" data-index="{{idx}}" title="{{localize 'rmss.item.enchantment_use'}}"><i class="fas fa-wand-magic-sparkles"></i></button>{{/if}}</span>
+                        <span>{{enchantment.realmLabel}}</span>
+                        <span>{{enchantment.listTypeLabel}}</span>
+                        <span>{{enchantment.spellListName}}</span>
+                        <span class="rmss-enchantment-bar-cell">{{#if ../editable}}<input type="number" name="system.magic.enchantments.{{idx}}.attackBonus" value="{{enchantment.attackBonus}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_attack_bonus'}}" placeholder="0"/>{{else}}{{enchantment.attackBonus}}{{/if}}</span>
+                        <span class="rmss-enchantment-usage-cell">
+                            {{#if ../editable}}
+                            <div class="rmss-enchantment-usage-stack">
+                                <select name="system.magic.enchantments.{{idx}}.usage" data-dtype="String">
+                                    {{#each ../config.enchantment_usage as |label key|}}
+                                    <option value="{{key}}" {{#if (eq enchantment.usage key)}}selected{{/if}}>{{localize label}}</option>
+                                    {{/each}}
+                                </select>
+                                {{#if (eq enchantment.usage "daily")}}
+                                <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.usesRemaining" value="{{enchantment.usesRemaining}}" data-dtype="Number" min="0" max="{{enchantment.usesPerDay}}" title="{{localize 'rmss.item.enchantments_uses_remaining'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.usesPerDay" value="{{enchantment.usesPerDay}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_per_day'}}" placeholder="—"/></span>
+                                {{/if}}
+                                {{#if (eq enchantment.usage "charged")}}
+                                <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.charges" value="{{enchantment.charges}}" data-dtype="Number" min="0" max="{{enchantment.chargesMax}}" title="{{localize 'rmss.item.enchantments_charges'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.chargesMax" value="{{enchantment.chargesMax}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges_max'}}" placeholder="—"/></span>
+                                {{/if}}
+                                {{#if (eq enchantment.usage "pooled")}}
+                                <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.poolCost" value="{{enchantment.poolCost}}" data-dtype="Number" min="1" title="{{localize 'rmss.item.enchantments_pool_cost'}}"/></span>
+                                {{/if}}
+                            </div>
+                            {{else}}
+                            <span>{{enchantment.usageLabel}}</span>
+                            {{/if}}
+                        </span>
+                        <span>{{#if enchantment.spellLinkUuid}}<a class="spell-link" data-action="open-spell-link" data-uuid="{{enchantment.spellLinkUuid}}" title="{{localize "rmss.item.enchantments_view_spell"}}"><i class="fas fa-external-link-alt"></i></a>{{else}}—{{/if}}</span>
+                        <span>
+                            <button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </span>
+                    </div>
+                    {{/each}}
+                    <p class="rmss-enchantments-hint">{{localize "rmss.item.enchantments_hint"}}</p>
                 </div>
-                {{#each enchantmentList as |enchantment idx|}}
-                <div class="rmss-enchantment-row" data-enchantment-index="{{idx}}">
-                    <span class="rmss-text-center">{{enchantment.level}}</span>
-                    <span class="rmss-enchantment-spell-cell">{{enchantment.spell}}{{#if enchantment.canUse}} <button type="button" class="rmss-enchantment-use" data-action="use-enchantment" data-index="{{idx}}" title="{{localize 'rmss.item.enchantment_use'}}"><i class="fas fa-wand-magic-sparkles"></i></button>{{/if}}</span>
-                    <span>{{enchantment.realmLabel}}</span>
-                    <span>{{enchantment.listTypeLabel}}</span>
-                    <span>{{enchantment.spellListName}}</span>
-                    <span class="rmss-enchantment-bar-cell">{{#if ../editable}}<input type="number" name="system.magic.enchantments.{{idx}}.attackBonus" value="{{enchantment.attackBonus}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_attack_bonus'}}" placeholder="0"/>{{else}}{{enchantment.attackBonus}}{{/if}}</span>
-                    <span class="rmss-enchantment-usage-cell">
-                        {{#if ../editable}}
-                        <div class="rmss-enchantment-usage-stack">
-                            <select name="system.magic.enchantments.{{idx}}.usage" data-dtype="String">
-                                {{#each ../config.enchantment_usage as |label key|}}
-                                <option value="{{key}}" {{#if (eq enchantment.usage key)}}selected{{/if}}>{{localize label}}</option>
-                                {{/each}}
-                            </select>
-                            {{#if (eq enchantment.usage "daily")}}
-                            <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.usesRemaining" value="{{enchantment.usesRemaining}}" data-dtype="Number" min="0" max="{{enchantment.usesPerDay}}" title="{{localize 'rmss.item.enchantments_uses_remaining'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.usesPerDay" value="{{enchantment.usesPerDay}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_uses_per_day'}}" placeholder="—"/></span>
-                            {{/if}}
-                            {{#if (eq enchantment.usage "charged")}}
-                            <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.charges" value="{{enchantment.charges}}" data-dtype="Number" min="0" max="{{enchantment.chargesMax}}" title="{{localize 'rmss.item.enchantments_charges'}}"/><span class="rmss-enchantment-slash">/</span><input type="number" name="system.magic.enchantments.{{idx}}.chargesMax" value="{{enchantment.chargesMax}}" data-dtype="Number" min="0" title="{{localize 'rmss.item.enchantments_charges_max'}}" placeholder="—"/></span>
-                            {{/if}}
-                            {{#if (eq enchantment.usage "pooled")}}
-                            <span class="rmss-enchantment-usage-fraction"><input type="number" name="system.magic.enchantments.{{idx}}.poolCost" value="{{enchantment.poolCost}}" data-dtype="Number" min="1" title="{{localize 'rmss.item.enchantments_pool_cost'}}"/></span>
-                            {{/if}}
-                        </div>
-                        {{else}}
-                        <span>{{enchantment.usageLabel}}</span>
-                        {{/if}}
-                    </span>
-                    <span>{{#if enchantment.spellLinkUuid}}<a class="spell-link" data-action="open-spell-link" data-uuid="{{enchantment.spellLinkUuid}}" title="{{localize "rmss.item.enchantments_view_spell"}}"><i class="fas fa-external-link-alt"></i></a>{{else}}—{{/if}}</span>
-                    <span>
-                        <button type="button" class="rmss-enchantment-delete" data-action="delete-enchantment" data-index="{{idx}}" title="{{localize "rmss.item.enchantment_delete"}}">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </span>
-                </div>
-                {{/each}}
-                <p class="rmss-enchantments-hint">{{localize "rmss.item.enchantments_hint"}}</p>
             </div>
         </div>
     </div>
