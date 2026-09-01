@@ -15,100 +15,118 @@
         <!-- Tab: Details -->
         <section class="tab" data-group="primary" data-tab="details">
             <div class="sheet-content drop-target" data-item-id="{{item.id}}">
-                <table>
-                    <tr>
-                        <th>{{localize "rmss.transport.cost"}}</th>
-                        <th>{{localize "rmss.item.currency"}}</th>
-                        <th>{{localize "rmss.transport.feet_per_round"}}</th>
-                        <th>{{localize "rmss.transport.miles_per_hour"}}</th>
-                        <th>{{localize "rmss.transport.maneuver"}}</th>
-                        <th>{{localize "rmss.transport.height"}}</th>
-                        <th>{{localize "rmss.transport.weight"}}</th>
-                        <th>{{localize "rmss.transport.offensive_bonus"}}</th>
-                    </tr>
-                    <td>
-                        <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
-                    </td>
-                    <td>
-                        <select name="system.currency_type">
-                            {{#each config.currency_type_abb as |label key|}}
-                            <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
-                            {{localize label}}
-                            </option>
-                            {{/each}}
-                        </select>
-                    </td>
-                    <td>
-                        <input name="system.feet_per_round" type="text" value="{{system.feet_per_round}}" data-dtype="Number"/>
-                    </td>
-                    <td>
-                        <input name="system.miles_per_hour" type="text" value="{{system.miles_per_hour}}" data-dtype="Number"/>
-                    </td>
-                    <td>
-                        <input name="system.maneuver" type="text" value="{{system.maneuver}}" data-dtype="Number"/>
-                    </td>
-                    <td>
-                        <input name="system.height" type="text" value="{{system.height}}" data-dtype="Number"/>
-                    </td>
-                    <td>
-                        <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
-                    </td>
-                    <td>
-                        <input name="system.offensive_bonus" type="text" value="{{system.offensive_bonus}}" data-dtype="Number"/>
-                    </td>
-                </table>
-                {{> rmssItemTags}}
 
-                <hr/>
-                <div class="rmss-progress">
-                    <div class="rmss-progress-bar" style="width: {{rmssPercentage system.container.usedCapacity system.container.maxCapacity}}%;">
-                    <span class="rmss-progress-bar-text">{{rmssPercentage system.container.usedCapacity system.container.maxCapacity}}%</span>
-                    </div>
+                <div class="rmss-detail-section">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-truck-fast"></i> {{localize "rmss.item.section_transport_stats"}}</h3>
+                    <table>
+                        <tr>
+                            <th>{{localize "rmss.transport.cost"}}</th>
+                            <th>{{localize "rmss.item.currency"}}</th>
+                            <th>{{localize "rmss.transport.feet_per_round"}}</th>
+                            <th>{{localize "rmss.transport.miles_per_hour"}}</th>
+                            <th>{{localize "rmss.transport.maneuver"}}</th>
+                            <th>{{localize "rmss.transport.height"}}</th>
+                            <th>{{localize "rmss.transport.weight"}}</th>
+                            <th>{{localize "rmss.transport.offensive_bonus"}}</th>
+                        </tr>
+                        <td>
+                            <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
+                        </td>
+                        <td>
+                            <select name="system.currency_type">
+                                {{#each config.currency_type_abb as |label key|}}
+                                <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
+                                {{localize label}}
+                                </option>
+                                {{/each}}
+                            </select>
+                        </td>
+                        <td>
+                            <input name="system.feet_per_round" type="text" value="{{system.feet_per_round}}" data-dtype="Number"/>
+                        </td>
+                        <td>
+                            <input name="system.miles_per_hour" type="text" value="{{system.miles_per_hour}}" data-dtype="Number"/>
+                        </td>
+                        <td>
+                            <input name="system.maneuver" type="text" value="{{system.maneuver}}" data-dtype="Number"/>
+                        </td>
+                        <td>
+                            <input name="system.height" type="text" value="{{system.height}}" data-dtype="Number"/>
+                        </td>
+                        <td>
+                            <input name="system.weight" type="text" value="{{system.weight}}" data-dtype="Number"/>
+                        </td>
+                        <td>
+                            <input name="system.offensive_bonus" type="text" value="{{system.offensive_bonus}}" data-dtype="Number"/>
+                        </td>
+                    </table>
                 </div>
-                <h3>Contenido de {{item.name}}</h3>
-                {{#if contents.length}}
-                <ul class="container-contents">
-                    {{#each contents as |contained|}}
-                    <li class="item contained">
-                        <img src="{{contained.img}}" data-edit="img" title="{{contained.name}}" height="32" width="32"/>
-                        <span class="description">
-                    <strong>{{contained.name}}</strong> ({{contained.system.weight}} kg)
-                    <a class="remove-from-container" data-item-id="{{contained.id}}" title="Sacar"><i class="fas fa-box-open"></i></a>
-                  </span>
-                    </li>
-                    {{/each}}
-                </ul>
-                {{else}}
-                <p><em>El transporte está vacío.</em></p>
-                {{/if}}
 
-                <label>{{localize "rmss.item.description"}}</label>
-                {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+                <div class="rmss-detail-section">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-tags"></i> {{localize "rmss.item.section_properties"}}</h3>
+                    {{> rmssItemTags}}
+                </div>
+
+                <div class="rmss-detail-section">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-box-open"></i> {{localize "rmss.item.container_contents"}} {{item.name}}</h3>
+                    <div class="rmss-progress">
+                        <div class="rmss-progress-bar" style="width: {{rmssPercentage system.container.usedCapacity system.container.maxCapacity}}%;">
+                        <span class="rmss-progress-bar-text">{{rmssPercentage system.container.usedCapacity system.container.maxCapacity}}%</span>
+                        </div>
+                    </div>
+                    {{#if contents.length}}
+                    <ul class="container-contents">
+                        {{#each contents as |contained|}}
+                        <li class="item contained">
+                            <img src="{{contained.img}}" data-edit="img" title="{{contained.name}}" height="32" width="32"/>
+                            <span class="description">
+                        <strong>{{contained.name}}</strong> ({{contained.system.weight}} kg)
+                        <a class="remove-from-container" data-item-id="{{contained.id}}" title="Sacar"><i class="fas fa-box-open"></i></a>
+                      </span>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    {{else}}
+                    <p><em>El transporte está vacío.</em></p>
+                    {{/if}}
+                </div>
+
+                <div class="rmss-detail-section">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-scroll"></i> {{localize "rmss.item.description"}}</h3>
+                    {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+                </div>
             </div>
         </section>
 
         <!-- Tab: Container -->
         <section class="tab" data-group="primary" data-tab="container">
-            <div class="form-group">
-                <label>Tipo de capacidad:</label>
-                <select name="system.container.capacityType">
-                    <option value="weight" {{#if (eq system.container.capacityType "weight")}}selected{{/if}}>Peso</option>
-                    <option value="quantity" {{#if (eq system.container.capacityType "quantity")}}selected{{/if}}>Cantidad</option>
-                </select>
+
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-box-open"></i> {{localize "rmss.item.capacity"}}</h3>
+                <div class="form-group">
+                    <label>Tipo de capacidad:</label>
+                    <select name="system.container.capacityType">
+                        <option value="weight" {{#if (eq system.container.capacityType "weight")}}selected{{/if}}>Peso</option>
+                        <option value="quantity" {{#if (eq system.container.capacityType "quantity")}}selected{{/if}}>Cantidad</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    {{#if (eq system.container.capacityType "weight")}}
+                    <label>{{localize "rmss.item.capacity"}} (kg):</label>
+                    <input type="number" class="container-capacity" name="system.container.maxCapacity" value="{{system.container.maxCapacity}}" data-dtype="Number"/>
+                    {{/if}}
+                    {{#if (eq system.container.capacityType "quantity")}}
+                    <label>{{localize "rmss.item.capacity"}} (items):</label>
+                    <input type="number" class="container-capacity" name="system.container.maxCapacity" value="{{system.container.maxCapacity}}" data-dtype="Number"/>
+                    {{/if}}
+                </div>
             </div>
 
-            <div class="form-group">
-                {{#if (eq system.container.capacityType "weight")}}
-                <label>{{localize "rmss.item.capacity"}} (kg):</label>
-                <input type="number" class="container-capacity" name="system.container.maxCapacity" value="{{system.container.maxCapacity}}" data-dtype="Number"/>
-                {{/if}}
-                {{#if (eq system.container.capacityType "quantity")}}
-                <label>{{localize "rmss.item.capacity"}} (items):</label>
-                <input type="number" class="container-capacity" name="system.container.maxCapacity" value="{{system.container.maxCapacity}}" data-dtype="Number"/>
-                {{/if}}
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-filter"></i> {{localize "rmss.item.section_properties"}}</h3>
+                {{> rmssContainerAllowedTags}}
             </div>
-            <hr/>
-            {{> rmssContainerAllowedTags}}
         </section>
     </section>
 </form>

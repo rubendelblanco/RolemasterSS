@@ -680,6 +680,8 @@
       "days_until_spoiled_label": "Caducidad: {days} días",
       "section_logistics": "Logística y valor",
       "section_weapon_stats": "Estadísticas del arma",
+      "section_herb_stats": "Detalles de hierba/veneno",
+      "section_transport_stats": "Estadísticas del transporte",
       "section_charge_pool": "Reserva de poder",
       "section_enchantments": "Encantamientos",
       "section_properties": "Propiedades",

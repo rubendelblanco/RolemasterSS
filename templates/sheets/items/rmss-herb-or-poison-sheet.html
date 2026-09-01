@@ -8,79 +8,95 @@
     {{else}}
     <div class="sheet-content">
         <div>
-            <table>
-                <tr>
-                    <th>{{localize "rmss.item.quantity"}}</th>
-                    <th>{{localize "rmss.herb_or_poison.unitWeight"}}</th>
-                    <th>{{localize "rmss.herb_or_poison.weight"}}</th>
-                    <th>{{localize "rmss.herb_or_poison.codes"}}</th>
-                    <th>{{localize "rmss.herb_or_poison.form_and_prep"}}</th>
-                    <th>{{localize "rmss.herb_or_poison.unitCost"}}</th>
-                    <th>{{localize "rmss.herb_or_poison.currency"}}</th>
-                    <th>{{localize "rmss.herb_or_poison.cost"}}</th>
-                    <th>{{localize "rmss.herb_or_poison.af"}}</th>
-                </tr>
-                <tr>
-                <td>
-                    <input name="system.quantity" type="text" value="{{system.quantity}}" data-dtype="Number"/>
-                </td>
-                <td>
-                    <input name="system.unitWeight" type="number" value="{{system.unitWeight}}" data-dtype="Number" step="0.01" />
-                </td>
-                <td>
-                    <input name="system.weight" type="number" value="{{system.weight}}" data-dtype="Number" readonly/>
-                </td>
-                <td>
-                    <input name="system.codes" type="text" value="{{system.codes}}" data-dtype="String"/>
-                </td>                
-                <td>
-                    <input name="system.form_and_prep" type="text" value="{{system.form_and_prep}}" data-dtype="String"/>
-                </td>
-                <td>
-                    <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
-                </td>
-                <td>
-                    <select name="system.currency_type">
-                        {{#each config.currency_type_abb as |label key|}}
-                        <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
-                        {{localize label}}
-                        </option>
-                        {{/each}}
-                    </select>
-                </td>
-                <td>
-                    <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String" readonly/>
-                </td>
-                <td>
-                    <input name="system.af" type="text" value="{{system.af}}" data-dtype="Number"/>
-                </td>
-                </tr>
-            </table>
-            <div class="form-group">
-                <span>{{localize "rmss.item.is_stackable"}}</span>
-                <input type="checkbox" name="system.is_stackable" {{checked system.is_stackable}} />
+
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-mortar-pestle"></i> {{localize "rmss.item.section_herb_stats"}}</h3>
+                <table>
+                    <tr>
+                        <th>{{localize "rmss.item.quantity"}}</th>
+                        <th>{{localize "rmss.herb_or_poison.unitWeight"}}</th>
+                        <th>{{localize "rmss.herb_or_poison.weight"}}</th>
+                        <th>{{localize "rmss.herb_or_poison.codes"}}</th>
+                        <th>{{localize "rmss.herb_or_poison.form_and_prep"}}</th>
+                        <th>{{localize "rmss.herb_or_poison.unitCost"}}</th>
+                        <th>{{localize "rmss.herb_or_poison.currency"}}</th>
+                        <th>{{localize "rmss.herb_or_poison.cost"}}</th>
+                        <th>{{localize "rmss.herb_or_poison.af"}}</th>
+                    </tr>
+                    <tr>
+                    <td>
+                        <input name="system.quantity" type="text" value="{{system.quantity}}" data-dtype="Number"/>
+                    </td>
+                    <td>
+                        <input name="system.unitWeight" type="number" value="{{system.unitWeight}}" data-dtype="Number" step="0.01" />
+                    </td>
+                    <td>
+                        <input name="system.weight" type="number" value="{{system.weight}}" data-dtype="Number" readonly/>
+                    </td>
+                    <td>
+                        <input name="system.codes" type="text" value="{{system.codes}}" data-dtype="String"/>
+                    </td>
+                    <td>
+                        <input name="system.form_and_prep" type="text" value="{{system.form_and_prep}}" data-dtype="String"/>
+                    </td>
+                    <td>
+                        <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
+                    </td>
+                    <td>
+                        <select name="system.currency_type">
+                            {{#each config.currency_type_abb as |label key|}}
+                            <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
+                            {{localize label}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </td>
+                    <td>
+                        <input name="system.cost" type="text" value="{{system.cost}}" data-dtype="String" readonly/>
+                    </td>
+                    <td>
+                        <input name="system.af" type="text" value="{{system.af}}" data-dtype="Number"/>
+                    </td>
+                    </tr>
+                </table>
             </div>
-            {{> rmssItemTags}}
-            <label>{{localize "rmss.item.description"}}</label>
-            {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-tags"></i> {{localize "rmss.item.section_properties"}}</h3>
+                <div class="rmss-detail-toggle-row">
+                    <label class="rmss-detail-toggle">
+                        <input type="checkbox" name="system.is_stackable" {{checked system.is_stackable}} />
+                        <span>{{localize "rmss.item.is_stackable"}}</span>
+                    </label>
+                </div>
+                {{> rmssItemTags}}
+            </div>
+
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-scroll"></i> {{localize "rmss.item.description"}}</h3>
+                {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+            </div>
+
             {{#if user.isGM}}
-            <h2>{{localize "rmss.item.secret_info"}}</h2>
-            <div class="form-group">
-                <label>{{localize "rmss.item.identified"}}</label>
-                <input type="checkbox" name="system.identified" {{checked system.identified}}/>
-            </div>
-            {{#unless system.identified}}
-            <div class="form-group">
-                <label>{{localize "rmss.item.value_unidentified"}}</label>
-                <input type="number" name="system.value_unidentified" value="{{system.value_unidentified}}" data-dtype="Number" min="0" step="0.01"/>
-            </div>
-            {{/unless}}
-            <div class="description-editor-wrapper {{#unless system.description_secret}}empty-description{{/unless}}">
-            {{editor secretDescription
-            target="system.description_secret"
-            button=true
-            owner=owner
-            editable=true}}
+            <div class="rmss-detail-section rmss-detail-section--secret">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-user-secret"></i> {{localize "rmss.item.secret_info"}}</h3>
+                <div class="form-group">
+                    <label>{{localize "rmss.item.identified"}}</label>
+                    <input type="checkbox" name="system.identified" {{checked system.identified}}/>
+                </div>
+                {{#unless system.identified}}
+                <div class="form-group">
+                    <label>{{localize "rmss.item.value_unidentified"}}</label>
+                    <input type="number" name="system.value_unidentified" value="{{system.value_unidentified}}" data-dtype="Number" min="0" step="0.01"/>
+                </div>
+                {{/unless}}
+                <div class="description-editor-wrapper {{#unless system.description_secret}}empty-description{{/unless}}">
+                {{editor secretDescription
+                target="system.description_secret"
+                button=true
+                owner=owner
+                editable=true}}
+                </div>
             </div>
             {{/if}}
         </div>
