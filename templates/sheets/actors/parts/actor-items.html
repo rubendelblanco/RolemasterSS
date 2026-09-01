@@ -33,7 +33,51 @@
         <td><strong>{{group.container.rmssDisplayName}}{{#if group.capacityMax}} <span class="container-capacity-badge">({{group.capacityUsed}}/{{group.capacityMax}}{{#if (eq group.capacityType "weight")}} kg{{else}}{{/if}})</span>{{/if}}{{#if group.container.system.description}}
           <i class="fas fa-info-circle spell-info-icon"
              data-tooltip="{{group.container.system.description}}"></i>
-          {{/if}}</strong></td>
+          {{/if}}</strong>
+          {{#with group.container as |container|}}
+          {{#if container.rmssIsTrackedFood}}
+          <div class="item-spoilage-label{{#if (eq container.rmssDaysUntilSpoiled 1)}} item-spoilage-label--critical{{else if (eq container.rmssDaysUntilSpoiled 2)}} item-spoilage-label--warning{{/if}}">{{localize "rmss.item.days_until_spoiled_label" days=container.rmssDaysUntilSpoiled}}</div>
+          {{/if}}
+          {{#if (or (or (or (gt container.system.spell_adder 0) (gt container.system.pp_multiplier 1)) container.rmssPassiveBadges.length) container.rmssSkillBonusBadges.length)}}
+          <div class="item-power-badges">
+            {{#if (gt container.system.spell_adder 0)}}
+            <div class="spell-adder-pips">
+              {{#times container.system.spell_adder}}
+              <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
+              {{/times}}
+            </div>
+            {{else if (gt container.system.pp_multiplier 1)}}
+            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=container.system.pp_multiplier}}">
+              <i class="fas fa-star"></i> x{{container.system.pp_multiplier}}
+            </span>
+            {{/if}}
+            {{#each container.rmssPassiveBadges as |badge|}}
+            <span class="item-passive-badge item-passive-badge--{{#if badge.positive}}positive{{else}}negative{{/if}}" data-tooltip="{{badge.tooltip}}">
+              <i class="fas {{badge.icon}}"></i> {{badge.sign}}{{badge.value}}
+            </span>
+            {{/each}}
+            {{#each container.rmssSkillBonusBadges as |badge|}}
+            <span class="item-passive-badge item-passive-badge--{{#if badge.positive}}positive{{else}}negative{{/if}}" data-tooltip="{{badge.tooltip}}">
+              <i class="fas fa-graduation-cap"></i> {{badge.sign}}{{badge.value}}
+            </span>
+            {{/each}}
+          </div>
+          {{/if}}
+          {{#if (or container.rmssChargePool container.rmssEnchantmentCharges.length)}}
+          <div class="item-charge-badges">
+            {{#if container.rmssChargePool}}
+            <span class="item-charge-pool" data-tooltip="{{localize 'rmss.item.charge_pool_tooltip' current=container.rmssChargePool.current max=container.rmssChargePool.max}}">
+              <i class="fas fa-bolt"></i> {{container.rmssChargePool.current}}/{{container.rmssChargePool.max}}
+            </span>
+            {{/if}}
+            {{#each container.rmssEnchantmentCharges as |charge|}}
+            <span class="item-charge-badge item-charge-badge--{{charge.usage}}" data-tooltip="{{charge.tooltip}}">
+              <i class="fas {{charge.icon}}"></i> {{charge.current}}
+            </span>
+            {{/each}}
+          </div>
+          {{/if}}
+          {{/with}}</td>
         <td>
             {{#if group.container.system.worn}}
             <a class="equippable" data-item-id="{{group.container._id}}">
