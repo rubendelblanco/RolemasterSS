@@ -166,6 +166,26 @@ export default class RMSSItemSheet extends ItemSheet {
     bindPassiveModifiersEditor(this, html);
   }
 
+  /**
+   * Foundry's own submitOnChange _onSubmit silently drops (returns false, no error) any
+   * submission that starts while a PREVIOUS one for this sheet is still in flight - its
+   * `this._submitting` reentrancy guard. The render that follows a save isn't a local,
+   * instant thing either: it's driven by the socket round-trip response to the update
+   * (#handleUpdateDocuments -> _onUpdate -> render), so that "in flight" window is real
+   * network time, not a rounding error. Two fields edited in quick succession - type a
+   * value, immediately tab to the next field - can each fire a submission close enough
+   * together that the second one starts before the first's round-trip finishes, and gets
+   * silently thrown away. Queuing every submission through one promise chain means the
+   * second one waits for the first to actually finish instead of racing it and losing.
+   * @override
+   */
+  async _onChangeInput(event) {
+    const run = () => super._onChangeInput(event);
+    const next = Promise.resolve(this._pendingSubmit).then(run, run);
+    this._pendingSubmit = next;
+    return next;
+  }
+
   _setupHolyUnholyExclusive(html) {
     const holy = html.find('input[name="system.holy"]')[0];
     const unholy = html.find('input[name="system.unholy"]')[0];
