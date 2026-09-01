@@ -107,3 +107,40 @@ describe('computeItemUpdateGuards', () => {
         });
     });
 });
+
+describe('canMergeFreshness', () => {
+    test('two untracked items (no shelf life on either side) are always compatible', () => {
+        expect(FoodSpoilageService.canMergeFreshness({}, {})).toBe(true);
+        expect(FoodSpoilageService.canMergeFreshness(
+            { shelf_life_days: 0 },
+            { shelf_life_days: 0, days_until_spoiled: 0 }
+        )).toBe(true);
+    });
+
+    test('two tracked items with the same shelf life and same remaining days merge', () => {
+        const a = { shelf_life_days: 5, days_until_spoiled: 2 };
+        const b = { shelf_life_days: 5, days_until_spoiled: 2 };
+        expect(FoodSpoilageService.canMergeFreshness(a, b)).toBe(true);
+    });
+
+    test('same shelf life but different remaining days does not merge (the reported bug)', () => {
+        // 1 loaf bought with 5-day shelf life, 3 days pass (2 remaining), then a second
+        // fresh 5-day loaf is bought (still at its full 5 remaining) - must not merge.
+        const existing = { shelf_life_days: 5, days_until_spoiled: 2 };
+        const incoming = { shelf_life_days: 5, days_until_spoiled: 5 };
+        expect(FoodSpoilageService.canMergeFreshness(existing, incoming)).toBe(false);
+    });
+
+    test('different shelf_life_days values never merge, regardless of remaining days', () => {
+        const existing = { shelf_life_days: 5, days_until_spoiled: 5 };
+        const incoming = { shelf_life_days: 3, days_until_spoiled: 5 };
+        expect(FoodSpoilageService.canMergeFreshness(existing, incoming)).toBe(false);
+    });
+
+    test('a tracked item never merges with an untracked one', () => {
+        const tracked = { shelf_life_days: 5, days_until_spoiled: 5 };
+        const untracked = { shelf_life_days: 0, days_until_spoiled: 0 };
+        expect(FoodSpoilageService.canMergeFreshness(tracked, untracked)).toBe(false);
+        expect(FoodSpoilageService.canMergeFreshness(untracked, tracked)).toBe(false);
+    });
+});

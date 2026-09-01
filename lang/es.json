@@ -675,6 +675,7 @@
       "shelf_life_days": "Vida útil (días)",
       "days_until_spoiled": "Días hasta que se estropee",
       "food_spoiled_message": "<strong>{item}</strong> se ha estropeado. <strong>{item}</strong> descartado del equipo.",
+      "days_until_spoiled_label": "Caducidad: {days} días",
       "unidentified_weapon": "Arma Desconocida",
       "unidentified_armor": "Armadura Desconocida",
       "unidentified_herb": "Hierba/Veneno Desconocido",

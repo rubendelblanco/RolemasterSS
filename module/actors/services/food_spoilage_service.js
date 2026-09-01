@@ -74,6 +74,26 @@ export default class FoodSpoilageService {
   }
 
   /**
+   * Whether two item system blobs are safe to merge into a single stack: same freshness
+   * state, so quantity-merging a stackable item (rmss_character_sheet.js's drop-to-stack
+   * handler) never silently overwrites or discards a different remaining shelf life.
+   * Untracked items (shelf_life_days <= 0 on both sides) are always compatible.
+   * @param {object} existingSystem
+   * @param {object} incomingSystem
+   * @returns {boolean}
+   */
+  static canMergeFreshness(existingSystem, incomingSystem) {
+    const existingShelfLife = Number(existingSystem?.shelf_life_days) || 0;
+    const incomingShelfLife = Number(incomingSystem?.shelf_life_days) || 0;
+    if (existingShelfLife <= 0 && incomingShelfLife <= 0) return true;
+    if (existingShelfLife !== incomingShelfLife) return false;
+
+    const existingRemaining = Number(existingSystem?.days_until_spoiled) || 0;
+    const incomingRemaining = Number(incomingSystem?.days_until_spoiled) || 0;
+    return existingRemaining === incomingRemaining;
+  }
+
+  /**
    * Advance every tracked food item on the actor by one day (called once per long rest).
    * Items that run out of shelf life are deleted and a whispered (owner + GM) chat message
    * is posted per item.
@@ -120,6 +140,11 @@ export default class FoodSpoilageService {
    * @param {Item} item
    */
   static async _chatFoodSpoiled(actor, item) {
+    // A stackable food item spoils as a whole stack (every unit came from the same batch, same
+    // freshness) - say how many were lost, not just the name, or "5 rations" reads as "1 ration".
+    const qty = Number(item.system?.quantity) || 1;
+    const itemLabel = qty > 1 ? `${qty}x ${item.name}` : item.name;
+
     const content = `
       <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
@@ -129,7 +154,7 @@ export default class FoodSpoilageService {
         <div style="display: flex; align-items: center; gap: 10px;">
           ${item.img ? `<img src="${item.img}" style="width: 32px; height: 32px; border-radius: 4px; object-fit: cover;" />` : ""}
           <p style="color: #333; margin: 0; font-size: 14px;">
-            ${game.i18n.format("rmss.item.food_spoiled_message", { item: item.name })}
+            ${game.i18n.format("rmss.item.food_spoiled_message", { item: itemLabel })}
           </p>
         </div>
       </div>`;

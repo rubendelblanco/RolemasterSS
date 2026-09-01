@@ -7,6 +7,7 @@ import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js
 import { buildDeleteConfirmContent } from "../items/item_delete_confirm_util.js";
 
 import ArmorInfoService from "../../actors/services/armor_info_service.js";
+import FoodSpoilageService from "../../actors/services/food_spoilage_service.js";
 
 /**
  * All the actions and feats in common for characters (PCs, NPCs, Creatures & Monsters)
@@ -399,12 +400,18 @@ export default class RMSSCharacterSheet extends ActorSheet {
         const itemData = droppedItem.toObject();
 
         // Try to find an existing matching stackable item
-        const existing = targetItem ?? this.actor.items.find(i =>
+        const candidate = targetItem ?? this.actor.items.find(i =>
             i.id !== droppedItem.id &&
             i.name === itemData.name &&
             i.type === itemData.type &&
             i.system.is_stackable
         );
+        // Two food items with different remaining shelf life must not merge into one stack -
+        // that would silently overwrite/discard whichever freshness state loses, so fall
+        // through to creating the dropped item as its own separate document instead.
+        const existing = candidate && FoodSpoilageService.canMergeFreshness(candidate.system, itemData.system)
+            ? candidate
+            : null;
 
         if (existing) {
             // Combine stack quantities (round to 2 decimals to avoid float noise)

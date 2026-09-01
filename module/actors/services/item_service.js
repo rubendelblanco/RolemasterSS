@@ -3,6 +3,7 @@ import { attachItemMagicActionFlags } from "../../sheets/items/cast_enchantment_
 import { ContainerHandler } from "../utils/container_handler.js";
 import { attachIdentityDisplayFlags } from "../utils/item_identity_util.js";
 import RankCalculator from "../../core/skills/rmss_rank_calculator.js";
+import FoodSpoilageService from "./food_spoilage_service.js";
 
 /**
  * Service to handle skill-related operations on items.
@@ -276,6 +277,16 @@ export default class ItemService {
         // Mask name/magical-glow for unidentified items (identified === false), for anyone but the GM
         for (const i of [...gear, ...weapons, ...armor, ...herbs]) {
             attachIdentityDisplayFlags(i);
+        }
+
+        // Days-until-spoiled label for tracked food (see food_spoilage_service.js). Kept as
+        // a separate boolean rather than relying on rmssDaysUntilSpoiled's truthiness, since
+        // 0 remaining days is a valid (falsy) tracked value in the brief window before the
+        // next long rest deletes the item.
+        for (const i of gear) {
+            const isTracked = FoodSpoilageService.isTrackedFoodItem(i);
+            i.rmssIsTrackedFood = isTracked;
+            i.rmssDaysUntilSpoiled = isTracked ? (Number(i.system?.days_until_spoiled) || 0) : null;
         }
 
         // Spell list name/realm for casting (Record tab favorites, etc.)
