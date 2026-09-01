@@ -142,262 +142,275 @@
         </div>
         </div>
         <div class="tab rmss-tab-modifiers" data-tab="modifiers" data-group="primary">
-            <table class="rmss-modifiers-table">
-                <tr>
-                    <th>{{localize "rmss.item.modifiers_material"}}</th>
-                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_bonus"}}</th>
-                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_breakage"}}</th>
-                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_total"}}</th>
-                </tr>
-                <tr>
-                    <td>
-                        <select name="system.material">
-                            {{#each materialsOptions as |opt|}}
-                            <option value="{{opt.key}}" {{#if opt.selected}}selected{{/if}}>{{opt.label}}</option>
-                            {{/each}}
-                        </select>
-                    </td>
-                    <td class="rmss-text-center">
-                        {{#if bonusEditable}}
-                        <input type="number" name="system.bonus" value="{{or system.bonus 0}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
-                        {{else}}
-                        <span class="rmss-bonus-readonly">{{or system.bonus 0}}</span>
-                        {{/if}}
-                    </td>
-                    <td class="rmss-text-center">{{system.breakage_range}}</td>
-                    <td class="rmss-text-center rmss-text-strong">{{rmss_weapon_total}}</td>
-                </tr>
-                <tr>
-                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_magical"}}</th>
-                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_holy"}}</th>
-                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_unholy"}}</th>
-                    <th class="rmss-text-center">{{localize "rmss.item.modifiers_of_changing"}}</th>
-                </tr>
-                <tr>
-                    <td class="rmss-text-center">
-                        {{#if magicalEditable}}
-                        <input type="checkbox" name="system.magical" {{checked system.magical}}/>
-                        {{else}}
-                        <input type="hidden" name="system.magical" value="{{#if system.magical}}true{{else}}false{{/if}}" data-dtype="Boolean"/>
-                        <input type="checkbox" {{checked system.magical}} disabled title="{{#if system.magical}}{{localize "rmss.item.modifiers_magical"}}{{/if}}"/>
-                        {{/if}}
-                    </td>
-                    <td class="rmss-text-center"><input type="checkbox" name="system.holy" {{checked system.holy}}/></td>
-                    <td class="rmss-text-center"><input type="checkbox" name="system.unholy" {{checked system.unholy}}/></td>
-                    <td class="rmss-text-center"><input type="checkbox" name="system.of_changing" {{checked system.of_changing}}/></td>
-                </tr>
-                <tr>
-                    <th colspan="5">{{localize "rmss.item.modifiers_slaying"}}</th>
-                </tr>
-                <tr>
-                    <td colspan="5">
-                        <div class="rmss-weapon-slaying">
-                            <div class="rmss-tag-chips">
-                                {{#each weaponSlaying}}
-                                <span class="rmss-tag-chip" data-tag-index="{{@index}}">
-                                    <span class="rmss-tag-label">{{this}}</span>
-                                    {{#if ../editable}}
-                                    <button type="button" class="weapon-slaying-remove" data-action="weapon-slaying-remove" title="{{localize 'rmss.item.item_tags_remove'}}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                    {{/if}}
-                                </span>
+
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-hammer"></i> {{localize "rmss.item.section_combat_bonuses"}}</h3>
+                <table class="rmss-modifiers-table">
+                    <tr>
+                        <th>{{localize "rmss.item.modifiers_material"}}</th>
+                        <th class="rmss-text-center">{{localize "rmss.item.modifiers_bonus"}}</th>
+                        <th class="rmss-text-center">{{localize "rmss.item.modifiers_breakage"}}</th>
+                        <th class="rmss-text-center">{{localize "rmss.item.modifiers_total"}}</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="system.material">
+                                {{#each materialsOptions as |opt|}}
+                                <option value="{{opt.key}}" {{#if opt.selected}}selected{{/if}}>{{opt.label}}</option>
                                 {{/each}}
-                            </div>
-                            {{#if editable}}
-                            <input type="text" class="rmss-weapon-slaying-input" list="rmss-slaying-types-{{weaponSlayingListId}}" placeholder="{{localize "rmss.item.modifiers_slaying_placeholder"}}" autocomplete="off"/>
-                            <datalist id="rmss-slaying-types-{{weaponSlayingListId}}">
-                                {{#each config.slaying_types as |type|}}
-                                <option value="{{type}}"/>
-                                {{/each}}
-                            </datalist>
-                            {{/if}}
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label class="rmss-is-slaying-label" title="{{#if weaponSlaying.length}}{{localize 'rmss.item.modifiers_is_slaying_hint'}}{{else}}{{localize 'rmss.item.modifiers_is_slaying_needs_tags'}}{{/if}}">
-                            {{#if weaponSlaying.length}}
-                            <input type="checkbox" name="system.isSlaying" {{checked system.isSlaying}}/>
+                            </select>
+                        </td>
+                        <td class="rmss-text-center">
+                            {{#if bonusEditable}}
+                            <input type="number" name="system.bonus" value="{{or system.bonus 0}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
                             {{else}}
-                            <input type="hidden" name="system.isSlaying" value="false" data-dtype="Boolean"/>
-                            <input type="checkbox" {{checked system.isSlaying}} disabled/>
+                            <span class="rmss-bonus-readonly">{{or system.bonus 0}}</span>
                             {{/if}}
-                            {{localize "rmss.item.modifiers_is_slaying"}}
-                        </label>
-                    </td>
-                    <td colspan="3">
-                        <label class="rmss-slaying-bonus-label">{{localize "rmss.item.modifiers_slaying_bonus"}}</label>
-                        {{#if editable}}
-                        <input type="number" class="rmss-slaying-bonus-input" name="system.slaying_bonus" value="{{system.slaying_bonus}}" data-dtype="Number" title="{{localize 'rmss.item.modifiers_slaying_bonus_hint'}}"/>
-                        {{else}}
-                        <span>{{system.slaying_bonus}}</span>
-                        {{/if}}
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="5">{{localize "rmss.item.weapon_effects_header"}}</th>
-                </tr>
-                <tr>
-                    <td colspan="2">{{localize "rmss.item.weapon_effects_increased_initiative"}}
-                        <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_increased_initiative_hint'}}"></i></td>
-                    <td colspan="3">
-                        <select name="system.weapon_effects.increased_initiative" data-dtype="String">
-                            <option value="" {{#unless system.weapon_effects.increased_initiative}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_none"}}</option>
-                            <option value="minor" {{#if (eq system.weapon_effects.increased_initiative "minor")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_minor"}} (+2)</option>
-                            <option value="normal" {{#if (eq system.weapon_effects.increased_initiative "normal")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_normal"}} (+4)</option>
-                            <option value="greater" {{#if (eq system.weapon_effects.increased_initiative "greater")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_greater"}} (+6)</option>
-                            <option value="superior" {{#if (eq system.weapon_effects.increased_initiative "superior")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_superior"}} (+8)</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">{{localize "rmss.item.weapon_effects_effect_weapon"}}
-                        <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_effect_weapon_hint'}}"></i></td>
-                    <td colspan="3">
-                        <div class="rmss-effect-weapon-selects">
-                            <select name="system.weapon_effects.effect_weapon" data-dtype="String" title="{{localize 'rmss.item.weapon_effects_effect_weapon'}}">
-                                <option value="" {{#unless system.weapon_effects.effect_weapon}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_none"}}</option>
-                                <option value="minor" {{#if (eq system.weapon_effects.effect_weapon "minor")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_minor"}}</option>
-                                <option value="normal" {{#if (eq system.weapon_effects.effect_weapon "normal")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_normal"}}</option>
-                                <option value="greater" {{#if (eq system.weapon_effects.effect_weapon "greater")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_greater"}}</option>
-                                <option value="superior" {{#if (eq system.weapon_effects.effect_weapon "superior")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_superior"}}</option>
-                            </select>
-                            <select name="system.weapon_effects.effect_weapon_critical_type" data-dtype="String" title="{{localize 'rmss.item.weapon_effects_effect_weapon_critical_hint'}}">
-                                <option value="" disabled {{#unless system.weapon_effects.effect_weapon_critical_type}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_ew_crit_placeholder"}}</option>
-                                {{#each criticalTables as |key|}}
-                                <option value="{{key}}" {{#if (eq key ../system.weapon_effects.effect_weapon_critical_type)}}selected{{/if}}>{{localize (concat "rmss.critical_table." key)}}</option>
-                                {{/each}}
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">{{localize "rmss.item.weapon_effects_fixed_severity"}}
-                        <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_fixed_severity_hint'}}"></i></td>
-                    <td colspan="3">
-                        <select name="system.weapon_effects.effect_weapon_fixed_severity" data-dtype="String" title="{{localize 'rmss.item.weapon_effects_fixed_severity_hint'}}">
-                            <option value="" {{#unless system.weapon_effects.effect_weapon_fixed_severity}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_fixed_severity_none"}}</option>
-                            <option value="A" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "A")}}selected{{/if}}>A</option>
-                            <option value="B" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "B")}}selected{{/if}}>B</option>
-                            <option value="C" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "C")}}selected{{/if}}>C</option>
-                            <option value="D" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "D")}}selected{{/if}}>D</option>
-                            <option value="E" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "E")}}selected{{/if}}>E</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">{{localize "rmss.item.weapon_effects_increased_critical"}}
-                        <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_increased_critical_hint'}}"></i></td>
-                    <td colspan="3"><input type="checkbox" name="system.weapon_effects.increased_critical" {{checked system.weapon_effects.increased_critical}}/></td>
-                </tr>
-                <tr>
-                    <td colspan="2">{{localize "rmss.item.weapon_effects_weapon_of_bleeding"}}
-                        <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_weapon_of_bleeding_hint'}}"></i></td>
-                    <td colspan="3"><input type="checkbox" name="system.weapon_effects.weapon_of_bleeding" {{checked system.weapon_effects.weapon_of_bleeding}}/></td>
-                </tr>
-                <tr>
-                    <td colspan="2">{{localize "rmss.item.weapon_effects_damage_multiplier"}}
-                        <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_damage_multiplier_hint'}}"></i></td>
-                    <td colspan="3">
-                        <select name="system.weapon_effects.damage_multiplier" data-dtype="Number">
-                            <option value="1" {{#if (eq system.weapon_effects.damage_multiplier 1)}}selected{{/if}}>x1</option>
-                            <option value="2" {{#if (eq system.weapon_effects.damage_multiplier 2)}}selected{{/if}}>x2</option>
-                            <option value="3" {{#if (eq system.weapon_effects.damage_multiplier 3)}}selected{{/if}}>x3</option>
-                            <option value="4" {{#if (eq system.weapon_effects.damage_multiplier 4)}}selected{{/if}}>x4</option>
-                            <option value="5" {{#if (eq system.weapon_effects.damage_multiplier 5)}}selected{{/if}}>x5</option>
-                            <option value="6" {{#if (eq system.weapon_effects.damage_multiplier 6)}}selected{{/if}}>x6</option>
-                            <option value="7" {{#if (eq system.weapon_effects.damage_multiplier 7)}}selected{{/if}}>x7</option>
-                            <option value="8" {{#if (eq system.weapon_effects.damage_multiplier 8)}}selected{{/if}}>x8</option>
-                            <option value="9" {{#if (eq system.weapon_effects.damage_multiplier 9)}}selected{{/if}}>x9</option>
-                            <option value="10" {{#if (eq system.weapon_effects.damage_multiplier 10)}}selected{{/if}}>x10</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="5">{{localize "rmss.item.modifiers_power_modifier"}}</th>
-                </tr>
-                <tr>
-                    <td colspan="5"><div class="rmss-power-modifier-row">
-                        <select name="system.power_modifier_mode" class="rmss-power-modifier-select">
-                            <option value="" {{#unless powerModifierMode}}selected{{/unless}}>{{localize "rmss.item.power_modifier_none"}}</option>
-                            <option value="multiplier" {{#if (eq powerModifierMode "multiplier")}}selected{{/if}}>{{localize "rmss.item.power_modifier_multiplier"}}</option>
-                            <option value="spell_adder" {{#if (eq powerModifierMode "spell_adder")}}selected{{/if}}>{{localize "rmss.item.power_modifier_spell_adder"}}</option>
-                        </select>
-                        {{#if (eq powerModifierMode "multiplier")}}
-                        <input type="number" name="system.pp_multiplier" value="{{or system.pp_multiplier 2}}" min="2" max="10" step="1" data-dtype="Number" title="2=2×, 3=3×..."/>
-                        <span class="rmss-pp-suffix">×</span>
-                        <select name="system.pp_multiplier_realm">
-                            {{#each config.item_pp_realm as |label key|}}
-                            <option value="{{key}}" {{#if (eq key ../system.pp_multiplier_realm)}}selected{{/if}}>{{localize label}}</option>
-                            {{/each}}
-                        </select>
-                        {{/if}}
-                        {{#if (eq powerModifierMode "spell_adder")}}
-                        <input type="number" name="system.spell_adder" value="{{or system.spell_adder 1}}" min="1" max="100" step="1" data-dtype="Number" title="Bonus PP"/>
-                        <span class="rmss-pp-suffix">+</span>
-                        <select name="system.spell_adder_realm">
-                            {{#each config.item_pp_realm as |label key|}}
-                            <option value="{{key}}" {{#if (eq key ../system.spell_adder_realm)}}selected{{/if}}>{{localize label}}</option>
-                            {{/each}}
-                        </select>
-                        <span class="rmss-spell-adder-uses">
-                            <input type="number" name="system.spell_adder_uses_remaining" value="{{system.spell_adder_uses_remaining}}" min="0" max="{{system.spell_adder}}" data-dtype="Number" title="{{localize 'rmss.item.spell_adder_uses_remaining'}}"/>
-                            <span class="rmss-enchantment-slash">/</span>
-                            <span class="rmss-spell-adder-total">{{system.spell_adder}}</span>
+                        </td>
+                        <td class="rmss-text-center">{{system.breakage_range}}</td>
+                        <td class="rmss-text-center rmss-text-strong">{{rmss_weapon_total}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-star"></i> {{localize "rmss.item.section_properties"}}</h3>
+                <table class="rmss-modifiers-table">
+                    <tr>
+                        <th class="rmss-text-center">{{localize "rmss.item.modifiers_magical"}}</th>
+                        <th class="rmss-text-center">{{localize "rmss.item.modifiers_holy"}}</th>
+                        <th class="rmss-text-center">{{localize "rmss.item.modifiers_unholy"}}</th>
+                        <th class="rmss-text-center">{{localize "rmss.item.modifiers_of_changing"}}</th>
+                    </tr>
+                    <tr>
+                        <td class="rmss-text-center">
+                            {{#if magicalEditable}}
+                            <input type="checkbox" name="system.magical" {{checked system.magical}}/>
+                            {{else}}
+                            <input type="hidden" name="system.magical" value="{{#if system.magical}}true{{else}}false{{/if}}" data-dtype="Boolean"/>
+                            <input type="checkbox" {{checked system.magical}} disabled title="{{#if system.magical}}{{localize "rmss.item.modifiers_magical"}}{{/if}}"/>
+                            {{/if}}
+                        </td>
+                        <td class="rmss-text-center"><input type="checkbox" name="system.holy" {{checked system.holy}}/></td>
+                        <td class="rmss-text-center"><input type="checkbox" name="system.unholy" {{checked system.unholy}}/></td>
+                        <td class="rmss-text-center"><input type="checkbox" name="system.of_changing" {{checked system.of_changing}}/></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="rmss-detail-section rmss-detail-section--slaying">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-skull-crossbones"></i> {{localize "rmss.item.modifiers_slaying"}}</h3>
+                <div class="rmss-weapon-slaying">
+                    <div class="rmss-tag-chips">
+                        {{#each weaponSlaying}}
+                        <span class="rmss-tag-chip" data-tag-index="{{@index}}">
+                            <span class="rmss-tag-label">{{this}}</span>
+                            {{#if ../editable}}
+                            <button type="button" class="weapon-slaying-remove" data-action="weapon-slaying-remove" title="{{localize 'rmss.item.item_tags_remove'}}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            {{/if}}
                         </span>
-                        {{/if}}
-                    </div></td>
-                </tr>
-            </table>
-            {{#if (or (eq system.pp_multiplier_realm "profession") (eq system.spell_adder_realm "profession"))}}
-            <div class="rmss-power-modifier-profession-row">
-                <span class="rmss-power-modifier-profession-label">{{localize "rmss.item.power_modifier_profession_for"}}</span>
-                {{#if (eq system.pp_multiplier_realm "profession")}}
-                <div class="rmss-power-modifier-profession-drop drop-target" data-power-modifier="pp_multiplier" data-drop-zone="power-modifier-profession">
-                    {{#if ppMultiplierProfessionName}}
-                    <span class="rmss-profession-name">{{ppMultiplierProfessionName}}</span>
-                    <button type="button" class="rmss-profession-clear" data-action="clear-power-modifier-profession" data-power-modifier="pp_multiplier" title="{{localize 'rmss.item.enchantment_delete'}}"><i class="fas fa-times"></i></button>
-                    {{else}}
-                    <span class="rmss-drop-hint">{{localize "rmss.item.drop_profession_here"}}</span>
+                        {{/each}}
+                    </div>
+                    {{#if editable}}
+                    <input type="text" class="rmss-weapon-slaying-input" list="rmss-slaying-types-{{weaponSlayingListId}}" placeholder="{{localize "rmss.item.modifiers_slaying_placeholder"}}" autocomplete="off"/>
+                    <datalist id="rmss-slaying-types-{{weaponSlayingListId}}">
+                        {{#each config.slaying_types as |type|}}
+                        <option value="{{type}}"/>
+                        {{/each}}
+                    </datalist>
                     {{/if}}
                 </div>
-                {{/if}}
-                {{#if (eq system.spell_adder_realm "profession")}}
-                <div class="rmss-power-modifier-profession-drop drop-target" data-power-modifier="spell_adder" data-drop-zone="power-modifier-profession">
-                    {{#if spellAdderProfessionName}}
-                    <span class="rmss-profession-name">{{spellAdderProfessionName}}</span>
-                    <button type="button" class="rmss-profession-clear" data-action="clear-power-modifier-profession" data-power-modifier="spell_adder" title="{{localize 'rmss.item.enchantment_delete'}}"><i class="fas fa-times"></i></button>
+                <div class="rmss-detail-toggle-row">
+                    <label class="rmss-is-slaying-label" title="{{#if weaponSlaying.length}}{{localize 'rmss.item.modifiers_is_slaying_hint'}}{{else}}{{localize 'rmss.item.modifiers_is_slaying_needs_tags'}}{{/if}}">
+                        {{#if weaponSlaying.length}}
+                        <input type="checkbox" name="system.isSlaying" {{checked system.isSlaying}}/>
+                        {{else}}
+                        <input type="hidden" name="system.isSlaying" value="false" data-dtype="Boolean"/>
+                        <input type="checkbox" {{checked system.isSlaying}} disabled/>
+                        {{/if}}
+                        {{localize "rmss.item.modifiers_is_slaying"}}
+                    </label>
+                    <label class="rmss-slaying-bonus-label">{{localize "rmss.item.modifiers_slaying_bonus"}}</label>
+                    {{#if editable}}
+                    <input type="number" class="rmss-slaying-bonus-input" name="system.slaying_bonus" value="{{system.slaying_bonus}}" data-dtype="Number" title="{{localize 'rmss.item.modifiers_slaying_bonus_hint'}}"/>
                     {{else}}
-                    <span class="rmss-drop-hint">{{localize "rmss.item.drop_profession_here"}}</span>
+                    <span>{{system.slaying_bonus}}</span>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-bolt"></i> {{localize "rmss.item.weapon_effects_header"}}</h3>
+                <table class="rmss-modifiers-table">
+                    <tr>
+                        <td>{{localize "rmss.item.weapon_effects_increased_initiative"}}
+                            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_increased_initiative_hint'}}"></i></td>
+                        <td>
+                            <select name="system.weapon_effects.increased_initiative" data-dtype="String">
+                                <option value="" {{#unless system.weapon_effects.increased_initiative}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_none"}}</option>
+                                <option value="minor" {{#if (eq system.weapon_effects.increased_initiative "minor")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_minor"}} (+2)</option>
+                                <option value="normal" {{#if (eq system.weapon_effects.increased_initiative "normal")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_normal"}} (+4)</option>
+                                <option value="greater" {{#if (eq system.weapon_effects.increased_initiative "greater")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_greater"}} (+6)</option>
+                                <option value="superior" {{#if (eq system.weapon_effects.increased_initiative "superior")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_superior"}} (+8)</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{localize "rmss.item.weapon_effects_effect_weapon"}}
+                            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_effect_weapon_hint'}}"></i></td>
+                        <td>
+                            <div class="rmss-effect-weapon-selects">
+                                <select name="system.weapon_effects.effect_weapon" data-dtype="String" title="{{localize 'rmss.item.weapon_effects_effect_weapon'}}">
+                                    <option value="" {{#unless system.weapon_effects.effect_weapon}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_none"}}</option>
+                                    <option value="minor" {{#if (eq system.weapon_effects.effect_weapon "minor")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_minor"}}</option>
+                                    <option value="normal" {{#if (eq system.weapon_effects.effect_weapon "normal")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_normal"}}</option>
+                                    <option value="greater" {{#if (eq system.weapon_effects.effect_weapon "greater")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_greater"}}</option>
+                                    <option value="superior" {{#if (eq system.weapon_effects.effect_weapon "superior")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_superior"}}</option>
+                                </select>
+                                <select name="system.weapon_effects.effect_weapon_critical_type" data-dtype="String" title="{{localize 'rmss.item.weapon_effects_effect_weapon_critical_hint'}}">
+                                    <option value="" disabled {{#unless system.weapon_effects.effect_weapon_critical_type}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_ew_crit_placeholder"}}</option>
+                                    {{#each criticalTables as |key|}}
+                                    <option value="{{key}}" {{#if (eq key ../system.weapon_effects.effect_weapon_critical_type)}}selected{{/if}}>{{localize (concat "rmss.critical_table." key)}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{localize "rmss.item.weapon_effects_fixed_severity"}}
+                            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_fixed_severity_hint'}}"></i></td>
+                        <td>
+                            <select name="system.weapon_effects.effect_weapon_fixed_severity" data-dtype="String" title="{{localize 'rmss.item.weapon_effects_fixed_severity_hint'}}">
+                                <option value="" {{#unless system.weapon_effects.effect_weapon_fixed_severity}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_fixed_severity_none"}}</option>
+                                <option value="A" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "A")}}selected{{/if}}>A</option>
+                                <option value="B" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "B")}}selected{{/if}}>B</option>
+                                <option value="C" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "C")}}selected{{/if}}>C</option>
+                                <option value="D" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "D")}}selected{{/if}}>D</option>
+                                <option value="E" {{#if (eq system.weapon_effects.effect_weapon_fixed_severity "E")}}selected{{/if}}>E</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{localize "rmss.item.weapon_effects_increased_critical"}}
+                            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_increased_critical_hint'}}"></i></td>
+                        <td><input type="checkbox" name="system.weapon_effects.increased_critical" {{checked system.weapon_effects.increased_critical}}/></td>
+                    </tr>
+                    <tr>
+                        <td>{{localize "rmss.item.weapon_effects_weapon_of_bleeding"}}
+                            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_weapon_of_bleeding_hint'}}"></i></td>
+                        <td><input type="checkbox" name="system.weapon_effects.weapon_of_bleeding" {{checked system.weapon_effects.weapon_of_bleeding}}/></td>
+                    </tr>
+                    <tr>
+                        <td>{{localize "rmss.item.weapon_effects_damage_multiplier"}}
+                            <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_damage_multiplier_hint'}}"></i></td>
+                        <td>
+                            <select name="system.weapon_effects.damage_multiplier" data-dtype="Number">
+                                <option value="1" {{#if (eq system.weapon_effects.damage_multiplier 1)}}selected{{/if}}>x1</option>
+                                <option value="2" {{#if (eq system.weapon_effects.damage_multiplier 2)}}selected{{/if}}>x2</option>
+                                <option value="3" {{#if (eq system.weapon_effects.damage_multiplier 3)}}selected{{/if}}>x3</option>
+                                <option value="4" {{#if (eq system.weapon_effects.damage_multiplier 4)}}selected{{/if}}>x4</option>
+                                <option value="5" {{#if (eq system.weapon_effects.damage_multiplier 5)}}selected{{/if}}>x5</option>
+                                <option value="6" {{#if (eq system.weapon_effects.damage_multiplier 6)}}selected{{/if}}>x6</option>
+                                <option value="7" {{#if (eq system.weapon_effects.damage_multiplier 7)}}selected{{/if}}>x7</option>
+                                <option value="8" {{#if (eq system.weapon_effects.damage_multiplier 8)}}selected{{/if}}>x8</option>
+                                <option value="9" {{#if (eq system.weapon_effects.damage_multiplier 9)}}selected{{/if}}>x9</option>
+                                <option value="10" {{#if (eq system.weapon_effects.damage_multiplier 10)}}selected{{/if}}>x10</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-gauge-high"></i> {{localize "rmss.item.modifiers_power_modifier"}}</h3>
+                <p class="notes">{{localize "rmss.item.power_modifier_hint"}}</p>
+                <div class="rmss-power-modifier-row">
+                    <select name="system.power_modifier_mode" class="rmss-power-modifier-select">
+                        <option value="" {{#unless powerModifierMode}}selected{{/unless}}>{{localize "rmss.item.power_modifier_none"}}</option>
+                        <option value="multiplier" {{#if (eq powerModifierMode "multiplier")}}selected{{/if}}>{{localize "rmss.item.power_modifier_multiplier"}}</option>
+                        <option value="spell_adder" {{#if (eq powerModifierMode "spell_adder")}}selected{{/if}}>{{localize "rmss.item.power_modifier_spell_adder"}}</option>
+                    </select>
+                    {{#if (eq powerModifierMode "multiplier")}}
+                    <input type="number" name="system.pp_multiplier" value="{{or system.pp_multiplier 2}}" min="2" max="10" step="1" data-dtype="Number" title="2=2×, 3=3×..."/>
+                    <span class="rmss-pp-suffix">×</span>
+                    <select name="system.pp_multiplier_realm">
+                        {{#each config.item_pp_realm as |label key|}}
+                        <option value="{{key}}" {{#if (eq key ../system.pp_multiplier_realm)}}selected{{/if}}>{{localize label}}</option>
+                        {{/each}}
+                    </select>
+                    {{/if}}
+                    {{#if (eq powerModifierMode "spell_adder")}}
+                    <input type="number" name="system.spell_adder" value="{{or system.spell_adder 1}}" min="1" max="100" step="1" data-dtype="Number" title="Bonus PP"/>
+                    <span class="rmss-pp-suffix">+</span>
+                    <select name="system.spell_adder_realm">
+                        {{#each config.item_pp_realm as |label key|}}
+                        <option value="{{key}}" {{#if (eq key ../system.spell_adder_realm)}}selected{{/if}}>{{localize label}}</option>
+                        {{/each}}
+                    </select>
+                    <span class="rmss-spell-adder-uses">
+                        <input type="number" name="system.spell_adder_uses_remaining" value="{{system.spell_adder_uses_remaining}}" min="0" max="{{system.spell_adder}}" data-dtype="Number" title="{{localize 'rmss.item.spell_adder_uses_remaining'}}"/>
+                        <span class="rmss-enchantment-slash">/</span>
+                        <span class="rmss-spell-adder-total">{{system.spell_adder}}</span>
+                    </span>
+                    {{/if}}
+                </div>
+                {{#if (or (eq system.pp_multiplier_realm "profession") (eq system.spell_adder_realm "profession"))}}
+                <div class="rmss-power-modifier-profession-row">
+                    <span class="rmss-power-modifier-profession-label">{{localize "rmss.item.power_modifier_profession_for"}}</span>
+                    {{#if (eq system.pp_multiplier_realm "profession")}}
+                    <div class="rmss-power-modifier-profession-drop drop-target" data-power-modifier="pp_multiplier" data-drop-zone="power-modifier-profession">
+                        {{#if ppMultiplierProfessionName}}
+                        <span class="rmss-profession-name">{{ppMultiplierProfessionName}}</span>
+                        <button type="button" class="rmss-profession-clear" data-action="clear-power-modifier-profession" data-power-modifier="pp_multiplier" title="{{localize 'rmss.item.enchantment_delete'}}"><i class="fas fa-times"></i></button>
+                        {{else}}
+                        <span class="rmss-drop-hint">{{localize "rmss.item.drop_profession_here"}}</span>
+                        {{/if}}
+                    </div>
+                    {{/if}}
+                    {{#if (eq system.spell_adder_realm "profession")}}
+                    <div class="rmss-power-modifier-profession-drop drop-target" data-power-modifier="spell_adder" data-drop-zone="power-modifier-profession">
+                        {{#if spellAdderProfessionName}}
+                        <span class="rmss-profession-name">{{spellAdderProfessionName}}</span>
+                        <button type="button" class="rmss-profession-clear" data-action="clear-power-modifier-profession" data-power-modifier="spell_adder" title="{{localize 'rmss.item.enchantment_delete'}}"><i class="fas fa-times"></i></button>
+                        {{else}}
+                        <span class="rmss-drop-hint">{{localize "rmss.item.drop_profession_here"}}</span>
+                        {{/if}}
+                    </div>
                     {{/if}}
                 </div>
                 {{/if}}
             </div>
-            {{/if}}
-            {{> rmssPassiveModifiers}}
-            <div class="rmss-item-bonus-skills">
-                <div class="rmss-modifiers-header">{{localize "rmss.item.modifiers_bonus_skills"}}</div>
-                <div class="rmss-bonus-skills-list">
-                    {{#each bonusSkillsList as |entry idx|}}
-                    <div class="rmss-bonus-skill-row" data-index="{{idx}}">
-                        <div class="rmss-bonus-skill-drop-zone drop-target" data-drop-zone="bonus-skill" data-index="{{idx}}">
-                            {{#if entry.skill}}
-                            <span class="rmss-bonus-skill-name">{{#if entry.skill_name}}{{entry.skill_name}}{{else}}{{entry.skill}}{{/if}}</span>
-                            <input type="hidden" name="system.bonus_skills.{{idx}}.skill" value="{{entry.skill}}" data-dtype="String"/>
-                            <input type="hidden" name="system.bonus_skills.{{idx}}.skill_name" value="{{entry.skill_name}}" data-dtype="String"/>
-                            {{else}}
-                            <span class="rmss-drop-hint">{{localize "rmss.item.drop_skill_for_bonus"}}</span>
-                            {{/if}}
+
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-sliders"></i> {{localize "rmss.item.passive_modifiers_header"}}</h3>
+                {{> rmssPassiveModifiers}}
+            </div>
+
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-graduation-cap"></i> {{localize "rmss.item.modifiers_bonus_skills"}}</h3>
+                <div class="rmss-item-bonus-skills">
+                    <div class="rmss-bonus-skills-list">
+                        {{#each bonusSkillsList as |entry idx|}}
+                        <div class="rmss-bonus-skill-row" data-index="{{idx}}">
+                            <div class="rmss-bonus-skill-drop-zone drop-target" data-drop-zone="bonus-skill" data-index="{{idx}}">
+                                {{#if entry.skill}}
+                                <span class="rmss-bonus-skill-name">{{#if entry.skill_name}}{{entry.skill_name}}{{else}}{{entry.skill}}{{/if}}</span>
+                                <input type="hidden" name="system.bonus_skills.{{idx}}.skill" value="{{entry.skill}}" data-dtype="String"/>
+                                <input type="hidden" name="system.bonus_skills.{{idx}}.skill_name" value="{{entry.skill_name}}" data-dtype="String"/>
+                                {{else}}
+                                <span class="rmss-drop-hint">{{localize "rmss.item.drop_skill_for_bonus"}}</span>
+                                {{/if}}
+                            </div>
+                            <input type="number" name="system.bonus_skills.{{idx}}.bonus" value="{{entry.bonus}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
+                            <button type="button" class="rmss-bonus-skill-remove" data-action="remove-bonus-skill" data-index="{{idx}}" title="{{localize 'rmss.item.enchantment_delete'}}"><i class="fas fa-times"></i></button>
                         </div>
-                        <input type="number" name="system.bonus_skills.{{idx}}.bonus" value="{{entry.bonus}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
-                        <button type="button" class="rmss-bonus-skill-remove" data-action="remove-bonus-skill" data-index="{{idx}}" title="{{localize 'rmss.item.enchantment_delete'}}"><i class="fas fa-times"></i></button>
-                    </div>
-                    {{/each}}
-                    <div class="rmss-bonus-skill-add-row">
-                        <div class="rmss-bonus-skill-drop-zone drop-target rmss-bonus-skill-add-zone" data-drop-zone="bonus-skill-add">
-                            <span class="rmss-drop-hint"><i class="fas fa-plus"></i> {{localize "rmss.item.add_bonus_skill"}}</span>
+                        {{/each}}
+                        <div class="rmss-bonus-skill-add-row">
+                            <div class="rmss-bonus-skill-drop-zone drop-target rmss-bonus-skill-add-zone" data-drop-zone="bonus-skill-add">
+                                <span class="rmss-drop-hint"><i class="fas fa-plus"></i> {{localize "rmss.item.add_bonus_skill"}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

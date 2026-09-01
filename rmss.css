@@ -4125,6 +4125,24 @@ button.rmss-crit-reenable-local:hover {
 .rmss.sheet.item .rmss-detail-section--description .editor {
   margin-top: 0;
 }
+/* Slaying: reuses the same red already used for the slaying icon-glow elsewhere on this
+   sheet (module/actors/utils/item_identity_util.js), so the accent matches what the player
+   already associates with "this weapon is Slaying" instead of introducing a new color. */
+.rmss.sheet.item .rmss-detail-section--slaying {
+  border-left-color: #ff1e00;
+}
+.rmss.sheet.item .rmss-detail-section--slaying .rmss-detail-section-title,
+.rmss.sheet.item .rmss-detail-section--slaying .rmss-detail-section-title i {
+  color: #ff1e00;
+}
+/* Weapon sheet: Passive Modifiers / Bonus Skills now sit inside their own .rmss-detail-section
+   card with its own icon title - the partial's/block's own inline header would just repeat
+   the same label a second time right underneath, so it's hidden in this specific context
+   only (item/armor sheets still show it exactly as before, unwrapped). */
+.rmss.sheet.item .rmss-detail-section > .rmss-passive-modifiers > .rmss-modifiers-header,
+.rmss.sheet.item .rmss-detail-section > .rmss-item-bonus-skills > .rmss-modifiers-header {
+  display: none;
+}
 
 /* Item sheet: system.tags chips + autocomplete */
 .rmss.sheet.item .rmss-item-tags .notes,
