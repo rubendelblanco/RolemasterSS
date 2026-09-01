@@ -75,6 +75,16 @@
                     <input type="checkbox" name="system.is_stackable" {{checked system.is_stackable}} />
                 </div>
                 {{> rmssItemTags}}
+                <div class="form-group">
+                    <label>{{localize "rmss.item.shelf_life_days"}}</label>
+                    <input type="number" name="system.shelf_life_days" data-dtype="Number" value="{{system.shelf_life_days}}" min="0" step="1" title="0 = not tracked"/>
+                </div>
+                {{#if (gt system.shelf_life_days 0)}}
+                <div class="form-group">
+                    <label>{{localize "rmss.item.days_until_spoiled"}}</label>
+                    <input type="number" name="system.days_until_spoiled" data-dtype="Number" value="{{system.days_until_spoiled}}" min="0" step="1"/>
+                </div>
+                {{/if}}
                 {{#if system.is_container}}
                 <hr/>
                 {{#if containerStats}}

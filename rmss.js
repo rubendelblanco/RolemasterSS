@@ -40,6 +40,7 @@ import ExperiencePointsCalculator from "./module/sheets/experience/rmss_experien
 import CurrencyService from "./module/actors/services/currency_service.js";
 import { getItemGlowClass } from "./module/actors/utils/item_identity_util.js";
 import { advanceArtifactRecharge } from "./module/sheets/items/enchantment_utils.js";
+import FoodSpoilageService from "./module/actors/services/food_spoilage_service.js";
 
 export let socket;
 
@@ -871,6 +872,29 @@ Hooks.once("init", function () {
           }
         }
       }
+    }
+  });
+
+  /** Food spoilage: tracked food items (tag "food", system.shelf_life_days > 0) advance one
+   *  day per long rest, same "1 rest = 1 day" convention as the artifact recharge above. Own
+   *  listener (not folded into the one above) so it stays independently testable via
+   *  FoodSpoilageService - Foundry calls every registered "rmssLongRest" listener regardless. */
+  Hooks.on("rmssLongRest", async (actor) => {
+    const actors = actor ? [actor] : (game.actors || []);
+    for (const a of actors) {
+      await FoodSpoilageService.advanceFoodSpoilage(a);
+    }
+  });
+
+  /** Food spoilage tracking guards - see FoodSpoilageService.computeItemUpdateGuards:
+   *  clears the countdown if "food" is untagged, seeds it the moment shelf_life_days is set.
+   *  preUpdateItem (not the sheet's _updateObject) so it also catches the tag chip UI, which
+   *  updates system.tags directly and bypasses the sheet's form submission entirely. */
+  Hooks.on("preUpdateItem", (item, changes) => {
+    if (item.type !== "item") return;
+    const patch = FoodSpoilageService.computeItemUpdateGuards(item.system, changes.system);
+    if (Object.keys(patch).length > 0) {
+      changes.system = { ...(changes.system || {}), ...patch };
     }
   });
 

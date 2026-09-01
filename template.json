@@ -389,7 +389,9 @@
       "spell_adder_realm": "",
       "pp_multiplier_profession": "",
       "spell_adder_profession": "",
-      "tags": []
+      "tags": [],
+      "shelf_life_days": 0,
+      "days_until_spoiled": 0
     },
     "creature_attack": {
       "templates": ["base"],
