@@ -97,6 +97,7 @@ export default class RMSSItemSheet extends ItemSheet {
       equipLabelKey: "rmss.item.worn",
       equipChecked: !!system.worn,
       itemTags: getItemTagsArray(system),
+      hasFoodTag: getItemTagsArray(system).some((t) => t.toLowerCase() === "food"),
       itemTagListId: getItemTagListId(item),
       containerAllowedTags: getContainerAllowedTagsArray(system),
       containerAllowedTagListId: getContainerAllowedTagListId(item),

@@ -45,6 +45,9 @@ export default class FoodSpoilageService {
    *  - shelf_life_days going from 0 (untracked) to a positive value seeds days_until_spoiled
    *    to match right away, rather than leaving it at 0 until the next long rest's lazy-init
    *    quietly kicks in - the GM should see the real countdown the moment they set it.
+   *  - days_until_spoiled can never exceed the (possibly just-lowered) shelf_life_days - if
+   *    editing shelf_life_days down would leave it stranded above the new ceiling, it's
+   *    clamped down to match instead.
    * @param {object} currentSystem - item.system before the update
    * @param {object|undefined} changesSystem - the "system" part of the update's changes
    * @returns {object} partial system patch to merge into the update (empty if nothing to do)
@@ -65,7 +68,10 @@ export default class FoodSpoilageService {
     if (patch.shelf_life_days === undefined && changesSystem.shelf_life_days !== undefined) {
       const newShelfLife = Number(changesSystem.shelf_life_days) || 0;
       const oldShelfLife = Number(currentSystem?.shelf_life_days) || 0;
+      const currentRemaining = Number(currentSystem?.days_until_spoiled) || 0;
       if (newShelfLife > 0 && oldShelfLife <= 0) {
+        patch.days_until_spoiled = newShelfLife;
+      } else if (newShelfLife > 0 && currentRemaining > newShelfLife) {
         patch.days_until_spoiled = newShelfLife;
       }
     }

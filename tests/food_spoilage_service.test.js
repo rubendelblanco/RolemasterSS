@@ -98,6 +98,23 @@ describe('computeItemUpdateGuards', () => {
         expect(FoodSpoilageService.computeItemUpdateGuards(current, { shelf_life_days: 0 })).toEqual({});
     });
 
+    test('lowering shelf_life_days below the current remaining days clamps days_until_spoiled to match', () => {
+        const current = { shelf_life_days: 5, days_until_spoiled: 4, tags: ['food'] };
+        expect(FoodSpoilageService.computeItemUpdateGuards(current, { shelf_life_days: 3 })).toEqual({
+            days_until_spoiled: 3
+        });
+    });
+
+    test('lowering shelf_life_days while still above the current remaining days does nothing', () => {
+        const current = { shelf_life_days: 5, days_until_spoiled: 2, tags: ['food'] };
+        expect(FoodSpoilageService.computeItemUpdateGuards(current, { shelf_life_days: 3 })).toEqual({});
+    });
+
+    test('raising shelf_life_days never needs to clamp (remaining days already fit under the old, lower ceiling)', () => {
+        const current = { shelf_life_days: 3, days_until_spoiled: 3, tags: ['food'] };
+        expect(FoodSpoilageService.computeItemUpdateGuards(current, { shelf_life_days: 5 })).toEqual({});
+    });
+
     test('both rules firing at once: the tag-removal clear wins, shelf_life_days seeding is skipped', () => {
         const current = { shelf_life_days: 3, days_until_spoiled: 1, tags: ['food'] };
         const changes = { tags: [], shelf_life_days: 5 };
