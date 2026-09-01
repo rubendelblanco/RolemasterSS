@@ -4054,6 +4054,78 @@ button.rmss-crit-reenable-local:hover {
   border: 1px solid #cc0000;
 }
 
+/* Item sheet: "Details" tab, grouped into differentiated cards instead of one flat stack.
+   Each card gets a left accent stripe + icon so the eye can tell "logistics" from
+   "properties" from "spoilage" etc. at a glance, without reading every label. */
+.rmss.sheet.item .rmss-detail-section {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-left: 4px solid var(--rmss-tab-gold);
+  border-radius: 5px;
+  padding: 0.55rem 0.75rem 0.7rem;
+  margin-bottom: 0.65rem;
+}
+.rmss.sheet.item .rmss-detail-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: var(--rmss-font-size-sm);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #7a6329;
+}
+.rmss.sheet.item .rmss-detail-section-title i {
+  color: var(--rmss-tab-gold);
+  width: 1rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+.rmss.sheet.item .rmss-detail-section table {
+  margin: 0;
+}
+.rmss.sheet.item .rmss-detail-toggle-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.rmss.sheet.item .rmss-detail-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--rmss-font-size-sm);
+  cursor: pointer;
+}
+.rmss.sheet.item .rmss-detail-toggle input {
+  margin: 0;
+}
+/* Spoilage: a warm, decay-adjacent brown - distinct from the default gold so a food item's
+   sheet reads as "this one's different" at a glance. */
+.rmss.sheet.item .rmss-detail-section--spoilage {
+  border-left-color: #8a5a2e;
+}
+.rmss.sheet.item .rmss-detail-section--spoilage .rmss-detail-section-title,
+.rmss.sheet.item .rmss-detail-section--spoilage .rmss-detail-section-title i {
+  color: #8a5a2e;
+}
+/* Secret/GM-only info: red accent, same language the rest of the sheet already uses for
+   "this matters, pay attention" (over-capacity bars, danger buttons). */
+.rmss.sheet.item .rmss-detail-section--secret {
+  background: rgba(244, 67, 54, 0.05);
+  border-left-color: var(--rmss-btn-danger);
+}
+.rmss.sheet.item .rmss-detail-section--secret .rmss-detail-section-title,
+.rmss.sheet.item .rmss-detail-section--secret .rmss-detail-section-title i {
+  color: var(--rmss-btn-danger);
+}
+.rmss.sheet.item .rmss-detail-section--description .editor {
+  margin-top: 0;
+}
+
 /* Item sheet: system.tags chips + autocomplete */
 .rmss.sheet.item .rmss-item-tags .notes,
 .rmss.sheet.item .rmss-container-allowed-tags .notes {

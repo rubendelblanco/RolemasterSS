@@ -23,117 +23,136 @@
         <!-- Tab: Details -->
         <section class="tab rmss-tab-details active" data-group="primary" data-tab="details">
             <div class="sheet-content {{#if system.is_container}}drop-target{{/if}}" data-item-id="{{item.id}}">
-                <table>
-                    <tr>
-                        <th>{{localize "rmss.item.worn"}}</th>
-                        <th>{{localize "rmss.item.quantity"}}</th>
-                        <th>{{localize "rmss.item.unitWeight"}}</th>
-                        <th>{{localize "rmss.item.weight"}}</th>
-                        <th>{{localize "rmss.item.unitCost"}}</th>
-                        <th>{{localize "rmss.item.currency"}}</th>
-                        <th>{{localize "rmss.item.cost"}}</th>
-                        <th>{{localize "rmss.item.prod_time"}}</th>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" name="system.worn" {{checked system.worn}} /></td>
-                        <td>
-                            <input name="system.quantity" type="number" value="{{system.quantity}}" data-dtype="Number" min="1" />
-                        </td>
-                        <td>
-                            <input name="system.unitWeight" type="number" value="{{system.unitWeight}}" data-dtype="Number" step="0.01" />
-                        </td>
-                        <td>
-                            <input name="system.weight" type="number" value="{{system.weight}}" data-dtype="Number" step="0.01" readonly />
-                        </td>
-                        <td>
-                            <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
-                        </td>
-                        <td>
-                            <select name="system.currency_type">
-                                {{#each config.currency_type_abb as |label key|}}
-                                <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
-                                {{localize label}}
-                                </option>
-                                {{/each}}
-                            </select>
-                        </td>
-                        <td>
-                            <input name="system.cost" type="number" value="{{system.cost}}" data-dtype="Number" step="0.01" readonly />
-                        </td>
-                        <td>
-                            <input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String" />
-                        </td>
-                    </tr>
-                </table>
 
-                <div class="form-group">
-                    <span>{{localize "rmss.item.is_container"}}</span>
-                    <input type="checkbox" name="system.is_container" {{checked system.is_container}} />
+                <div class="rmss-detail-section rmss-detail-section--logistics">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-coins"></i> {{localize "rmss.item.section_logistics"}}</h3>
+                    <table>
+                        <tr>
+                            <th>{{localize "rmss.item.worn"}}</th>
+                            <th>{{localize "rmss.item.quantity"}}</th>
+                            <th>{{localize "rmss.item.unitWeight"}}</th>
+                            <th>{{localize "rmss.item.weight"}}</th>
+                            <th>{{localize "rmss.item.unitCost"}}</th>
+                            <th>{{localize "rmss.item.currency"}}</th>
+                            <th>{{localize "rmss.item.cost"}}</th>
+                            <th>{{localize "rmss.item.prod_time"}}</th>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="system.worn" {{checked system.worn}} /></td>
+                            <td>
+                                <input name="system.quantity" type="number" value="{{system.quantity}}" data-dtype="Number" min="1" />
+                            </td>
+                            <td>
+                                <input name="system.unitWeight" type="number" value="{{system.unitWeight}}" data-dtype="Number" step="0.01" />
+                            </td>
+                            <td>
+                                <input name="system.weight" type="number" value="{{system.weight}}" data-dtype="Number" step="0.01" readonly />
+                            </td>
+                            <td>
+                                <input name="system.unitCost" type="number" value="{{system.unitCost}}" data-dtype="Number" step="0.01" />
+                            </td>
+                            <td>
+                                <select name="system.currency_type">
+                                    {{#each config.currency_type_abb as |label key|}}
+                                    <option value="{{key}}" {{#if (eq ../system.currency_type key)}}selected{{/if}}>
+                                    {{localize label}}
+                                    </option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td>
+                                <input name="system.cost" type="number" value="{{system.cost}}" data-dtype="Number" step="0.01" readonly />
+                            </td>
+                            <td>
+                                <input name="system.prod_time" type="text" value="{{system.prod_time}}" data-dtype="String" />
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="form-group">
-                    <span>{{localize "rmss.item.is_stackable"}}</span>
-                    <input type="checkbox" name="system.is_stackable" {{checked system.is_stackable}} />
-                </div>
-                {{> rmssItemTags}}
-                {{#if hasFoodTag}}
-                <div class="form-group">
-                    <label>{{localize "rmss.item.shelf_life_days"}}</label>
-                    <input type="number" name="system.shelf_life_days" data-dtype="Number" value="{{system.shelf_life_days}}" min="0" step="1" title="0 = not tracked"/>
-                </div>
-                {{#if (gt system.shelf_life_days 0)}}
-                <div class="form-group">
-                    <label>{{localize "rmss.item.days_until_spoiled"}}</label>
-                    <input type="number" name="system.days_until_spoiled" data-dtype="Number" value="{{system.days_until_spoiled}}" min="0" step="1"/>
-                </div>
-                {{/if}}
-                {{/if}}
-                {{#if system.is_container}}
-                <hr/>
-                {{#if containerStats}}
-                <div class="rmss-progress {{#if containerStats.isOverCapacity}}over-capacity{{/if}}">
-                    <div class="rmss-progress-bar" style="width: {{containerStats.usedPercent}}%;">
-                    <span class="rmss-progress-bar-text">{{containerStats.usedPercent}}%</span>
+
+                <div class="rmss-detail-section rmss-detail-section--properties">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-tags"></i> {{localize "rmss.item.section_properties"}}</h3>
+                    <div class="rmss-detail-toggle-row">
+                        <label class="rmss-detail-toggle">
+                            <input type="checkbox" name="system.is_container" {{checked system.is_container}} />
+                            <span>{{localize "rmss.item.is_container"}}</span>
+                        </label>
+                        <label class="rmss-detail-toggle">
+                            <input type="checkbox" name="system.is_stackable" {{checked system.is_stackable}} />
+                            <span>{{localize "rmss.item.is_stackable"}}</span>
+                        </label>
                     </div>
+                    {{> rmssItemTags}}
                 </div>
-                {{/if}}
-                <h3>{{localize "rmss.item.container_contents"}} {{item.name}}{{#if containerStats.maxCapacity}} ({{containerStats.usedValue}}/{{containerStats.maxCapacity}}{{#if (eq system.container.capacityType "weight")}} kg{{else}} items{{/if}}){{/if}}</h3>
-                {{#if contents.length}}
-                <ul class="container-contents">
-                    {{#each contents as |contained|}}
-                    <li class="item contained">
-                        <img src="{{contained.img}}" data-edit="img" title="{{contained.name}}" height="32" width="32"/>
-                        <span class="description">
-                    <strong>{{contained.name}}</strong> ({{contained.system.weight}} kg)
-                    <a class="remove-from-container" data-item-id="{{contained.id}}" title="{{localize 'rmss.item.container'}}"><i class="fas fa-box-open"></i></a>
-                  </span>
-                    </li>
-                    {{/each}}
-                </ul>
-                {{else}}
-                <p><em>{{localize "rmss.item.container_empty"}}</em></p>
-                {{/if}}
+
+                {{#if hasFoodTag}}
+                <div class="rmss-detail-section rmss-detail-section--spoilage">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-hourglass-half"></i> {{localize "rmss.item.section_spoilage"}}</h3>
+                    <div class="form-group">
+                        <label>{{localize "rmss.item.shelf_life_days"}}</label>
+                        <input type="number" name="system.shelf_life_days" data-dtype="Number" value="{{system.shelf_life_days}}" min="0" step="1" title="0 = not tracked"/>
+                    </div>
+                    {{#if (gt system.shelf_life_days 0)}}
+                    <div class="form-group">
+                        <label>{{localize "rmss.item.days_until_spoiled"}}</label>
+                        <input type="number" name="system.days_until_spoiled" data-dtype="Number" value="{{system.days_until_spoiled}}" min="0" step="1"/>
+                    </div>
+                    {{/if}}
+                </div>
                 {{/if}}
 
-                <label>{{localize "rmss.item.description"}}</label>
-                {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+                {{#if system.is_container}}
+                <div class="rmss-detail-section rmss-detail-section--container">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-box-open"></i> {{localize "rmss.item.container_contents"}} {{item.name}}{{#if containerStats.maxCapacity}} ({{containerStats.usedValue}}/{{containerStats.maxCapacity}}{{#if (eq system.container.capacityType "weight")}} kg{{else}} items{{/if}}){{/if}}</h3>
+                    {{#if containerStats}}
+                    <div class="rmss-progress {{#if containerStats.isOverCapacity}}over-capacity{{/if}}">
+                        <div class="rmss-progress-bar" style="width: {{containerStats.usedPercent}}%;">
+                        <span class="rmss-progress-bar-text">{{containerStats.usedPercent}}%</span>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{#if contents.length}}
+                    <ul class="container-contents">
+                        {{#each contents as |contained|}}
+                        <li class="item contained">
+                            <img src="{{contained.img}}" data-edit="img" title="{{contained.name}}" height="32" width="32"/>
+                            <span class="description">
+                        <strong>{{contained.name}}</strong> ({{contained.system.weight}} kg)
+                        <a class="remove-from-container" data-item-id="{{contained.id}}" title="{{localize 'rmss.item.container'}}"><i class="fas fa-box-open"></i></a>
+                      </span>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    {{else}}
+                    <p><em>{{localize "rmss.item.container_empty"}}</em></p>
+                    {{/if}}
+                </div>
+                {{/if}}
+
+                <div class="rmss-detail-section rmss-detail-section--description">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-scroll"></i> {{localize "rmss.item.description"}}</h3>
+                    {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+                </div>
+
                 {{#if user.isGM}}
-                <h2>{{localize "rmss.item.secret_info"}}</h2>
-                <div class="form-group">
-                    <label>{{localize "rmss.item.identified"}}</label>
-                    <input type="checkbox" name="system.identified" {{checked system.identified}}/>
-                </div>
-                {{#unless system.identified}}
-                <div class="form-group">
-                    <label>{{localize "rmss.item.value_unidentified"}}</label>
-                    <input type="number" name="system.value_unidentified" value="{{system.value_unidentified}}" data-dtype="Number" min="0" step="0.01"/>
-                </div>
-                {{/unless}}
-                <div class="description-editor-wrapper"></div>
-                {{editor secretDescription
-                target="system.description_secret"
-                button=true
-                owner=owner
-                editable=true}}
+                <div class="rmss-detail-section rmss-detail-section--secret">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-user-secret"></i> {{localize "rmss.item.secret_info"}}</h3>
+                    <div class="form-group">
+                        <label>{{localize "rmss.item.identified"}}</label>
+                        <input type="checkbox" name="system.identified" {{checked system.identified}}/>
+                    </div>
+                    {{#unless system.identified}}
+                    <div class="form-group">
+                        <label>{{localize "rmss.item.value_unidentified"}}</label>
+                        <input type="number" name="system.value_unidentified" value="{{system.value_unidentified}}" data-dtype="Number" min="0" step="0.01"/>
+                    </div>
+                    {{/unless}}
+                    <div class="description-editor-wrapper"></div>
+                    {{editor secretDescription
+                    target="system.description_secret"
+                    button=true
+                    owner=owner
+                    editable=true}}
                 </div>
                 {{/if}}
             </div>
