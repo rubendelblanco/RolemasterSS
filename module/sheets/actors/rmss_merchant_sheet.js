@@ -60,6 +60,21 @@ export default class RMSSMerchantSheet extends ActorSheet {
         });
     }
 
+    /**
+     * A merchant knows what it's selling - an item dragged onto its sheet is identified
+     * on arrival, regardless of whether the dragging player's own copy was.
+     * @override
+     */
+    async _onDropItemCreate(itemData, event) {
+        const items = Array.isArray(itemData) ? itemData : [itemData];
+        for (const d of items) {
+            if (["weapon", "armor", "item", "herb_or_poison"].includes(d?.type)) {
+                foundry.utils.setProperty(d, "system.identified", true);
+            }
+        }
+        return super._onDropItemCreate(itemData, event);
+    }
+
     _onSellClick(ev) {
         ev.preventDefault();
         const itemId = ev.currentTarget.closest("[data-item-id]")?.dataset.itemId;

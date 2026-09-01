@@ -596,6 +596,25 @@ describe('MerchantService.resolveSellRequest (GM accept/reject)', () => {
     expect(flags.rmss.merchantSellRequest).toEqual(expect.objectContaining({ resolved: true, decision: 'accept' }));
   });
 
+  test('accept: an unidentified item becomes identified once it lands in the merchant\'s stock', async () => {
+    const item = makeItem({ uuid: 'Actor.seller1.Item.item1', system: { identified: false } });
+    const seller = makeSeller();
+    const merchant = makeMerchant([], { system: { money: { silver: 10 }, buyRate: 50 } });
+    item.parent = seller;
+    global.fromUuid = jest.fn(async (uuid) => ({ [item.uuid]: item, [merchant.uuid]: merchant }[uuid] ?? null));
+
+    const message = makeMessage({
+      resolved: false, itemUuid: item.uuid, sellerActorUuid: seller.uuid, merchantActorUuid: merchant.uuid,
+      quantity: 2, itemName: item.name, sellerName: seller.name, merchantName: merchant.name, bodyHtml: '<p>quote</p>'
+    });
+
+    await MerchantService.resolveSellRequest(message, 'accept');
+
+    expect(merchant.createEmbeddedDocuments).toHaveBeenCalledWith('Item', [
+      expect.objectContaining({ system: expect.objectContaining({ identified: true }) })
+    ]);
+  });
+
   test('accept: partial fulfillment reports the quantity actually sold, not the originally requested one', async () => {
     const item = makeItem({ uuid: 'Actor.seller1.Item.item1', system: { quantity: 2, cost: 10, weight: 1 } });
     const seller = makeSeller();

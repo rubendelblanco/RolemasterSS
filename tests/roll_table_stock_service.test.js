@@ -43,12 +43,13 @@ function makeStockItem(overrides = {}) {
   return item;
 }
 
-function makeActor(existingItems = []) {
+function makeActor(existingItems = [], type = 'merchant') {
   const items = existingItems;
   items.filter = Array.prototype.filter.bind(items);
   items.find = Array.prototype.find.bind(items);
 
   const actor = {
+    type,
     items,
     createEmbeddedDocuments: jest.fn(async (docType, dataArr) => {
       const created = dataArr.map(d => {
@@ -261,6 +262,32 @@ describe('RollTableStockService.populate', () => {
     await RollTableStockService.populate(actor, table, { draws: 1, clearItems: 'keep' });
 
     expect(actor.deleteEmbeddedDocuments).not.toHaveBeenCalled();
+  });
+
+  test('populating a merchant identifies the drawn item, even if the source was unidentified', async () => {
+    const source = makeSourceItem({ system: { identified: false } });
+    global.fromUuid = jest.fn(async () => source);
+    const table = makeTable([[{ documentUuid: source.uuid }]]);
+    const actor = makeActor([], 'merchant');
+
+    await RollTableStockService.populate(actor, table, { draws: 1 });
+
+    expect(actor.createEmbeddedDocuments).toHaveBeenCalledWith('Item', [
+      expect.objectContaining({ system: expect.objectContaining({ identified: true }) })
+    ]);
+  });
+
+  test('populating loot leaves the source\'s own identification untouched', async () => {
+    const source = makeSourceItem({ system: { identified: false } });
+    global.fromUuid = jest.fn(async () => source);
+    const table = makeTable([[{ documentUuid: source.uuid }]]);
+    const actor = makeActor([], 'loot');
+
+    await RollTableStockService.populate(actor, table, { draws: 1 });
+
+    expect(actor.createEmbeddedDocuments).toHaveBeenCalledWith('Item', [
+      expect.objectContaining({ system: expect.objectContaining({ identified: false }) })
+    ]);
   });
 
   test('table exhausted, no reset requested: stops early instead of throwing', async () => {

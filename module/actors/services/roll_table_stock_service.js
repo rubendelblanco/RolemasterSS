@@ -123,6 +123,10 @@ export default class RollTableStockService {
 
     const newItemData = foundry.utils.duplicate(sourceDoc.toObject());
     delete newItemData._id;
+    // A merchant knows its own stock, even when it's freshly rolled from a table - but loot
+    // (chests, corpses) keeps whatever identification the source document had, since finding
+    // it is the whole point of needing to identify it.
+    if (actor.type === "merchant") newItemData.system.identified = true;
     newItemData.system.quantity = qty;
     newItemData.system.unitCost = unitCost;
     newItemData.system.unitWeight = unitWeight;

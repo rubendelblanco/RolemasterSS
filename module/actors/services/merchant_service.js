@@ -386,8 +386,11 @@ export default class MerchantService {
     }
 
     // Add the item to the merchant's stock, still listed at its own (undiscounted) value.
+    // A merchant knows what it's buying, so the stock entry is always identified even if
+    // the seller's own copy wasn't.
     const newItemData = foundry.utils.duplicate(item.toObject());
     delete newItemData._id;
+    newItemData.system.identified = true;
     newItemData.system.quantity = quantity;
     newItemData.system.unitCost = unitCost;
     newItemData.system.unitWeight = unitWeight;
