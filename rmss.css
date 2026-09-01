@@ -1472,8 +1472,11 @@ tr.contained-item.is-collapsed {
 }
 
 .container-icon-cell .list-item-icon-wrap {
-    flex: 1 1 0;
-    min-width: 0;
+    /* Sized to the icon itself, not stretched to fill the cell - flex:1 1 0 grew this box
+       past the 32px icon (the collapse-toggle button eats the rest of the cell width),
+       which threw off the hover sheen (::before, inset:0) so it rendered to the right of
+       the actual icon instead of hugging it. */
+    flex: 0 0 auto;
 }
 
 button.container-collapse-toggle {
@@ -3962,6 +3965,24 @@ button.rmss-crit-reenable-local:hover {
 .actor-sheet .item-power-badges .item-pp-multiplier {
   margin-top: 0;
 }
+.actor-sheet .item-spoilage-label {
+  display: block;
+  font-size: 0.85em;
+  font-weight: normal;
+  opacity: 0.75;
+  margin-top: 1px;
+}
+/* 2 days left: orange heads-up. 1 day left: red, last call before it spoils on the next rest. */
+.actor-sheet .item-spoilage-label.item-spoilage-label--warning {
+  color: #d97706;
+  opacity: 1;
+  font-weight: 600;
+}
+.actor-sheet .item-spoilage-label.item-spoilage-label--critical {
+  color: #dc2626;
+  opacity: 1;
+  font-weight: 600;
+}
 
 /* Magic item charges: at-a-glance pool + per-enchantment daily/charged counts, same
    placement as spell-adder pips. Wraps to a second line if the row runs out of room. */
@@ -5011,6 +5032,7 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome tr.container-row { background-color: oklch(0.55 0.13 45 / 0.12); }
 .wardens-chrome tr.container-row.over-capacity { background-color: oklch(0.55 0.19 25 / 0.18); }
 .wardens-chrome .container-capacity-badge { color: oklch(0.5 0.05 65); }
+.wardens-chrome .item-spoilage-label { color: oklch(0.5 0.05 65); }
 .wardens-chrome button.container-collapse-toggle:hover { color: oklch(0.42 0.1 45); }
 
 /* ---- wealth sub-tab (actor-money.html) ---- */
