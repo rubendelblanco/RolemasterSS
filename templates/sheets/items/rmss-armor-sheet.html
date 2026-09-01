@@ -137,7 +137,7 @@
                 </tr>
                 <tr>
                     <td colspan="5"><div class="rmss-power-modifier-row">
-                        <select name="system._powerModifierMode" class="rmss-power-modifier-select">
+                        <select name="system.power_modifier_mode" class="rmss-power-modifier-select">
                             <option value="" {{#unless powerModifierMode}}selected{{/unless}}>{{localize "rmss.item.power_modifier_none"}}</option>
                             <option value="multiplier" {{#if (eq powerModifierMode "multiplier")}}selected{{/if}}>{{localize "rmss.item.power_modifier_multiplier"}}</option>
                             <option value="spell_adder" {{#if (eq powerModifierMode "spell_adder")}}selected{{/if}}>{{localize "rmss.item.power_modifier_spell_adder"}}</option>
@@ -162,7 +162,7 @@
                         <span class="rmss-spell-adder-uses">
                             <input type="number" name="system.spell_adder_uses_remaining" value="{{system.spell_adder_uses_remaining}}" min="0" max="{{system.spell_adder}}" data-dtype="Number" title="{{localize 'rmss.item.spell_adder_uses_remaining'}}"/>
                             <span class="rmss-enchantment-slash">/</span>
-                            <span>{{system.spell_adder}}</span>
+                            <span class="rmss-spell-adder-total">{{system.spell_adder}}</span>
                         </span>
                         {{/if}}
                     </div></td>

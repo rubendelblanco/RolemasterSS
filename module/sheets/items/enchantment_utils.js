@@ -110,6 +110,60 @@ export function bindRechargeProgressEditor(sheet, html) {
 }
 
 /**
+ * Pure: the power-modifier mini-form (mode select + one value + one realm, shape depends on
+ * mode) reduced to a single system patch. No Foundry/DOM access, so it's directly
+ * unit-testable. Called from each item-type sheet's _updateObject override with the raw
+ * formData values for whichever fields the active mode rendered.
+ * @param {"multiplier"|"spell_adder"|""} mode
+ * @param {number|string} value - current multiplier or spell_adder value from the form (ignored if mode is "")
+ * @param {string} realm - current realm select value for that mode
+ * @param {number|string} remaining - current spell_adder_uses_remaining field value (mode "spell_adder" only)
+ * @param {object} currentSystem - item.system as currently persisted, to detect an actual adder-value change
+ * @returns {object} flat dotted-key patch for Item#update
+ */
+export function computePowerModifierPatch(mode, value, realm, remaining, currentSystem) {
+  if (mode === "multiplier") {
+    const mult = Number(value);
+    return {
+      "system.pp_multiplier": Number.isFinite(mult) && mult >= 2 ? mult : 2,
+      "system.pp_multiplier_realm": realm || "",
+      "system.spell_adder": 0,
+      "system.spell_adder_realm": "",
+      "system.spell_adder_uses_remaining": 0
+    };
+  }
+  if (mode === "spell_adder") {
+    const adderVal = Math.max(1, Number(value) || 1);
+    const priorAdderVal = Number(currentSystem?.spell_adder) || 0;
+    // A changed adder value is always a full recharge. Unchanged (only the realm moved, or
+    // the remaining field itself was edited), keep what was typed there - just clamped so
+    // it can never sit above the (unchanged) adder value.
+    let remainingVal;
+    if (adderVal !== priorAdderVal) {
+      remainingVal = adderVal;
+    } else {
+      const typed = Number(remaining);
+      const base = Number.isFinite(typed) ? typed : (Number(currentSystem?.spell_adder_uses_remaining) || 0);
+      remainingVal = Math.min(Math.max(0, base), adderVal);
+    }
+    return {
+      "system.spell_adder": adderVal,
+      "system.spell_adder_realm": realm || "",
+      "system.spell_adder_uses_remaining": remainingVal,
+      "system.pp_multiplier": 1,
+      "system.pp_multiplier_realm": ""
+    };
+  }
+  return {
+    "system.pp_multiplier": 1,
+    "system.pp_multiplier_realm": "",
+    "system.spell_adder": 0,
+    "system.spell_adder_realm": "",
+    "system.spell_adder_uses_remaining": 0
+  };
+}
+
+/**
  * Build enchantmentList for sheet template (labels, usage, canUse, etc.).
  * @param {Array} rawEnchantments
  * @param {{current?: number, max?: number}} [chargePool] - Item-level shared pool for "pooled" usage

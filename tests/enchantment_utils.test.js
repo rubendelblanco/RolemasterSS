@@ -6,7 +6,8 @@ import {
   getPowerModifierMode,
   buildEnchantmentList,
   getChargePool,
-  advanceArtifactRecharge
+  advanceArtifactRecharge,
+  computePowerModifierPatch
 } from '../module/sheets/items/enchantment_utils.js';
 
 // buildEnchantmentList needs CONFIG.rmss and game.i18n
@@ -249,5 +250,62 @@ describe('advanceArtifactRecharge', () => {
       .toEqual({ current: 10, daysUntilRecharge: 1 });
     expect(advanceArtifactRecharge({ chargePool: { current: 2, max: 10 }, rechargeDays: 30, daysUntilRecharge: 15 }))
       .toEqual({ current: 2, daysUntilRecharge: 14 });
+  });
+});
+
+describe('computePowerModifierPatch', () => {
+  test('mode "multiplier": sets pp_multiplier/realm, zeroes out spell adder entirely', () => {
+    const patch = computePowerModifierPatch('multiplier', 3, 'essence', undefined, { spell_adder: 0 });
+    expect(patch).toEqual({
+      'system.pp_multiplier': 3,
+      'system.pp_multiplier_realm': 'essence',
+      'system.spell_adder': 0,
+      'system.spell_adder_realm': '',
+      'system.spell_adder_uses_remaining': 0
+    });
+  });
+
+  test('mode "multiplier": a value below 2 (or invalid) falls back to 2', () => {
+    expect(computePowerModifierPatch('multiplier', 1, '', undefined, {})['system.pp_multiplier']).toBe(2);
+    expect(computePowerModifierPatch('multiplier', 'x', '', undefined, {})['system.pp_multiplier']).toBe(2);
+  });
+
+  test('mode "spell_adder": a changed adder value is a full recharge - uses remaining mirrors it exactly', () => {
+    const patch = computePowerModifierPatch('spell_adder', 5, 'channeling', 1, { spell_adder: 2, spell_adder_uses_remaining: 1 });
+    expect(patch).toEqual({
+      'system.spell_adder': 5,
+      'system.spell_adder_realm': 'channeling',
+      'system.spell_adder_uses_remaining': 5,
+      'system.pp_multiplier': 1,
+      'system.pp_multiplier_realm': ''
+    });
+  });
+
+  test('mode "spell_adder": realm-only change (adder untouched) leaves a valid remaining value alone', () => {
+    const patch = computePowerModifierPatch('spell_adder', 5, 'mentalism', 3, { spell_adder: 5, spell_adder_uses_remaining: 3 });
+    expect(patch['system.spell_adder']).toBe(5);
+    expect(patch['system.spell_adder_uses_remaining']).toBe(3);
+    expect(patch['system.spell_adder_realm']).toBe('mentalism');
+  });
+
+  test('mode "spell_adder": remaining can never exceed the (unchanged) adder value', () => {
+    const patch = computePowerModifierPatch('spell_adder', 5, 'essence', 10, { spell_adder: 5, spell_adder_uses_remaining: 5 });
+    expect(patch['system.spell_adder_uses_remaining']).toBe(5);
+  });
+
+  test('mode "spell_adder": a value below 1 (or invalid) falls back to 1', () => {
+    expect(computePowerModifierPatch('spell_adder', 0, '', undefined, {})['system.spell_adder']).toBe(1);
+    expect(computePowerModifierPatch('spell_adder', 'x', '', undefined, {})['system.spell_adder']).toBe(1);
+  });
+
+  test('mode "" (none): zeroes/resets everything', () => {
+    const patch = computePowerModifierPatch('', undefined, undefined, undefined, { pp_multiplier: 3, spell_adder: 5 });
+    expect(patch).toEqual({
+      'system.pp_multiplier': 1,
+      'system.pp_multiplier_realm': '',
+      'system.spell_adder': 0,
+      'system.spell_adder_realm': '',
+      'system.spell_adder_uses_remaining': 0
+    });
   });
 });

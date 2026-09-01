@@ -40,13 +40,13 @@
             </span>
             {{/if}}
             {{#if (gt weapon.system.spell_adder 0)}}
-            <div class="spell-adder-pips">
+            <div class="spell-adder-pips" data-tooltip="{{localize 'rmss.item.spell_adder_badge_tooltip' value=weapon.system.spell_adder realm=(localize (lookup @root.config.item_pp_realm weapon.system.spell_adder_realm))}}">
               {{#times weapon.system.spell_adder}}
               <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
               {{/times}}
             </div>
             {{else if (gt weapon.system.pp_multiplier 1)}}
-            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=weapon.system.pp_multiplier}}">
+            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=weapon.system.pp_multiplier realm=(localize (lookup @root.config.item_pp_realm weapon.system.pp_multiplier_realm))}}">
               <i class="fas fa-star"></i> x{{weapon.system.pp_multiplier}}
             </span>
             {{/if}}

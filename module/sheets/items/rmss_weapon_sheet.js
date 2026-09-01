@@ -8,6 +8,7 @@ import {
   bindRechargeProgressEditor,
   buildEnchantmentList,
   buildSpellDataForStorage,
+  computePowerModifierPatch,
   getChargePool,
   getPowerModifierMode,
   getRechargeProgress,
@@ -80,7 +81,9 @@ export default class RMSSWeaponSheet extends ItemSheet {
     const chargePool = getChargePool(system);
     const enchantmentList = buildEnchantmentList(system.magic?.enchantments, chargePool);
     const rechargeProgress = getRechargeProgress(system.magic);
-    const powerModifierMode = getPowerModifierMode(system);
+    // Legacy fallback for items saved before power_modifier_mode existed as its own field -
+    // once any field on this sheet is next saved, the select's own submitted value heals it.
+    const powerModifierMode = system.power_modifier_mode || getPowerModifierMode(system);
     const ppMultiplierProfessionName = await resolveProfessionName(system.pp_multiplier_profession ?? "");
     const spellAdderProfessionName = await resolveProfessionName(system.spell_adder_profession ?? "");
 
@@ -153,7 +156,6 @@ export default class RMSSWeaponSheet extends ItemSheet {
     html.find("[data-action='use-enchantment']").on("click", this._onUseEnchantment.bind(this));
     html.find("[data-action='open-spell-link']").on("click", this._onOpenSpellLink.bind(this));
     this._setupHolyUnholyExclusive(html);
-    this._setupPPExclusive(html);
     setupPowerModifierProfessionDropZones(html, this);
     html.find("[data-action='clear-power-modifier-profession']").on("click", ev => onClearPowerModifierProfession(ev, this));
     bindRechargeProgressEditor(this, html);
@@ -236,17 +238,6 @@ export default class RMSSWeaponSheet extends ItemSheet {
     };
     holy.addEventListener("change", () => sync(holy));
     unholy.addEventListener("change", () => sync(unholy));
-  }
-
-  _setupPPExclusive(html) {
-    // Submitting the form is not enough on its own: the multiplier/spell-adder number
-    // inputs only exist in the DOM inside the matching {{#if powerModifierMode}} block, so
-    // switching mode needs an explicit re-render to make that input (with its default value)
-    // appear at all - relying on submitOnChange's implicit render was not reliable enough.
-    html.find(".rmss-power-modifier-select").on("change", async (ev) => {
-      await this._onSubmit(ev);
-      await this.render(false);
-    });
   }
 
   async _onOpenSpellLink(event) {
@@ -353,31 +344,14 @@ export default class RMSSWeaponSheet extends ItemSheet {
     if (formData["system.holy"] === true) formData["system.unholy"] = false;
     if (formData["system.unholy"] === true) formData["system.holy"] = false;
 
-    // Power modifier mode: virtual field → real fields
-    const mode = formData["system._powerModifierMode"];
-    delete formData["system._powerModifierMode"];
-    if (mode !== undefined) {
-      if (mode === "multiplier") {
-        const currentMult = Number(formData["system.pp_multiplier"]);
-        if (!Number.isFinite(currentMult) || currentMult < 2) formData["system.pp_multiplier"] = 2;
-        formData["system.spell_adder"] = 0;
-        formData["system.spell_adder_realm"] = "";
-      } else if (mode === "spell_adder") {
-        if (formData["system.spell_adder"] === undefined) formData["system.spell_adder"] = 1;
-        const adderVal = Number(formData["system.spell_adder"]) || 1;
-        const currentRemaining = Number(this.item.system?.spell_adder_uses_remaining);
-        if (!currentRemaining && currentRemaining !== 0 || Number(this.item.system?.spell_adder) <= 0) {
-          formData["system.spell_adder_uses_remaining"] = adderVal;
-        }
-        formData["system.pp_multiplier"] = 1;
-        formData["system.pp_multiplier_realm"] = "";
-      } else {
-        formData["system.pp_multiplier"] = 1;
-        formData["system.pp_multiplier_realm"] = "";
-        formData["system.spell_adder"] = 0;
-        formData["system.spell_adder_realm"] = "";
-      }
-    }
+    // Power modifier: mode + whichever value/realm the active mode rendered, reduced to a
+    // full patch by the pure function (mutual exclusivity, adder-change = full recharge).
+    const powerMode = formData["system.power_modifier_mode"] || "";
+    const powerValue = powerMode === "multiplier" ? formData["system.pp_multiplier"] : formData["system.spell_adder"];
+    const powerRealm = powerMode === "multiplier" ? formData["system.pp_multiplier_realm"] : formData["system.spell_adder_realm"];
+    Object.assign(formData, computePowerModifierPatch(
+      powerMode, powerValue, powerRealm, formData["system.spell_adder_uses_remaining"], this.item.system
+    ));
 
     const material = formData["system.material"];
     if (material && material !== "custom") {

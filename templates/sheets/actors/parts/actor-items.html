@@ -41,13 +41,13 @@
           {{#if (or (or (or (gt container.system.spell_adder 0) (gt container.system.pp_multiplier 1)) container.rmssPassiveBadges.length) container.rmssSkillBonusBadges.length)}}
           <div class="item-power-badges">
             {{#if (gt container.system.spell_adder 0)}}
-            <div class="spell-adder-pips">
+            <div class="spell-adder-pips" data-tooltip="{{localize 'rmss.item.spell_adder_badge_tooltip' value=container.system.spell_adder realm=(localize (lookup @root.config.item_pp_realm container.system.spell_adder_realm))}}">
               {{#times container.system.spell_adder}}
               <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
               {{/times}}
             </div>
             {{else if (gt container.system.pp_multiplier 1)}}
-            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=container.system.pp_multiplier}}">
+            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=container.system.pp_multiplier realm=(localize (lookup @root.config.item_pp_realm container.system.pp_multiplier_realm))}}">
               <i class="fas fa-star"></i> x{{container.system.pp_multiplier}}
             </span>
             {{/if}}
@@ -136,13 +136,13 @@
           {{#if (or (or (or (gt item.system.spell_adder 0) (gt item.system.pp_multiplier 1)) item.rmssPassiveBadges.length) item.rmssSkillBonusBadges.length)}}
           <div class="item-power-badges">
             {{#if (gt item.system.spell_adder 0)}}
-            <div class="spell-adder-pips">
+            <div class="spell-adder-pips" data-tooltip="{{localize 'rmss.item.spell_adder_badge_tooltip' value=item.system.spell_adder realm=(localize (lookup @root.config.item_pp_realm item.system.spell_adder_realm))}}">
               {{#times item.system.spell_adder}}
               <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
               {{/times}}
             </div>
             {{else if (gt item.system.pp_multiplier 1)}}
-            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=item.system.pp_multiplier}}">
+            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=item.system.pp_multiplier realm=(localize (lookup @root.config.item_pp_realm item.system.pp_multiplier_realm))}}">
               <i class="fas fa-star"></i> x{{item.system.pp_multiplier}}
             </span>
             {{/if}}
@@ -229,13 +229,13 @@
           {{#if (or (or (or (gt item.system.spell_adder 0) (gt item.system.pp_multiplier 1)) item.rmssPassiveBadges.length) item.rmssSkillBonusBadges.length)}}
           <div class="item-power-badges">
             {{#if (gt item.system.spell_adder 0)}}
-            <div class="spell-adder-pips">
+            <div class="spell-adder-pips" data-tooltip="{{localize 'rmss.item.spell_adder_badge_tooltip' value=item.system.spell_adder realm=(localize (lookup @root.config.item_pp_realm item.system.spell_adder_realm))}}">
               {{#times item.system.spell_adder}}
               <span class="spell-adder-pip {{#if (lt this ../system.spell_adder_uses_remaining)}}filled{{else}}empty{{/if}}"></span>
               {{/times}}
             </div>
             {{else if (gt item.system.pp_multiplier 1)}}
-            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=item.system.pp_multiplier}}">
+            <span class="item-pp-multiplier" data-tooltip="{{localize 'rmss.item.pp_multiplier_badge_tooltip' mult=item.system.pp_multiplier realm=(localize (lookup @root.config.item_pp_realm item.system.pp_multiplier_realm))}}">
               <i class="fas fa-star"></i> x{{item.system.pp_multiplier}}
             </span>
             {{/if}}
