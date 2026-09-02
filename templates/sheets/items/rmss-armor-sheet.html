@@ -129,9 +129,9 @@
                         </td>
                         <td class="rmss-text-center">
                             {{#if bonusEditable}}
-                            <input type="number" name="system.bonus" value="{{or system.bonus 0}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
+                            <input type="number" name="system.bonus" value="{{fallback system.bonus 0}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
                             {{else}}
-                            <span class="rmss-bonus-readonly">{{or system.bonus 0}}</span>
+                            <span class="rmss-bonus-readonly">{{fallback system.bonus 0}}</span>
                             {{/if}}
                         </td>
                         <td class="rmss-text-center rmss-text-strong">{{rmss_armor_total}}</td>
@@ -174,7 +174,7 @@
                         <option value="spell_adder" {{#if (eq powerModifierMode "spell_adder")}}selected{{/if}}>{{localize "rmss.item.power_modifier_spell_adder"}}</option>
                     </select>
                     {{#if (eq powerModifierMode "multiplier")}}
-                    <input type="number" name="system.pp_multiplier" value="{{or system.pp_multiplier 2}}" min="2" max="10" step="1" data-dtype="Number" title="2=2×, 3=3×..."/>
+                    <input type="number" name="system.pp_multiplier" value="{{fallback system.pp_multiplier 2}}" min="2" max="10" step="1" data-dtype="Number" title="2=2×, 3=3×..."/>
                     <span class="rmss-pp-suffix">×</span>
                     <select name="system.pp_multiplier_realm">
                         {{#each config.item_pp_realm as |label key|}}
@@ -183,7 +183,7 @@
                     </select>
                     {{/if}}
                     {{#if (eq powerModifierMode "spell_adder")}}
-                    <input type="number" name="system.spell_adder" value="{{or system.spell_adder 1}}" min="1" max="100" step="1" data-dtype="Number" title="Bonus PP"/>
+                    <input type="number" name="system.spell_adder" value="{{fallback system.spell_adder 1}}" min="1" max="100" step="1" data-dtype="Number" title="Bonus PP"/>
                     <span class="rmss-pp-suffix">+</span>
                     <select name="system.spell_adder_realm">
                         {{#each config.item_pp_realm as |label key|}}

@@ -606,12 +606,11 @@ Hooks.once("init", function () {
     return a / b;
   });
 
-  Handlebars.registerHelper("or", function (a, b) {
+  // Named "fallback", not "or": Foundry core registers its own boolean-returning "or" helper
+  // (applications/handlebars.mjs) which silently wins the registration race and breaks any
+  // value-coalescing use like value="{{or system.spell_adder 1}}" (renders "true"/"false").
+  Handlebars.registerHelper("fallback", function (a, b) {
     return a || b;
-  });
-
-  Handlebars.registerHelper("and", function (a, b) {
-    return a && b;
   });
 
   Handlebars.registerHelper("noPpMarker", function () {
