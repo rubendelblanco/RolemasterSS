@@ -16,12 +16,6 @@
         <div class="wc-name-sub">
           <span>{{ localize "rmss.player_character.level" }}
             <input id="level" name="system.attributes.level.value" type="text" value="{{system.attributes.level.value}}" /></span>
-          <span>{{ localize "rmss.pc_sheet_fixed_info.race" }}
-            <input type="text" name="system.fixed_info.race" value="{{system.fixed_info.race}}" data-dtype="String" /></span>
-        </div>
-        <div class="wc-name-sub">
-          <span>{{ localize "rmss.pc_sheet_fixed_info.profession" }}
-            <input type="text" name="system.fixed_info.profession" value="{{system.fixed_info.profession}}" data-dtype="String" /></span>
           <span>{{ localize "rmss.npc.sex" }}
             <select name="system.fixed_info.sex">
               <option value="male" {{#if (eq system.fixed_info.sex "male")}}selected{{/if}}>{{ localize "rmss.npc.sex_male" }}</option>
@@ -70,6 +64,13 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="wc-extra-info">
+      <span>{{ localize "rmss.pc_sheet_fixed_info.race" }}
+        <input type="text" name="system.fixed_info.race" value="{{system.fixed_info.race}}" data-dtype="String" /></span>
+      <span>{{ localize "rmss.pc_sheet_fixed_info.profession" }}
+        <input type="text" name="system.fixed_info.profession" value="{{system.fixed_info.profession}}" data-dtype="String" /></span>
     </div>
   </header>
 

@@ -2226,6 +2226,28 @@ button.rmss-crit-reenable-local:hover {
     box-shadow: 0 0 4px var(--color-accent, #66aaff);
 }
 
+/* NPC sheet: race/profession live in their own full-width row below the icon/resources/name
+   block instead of squeezed into that block's narrow name/level/sex column (~227px there -
+   not enough room for real race/profession text no matter how much flex you give the input).
+   .sheet-header is display:flex by Foundry default, which would put this row beside .container
+   instead of below it - force block stacking here, scoped to this sheet only. */
+.npc-sheet .sheet-header {
+    display: block;
+}
+.rmss-npc-extra-info {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.4rem 1rem 0;
+}
+.rmss-npc-extra-info .header-text {
+    flex: 1;
+}
+.rmss-npc-extra-info input[type="text"] {
+    width: auto;
+    flex: 1;
+    min-width: 0;
+}
+
 /* Resource box estilo más bonito */
 .resource-container {
     display: flex;
@@ -4669,6 +4691,19 @@ button.rmss-crit-reenable-local:hover {
 }
 .wardens-chrome .wc-xp-bar { width: 100%; max-width: 220px; margin: 3px 0 0; }
 
+/* Race/profession get their own full-width row below wc-top instead of squeezed into
+   wc-name-sub's 3.4em tag-style inputs (fine for "2" or a short dropdown, not real text). */
+.wardens-chrome .wc-extra-info {
+  display: flex; gap: 16px; width: 100%; margin-top: 8px; padding-top: 8px;
+  border-top: 1px solid var(--wc-border);
+  font-size: 11px; color: var(--wc-text-dim); text-transform: uppercase; letter-spacing: 0.03em;
+}
+.wardens-chrome .wc-extra-info span { display: flex; align-items: center; gap: 4px; flex: 1; }
+.wardens-chrome .wc-extra-info input {
+  background: transparent; border: none; border-bottom: 1px solid var(--wc-border); color: var(--wc-text);
+  flex: 1; min-width: 0; font-size: 11px; padding: 0 2px;
+}
+
 /* Development points input (only shown while leveling up) - fell back to the browser's
    default (black) input text color against the dark header, unreadable. */
 .wardens-chrome #development-points {
@@ -5283,7 +5318,7 @@ button.rmss-crit-reenable-local:hover {
   border: 1px solid oklch(0.55 0.04 65 / 0.35); border-radius: 10px; padding: 8px 12px; margin-bottom: 14px;
 }
 .wardens-chrome .skills-grid-container-npc .skills-grid-heading {
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: #ffffff;
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: #000000;
   text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); background-image: none; padding-bottom: 6px;
 }
 .wardens-chrome .skills-grid-container-npc > div { border-bottom: 1px solid oklch(0.75 0.02 80); color: oklch(0.35 0.03 60); font-size: 11.5px; }

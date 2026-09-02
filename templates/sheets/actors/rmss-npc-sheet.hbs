@@ -56,14 +56,6 @@
         </div>
 
           <div class="header-text flexrow">
-              <label for="race">{{ localize "rmss.pc_sheet_fixed_info.race" }} </label>
-              <input id="race" type="text" name="system.fixed_info.race" value="{{system.fixed_info.race}}" data-dtype="String"/>
-          </div>
-          <div class="header-text flexrow">
-              <label for="profession">{{ localize "rmss.pc_sheet_fixed_info.profession" }}  </label>
-              <input id="profession" type="text" name="system.fixed_info.profession" value="{{system.fixed_info.profession}}" data-dtype="String"/>
-          </div>
-          <div class="header-text flexrow">
               <label for="sex">{{ localize "rmss.npc.sex" }}</label>
               <select id="sex" name="system.fixed_info.sex">
                   <option value="male" {{#if (eq system.fixed_info.sex "male")}}selected{{/if}}>{{ localize "rmss.npc.sex_male" }}</option>
@@ -73,6 +65,17 @@
           </div>
       </div>
 
+    </div>
+
+    <div class="rmss-npc-extra-info">
+        <div class="header-text flexrow">
+            <label for="race">{{ localize "rmss.pc_sheet_fixed_info.race" }} </label>
+            <input id="race" type="text" name="system.fixed_info.race" value="{{system.fixed_info.race}}" data-dtype="String"/>
+        </div>
+        <div class="header-text flexrow">
+            <label for="profession">{{ localize "rmss.pc_sheet_fixed_info.profession" }}  </label>
+            <input id="profession" type="text" name="system.fixed_info.profession" value="{{system.fixed_info.profession}}" data-dtype="String"/>
+        </div>
     </div>
   </header>
     {{!-- Sheet Tab Navigation --}}
