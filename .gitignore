@@ -8,3 +8,4 @@ packs/*
 .cursorrules
 docs/
 coverage/
+mcp-server/.env
