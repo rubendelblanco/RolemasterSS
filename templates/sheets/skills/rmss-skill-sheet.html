@@ -4,27 +4,41 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
     <div class="sheet-content">
-        <div>
-            {{localize "rmss.skill.category"}}
-            <select name="system.categorySlug" class="app-stat-selector" value="{{system.categorySlug}}">
-                {{#each owned_skillcats}}
-                <option value="{{this.system.slug}}" {{#if (eq ../system.categorySlug this.system.slug)}}selected{{/if}}>
-                {{localize (concat "rmss.skill_categories_names." this.system.slug)}}
-                </option>
-                {{/each}}
-            </select>
+
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-sitemap"></i> {{localize "rmss.skill.section_classification"}}</h3>
+            <table>
+                <tr>
+                    <th>{{localize "rmss.skill.category"}}</th>
+                    <th>{{localize "rmss.skill.designation"}}</th>
+                    <th>{{localize "rmss.skill.offensive"}}</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="system.categorySlug" class="app-stat-selector" value="{{system.categorySlug}}">
+                            {{#each owned_skillcats}}
+                            <option value="{{this.system.slug}}" {{#if (eq ../system.categorySlug this.system.slug)}}selected{{/if}}>
+                            {{localize (concat "rmss.skill_categories_names." this.system.slug)}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="system.designation" class="app-stat-selector" value="{{system.designation}}" itemid="{{ item._id }}">
+                            {{selectOptions designations selected=system.designation}}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="system.offensive_skill" class="app-stat-selector" value="{{system.offensive_skill}}" itemid="{{ item._id }}">
+                            {{selectOptions config.attack.types selected=system.offensive_skill}}
+                        </select>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div>
-            {{localize "rmss.skill.designation"}}
-            <select name="system.designation" class="app-stat-selector" value="{{system.designation}}" itemid="{{ item._id }}">
-                {{selectOptions designations selected=system.designation}}
-            </select>
-            {{localize "rmss.skill.offensive"}}
-            <select name="system.offensive_skill" class="app-stat-selector" value="{{system.offensive_skill}}" itemid="{{ item._id }}">
-                {{selectOptions config.attack.types selected=system.offensive_skill}}
-            </select>
-        </div>
-        <div>
+
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-chart-line"></i> {{localize "rmss.skill.section_progression"}}</h3>
             <table>
                 <tr>
                     <th>{{localize "rmss.skill.favorite"}}</th>
@@ -37,6 +51,7 @@
                     <th>{{localize "rmss.skill.special_bonus_2"}}</th>
                     <th>{{localize "rmss.skill.total_bonus"}}</th>
                 </tr>
+                <tr>
                 <td>
                     <input type="checkbox" name="system.favorite" {{checked system.favorite}}/>
                 </td>
@@ -45,11 +60,11 @@
                 </td>
                 <td>
                     <div>
-                    {{#switch system.new_ranks.value}} 
-                        {{#case 0}} <a class="skillsheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
-                        {{#case 1}} <a class="skillsheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
-                        {{#case 2}} <a class="skillsheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
-                        {{#case 3}} <a class="skillsheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}} 
+                    {{#switch system.new_ranks.value}}
+                        {{#case 0}} <a class="skillsheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+                        {{#case 1}} <a class="skillsheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+                        {{#case 2}} <a class="skillsheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+                        {{#case 3}} <a class="skillsheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}}
                     {{/switch}}
                     </div>
                 </td>
@@ -71,9 +86,14 @@
                 <td>
                     <input name="system.total_bonus" type="text" value="{{system.total_bonus}}" data-dtype="Number"/>
                 </td>
+                </tr>
             </table>
-                {{localize "rmss.skill.description"}}
-                {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
         </div>
+
+        <div class="rmss-detail-section rmss-detail-section--description">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-scroll"></i> {{localize "rmss.skill.description"}}</h3>
+            {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+        </div>
+
     </div>
-</form> 
+</form>

@@ -867,7 +867,9 @@
       "progression": "Progresión habilidad",
       "designation": "Designación",
       "category": "Categoría",
-      "offensive": "¿Ofensiva?"
+      "offensive": "¿Ofensiva?",
+      "section_classification": "Clasificación",
+      "section_progression": "Progresión"
     },
   "skill_designations": {
     "None": "Ninguna",

@@ -867,7 +867,9 @@
             "category_progression": "Category progression",
             "designation": "Designation",
             "category": "Category",
-            "offensive": "Offensive?"
+            "offensive": "Offensive?",
+            "section_classification": "Classification",
+            "section_progression": "Progression"
         },
     "skill_designations": {
         "None": "None",
