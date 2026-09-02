@@ -4,57 +4,67 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}" {{#if isCompendiumItem}}disabled title="{{localize 'rmss.skill_category.name_locked_in_compendium'}}"{{/if}}/></h1>
     </header>
     <div class="sheet-content">
-        <div class="applicable-stats-grid-container">
-            <div>
-                Applicable Stat 1
-                <select name="system.app_stat_1" class="app-stat-selector" value="{{system.app_stat_1}}" itemid="{{ item._id }}">
-                    {{selectOptions applicable_stat_list selected=applicable_stat_1_selected }}
-                </select>
-            </div>
-            <div>
-                Applicable Stat 2
-                <select name="system.app_stat_2" class="app-stat-selector" value="{{system.app_stat_2}}" itemid="{{ item._id }}">
-                    {{selectOptions applicable_stat_list selected=applicable_stat_2_selected }}
-                </select>
-            </div>
-            <div>
-                Applicable Stat 2
-                <select name="system.app_stat_3" class="app-stat-selector" value="{{system.app_stat_3}}" itemid="{{ item._id }}">
-                    {{selectOptions applicable_stat_list selected=applicable_stat_3_selected }}
-                </select>
-            </div>
-            <div>
-                {{ localize 'rmss.skill.category_progression' }}
-                <select name="system.progression" class="app-skill-category-selector" value="{{system.progression}}" data-itemid="{{item._id}}">
-                    {{#each category_progression}}
-                        <option value="{{this.data}}" {{#if (eq ../system.progression this.data)}}selected{{/if}}>
-                        {{this.name}}
-                        </option>
-                    {{/each}}
-                </select>
-            </div>
-            <div>
-                {{ localize 'rmss.skill.progression' }}
-                <select name="system.skill_progression" class="app-skill-selector" value="{{system.skill_progression}}" data-itemid="{{ item._id }}">
-                    {{#each skill_progression}}
-                    <option value="{{this.data}}" {{#if (eq ../system.skill_progression this.data)}}selected{{/if}}>
-                        {{this.name}}
-                    </option>
-                    {{/each}}
-                </select>
-            </div>
-            <div>
-                {{ localize 'rmss.skill_category.skill_tab' }}
-                <select name="system.skill_tab" class="app-skill-selector" value="{{system.skill_tab}}" data-itemid="{{ item._id }}">
-                    {{#each skill_tab as |label key|}}
-                    <option value="{{key}}" {{#if (eq ../system.skill_tab key)}}selected{{/if}}>
-                    {{label}}
-                    </option>
-                    {{/each}}
-                </select>
-            </div>
+
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-sitemap"></i> {{localize "rmss.skill_category.section_classification"}}</h3>
+            <table>
+                <tr>
+                    <th>{{localize "rmss.skill_category.applicable_stats"}} 1</th>
+                    <th>{{localize "rmss.skill_category.applicable_stats"}} 2</th>
+                    <th>{{localize "rmss.skill_category.applicable_stats"}} 3</th>
+                    <th>{{localize "rmss.skill.category_progression"}}</th>
+                    <th>{{localize "rmss.skill.progression"}}</th>
+                    <th>{{localize "rmss.skill_category.skill_tab"}}</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="system.app_stat_1" class="app-stat-selector" value="{{system.app_stat_1}}" itemid="{{ item._id }}">
+                            {{selectOptions applicable_stat_list selected=applicable_stat_1_selected }}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="system.app_stat_2" class="app-stat-selector" value="{{system.app_stat_2}}" itemid="{{ item._id }}">
+                            {{selectOptions applicable_stat_list selected=applicable_stat_2_selected }}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="system.app_stat_3" class="app-stat-selector" value="{{system.app_stat_3}}" itemid="{{ item._id }}">
+                            {{selectOptions applicable_stat_list selected=applicable_stat_3_selected }}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="system.progression" class="app-skill-category-selector" value="{{system.progression}}" data-itemid="{{item._id}}">
+                            {{#each category_progression}}
+                                <option value="{{this.data}}" {{#if (eq ../system.progression this.data)}}selected{{/if}}>
+                                {{this.name}}
+                                </option>
+                            {{/each}}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="system.skill_progression" class="app-skill-selector" value="{{system.skill_progression}}" data-itemid="{{ item._id }}">
+                            {{#each skill_progression}}
+                            <option value="{{this.data}}" {{#if (eq ../system.skill_progression this.data)}}selected{{/if}}>
+                                {{this.name}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="system.skill_tab" class="app-skill-selector" value="{{system.skill_tab}}" data-itemid="{{ item._id }}">
+                            {{#each skill_tab as |label key|}}
+                            <option value="{{key}}" {{#if (eq ../system.skill_tab key)}}selected{{/if}}>
+                            {{label}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div>
+
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-chart-line"></i> {{localize "rmss.skill_category.section_progression"}}</h3>
             <table>
                 <tr>
                     <th>{{localize "rmss.skill_category.applicable_stats"}}</th>
@@ -68,6 +78,7 @@
                     <th>{{localize "rmss.skill_category.special_bonus_2"}}</th>
                     <th>{{localize "rmss.skill_category.total_bonus"}}</th>
                 </tr>
+                <tr>
                 <td>
                     <input name="system.applicable_stats" type="text" value="{{system.applicable_stats}}" data-dtype="String"/>
                 </td>
@@ -82,11 +93,11 @@
                         {{#if (eq system.progression "none")}}
                         na
                         {{else}}
-                    {{#switch system.new_ranks.value}} 
-                        {{#case 0}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
-                        {{#case 1}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
-                        {{#case 2}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}} 
-                        {{#case 3}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}} 
+                    {{#switch system.new_ranks.value}}
+                        {{#case 0}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+                        {{#case 1}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+                        {{#case 2}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square"></i></a> {{/case}}
+                        {{#case 3}} <a class="skillcategorysheet-newrank" data-item-id="{{item._id}}" value="{{system.new_ranks.value}}"><i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i> <i class="fa-regular fa-square-check"></i></a> {{/case}}
                     {{/switch}}
                         {{/if}}
                     </div>
@@ -109,9 +120,14 @@
                 <td>
                     <input name="system.total_bonus" type="text" value="{{system.total_bonus}}" data-dtype="Number"/>
                 </td>
+                </tr>
             </table>
-            {{localize "rmss.skill_category.description"}}
+        </div>
+
+        <div class="rmss-detail-section rmss-detail-section--description">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-scroll"></i> {{localize "rmss.skill_category.description"}}</h3>
             {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
         </div>
+
     </div>
 </form>

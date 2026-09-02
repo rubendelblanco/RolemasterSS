@@ -850,7 +850,9 @@
             "description": "Description",
             "progression": "Category progression",
             "skill_tab": "Skill tab",
-            "name_locked_in_compendium": "The name cannot be edited while this item lives in a compendium, since character sheets reference it by slug."
+            "name_locked_in_compendium": "The name cannot be edited while this item lives in a compendium, since character sheets reference it by slug.",
+            "section_classification": "Classification",
+            "section_progression": "Progression"
         },
         "skill": {
             "favorite": "Favorite?",
