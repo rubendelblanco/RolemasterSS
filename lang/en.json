@@ -338,6 +338,7 @@
             "npc": "RMSS NPC",
             "npc_wardens_chrome": "RMSS NPC (Warden's Chrome)",
             "creature": "RMSS Creature",
+            "creature_wardens_chrome": "RMSS Creature (Warden's Chrome)",
             "merchant": "RMSS Merchant",
             "loot": "RMSS Loot"
         },

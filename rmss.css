@@ -5331,6 +5331,26 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .skills-grid-container-npc .item-delete { color: oklch(0.55 0.03 65); transition: color 0.15s ease; }
 .wardens-chrome .skills-grid-container-npc .item-delete:hover { color: var(--wc-accent-strong); }
 
+/* ---- Creature sheet (rmss-creature-wardens-chrome-sheet.hbs) ----
+   Same pattern as the NPC block above, adapted to creature-attacks.hbs's own class names
+   (.creature-attack-name instead of .item-roll). */
+.wardens-chrome .skills-grid-container-creature {
+  background: linear-gradient(160deg, oklch(1 0 0 / 0.5), oklch(1 0 0 / 0.22));
+  border: 1px solid oklch(0.55 0.04 65 / 0.35); border-radius: 10px; padding: 8px 12px; margin-bottom: 14px;
+}
+.wardens-chrome .skills-grid-container-creature .skills-grid-heading {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.02em; color: #000000;
+  text-transform: uppercase; border-bottom: 1.5px solid oklch(0.5 0.04 65); background-image: none; padding-bottom: 6px;
+}
+.wardens-chrome .skills-grid-container-creature > div { border-bottom: 1px solid oklch(0.75 0.02 80); color: oklch(0.35 0.03 60); font-size: 11.5px; }
+.wardens-chrome .skills-grid-container-creature .creature-attack-name { color: var(--wc-card-text); font-weight: 600; }
+.wardens-chrome .skills-grid-container-creature .creature-attack-name:hover { color: oklch(0.42 0.1 45); }
+.wardens-chrome .skills-grid-container-creature [contenteditable="true"] {
+  background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px;
+}
+.wardens-chrome .skills-grid-container-creature .item-delete { color: oklch(0.55 0.03 65); transition: color 0.15s ease; }
+.wardens-chrome .skills-grid-container-creature .item-delete:hover { color: var(--wc-accent-strong); }
+
 .wardens-chrome .rmss-creature-tags .rmss-tag-chip {
   background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); color: var(--wc-card-text);
 }

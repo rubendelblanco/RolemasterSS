@@ -1,0 +1,196 @@
+<form class="npc-sheet wardens-chrome {{cssClass}}" autocomplete="off">
+  <header class="sheet-header wc-header">
+    <div class="wc-top">
+      <div class="wc-portrait-wrap">
+        <div class="actor-icon wc-portrait">
+          <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
+        </div>
+        <div class="wc-level-badge">{{system.attributes.level.value}}</div>
+      </div>
+
+      <div class="wc-name-block">
+        <div class="header-text flexrow">
+          <label for="character-name" class="wc-sr-only">{{ localize "rmss.player_character.name" }}</label>
+          <input id="character-name" class="wc-name-input" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize Name }}" />
+        </div>
+        <div class="wc-name-sub">
+          <span>{{ localize "rmss.player_character.level" }}
+            <input id="level" name="system.attributes.level.value" type="number" data-dtype="Number" value="{{system.attributes.level.value}}" /></span>
+          <span>{{ localize "rmss.npc.sex" }}
+            <select name="system.fixed_info.sex">
+              <option value="male" {{#if (eq system.fixed_info.sex "male")}}selected{{/if}}>{{ localize "rmss.npc.sex_male" }}</option>
+              <option value="female" {{#if (eq system.fixed_info.sex "female")}}selected{{/if}}>{{ localize "rmss.npc.sex_female" }}</option>
+              <option value="other" {{#if (eq system.fixed_info.sex "other")}}selected{{/if}}{{#unless system.fixed_info.sex}}selected{{/unless}}>{{ localize "rmss.npc.sex_other" }}</option>
+            </select></span>
+        </div>
+      </div>
+
+      <div class="wc-chip">
+        <div class="wc-chip-row">
+          <div class="wc-chip-stat">
+            <div class="wc-chip-label"><i class="fa-solid fa-heart" aria-hidden="true"></i> {{ localize "rmss.player_character.resources.hits" }}</div>
+            <div class="resource-values wc-chip-val">
+              <input name="system.attributes.hits.current" type="Number" value="{{system.attributes.hits.current}}" />/<input name="system.attributes.hits.max" type="Number" value="{{system.attributes.hits.max}}" />
+            </div>
+            <div class="rmss-progress-thin wc-hits-bar wc-header-bar">
+              <div class="rmss-progress-bar" style="width: {{rmssPercentage system.attributes.hits.current system.attributes.hits.max}}%;"></div>
+            </div>
+          </div>
+          <div class="wc-chip-stat">
+            <div class="wc-chip-label"><i class="fa-solid fa-bolt" aria-hidden="true"></i> {{ localize "rmss.player_character.resources.power_points" }}</div>
+            <div class="pp-values wc-chip-val">
+              <input name="system.attributes.power_points.current" type="Number" value="{{system.attributes.power_points.current}}" />/<input name="system.attributes.power_points.max" type="Number" value="{{system.attributes.power_points.max}}" />
+            </div>
+            <div class="rmss-progress-thin wc-pp-bar wc-header-bar">
+              <div class="rmss-progress-bar" style="width: {{rmssPercentage system.attributes.power_points.current system.attributes.power_points.max}}%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wc-chip">
+        <div class="wc-chip-row">
+          <div class="wc-chip-stat">
+            <div class="wc-chip-label">{{ localize "rmss.npc.at" }}/{{ localize "rmss.npc.db" }}</div>
+            <div class="wc-chip-val">
+              <input type="text" name="system.armor_info.armor_type" data-dtype="Number" value="{{system.armor_info.armor_type}}" />/<input type="text" name="system.armor_info.total_db" data-dtype="Number" value="{{system.armor_info.total_db}}" />
+            </div>
+          </div>
+          <div class="wc-chip-stat">
+            <div class="wc-chip-label"><a class="item-roll">{{ localize "rmss.npc.movement_rate" }} <i class="fa fa-refresh" aria-hidden="true"></i></a></div>
+            <div class="wc-chip-val">
+              <input type="text" name="system.attributes.movement_rate.value" data-dtype="Number" value="{{system.attributes.movement_rate.value}}" />/<input id="movement-rate-current" name="system.attributes.movement_rate.current" data-dtype="Number" type="text" value="{{system.attributes.movement_rate.current}}" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wc-chip">
+        <div class="wc-chip-row">
+          <div class="wc-chip-stat">
+            <div class="wc-chip-label">{{ localize "rmss.creature.speed" }}</div>
+            <div class="wc-chip-val">
+              <select name="system.initiative_code">
+                {{#each initiative_codes}}
+                  <option value="{{this.value}}" {{#if (eq ../system.attributes.initiative.mod this.value)}}selected{{/if}}>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+          <div class="wc-chip-stat">
+            <div class="wc-chip-label">{{ localize "rmss.initiative.mod_initiative" }}</div>
+            <div class="wc-chip-val">
+              <input name="system.attributes.initiative.value" type="number" data-dtype="Number" value="{{system.attributes.initiative.value}}" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wc-extra-info">
+      <span>{{ localize "rmss.creature.bonus_experience" }}
+        <select id="bonus-experience" name="system.bonus_experience">
+          <option value="none" {{#if (eq system.bonus_experience "none")}}selected{{/if}}>-</option>
+          <option value="a" {{#if (eq system.bonus_experience "a")}}selected{{/if}}>A</option>
+          <option value="b" {{#if (eq system.bonus_experience "b")}}selected{{/if}}>B</option>
+          <option value="c" {{#if (eq system.bonus_experience "c")}}selected{{/if}}>C</option>
+          <option value="d" {{#if (eq system.bonus_experience "d")}}selected{{/if}}>D</option>
+          <option value="e" {{#if (eq system.bonus_experience "e")}}selected{{/if}}>E</option>
+          <option value="f" {{#if (eq system.bonus_experience "f")}}selected{{/if}}>F</option>
+          <option value="g" {{#if (eq system.bonus_experience "g")}}selected{{/if}}>G</option>
+          <option value="h" {{#if (eq system.bonus_experience "h")}}selected{{/if}}>H</option>
+          <option value="i" {{#if (eq system.bonus_experience "i")}}selected{{/if}}>I</option>
+          <option value="j" {{#if (eq system.bonus_experience "j")}}selected{{/if}}>J</option>
+          <option value="k" {{#if (eq system.bonus_experience "k")}}selected{{/if}}>K</option>
+          <option value="l" {{#if (eq system.bonus_experience "l")}}selected{{/if}}>L</option>
+        </select></span>
+      <span>{{ localize "rmss.creature.treasure" }}
+        <input type="text" name="system.treasure" value="{{system.treasure}}" data-dtype="String" /></span>
+    </div>
+  </header>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="Skills"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 6l6-3 2 2-3 6"/><path d="M6 12l-3 3 3 3 3-3"/><circle cx="17.5" cy="17.5" r="3.5"/></svg> {{ localize "rmss.pc_sheet_tabs.attacks" }}</a>
+    <a class="item" data-tab="Equipment"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8V6a6 6 0 0112 0v2"/><rect x="4" y="8" width="16" height="12" rx="2"/></svg> {{ localize "rmss.pc_sheet_tabs.equipment" }}</a>
+    <a class="item" data-tab="Spells"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 17.5v-13z"/><path d="M4 17.5A2.5 2.5 0 016.5 15H20"/></svg> {{ localize "rmss.pc_sheet_tabs.spells" }}</a>
+    <a class="item" data-tab="StatusRecord"><svg class="wc-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/><path d="M18 5l2 2-2 2"/></svg> {{ localize "rmss.pc_sheet_tabs.status_record" }}</a>
+  </nav>
+
+  <section class="sheet-body">
+    <div class="tab skills" data-group="primary" data-tab="Skills">
+      {{> "systems/rmss/templates/sheets/actors/parts/creature-attacks.hbs" }}
+      <div class="wc-record-card">
+        <h2><i class="fa-solid fa-feather" aria-hidden="true"></i> {{ localize "rmss.item.description" }}</h2>
+        <div class="description-editor-wrapper {{#unless system.description}}empty-description{{/unless}}">
+          {{editor enrichedDescription target="system.description" button=true owner=true editable=true}}
+        </div>
+      </div>
+    </div>
+
+    <div class="tab equipment" data-group="primary" data-tab="Equipment">
+      <div class="wc-record-row">
+        <div class="wc-record-card">
+          <h2><i class="fa-solid fa-star" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.weapons" }}</h2>
+          {{> "systems/rmss/templates/sheets/actors/parts/actor-weapons.html" }}
+        </div>
+        <div class="wc-record-card">
+          <h2><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.items" }}</h2>
+          {{> "systems/rmss/templates/sheets/actors/parts/actor-items.html" }}
+        </div>
+      </div>
+      <div class="wc-record-row">
+        <div class="wc-record-card">
+          <h2><i class="fa-solid fa-shield" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.armor" }}</h2>
+          {{> "systems/rmss/templates/sheets/actors/parts/actor-armor.html" }}
+        </div>
+        <div class="wc-record-card">
+          <h2><i class="fa-solid fa-flask" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.herbs" }}</h2>
+          {{> "systems/rmss/templates/sheets/actors/parts/actor-herbs.html" }}
+        </div>
+      </div>
+      <div class="wc-record-card">
+        <h2><i class="fa-solid fa-coins" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.wealth" }}</h2>
+        <a class="money-give"><i class="fas fa-hand-holding-dollar"></i> {{ localize "rmss.money_transfer.give_money_tooltip" }}</a>
+        {{> "systems/rmss/templates/sheets/actors/parts/actor-money.html" }}
+      </div>
+    </div>
+
+    <div class="tab spells" data-group="primary" data-tab="Spells">
+      <div class="spell-container">
+        {{> "systems/rmss/templates/sheets/actors/parts/actor-spells.html" }}
+      </div>
+    </div>
+
+    <div class="tab status-record" data-group="primary" data-tab="StatusRecord">
+      <div class="wc-record-card">
+        <h2><i class="fa-solid fa-tags" aria-hidden="true"></i> {{ localize "rmss.npc.creature_tags" }}</h2>
+        <div class="rmss-creature-tags">
+          <div class="rmss-tag-chips">
+            {{#each creatureTags}}
+            <span class="rmss-tag-chip" data-tag-index="{{@index}}">
+              <span class="rmss-tag-label">{{this}}</span>
+              {{#if ../editable}}
+              <button type="button" class="creature-tag-remove" data-action="creature-tag-remove" title="{{localize 'rmss.item.item_tags_remove'}}">
+                <i class="fas fa-trash"></i>
+              </button>
+              {{/if}}
+            </span>
+            {{/each}}
+          </div>
+          {{#if editable}}
+          <input type="text" class="rmss-creature-tag-input" list="rmss-creature-tags-{{creatureTagListId}}" placeholder="{{localize 'rmss.npc.creature_tags_placeholder'}}" autocomplete="off"/>
+          <datalist id="rmss-creature-tags-{{creatureTagListId}}">
+            {{#each config.slaying_types as |type|}}
+            <option value="{{type}}"/>
+            {{/each}}
+          </datalist>
+          {{/if}}
+        </div>
+      </div>
+      <div class="wc-record-card">
+        {{> "systems/rmss/templates/sheets/actors/rmss-critical-codes.hbs" }}
+      </div>
+      {{> "systems/rmss/templates/sheets/actors/parts/active-effects.hbs" }}
+    </div>
+  </section>
+</form>
