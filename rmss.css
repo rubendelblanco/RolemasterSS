@@ -5351,6 +5351,19 @@ button.rmss-crit-reenable-local:hover {
 .wardens-chrome .skills-grid-container-creature .item-delete { color: oklch(0.55 0.03 65); transition: color 0.15s ease; }
 .wardens-chrome .skills-grid-container-creature .item-delete:hover { color: var(--wc-accent-strong); }
 
+/* ---- Merchant/Loot sheets (rmss-merchant-wardens-chrome-sheet.html, rmss-loot-wardens-chrome-
+   sheet.html) ---- these drop the base sheets' own "merchant"/"loot" app class (like NPC/creature
+   above, they use the generic actor scope instead), so the .rmss.sheet.merchant-scoped rules for
+   these two classes don't reach them - restated here for the wc theme. */
+.wardens-chrome .merchant-buy-rate {
+  display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; color: var(--wc-card-text);
+}
+.wardens-chrome .merchant-buy-rate label { font-weight: 600; }
+.wardens-chrome .merchant-buy-rate input[type="number"] { width: 4rem; text-align: center; }
+.wardens-chrome .merchant-description-display {
+  padding: 0.5rem 0.5rem; font-size: 1.1em; font-style: italic; color: var(--wc-card-text);
+}
+
 .wardens-chrome .rmss-creature-tags .rmss-tag-chip {
   background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); color: var(--wc-card-text);
 }

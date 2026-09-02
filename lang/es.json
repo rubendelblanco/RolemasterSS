@@ -340,7 +340,9 @@
       "creature": "Criatura de RMSS",
       "creature_wardens_chrome": "Criatura de RMSS (Warden's Chrome)",
       "merchant": "Comercio de RMSS",
-      "loot": "Botín de RMSS"
+      "merchant_wardens_chrome": "Comercio de RMSS (Warden's Chrome)",
+      "loot": "Botín de RMSS",
+      "loot_wardens_chrome": "Botín de RMSS (Warden's Chrome)"
     },
     "currency_type": {
       "mithril": "Monedas de Mithril",

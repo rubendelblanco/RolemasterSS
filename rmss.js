@@ -30,7 +30,9 @@ import RMSSNpcWardensChromeSheet from "./module/sheets/actors/rmss_npc_wardens_c
 import RMSSCreatureSheet from "./module/sheets/actors/rmss_creature_sheet.js";
 import RMSSCreatureWardensChromeSheet from "./module/sheets/actors/rmss_creature_wardens_chrome_sheet.js";
 import RMSSMerchantSheet from "./module/sheets/actors/rmss_merchant_sheet.js";
+import RMSSMerchantWardensChromeSheet from "./module/sheets/actors/rmss_merchant_wardens_chrome_sheet.js";
 import RMSSLootSheet from "./module/sheets/actors/rmss_loot_sheet.js";
+import RMSSLootWardensChromeSheet from "./module/sheets/actors/rmss_loot_wardens_chrome_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
 import utils from "./module/utils.js";
 import { createProfession, createProfessionDialog } from "./module/tools/profession_creator.js";
@@ -530,7 +532,9 @@ Hooks.once("init", function () {
   Actors.registerSheet("rmss", RMSSCreatureSheet, { makeDefault: true, label: "rmss.entity_sheet.creature", types: ["creature"] });
   Actors.registerSheet("rmss", RMSSCreatureWardensChromeSheet, { makeDefault: false, label: "rmss.entity_sheet.creature_wardens_chrome", types: ["creature"] });
   Actors.registerSheet("rmss", RMSSMerchantSheet, { makeDefault: true, label: "rmss.entity_sheet.merchant", types: ["merchant"] });
+  Actors.registerSheet("rmss", RMSSMerchantWardensChromeSheet, { makeDefault: false, label: "rmss.entity_sheet.merchant_wardens_chrome", types: ["merchant"] });
   Actors.registerSheet("rmss", RMSSLootSheet, { makeDefault: true, label: "rmss.entity_sheet.loot", types: ["loot"] });
+  Actors.registerSheet("rmss", RMSSLootWardensChromeSheet, { makeDefault: false, label: "rmss.entity_sheet.loot_wardens_chrome", types: ["loot"] });
 
 
   // Preload Handlebars Templates
