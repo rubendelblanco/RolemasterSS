@@ -834,7 +834,9 @@
             "view": "View Spell",
             "list_level_hint": "Max spell level visible in this list. Default: creature level.",
             "maneuver_modifier": "Spell mod",
-            "maneuver_modifier_hint": "Modifier for spell casting maneuver roll. Default: creature level."
+            "maneuver_modifier_hint": "Modifier for spell casting maneuver roll. Default: creature level.",
+            "section_properties": "Properties",
+            "section_attack_table": "Attack Table"
         },
         "skill_category": {
             "applicable_stats": "Applicable Stats",

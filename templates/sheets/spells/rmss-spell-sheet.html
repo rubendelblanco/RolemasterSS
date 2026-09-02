@@ -4,7 +4,9 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
     <div class="sheet-content">
-        <div>
+
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-wand-sparkles"></i> {{localize "rmss.spell.section_properties"}}</h3>
             <table>
                 <tr>
                     <th>{{localize "rmss.spell.favorite"}}</th>
@@ -32,7 +34,7 @@
                 </td>
                 <td>
                     <input name="system.area_of_effect" type="text" value="{{system.area_of_effect}}" data-dtype="String"/>
-                </td>                
+                </td>
                 <td>
                     <input name="system.duration" type="text" value="{{system.duration}}" data-dtype="String"/>
                 </td>
@@ -58,10 +60,16 @@
                     </select>
                 </td>
                 </tr>
-                {{#if (eq system.type "BE")}}
+            </table>
+        </div>
+
+        {{#if (eq system.type "BE")}}
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-crosshairs"></i> {{localize "rmss.spell.section_attack_table"}}</h3>
+            <table>
                 <tr>
                     <th>{{localize "rmss.spell.attack_table"}}</th>
-                    <td colspan="7">
+                    <td>
                         <select name="system.attack_table">
                             <option value="">—</option>
                             {{#each beAttackTables as |tableKey|}}
@@ -70,11 +78,16 @@
                         </select>
                     </td>
                 </tr>
-                {{/if}}
-                {{#if (eq system.type "DE")}}
+            </table>
+        </div>
+        {{/if}}
+        {{#if (eq system.type "DE")}}
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-crosshairs"></i> {{localize "rmss.spell.section_attack_table"}}</h3>
+            <table>
                 <tr>
                     <th>{{localize "rmss.spell.attack_table"}}</th>
-                    <td colspan="7">
+                    <td>
                         <select name="system.attack_table">
                             <option value="">—</option>
                             {{#each boltTables as |tableKey|}}
@@ -85,7 +98,7 @@
                 </tr>
                 <tr>
                     <th>{{#if isCreatureActor}}{{localize "rmss.creature_attack.attack"}}{{else}}{{localize "rmss.spell.skill"}}{{/if}}</th>
-                    <td colspan="7">
+                    <td>
                         {{#if isCreatureActor}}
                         <select name="system.skillName">
                             <option value="">—</option>
@@ -103,10 +116,14 @@
                         {{/if}}
                     </td>
                 </tr>
-                {{/if}}
             </table>
-                {{localize "rmss.spell.description"}}
-                {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
         </div>
+        {{/if}}
+
+        <div class="rmss-detail-section rmss-detail-section--description">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-scroll"></i> {{localize "rmss.spell.description"}}</h3>
+            {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+        </div>
+
     </div>
 </form>
