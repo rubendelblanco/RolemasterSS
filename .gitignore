@@ -9,3 +9,4 @@ packs/*
 docs/
 coverage/
 mcp-server/.env
+.claude/settings.local.json
