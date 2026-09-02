@@ -1259,7 +1259,9 @@
       "no_skill_categories": "El personaje no tiene categorías de habilidad. Aplica una profesión primero.",
       "create_skill_title": "Crear habilidad para \"{name}\"",
       "create_skill_prompt": "La lista de hechizos \"{name}\" requiere una habilidad con el mismo nombre. No se encontró. Elige una categoría de habilidad para crearla:",
-      "skill_category": "Categoría de habilidad"
+      "skill_category": "Categoría de habilidad",
+      "section_classification": "Clasificación",
+      "section_spells": "Hechizos"
     },
     "spells": {
       "select_armor_type": "Seleccionar Tipo de Armadura",

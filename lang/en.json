@@ -1259,7 +1259,9 @@
             "no_skill_categories": "The character has no skill categories. Apply a profession first.",
             "create_skill_title": "Create skill for \"{name}\"",
             "create_skill_prompt": "The spell list \"{name}\" requires a skill with the same name. No matching skill found. Choose a skill category to create it:",
-            "skill_category": "Skill category"
+            "skill_category": "Skill category",
+            "section_classification": "Classification",
+            "section_spells": "Spells"
         },
         "spells": {
             "select_armor_type": "Select Armor Type",

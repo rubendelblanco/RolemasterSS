@@ -6,89 +6,96 @@
         </h1>
     </header>
 
-    <div class="spell-list-info" data-tab="container">
-        {{ localize "rmss.spell_lists.type" }}
-        <select name="system.type">
-            {{#each config.spell_list_type as |label key|}}
-            <option value="{{key}}" {{#if (eq ../system.type key)}}selected{{/if}}>
-            {{label}}
-            </option>
-            {{/each}}
-        </select>
+    <div class="rmss-detail-section">
+        <h3 class="rmss-detail-section-title"><i class="fas fa-sitemap"></i> {{localize "rmss.spell_lists.section_classification"}}</h3>
+        <div class="spell-list-info" data-tab="container">
+            {{ localize "rmss.spell_lists.type" }}
+            <select name="system.type">
+                {{#each config.spell_list_type as |label key|}}
+                <option value="{{key}}" {{#if (eq ../system.type key)}}selected{{/if}}>
+                {{label}}
+                </option>
+                {{/each}}
+            </select>
 
-        {{#unless (eq system.type "base")}}
-        {{ localize "rmss.spell_lists.realm" }}
-        <select name="system.realm">
-            {{#each config.spell_realm as |label key|}}
-            <option value="{{key}}" {{#if (eq ../system.realm key)}}selected{{/if}}>
-            {{label}}
-            </option>
-            {{/each}}
-        </select>
-        {{/unless}}
+            {{#unless (eq system.type "base")}}
+            {{ localize "rmss.spell_lists.realm" }}
+            <select name="system.realm">
+                {{#each config.spell_realm as |label key|}}
+                <option value="{{key}}" {{#if (eq ../system.realm key)}}selected{{/if}}>
+                {{label}}
+                </option>
+                {{/each}}
+            </select>
+            {{/unless}}
 
-        {{#if (eq system.type "base")}}
-        {{ localize "rmss.spell_lists.profession" }}
-        <input type="text" style="width:40%" name="system.profession" value="{{system.profession}}" placeholder="Which profession?">
-        {{/if}}
-    </div>
-
-    <div class="spell-list-description">
-        <label>{{ localize "rmss.item.description" }}</label>
-        <textarea name="system.description" rows="3" placeholder="{{ localize 'rmss.spell_lists.description_placeholder' }}">{{system.description}}</textarea>
-    </div>
-
-    <div class="sheet-content spell-list">
-        {{#if embeddedMode}}
-        <div class="spell-list-actions">
-            <button type="button" class="create-spell"><i class="fas fa-plus"></i> {{localize "rmss.spell.create_spell"}}</button>
-            <span class="spell-list-hint">{{localize "rmss.spell_lists.drop_spells_hint"}}</span>
+            {{#if (eq system.type "base")}}
+            {{ localize "rmss.spell_lists.profession" }}
+            <input type="text" style="width:40%" name="system.profession" value="{{system.profession}}" placeholder="Which profession?">
+            {{/if}}
         </div>
-        {{/if}}
-        <table>
-            <thead>
-            <tr>
-                <th scope="col">Level</th>
-                <th scope="col">Name</th>
-                <th scope="col">Area</th>
-                <th scope="col">Duration</th>
-                <th scope="col">Range</th>
-                <th scope="col">Type</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#each spells as |spell idx|}}
-            <tr class="spell spell-draggable" draggable="true" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}" data-uuid="{{spell.uuid}}">
-                <td>{{spell.system.level}}</td>
-                <td>
-                    {{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}
-                    {{#if (and ../embeddedMode spell.system.description)}}
-                    <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{spell.system.description}}"></i>
-                    {{/if}}
-                </td>
-                <td>{{spell.system.area_of_effect}}</td>
-                <td>{{spell.system.duration}}</td>
-                <td>{{spell.system.range}}</td>
-                <td>{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</td>
-                <td>
-                    {{#if ../canEditSpellsAndLists}}
-                    <a class="item-edit" title="Edit Spell" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a class="item-delete" title="Delete Spell" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                    {{else}}
-                    <a class="item-view" title="{{localize 'rmss.spell.view'}}" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                    {{/if}}
-                </td>
-            </tr>
-            {{/each}}
-            </tbody>
-        </table>
+    </div>
+
+    <div class="rmss-detail-section rmss-detail-section--description">
+        <h3 class="rmss-detail-section-title"><i class="fas fa-scroll"></i> {{localize "rmss.item.description"}}</h3>
+        <div class="spell-list-description">
+            <textarea name="system.description" rows="3" placeholder="{{ localize 'rmss.spell_lists.description_placeholder' }}">{{system.description}}</textarea>
+        </div>
+    </div>
+
+    <div class="rmss-detail-section">
+        <h3 class="rmss-detail-section-title"><i class="fas fa-book-open"></i> {{localize "rmss.spell_lists.section_spells"}}</h3>
+        <div class="sheet-content spell-list">
+            {{#if embeddedMode}}
+            <div class="spell-list-actions">
+                <button type="button" class="create-spell"><i class="fas fa-plus"></i> {{localize "rmss.spell.create_spell"}}</button>
+                <span class="spell-list-hint">{{localize "rmss.spell_lists.drop_spells_hint"}}</span>
+            </div>
+            {{/if}}
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">Level</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Range</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each spells as |spell idx|}}
+                <tr class="spell spell-draggable" draggable="true" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}" data-uuid="{{spell.uuid}}">
+                    <td>{{spell.system.level}}</td>
+                    <td>
+                        {{spell.name}}{{#if spell.system.instant}}*{{/if}}{{#if spell.system.no_pp}}{{noPpMarker}}{{/if}}
+                        {{#if (and ../embeddedMode spell.system.description)}}
+                        <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{spell.system.description}}"></i>
+                        {{/if}}
+                    </td>
+                    <td>{{spell.system.area_of_effect}}</td>
+                    <td>{{spell.system.duration}}</td>
+                    <td>{{spell.system.range}}</td>
+                    <td>{{spell.system.type}}{{#unless (eq spell.system.subType "-")}}{{spell.system.subType}}{{/unless}}</td>
+                    <td>
+                        {{#if ../canEditSpellsAndLists}}
+                        <a class="item-edit" title="Edit Spell" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="item-delete" title="Delete Spell" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        {{else}}
+                        <a class="item-view" title="{{localize 'rmss.spell.view'}}" data-item-id="{{spell.id}}" data-spell-idx="{{idx}}">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        {{/if}}
+                    </td>
+                </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
     </div>
 </form>
-
