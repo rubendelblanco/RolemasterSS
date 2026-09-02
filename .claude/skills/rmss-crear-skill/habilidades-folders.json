@@ -1,0 +1,1451 @@
+[
+  {
+    "id": "t1BOT24i2ePDbXjt",
+    "name": "Activas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "WXGuA62MvpF3LGRb",
+    "sort": 0
+  },
+  {
+    "id": "WjxzwJmi5meGTk0s",
+    "name": "Alivio quemaduras/congelaciones",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "Ssu8Fak95UdMVsMg",
+    "sort": 0
+  },
+  {
+    "id": "V7HE6napQHVZSpjg",
+    "name": "Amplificaciones",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "14nxIxzeGQ1CRXdc",
+    "sort": 0
+  },
+  {
+    "id": "lOlCspyCRhy130O6",
+    "name": "Anillos y joyas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "sowTSiAGwFfJUI42",
+    "sort": 0
+  },
+  {
+    "id": "iKj2X4LL74PRTeH5",
+    "name": "Antidotos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "Ssu8Fak95UdMVsMg",
+    "sort": 0
+  },
+  {
+    "id": "HnlTddToN2GQMCbq",
+    "name": "Arcano",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "AGzjbVd5XjQhSW60",
+    "sort": 0
+  },
+  {
+    "id": "pSvYUjoyHPEdCGrz",
+    "name": "Arcano",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "5tnFniMaJRqwUq6V",
+    "sort": 0
+  },
+  {
+    "id": "f85eM8mrvufdSS7w",
+    "name": "Armadura",
+    "type": "Item",
+    "color": "#a99932",
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 1500000
+  },
+  {
+    "id": "ECLdENHXLizltp8O",
+    "name": "Armadura-Ligera",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "f85eM8mrvufdSS7w",
+    "sort": 100000
+  },
+  {
+    "id": "jRXjNWyvzPpuxo4i",
+    "name": "Armadura-Media",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "f85eM8mrvufdSS7w",
+    "sort": 200000
+  },
+  {
+    "id": "rgnnzPEK29Q9GPBL",
+    "name": "Armadura-Pesada",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "f85eM8mrvufdSS7w",
+    "sort": 300000
+  },
+  {
+    "id": "W0nILOxm26uEGbPr",
+    "name": "Armaduras",
+    "type": "Item",
+    "color": "#92e8c2",
+    "description": "",
+    "parentId": null,
+    "sort": 300000
+  },
+  {
+    "id": "sien0AEsjuB7MwiB",
+    "name": "Armaduras",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "sowTSiAGwFfJUI42",
+    "sort": 0
+  },
+  {
+    "id": "2Ao08yl67uUEKHly",
+    "name": "Armas",
+    "type": "Item",
+    "color": "#a99932",
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 700000
+  },
+  {
+    "id": "HorT3hhXHXAsgEum",
+    "name": "Armas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "sowTSiAGwFfJUI42",
+    "sort": 0
+  },
+  {
+    "id": "J6ZPy6gffAdDMu9h",
+    "name": "Armas",
+    "type": "Item",
+    "color": "#868afe",
+    "description": "",
+    "parentId": null,
+    "sort": 1100000
+  },
+  {
+    "id": "nJkEc21uoS0uU6tq",
+    "name": "Armas-2Manos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "2Ao08yl67uUEKHly",
+    "sort": 100000
+  },
+  {
+    "id": "ofyR0Rd45MfJiDaR",
+    "name": "Armas-Arrojadizas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "2Ao08yl67uUEKHly",
+    "sort": 200000
+  },
+  {
+    "id": "us8Dd6EhMGvcECvW",
+    "name": "Armas-Asta",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "2Ao08yl67uUEKHly",
+    "sort": 300000
+  },
+  {
+    "id": "MVjrCl1YJICkhGsJ",
+    "name": "Armas-Contundentes",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "2Ao08yl67uUEKHly",
+    "sort": 0
+  },
+  {
+    "id": "9SKx6eAY44ZakYRD",
+    "name": "Armas-Filo",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "2Ao08yl67uUEKHly",
+    "sort": 400000
+  },
+  {
+    "id": "VQLNwFjyml4VjVei",
+    "name": "Armas-Proyectiles",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "2Ao08yl67uUEKHly",
+    "sort": 500000
+  },
+  {
+    "id": "WXGuA62MvpF3LGRb",
+    "name": "Artísticas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 0
+  },
+  {
+    "id": "Okompgtze9otiCCC",
+    "name": "Ataques",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": null,
+    "sort": 400000
+  },
+  {
+    "id": "fLjEoFp0cauTeDc5",
+    "name": "Atletismo",
+    "type": "Item",
+    "color": "#a99932",
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 800000
+  },
+  {
+    "id": "W5VIQRRvE7kXQcA3",
+    "name": "Atletismo-Gimnasia",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "fLjEoFp0cauTeDc5",
+    "sort": 100000
+  },
+  {
+    "id": "t1X9tn8DnXhh4vkq",
+    "name": "Atletismo-Potencia",
+    "type": "Item",
+    "color": "#c2c075",
+    "description": "",
+    "parentId": "fLjEoFp0cauTeDc5",
+    "sort": 200000
+  },
+  {
+    "id": "wQQHGIshCj3L5Z7t",
+    "name": "Atletismo-Resistencia",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "fLjEoFp0cauTeDc5",
+    "sort": 300000
+  },
+  {
+    "id": "0mPOBlEjWMtn3QOB",
+    "name": "Autocontrol",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 0
+  },
+  {
+    "id": "kKqgYxL3FGb1E70l",
+    "name": "Bandidos de Wyerdale",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "7W0iCf7Qm5MksDBs",
+    "sort": 0
+  },
+  {
+    "id": "1o0cVzEy4mR9f89r",
+    "name": "Bardo",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "4eXnhCUJGF697gMZ",
+    "sort": 0
+  },
+  {
+    "id": "3Q6wtgLuAhc9W2eh",
+    "name": "Bardo",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "EASHwyRX0lNMOpEF",
+    "sort": 0
+  },
+  {
+    "id": "a5FzuN6EsqzYVDjK",
+    "name": "Bardo",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "zvvuLyKhn7Pahw4o",
+    "sort": 0
+  },
+  {
+    "id": "tmCpeM7ajQqbL6SH",
+    "name": "Bastones y varitas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "sowTSiAGwFfJUI42",
+    "sort": 0
+  },
+  {
+    "id": "lQZUontm6KnOHd36",
+    "name": "Bastón mágico",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "vVsnO3nKaRfVqytP",
+    "sort": 0
+  },
+  {
+    "id": "AXf7OZ2H8uyWBRHi",
+    "name": "Bebidas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "vzKmHLdthKwjljnf",
+    "sort": 0
+  },
+  {
+    "id": "JGpQeWn5wXHYLNak",
+    "name": "Bribón",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "zvvuLyKhn7Pahw4o",
+    "sort": 200000
+  },
+  {
+    "id": "p3MBL5gvM3AcltMi",
+    "name": "Canalizacion",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "5tnFniMaJRqwUq6V",
+    "sort": 0
+  },
+  {
+    "id": "icVRFrzQzJKN4M9E",
+    "name": "Canalización",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "AGzjbVd5XjQhSW60",
+    "sort": 0
+  },
+  {
+    "id": "W4CEAsPwsU03DmQQ",
+    "name": "Canciones de control",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "1o0cVzEy4mR9f89r",
+    "sort": 0
+  },
+  {
+    "id": "5XTVgPtPIKXwdzv9",
+    "name": "Castillo de Lord Vygara",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "7W0iCf7Qm5MksDBs",
+    "sort": 0
+  },
+  {
+    "id": "14nxIxzeGQ1CRXdc",
+    "name": "Cazamagos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "HnlTddToN2GQMCbq",
+    "sort": 0
+  },
+  {
+    "id": "r0jvP6ahRk9mQNIF",
+    "name": "Cazamagos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "zvvuLyKhn7Pahw4o",
+    "sort": 100000
+  },
+  {
+    "id": "rnggZ16cPT3WwSa2",
+    "name": "Cazamagos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "pSvYUjoyHPEdCGrz",
+    "sort": 0
+  },
+  {
+    "id": "ES1jHMkQrVxVswWR",
+    "name": "Ciencia Especializada",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 0
+  },
+  {
+    "id": "cZpXz3WiWaump8Ua",
+    "name": "Clerigo",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "icVRFrzQzJKN4M9E",
+    "sort": 0
+  },
+  {
+    "id": "vzKmHLdthKwjljnf",
+    "name": "Comida",
+    "type": "Item",
+    "color": "#e698f0",
+    "description": "",
+    "parentId": null,
+    "sort": 700000
+  },
+  {
+    "id": "exdPOsYiyiXiQ3Ti",
+    "name": "Componentes y materiales",
+    "type": "Item",
+    "color": "#bba6e3",
+    "description": "",
+    "parentId": null,
+    "sort": 100000
+  },
+  {
+    "id": "F3KkWUebGTG10Ld1",
+    "name": "Conocimiento",
+    "type": "Item",
+    "color": "#a99932",
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 100000
+  },
+  {
+    "id": "4KWA9sipaZek91zM",
+    "name": "Conocimiento de la Elaboración",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "p3BVOU8iFzXLylaV",
+    "sort": 0
+  },
+  {
+    "id": "2j5H5YmVVc9e5YeH",
+    "name": "Conocimiento de los objetos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "1o0cVzEy4mR9f89r",
+    "sort": 0
+  },
+  {
+    "id": "JXQYJYuKEtZe4rrr",
+    "name": "Conocimiento-General",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "F3KkWUebGTG10Ld1",
+    "sort": 100000
+  },
+  {
+    "id": "voo0jcI3pLntfP0h",
+    "name": "Conocimiento-Mágico",
+    "type": "Item",
+    "color": "#878054",
+    "description": "",
+    "parentId": "F3KkWUebGTG10Ld1",
+    "sort": 0
+  },
+  {
+    "id": "HOoAswhM4TeEFWfu",
+    "name": "Conocimiento-Oscuro",
+    "type": "Item",
+    "color": "#878054",
+    "description": "",
+    "parentId": "F3KkWUebGTG10Ld1",
+    "sort": 0
+  },
+  {
+    "id": "jjd50KCTWot37f4s",
+    "name": "Conocimiento-Tecnico",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "F3KkWUebGTG10Ld1",
+    "sort": 200000
+  },
+  {
+    "id": "SFkDzIwXWISdiGBe",
+    "name": "Covacha",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "7W0iCf7Qm5MksDBs",
+    "sort": 0
+  },
+  {
+    "id": "TY4E5tS56grGQT32",
+    "name": "Cubil aracnido",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "7W0iCf7Qm5MksDBs",
+    "sort": 0
+  },
+  {
+    "id": "YzfSEqcHQYvwaC7B",
+    "name": "Curacion PV",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "Ssu8Fak95UdMVsMg",
+    "sort": 0
+  },
+  {
+    "id": "C6SdFaSEkzvM7gft",
+    "name": "Curandero",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "zvvuLyKhn7Pahw4o",
+    "sort": 0
+  },
+  {
+    "id": "CmgTHL1D3X3JNYUY",
+    "name": "Curandero",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "EASHwyRX0lNMOpEF",
+    "sort": 0
+  },
+  {
+    "id": "KdG9qRd0tEMM6oOv",
+    "name": "Curandero",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "4eXnhCUJGF697gMZ",
+    "sort": 0
+  },
+  {
+    "id": "XtZgyT4qCgh8idgX",
+    "name": "Defensas especiales",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 0
+  },
+  {
+    "id": "au0X2ZurekfRMFlH",
+    "name": "Desarrollo Físico",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 900000
+  },
+  {
+    "id": "zO0GnPwUYsWHfj5i",
+    "name": "Druida",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "icVRFrzQzJKN4M9E",
+    "sort": 0
+  },
+  {
+    "id": "989sBxuYNy4wSjj6",
+    "name": "Escolta",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "zvvuLyKhn7Pahw4o",
+    "sort": 300000
+  },
+  {
+    "id": "LMAskRDH48OdeBkc",
+    "name": "Escudo arcano",
+    "type": "Item",
+    "color": "#b4ab6e",
+    "description": "",
+    "parentId": "JSD8GpK2Uq5R3z9g",
+    "sort": 0
+  },
+  {
+    "id": "De2h9p8MpLFeGlOO",
+    "name": "Esencia",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "AGzjbVd5XjQhSW60",
+    "sort": 0
+  },
+  {
+    "id": "IK5DDjWdcQXgz5By",
+    "name": "Esencia",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "5tnFniMaJRqwUq6V",
+    "sort": 0
+  },
+  {
+    "id": "U049ibcBvVX8cjXs",
+    "name": "Estancias",
+    "type": "Item",
+    "color": "#8400db",
+    "description": "",
+    "parentId": null,
+    "sort": 500000
+  },
+  {
+    "id": "M9KvFXEj2cbtXws6",
+    "name": "Exteriores",
+    "type": "Item",
+    "color": "#a99932",
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 600000
+  },
+  {
+    "id": "GcW068wgCUO3UmTn",
+    "name": "Exteriores-Animales",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "M9KvFXEj2cbtXws6",
+    "sort": 100000
+  },
+  {
+    "id": "Uoi6IYU3IUzMICOu",
+    "name": "Exteriores-Entorno",
+    "type": "Item",
+    "color": "#878054",
+    "description": "",
+    "parentId": "M9KvFXEj2cbtXws6",
+    "sort": 0
+  },
+  {
+    "id": "QKVYnY15AjX1aijO",
+    "name": "Flechas y munición",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "sowTSiAGwFfJUI42",
+    "sort": 0
+  },
+  {
+    "id": "e6dQR51mJHs6FRb2",
+    "name": "Flechas y munición",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "J6ZPy6gffAdDMu9h",
+    "sort": 0
+  },
+  {
+    "id": "LLAPVBbavFbhI9NY",
+    "name": "General",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "JsnMydtoRns6lPat",
+    "sort": 0
+  },
+  {
+    "id": "D4LucArH4pzmiIAo",
+    "name": "Habilidades",
+    "type": "Item",
+    "color": "#009483",
+    "description": "",
+    "parentId": null,
+    "sort": 1200000
+  },
+  {
+    "id": "5tnFniMaJRqwUq6V",
+    "name": "Hechizos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 1000000
+  },
+  {
+    "id": "AGzjbVd5XjQhSW60",
+    "name": "Hechizos",
+    "type": "Item",
+    "color": "#8a9400",
+    "description": "",
+    "parentId": null,
+    "sort": 1300000
+  },
+  {
+    "id": "sCjOy9WBO5PjExlM",
+    "name": "Hechizos dirigidos",
+    "type": "Item",
+    "color": "#878054",
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 1600000
+  },
+  {
+    "id": "Ssu8Fak95UdMVsMg",
+    "name": "Hierbas y venenos",
+    "type": "Item",
+    "color": "#b8c653",
+    "description": "",
+    "parentId": null,
+    "sort": 1500000
+  },
+  {
+    "id": "fxEdmdk7eDD0GHbW",
+    "name": "Huesos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "Ssu8Fak95UdMVsMg",
+    "sort": 0
+  },
+  {
+    "id": "EZPjOxrlzZmnhWFt",
+    "name": "Idiomas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 1100000
+  },
+  {
+    "id": "CErSQwVefPW9rB5E",
+    "name": "Influencia",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 1200000
+  },
+  {
+    "id": "7vs6y3UUcV7flu6h",
+    "name": "Invocaciones elementales",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "vVsnO3nKaRfVqytP",
+    "sort": 0
+  },
+  {
+    "id": "UajLlRDoSpVJdhvh",
+    "name": "Irritantes",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "WjXObCXP7uCNp3mZ",
+    "sort": 0
+  },
+  {
+    "id": "TkUu2uPkX0YElp5j",
+    "name": "Joyas y gemas",
+    "type": "Item",
+    "color": "#968b45",
+    "description": "",
+    "parentId": null,
+    "sort": 800000
+  },
+  {
+    "id": "LCqD497vucVpkHFV",
+    "name": "Ley de la detección",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "JSD8GpK2Uq5R3z9g",
+    "sort": 0
+  },
+  {
+    "id": "ysRag9yQSnsERPfR",
+    "name": "Ley de la luz",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "RigmnS83hdrTo4vE",
+    "sort": 0
+  },
+  {
+    "id": "ecaiUM7kVGHlX7Lv",
+    "name": "Ley del agua",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "RigmnS83hdrTo4vE",
+    "sort": 0
+  },
+  {
+    "id": "nPTUX19rlhTa2K1H",
+    "name": "Ley del fuego",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "RigmnS83hdrTo4vE",
+    "sort": 0
+  },
+  {
+    "id": "aNzizWItHIKJubCC",
+    "name": "Ley del hielo",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "RigmnS83hdrTo4vE",
+    "sort": 0
+  },
+  {
+    "id": "KYAj2JY85N0xr6yE",
+    "name": "Libros",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "WjXObCXP7uCNp3mZ",
+    "sort": 0
+  },
+  {
+    "id": "Qa3ERVTuqTkmPQUJ",
+    "name": "Libros",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "sowTSiAGwFfJUI42",
+    "sort": 0
+  },
+  {
+    "id": "iJqd7dzD50bVAFIY",
+    "name": "Listas Abiertas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "IK5DDjWdcQXgz5By",
+    "sort": 0
+  },
+  {
+    "id": "p3BVOU8iFzXLylaV",
+    "name": "Listas Abiertas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "De2h9p8MpLFeGlOO",
+    "sort": 0
+  },
+  {
+    "id": "vVsnO3nKaRfVqytP",
+    "name": "Listas Cerradas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "De2h9p8MpLFeGlOO",
+    "sort": 0
+  },
+  {
+    "id": "vpjuoBImN9H9CrGq",
+    "name": "Listas Cerradas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "IK5DDjWdcQXgz5By",
+    "sort": 0
+  },
+  {
+    "id": "JSD8GpK2Uq5R3z9g",
+    "name": "Listas abiertas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "HnlTddToN2GQMCbq",
+    "sort": 0
+  },
+  {
+    "id": "Mao1r6BCj5gyWEej",
+    "name": "Listas abiertas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "4eXnhCUJGF697gMZ",
+    "sort": 0
+  },
+  {
+    "id": "WCSpNuiJMMzQ390S",
+    "name": "Listas abiertas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "p3MBL5gvM3AcltMi",
+    "sort": 0
+  },
+  {
+    "id": "XTS5i4TZDnIPPKpM",
+    "name": "Listas abiertas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "icVRFrzQzJKN4M9E",
+    "sort": 0
+  },
+  {
+    "id": "mF9WBNBVaE0ZRoY4",
+    "name": "Listas abiertas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "pSvYUjoyHPEdCGrz",
+    "sort": 0
+  },
+  {
+    "id": "rC96z7oTECBDxLmG",
+    "name": "Listas abiertas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "EASHwyRX0lNMOpEF",
+    "sort": 0
+  },
+  {
+    "id": "dlL4jSsZSFbIxah6",
+    "name": "Listas cerradas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "icVRFrzQzJKN4M9E",
+    "sort": 0
+  },
+  {
+    "id": "kX0e4rhfKZa1Kyzv",
+    "name": "Listas cerradas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "4eXnhCUJGF697gMZ",
+    "sort": 0
+  },
+  {
+    "id": "9eQNo8QJ3mbLQMiW",
+    "name": "Maestria de la sangre",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "KdG9qRd0tEMM6oOv",
+    "sort": 0
+  },
+  {
+    "id": "UlQeoPO4GhGGo1uH",
+    "name": "Maestria de los huesos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "KdG9qRd0tEMM6oOv",
+    "sort": 0
+  },
+  {
+    "id": "JDYAU3odmIg1rplN",
+    "name": "Maestría de la conmoción",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "KdG9qRd0tEMM6oOv",
+    "sort": 0
+  },
+  {
+    "id": "MK7PEFhcrU3GhpN4",
+    "name": "Maestría de los músculos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "KdG9qRd0tEMM6oOv",
+    "sort": 0
+  },
+  {
+    "id": "bkcrLi9lKqgI6Gwk",
+    "name": "Maestría de los organos y nervios",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "KdG9qRd0tEMM6oOv",
+    "sort": 0
+  },
+  {
+    "id": "eUMt5wTdykhAZsEb",
+    "name": "Maestría de los ánimos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "vVsnO3nKaRfVqytP",
+    "sort": 0
+  },
+  {
+    "id": "JgDWtRb8D7Zroypk",
+    "name": "Magente",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "4eXnhCUJGF697gMZ",
+    "sort": 0
+  },
+  {
+    "id": "Dx1a4JFXMg3kRpQZ",
+    "name": "Mago",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "zvvuLyKhn7Pahw4o",
+    "sort": 0
+  },
+  {
+    "id": "RigmnS83hdrTo4vE",
+    "name": "Mago",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "De2h9p8MpLFeGlOO",
+    "sort": 0
+  },
+  {
+    "id": "sJvjjp9M6STr2AUg",
+    "name": "Mago",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "IK5DDjWdcQXgz5By",
+    "sort": 0
+  },
+  {
+    "id": "qZUlb5FB0PiYHJNo",
+    "name": "Maniobras de combate",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 1300000
+  },
+  {
+    "id": "rEdoRHfdQLX5cvgC",
+    "name": "Manipulación del poder",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 0
+  },
+  {
+    "id": "4eXnhCUJGF697gMZ",
+    "name": "Mentalismo",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "AGzjbVd5XjQhSW60",
+    "sort": 0
+  },
+  {
+    "id": "EASHwyRX0lNMOpEF",
+    "name": "Mentalismo",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "5tnFniMaJRqwUq6V",
+    "sort": 0
+  },
+  {
+    "id": "71ygFSZAfySZINUv",
+    "name": "Mentalista",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "4eXnhCUJGF697gMZ",
+    "sort": 0
+  },
+  {
+    "id": "2JdaWGzLlfDjbDqI",
+    "name": "Monje Guerrero",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "zvvuLyKhn7Pahw4o",
+    "sort": 0
+  },
+  {
+    "id": "hmjDjS0kXRUSxlWs",
+    "name": "Monstruos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "AGzjbVd5XjQhSW60",
+    "sort": 0
+  },
+  {
+    "id": "R8epOhivomiIoPXY",
+    "name": "Místico",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "4eXnhCUJGF697gMZ",
+    "sort": 0
+  },
+  {
+    "id": "qRYx20ByEDOweVRG",
+    "name": "Nervios",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "Ssu8Fak95UdMVsMg",
+    "sort": 0
+  },
+  {
+    "id": "WjXObCXP7uCNp3mZ",
+    "name": "Objetos comunes",
+    "type": "Item",
+    "color": "#2fab03",
+    "description": "",
+    "parentId": null,
+    "sort": 900000
+  },
+  {
+    "id": "7W0iCf7Qm5MksDBs",
+    "name": "Objetos en aventuras",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": null,
+    "sort": 600000
+  },
+  {
+    "id": "sowTSiAGwFfJUI42",
+    "name": "Objetos magicos",
+    "type": "Item",
+    "color": "#8cd0f3",
+    "description": "",
+    "parentId": null,
+    "sort": 1400000
+  },
+  {
+    "id": "uQQeNlojlgyKm21s",
+    "name": "Oficios",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 0
+  },
+  {
+    "id": "HYOZLoCyHTSdaqgI",
+    "name": "Otros",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "sowTSiAGwFfJUI42",
+    "sort": 0
+  },
+  {
+    "id": "6L68SGNoAFVh0zT2",
+    "name": "Otros efectos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "Ssu8Fak95UdMVsMg",
+    "sort": 0
+  },
+  {
+    "id": "ZvaUUEUclcyhV1o2",
+    "name": "Percepcion del Poder",
+    "type": "Item",
+    "color": "#a99932",
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 300000
+  },
+  {
+    "id": "akiu2ldh8oCtbuzf",
+    "name": "Percepción",
+    "type": "Item",
+    "color": "#a99932",
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 400000
+  },
+  {
+    "id": "tg0Mr4EFRKPGmLHo",
+    "name": "Percepción-Búsqueda",
+    "type": "Item",
+    "color": "#878054",
+    "description": "",
+    "parentId": "akiu2ldh8oCtbuzf",
+    "sort": 0
+  },
+  {
+    "id": "Xw9nCesJP8NEPiYR",
+    "name": "Percepción-Perspicacia",
+    "type": "Item",
+    "color": "#878054",
+    "description": "",
+    "parentId": "akiu2ldh8oCtbuzf",
+    "sort": 0
+  },
+  {
+    "id": "lxkTp4dq8F4Ln1tv",
+    "name": "Percepción-Sentidos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "akiu2ldh8oCtbuzf",
+    "sort": 0
+  },
+  {
+    "id": "LDwp8yvFD0vzf0cj",
+    "name": "Pociones",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "sowTSiAGwFfJUI42",
+    "sort": 0
+  },
+  {
+    "id": "7gdRth8P3oz40Rnn",
+    "name": "Preservacion y reparacion de organos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "Ssu8Fak95UdMVsMg",
+    "sort": 0
+  },
+  {
+    "id": "e1nAjd0Idx3BCJTu",
+    "name": "Profesional",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "JsnMydtoRns6lPat",
+    "sort": 0
+  },
+  {
+    "id": "D6VLoBcXTTODpaM2",
+    "name": "Profesiones",
+    "type": "Item",
+    "color": "#9666f0",
+    "description": "",
+    "parentId": null,
+    "sort": 1600000
+  },
+  {
+    "id": "rIlnecRVWwdIiNmU",
+    "name": "Proyección del sonido",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "1o0cVzEy4mR9f89r",
+    "sort": 0
+  },
+  {
+    "id": "ix8uFdof7BkCExnY",
+    "name": "Prótesis",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "KdG9qRd0tEMM6oOv",
+    "sort": 0
+  },
+  {
+    "id": "ca1UK0FpBvEG22ke",
+    "name": "Purificaciones",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "XTS5i4TZDnIPPKpM",
+    "sort": 0
+  },
+  {
+    "id": "iRdPoJdQagxmi1z5",
+    "name": "Razas",
+    "type": "Item",
+    "color": "#309a09",
+    "description": "",
+    "parentId": null,
+    "sort": 1700000
+  },
+  {
+    "id": "Uy97sucHDavcoRTI",
+    "name": "Ropa",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "WjXObCXP7uCNp3mZ",
+    "sort": 0
+  },
+  {
+    "id": "aPbEh1jV2UUNbNJ4",
+    "name": "Ruinas de Gravesdale",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "7W0iCf7Qm5MksDBs",
+    "sort": 0
+  },
+  {
+    "id": "XSACxT01kCveA8mj",
+    "name": "Runas",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "sowTSiAGwFfJUI42",
+    "sort": 0
+  },
+  {
+    "id": "WFWn4ADuiqELvcHJ",
+    "name": "Sacerdote",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "icVRFrzQzJKN4M9E",
+    "sort": 100000
+  },
+  {
+    "id": "zvvuLyKhn7Pahw4o",
+    "name": "Skill categories",
+    "type": "Item",
+    "color": "#53f992",
+    "description": "",
+    "parentId": null,
+    "sort": 1000000
+  },
+  {
+    "id": "IcGzJbQ9zHWTaR9w",
+    "name": "Subterfugio",
+    "type": "Item",
+    "color": "#a99932",
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 0
+  },
+  {
+    "id": "nOpjljECs1rdPX7J",
+    "name": "Subterfugio-Mecánica",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "IcGzJbQ9zHWTaR9w",
+    "sort": 0
+  },
+  {
+    "id": "koNVHteaTCxXurC2",
+    "name": "Subterfugio-Sigilo",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "IcGzJbQ9zHWTaR9w",
+    "sort": 100000
+  },
+  {
+    "id": "fOoHj2jLuJ0OdMJN",
+    "name": "Sustento",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "p3BVOU8iFzXLylaV",
+    "sort": 0
+  },
+  {
+    "id": "t04TkebpjVK59jM6",
+    "name": "Símbolos Arcanos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "JSD8GpK2Uq5R3z9g",
+    "sort": 0
+  },
+  {
+    "id": "pLAPVPtx2Y97rjNu",
+    "name": "Templo Arácnido",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "7W0iCf7Qm5MksDBs",
+    "sort": 0
+  },
+  {
+    "id": "wcKuGxfcF64zbKkq",
+    "name": "Transporte",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": null,
+    "sort": 200000
+  },
+  {
+    "id": "rvnWFYWGSkzqCaim",
+    "name": "Tunicas y ropa",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "sowTSiAGwFfJUI42",
+    "sort": 0
+  },
+  {
+    "id": "fjvJ5byDog1CB5vz",
+    "name": "Técnico/General",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 0
+  },
+  {
+    "id": "JsnMydtoRns6lPat",
+    "name": "Técnico/Profesional",
+    "type": "Item",
+    "color": "#a99932",
+    "description": "",
+    "parentId": "D4LucArH4pzmiIAo",
+    "sort": 200000
+  },
+  {
+    "id": "tgqrbUttBFUdYFxc",
+    "name": "Venenos",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "Ssu8Fak95UdMVsMg",
+    "sort": 0
+  },
+  {
+    "id": "Rbdlz8sFXnRe0kHB",
+    "name": "Vias de la confusión",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "R8epOhivomiIoPXY",
+    "sort": 0
+  },
+  {
+    "id": "p4PMg8NKQGhMpjvZ",
+    "name": "Vocacional",
+    "type": "Item",
+    "color": null,
+    "description": "",
+    "parentId": "JsnMydtoRns6lPat",
+    "sort": 0
+  }
+]

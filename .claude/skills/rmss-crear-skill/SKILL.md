@@ -88,6 +88,8 @@ No fuerces la estructura `<h3>`/`<ul>`/tabla si el texto original es un párrafo
 
 ## 3. Categoría → `categorySlug` → carpeta en Foundry
 
+`habilidades-folders.json` (en esta misma carpeta) es el volcado completo y literal de `foundry_read` (`get-folders`, `type: "Item"`) de este mundo — la fuente autoritativa de ids/nombres/jerarquía de carpetas. **Léelo directamente en vez de volver a pedir `get-folders` cada vez** (ya cuesta varios miles de tokens por llamada y no cambia salvo que el usuario reorganice carpetas — si sospechas que está desactualizado, pregunta antes de re-pedirlo). La tabla de abajo es solo un resumen legible derivado de ese JSON para las categorías más habituales; ante cualquier duda, el JSON manda.
+
 `Habilidades` (carpeta raíz, id `D4LucArH4pzmiIAo`) contiene subcarpetas por categoría. El campo `system.categorySlug` del skill debe ser el slug exacto (no la carpeta) — es lo que usa la ficha para calcular bonos de categoría. Tabla confirmada esta sesión (mundo de producción "Shadow World"):
 
 | Categoría (inglés)                | `categorySlug`               | Carpeta (id)                              |
