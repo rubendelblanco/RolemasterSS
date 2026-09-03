@@ -34,6 +34,7 @@ import RMSSMerchantWardensChromeSheet from "./module/sheets/actors/rmss_merchant
 import RMSSLootSheet from "./module/sheets/actors/rmss_loot_sheet.js";
 import RMSSLootWardensChromeSheet from "./module/sheets/actors/rmss_loot_wardens_chrome_sheet.js";
 import RMSSCreatureAttackSheet from "./module/sheets/items/rmss_creature_attack.js"
+import RMSSCreatureAttackWardensChromeSheet from "./module/sheets/items/rmss_creature_attack_wardens_chrome.js"
 import utils from "./module/utils.js";
 import { createProfession, createProfessionDialog } from "./module/tools/profession_creator.js";
 import {ContainerHandler} from "./module/actors/utils/container_handler.js";
@@ -529,6 +530,7 @@ Hooks.once("init", function () {
   Items.registerSheet("rmss", RMSSWeaponSheet, { makeDefault: true, label: "rmss.entity_sheet.weapon", types: ["weapon"] });
   Items.registerSheet("rmss", RMSSHerbOrPoisonSheet, { makeDefault: true, label: "rmss.entity_sheet.herb_or_poison", types: ["herb_or_poison"] });
   Items.registerSheet("rmss", RMSSCreatureAttackSheet, { makeDefault: true, label: "rmss.entity_sheet.creature_attack", types: ["creature_attack"] });
+  Items.registerSheet("rmss", RMSSCreatureAttackWardensChromeSheet, { makeDefault: false, label: "rmss.entity_sheet.creature_attack_wardens_chrome", types: ["creature_attack"] });
 
   // Spells
   Items.registerSheet("rmss", RMSSSpellSheet, { makeDefault: true, label: "rmss.entity_sheet.spell", types: ["spell"] });

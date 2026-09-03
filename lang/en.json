@@ -342,7 +342,9 @@
             "merchant": "RMSS Merchant",
             "merchant_wardens_chrome": "RMSS Merchant (Warden's Chrome)",
             "loot": "RMSS Loot",
-            "loot_wardens_chrome": "RMSS Loot (Warden's Chrome)"
+            "loot_wardens_chrome": "RMSS Loot (Warden's Chrome)",
+            "creature_attack": "RMSS Creature Attack",
+            "creature_attack_wardens_chrome": "RMSS Creature Attack (Warden's Chrome)"
         },
         "currency_type": {
             "mithril": "Mithril pieces",

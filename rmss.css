@@ -4739,6 +4739,17 @@ button.rmss-crit-reenable-local:hover {
   background: transparent; border: none; color: var(--wc-text); font-family: 'Cinzel', serif; font-weight: 700;
   font-size: 15px; width: 2.6em; padding: 0; text-align: center;
 }
+/* .wc-chip-val select (e.g. creature "Speed") had no rule of its own, so it fell back to the
+   browser's native light dropdown background with the chip's inherited light text on top of
+   it - unreadable. Match the input treatment; option background/color set too since some
+   browsers otherwise render the open list as black-on-white against a select styled dark. */
+.wardens-chrome .wc-chip-val select {
+  background: transparent; border: none; color: var(--wc-text); font-family: 'Cinzel', serif; font-weight: 700;
+  font-size: 15px; padding: 0;
+}
+.wardens-chrome .wc-chip-val select option {
+  background: var(--wc-bg-chip); color: var(--wc-text);
+}
 /* justify-content: center explicit here - the base .resource-values rule centers it (Hits),
    but there is no equivalent base rule for .pp-values, so Power Points was left-aligned. */
 .wardens-chrome .resource-values, .wardens-chrome .pp-values { display: flex; align-items: baseline; justify-content: center; }
@@ -4863,6 +4874,24 @@ button.rmss-crit-reenable-local:hover {
 }
 .wardens-chrome .wc-record-card h2 { margin: 0 0 8px; }
 .wardens-chrome .wc-record-card:last-child { margin-bottom: 0; }
+/* Stacked standalone cards (not inside a .wc-record-row, which already has its own gap) need
+   their own spacing - e.g. the creature-attack item sheet's two cards, one after another. */
+.wardens-chrome .wc-record-card + .wc-record-card { margin-top: 14px; }
+
+/* Simple label/field row for item sheets that don't need a full table - e.g. the creature-attack
+   item sheet. Lives on the light .wc-record-card background, so text uses --wc-card-text (the
+   default .header-text label styling is white-on-dark, tuned for the header bar only). */
+.wardens-chrome .wc-field-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;
+  padding: 4px 0; border-bottom: 1px solid oklch(0.55 0.04 65 / 0.2);
+}
+.wardens-chrome .wc-field-row:last-child { border-bottom: none; }
+.wardens-chrome .wc-field-row label { color: var(--wc-card-text); font-weight: 600; font-size: 12px; }
+.wardens-chrome .wc-field-row select,
+.wardens-chrome .wc-field-row input[type="text"] {
+  background: oklch(1 0 0 / 0.4); border: 1px solid oklch(0.6 0.03 75); border-radius: 4px;
+  color: var(--wc-card-text); padding: 2px 6px;
+}
 
 /* The label/input "sections" (fixed-info, armor, race-stat, role-traits, background) are
    shared with the default sheet and were completely unstyled there (no CSS ever targeted

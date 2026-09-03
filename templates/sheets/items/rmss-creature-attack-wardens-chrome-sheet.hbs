@@ -1,0 +1,108 @@
+<form class="{{cssClass}} wardens-chrome" autocomplete="off">
+    <header class="sheet-header wc-header">
+        <div class="wc-top">
+            <div class="wc-portrait-wrap">
+                <div class="actor-icon wc-portrait">
+                    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+                </div>
+            </div>
+            <div class="wc-name-block">
+                <div class="header-text flexrow">
+                    <label for="character-name" class="wc-sr-only">{{ localize "Name" }}</label>
+                    <input id="character-name" class="wc-name-input" name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="sheet-body">
+    <div class="wc-record-card">
+        <h2><i class="fa-solid fa-sword" aria-hidden="true"></i> {{localize "rmss.creature_attack.attack"}}</h2>
+        <div class="wc-field-row">
+            <label>{{localize "rmss.creature_attack.attack_table"}}</label>
+            <select name="system.attack_table" class="app-stat-selector" value="{{system.attack_table}}" itemid="{{ item._id }}">
+                {{#each armsTables as |key|}}
+                    <option value="{{key}}" {{#if (eq key ../system.attack_table)}}selected{{/if}}>
+                        {{localize (concat "rmss.attack_table." key)}}
+                    </option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="wc-field-row">
+            <label>{{localize "rmss.creature_attack.bonus"}}</label>
+            <input name="system.bonus" type="text" value="{{system.bonus}}" data-dtype="Number"/>
+        </div>
+        <div class="wc-field-row">
+            <label>{{localize "rmss.creature_attack.multiplier"}}</label>
+            <select name="system.multiplier" data-dtype="Number">
+                <option value="1" {{#if (or (eq system.multiplier 1) (eq system.multiplier "1"))}}selected{{/if}}>1D</option>
+                <option value="2" {{#if (or (eq system.multiplier 2) (eq system.multiplier "2"))}}selected{{/if}}>2D</option>
+                <option value="3" {{#if (or (eq system.multiplier 3) (eq system.multiplier "3"))}}selected{{/if}}>3D</option>
+                <option value="4" {{#if (or (eq system.multiplier 4) (eq system.multiplier "4"))}}selected{{/if}}>4D</option>
+                <option value="5" {{#if (or (eq system.multiplier 5) (eq system.multiplier "5"))}}selected{{/if}}>5D</option>
+                <option value="6" {{#if (or (eq system.multiplier 6) (eq system.multiplier "6"))}}selected{{/if}}>6D</option>
+            </select>
+        </div>
+        <div class="wc-field-row">
+            <label>{{localize "rmss.creature_attack.attacks_number"}}</label>
+            <input name="system.attacks_number" type="text" value="{{system.attacks_number}}" data-dtype="Number"/>
+        </div>
+        {{#if actorId}}
+        <div class="wc-field-row">
+            <label>{{localize "rmss.creature_attack.probability"}}</label>
+            <input name="system.probability" type="text" value="{{system.probability}}" data-dtype="Number"/>
+        </div>
+        {{#unless (eq system.order 1)}}
+        <div class="wc-field-row">
+            <label>{{localize "rmss.creature_attack.special"}}</label>
+            <select name="system.special">
+                <option value="none" {{#if (eq system.special "none")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.none" }}</option>
+                <option value="same" {{#if (eq system.special "same")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.same" }}</option>
+                <option value="next" {{#if (eq system.special "next")}}selected{{/if}}>{{ localize "rmss.creature_attack.special_desc.next" }}</option>
+            </select>
+        </div>
+        {{/unless}}
+        {{/if}}
+    </div>
+
+    <div class="wc-record-card">
+        <h2><i class="fa-solid fa-burst" aria-hidden="true"></i> {{localize "rmss.creature_attack.attack_effects_header"}}</h2>
+        <div class="wc-field-row">
+            <label>{{localize "rmss.item.weapon_effects_effect_weapon"}}
+                <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_effect_weapon_hint'}}"></i></label>
+            <div class="rmss-effect-weapon-selects">
+                <select name="system.attack_effects.effect_weapon" data-dtype="String">
+                    <option value="" {{#unless system.attack_effects.effect_weapon}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_none"}}</option>
+                    <option value="minor" {{#if (eq system.attack_effects.effect_weapon "minor")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_minor"}}</option>
+                    <option value="normal" {{#if (eq system.attack_effects.effect_weapon "normal")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_normal"}}</option>
+                    <option value="greater" {{#if (eq system.attack_effects.effect_weapon "greater")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_greater"}}</option>
+                    <option value="superior" {{#if (eq system.attack_effects.effect_weapon "superior")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_ew_superior"}}</option>
+                </select>
+                <select name="system.attack_effects.effect_weapon_critical_type" data-dtype="String" title="{{localize 'rmss.item.weapon_effects_effect_weapon_critical_hint'}}">
+                    <option value="" disabled {{#unless system.attack_effects.effect_weapon_critical_type}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_ew_crit_placeholder"}}</option>
+                    {{#each criticalTables as |key|}}
+                    <option value="{{key}}" {{#if (eq key ../system.attack_effects.effect_weapon_critical_type)}}selected{{/if}}>{{localize (concat "rmss.critical_table." key)}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="wc-field-row">
+            <label>{{localize "rmss.item.weapon_effects_fixed_severity"}}
+                <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_fixed_severity_hint'}}"></i></label>
+            <select name="system.attack_effects.effect_weapon_fixed_severity" data-dtype="String">
+                <option value="" {{#unless system.attack_effects.effect_weapon_fixed_severity}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_fixed_severity_none"}}</option>
+                <option value="A" {{#if (eq system.attack_effects.effect_weapon_fixed_severity "A")}}selected{{/if}}>A</option>
+                <option value="B" {{#if (eq system.attack_effects.effect_weapon_fixed_severity "B")}}selected{{/if}}>B</option>
+                <option value="C" {{#if (eq system.attack_effects.effect_weapon_fixed_severity "C")}}selected{{/if}}>C</option>
+                <option value="D" {{#if (eq system.attack_effects.effect_weapon_fixed_severity "D")}}selected{{/if}}>D</option>
+                <option value="E" {{#if (eq system.attack_effects.effect_weapon_fixed_severity "E")}}selected{{/if}}>E</option>
+            </select>
+        </div>
+        <div class="wc-field-row">
+            <label>{{localize "rmss.item.weapon_effects_increased_critical"}}
+                <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_increased_critical_hint'}}"></i></label>
+            <input type="checkbox" name="system.attack_effects.increased_critical" {{checked system.attack_effects.increased_critical}}/>
+        </div>
+    </div>
+    </section>
+</form>

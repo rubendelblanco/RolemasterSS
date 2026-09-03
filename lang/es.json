@@ -342,7 +342,9 @@
       "merchant": "Comercio de RMSS",
       "merchant_wardens_chrome": "Comercio de RMSS (Warden's Chrome)",
       "loot": "Botín de RMSS",
-      "loot_wardens_chrome": "Botín de RMSS (Warden's Chrome)"
+      "loot_wardens_chrome": "Botín de RMSS (Warden's Chrome)",
+      "creature_attack": "Ataque de criatura de RMSS",
+      "creature_attack_wardens_chrome": "Ataque de criatura de RMSS (Warden's Chrome)"
     },
     "currency_type": {
       "mithril": "Monedas de Mithril",
