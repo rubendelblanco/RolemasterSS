@@ -839,7 +839,10 @@
             "maneuver_modifier": "Spell mod",
             "maneuver_modifier_hint": "Modifier for spell casting maneuver roll. Default: creature level.",
             "section_properties": "Properties",
-            "section_attack_table": "Attack Table"
+            "section_attack_table": "Attack Table",
+            "section_rr_bonus": "Resistance Roll Bonus",
+            "rr_bonus": "RR Bonus",
+            "rr_bonus_hint": "For F (Force) spells only. Added to the target's Resistance Roll when this spell is cast against them. Positive helps the target resist, negative hurts them."
         },
         "skill_category": {
             "applicable_stats": "Applicable Stats",

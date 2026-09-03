@@ -839,7 +839,10 @@
       "maneuver_modifier": "Mod. hechizo",
       "maneuver_modifier_hint": "Modificador para la tirada de maniobra de lanzamiento. Por defecto: nivel de la criatura.",
       "section_properties": "Propiedades",
-      "section_attack_table": "Tabla de ataque"
+      "section_attack_table": "Tabla de ataque",
+      "section_rr_bonus": "Bonificación a la Tirada de Resistencia",
+      "rr_bonus": "Bonif. RR",
+      "rr_bonus_hint": "Solo para hechizos tipo F (Fuerza). Se suma a la Tirada de Resistencia del objetivo cuando este hechizo se lanza contra él. Positivo ayuda al objetivo a resistir, negativo lo perjudica."
     },
     "skill_category": {
       "applicable_stats": "Atributos aplicables",

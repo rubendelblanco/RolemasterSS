@@ -569,6 +569,7 @@
       "subType": "-",
       "attack_table": "",
       "skillName": "",
+      "rr_bonus": 0,
       "description": ""
     },
     "spell_list": {

@@ -119,6 +119,19 @@
             </table>
         </div>
         {{/if}}
+        {{#if (eq system.type "F")}}
+        <div class="rmss-detail-section">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-shield-halved"></i> {{localize "rmss.spell.section_rr_bonus"}}</h3>
+            <table>
+                <tr>
+                    <th>{{localize "rmss.spell.rr_bonus"}}</th>
+                    <td>
+                        <input type="number" name="system.rr_bonus" value="{{system.rr_bonus}}" step="1" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {{/if}}
 
         <div class="rmss-detail-section rmss-detail-section--description">
             <h3 class="rmss-detail-section-title"><i class="fas fa-scroll"></i> {{localize "rmss.spell.description"}}</h3>

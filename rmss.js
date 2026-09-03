@@ -412,16 +412,22 @@ Hooks.once("init", function () {
      * for (const target of Array.from(game.user.targets)) {
      *   const { success } = await game.rmss.rollResistance({
      *     target,
-     *     attackerLevel: actor.system.attributes.level.value
+     *     attackerLevel: actor.system.attributes.level.value,
+     *     category: "fear" // adds the target's own system.resistance_rolls.fear.total
      *   });
      *   if (success) { / * A: resisted * / } else { / * B: failed * / }
      * }
      * ```
-     * @param {{ target: string|Token|TokenDocument, attackerLevel: number, defenderLevel?: number, modifier?: number }} options
+     * @param {{ target: string|Token|TokenDocument, attackerLevel: number, defenderLevel?: number, modifier?: number, category?: string }} options
      *   - target: the resisting token (or its id). defenderLevel defaults to that token's actor level if omitted.
+     *   - category: one of RESISTANCE_ROLL_KEYS (channeling/essence/mentalism/chann_ess/chann_ment/
+     *     ess_ment/arcane/poison/disease/fear) - when given, the target's own
+     *     `system.resistance_rolls.<category>.total` (race/item/effect bonuses) is added to `modifier`
+     *     automatically. Player characters only (npc/creature don't have this template) - ignored
+     *     with a console warning for other actor types or an unknown category.
      * @returns {Promise<{ success: boolean, finalRoll: number, rrTarget: number }|null>} null if target not found
      */
-    async rollResistance({ target, attackerLevel, defenderLevel, modifier = 0 }) {
+    async rollResistance({ target, attackerLevel, defenderLevel, modifier = 0, category = null }) {
       const token = typeof target === "string"
         ? (canvas.tokens?.get(target) ?? canvas.scene?.tokens?.get(target) ?? null)
         : (target ?? null);
@@ -433,9 +439,24 @@ Hooks.once("init", function () {
       const { default: EffectsPopupService } = await import("./module/core/rolls/effects_popup_service.js");
       const { default: ResistanceRollService } = await import("./module/core/rolls/resistance_roll_service.js");
 
+      let totalModifier = modifier;
+      if (category) {
+        const { RESISTANCE_ROLL_KEYS } = await import("./module/actors/services/passive_item_modifiers_service.js");
+        if (!RESISTANCE_ROLL_KEYS.includes(category)) {
+          console.warn(`rollResistance: unknown category "${category}", ignoring.`);
+        } else {
+          const categoryTotal = token.actor?.system?.resistance_rolls?.[category]?.total;
+          if (categoryTotal === undefined) {
+            console.warn(`rollResistance: ${token.actor?.name ?? token.id} has no system.resistance_rolls.${category} (npc/creature don't track this), ignoring.`);
+          } else {
+            totalModifier += categoryTotal;
+          }
+        }
+      }
+
       const resolvedDefenderLevel = defenderLevel ?? (parseInt(token.actor?.system?.attributes?.level?.value, 10) || 1);
-      const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, resolvedDefenderLevel, modifier);
-      const result = await EffectsPopupService.executeResistanceRoll(token.id, attackerLevel, resolvedDefenderLevel, modifier, rrTarget);
+      const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, resolvedDefenderLevel, totalModifier);
+      const result = await EffectsPopupService.executeResistanceRoll(token.id, attackerLevel, resolvedDefenderLevel, totalModifier, rrTarget);
       return { ...result, rrTarget };
     },
     /**
