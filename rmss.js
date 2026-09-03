@@ -1125,9 +1125,16 @@ Hooks.once("init", function () {
     await ArmorInfoService.updateActorArmorInfo(actor);
   });
 
-  // Passive modifiers on items → Actor ActiveEffects while worn/equipped
+  // Passive modifiers on items → Actor ActiveEffects while worn/equipped.
+  // updateItem/createItem/deleteItem hooks fire on EVERY connected client (not just whoever made
+  // the change) - without this guard, each client that has the actor open (GM + owning player,
+  // observers, etc.) independently runs the delete-then-create sync below at the same time. Their
+  // reads race: client B can read the "old" effects list before client A's delete has propagated,
+  // so both end up creating their own new ActiveEffect, and a +10 ring ends up applying +20/+30.
+  // Only the client whose own action triggered the hook (userId === game.user.id) may run the sync.
   const passiveItemModImport = () => import("./module/actors/services/passive_item_modifiers_service.js");
   Hooks.on("updateItem", async (item, update, options, userId) => {
+    if (userId !== game.user.id) return;
     const actor = item.parent;
     if (!actor) return;
     if (!["item", "weapon", "armor", "herb_or_poison", "transport"].includes(item.type)) return;
@@ -1136,6 +1143,7 @@ Hooks.once("init", function () {
     await syncPassiveItemEffectsForActor(actor);
   });
   Hooks.on("createItem", async (item, options, userId) => {
+    if (userId !== game.user.id) return;
     const actor = item.parent;
     if (!actor) return;
     if (!["item", "weapon", "armor", "herb_or_poison", "transport"].includes(item.type)) return;
@@ -1143,6 +1151,7 @@ Hooks.once("init", function () {
     await syncPassiveItemEffectsForActor(actor);
   });
   Hooks.on("deleteItem", async (item, options, userId) => {
+    if (userId !== game.user.id) return;
     const actor = item.parent;
     if (!actor) return;
     if (!["item", "weapon", "armor", "herb_or_poison", "transport"].includes(item.type)) return;
