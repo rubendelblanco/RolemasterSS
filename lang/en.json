@@ -302,7 +302,7 @@
         },
         "pc_sheet_items": {
             "equipped": "Equipped",
-            "equipped_weapon": "Wielding",
+            "wielding": "Wielding",
             "worn": "Worn",
             "favorite": "Favorite",
             "open_item_sheet": "Open item sheet",

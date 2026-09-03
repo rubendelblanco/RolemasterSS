@@ -302,7 +302,7 @@
         },
     "pc_sheet_items": {
       "equipped": "Equipado",
-      "equipped_weapon": "Usar",
+      "wielding": "Usar",
       "worn": "Equipado",
       "favorite": "Favorito",
       "open_item_sheet": "Abrir ficha del objeto",

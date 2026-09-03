@@ -3,7 +3,7 @@
     <tr>
         <th></th>
         <th>{{ localize "rmss.pc_sheet_items.item_name" }}</th>
-        <th>{{ localize "rmss.pc_sheet_items.equipped" }}</th>
+        <th>{{ localize "rmss.pc_sheet_items.wielding" }}</th>
         <th>{{ localize "rmss.pc_sheet_items.worn" }}</th>
         <th>{{ localize "rmss.armor.at" }}</th>
         <th>{{ localize "rmss.pc_sheet_items.quantity" }}</th>
@@ -67,7 +67,7 @@
           </div>
           {{/if}}</td>
         <td>
-          <a class="equippable" data-item-id="{{equipable._id}}" title="{{localize 'rmss.pc_sheet_items.equipped'}}">
+          <a class="equippable" data-item-id="{{equipable._id}}" title="{{localize 'rmss.pc_sheet_items.wielding'}}">
             {{#if (eq equipable.system.armorSlot "helmet")}}
               <i class="fa-{{#if equipable.system.equipped}}solid{{else}}regular{{/if}} fa-helmet-battle"></i>
             {{else if (eq equipable.system.armorSlot "shield")}}
