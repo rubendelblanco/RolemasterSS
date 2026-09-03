@@ -161,12 +161,13 @@ export default class EffectsPopupService {
             event.target.value = Math.abs(parseInt(event.target.value) || 0);
         });
 
-        // RR calculation on input change
+        // RR calculation on input change. The target number from the table is invariant (levels
+        // only) - the modifier is applied to the defender's roll, not to this target, so it plays
+        // no part in the displayed target here (see executeResistanceRoll).
         const updateRRDisplay = () => {
             const attackerLevel = parseInt(html.find("#rr-attacker-level").val()) || 1;
             const defenderLevel = parseInt(html.find("#rr-defender-level").val()) || 1;
-            const modifier = parseInt(html.find("#rr-modifier").val()) || 0;
-            const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, defenderLevel, modifier);
+            const rrTarget = ResistanceRollService.calculateBaseRR(attackerLevel, defenderLevel);
             html.find("#rr-target-display").text(rrTarget);
         };
 
@@ -195,10 +196,11 @@ export default class EffectsPopupService {
      * @param {Token} token - The target token
      * @param {number} attackerLevel - Level of the attacker
      * @param {number} defenderLevel - Level of the defender
-     * @param {number} modifier - Modifier to add to the roll
+     * @param {number} modifier - Modifier added to the defender's roll (not to the target - the
+     *   table target is invariant, only levels change it; see executeResistanceRoll)
      */
     static async createRRPromptMessage(token, attackerLevel, defenderLevel, modifier) {
-        const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, defenderLevel, modifier);
+        const rrTarget = ResistanceRollService.calculateBaseRR(attackerLevel, defenderLevel);
         const actor = token.actor;
         
         // Get owners of the token (player IDs)

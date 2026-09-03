@@ -421,11 +421,12 @@ Hooks.once("init", function () {
      * ```
      * @param {{ target: string|Token|TokenDocument, attackerLevel: number, defenderLevel?: number, modifier?: number, category?: string, silent?: boolean }} options
      *   - target: the resisting token (or its id). defenderLevel defaults to that token's actor level if omitted.
-     *   - category: one of RESISTANCE_ROLL_KEYS (channeling/essence/mentalism/chann_ess/chann_ment/
-     *     ess_ment/arcane/poison/disease/fear) - when given, the target's own
-     *     `system.resistance_rolls.<category>.total` (race/item/effect bonuses) is added to `modifier`
-     *     automatically. Player characters only (npc/creature don't have this template) - ignored
-     *     with a console warning for other actor types or an unknown category.
+     *   - modifier/category are added to the DEFENDER'S ROLL, not to the RR target - the table
+     *     target is invariant (levels only). category: one of RESISTANCE_ROLL_KEYS (channeling/
+     *     essence/mentalism/chann_ess/chann_ment/ess_ment/arcane/poison/disease/fear) - when given,
+     *     the target's own `system.resistance_rolls.<category>.total` (race/item/effect bonuses) is
+     *     added to `modifier` automatically. Player characters only (npc/creature don't have this
+     *     template) - ignored with a console warning for other actor types or an unknown category.
      *   - silent: when true, skips posting the individual per-roll result card - use this when the
      *     macro rolls RR for several targets (e.g. an area spell) and posts its own grouped summary
      *     instead of one card per target.
@@ -459,7 +460,9 @@ Hooks.once("init", function () {
       }
 
       const resolvedDefenderLevel = defenderLevel ?? (parseInt(token.actor?.system?.attributes?.level?.value, 10) || 1);
-      const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, resolvedDefenderLevel, totalModifier);
+      // The table target is invariant (levels only) - modifier/category apply to the roll below,
+      // not to this target (see executeResistanceRoll's finalRoll = rollTotal + modifier).
+      const rrTarget = ResistanceRollService.calculateBaseRR(attackerLevel, resolvedDefenderLevel);
       const result = await EffectsPopupService.executeResistanceRoll(token.id, attackerLevel, resolvedDefenderLevel, totalModifier, rrTarget, { postChatMessage: !silent });
       return { ...result, rrTarget };
     },
