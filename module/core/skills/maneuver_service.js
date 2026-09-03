@@ -403,12 +403,13 @@ export default class ManeuverService {
             const targetY = token.center.y - floatDistance;
             const borderColor = this._resultBorderColor(maneuverResult);
 
+            // 75% of the original size (was scaleToObject(0.8), circle radius 0.5).
             const effect = new Sequence()
                 .effect()
                     .file(skill.img)
                     .atLocation(token)
-                    .scaleToObject(0.8)
-                    .shape("circle", { radius: 0.5, gridUnits: true, isMask: true })
+                    .scaleToObject(0.6)
+                    .shape("circle", { radius: 0.375, gridUnits: true, isMask: true })
                     .moveTowards({ x: token.center.x, y: targetY }, { rotate: false, ease: "easeOutSine" })
                     .duration(2000)
                     .fadeIn(300)
@@ -420,7 +421,7 @@ export default class ManeuverService {
                 // the icon above - reads as a solid frame regardless of whether the icon itself
                 // has transparency, unlike a Glow filter (which traces alpha edges and barely
                 // shows on opaque icons).
-                effect.shape("circle", { radius: 0.5, gridUnits: true, lineColor: borderColor, lineSize: 6, fillAlpha: 0 });
+                effect.shape("circle", { radius: 0.375, gridUnits: true, lineColor: borderColor, lineSize: 6, fillAlpha: 0 });
             }
 
             effect.play();
