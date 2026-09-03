@@ -161,40 +161,74 @@ function collectPassiveChangesForItem(item) {
 }
 
 /**
- * Remove all passive-item effects from actor, then re-apply from worn/equipped items.
+ * Reconcile passive-item effects against worn/equipped items, touching only what actually
+ * changed. This runs unconditionally on every "ready" (see rmss.js) as a self-healing pass, so a
+ * blind delete-then-recreate here would flicker every affected value (e.g. a resistance_rolls
+ * total dropping to its unmodified value and back) on every single reload - which Foundry's own
+ * token/resource-bar change detection reads as a real change and animates as scrolling combat
+ * text. Effects whose computed changes already match the item are left untouched entirely.
  * @param {Actor} actor
  */
 export async function syncPassiveItemEffectsForActor(actor) {
   if (!actor) return;
   if (!actor.isOwner && !game.user.isGM) return;
 
-  const toDelete = actor.effects.filter((e) => e.flags?.rmss?.passiveItemSource).map((e) => e.id);
-  if (toDelete.length) {
-    await actor.deleteEmbeddedDocuments("ActiveEffect", toDelete);
+  const existingBySource = new Map();
+  for (const effect of actor.effects) {
+    const sourceId = effect.flags?.rmss?.passiveItemSource;
+    if (sourceId) existingBySource.set(sourceId, effect);
   }
 
+  const suffix = game.i18n.localize("rmss.item.passive_modifiers_effect_suffix");
+  const desiredSourceIds = new Set();
   const creates = [];
+  const updates = [];
+
   for (const item of actor.items) {
     if (!ITEM_TYPES_WITH_PASSIVE.includes(item.type)) continue;
     if (!isPassiveItemSlotActive(item)) continue;
     const changes = collectPassiveChangesForItem(item);
     if (!changes.length) continue;
 
-    const suffix = game.i18n.localize("rmss.item.passive_modifiers_effect_suffix");
-    creates.push({
-      name: `${item.name} (${suffix})`,
-      img: item.img || "icons/svg/aura.svg",
-      origin: actor.uuid,
-      disabled: false,
-      changes,
-      flags: {
-        rmss: {
-          passiveItemSource: item.id
+    desiredSourceIds.add(item.id);
+    const name = `${item.name} (${suffix})`;
+    const img = item.img || "icons/svg/aura.svg";
+    const existing = existingBySource.get(item.id);
+
+    if (!existing) {
+      creates.push({
+        name,
+        img,
+        origin: actor.uuid,
+        disabled: false,
+        changes,
+        flags: {
+          rmss: {
+            passiveItemSource: item.id
+          }
         }
-      }
-    });
+      });
+      continue;
+    }
+
+    const isUnchanged = existing.name === name && existing.img === img
+      && foundry.utils.objectsEqual(existing.changes, changes);
+    if (!isUnchanged) {
+      updates.push({ _id: existing.id, name, img, changes });
+    }
   }
 
+  // Effects whose source item was unequipped/removed/no longer qualifies
+  const toDelete = [...existingBySource.entries()]
+    .filter(([sourceId]) => !desiredSourceIds.has(sourceId))
+    .map(([, effect]) => effect.id);
+
+  if (toDelete.length) {
+    await actor.deleteEmbeddedDocuments("ActiveEffect", toDelete);
+  }
+  if (updates.length) {
+    await actor.updateEmbeddedDocuments("ActiveEffect", updates);
+  }
   if (creates.length) {
     await actor.createEmbeddedDocuments("ActiveEffect", creates);
   }
