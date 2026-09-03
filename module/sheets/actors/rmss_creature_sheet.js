@@ -186,7 +186,15 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
         });
 
         container.on("dragover", (ev) => {
-            if (!this._creatureAttackDragSourceId) return;
+            if (!this._creatureAttackDragSourceId) {
+                // Not our internal reorder drag - most likely a creature_attack Item being
+                // dragged in from the sidebar/a compendium to add a new one. Don't preventDefault
+                // (that's what marks a drop target as valid) or Foundry's own default drop
+                // handling further up the DOM never gets a chance to run - just highlight the
+                // whole grid so there's an obvious "drop it here" target.
+                container.addClass("creature-attacks-drag-hover");
+                return;
+            }
             const row = ev.target.closest(".creature-attack-calc");
             ev.preventDefault();
             ev.originalEvent.dataTransfer.dropEffect = "move";
@@ -196,14 +204,22 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
             }
         });
 
+        container.on("dragleave", (ev) => {
+            if (!container[0].contains(ev.originalEvent.relatedTarget)) {
+                container.removeClass("creature-attacks-drag-hover");
+            }
+        });
+
         container.on("drop", async (ev) => {
+            container.removeClass("creature-attacks-drag-hover");
+            const draggedId = this._creatureAttackDragSourceId;
+            if (!draggedId) return; // not our reorder drag - let Foundry's own drop handling add the item
             ev.preventDefault();
             ev.stopPropagation();
             html.find(".creature-attack-calc").removeClass("creature-attack-drag-over");
-            const draggedId = this._creatureAttackDragSourceId;
             this._creatureAttackDragSourceId = null;
             const row = ev.target.closest(".creature-attack-calc");
-            if (!row || !draggedId) return;
+            if (!row) return;
             const targetId = row.dataset.itemId;
             if (draggedId === targetId) return;
 
