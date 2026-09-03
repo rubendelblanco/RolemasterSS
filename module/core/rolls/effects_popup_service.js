@@ -254,8 +254,11 @@ export default class EffectsPopupService {
      * @param {number} defenderLevel - Level of the defender
      * @param {number} modifier - Modifier to add to the roll
      * @param {number} rrTarget - Pre-calculated RR target
+     * @param {{ postChatMessage?: boolean }} [options] - postChatMessage (default true): post the
+     *   individual per-roll result card. Set false when the caller posts its own grouped summary
+     *   instead (e.g. an area-effect macro rolling RR for several targets at once).
      */
-    static async executeResistanceRoll(tokenId, attackerLevel, defenderLevel, modifier, rrTarget) {
+    static async executeResistanceRoll(tokenId, attackerLevel, defenderLevel, modifier, rrTarget, { postChatMessage = true } = {}) {
         const token = canvas.tokens.get(tokenId);
         if (!token) {
             ui.notifications.error("Token not found");
@@ -279,19 +282,21 @@ export default class EffectsPopupService {
         const success = finalRoll >= rrTarget;
 
         // Create result chat message
-        await this._createRRResultMessage({
-            token,
-            attackerLevel,
-            defenderLevel,
-            rrTarget,
-            naturalRoll,
-            rollTotal,
-            modifier,
-            finalRoll,
-            success
-        });
+        if (postChatMessage) {
+            await this._createRRResultMessage({
+                token,
+                attackerLevel,
+                defenderLevel,
+                rrTarget,
+                naturalRoll,
+                rollTotal,
+                modifier,
+                finalRoll,
+                success
+            });
+        }
 
-        return { success, finalRoll };
+        return { success, finalRoll, naturalRoll, rollTotal };
     }
 
     /**
