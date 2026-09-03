@@ -3,7 +3,7 @@
     <tr>
         <th></th>
         <th>{{ localize "rmss.pc_sheet_items.item_name" }}</th>
-        <th>{{ localize "rmss.pc_sheet_items.equipped" }}</th>
+        <th>{{ localize "rmss.pc_sheet_items.equipped_weapon" }}</th>
         <th>{{ localize "rmss.pc_sheet_items.worn" }}</th>
         <th>{{ localize "rmss.weapon.breakage_range" }}</th>
         <th>{{ localize "rmss.weapon.fumble_range" }}</th>
@@ -81,11 +81,11 @@
             <span title="{{localize "rmss.weapon.natural_always_equipped"}}">—</span>
             {{else}}
             {{#if weapon.system.equipped}}
-            <a class="equippable" data-item-id="{{weapon._id}}" title="{{localize 'rmss.pc_sheet_items.equipped'}}">
+            <a class="equippable" data-item-id="{{weapon._id}}" title="{{localize 'rmss.pc_sheet_items.equipped_weapon'}}">
                 <i class="fa-solid fa-hand-fist"></i>
             </a>
             {{else}}
-            <a class="equippable" data-item-id="{{weapon._id}}" title="{{localize 'rmss.pc_sheet_items.equipped'}}">
+            <a class="equippable" data-item-id="{{weapon._id}}" title="{{localize 'rmss.pc_sheet_items.equipped_weapon'}}">
                 <i class="fa-regular fa-hand"></i>
             </a>
             {{/if}}
