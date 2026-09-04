@@ -1,4 +1,5 @@
 import { getEffectivePowerPointsMaxForSheet } from "../utils/power_points_util.js";
+import { whisperIdsForOwnersAndGMs } from "../../chat/chatMessages.js";
 
 /**
  * Long rest recovery. Extracted from RMSSPlayerSheet (was a private sheet instance method) so
@@ -75,9 +76,7 @@ export default class RestService {
     const hookReturns = Hooks.callAll("rmssLongRest", actor);
     await Promise.all((hookReturns ?? []).filter((r) => r && typeof r.then === "function"));
 
-    const whispers = new Set();
-    (game.users ?? []).filter((u) => actor.testUserPermission(u, "OWNER")).forEach((u) => whispers.add(u.id));
-    (game.users ?? []).filter((u) => u.isGM).forEach((u) => whispers.add(u.id));
+    const whispers = whisperIdsForOwnersAndGMs(actor);
 
     const hoursNum = Math.max(0, Math.floor(Number(hours)) || 0);
     const hoursUnitKey = hoursNum === 1 ? "rmss.long_rest.hour_unit" : "rmss.long_rest.hours_unit";
@@ -101,7 +100,7 @@ export default class RestService {
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor }),
       content,
-      whisper: Array.from(whispers)
+      whisper: whispers
     });
 
     return { hpRecovered, ppRecovered };

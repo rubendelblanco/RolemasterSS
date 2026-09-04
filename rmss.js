@@ -7,6 +7,7 @@ import { RMSSItem } from "./module/documents/item.js";
 //Import combat classes
 import {CombatEndManager, CombatStartManager, RMSSCombat} from "./module/combat/rmss_combat.js";
 import { RMSSCombatant } from "./module/combat/rmss_combatant.js";
+import { whisperIdsForOwnersAndGMs } from "./module/chat/chatMessages.js";
 
 // Import Sheets
 import RMSSItemSheet from "./module/sheets/items/rmss_item_sheet.js";
@@ -1278,6 +1279,7 @@ Hooks.once("init", function () {
                     </div>
                     `,
             speaker: { alias: "GM" },
+            whisper: whisperIdsForOwnersAndGMs(actor),
           });
           await actor.update({ "system.levelUp.levelAbove": delta });
         }

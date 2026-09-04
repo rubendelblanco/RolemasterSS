@@ -17,6 +17,19 @@ export function whisperIdsForNpcRollPrivacy(actor, publicToPlayers) {
 }
 
 /**
+ * Whisper to the actor's own owners (players) plus every GM - for messages meant only for the
+ * character's table seat, regardless of actor type (e.g. long rest, level up).
+ * @param {Actor} actor
+ * @returns {string[]} User ids (always includes GMs even if the actor has no player owner)
+ */
+export function whisperIdsForOwnersAndGMs(actor) {
+    const ids = new Set();
+    (game.users ?? []).filter((u) => actor?.testUserPermission?.(u, "OWNER")).forEach((u) => ids.add(u.id));
+    (game.users ?? []).filter((u) => u.isGM).forEach((u) => ids.add(u.id));
+    return Array.from(ids);
+}
+
+/**
  * Dice So Nice: sync 3d dice to all clients when the roll is public (or actor is a PC).
  */
 export function dice3dSynchronizeForNpcRoll(actor, publicToPlayers) {

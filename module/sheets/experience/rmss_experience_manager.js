@@ -1,6 +1,6 @@
 import LevelUpManager from "./rmss_level_up_manager.js";
 import Utils from "../../utils.js";
-import { sendExpMessage } from "../../chat/chatMessages.js";
+import { sendExpMessage, whisperIdsForOwnersAndGMs } from "../../chat/chatMessages.js";
 
 export class ExperienceManager {
     /*
@@ -354,7 +354,8 @@ export default class ExperiencePointsCalculator {
                         `,
                         speaker: {
                             alias: "GM"
-                        }
+                        },
+                        whisper: whisperIdsForOwnersAndGMs(actor)
                     })
                 }, 2000);
                 actor.update({ system: { 'levelUp.levelAbove': calcLevel - level } });
