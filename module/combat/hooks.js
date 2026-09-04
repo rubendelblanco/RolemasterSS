@@ -190,9 +190,9 @@ export function registerCombatHooks() {
 
         const start = { x: tokenDoc.x, y: tokenDoc.y };
         const end   = { x: data.x ?? tokenDoc.x, y: data.y ?? tokenDoc.y };
-        const ray = new Ray(start, end);
-        const distances = canvas.grid.measureDistances([{ ray }], { gridSpaces: true });
-        const distance = distances[0];
+        // canvas.grid.measureDistances was deprecated in v12 and is gone in v14 - measurePath is
+        // the replacement (Grid#measureDistances -> Grid#measurePath).
+        const distance = canvas.grid.measurePath([start, end]).distance;
         const remaining = Math.round(move.current || 0);
 
         if (distance > remaining) {
