@@ -113,6 +113,7 @@ export class RMSSItem extends Item {
       itemData.system.total_bonus = Number(systemData.rank_bonus)
                                   + Number(systemData.stat_bonus)
                                   + Number(systemData.prof_bonus)
+                                  + Number(systemData.item_bonus)
                                   + Number(systemData.special_bonus_1)
                                   + Number(systemData.special_bonus_2);
     }

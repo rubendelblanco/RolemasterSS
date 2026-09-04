@@ -1,0 +1,29 @@
+<div class="rmss-passive-modifiers">
+    <div class="rmss-modifiers-header">{{localize "rmss.item.modifiers_bonus_skill_categories"}}</div>
+    <p class="notes">{{localize "rmss.item.bonus_skill_categories_hint"}}</p>
+    <div class="rmss-passive-modifiers-list">
+        {{#each bonusSkillCategoriesList as |row|}}
+        <div class="rmss-passive-mod-row flexrow" data-index="{{row.idx}}">
+            <label class="rmss-passive-mod-field">
+                <span>{{localize "rmss.item.bonus_skill_category_field_category"}}</span>
+                <select name="system.bonus_skill_categories.{{row.idx}}.category" data-dtype="String">
+                    <option value=""></option>
+                    {{#each ../skillCategoryOptions as |opt|}}
+                    <option value="{{opt.key}}" {{#if (eq opt.key row.category)}}selected{{/if}}>{{opt.label}}</option>
+                    {{/each}}
+                </select>
+            </label>
+            <label class="rmss-passive-mod-field">
+                <span>{{localize "rmss.item.bonus_skill_category_field_bonus"}}</span>
+                <input type="number" name="system.bonus_skill_categories.{{row.idx}}.bonus" value="{{row.bonus}}" placeholder="0" min="-200" max="200" step="1" data-dtype="Number"/>
+            </label>
+            <button type="button" class="rmss-passive-mod-remove" data-action="remove-bonus-skill-category" data-index="{{row.idx}}" title="{{localize 'rmss.item.enchantment_delete'}}">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        {{/each}}
+    </div>
+    <button type="button" class="rmss-passive-mod-add" data-action="add-bonus-skill-category">
+        <i class="fas fa-plus"></i> {{localize "rmss.item.add_bonus_skill_category"}}
+    </button>
+</div>

@@ -24,6 +24,12 @@ import {
   mergePassiveModifiersFormData
 } from "../../actors/services/passive_item_modifiers_service.js";
 import { bindPassiveModifiersEditor } from "./passive_modifiers_ui.js";
+import {
+  buildBonusSkillCategoriesListForSheet,
+  getSkillCategoryOptionsForSheet,
+  mergeBonusSkillCategoriesFormData,
+  bindBonusSkillCategoriesEditor
+} from "./bonus_skill_categories_ui.js";
 import { isIdentityHidden, getUnidentifiedDisplayName } from "../../actors/utils/item_identity_util.js";
 import { computeItemAutoName } from "./item_auto_name_util.js";
 import { bindMacroDropZone } from "./macro_drop_util.js";
@@ -121,7 +127,9 @@ export default class RMSSItemSheet extends ItemSheet {
       spellAdderProfessionName,
       passiveModifiersList: buildPassiveModifiersListForSheet(system),
       statKeyOptions: getStatKeyOptionsForSheet(),
-      rrKeyOptions: getRrKeyOptionsForSheet()
+      rrKeyOptions: getRrKeyOptionsForSheet(),
+      bonusSkillCategoriesList: buildBonusSkillCategoriesListForSheet(system),
+      skillCategoryOptions: getSkillCategoryOptionsForSheet()
     };
   }
 
@@ -164,6 +172,7 @@ export default class RMSSItemSheet extends ItemSheet {
     bindItemTagsEditor(this, html);
     bindContainerAllowedTagsEditor(this, html);
     bindPassiveModifiersEditor(this, html);
+    bindBonusSkillCategoriesEditor(this, html);
   }
 
   /**
@@ -439,6 +448,7 @@ export default class RMSSItemSheet extends ItemSheet {
 
     this._mergeEnchantmentFormData(formData);
     mergePassiveModifiersFormData(formData, this.item);
+    mergeBonusSkillCategoriesFormData(formData);
     const normalizedData = ItemService.normalizeItemFormData(this.item, formData);
     // Ensure bonus_skills is an array (form may submit object with numeric keys)
     const raw = normalizedData.system?.bonus_skills;

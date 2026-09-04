@@ -22,6 +22,12 @@ import {
   mergePassiveModifiersFormData
 } from "../../actors/services/passive_item_modifiers_service.js";
 import { bindPassiveModifiersEditor } from "./passive_modifiers_ui.js";
+import {
+  buildBonusSkillCategoriesListForSheet,
+  getSkillCategoryOptionsForSheet,
+  mergeBonusSkillCategoriesFormData,
+  bindBonusSkillCategoriesEditor
+} from "./bonus_skill_categories_ui.js";
 import { isIdentityHidden, getUnidentifiedDisplayName } from "../../actors/utils/item_identity_util.js";
 import { bindMacroDropZone } from "./macro_drop_util.js";
 
@@ -98,7 +104,9 @@ export default class RMSSArmorSheet extends ItemSheet {
       spellAdderProfessionName,
       passiveModifiersList: buildPassiveModifiersListForSheet(system),
       statKeyOptions: getStatKeyOptionsForSheet(),
-      rrKeyOptions: getRrKeyOptionsForSheet()
+      rrKeyOptions: getRrKeyOptionsForSheet(),
+      bonusSkillCategoriesList: buildBonusSkillCategoriesListForSheet(system),
+      skillCategoryOptions: getSkillCategoryOptionsForSheet()
     };
   }
 
@@ -139,6 +147,7 @@ export default class RMSSArmorSheet extends ItemSheet {
     this._setupEnchantmentsDropZone(html);
     bindItemTagsEditor(this, html);
     bindPassiveModifiersEditor(this, html);
+    bindBonusSkillCategoriesEditor(this, html);
   }
 
   _getBonusSkillsArray() {
@@ -380,6 +389,7 @@ export default class RMSSArmorSheet extends ItemSheet {
     }
     this._mergeEnchantmentFormData(formData);
     mergePassiveModifiersFormData(formData, this.item);
+    mergeBonusSkillCategoriesFormData(formData);
 
     return super._updateObject(event, formData);
   }

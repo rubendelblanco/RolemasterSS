@@ -1,5 +1,16 @@
 import EquipmentService from "../actors/services/equipment_service.js";
 
+/** A bonus_skills/bonus_skill_categories array may come back as an object with numeric keys
+ *  (form submission quirk) instead of a real array - normalize either shape to an array. */
+function normalizeBonusEntries(raw) {
+  if (Array.isArray(raw)) return raw;
+  if (raw && typeof raw === "object") {
+    const keys = Object.keys(raw).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b));
+    return keys.map(k => raw[k]);
+  }
+  return [];
+}
+
 export class RMSSActor extends Actor {
 
   /** @override */
@@ -286,14 +297,6 @@ export class RMSSActor extends Actor {
     // Gear (item worn), armor (equipped), weapon (equipped) that grant bonus to skills
     const gearBonusBySkillSlug = {};
     const gearBonusBySkillName = {};
-    const normalizeBonusEntries = (raw) => {
-      if (Array.isArray(raw)) return raw;
-      if (raw && typeof raw === "object") {
-        const keys = Object.keys(raw).filter(k => /^\d+$/.test(k)).sort((a, b) => Number(a) - Number(b));
-        return keys.map(k => raw[k]);
-      }
-      return [];
-    };
     const addBonusSkillsFromItem = (item) => {
       const raw = item.system.bonus_skills ?? (item.system.bonus_skill ? [{ skill: item.system.bonus_skill, skill_name: item.system.bonus_skill_name || "", bonus: Number(item.system.bonus) || 0 }] : []);
       const entries = normalizeBonusEntries(raw);
@@ -329,16 +332,41 @@ export class RMSSActor extends Actor {
 
   // Tallys the bonus for each Stat that is applicable to the Skill Category and then updates the total
   calculateSkillCategoryStatBonuses() {
+    // Gear (item worn), armor (equipped), weapon (equipped) that grant bonus to a whole skill
+    // category. Matched by slug (from the fixed CONFIG.rmss.skill_categories list the item's
+    // dropdown is built from), not embedded item id - the same gear item can be equipped by
+    // different actors, each with their own separate skill_category documents (different ids)
+    // for "the same" category.
+    const gearBonusByCategorySlug = {};
+    const addBonusCategoriesFromItem = (item) => {
+      const entries = normalizeBonusEntries(item.system.bonus_skill_categories);
+      for (const e of entries) {
+        const bonus = Number(e?.bonus) || 0;
+        const slug = (e?.category || "").trim();
+        if (bonus === 0 || !slug) continue;
+        gearBonusByCategorySlug[slug] = (gearBonusByCategorySlug[slug] || 0) + bonus;
+      }
+    };
+    for (const gear of this.items) {
+      if (gear.type === "item" && gear.system?.worn) addBonusCategoriesFromItem(gear);
+      else if (gear.type === "armor" && gear.system?.equipped) addBonusCategoriesFromItem(gear);
+      else if (gear.type === "weapon" && gear.system?.equipped) addBonusCategoriesFromItem(gear);
+    }
+
     for (const item of this.items) {
       if (item.type === "skill_category") {
+        const categorySlug = (item.system?.slug || "").trim();
+        item.system.item_bonus = gearBonusByCategorySlug[categorySlug] ?? 0;
 
         // Get all the applicable stats for this skill category
         let app_stat_1 = item.system.app_stat_1;
         let app_stat_2 = item.system.app_stat_2;
         let app_stat_3 = item.system.app_stat_3;
 
-        // If the first one is None we don't need to do anything further
+        // If the first one is None there's no Stat component, but item/rank/prof bonuses still
+        // need to flow into total_bonus.
         if (app_stat_1 === "None") {
+          item.calculateSkillCategoryTotalBonus(item);
           continue;
         }
 

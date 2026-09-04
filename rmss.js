@@ -571,12 +571,14 @@ Hooks.once("init", function () {
     Promise.all([
       fetch("systems/rmss/templates/sheets/items/parts/item-tags.hbs").then((r) => r.text()),
       fetch("systems/rmss/templates/sheets/items/parts/container-allowed-tags.hbs").then((r) => r.text()),
-      fetch("systems/rmss/templates/sheets/items/parts/passive-modifiers.hbs").then((r) => r.text())
+      fetch("systems/rmss/templates/sheets/items/parts/passive-modifiers.hbs").then((r) => r.text()),
+      fetch("systems/rmss/templates/sheets/items/parts/bonus-skill-categories.hbs").then((r) => r.text())
     ])
-      .then(([itemTagsText, containerAllowedText, passiveModifiersText]) => {
+      .then(([itemTagsText, containerAllowedText, passiveModifiersText, bonusSkillCategoriesText]) => {
         Handlebars.registerPartial("rmssItemTags", itemTagsText);
         Handlebars.registerPartial("rmssContainerAllowedTags", containerAllowedText);
         Handlebars.registerPartial("rmssPassiveModifiers", passiveModifiersText);
+        Handlebars.registerPartial("rmssBonusSkillCategories", bonusSkillCategoriesText);
       })
       .catch((err) => console.warn("rmss | item sheet partials", err));
   });
