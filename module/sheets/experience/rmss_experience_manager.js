@@ -340,19 +340,23 @@ export default class ExperiencePointsCalculator {
                 foundry.audio.AudioHelper.play({ src: soundPath, volume: 0.8, loop: false }).catch(err => {
                     console.error("Sound error:", err);
                 });
-                ChatMessage.create({
-                    content: `
-                    <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
-                    <img src="systems/rmss/assets/default/level_up.png" alt="Level up" style="width:100px; height:auto; border: 2px solid #333;">
-                      <p style="color: #333; font-size: 16px;">
-                        <b>${actor.name}</b> sube a <b>nivel ${calcLevel}</b>
-                      </p>
-                    </div>
-                    `,
-                    speaker: {
-                        alias: "GM"
-                    }
-                })
+                // power_up.mp3 runs ~2s on its own; wait for it to finish before the video (with
+                // its own sound) starts, so the two don't overlap.
+                setTimeout(() => {
+                    ChatMessage.create({
+                        content: `
+                        <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+                        <video src="systems/rmss/assets/default/level_up.mp4" autoplay playsinline style="width:100px; height:auto; border: 2px solid #333;"></video>
+                          <p style="color: #333; font-size: 16px;">
+                            <b>${actor.name}</b> sube a <b>nivel ${calcLevel}</b>
+                          </p>
+                        </div>
+                        `,
+                        speaker: {
+                            alias: "GM"
+                        }
+                    })
+                }, 2000);
                 actor.update({ system: { 'levelUp.levelAbove': calcLevel - level } });
             }
 
