@@ -36,20 +36,6 @@
       "system": "rmss",
       "path": "./packs/skill-categories.db",
       "type": "Item"
-    },
-    {
-      "name": "skill-categories-es",
-      "label": "Skill Categories (ES)",
-      "path": "packs/skill-categories-es.db",
-      "type": "Item",
-      "system": "rmss"
-    },
-    {
-      "name": "skills-es",
-      "label": "Skills (ES)",
-      "system": "rmss",
-      "path": "./packs/skills-es.db",
-      "type": "Item"
     }
   ],
   "languages": [

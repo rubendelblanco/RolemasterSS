@@ -4,7 +4,7 @@ node_modules/
 .vscode/
 .idea/
 packs/*
-!packs/skill-categories.db
+!packs/skill-categories
 .cursorrules
 docs/
 coverage/
