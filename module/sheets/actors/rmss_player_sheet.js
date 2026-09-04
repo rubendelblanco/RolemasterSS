@@ -14,8 +14,8 @@ import WeaponPreferenceDialog from "../../actors/dialogs/weapon_preference_dialo
 import StatAssignmentDialog from "../../actors/dialogs/stat_assignment_dialog.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 import RaceService from "../../actors/services/race_service.js";
-import { getEffectivePowerPointsMaxForSheet } from "../../actors/utils/power_points_util.js";
 import { chatMessageOtherStyle } from "../../chat/chatMessages.js";
+import RestService from "../../actors/services/rest_service.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -839,31 +839,7 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
    * @returns {number} The base stat bonus value
    */
   _getPowerPointRecoveryBaseBonus() {
-    const realm = this.actor.system.fixed_info?.realm || "";
-    const stats = this.actor.system.stats || {};
-    
-    const empathyBonus = Number(stats.empathy?.stat_bonus) || 0;
-    const intuitionBonus = Number(stats.intuition?.stat_bonus) || 0;
-    const presenceBonus = Number(stats.presence?.stat_bonus) || 0;
-    
-    switch (realm) {
-      case "essence":
-        return empathyBonus;
-      case "channeling":
-        return intuitionBonus;
-      case "mentalism":
-        return presenceBonus;
-      case "essence/channeling":
-        return Math.ceil((empathyBonus + intuitionBonus) / 2);
-      case "essence/mentalism":
-        return Math.ceil((empathyBonus + presenceBonus) / 2);
-      case "channeling/mentalism":
-        return Math.ceil((intuitionBonus + presenceBonus) / 2);
-      case "arcane":
-        return Math.ceil((intuitionBonus + presenceBonus + empathyBonus) / 3);
-      default:
-        return 0;
-    }
+    return RestService.getPowerPointRecoveryBaseBonus(this.actor);
   }
 
   /**
@@ -928,59 +904,6 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
    * @param {number} hours
    */
   async _performLongRest(hours) {
-    this.actor.prepareData();
-
-    const intervals = Math.max(0, Math.floor(Number(hours) / 3));
-    const conStatBonus = Number(this.actor.system.stats?.constitution?.stat_bonus) || 0;
-    const realmStatBonus = this._getRealmStatBonus();
-
-    const hits = this.actor.system.attributes?.hits || {};
-    const hitsMax = Number(hits.max) || 0;
-    const hitsCurrent = Number(hits.current) || 0;
-    const hpRoom = Math.max(0, hitsMax - hitsCurrent);
-    const hpRecovered = Math.min(hpRoom, conStatBonus * 2 * intervals);
-
-    const pp = this.actor.system.attributes?.power_points || {};
-    const ppCurrent = Number(pp.current) || 0;
-    const ppMax = getEffectivePowerPointsMaxForSheet(this.actor);
-    const ppRoom = Math.max(0, ppMax - ppCurrent);
-    const ppRecovered = Math.min(ppRoom, realmStatBonus * 2 * intervals);
-
-    await this.actor.update({
-      "system.attributes.hits.current": hitsCurrent + hpRecovered,
-      "system.attributes.power_points.current": ppCurrent + ppRecovered
-    });
-
-    const hookReturns = Hooks.callAll("rmssLongRest", this.actor);
-    await Promise.all((hookReturns ?? []).filter((r) => r && typeof r.then === "function"));
-
-    const whispers = new Set();
-    (game.users ?? []).filter((u) => this.actor.testUserPermission(u, "OWNER")).forEach((u) => whispers.add(u.id));
-    (game.users ?? []).filter((u) => u.isGM).forEach((u) => whispers.add(u.id));
-
-    const hoursNum = Math.max(0, Math.floor(Number(hours)) || 0);
-    const hoursUnitKey = hoursNum === 1 ? "rmss.long_rest.hour_unit" : "rmss.long_rest.hours_unit";
-    const hoursUnit = game.i18n.localize(hoursUnitKey);
-    const nameSafe = typeof foundry.utils?.escapeHTML === "function"
-      ? foundry.utils.escapeHTML(this.actor.name)
-      : this.actor.name;
-    const summaryLine = game.i18n.format("rmss.long_rest.chat_message", {
-      name: nameSafe,
-      hours: hoursNum,
-      hoursUnit
-    });
-    const imgSrc = this.actor.img;
-    const portraitHtml = imgSrc
-      ? `<img src="${imgSrc}" alt="" width="40" height="40" style="border-radius: 6px; border: 1px solid #333; object-fit: cover; flex-shrink: 0;" />`
-      : "";
-    const content = `<p class="rmss-long-rest-chat" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 0 0 0.35em 0;">${portraitHtml}<span>${summaryLine}</span></p>
-            <p>${game.i18n.localize("rmss.long_rest.hits_recovered")}: ${hpRecovered}</p>
-            <p>${game.i18n.localize("rmss.long_rest.pp_recovered")}: ${ppRecovered}</p>`;
-
-    await ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content,
-      whisper: Array.from(whispers)
-    });
+    await RestService.performLongRest(this.actor, hours);
   }
 }
