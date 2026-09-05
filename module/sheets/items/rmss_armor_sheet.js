@@ -361,7 +361,9 @@ export default class RMSSArmorSheet extends ItemSheet {
       const matDef = CONFIG.rmss?.materials?.[material];
       if (matDef) {
         formData["system.bonus"] = matDef.bonus;
-        formData["system.magical"] = matDef.magical;
+        // OR, not overwrite: a power modifier above may have already set this true, and the
+        // material shouldn't be able to un-magic an item on that account.
+        formData["system.magical"] = !!matDef.magical || formData["system.magical"] === true;
         formData["system.quality"] = null;
       }
     }
