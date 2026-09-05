@@ -129,7 +129,10 @@ export function computePowerModifierPatch(mode, value, realm, remaining, current
       "system.pp_multiplier_realm": realm || "",
       "system.spell_adder": 0,
       "system.spell_adder_realm": "",
-      "system.spell_adder_uses_remaining": 0
+      "system.spell_adder_uses_remaining": 0,
+      // A spell-adder/multiplier power modifier makes the item magical on its own, regardless
+      // of the material selection (which is the only other thing that currently sets this).
+      "system.magical": true
     };
   }
   if (mode === "spell_adder") {
@@ -151,7 +154,8 @@ export function computePowerModifierPatch(mode, value, realm, remaining, current
       "system.spell_adder_realm": realm || "",
       "system.spell_adder_uses_remaining": remainingVal,
       "system.pp_multiplier": 1,
-      "system.pp_multiplier_realm": ""
+      "system.pp_multiplier_realm": "",
+      "system.magical": true
     };
   }
   return {

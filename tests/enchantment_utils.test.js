@@ -261,8 +261,13 @@ describe('computePowerModifierPatch', () => {
       'system.pp_multiplier_realm': 'essence',
       'system.spell_adder': 0,
       'system.spell_adder_realm': '',
-      'system.spell_adder_uses_remaining': 0
+      'system.spell_adder_uses_remaining': 0,
+      'system.magical': true
     });
+  });
+
+  test('mode "multiplier": marks the item magical on its own', () => {
+    expect(computePowerModifierPatch('multiplier', 3, 'essence', undefined, {})['system.magical']).toBe(true);
   });
 
   test('mode "multiplier": a value below 2 (or invalid) falls back to 2', () => {
@@ -277,8 +282,13 @@ describe('computePowerModifierPatch', () => {
       'system.spell_adder_realm': 'channeling',
       'system.spell_adder_uses_remaining': 5,
       'system.pp_multiplier': 1,
-      'system.pp_multiplier_realm': ''
+      'system.pp_multiplier_realm': '',
+      'system.magical': true
     });
+  });
+
+  test('mode "spell_adder": marks the item magical on its own', () => {
+    expect(computePowerModifierPatch('spell_adder', 5, 'essence', undefined, {})['system.magical']).toBe(true);
   });
 
   test('mode "spell_adder": realm-only change (adder untouched) leaves a valid remaining value alone', () => {
@@ -298,7 +308,7 @@ describe('computePowerModifierPatch', () => {
     expect(computePowerModifierPatch('spell_adder', 'x', '', undefined, {})['system.spell_adder']).toBe(1);
   });
 
-  test('mode "" (none): zeroes/resets everything', () => {
+  test('mode "" (none): zeroes/resets everything, and leaves magical alone (material may still be magical)', () => {
     const patch = computePowerModifierPatch('', undefined, undefined, undefined, { pp_multiplier: 3, spell_adder: 5 });
     expect(patch).toEqual({
       'system.pp_multiplier': 1,
@@ -307,5 +317,6 @@ describe('computePowerModifierPatch', () => {
       'system.spell_adder_realm': '',
       'system.spell_adder_uses_remaining': 0
     });
+    expect(patch).not.toHaveProperty('system.magical');
   });
 });
