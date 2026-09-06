@@ -646,9 +646,24 @@ A second, separate "Closed Essence" section from the Essence Companion (14.3), d
 - `spell_lists/en/essence/water_mastery.json`
 - `spell_lists/es/essence/water_mastery.json`
 
-### Fire Specialist Base Lists (Elemental Companion)
+### Elemental/Fire Specialist Base Lists (Elemental Companion)
 
-Base list for the Fire Specialist profession (Elemental Companion 5.9), kept in its own `fire_and_ice/` subfolder (mirrors the `training-packages/` pattern) since it comes from a different sourcebook than the rest of the Essence Companion (14.x) lists above.
+Base lists from the Elemental Companion, kept in their own `fire_and_ice/` subfolder (mirrors the `training-packages/` pattern) since they come from a different sourcebook than the rest of the Essence Companion (14.x) lists above. Not every list here is Fire-specific: Elemental Defenses (5.6.2) is a Common Specialist list shared by every elemental specialist profession (Fire, Ice, etc.), kept in this same folder for now rather than splitting by element.
+
+#### Elemental Counters (5.6.1)
+23 spells — identifying and then countering an opposing spell with elemental force from the caster's Source Element, Main Element, or Triad (increasing spell level), plus power draining and converting a Source Element spell to the caster's Main Element.
+- `spell_lists/en/essence/fire_and_ice/elemental_counters.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_counters.json`
+
+#### Elemental Defenses (5.6.2)
+21 spells (levels 1 and 15 intentionally blank in the source) — personal/shared armor, shields, and immunity built around the caster's own Main Element and Triad, plus deflecting or containing incoming elemental bolts/cones/balls.
+- `spell_lists/en/essence/fire_and_ice/elemental_defenses.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_defenses.json`
+
+#### Elemental Summons (5.6.3)
+23 spells — attuning to an elemental familiar, summoning/controlling/mastering/commanding elementals of increasing Type (I-V), calming an elemental, speaking to elementals of a given source, and ultimately summoning a Dragon of the caster's own elemental type.
+- `spell_lists/en/essence/fire_and_ice/elemental_summons.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_summons.json`
 
 #### Fiery Ways (5.9.1)
 23 spells — a hand wreathed in flame, arcs and bolts of fire and heat, walls/cubes/circles of heat, cones of fire and heat, multiple fire strikes, and a directable ball of fire.
@@ -1025,7 +1040,7 @@ const FILES_BY_FOLDER = {
     "arachnemancy", "brewing_lore", "guildcraft_mastery", "hearth_magic", "magical_ropes",
     "mending_ways", "mirror_magic", "ocean_law", "predictions", "travelers_ways"
   ],
-  "fire_and_ice": ["fiery_ways"],
+  "fire_and_ice": ["elemental_counters", "elemental_defenses", "elemental_summons", "fiery_ways"],
   channeling: [
     "barrier_law", "concussion_ways", "detection_mastery", "lights_way", "lofty_movements", "natures_law",
     "purifications", "sounds_way", "spell_defense", "weather_ways",
