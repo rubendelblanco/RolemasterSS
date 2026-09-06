@@ -56,6 +56,8 @@
                     <th>{{localize "rmss.weapon.type"}}</th>
                     <th>{{localize "rmss.weapon.weight"}}</th>
                     <th>{{localize "rmss.weapon.fumble_range"}}</th>
+                    <th>{{localize "rmss.weapon.breakage_range"}}</th>
+                    <th>{{localize "rmss.weapon.strength"}}</th>
                 </tr>
                 <tr>
                     <td>
@@ -83,13 +85,19 @@
                     <td>
                         <input name="system.fumble_range" type="text" value="{{system.fumble_range}}" data-dtype="String"/>
                     </td>
+                    <td>
+                        <input name="system.breakage_range" type="text" value="{{system.breakage_range}}" data-dtype="String" placeholder="01-03"/>
+                    </td>
+                    <td>
+                        <input name="system.strength" type="text" value="{{system.strength}}" data-dtype="String"/>
+                    </td>
                 </tr>
                 {{#if (eq system.type "mis")}}
                 <tr>
-                    <th colspan="5">{{localize "rmss.weapon.ammo_type"}}</th>
+                    <th colspan="7">{{localize "rmss.weapon.ammo_type"}}</th>
                 </tr>
                 <tr>
-                    <td colspan="5">
+                    <td colspan="7">
                         <select name="system.ammoType" data-dtype="String" class="rmss-weapon-ammo-select">
                             <option value="">{{localize "rmss.weapon.ammo_type_none"}}</option>
                             {{#each config.ammunition_types as |at|}}
