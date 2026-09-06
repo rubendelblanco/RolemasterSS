@@ -95,16 +95,19 @@ export function pickAmmoStackDialog(stacks) {
 }
 
 /**
- * Missile weapon ({@code mis}) with {@code system.ammoType}: consume 1 from a matching stack before resolving the attack.
+ * Missile weapon ({@code mis}) with {@code system.ammoType}: pick (but don't yet consume) a
+ * matching ammo stack, so its {@code attack_bonus} can be folded into the attack confirmation
+ * dialog BEFORE the roll. Call {@link consumeOneAmmoFromStack} on the returned item once the
+ * attack is actually confirmed.
  * @param {Actor} actor
  * @param {Item} weapon
- * @returns {Promise<{ ok: boolean, reason?: string }>}
+ * @returns {Promise<{ ok: boolean, reason?: string, ammoItem?: Item|null }>}
  */
-export async function tryConsumeMissileAmmo(actor, weapon) {
-    if (weapon.type !== "weapon") return { ok: true };
-    if (weapon.system?.type !== "mis") return { ok: true };
+export async function pickMissileAmmoForAttack(actor, weapon) {
+    if (weapon.type !== "weapon") return { ok: true, ammoItem: null };
+    if (weapon.system?.type !== "mis") return { ok: true, ammoItem: null };
     const ammoType = String(weapon.system?.ammoType ?? "").trim();
-    if (!ammoType) return { ok: true };
+    if (!ammoType) return { ok: true, ammoItem: null };
 
     const stacks = findAmmoStacksForWeapon(actor, weapon);
     if (stacks.length === 0) {
@@ -117,13 +120,22 @@ export async function tryConsumeMissileAmmo(actor, weapon) {
         return { ok: false, reason: "cancelled" };
     }
 
-    const name = stack.name;
-    const remaining = await consumeOneAmmoFromStack(stack);
+    return { ok: true, ammoItem: stack };
+}
+
+/**
+ * Consume 1 unit from the ammo stack chosen by {@link pickMissileAmmoForAttack}, once the attack
+ * has actually been confirmed (so a cancelled attack doesn't burn ammo).
+ * @param {Item} ammoItem
+ */
+export async function consumeChosenAmmo(ammoItem) {
+    if (!ammoItem) return;
+    const name = ammoItem.name;
+    const remaining = await consumeOneAmmoFromStack(ammoItem);
     ui.notifications.info(
         game.i18n.format("rmss.combat.ammo_consumed", {
             name,
             remaining
         })
     );
-    return { ok: true };
 }

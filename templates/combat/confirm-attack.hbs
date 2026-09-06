@@ -14,6 +14,10 @@
         {{ localize "rmss.combat.attacker" }}
     </h3>
 
+    {{#if ammoName}}
+    <p style="margin:0 0 8px 0; font-style:italic; color:#333;">{{ localize "rmss.combat.ammo_used" }}: <b>{{ammoName}}</b></p>
+    {{/if}}
+
     <div class="form-group attacker" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
         <label>{{ localize "rmss.combat.ob" }}</label>
         <input class="calculable" type="number" id="weapon.system.total_bonus" name="ob" value="{{ob}}"

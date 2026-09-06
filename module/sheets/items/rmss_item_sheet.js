@@ -107,6 +107,7 @@ export default class RMSSItemSheet extends ItemSheet {
       equipChecked: !!system.worn,
       itemTags: getItemTagsArray(system),
       hasFoodTag: getItemTagsArray(system).some((t) => t.toLowerCase() === "food"),
+      hasAmmoTag: getItemTagsArray(system).some((t) => CONFIG.rmss.ammunition_types.includes(t.toLowerCase())),
       itemTagListId: getItemTagListId(item),
       containerAllowedTags: getContainerAllowedTagsArray(system),
       containerAllowedTagListId: getContainerAllowedTagListId(item),

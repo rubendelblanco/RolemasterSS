@@ -101,6 +101,16 @@
                 </div>
                 {{/if}}
 
+                {{#if hasAmmoTag}}
+                <div class="rmss-detail-section rmss-detail-section--ammo">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-bullseye"></i> {{localize "rmss.item.section_ammo"}}</h3>
+                    <div class="form-group">
+                        <label>{{localize "rmss.item.ammo_attack_bonus"}}</label>
+                        <input type="number" name="system.attack_bonus" data-dtype="Number" value="{{system.attack_bonus}}" step="1" title="{{localize 'rmss.item.ammo_attack_bonus_hint'}}"/>
+                    </div>
+                </div>
+                {{/if}}
+
                 {{#if system.is_container}}
                 <div class="rmss-detail-section rmss-detail-section--container">
                     <h3 class="rmss-detail-section-title"><i class="fas fa-box-open"></i> {{localize "rmss.item.container_contents"}} {{item.name}}{{#if containerStats.maxCapacity}} ({{containerStats.usedValue}}/{{containerStats.maxCapacity}}{{#if (eq system.container.capacityType "weight")}} kg{{else}} items{{/if}}){{/if}}</h3>

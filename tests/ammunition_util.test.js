@@ -1,4 +1,4 @@
-import { findAmmoStacksOnActor, findAmmoStacksForWeapon } from "../module/actors/utils/ammunition_util.js";
+import { findAmmoStacksOnActor, findAmmoStacksForWeapon, pickMissileAmmoForAttack } from "../module/actors/utils/ammunition_util.js";
 
 function mockItem(id, tags, qty) {
     return {
@@ -38,5 +38,25 @@ describe("ammunition_util", () => {
         const weapon = { system: { ammoType: "", type: "mis" } };
         const actor = mockActor([weapon, mockItem("m", ["arrow"], 3)]);
         expect(findAmmoStacksForWeapon(actor, weapon).length).toBe(0);
+    });
+
+    describe("pickMissileAmmoForAttack short-circuits", () => {
+        test("non-weapon item type: ok, no ammoItem, no dialog", async () => {
+            const actor = mockActor([]);
+            const item = { type: "skill", system: { type: "mis", ammoType: "arrow" } };
+            await expect(pickMissileAmmoForAttack(actor, item)).resolves.toEqual({ ok: true, ammoItem: null });
+        });
+
+        test("non-missile weapon (melee): ok, no ammoItem, no dialog", async () => {
+            const actor = mockActor([]);
+            const weapon = { type: "weapon", system: { type: "melee", ammoType: "" } };
+            await expect(pickMissileAmmoForAttack(actor, weapon)).resolves.toEqual({ ok: true, ammoItem: null });
+        });
+
+        test("missile weapon with no ammoType configured: ok, no ammoItem, no dialog", async () => {
+            const actor = mockActor([]);
+            const weapon = { type: "weapon", system: { type: "mis", ammoType: "" } };
+            await expect(pickMissileAmmoForAttack(actor, weapon)).resolves.toEqual({ ok: true, ammoItem: null });
+        });
     });
 });

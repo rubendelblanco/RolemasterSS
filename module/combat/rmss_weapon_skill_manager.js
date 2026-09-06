@@ -8,7 +8,7 @@ import WeaponBreakageService from "./services/weapon_breakage_service.js";
 import FacingService from "./services/facing_service.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
-import { tryConsumeMissileAmmo } from "../actors/utils/ammunition_util.js";
+import { pickMissileAmmoForAttack, consumeChosenAmmo } from "../actors/utils/ammunition_util.js";
 import { withPublicRollMode } from "../chat/chatMessages.js";
 import { getWeaponSlayingArray } from "../sheets/items/weapon_slaying_ui.js";
 import { getCreatureTagsArray } from "../sheets/actors/creature_tags_ui.js";
@@ -23,10 +23,18 @@ export class RMSSWeaponSkillManager {
         // token uuid instead of game.actors.get(id) -- for an unlinked token that returns the
         // base world actor and silently drops whatever that specific instance's ActorDelta
         // overrides (e.g. a bumped armor_type on just this creature).
+        // Ammo is picked (not yet consumed) BEFORE the GM confirmation so its attack_bonus can be
+        // folded into the confirm-attack dialog's total; it's only actually consumed once the
+        // attack is confirmed (see below), so a cancelled attack doesn't burn a shot.
+        const ammoPick = await pickMissileAmmoForAttack(actor, weapon);
+        if (!ammoPick.ok) return;
+
         const tokenData = {
             facingValue,
             attackerTokenUuid: attackerToken?.document?.uuid ?? attackerToken?.uuid ?? null,
-            enemyTokenUuid: defenderToken?.document?.uuid ?? defenderToken?.uuid ?? null
+            enemyTokenUuid: defenderToken?.document?.uuid ?? defenderToken?.uuid ?? null,
+            ammoBonus: Number(ammoPick.ammoItem?.system?.attack_bonus) || 0,
+            ammoName: ammoPick.ammoItem?.name ?? null
         };
 
         // Rotate attacker token to face the defender
@@ -54,8 +62,7 @@ export class RMSSWeaponSkillManager {
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, tokenData);
         if (!gmResponse.confirmed) return;
 
-        const ammoResult = await tryConsumeMissileAmmo(actor, weapon);
-        if (!ammoResult.ok) return;
+        await consumeChosenAmmo(ammoPick.ammoItem);
 
         const rollData = await RollService.highOpenEndedD100();
         const baseAttack = rollData.roll.terms[0].results[0].result;
@@ -226,6 +233,7 @@ export class RMSSWeaponSkillManager {
             bonusValue = 0;
             bonusEffects.forEach((bonus) => { bonusValue += bonus.flags.rmss.value; });
             bonusValue += RMSSWeaponSkillManager._getSlayingBonusDelta(realWeapon, realEnemy, enemy);
+            bonusValue += Number(tokenData?.ammoBonus) || 0;
             bonusValue -= Math.round((1 - (move.current / moveMax)) * 100);
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
         }
@@ -247,7 +255,8 @@ export class RMSSWeaponSkillManager {
             penaltyValue,
             facingValue,
             targetArmorType: Math.max(1, Math.min(20, targetArmorType)),
-            areaElementalBall
+            areaElementalBall,
+            ammoName: tokenData?.ammoName ?? null
         });
 
         let confirmed = await new Promise((resolve) => {
