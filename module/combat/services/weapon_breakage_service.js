@@ -28,6 +28,20 @@ export default class WeaponBreakageService {
     }
 
     /**
+     * A weapon only participates in the breakage mechanic when BOTH strength and breakage_range
+     * actually carry data. Leaving either blank (0/""/null/undefined) opts the weapon out
+     * entirely - the escape hatch for things like unarmed/martial-arts strikes that shouldn't be
+     * able to "break" at all, rather than always favoring survival via a 0 strength.
+     * @param {Item} weapon
+     * @returns {boolean}
+     */
+    static hasBreakageData(weapon) {
+        const hasStrength = Number(weapon?.system?.strength) > 0;
+        const hasRange = String(weapon?.system?.breakage_range ?? "").trim() !== "";
+        return hasStrength && hasRange;
+    }
+
+    /**
      * The silent check roll itself: 1d100 + weapon strength, breaks below 100. No dice3d
      * animation - this is meant to happen quietly in the background of the normal attack roll.
      * @param {Item} weapon
@@ -55,6 +69,7 @@ export default class WeaponBreakageService {
     static async maybeCheckBreakage(weapon, naturalRoll, actor) {
         if (weapon?.type !== "weapon") return;
         if (weapon.system?.broken) return;
+        if (!this.hasBreakageData(weapon)) return;
         if (!this.isBreakageTrigger(naturalRoll, weapon.system?.breakage_range)) return;
 
         const { broke } = await this.rollBreakageCheck(weapon);

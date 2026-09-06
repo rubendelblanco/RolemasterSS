@@ -44,3 +44,34 @@ describe('WeaponBreakageService.isBreakageTrigger', () => {
         expect(WeaponBreakageService.isBreakageTrigger(22, "abc")).toBe(false);
     });
 });
+
+describe('WeaponBreakageService.hasBreakageData', () => {
+    test('both strength and breakage_range set: has data', () => {
+        expect(WeaponBreakageService.hasBreakageData({ system: { strength: 70, breakage_range: "1-3" } })).toBe(true);
+    });
+
+    test('strength 0 (e.g. martial arts strike): no data, cannot break', () => {
+        expect(WeaponBreakageService.hasBreakageData({ system: { strength: 0, breakage_range: "1-3" } })).toBe(false);
+    });
+
+    test('missing strength: no data', () => {
+        expect(WeaponBreakageService.hasBreakageData({ system: { breakage_range: "1-3" } })).toBe(false);
+    });
+
+    test('empty breakage_range: no data even with strength set', () => {
+        expect(WeaponBreakageService.hasBreakageData({ system: { strength: 70, breakage_range: "" } })).toBe(false);
+    });
+
+    test('missing breakage_range: no data', () => {
+        expect(WeaponBreakageService.hasBreakageData({ system: { strength: 70 } })).toBe(false);
+    });
+
+    test('negative strength: no data', () => {
+        expect(WeaponBreakageService.hasBreakageData({ system: { strength: -5, breakage_range: "1-3" } })).toBe(false);
+    });
+
+    test('no system data at all: no data', () => {
+        expect(WeaponBreakageService.hasBreakageData({})).toBe(false);
+        expect(WeaponBreakageService.hasBreakageData(null)).toBe(false);
+    });
+});
