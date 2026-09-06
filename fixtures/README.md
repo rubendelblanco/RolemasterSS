@@ -646,6 +646,15 @@ A second, separate "Closed Essence" section from the Essence Companion (14.3), d
 - `spell_lists/en/essence/water_mastery.json`
 - `spell_lists/es/essence/water_mastery.json`
 
+### Fire Specialist Base Lists (Elemental Companion)
+
+Base list for the Fire Specialist profession (Elemental Companion 5.9), kept in its own `fire_and_ice/` subfolder (mirrors the `training-packages/` pattern) since it comes from a different sourcebook than the rest of the Essence Companion (14.x) lists above.
+
+#### Fiery Ways (5.9.1)
+23 spells — a hand wreathed in flame, arcs and bolts of fire and heat, walls/cubes/circles of heat, cones of fire and heat, multiple fire strikes, and a directable ball of fire.
+- `spell_lists/en/essence/fire_and_ice/fiery_ways.json`
+- `spell_lists/es/essence/fire_and_ice/fiery_ways.json`
+
 ### Listas base de profesión — Runemago (Essence Companion)
 
 **Runemage Base 14.4.1–14.4.6:** Hybrid Essence/Channeling profession centered on the power of written and spoken language — runes, symbols, true names, and wards.
@@ -993,7 +1002,7 @@ if (!pack) {
 // Creates every spell list in a folder in the world (or in a compendium).
 // Change FOLDER to: essence, channeling, arcane, mentalism, or essence/training-packages.
 const LANG = "es";
-const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages
+const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages | essence/fire_and_ice
 const PACK_ID = null;  // "world.spell-lists" to import into a compendium; null to create in Items
 
 const FILES_BY_FOLDER = {
@@ -1016,6 +1025,7 @@ const FILES_BY_FOLDER = {
     "arachnemancy", "brewing_lore", "guildcraft_mastery", "hearth_magic", "magical_ropes",
     "mending_ways", "mirror_magic", "ocean_law", "predictions", "travelers_ways"
   ],
+  "fire_and_ice": ["fiery_ways"],
   channeling: [
     "barrier_law", "concussion_ways", "detection_mastery", "lights_way", "lofty_movements", "natures_law",
     "purifications", "sounds_way", "spell_defense", "weather_ways",
