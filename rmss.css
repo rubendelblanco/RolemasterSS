@@ -2130,7 +2130,10 @@ button.rmss-crit-reenable-local:hover {
 }
 
 /* Wrapper para que el icono ampliado no sea recortado por la celda */
-.actor-sheet .list-item-icon-wrap {
+.actor-sheet .list-item-icon-wrap,
+.npc-sheet .list-item-icon-wrap,
+.merchant-sheet .list-item-icon-wrap,
+.loot-sheet .list-item-icon-wrap {
     display: inline-block;
     overflow: visible;
     position: relative;
@@ -2138,7 +2141,10 @@ button.rmss-crit-reenable-local:hover {
 }
 
 /* List item icons: zoom on icon hover (same as portrait) */
-.actor-sheet .list-item-icon {
+.actor-sheet .list-item-icon,
+.npc-sheet .list-item-icon,
+.merchant-sheet .list-item-icon,
+.loot-sheet .list-item-icon {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     transform-origin: left center;
     position: relative;
@@ -2183,7 +2189,13 @@ button.rmss-crit-reenable-local:hover {
 }
 
 .actor-sheet .list-item-icon:hover,
-.actor-sheet .list-item-icon-wrap:hover .list-item-icon {
+.actor-sheet .list-item-icon-wrap:hover .list-item-icon,
+.npc-sheet .list-item-icon:hover,
+.npc-sheet .list-item-icon-wrap:hover .list-item-icon,
+.merchant-sheet .list-item-icon:hover,
+.merchant-sheet .list-item-icon-wrap:hover .list-item-icon,
+.loot-sheet .list-item-icon:hover,
+.loot-sheet .list-item-icon-wrap:hover .list-item-icon {
     transform: scale(2);
     z-index: 1000;
     box-shadow: 0 0 12px rgba(0,0,0,0.5);
