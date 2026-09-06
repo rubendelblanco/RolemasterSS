@@ -4,6 +4,7 @@ import Utils from "../utils.js";
 import ManeuverPenaltiesService from "../core/maneuver_penalties_service.js";
 import RollService from "./services/roll_service.js";
 import WeaponFumbleService from "./services/weapon_fumble_service.js";
+import WeaponBreakageService from "./services/weapon_breakage_service.js";
 import FacingService from "./services/facing_service.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
@@ -58,6 +59,10 @@ export class RMSSWeaponSkillManager {
 
         const rollData = await RollService.highOpenEndedD100();
         const baseAttack = rollData.roll.terms[0].results[0].result;
+
+        // Breakage check: a natural double within the weapon's breakage_range triggers a silent
+        // 1d100+strength roll, independent of whether this attack hits/fumbles.
+        await WeaponBreakageService.maybeCheckBreakage(weapon, baseAttack, actor);
 
         // Fumble check FIRST: if roll <= fumble_range, it's a fumble (weapon fumble table)
         const fumbleRange = weapon.type === "weapon" ? weapon.system.fumble_range : null;

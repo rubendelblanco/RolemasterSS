@@ -3958,6 +3958,20 @@ button.rmss-crit-reenable-local:hover {
   width: 100%;
 }
 
+.rmss-weapon-name-line.rmss-weapon-broken {
+  color: #c62828;
+}
+.rmss-weapon-broken-icon {
+  color: #c62828;
+}
+.rmss-weapon-broken-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
 /* Spell Adder pips: misma alineación en items, armas, armadura y favoritos */
 .actor-sheet .spell-adder-pips {
   display: flex;

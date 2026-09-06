@@ -153,6 +153,10 @@ export class RMSSItem extends Item {
         ui.notifications.warn(game.i18n.localize("rmss.equipment.weapon_not_equipped"));
         return;
       }
+      if (this.type === "weapon" && this.system?.broken) {
+        ui.notifications.warn(game.i18n.localize("rmss.equipment.weapon_broken"));
+        return;
+      }
     }
 
     // 1. Execute custom macro if present
