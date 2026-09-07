@@ -159,6 +159,10 @@ export default class ForceSpellService {
         let isFumble = false;
         let targetRRs = [];
         let failureResult = null;
+        // Raw (un-normalized) realm, exposed to item macros via spellContext.realm below so
+        // they can look up each target's own resistance_rolls bonus (e.g. Sleep-type spells
+        // that roll each target's personal RR against targetRRs[].finalRR themselves).
+        let targetRRsRealm = null;
         // Artifact fixed cast level ("30th level effect") overrides the actor's real level only
         // for the RR the target must beat — XP awards below stay tied to the actor's real level.
         const effectiveCasterLevel = casterLevelOverride > 0
@@ -169,6 +173,7 @@ export default class ForceSpellService {
             // Determine realm: use spell list realm, or fall back to actor's realm for base lists
             const effectiveRealm = spellListRealm || actor.system.fixed_info?.realm || "essence";
             const realm = this._normalizeRealm(effectiveRealm);
+            targetRRsRealm = effectiveRealm;
             const casterLevel = effectiveCasterLevel;
             
             // Process each target separately (different armor types)
@@ -313,7 +318,7 @@ export default class ForceSpellService {
             // Store RR context for item macro (see Item._executeItemMacro JSDoc; e.g. Dormir V: roll RR per target, apply sleep if failed)
             game.rmss = game.rmss || {};
             game.rmss.lastSpellContext = targetRRs.length > 0
-                ? { targetRRs, casterLevel: effectiveCasterLevel }
+                ? { targetRRs, casterLevel: effectiveCasterLevel, realm: targetRRsRealm }
                 : null;
 
             const sourceToken = getActorToken(actor);

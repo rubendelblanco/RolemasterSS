@@ -181,7 +181,8 @@ export class RMSSItem extends Item {
    *   Items (e.g. cast from a potion enchantment), which have no .actor at all.
    * - spellContext: {SpellContext|null} Set right before use().
    *   Force (F) spells with targets: spellContext.targetRRs — roll RR per target and apply
-   *   effects (e.g. Sleep).
+   *   effects (e.g. Sleep); spellContext.realm — the spell list's raw realm string (e.g.
+   *   "essence", "essence/channeling"), for looking up each target's own resistance_rolls bonus.
    *   BE ball (area) spells: spellContext.areaEpicenter {x,y}, spellContext.areaDiameter
    *   (grid units), spellContext.targetTokenUuids — the exact impact point/targets used by
    *   the mechanical resolution, frozen at that moment (safer than re-deriving from the live
