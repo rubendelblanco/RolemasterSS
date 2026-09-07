@@ -2,7 +2,13 @@
  * @jest-environment node
  */
 import RMSSTableManager from "../module/combat/rmss_table_manager.js";
-import { getAreaDefenseDb, isPointInsideTemplate } from "../module/combat/services/area_spell_resolution_service.js";
+import {
+    getAreaDefenseDb,
+    isPointInsideTemplate,
+    getCircleEpicenter,
+    getCircleRadiusInGridUnits,
+    getTemplateAuthorUserId
+} from "../module/combat/services/area_spell_resolution_service.js";
 
 function makeRow(resultRange, at1 = "-") {
     const r = { Result: resultRange, "1": at1 };
@@ -117,14 +123,62 @@ describe("isBallGlobalFailureRow", () => {
     });
 });
 
+// v14 dropped MeasuredTemplate: a "circle template" is now a single-shape circle Region, with
+// the shape's own x/y/radius (scene pixels) standing in for the old document.x/y/distance.
+function makeCircleRegion({ x = 100, y = 200, radius = 50, authorId = null, createdAt = null } = {}) {
+    return {
+        document: {
+            shapes: [{ type: "circle", x, y, radius }],
+            flags: authorId ? { rmss: { authorId, createdAt } } : {},
+            getFlag: (scope, key) => (scope === "rmss" ? { authorId, createdAt }[key] : undefined)
+        }
+    };
+}
+
 describe("isPointInsideTemplate", () => {
-    test("prefers testPoint when present (Foundry v13 world coords)", () => {
-        const template = {
-            document: { t: "circle" },
-            testPoint: (p) => p.x === 100 && p.y === 200
-        };
+    test("point at/near the circle center is inside", () => {
+        const template = makeCircleRegion({ x: 100, y: 200, radius: 50 });
         expect(isPointInsideTemplate(template, { x: 100, y: 200 })).toBe(true);
-        expect(isPointInsideTemplate(template, { x: 0, y: 0 })).toBe(false);
+        expect(isPointInsideTemplate(template, { x: 130, y: 200 })).toBe(true);
+    });
+    test("point outside the radius is not inside", () => {
+        const template = makeCircleRegion({ x: 100, y: 200, radius: 50 });
+        expect(isPointInsideTemplate(template, { x: 500, y: 500 })).toBe(false);
+    });
+    test("non-circle or multi-shape region is never inside", () => {
+        const notCircle = { document: { shapes: [{ type: "rectangle", x: 0, y: 0 }] } };
+        expect(isPointInsideTemplate(notCircle, { x: 0, y: 0 })).toBe(false);
+    });
+});
+
+describe("getCircleEpicenter", () => {
+    test("returns the shape's x/y", () => {
+        const template = makeCircleRegion({ x: 42, y: 84, radius: 10 });
+        expect(getCircleEpicenter(template)).toEqual({ x: 42, y: 84 });
+    });
+    test("null for a non-circle template", () => {
+        expect(getCircleEpicenter({ document: { shapes: [] } })).toBeNull();
+    });
+});
+
+describe("getCircleRadiusInGridUnits", () => {
+    const originalCanvas = global.canvas;
+    afterEach(() => { global.canvas = originalCanvas; });
+
+    test("converts scene-pixel radius to grid distance units", () => {
+        global.canvas = { grid: { size: 100, distance: 5 } };
+        const template = makeCircleRegion({ radius: 280 });
+        expect(getCircleRadiusInGridUnits(template)).toBe(14);
+    });
+});
+
+describe("getTemplateAuthorUserId", () => {
+    test("reads flags.rmss.authorId via getFlag", () => {
+        const region = makeCircleRegion({ authorId: "user123" }).document;
+        expect(getTemplateAuthorUserId(region)).toBe("user123");
+    });
+    test("null when no author flag stamped yet", () => {
+        expect(getTemplateAuthorUserId({ getFlag: () => undefined })).toBeNull();
     });
 });
 

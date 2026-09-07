@@ -7,10 +7,25 @@ import { RMSSEffectApplier } from "./rmss_effect_applier.js";
 import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_manager.js";
 import { registerCombatTurnTickHooks } from "./combat_turn_tick.js";
 import { registerDelayedActionHooks } from "./delayed_action_service.js";
+import { socket } from "../../rmss.js";
 
 export function registerCombatHooks() {
     registerCombatTurnTickHooks();
     registerDelayedActionHooks();
+
+    // v14 dropped MeasuredTemplate: area-spell "circle templates" are now single-shape circle
+    // Regions (Region Controls > Draw Circle / Measured Template Mode), and RegionDocument has
+    // no author field of its own. Stamp flags.rmss.authorId/createdAt on it right after creation
+    // so area_spell_resolution_service.js can find "the circle the current user just drew" the
+    // same way it used to via MeasuredTemplateDocument#author. Routed through the GM (like every
+    // other write here) since the creating player may not hold update permission on the Region.
+    Hooks.on("createRegion", (regionDoc, options, userId) => {
+        if (userId !== game.user.id) return;
+        const shapes = regionDoc.shapes;
+        if (!Array.isArray(shapes) || shapes.length !== 1 || shapes[0]?.type !== "circle") return;
+        if (regionDoc.getFlag("rmss", "authorId")) return;
+        socket.executeAsGM("stampCircleTemplateAuthor", regionDoc.uuid, userId);
+    });
     // Weapon fumble: Mounted? checkbox only visible to GM
     Hooks.on("renderChatMessage", (message, html, data) => {
         const mountedCheck = html.find(".weapon-fumble-mounted-check");

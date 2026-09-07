@@ -19,35 +19,45 @@ export function getAreaDefenseDb(actor) {
 }
 
 /**
- * @param {MeasuredTemplateDocument|object} doc
+ * v14 removed MeasuredTemplate entirely - "circle templates" are now single-shape circle
+ * Regions (placed via Region Controls > Draw Circle / Measured Template Mode). Regions carry
+ * no author field of their own, so registerCombatHooks() stamps flags.rmss.authorId/createdAt
+ * on them right after creation (via a GM socket call, since a player may not have update
+ * permission on the Region document otherwise) - see rmss.js's "stampCircleTemplateAuthor".
+ * @param {RegionDocument|object} doc
  * @returns {string|null}
  */
 export function getTemplateAuthorUserId(doc) {
-    if (!doc) return null;
-    const a = doc.author;
-    if (typeof a === "string") return a;
-    if (a && typeof a === "object" && a.id) return a.id;
-    const u = doc.user;
-    if (typeof u === "string") return u;
-    if (u && typeof u === "object" && u.id) return u.id;
-    return null;
+    return doc?.getFlag?.("rmss", "authorId") ?? doc?.flags?.rmss?.authorId ?? null;
 }
 
 /**
- * Most recently updated circle template on the current scene placed by the given user.
+ * Single-shape circle on a Region document, or null if it isn't a plain circle template.
+ * @param {RegionDocument|object} doc
+ * @returns {{type: string, x: number, y: number, radius: number}|null}
+ */
+function getCircleShape(doc) {
+    const shapes = doc?.shapes;
+    if (!Array.isArray(shapes) || shapes.length !== 1) return null;
+    const shape = shapes[0];
+    return shape?.type === "circle" ? shape : null;
+}
+
+/**
+ * Most recently created circle template Region on the current scene placed by the given user.
  * @param {string} userId
- * @returns {MeasuredTemplate|null}
+ * @returns {Region|null}
  */
 export function getLatestCircleTemplateForUser(userId) {
-    if (typeof canvas === "undefined" || !canvas?.ready || !canvas.templates?.placeables) return null;
-    const candidates = canvas.templates.placeables.filter((t) => {
-        if (t.document?.t !== "circle") return false;
-        return getTemplateAuthorUserId(t.document) === userId;
+    if (typeof canvas === "undefined" || !canvas?.ready || !canvas.regions?.placeables) return null;
+    const candidates = canvas.regions.placeables.filter((r) => {
+        if (!getCircleShape(r.document)) return false;
+        return getTemplateAuthorUserId(r.document) === userId;
     });
     if (!candidates.length) return null;
     candidates.sort((a, b) => {
-        const ta = a.document?._stats?.modifiedTime ?? 0;
-        const tb = b.document?._stats?.modifiedTime ?? 0;
+        const ta = a.document?.getFlag?.("rmss", "createdAt") ?? 0;
+        const tb = b.document?.getFlag?.("rmss", "createdAt") ?? 0;
         if (tb !== ta) return tb - ta;
         return String(b.id ?? "").localeCompare(String(a.id ?? ""));
     });
@@ -55,28 +65,28 @@ export function getLatestCircleTemplateForUser(userId) {
 }
 
 /**
- * Whether a world/canvas point lies inside the template (handles v13 local shape vs world coords).
- * @param {MeasuredTemplate} template
+ * Whether a world/canvas point lies inside the circle template (plain distance check against
+ * the shape's own x/y/radius, which Region stores in scene pixel units - same coordinate space
+ * as Token#center).
+ * @param {Region} template
  * @param {{ x: number, y: number }} point
  * @returns {boolean}
  */
 export function isPointInsideTemplate(template, point) {
-    if (!template || template.document?.t !== "circle" || !point) return false;
-    if (typeof template.testPoint === "function") {
-        return template.testPoint(point);
-    }
-    const shape = template.shape;
-    if (!shape?.contains) return false;
-    return shape.contains(point.x, point.y);
+    const shape = getCircleShape(template?.document);
+    if (!shape || !point) return false;
+    const dx = point.x - shape.x;
+    const dy = point.y - shape.y;
+    return (dx * dx + dy * dy) <= shape.radius * shape.radius;
 }
 
 /**
  * Tokens with actors (armor_info) whose center lies inside the template shape.
- * @param {MeasuredTemplate} template
+ * @param {Region} template
  * @returns {Token[]}
  */
 export function getTokensInsideTemplate(template) {
-    if (!template || template.document?.t !== "circle") return [];
+    if (!getCircleShape(template?.document)) return [];
     return canvas.tokens.placeables.filter((t) => {
         if (!t.actor?.system?.armor_info) return false;
         return isPointInsideTemplate(template, t.center);
@@ -85,13 +95,41 @@ export function getTokensInsideTemplate(template) {
 
 /**
  * Epicenter (world x,y) for a circle template.
- * @param {MeasuredTemplate} template
+ * @param {Region} template
  * @returns {{ x: number, y: number }|null}
  */
 export function getCircleEpicenter(template) {
-    const d = template?.document;
-    if (!d || d.t !== "circle") return null;
-    return { x: d.x, y: d.y };
+    const shape = getCircleShape(template?.document);
+    return shape ? { x: shape.x, y: shape.y } : null;
+}
+
+/**
+ * Circle template radius converted from scene pixels (how Region stores it) to grid distance
+ * units (e.g. feet) - the unit the old MeasuredTemplateDocument#distance field used to give
+ * directly, and what spellContext.areaDiameter/callers downstream still expect.
+ * @param {Region} template
+ * @returns {number|null}
+ */
+export function getCircleRadiusInGridUnits(template) {
+    const shape = getCircleShape(template?.document);
+    if (!shape) return null;
+    const gridSize = canvas?.grid?.size || 100;
+    const gridDistance = canvas?.grid?.distance || 1;
+    return (shape.radius / gridSize) * gridDistance;
+}
+
+/**
+ * GM-only: stamp the creating user's id onto a freshly-placed circle template Region.
+ * Called via socket.executeAsGM from registerCombatHooks()'s "createRegion" hook, since the
+ * creating player may not hold update permission on the Region document.
+ * @param {string} regionUuid
+ * @param {string} userId
+ */
+export async function stampCircleTemplateAuthorGM(regionUuid, userId) {
+    const region = await fromUuid(regionUuid);
+    if (!region) return;
+    if (region.getFlag("rmss", "authorId")) return;
+    await region.update({ "flags.rmss.authorId": userId, "flags.rmss.createdAt": Date.now() });
 }
 
 /**

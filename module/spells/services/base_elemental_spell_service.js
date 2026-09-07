@@ -20,6 +20,7 @@ import {
     getLatestCircleTemplateForUser,
     getTokensInsideTemplate,
     getCircleEpicenter,
+    getCircleRadiusInGridUnits,
     sortTokensByEpicenter,
     isTokenAtEpicenter,
     getAreaDefenseDb
@@ -865,7 +866,7 @@ export default class BaseElementalSpellService {
         game.rmss = game.rmss || {};
         game.rmss.lastSpellContext = {
             areaEpicenter: { x: epicenter.x, y: epicenter.y },
-            areaDiameter: template.document.distance * 2,
+            areaDiameter: getCircleRadiusInGridUnits(template) * 2,
             targetTokenUuids: areaTokens.map((t) => t.document.uuid)
         };
         // Item macros need the real caster token even when `spell` is a detached/temp Item

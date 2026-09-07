@@ -111,6 +111,10 @@ Hooks.once("socketlib.ready", () => {
     const { default: SpellHealService } = await import("./module/spells/services/spell_heal_service.js");
     return SpellHealService.applySpellHealHitsGM(payload);
   });
+  socket.register("stampCircleTemplateAuthor", async (regionUuid, userId) => {
+    const { stampCircleTemplateAuthorGM } = await import("./module/combat/services/area_spell_resolution_service.js");
+    return stampCircleTemplateAuthorGM(regionUuid, userId);
+  });
   socket.register("recordCombatStat", async (combatId, op, payload) => {
     const combat = game.combats.get(combatId);
     if (!combat) return;
