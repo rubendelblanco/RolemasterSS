@@ -745,6 +745,31 @@ Base lists for the Elemental Champion profession (Elemental Companion 5.14), kep
 - `spell_lists/en/essence/elemental_champion/combat_links.json`
 - `spell_lists/es/essence/elemental_champion/combat_links.json`
 
+#### Elemental Armor (5.14.2)
+22 spells (level 13 intentionally blank in the source) — infusing the caster's own armor/clothing with elemental material and bonding it to his body, then a defensive Protective Aura (I-IV), a scorching Aura Burn hitting everyone nearby (I-III), softening/hardening the armor, storing a spell in the armor to trigger instantly later, staunching bleeding, escaping the worst outcome of a critical (Minor Barrier), distracting an attacker, and Elemental Shroud/True Shroud combining Protective Aura and Aura Burn into one spell.
+- `spell_lists/en/essence/elemental_champion/elemental_armor.json`
+- `spell_lists/es/essence/elemental_champion/elemental_armor.json`
+
+#### Elemental Companions (5.14.3)
+21 spells (levels 3, 8 intentionally blank in the source) — calming/befriending hybrid elemental animals, summoning and controlling/mastering a hybrid animal or Elemental Steed, silent and long-range commands, locating mastered animals, riding bonuses, calling a mount, and summoning/controlling/mastering a Lesser Riding Drake.
+- `spell_lists/en/essence/elemental_champion/elemental_companions.json`
+- `spell_lists/es/essence/elemental_champion/elemental_companions.json`
+
+#### Elemental Weapons (5.14.4)
+23 spells — pooling elemental material and forging/infusing a bonded weapon over a week-long ritual (Infuse Weapon I-V), a temporary extra elemental critical (Elemental Whisp I-III), locating/calling the bonded weapon, an untouchable elemental nimbus, superior parries, reducing the weapon's own corruption, Burying the Blade, and Sacrifice - detonating the weapon and the caster's body to automatically slay a target.
+- `spell_lists/en/essence/elemental_champion/elemental_weapons.json`
+- `spell_lists/es/essence/elemental_champion/elemental_weapons.json`
+
+#### Lesser Elemental Change (5.14.5)
+18 spells (levels 2, 4, 9, 14, 16 intentionally blank in the source) — a temporary extra elemental critical on unarmed strikes, bonding clothes to skin as the hide of increasingly powerful creatures, taking the full physical form of an elemental creature (trading spellcasting for its natural attacks), a humanoid variant keeping spellcasting/gear, tripling the next spell's duration, and converting limbs into elemental material.
+- `spell_lists/en/essence/elemental_champion/lesser_elemental_change.json`
+- `spell_lists/es/essence/elemental_champion/lesser_elemental_change.json`
+
+#### Lesser Elemental Protections (5.14.6)
+20 spells (levels 10, 11, 18 intentionally blank in the source; levels 19-20 have no description printed at all in the source) — resisting the caster's Main Element, one Triad element, or any element, with escalating DB/RR bonuses, draining incoming elemental damage/critical severity, and outright immunity.
+- `spell_lists/en/essence/elemental_champion/lesser_elemental_protections.json`
+- `spell_lists/es/essence/elemental_champion/lesser_elemental_protections.json`
+
 ### Elemental/Fire Specialist Base Lists (Elemental Companion)
 
 Base lists from the Elemental Companion, kept in their own `fire_and_ice/` subfolder (mirrors the `training-packages/` pattern) since they come from a different sourcebook than the rest of the Essence Companion (14.x) lists above. Not every list here is Fire-specific: Elemental Defenses (5.6.2) is a Common Specialist list shared by every elemental specialist profession (Fire, Ice, etc.), kept in this same folder for now rather than splitting by element.
@@ -1160,7 +1185,7 @@ const FILES_BY_FOLDER = {
   "light": ["dark_mastery", "light_mastery"],
   "water": ["water_mastery", "watery_ways"],
   "elemental_priest": ["elemental_channels", "elemental_combat_enhancements", "elemental_gate_mastery", "elemental_healing", "elemental_restorations", "elemental_transformations"],
-  "elemental_champion": ["combat_links"],
+  "elemental_champion": ["combat_links", "elemental_armor", "elemental_companions", "elemental_weapons", "lesser_elemental_change", "lesser_elemental_protections"],
   channeling: [
     "barrier_law", "concussion_ways", "detection_mastery", "lights_way", "lofty_movements", "natures_law",
     "purifications", "sounds_way", "spell_defense", "weather_ways",
