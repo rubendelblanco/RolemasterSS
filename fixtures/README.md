@@ -648,131 +648,131 @@ A second, separate "Closed Essence" section from the Essence Companion (14.3), d
 
 ### Air Specialist Base Lists (Elemental Companion)
 
-Base list for the Air Specialist profession (Elemental Companion 5.7), kept in its own `air/` subfolder (mirrors the `fire_and_ice/`/`training-packages/` pattern) since it comes from a different sourcebook than the rest of the Essence Companion (14.x) lists above.
+Base list for the Air Specialist profession (Elemental Companion 5.7), kept in its own `fire_and_ice/air/` subfolder - nested under `fire_and_ice/` since it's part of the same Elemental Companion sourcebook, alongside `earth/`, `light/`, `water/`, `elemental_priest/`, `elemental_champion/`, and `arcane_elementalist/` - rather than sitting alongside the rest of the Essence Companion (14.x) lists above.
 
 #### Air Control (5.7.1)
 23 spells — dust devils that race toward a target delivering Unbalancing criticals, wind/force bolts, immobilizing bands, walking on air, and constructs of solid Force (bridges, platforms, walls, domes, fields), plus a vibrating cone shockwave.
-- `spell_lists/en/essence/air/air_control.json`
-- `spell_lists/es/essence/air/air_control.json`
+- `spell_lists/en/essence/fire_and_ice/air/air_control.json`
+- `spell_lists/es/essence/fire_and_ice/air/air_control.json`
 
 #### Wind Mastery (5.7.2)
 23 spells — not needing to breathe, levitating and flying (up to 450'/round), stabilizing against wind, cross winds that foul missile fire, repulsing/shearing winds, a wind tunnel trap, turning into a gaseous form, a wind storm, and a devastating Tornado.
-- `spell_lists/en/essence/air/wind_mastery.json`
-- `spell_lists/es/essence/air/wind_mastery.json`
+- `spell_lists/en/essence/fire_and_ice/air/wind_mastery.json`
+- `spell_lists/es/essence/fire_and_ice/air/wind_mastery.json`
 
 ### Earth Specialist Base Lists (Elemental Companion)
 
-Base list for the Earth Specialist profession (Elemental Companion 5.8), kept in its own `earth/` subfolder (mirrors `air/`/`fire_and_ice/`/`training-packages/`) since it comes from a different sourcebook than the rest of the Essence Companion (14.x) lists above.
+Base list for the Earth Specialist profession (Elemental Companion 5.8), kept in its own `fire_and_ice/earth/` subfolder - nested under `fire_and_ice/` alongside the other Elemental Companion profession subfolders (`air/`, `light/`, `water/`, `elemental_priest/`, `elemental_champion/`, `arcane_elementalist/`) - rather than sitting alongside the rest of the Essence Companion (14.x) lists above.
 
 #### Earth Fields (5.8.1)
 23 spells — detecting and manipulating gravity and magnetism: levitation, magnetizing/warping/breaking ferric objects, a magnetic shield that snares ferric weapons, zero-G and inertialess fields, telekinetically moving ferric objects, and increasingly punishing high/low/reversed/nullified gravity zones, up to directing gravity to explode or implode a target outright.
-- `spell_lists/en/essence/earth/earth_fields.json`
-- `spell_lists/es/essence/earth/earth_fields.json`
+- `spell_lists/en/essence/fire_and_ice/earth/earth_fields.json`
+- `spell_lists/es/essence/fire_and_ice/earth/earth_fields.json`
 
 #### Earth Mastery (5.8.2)
 23 spells — reading and reshaping earth, stone, and metal: identifying composition, removing/inflicting oxidation, sharpening blades, corridors through stone, sinking or merging a target into earth, hardening skin to stone/metal, a metal-shard bolt, phasing/seeing through earth, a grappling earthen arm, boulders and spike floors, enhancing gems, and permanently reinforcing or repairing stone structures.
-- `spell_lists/en/essence/earth/earth_mastery.json`
-- `spell_lists/es/essence/earth/earth_mastery.json`
+- `spell_lists/en/essence/fire_and_ice/earth/earth_mastery.json`
+- `spell_lists/es/essence/fire_and_ice/earth/earth_mastery.json`
 
 ### Light Specialist Base Lists (Elemental Companion)
 
-Base lists for the Light Specialist profession (Elemental Companion 5.11), kept in their own `light/` subfolder (mirrors `air/`/`earth/`/`fire_and_ice/`/`training-packages/`) since they come from a different sourcebook than the rest of the Essence Companion (14.x) lists above.
+Base lists for the Light Specialist profession (Elemental Companion 5.11), kept in their own `fire_and_ice/light/` subfolder - nested under `fire_and_ice/` alongside the other Elemental Companion profession subfolders (`air/`, `earth/`, `water/`, `elemental_priest/`, `elemental_champion/`, `arcane_elementalist/`) - rather than sitting alongside the rest of the Essence Companion (14.x) lists above.
 
 #### Dark Mastery (5.11.1)
 21 spells (levels 12 and 13 intentionally blank in the source) — detecting shadows, seeing in the dark, deepening/hiding shadows, walls and bursts of darkness, invisibility, a living shadow-familiar that spies/fights/casts spells, banishing a shadow, and True Night which snuffs out even magical light.
-- `spell_lists/en/essence/light/dark_mastery.json`
-- `spell_lists/es/essence/light/dark_mastery.json`
+- `spell_lists/en/essence/fire_and_ice/light/dark_mastery.json`
+- `spell_lists/es/essence/fire_and_ice/light/dark_mastery.json`
 
 #### Light Mastery (5.11.2)
 23 spells — flares and dancing/fantastic lights, blurring and blinding, layered Optic Protection, lightning arcs/bolts/orbs, 'Fettered' attacks that also bind electrical energy, mesmerizing/discordant color patterns, and Light Mastery itself letting the caster use any lower spell on the list every round.
-- `spell_lists/en/essence/light/light_mastery.json`
-- `spell_lists/es/essence/light/light_mastery.json`
+- `spell_lists/en/essence/fire_and_ice/light/light_mastery.json`
+- `spell_lists/es/essence/fire_and_ice/light/light_mastery.json`
 
 ### Water Specialist Base Lists (Elemental Companion)
 
-Base lists for the Water Specialist profession (Elemental Companion 5.12), kept in their own `water/` subfolder (mirrors `air/`/`earth/`/`light/`/`fire_and_ice/`/`training-packages/`) since they come from a different sourcebook than the rest of the Essence Companion (14.x) lists above.
+Base lists for the Water Specialist profession (Elemental Companion 5.12), kept in their own `fire_and_ice/water/` subfolder - nested under `fire_and_ice/` alongside the other Elemental Companion profession subfolders (`air/`, `earth/`, `light/`, `elemental_priest/`, `elemental_champion/`, `arcane_elementalist/`) - rather than sitting alongside the rest of the Essence Companion (14.x) lists above.
 
 #### Water Mastery (5.12.1)
 23 spells — purifying/breathing water, controlling buoyancy and currents, raising/lowering water volume, pulling a target under, seeing through murk and fog, redirecting streams, countering deep-water pressure, favorable currents for vessels, generating/thickening fog, damming water, a devastating Water Blast, and area effects up to Rough Sea and Flood.
-- `spell_lists/en/essence/water/water_mastery.json`
-- `spell_lists/es/essence/water/water_mastery.json`
+- `spell_lists/en/essence/fire_and_ice/water/water_mastery.json`
+- `spell_lists/es/essence/fire_and_ice/water/water_mastery.json`
 
 #### Watery Ways (5.12.2)
 23 spells — steam and scalding-water attacks, remote hearing/vision through a body of water, teleporting a target or vessel within the same body of water (Water Door, Vessel Door), gates that instantly transport a designated target (Water Gate), holding a vessel fast, desiccating a target to death, and swamping a boat's deck.
-- `spell_lists/en/essence/water/watery_ways.json`
-- `spell_lists/es/essence/water/watery_ways.json`
+- `spell_lists/en/essence/fire_and_ice/water/watery_ways.json`
+- `spell_lists/es/essence/fire_and_ice/water/watery_ways.json`
 
 ### Elemental Priest Base Lists (Elemental Companion)
 
-Base lists for the Elemental Priest profession (Elemental Companion 5.13), kept in their own `elemental_priest/` subfolder (mirrors `air/`/`earth/`/`light/`/`water/`/`fire_and_ice/`/`training-packages/`) since they come from a different sourcebook than the rest of the Essence Companion (14.x) lists above.
+Base lists for the Elemental Priest profession (Elemental Companion 5.13), kept in their own `fire_and_ice/elemental_priest/` subfolder - nested under `fire_and_ice/` alongside the other Elemental Companion profession subfolders (`air/`, `earth/`, `light/`, `water/`, `elemental_champion/`, `arcane_elementalist/`) - rather than sitting alongside the rest of the Essence Companion (14.x) lists above.
 
 #### Elemental Channels (5.13.1)
 17 spells (levels 2, 8, 12, 13, 16, 17 intentionally blank in the source) — contaminating water with elemental material, a beam that converts the target's flesh into raw elemental material at increasing critical severity, deity-channeled stunning/sleep, tearing a target's soul from its body, transmitting a spell of increasing level to a distant receiver instead of casting it directly, and a Deific Gate opening direct communion with the caster's deity.
-- `spell_lists/en/essence/elemental_priest/elemental_channels.json`
-- `spell_lists/es/essence/elemental_priest/elemental_channels.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_priest/elemental_channels.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_priest/elemental_channels.json`
 
 #### Elemental Combat Enhancements (5.13.2)
 23 spells — buffing an elemental ally in combat: Battle Awareness, an invisible Shield, sharper Reactions, Blur, escalating Aggression/Quickness/Speed/Haste, Peripheral Vision, doubled-damage Strength/Intensify/Empower, Mass/Long Enhancement, and True Enhancement stacking six effects at once.
-- `spell_lists/en/essence/elemental_priest/elemental_combat_enhancements.json`
-- `spell_lists/es/essence/elemental_priest/elemental_combat_enhancements.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_priest/elemental_combat_enhancements.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_priest/elemental_combat_enhancements.json`
 
 #### Elemental Gate Mastery (5.13.3)
 14 spells (levels 2, 3, 4, 6, 11, 12, 16, 17, 19 intentionally blank in the source) — attuning to an elemental familiar, controlling/mastering elementals of increasing Type (I-V), speaking to elementals of a given source, and opening gates that pull elementals through from a chosen plane.
-- `spell_lists/en/essence/elemental_priest/elemental_gate_mastery.json`
-- `spell_lists/es/essence/elemental_priest/elemental_gate_mastery.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_priest/elemental_gate_mastery.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_priest/elemental_gate_mastery.json`
 
 #### Elemental Healing (5.13.4)
 22 spells (levels intentionally skip a Flowstop I) — healing concussion hits (Heal Elemental I/III/V/VII/X/True), relieving minor elemental damage/irritation/stun, stopping bleeding of increasing severity, pooling elemental material and bathing an elemental creature in it to heal over time, preserving and rejoining a severed limb's blood vessels, and slow regeneration over time.
-- `spell_lists/en/essence/elemental_priest/elemental_healing.json`
-- `spell_lists/es/essence/elemental_priest/elemental_healing.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_priest/elemental_healing.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_priest/elemental_healing.json`
 
 #### Elemental Restorations (5.13.5)
 20 spells (levels 1, 3, 16 intentionally blank in the source) — diagnosing bodily damage, repairing sprains/muscles/cartilage/tendons/fractures, nerve and skull repair, preserving a severed limb's bones/muscles/nerves so it can later be rejoined, eye/joint/organ/brain repair, curing paralysis, reattaching a limb, and outright regenerating a lost body part.
-- `spell_lists/en/essence/elemental_priest/elemental_restorations.json`
-- `spell_lists/es/essence/elemental_priest/elemental_restorations.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_priest/elemental_restorations.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_priest/elemental_restorations.json`
 
 #### Elemental Transformations (5.13.6)
 20 spells (levels 12, 13, 16 intentionally blank in the source) — detecting/analyzing elemental corruption (taint), temporarily raising a target's corruption, slowly infusing or removing corruption over 10 minutes, disguising or hiding taint, immunity to corruption, turning a target's own corruption against them, and Rebirth restoring a dead body to life corrupted with the caster's element.
-- `spell_lists/en/essence/elemental_priest/elemental_transformations.json`
-- `spell_lists/es/essence/elemental_priest/elemental_transformations.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_priest/elemental_transformations.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_priest/elemental_transformations.json`
 
 ### Elemental Champion Base Lists (Elemental Companion)
 
-Base lists for the Elemental Champion profession (Elemental Companion 5.14), kept in their own `elemental_champion/` subfolder (mirrors `air/`/`earth/`/`light/`/`water/`/`elemental_priest/`/`fire_and_ice/`/`training-packages/`) since they come from a different sourcebook than the rest of the Essence Companion (14.x) lists above.
+Base lists for the Elemental Champion profession (Elemental Companion 5.14), kept in their own `fire_and_ice/elemental_champion/` subfolder - nested under `fire_and_ice/` alongside the other Elemental Companion profession subfolders (`air/`, `earth/`, `light/`, `water/`, `elemental_priest/`, `arcane_elementalist/`) - rather than sitting alongside the rest of the Essence Companion (14.x) lists above.
 
 #### Combat Links (5.14.1)
 23 spells — linking a Triad (3 Champions of a High Elemental triad) or a Circle (all 6 Champions) for mutual bonuses: shared Resistance Rolls, Awareness, Intuition/DB, Strength/Offensive Bonus, pooled injuries and Power Points, mental communication, temporarily swapping main elements, group Haste, and designating an Aether/Nether Champion (or Champion of the Sphere) who draws power from the Circle to cast.
-- `spell_lists/en/essence/elemental_champion/combat_links.json`
-- `spell_lists/es/essence/elemental_champion/combat_links.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_champion/combat_links.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_champion/combat_links.json`
 
 #### Elemental Armor (5.14.2)
 22 spells (level 13 intentionally blank in the source) — infusing the caster's own armor/clothing with elemental material and bonding it to his body, then a defensive Protective Aura (I-IV), a scorching Aura Burn hitting everyone nearby (I-III), softening/hardening the armor, storing a spell in the armor to trigger instantly later, staunching bleeding, escaping the worst outcome of a critical (Minor Barrier), distracting an attacker, and Elemental Shroud/True Shroud combining Protective Aura and Aura Burn into one spell.
-- `spell_lists/en/essence/elemental_champion/elemental_armor.json`
-- `spell_lists/es/essence/elemental_champion/elemental_armor.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_champion/elemental_armor.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_champion/elemental_armor.json`
 
 #### Elemental Companions (5.14.3)
 21 spells (levels 3, 8 intentionally blank in the source) — calming/befriending hybrid elemental animals, summoning and controlling/mastering a hybrid animal or Elemental Steed, silent and long-range commands, locating mastered animals, riding bonuses, calling a mount, and summoning/controlling/mastering a Lesser Riding Drake.
-- `spell_lists/en/essence/elemental_champion/elemental_companions.json`
-- `spell_lists/es/essence/elemental_champion/elemental_companions.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_champion/elemental_companions.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_champion/elemental_companions.json`
 
 #### Elemental Weapons (5.14.4)
 23 spells — pooling elemental material and forging/infusing a bonded weapon over a week-long ritual (Infuse Weapon I-V), a temporary extra elemental critical (Elemental Whisp I-III), locating/calling the bonded weapon, an untouchable elemental nimbus, superior parries, reducing the weapon's own corruption, Burying the Blade, and Sacrifice - detonating the weapon and the caster's body to automatically slay a target.
-- `spell_lists/en/essence/elemental_champion/elemental_weapons.json`
-- `spell_lists/es/essence/elemental_champion/elemental_weapons.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_champion/elemental_weapons.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_champion/elemental_weapons.json`
 
 #### Lesser Elemental Change (5.14.5)
 18 spells (levels 2, 4, 9, 14, 16 intentionally blank in the source) — a temporary extra elemental critical on unarmed strikes, bonding clothes to skin as the hide of increasingly powerful creatures, taking the full physical form of an elemental creature (trading spellcasting for its natural attacks), a humanoid variant keeping spellcasting/gear, tripling the next spell's duration, and converting limbs into elemental material.
-- `spell_lists/en/essence/elemental_champion/lesser_elemental_change.json`
-- `spell_lists/es/essence/elemental_champion/lesser_elemental_change.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_champion/lesser_elemental_change.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_champion/lesser_elemental_change.json`
 
 #### Lesser Elemental Protections (5.14.6)
 20 spells (levels 10, 11, 18 intentionally blank in the source; levels 19-20 have no description printed at all in the source) — resisting the caster's Main Element, one Triad element, or any element, with escalating DB/RR bonuses, draining incoming elemental damage/critical severity, and outright immunity.
-- `spell_lists/en/essence/elemental_champion/lesser_elemental_protections.json`
-- `spell_lists/es/essence/elemental_champion/lesser_elemental_protections.json`
+- `spell_lists/en/essence/fire_and_ice/elemental_champion/lesser_elemental_protections.json`
+- `spell_lists/es/essence/fire_and_ice/elemental_champion/lesser_elemental_protections.json`
 
 ### Elemental/Fire Specialist Base Lists (Elemental Companion)
 
-Base lists from the Elemental Companion, kept in their own `fire_and_ice/` subfolder (mirrors the `training-packages/` pattern) since they come from a different sourcebook than the rest of the Essence Companion (14.x) lists above. Not every list here is Fire-specific: Elemental Defenses (5.6.2) is a Common Specialist list shared by every elemental specialist profession (Fire, Ice, etc.), kept in this same folder for now rather than splitting by element.
+Base lists from the Elemental Companion, kept in their own `fire_and_ice/` subfolder (mirrors the `training-packages/` pattern) since they come from a different sourcebook than the rest of the Essence Companion (14.x) lists above. `fire_and_ice/` also acts as the parent folder for every other Elemental Companion profession's own subfolder (`air/`, `earth/`, `light/`, `water/`, `elemental_priest/`, `elemental_champion/`, `arcane_elementalist/`, documented in their own sections below) - they're all part of the same sourcebook, so they live nested under it rather than as siblings. Not every list directly in `fire_and_ice/` is Fire-specific: Elemental Defenses (5.6.2) is a Common Specialist list shared by every elemental specialist profession (Fire, Ice, etc.), kept here for now rather than splitting by element.
 
 #### Elemental Counters (5.6.1)
 23 spells — identifying and then countering an opposing spell with elemental force from the caster's Source Element, Main Element, or Triad (increasing spell level), plus power draining and converting a Source Element spell to the caster's Main Element.
@@ -811,22 +811,22 @@ Base lists from the Elemental Companion, kept in their own `fire_and_ice/` subfo
 
 ### Arcane Elementalist Base Lists (Elemental Companion)
 
-Base lists for the Arcane Elementalist profession (Elemental Companion 5.15), kept in their own `arcane_elementalist/` subfolder (mirrors `air/`/`earth/`/`light/`/`water/`/`elemental_priest/`/`elemental_champion/`/`fire_and_ice/`/`training-packages/`) since they come from a different sourcebook than the rest of the Essence Companion (14.x) lists above. This profession works with Aether and Nether - a paired elemental opposition (positive/benevolent vs. dark mirror) analogous to how Fire/Ice or Air/Earth/Light form triads elsewhere - plus True Elemental Material (TEM), a distinct sub-mechanic layering a resistance-roll-vs-poison exposure (True Elemental Poisoning, TEP) onto sustained contact with "True" elemental energy or matter, on top of normal critical-hit resolution.
+Base lists for the Arcane Elementalist profession (Elemental Companion 5.15), kept in their own `fire_and_ice/arcane_elementalist/` subfolder - nested under `fire_and_ice/` alongside the other Elemental Companion profession subfolders (`air/`, `earth/`, `light/`, `water/`, `elemental_priest/`, `elemental_champion/`) - rather than sitting alongside the rest of the Essence Companion (14.x) lists above. This profession works with Aether and Nether - a paired elemental opposition (positive/benevolent vs. dark mirror) analogous to how Fire/Ice or Air/Earth/Light form triads elsewhere - plus True Elemental Material (TEM), a distinct sub-mechanic layering a resistance-roll-vs-poison exposure (True Elemental Poisoning, TEP) onto sustained contact with "True" elemental energy or matter, on top of normal critical-hit resolution.
 
 #### Aether Mastery (5.15.1)
 22 spells (level 7 intentionally blank in the source) — detecting and resisting Aether, countering Nether-based spells of increasing level, Aether bolts/balls/arcs/walls, layered Aether Armor and eventual immunity, matter disruption, an aura amplifying elemental attacks passing through it, and Aether Mastery itself letting the caster use any lower spell on the list every round.
-- `spell_lists/en/essence/arcane_elementalist/aether_mastery.json`
-- `spell_lists/es/essence/arcane_elementalist/aether_mastery.json`
+- `spell_lists/en/essence/fire_and_ice/arcane_elementalist/aether_mastery.json`
+- `spell_lists/es/essence/fire_and_ice/arcane_elementalist/aether_mastery.json`
 
 #### True Elemental Mastery (5.15.5)
 19 spells (levels 11, 17, 18, 19 intentionally blank in the source) — detecting/analyzing elemental energy, forces, forms and taint, resisting and repelling the three elemental tiers (Energy: Fire/Light, Forces: Water/Air, Forms: Earth/Ice), diffusing manifestations of elemental power, removing/unmaking accumulated True Elemental Poisoning (TEP) corruption tier by tier, and a mass Repel True Elemental Material effect that also halves TEP attack levels.
-- `spell_lists/en/essence/arcane_elementalist/true_elemental_mastery.json`
-- `spell_lists/es/essence/arcane_elementalist/true_elemental_mastery.json`
+- `spell_lists/en/essence/fire_and_ice/arcane_elementalist/true_elemental_mastery.json`
+- `spell_lists/es/essence/fire_and_ice/arcane_elementalist/true_elemental_mastery.json`
 
 #### True Elemental Matter (5.15.6)
 22 spells (level 6 intentionally blank in the source) — detecting elemental "matter" (earth/ice), freezing liquids and cooling solids, loosening/repairing/unmaking earth or stone, walls/bolts/balls of cold and ice, a hazardous field of earthen spikes, and Triad of Ice striking up to three targets at once; nearly every spell on this list channels True Elemental Material and carries a TEP contamination risk.
-- `spell_lists/en/essence/arcane_elementalist/true_elemental_matter.json`
-- `spell_lists/es/essence/arcane_elementalist/true_elemental_matter.json`
+- `spell_lists/en/essence/fire_and_ice/arcane_elementalist/true_elemental_matter.json`
+- `spell_lists/es/essence/fire_and_ice/arcane_elementalist/true_elemental_matter.json`
 
 ### Listas base de profesión — Runemago (Essence Companion)
 
@@ -1175,7 +1175,7 @@ if (!pack) {
 // Creates every spell list in a folder in the world (or in a compendium).
 // Change FOLDER to: essence, channeling, arcane, mentalism, or essence/training-packages.
 const LANG = "es";
-const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages | essence/fire_and_ice | essence/air | essence/earth | essence/light | essence/water | essence/elemental_priest | essence/elemental_champion | essence/arcane_elementalist
+const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages | essence/fire_and_ice | essence/fire_and_ice/air | essence/fire_and_ice/earth | essence/fire_and_ice/light | essence/fire_and_ice/water | essence/fire_and_ice/elemental_priest | essence/fire_and_ice/elemental_champion | essence/fire_and_ice/arcane_elementalist
 const PACK_ID = null;  // "world.spell-lists" to import into a compendium; null to create in Items
 
 const FILES_BY_FOLDER = {
