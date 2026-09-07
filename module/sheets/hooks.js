@@ -1,11 +1,11 @@
 Hooks.on("createToken", async (tokenDocument) => {
-    if (tokenDocument.actor?.type === "character") {
+    if (["character", "npc"].includes(tokenDocument.actor?.type)) {
         await tokenDocument.update({ actorLink: true });
     }
 });
 
 Hooks.on("createActor", async (actor) => {
-    if (actor.type === "character") {
+    if (["character", "npc"].includes(actor.type)) {
         await actor.update({ prototypeToken: { actorLink: true } });
     }
 });
