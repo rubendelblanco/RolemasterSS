@@ -809,6 +809,25 @@ Base lists from the Elemental Companion, kept in their own `fire_and_ice/` subfo
 - `spell_lists/en/essence/fire_and_ice/ice_mastery.json`
 - `spell_lists/es/essence/fire_and_ice/ice_mastery.json`
 
+### Arcane Elementalist Base Lists (Elemental Companion)
+
+Base lists for the Arcane Elementalist profession (Elemental Companion 5.15), kept in their own `arcane_elementalist/` subfolder (mirrors `air/`/`earth/`/`light/`/`water/`/`elemental_priest/`/`elemental_champion/`/`fire_and_ice/`/`training-packages/`) since they come from a different sourcebook than the rest of the Essence Companion (14.x) lists above. This profession works with Aether and Nether - a paired elemental opposition (positive/benevolent vs. dark mirror) analogous to how Fire/Ice or Air/Earth/Light form triads elsewhere - plus True Elemental Material (TEM), a distinct sub-mechanic layering a resistance-roll-vs-poison exposure (True Elemental Poisoning, TEP) onto sustained contact with "True" elemental energy or matter, on top of normal critical-hit resolution.
+
+#### Aether Mastery (5.15.1)
+22 spells (level 7 intentionally blank in the source) — detecting and resisting Aether, countering Nether-based spells of increasing level, Aether bolts/balls/arcs/walls, layered Aether Armor and eventual immunity, matter disruption, an aura amplifying elemental attacks passing through it, and Aether Mastery itself letting the caster use any lower spell on the list every round.
+- `spell_lists/en/essence/arcane_elementalist/aether_mastery.json`
+- `spell_lists/es/essence/arcane_elementalist/aether_mastery.json`
+
+#### True Elemental Mastery (5.15.5)
+19 spells (levels 11, 17, 18, 19 intentionally blank in the source) — detecting/analyzing elemental energy, forces, forms and taint, resisting and repelling the three elemental tiers (Energy: Fire/Light, Forces: Water/Air, Forms: Earth/Ice), diffusing manifestations of elemental power, removing/unmaking accumulated True Elemental Poisoning (TEP) corruption tier by tier, and a mass Repel True Elemental Material effect that also halves TEP attack levels.
+- `spell_lists/en/essence/arcane_elementalist/true_elemental_mastery.json`
+- `spell_lists/es/essence/arcane_elementalist/true_elemental_mastery.json`
+
+#### True Elemental Matter (5.15.6)
+22 spells (level 6 intentionally blank in the source) — detecting elemental "matter" (earth/ice), freezing liquids and cooling solids, loosening/repairing/unmaking earth or stone, walls/bolts/balls of cold and ice, a hazardous field of earthen spikes, and Triad of Ice striking up to three targets at once; nearly every spell on this list channels True Elemental Material and carries a TEP contamination risk.
+- `spell_lists/en/essence/arcane_elementalist/true_elemental_matter.json`
+- `spell_lists/es/essence/arcane_elementalist/true_elemental_matter.json`
+
 ### Listas base de profesión — Runemago (Essence Companion)
 
 **Runemage Base 14.4.1–14.4.6:** Hybrid Essence/Channeling profession centered on the power of written and spoken language — runes, symbols, true names, and wards.
@@ -1156,7 +1175,7 @@ if (!pack) {
 // Creates every spell list in a folder in the world (or in a compendium).
 // Change FOLDER to: essence, channeling, arcane, mentalism, or essence/training-packages.
 const LANG = "es";
-const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages | essence/fire_and_ice | essence/air | essence/earth | essence/light | essence/water | essence/elemental_priest | essence/elemental_champion
+const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages | essence/fire_and_ice | essence/air | essence/earth | essence/light | essence/water | essence/elemental_priest | essence/elemental_champion | essence/arcane_elementalist
 const PACK_ID = null;  // "world.spell-lists" to import into a compendium; null to create in Items
 
 const FILES_BY_FOLDER = {
@@ -1186,6 +1205,7 @@ const FILES_BY_FOLDER = {
   "water": ["water_mastery", "watery_ways"],
   "elemental_priest": ["elemental_channels", "elemental_combat_enhancements", "elemental_gate_mastery", "elemental_healing", "elemental_restorations", "elemental_transformations"],
   "elemental_champion": ["combat_links", "elemental_armor", "elemental_companions", "elemental_weapons", "lesser_elemental_change", "lesser_elemental_protections"],
+  "arcane_elementalist": ["aether_mastery", "true_elemental_mastery", "true_elemental_matter"],
   channeling: [
     "barrier_law", "concussion_ways", "detection_mastery", "lights_way", "lofty_movements", "natures_law",
     "purifications", "sounds_way", "spell_defense", "weather_ways",
