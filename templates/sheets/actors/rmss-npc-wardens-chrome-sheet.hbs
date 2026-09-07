@@ -93,25 +93,21 @@
     </div>
 
     <div class="tab equipment" data-group="primary" data-tab="Equipment">
-      <div class="wc-record-row">
-        <div class="wc-record-card">
-          <h2><i class="fa-solid fa-star" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.weapons" }}</h2>
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-weapons.html" }}
-        </div>
-        <div class="wc-record-card">
-          <h2><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.items" }}</h2>
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-items.html" }}
-        </div>
+      <div class="wc-record-card">
+        <h2><i class="fa-solid fa-star" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.weapons" }}</h2>
+        {{> "systems/rmss/templates/sheets/actors/parts/actor-weapons.html" }}
       </div>
-      <div class="wc-record-row">
-        <div class="wc-record-card">
-          <h2><i class="fa-solid fa-shield" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.armor" }}</h2>
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-armor.html" }}
-        </div>
-        <div class="wc-record-card">
-          <h2><i class="fa-solid fa-flask" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.herbs" }}</h2>
-          {{> "systems/rmss/templates/sheets/actors/parts/actor-herbs.html" }}
-        </div>
+      <div class="wc-record-card">
+        <h2><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.items" }}</h2>
+        {{> "systems/rmss/templates/sheets/actors/parts/actor-items.html" }}
+      </div>
+      <div class="wc-record-card">
+        <h2><i class="fa-solid fa-shield" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.armor" }}</h2>
+        {{> "systems/rmss/templates/sheets/actors/parts/actor-armor.html" }}
+      </div>
+      <div class="wc-record-card">
+        <h2><i class="fa-solid fa-flask" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.herbs" }}</h2>
+        {{> "systems/rmss/templates/sheets/actors/parts/actor-herbs.html" }}
       </div>
       <div class="wc-record-card">
         <h2><i class="fa-solid fa-coins" aria-hidden="true"></i> {{ localize "rmss.pc_sheet_tabs.wealth" }}</h2>

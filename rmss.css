@@ -358,7 +358,7 @@
 
 .skills-grid-container-npc {
     display: grid;
-    grid-template-columns: [image] 5% [skill-name] 35% [rank-bonus] 15% [item-bonus] 10% [special-bonus-1] 10% [total-bonus] 10% [controls] 15%;
+    grid-template-columns: [image] 5% [skill-name] 51% [rank-bonus] 9% [item-bonus] 9% [special-bonus-1] 9% [total-bonus] 9% [controls] 8%;
 }
 
 .skills-grid-container-creature {
