@@ -532,6 +532,23 @@ export default class ItemService {
         return { ...list, listId, contents, listLevel: maxLevel, spellManeuverModifier };
     }
 
+    /**
+     * Public wrapper around _getSpellListMaxLevel for external consumers (e.g. the Argon Combat
+     * HUD module) that only have the actor and the spell_list item, not the pre-resolved
+     * skill/isCreatureOrNpc/creatureLevel locals _mapSpellsToLists already has on hand.
+     * Same rule the character/NPC sheets use: character -> the linked skill's ranks; NPC/creature
+     * -> the list's own flags.rmss.listLevel flag, falling back to the actor's level.
+     * @param {Actor} actor
+     * @param {Item} list - a spell_list item
+     * @returns {number}
+     */
+    static getSpellListMaxLevel(actor, list) {
+        const isCreatureOrNpc = actor?.type === "creature" || actor?.type === "npc";
+        const creatureLevel = parseInt(actor?.system?.attributes?.level?.value, 10) || 0;
+        const skill = actor?.items?.find(i => i.type === "skill" && i.name === list?.name);
+        return this._getSpellListMaxLevel(skill, list, isCreatureOrNpc, creatureLevel);
+    }
+
     static _getSpellListMaxLevel(skill, list, isCreatureOrNpc, creatureLevel) {
         if (skill) return parseInt(skill.system?.ranks, 10) || 0;
         if (isCreatureOrNpc) {
