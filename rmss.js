@@ -1218,16 +1218,23 @@ Hooks.once("init", function () {
     await syncHitsAndPowerPointsFromSkills(actor);
   });
 
-  // Hook: closeApplication - delete temp spell item when sheet closed without saving.
+  // Hook: closeApplicationV1/V2 - delete temp spell item when sheet closed without saving.
   // Was gated on `app.constructor?.name === "ItemSheet"`, but RMSS registers its own sheet
   // classes (e.g. RMSSSpellSheet) instead of the core one, so that check never matched and
-  // this never ran. The flag check alone is enough to identify our temporary bridge item.
-  Hooks.on("closeApplication", (app, html) => {
+  // this never ran (fixed in a6a3a46). Then v14 split the bare "closeApplication" hook into
+  // "closeApplicationV1" (legacy Application/FormApplication/ItemSheet, what RMSSSpellSheet
+  // still extends) and "closeApplicationV2" - the old hook name silently stopped firing at
+  // all, so this cleanup regressed again. Listening on both names is cheap insurance if a
+  // sheet is ever migrated to ApplicationV2 later. The flag check alone is enough to identify
+  // our temporary bridge item.
+  const closeTempSpellEditItem = (app) => {
     const item = app.item ?? app.object;
     if (item?.getFlag && item.getFlag("rmss", "embeddedSpellEdit")) {
-      item.delete().catch(() => {});
+      item.delete().catch((e) => console.error("rmss | temp spell cleanup", e));
     }
-  });
+  };
+  Hooks.on("closeApplicationV1", closeTempSpellEditItem);
+  Hooks.on("closeApplicationV2", closeTempSpellEditItem);
 
   // Hook: deleteItem
   // This hook triggers whenever an item is deleted.
