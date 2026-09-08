@@ -10,6 +10,11 @@
         <a class="item-control item-create" title="Create Item" data-type="creature_attack">
             <i class="fas fa-plus"></i>{{ localize "rmss.pc_sheet_items.add_item" }}
         </a>
+        {{#if creature_attacks.length}}
+        <a class="item-control creature-attack-random" title="{{ localize "rmss.creature_attack.random_attack_hint" }}">
+            <i class="fas fa-dice-d20"></i>{{ localize "rmss.creature_attack.random_attack" }}
+        </a>
+        {{/if}}
     </div>
     {{#each creature_attacks as |attack id|}}
         <div class="creature-attack-calc" data-item-id="{{attack._id}}" data-item-order="{{attack.system.order}}">

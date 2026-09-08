@@ -3,6 +3,7 @@ import ItemService from "../../actors/services/item_service.js";
 import ForceSpellService from "../../spells/services/force_spell_service.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
 import { bindCreatureTagsEditor, getCreatureTagsArray, getCreatureTagListId } from "./creature_tags_ui.js";
+import CreatureAttackProbabilityService from "../../combat/services/creature_attack_probability_service.js";
 
 export default class RMSSCreatureSheet extends RMSSCharacterSheet {
     static get defaultOptions() {
@@ -91,6 +92,19 @@ export default class RMSSCreatureSheet extends RMSSCharacterSheet {
         html.find('.creature-attack-calc').on('blur', '[contenteditable="true"]', saveCreatureAttack);
         // select fires 'change' when user picks a new value
         html.find('.creature-attack-calc').on('change', 'select', saveCreatureAttack);
+
+        // Random attack: roll 1d100 against each attack's own probability instead of the GM
+        // rolling percentile dice outside the app to decide which attack fires this round.
+        // Reuses the exact same resolution flow as clicking a specific attack row (item.use()).
+        html.find('.creature-attack-random').on('click', async (ev) => {
+            ev.preventDefault();
+            const choice = await CreatureAttackProbabilityService.rollAttackChoice(this.actor);
+            if (!choice) {
+                ui.notifications.warn(game.i18n.localize("rmss.creature_attack.random_attack_no_attacks"));
+                return;
+            }
+            await choice.attack.use();
+        });
 
         if (this.isEditable) {
             this._registerCreatureAttackSortable(html);

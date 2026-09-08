@@ -998,7 +998,10 @@ export class RMSSWeaponCriticalManager {
     }
 
     /**
-     * GM-only whisper when a non-Tiny critical resolves on a creature_attack.
+     * Whisper (GMs + any player who owns the attacking actor - e.g. a druid controlling an
+     * animal companion) when a non-Tiny critical resolves on a creature_attack. The owning
+     * player is included because they're the one who'll actually decide whether to click the
+     * follow-up attack next.
      * The "special" field lives on the **row below** (same/next vs attack above); we read it from that follow-up row,
      * not from the attack that rolled the critical—otherwise the first attack never triggers a reminder.
      *
@@ -1044,7 +1047,11 @@ export class RMSSWeaponCriticalManager {
         if (special !== "same" && special !== "next") return;
 
         const gmIds = game.users.filter((u) => u.isGM).map((u) => u.id);
-        if (!gmIds.length) return;
+        const ownerIds = game.users
+            .filter((u) => !u.isGM && attacker.testUserPermission(u, "OWNER"))
+            .map((u) => u.id);
+        const recipientIds = [...new Set([...gmIds, ...ownerIds])];
+        if (!recipientIds.length) return;
 
         const key =
             special === "same"
@@ -1070,7 +1077,7 @@ export class RMSSWeaponCriticalManager {
         await ChatMessage.create({
             content,
             speaker: { alias: "Game Master" },
-            whisper: gmIds
+            whisper: recipientIds
         });
     }
 

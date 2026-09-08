@@ -745,7 +745,7 @@
     "creature_attack": {
       "attack_effects_header": "Efectos de ataque y críticos adicionales (RM 9.7)",
       "drag_reorder": "Arrastrar para reordenar ataques",
-      "gm_chain_reminder_banner": "Aviso para el Director de Juego — cadena de ataques",
+      "gm_chain_reminder_banner": "Cadena de ataques",
       "gm_chain_reminder_same": "{creatureName}: crítico «{triggeringAttack}» → siguiente «{chainedAttack}» · Especial: mismo asalto que el de arriba.",
       "gm_chain_reminder_next": "{creatureName}: crítico «{triggeringAttack}» → siguiente «{chainedAttack}» · Especial: asalto siguiente al de arriba.",
       "attack": "Ataque",
@@ -756,6 +756,9 @@
       "special": "Especial",
       "probability": "Probabilidad de ataque",
       "attacks_number": "# de ataques",
+      "random_attack": "Ataque aleatorio",
+      "random_attack_hint": "Tira 1d100 contra la probabilidad de cada ataque y usa el que corresponda.",
+      "random_attack_no_attacks": "Esta criatura no tiene ataques definidos.",
       "special_desc": {
         "none": "Nada",
         "same": "Atacar en el mismo asalto que el ataque de arriba",

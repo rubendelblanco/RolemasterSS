@@ -366,6 +366,16 @@
     grid-template-columns: [drag] 4% [attack-name] 16% [attack-bonus] 10% [attack-multiplier] 10% [attacks-number] 10% [attack-probability] 16% [special] 22% [controls] 12%;
 }
 
+/* Header cell now stacks "+ Add" and "Random attack" - give them a little breathing room and
+   a smaller font so both fit in the narrow [controls] 12% column without crowding. */
+.skills-grid-container-creature .skills-grid-heading {
+    gap: 4px;
+}
+.skills-grid-container-creature .skills-grid-heading .creature-attack-random {
+    font-size: 0.85em;
+    margin-top: 2px;
+}
+
 .skills-grid-container > div, .skills-grid-container-creature > div,.skills-grid-container-npc > div {
     font-family: var(--rmss-font-main);
     font-size: var(--rmss-font-size-sm);
