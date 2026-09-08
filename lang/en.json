@@ -560,6 +560,7 @@
             "passive_modifiers_header": "Passive modifiers (worn / equipped)",
             "passive_modifiers_hint": "Applied as Active Effects on the actor while the item is worn or equipped. Add and Subtract stack; Override sets the field value.",
             "passive_mod_target_armor_magic": "DB (armor magic)",
+            "passive_mod_target_total_db": "Total DB (direct)",
             "passive_mod_target_initiative": "Initiative",
             "passive_mod_target_stat": "Stat (special bonus)",
             "passive_mod_target_rr": "Resistance (race mod)",

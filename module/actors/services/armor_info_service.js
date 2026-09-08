@@ -8,6 +8,12 @@
  * - creature actors: total_db = intrinsic_db + magic + shield_bonus (intrinsic = previous total minus previous
  *   magic/shield from this service); armor_type is updated only when body armor is equipped (manual AT is kept
  *   if there is no body piece, e.g. shield only).
+ * - npc actors: total_db = armor_info.natural_db + magic + shield_bonus. natural_db is a hidden
+ *   field (not shown on the NPC sheet - see rmss.js's updateActor hook) that stores the GM's own
+ *   manually-typed baseline DB, kept in sync whenever they edit the visible total_db field
+ *   directly. Without it, equipping armor used to fall through to the character-style formula
+ *   (which npc never populates quickness_bonus/adrenal_defense for) and just replaced the
+ *   natural DB with the armor bonus instead of adding to it.
  */
 export default class ArmorInfoService {
 
@@ -55,6 +61,39 @@ export default class ArmorInfoService {
       "system.armor_info.quickness_bonus": quickness_bonus,
       "system.armor_info.total_db": total_db
     });
+  }
+
+  /**
+   * Keep armor_info.natural_db (hidden - see class doc) in sync whenever the GM edits the
+   * visible total_db field directly on an npc sheet. Reads the actor's current (already-
+   * updated) magic/shield_bonus, so this is idempotent: recomputing right after
+   * updateActorArmorInfo's own total_db write (natural_db + magic + shield_bonus) just
+   * recovers the same natural_db, no drift either way.
+   * @param {Actor} actor
+   */
+  static async syncNaturalDbFromTotal(actor) {
+    if (actor?.type !== "npc" || !actor.system?.armor_info) return;
+    const info = actor.system.armor_info;
+    const naturalDb = Math.max(0,
+      (Number(info.total_db) || 0) - (Number(info.magic) || 0) - (Number(info.shield_bonus) || 0)
+    );
+    if ((Number(info.natural_db) || 0) === naturalDb) return;
+    await actor.update({ "system.armor_info.natural_db": naturalDb });
+  }
+
+  /**
+   * One-time migration for npc actors that predate the natural_db field: back-fill it from
+   * their current total_db/magic/shield_bonus so the next armor equip doesn't wipe out
+   * whatever manually-typed baseline DB they already had. Detects "never migrated" via the
+   * raw source data (missing key), not the runtime value, since Foundry's schema default (0)
+   * is indistinguishable from an intentionally-set 0 at the system.armor_info.natural_db level.
+   * @param {Actor} actor
+   */
+  static async migrateNaturalDbIfMissing(actor) {
+    if (actor?.type !== "npc" || !actor.system?.armor_info) return;
+    const sourceInfo = actor._source?.system?.armor_info;
+    if (!sourceInfo || sourceInfo.natural_db !== undefined) return;
+    await this.syncNaturalDbFromTotal(actor);
   }
 
   /**
@@ -132,6 +171,12 @@ export default class ArmorInfoService {
     if (actor.type === "creature") {
       const intrinsicDb = prevTotal - prevMagic - prevShield;
       updates["system.armor_info.total_db"] = Math.max(0, intrinsicDb + magic + shield_bonus);
+      if (equipped.body) {
+        updates["system.armor_info.armor_type"] = armor_type;
+      }
+    } else if (actor.type === "npc") {
+      const naturalDb = Number(armorInfo.natural_db) || 0;
+      updates["system.armor_info.total_db"] = Math.max(0, naturalDb + magic + shield_bonus);
       if (equipped.body) {
         updates["system.armor_info.armor_type"] = armor_type;
       }

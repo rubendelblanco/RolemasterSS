@@ -241,6 +241,7 @@ rmss.enchantment_usage = {
 /** Passive item modifiers (system.passive_modifiers → Actor ActiveEffects when worn/equipped). */
 rmss.passive_modifier_targets = {
   armor_magic: "rmss.item.passive_mod_target_armor_magic",
+  total_db: "rmss.item.passive_mod_target_total_db",
   initiative: "rmss.item.passive_mod_target_initiative",
   stat_special: "rmss.item.passive_mod_target_stat",
   resistance_roll: "rmss.item.passive_mod_target_rr"

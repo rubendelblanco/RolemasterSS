@@ -124,6 +124,13 @@ export function buildChangesForModifier(mod) {
   switch (target) {
     case "armor_magic":
       return [{ key: "system.armor_info.magic", [modeKey]: mode, value: val }];
+    case "total_db":
+      // Applied at data-preparation time, on top of whatever armor_info.total_db already
+      // computed to (character quickness formula, npc natural_db, creature intrinsic) - so
+      // this works identically for any actor type without special-casing, unlike armor_magic
+      // (which gets discarded the next time ArmorInfoService recomputes magic from equipped
+      // armor items alone, ignoring actor-level effects to avoid double-counting).
+      return [{ key: "system.armor_info.total_db", [modeKey]: mode, value: val }];
     case "initiative":
       return [{ key: "system.attributes.initiative.value", [modeKey]: mode, value: val }];
     case "stat_special": {

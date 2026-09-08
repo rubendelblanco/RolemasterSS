@@ -229,6 +229,16 @@ Hooks.once("ready", async function() {
       buttons: {}
     }, { width: 420, resizable: true }).render(true);
   }, true);
+
+  // One-time migration: back-fill armor_info.natural_db on npc actors that predate that hidden
+  // field, so their existing manually-typed DB isn't wiped out the next time armor is equipped.
+  // GM-only so every connected client doesn't race to write the same actors at once.
+  if (game.user.isGM) {
+    const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
+    for (const actor of game.actors.filter((a) => a.type === "npc")) {
+      await ArmorInfoService.migrateNaturalDbIfMissing(actor);
+    }
+  }
 });
 
 // Hook the init function and set up our system
@@ -1130,6 +1140,16 @@ Hooks.once("init", function () {
     if (!actor?.system?.armor_info) return;
     const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
     await ArmorInfoService.updateActorArmorInfo(actor);
+  });
+
+  // Hook: updateActor - keep npc armor_info.natural_db (hidden) in sync whenever the GM edits
+  // the visible total_db field on the NPC sheet directly, so the next armor equip/unequip adds
+  // to that baseline instead of replacing it. See ArmorInfoService class doc.
+  Hooks.on("updateActor", async (actor, update, options, userId) => {
+    if (actor.type !== "npc") return;
+    if (!foundry.utils.hasProperty(update, "system.armor_info.total_db")) return;
+    const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
+    await ArmorInfoService.syncNaturalDbFromTotal(actor);
   });
 
   // Passive modifiers on items → Actor ActiveEffects while worn/equipped.

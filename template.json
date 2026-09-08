@@ -47,7 +47,8 @@
           "adrenal_defense": 0,
           "shield_bonus": 0,
           "magic": 0,
-          "total_db": 0
+          "total_db": 0,
+          "natural_db": 0
         }
       },
       "fixed_info": {

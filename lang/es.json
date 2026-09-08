@@ -560,6 +560,7 @@
             "passive_modifiers_header": "Modificadores pasivos (llevado / equipado)",
             "passive_modifiers_hint": "Se aplican como efectos activos en el personaje mientras el objeto esté llevado o equipado. Sumar y Restar se acumulan; Sobrescribir fija el valor del campo.",
             "passive_mod_target_armor_magic": "DB (bono mágico armadura)",
+            "passive_mod_target_total_db": "BD total (directo)",
             "passive_mod_target_initiative": "Iniciativa",
             "passive_mod_target_stat": "Característica (bono especial)",
             "passive_mod_target_rr": "Resistencia (mod. racial)",
