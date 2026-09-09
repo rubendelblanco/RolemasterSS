@@ -665,7 +665,6 @@
       "cost": "Coste (total)",
       "unitWeight": "Peso (ud.)",
       "unitCost": "Coste (ud.)",
-      "prod_time": "Tiempo de producción",
       "equipped": "Equipado",
       "is_container": "¿Es un contenedor?",
       "capacity": "Capacidad",
@@ -772,14 +771,12 @@
       "armor_slot": "Ranura",
       "is_shield": "Escudo",
       "weight": "Peso",
-      "cost": "Costo",
-      "prod_time": "Tiempo de producción"
+      "cost": "Costo"
     },
     "weapon": {
       "cost": "Costo",
       "type": "Tipo",
       "currency": "Moneda",
-      "prod_time": "Tiempo de producción",
       "weight": "Peso",
       "breakage_range": "Rango de rotura",
       "breakage_range_hint": "Rango de dobles naturales que disparan la comprobación de rotura, ej. \"1-3\" comprueba con un natural 11, 22 o 33.",

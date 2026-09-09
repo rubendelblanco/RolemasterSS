@@ -665,7 +665,6 @@
             "currency": "Currency",
             "unitWeight": "Weight (unit)",
             "unitCost": "Cost (unit)",
-            "prod_time": "Production Time",
             "equipped": "Equipped",
             "is_container": "It's a container?",
             "capacity": "Capacity",
@@ -772,14 +771,12 @@
             "armor_slot": "Slot",
             "is_shield": "Shield",
             "weight": "Weight",
-            "cost": "Cost",
-            "prod_time": "Production Time"
+            "cost": "Cost"
         },
         "weapon": {
             "cost": "Cost",
             "currency": "Currency",
             "type": "Type",
-            "prod_time": "Production Time",
             "weight": "Weight",
             "breakage_range": "B#s",
             "breakage_range_hint": "Natural-double trigger range, e.g. \"1-3\" checks breakage on a natural 11, 22 or 33.",
