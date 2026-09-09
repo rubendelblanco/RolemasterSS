@@ -954,6 +954,20 @@
     min-height: 80px;
 }
 
+/* Foundry core sets `body.game .sheet.app .editor-content { height: 100% }`, which locks
+   every rich-text editor to whatever height its container happens to have instead of letting
+   it grow with the text or the user resize it - typing two sentences into a short field like
+   the item's secret info clips instead of expanding. `.rmss.sheet` (every one of our sheets
+   carries both classes) is more specific than core's rule, so this wins regardless of load
+   order. `resize: vertical` gives a native drag handle in the bottom-right corner, like a
+   textarea, instead of forcing a fixed pixel height. */
+.rmss.sheet .editor-content {
+    height: auto;
+    min-height: 100px;
+    resize: vertical;
+    overflow: auto;
+}
+
 /* Human Body */
 .human-body {
     width: 207px;

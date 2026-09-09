@@ -157,12 +157,13 @@
                         <input type="number" name="system.value_unidentified" value="{{system.value_unidentified}}" data-dtype="Number" min="0" step="0.01"/>
                     </div>
                     {{/unless}}
-                    <div class="description-editor-wrapper"></div>
+                    <div class="description-editor-wrapper {{#unless system.description_secret}}empty-description{{/unless}}">
                     {{editor secretDescription
                     target="system.description_secret"
                     button=true
                     owner=owner
                     editable=true}}
+                    </div>
                 </div>
                 {{/if}}
             </div>
