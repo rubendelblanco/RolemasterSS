@@ -1,5 +1,6 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
+import { bindMacroDropZone } from "./macro_drop_util.js";
 
 export default class RMSSCreatureAttackSheet extends ItemSheet {
 
@@ -63,6 +64,11 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
         };
 
         return sheetData;
+    }
+
+    activateListeners(html) {
+        super.activateListeners(html);
+        bindMacroDropZone(this, html);
     }
 
     getActorId() {

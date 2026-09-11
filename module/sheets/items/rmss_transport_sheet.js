@@ -3,6 +3,7 @@ import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import {ContainerHandler} from "../../actors/utils/container_handler.js";
 import { bindContainerAllowedTagsEditor, getContainerAllowedTagListId, getContainerAllowedTagsArray } from "./container_allowed_tags_ui.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
+import { bindMacroDropZone } from "./macro_drop_util.js";
 
 export default class RMSSTransportSheet extends ItemSheet {
 
@@ -53,6 +54,7 @@ export default class RMSSTransportSheet extends ItemSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+    bindMacroDropZone(this, html);
     bindItemTagsEditor(this, html);
     bindContainerAllowedTagsEditor(this, html);
     if (!this.isEditable) return;
