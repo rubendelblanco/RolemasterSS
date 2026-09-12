@@ -67,6 +67,14 @@ export default class Utils {
 
     /**
      * Whether the actor should not receive attacks (no HP left or marked defeated in the active encounter).
+     *
+     * Matches the combatant by token, not by actorId: two unlinked tokens created from the same
+     * base Actor (e.g. the same creature dragged onto the scene twice) still share actor.id even
+     * though each has its own independent hits/defeated state - matching by actorId marked every
+     * other instance of that creature as defeated the moment one of them died. actor.token is the
+     * per-token synthetic-actor backreference (set for any unlinked token); only a genuinely
+     * linked actor (no token backref, e.g. resolved by actor id outside combat) falls back to the
+     * old actorId match, where "every token IS this same entity" is the correct semantics anyway.
      * @param {Actor|null|undefined} actor
      * @returns {boolean}
      */
@@ -79,8 +87,11 @@ export default class Utils {
         }
         const combat = game.combat;
         if (combat?.combatants?.size) {
+            const tokenId = actor.token?.id;
             for (const c of combat.combatants) {
-                if (c.actorId === actor.id && c.defeated) return true;
+                if (tokenId ? c.tokenId === tokenId : c.actorId === actor.id) {
+                    if (c.defeated) return true;
+                }
             }
         }
         return false;
