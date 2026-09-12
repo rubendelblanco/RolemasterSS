@@ -1,3 +1,21 @@
+// Storing an item inside a container (a plain "item" container or a transport) while it's
+// still equipped/worn makes no sense - you can't wield a weapon or wear armor that's packed
+// away. This one hook covers every drop handler across every actor/item sheet that sets
+// flags.rmss.containerId (character/npc/creature sheets, item/weapon/armor/transport sheets)
+// instead of duplicating the same fixup at each call site. Spell items also reuse
+// flags.rmss.containerId (to link a spell to its owning spell_list, an unrelated concept) but
+// have no equipped/worn field, so the type guard below already leaves them untouched.
+Hooks.on("preUpdateItem", (item, changes) => {
+    if (!foundry.utils.hasProperty(changes, "flags.rmss.containerId")) return;
+    if (!foundry.utils.getProperty(changes, "flags.rmss.containerId")) return;
+
+    if ((item.type === "weapon" || item.type === "armor") && item.system?.equipped) {
+        foundry.utils.mergeObject(changes, { system: { equipped: false } });
+    } else if (item.type === "item" && item.system?.worn) {
+        foundry.utils.mergeObject(changes, { system: { worn: false } });
+    }
+});
+
 Hooks.on("createToken", async (tokenDocument) => {
     if (["character", "npc"].includes(tokenDocument.actor?.type)) {
         await tokenDocument.update({ actorLink: true });

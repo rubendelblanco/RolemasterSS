@@ -300,8 +300,8 @@ export default class ItemService {
             }
         }
 
-        // ✅ Pass 2: group all containerable items (gear + herbs + weapons) by containerId flag
-        const allContainerables = [...gear, ...herbs, ...weapons];
+        // ✅ Pass 2: group all containerable items (gear + herbs + weapons + armor) by containerId flag
+        const allContainerables = [...gear, ...herbs, ...weapons, ...armor];
 
         for (const i of allContainerables) {
             const containerId = i.flags?.rmss?.containerId ?? null;
@@ -336,6 +336,7 @@ export default class ItemService {
         const looseGear = [];
         const looseHerbs = [];
         const looseWeapons = [];
+        const looseArmor = [];
 
         for (const i of gear) {
             const isContainer = i.system?.is_container === true;
@@ -372,6 +373,11 @@ export default class ItemService {
         // Weapons not inside any container → looseWeapons
         for (const w of weapons) {
             if (!w.flags?.rmss?.containerId) looseWeapons.push(w);
+        }
+
+        // Armor not inside any container → looseArmor
+        for (const a of armor) {
+            if (!a.flags?.rmss?.containerId) looseArmor.push(a);
         }
 
         // Sort skills alphabetically by translated name
@@ -456,6 +462,7 @@ export default class ItemService {
             looseGear,
             looseHerbs,
             looseWeapons,
+            looseArmor,
             skillcat,
             skillCategoryGroups,
             hasWeaponCategories,
