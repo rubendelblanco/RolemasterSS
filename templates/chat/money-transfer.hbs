@@ -4,7 +4,7 @@
         <i class="fas fa-coins"></i> {{localize "rmss.money_transfer.chat_title"}}
     </div>
 
-    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 10px;">
         <div style="text-align: center;">
             {{#if senderImg}}
             <img title="{{senderName}}" src="{{senderImg}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #666;">
@@ -15,9 +15,9 @@
             {{/if}}
             <div style="font-size: 1.05em; color: #fff;">{{senderName}}</div>
         </div>
-        <div style="text-align: center; color: #ccc; font-size: 0.85em; max-width: 120px;">
+        <div style="text-align: center; color: #ccc; font-size: 0.85em;">
             {{localize "rmss.money_transfer.chat_verb"}}
-            <div style="color: #ffcc00; font-size: 1.3em; text-shadow: 0 0 6px #000;"><i class="fas fa-arrow-right"></i></div>
+            <div style="color: #ffcc00; font-size: 1.3em; text-shadow: 0 0 6px #000;"><i class="fas fa-arrow-down"></i></div>
         </div>
         <div style="text-align: center;">
             <img title="{{receiverName}}" src="{{receiverImg}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #666;">
