@@ -162,13 +162,16 @@ export default class EffectsPopupService {
             event.target.value = Math.abs(parseInt(event.target.value) || 0);
         });
 
-        // RR calculation on input change. The target number from the table is invariant (levels
-        // only) - the modifier is applied to the defender's roll, not to this target, so it plays
-        // no part in the displayed target here (see executeResistanceRoll).
+        // RR calculation on input change. Uses the same getFinalRR the spell-casting RR flow
+        // uses - the modifier reduces the target directly (e.g. base 50, +20 resistance ->
+        // target 30), so what's displayed here matches what a player already sees when resisting
+        // a spell, instead of silently folding the modifier into the roll comparison and never
+        // showing the number they actually need to beat.
         const updateRRDisplay = () => {
             const attackerLevel = parseInt(html.find("#rr-attacker-level").val()) || 1;
             const defenderLevel = parseInt(html.find("#rr-defender-level").val()) || 1;
-            const rrTarget = ResistanceRollService.calculateBaseRR(attackerLevel, defenderLevel);
+            const modifier = parseInt(html.find("#rr-modifier").val()) || 0;
+            const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, defenderLevel, modifier);
             html.find("#rr-target-display").text(rrTarget);
         };
 
@@ -197,11 +200,11 @@ export default class EffectsPopupService {
      * @param {Token} token - The target token
      * @param {number} attackerLevel - Level of the attacker
      * @param {number} defenderLevel - Level of the defender
-     * @param {number} modifier - Modifier added to the defender's roll (not to the target - the
-     *   table target is invariant, only levels change it; see executeResistanceRoll)
+     * @param {number} modifier - Resistance modifier; reduces the target directly via
+     *   getFinalRR (same convention the spell-casting RR flow uses), not added to the roll.
      */
     static async createRRPromptMessage(token, attackerLevel, defenderLevel, modifier) {
-        const rrTarget = ResistanceRollService.calculateBaseRR(attackerLevel, defenderLevel);
+        const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, defenderLevel, modifier);
         const actor = token.actor;
         
         // Get owners of the token (player IDs)
@@ -255,8 +258,9 @@ export default class EffectsPopupService {
      * @param {string} tokenId - The token ID
      * @param {number} attackerLevel - Level of the attacker
      * @param {number} defenderLevel - Level of the defender
-     * @param {number} modifier - Modifier to add to the roll
-     * @param {number} rrTarget - Pre-calculated RR target
+     * @param {number} modifier - Resistance modifier, informational only here - it's already
+     *   baked into rrTarget (via getFinalRR), so it must NOT be added to the roll again.
+     * @param {number} rrTarget - Pre-calculated final RR target (already modifier-adjusted)
      * @param {{ postChatMessage?: boolean }} [options] - postChatMessage (default true): post the
      *   individual per-roll result card. Set false when the caller posts its own grouped summary
      *   instead (e.g. an area-effect macro rolling RR for several targets at once).
@@ -278,8 +282,8 @@ export default class EffectsPopupService {
             await game.dice3d.showForRoll(roll, game.user, true);
         }
 
-        // Apply modifier to roll
-        const finalRoll = rollTotal + modifier;
+        // rrTarget already has the modifier folded in (getFinalRR) - do not add it again here.
+        const finalRoll = rollTotal;
 
         // Determine success
         const success = finalRoll >= rrTarget;
@@ -348,7 +352,6 @@ export default class EffectsPopupService {
                 <div style="font-size: 0.9em; color: #fff;">
                     <div>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${naturalRoll}</strong>${isExplosive ? ` → <strong style="color: orange;">${rollTotal}</strong> 💥` : ''}</div>
                     ${modifier !== 0 ? `<div>📊 ${game.i18n.localize("rmss.combat.rr_modifier")}: <strong>${modifier >= 0 ? '+' : ''}${modifier}</strong></div>` : ''}
-                    <div>📈 Total: <strong>${finalRoll}</strong></div>
                 </div>
                 <div style="margin-top: 8px; padding: 8px; border-radius: 6px; text-align: center; background: ${resultBg}; border: 2px solid ${resultColor};">
                     <span style="font-size: 1.2em; font-weight: bold; color: #fff; text-shadow: 0 0 4px ${resultColor}, 0 0 8px ${resultColor};">${resultEmoji} ${resultText}</span>
