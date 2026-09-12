@@ -37,6 +37,7 @@ export default class EffectsPopupService {
 
         const context = {
             token: token.document,
+            isGM: game.user.isGM,
             actorImg: actor.img,
             defenderLevel: defenderLevel,
             damage: criticalOptions.damage ?? 0,

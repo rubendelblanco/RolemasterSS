@@ -1,9 +1,12 @@
 <div id="rmss-effects-popup">
     <div class="rmss-tabs">
+        {{#if isGM}}
         <button class="rmss-tab" data-tab="critical">{{ localize "rmss.combat.critical" }}</button>
+        {{/if}}
         <button class="rmss-tab active" data-tab="resistance">{{ localize "rmss.combat.resistance_roll" }}</button>
     </div>
 
+    {{#if isGM}}
     <div class="rmss-tab-content" data-tab="critical">
         <h3><img src="{{actorImg}}" alt="{{token.name}}" width="50" height="50"> {{ localize "rmss.combat.critical_roll" }}</h3>
         <div class="form-group" style="flex-direction: row; flex-wrap: wrap; gap: 1em;">
@@ -73,6 +76,7 @@
             {{/if}}
         </div>
     </div>
+    {{/if}}
 
     <div class="rmss-tab-content active" data-tab="resistance">
         <h3><img src="{{actorImg}}" alt="{{token.name}}" width="50" height="50"> {{ localize "rmss.combat.resistance_roll" }}</h3>

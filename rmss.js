@@ -730,11 +730,10 @@ Hooks.once("init", function () {
   Hooks.on("renderTokenHUD", (app, html, data) => {
     console.log("[rmss] renderTokenHUD hook fired", { app, html, data, user: game.user });
 
-    // 1. Solo mostramos el botón al GM.
-    if (!game.user.isGM) {
-      console.log("[rmss] Usuario no es GM, no se muestra el botón");
-      return;
-    }
+    // Visible to every user - EffectsPopupService itself hides the Critical tab (writes actor
+    // data directly, a GM-only action) for non-GM users, leaving Resistance Roll available to
+    // players (it only posts a chat prompt; the actual roll button is already gated to the
+    // token's owner/GM).
 
     // 2. Creamos el botón manualmente.
     const effectsButton = document.createElement("div");
