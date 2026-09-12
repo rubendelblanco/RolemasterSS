@@ -243,11 +243,16 @@ export default class ForceSpellService {
             }
         }
 
-        // For non-Force spells (or Force without targets), get Static Maneuver result
+        // For non-Force spells (or Force without targets), get Static Maneuver result - unless
+        // cast from an item: there's no casting maneuver to roll for a wand/potion/artifact, it
+        // just goes off (isFumble/failureResult stay at their unset defaults, so isSuccess below
+        // is automatically true). Whatever the spell type still requires afterward - a Force
+        // attack roll against a target, a target's resistance roll - already runs unaffected,
+        // since that's a separate mechanic from this maneuver check.
         let maneuverResult = null;
-        if (!isForceSpell || !hasTargets) {
+        if (!fromEnchantment && (!isForceSpell || !hasTargets)) {
             maneuverResult = await StaticManeuverService.getResult(finalResult, naturalRoll);
-            
+
             // If result is a failure, roll on Spell Failure Table
             if (maneuverResult && SpellFailureService.isFailureResult(maneuverResult.code)) {
                 failureResult = await SpellFailureService.rollFailure(
