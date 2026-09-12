@@ -181,6 +181,11 @@ export function registerCombatHooks() {
     });
 
     Hooks.on("updateCombat", async (combat, update) => {
+        // Every connected client fires this hook - without the GM guard, N players each ran the
+        // full per-combatant actor.update() loop on every round change (N x combatant-count
+        // redundant writes racing each other on the same actors, the "9 combatants x N players"
+        // server slowdown this was traced to).
+        if (!game.user.isGM) return;
         // Solo cuando cambia el número de ronda
         if (!("round" in update)) return;
 
@@ -195,7 +200,11 @@ export function registerCombatHooks() {
         ui.notifications.info("⚔️ Se ha restaurado el movimiento de todos los personajes.");
     });
 
-    Hooks.on("preUpdateToken", (tokenDoc, data) => {
+    Hooks.on("preUpdateToken", (tokenDoc, data, options, userId) => {
+        // preUpdateToken fires on every connected client, not just the one moving the token -
+        // without this guard, moving a player's token (e.g. the GM dragging it) also ran this on
+        // every other client, each redundantly recomputing/writing the same actor update.
+        if (game.user.id !== userId) return;
         if (!game.combat?.started) return;
         if (data.x === undefined && data.y === undefined) return;
 
