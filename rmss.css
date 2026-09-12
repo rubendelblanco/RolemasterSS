@@ -941,31 +941,40 @@
   min-height: 80px;
 }
 
-.sheet .tab .description-editor-wrapper .editor {
-  min-height: 80px;
-}
-
+/* No min-height on `.editor` itself, deliberately: `.editor` is `.editor-content`'s flex
+   parent, and giving the parent its own fixed min-height fights the child's `resize: vertical`
+   further down - the user can drag `.editor-content` taller, but `.editor` was already sized
+   from this min-height at layout time and doesn't grow to match, so the drag visibly does
+   nothing. Used to be 80px here AND on `.sheet .tab .description-editor-wrapper .editor` /
+   `.sheet .tab .sheet-content .editor` - both of those selectors are now removed entirely
+   rather than left with an empty ruleset. The `.editor-content` rule below (min-height: 100px
+   !important) already guarantees a sane starting size; that's enough to also size `.editor`
+   around it via normal box flow. */
 .sheet .sheet-content .editor {
     height: auto;
-    min-height: 80px;
 }
 
-.sheet .tab .sheet-content .editor {
-    min-height: 80px;
-}
+/* Foundry core sets `body.game .sheet.app .editor-content { height: 100% }` (4 classes + the
+   `body` element - more specific than a plain `.rmss.sheet .editor-content` override, which is
+   why an earlier attempt at this rule silently lost and never took effect). That core rule locks
+   every rich-text editor to whatever height its container happens to have instead of letting it
+   grow with the text or the user resize it - typing two sentences into a short field like the
+   item's secret info clips instead of expanding. `!important` beats it outright regardless of
+   selector specificity or load order, without having to hand-match (and keep re-matching, if a
+   future Foundry version changes it again) core's own selector. `resize: vertical` gives a
+   native drag handle in the bottom-right corner, like a textarea, instead of a fixed height.
 
-/* Foundry core sets `body.game .sheet.app .editor-content { height: 100% }`, which locks
-   every rich-text editor to whatever height its container happens to have instead of letting
-   it grow with the text or the user resize it - typing two sentences into a short field like
-   the item's secret info clips instead of expanding. `.rmss.sheet` (every one of our sheets
-   carries both classes) is more specific than core's rule, so this wins regardless of load
-   order. `resize: vertical` gives a native drag handle in the bottom-right corner, like a
-   textarea, instead of forcing a fixed pixel height. */
+   `.editor` is a flex container (column), and `.editor-content` is a flex item inside it with
+   its own grow/shrink - so even with the handle showing and `resize` active, flex recalculates
+   `.editor-content`'s height back to fit the flex container on every reflow, fighting the drag
+   and making it look like resizing does nothing. `flex: none` takes it out of flex sizing
+   entirely so its height is governed only by resize/CSS, not by the flex algorithm. */
 .rmss.sheet .editor-content {
-    height: auto;
-    min-height: 100px;
-    resize: vertical;
-    overflow: auto;
+    height: auto !important;
+    min-height: 100px !important;
+    flex: none !important;
+    resize: vertical !important;
+    overflow: auto !important;
 }
 
 /* Human Body */
