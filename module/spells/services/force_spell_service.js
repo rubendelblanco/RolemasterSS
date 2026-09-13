@@ -63,7 +63,8 @@ export default class ForceSpellService {
             spellAdderUsesRemaining: spellAdder?.usesRemaining ?? 0,
             spellAdderUsesMax: spellAdder?.value ?? 0,
             spellLevel,
-            spendPp: !noPP
+            spendPp: !noPP,
+            fromEnchantment
         });
 
         if (castingOptions === null) {

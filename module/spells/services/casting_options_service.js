@@ -40,6 +40,10 @@ export default class CastingOptionsService {
      * @param {number} [params.spellAdderUsesMax] - Total daily uses for the spell adder
      * @param {number} [params.spellLevel=1] - PP cost; compared to current PP when spendPp is true
      * @param {boolean} [params.spendPp=true] - If true, "Cast" is hidden when current PP &lt; spellLevel (use Spell Adder or close)
+     * @param {boolean} [params.fromEnchantment=false] - Cast from an item (potion/rune/staff/artifact):
+     *   there's no caster subtlety/hands/voice/preparation to choose, and no hits-taken/bleeding/
+     *   stunned penalty - the item just goes off. Skips the dialog entirely and returns a neutral
+     *   (no modifier) result instead of prompting.
      * @returns {Promise<{totalModifier: number, options: Object, useSpellAdder?: boolean}|null>}
      */
     static async showCastingOptionsDialog({
@@ -51,8 +55,23 @@ export default class CastingOptionsService {
         spellAdderUsesRemaining = 0,
         spellAdderUsesMax = 0,
         spellLevel = 1,
-        spendPp = true
+        spendPp = true,
+        fromEnchantment = false
     }) {
+        if (fromEnchantment) {
+            return {
+                totalModifier: 0,
+                castingModifier: 0,
+                publicRollToPlayers: true,
+                hitsTaken: 0,
+                bleeding: 0,
+                stunned: 0,
+                penaltyEffect: 0,
+                activeBonus: 0,
+                options: { subtlety: "normal", hands: "two", voice: "normal", preparation: 0, otherMods: 0 }
+            };
+        }
+
         const modifiers = await this.loadModifiers();
         if (!modifiers) {
             ui.notifications.error("Failed to load casting modifiers");

@@ -1,6 +1,7 @@
 /**
  * Tests for CastingOptionsService
  */
+import { jest } from '@jest/globals';
 import CastingOptionsService from '../module/spells/services/casting_options_service.js';
 
 const mockModifiers = {
@@ -90,6 +91,45 @@ describe('CastingOptionsService', () => {
             expect(voice.none).toBe(-25);
             expect(voice.normal).toBe(0);
             expect(voice.shout).toBe(5);
+        });
+    });
+
+    describe('showCastingOptionsDialog with fromEnchantment', () => {
+        // An item cast (potion/rune/staff/artifact) has no caster subtlety/hands/voice/prep
+        // to choose and no hits-taken/bleeding/stunned penalty - it just goes off. This must
+        // never show the dialog (no Dialog render, no modifiers table fetch) and instead
+        // resolve immediately with a neutral, zero-modifier result.
+        beforeEach(() => {
+            global.fetch = jest.fn();
+            global.Dialog = jest.fn(() => { throw new Error('Dialog should not be constructed for an item cast'); });
+        });
+
+        test('resolves with a neutral result without fetching modifiers or showing a dialog', async () => {
+            const result = await CastingOptionsService.showCastingOptionsDialog({
+                realm: 'essence', spellType: 'F', spellName: 'Fireball', fromEnchantment: true
+            });
+
+            expect(global.fetch).not.toHaveBeenCalled();
+            expect(global.Dialog).not.toHaveBeenCalled();
+            expect(result).toEqual({
+                totalModifier: 0,
+                castingModifier: 0,
+                publicRollToPlayers: true,
+                hitsTaken: 0,
+                bleeding: 0,
+                stunned: 0,
+                penaltyEffect: 0,
+                activeBonus: 0,
+                options: { subtlety: "normal", hands: "two", voice: "normal", preparation: 0, otherMods: 0 }
+            });
+        });
+
+        test('without fromEnchantment, the same call still tries to load modifiers (would show the dialog)', async () => {
+            await CastingOptionsService.showCastingOptionsDialog({
+                realm: 'essence', spellType: 'F', spellName: 'Fireball'
+            }).catch(() => {});
+
+            expect(global.fetch).toHaveBeenCalled();
         });
     });
 });
