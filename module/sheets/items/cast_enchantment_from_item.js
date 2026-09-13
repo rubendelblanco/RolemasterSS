@@ -97,6 +97,15 @@ export function itemHasPotionTag(itemOrSystem) {
 }
 
 /**
+ * Runes always carry a single-use spell, consumed on cast exactly like a potion.
+ * @param {Item|{ system?: object }} itemOrSystem
+ * @returns {boolean}
+ */
+export function itemHasRuneTag(itemOrSystem) {
+  return itemHasTag(itemOrSystem, "rune");
+}
+
+/**
  * Artifacts unlock the shared charge pool ("pooled" enchantment usage) and the fixed cast
  * level override — both stay at their inert defaults (0) on regular items.
  * @param {Item|{ system?: object }} itemOrSystem
@@ -132,6 +141,7 @@ export function attachItemMagicActionFlags(itemPlain) {
   if (!itemPlain?.system) {
     itemPlain.rmssShowItemMagicAction = false;
     itemPlain.rmssItemMagicIsPotion = false;
+    itemPlain.rmssItemMagicIsRune = false;
     itemPlain.rmssChargePool = null;
     itemPlain.rmssEnchantmentCharges = [];
     itemPlain.rmssPassiveBadges = [];
@@ -149,6 +159,7 @@ export function attachItemMagicActionFlags(itemPlain) {
   const list = buildEnchantmentList(itemPlain.system?.magic?.enchantments);
   const hasSingleUsable = usable.some(u => (list[u.index]?.usage ?? "passive") === "single");
   itemPlain.rmssItemMagicIsPotion = itemHasPotionTag(itemPlain) && hasSingleUsable;
+  itemPlain.rmssItemMagicIsRune = itemHasRuneTag(itemPlain) && hasSingleUsable;
 
   // At-a-glance charge count for artifacts with a shared pool, same idea as the spell-adder
   // pips - same identity-hidden gate as the magic action icon above, for the same reason.
@@ -278,8 +289,9 @@ export async function castEnchantmentFromItem(actor, item, enchantmentIndex) {
 
   const usage = enchantment.usage ?? "passive";
   const isPotion = itemHasPotionTag(item);
+  const isRune = itemHasRuneTag(item);
 
-  if (usage === "single" && isPotion) {
+  if (usage === "single" && (isPotion || isRune)) {
     const qty = Number(item.system.quantity) || 1;
     if (qty > 1) {
       await item.update({ "system.quantity": qty - 1 });

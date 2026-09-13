@@ -121,7 +121,7 @@
             {{#unless weapon.system.isNaturalWeapon}}
             {{#if weapon.rmssShowItemMagicAction}}
             <a class="item-control item-cast-magic" title="{{localize 'rmss.item.cast_magic_tooltip'}}" data-item-id="{{weapon._id}}">
-                <i class="fas {{#if weapon.rmssItemMagicIsPotion}}fa-flask{{else}}fa-wand-magic-sparkles{{/if}}"></i>
+                <i class="{{#if weapon.rmssItemMagicIsPotion}}fa-duotone fa-light fa-flask-round-potion{{else if weapon.rmssItemMagicIsRune}}fa-duotone fa-solid fa-scroll{{else}}fas fa-wand-magic-sparkles{{/if}}"></i>
             </a>
             {{/if}}
             <a class="item-give" title="Give item" data-item-id="{{weapon._id}}">
