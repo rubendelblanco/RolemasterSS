@@ -2,6 +2,7 @@ import { buildEnchantmentList, resolveSpellForEnchantment, getChargePool, normal
 import { isIdentityHidden } from "../../actors/utils/item_identity_util.js";
 import { normalizePassiveModifiers } from "../../actors/services/passive_item_modifiers_service.js";
 import { getWeaponSlayingArray } from "./weapon_slaying_ui.js";
+import { itemHasConsumableTag } from "./consume_item.js";
 
 /**
  * At-a-glance bonus-skill badges (e.g. "+10 Stalking/Hiding") from system.bonus_skills:
@@ -142,6 +143,7 @@ export function attachItemMagicActionFlags(itemPlain) {
     itemPlain.rmssShowItemMagicAction = false;
     itemPlain.rmssItemMagicIsPotion = false;
     itemPlain.rmssItemMagicIsRune = false;
+    itemPlain.rmssShowConsumeAction = false;
     itemPlain.rmssChargePool = null;
     itemPlain.rmssEnchantmentCharges = [];
     itemPlain.rmssPassiveBadges = [];
@@ -160,6 +162,11 @@ export function attachItemMagicActionFlags(itemPlain) {
   const hasSingleUsable = usable.some(u => (list[u.index]?.usage ?? "passive") === "single");
   itemPlain.rmssItemMagicIsPotion = itemHasPotionTag(itemPlain) && hasSingleUsable;
   itemPlain.rmssItemMagicIsRune = itemHasRuneTag(itemPlain) && hasSingleUsable;
+
+  // Plain consumables (food, drink...) get their own action icon/click, independent of the
+  // magic-item cast action above — a potion/rune already has its own consumption path, so
+  // exclude those even if someone also tags them "consumable".
+  itemPlain.rmssShowConsumeAction = itemHasConsumableTag(itemPlain) && !itemHasPotionTag(itemPlain) && !itemHasRuneTag(itemPlain);
 
   // At-a-glance charge count for artifacts with a shared pool, same idea as the spell-adder
   // pips - same identity-hidden gate as the magic action icon above, for the same reason.

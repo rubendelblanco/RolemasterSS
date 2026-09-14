@@ -645,6 +645,7 @@
       "enchantment_not_identified": "Este objeto todavía no ha sido identificado.",
             "enchantment_spell_not_found": "Hechizo no encontrado. El actor debe poseer el hechizo para usar este encantamiento.",
             "cast_magic_tooltip": "Lanzar hechizo desde el encantamiento de este objeto",
+            "consume_tooltip": "Consumir una unidad",
             "charge_pool_tooltip": "Cargas restantes: {current}/{max}",
             "pp_multiplier_badge_tooltip": "Multiplicador de puntos de poder: x{mult} {realm}",
             "spell_adder_badge_tooltip": "Sumatorio de hechizos: +{value} {realm}",

@@ -1,6 +1,7 @@
 import ItemService from "../../actors/services/item_service.js";
 import GiveMoneyDialog from "../../actors/dialogs/give_money_dialog.js";
 import { castEnchantmentFromItem, getUsableEnchantmentsForItem } from "../items/cast_enchantment_from_item.js";
+import { consumeItem } from "../items/consume_item.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
@@ -506,6 +507,7 @@ export default class RMSSCharacterSheet extends ActorSheet {
         html.find(".item-give").click(ev => this._onItemGiveClick(ev));
         html.find(".money-give").click(ev => this._onMoneyGiveClick(ev));
         html.find(".item-cast-magic").on("click", ev => this._onItemCastMagicClick(ev));
+        html.find(".item-consume").on("click", ev => this._onItemConsumeClick(ev));
         html.find(".split-stack").click(ev => this._onItemSplitClick(ev));
         html.find(".wearable").click(ev => this._onItemWearableClick(ev));
         html.find(".spell-list-level").on("change", async (ev) => {
@@ -617,6 +619,16 @@ export default class RMSSCharacterSheet extends ActorSheet {
             });
         }
         if (didApply) await this.render(false);
+    }
+
+    async _onItemConsumeClick(ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        const itemId = ev.currentTarget.dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        if (!item) return;
+        await consumeItem(item);
+        this.render(false);
     }
 
     async _onItemSplitClick(ev) {

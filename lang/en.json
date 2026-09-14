@@ -645,6 +645,7 @@
             "enchantment_not_identified": "This item hasn't been identified yet.",
             "enchantment_spell_not_found": "Spell not found. The actor must own the spell to use this enchantment.",
             "cast_magic_tooltip": "Cast spell from this item's enchantment",
+            "consume_tooltip": "Consume one unit",
             "charge_pool_tooltip": "Charges remaining: {current}/{max}",
             "pp_multiplier_badge_tooltip": "Power point multiplier: x{mult} {realm}",
             "spell_adder_badge_tooltip": "Spell adder: +{value} {realm}",
