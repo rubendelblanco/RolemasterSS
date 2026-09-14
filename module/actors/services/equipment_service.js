@@ -264,4 +264,60 @@ export default class EquipmentService {
     if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(actor);
     return true;
   }
+
+  /**
+   * Same as toggleEquipped, but never blocks with a warning when equipping (not unequipping) runs
+   * into a hand-limit/slot conflict with something the actor already has equipped - it unequips
+   * the conflicting item(s) first instead, then equips the requested one. A valid dual-wield combo
+   * (two different-skill one-handed weapons) is left untouched, exactly like toggleEquipped - this
+   * only kicks in on what would otherwise be a blocked equip. Meant for the Argon HUD's Equipment
+   * panel, where "click a different weapon" reads as "wear this instead", not "try to add it on
+   * top and tell me if it doesn't fit" - the sheet's own equip icons keep calling toggleEquipped
+   * unchanged.
+   * @param {Actor} actor
+   * @param {Item} item
+   * @returns {Promise<boolean>} true if the item's equipped/worn state actually changed
+   */
+  static async swapEquip(actor, item) {
+    if (!actor || !item) return false;
+
+    if (["item", "herb_or_poison"].includes(item.type)) {
+      await ItemService.toggleWorn(item);
+      return true;
+    }
+
+    if (item.system.equipped === true) {
+      await item.update({ system: { equipped: false } });
+      if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(actor);
+      return true;
+    }
+
+    const toUnequip = new Set();
+
+    if (item.type === "armor") {
+      const slot = this.getArmorSlot(item);
+      const itemId = item.id ?? item._id;
+      if (slot === "shield" && this.hasEquippedTwoHandedWeapon(actor)) {
+        for (const w of this.getEquippedWeapons(actor)) toUnequip.add(w);
+      }
+      const sameSlot = actor.items.find(
+        (i) => i.type === "armor" && (i.id ?? i._id) !== itemId && i.system?.equipped && this.getArmorSlot(i) === slot
+      );
+      if (sameSlot) toUnequip.add(sameSlot);
+    } else if (!this.canEquip(actor, item).valid) {
+      // Whatever the exact reason (hands exceeded, dual-wield skill clash...), the simplest and
+      // most predictable "swap" is to clear every currently-equipped weapon and shield, then
+      // equip the requested one on a clean slate.
+      for (const w of this.getEquippedWeapons(actor)) toUnequip.add(w);
+      const shield = actor.items.find((i) => i.type === "armor" && i.system?.equipped && this.getArmorSlot(i) === "shield");
+      if (shield) toUnequip.add(shield);
+    }
+
+    for (const u of toUnequip) {
+      await u.update({ system: { equipped: false } });
+      if (u.type === "armor") await ArmorInfoService.updateActorArmorInfo(actor);
+    }
+
+    return this.toggleEquipped(actor, item);
+  }
 }

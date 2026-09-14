@@ -295,4 +295,100 @@ describe("EquipmentService", () => {
       expect(await EquipmentService.toggleEquipped({ items: [] }, null)).toBe(false);
     });
   });
+
+  describe("swapEquip", () => {
+    // Same validated rules as toggleEquipped, but an equip that toggleEquipped would block with
+    // a warning instead clears the conflicting item(s) first and equips on a clean slate - meant
+    // for the Argon HUD's Equipment panel ("click a different weapon" = "wear this instead").
+    // swapEquip unequips conflicts and then re-validates against actor.items - unlike the plain
+    // toggleEquipped tests above (one update call each), these need .update to actually mutate
+    // the mock's own system data, the way a real Foundry Item#update does, or the re-check still
+    // sees the stale "equipped: true" and the test can't tell the two paths apart.
+    function mockItem(base) {
+      const item = { ...base, system: { ...base.system } };
+      item.update = jest.fn(async (changes) => {
+        if (changes?.system) Object.assign(item.system, changes.system);
+      });
+      return item;
+    }
+
+    beforeEach(() => {
+      global.ui = { notifications: { warn: jest.fn(), error: jest.fn(), info: jest.fn() } };
+      global.game.i18n.format = jest.fn((key, data) => `${key}::${JSON.stringify(data ?? {})}`);
+      jest.spyOn(ArmorInfoService, "updateActorArmorInfo").mockResolvedValue(undefined);
+    });
+    afterEach(() => jest.restoreAllMocks());
+
+    test("unequipping just flips equipped off, same as toggleEquipped", async () => {
+      const weapon = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false }, update: jest.fn().mockResolvedValue(undefined) };
+      const changed = await EquipmentService.swapEquip({ items: [weapon] }, weapon);
+      expect(changed).toBe(true);
+      expect(weapon.update).toHaveBeenCalledWith({ system: { equipped: false } });
+    });
+
+    test("equipping under the hand limit works normally, nothing to unequip", async () => {
+      const weapon = { type: "weapon", system: { equipped: false, type: "1he", isNaturalWeapon: false }, update: jest.fn().mockResolvedValue(undefined) };
+      const actor = { items: [] };
+      const changed = await EquipmentService.swapEquip(actor, weapon);
+      expect(changed).toBe(true);
+      expect(weapon.update).toHaveBeenCalledWith({ system: { equipped: true, worn: true } });
+    });
+
+    test("equipping a 2H weapon while a 1H weapon is equipped unequips the 1H weapon first, no warning", async () => {
+      const weapon1 = mockItem({ type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false } });
+      const weapon2H = mockItem({ type: "weapon", system: { equipped: false, type: "2h", isNaturalWeapon: false } });
+      const actor = { items: [weapon1, weapon2H] };
+      const changed = await EquipmentService.swapEquip(actor, weapon2H);
+      expect(changed).toBe(true);
+      expect(weapon1.update).toHaveBeenCalledWith({ system: { equipped: false } });
+      expect(weapon2H.update).toHaveBeenCalledWith({ system: { equipped: true, worn: true } });
+      expect(global.ui.notifications.warn).not.toHaveBeenCalled();
+    });
+
+    test("equipping a shield while a 2H weapon is equipped unequips the 2H weapon first", async () => {
+      const weapon2H = mockItem({ type: "weapon", system: { equipped: true, type: "2h", isNaturalWeapon: false } });
+      const shield = mockItem({ type: "armor", _id: "s1", system: { equipped: false, armorSlot: "shield", isShield: true } });
+      const actor = { items: [weapon2H, shield] };
+      const changed = await EquipmentService.swapEquip(actor, shield);
+      expect(changed).toBe(true);
+      expect(weapon2H.update).toHaveBeenCalledWith({ system: { equipped: false } });
+      expect(shield.update).toHaveBeenCalledWith({ system: { equipped: true, worn: true } });
+    });
+
+    test("equipping a second 1H weapon with the same offensive_skill swaps instead of blocking", async () => {
+      const weapon1 = mockItem({ type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } });
+      const weapon2 = mockItem({ type: "weapon", system: { equipped: false, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } });
+      const actor = { items: [weapon1, weapon2] };
+      const changed = await EquipmentService.swapEquip(actor, weapon2);
+      expect(changed).toBe(true);
+      expect(weapon1.update).toHaveBeenCalledWith({ system: { equipped: false } });
+      expect(weapon2.update).toHaveBeenCalledWith({ system: { equipped: true, worn: true } });
+    });
+
+    test("a valid dual-wield (different skills) is left untouched - no unequip, both end up equipped", async () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" }, update: jest.fn().mockResolvedValue(undefined) };
+      const weapon2 = { type: "weapon", system: { equipped: false, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-shortsword" }, update: jest.fn().mockResolvedValue(undefined) };
+      const actor = { items: [weapon1, weapon2] };
+      const changed = await EquipmentService.swapEquip(actor, weapon2);
+      expect(changed).toBe(true);
+      expect(weapon1.update).not.toHaveBeenCalled();
+      expect(weapon2.update).toHaveBeenCalledWith({ system: { equipped: true, worn: true } });
+    });
+
+    test("equipping armor into an occupied slot unequips the old armor first", async () => {
+      const body1 = mockItem({ type: "armor", _id: "b1", system: { equipped: true, armorSlot: "body" } });
+      const body2 = mockItem({ type: "armor", _id: "b2", system: { equipped: false, armorSlot: "body" } });
+      const actor = { items: [body1, body2] };
+      const changed = await EquipmentService.swapEquip(actor, body2);
+      expect(changed).toBe(true);
+      expect(body1.update).toHaveBeenCalledWith({ system: { equipped: false } });
+      expect(body2.update).toHaveBeenCalledWith({ system: { equipped: true, worn: true } });
+      expect(global.ui.notifications.warn).not.toHaveBeenCalled();
+    });
+
+    test("no actor or no item returns false without throwing", async () => {
+      expect(await EquipmentService.swapEquip(null, {})).toBe(false);
+      expect(await EquipmentService.swapEquip({ items: [] }, null)).toBe(false);
+    });
+  });
 });
