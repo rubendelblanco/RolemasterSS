@@ -691,6 +691,7 @@
       "days_until_spoiled": "Días hasta que se estropee",
       "food_spoiled_message": "<strong>{item}</strong> se ha estropeado. <strong>{item}</strong> descartado del equipo.",
       "days_until_spoiled_label": "Caducidad: {days} días",
+      "item_consumed_message": "ha consumido <strong>{item}</strong>.",
       "section_logistics": "Logística y valor",
       "section_weapon_stats": "Estadísticas del arma",
       "section_herb_stats": "Detalles de hierba/veneno",
@@ -1223,7 +1224,9 @@
       "confirm_delete_title": "Confirmar eliminación",
       "confirm_delete_item": "¿Estás seguro de que deseas eliminar \"{name}\"?",
       "confirm_delete_spell_from_list": "¿Estás seguro de que deseas eliminar \"{name}\" de esta lista de hechizos?",
-      "item_description_title": "Descripción"
+      "item_description_title": "Descripción",
+      "confirm_consume_title": "Consumir objeto",
+      "confirm_consume_item": "¿Consumir una unidad de \"{name}\"?"
     },
     "profession": {
       "description": "Descripción",

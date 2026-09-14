@@ -691,6 +691,7 @@
             "days_until_spoiled": "Days until spoiled",
             "food_spoiled_message": "<strong>{item}</strong> has gone bad. <strong>{item}</strong> discarded from your equipment.",
             "days_until_spoiled_label": "Spoils in: {days} days",
+            "item_consumed_message": "has consumed <strong>{item}</strong>.",
             "section_logistics": "Logistics & Value",
             "section_weapon_stats": "Weapon Stats",
             "section_herb_stats": "Herb / Poison Details",
@@ -1223,7 +1224,9 @@
             "confirm_delete_title": "Confirm Deletion",
             "confirm_delete_item": "Are you sure you want to delete \"{name}\"?",
             "confirm_delete_spell_from_list": "Are you sure you want to remove \"{name}\" from this spell list?",
-            "item_description_title": "Description"
+            "item_description_title": "Description",
+            "confirm_consume_title": "Consume item",
+            "confirm_consume_item": "Consume one unit of \"{name}\"?"
         },
         "profession": {
             "description": "Description",

@@ -1,7 +1,7 @@
 import ItemService from "../../actors/services/item_service.js";
 import GiveMoneyDialog from "../../actors/dialogs/give_money_dialog.js";
 import { castEnchantmentFromItem, getUsableEnchantmentsForItem } from "../items/cast_enchantment_from_item.js";
-import { consumeItem } from "../items/consume_item.js";
+import { confirmAndConsumeItem } from "../items/consume_item.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
@@ -627,8 +627,8 @@ export default class RMSSCharacterSheet extends ActorSheet {
         const itemId = ev.currentTarget.dataset.itemId;
         const item = this.actor.items.get(itemId);
         if (!item) return;
-        await consumeItem(item);
-        this.render(false);
+        const result = await confirmAndConsumeItem(this.actor, item);
+        if (result.applied) this.render(false);
     }
 
     async _onItemSplitClick(ev) {
