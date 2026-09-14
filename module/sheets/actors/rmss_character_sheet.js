@@ -6,7 +6,6 @@ import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js";
 import { buildDeleteConfirmContent } from "../items/item_delete_confirm_util.js";
 
-import ArmorInfoService from "../../actors/services/armor_info_service.js";
 import FoodSpoilageService from "../../actors/services/food_spoilage_service.js";
 
 /**
@@ -29,51 +28,7 @@ export default class RMSSCharacterSheet extends ActorSheet {
         html.find(".equippable").click(async ev => {
             const item = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
             if (!item) return;
-            // Items and herbs use "worn" only; weapons and armor use "equipped" (weapons also have
-            // their own separate "worn" control, handled above).
-            if (["item", "herb_or_poison"].includes(item.type)) {
-                await ItemService.toggleWorn(item);
-                return;
-            }
-            if (item.system.equipped === true) {
-                await item.update({ system: { equipped: false } });
-                if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(this.actor);
-            } else {
-                if (item.type === "armor") {
-                    const armorCheck = EquipmentService.canEquipArmor(this.actor, item);
-                    if (!armorCheck.valid) {
-                        const armorMsg = armorCheck.reason === "shield_with_two_handed_weapon"
-                            ? game.i18n.localize("rmss.equipment.shield_with_two_handed_weapon")
-                            : game.i18n.localize("rmss.equipment.armor_slot_occupied");
-                        ui.notifications.warn(armorMsg);
-                        return;
-                    }
-                }
-                const { valid, currentHands, itemHands, reason } = EquipmentService.canEquip(this.actor, item);
-                if (!valid) {
-                    const msg = reason === "dual_wield_same_skill"
-                        ? game.i18n.localize("rmss.equipment.dual_wield_same_skill")
-                        : reason === "dual_wield_both_one_handed"
-                            ? game.i18n.localize("rmss.equipment.dual_wield_both_one_handed")
-                            : game.i18n.format("rmss.equipment.hands_limit_exceeded", {
-                                current: currentHands,
-                                adding: itemHands,
-                                max: EquipmentService.MAX_HANDS
-                            });
-                    ui.notifications.warn(msg);
-                    return;
-                }
-                if (item.type === "weapon" && item.system?.isNaturalWeapon !== true) {
-                    const equippedWeapons = EquipmentService.getEquippedWeapons(this.actor);
-                    if (equippedWeapons.length >= 1) {
-                        ui.notifications.warn(game.i18n.localize("rmss.equipment.weapon_bonus_no_second_weapon"));
-                    }
-                }
-                // A weapon in hand, or armor being worn, is necessarily carried too.
-                const equipUpdate = ["weapon", "armor"].includes(item.type) ? { equipped: true, worn: true } : { equipped: true };
-                await item.update({ system: equipUpdate });
-                if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(this.actor);
-            }
+            await EquipmentService.toggleEquipped(this.actor, item);
         });
 
         html.find(".offensive-skill").click(async ev => {

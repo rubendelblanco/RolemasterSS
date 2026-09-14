@@ -1,7 +1,10 @@
 /**
  * @jest-environment node
  */
+import { jest } from "@jest/globals";
 import EquipmentService from "../module/actors/services/equipment_service.js";
+import ItemService from "../module/actors/services/item_service.js";
+import ArmorInfoService from "../module/actors/services/armor_info_service.js";
 
 describe("EquipmentService", () => {
   const mockWeapon1H = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false } };
@@ -176,6 +179,120 @@ describe("EquipmentService", () => {
       const actor = { items: [weapon1H] };
       const shield = { type: "armor", _id: "s1", system: { armorSlot: "shield", isShield: true } };
       expect(EquipmentService.canEquipArmor(actor, shield).valid).toBe(true);
+    });
+  });
+
+  describe("toggleEquipped", () => {
+    // Extracted verbatim from RMSSCharacterSheet's own ".equippable" click handler - these
+    // tests pin the exact behavior (including the notification-only, non-blocking second-weapon
+    // warning) so the Argon HUD equipment panel calling this stays faithful to what the sheet
+    // already did inline.
+    beforeEach(() => {
+      global.ui = { notifications: { warn: jest.fn(), error: jest.fn(), info: jest.fn() } };
+      global.game.i18n.format = jest.fn((key, data) => `${key}::${JSON.stringify(data ?? {})}`);
+      jest.spyOn(ArmorInfoService, "updateActorArmorInfo").mockResolvedValue(undefined);
+    });
+    afterEach(() => jest.restoreAllMocks());
+
+    test("plain item delegates to ItemService.toggleWorn", async () => {
+      const item = { type: "item", system: { worn: false }, update: jest.fn().mockResolvedValue(undefined) };
+      const actor = { items: [] };
+      const changed = await EquipmentService.toggleEquipped(actor, item);
+      expect(changed).toBe(true);
+      expect(item.update).toHaveBeenCalledWith({ "system.worn": true });
+    });
+
+    test("herb_or_poison also delegates to ItemService.toggleWorn", async () => {
+      const item = { type: "herb_or_poison", system: { worn: true }, update: jest.fn().mockResolvedValue(undefined) };
+      const changed = await EquipmentService.toggleEquipped({ items: [] }, item);
+      expect(changed).toBe(true);
+      expect(item.update).toHaveBeenCalledWith({ "system.worn": false });
+    });
+
+    test("unequipping an equipped weapon just flips equipped off", async () => {
+      const weapon = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false }, update: jest.fn().mockResolvedValue(undefined) };
+      const changed = await EquipmentService.toggleEquipped({ items: [weapon] }, weapon);
+      expect(changed).toBe(true);
+      expect(weapon.update).toHaveBeenCalledWith({ system: { equipped: false } });
+      expect(ArmorInfoService.updateActorArmorInfo).not.toHaveBeenCalled();
+    });
+
+    test("unequipping armor also refreshes armor_info", async () => {
+      const armor = { type: "armor", _id: "a1", system: { equipped: true, armorSlot: "body" }, update: jest.fn().mockResolvedValue(undefined) };
+      const actor = { items: [armor] };
+      const changed = await EquipmentService.toggleEquipped(actor, armor);
+      expect(changed).toBe(true);
+      expect(armor.update).toHaveBeenCalledWith({ system: { equipped: false } });
+      expect(ArmorInfoService.updateActorArmorInfo).toHaveBeenCalledWith(actor);
+    });
+
+    test("equipping a weapon under the hand limit sets equipped and worn", async () => {
+      const weapon = { type: "weapon", system: { equipped: false, type: "1he", isNaturalWeapon: false }, update: jest.fn().mockResolvedValue(undefined) };
+      const actor = { items: [] };
+      const changed = await EquipmentService.toggleEquipped(actor, weapon);
+      expect(changed).toBe(true);
+      expect(weapon.update).toHaveBeenCalledWith({ system: { equipped: true, worn: true } });
+    });
+
+    test("equipping a weapon that would exceed 2 hands warns and does not update", async () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false } };
+      const shield = { type: "armor", _id: "s1", system: { equipped: true, armorSlot: "shield", isShield: true } };
+      const weapon2 = { type: "weapon", system: { equipped: false, type: "2h", isNaturalWeapon: false }, update: jest.fn() };
+      const actor = { items: [weapon1, shield] };
+      const changed = await EquipmentService.toggleEquipped(actor, weapon2);
+      expect(changed).toBe(false);
+      expect(weapon2.update).not.toHaveBeenCalled();
+      expect(global.ui.notifications.warn).toHaveBeenCalled();
+    });
+
+    test("dual-wielding a second weapon with the same offensive_skill warns and does not update", async () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } };
+      const weapon2 = {
+        type: "weapon",
+        system: { equipped: false, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" },
+        update: jest.fn()
+      };
+      const actor = { items: [weapon1] };
+      const changed = await EquipmentService.toggleEquipped(actor, weapon2);
+      expect(changed).toBe(false);
+      expect(weapon2.update).not.toHaveBeenCalled();
+    });
+
+    test("dual-wielding a second one-handed weapon with a different skill still warns (informational) but does equip", async () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } };
+      const weapon2 = {
+        type: "weapon",
+        system: { equipped: false, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-shortsword" },
+        update: jest.fn().mockResolvedValue(undefined)
+      };
+      const actor = { items: [weapon1] };
+      const changed = await EquipmentService.toggleEquipped(actor, weapon2);
+      expect(changed).toBe(true);
+      expect(weapon2.update).toHaveBeenCalledWith({ system: { equipped: true, worn: true } });
+      expect(global.ui.notifications.warn).toHaveBeenCalled();
+    });
+
+    test("equipping armor into an occupied slot warns and does not update", async () => {
+      const body1 = { type: "armor", _id: "b1", system: { equipped: true, armorSlot: "body" } };
+      const body2 = { type: "armor", _id: "b2", system: { equipped: false, armorSlot: "body" }, update: jest.fn() };
+      const actor = { items: [body1] };
+      const changed = await EquipmentService.toggleEquipped(actor, body2);
+      expect(changed).toBe(false);
+      expect(body2.update).not.toHaveBeenCalled();
+      expect(global.ui.notifications.warn).toHaveBeenCalled();
+    });
+
+    test("equipping armor also refreshes armor_info", async () => {
+      const armor = { type: "armor", _id: "a1", system: { equipped: false, armorSlot: "body" }, update: jest.fn().mockResolvedValue(undefined) };
+      const actor = { items: [armor] };
+      const changed = await EquipmentService.toggleEquipped(actor, armor);
+      expect(changed).toBe(true);
+      expect(ArmorInfoService.updateActorArmorInfo).toHaveBeenCalledWith(actor);
+    });
+
+    test("no actor or no item returns false without throwing", async () => {
+      expect(await EquipmentService.toggleEquipped(null, {})).toBe(false);
+      expect(await EquipmentService.toggleEquipped({ items: [] }, null)).toBe(false);
     });
   });
 });

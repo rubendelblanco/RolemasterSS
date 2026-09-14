@@ -1,3 +1,6 @@
+import ItemService from "./item_service.js";
+import ArmorInfoService from "./armor_info_service.js";
+
 /**
  * Service for equipment and hands-occupied logic (Issue #94).
  * - Weapons: usable only if equipped (or natural weapon, always equipped)
@@ -197,5 +200,68 @@ export default class EquipmentService {
     }
 
     return { valid: true, currentHands, itemHands };
+  }
+
+  /**
+   * Equip/unequip a weapon or armor item, or toggle "worn" for a plain item/herb (which have no
+   * separate equipped state) - the exact logic RMSSCharacterSheet's own ".equippable" click
+   * handler used to have inline, extracted so the Argon HUD equipment panel can call the same
+   * validated toggle instead of duplicating the hand-count/armor-slot rules.
+   * @param {Actor} actor
+   * @param {Item} item
+   * @returns {Promise<boolean>} true if the item's equipped/worn state actually changed
+   */
+  static async toggleEquipped(actor, item) {
+    if (!actor || !item) return false;
+
+    if (["item", "herb_or_poison"].includes(item.type)) {
+      await ItemService.toggleWorn(item);
+      return true;
+    }
+
+    if (item.system.equipped === true) {
+      await item.update({ system: { equipped: false } });
+      if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(actor);
+      return true;
+    }
+
+    if (item.type === "armor") {
+      const armorCheck = this.canEquipArmor(actor, item);
+      if (!armorCheck.valid) {
+        const armorMsg = armorCheck.reason === "shield_with_two_handed_weapon"
+          ? game.i18n.localize("rmss.equipment.shield_with_two_handed_weapon")
+          : game.i18n.localize("rmss.equipment.armor_slot_occupied");
+        ui.notifications.warn(armorMsg);
+        return false;
+      }
+    }
+
+    const { valid, currentHands, itemHands, reason } = this.canEquip(actor, item);
+    if (!valid) {
+      const msg = reason === "dual_wield_same_skill"
+        ? game.i18n.localize("rmss.equipment.dual_wield_same_skill")
+        : reason === "dual_wield_both_one_handed"
+          ? game.i18n.localize("rmss.equipment.dual_wield_both_one_handed")
+          : game.i18n.format("rmss.equipment.hands_limit_exceeded", {
+              current: currentHands,
+              adding: itemHands,
+              max: this.MAX_HANDS
+            });
+      ui.notifications.warn(msg);
+      return false;
+    }
+
+    if (item.type === "weapon" && item.system?.isNaturalWeapon !== true) {
+      const equippedWeapons = this.getEquippedWeapons(actor);
+      if (equippedWeapons.length >= 1) {
+        ui.notifications.warn(game.i18n.localize("rmss.equipment.weapon_bonus_no_second_weapon"));
+      }
+    }
+
+    // A weapon in hand, or armor being worn, is necessarily carried too.
+    const equipUpdate = ["weapon", "armor"].includes(item.type) ? { equipped: true, worn: true } : { equipped: true };
+    await item.update({ system: equipUpdate });
+    if (item.type === "armor") await ArmorInfoService.updateActorArmorInfo(actor);
+    return true;
   }
 }
