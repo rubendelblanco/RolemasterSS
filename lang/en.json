@@ -25,6 +25,13 @@
             "hits_recovered": "Hit points recovered",
             "pp_recovered": "Power Points recovered"
         },
+        "fasting": {
+            "missed_meal_message": "has not eaten today.",
+            "penalty_message": "has gone too long without food and suffers a fasting penalty: <strong>{penalty}</strong> to all actions.",
+            "recovering_message": "has eaten well. Fasting penalty reduced to <strong>{penalty}</strong>.",
+            "recovered_message": "has fully recovered from fasting.",
+            "effect_description": "Fasting: accumulated penalty from days without eating."
+        },
         "spell_heal": {
             "wrong_target_count": "Select between 1 and {max} target(s); you have {actual} selected.",
             "duplicate_targets": "The same target is selected more than once.",

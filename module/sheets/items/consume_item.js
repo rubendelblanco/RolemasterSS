@@ -1,6 +1,7 @@
 import { getItemTagsArray } from "./item_tags_ui.js";
 import { buildDeleteConfirmContent } from "./item_delete_confirm_util.js";
 import { whisperIdsForOwnersAndGMs, chatMessageOtherStyle } from "../../chat/chatMessages.js";
+import FastingService from "../../actors/services/fasting_service.js";
 
 /**
  * Plain (non-magic) consumables — food, drink, and the like — tagged "consumable" but not
@@ -83,6 +84,9 @@ export async function confirmAndConsumeItem(actor, item) {
   if (!confirmed) return { applied: false };
 
   const result = await consumeItem(item);
-  if (result.applied) await _chatItemConsumed(actor, item);
+  if (result.applied) {
+    await _chatItemConsumed(actor, item);
+    await FastingService.markAteFoodToday(actor, item);
+  }
   return result;
 }

@@ -46,6 +46,7 @@ import CurrencyService from "./module/actors/services/currency_service.js";
 import { getItemGlowClass } from "./module/actors/utils/item_identity_util.js";
 import { advanceArtifactRecharge } from "./module/sheets/items/enchantment_utils.js";
 import FoodSpoilageService from "./module/actors/services/food_spoilage_service.js";
+import FastingService from "./module/actors/services/fasting_service.js";
 
 export let socket;
 
@@ -933,6 +934,17 @@ Hooks.once("init", function () {
     const actors = actor ? [actor] : (game.actors || []);
     for (const a of actors) {
       await FoodSpoilageService.advanceFoodSpoilage(a);
+    }
+  });
+
+  /** Ayuno Total (fasting): a full day without eating a "food"-tagged item accumulates a -15
+   *  penalty (from the day after the first missed meal) to all actions/maneuvers, drained +5
+   *  per consecutive day of eating again - see FastingService. Own listener, same "1 rest = 1
+   *  day" convention and independent-testability reasoning as the food spoilage one above. */
+  Hooks.on("rmssLongRest", async (actor) => {
+    const actors = actor ? [actor] : (game.actors || []);
+    for (const a of actors) {
+      await FastingService.advanceFastingDay(a);
     }
   });
 

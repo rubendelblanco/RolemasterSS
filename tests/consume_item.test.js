@@ -71,7 +71,8 @@ describe('confirmAndConsumeItem', () => {
         return {
             name: 'Bilbo',
             img: 'actor.webp',
-            testUserPermission: jest.fn((user) => user.id === id || user.isGM)
+            testUserPermission: jest.fn((user) => user.id === id || user.isGM),
+            setFlag: jest.fn().mockResolvedValue(undefined)
         };
     }
 
@@ -98,6 +99,7 @@ describe('confirmAndConsumeItem', () => {
 
         expect(result).toEqual({ applied: true });
         expect(item.update).toHaveBeenCalledWith({ "system.quantity": 2 });
+        expect(actor.setFlag).toHaveBeenCalledWith('rmss', 'ateFoodToday', true);
         expect(global.ChatMessage.create).toHaveBeenCalledTimes(1);
         const call = global.ChatMessage.create.mock.calls[0][0];
         expect(call.whisper.sort()).toEqual(['gm-1', 'owner-1']);

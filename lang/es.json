@@ -25,6 +25,13 @@
       "hits_recovered": "Puntos de vida recuperados",
       "pp_recovered": "Puntos de Poder recuperados"
     },
+    "fasting": {
+      "missed_meal_message": "no ha comido hoy.",
+      "penalty_message": "lleva demasiado tiempo sin comer y sufre un penalizador de ayuno: <strong>{penalty}</strong> a todas las acciones.",
+      "recovering_message": "ha comido bien. El penalizador por ayuno se reduce a <strong>{penalty}</strong>.",
+      "recovered_message": "se ha recuperado completamente del ayuno.",
+      "effect_description": "Ayuno: penalizador acumulado por días sin comer."
+    },
     "spell_heal": {
       "wrong_target_count": "Selecciona entre 1 y {max} objetivo(s); tienes {actual} seleccionado(s).",
       "duplicate_targets": "El mismo objetivo está seleccionado más de una vez.",
