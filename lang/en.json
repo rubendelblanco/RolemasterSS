@@ -23,7 +23,9 @@
             "hour_unit": "hour",
             "hours_unit": "hours",
             "hits_recovered": "Hit points recovered",
-            "pp_recovered": "Power Points recovered"
+            "pp_recovered": "Power Points recovered",
+            "cancel": "Cancel",
+            "not_eaten_warning": "You haven't eaten today! Resting without eating risks a fasting penalty."
         },
         "fasting": {
             "missed_meal_message": "has not eaten today.",

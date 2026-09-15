@@ -23,7 +23,9 @@
       "hour_unit": "hora",
       "hours_unit": "horas",
       "hits_recovered": "Puntos de vida recuperados",
-      "pp_recovered": "Puntos de Poder recuperados"
+      "pp_recovered": "Puntos de Poder recuperados",
+      "cancel": "Cancelar",
+      "not_eaten_warning": "¡No has comido hoy! Descansar sin comer puede acarrear un penalizador de ayuno."
     },
     "fasting": {
       "missed_meal_message": "no ha comido hoy.",

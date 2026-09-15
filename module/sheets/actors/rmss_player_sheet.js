@@ -882,20 +882,37 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     const labelHours = game.i18n.localize("rmss.long_rest.dialog_hours");
     const btnLabel = game.i18n.localize("rmss.long_rest.confirm");
 
+    // Ayuno Total (FastingService): warn before the character sleeps through a day they never
+    // ate on, and give an explicit way out instead of just relying on the dialog's own close
+    // button - resting itself is still allowed, this is a heads-up, not a hard block.
+    const hasNotEatenToday = this.actor.getFlag("rmss", "ateFoodToday") !== true;
+    const warning = hasNotEatenToday
+      ? `<p style="color:#c0392b;font-weight:bold;">${game.i18n.localize("rmss.long_rest.not_eaten_warning")}</p>`
+      : "";
+
+    const buttons = {
+      rest: {
+        icon: '<i class="fas fa-bed"></i>',
+        label: btnLabel,
+        callback: async (html) => {
+          const hours = Number(html.find('[name="hours"]').val()) || 6;
+          await this._performLongRest(hours);
+        }
+      }
+    };
+    if (hasNotEatenToday) {
+      buttons.cancel = {
+        icon: '<i class="fas fa-times"></i>',
+        label: game.i18n.localize("rmss.long_rest.cancel"),
+        callback: () => {}
+      };
+    }
+
     new Dialog({
       title,
-      content: `<form><div class="form-group"><label>${labelHours}</label><input type="number" name="hours" value="6" min="1" step="1" data-dtype="Number"/></div></form>`,
-      buttons: {
-        rest: {
-          icon: '<i class="fas fa-bed"></i>',
-          label: btnLabel,
-          callback: async (html) => {
-            const hours = Number(html.find('[name="hours"]').val()) || 6;
-            await this._performLongRest(hours);
-          }
-        }
-      },
-      default: "rest"
+      content: `<form>${warning}<div class="form-group"><label>${labelHours}</label><input type="number" name="hours" value="6" min="1" step="1" data-dtype="Number"/></div></form>`,
+      buttons,
+      default: hasNotEatenToday ? "cancel" : "rest"
     }, { width: 320 }).render(true);
   }
 
