@@ -47,6 +47,7 @@ import { getItemGlowClass } from "./module/actors/utils/item_identity_util.js";
 import { advanceArtifactRecharge } from "./module/sheets/items/enchantment_utils.js";
 import FoodSpoilageService from "./module/actors/services/food_spoilage_service.js";
 import FastingService from "./module/actors/services/fasting_service.js";
+import { computeFoodImpliesConsumableGuard } from "./module/sheets/items/consume_item.js";
 
 export let socket;
 
@@ -950,11 +951,16 @@ Hooks.once("init", function () {
 
   /** Food spoilage tracking guards - see FoodSpoilageService.computeItemUpdateGuards:
    *  clears the countdown if "food" is untagged, seeds it the moment shelf_life_days is set.
-   *  preUpdateItem (not the sheet's _updateObject) so it also catches the tag chip UI, which
-   *  updates system.tags directly and bypasses the sheet's form submission entirely. */
+   *  Also auto-adds "consumable" whenever "food" is tagged (computeFoodImpliesConsumableGuard) -
+   *  food is always a consumable, no need to type both tags by hand. preUpdateItem (not the
+   *  sheet's _updateObject) so both also catch the tag chip UI, which updates system.tags
+   *  directly and bypasses the sheet's form submission entirely. */
   Hooks.on("preUpdateItem", (item, changes) => {
     if (item.type !== "item") return;
-    const patch = FoodSpoilageService.computeItemUpdateGuards(item.system, changes.system);
+    const patch = {
+      ...FoodSpoilageService.computeItemUpdateGuards(item.system, changes.system),
+      ...computeFoodImpliesConsumableGuard(changes.system)
+    };
     if (Object.keys(patch).length > 0) {
       changes.system = { ...(changes.system || {}), ...patch };
     }

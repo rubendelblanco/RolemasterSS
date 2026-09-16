@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { itemHasConsumableTag, consumeItem, confirmAndConsumeItem } from '../module/sheets/items/consume_item.js';
+import { itemHasConsumableTag, consumeItem, confirmAndConsumeItem, computeFoodImpliesConsumableGuard } from '../module/sheets/items/consume_item.js';
 
 function makeItem(tags, quantity = 1) {
     return {
@@ -32,6 +32,33 @@ describe('itemHasConsumableTag', () => {
 
     test('accepts a bare system object too', () => {
         expect(itemHasConsumableTag({ tags: ["consumable"] })).toBe(true);
+    });
+});
+
+describe('computeFoodImpliesConsumableGuard', () => {
+    test('no-op when tags are not part of the update', () => {
+        expect(computeFoodImpliesConsumableGuard({ quantity: 2 })).toEqual({});
+        expect(computeFoodImpliesConsumableGuard(undefined)).toEqual({});
+    });
+
+    test('adds "consumable" when tagging "food" without it', () => {
+        expect(computeFoodImpliesConsumableGuard({ tags: ['food'] })).toEqual({ tags: ['food', 'consumable'] });
+    });
+
+    test('no-op when "food" is set but "consumable" is already there too', () => {
+        expect(computeFoodImpliesConsumableGuard({ tags: ['food', 'consumable'] })).toEqual({});
+    });
+
+    test('no-op when the new tags do not include "food" at all', () => {
+        expect(computeFoodImpliesConsumableGuard({ tags: ['tool'] })).toEqual({});
+    });
+
+    test('case-insensitive and accepts a comma-separated tags string', () => {
+        expect(computeFoodImpliesConsumableGuard({ tags: 'Food, ration' })).toEqual({ tags: ['Food', 'ration', 'consumable'] });
+    });
+
+    test('removing "food" (new tags without it) does nothing, even if it had "consumable" before', () => {
+        expect(computeFoodImpliesConsumableGuard({ tags: ['ration'] })).toEqual({});
     });
 });
 

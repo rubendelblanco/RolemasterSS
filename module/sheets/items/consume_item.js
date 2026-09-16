@@ -18,6 +18,24 @@ export function itemHasConsumableTag(itemOrSystem) {
 }
 
 /**
+ * Guard for preUpdateItem: food is always a consumable, so tagging something "food" implies
+ * "consumable" too - no need to type both by hand. Pure/testable, mirrors
+ * FoodSpoilageService.computeItemUpdateGuards. Only looks at the incoming tags (a full
+ * replacement, not a merge, same assumption the spoilage guard makes) - a no-op unless tags are
+ * actually part of this update.
+ * @param {object|undefined} changesSystem - the "system" part of the update's changes
+ * @returns {object} partial system patch to merge into the update (empty if nothing to do)
+ */
+export function computeFoodImpliesConsumableGuard(changesSystem) {
+  if (!changesSystem || changesSystem.tags === undefined) return {};
+  const tags = getItemTagsArray({ tags: changesSystem.tags });
+  const hasFood = tags.some((t) => t.toLowerCase() === "food");
+  const hasConsumable = tags.some((t) => t.toLowerCase() === "consumable");
+  if (!hasFood || hasConsumable) return {};
+  return { tags: [...tags, "consumable"] };
+}
+
+/**
  * Consumes one unit of a plain consumable item: decrements quantity, deleting the item once
  * it reaches zero — same pattern as the potion/rune single-use consumption in
  * cast_enchantment_from_item.js.
