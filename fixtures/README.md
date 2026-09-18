@@ -499,6 +499,40 @@ Every list below is available in both languages, at the same relative path under
 - `spell_lists/en/essence/physical_erosion.json`
 - `spell_lists/es/essence/physical_erosion.json`
 
+### Magician Base Lists
+
+Base lists for the Magician profession (core Spell Law 5.x), kept in their own `magician/` subfolder - mirrors the `training-packages/`/`fire_and_ice/` pattern, keeping profession lists visually separate from the rest of the Essence lists above.
+
+#### Earth Law (5.1)
+21 spells — building, repairing, and curving walls of earth and stone, extending cracks, a field of earthen spikes, transmuting earth/stone/mud between each other, disintegrating earth/stone/metal, and tremors. Special note: all walls created by spells on this list must rest on a solid surface (§15.7).
+- `spell_lists/en/essence/magician/earth_law.json`
+- `spell_lists/es/essence/magician/earth_law.json`
+
+#### Fire Law (5.2)
+23 spells — boiling, warming, and heating matter, igniting wood and metal, fire bolts and fireballs, walls/cubes of flame (including delayed/waiting versions), a bending Corner Fires/Following Fires bolt, and burning stone. Special note: all walls created by spells on this list must rest on a solid surface (§15.7).
+- `spell_lists/en/essence/magician/fire_law.json`
+- `spell_lists/es/essence/magician/fire_law.json`
+
+#### Ice Law (5.3)
+20 spells — freezing, cooling, and chilling matter, ice bolts and cold balls, walls/cubes of cold and ice (including a circle of cold), embrittling metal, turning water to ice and rain to snow, and dropping the ambient temperature outright. Special note: all walls created by spells on this list must rest on a solid surface (§15.7).
+- `spell_lists/en/essence/magician/ice_law.json`
+- `spell_lists/es/essence/magician/ice_law.json`
+
+#### Light Law (5.4)
+21 spells — projecting a beam of light, shock bolts and lightning bolts (including a bending Corner/Following Lightning Bolt), lighting or darkening an area (including Utterlight/Utterdark), deepening shadows, stunning with a burst of light, delaying a light/dark spell, and a beacon visible for miles.
+- `spell_lists/en/essence/magician/light_law.json`
+- `spell_lists/es/essence/magician/light_law.json`
+
+#### Water Law (5.5)
+17 spells — condensing water, creating/clearing fog, a wall of water, water bolts, calming water and commanding a boat's current, calling rain, a whirlpool, parting water, and summoning a fierce sea storm. Special note: all walls created by spells on this list must rest on a solid surface (§15.7).
+- `spell_lists/en/essence/magician/water_law.json`
+- `spell_lists/es/essence/magician/water_law.json`
+
+#### Wind Law (5.6)
+22 spells — stirring breezes, a wall of churning air, oxygen-starving sleep mist/cloud, charged stunning and deadly clouds, stopping wind, vacuums and a great vacuum, a whirlwind, reversing wind direction, a cone of hard wind, and summoning a fierce thunderstorm. Three special notes: vacuums also create a loud noise (optional deafen RR); walls must rest on a solid surface (§15.7); gas elementals are cut to 20% activity by Air Stop and take a Slaying critical from Vacuum.
+- `spell_lists/en/essence/magician/wind_law.json`
+- `spell_lists/es/essence/magician/wind_law.json`
+
 ### Training Package lists
 
 Non-profession Essence lists from Training Packages (Essence Companion 14.1). Treated as `system.type: "open"` like any other Essence list, and kept in their own `training-packages/` subfolder to keep them visually separate from the core Open/Closed lists above. Training Package school-casting lists (Corpist Casting, Crystalist Casting, Herbalist Casting, Nomenist Casting) are intentionally excluded — they belong to the catalyst-casting schools of magic, which this project does not implement.
@@ -1175,7 +1209,7 @@ if (!pack) {
 // Creates every spell list in a folder in the world (or in a compendium).
 // Change FOLDER to: essence, channeling, arcane, mentalism, or essence/training-packages.
 const LANG = "es";
-const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages | essence/fire_and_ice | essence/fire_and_ice/air | essence/fire_and_ice/earth | essence/fire_and_ice/light | essence/fire_and_ice/water | essence/fire_and_ice/elemental_priest | essence/fire_and_ice/elemental_champion | essence/fire_and_ice/arcane_elementalist
+const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages | essence/magician | essence/fire_and_ice | essence/fire_and_ice/air | essence/fire_and_ice/earth | essence/fire_and_ice/light | essence/fire_and_ice/water | essence/fire_and_ice/elemental_priest | essence/fire_and_ice/elemental_champion | essence/fire_and_ice/arcane_elementalist
 const PACK_ID = null;  // "world.spell-lists" to import into a compendium; null to create in Items
 
 const FILES_BY_FOLDER = {
@@ -1198,6 +1232,7 @@ const FILES_BY_FOLDER = {
     "arachnemancy", "brewing_lore", "guildcraft_mastery", "hearth_magic", "magical_ropes",
     "mending_ways", "mirror_magic", "ocean_law", "predictions", "travelers_ways"
   ],
+  "magician": ["earth_law", "fire_law", "ice_law", "light_law", "water_law", "wind_law"],
   "fire_and_ice": ["elemental_counters", "elemental_defenses", "elemental_summons", "fiery_ways", "flames_course", "cold_mastery", "ice_mastery"],
   "air": ["air_control", "wind_mastery"],
   "earth": ["earth_fields", "earth_mastery"],
