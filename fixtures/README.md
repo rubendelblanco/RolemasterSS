@@ -533,6 +533,40 @@ Base lists for the Magician profession (core Spell Law 5.x), kept in their own `
 - `spell_lists/en/essence/magician/wind_law.json`
 - `spell_lists/es/essence/magician/wind_law.json`
 
+### Dabbler Base Lists
+
+Base lists for the Dabbler profession (core Spell Law 6.x; "Indagador" in Spanish), kept in their own `dabbler/` subfolder - same pattern as `magician/`.
+
+#### Concealment Mastery (6.1)
+21 spells — blending into shadow, turning objects invisible, disguising or perfectly duplicating an object's look and feel, locating a described object, creating darkness, and displacing the caster's apparent position to foil attacks. Special note: Locate Object requires an unambiguous description (dimensions within 10% plus at least two other identifying attributes).
+- `spell_lists/en/essence/dabbler/concealment_mastery.json`
+- `spell_lists/es/essence/dabbler/concealment_mastery.json`
+
+#### Influences (6.2)
+22 spells — putting targets to sleep, charming animals and humanoids, suggesting or compelling a course of action, holding a target immobile, reading surface thoughts (Telepathy), and binding a target to a quest.
+- `spell_lists/en/essence/dabbler/influences.json`
+- `spell_lists/es/essence/dabbler/influences.json`
+
+#### Mechanisms (6.3)
+23 spells — analyzing and tuning machines, jamming mechanisms, picking locks and disarming traps, remotely operating non-magical machines, and detecting active magic in the area. Special notes: 1) a "machine" is any manmade device built for a specific function; 2) locks/traps are rated by the standard maneuver difficulty scale, and a spell used to pick/disarm one is modified by half that difficulty.
+- `spell_lists/en/essence/dabbler/mechanisms.json`
+- `spell_lists/es/essence/dabbler/mechanisms.json`
+
+#### Movement Mastery (6.4)
+21 spells — tireless running, jumping and safe falls, silent movement, underwater movement, balance while moving, climbing any surface (Spider's Step/Walk/Run), floating, gliding, leaving no tracks, and walking on air. Special note: see §15.6 for encumbrance limits on movement spells.
+- `spell_lists/en/essence/dabbler/movement_mastery.json`
+- `spell_lists/es/essence/dabbler/movement_mastery.json`
+
+#### Senses (6.5)
+21 spells — sharpening hearing, smell, and touch, seeing in darkness/water/light/wood/stone/iron, a wider field of vision, remote-sensing a marked location (Far Sense), and combining every vision spell on the list at once. Special note: see §15.12 for the environment's effects on vision.
+- `spell_lists/en/essence/dabbler/senses.json`
+- `spell_lists/es/essence/dabbler/senses.json`
+
+#### Thieving Law (6.6)
+22 spells — gauging a target's wealth, marking/locating a target, assessing and analyzing an item's value/craftsmanship/enchantments/history/origins, detecting magical power, finding a buyer or an item's owner, and seeing the owner or a significant event from an item's past. Special notes: 1) the GM decides what constitutes ownership; 2) see §15.13 for more on information spells.
+- `spell_lists/en/essence/dabbler/thieving_law.json`
+- `spell_lists/es/essence/dabbler/thieving_law.json`
+
 ### Training Package lists
 
 Non-profession Essence lists from Training Packages (Essence Companion 14.1). Treated as `system.type: "open"` like any other Essence list, and kept in their own `training-packages/` subfolder to keep them visually separate from the core Open/Closed lists above. Training Package school-casting lists (Corpist Casting, Crystalist Casting, Herbalist Casting, Nomenist Casting) are intentionally excluded — they belong to the catalyst-casting schools of magic, which this project does not implement.
@@ -1209,7 +1243,7 @@ if (!pack) {
 // Creates every spell list in a folder in the world (or in a compendium).
 // Change FOLDER to: essence, channeling, arcane, mentalism, or essence/training-packages.
 const LANG = "es";
-const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages | essence/magician | essence/fire_and_ice | essence/fire_and_ice/air | essence/fire_and_ice/earth | essence/fire_and_ice/light | essence/fire_and_ice/water | essence/fire_and_ice/elemental_priest | essence/fire_and_ice/elemental_champion | essence/fire_and_ice/arcane_elementalist
+const FOLDER = `spell_lists/${LANG}/mentalism`;  // essence | channeling | arcane | mentalism | essence/training-packages | essence/magician | essence/dabbler | essence/fire_and_ice | essence/fire_and_ice/air | essence/fire_and_ice/earth | essence/fire_and_ice/light | essence/fire_and_ice/water | essence/fire_and_ice/elemental_priest | essence/fire_and_ice/elemental_champion | essence/fire_and_ice/arcane_elementalist
 const PACK_ID = null;  // "world.spell-lists" to import into a compendium; null to create in Items
 
 const FILES_BY_FOLDER = {
@@ -1233,6 +1267,7 @@ const FILES_BY_FOLDER = {
     "mending_ways", "mirror_magic", "ocean_law", "predictions", "travelers_ways"
   ],
   "magician": ["earth_law", "fire_law", "ice_law", "light_law", "water_law", "wind_law"],
+  "dabbler": ["concealment_mastery", "influences", "mechanisms", "movement_mastery", "senses", "thieving_law"],
   "fire_and_ice": ["elemental_counters", "elemental_defenses", "elemental_summons", "fiery_ways", "flames_course", "cold_mastery", "ice_mastery"],
   "air": ["air_control", "wind_mastery"],
   "earth": ["earth_fields", "earth_mastery"],
