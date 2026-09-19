@@ -1,0 +1,31 @@
+<div id="rmss-resistance-only-popup">
+    <div class="rmss-tab-content active" data-tab="resistance">
+        <h3><img src="{{actorImg}}" alt="{{actorName}}" width="50" height="50"> {{ localize "rmss.combat.resistance_roll" }}</h3>
+        <div class="form-group" style="flex-direction: column; gap: 1em;">
+            <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                <label for="rr-attacker-level" style="min-width: 120px;">{{ localize "rmss.combat.attacker_level" }}</label>
+                <input type="number" id="rr-attacker-level" data-dtype="Number" value="1" min="1" style="width: 60px;">
+            </div>
+
+            <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                <label for="rr-defender-level" style="min-width: 120px;">{{ localize "rmss.combat.defender_level" }}</label>
+                <input type="number" id="rr-defender-level" data-dtype="Number" value="{{defenderLevel}}" min="0" style="width: 60px;">
+            </div>
+
+            <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                <label for="rr-modifier-select" style="min-width: 120px;">{{ localize "rmss.combat.rr_modifier" }}</label>
+                <select id="rr-modifier-select">
+                    <option value="custom">{{ localize "rmss.combat.rr_modifier_custom" }}</option>
+                    {{#each resistanceOptions}}
+                    <option value="{{this.key}}" data-value="{{this.total}}">{{this.label}} ({{this.total}})</option>
+                    {{/each}}
+                </select>
+                <input type="number" id="rr-modifier" data-dtype="Number" value="0" style="width: 60px;">
+            </div>
+
+            <div class="rr-calculated" style="margin-top: 0.5em; padding: 0.5em; background: rgba(0,0,0,0.1); border-radius: 4px;">
+                <span>{{ localize "rmss.combat.rr_target" }}: <strong id="rr-target-display">--</strong></span>
+            </div>
+        </div>
+    </div>
+</div>

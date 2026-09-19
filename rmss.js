@@ -1045,7 +1045,8 @@ Hooks.once("init", function () {
       event.preventDefault();
       const button = event.currentTarget;
       
-      const tokenId = button.dataset.tokenId;
+      const tokenId = button.dataset.tokenId || null;
+      const actorId = button.dataset.actorId || null;
       const attackerLevel = parseInt(button.dataset.attackerLevel);
       const defenderLevel = parseInt(button.dataset.defenderLevel);
       const modifier = parseInt(button.dataset.modifier);
@@ -1060,7 +1061,8 @@ Hooks.once("init", function () {
         attackerLevel,
         defenderLevel,
         modifier,
-        rrTarget
+        rrTarget,
+        { actorId }
       );
 
       // Remove the button after rolling

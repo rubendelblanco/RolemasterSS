@@ -17,9 +17,14 @@ export default class EffectsPopupService {
      * Show the effects popup for a token.
      * @param {Token} token - The target token
      * @param {Object} criticalOptions - Options for the critical tab
+     * @param {string|null} [preselectedResistanceKey] - One of RESISTANCE_ROLL_KEYS. When given,
+     *   the Resistance Roll tab's category select starts on this option (instead of "custom"),
+     *   with the modifier auto-filled the same way picking it by hand would. Used by the
+     *   character sheet's per-row dice icon, so clicking "Fear"'s icon opens straight into a
+     *   Fear roll instead of a blank custom one.
      * @returns {Promise<Object|null>} The result based on which tab action was taken
      */
-    static async showPopup(token, criticalOptions = {}) {
+    static async showPopup(token, criticalOptions = {}, preselectedResistanceKey = null) {
         const actor = token.actor;
         if (!actor) return null;
 
@@ -107,8 +112,68 @@ export default class EffectsPopupService {
                 default: "cancel",
                 render: (html) => {
                     this._setupEventListeners(html, (tab) => { activeTab = tab; });
+                    if (preselectedResistanceKey) {
+                        html.find("#rr-modifier-select").val(preselectedResistanceKey).trigger("change");
+                    }
                 }
             }).render(true);
+        });
+    }
+
+    /**
+     * Show a standalone Resistance Roll dialog for an actor — no token required. Meant for
+     * entry points that only have an actor to work with (e.g. the character sheet's per-row
+     * dice icon), where the actor may not even have a token placed on the current scene.
+     * Same fields/behavior as the Resistance Roll tab in showPopup, just without the tabs
+     * wrapper or the GM-only Critical tab.
+     * @param {Actor} actor
+     * @param {string|null} [preselectedResistanceKey] - One of RESISTANCE_ROLL_KEYS, preselected
+     *   in the category dropdown instead of "custom".
+     * @returns {Promise<Object|null>}
+     */
+    static async showResistanceOnlyPopup(actor, preselectedResistanceKey = null) {
+        if (!actor) return null;
+
+        const defenderLevel = actor.system?.attributes?.level?.value ?? 1;
+        const resistanceOptions = RESISTANCE_ROLL_KEYS.map((key) => ({
+            key,
+            label: game.i18n.localize(`rmss.pc_sheet_resistances.${key}`),
+            total: actor.system?.resistance_rolls?.[key]?.total ?? 0
+        }));
+
+        const htmlContent = await renderTemplate(
+            "systems/rmss/templates/combat/rmss-resistance-only-popup.hbs",
+            { actorImg: actor.img, actorName: actor.name, defenderLevel, resistanceOptions }
+        );
+
+        return new Promise((resolve) => {
+            new Dialog({
+                title: game.i18n.localize("rmss.combat.resistance_roll"),
+                content: htmlContent,
+                buttons: {
+                    confirm: {
+                        label: `✅ ${game.i18n.localize("rmss.combat.confirm")}`,
+                        callback: async (html) => {
+                            const attackerLevel = parseInt(html.find("#rr-attacker-level").val()) || 1;
+                            const defenderLevel = parseInt(html.find("#rr-defender-level").val()) || 1;
+                            const modifier = parseInt(html.find("#rr-modifier").val()) || 0;
+                            const result = await this.createRRPromptMessageForActor(actor, attackerLevel, defenderLevel, modifier);
+                            resolve({ action: "rr", ...result });
+                        }
+                    },
+                    cancel: {
+                        label: `❌ ${game.i18n.localize("rmss.combat.cancel")}`,
+                        callback: () => resolve(null)
+                    }
+                },
+                default: "cancel",
+                render: (html) => {
+                    this._setupResistanceEventListeners(html);
+                    if (preselectedResistanceKey) {
+                        html.find("#rr-modifier-select").val(preselectedResistanceKey).trigger("change");
+                    }
+                }
+            }, { classes: ["rmss", "casting-options-dialog"], width: 420 }).render(true);
         });
     }
 
@@ -162,6 +227,17 @@ export default class EffectsPopupService {
             event.target.value = Math.abs(parseInt(event.target.value) || 0);
         });
 
+        this._setupResistanceEventListeners(html);
+    }
+
+    /**
+     * Wires the Resistance Roll fields (attacker/defender level, modifier select/input, live
+     * target display) - shared by the tabbed showPopup and the standalone
+     * showResistanceOnlyPopup, since both render the same field markup.
+     * @private
+     * @param {jQuery} html
+     */
+    static _setupResistanceEventListeners(html) {
         // RR calculation on input change. Uses the same getFinalRR the spell-casting RR flow
         // uses - the modifier reduces the target directly (e.g. base 50, +20 resistance ->
         // target 30), so what's displayed here matches what a player already sees when resisting
@@ -195,7 +271,8 @@ export default class EffectsPopupService {
     }
 
     /**
-     * Create a chat message prompting for the RR roll.
+     * Create a chat message prompting for the RR roll, from a token (existing token-bound flow -
+     * token HUD's Effects popup, spell-casting auto-RR).
      * The button is only visible to the token owner and GM.
      * @param {Token} token - The target token
      * @param {number} attackerLevel - Level of the attacker
@@ -204,24 +281,50 @@ export default class EffectsPopupService {
      *   getFinalRR (same convention the spell-casting RR flow uses), not added to the roll.
      */
     static async createRRPromptMessage(token, attackerLevel, defenderLevel, modifier) {
+        return this._postRRPromptMessage({ actor: token.actor, token, attackerLevel, defenderLevel, modifier });
+    }
+
+    /**
+     * Create a chat message prompting for the RR roll, from an actor with no token involved
+     * (character sheet's per-row dice icon - the actor may not have a token on the current
+     * scene at all). Same card/button, just without a token to speak/display as.
+     * @param {Actor} actor
+     * @param {number} attackerLevel
+     * @param {number} defenderLevel
+     * @param {number} modifier
+     */
+    static async createRRPromptMessageForActor(actor, attackerLevel, defenderLevel, modifier) {
+        return this._postRRPromptMessage({ actor, token: null, attackerLevel, defenderLevel, modifier });
+    }
+
+    /**
+     * Shared by createRRPromptMessage/createRRPromptMessageForActor - builds and posts the "you
+     * must resist" prompt card. Always keys the roll button to the actor (data-actor-id) so it
+     * still works if the token is gone by the time someone clicks it; data-token-id is only set
+     * when a token was actually involved, for the nicer token-speaker chat card.
+     * @private
+     */
+    static async _postRRPromptMessage({ actor, token, attackerLevel, defenderLevel, modifier }) {
         const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, defenderLevel, modifier);
-        const actor = token.actor;
-        
-        // Get owners of the token (player IDs)
+
+        // Owners of the actor (player IDs) - actor-based regardless of whether a token exists.
         const ownerIds = Object.entries(actor.ownership || {})
             .filter(([id, level]) => level >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER && id !== "default")
             .map(([id]) => id);
 
+        const displayName = token?.name ?? actor.name;
+        const displayImg = token?.actor?.img ?? actor.img;
+
         const content = `
             <div style="border: 1px solid #555; border-radius: 8px; padding: 8px 10px; background: rgba(0,0,0,0.25); box-shadow: 0 0 6px rgba(0,0,0,0.4);">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                    <img src="${token.actor.img}" alt="${token.name}" width="48" height="48" style="border-radius: 6px; border: 1px solid #333;">
+                    <img src="${displayImg}" alt="${displayName}" width="48" height="48" style="border-radius: 6px; border: 1px solid #333;">
                     <div>
                         <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000;">
                             🛡️ ${game.i18n.localize("rmss.combat.resistance_roll")}
                         </h4>
                         <div style="font-size: 0.9em; color: #fff;">
-                            ${token.name} ${game.i18n.localize("rmss.combat.must_roll_rr")}
+                            ${displayName} ${game.i18n.localize("rmss.combat.must_roll_rr")}
                         </div>
                     </div>
                 </div>
@@ -232,8 +335,9 @@ export default class EffectsPopupService {
                     ${modifier !== 0 ? `<div>📊 ${game.i18n.localize("rmss.combat.rr_modifier")}: <strong>${modifier >= 0 ? '+' : ''}${modifier}</strong></div>` : ''}
                     <div>🎯 ${game.i18n.localize("rmss.combat.rr_target")}: <strong style="color: #ffd700;">${rrTarget}</strong></div>
                 </div>
-                <button class="rr-roll-button" 
-                    data-token-id="${token.id}"
+                <button class="rr-roll-button"
+                    data-actor-id="${actor.id}"
+                    data-token-id="${token?.id ?? ''}"
                     data-attacker-level="${attackerLevel}"
                     data-defender-level="${defenderLevel}"
                     data-modifier="${modifier}"
@@ -245,7 +349,7 @@ export default class EffectsPopupService {
         `;
 
         await ChatMessage.create({
-            speaker: ChatMessage.getSpeaker({ token: token.document }),
+            speaker: token ? ChatMessage.getSpeaker({ token: token.document }) : ChatMessage.getSpeaker({ actor }),
             content: content,
             ...chatMessageOtherStyle()
         });
@@ -255,20 +359,23 @@ export default class EffectsPopupService {
 
     /**
      * Perform the actual resistance roll (called when button is clicked).
-     * @param {string} tokenId - The token ID
+     * @param {string|null} tokenId - The token ID, if a token was involved (empty/null otherwise)
      * @param {number} attackerLevel - Level of the attacker
      * @param {number} defenderLevel - Level of the defender
      * @param {number} modifier - Resistance modifier, informational only here - it's already
      *   baked into rrTarget (via getFinalRR), so it must NOT be added to the roll again.
      * @param {number} rrTarget - Pre-calculated final RR target (already modifier-adjusted)
-     * @param {{ postChatMessage?: boolean }} [options] - postChatMessage (default true): post the
-     *   individual per-roll result card. Set false when the caller posts its own grouped summary
-     *   instead (e.g. an area-effect macro rolling RR for several targets at once).
+     * @param {{ postChatMessage?: boolean, actorId?: string|null }} [options] - postChatMessage
+     *   (default true): post the individual per-roll result card. Set false when the caller posts
+     *   its own grouped summary instead (e.g. an area-effect macro rolling RR for several targets
+     *   at once). actorId: fallback when there's no live token (or it's since been removed from
+     *   the scene) - resolves the roll against the actor directly.
      */
-    static async executeResistanceRoll(tokenId, attackerLevel, defenderLevel, modifier, rrTarget, { postChatMessage = true } = {}) {
-        const token = canvas.tokens.get(tokenId);
-        if (!token) {
-            ui.notifications.error("Token not found");
+    static async executeResistanceRoll(tokenId, attackerLevel, defenderLevel, modifier, rrTarget, { postChatMessage = true, actorId = null } = {}) {
+        const token = tokenId ? canvas.tokens.get(tokenId) : null;
+        const actor = token?.actor ?? (actorId ? game.actors.get(actorId) : null);
+        if (!actor) {
+            ui.notifications.error("Token/actor not found");
             return;
         }
 
@@ -291,6 +398,7 @@ export default class EffectsPopupService {
         // Create result chat message
         if (postChatMessage) {
             await this._createRRResultMessage({
+                actor,
                 token,
                 attackerLevel,
                 defenderLevel,
@@ -311,6 +419,7 @@ export default class EffectsPopupService {
      * @private
      */
     static async _createRRResultMessage({
+        actor,
         token,
         attackerLevel,
         defenderLevel,
@@ -323,22 +432,24 @@ export default class EffectsPopupService {
     }) {
         const isExplosive = rollTotal !== naturalRoll;
         const resultEmoji = success ? "😎" : "😬";
-        const resultText = success 
+        const resultText = success
             ? game.i18n.localize("rmss.combat.rr_success")
             : game.i18n.localize("rmss.combat.rr_failed");
         const resultColor = success ? "#4a4" : "#c44";
         const resultBg = success ? "rgba(34, 139, 34, 0.3)" : "rgba(204, 0, 0, 0.3)";
+        const displayName = token?.name ?? actor.name;
+        const displayImg = token?.actor?.img ?? actor.img;
 
         let content = `
             <div style="border: 1px solid #555; border-radius: 8px; padding: 8px 10px; background: rgba(0,0,0,0.25); box-shadow: 0 0 6px rgba(0,0,0,0.4);">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                    <img src="${token.actor.img}" alt="${token.name}" width="48" height="48" style="border-radius: 6px; border: 1px solid #333;">
+                    <img src="${displayImg}" alt="${displayName}" width="48" height="48" style="border-radius: 6px; border: 1px solid #333;">
                     <div>
                         <h4 style="margin: 0; color: #ffd700; text-shadow: 0 0 4px #000;">
                             🛡️ ${game.i18n.localize("rmss.combat.resistance_roll")}
                         </h4>
                         <div style="font-size: 0.9em; color: #fff;">
-                            ${token.name}
+                            ${displayName}
                         </div>
                     </div>
                 </div>
@@ -360,7 +471,7 @@ export default class EffectsPopupService {
         `;
 
         await ChatMessage.create({
-            speaker: ChatMessage.getSpeaker({ token: token.document }),
+            speaker: token ? ChatMessage.getSpeaker({ token: token.document }) : ChatMessage.getSpeaker({ actor }),
             content: content,
             ...chatMessageOtherStyle()
         });

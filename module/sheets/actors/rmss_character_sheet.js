@@ -8,6 +8,7 @@ import { expandSpellListEmbeddedSpells } from "../../spells/spell_list_import.js
 import { buildDeleteConfirmContent } from "../items/item_delete_confirm_util.js";
 
 import FoodSpoilageService from "../../actors/services/food_spoilage_service.js";
+import EffectsPopupService from "../../core/rolls/effects_popup_service.js";
 
 /**
  * All the actions and feats in common for characters (PCs, NPCs, Creatures & Monsters)
@@ -35,6 +36,16 @@ export default class RMSSCharacterSheet extends ActorSheet {
         html.find(".offensive-skill").click(async ev => {
             const weapon = this.actor.items.get(ev.currentTarget.getAttribute("data-item-id"));
             weapon.use();
+        });
+
+        // Resistance Rolls table: standalone RR-only popup on the actor directly - no token
+        // required (the actor may not have one placed on the current scene at all), pre-selected
+        // to this row's category instead of a blank "custom" one.
+        html.find(".rr-roll-icon").click(async ev => {
+            ev.preventDefault();
+            const key = ev.currentTarget.dataset.rrKey;
+            if (!key) return;
+            await EffectsPopupService.showResistanceOnlyPopup(this.actor, key);
         });
 
         html.find("a.item-roll").on("click", async ev => {
