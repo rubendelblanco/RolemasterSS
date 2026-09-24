@@ -1398,9 +1398,22 @@ Hooks.once("init", function () {
     const sourceItem = sourceActor.items.get(sourceItemId);
     if (!sourceItem) return;
 
+    // Recompute weight/cost proportionally to the transferred quantity - otherwise a
+    // partial transfer (e.g. 2 of 5 arrows) leaves both the new stack and the remaining
+    // source stack carrying the full original stack's weight/cost, doubling it out of
+    // thin air. Same per-unit math as ItemService.splitStack/_stashInTransport.
+    const { default: ItemService } = await import("./module/actors/services/item_service.js");
+    const totalQty = Number(sourceItem.system.quantity) || 1;
+    const unitWeight = ItemService.getUnitWeight(sourceItem, totalQty);
+    const unitCost = ItemService.getUnitCost(sourceItem, totalQty);
+
     // Clone item data for the target
     const itemData = sourceItem.toObject();
     itemData.system.quantity = qty;
+    itemData.system.unitWeight = unitWeight;
+    itemData.system.weight = Number((unitWeight * qty).toFixed(2));
+    itemData.system.unitCost = unitCost;
+    itemData.system.cost = Number((unitCost * qty).toFixed(2));
     delete itemData._id; // ensure new document is created
 
     // containerId refers to a container on the source actor; strip it for the recipient
@@ -1411,15 +1424,22 @@ Hooks.once("init", function () {
     await targetActor.createEmbeddedDocuments("Item", [itemData]);
 
     // Update or remove from the source
-    const newQty = (sourceItem.system.quantity || 1) - qty;
+    const sourceName = sourceItem.name;
+    const newQty = totalQty - qty;
     if (newQty <= 0) {
       await sourceItem.delete();
     } else {
-      await sourceItem.update({ "system.quantity": newQty });
+      await sourceItem.update({
+        "system.quantity": newQty,
+        "system.unitWeight": unitWeight,
+        "system.weight": Number((unitWeight * newQty).toFixed(2)),
+        "system.unitCost": unitCost,
+        "system.cost": Number((unitCost * newQty).toFixed(2))
+      });
     }
 
     ui.notifications.info(
-        `${qty}x ${sourceItem.name} transferido de ${sourceActor.name} a ${targetActor.name}`
+        `${qty}x ${sourceName} transferido de ${sourceActor.name} a ${targetActor.name}`
     );
   });
 

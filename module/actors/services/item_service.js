@@ -74,26 +74,55 @@ export default class ItemService {
     }
 
     /**
-     * Open a dialog to transfer an item from one actor to another.
+     * Open a dialog to transfer an item from one actor to another, or to stash it in one
+     * of the actor's own transports (horse, cart...) instead - the same "Destino" select
+     * lists the actor's transports first (so a player can stash gear without ever opening
+     * the transport's own sheet), then a disabled option as a visual separator, then every
+     * player character in the world (not just the ones with a token on the current scene -
+     * players sometimes play a scene with no tokens at all, e.g. travel/downtime). When the
+     * giver themself has a token placed on the scene, a third group lists the non-hostile
+     * NPCs present there too (creatures are minions, never a give target - an exceptional
+     * hand-off to one is the GM's job, done by hand). Retrieving an item back out of a
+     * transport is not offered here - that's what the item row's own "Remove from
+     * container" button is for.
      *
-     * The dialog lets the user select quantity and target actor.
-     * Once confirmed, the item is transferred via the GM socket command.
+     * Transports resolve locally (same actor, no GM round-trip needed): the item's
+     * `flags.rmss.containerId` is set directly, splitting off part of the stack first
+     * when the chosen quantity is less than the full amount. Characters/NPCs keep going
+     * through the GM socket command as before.
      *
      * @param {Actor} actor - The source actor.
      * @param {Item} item - The item to transfer.
      * @returns {Promise<void>} Resolves when the dialog is handled.
      */
     static async giveItem(actor, item) {
-        const actors = canvas.tokens.placeables
-            .map(t => t.actor)
-            .filter(a => a && a.type === "character" && a.id !== actor.id);
+        const transports = actor.items.filter(i => i.type === "transport" && i.id !== item.id);
 
-        if (actors.length === 0) {
+        const characters = game.actors.filter(a => a.type === "character" && a.id !== actor.id);
+
+        let npcs = [];
+        const giverHasToken = canvas.tokens?.placeables.some(t => t.actor?.id === actor.id);
+        if (giverHasToken) {
+            const npcsById = new Map();
+            for (const t of canvas.tokens.placeables) {
+                if (t.actor?.type !== "npc") continue;
+                if (t.document.disposition === CONST.TOKEN_DISPOSITIONS.HOSTILE) continue;
+                npcsById.set(t.actor.id, t.actor);
+            }
+            npcs = [...npcsById.values()];
+        }
+
+        const groups = [];
+        if (transports.length) groups.push(transports.map(t => `<option value="transport:${t.id}">${t.name}</option>`));
+        if (characters.length) groups.push(characters.map(a => `<option value="actor:${a.id}">${a.name}</option>`));
+        if (npcs.length) groups.push(npcs.map(a => `<option value="actor:${a.id}">${a.name}</option>`));
+
+        if (groups.length === 0) {
             ui.notifications.warn("No other characters available to give the item to.");
             return;
         }
 
-        const options = actors.map(a => `<option value="${a.id}">${a.name}</option>`).join("");
+        const options = groups.map(g => g.join("")).join(`<option disabled>──────────</option>`);
         const maxQty = item.system.quantity || 1;
 
         new Dialog({
@@ -114,9 +143,9 @@ export default class ItemService {
                     label: "Dar",
                     callback: async html => {
                         const qty = Number(html.find("[name=qty]").val()) || 0;
-                        const targetId = html.find("[name=target]").val();
+                        const target = html.find("[name=target]").val();
 
-                        if (!targetId) {
+                        if (!target) {
                             ui.notifications.warn("No target selected.");
                             return;
                         }
@@ -133,10 +162,17 @@ export default class ItemService {
                             return;
                         }
 
+                        const [kind, id] = target.split(":");
+
+                        if (kind === "transport") {
+                            await this._stashInTransport(actor, item, id, qty, maxQty);
+                            return;
+                        }
+
                         await socket.executeAsGM("doItemTransfer", {
                             sourceActorId: actor.id,
                             sourceItemId: item.id,
-                            targetActorId: targetId,
+                            targetActorId: id,
                             qty
                         });
                     }
@@ -144,6 +180,135 @@ export default class ItemService {
                 cancel: { label: "Cancelar" }
             }
         }).render(true);
+    }
+
+    /**
+     * Moves (all or part of) an item's stack into one of the actor's own transports,
+     * reusing the same capacity/allowed-tags checks the container drag-and-drop already
+     * enforces (ContainerHandler.canAccept/canFit). Splitting off a partial quantity
+     * follows the same unit-cost/unit-weight math as splitStack.
+     * @param {Actor} actor
+     * @param {Item} item - the source item, still on `actor`
+     * @param {string} containerId - id of the transport item to store into
+     * @param {number} qty - how many units to move
+     * @param {number} maxQty - item.system.quantity, already resolved by the caller
+     */
+    static async _stashInTransport(actor, item, containerId, qty, maxQty) {
+        const container = actor.items.get(containerId);
+        if (!container) return;
+
+        const handler = ContainerHandler.for(container);
+        if (!handler) return;
+
+        if (!handler.canAccept(item)) {
+            return ui.notifications.warn(
+                game.i18n.format("rmss.container.cannot_accept", { container: container.name, item: item.name })
+            );
+        }
+
+        const moveWhole = qty >= maxQty || !this.isStackable(item);
+
+        const projectedWeight = moveWhole
+            ? (Number(item.system.weight) || 0)
+            : Number((this.getUnitWeight(item, maxQty) * qty).toFixed(2));
+
+        if (!handler.canFit({ system: { weight: projectedWeight, quantity: qty } })) {
+            return ui.notifications.error(
+                game.i18n.format("rmss.container.full", { container: container.name, item: item.name })
+            );
+        }
+
+        if (moveWhole) {
+            await item.setFlag("rmss", "containerId", container.id);
+        } else {
+            const unitWeight = this.getUnitWeight(item, maxQty);
+            const unitCost = this.getUnitCost(item, maxQty);
+            const remaining = maxQty - qty;
+
+            const newItemData = foundry.utils.duplicate(item.toObject());
+            delete newItemData._id;
+            newItemData.system.quantity = qty;
+            newItemData.system.unitWeight = unitWeight;
+            newItemData.system.weight = Number((unitWeight * qty).toFixed(2));
+            newItemData.system.unitCost = unitCost;
+            newItemData.system.cost = Number((unitCost * qty).toFixed(2));
+            foundry.utils.setProperty(newItemData, "flags.rmss.containerId", container.id);
+
+            await actor.createEmbeddedDocuments("Item", [newItemData]);
+            await item.update({
+                "system.quantity": remaining,
+                "system.unitWeight": unitWeight,
+                "system.weight": Number((unitWeight * remaining).toFixed(2)),
+                "system.unitCost": unitCost,
+                "system.cost": Number((unitCost * remaining).toFixed(2))
+            });
+        }
+
+        await handler.recalc();
+    }
+
+    /**
+     * Removes an item from whatever container/transport it's currently stashed in. When
+     * the stack has more than one unit, prompts for how many to take out, defaulting to
+     * the full amount (taking everything out is the common case). Splitting off a partial
+     * quantity follows the same unit-cost/unit-weight math as splitStack. Shared by every
+     * "Remove from container" button across the actor/transport/item sheets.
+     * @param {Actor} actor - the actor owning both the item and its container
+     * @param {Item} item - the contained item to remove
+     * @returns {Promise<void>}
+     */
+    static async removeFromContainer(actor, item) {
+        const containerId = item.getFlag("rmss", "containerId");
+        if (!containerId) return;
+
+        const totalQty = Number(item.system.quantity) || 1;
+        let qty = totalQty;
+
+        if (totalQty > 1 && this.isStackable(item)) {
+            qty = await Dialog.prompt({
+                title: `Sacar ${item.name} del contenedor`,
+                content: `
+          <p>¿Cuántas unidades quieres sacar? (${totalQty} disponibles)</p>
+          <input type="number" id="remove-qty" value="${totalQty}" min="1" max="${totalQty}" />
+        `,
+                callback: html => parseInt(html.find("#remove-qty").val()) || 0,
+                rejectClose: false
+            });
+            if (!qty || qty <= 0) return;
+            qty = Math.min(qty, totalQty);
+        }
+
+        if (qty >= totalQty) {
+            await item.unsetFlag("rmss", "containerId");
+        } else {
+            const unitWeight = this.getUnitWeight(item, totalQty);
+            const unitCost = this.getUnitCost(item, totalQty);
+            const remaining = totalQty - qty;
+
+            const newItemData = foundry.utils.duplicate(item.toObject());
+            delete newItemData._id;
+            newItemData.system.quantity = qty;
+            newItemData.system.unitWeight = unitWeight;
+            newItemData.system.weight = Number((unitWeight * qty).toFixed(2));
+            newItemData.system.unitCost = unitCost;
+            newItemData.system.cost = Number((unitCost * qty).toFixed(2));
+            if (newItemData.flags?.rmss?.containerId != null) delete newItemData.flags.rmss.containerId;
+
+            await actor.createEmbeddedDocuments("Item", [newItemData]);
+            await item.update({
+                "system.quantity": remaining,
+                "system.unitWeight": unitWeight,
+                "system.weight": Number((unitWeight * remaining).toFixed(2)),
+                "system.unitCost": unitCost,
+                "system.cost": Number((unitCost * remaining).toFixed(2))
+            });
+        }
+
+        const container = actor.items.get(containerId);
+        if (container) {
+            const handler = ContainerHandler.for(container);
+            if (handler) await handler.recalc();
+        }
     }
 
     static async splitStack(actor, item) {

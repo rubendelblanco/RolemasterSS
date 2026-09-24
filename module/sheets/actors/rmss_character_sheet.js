@@ -499,17 +499,7 @@ export default class RMSSCharacterSheet extends ActorSheet {
         const containedItem = this.actor.items.get(itemId);
         if (!containedItem) return;
 
-        const containerId = containedItem.getFlag("rmss", "containerId");
-        if (!containerId) return;
-
-        await containedItem.unsetFlag("rmss", "containerId");
-
-        const container = this.actor.items.get(containerId);
-        if (container) {
-            const handler = ContainerHandler.for(container);
-            if (handler) await handler.recalc();
-        }
-
+        await ItemService.removeFromContainer(this.actor, containedItem);
         this.render(false);
     }
 

@@ -472,16 +472,11 @@ export default class RMSSItemSheet extends ItemSheet {
 
   async _onRemoveFromContainer(ev) {
     const itemId = ev.currentTarget.dataset.itemId;
-    const containedItem = this.item.parent?.items.get(itemId);
+    const actor = this.item.parent;
+    const containedItem = actor?.items.get(itemId);
     if (!containedItem) return;
 
-    await containedItem.unsetFlag("rmss", "containerId");
-
-    const handler = ContainerHandler.for(this.item);
-    if (handler) {
-      await handler.recalc();
-    }
-
+    await ItemService.removeFromContainer(actor, containedItem);
     this.render(false);
   }
 

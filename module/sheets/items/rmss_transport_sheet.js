@@ -1,5 +1,6 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
+import ItemService from "../../actors/services/item_service.js";
 import {ContainerHandler} from "../../actors/utils/container_handler.js";
 import { bindContainerAllowedTagsEditor, getContainerAllowedTagListId, getContainerAllowedTagsArray } from "./container_allowed_tags_ui.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
@@ -66,16 +67,11 @@ export default class RMSSTransportSheet extends ItemSheet {
 
   async _onRemoveFromContainer(ev) {
     const itemId = ev.currentTarget.dataset.itemId;
-    const containedItem = this.item.parent?.items.get(itemId);
+    const actor = this.item.parent;
+    const containedItem = actor?.items.get(itemId);
     if (!containedItem) return;
 
-    await containedItem.unsetFlag("rmss", "containerId");
-
-    const handler = ContainerHandler.for(this.item);
-    if (handler) {
-      await this.item.update({ "system.container.usedCapacity": handler.usedValue });
-    }
-
+    await ItemService.removeFromContainer(actor, containedItem);
     this.render(false);
   }
 
