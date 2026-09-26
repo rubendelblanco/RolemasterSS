@@ -1,4 +1,5 @@
 import ItemService from "../../actors/services/item_service.js";
+import EquipmentService from "../../actors/services/equipment_service.js";
 import { bindContainerAllowedTagsEditor, getContainerAllowedTagListId, getContainerAllowedTagsArray } from "./container_allowed_tags_ui.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
@@ -108,6 +109,7 @@ export default class RMSSItemSheet extends ItemSheet {
       itemTags: getItemTagsArray(system),
       hasFoodTag: getItemTagsArray(system).some((t) => t.toLowerCase() === "food"),
       hasAmmoTag: getItemTagsArray(system).some((t) => CONFIG.rmss.ammunition_types.includes(t.toLowerCase())),
+      hasWandTag: EquipmentService.hasWandTag(item),
       itemTagListId: getItemTagListId(item),
       containerAllowedTags: getContainerAllowedTagsArray(system),
       containerAllowedTagListId: getContainerAllowedTagListId(item),
@@ -146,6 +148,16 @@ export default class RMSSItemSheet extends ItemSheet {
     // --- Containers (only sheet-content drop-target, not modifiers/magic) ---
     html.find(".sheet-content.drop-target").on("drop", this._onDropItem.bind(this));
     html.find(".remove-from-container").click(ev => this._onRemoveFromContainer(ev));
+
+    // --- Wand: "wielded" has to go through the hands-limit check, unlike the plain
+    // submitOnChange checkboxes above - no `name` attribute on this one, so it never gets
+    // auto-saved unvalidated by the form itself.
+    html.find(".rmss-wand-wielded-toggle").on("change", async (ev) => {
+      const actor = this.item.parent;
+      if (!actor) return;
+      await EquipmentService.toggleWielded(actor, this.item);
+      this.render(false);
+    });
 
     // --- Holy/Unholy mutually exclusive ---
     this._setupHolyUnholyExclusive(html);

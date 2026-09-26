@@ -13,6 +13,7 @@ describe("EquipmentService", () => {
   const mockCreatureAttack = { type: "creature_attack", system: {} };
   const mockShield = { type: "armor", _id: "s1", system: { equipped: true, armorSlot: "shield", isShield: true } };
   const mockArmor = { type: "armor", _id: "a1", system: { equipped: true, armorSlot: "body", isShield: false } };
+  const mockWand = { type: "item", _id: "w1", system: { wielded: true, tags: ["wand"] } };
 
   describe("getWeaponHands", () => {
     test("1H weapon returns 1", () => {
@@ -79,6 +80,10 @@ describe("EquipmentService", () => {
       const actor = { items: [mockWeapon2H, mockShield] };
       expect(EquipmentService.getHandsOccupiedForCasting(actor)).toBe(2);
     });
+    test("wielded wand counts as 1 hand when casting", () => {
+      const actor = { items: [mockWand] };
+      expect(EquipmentService.getHandsOccupiedForCasting(actor)).toBe(1);
+    });
   });
 
   describe("getHandsOccupied", () => {
@@ -106,6 +111,55 @@ describe("EquipmentService", () => {
       const unequipped = { type: "weapon", system: { equipped: false, hands: 1, isNaturalWeapon: false } };
       const actor = { items: [unequipped] };
       expect(EquipmentService.getHandsOccupied(actor)).toBe(0);
+    });
+    test("wielded wand occupies 1 hand", () => {
+      const actor = { items: [mockWand] };
+      expect(EquipmentService.getHandsOccupied(actor)).toBe(1);
+    });
+    test("wand not wielded does not count", () => {
+      const idleWand = { type: "item", system: { wielded: false, tags: ["wand"] } };
+      const actor = { items: [idleWand] };
+      expect(EquipmentService.getHandsOccupied(actor)).toBe(0);
+    });
+    test("plain item wielded=true without the wand tag does not count", () => {
+      const notAWand = { type: "item", system: { wielded: true, tags: [] } };
+      const actor = { items: [notAWand] };
+      expect(EquipmentService.getHandsOccupied(actor)).toBe(0);
+    });
+    test("wielded wand + 1H weapon = 2 hands occupied", () => {
+      const actor = { items: [mockWand, mockWeapon1H] };
+      expect(EquipmentService.getHandsOccupied(actor)).toBe(2);
+    });
+  });
+
+  describe("hasWandTag", () => {
+    test("item with the wand tag returns true", () => {
+      expect(EquipmentService.hasWandTag(mockWand)).toBe(true);
+    });
+    test("tag matching is case-insensitive", () => {
+      const item = { type: "item", system: { tags: ["Wand"] } };
+      expect(EquipmentService.hasWandTag(item)).toBe(true);
+    });
+    test("item without the wand tag returns false", () => {
+      const item = { type: "item", system: { tags: ["food"] } };
+      expect(EquipmentService.hasWandTag(item)).toBe(false);
+    });
+    test("non-item type returns false even with a wand tag", () => {
+      const item = { type: "weapon", system: { tags: ["wand"] } };
+      expect(EquipmentService.hasWandTag(item)).toBe(false);
+    });
+    test("null/undefined item returns false", () => {
+      expect(EquipmentService.hasWandTag(null)).toBe(false);
+    });
+  });
+
+  describe("getItemHandsIfEquipped", () => {
+    test("wand-tagged item returns 1", () => {
+      expect(EquipmentService.getItemHandsIfEquipped(mockWand)).toBe(1);
+    });
+    test("plain item without the wand tag returns 0", () => {
+      const item = { type: "item", system: { tags: [] } };
+      expect(EquipmentService.getItemHandsIfEquipped(item)).toBe(0);
     });
   });
 
@@ -389,6 +443,51 @@ describe("EquipmentService", () => {
     test("no actor or no item returns false without throwing", async () => {
       expect(await EquipmentService.swapEquip(null, {})).toBe(false);
       expect(await EquipmentService.swapEquip({ items: [] }, null)).toBe(false);
+    });
+  });
+
+  describe("toggleWielded", () => {
+    beforeEach(() => {
+      global.ui = { notifications: { warn: jest.fn(), error: jest.fn(), info: jest.fn() } };
+      global.game.i18n.format = jest.fn((key, data) => `${key}::${JSON.stringify(data ?? {})}`);
+    });
+    afterEach(() => jest.restoreAllMocks());
+
+    test("releasing an already-wielded wand just flips wielded off, never blocked", async () => {
+      const wand = { type: "item", system: { wielded: true, tags: ["wand"] }, update: jest.fn().mockResolvedValue(undefined) };
+      const changed = await EquipmentService.toggleWielded({ items: [wand] }, wand);
+      expect(changed).toBe(true);
+      expect(wand.update).toHaveBeenCalledWith({ system: { wielded: false } });
+    });
+
+    test("wielding a wand under the hand limit sets wielded true", async () => {
+      const wand = { type: "item", system: { wielded: false, tags: ["wand"] }, update: jest.fn().mockResolvedValue(undefined) };
+      const actor = { items: [wand] };
+      const changed = await EquipmentService.toggleWielded(actor, wand);
+      expect(changed).toBe(true);
+      expect(wand.update).toHaveBeenCalledWith({ system: { wielded: true } });
+    });
+
+    test("wielding a second wand while both hands are full warns and does not update", async () => {
+      const weapon2H = { type: "weapon", system: { equipped: true, type: "2h", isNaturalWeapon: false } };
+      const wand = { type: "item", system: { wielded: false, tags: ["wand"] }, update: jest.fn() };
+      const actor = { items: [weapon2H, wand] };
+      const changed = await EquipmentService.toggleWielded(actor, wand);
+      expect(changed).toBe(false);
+      expect(wand.update).not.toHaveBeenCalled();
+      expect(global.ui.notifications.warn).toHaveBeenCalled();
+    });
+
+    test("item without the wand tag returns false without updating", async () => {
+      const item = { type: "item", system: { wielded: false, tags: [] }, update: jest.fn() };
+      const changed = await EquipmentService.toggleWielded({ items: [item] }, item);
+      expect(changed).toBe(false);
+      expect(item.update).not.toHaveBeenCalled();
+    });
+
+    test("no actor or no item returns false without throwing", async () => {
+      expect(await EquipmentService.toggleWielded(null, mockWand)).toBe(false);
+      expect(await EquipmentService.toggleWielded({ items: [] }, null)).toBe(false);
     });
   });
 });

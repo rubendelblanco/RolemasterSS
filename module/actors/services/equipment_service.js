@@ -1,5 +1,6 @@
 import ItemService from "./item_service.js";
 import ArmorInfoService from "./armor_info_service.js";
+import { getItemTagsArray } from "../../sheets/items/item_tags_ui.js";
 
 /**
  * Service for equipment and hands-occupied logic (Issue #94).
@@ -63,13 +64,15 @@ export default class EquipmentService {
         total += this.getWeaponHands(item);
       } else if (item.type === "armor") {
         total += this.getArmorHands(item);
+      } else if (item.type === "item" && item.system?.wielded === true && this.hasWandTag(item)) {
+        total += 1;
       }
     }
     return Math.min(total, this.MAX_HANDS);
   }
 
   /**
-   * Total hands occupied by actor's equipped weapons and shields.
+   * Total hands occupied by actor's equipped weapons, shields, and wielded wands.
    * @param {Actor} actor
    * @returns {number} 0–2
    */
@@ -83,9 +86,24 @@ export default class EquipmentService {
         total += this.getWeaponHands(item);
       } else if (item.type === "armor") {
         total += this.getArmorHands(item);
+      } else if (item.type === "item" && item.system?.wielded === true && this.hasWandTag(item)) {
+        total += 1;
       }
     }
     return Math.min(total, this.MAX_HANDS);
+  }
+
+  /**
+   * Whether a plain "item" has the "wand" tag - staff/rod are already modeled as weapons
+   * (and occupy hands through the normal equipped path), but a wand is a plain item that
+   * still has to be physically held in a hand to grant its benefits per RAW, unlike being
+   * merely `worn` (carried on your person). Always occupies exactly 1 hand.
+   * @param {Item} item
+   * @returns {boolean}
+   */
+  static hasWandTag(item) {
+    if (!item || item.type !== "item") return false;
+    return getItemTagsArray(item.system).some((t) => t.toLowerCase() === "wand");
   }
 
   /**
@@ -110,6 +128,7 @@ export default class EquipmentService {
     if (!item) return 0;
     if (item.type === "weapon") return this.getWeaponHands(item);
     if (item.type === "armor" && this.getArmorSlot(item) === "shield") return 1;
+    if (item.type === "item" && this.hasWandTag(item)) return 1;
     return 0;
   }
 
@@ -319,5 +338,37 @@ export default class EquipmentService {
     }
 
     return this.toggleEquipped(actor, item);
+  }
+
+  /**
+   * Toggle "wielded" (held in a hand) for a wand-tagged plain item. Unlike `worn` (just
+   * carried on your person), a wand only grants its benefits while actually held in hand
+   * per RAW, and doing so competes for hand space exactly like a weapon - so this goes
+   * through the same hands-limit check as toggleEquipped instead of a bare, unvalidated
+   * field flip. Releasing (already wielded -> not) is never blocked.
+   * @param {Actor} actor
+   * @param {Item} item - a wand-tagged "item"
+   * @returns {Promise<boolean>} true if the wielded state actually changed
+   */
+  static async toggleWielded(actor, item) {
+    if (!actor || !item || !this.hasWandTag(item)) return false;
+
+    if (item.system?.wielded === true) {
+      await item.update({ system: { wielded: false } });
+      return true;
+    }
+
+    const { valid, currentHands, itemHands } = this.canEquip(actor, item);
+    if (!valid) {
+      ui.notifications.warn(game.i18n.format("rmss.equipment.hands_limit_exceeded", {
+        current: currentHands,
+        adding: itemHands,
+        max: this.MAX_HANDS
+      }));
+      return false;
+    }
+
+    await item.update({ system: { wielded: true } });
+    return true;
   }
 }

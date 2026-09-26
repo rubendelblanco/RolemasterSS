@@ -360,6 +360,7 @@
     "item": {
       "templates": ["item"],
       "worn": false,
+      "wielded": false,
       "quantity": 1,
       "weight": 0,
       "cost": 0,

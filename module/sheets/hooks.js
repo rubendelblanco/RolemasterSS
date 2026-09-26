@@ -24,7 +24,12 @@ Hooks.on("createToken", async (tokenDocument) => {
 
 Hooks.on("createActor", async (actor) => {
     if (["character", "npc"].includes(actor.type)) {
-        await actor.update({ prototypeToken: { actorLink: true } });
+        await actor.update({
+            prototypeToken: {
+                actorLink: true,
+                sight: { enabled: true, range: 50 }
+            }
+        });
     }
 });
 

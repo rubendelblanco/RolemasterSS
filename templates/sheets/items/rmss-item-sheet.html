@@ -107,6 +107,17 @@
                 </div>
                 {{/if}}
 
+                {{#if hasWandTag}}
+                <div class="rmss-detail-section rmss-detail-section--wand">
+                    <h3 class="rmss-detail-section-title"><i class="fas fa-magic"></i> {{localize "rmss.item.section_wand"}}</h3>
+                    <label class="rmss-detail-toggle">
+                        <input type="checkbox" class="rmss-wand-wielded-toggle" {{checked system.wielded}} {{#unless editable}}disabled{{/unless}} />
+                        <span>{{localize "rmss.item.wielded"}}</span>
+                    </label>
+                    <p class="notes">{{localize "rmss.item.wielded_hint"}}</p>
+                </div>
+                {{/if}}
+
                 {{#if system.is_container}}
                 <div class="rmss-detail-section rmss-detail-section--container">
                     <h3 class="rmss-detail-section-title"><i class="fas fa-box-open"></i> {{localize "rmss.item.container_contents"}} {{item.name}}{{#if containerStats.maxCapacity}} ({{containerStats.usedValue}}/{{containerStats.maxCapacity}}{{#if (eq system.container.capacityType "weight")}} kg{{else}} items{{/if}}){{/if}}</h3>
