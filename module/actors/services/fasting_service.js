@@ -110,7 +110,7 @@ export default class FastingService {
       description: game.i18n.localize("rmss.fasting.effect_description"),
       disabled: false,
       flags: { rmss: { value: penalty, permanentPenalty: true, fastingPenalty: true } },
-      duration: { rounds: 99, startRound: game.combat ? game.combat.round : 0 }
+      duration: { value: 99, units: "rounds" }
     }]);
   }
 

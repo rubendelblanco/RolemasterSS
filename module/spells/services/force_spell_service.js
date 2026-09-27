@@ -214,7 +214,7 @@ export default class ForceSpellService {
 
                 // Defender stunned: +20 to RR (target must roll 20 higher to resist)
                 const stunEffect = targetActor ? Utils.getEffectByName(targetActor, "Stunned") : [];
-                const defenderStunned = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
+                const defenderStunned = stunEffect.length > 0 && (stunEffect[0].duration?.value ?? 0) > 0;
 
                 // Per-spell RR bonus (F spells only): positive helps the target resist, negative hurts them
                 const spellRRBonus = parseInt(spell.system.rr_bonus, 10) || 0;

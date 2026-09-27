@@ -39,10 +39,10 @@ function hasLegacyStunDefer(effect) {
  */
 async function decreaseRoundsEffect(effect) {
     const duration = effect.duration;
-    if (!duration?.rounds) return;
-    const remaining = duration.rounds - 1;
+    if (!duration?.value) return;
+    const remaining = duration.value - 1;
     if (remaining <= 0) await effect.delete();
-    else await effect.update({ "duration.rounds": remaining });
+    else await effect.update({ "duration.value": remaining });
 }
 
 /**
@@ -63,13 +63,13 @@ export async function processCombatantTurnEnd(combat, finishedCombatantId) {
         if (effect.name !== "Dying") continue;
         if (shouldSkipEffectTick(effect, combat)) continue;
 
-        const remaining = (effect.duration.rounds || 0) - 1;
+        const remaining = (effect.duration.value || 0) - 1;
         const attackerId = effect.flags?.rmss?.attackerId ?? CombatHistoryTracker.get().getLastAttacker(actor.id) ?? null;
         if (remaining <= 0) {
             await effect.delete();
             await RMSSEffectApplier._executeDeath(actor, attackerId, combatant.token ?? null);
         } else {
-            await effect.update({ "duration.rounds": remaining });
+            await effect.update({ "duration.value": remaining });
             if (effect.flags?.rmss?.tickDeferredUntilRound != null) {
                 await effect.unsetFlag("rmss", "tickDeferredUntilRound");
             }

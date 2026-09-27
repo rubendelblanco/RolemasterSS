@@ -215,7 +215,7 @@ export class RMSSWeaponSkillManager {
                 (1 - (move.current / moveMax)) * 100
             );
             const stunEffect = realEnemy ? Utils.getEffectByName(realEnemy, "Stunned") : [];
-            stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
+            stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.value ?? 0) > 0;
         } else {
             const moveRatio = (move.current / moveMax);
             if (moveRatio < 0.5) {
@@ -235,7 +235,7 @@ export class RMSSWeaponSkillManager {
             bonusValue += RMSSWeaponSkillManager._getSlayingBonusDelta(realWeapon, realEnemy, enemy);
             bonusValue += Number(tokenData?.ammoBonus) || 0;
             bonusValue -= Math.round((1 - (move.current / moveMax)) * 100);
-            stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.rounds ?? 0) > 0;
+            stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.value ?? 0) > 0;
         }
 
         const enemyForTemplate = realEnemy ?? enemy;

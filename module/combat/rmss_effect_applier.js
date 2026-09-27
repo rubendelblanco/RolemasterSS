@@ -153,8 +153,8 @@ export class RMSSEffectApplier {
 
         const existing = entity.effects.find(e => e.name === "Dying");
         if (existing) {
-            const total = Math.min(existing.duration.rounds || 0, rounds);
-            await existing.update({ "duration.rounds": total });
+            const total = Math.min(existing.duration.value || 0, rounds);
+            await existing.update({ "duration.value": total });
             return;
         }
 
@@ -165,7 +165,7 @@ export class RMSSEffectApplier {
             origin: entity.uuid,
             disabled: false,
             flags: { rmss },
-            duration: { rounds, startRound: game.combat ? game.combat.round : 0 }
+            duration: { value: rounds, units: "rounds" }
         }]);
     }
 
@@ -195,8 +195,8 @@ export class RMSSEffectApplier {
         const rounds = parseInt(data.ROUNDS) || 0;
         const existing = entity.effects.find(e => e.name === "Stunned");
         if (existing) {
-            const total = (existing.duration.rounds || 0) + rounds;
-            await existing.update({ "duration.rounds": total });
+            const total = (existing.duration.value || 0) + rounds;
+            await existing.update({ "duration.value": total });
         } else {
             const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
             await entity.createEmbeddedDocuments("ActiveEffect", [{
@@ -205,10 +205,7 @@ export class RMSSEffectApplier {
                 origin: entity.uuid,
                 disabled: false,
                 ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
-                duration: {
-                    rounds,
-                    startRound: game.combat ? game.combat.round : 0
-                }
+                duration: { value: rounds, units: "rounds" }
             }]);
         }
     }
@@ -232,7 +229,7 @@ export class RMSSEffectApplier {
             description,
             disabled: false,
             flags: { rmss: { value: rate, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity) } },
-            duration: { rounds: 99, startRound: game.combat ? game.combat.round : 0 }
+            duration: { value: 99, units: "rounds" }
         }]);
     }
 
@@ -255,7 +252,7 @@ export class RMSSEffectApplier {
                 description,
                 disabled: false,
                 flags: { rmss },
-                duration: { rounds: timedRounds, startRound: game.combat ? game.combat.round : 0 }
+                duration: { value: timedRounds, units: "rounds" }
             }]);
             return;
         }
@@ -267,7 +264,7 @@ export class RMSSEffectApplier {
             description,
             disabled: false,
             flags: { rmss: { value: penalty, permanentPenalty: true } },
-            duration: { rounds: 99, startRound: game.combat ? game.combat.round : 0 }
+            duration: { value: 99, units: "rounds" }
         }]);
     }
 
@@ -275,8 +272,8 @@ export class RMSSEffectApplier {
         const rounds = parseInt(data.ROUNDS) || 0;
         const existing = entity.effects.find(e => e.name === "Parry");
         if (existing) {
-            const total = (existing.duration.rounds || 0) + rounds;
-            await existing.update({ "duration.rounds": total });
+            const total = (existing.duration.value || 0) + rounds;
+            await existing.update({ "duration.value": total });
         } else {
             const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
             await entity.createEmbeddedDocuments("ActiveEffect", [{
@@ -285,7 +282,7 @@ export class RMSSEffectApplier {
                 origin: entity.uuid,
                 disabled: false,
                 ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
-                duration: { rounds, startRound: game.combat ? game.combat.round : 0 }
+                duration: { value: rounds, units: "rounds" }
             }]);
         }
     }
@@ -294,8 +291,8 @@ export class RMSSEffectApplier {
         const r = parseInt(rounds) || 0;
         const existing = entity.effects.find(e => e.name === "No parry");
         if (existing) {
-            const total = (existing.duration.rounds || 0) + r;
-            await existing.update({ "duration.rounds": total });
+            const total = (existing.duration.value || 0) + r;
+            await existing.update({ "duration.value": total });
         } else {
             const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
             await entity.createEmbeddedDocuments("ActiveEffect", [{
@@ -304,7 +301,7 @@ export class RMSSEffectApplier {
                 origin: entity.uuid,
                 disabled: false,
                 ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
-                duration: { rounds: r, startRound: game.combat ? game.combat.round : 0 }
+                duration: { value: r, units: "rounds" }
             }]);
         }
     }
@@ -323,7 +320,7 @@ export class RMSSEffectApplier {
             description,
             disabled: false,
             flags: { rmss },
-            duration: { rounds, startRound: game.combat ? game.combat.round : 0 }
+            duration: { value: rounds, units: "rounds" }
         }]);
     }
 
@@ -343,13 +340,9 @@ export class RMSSEffectApplier {
             origin: actor.uuid,
             disabled: false,
             flags: { core: { overlay: true } },
-            // Use a large numeric duration so FVTT v13 renders it reliably
-            duration: {
-                rounds: 999999,
-                startRound: game.combat ? game.combat.round : 0,
-                seconds: 999999 * (CONFIG.time?.roundTime ?? 6),
-                startTime: game.time.worldTime
-            }
+            // Use a large numeric duration so FVTT renders it reliably (v14 schema: value + units,
+            // "startRound"/"seconds"/"startTime" from the old rounds/turns/seconds fields are gone).
+            duration: { value: 999999, units: "seconds" }
         }]);
 
         // 2) If this token is in the active combat, mark its combatant defeated (greys the portrait)

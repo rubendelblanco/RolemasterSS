@@ -37,7 +37,7 @@ export default class ManeuverPenaltiesService {
 
         let stunned = 0;
         const stunEffects = Utils.getEffectByName(actor, "Stunned");
-        const isStunned = stunEffects.some(e => (e.duration?.rounds ?? 0) > 0);
+        const isStunned = stunEffects.some(e => (e.duration?.value ?? 0) > 0);
         if (isStunned) {
             const sdBonus = actor.type === "character"
                 ? (actor.system?.stats?.self_discipline?.stat_bonus ?? 0)
