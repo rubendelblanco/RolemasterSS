@@ -9,6 +9,7 @@ import { buildDeleteConfirmContent } from "../items/item_delete_confirm_util.js"
 
 import FoodSpoilageService from "../../actors/services/food_spoilage_service.js";
 import EffectsPopupService from "../../core/rolls/effects_popup_service.js";
+import FastingService from "../../actors/services/fasting_service.js";
 
 /**
  * All the actions and feats in common for characters (PCs, NPCs, Creatures & Monsters)
@@ -432,7 +433,10 @@ export default class RMSSCharacterSheet extends ActorSheet {
 
     /**
      * A freshly acquired weapon/armor/item/herb is carried by the character by default.
-     * Transports are never "worn".
+     * Transports are never "worn". A "food"-tagged item landing here also counts as having
+     * eaten that day - this is the same drop path Monk's Enhanced Journal purchases go
+     * through (see its rmss-specific createOwnedItem() -> sheet._onDropItemCreate()), so
+     * buying food off a Shop journal counts without requiring a separate "consume" click.
      * @override
      */
     async _onDropItemCreate(itemData, event) {
@@ -440,6 +444,9 @@ export default class RMSSCharacterSheet extends ActorSheet {
         for (const d of items) {
             if (["weapon", "armor", "item", "herb_or_poison"].includes(d?.type)) {
                 foundry.utils.setProperty(d, "system.worn", true);
+            }
+            if (FastingService.itemIsFood(d)) {
+                FastingService.markAteFoodToday(this.actor, d);
             }
         }
         return super._onDropItemCreate(itemData, event);
