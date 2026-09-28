@@ -1331,7 +1331,6 @@
       "movement_penalty": "Penalización por movimiento",
       "casting_options": "Opciones de Lanzamiento",
       "casting_options_insufficient_pp": "¡Sin puntos de poder suficientes! Puedes usar el hechizador, o cancelar.",
-      "subtlety": "Sutileza",
       "hands": "Manos",
       "hands_occupied": "Manos ocupadas: {current} / {max}",
       "voice": "Voz",

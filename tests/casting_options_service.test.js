@@ -5,10 +5,6 @@ import { jest } from '@jest/globals';
 import CastingOptionsService from '../module/spells/services/casting_options_service.js';
 
 const mockModifiers = {
-    subtlety: {
-        E: { channeling: -40, essence: -60, mentalism: -30 },
-        F: { channeling: -25, essence: -50, mentalism: -20 }
-    },
     hands: {
         none: { essence: -40, channeling: -20, mentalism: 0 },
         one: { essence: -10, channeling: 0, mentalism: 0 },
@@ -54,23 +50,6 @@ describe('CastingOptionsService', () => {
         });
     });
 
-    describe('_getSubtletyPenalty', () => {
-        test('returns penalty for known spell type and realm', () => {
-            expect(CastingOptionsService._getSubtletyPenalty("essence", "E", mockModifiers)).toBe(-60);
-            expect(CastingOptionsService._getSubtletyPenalty("channeling", "E", mockModifiers)).toBe(-40);
-            expect(CastingOptionsService._getSubtletyPenalty("mentalism", "F", mockModifiers)).toBe(-20);
-        });
-
-        test('unknown spell type returns 0', () => {
-            expect(CastingOptionsService._getSubtletyPenalty("essence", "X", mockModifiers)).toBe(0);
-        });
-
-        test('unknown realm falls back to essence', () => {
-            const mods = { subtlety: { E: { essence: -60 } } };
-            expect(CastingOptionsService._getSubtletyPenalty("unknown", "E", mods)).toBe(-60);
-        });
-    });
-
     describe('_getHandsModifiers', () => {
         test('returns modifiers for each hand option', () => {
             const hands = CastingOptionsService._getHandsModifiers("essence", mockModifiers);
@@ -95,7 +74,7 @@ describe('CastingOptionsService', () => {
     });
 
     describe('showCastingOptionsDialog with fromEnchantment', () => {
-        // An item cast (potion/rune/staff/artifact) has no caster subtlety/hands/voice/prep
+        // An item cast (potion/rune/staff/artifact) has no caster hands/voice/prep
         // to choose and no hits-taken/bleeding/stunned penalty - it just goes off. This must
         // never show the dialog (no Dialog render, no modifiers table fetch) and instead
         // resolve immediately with a neutral, zero-modifier result.
@@ -120,7 +99,7 @@ describe('CastingOptionsService', () => {
                 stunned: 0,
                 penaltyEffect: 0,
                 activeBonus: 0,
-                options: { subtlety: "normal", hands: "two", voice: "normal", preparation: 0, otherMods: 0 }
+                options: { hands: "two", voice: "normal", preparation: 0, otherMods: 0 }
             });
         });
 

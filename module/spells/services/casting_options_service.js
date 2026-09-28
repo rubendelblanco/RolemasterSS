@@ -41,7 +41,7 @@ export default class CastingOptionsService {
      * @param {number} [params.spellLevel=1] - PP cost; compared to current PP when spendPp is true
      * @param {boolean} [params.spendPp=true] - If true, "Cast" is hidden when current PP &lt; spellLevel (use Spell Adder or close)
      * @param {boolean} [params.fromEnchantment=false] - Cast from an item (potion/rune/staff/artifact):
-     *   there's no caster subtlety/hands/voice/preparation to choose, and no hits-taken/bleeding/
+     *   there's no caster hands/voice/preparation to choose, and no hits-taken/bleeding/
      *   stunned penalty - the item just goes off. Skips the dialog entirely and returns a neutral
      *   (no modifier) result instead of prompting.
      * @returns {Promise<{totalModifier: number, options: Object, useSpellAdder?: boolean}|null>}
@@ -68,7 +68,7 @@ export default class CastingOptionsService {
                 stunned: 0,
                 penaltyEffect: 0,
                 activeBonus: 0,
-                options: { subtlety: "normal", hands: "two", voice: "normal", preparation: 0, otherMods: 0 }
+                options: { hands: "two", voice: "normal", preparation: 0, otherMods: 0 }
             };
         }
 
@@ -162,7 +162,6 @@ export default class CastingOptionsService {
      * @param {number} [handsOccupied] - Actor's occupied hands (0-2) for pre-selecting hands option
      */
     static _buildDialogContent(realm, spellType, modifiers, autoPenalties = {}, showAutoPenalties = false, handsOccupied = 0, showPublicRollCheckbox = false, insufficientPpForNormalCast = false) {
-        const subtletyPenalty = this._getSubtletyPenalty(realm, spellType, modifiers);
         const handsModifiers = this._getHandsModifiers(realm, modifiers);
         const voiceModifiers = this._getVoiceModifiers(realm, modifiers);
         const fmt = (n) => (n >= 0 ? `+${n}` : `${n}`);
@@ -200,14 +199,6 @@ export default class CastingOptionsService {
                 ${insufficientPpHtml}
                 ${autoPenaltiesBlock}
                 ${handsHintBlock}
-                <div class="form-group">
-                    <label>${game.i18n.localize("rmss.spells.subtlety")}</label>
-                    <select name="subtlety">
-                        <option value="normal" selected>Normal (+0)</option>
-                        <option value="subtle">Subtle (${subtletyPenalty})</option>
-                    </select>
-                </div>
-                
                 <div class="form-group">
                     <label>${game.i18n.localize("rmss.spells.hands")}</label>
                     <select name="hands">
@@ -262,13 +253,11 @@ export default class CastingOptionsService {
                 (function() {
                     const form = document.querySelector('.casting-options-form');
                     const updateTotal = () => {
-                        const subtlety = form.querySelector('[name="subtlety"]').value;
                         const hands = form.querySelector('[name="hands"]').value;
                         const voice = form.querySelector('[name="voice"]').value;
                         const prep = form.querySelector('[name="preparation"]').value;
                         const otherMods = parseInt(form.querySelector('[name="otherMods"]').value) || 0;
-                        
-                        const subtletyMod = subtlety === 'subtle' ? ${subtletyPenalty} : 0;
+
                         const handsMod = ${JSON.stringify(handsModifiers)}[hands];
                         const voiceMod = ${JSON.stringify(voiceModifiers)}[voice];
                         const prepMod = [0, 10, 20][parseInt(prep)];
@@ -277,8 +266,8 @@ export default class CastingOptionsService {
                         const stunnedMod = ${stunned};
                         const penaltyEffectMod = Math.min(0, ${penaltyEffect});
                         const activeBonusMod = ${activeBonus};
-                        
-                        const total = subtletyMod + handsMod + voiceMod + prepMod + otherMods + hitsTakenMod + bleedingMod + stunnedMod + penaltyEffectMod + activeBonusMod;
+
+                        const total = handsMod + voiceMod + prepMod + otherMods + hitsTakenMod + bleedingMod + stunnedMod + penaltyEffectMod + activeBonusMod;
                         const sign = total >= 0 ? '+' : '';
                         document.getElementById('casting-total-modifier').innerHTML = '<strong>' + sign + total + '</strong>';
                     };
@@ -298,18 +287,16 @@ export default class CastingOptionsService {
         const form = html.find('form')[0];
         const formData = new FormData(form);
         
-        const subtlety = formData.get('subtlety');
         const hands = formData.get('hands');
         const voice = formData.get('voice');
         const preparation = formData.get('preparation');
         const otherMods = parseInt(formData.get('otherMods')) || 0;
 
-        const subtletyMod = subtlety === 'subtle' ? this._getSubtletyPenalty(realm, spellType, modifiers) : 0;
         const handsMod = this._getHandsModifiers(realm, modifiers)[hands];
         const voiceMod = this._getVoiceModifiers(realm, modifiers)[voice];
         const prepMod = modifiers.preparation[preparation];
 
-        const castingModifier = subtletyMod + handsMod + voiceMod + prepMod + otherMods;
+        const castingModifier = handsMod + voiceMod + prepMod + otherMods;
         const autoPenaltyTotal = ManeuverPenaltiesService.getTotalAutoPenalty(autoPenalties);
         const totalModifier = castingModifier + autoPenaltyTotal;
 
@@ -321,22 +308,12 @@ export default class CastingOptionsService {
             publicRollToPlayers,
             ...autoPenalties,
             options: {
-                subtlety,
                 hands,
                 voice,
                 preparation: parseInt(preparation),
                 otherMods
             }
         };
-    }
-
-    /**
-     * Get the subtlety penalty for a spell type and realm.
-     */
-    static _getSubtletyPenalty(realm, spellType, modifiers) {
-        const typeModifiers = modifiers.subtlety[spellType];
-        if (!typeModifiers) return 0;
-        return typeModifiers[realm] ?? typeModifiers["essence"] ?? 0;
     }
 
     /**

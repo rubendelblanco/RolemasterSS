@@ -1331,7 +1331,6 @@
             "movement_penalty": "Movement penalty",
             "casting_options": "Casting Options",
             "casting_options_insufficient_pp": "Not enough Power Points! You can use your Spell Adder, or close.",
-            "subtlety": "Subtlety",
             "hands": "Hands",
             "hands_occupied": "Hands occupied: {current} / {max}",
             "voice": "Voice",

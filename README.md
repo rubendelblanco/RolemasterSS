@@ -34,7 +34,7 @@ System for playing **Rolemaster Standard System** in Foundry Virtual Tabletop. B
 - **Base Elemental (BE)**: attack tables (bola, fire_ball, fire_bolt, etc.), attack confirmation to GM.
 - **Directed Elemental (DE)**: bolt tables, directed spell skill, flow similar to BE.
 - **Static Maneuver (E, P, U, I)**: static maneuver table.
-- Casting options (subtlety, hands, voice, preparation) and automatic penalties.
+- Casting options (hands, voice, preparation) and automatic penalties.
 - Spell failure table on fumbles.
 - Per-spell macros with access to `spellContext` (RR and targets) for Force spells.
 
