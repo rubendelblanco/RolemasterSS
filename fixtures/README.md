@@ -69,6 +69,11 @@ Every list below is available in both languages, at the same relative path under
 - `spell_lists/en/channeling/weather_ways.json`
 - `spell_lists/es/channeling/weather_ways.json`
 
+#### Eissa's Grace (homebrew, not an official RM list)
+30 spells — preserving bodies, holding a soul in place, restoring recently-dead bodies, dispelling undead, and a sanctuary/immunity granted through the cult of Eissa. Setting-specific addition, no official numbering.
+- `spell_lists/en/channeling/eissas_grace.json`
+- `spell_lists/es/channeling/eissas_grace.json`
+
 ### Closed lists
 
 #### Blood Law (3.1)
@@ -1289,7 +1294,7 @@ const FILES_BY_FOLDER = {
     "inner_walls", "moving_ways", "natures_guises", "natures_summons", "natures_way", "path_mastery",
     "blood_ways", "bone_ways", "cleansing", "muscle_ways", "organ_ways", "surface_ways",
     "flesh_destruction", "fluid_destruction", "gas_destruction", "mind_destruction", "solid_destruction", "soul_destruction",
-    "aquatic_forms"
+    "aquatic_forms", "eissas_grace"
   ],
   arcane: ["containing_ways", "hunters_call", "power_lore", "spell_protection", "spell_tracker"],
   mentalism: [
