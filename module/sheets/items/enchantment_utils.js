@@ -360,7 +360,7 @@ export async function resolveSpellForEnchantment(enchantment, actor) {
     if (fd && typeof fd === "object" && Object.keys(fd).length > 0) {
       spellData.flags = foundry.utils.duplicate(fd);
     }
-    return await Item.create(spellData, { temporary: true });
+    return new CONFIG.Item.documentClass(spellData);
   }
   if (enchantment.spellUuid) {
     const doc = await fromUuid(enchantment.spellUuid);
@@ -383,7 +383,7 @@ export async function resolveSpellForEnchantment(enchantment, actor) {
         if (ef && typeof ef === "object" && Object.keys(ef).length > 0) {
           spellData.flags = foundry.utils.duplicate(ef);
         }
-        return await Item.create(spellData, { temporary: true });
+        return new CONFIG.Item.documentClass(spellData);
       }
     }
   }
