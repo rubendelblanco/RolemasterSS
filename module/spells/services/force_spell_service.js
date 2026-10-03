@@ -140,13 +140,6 @@ export default class ForceSpellService {
             await game.dice3d.showForRoll(roll, game.user, syncDice3d);
         }
 
-        // Deduct power points (spell level = PP cost), unless spell has no_pp
-        if (!noPP) {
-            const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
-            const newPP = Math.max(0, currentPP - spellLevel);
-            await actor.update({ "system.attributes.power_points.current": newPP });
-        }
-        
         // Unmodified rolls: 01-02 and 96-100 (don't add skill bonus or casting modifiers)
         // For unmodified high rolls (96-99), use the explosive total
         // For 100, use just 100 (special result UM 100)
@@ -242,6 +235,20 @@ export default class ForceSpellService {
                     tokenUuid: target.uuid ?? target.document?.uuid ?? null
                 });
             }
+        }
+
+        // Every target's Basic Spell Attack dialog was cancelled: the cast is aborted, not a
+        // success - no PP spent, no chat card, and the item macro must not run.
+        if (isForceSpell && hasTargets && !isFumble && targetRRs.length === 0) {
+            return false;
+        }
+
+        // Deduct power points (spell level = PP cost), unless spell has no_pp. Spent only once
+        // the cast is committed (success, failure or fumble all burn the attempt).
+        if (!noPP) {
+            const currentPP = parseInt(actor.system.attributes?.power_points?.current ?? 0);
+            const newPP = Math.max(0, currentPP - spellLevel);
+            await actor.update({ "system.attributes.power_points.current": newPP });
         }
 
         // For non-Force spells (or Force without targets), get Static Maneuver result - unless
