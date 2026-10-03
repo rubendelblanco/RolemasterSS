@@ -131,7 +131,7 @@ export default class ItemService {
         <form>
           <div class="form-group">
             <label>Cantidad:</label>
-            <input type="number" name="qty" value="1" min="1" max="${maxQty}" />
+            <input type="number" name="qty" value="${maxQty}" min="1" max="${maxQty}" />
           </div>
           <div class="form-group">
             <label>Destino:</label>
