@@ -438,8 +438,8 @@ Hooks.once("init", function () {
      * ```
      * @param {{ target: string|Token|TokenDocument, attackerLevel: number, defenderLevel?: number, modifier?: number, category?: string, silent?: boolean }} options
      *   - target: the resisting token (or its id). defenderLevel defaults to that token's actor level if omitted.
-     *   - modifier/category are added to the DEFENDER'S ROLL, not to the RR target - the table
-     *     target is invariant (levels only). category: one of RESISTANCE_ROLL_KEYS (channeling/
+     *   - modifier/category are the DEFENDER'S bonus (positive = easier to resist); it is folded
+     *     into the returned rrTarget (base from levels minus bonus). category: one of RESISTANCE_ROLL_KEYS (channeling/
      *     essence/mentalism/chann_ess/chann_ment/ess_ment/arcane/poison/disease/fear) - when given,
      *     the target's own `system.resistance_rolls.<category>.total` (race/item/effect bonuses) is
      *     added to `modifier` automatically. Player characters only (npc/creature don't have this
@@ -477,9 +477,10 @@ Hooks.once("init", function () {
       }
 
       const resolvedDefenderLevel = defenderLevel ?? (parseInt(token.actor?.system?.attributes?.level?.value, 10) || 1);
-      // The table target is invariant (levels only) - modifier/category apply to the roll below,
-      // not to this target (see executeResistanceRoll's finalRoll = rollTotal + modifier).
-      const rrTarget = ResistanceRollService.calculateBaseRR(attackerLevel, resolvedDefenderLevel);
+      // executeResistanceRoll compares the raw roll against rrTarget as-is (it no longer adds
+      // the modifier itself), so the defender's bonus must be folded into the target here:
+      // roll + modifier >= base  <=>  roll >= base - modifier.
+      const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, resolvedDefenderLevel, totalModifier);
       const result = await EffectsPopupService.executeResistanceRoll(token.id, attackerLevel, resolvedDefenderLevel, totalModifier, rrTarget, { postChatMessage: !silent });
       return { ...result, rrTarget };
     },
