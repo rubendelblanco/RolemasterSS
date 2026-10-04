@@ -1096,6 +1096,8 @@
             "flank": "Flank",
             "rear_flank": "Rear flank",
             "parry": "Parry",
+            "shield_note_front": "Includes the shield (+{bonus} DB), which only counts against frontal attacks.",
+            "shield_note_not_front": "The shield (+{bonus} DB) doesn't count: the attack isn't frontal.",
             "misc": "Misc.",
             "target_status": "Target status",
             "normal": "Normal",

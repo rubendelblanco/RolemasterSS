@@ -1096,6 +1096,8 @@
       "flank": "Flanco",
       "rear_flank": "Espalda flanqueada",
       "parry": "Parada",
+      "shield_note_front": "Incluye el escudo (+{bonus} DB), que solo cuenta contra ataques frontales.",
+      "shield_note_not_front": "El escudo (+{bonus} DB) no cuenta: el ataque no es frontal.",
       "misc": "Otros",
       "target_status": "Status defensor",
       "normal": "Normal",

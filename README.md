@@ -62,6 +62,8 @@ System for playing **Rolemaster Standard System** in Foundry Virtual Tabletop. B
   active the victim must keep at least half their OB reserved (house rule: the manual only asks for 1 point, which
   makes the effect meaningless; it can't be released), and the values add up as a
   penalty on all their attacks; each effect expires on its own.
+- **Shield**: its DB bonus only counts against frontal attacks; the attack confirmation takes it out
+  of the defender's DB for flank and rear attacks (and follows the facing selector live).
 - Initiative and combat tracker.
 
 ### Items

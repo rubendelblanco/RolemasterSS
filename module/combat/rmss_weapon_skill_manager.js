@@ -7,6 +7,7 @@ import WeaponFumbleService from "./services/weapon_fumble_service.js";
 import WeaponBreakageService from "./services/weapon_breakage_service.js";
 import FacingService from "./services/facing_service.js";
 import ParryService, { PARRY_REASON } from "./services/parry_service.js";
+import ShieldService from "./services/shield_service.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
 import { pickMissileAmmoForAttack, consumeChosenAmmo } from "../actors/utils/ammunition_util.js";
@@ -262,6 +263,11 @@ export class RMSSWeaponSkillManager {
         });
         const parryNote = (result) => RMSSWeaponSkillManager._describeDefenderParry(result);
 
+        // House rule: the shield's DB bonus only counts against a frontal attack. Area balls already
+        // ignore the shield (their DB starts at 0 here), so there is nothing to adjust for them.
+        const shieldBonus = areaElementalBall ? 0 : ShieldService.getShieldBonus(enemyForTemplate);
+        const defenderDbValue = areaElementalBall ? 0 : ShieldService.getDefenseDb(enemyForTemplate, facingValue);
+
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: realActor,
             enemy: enemyForTemplate,
@@ -279,6 +285,10 @@ export class RMSSWeaponSkillManager {
             mustParryNote: mustParryPenalty
                 ? game.i18n.format("rmss.parry.attacker_must_parry_note", { penalty: mustParryPenalty })
                 : null,
+            shieldBonus,
+            defenderDbValue,
+            shieldNoteFront: shieldBonus ? game.i18n.format("rmss.combat.shield_note_front", { bonus: shieldBonus }) : "",
+            shieldNoteNotFront: shieldBonus ? game.i18n.format("rmss.combat.shield_note_not_front", { bonus: shieldBonus }) : "",
             attackerParryValue: attackerDeduction?.value ?? 0,
             attackerParryNote: attackerDeduction
                 ? game.i18n.format("rmss.parry.attacker_note", { points: attackerDeduction.points })
@@ -376,8 +386,20 @@ export class RMSSWeaponSkillManager {
                     html.find(".calculable").on("change", function(event) {
                         calculateTotal();
                     });
-                    // Parry only counts against a frontal attack: follow the facing select live.
+                    // Whether the DB box currently includes the shield (it starts frontal-or-not like the select).
+                    let dbCountsShield = ShieldService.isFrontal(html.find("#facing").val());
+                    // Parry and the shield only count against a frontal attack: follow the facing select live.
                     html.find("#facing").on("change", (event) => {
+                        const db = html.find("#target-db");
+                        const shield = Number(db.data("shield")) || 0;
+                        if (shield) {
+                            const nowFront = ShieldService.isFrontal(event.target.value);
+                            if (nowFront !== dbCountsShield) {
+                                db.val(Math.max(0, (parseInt(db.val()) || 0) + (nowFront ? shield : -shield)));
+                                dbCountsShield = nowFront;
+                            }
+                            html.find("#target-db-note").text((nowFront ? db.data("noteFront") : db.data("noteNotFront")) || "");
+                        }
                         const input = html.find("#target-parry");
                         const front = event.target.value === FacingService.FACING.FRONT;
                         input.val(front ? input.data("parryFront") : 0);
