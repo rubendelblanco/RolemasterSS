@@ -158,11 +158,29 @@ export default class WeaponEffectsService {
       const tier = w.system?.weapon_effects?.increased_initiative;
       if (tier && INITIATIVE_BONUS[tier] != null) sum += INITIATIVE_BONUS[tier];
     }
-    return sum;
+    // A creature's attacks are all "equipped" at once, so stacking them would multiply the
+    // bonus by its number of attacks: only the best one counts.
+    let bestAttack = 0;
+    for (const a of actor.items) {
+      if (a.type !== "creature_attack") continue;
+      const tier = a.system?.attack_effects?.increased_initiative;
+      if (tier && INITIATIVE_BONUS[tier] != null) bestAttack = Math.max(bestAttack, INITIATIVE_BONUS[tier]);
+    }
+    return sum + bestAttack;
   }
 
-  static actorHasWeaponOfBleeding(actor) {
+  /**
+   * @param {Actor} actor
+   * @param {string|null} [weaponItemId] - the attack actually used. When it is one of the
+   *   actor's creature_attack items, only that attack's own flag counts (a creature's other
+   *   attacks must not make this one bleed); otherwise any equipped weapon with the property.
+   */
+  static actorHasWeaponOfBleeding(actor, weaponItemId = null) {
     if (!actor?.items) return false;
+    if (weaponItemId) {
+      const attack = actor.items.find?.((i) => (i.id ?? i._id) === weaponItemId && i.type === "creature_attack");
+      if (attack) return attack.system?.attack_effects?.weapon_of_bleeding === true;
+    }
     for (const w of EquipmentService.getEquippedWeapons(actor)) {
       if (w.system?.weapon_effects?.weapon_of_bleeding === true) return true;
     }

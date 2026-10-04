@@ -217,7 +217,7 @@ export class RMSSEffectApplier {
         const atkId = originId ?? ctx?.attackerId;
         if (atkId) {
             const attacker = game.actors.get(atkId);
-            if (attacker && WeaponEffectsService.actorHasWeaponOfBleeding(attacker)) {
+            if (attacker && WeaponEffectsService.actorHasWeaponOfBleeding(attacker, ctx?.weaponItemId ?? null)) {
                 const mainSev = ctx?.mainSeverity ?? ctx?.severity;
                 rate += WeaponEffectsService.getWeaponOfBleedingHprBonus(mainSev);
             }

@@ -408,6 +408,13 @@
       "probability": 100,
       "bonus_experience": "none",
       "treasure": "",
+      "magical": false,
+      "holy": false,
+      "unholy": false,
+      "material": "",
+      "slaying": [],
+      "isSlaying": false,
+      "slaying_bonus": 0,
       "attack_effects": {
         "increased_initiative": "",
         "effect_weapon": "",

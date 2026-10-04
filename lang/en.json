@@ -758,6 +758,10 @@
         },
         "creature_attack": {
             "attack_effects_header": "Attack effects and extra criticals (RM 9.7)",
+            "properties_header": "Properties of the attack (same as a weapon)",
+            "material_normal": "Normal",
+            "increased_initiative_hint": "Adds the listed bonus (Minor +2 … Superior +8) to this creature's initiative total. If several attacks grant it, only the best one counts.",
+            "weapon_of_bleeding_hint": "When a critical from this attack applies bleeding (HPR), add +1 to the bleeding rate per round if the main critical severity was A–C, or +2 if it was D–E (RM 9.7 Weapon of Bleeding). Only this attack gets it.",
             "drag_reorder": "Drag to reorder attacks",
             "gm_chain_reminder_banner": "Creature attack chain",
             "gm_chain_reminder_same": "{creatureName}: crit “{triggeringAttack}” → next “{chainedAttack}” · Special: same round as the attack above.",

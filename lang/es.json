@@ -758,6 +758,10 @@
     },
     "creature_attack": {
       "attack_effects_header": "Efectos de ataque y críticos adicionales (RM 9.7)",
+      "properties_header": "Propiedades del ataque (iguales que las de un arma)",
+      "material_normal": "Normal",
+      "increased_initiative_hint": "Suma el bono indicado (Menor +2 … Superior +8) a la iniciativa de esta criatura. Si varios ataques lo otorgan, solo cuenta el mejor.",
+      "weapon_of_bleeding_hint": "Cuando un crítico de este ataque aplica sangrado (HPR), suma +1 al ritmo de sangrado por asalto si la severidad principal fue A–C, o +2 si fue D–E (RM 9.7 Arma de Sangrado). Solo lo tiene este ataque.",
       "drag_reorder": "Arrastrar para reordenar ataques",
       "gm_chain_reminder_banner": "Cadena de ataques",
       "gm_chain_reminder_same": "{creatureName}: crítico «{triggeringAttack}» → siguiente «{chainedAttack}» · Especial: mismo asalto que el de arriba.",

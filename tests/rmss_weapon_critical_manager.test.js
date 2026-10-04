@@ -110,4 +110,24 @@ describe('RMSSWeaponCriticalManager.getDefaultCriticalSubtype', () => {
         const enemy = { system: { creature_tags: ["dragon"] } };
         expect(RMSSWeaponCriticalManager.getDefaultCriticalSubtype("actor1", "large_melee", enemy)).toBe("slaying");
     });
+
+    test('a creature_attack picked by weaponItemId supplies holy/mithril/magic/slaying, even with no weapon equipped', () => {
+        const attack = (id, system) => ({ id, type: "creature_attack", system });
+        const actor = { items: [
+            attack("c-holy", { holy: true }),
+            attack("c-mithril", { material: "mithril_alloy" }),
+            attack("c-magic", { magical: true }),
+            attack("c-slayer", { slaying: ["dragon"], isSlaying: true }),
+            attack("c-plain", {})
+        ] };
+        Utils.getActor = jest.fn().mockReturnValue(actor);
+        EquipmentService.getEquippedWeapons = jest.fn().mockReturnValue([]);
+        const enemy = { system: { creature_tags: ["dragon"] } };
+        const subtype = (id) => RMSSWeaponCriticalManager.getDefaultCriticalSubtype("actor1", "large_melee", enemy, id);
+        expect(subtype("c-holy")).toBe("holy");
+        expect(subtype("c-mithril")).toBe("mithril");
+        expect(subtype("c-magic")).toBe("magic");
+        expect(subtype("c-slayer")).toBe("slaying");
+        expect(subtype("c-plain")).toBe("normal");
+    });
 });

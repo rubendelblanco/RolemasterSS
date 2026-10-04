@@ -1,6 +1,7 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import { bindMacroDropZone } from "./macro_drop_util.js";
+import { bindWeaponSlayingEditor, getWeaponSlayingArray, getWeaponSlayingListId } from "./weapon_slaying_ui.js";
 
 export default class RMSSCreatureAttackSheet extends ItemSheet {
 
@@ -57,6 +58,8 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
             editable: this.isEditable,
             item: baseData.item,
             system: { ...system, attack_effects },
+            weaponSlaying: getWeaponSlayingArray(system),
+            weaponSlayingListId: getWeaponSlayingListId(this.item),
             config: CONFIG.rmss,
             actorId: this.getActorId(),
             armsTables: armsTables,
@@ -69,6 +72,20 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
     activateListeners(html) {
         super.activateListeners(html);
         bindMacroDropZone(this, html);
+        bindWeaponSlayingEditor(this, html);
+        this._setupHolyUnholyExclusive(html);
+    }
+
+    /** Same rule as the weapon sheet: an attack is holy or unholy, not both. */
+    _setupHolyUnholyExclusive(html) {
+        const holy = html.find('input[name="system.holy"]')[0];
+        const unholy = html.find('input[name="system.unholy"]')[0];
+        if (!holy || !unholy) return;
+        const sync = (source) => {
+            if (source.checked) (source === holy ? unholy : holy).checked = false;
+        };
+        holy.addEventListener("change", () => sync(holy));
+        unholy.addEventListener("change", () => sync(unholy));
     }
 
     getActorId() {

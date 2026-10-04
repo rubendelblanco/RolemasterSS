@@ -102,6 +102,90 @@
                     <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.item.weapon_effects_increased_critical_hint'}}"></i></td>
                 <td><input type="checkbox" name="system.attack_effects.increased_critical" {{checked system.attack_effects.increased_critical}}/></td>
             </tr>
+            <tr>
+                <td>{{localize "rmss.item.weapon_effects_increased_initiative"}}
+                    <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.creature_attack.increased_initiative_hint'}}"></i></td>
+                <td>
+                    <select name="system.attack_effects.increased_initiative" data-dtype="String">
+                        <option value="" {{#unless system.attack_effects.increased_initiative}}selected{{/unless}}>{{localize "rmss.item.weapon_effects_none"}}</option>
+                        <option value="minor" {{#if (eq system.attack_effects.increased_initiative "minor")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_minor"}} (+2)</option>
+                        <option value="normal" {{#if (eq system.attack_effects.increased_initiative "normal")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_normal"}} (+4)</option>
+                        <option value="greater" {{#if (eq system.attack_effects.increased_initiative "greater")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_greater"}} (+6)</option>
+                        <option value="superior" {{#if (eq system.attack_effects.increased_initiative "superior")}}selected{{/if}}>{{localize "rmss.item.weapon_effects_init_superior"}} (+8)</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>{{localize "rmss.item.weapon_effects_weapon_of_bleeding"}}
+                    <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.creature_attack.weapon_of_bleeding_hint'}}"></i></td>
+                <td><input type="checkbox" name="system.attack_effects.weapon_of_bleeding" {{checked system.attack_effects.weapon_of_bleeding}}/></td>
+            </tr>
         </table>
+
+        <table class="rmss-creature-attack-effects">
+            <tr>
+                <th colspan="2">{{localize "rmss.creature_attack.properties_header"}}</th>
+            </tr>
+            <tr>
+                <td>{{localize "rmss.item.modifiers_material"}}</td>
+                <td>
+                    <select name="system.material">
+                        <option value="" {{#unless system.material}}selected{{/unless}}>{{localize "rmss.creature_attack.material_normal"}}</option>
+                        <option value="mithril_alloy" {{#if (eq system.material "mithril_alloy")}}selected{{/if}}>{{localize "rmss.item.material_mithril_alloy"}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>{{localize "rmss.item.modifiers_magical"}}</td>
+                <td><input type="checkbox" name="system.magical" {{checked system.magical}}/></td>
+            </tr>
+            <tr>
+                <td>{{localize "rmss.item.modifiers_holy"}}</td>
+                <td><input type="checkbox" name="system.holy" {{checked system.holy}}/></td>
+            </tr>
+            <tr>
+                <td>{{localize "rmss.item.modifiers_unholy"}}</td>
+                <td><input type="checkbox" name="system.unholy" {{checked system.unholy}}/></td>
+            </tr>
+        </table>
+
+        <div class="rmss-detail-section rmss-detail-section--slaying">
+            <h3 class="rmss-detail-section-title"><i class="fas fa-skull-crossbones"></i> {{localize "rmss.item.modifiers_slaying"}}</h3>
+            <div class="rmss-weapon-slaying">
+                <div class="rmss-tag-chips">
+                    {{#each weaponSlaying}}
+                    <span class="rmss-tag-chip" data-tag-index="{{@index}}">
+                        <span class="rmss-tag-label">{{this}}</span>
+                        {{#if ../editable}}
+                        <button type="button" class="weapon-slaying-remove" data-action="weapon-slaying-remove" title="{{localize 'rmss.item.item_tags_remove'}}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        {{/if}}
+                    </span>
+                    {{/each}}
+                </div>
+                {{#if editable}}
+                <input type="text" class="rmss-weapon-slaying-input" list="rmss-slaying-types-{{weaponSlayingListId}}" placeholder="{{localize "rmss.item.modifiers_slaying_placeholder"}}" autocomplete="off"/>
+                <datalist id="rmss-slaying-types-{{weaponSlayingListId}}">
+                    {{#each config.slaying_types as |type|}}
+                    <option value="{{type}}"/>
+                    {{/each}}
+                </datalist>
+                {{/if}}
+            </div>
+            <div class="rmss-detail-toggle-row">
+                <label class="rmss-is-slaying-label" title="{{#if weaponSlaying.length}}{{localize 'rmss.item.modifiers_is_slaying_hint'}}{{else}}{{localize 'rmss.item.modifiers_is_slaying_needs_tags'}}{{/if}}">
+                    {{#if weaponSlaying.length}}
+                    <input type="checkbox" name="system.isSlaying" {{checked system.isSlaying}}/>
+                    {{else}}
+                    <input type="hidden" name="system.isSlaying" value="false" data-dtype="Boolean"/>
+                    <input type="checkbox" {{checked system.isSlaying}} disabled/>
+                    {{/if}}
+                    {{localize "rmss.item.modifiers_is_slaying"}}
+                </label>
+                <label class="rmss-slaying-bonus-label">{{localize "rmss.item.modifiers_slaying_bonus"}}</label>
+                <input type="number" class="rmss-slaying-bonus-input" name="system.slaying_bonus" value="{{system.slaying_bonus}}" data-dtype="Number" title="{{localize 'rmss.item.modifiers_slaying_bonus_hint'}}"/>
+            </div>
+        </div>
     </div>
 </form>

@@ -40,6 +40,41 @@ describe("WeaponEffectsService", () => {
     EquipmentService.getEquippedWeapons.mockRestore();
   });
 
+  it("getEquippedWeaponInitiativeBonus counts only the best creature_attack, not their sum", async () => {
+    const { default: EquipmentService } = await import("../module/actors/services/equipment_service.js");
+    jest.spyOn(EquipmentService, "getEquippedWeapons").mockReturnValue([]);
+    const actor = { items: [
+      { type: "creature_attack", system: { attack_effects: { increased_initiative: "minor" } } },
+      { type: "creature_attack", system: { attack_effects: { increased_initiative: "greater" } } },
+      { type: "creature_attack", system: { attack_effects: { increased_initiative: "" } } }
+    ] };
+    expect(WeaponEffectsService.getEquippedWeaponInitiativeBonus(actor)).toBe(6);
+    EquipmentService.getEquippedWeapons.mockRestore();
+  });
+
+  it("actorHasWeaponOfBleeding: a creature_attack only counts when it is the attack used", async () => {
+    const { default: EquipmentService } = await import("../module/actors/services/equipment_service.js");
+    jest.spyOn(EquipmentService, "getEquippedWeapons").mockReturnValue([]);
+    const actor = { items: [
+      { id: "bleeder", type: "creature_attack", system: { attack_effects: { weapon_of_bleeding: true } } },
+      { id: "plain", type: "creature_attack", system: { attack_effects: { weapon_of_bleeding: false } } }
+    ] };
+    expect(WeaponEffectsService.actorHasWeaponOfBleeding(actor, "bleeder")).toBe(true);
+    expect(WeaponEffectsService.actorHasWeaponOfBleeding(actor, "plain")).toBe(false);
+    expect(WeaponEffectsService.actorHasWeaponOfBleeding(actor)).toBe(false);
+    EquipmentService.getEquippedWeapons.mockRestore();
+  });
+
+  it("actorHasWeaponOfBleeding still reads equipped weapons when no creature_attack matches", async () => {
+    const { default: EquipmentService } = await import("../module/actors/services/equipment_service.js");
+    jest.spyOn(EquipmentService, "getEquippedWeapons").mockReturnValue([
+      { system: { weapon_effects: { weapon_of_bleeding: true } } }
+    ]);
+    expect(WeaponEffectsService.actorHasWeaponOfBleeding({ items: [] })).toBe(true);
+    expect(WeaponEffectsService.actorHasWeaponOfBleeding({ items: [] }, "unknown-id")).toBe(true);
+    EquipmentService.getEquippedWeapons.mockRestore();
+  });
+
   it("getWeaponOfBleedingHprBonus by main severity", () => {
     expect(WeaponEffectsService.getWeaponOfBleedingHprBonus("B")).toBe(1);
     expect(WeaponEffectsService.getWeaponOfBleedingHprBonus("D")).toBe(2);

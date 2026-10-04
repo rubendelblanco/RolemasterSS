@@ -113,7 +113,8 @@ class LargeCreatureCriticalStrategy {
             tableResult._rmssContext = {
                 severity: data.severity,
                 mainSeverity: data.mainSeverity ?? data.severity,
-                attackerId: attackerActor.id
+                attackerId: attackerActor.id,
+                weaponItemId: data.weaponItemId ?? null
             };
         }
 
@@ -438,7 +439,8 @@ export class RMSSWeaponCriticalManager {
             tableResult._rmssContext = {
                 severity: gmResponse.severity,
                 mainSeverity: gmResponse.mainSeverity ?? gmResponse.severity,
-                attackerId: gmResponse.attackerId
+                attackerId: gmResponse.attackerId,
+                weaponItemId: gmResponse.weaponItemId ?? null
             };
         }
 
@@ -570,6 +572,11 @@ export class RMSSWeaponCriticalManager {
     static _resolveCriticalWeapon(attackerId, weaponItemId = null) {
         const actor = Utils.getActor(attackerId);
         if (!actor?.items) return null;
+        // A creature's own attack carries the same properties as a weapon (holy, mithril, slaying...)
+        if (weaponItemId) {
+            const attack = actor.items.find?.((i) => (i.id ?? i._id) === weaponItemId && i.type === "creature_attack");
+            if (attack) return attack;
+        }
         const weapons = EquipmentService.getEquippedWeapons(actor);
         return (weaponItemId && weapons.find((w) => (w.id ?? w._id) === weaponItemId)) || weapons[0] || null;
     }
