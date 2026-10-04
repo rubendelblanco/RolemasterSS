@@ -2,6 +2,7 @@ import ParryService from "./services/parry_service.js";
 import ParryChat from "./services/parry_chat.js";
 import { syncParryEffect } from "./services/parry_effect.js";
 import { openParryReserveDialog } from "./dialogs/parry_reserve_dialog.js";
+import { isParryEnabled, isParryAutomatic } from "./services/parry_settings.js";
 
 /**
  * Parry reservation plumbing: re-arms reservations as their owner's turn starts, clears them
@@ -14,14 +15,14 @@ export function registerParryHooks() {
     // the very first turn start (combat.startCombat), which the "turn end" tick in
     // combat_turn_tick.js never reports.
     Hooks.on("updateCombat", async (combat, changed) => {
-        if (!game.user.isGM) return;
+        if (!game.user.isGM || !isParryEnabled()) return;
         if (!("turn" in changed) && !("round" in changed)) return;
         const actor = combat.combatant?.actor;
         if (!actor) return;
         try {
             const outcome = await ParryService.refreshAtTurnStart(actor);
             // A "must parry" victim whose stance was dropped or fell short gets it back at the minimum.
-            await ParryService.enforceMustParry(actor, { combatId: combat.id });
+            if (isParryAutomatic()) await ParryService.enforceMustParry(actor, { combatId: combat.id });
             // Remind the owner (whisper) right when they can still change their stance.
             if (outcome === "kept") await ParryChat.postTurnReminder(actor, ParryService.getReservation(actor));
             else if (outcome === "dropped") await ParryChat.postDropped(actor);
@@ -69,7 +70,7 @@ export function registerParryHooks() {
     Hooks.on("renderCombatTracker", (app, html) => {
         const root = html instanceof HTMLElement ? html : html?.[0];
         const combat = app.viewed ?? game.combat;
-        if (!root || !combat) return;
+        if (!root || !combat || !isParryEnabled()) return;
 
         for (const row of root.querySelectorAll(".combatant[data-combatant-id]")) {
             const combatant = combat.combatants.get(row.dataset.combatantId);

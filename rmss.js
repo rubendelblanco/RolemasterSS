@@ -48,6 +48,7 @@ import { advanceArtifactRecharge } from "./module/sheets/items/enchantment_utils
 import FoodSpoilageService from "./module/actors/services/food_spoilage_service.js";
 import FastingService from "./module/actors/services/fasting_service.js";
 import { computeFoodImpliesConsumableGuard } from "./module/sheets/items/consume_item.js";
+import { registerParrySetting } from "./module/combat/services/parry_settings.js";
 
 export let socket;
 
@@ -242,6 +243,9 @@ Hooks.once("ready", async function() {
     }
   }
 });
+
+// The parry safety switch needs translated choice labels, which only exist once i18n is loaded
+Hooks.once("i18nInit", registerParrySetting);
 
 // Hook the init function and set up our system
 Hooks.once("init", function () {

@@ -802,7 +802,13 @@
             "card_must_parry_reserved": "A critical forces them to parry: now they keep {points} OB on parry (+{defense} DB).",
             "card_must_parry_no_parry": "They can't parry right now (No parry), so only the penalty applies.",
             "card_must_parry_no_weapon": "They have no weapon in hand to parry with, so only the penalty applies.",
-            "card_must_parry_penalty": "Their attacks go out with {penalty} for {rounds} round(s)."
+            "card_must_parry_penalty": "Their attacks go out with {penalty} for {rounds} round(s).",
+            "setting_name": "Parry rules",
+            "setting_hint": "Safety switch for the parry rules. Automatic: reservation, attack dialog, must-parry criticals and shields by facing. Manual: the reservation and its reminders work as a record, but nothing is applied by itself. Off: no parry features at all.",
+            "setting_full": "Automatic (recommended)",
+            "setting_manual": "Manual (record only)",
+            "setting_off": "Off",
+            "disabled": "Parry is switched off in the system settings."
         },
         "creature_attack": {
             "parry_limit": "Parry limit",

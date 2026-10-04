@@ -1,4 +1,5 @@
 import ParryService from "./parry_service.js";
+import { isParryEnabled } from "./parry_settings.js";
 
 const ICON_ACTIVE = "systems/rmss/assets/default/shield-parry.svg";
 const ICON_USED = "systems/rmss/assets/default/shield-parry-used.svg";
@@ -19,7 +20,8 @@ const FLAG = "parryStance";
 export async function syncParryEffect(actor) {
     if (!actor?.effects) return;
     const existing = actor.effects.find((e) => e.getFlag?.("rmss", FLAG) === true || e.flags?.rmss?.[FLAG] === true);
-    const reservation = ParryService.getReservation(actor);
+    // With parry switched off the icon goes away too (the reservation itself is left untouched).
+    const reservation = isParryEnabled() ? ParryService.getReservation(actor) : null;
 
     if (!reservation) {
         if (existing) await existing.delete();

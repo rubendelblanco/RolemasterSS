@@ -802,7 +802,13 @@
       "card_must_parry_reserved": "Un crítico le obliga a parar: ahora mantiene {points} OB en parada (+{defense} DB).",
       "card_must_parry_no_parry": "Ahora no puede parar (No parry), así que solo se aplica el penalizador.",
       "card_must_parry_no_weapon": "No tiene un arma en la mano con la que parar, así que solo se aplica el penalizador.",
-      "card_must_parry_penalty": "Sus ataques salen con {penalty} durante {rounds} asalto(s)."
+      "card_must_parry_penalty": "Sus ataques salen con {penalty} durante {rounds} asalto(s).",
+      "setting_name": "Reglas de parada",
+      "setting_hint": "Interruptor de seguridad de la parada. Automática: reserva, diálogo de ataque, críticos de «debe parar» y escudo por orientación. Manual: la reserva y sus avisos sirven como registro, pero nada se aplica solo. Desactivada: ninguna función de parada.",
+      "setting_full": "Automática (recomendada)",
+      "setting_manual": "Manual (solo registro)",
+      "setting_off": "Desactivada",
+      "disabled": "La parada está desactivada en los ajustes del sistema."
     },
     "creature_attack": {
       "parry_limit": "Límite de parada",

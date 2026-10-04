@@ -6,6 +6,7 @@ import { shouldDeferTickToNextRound } from "./combat_tick_policy.js";
 import { withPublicRollMode } from "../chat/chatMessages.js";
 import ParryService from "./services/parry_service.js";
 import ParryChat from "./services/parry_chat.js";
+import { isParryAutomatic } from "./services/parry_settings.js";
 
 /**
  * @class RMSSEffectApplier
@@ -287,6 +288,8 @@ export class RMSSEffectApplier {
             flags: { rmss: { ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity), value } },
             duration: { value: rounds, units: "rounds" }
         }]);
+        // Only the indicator effect unless parry is fully automatic.
+        if (!isParryAutomatic()) return;
         try {
             const reservation = await ParryService.enforceMustParry(entity, { combatId: game.combat?.id ?? null });
             await ParryChat.postMustParry(entity, {

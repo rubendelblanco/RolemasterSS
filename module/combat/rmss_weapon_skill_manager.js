@@ -8,6 +8,7 @@ import WeaponBreakageService from "./services/weapon_breakage_service.js";
 import FacingService from "./services/facing_service.js";
 import ParryService, { PARRY_REASON } from "./services/parry_service.js";
 import ShieldService from "./services/shield_service.js";
+import { isParryAutomatic, isShieldFacingEnabled } from "./services/parry_settings.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
 import { pickMissileAmmoForAttack, consumeChosenAmmo } from "../actors/utils/ammunition_util.js";
@@ -241,7 +242,7 @@ export class RMSSWeaponSkillManager {
         }
 
         // "Must parry" criticals: their summed penalty goes on every attack (weapon or spell), not on DB/RR.
-        const mustParryPenalty = ParryService.getMustParryPenalty(realActor);
+        const mustParryPenalty = parryAuto ? ParryService.getMustParryPenalty(realActor) : 0;
         penaltyValue += mustParryPenalty;
 
         const enemyForTemplate = realEnemy ?? enemy;
@@ -254,19 +255,26 @@ export class RMSSWeaponSkillManager {
         // and the defender's reserved defense is added only to a frontal melee attack. Spell
         // attacks draw from the spell skill, not weapon OB, and can't be parried by a weapon.
         const isSpellAttack = !!spellOptions;
-        const attackerDeduction = isSpellAttack ? null : ParryService.getAttackerDeduction(realActor, ob);
-        const parryFront = ParryService.evaluateDefender({
+        // Safety switch (see parry_settings.js): unless fully automatic, the parry fields stay as
+        // plain manual numbers, nothing is pre-filled, paid or consumed.
+        const parryAuto = isParryAutomatic();
+        const noParry = { applies: false, defense: 0, points: 0, reason: PARRY_REASON.NONE };
+        const attackerDeduction = (isSpellAttack || !parryAuto) ? null : ParryService.getAttackerDeduction(realActor, ob);
+        const parryFront = parryAuto ? ParryService.evaluateDefender({
             defender: realEnemy, attackWeapon: realWeapon, isSpell: isSpellAttack, facingValue: FacingService.FACING.FRONT
-        });
-        const parryNow = ParryService.evaluateDefender({
+        }) : noParry;
+        const parryNow = parryAuto ? ParryService.evaluateDefender({
             defender: realEnemy, attackWeapon: realWeapon, isSpell: isSpellAttack, facingValue
-        });
+        }) : noParry;
         const parryNote = (result) => RMSSWeaponSkillManager._describeDefenderParry(result);
 
         // House rule: the shield's DB bonus only counts against a frontal attack. Area balls already
         // ignore the shield (their DB starts at 0 here), so there is nothing to adjust for them.
-        const shieldBonus = areaElementalBall ? 0 : ShieldService.getShieldBonus(enemyForTemplate);
-        const defenderDbValue = areaElementalBall ? 0 : ShieldService.getDefenseDb(enemyForTemplate, facingValue);
+        const shieldOn = isShieldFacingEnabled();
+        const shieldBonus = (areaElementalBall || !shieldOn) ? 0 : ShieldService.getShieldBonus(enemyForTemplate);
+        const defenderDbValue = areaElementalBall ? 0
+            : shieldOn ? ShieldService.getDefenseDb(enemyForTemplate, facingValue)
+            : (enemyForTemplate?.system?.armor_info?.total_db ?? 0);
 
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: realActor,
@@ -317,12 +325,12 @@ export class RMSSWeaponSkillManager {
                             const targetAt = (isNaN(at) || at < 1 || at > 20) ? Math.max(1, Math.min(20, defaultAt)) : Math.max(1, Math.min(20, at));
                             // The reserved parry is spent on this attack if it was actually applied.
                             const facingNow = html.find("#facing").val() ?? "";
-                            const parryApplied = ParryService.evaluateDefender({
+                            const parryApplied = parryAuto && ParryService.evaluateDefender({
                                 defender: realEnemy, attackWeapon: realWeapon, isSpell: isSpellAttack, facingValue: facingNow
                             }).applies && (parseInt(html.find("#target-parry").val()) || 0) > 0;
                             if (parryApplied) ParryService.consumeDefense(realEnemy).catch((e) => console.error("rmss | parry consume", e));
                             // Attacking with the stance on is what pays for it (spells don't use weapon OB).
-                            if (!isSpellAttack) ParryService.markPaid(realActor).catch((e) => console.error("rmss | parry paid", e));
+                            if (parryAuto && !isSpellAttack) ParryService.markPaid(realActor).catch((e) => console.error("rmss | parry paid", e));
                             resolve({confirmed: true, attackTotal, defenseTotal, diff, targetAt});
                         }
                     },

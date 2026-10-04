@@ -1,5 +1,6 @@
 import ParryService from "../services/parry_service.js";
 import ParryChat from "../services/parry_chat.js";
+import { isParryEnabled } from "../services/parry_settings.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -12,6 +13,10 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
  */
 export async function openParryReserveDialog(actor, { combatant = null } = {}) {
     if (!actor) return;
+    if (!isParryEnabled()) {
+        ui.notifications.warn(game.i18n.localize("rmss.parry.disabled"));
+        return;
+    }
     const combat = combatant?.combat ?? game.combat ?? null;
 
     const { allowed } = combatant
