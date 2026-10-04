@@ -422,6 +422,18 @@ Hooks.once("init", function () {
       return TrapAttackService.triggerCritical(target, options);
     },
     /**
+     * Open the parry reservation dialog for an actor (same one as the combat tracker button).
+     * The actor's OB set aside here is deducted from its attacks and turned into DB against
+     * the next frontal melee attack it suffers. See ParryService for the house rules.
+     * @param {Actor|string} actor - the actor or its id
+     * @param {{ combatant?: Combatant|null }} [options]
+     */
+    async openParryDialog(actor, options = {}) {
+      const doc = typeof actor === "string" ? game.actors.get(actor) : actor;
+      const { openParryReserveDialog } = await import("./module/combat/dialogs/parry_reserve_dialog.js");
+      return openParryReserveDialog(doc, options);
+    },
+    /**
      * Roll a Resistance Roll against a target and get the outcome back, for spell/item
      * macros that branch on it ("if resisted do A, if not do B"). Rolls immediately (no
      * chat-button step) and still posts the usual RR result card to chat. Example, inside

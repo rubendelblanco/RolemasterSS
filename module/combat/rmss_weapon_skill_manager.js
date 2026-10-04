@@ -6,6 +6,7 @@ import RollService from "./services/roll_service.js";
 import WeaponFumbleService from "./services/weapon_fumble_service.js";
 import WeaponBreakageService from "./services/weapon_breakage_service.js";
 import FacingService from "./services/facing_service.js";
+import ParryService, { PARRY_REASON } from "./services/parry_service.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
 import { pickMissileAmmoForAttack, consumeChosenAmmo } from "../actors/utils/ammunition_util.js";
@@ -238,11 +239,29 @@ export class RMSSWeaponSkillManager {
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.value ?? 0) > 0;
         }
 
+        // "Must parry" criticals: their summed penalty goes on every attack (weapon or spell), not on DB/RR.
+        const mustParryPenalty = ParryService.getMustParryPenalty(realActor);
+        penaltyValue += mustParryPenalty;
+
         const enemyForTemplate = realEnemy ?? enemy;
         const armorInfo = enemyForTemplate?.system?.armor_info ?? {};
         const targetArmorType = armorInfo.armor_type ?? armorInfo.armor_info?.armor_type ?? 1;
 
         const areaElementalBall = spellOptions?.areaElementalBall === true;
+
+        // House-rule parry (see ParryService): the attacker's reserved OB comes off their attack,
+        // and the defender's reserved defense is added only to a frontal melee attack. Spell
+        // attacks draw from the spell skill, not weapon OB, and can't be parried by a weapon.
+        const isSpellAttack = !!spellOptions;
+        const attackerDeduction = isSpellAttack ? null : ParryService.getAttackerDeduction(realActor, ob);
+        const parryFront = ParryService.evaluateDefender({
+            defender: realEnemy, attackWeapon: realWeapon, isSpell: isSpellAttack, facingValue: FacingService.FACING.FRONT
+        });
+        const parryNow = ParryService.evaluateDefender({
+            defender: realEnemy, attackWeapon: realWeapon, isSpell: isSpellAttack, facingValue
+        });
+        const parryNote = (result) => RMSSWeaponSkillManager._describeDefenderParry(result);
+
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: realActor,
             enemy: enemyForTemplate,
@@ -256,7 +275,19 @@ export class RMSSWeaponSkillManager {
             facingValue,
             targetArmorType: Math.max(1, Math.min(20, targetArmorType)),
             areaElementalBall,
-            ammoName: tokenData?.ammoName ?? null
+            ammoName: tokenData?.ammoName ?? null,
+            mustParryNote: mustParryPenalty
+                ? game.i18n.format("rmss.parry.attacker_must_parry_note", { penalty: mustParryPenalty })
+                : null,
+            attackerParryValue: attackerDeduction?.value ?? 0,
+            attackerParryNote: attackerDeduction
+                ? game.i18n.format("rmss.parry.attacker_note", { points: attackerDeduction.points })
+                : null,
+            defenderParryValue: parryNow.applies ? parryNow.defense : 0,
+            defenderParryFront: parryFront.applies ? parryFront.defense : 0,
+            defenderParryNote: parryNote(parryNow),
+            defenderParryNoteFront: parryNote(parryFront),
+            defenderParryNoteNotFront: parryNote({ ...parryFront, applies: false, reason: PARRY_REASON.NOT_FRONT })
         });
 
         let confirmed = await new Promise((resolve) => {
@@ -274,6 +305,14 @@ export class RMSSWeaponSkillManager {
                             const defaultAt = armorInfo.armor_type ?? armorInfo.armor_info?.armor_type ?? 1;
                             const at = parseInt(html.find("#target-at").val());
                             const targetAt = (isNaN(at) || at < 1 || at > 20) ? Math.max(1, Math.min(20, defaultAt)) : Math.max(1, Math.min(20, at));
+                            // The reserved parry is spent on this attack if it was actually applied.
+                            const facingNow = html.find("#facing").val() ?? "";
+                            const parryApplied = ParryService.evaluateDefender({
+                                defender: realEnemy, attackWeapon: realWeapon, isSpell: isSpellAttack, facingValue: facingNow
+                            }).applies && (parseInt(html.find("#target-parry").val()) || 0) > 0;
+                            if (parryApplied) ParryService.consumeDefense(realEnemy).catch((e) => console.error("rmss | parry consume", e));
+                            // Attacking with the stance on is what pays for it (spells don't use weapon OB).
+                            if (!isSpellAttack) ParryService.markPaid(realActor).catch((e) => console.error("rmss | parry paid", e));
                             resolve({confirmed: true, attackTotal, defenseTotal, diff, targetAt});
                         }
                     },
@@ -337,11 +376,35 @@ export class RMSSWeaponSkillManager {
                     html.find(".calculable").on("change", function(event) {
                         calculateTotal();
                     });
+                    // Parry only counts against a frontal attack: follow the facing select live.
+                    html.find("#facing").on("change", (event) => {
+                        const input = html.find("#target-parry");
+                        const front = event.target.value === FacingService.FACING.FRONT;
+                        input.val(front ? input.data("parryFront") : 0);
+                        const note = front ? input.data("noteFront") : input.data("noteNotFront");
+                        html.find("#target-parry-note").text(note || "");
+                        calculateTotal();
+                    });
 
                 }
             }).render(true);
         });
         return confirmed;
+    }
+
+    /**
+     * One line telling the GM what the defender's parry is doing on this attack (or why not).
+     * @param {{ applies: boolean, defense: number, points: number, reason: string|null }} result
+     * @returns {string|null} null when the defender never reserved anything (nothing to explain)
+     */
+    static _describeDefenderParry(result) {
+        if (result.applies) {
+            return game.i18n.format("rmss.parry.defender_note", {
+                points: result.points, defense: result.defense
+            });
+        }
+        if (result.reason === PARRY_REASON.NONE) return null;
+        return game.i18n.localize(`rmss.parry.reason_${result.reason}`);
     }
 
     /**

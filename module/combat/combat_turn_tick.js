@@ -55,8 +55,9 @@ export async function processCombatantTurnEnd(combat, finishedCombatantId) {
     const actor = combatant?.actor;
     if (!actor) return;
 
-    // One decrement per name for Stunned/Parry/No parry/Bonus; multiple "Penalty" effects each tick separately.
-    const tickedNames = { Stunned: false, "No parry": false, Parry: false, Bonus: false };
+    // One decrement per name for Stunned/No parry/Bonus; multiple "Penalty" and "Parry" (must parry)
+    // effects each tick separately, since each one is its own critical with its own duration.
+    const tickedNames = { Stunned: false, "No parry": false, Bonus: false };
 
     // "Dying" (delayed death from a critical): decrement rounds, kill the actor when it expires.
     for (const effect of [...actor.effects]) {

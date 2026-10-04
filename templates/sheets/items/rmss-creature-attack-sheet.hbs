@@ -127,6 +127,16 @@
                 <th colspan="2">{{localize "rmss.creature_attack.properties_header"}}</th>
             </tr>
             <tr>
+                <td>{{localize "rmss.creature_attack.parry_limit"}}
+                    <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.creature_attack.parry_limit_hint'}}"></i></td>
+                <td>
+                    <select name="system.parry_limit" data-dtype="Number">
+                        <option value="100" {{#if (eq system.parry_limit 100)}}selected{{/if}}>100 %</option>
+                        <option value="50" {{#if (eq system.parry_limit 50)}}selected{{/if}}>50 %</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td>{{localize "rmss.item.modifiers_material"}}</td>
                 <td>
                     <select name="system.material">

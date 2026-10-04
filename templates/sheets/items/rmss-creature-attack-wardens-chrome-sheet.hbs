@@ -124,6 +124,14 @@
     <div class="wc-record-card">
         <h2><i class="fa-solid fa-star" aria-hidden="true"></i> {{localize "rmss.creature_attack.properties_header"}}</h2>
         <div class="wc-field-row">
+            <label>{{localize "rmss.creature_attack.parry_limit"}}
+                <i class="fas fa-info-circle spell-info-icon" data-tooltip="{{localize 'rmss.creature_attack.parry_limit_hint'}}"></i></label>
+            <select name="system.parry_limit" data-dtype="Number">
+                <option value="100" {{#if (eq system.parry_limit 100)}}selected{{/if}}>100 %</option>
+                <option value="50" {{#if (eq system.parry_limit 50)}}selected{{/if}}>50 %</option>
+            </select>
+        </div>
+        <div class="wc-field-row">
             <label>{{localize "rmss.item.modifiers_material"}}</label>
             <select name="system.material">
                 <option value="" {{#unless system.material}}selected{{/unless}}>{{localize "rmss.creature_attack.material_normal"}}</option>

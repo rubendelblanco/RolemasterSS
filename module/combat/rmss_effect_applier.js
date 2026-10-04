@@ -4,6 +4,8 @@ import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
 import { shouldDeferTickToNextRound } from "./combat_tick_policy.js";
 import { withPublicRollMode } from "../chat/chatMessages.js";
+import ParryService from "./services/parry_service.js";
+import ParryChat from "./services/parry_chat.js";
 
 /**
  * @class RMSSEffectApplier
@@ -18,7 +20,9 @@ import { withPublicRollMode } from "../chat/chatMessages.js";
  *  - **STUN** → Applies or extends a temporary "Stunned" ActiveEffect.
  *  - **HPR (Bleeding)** → Creates a persistent bleeding effect (damage-over-time).
  *  - **PE (Penalty)** → `VALUE` only = permanente; `ROUNDS` + `VALUE` = penalización temporal (baja por fin de turno hasta 0 y el efecto desaparece).
- *  - **P (Parry Bonus)** → Adds or extends a parry effect for improved defense.
+ *  - **P (Must Parry)** → `ROUNDS` (default 1) + optional `VALUE` (penalty): one "Parry" effect per critical,
+ *    each with its own rounds and value. While active the victim must keep at least half their OB on parry
+ *    and every attack carries the summed penalty (see ParryService).
  *  - **NP (No Parry)** → Temporarily disables parry actions.
  *  - **BONUS** → Grants a temporary bonus effect (e.g., magical or situational).
  *  - **HP** → Applies direct hit point damage to the target.
@@ -269,21 +273,29 @@ export class RMSSEffectApplier {
     }
 
     static async _applyParry(entity, data) {
-        const rounds = parseInt(data.ROUNDS) || 0;
-        const existing = entity.effects.find(e => e.name === "Parry");
-        if (existing) {
-            const total = (existing.duration.value || 0) + rounds;
-            await existing.update({ "duration.value": total });
-        } else {
-            const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
-            await entity.createEmbeddedDocuments("ActiveEffect", [{
-                name: "Parry",
-                img: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
-                origin: entity.uuid,
-                disabled: false,
-                ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
-                duration: { value: rounds, units: "rounds" }
-            }]);
+        // A bare VALUE (no rounds) still lasts one round.
+        const parsedRounds = parseInt(data?.ROUNDS);
+        const rounds = parsedRounds > 0 ? parsedRounds : 1;
+        const value = -Math.abs(parseInt(data?.VALUE) || 0);
+        // One effect per critical (not merged), so each one expires on its own and the penalties
+        // of the ones still running add up.
+        await entity.createEmbeddedDocuments("ActiveEffect", [{
+            name: "Parry",
+            img: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
+            origin: entity.uuid,
+            disabled: false,
+            flags: { rmss: { ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity), value } },
+            duration: { value: rounds, units: "rounds" }
+        }]);
+        try {
+            const reservation = await ParryService.enforceMustParry(entity, { combatId: game.combat?.id ?? null });
+            await ParryChat.postMustParry(entity, {
+                reservation,
+                penalty: ParryService.getMustParryPenalty(entity),
+                rounds: ParryService.getMustParryRounds(entity)
+            });
+        } catch (e) {
+            console.error("rmss | must parry", e);
         }
     }
 

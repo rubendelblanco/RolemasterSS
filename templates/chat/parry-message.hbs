@@ -1,0 +1,25 @@
+<div class="rmss-parry-card" style="border: 1px solid #446; margin-bottom: 10px; border-radius: 8px; padding: 10px; background: rgba(0,0,0,0.3); box-shadow: 0 0 6px rgba(0,0,0,0.5); font-family: 'Signika', sans-serif;">
+
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+        <img src="{{actor.img}}" alt="{{actor.name}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #666;">
+        <div>
+            <h4 style="margin: 0; color: #58a6ff; text-shadow: 0 0 6px #000;">🛡️ {{title}}</h4>
+            <div style="font-size: 0.9em; color: #fff;">{{actor.name}}</div>
+        </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #333; margin: 8px 0;">
+
+    <div style="color: #fff; text-align: center;">
+        {{#each lines}}
+        <p style="margin: 2px 0;">{{this}}</p>
+        {{/each}}
+    </div>
+
+    {{#if button}}
+    <div style="text-align: center; margin-top: 8px;">
+        <button type="button" class="rmss-parry-open" data-actor-uuid="{{actorUuid}}">{{button}}</button>
+    </div>
+    {{/if}}
+
+</div>

@@ -48,6 +48,20 @@ System for playing **Rolemaster Standard System** in Foundry Virtual Tabletop. B
   Critical Table setting (Normal/Large/Superlarge).
 - Automatic effects: Stunned, Bleeding, Penalty.
 - Attack confirmation to GM (socket) for player attacks.
+- **Parry**: a combatant reserves part of their OB to parry (combat tracker button, or
+  `game.rmss.openParryDialog(actor)`), always 1 OB = 1 DB. One-handed weapons can reserve up to
+  100 % of the OB; two-handed and pole weapons up to 50 %; creature attacks have their own limit
+  (100 or 50 %); being Stunned caps it at 50 % too (the caps don't stack). The reserved OB comes off
+  the combatant's attacks, and the defense is added automatically to the **one frontal melee attack**
+  they suffer next (never missiles, thrown weapons or spells). The reservation is a standing stance: it
+  keeps costing that OB every round and is re-armed when the combatant's turn starts, until they change
+  or release it (a player can't lower or release it until they have attacked once with it on; the GM
+  always can). So nobody forgets it, the owner gets a whispered card with a "Change or release" button
+  when their turn starts, and the token carries a "Parry +N" shield icon (dimmed once the defense is spent).
+  A "must parry" critical (`P` with rounds and an optional value) creates its own "Parry" effect: while any is
+  active the victim must keep at least half their OB reserved (house rule: the manual only asks for 1 point, which
+  makes the effect meaningless; it can't be released), and the values add up as a
+  penalty on all their attacks; each effect expires on its own.
 - Initiative and combat tracker.
 
 ### Items

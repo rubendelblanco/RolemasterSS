@@ -415,6 +415,7 @@
       "slaying": [],
       "isSlaying": false,
       "slaying_bonus": 0,
+      "parry_limit": 100,
       "attack_effects": {
         "increased_initiative": "",
         "effect_weapon": "",

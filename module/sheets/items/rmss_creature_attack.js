@@ -57,7 +57,7 @@ export default class RMSSCreatureAttackSheet extends ItemSheet {
             owner: this.item.isOwner,
             editable: this.isEditable,
             item: baseData.item,
-            system: { ...system, attack_effects },
+            system: { ...system, attack_effects, parry_limit: Number(system.parry_limit) === 50 ? 50 : 100 },
             weaponSlaying: getWeaponSlayingArray(system),
             weaponSlayingListId: getWeaponSlayingListId(this.item),
             config: CONFIG.rmss,

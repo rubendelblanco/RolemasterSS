@@ -6,11 +6,13 @@ import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import { RMSSEffectApplier } from "./rmss_effect_applier.js";
 import ExperiencePointsCalculator from "../sheets/experience/rmss_experience_manager.js";
 import { registerCombatTurnTickHooks } from "./combat_turn_tick.js";
+import { registerParryHooks } from "./parry_hooks.js";
 import { registerDelayedActionHooks } from "./delayed_action_service.js";
 import { socket } from "../../rmss.js";
 
 export function registerCombatHooks() {
     registerCombatTurnTickHooks();
+    registerParryHooks();
     registerDelayedActionHooks();
 
     // v14 dropped MeasuredTemplate: area-spell "circle templates" are now single-shape circle
