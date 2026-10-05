@@ -48,7 +48,7 @@ export function getDisplayName(item) {
 /**
  * Icon border/glow class for an item's current status, by priority:
  * holy/unholy ("consecrated" — same visual, only the narrative alignment
- * differs) > slaying (isSlaying, weapon-only) > plain magical. An item can
+ * differs) > slaying (isSlaying, weapon or ammunition) > plain magical. An item can
  * carry more than one of these flags at once (e.g. magical AND holy), hence
  * the priority order rather than combining them. Empty string means no glow,
  * either because the item has none of these flags, or because its identity
@@ -60,9 +60,12 @@ export function getDisplayName(item) {
 function getGlowClass(item, hidden) {
   if (hidden) return "";
   const sys = item?.system;
-  if (sys?.holy || sys?.unholy) return "rmss-glow--consecrated";
-  if (sys?.isSlaying) return "rmss-glow--slaying";
-  if (sys?.magical) return "rmss-glow--magical";
+  // Ammunition keeps these properties under system.ammo_effects (see AMMO_EFFECT_DEFAULTS), so a
+  // magical/holy/slaying arrow glows like a weapon with the same property.
+  const ammo = sys?.ammo_effects;
+  if (sys?.holy || sys?.unholy || ammo?.holy || ammo?.unholy) return "rmss-glow--consecrated";
+  if (sys?.isSlaying || ammo?.isSlaying) return "rmss-glow--slaying";
+  if (sys?.magical || ammo?.magical) return "rmss-glow--magical";
   return "";
 }
 
