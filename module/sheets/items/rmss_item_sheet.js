@@ -2,6 +2,8 @@ import ItemService from "../../actors/services/item_service.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { bindContainerAllowedTagsEditor, getContainerAllowedTagListId, getContainerAllowedTagsArray } from "./container_allowed_tags_ui.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
+import { bindWeaponSlayingEditor } from "./weapon_slaying_ui.js";
+import { getAmmoEffects } from "../../combat/services/ammo_effects_service.js";
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import { castEnchantmentFromItem, itemHasArtifactTag } from "./cast_enchantment_from_item.js";
@@ -87,6 +89,12 @@ export default class RMSSItemSheet extends ItemSheet {
       idx
     }));
 
+    // Ammunition effects: critical table choices for the extra critical (same list as the weapon sheet)
+    const criticalTables = (await game.rmss?.criticalTableIndex || []).sort((a, b) =>
+      (game.i18n.localize(`rmss.critical_table.${a}`) || a).localeCompare(game.i18n.localize(`rmss.critical_table.${b}`) || b, game.i18n.lang)
+    );
+    const ammoEffects = getAmmoEffects(system);
+
     const chargePool = getChargePool(system);
     const enchantmentList = buildEnchantmentList(system.magic?.enchantments, chargePool);
     const rechargeProgress = getRechargeProgress(system.magic);
@@ -110,6 +118,10 @@ export default class RMSSItemSheet extends ItemSheet {
       hasFoodTag: getItemTagsArray(system).some((t) => t.toLowerCase() === "food"),
       hasAmmoTag: getItemTagsArray(system).some((t) => CONFIG.rmss.ammunition_types.includes(t.toLowerCase())),
       hasWandTag: EquipmentService.hasWandTag(item),
+      ammoEffects,
+      ammoSlaying: ammoEffects.slaying,
+      ammoSlayingListId: `${getItemTagListId(item)}-ammo-slaying`,
+      criticalTables,
       itemTagListId: getItemTagListId(item),
       containerAllowedTags: getContainerAllowedTagsArray(system),
       containerAllowedTagListId: getContainerAllowedTagListId(item),
@@ -161,6 +173,14 @@ export default class RMSSItemSheet extends ItemSheet {
 
     // --- Holy/Unholy mutually exclusive ---
     this._setupHolyUnholyExclusive(html);
+    // --- Ammunition: slaying tags editor + its own holy/unholy pair ---
+    bindWeaponSlayingEditor(this, html, { path: "system.ammo_effects.slaying" });
+    const ammoHoly = html.find('input[name="system.ammo_effects.holy"]')[0];
+    const ammoUnholy = html.find('input[name="system.ammo_effects.unholy"]')[0];
+    if (ammoHoly && ammoUnholy) {
+      ammoHoly.addEventListener("change", () => { if (ammoHoly.checked) ammoUnholy.checked = false; });
+      ammoUnholy.addEventListener("change", () => { if (ammoUnholy.checked) ammoHoly.checked = false; });
+    }
     setupPowerModifierProfessionDropZones(html, this);
     html.find("[data-action='clear-power-modifier-profession']").on("click", ev => onClearPowerModifierProfession(ev, this));
     bindRechargeProgressEditor(this, html);

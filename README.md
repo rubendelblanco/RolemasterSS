@@ -72,6 +72,10 @@ System for playing **Rolemaster Standard System** in Foundry Virtual Tabletop. B
 ### Items
 
 - Weapons, armor, transport, herbs/poisons.
+- **Special ammunition** (items tagged `arrow`/`bolt`/`bullet`): besides the attack bonus, ammo can carry an extra
+  critical (e.g. fire arrows), Increased Critical, bleeding, and the magical/holy/unholy/slaying properties, applied to the
+  shot made with it. If the ammo has a macro it replaces the bow's macro for that shot; either macro now runs once the
+  shot is confirmed (and receives `weapon`, `ammo`, `target` and `targets` besides the usual variables).
 - Containers with capacity.
 - Currency system (mithril, platinum, gold, silver, etc.).
 

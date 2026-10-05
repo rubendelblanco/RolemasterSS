@@ -61,7 +61,8 @@
                         {{#if effectWeaponPair}}data-effect-weapon-roll-mod="{{effectWeaponPair.ewRollModifier}}"{{/if}}
                         {{#if effectWeaponPair.superiorEChain}}data-effect-weapon-superior-e-chain="1"{{/if}}
                         {{#if ../targetDisplay}}data-target-id="{{../targetDisplay.id}}"{{/if}}
-                        {{#if ../weaponItemId}}data-weapon-item-id="{{../weaponItemId}}"{{/if}}>
+                        {{#if ../weaponItemId}}data-weapon-item-id="{{../weaponItemId}}"{{/if}}
+                        {{#if ../ammoJson}}data-ammo="{{../ammoJson}}"{{/if}}>
                     <div class="chat-critical-roll-inner">
                         <div class="chat-critical-roll-main">
                             <span style="font-size:1.1em;">⚔️</span>

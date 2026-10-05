@@ -8,6 +8,8 @@ import WeaponBreakageService from "./services/weapon_breakage_service.js";
 import FacingService from "./services/facing_service.js";
 import ParryService, { PARRY_REASON } from "./services/parry_service.js";
 import ShieldService from "./services/shield_service.js";
+import { snapshotAmmo, ammoAsWeaponLike, runAttackMacro } from "./services/ammo_effects_service.js";
+import { weaponUsesAmmo } from "../actors/utils/ammunition_util.js";
 import { isParryAutomatic, isShieldFacingEnabled } from "./services/parry_settings.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
@@ -32,12 +34,15 @@ export class RMSSWeaponSkillManager {
         const ammoPick = await pickMissileAmmoForAttack(actor, weapon);
         if (!ammoPick.ok) return;
 
+        const ammoSnapshot = snapshotAmmo(ammoPick.ammoItem);
         const tokenData = {
             facingValue,
             attackerTokenUuid: attackerToken?.document?.uuid ?? attackerToken?.uuid ?? null,
             enemyTokenUuid: defenderToken?.document?.uuid ?? defenderToken?.uuid ?? null,
             ammoBonus: Number(ammoPick.ammoItem?.system?.attack_bonus) || 0,
-            ammoName: ammoPick.ammoItem?.name ?? null
+            ammoName: ammoPick.ammoItem?.name ?? null,
+            // Plain copy of the ammo's special effects (it may be gone by the time the critical rolls)
+            ammo: ammoSnapshot
         };
 
         // Rotate attacker token to face the defender
@@ -64,6 +69,14 @@ export class RMSSWeaponSkillManager {
         }
         const gmResponse = await socket.executeAsGM("confirmWeaponAttack", actor, enemy, weapon, tokenData);
         if (!gmResponse.confirmed) return;
+
+        // A missile weapon's macro waited for this point (Item#use): run the ammo's own macro if it
+        // has one (it overrides the bow's), else the bow's, only now that the shot is confirmed.
+        const deferred = game.rmss?.deferredAttackMacro;
+        if (deferred && deferred.itemId === weapon?.id && weaponUsesAmmo(weapon)) {
+            game.rmss.deferredAttackMacro = null;
+            await runAttackMacro({ weapon, ammoItem: ammoPick.ammoItem, actor, attackerToken, defenderToken });
+        }
 
         await consumeChosenAmmo(ammoPick.ammoItem);
 
@@ -132,8 +145,9 @@ export class RMSSWeaponSkillManager {
         criticalResult = RMSSWeaponCriticalManager.filterCriticalResultForLargeCreatures(criticalResult, enemy);
 
         if (weapon.type === "weapon" || weapon.type === "creature_attack") {
-            WeaponEffectsService.applyIncreasedCritical(criticalResult, weapon);
-            WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon);
+            const ammoLike = ammoAsWeaponLike(ammoSnapshot);
+            WeaponEffectsService.applyIncreasedCritical(criticalResult, weapon, ammoLike);
+            WeaponEffectsService.appendEffectWeaponCriticals(criticalResult, weapon, ammoLike);
         }
 
         const isNullResult = attackResult.damage === "-" || attackResult.damage === 0 || attackResult.damage === "0" || attackResult.damage == null;
@@ -161,7 +175,7 @@ export class RMSSWeaponSkillManager {
             return;
         }
 
-        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken ?? enemy, isNullResult, weapon);
+        await RMSSWeaponCriticalManager.getCriticalMessage(attackResult.damage, criticalResult, actor, defenderToken ?? enemy, isNullResult, weapon, ammoSnapshot);
     }
 
     /**
@@ -236,6 +250,8 @@ export class RMSSWeaponSkillManager {
             bonusValue = 0;
             bonusEffects.forEach((bonus) => { bonusValue += bonus.flags.rmss.value; });
             bonusValue += RMSSWeaponSkillManager._getSlayingBonusDelta(realWeapon, realEnemy, enemy);
+            const ammoLikeForOb = ammoAsWeaponLike(tokenData?.ammo);
+            if (ammoLikeForOb) bonusValue += RMSSWeaponSkillManager._getSlayingBonusDelta(ammoLikeForOb, realEnemy, enemy);
             bonusValue += Number(tokenData?.ammoBonus) || 0;
             bonusValue -= Math.round((1 - (move.current / moveMax)) * 100);
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.value ?? 0) > 0;

@@ -159,8 +159,15 @@ export class RMSSItem extends Item {
       }
     }
 
-    // 1. Execute custom macro if present
-    await this._executeItemMacro();
+    // 1. Execute custom macro if present. A missile weapon that uses ammo waits instead: its macro
+    //    (or the ammo's, which overrides it) runs once the shot is confirmed - see handleAttack.
+    const { weaponUsesAmmo } = await import("../actors/utils/ammunition_util.js");
+    if (weaponUsesAmmo(this)) {
+      game.rmss = game.rmss || {};
+      game.rmss.deferredAttackMacro = { itemId: this.id };
+    } else {
+      await this._executeItemMacro();
+    }
 
     // 2. Trigger system-wide hook for specific handlers
     Hooks.callAll("rmssItemUsed", this);

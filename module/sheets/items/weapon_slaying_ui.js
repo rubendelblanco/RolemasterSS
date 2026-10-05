@@ -29,9 +29,12 @@ export function getWeaponSlayingListId(item) {
 /**
  * @param {ItemSheet} sheet
  * @param {jQuery} html
+ * @param {{ path?: string }} [options] - where the tag list lives on the item (default
+ *   "system.slaying"; ammo keeps it in "system.ammo_effects.slaying")
  */
-export function bindWeaponSlayingEditor(sheet, html) {
+export function bindWeaponSlayingEditor(sheet, html, { path = "system.slaying" } = {}) {
     if (!sheet.isEditable) return;
+    const readTags = () => normalizeTagArray(path.split(".").reduce((o, k) => o?.[k], sheet.item));
 
     const ns = ".rmssWeaponSlayingUi";
     html.off(`click${ns}`, ".rmss-weapon-slaying [data-action='weapon-slaying-remove']");
@@ -41,9 +44,9 @@ export function bindWeaponSlayingEditor(sheet, html) {
         if (!chip) return;
         const idx = Number(chip.dataset.tagIndex);
         if (!Number.isFinite(idx)) return;
-        const tags = [...getWeaponSlayingArray(sheet.item.system)];
+        const tags = [...readTags()];
         tags.splice(idx, 1);
-        await sheet.item.update({ "system.slaying": tags });
+        await sheet.item.update({ [path]: tags });
         sheet.render(false);
     });
 
@@ -55,14 +58,14 @@ export function bindWeaponSlayingEditor(sheet, html) {
         const input = ev.currentTarget;
         const v = String(input.value ?? "").trim();
         if (!v) return;
-        const tags = [...getWeaponSlayingArray(sheet.item.system)];
+        const tags = [...readTags()];
         const lower = tags.map((t) => t.toLowerCase());
         if (lower.includes(v.toLowerCase())) {
             input.value = "";
             return;
         }
         tags.push(v);
-        await sheet.item.update({ "system.slaying": tags });
+        await sheet.item.update({ [path]: tags });
         input.value = "";
         sheet.render(false);
     });

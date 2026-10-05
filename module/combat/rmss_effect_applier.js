@@ -5,6 +5,7 @@ import WeaponEffectsService from "./weapon_effects_service.js";
 import { shouldDeferTickToNextRound } from "./combat_tick_policy.js";
 import { withPublicRollMode } from "../chat/chatMessages.js";
 import ParryService from "./services/parry_service.js";
+import { ammoAsWeaponLike } from "./services/ammo_effects_service.js";
 import ParryChat from "./services/parry_chat.js";
 import { isParryAutomatic } from "./services/parry_settings.js";
 
@@ -222,7 +223,7 @@ export class RMSSEffectApplier {
         const atkId = originId ?? ctx?.attackerId;
         if (atkId) {
             const attacker = game.actors.get(atkId);
-            if (attacker && WeaponEffectsService.actorHasWeaponOfBleeding(attacker, ctx?.weaponItemId ?? null)) {
+            if (attacker && WeaponEffectsService.actorHasWeaponOfBleeding(attacker, ctx?.weaponItemId ?? null, ammoAsWeaponLike(ctx?.ammo))) {
                 const mainSev = ctx?.mainSeverity ?? ctx?.severity;
                 rate += WeaponEffectsService.getWeaponOfBleedingHprBonus(mainSev);
             }

@@ -12,6 +12,7 @@ import { shiftSeverity, effectWeaponShiftMilderProcedureI } from "./weapon_effec
 import { withPublicRollMode } from "../chat/chatMessages.js";
 import { getWeaponSlayingArray } from "../sheets/items/weapon_slaying_ui.js";
 import { getCreatureTagsArray } from "../sheets/actors/creature_tags_ui.js";
+import { ammoAsWeaponLike, encodeAmmo } from "./services/ammo_effects_service.js";
 
 
 /* ---------------------------------------------
@@ -114,7 +115,8 @@ class LargeCreatureCriticalStrategy {
                 severity: data.severity,
                 mainSeverity: data.mainSeverity ?? data.severity,
                 attackerId: attackerActor.id,
-                weaponItemId: data.weaponItemId ?? null
+                weaponItemId: data.weaponItemId ?? null,
+                ammo: data.ammo ?? null
             };
         }
 
@@ -440,7 +442,8 @@ export class RMSSWeaponCriticalManager {
                 severity: gmResponse.severity,
                 mainSeverity: gmResponse.mainSeverity ?? gmResponse.severity,
                 attackerId: gmResponse.attackerId,
-                weaponItemId: gmResponse.weaponItemId ?? null
+                weaponItemId: gmResponse.weaponItemId ?? null,
+                ammo: gmResponse.ammo ?? null
             };
         }
 
@@ -590,29 +593,32 @@ export class RMSSWeaponCriticalManager {
      * have tags (and even a slaying_bonus, see RMSSWeaponSkillManager) purely for the OB bonus
      * without forcing the Slaying critical column — that's what isSlaying gates.
      */
-    static weaponSlaysEnemy(attackerId, enemy, weaponItemId = null) {
+    static weaponSlaysEnemy(attackerId, enemy, weaponItemId = null, ammo = null) {
         if (!enemy?.system) return false;
-        const weapon = RMSSWeaponCriticalManager._resolveCriticalWeapon(attackerId, weaponItemId);
-        if (!weapon?.system?.isSlaying) return false;
-        const weaponSlaying = getWeaponSlayingArray(weapon.system).map((t) => t.toLowerCase());
-        if (weaponSlaying.length === 0) return false;
+        // The ammo used for the shot counts as another source of the property (ammo: weapon-like view).
+        const sources = [RMSSWeaponCriticalManager._resolveCriticalWeapon(attackerId, weaponItemId), ammo].filter(Boolean);
         const creatureTags = getCreatureTagsArray(enemy.system).map((t) => t.toLowerCase());
-        return weaponSlaying.some((t) => creatureTags.includes(t));
+        return sources.some((w) => {
+            if (!w?.system?.isSlaying) return false;
+            const tags = getWeaponSlayingArray(w.system).map((t) => t.toLowerCase());
+            return tags.length > 0 && tags.some((t) => creatureTags.includes(t));
+        });
     }
 
-    static getDefaultCriticalSubtype(attackerId, critType, enemy, weaponItemId = null) {
+    static getDefaultCriticalSubtype(attackerId, critType, enemy, weaponItemId = null, ammo = null) {
         const subtypes = rmss.large_critical_types[critType];
         if (!subtypes || subtypes.length === 0) return "normal";
         // Slaying takes priority over holy/mithril/magic.
-        if (subtypes.includes("slaying") && RMSSWeaponCriticalManager.weaponSlaysEnemy(attackerId, enemy, weaponItemId)) {
+        if (subtypes.includes("slaying") && RMSSWeaponCriticalManager.weaponSlaysEnemy(attackerId, enemy, weaponItemId, ammo)) {
             return "slaying";
         }
         const weapon = RMSSWeaponCriticalManager._resolveCriticalWeapon(attackerId, weaponItemId);
-        if (!weapon?.system) return "normal";
-        // Holy and unholy weapons both hit as sacred (same combat effect)
-        if (weapon.system.holy === true || weapon.system.unholy === true) return subtypes.includes("holy") ? "holy" : "normal";
-        if (weapon.system.material === "mithril_alloy") return subtypes.includes("mithril") ? "mithril" : "normal";
-        if (weapon.system.magical === true) return subtypes.includes("magic") ? "magic" : "normal";
+        const sources = [weapon, ammo].filter((w) => w?.system);
+        if (sources.length === 0) return "normal";
+        // Holy and unholy weapons (or ammo) both hit as sacred (same combat effect)
+        if (sources.some((w) => w.system.holy === true || w.system.unholy === true)) return subtypes.includes("holy") ? "holy" : "normal";
+        if (weapon?.system?.material === "mithril_alloy") return subtypes.includes("mithril") ? "mithril" : "normal";
+        if (sources.some((w) => w.system.magical === true)) return subtypes.includes("magic") ? "magic" : "normal";
         return "normal";
     }
 
@@ -631,12 +637,14 @@ export class RMSSWeaponCriticalManager {
             initialCritType,
             attackerId,
             options.weaponItemId ?? null,
-            options.attackerUuid ?? null
+            options.attackerUuid ?? null,
+            options.ammo ?? null
         );
 
         if (!gmResponse?.confirmed) {
             return undefined;
         }
+        if (options.ammo) gmResponse.ammo = options.ammo;
 
         if (options.weaponItemId && !gmResponse.weaponItemId) {
             gmResponse.weaponItemId = options.weaponItemId;
@@ -685,6 +693,9 @@ export class RMSSWeaponCriticalManager {
         if (gmResponse.weaponItemId) {
             applyPayload.weaponItemId = gmResponse.weaponItemId;
         }
+        if (gmResponse.ammo) {
+            applyPayload.ammo = gmResponse.ammo;
+        }
         if (gmResponse.mainSeverity != null && gmResponse.mainSeverity !== "") {
             applyPayload.mainSeverity = gmResponse.mainSeverity;
         }
@@ -725,13 +736,14 @@ export class RMSSWeaponCriticalManager {
         });
     }
 
-    static async criticalMessagePopup(enemy, damage, severity, critType, attackerId = null, weaponItemId = null, attackerUuid = null) {
+    static async criticalMessagePopup(enemy, damage, severity, critType, attackerId = null, weaponItemId = null, attackerUuid = null, ammo = null) {
         let modifier = 0;
         const isMeleeCrit = MELEE_CRIT_TYPES.has(critType);
+        const ammoLike = ammoAsWeaponLike(ammo);
         // A matching Slaying weapon always resolves on the Superlarge critical table,
         // regardless of the target's own Critical Table setting (RMSS: Slaying overrides
         // the normal/large/superlarge choice whenever the weapon's tag matches the target).
-        const slayingMatch = isMeleeCrit && RMSSWeaponCriticalManager.weaponSlaysEnemy(attackerId, enemy, weaponItemId);
+        const slayingMatch = isMeleeCrit && RMSSWeaponCriticalManager.weaponSlaysEnemy(attackerId, enemy, weaponItemId, ammoLike);
         // Weapons with a fixed damage multiplier (e.g. "does double concussion hit damage")
         // pre-select the multiplier below instead of always defaulting to x1 — melee only,
         // a spell critical has no physical weapon behind it.
@@ -772,7 +784,7 @@ export class RMSSWeaponCriticalManager {
             : (CONFIG.rmss.criticalSubtypes ?? {});
         const subCritType = largeSubtypes.length > 0 && largeSubtypes.includes("normal") ? "normal" : (Object.keys(subcritdict)[0] ?? "");
         const criticalHasSubtypes = largeSubtypes.length > 0;
-        const defaultSubtype = criticalHasSubtypes ? RMSSWeaponCriticalManager.getDefaultCriticalSubtype(attackerId, critType, enemy, weaponItemId) : "normal";
+        const defaultSubtype = criticalHasSubtypes ? RMSSWeaponCriticalManager.getDefaultCriticalSubtype(attackerId, critType, enemy, weaponItemId, ammoLike) : "normal";
         const enemyCriticalTable = enemy?.system?.attributes?.critical_codes?.critical_table;
         const useLargeCreatureSeverityLabels = ["la", "sl"].includes(enemyCriticalTable) || slayingMatch;
         const initialContext = {
@@ -1169,7 +1181,7 @@ export class RMSSWeaponCriticalManager {
         }));
     }
 
-    static async getCriticalMessage(damage, criticalResult, attacker, target = null, isNullResult = false, weapon = null) {
+    static async getCriticalMessage(damage, criticalResult, attacker, target = null, isNullResult = false, weapon = null, ammo = null) {
         // Only include criticals with real severity (A–E…); exclude synthetic HP-only rows with no critical
         const criticalsWithSeverity = (criticalResult.criticals || []).filter(
             c => c.severity != null && String(c.severity).trim() !== ""
@@ -1189,7 +1201,8 @@ export class RMSSWeaponCriticalManager {
             hpDamageOnly: false,
             hpDamageOnlyLine: "",
             mainSeverity,
-            weaponItemId
+            weaponItemId,
+            ammoJson: encodeAmmo(ammo)
         });
         const speaker = "Game Master";
 

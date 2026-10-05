@@ -3,6 +3,7 @@ import { RMSSWeaponCriticalManager } from "../combat/rmss_weapon_critical_manage
 import { socket } from "../../rmss.js";
 import MerchantService from "../actors/services/merchant_service.js";
 import LootService from "../actors/services/loot_service.js";
+import { decodeAmmo } from "../combat/services/ammo_effects_service.js";
 
 /** requestKind (stamped on the button by request-card.html) -> resolver. */
 const REQUEST_RESOLVERS = {
@@ -152,6 +153,7 @@ async function onCriticalRollClick(ev) {
         }
 
         const weaponItemId = button.dataset.weaponItemId;
+        const ammo = decodeAmmo(button.dataset.ammo);
         let criticalResult;
         try {
             criticalResult = await RMSSWeaponCriticalManager.sendCriticalMessage(
@@ -163,6 +165,7 @@ async function onCriticalRollClick(ev) {
                 {
                     ...sendOpts,
                     ...(weaponItemId ? { weaponItemId } : {}),
+                    ...(ammo ? { ammo } : {}),
                     ...(attackerUuid ? { attackerUuid } : {})
                 }
             );

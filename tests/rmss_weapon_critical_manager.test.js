@@ -131,3 +131,42 @@ describe('RMSSWeaponCriticalManager.getDefaultCriticalSubtype', () => {
         expect(subtype("c-plain")).toBe("normal");
     });
 });
+
+describe('RMSSWeaponCriticalManager critical subtype with the ammo used', () => {
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
+    const ammoLike = (system) => ({ type: "weapon", system });
+    const enemy = { system: { creature_tags: ["orc"] } };
+
+    test('holy ammo makes a plain bow hit as sacred', () => {
+        mockActorWithWeapon({});
+        expect(RMSSWeaponCriticalManager.getDefaultCriticalSubtype("actor1", "large_melee", enemy, undefined, ammoLike({ holy: true }))).toBe("holy");
+    });
+
+    test('magical ammo makes a plain bow hit as magic', () => {
+        mockActorWithWeapon({});
+        expect(RMSSWeaponCriticalManager.getDefaultCriticalSubtype("actor1", "large_melee", enemy, undefined, ammoLike({ magical: true }))).toBe("magic");
+    });
+
+    test('slaying ammo with a matching tag resolves as slaying, even if the bow is not a slayer', () => {
+        mockActorWithWeapon({});
+        const orcSlayer = ammoLike({ isSlaying: true, slaying: ["orc"] });
+        expect(RMSSWeaponCriticalManager.getDefaultCriticalSubtype("actor1", "large_melee", enemy, undefined, orcSlayer)).toBe("slaying");
+    });
+
+    test('slaying ammo that does not match the target, or is not flagged as slayer, does nothing', () => {
+        mockActorWithWeapon({});
+        const dragonSlayer = ammoLike({ isSlaying: true, slaying: ["dragon"] });
+        expect(RMSSWeaponCriticalManager.getDefaultCriticalSubtype("actor1", "large_melee", enemy, undefined, dragonSlayer)).toBe("normal");
+        const justTags = ammoLike({ isSlaying: false, slaying: ["orc"] });
+        expect(RMSSWeaponCriticalManager.getDefaultCriticalSubtype("actor1", "large_melee", enemy, undefined, justTags)).toBe("normal");
+    });
+
+    test('the bow keeps its own properties when the ammo adds none', () => {
+        mockActorWithWeapon({ holy: true });
+        expect(RMSSWeaponCriticalManager.getDefaultCriticalSubtype("actor1", "large_melee", enemy, undefined, ammoLike({}))).toBe("holy");
+        expect(RMSSWeaponCriticalManager.getDefaultCriticalSubtype("actor1", "large_melee", enemy)).toBe("holy");
+    });
+});

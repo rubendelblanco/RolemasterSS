@@ -21,6 +21,18 @@ export function findAmmoStacksOnActor(actor, ammoTag) {
 }
 
 /**
+ * Does shooting this weapon use up an ammo item? Such a weapon's macro waits until the shot is
+ * confirmed, because the ammo may carry a macro that overrides it.
+ * @param {Item} weapon
+ * @returns {boolean}
+ */
+export function weaponUsesAmmo(weapon) {
+    return weapon?.type === "weapon"
+        && weapon.system?.type === "mis"
+        && String(weapon.system?.ammoType ?? "").trim() !== "";
+}
+
+/**
  * @param {Actor} actor
  * @param {Item} weapon - weapon item with {@code system.type === "mis"} and {@code system.ammoType} set
  * @returns {Item[]}

@@ -129,15 +129,37 @@ const WEAPON_LIKE_EFFECTS_DEFAULTS = {
  * @param {Item} item
  * @returns {typeof WEAPON_LIKE_EFFECTS_DEFAULTS|null}
  */
-function mergeWeaponLikeEffects(item) {
+function mergeWeaponLikeEffects(item, ammo = null) {
   if (!item) return null;
+  let base = null;
   if (item.type === "weapon") {
-    return foundry.utils.mergeObject({ ...WEAPON_LIKE_EFFECTS_DEFAULTS }, item.system?.weapon_effects ?? {}, { inplace: false });
+    base = foundry.utils.mergeObject({ ...WEAPON_LIKE_EFFECTS_DEFAULTS }, item.system?.weapon_effects ?? {}, { inplace: false });
+  } else if (item.type === "creature_attack") {
+    base = foundry.utils.mergeObject({ ...WEAPON_LIKE_EFFECTS_DEFAULTS }, item.system?.attack_effects ?? {}, { inplace: false });
   }
-  if (item.type === "creature_attack") {
-    return foundry.utils.mergeObject({ ...WEAPON_LIKE_EFFECTS_DEFAULTS }, item.system?.attack_effects ?? {}, { inplace: false });
+  if (!base) return null;
+  return mergeAmmoEffects(base, ammo);
+}
+
+/**
+ * Add the ammo's effects to the weapon's: Increased Critical and Weapon of Bleeding apply if either
+ * has them (once); the Effect Weapon extra critical comes as a set from the ammo when it defines a
+ * critical type (so the ammo's tier/type/severity never mix with the bow's), else from the weapon.
+ * @param {object} base - merged weapon effects
+ * @param {{ system?: { weapon_effects?: object } }|null} ammo - weapon-like view of the ammo (ammoAsWeaponLike)
+ */
+function mergeAmmoEffects(base, ammo) {
+  const a = ammo?.system?.weapon_effects;
+  if (!a) return base;
+  const out = { ...base };
+  out.increased_critical = base.increased_critical === true || a.increased_critical === true;
+  out.weapon_of_bleeding = base.weapon_of_bleeding === true || a.weapon_of_bleeding === true;
+  if (String(a.effect_weapon_critical_type ?? "").trim() !== "") {
+    out.effect_weapon = a.effect_weapon ?? "";
+    out.effect_weapon_critical_type = a.effect_weapon_critical_type;
+    out.effect_weapon_fixed_severity = a.effect_weapon_fixed_severity ?? "";
   }
-  return null;
+  return out;
 }
 
 /** @param {string} s */
@@ -175,7 +197,8 @@ export default class WeaponEffectsService {
    *   actor's creature_attack items, only that attack's own flag counts (a creature's other
    *   attacks must not make this one bleed); otherwise any equipped weapon with the property.
    */
-  static actorHasWeaponOfBleeding(actor, weaponItemId = null) {
+  static actorHasWeaponOfBleeding(actor, weaponItemId = null, ammo = null) {
+    if (ammo?.system?.weapon_effects?.weapon_of_bleeding === true) return true;
     if (!actor?.items) return false;
     if (weaponItemId) {
       const attack = actor.items.find?.((i) => (i.id ?? i._id) === weaponItemId && i.type === "creature_attack");
@@ -206,9 +229,10 @@ export default class WeaponEffectsService {
    * Apply Increased Critical (+1 severity step) to decomposed criticals.
    * @param {{ criticals: object[] }} criticalResult
    * @param {Item} weapon
+   * @param {object|null} [ammo] - weapon-like view of the ammo used (ammoAsWeaponLike)
    */
-  static applyIncreasedCritical(criticalResult, weapon) {
-    const effects = mergeWeaponLikeEffects(weapon);
+  static applyIncreasedCritical(criticalResult, weapon, ammo = null) {
+    const effects = mergeWeaponLikeEffects(weapon, ammo);
     if (!effects?.increased_critical) return;
     const crits = criticalResult.criticals;
     if (!crits?.length) return;
@@ -239,9 +263,10 @@ export default class WeaponEffectsService {
    * the attack critical (original severity) and a second table lookup (extra severity per tier).
    * @param {{ criticals: object[] }} criticalResult
    * @param {Item} weapon
+   * @param {object|null} [ammo] - weapon-like view of the ammo used (ammoAsWeaponLike)
    */
-  static appendEffectWeaponCriticals(criticalResult, weapon) {
-    const effects = mergeWeaponLikeEffects(weapon);
+  static appendEffectWeaponCriticals(criticalResult, weapon, ammo = null) {
+    const effects = mergeWeaponLikeEffects(weapon, ammo);
     if (!effects) return;
 
     const crits = criticalResult.criticals;
