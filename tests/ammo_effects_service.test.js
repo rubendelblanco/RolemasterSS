@@ -8,15 +8,24 @@ import {
 import WeaponEffectsService from "../module/combat/weapon_effects_service.js";
 import { weaponUsesAmmo } from "../module/actors/utils/ammunition_util.js";
 
-const ammo = (effects = {}, extra = {}) => ({ name: "Fire arrow", system: { ammo_effects: effects }, ...extra });
+// effects: what the Ammunition card stores (system.ammo_effects); itemFlags: the item's own magical/holy/unholy
+const ammo = (effects = {}, itemFlags = {}) => ({ name: "Fire arrow", system: { ammo_effects: effects, ...itemFlags } });
 const bow = (system = {}) => ({ type: "weapon", name: "Longbow", system: { type: "mis", ammoType: "arrow", weapon_effects: {}, ...system } });
 const withMacro = (item, command, name = "") => ({ ...item, flags: { rmss: { macro: { command, name } } } });
 
 describe("ammo effects: reading and snapshot", () => {
   it("fills defaults and normalizes the slaying tags", () => {
-    const e = getAmmoEffects({ ammo_effects: { slaying: "orc, undead", holy: true } });
+    const e = getAmmoEffects({ holy: true, ammo_effects: { slaying: "orc, undead" } });
     expect(e).toMatchObject({ slaying: ["orc", "undead"], holy: true, magical: false, increased_critical: false, slaying_bonus: 0 });
     expect(getAmmoEffects({}).effect_weapon).toBe("");
+  });
+
+  it("magical / holy / unholy come from the item's own flags (Modifiers tab), not from ammo_effects", () => {
+    expect(getAmmoEffects({ magical: true, ammo_effects: {} })).toMatchObject({ magical: true, holy: false, unholy: false });
+    expect(getAmmoEffects({ ammo_effects: { magical: true, holy: true } })).toMatchObject({ magical: false, holy: false });
+    const holyArrow = snapshotAmmo(ammo({}, { holy: true }));
+    expect(holyArrow.effects.holy).toBe(true);
+    expect(ammoAsWeaponLike(holyArrow).system.holy).toBe(true);
   });
 
   it("plain ammo has no snapshot; special ammo carries a compact one", () => {
@@ -38,7 +47,7 @@ describe("ammo effects: reading and snapshot", () => {
   });
 
   it("is read as a weapon-shaped object by the weapon code", () => {
-    const like = ammoAsWeaponLike(snapshotAmmo(ammo({ holy: true, slaying: ["orc"], isSlaying: true, slaying_bonus: 10, increased_critical: true })));
+    const like = ammoAsWeaponLike(snapshotAmmo(ammo({ slaying: ["orc"], isSlaying: true, slaying_bonus: 10, increased_critical: true }, { holy: true })));
     expect(like.system).toMatchObject({ holy: true, isSlaying: true, slaying: ["orc"], slaying_bonus: 10 });
     expect(like.system.weapon_effects.increased_critical).toBe(true);
     expect(ammoAsWeaponLike(null)).toBeNull();

@@ -399,9 +399,6 @@
         "effect_weapon_fixed_severity": "",
         "increased_critical": false,
         "weapon_of_bleeding": false,
-        "magical": false,
-        "holy": false,
-        "unholy": false,
         "slaying": [],
         "isSlaying": false,
         "slaying_bonus": 0

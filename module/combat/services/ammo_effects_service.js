@@ -1,10 +1,11 @@
 import { normalizeTagArray } from "../../sheets/items/item_tags_ui.js";
 
 /**
- * Special properties of ammunition (arrows, bolts, bullets), stored in `system.ammo_effects`:
- * an extra critical ("Effect Weapon", like fire arrows), Increased Critical, Weapon of Bleeding,
- * and the magical / holy / unholy / slaying properties a weapon can also have. They apply to the
- * shot made with that ammo, on top of the bow's own.
+ * Special properties of ammunition (arrows, bolts, bullets): an extra critical ("Effect Weapon",
+ * like fire arrows), Increased Critical, Weapon of Bleeding and slaying, stored in
+ * `system.ammo_effects`, plus the magical / holy / unholy flags every item already has (the
+ * Modifiers tab of the item sheet, `system.magical` etc.). They apply to the shot made with
+ * that ammo, on top of the bow's own.
  *
  * The ammo can be used up (deleted) by the time the critical is rolled, so what travels with the
  * attack is a small plain snapshot (see {@link snapshotAmmo}), never the item itself.
@@ -26,7 +27,8 @@ export const AMMO_EFFECT_DEFAULTS = Object.freeze({
 
 /**
  * @param {object} system - ammo item.system
- * @returns {typeof AMMO_EFFECT_DEFAULTS} the effects with defaults filled in
+ * @returns {typeof AMMO_EFFECT_DEFAULTS} the effects with defaults filled in (magical / holy /
+ *   unholy read from the item's own flags)
  */
 export function getAmmoEffects(system) {
     const raw = system?.ammo_effects ?? {};
@@ -36,9 +38,9 @@ export function getAmmoEffects(system) {
         effect_weapon_fixed_severity: String(raw.effect_weapon_fixed_severity ?? ""),
         increased_critical: raw.increased_critical === true,
         weapon_of_bleeding: raw.weapon_of_bleeding === true,
-        magical: raw.magical === true,
-        holy: raw.holy === true,
-        unholy: raw.unholy === true,
+        magical: system?.magical === true,
+        holy: system?.holy === true,
+        unholy: system?.unholy === true,
         slaying: normalizeTagArray(raw.slaying),
         isSlaying: raw.isSlaying === true,
         slaying_bonus: Number(raw.slaying_bonus) || 0

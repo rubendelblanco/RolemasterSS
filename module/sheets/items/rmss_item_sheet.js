@@ -173,14 +173,8 @@ export default class RMSSItemSheet extends ItemSheet {
 
     // --- Holy/Unholy mutually exclusive ---
     this._setupHolyUnholyExclusive(html);
-    // --- Ammunition: slaying tags editor + its own holy/unholy pair ---
+    // --- Ammunition: slaying tags editor ---
     bindWeaponSlayingEditor(this, html, { path: "system.ammo_effects.slaying" });
-    const ammoHoly = html.find('input[name="system.ammo_effects.holy"]')[0];
-    const ammoUnholy = html.find('input[name="system.ammo_effects.unholy"]')[0];
-    if (ammoHoly && ammoUnholy) {
-      ammoHoly.addEventListener("change", () => { if (ammoHoly.checked) ammoUnholy.checked = false; });
-      ammoUnholy.addEventListener("change", () => { if (ammoUnholy.checked) ammoHoly.checked = false; });
-    }
     setupPowerModifierProfessionDropZones(html, this);
     html.find("[data-action='clear-power-modifier-profession']").on("click", ev => onClearPowerModifierProfession(ev, this));
     bindRechargeProgressEditor(this, html);

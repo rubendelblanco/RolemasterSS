@@ -60,12 +60,11 @@ export function getDisplayName(item) {
 function getGlowClass(item, hidden) {
   if (hidden) return "";
   const sys = item?.system;
-  // Ammunition keeps these properties under system.ammo_effects (see AMMO_EFFECT_DEFAULTS), so a
-  // magical/holy/slaying arrow glows like a weapon with the same property.
-  const ammo = sys?.ammo_effects;
-  if (sys?.holy || sys?.unholy || ammo?.holy || ammo?.unholy) return "rmss-glow--consecrated";
-  if (sys?.isSlaying || ammo?.isSlaying) return "rmss-glow--slaying";
-  if (sys?.magical || ammo?.magical) return "rmss-glow--magical";
+  if (sys?.holy || sys?.unholy) return "rmss-glow--consecrated";
+  // Ammunition keeps its slaying property under system.ammo_effects (magical / holy / unholy are
+  // the item's own flags), so a slaying arrow glows like a slaying weapon.
+  if (sys?.isSlaying || sys?.ammo_effects?.isSlaying) return "rmss-glow--slaying";
+  if (sys?.magical) return "rmss-glow--magical";
   return "";
 }
 
