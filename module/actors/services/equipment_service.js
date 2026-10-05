@@ -222,6 +222,24 @@ export default class EquipmentService {
   }
 
   /**
+   * With two weapons equipped, each weapon's bonus is added to its own offensive skill (see
+   * Actor#calculateSkillBonuses): that only works when each hand has its own skill (in Rolemaster
+   * two weapons need two developed skills, e.g. "Broadsword" and "Broadsword (off hand)"). A weapon
+   * without an offensive skill set leaves the bonus unassigned, so no weapon bonus is added.
+   * Only matters when some of the weapons actually carries a bonus.
+   * @param {Item[]} equippedWeapons - the weapons already equipped (without `item`)
+   * @param {Item} item - the weapon about to be equipped
+   * @returns {boolean} true when equipping `item` makes the actor lose weapon bonuses
+   */
+  static dualWieldBonusLost(equippedWeapons, item) {
+    const all = [...(equippedWeapons ?? []), item];
+    if (all.length < 2) return false;
+    if (!all.some((w) => (Number(w.system?.bonus) || 0) !== 0)) return false;
+    const skills = all.map((w) => String(w.system?.offensive_skill ?? "").trim());
+    return skills.some((sk) => !sk) || new Set(skills).size !== skills.length;
+  }
+
+  /**
    * Equip/unequip a weapon or armor item, or toggle "worn" for a plain item/herb (which have no
    * separate equipped state) - the exact logic RMSSCharacterSheet's own ".equippable" click
    * handler used to have inline, extracted so the Argon HUD equipment panel can call the same
@@ -270,9 +288,9 @@ export default class EquipmentService {
       return false;
     }
 
+    // Only warn when the second weapon's bonus will really be lost (see dualWieldBonusLost).
     if (item.type === "weapon" && item.system?.isNaturalWeapon !== true) {
-      const equippedWeapons = this.getEquippedWeapons(actor);
-      if (equippedWeapons.length >= 1) {
+      if (this.dualWieldBonusLost(this.getEquippedWeapons(actor), item)) {
         ui.notifications.warn(game.i18n.localize("rmss.equipment.weapon_bonus_no_second_weapon"));
       }
     }

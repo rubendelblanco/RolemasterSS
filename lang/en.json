@@ -304,7 +304,7 @@
             "hands_limit_exceeded": "Hand limit reached ({current} + {adding} > {max}). Equip fewer items.",
             "weapon_not_equipped": "You must equip the weapon before using it.",
             "weapon_broken": "This weapon is broken and cannot be used to attack.",
-            "weapon_bonus_no_second_weapon": "Weapon skill bonus only applies when exactly one weapon is equipped. With multiple weapons, no bonus is added to the skill.",
+            "weapon_bonus_no_second_weapon": "With two weapons, each one needs its own offensive skill (e.g. \"Broadsword\" and \"Broadsword (off hand)\") for its bonus to be added; without it, no weapon bonus is added to the skills.",
             "dual_wield_same_skill": "Dual wielding requires two one-handed weapons with different skills. This weapon uses the same skill as the one already equipped.",
             "dual_wield_both_one_handed": "Dual wielding requires both weapons to be one-handed.",
             "armor_slot_occupied": "That slot already has armor equipped. Only one armor per slot (body, helmet, shield).",

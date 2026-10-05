@@ -122,8 +122,7 @@ class LargeCreatureCriticalStrategy {
 
         const ew = data.effectWeapon;
         if (tableResult && ew?.enabled) {
-            const weapons = EquipmentService.getEquippedWeapons(attackerActor);
-            const tier = weapons[0]?.system?.weapon_effects?.effect_weapon;
+            const tier = RMSSWeaponCriticalManager._effectWeaponTierFor(attackerActor, data.weaponItemId ?? null, data.ammo ?? null);
             let secondColumn = column;
             let largeEwRollMod = 0;
             if (!ew.duplicatePrimary) {
@@ -339,15 +338,36 @@ export class RMSSWeaponCriticalManager {
     }
 
     /**
+     * Effect Weapon tier (minor / normal / greater / superior) of whatever produced the extra critical:
+     * the ammo when it defines its own extra critical, else the weapon (or creature attack) that hit,
+     * identified by weaponItemId. With two weapons equipped the first one is only the fallback.
+     * @param {Actor} actor - the attacker
+     * @param {string|null} [weaponItemId]
+     * @param {object|null} [ammo] - ammo snapshot (see ammo_effects_service)
+     * @returns {string|undefined}
+     */
+    static _effectWeaponTierFor(actor, weaponItemId = null, ammo = null) {
+        const ammoEw = ammoAsWeaponLike(ammo)?.system?.weapon_effects;
+        if (ammoEw && String(ammoEw.effect_weapon_critical_type ?? "").trim() !== "") return ammoEw.effect_weapon;
+        if (!actor?.items) return undefined;
+        if (weaponItemId) {
+            const attack = actor.items.find?.((i) => (i.id ?? i._id) === weaponItemId && i.type === "creature_attack");
+            if (attack) return attack.system?.attack_effects?.effect_weapon;
+        }
+        const weapons = EquipmentService.getEquippedWeapons(actor);
+        const weapon = (weaponItemId && weapons.find((w) => (w.id ?? w._id) === weaponItemId)) || weapons[0];
+        return weapon?.system?.weapon_effects?.effect_weapon;
+    }
+
+    /**
      * When socket payload omits effectWeapon.ewRollModifier, recompute Minor/Normal shift from equipped weapon + main severity (RM 9.7).
      * @returns {{ secondSeverity: string, ewRollModifier: number }|null}
      */
-    static _effectWeaponShiftFromEquippedWeapon(attackerId, mainSeverity) {
+    static _effectWeaponShiftFromEquippedWeapon(attackerId, mainSeverity, weaponItemId = null, ammo = null) {
         if (!attackerId) return null;
         const attacker = game.actors.get(attackerId);
         if (!attacker?.items) return null;
-        const weapons = EquipmentService.getEquippedWeapons(attacker);
-        const tier = weapons[0]?.system?.weapon_effects?.effect_weapon;
+        const tier = RMSSWeaponCriticalManager._effectWeaponTierFor(attacker, weaponItemId, ammo);
         if (!tier || tier === "none" || tier === "") return null;
         const s = String(mainSeverity ?? "").trim();
         if (!s || s === "null") return null;
@@ -406,7 +426,9 @@ export class RMSSWeaponCriticalManager {
         if (ew0?.enabled === true && !ew0.duplicatePrimary && !ew0.superiorEChain) {
             const shift = RMSSWeaponCriticalManager._effectWeaponShiftFromEquippedWeapon(
                 gmResponse.attackerId,
-                gmResponse.severity
+                gmResponse.severity,
+                gmResponse.weaponItemId ?? null,
+                gmResponse.ammo ?? null
             );
             if (shift) {
                 if (ewMod === 0) ewMod = shift.ewRollModifier;

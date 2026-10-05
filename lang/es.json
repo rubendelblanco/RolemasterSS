@@ -304,7 +304,7 @@
             "hands_limit_exceeded": "Límite de manos alcanzado ({current} + {adding} > {max}). Equipa menos objetos.",
             "weapon_not_equipped": "Debes equipar el arma antes de usarla.",
             "weapon_broken": "Esta arma está rota y no se puede usar para atacar.",
-            "weapon_bonus_no_second_weapon": "El bonus del arma a la habilidad solo se aplica cuando hay exactamente un arma equipada. Con varias armas, no se añade bonus.",
+            "weapon_bonus_no_second_weapon": "Con dos armas, cada una necesita su propia habilidad ofensiva (por ejemplo \"Espada ancha\" y \"Espada ancha (mano izquierda)\") para que se sume su bonus; si falta, no se añade ningún bonus de arma a las habilidades.",
             "dual_wield_same_skill": "Doble empuñadura requiere dos armas de una mano con habilidades distintas. Esta arma usa la misma habilidad que la ya equipada.",
             "dual_wield_both_one_handed": "Doble empuñadura requiere que ambas armas sean de una mano.",
             "armor_slot_occupied": "Esa ranura ya tiene armadura equipada. Solo una armadura por ranura (cuerpo, yelmo, escudo).",

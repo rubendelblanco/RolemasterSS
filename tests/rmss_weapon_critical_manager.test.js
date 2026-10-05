@@ -170,3 +170,42 @@ describe('RMSSWeaponCriticalManager critical subtype with the ammo used', () => 
         expect(RMSSWeaponCriticalManager.getDefaultCriticalSubtype("actor1", "large_melee", enemy)).toBe("holy");
     });
 });
+
+describe('RMSSWeaponCriticalManager._effectWeaponTierFor (extra critical tier of the weapon that hit)', () => {
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
+    const weaponWith = (id, tier) => ({ id, type: "weapon", system: { weapon_effects: { effect_weapon: tier } } });
+
+    test('with two weapons equipped, uses the one that hit, not the first', () => {
+        const left = weaponWith("left", "minor");
+        const right = weaponWith("right", "superior");
+        const actor = { items: [left, right] };
+        EquipmentService.getEquippedWeapons = jest.fn().mockReturnValue([left, right]);
+        expect(RMSSWeaponCriticalManager._effectWeaponTierFor(actor, "right")).toBe("superior");
+        expect(RMSSWeaponCriticalManager._effectWeaponTierFor(actor, "left")).toBe("minor");
+    });
+
+    test('without a weapon id it falls back to the first equipped weapon', () => {
+        const left = weaponWith("left", "normal");
+        EquipmentService.getEquippedWeapons = jest.fn().mockReturnValue([left, weaponWith("right", "greater")]);
+        expect(RMSSWeaponCriticalManager._effectWeaponTierFor({ items: [left] })).toBe("normal");
+    });
+
+    test('a creature attack uses its own attack_effects tier', () => {
+        const claw = { id: "c1", type: "creature_attack", system: { attack_effects: { effect_weapon: "greater" } } };
+        EquipmentService.getEquippedWeapons = jest.fn().mockReturnValue([]);
+        expect(RMSSWeaponCriticalManager._effectWeaponTierFor({ items: [claw] }, "c1")).toBe("greater");
+    });
+
+    test('ammo that defines its own extra critical decides the tier; ammo without one does not', () => {
+        const bow = weaponWith("bow", "minor");
+        EquipmentService.getEquippedWeapons = jest.fn().mockReturnValue([bow]);
+        const actor = { items: [bow] };
+        const fireArrow = { name: "Fire arrow", effects: { effect_weapon: "superior", effect_weapon_critical_type: "heat" } };
+        const justBleeds = { name: "Barbed", effects: { weapon_of_bleeding: true } };
+        expect(RMSSWeaponCriticalManager._effectWeaponTierFor(actor, "bow", fireArrow)).toBe("superior");
+        expect(RMSSWeaponCriticalManager._effectWeaponTierFor(actor, "bow", justBleeds)).toBe("minor");
+    });
+});

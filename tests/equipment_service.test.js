@@ -312,18 +312,41 @@ describe("EquipmentService", () => {
       expect(weapon2.update).not.toHaveBeenCalled();
     });
 
-    test("dual-wielding a second one-handed weapon with a different skill still warns (informational) but does equip", async () => {
-      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword" } };
+    test("dual-wielding with a different skill per hand equips with no warning: both bonuses are added", async () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword", bonus: 10 } };
       const weapon2 = {
         type: "weapon",
-        system: { equipped: false, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-shortsword" },
+        system: { equipped: false, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword-left", bonus: 5 },
         update: jest.fn().mockResolvedValue(undefined)
       };
       const actor = { items: [weapon1] };
       const changed = await EquipmentService.toggleEquipped(actor, weapon2);
       expect(changed).toBe(true);
       expect(weapon2.update).toHaveBeenCalledWith({ system: { equipped: true, worn: true } });
-      expect(global.ui.notifications.warn).toHaveBeenCalled();
+      expect(global.ui.notifications.warn).not.toHaveBeenCalled();
+    });
+
+    test("dual-wielding when the new weapon has no offensive skill equips but warns that its bonus is lost", async () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "skill-broadsword", bonus: 10 } };
+      const weapon2 = {
+        type: "weapon",
+        system: { equipped: false, type: "1he", isNaturalWeapon: false, offensive_skill: "", bonus: 5 },
+        update: jest.fn().mockResolvedValue(undefined)
+      };
+      const changed = await EquipmentService.toggleEquipped({ items: [weapon1] }, weapon2);
+      expect(changed).toBe(true);
+      expect(global.ui.notifications.warn).toHaveBeenCalledTimes(1);
+    });
+
+    test("dual-wielding two weapons without any bonus never warns, whatever their skills", async () => {
+      const weapon1 = { type: "weapon", system: { equipped: true, type: "1he", isNaturalWeapon: false, offensive_skill: "", bonus: 0 } };
+      const weapon2 = {
+        type: "weapon",
+        system: { equipped: false, type: "1he", isNaturalWeapon: false, offensive_skill: "", bonus: 0 },
+        update: jest.fn().mockResolvedValue(undefined)
+      };
+      await EquipmentService.toggleEquipped({ items: [weapon1] }, weapon2);
+      expect(global.ui.notifications.warn).not.toHaveBeenCalled();
     });
 
     test("equipping armor into an occupied slot warns and does not update", async () => {
