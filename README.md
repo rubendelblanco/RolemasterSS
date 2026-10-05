@@ -36,6 +36,9 @@ System for playing **Rolemaster Standard System** in Foundry Virtual Tabletop. B
 - **Static Maneuver (E, P, U, I)**: static maneuver table.
 - Casting options (hands, voice, preparation) and automatic penalties.
 - Spell failure table on fumbles.
+- **Manual fumbles**: the RMSS Effects popup (token HUD skull button) has a Fumble tab, open to every user, to roll a weapon
+  fumble (pick one of the character's weapons or a weapon type) or a spell failure (spell family, severity, casting modifiers)
+  on purpose, rolling the dice or typing the result. The card goes to the chat.
 - Per-spell macros with access to `spellContext` (RR and targets) for Force spells.
 
 ### Combat

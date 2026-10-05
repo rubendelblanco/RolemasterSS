@@ -1,0 +1,28 @@
+<div class="spell-failure-result">
+    <div style="border: 1px solid #607; border-radius: 8px; padding: 10px; background: linear-gradient(180deg, #2a1033, #12081a); box-shadow: 0 0 8px rgba(0,0,0,0.5);">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <img src="{{actor.img}}" alt="{{actor.name}}" width="50" height="50" style="border-radius: 6px; border: 1px solid #906;">
+            <div>
+                <h4 style="margin: 0; color: #d58cff; text-shadow: 0 0 6px #000;">
+                    🌀 {{actor.name}} {{ localize "rmss.manual_fumble.card_title" }}
+                </h4>
+                <div style="font-size: 0.9em; color: #fff;">
+                    {{failureLabel}} · {{columnLabel}}
+                </div>
+            </div>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid #504; margin: 8px 0;">
+
+        <div style="padding: 6px;">
+            <p style="margin: 0 0 4px 0; font-size: 0.9em; color: #aaa;">
+                {{ localize "rmss.manual_fumble.card_roll" }}: <strong>{{naturalRoll}}</strong>
+                {{#if modifierPenalty}} · {{ localize "rmss.manual_fumble.card_modifiers" }}: <strong>+{{modifierPenalty}}</strong> (×{{multiplier}}){{/if}}
+                · {{ localize "rmss.manual_fumble.card_final" }}: <strong>{{finalResult}}</strong>
+            </p>
+            <p style="margin: 8px 0 0 0; font-size: 1.05em; color: #e3b5ff; line-height: 1.4;">
+                {{description}}
+            </p>
+        </div>
+    </div>
+</div>

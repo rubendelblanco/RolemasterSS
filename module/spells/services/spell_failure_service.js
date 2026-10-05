@@ -73,26 +73,34 @@ export default class SpellFailureService {
      * @param {string} failureCode - The failure code from static maneuver (spectacular_failure, absolute_failure, failure)
      * @param {number} castingModifiers - The total negative modifiers from the casting options modal
      * @param {boolean} [synchronizeDice3d=true] - If false, Dice So Nice does not broadcast to all players
+     * @param {number|null} [forcedRoll=null] - A roll typed by hand (manual spell failure): used as the
+     *   natural roll instead of rolling dice
      * @returns {Promise<Object>} Result with roll, final value, and failure description
      */
-    static async rollFailure(spellType, failureCode, castingModifiers, synchronizeDice3d = true) {
+    static async rollFailure(spellType, failureCode, castingModifiers, synchronizeDice3d = true, forcedRoll = null) {
         const table = await this.loadTable();
         if (!table) return null;
 
-        // Roll explosive d100 (open-ended upward)
-        const roll = new Roll("1d100x>95");
-        await roll.evaluate();
+        let naturalRoll;
+        if (Number.isFinite(forcedRoll)) {
+            naturalRoll = Number(forcedRoll);
+        } else {
+            // Roll explosive d100 (open-ended upward)
+            const roll = new Roll("1d100x>95");
+            await roll.evaluate();
+            naturalRoll = roll.total;
 
-        // Show dice if Dice So Nice is available
-        if (game.dice3d) {
-            await game.dice3d.showForRoll(roll, game.user, synchronizeDice3d);
+            // Show dice if Dice So Nice is available
+            if (game.dice3d) {
+                await game.dice3d.showForRoll(roll, game.user, synchronizeDice3d);
+            }
         }
 
         // Calculate modifier impact
         const multiplier = this.getModifierMultiplier(failureCode);
         // castingModifiers is typically negative, subtracting it makes result higher (worse)
         const modifierPenalty = -castingModifiers * multiplier;
-        const finalResult = roll.total + modifierPenalty;
+        const finalResult = naturalRoll + modifierPenalty;
 
         // Get the column for this spell type
         const column = this.getColumnForSpellType(spellType);
@@ -101,7 +109,7 @@ export default class SpellFailureService {
         const result = this._findResult(table, finalResult, column);
 
         return {
-            naturalRoll: roll.total,
+            naturalRoll,
             multiplier: multiplier,
             modifierPenalty: modifierPenalty,
             finalResult: finalResult,

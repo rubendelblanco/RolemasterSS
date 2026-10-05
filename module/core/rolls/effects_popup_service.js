@@ -1,4 +1,5 @@
 import ResistanceRollService from "./resistance_roll_service.js";
+import { postWeaponFumble, postSpellFailure, parseManualRoll, SPELL_FAILURE_CHOICES, SPELL_FAILURE_CODES } from "../../combat/services/manual_fumble_service.js";
 import { rmss } from "../../config.js";
 import { chatMessageOtherStyle } from "../../chat/chatMessages.js";
 
@@ -53,7 +54,8 @@ export default class EffectsPopupService {
             critModifier: criticalOptions.modifier ?? 0,
             criticalHasSubtypes: (rmss.large_critical_types[criticalOptions.critType ?? 'K'] || []).length > 0,
             pcCombatants,
-            resistanceOptions
+            resistanceOptions,
+            ...this._getFumbleTabContext(actor)
         };
 
         const htmlContent = await renderTemplate(
@@ -88,6 +90,9 @@ export default class EffectsPopupService {
                                     modifier,
                                     attackerId
                                 });
+                            } else if (activeTab === "fumble") {
+                                const posted = await this._postManualFumble(actor, html);
+                                resolve(posted ? { action: "fumble", ...posted } : null);
                             } else if (activeTab === "resistance") {
                                 const attackerLevel = parseInt(html.find("#rr-attacker-level").val()) || 1;
                                 const defenderLevel = parseInt(html.find("#rr-defender-level").val()) || 1;
@@ -183,6 +188,63 @@ export default class EffectsPopupService {
      * @param {jQuery} html - The dialog HTML
      * @param {Function} onTabChange - Callback when tab changes
      */
+    /**
+     * Options for the Fumble tab: the actor's weapons (equipped first), the generic weapon types, the
+     * spell families of the failure table and the failure severities.
+     * @param {Actor} actor
+     */
+    static _getFumbleTabContext(actor) {
+        const typeLabel = (type) => game.i18n.localize(`rmss.weapon.type_cod.${type}`);
+        const fumbleWeapons = [...(actor?.items ?? [])]
+            .filter((i) => i.type === "weapon")
+            .map((i) => ({ id: i.id, name: i.name, typeLabel: typeLabel(i.system?.type || "1he"), equipped: i.system?.equipped === true }))
+            .sort((a, b) => Number(b.equipped) - Number(a.equipped));
+        const weaponTypes = CONFIG.weapons?.type ?? ["1he", "2h", "1hc", "mis", "pa1h", "pa2h", "th"];
+        return {
+            fumbleWeapons,
+            fumbleWeaponTypes: weaponTypes.map((key) => ({ key, label: typeLabel(key) })),
+            fumbleSpellChoices: SPELL_FAILURE_CHOICES.map((c) => ({ type: c.type, label: game.i18n.localize(`rmss.manual_fumble.column_${c.key}`) })),
+            fumbleFailureCodes: SPELL_FAILURE_CODES.map((code) => ({ code, label: game.i18n.localize(`rmss.manual_fumble.code_${code}`) }))
+        };
+    }
+
+    /**
+     * Post the weapon fumble or spell failure picked in the Fumble tab.
+     * @param {Actor} actor
+     * @param {jQuery} html
+     * @returns {Promise<object|null>}
+     */
+    static async _postManualFumble(actor, html) {
+        const kind = html.find("#fumble-kind").val();
+        if (kind === "spell") {
+            const { roll, invalid } = parseManualRoll(html.find("#fumble-spell-roll").val(), { min: -999, max: 9999 });
+            if (invalid) {
+                ui.notifications.warn(game.i18n.localize("rmss.manual_fumble.invalid_roll"));
+                return null;
+            }
+            const castingModifiers = parseInt(html.find("#fumble-modifiers").val(), 10) || 0;
+            const result = await postSpellFailure({
+                actor,
+                spellType: html.find("#fumble-spell-type").val(),
+                failureCode: html.find("#fumble-failure-code").val(),
+                castingModifiers,
+                roll
+            });
+            return result ? { kind: "spell", ...result } : null;
+        }
+
+        const { roll, invalid } = parseManualRoll(html.find("#fumble-weapon-roll").val(), { min: 1, max: 100 });
+        if (invalid) {
+            ui.notifications.warn(game.i18n.localize("rmss.manual_fumble.invalid_roll"));
+            return null;
+        }
+        const choice = String(html.find("#fumble-weapon").val() ?? "");
+        const [source, value] = [choice.slice(0, choice.indexOf(":")), choice.slice(choice.indexOf(":") + 1)];
+        const weapon = source === "item" ? actor.items.get(value) : null;
+        const posted = await postWeaponFumble({ actor, weapon, weaponType: source === "type" ? value : "1he", roll });
+        return { kind: "weapon", ...posted };
+    }
+
     static _setupEventListeners(html, onTabChange) {
         // Tab switching
         html.find(".rmss-tab").on("click", (event) => {
@@ -198,6 +260,13 @@ export default class EffectsPopupService {
             
             // Notify parent of tab change
             if (onTabChange) onTabChange(tabId);
+        });
+
+        // Fumble tab: weapon / spell fields
+        html.find("#fumble-kind").on("change", (event) => {
+            const spell = event.target.value === "spell";
+            html.find("#fumble-weapon-fields").css("display", spell ? "none" : "flex");
+            html.find("#fumble-spell-fields").css("display", spell ? "flex" : "none");
         });
 
         // Critical damage multiplier

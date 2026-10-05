@@ -4,6 +4,7 @@
         <button class="rmss-tab" data-tab="critical">{{ localize "rmss.combat.critical" }}</button>
         {{/if}}
         <button class="rmss-tab active" data-tab="resistance">{{ localize "rmss.combat.resistance_roll" }}</button>
+        <button class="rmss-tab" data-tab="fumble">{{ localize "rmss.manual_fumble.tab" }}</button>
     </div>
 
     {{#if isGM}}
@@ -105,6 +106,72 @@
             <div class="rr-calculated" style="margin-top: 0.5em; padding: 0.5em; background: rgba(0,0,0,0.1); border-radius: 4px;">
                 <span>{{ localize "rmss.combat.rr_target" }}: <strong id="rr-target-display">--</strong></span>
             </div>
+        </div>
+    </div>
+
+    <div class="rmss-tab-content" data-tab="fumble">
+        <h3><img src="{{actorImg}}" alt="{{token.name}}" width="50" height="50"> {{ localize "rmss.manual_fumble.title" }}</h3>
+        <div class="form-group" style="flex-direction: column; gap: 1em;">
+            <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                <label for="fumble-kind" style="min-width: 120px;">{{ localize "rmss.manual_fumble.kind" }}</label>
+                <select id="fumble-kind">
+                    <option value="weapon">{{ localize "rmss.manual_fumble.kind_weapon" }}</option>
+                    <option value="spell">{{ localize "rmss.manual_fumble.kind_spell" }}</option>
+                </select>
+            </div>
+
+            <div id="fumble-weapon-fields" style="display: flex; flex-direction: column; gap: 1em;">
+                <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                    <label for="fumble-weapon" style="min-width: 120px;">{{ localize "rmss.manual_fumble.weapon" }}</label>
+                    <select id="fumble-weapon">
+                        {{#if fumbleWeapons.length}}
+                        <optgroup label="{{ localize 'rmss.manual_fumble.actor_weapons' }}">
+                            {{#each fumbleWeapons}}
+                            <option value="item:{{id}}" {{#if @first}}selected{{/if}}>{{name}} ({{typeLabel}}){{#if equipped}} ★{{/if}}</option>
+                            {{/each}}
+                        </optgroup>
+                        {{/if}}
+                        <optgroup label="{{ localize 'rmss.manual_fumble.weapon_types' }}">
+                            {{#each fumbleWeaponTypes}}
+                            <option value="type:{{key}}">{{label}}</option>
+                            {{/each}}
+                        </optgroup>
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                    <label for="fumble-weapon-roll" style="min-width: 120px;">{{ localize "rmss.manual_fumble.roll" }}</label>
+                    <input type="number" id="fumble-weapon-roll" min="1" max="100" step="1" placeholder="d100" style="width: 80px;">
+                </div>
+            </div>
+
+            <div id="fumble-spell-fields" style="display: none; flex-direction: column; gap: 1em;">
+                <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                    <label for="fumble-spell-type" style="min-width: 120px;">{{ localize "rmss.manual_fumble.spell_type" }}</label>
+                    <select id="fumble-spell-type">
+                        {{#each fumbleSpellChoices}}
+                        <option value="{{type}}">{{label}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                    <label for="fumble-failure-code" style="min-width: 120px;">{{ localize "rmss.manual_fumble.severity" }}</label>
+                    <select id="fumble-failure-code">
+                        {{#each fumbleFailureCodes}}
+                        <option value="{{code}}">{{label}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                    <label for="fumble-modifiers" style="min-width: 120px;">{{ localize "rmss.manual_fumble.casting_modifiers" }}</label>
+                    <input type="number" id="fumble-modifiers" step="1" value="0" style="width: 80px;" title="{{ localize 'rmss.manual_fumble.casting_modifiers_hint' }}">
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                    <label for="fumble-spell-roll" style="min-width: 120px;">{{ localize "rmss.manual_fumble.roll" }}</label>
+                    <input type="number" id="fumble-spell-roll" step="1" placeholder="d100" style="width: 80px;">
+                </div>
+            </div>
+
+            <p class="notes" style="margin: 0;">{{ localize "rmss.manual_fumble.hint" }}</p>
         </div>
     </div>
 </div>
