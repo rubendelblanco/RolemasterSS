@@ -49,6 +49,7 @@ import FoodSpoilageService from "./module/actors/services/food_spoilage_service.
 import FastingService from "./module/actors/services/fasting_service.js";
 import { computeFoodImpliesConsumableGuard } from "./module/sheets/items/consume_item.js";
 import { registerParrySetting } from "./module/combat/services/parry_settings.js";
+import { findStaleBridgeItems } from "./module/sheets/items/embedded_spell_flag_util.js";
 
 export let socket;
 
@@ -1274,23 +1275,34 @@ Hooks.once("init", function () {
     await syncHitsAndPowerPointsFromSkills(actor);
   });
 
-  // Hook: closeApplicationV1/V2 - delete temp spell item when sheet closed without saving.
-  // Was gated on `app.constructor?.name === "ItemSheet"`, but RMSS registers its own sheet
-  // classes (e.g. RMSSSpellSheet) instead of the core one, so that check never matched and
-  // this never ran (fixed in a6a3a46). Then v14 split the bare "closeApplication" hook into
-  // "closeApplicationV1" (legacy Application/FormApplication/ItemSheet, what RMSSSpellSheet
-  // still extends) and "closeApplicationV2" - the old hook name silently stopped firing at
-  // all, so this cleanup regressed again. Listening on both names is cheap insurance if a
-  // sheet is ever migrated to ApplicationV2 later. The flag check alone is enough to identify
-  // our temporary bridge item.
+  // Delete the temporary bridge item (see rmss_spell_list_sheet.js) when its sheet closes. The flag alone
+  // identifies it. RMSS registers its own sheet classes (RMSSSpellSheet...), so this can't be gated on
+  // the core sheet class name.
   const closeTempSpellEditItem = (app) => {
     const item = app.item ?? app.object;
     if (item?.getFlag && item.getFlag("rmss", "embeddedSpellEdit")) {
       item.delete().catch((e) => console.error("rmss | temp spell cleanup", e));
     }
   };
-  Hooks.on("closeApplicationV1", closeTempSpellEditItem);
+  // The V1 framework fires close<ClassName> for every class in the sheet's chain, and its base class is
+  // called "Application", so the hook is "closeApplication" (not "closeApplicationV1": no V1 class has that
+  // name, which is why this cleanup kept missing and the copies piled up in the Items directory).
+  Hooks.on("closeApplication", closeTempSpellEditItem);
   Hooks.on("closeApplicationV2", closeTempSpellEditItem);
+
+  // Safety net: anything that still got left behind (crash, reload with the sheet open...) is removed
+  // when the world loads, by the GM, instead of waiting to be deleted by hand.
+  Hooks.once("ready", async () => {
+    if (!game.user.isGM) return;
+    const stale = findStaleBridgeItems(game.items);
+    if (!stale.length) return;
+    try {
+      await Item.deleteDocuments(stale.map((i) => i.id));
+      console.log(`rmss | removed ${stale.length} leftover spell edit copies from Items`);
+    } catch (e) {
+      console.error("rmss | leftover spell copies cleanup", e);
+    }
+  });
 
   // Hook: deleteItem
   // This hook triggers whenever an item is deleted.

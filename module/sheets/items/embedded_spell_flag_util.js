@@ -38,3 +38,17 @@ export async function persistItemRmssFlag(item, key, value) {
     await spellList.update({ "system.spells": spells });
     if (spellList.sheet?.rendered) spellList.sheet.render(false);
 }
+
+/**
+ * Leftover bridge items: copies made to edit a spell inside a spell list (flagged
+ * flags.rmss.embeddedSpellEdit) whose editing sheet is no longer open. Every edit creates one in the
+ * world's Items, and they used to pile up when the close hook missed them.
+ * @param {Iterable<Item>} items - e.g. game.items
+ * @returns {Item[]}
+ */
+export function findStaleBridgeItems(items) {
+    return [...items].filter((item) => {
+        const flagged = item?.getFlag?.("rmss", "embeddedSpellEdit") ?? item?.flags?.rmss?.embeddedSpellEdit;
+        return !!flagged && item.sheet?.rendered !== true;
+    });
+}
