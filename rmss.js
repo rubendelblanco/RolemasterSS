@@ -453,7 +453,10 @@ Hooks.once("init", function () {
      *   if (success) { / * A: resisted * / } else { / * B: failed * / }
      * }
      * ```
-     * @param {{ target: string|Token|TokenDocument, attackerLevel: number, defenderLevel?: number, modifier?: number, category?: string, silent?: boolean }} options
+     * @param {{ target: string|Token|TokenDocument, attackerLevel: number, defenderLevel?: number, modifier?: number, category?: string, silent?: boolean, rrTarget?: number }} options
+     *   - rrTarget: a target number you already have, instead of deriving it from the levels - typically
+     *     `spellContext.targetRRs[i].finalRR` of a Force spell, which already includes the spell table's
+     *     modifier (the one the cast card shows). modifier/category are still taken off it.
      *   - target: the resisting token (or its id). defenderLevel defaults to that token's actor level if omitted.
      *   - modifier/category are the DEFENDER'S bonus (positive = easier to resist); it is folded
      *     into the returned rrTarget (base from levels minus bonus). category: one of RESISTANCE_ROLL_KEYS (channeling/
@@ -466,7 +469,7 @@ Hooks.once("init", function () {
      *     instead of one card per target.
      * @returns {Promise<{ success: boolean, finalRoll: number, naturalRoll: number, rollTotal: number, rrTarget: number }|null>} null if target not found
      */
-    async rollResistance({ target, attackerLevel, defenderLevel, modifier = 0, category = null, silent = false }) {
+    async rollResistance({ target, attackerLevel, defenderLevel, modifier = 0, category = null, silent = false, rrTarget: explicitTarget = null }) {
       const token = typeof target === "string"
         ? (canvas.tokens?.get(target) ?? canvas.scene?.tokens?.get(target) ?? null)
         : (target ?? null);
@@ -497,7 +500,9 @@ Hooks.once("init", function () {
       // executeResistanceRoll compares the raw roll against rrTarget as-is (it no longer adds
       // the modifier itself), so the defender's bonus must be folded into the target here:
       // roll + modifier >= base  <=>  roll >= base - modifier.
-      const rrTarget = ResistanceRollService.getFinalRR(attackerLevel, resolvedDefenderLevel, totalModifier);
+      const rrTarget = ResistanceRollService.resolveTarget({
+        attackerLevel, defenderLevel: resolvedDefenderLevel, modifier: totalModifier, explicitTarget
+      });
       const result = await EffectsPopupService.executeResistanceRoll(token.id, attackerLevel, resolvedDefenderLevel, totalModifier, rrTarget, { postChatMessage: !silent });
       return { ...result, rrTarget };
     },

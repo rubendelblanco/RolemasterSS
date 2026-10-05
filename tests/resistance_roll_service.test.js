@@ -139,3 +139,31 @@ describe('ResistanceRollService', () => {
         });
     });
 });
+
+describe('ResistanceRollService.resolveTarget (explicit target from a spell)', () => {
+    test('without an explicit target it is the level-based RR, minus the defender bonus', () => {
+        expect(ResistanceRollService.resolveTarget({ attackerLevel: 5, defenderLevel: 4 })).toBe(53);
+        expect(ResistanceRollService.resolveTarget({ attackerLevel: 5, defenderLevel: 4, modifier: 10 })).toBe(43);
+    });
+
+    test('the Calming Song case: the spell card says 108 (53 from levels, -55 from the table); that is the figure used', () => {
+        // Lvl 5 caster vs lvl 4 orc, spell table modifier -55 -> 108 on the cast card
+        const finalRR = ResistanceRollService.getFinalRR(5, 4, -55);
+        expect(finalRR).toBe(108);
+        expect(ResistanceRollService.resolveTarget({ attackerLevel: 5, defenderLevel: 4, explicitTarget: finalRR })).toBe(108);
+    });
+
+    test('the defender bonus is taken off the explicit target, and it never goes below zero', () => {
+        expect(ResistanceRollService.resolveTarget({ attackerLevel: 5, defenderLevel: 4, modifier: 20, explicitTarget: 108 })).toBe(88);
+        expect(ResistanceRollService.resolveTarget({ attackerLevel: 5, defenderLevel: 4, modifier: 50, explicitTarget: 30 })).toBe(0);
+    });
+
+    test('an explicit target of zero is respected (not mistaken for "none")', () => {
+        expect(ResistanceRollService.resolveTarget({ attackerLevel: 5, defenderLevel: 4, explicitTarget: 0 })).toBe(0);
+    });
+
+    test('a non-numeric explicit target falls back to the levels', () => {
+        expect(ResistanceRollService.resolveTarget({ attackerLevel: 5, defenderLevel: 4, explicitTarget: undefined })).toBe(53);
+        expect(ResistanceRollService.resolveTarget({ attackerLevel: 5, defenderLevel: 4, explicitTarget: null })).toBe(53);
+    });
+});

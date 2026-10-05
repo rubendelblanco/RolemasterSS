@@ -58,4 +58,18 @@ export default class ResistanceRollService {
         const baseRR = this.calculateBaseRR(attackerLevel, defenderLevel);
         return Math.max(0, baseRR - modifier);
     }
+
+    /**
+     * The number the defender must beat. Normally it comes from the levels (see getFinalRR); when the
+     * caller already has the figure - e.g. a Force spell's per-target RR, which includes the Basic Spell
+     * Attack Table modifier, shown on the cast card - pass it as explicitTarget and only the defender's
+     * own bonus is taken off it.
+     * @param {{ attackerLevel: number, defenderLevel: number, modifier?: number, explicitTarget?: number|null }} params
+     *   modifier: the defender's bonus (positive = easier to resist)
+     * @returns {number} minimum 0
+     */
+    static resolveTarget({ attackerLevel, defenderLevel, modifier = 0, explicitTarget = null }) {
+        if (Number.isFinite(explicitTarget)) return Math.max(0, Number(explicitTarget) - modifier);
+        return this.getFinalRR(attackerLevel, defenderLevel, modifier);
+    }
 }
