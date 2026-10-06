@@ -257,6 +257,11 @@ export class RMSSWeaponSkillManager {
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.value ?? 0) > 0;
         }
 
+        // Safety switch (see parry_settings.js): unless fully automatic, the parry fields stay as
+        // plain manual numbers, nothing is pre-filled, paid or consumed. Declared here, before its
+        // first use (a const in the temporal dead zone throws on every attack).
+        const parryAuto = isParryAutomatic();
+
         // "Must parry" criticals: their summed penalty goes on every attack (weapon or spell), not on DB/RR.
         const mustParryPenalty = parryAuto ? ParryService.getMustParryPenalty(realActor) : 0;
         penaltyValue += mustParryPenalty;
@@ -271,9 +276,6 @@ export class RMSSWeaponSkillManager {
         // and the defender's reserved defense is added only to a frontal melee attack. Spell
         // attacks draw from the spell skill, not weapon OB, and can't be parried by a weapon.
         const isSpellAttack = !!spellOptions;
-        // Safety switch (see parry_settings.js): unless fully automatic, the parry fields stay as
-        // plain manual numbers, nothing is pre-filled, paid or consumed.
-        const parryAuto = isParryAutomatic();
         const noParry = { applies: false, defense: 0, points: 0, reason: PARRY_REASON.NONE };
         const attackerDeduction = (isSpellAttack || !parryAuto) ? null : ParryService.getAttackerDeduction(realActor, ob);
         const parryFront = parryAuto ? ParryService.evaluateDefender({
