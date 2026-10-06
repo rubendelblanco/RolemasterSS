@@ -784,6 +784,11 @@
             "card_modifiers": "Modifiers",
             "card_final": "Final"
         },
+        "combat_events": {
+            "melee_miss_name": "Macro on a missed melee attack",
+            "melee_miss_hint": "UUID of a world macro (right-click the macro > Copy UUID). It runs when a melee attack deals no damage and no critical, with actor, token (attacker), target (defender), weapon and event. Leave it empty to run nothing.",
+            "macro_not_found": "The macro set for this event does not exist: {uuid}"
+        },
         "parry": {
             "button_tooltip": "Reserve parry",
             "dialog_title": "Parry — {name}",

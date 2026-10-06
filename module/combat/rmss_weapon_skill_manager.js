@@ -11,6 +11,7 @@ import ShieldService from "./services/shield_service.js";
 import { snapshotAmmo, ammoAsWeaponLike, runAttackMacro } from "./services/ammo_effects_service.js";
 import { weaponUsesAmmo } from "../actors/utils/ammunition_util.js";
 import { isParryAutomatic, isShieldFacingEnabled } from "./services/parry_settings.js";
+import { COMBAT_EVENT, isMeleeAttack, fireCombatEvent } from "./services/combat_event_macro_service.js";
 import { RMSSWeaponCriticalManager } from "./rmss_weapon_critical_manager.js";
 import WeaponEffectsService from "./weapon_effects_service.js";
 import { pickMissileAmmoForAttack, consumeChosenAmmo } from "../actors/utils/ammunition_util.js";
@@ -163,6 +164,11 @@ export class RMSSWeaponSkillManager {
                         await ExperienceManager.applyExperience(actor, criticalResult.damage);
                     }
                 }
+            }
+            // A melee attack that does nothing at all (no damage, no critical): let the GM's macro react.
+            // Not awaited, so a long animation never holds up the combat flow.
+            if (isNullResult && isMeleeAttack(weapon)) {
+                void fireCombatEvent(COMBAT_EVENT.MELEE_MISS, { actor, weapon, attackerToken, defenderToken });
             }
             if (!isNullResult) {
                 await RMSSWeaponCriticalManager.getHpOnlyDamageMessage(

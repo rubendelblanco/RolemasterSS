@@ -205,6 +205,16 @@ General-purpose helpers meant for macros (hotbar buttons, item macros, etc.):
   });
   ```
 
+### Macros on combat events
+
+The system can run a world macro when something happens in combat, without knowing anything about animations or modules. Set the macro's UUID (right-click the macro > Copy UUID) in the system settings; empty means nothing runs.
+
+| Event | Setting | When |
+|---|---|---|
+| Missed melee attack | `macroOnMeleeMiss` | A melee attack (not missile) deals no damage and no critical |
+
+The macro runs on the GM's client with `actor`, `token` (attacker), `target` (defender), `targets`, `weapon` and `event`. These names are function parameters, so don't redeclare them with `const`/`let` (use `typeof target !== "undefined"` to fall back to `game.user.targets` when the macro is also run by hand).
+
 ## Development
 
 ```bash

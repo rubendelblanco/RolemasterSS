@@ -784,6 +784,11 @@
       "card_modifiers": "Modificadores",
       "card_final": "Final"
     },
+    "combat_events": {
+      "melee_miss_name": "Macro al fallar un ataque cuerpo a cuerpo",
+      "melee_miss_hint": "UUID de una macro del mundo (clic derecho en la macro > Copiar UUID). Se ejecuta cuando un ataque cuerpo a cuerpo no causa daño ni crítico, con actor, token (atacante), target (atacado), weapon y event. Déjalo vacío para no ejecutar nada.",
+      "macro_not_found": "La macro configurada para este evento no existe: {uuid}"
+    },
     "parry": {
       "button_tooltip": "Reservar parada",
       "dialog_title": "Parada — {name}",

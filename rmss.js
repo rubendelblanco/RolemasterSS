@@ -49,6 +49,7 @@ import FoodSpoilageService from "./module/actors/services/food_spoilage_service.
 import FastingService from "./module/actors/services/fasting_service.js";
 import { computeFoodImpliesConsumableGuard } from "./module/sheets/items/consume_item.js";
 import { registerParrySetting } from "./module/combat/services/parry_settings.js";
+import { registerCombatEventSettings, runCombatEventMacro } from "./module/combat/services/combat_event_macro_service.js";
 import { findStaleBridgeItems } from "./module/sheets/items/embedded_spell_flag_util.js";
 
 export let socket;
@@ -106,6 +107,7 @@ Hooks.once("socketlib.ready", () => {
   socket = socketlib.registerSystem("rmss");
   socket.register("confirmWeaponAttack", RMSSWeaponSkillManager.attackMessagePopup);
   socket.register("confirmWeaponCritical", RMSSWeaponCriticalManager.criticalMessagePopup);
+  socket.register("runCombatEventMacro", runCombatEventMacro);
   socket.register("applyLargeCreatureCritical", RMSSWeaponCriticalManager.applyLargeCreatureCriticalGM);
   socket.register("chooseCriticalOption", RMSSWeaponCriticalManager.chooseCriticalOption);
   socket.register("updateActorHits", RMSSWeaponCriticalManager.updateActorHits);
@@ -247,6 +249,7 @@ Hooks.once("ready", async function() {
 
 // The parry safety switch needs translated choice labels, which only exist once i18n is loaded
 Hooks.once("i18nInit", registerParrySetting);
+Hooks.once("i18nInit", registerCombatEventSettings);
 
 // Hook the init function and set up our system
 Hooks.once("init", function () {
