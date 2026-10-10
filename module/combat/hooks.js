@@ -9,6 +9,7 @@ import { registerCombatTurnTickHooks } from "./combat_turn_tick.js";
 import { registerParryHooks } from "./parry_hooks.js";
 import { registerDelayedActionHooks } from "./delayed_action_service.js";
 import { socket } from "../../rmss.js";
+import { evaluateMovement } from "./services/movement_cost_service.js";
 
 export function registerCombatHooks() {
     registerCombatTurnTickHooks();
@@ -202,34 +203,27 @@ export function registerCombatHooks() {
         ui.notifications.info("⚔️ Se ha restaurado el movimiento de todos los personajes.");
     });
 
-    Hooks.on("preUpdateToken", (tokenDoc, data, options, userId) => {
-        // preUpdateToken fires on every connected client, not just the one moving the token -
-        // without this guard, moving a player's token (e.g. the GM dragging it) also ran this on
-        // every other client, each redundantly recomputing/writing the same actor update.
-        if (game.user.id !== userId) return;
+    // preMoveToken only fires on the client that starts the move (unlike preUpdateToken, which ran
+    // on every connected client), and carries the route already measured by Foundry with terrain
+    // applied: Regions with "Increase Movement Cost" multiply only the stretches they cover.
+    Hooks.on("preMoveToken", (tokenDoc, movement) => {
         if (!game.combat?.started) return;
-        if (data.x === undefined && data.y === undefined) return;
 
         const actor = tokenDoc.actor;
         const move = actor?.system?.attributes?.movement_rate;
         if (!move) return;
 
-        const start = { x: tokenDoc.x, y: tokenDoc.y };
-        const end   = { x: data.x ?? tokenDoc.x, y: data.y ?? tokenDoc.y };
-        // canvas.grid.measureDistances was deprecated in v12 and is gone in v14 - measurePath is
-        // the replacement (Grid#measureDistances -> Grid#measurePath).
-        const distance = canvas.grid.measurePath([start, end]).distance;
-        const remaining = Math.round(move.current || 0);
+        const result = evaluateMovement(move.current, movement);
+        if (!result) return;
 
-        if (distance > remaining) {
+        if (!result.allowed) {
             ui.notifications.error(
-                `${actor.name} no puede moverse tan lejos (${distance.toFixed(1)} / ${remaining} pies disponibles).`
+                `${actor.name} no puede moverse tan lejos (${result.cost.toFixed(1)} / ${result.remaining} pies disponibles).`
             );
             return false;
         }
 
-        const newRemaining = Math.max(remaining - Math.round(distance), 0);
-        actor.update({ "system.attributes.movement_rate.current": newRemaining });
+        actor.update({ "system.attributes.movement_rate.current": result.newRemaining });
     });
 
 }

@@ -71,6 +71,11 @@ System for playing **Rolemaster Standard System** in Foundry Virtual Tabletop. B
 - **Shield**: its DB bonus only counts against frontal attacks; the attack confirmation takes it out
   of the defender's DB for flank and rear attacks (and follows the facing selector live).
 - Initiative and combat tracker.
+- **Movement in combat**: each combatant spends their remaining Movement Rate as the token moves, using the route
+  cost Foundry measures. Draw a Region with the **Increase Movement Cost** behavior (set the multiplier for
+  walking) over rough terrain and only the stretches that cross it cost more: 15 ft of open ground plus 10 ft at
+  x2 spends 35 ft. A move that costs more than what is left is refused; pushes, teleports and undoing a move
+  cost nothing.
 
 ### Items
 
