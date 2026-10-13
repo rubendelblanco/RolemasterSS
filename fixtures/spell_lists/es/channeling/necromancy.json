@@ -59,7 +59,7 @@
           "area_of_effect": "1 no muerto",
           "duration": "P",
           "range": "10'",
-          "type": "D",
+          "type": "F",
           "subType": "-",
           "attack_table": "",
           "skillName": "",
