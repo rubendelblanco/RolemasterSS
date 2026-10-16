@@ -83,15 +83,34 @@ async function _chatItemConsumed(actor, item) {
 }
 
 /**
+ * Index (into system.magic.enchantments) of the first single-use enchantment, or null.
+ * A consumable carrying one casts that spell when consumed.
+ * @param {Item|{ system?: object }} item
+ * @returns {number|null}
+ */
+export function findSingleUseEnchantmentIndex(item) {
+  const enchantments = item?.system?.magic?.enchantments;
+  if (!Array.isArray(enchantments)) return null;
+  const index = enchantments.findIndex((e) => e?.usage === "single");
+  return index >= 0 ? index : null;
+}
+
+/**
  * Asks for confirmation before spending a plain consumable, then consumes it and posts the chat
  * card announcing it. Shared by the sheet's ".item-consume" click and the Argon HUD's Consumables
  * panel button, so both ask before burning a unit of something instead of silently decrementing
  * it with no feedback.
+ *
+ * What consuming does, besides spending the unit:
+ * - the consumable carries a single-use spell: that spell is cast (its own macro runs with it) and the
+ *   unit is spent only if the cast went through, so a cancelled cast keeps the item;
+ * - otherwise: the item's own macro runs, if it has one, before the unit is spent.
  * @param {Actor} actor
  * @param {Item} item
+ * @param {{ castEnchantment?: Function }} [options] castEnchantment replaces the real spell cast (tests)
  * @returns {Promise<{applied: boolean, itemDeleted?: boolean}>}
  */
-export async function confirmAndConsumeItem(actor, item) {
+export async function confirmAndConsumeItem(actor, item, { castEnchantment } = {}) {
   if (!actor || !item) return { applied: false };
 
   const confirmed = await Dialog.confirm({
@@ -101,7 +120,16 @@ export async function confirmAndConsumeItem(actor, item) {
   });
   if (!confirmed) return { applied: false };
 
-  const result = await consumeItem(item);
+  let result;
+  const spellIndex = findSingleUseEnchantmentIndex(item);
+  if (spellIndex !== null) {
+    const cast = castEnchantment ?? (await import("./cast_enchantment_from_item.js")).castEnchantmentFromItem;
+    result = await cast(actor, item, spellIndex, { consumeUnit: true });
+    if (!result?.applied) return { applied: false };
+  } else {
+    await item._executeItemMacro?.();
+    result = await consumeItem(item);
+  }
   if (result.applied) {
     await _chatItemConsumed(actor, item);
     await FastingService.markAteFoodToday(actor, item);

@@ -242,9 +242,11 @@ export function attachItemMagicActionFlags(itemPlain) {
  * @param {Actor} actor
  * @param {Item} item
  * @param {number} enchantmentIndex
+ * @param {{ consumeUnit?: boolean }} [options] consumeUnit: a single-use enchantment spends one unit of the
+ *   item (like a potion or rune) instead of being stripped off it - used when a plain consumable is consumed.
  * @returns {Promise<{ itemDeleted?: boolean, applied?: boolean }>}
  */
-export async function castEnchantmentFromItem(actor, item, enchantmentIndex) {
+export async function castEnchantmentFromItem(actor, item, enchantmentIndex, { consumeUnit = false } = {}) {
   const enchantments = foundry.utils.duplicate(item.system.magic?.enchantments ?? []);
   const enchantment = enchantments[enchantmentIndex];
   if (!enchantment) return {};
@@ -298,7 +300,7 @@ export async function castEnchantmentFromItem(actor, item, enchantmentIndex) {
   const isPotion = itemHasPotionTag(item);
   const isRune = itemHasRuneTag(item);
 
-  if (usage === "single" && (isPotion || isRune)) {
+  if (usage === "single" && (isPotion || isRune || consumeUnit)) {
     const qty = Number(item.system.quantity) || 1;
     if (qty > 1) {
       await item.update({ "system.quantity": qty - 1 });

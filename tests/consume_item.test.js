@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { itemHasConsumableTag, consumeItem, confirmAndConsumeItem, computeFoodImpliesConsumableGuard } from '../module/sheets/items/consume_item.js';
+import { itemHasConsumableTag, consumeItem, confirmAndConsumeItem, computeFoodImpliesConsumableGuard, findSingleUseEnchantmentIndex } from '../module/sheets/items/consume_item.js';
 
 function makeItem(tags, quantity = 1) {
     return {
@@ -150,5 +150,72 @@ describe('confirmAndConsumeItem', () => {
         expect(await confirmAndConsumeItem(null, makeItem(["consumable"]))).toEqual({ applied: false });
         expect(await confirmAndConsumeItem(makeActor(), null)).toEqual({ applied: false });
         expect(global.Dialog.confirm).not.toHaveBeenCalled();
+    });
+
+    test('item macro: runs it before spending the unit', async () => {
+        global.Dialog.confirm.mockResolvedValue(true);
+        const order = [];
+        const item = makeItem(["consumable"], 2);
+        item._executeItemMacro = jest.fn(async () => { order.push('macro'); });
+        item.update = jest.fn(async () => { order.push('consume'); });
+
+        await confirmAndConsumeItem(makeActor(), item);
+
+        expect(item._executeItemMacro).toHaveBeenCalledTimes(1);
+        expect(order).toEqual(['macro', 'consume']);
+    });
+
+    test('declined: the item macro does not run', async () => {
+        global.Dialog.confirm.mockResolvedValue(false);
+        const item = makeItem(["consumable"], 2);
+        item._executeItemMacro = jest.fn();
+
+        await confirmAndConsumeItem(makeActor(), item);
+
+        expect(item._executeItemMacro).not.toHaveBeenCalled();
+    });
+
+    test('single-use spell: casts it (consuming the unit through the cast) and skips the item macro', async () => {
+        global.Dialog.confirm.mockResolvedValue(true);
+        const actor = makeActor();
+        const item = makeItem(["consumable"], 2);
+        item.system.magic = { enchantments: [{ usage: "passive" }, { usage: "single", spell: "Light" }] };
+        item._executeItemMacro = jest.fn();
+        const castEnchantment = jest.fn().mockResolvedValue({ applied: true });
+
+        const result = await confirmAndConsumeItem(actor, item, { castEnchantment });
+
+        expect(castEnchantment).toHaveBeenCalledWith(actor, item, 1, { consumeUnit: true });
+        expect(item._executeItemMacro).not.toHaveBeenCalled();
+        expect(item.update).not.toHaveBeenCalled();
+        expect(result).toEqual({ applied: true });
+        expect(global.ChatMessage.create).toHaveBeenCalledTimes(1);
+    });
+
+    test('single-use spell whose cast is cancelled: keeps the item and posts nothing', async () => {
+        global.Dialog.confirm.mockResolvedValue(true);
+        const item = makeItem(["consumable"], 2);
+        item.system.magic = { enchantments: [{ usage: "single" }] };
+        const castEnchantment = jest.fn().mockResolvedValue({});
+
+        const result = await confirmAndConsumeItem(makeActor(), item, { castEnchantment });
+
+        expect(result).toEqual({ applied: false });
+        expect(item.update).not.toHaveBeenCalled();
+        expect(item.delete).not.toHaveBeenCalled();
+        expect(global.ChatMessage.create).not.toHaveBeenCalled();
+    });
+});
+
+describe('findSingleUseEnchantmentIndex', () => {
+    test('returns the index of the first single-use enchantment', () => {
+        const item = { system: { magic: { enchantments: [{ usage: "daily" }, { usage: "single" }, { usage: "single" }] } } };
+        expect(findSingleUseEnchantmentIndex(item)).toBe(1);
+    });
+
+    test('null when there is none, or no enchantments at all', () => {
+        expect(findSingleUseEnchantmentIndex({ system: { magic: { enchantments: [{ usage: "passive" }, { usage: "charged" }] } } })).toBeNull();
+        expect(findSingleUseEnchantmentIndex({ system: {} })).toBeNull();
+        expect(findSingleUseEnchantmentIndex(null)).toBeNull();
     });
 });
