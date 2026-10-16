@@ -127,9 +127,12 @@ export function getArmorPenalties(actor) {
     return { armorType, hasBodyArmor, ...all };
 }
 
+/** Weapon types that count as missile attacks: missile weapons and thrown weapons (core rules A-10.4). */
+const MISSILE_ATTACK_TYPES = ["mis", "th"];
+
 /**
  * What armor takes off an attack with this weapon: its missile attack penalty, for a character shooting a
- * missile weapon, zero otherwise. With a body armor equipped it comes from that armor; without one, from the
+ * missile weapon or throwing one, zero otherwise. With a body armor equipped it comes from that armor; without one, from the
  * value typed on the sheet. NPCs and creatures are ignored on purpose.
  * @param {Actor} actor
  * @param {Item} weapon
@@ -137,7 +140,7 @@ export function getArmorPenalties(actor) {
  */
 export function getMissilePenaltyForWeapon(actor, weapon) {
     if (actor?.type !== "character") return 0;
-    if (weapon?.system?.type !== "mis") return 0;
+    if (!MISSILE_ATTACK_TYPES.includes(weapon?.system?.type)) return 0;
     const { hasBodyArmor, missilePenalty } = getArmorPenalties(actor);
     if (hasBodyArmor) return missilePenalty;
     return Math.abs(Number(actor?.system?.armor_info?.missile_penalty)) || 0;

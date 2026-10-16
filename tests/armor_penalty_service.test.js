@@ -200,6 +200,11 @@ describe("getArmorPenalties and the missile penalty on a weapon", () => {
     expect(getMissilePenaltyForWeapon(character({}, body({ at: 18, missile_penalty: 0 })), bow)).toBe(0);
   });
 
+  it("a thrown weapon loses it too", () => {
+    const javelin = { system: { type: "th" } };
+    expect(getMissilePenaltyForWeapon(character({}, body({ at: 18 })), javelin)).toBe(10);
+  });
+
   it("a melee weapon is not affected", () => {
     expect(getMissilePenaltyForWeapon(character({}, body({ at: 18 })), sword)).toBe(0);
   });
