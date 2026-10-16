@@ -1,5 +1,17 @@
 {
     "rmss": {
+        "rules_skills": {
+            "menu_name": "Skills with a rules function",
+            "menu_label": "Choose skills",
+            "menu_hint": "Tell the system which catalog skill does a special job in the rules, so it never has to look it up by name.",
+            "menu_title": "Skills with a rules function",
+            "menu_intro": "Pick each skill from the catalog (the skills in the world). A character's copy is recognised by where it was copied from, or by the same name.",
+            "none": "— None —",
+            "none_in_category": "The catalog has no skill in the Power Manipulation category.",
+            "missing": "The skill chosen before is no longer in the catalog:",
+            "transcend_armor": "Transcend Armor",
+            "transcend_armor_hint": "Its total bonus is applied once against the spell casting penalty of armor and helmet, up to cancelling it."
+        },
         "container": {
             "ejected_over_capacity": "{item} was removed from {container} (exceeds capacity).",
             "cannot_accept": "{container} cannot contain {item}.",
@@ -1459,6 +1471,7 @@
             "casting_options_insufficient_pp": "Not enough Power Points! You can use your Spell Adder, or close.",
             "hands": "Hands",
             "armor_casting_penalty": "Armor",
+            "transcend_armor_relief": "Transcend Armor",
             "helmet_casting_penalty": "Helmet",
             "hands_occupied": "Hands occupied: {current} / {max}",
             "voice": "Voice",

@@ -1,0 +1,17 @@
+<div class="rmss-rules-skills-menu">
+    <p class="hint">{{localize "rmss.rules_skills.menu_intro"}}</p>
+    {{#each roles}}
+    <div class="form-group">
+        <label for="rules-skill-{{role}}">{{localize label}}</label>
+        <div class="form-fields">
+            <select name="{{role}}" id="rules-skill-{{role}}">
+                <option value="">{{localize "rmss.rules_skills.none"}}</option>
+                {{selectOptions options selected=value}}
+            </select>
+        </div>
+        <p class="hint">{{localize hint}}</p>
+        {{#if noneInCategory}}<p class="hint" style="color: #b45309;">{{localize "rmss.rules_skills.none_in_category"}}</p>{{/if}}
+        {{#if missing}}<p class="hint" style="color: #b45309;">{{localize "rmss.rules_skills.missing"}} {{missing}}</p>{{/if}}
+    </div>
+    {{/each}}
+</div>

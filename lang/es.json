@@ -1,5 +1,17 @@
 {
-  "rmss": {
+    "rmss": {
+      "rules_skills": {
+        "menu_name": "Habilidades con función de reglas",
+        "menu_label": "Elegir habilidades",
+        "menu_hint": "Indica al sistema qué habilidad del catálogo hace un trabajo especial en las reglas, para no tener que buscarla por su nombre.",
+        "menu_title": "Habilidades con función de reglas",
+        "menu_intro": "Elige cada habilidad del catálogo (las habilidades del mundo). La copia de un personaje se reconoce por la habilidad de la que se copió, o por tener el mismo nombre.",
+        "none": "— Ninguna —",
+            "none_in_category": "El catálogo no tiene ninguna habilidad de la categoría Manipulación del poder.",
+        "missing": "La habilidad elegida antes ya no está en el catálogo:",
+        "transcend_armor": "Trascender armadura",
+        "transcend_armor_hint": "Su bono total se aplica una vez contra la penalización de armadura y yelmo al lanzar hechizos, hasta anularla."
+      },
     "container": {
       "ejected_over_capacity": "{item} fue sacado de {container} (excede la capacidad).",
       "cannot_accept": "{container} no puede contener {item}.",
@@ -1459,6 +1471,7 @@
       "casting_options_insufficient_pp": "¡Sin puntos de poder suficientes! Puedes usar el hechizador, o cancelar.",
       "hands": "Manos",
       "armor_casting_penalty": "Armadura",
+      "transcend_armor_relief": "Trascender armadura",
       "helmet_casting_penalty": "Yelmo",
       "hands_occupied": "Manos ocupadas: {current} / {max}",
       "voice": "Voz",

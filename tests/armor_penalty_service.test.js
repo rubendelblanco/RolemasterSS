@@ -229,17 +229,17 @@ describe("getCastingPenalty: what the armor and helmet worn take off a spell", (
 
   it("body armor counts by its penalty AT, not the AT it protects as", () => {
     const a = character({}, piece("body", { at: 9, at_penalty: 15 }));
-    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -70, helmet: 0, total: -70 });
+    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -70, helmet: 0, relief: 0, total: -70 });
   });
 
   it("a helmet adds to the armor's penalty, by its kind", () => {
     const a = character({}, piece("body", { at: 10 }), piece("helmet", { helmet_type: "metal" }));
-    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -25, helmet: -40, total: -65 });
+    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -25, helmet: -40, relief: 0, total: -65 });
   });
 
   it("body armor never hampers mentalism, but the helmet does", () => {
     const a = character({}, piece("body", { at: 20 }), piece("helmet", { helmet_type: "leather" }));
-    expect(getCastingPenalty(a, "mentalism")).toEqual({ armor: 0, helmet: -30, total: -30 });
+    expect(getCastingPenalty(a, "mentalism")).toEqual({ armor: 0, helmet: -30, relief: 0, total: -30 });
   });
 
   it("a shield counts for nothing", () => {
@@ -256,12 +256,12 @@ describe("getCastingPenalty: what the armor and helmet worn take off a spell", (
   it("the items' own values win over the table's", () => {
     const a = character({}, piece("body", { at: 10, cast_penalty_essence: -5 }),
       piece("helmet", { helmet_type: "metal", cast_penalty_essence: 0 }));
-    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -5, helmet: 0, total: -5 });
+    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -5, helmet: 0, relief: 0, total: -5 });
   });
 
   it("a spell of two realms takes the worst for each piece", () => {
     const a = character({}, piece("body", { at: 15 }), piece("helmet", { helmet_type: "metal" }));
-    expect(getCastingPenalty(a, "essence/mentalism")).toEqual({ armor: -70, helmet: -60, total: -130 });
+    expect(getCastingPenalty(a, "essence/mentalism")).toEqual({ armor: -70, helmet: -60, relief: 0, total: -130 });
   });
 
   it("with no body armor equipped it reads the AT typed on the sheet", () => {
@@ -271,7 +271,35 @@ describe("getCastingPenalty: what the armor and helmet worn take off a spell", (
   it("NPCs and creatures are ignored", () => {
     for (const type of ["npc", "creature"]) {
       const a = { type, system: { armor_info: { armor_type: 20 } }, items: [piece("helmet", { helmet_type: "metal" })] };
-      expect(getCastingPenalty(a, "essence")).toEqual({ armor: 0, helmet: 0, total: 0 });
+      expect(getCastingPenalty(a, "essence")).toEqual({ armor: 0, helmet: 0, relief: 0, total: 0 });
     }
+  });
+});
+
+describe("getCastingPenalty with Transcend Armor", () => {
+  let previousGame;
+  beforeEach(() => {
+    previousGame = globalThis.game;
+    globalThis.game = { settings: { get: () => ({ transcend_armor: { uuid: "Item.t1", name: "Trascender armadura" } }) } };
+  });
+  afterEach(() => { globalThis.game = previousGame; });
+
+  const piece = (slot, system) => ({ type: "armor", system: { equipped: true, armorSlot: slot, ...system } });
+  const transcend = (bonus) => ({ type: "skill", name: "Trascender armadura", system: { total_bonus: bonus } });
+  const character = (...items) => ({ type: "character", system: { armor_info: {} }, items });
+
+  it("is applied once against armor and helmet together: -25 and -40 with +30 leaves -35", () => {
+    const a = character(piece("body", { at: 10 }), piece("helmet", { helmet_type: "metal" }), transcend(30));
+    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -25, helmet: -40, relief: 30, total: -35 });
+  });
+
+  it("cancels the penalty at most: it never turns it into a bonus", () => {
+    const a = character(piece("body", { at: 10 }), transcend(500));
+    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -25, helmet: 0, relief: 25, total: 0 });
+  });
+
+  it("without the skill, or without any penalty, nothing is relieved", () => {
+    expect(getCastingPenalty(character(piece("body", { at: 10 })), "essence").relief).toBe(0);
+    expect(getCastingPenalty(character(piece("body", { at: 20 }), transcend(80)), "mentalism").relief).toBe(0);
   });
 });

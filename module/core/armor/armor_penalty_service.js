@@ -3,7 +3,8 @@ import {
 } from "./armor_maneuver_penalty.js";
 import { getSkillManeuverType, MANEUVER_TYPE } from "../skills/skill_maneuver_type.js";
 import { getSkillArmorGroup, armorGroupFromName, isArmorCategory } from "./armor_skill_group.js";
-import { computeBodyArmorCastingPenalty, computeHelmetCastingPenalty } from "./armor_casting_penalty.js";
+import { computeBodyArmorCastingPenalty, computeHelmetCastingPenalty, computeTranscendRelief } from "./armor_casting_penalty.js";
+import { RULES_SKILL, getActorRulesSkillBonus } from "../skills/rules_skills.js";
 
 /**
  * Moving maneuver penalty (MMP) of the armor an actor wears. See armor_maneuver_penalty.js for the rule.
@@ -167,15 +168,18 @@ const castingOverrides = (item) => ({
  * equipped, the AT typed on the sheet); a shield never counts.
  * @param {Actor} actor
  * @param {string} spellRealm the spell list's realm, e.g. "essence", "channeling", "essence/channeling"
- * @returns {{ armor: number, helmet: number, total: number }} all zero or negative
+ * @returns {{ armor: number, helmet: number, relief: number, total: number }} armor and helmet are zero or negative;
+ *   relief is what Transcend Armor takes off them, zero or positive; total is what is left
  */
 export function getCastingPenalty(actor, spellRealm) {
-    if (actor?.type !== "character") return { armor: 0, helmet: 0, total: 0 };
+    if (actor?.type !== "character") return { armor: 0, helmet: 0, relief: 0, total: 0 };
     const body = findEquippedArmorInSlot(actor, "body");
     const armor = computeBodyArmorCastingPenalty(getPenaltyArmor(actor).armorType, spellRealm, castingOverrides(body));
     const helmetItem = findEquippedArmorInSlot(actor, "helmet");
     const helmet = helmetItem
         ? computeHelmetCastingPenalty(helmetItem.system.helmet_type, spellRealm, castingOverrides(helmetItem))
         : 0;
-    return { armor, helmet, total: armor + helmet };
+    // Transcend Armor: its bonus is applied once against what armor and helmet cost together
+    const relief = computeTranscendRelief(armor + helmet, getActorRulesSkillBonus(actor, RULES_SKILL.TRANSCEND_ARMOR));
+    return { armor, helmet, relief, total: armor + helmet + relief };
 }

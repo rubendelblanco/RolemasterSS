@@ -78,7 +78,7 @@ export default class ManeuverPenaltiesService {
      * Sum of maneuver penalties for total modifier (penaltyEffect is applied as Math.min(0, penaltyEffect)).
      */
     static getTotalAutoPenalty(penalties) {
-        const { hitsTaken, bleeding, stunned, penaltyEffect, activeBonus = 0, armor = 0, helmet = 0 } = penalties;
-        return hitsTaken + bleeding + stunned + Math.min(0, penaltyEffect) + activeBonus + armor + helmet;
+        const { hitsTaken, bleeding, stunned, penaltyEffect, activeBonus = 0, armor = 0, helmet = 0, armorRelief = 0 } = penalties;
+        return hitsTaken + bleeding + stunned + Math.min(0, penaltyEffect) + activeBonus + armor + helmet + armorRelief;
     }
 }

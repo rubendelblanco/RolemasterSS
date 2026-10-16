@@ -251,6 +251,10 @@ Hooks.once("ready", async function() {
 // The parry safety switch needs translated choice labels, which only exist once i18n is loaded
 Hooks.once("i18nInit", registerParrySetting);
 Hooks.once("i18nInit", registerCombatEventSettings);
+Hooks.once("i18nInit", async () => {
+  const { registerRulesSkillsSettings } = await import("./module/core/skills/rules_skills_menu.js");
+  registerRulesSkillsSettings();
+});
 
 // Hook the init function and set up our system
 Hooks.once("init", function () {

@@ -5500,3 +5500,34 @@ button.rmss-crit-reenable-local:hover {
   opacity: 0.5;
   text-decoration: line-through;
 }
+
+/* Settings menu "Skills with a rules function": fixed colours, so text and buttons stay readable in any theme, hover included */
+#rmss-rules-skills-menu .window-content {
+  background: #e9dfcf;
+  color: #2b2118;
+}
+#rmss-rules-skills-menu label {
+  color: #2b2118;
+  font-weight: bold;
+}
+#rmss-rules-skills-menu .hint {
+  color: #4a3f33;
+}
+#rmss-rules-skills-menu select {
+  background: #fffaf0;
+  color: #2b2118;
+  border: 1px solid #8a7a62;
+}
+#rmss-rules-skills-menu .form-footer button {
+  background: #3b2f24;
+  color: #fff;
+  border: 1px solid #1f1812;
+  text-shadow: none;
+}
+#rmss-rules-skills-menu .form-footer button:hover,
+#rmss-rules-skills-menu .form-footer button:focus {
+  background: #5a4533;
+  color: #fff;
+  border-color: #1f1812;
+  box-shadow: 0 0 6px rgba(90, 69, 51, 0.6);
+}

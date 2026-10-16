@@ -102,6 +102,11 @@ describe('ManeuverPenaltiesService', () => {
             expect(ManeuverPenaltiesService.getTotalAutoPenalty(penalties)).toBe(20);
         });
 
+        test('the Transcend Armor relief is added in full', () => {
+            const base = { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0 };
+            expect(ManeuverPenaltiesService.getTotalAutoPenalty({ ...base, armor: -25, helmet: -40, armorRelief: 30 })).toBe(-35);
+        });
+
         test('helmet casting penalty is added in full too', () => {
             const base = { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0 };
             expect(ManeuverPenaltiesService.getTotalAutoPenalty({ ...base, armor: -25, helmet: -40 })).toBe(-65);

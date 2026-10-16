@@ -102,6 +102,19 @@ export function computeHelmetCastingPenalty(kind, spellRealm, overrides = {}) {
     return (overrideFor(overrides, realm) ?? row[REALM_INDEX[realm]]) || 0;
 }
 
+/**
+ * What Transcend Armor takes off the casting penalties: its total bonus is applied once against the sum of what armor
+ * and helmet cost, up to cancelling it (to a maximum of +0). A negative bonus never makes it worse.
+ * @param {number} penaltyTotal armor + helmet, zero or negative
+ * @param {number} skillBonus the character's total bonus in Transcend Armor
+ * @returns {number} zero or positive: the amount that comes off the penalty
+ */
+export function computeTranscendRelief(penaltyTotal, skillBonus) {
+    const penalty = Math.min(0, Number(penaltyTotal) || 0);
+    if (!penalty) return 0;
+    return Math.min(-penalty, Math.max(0, Number(skillBonus) || 0));
+}
+
 /** The table's casting penalties of an armor type, for the sheet placeholders: { channeling, essence, mentalism }. */
 export function getBodyArmorCastingTableRow(armorType) {
     const row = ARMOR_STATUS[Math.trunc(Number(armorType))] ?? [0, 0, 0];

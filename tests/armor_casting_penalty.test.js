@@ -4,7 +4,7 @@
 import { describe, it, expect } from "@jest/globals";
 import {
   parseCastingRealms, pickCastingRealm, computeBodyArmorCastingPenalty, computeHelmetCastingPenalty,
-  getBodyArmorCastingTableRow, getHelmetCastingTableRow, CASTING_REALM, HELMET_KIND
+  getBodyArmorCastingTableRow, getHelmetCastingTableRow, computeTranscendRelief, CASTING_REALM, HELMET_KIND
 } from "../module/core/armor/armor_casting_penalty.js";
 
 describe("parseCastingRealms", () => {
@@ -130,5 +130,28 @@ describe("table rows for the sheet placeholders", () => {
   it("helmet rows", () => {
     expect(getHelmetCastingTableRow("metal")).toEqual({ channeling: -20, essence: -40, mentalism: -60 });
     expect(getHelmetCastingTableRow(undefined)).toEqual({ channeling: 0, essence: -20, mentalism: -30 });
+  });
+});
+
+describe("computeTranscendRelief (Transcend Armor)", () => {
+  it("the bonus is applied once against the penalty, up to cancelling it", () => {
+    expect(computeTranscendRelief(-65, 30)).toBe(30);
+    expect(computeTranscendRelief(-65, 65)).toBe(65);
+    expect(computeTranscendRelief(-65, 200)).toBe(65);
+  });
+
+  it("it never turns a penalty into a bonus: the maximum is +0", () => {
+    expect(computeTranscendRelief(-10, 50)).toBe(10);
+  });
+
+  it("no penalty, nothing to relieve", () => {
+    expect(computeTranscendRelief(0, 50)).toBe(0);
+    expect(computeTranscendRelief(5, 50)).toBe(0);
+  });
+
+  it("a zero or negative skill bonus relieves nothing and never makes it worse", () => {
+    expect(computeTranscendRelief(-40, 0)).toBe(0);
+    expect(computeTranscendRelief(-40, -25)).toBe(0);
+    expect(computeTranscendRelief(-40, undefined)).toBe(0);
   });
 });
