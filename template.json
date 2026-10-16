@@ -455,6 +455,8 @@
       "cost": 0,
       "at": 1,
       "at_penalty": null,
+      "maneuver_min": null,
+      "maneuver_max": null,
       "db": 0,
       "armorSlot": "body",
       "isShield": false,

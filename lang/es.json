@@ -875,6 +875,9 @@
     },
     "armor": {
       "at": "TA",
+      "maneuver_min": "Mod. mín. a maniobras",
+      "maneuver_max": "Mod. máx. a maniobras",
+      "maneuver_mod_hint": "Modificación mínima / máxima de esta armadura a las maniobras de movimiento. Déjalo vacío para usar la de la tabla para su TA de penalización (sale en gris).",
       "at_penalty": "TA de penalización",
       "at_penalty_hint": "El TA con el que esta armadura penaliza, si es distinto del TA con el que protege. Déjalo vacío para usar el mismo TA.",
       "db": "BD",

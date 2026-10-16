@@ -26,7 +26,9 @@
                             {{else}}{{#if showShieldDb}}{{localize "rmss.armor.db"}}
                             {{else}}—{{/if}}{{/if}}
                         </th>
-                        {{#if showArmorAt}}<th title="{{localize 'rmss.armor.at_penalty_hint'}}">{{localize "rmss.armor.at_penalty"}}</th>{{/if}}
+                        {{#if showArmorAt}}<th title="{{localize 'rmss.armor.at_penalty_hint'}}">{{localize "rmss.armor.at_penalty"}}</th>
+                        <th title="{{localize 'rmss.armor.maneuver_mod_hint'}}">{{localize "rmss.armor.maneuver_min"}}</th>
+                        <th title="{{localize 'rmss.armor.maneuver_mod_hint'}}">{{localize "rmss.armor.maneuver_max"}}</th>{{/if}}
                     </tr>
                     <tr>
                         <td>
@@ -54,6 +56,12 @@
                         {{#if showArmorAt}}
                         <td>
                             <input name="system.at_penalty" type="text" value="{{system.at_penalty}}" placeholder="{{system.at}}" data-dtype="Number" title="{{localize 'rmss.armor.at_penalty_hint'}}"/>
+                        </td>
+                        <td>
+                            <input name="system.maneuver_min" type="text" value="{{system.maneuver_min}}" placeholder="{{tableManeuverMin}}" data-dtype="Number" title="{{localize 'rmss.armor.maneuver_mod_hint'}}"/>
+                        </td>
+                        <td>
+                            <input name="system.maneuver_max" type="text" value="{{system.maneuver_max}}" placeholder="{{tableManeuverMax}}" data-dtype="Number" title="{{localize 'rmss.armor.maneuver_mod_hint'}}"/>
                         </td>
                         {{/if}}
                     </tr>

@@ -71,15 +71,44 @@ export function getArmorSkillGroup(armorType) {
 }
 
 /**
+ * An armor's own minimum or maximum maneuver modification, as typed on the armor item. Empty means "use the
+ * table's". A penalty is always zero or negative, so 5 and -5 both mean a penalty of 5.
+ * @param {*} value
+ * @returns {number|undefined} undefined when nothing was set
+ */
+export function parseManeuverModOverride(value) {
+    if (value === null || value === undefined || value === "") return undefined;
+    const n = Number(value);
+    if (!Number.isFinite(n)) return undefined;
+    return n === 0 ? 0 : -Math.abs(n);
+}
+
+/**
+ * The minimum and maximum maneuver modification of an armor type, with the armor's own values on top.
+ * The minimum is the smaller penalty, so it is never allowed to be worse than the maximum.
+ * @param {number|string} armorType
+ * @param {{ minMod?: *, maxMod?: * }} [overrides] raw values from the armor item
+ * @returns {{ minMod: number, maxMod: number }|null} null for an armor type that isn't in the table
+ */
+export function resolveManeuverMods(armorType, overrides = {}) {
+    const row = getArmorTableRow(armorType);
+    if (!row) return null;
+    const maxMod = parseManeuverModOverride(overrides?.maxMod) ?? row.maxMod;
+    const minMod = Math.max(parseManeuverModOverride(overrides?.minMod) ?? row.minMod, maxMod);
+    return { minMod, maxMod };
+}
+
+/**
  * The moving maneuver penalty for an armor type and the wearer's bonus in the armor's skill.
  * @param {number|string} armorType
  * @param {number} [armorSkillBonus=0] total bonus of the armor skill (category and stat bonuses included)
+ * @param {{ minMod?: *, maxMod?: * }} [overrides] the armor item's own minimum / maximum, when it has them
  * @returns {number} zero or negative
  */
-export function computeMovingManeuverPenalty(armorType, armorSkillBonus = 0) {
-    const row = getArmorTableRow(armorType);
-    if (!row) return 0;
+export function computeMovingManeuverPenalty(armorType, armorSkillBonus = 0, overrides = {}) {
+    const mods = resolveManeuverMods(armorType, overrides);
+    if (!mods) return 0;
     const bonus = Number(armorSkillBonus) || 0;
     // Math.min(-0, ...) would give -0: normalise so a clean "no penalty" is 0
-    return Math.min(row.minMod, row.maxMod + bonus) || 0;
+    return Math.min(mods.minMod, mods.maxMod + bonus) || 0;
 }

@@ -153,6 +153,23 @@ describe("getPenaltyArmorType", () => {
     expect(getPenaltyArmorType({ system: {}, items: [] })).toBe(1);
   });
 
+  it("the armor's own minimum / maximum replace the table's in the MMP", () => {
+    const lighter = actor(1, body({ at: 9, maneuver_max: -30 }), skill("Cuero endurecido", "armor-light", 10));
+    expect(getMovingManeuverPenalty(lighter).mmp).toBe(-20);
+    const heavier = actor(1, body({ at: 9, maneuver_min: -25 }), skill("Cuero endurecido", "armor-light", 200));
+    expect(getMovingManeuverPenalty(heavier).mmp).toBe(-25);
+  });
+
+  it("empty or null overrides leave the table in charge", () => {
+    const a = actor(1, body({ at: 9, maneuver_min: null, maneuver_max: "" }), skill("Cuero endurecido", "armor-light", 27));
+    expect(getMovingManeuverPenalty(a).mmp).toBe(-23);
+  });
+
+  it("a light armor (AT 1-4) can still carry a penalty of its own, with no skill involved", () => {
+    expect(getMovingManeuverPenalty(actor(1, body({ at: 3, maneuver_max: -15, maneuver_min: -15 }))).mmp).toBe(-15);
+    expect(getMovingManeuverPenalty(actor(1, body({ at: 3 }))).mmp).toBe(0);
+  });
+
   it("the MMP follows the penalty AT, with the skill of the penalty AT's group", () => {
     const a = actor(1, body({ at: 9, at_penalty: 12 }), skill("Cuero endurecido", "armor-light", 30));
     expect(getMovingManeuverPenalty(a)).toMatchObject({ armorType: 12, group: "rigid_leather", skillBonus: 30, mmp: -80 });

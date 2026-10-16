@@ -27,16 +27,27 @@ const ARMOR_SKILL_CATEGORY = {
  * @returns {number}
  */
 export function getPenaltyArmorType(actor) {
+    return getPenaltyArmor(actor).armorType;
+}
+
+/**
+ * The armor the actor's penalty comes from: its penalty AT and, when the equipped body armor has its own
+ * minimum / maximum maneuver modification (system.maneuver_min / maneuver_max), those, which replace the
+ * table's for this armor. An armor can be lighter or heavier on the wearer than the table says.
+ * @param {Actor} actor
+ * @returns {{ armorType: number, overrides: { minMod: *, maxMod: * } }}
+ */
+export function getPenaltyArmor(actor) {
     const body = [...(actor?.items ?? [])].find((i) => {
         if (i.type !== "armor" || !i.system?.equipped) return false;
         return (i.system.armorSlot || (i.system.isShield ? "shield" : "body")) === "body";
     });
-    if (body) {
-        const penaltyAt = Math.trunc(Number(body.system.at_penalty));
-        if (penaltyAt >= 1) return penaltyAt;
-        return Math.trunc(Number(body.system.at)) || 1;
+    if (!body) {
+        return { armorType: Math.trunc(Number(actor?.system?.armor_info?.armor_type)) || 1, overrides: {} };
     }
-    return Math.trunc(Number(actor?.system?.armor_info?.armor_type)) || 1;
+    const penaltyAt = Math.trunc(Number(body.system.at_penalty));
+    const armorType = penaltyAt >= 1 ? penaltyAt : (Math.trunc(Number(body.system.at)) || 1);
+    return { armorType, overrides: { minMod: body.system.maneuver_min, maxMod: body.system.maneuver_max } };
 }
 
 /**
@@ -70,12 +81,15 @@ export function findArmorSkill(actor, group) {
  *   skillBonus is 0 when the actor has no skill in the armor it wears (it is as untrained)
  */
 export function getMovingManeuverPenalty(actor) {
-    const armorType = getPenaltyArmorType(actor);
+    const { armorType, overrides } = getPenaltyArmor(actor);
     const group = getArmorSkillGroup(armorType);
-    if (group === ARMOR_SKILL_GROUP.NONE) return { armorType, group, skill: null, skillBonus: 0, mmp: 0 };
+    // No armor skill covers AT 1-4, but an armor of that AT can still carry a penalty of its own
+    if (group === ARMOR_SKILL_GROUP.NONE) {
+        return { armorType, group, skill: null, skillBonus: 0, mmp: computeMovingManeuverPenalty(armorType, 0, overrides) };
+    }
     const skill = findArmorSkill(actor, group);
     const skillBonus = Number(skill?.system?.total_bonus) || 0;
-    return { armorType, group, skill, skillBonus, mmp: computeMovingManeuverPenalty(armorType, skillBonus) };
+    return { armorType, group, skill, skillBonus, mmp: computeMovingManeuverPenalty(armorType, skillBonus, overrides) };
 }
 
 /**

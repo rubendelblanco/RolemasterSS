@@ -3,7 +3,8 @@
  */
 import { describe, it, expect } from "@jest/globals";
 import {
-  ARMOR_SKILL_GROUP, getArmorTableRow, getArmorSkillGroup, computeMovingManeuverPenalty
+  ARMOR_SKILL_GROUP, getArmorTableRow, getArmorSkillGroup, computeMovingManeuverPenalty,
+  parseManeuverModOverride, resolveManeuverMods
 } from "../module/core/armor/armor_maneuver_penalty.js";
 
 describe("getArmorTableRow (Armor Table T-3.3)", () => {
@@ -89,5 +90,48 @@ describe("computeMovingManeuverPenalty", () => {
   it("a missing skill bonus counts as zero", () => {
     expect(computeMovingManeuverPenalty(9)).toBe(-50);
     expect(computeMovingManeuverPenalty(9, "x")).toBe(-50);
+  });
+});
+
+describe("an armor's own minimum and maximum", () => {
+  it("parseManeuverModOverride: empty is unset, any sign means a penalty", () => {
+    for (const v of [undefined, null, "", "abc", NaN]) expect(parseManeuverModOverride(v)).toBeUndefined();
+    expect(parseManeuverModOverride(-30)).toBe(-30);
+    expect(parseManeuverModOverride(30)).toBe(-30);
+    expect(parseManeuverModOverride("15")).toBe(-15);
+    expect(Object.is(parseManeuverModOverride(0), 0)).toBe(true);
+  });
+
+  it("resolveManeuverMods: the armor's values replace the table's one by one", () => {
+    expect(resolveManeuverMods(9)).toEqual({ minMod: -5, maxMod: -50 });
+    expect(resolveManeuverMods(9, { maxMod: -30 })).toEqual({ minMod: -5, maxMod: -30 });
+    expect(resolveManeuverMods(9, { minMod: 0 })).toEqual({ minMod: 0, maxMod: -50 });
+    expect(resolveManeuverMods(9, { minMod: -2, maxMod: -20 })).toEqual({ minMod: -2, maxMod: -20 });
+  });
+
+  it("the minimum is never worse than the maximum", () => {
+    expect(resolveManeuverMods(9, { maxMod: -10 })).toEqual({ minMod: -5, maxMod: -10 });
+    expect(resolveManeuverMods(9, { minMod: -60 })).toEqual({ minMod: -50, maxMod: -50 });
+  });
+
+  it("an unknown armor type has no mods", () => {
+    expect(resolveManeuverMods(99)).toBeNull();
+  });
+
+  it("a lighter armor than the table: AT 9 with a maximum of -30 and no skill", () => {
+    expect(computeMovingManeuverPenalty(9, 0, { maxMod: -30 })).toBe(-30);
+  });
+
+  it("a heavier armor than the table: AT 9 with a minimum of -20 never gets better than -20", () => {
+    expect(computeMovingManeuverPenalty(9, 500, { minMod: -20 })).toBe(-20);
+  });
+
+  it("an armor that costs nothing at all", () => {
+    expect(computeMovingManeuverPenalty(10, 0, { minMod: 0, maxMod: 0 })).toBe(0);
+  });
+
+  it("no overrides gives the table's result", () => {
+    expect(computeMovingManeuverPenalty(9, 27, {})).toBe(-23);
+    expect(computeMovingManeuverPenalty(9, 27, { minMod: null, maxMod: "" })).toBe(-23);
   });
 });

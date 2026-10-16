@@ -875,6 +875,9 @@
         },
         "armor": {
             "at": "AT",
+            "maneuver_min": "Min. maneuver mod",
+            "maneuver_max": "Max. maneuver mod",
+            "maneuver_mod_hint": "This armor's own minimum / maximum moving maneuver modification. Leave empty to use the table's for its penalty AT (shown greyed out).",
             "at_penalty": "Penalty AT",
             "at_penalty_hint": "The AT this armor penalizes as, when it differs from the AT it protects as. Leave empty to use the same AT.",
             "db": "DB",
