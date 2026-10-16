@@ -3,6 +3,7 @@ import {
 } from "./armor_maneuver_penalty.js";
 import { getSkillManeuverType, MANEUVER_TYPE } from "../skills/skill_maneuver_type.js";
 import { getSkillArmorGroup, armorGroupFromName, isArmorCategory } from "./armor_skill_group.js";
+import { computeBodyArmorCastingPenalty, computeHelmetCastingPenalty } from "./armor_casting_penalty.js";
 
 /**
  * Moving maneuver penalty (MMP) of the armor an actor wears. See armor_maneuver_penalty.js for the rule.
@@ -144,4 +145,37 @@ export function getMissilePenaltyForWeapon(actor, weapon) {
     const { hasBodyArmor, missilePenalty } = getArmorPenalties(actor);
     if (hasBodyArmor) return missilePenalty;
     return Math.abs(Number(actor?.system?.armor_info?.missile_penalty)) || 0;
+}
+
+/** The first equipped armor item in a slot ("body", "helmet" or "shield"), or null. */
+function findEquippedArmorInSlot(actor, slot) {
+    return [...(actor?.items ?? [])].find((i) => {
+        if (i.type !== "armor" || !i.system?.equipped) return false;
+        return (i.system.armorSlot || (i.system.isShield ? "shield" : "body")) === slot;
+    }) ?? null;
+}
+
+const castingOverrides = (item) => ({
+    channeling: item?.system?.cast_penalty_channeling,
+    essence: item?.system?.cast_penalty_essence,
+    mentalism: item?.system?.cast_penalty_mentalism
+});
+
+/**
+ * What the armor and helmet worn take off a spell casting static maneuver (Table T-4.6). Characters only:
+ * NPCs and creatures are ignored on purpose. The body armor counts by the AT it penalizes as (with none
+ * equipped, the AT typed on the sheet); a shield never counts.
+ * @param {Actor} actor
+ * @param {string} spellRealm the spell list's realm, e.g. "essence", "channeling", "essence/channeling"
+ * @returns {{ armor: number, helmet: number, total: number }} all zero or negative
+ */
+export function getCastingPenalty(actor, spellRealm) {
+    if (actor?.type !== "character") return { armor: 0, helmet: 0, total: 0 };
+    const body = findEquippedArmorInSlot(actor, "body");
+    const armor = computeBodyArmorCastingPenalty(getPenaltyArmor(actor).armorType, spellRealm, castingOverrides(body));
+    const helmetItem = findEquippedArmorInSlot(actor, "helmet");
+    const helmet = helmetItem
+        ? computeHelmetCastingPenalty(helmetItem.system.helmet_type, spellRealm, castingOverrides(helmetItem))
+        : 0;
+    return { armor, helmet, total: armor + helmet };
 }

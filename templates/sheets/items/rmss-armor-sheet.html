@@ -76,6 +76,34 @@
                 </table>
             </div>
 
+            {{#if showCastingPenalties}}
+            <div class="rmss-detail-section">
+                <h3 class="rmss-detail-section-title"><i class="fas fa-hat-wizard"></i> {{localize "rmss.armor.casting_section"}}</h3>
+                <table>
+                    <tr>
+                        {{#if showHelmetType}}<th>{{localize "rmss.armor.helmet_type"}}</th>{{/if}}
+                        <th title="{{localize 'rmss.armor.casting_hint'}}">{{localize "rmss.armor.cast_channeling"}}</th>
+                        <th title="{{localize 'rmss.armor.casting_hint'}}">{{localize "rmss.armor.cast_essence"}}</th>
+                        {{#if showCastingMentalism}}<th title="{{localize 'rmss.armor.casting_hint'}}">{{localize "rmss.armor.cast_mentalism"}}</th>{{/if}}
+                    </tr>
+                    <tr>
+                        {{#if showHelmetType}}
+                        <td>
+                            <select name="system.helmet_type">
+                                {{selectOptions helmetTypes selected=system.helmet_type}}
+                            </select>
+                        </td>
+                        {{/if}}
+                        <td><input name="system.cast_penalty_channeling" type="text" value="{{system.cast_penalty_channeling}}" placeholder="{{castingTable.channeling}}" data-dtype="Number" title="{{localize 'rmss.armor.casting_hint'}}"/></td>
+                        <td><input name="system.cast_penalty_essence" type="text" value="{{system.cast_penalty_essence}}" placeholder="{{castingTable.essence}}" data-dtype="Number" title="{{localize 'rmss.armor.casting_hint'}}"/></td>
+                        {{#if showCastingMentalism}}
+                        <td><input name="system.cast_penalty_mentalism" type="text" value="{{system.cast_penalty_mentalism}}" placeholder="{{castingTable.mentalism}}" data-dtype="Number" title="{{localize 'rmss.armor.casting_hint'}}"/></td>
+                        {{/if}}
+                    </tr>
+                </table>
+            </div>
+            {{/if}}
+
             <div class="rmss-detail-section">
                 <h3 class="rmss-detail-section-title"><i class="fas fa-coins"></i> {{localize "rmss.item.section_logistics"}}</h3>
                 <table>

@@ -3,6 +3,7 @@
  */
 import ManeuverPenaltiesService from "../../core/maneuver_penalties_service.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
+import { getCastingPenalty } from "../../core/armor/armor_penalty_service.js";
 
 export default class CastingOptionsService {
 
@@ -80,8 +81,12 @@ export default class CastingOptionsService {
 
         const normalizedRealm = this._normalizeRealm(realm);
         const autoPenalties = (actor != null)
-            ? ManeuverPenaltiesService.getManeuverPenalties(actor, { spellType: spellType })
-            : { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0 };
+            ? (() => {
+                // Armor and helmet hamper casting (Table T-4.6); characters only, by the spell list's realm
+                const { armor, helmet } = getCastingPenalty(actor, realm);
+                return { ...ManeuverPenaltiesService.getManeuverPenalties(actor, { spellType: spellType }), armor, helmet };
+            })()
+            : { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0, armor: 0, helmet: 0 };
         const showAutoPenalties = actor != null;
         const handsOccupied = (actor != null) ? EquipmentService.getHandsOccupiedForCasting(actor) : 0;
         const spellTypeUpper = String(spellType ?? "").toUpperCase();
@@ -165,7 +170,7 @@ export default class CastingOptionsService {
         const handsModifiers = this._getHandsModifiers(realm, modifiers);
         const voiceModifiers = this._getVoiceModifiers(realm, modifiers);
         const fmt = (n) => (n >= 0 ? `+${n}` : `${n}`);
-        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0, activeBonus = 0 } = autoPenalties;
+        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0, activeBonus = 0, armor = 0, helmet = 0 } = autoPenalties;
         const penaltyDisplay = Math.min(0, penaltyEffect);
         const autoPenaltiesBlock = showAutoPenalties ? `
                 <div class="form-group" style="font-size:0.9em; color:#555;">
@@ -174,6 +179,8 @@ export default class CastingOptionsService {
                     <div>${game.i18n.localize("rmss.maneuvers.stunned")}: ${fmt(stunned)}</div>
                     ${penaltyEffect !== 0 ? `<div>${game.i18n.localize("rmss.combat.penalty")}: ${fmt(penaltyDisplay)}</div>` : ""}
                     ${activeBonus !== 0 ? `<div>${game.i18n.localize("rmss.maneuvers.active_effect_bonus")}: ${fmt(activeBonus)}</div>` : ""}
+                    ${armor !== 0 ? `<div>${game.i18n.localize("rmss.spells.armor_casting_penalty")}: ${fmt(armor)}</div>` : ""}
+                    ${helmet !== 0 ? `<div>${game.i18n.localize("rmss.spells.helmet_casting_penalty")}: ${fmt(helmet)}</div>` : ""}
                 </div>
 ` : "";
         const handsHintBlock = showAutoPenalties ? `
@@ -266,8 +273,9 @@ export default class CastingOptionsService {
                         const stunnedMod = ${stunned};
                         const penaltyEffectMod = Math.min(0, ${penaltyEffect});
                         const activeBonusMod = ${activeBonus};
+                        const armorMod = ${armor} + ${helmet};
 
-                        const total = handsMod + voiceMod + prepMod + otherMods + hitsTakenMod + bleedingMod + stunnedMod + penaltyEffectMod + activeBonusMod;
+                        const total = handsMod + voiceMod + prepMod + otherMods + hitsTakenMod + bleedingMod + stunnedMod + penaltyEffectMod + activeBonusMod + armorMod;
                         const sign = total >= 0 ? '+' : '';
                         document.getElementById('casting-total-modifier').innerHTML = '<strong>' + sign + total + '</strong>';
                     };

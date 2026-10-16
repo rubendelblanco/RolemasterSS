@@ -1,6 +1,7 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import { resolveArmorPenalties } from "../../core/armor/armor_maneuver_penalty.js";
+import { getBodyArmorCastingTableRow, getHelmetCastingTableRow } from "../../core/armor/armor_casting_penalty.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 import { castEnchantmentFromItem, itemHasArtifactTag } from "./cast_enchantment_from_item.js";
 import {
@@ -76,7 +77,21 @@ export default class RMSSArmorSheet extends ItemSheet {
     const penaltyAt = Math.trunc(Number(system.at_penalty)) >= 1 ? Math.trunc(Number(system.at_penalty)) : system.at;
     const tableMods = resolveArmorPenalties(penaltyAt) ?? { minMod: 0, maxMod: 0, missilePenalty: 0, quicknessPenalty: 0 };
 
+    // Casting penalties: the table's values for this armor (body, by its penalty AT) or helmet (by its kind)
+    const castingTable = armorSlot === "helmet"
+      ? getHelmetCastingTableRow(system.helmet_type)
+      : getBodyArmorCastingTableRow(penaltyAt);
+
     return {
+      showCastingPenalties: armorSlot === "body" || armorSlot === "helmet",
+      showHelmetType: armorSlot === "helmet",
+      showCastingMentalism: armorSlot === "helmet",
+      castingTable,
+      helmetTypes: {
+        leather: game.i18n.localize("rmss.armor.helmet_type_leather"),
+        mixed: game.i18n.localize("rmss.armor.helmet_type_mixed"),
+        metal: game.i18n.localize("rmss.armor.helmet_type_metal")
+      },
       tableManeuverMin: tableMods.minMod,
       tableManeuverMax: tableMods.maxMod,
       tableMissilePenalty: tableMods.missilePenalty,

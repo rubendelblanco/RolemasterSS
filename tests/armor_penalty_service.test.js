@@ -3,7 +3,7 @@
  */
 import { describe, it, expect, beforeEach, afterEach } from "@jest/globals";
 import { rmss } from "../module/config.js";
-import { findArmorSkill, getMovingManeuverPenalty, getArmorPenaltyForSkill, getPenaltyArmorType, getArmorPenalties, getMissilePenaltyForWeapon } from "../module/core/armor/armor_penalty_service.js";
+import { findArmorSkill, getMovingManeuverPenalty, getArmorPenaltyForSkill, getPenaltyArmorType, getArmorPenalties, getMissilePenaltyForWeapon, getCastingPenalty } from "../module/core/armor/armor_penalty_service.js";
 
 const skill = (name, categorySlug, total_bonus) => ({ type: "skill", name, system: { categorySlug, total_bonus } });
 const actor = (armor_type, ...items) => ({ system: { armor_info: { armor_type } }, items });
@@ -219,6 +219,59 @@ describe("getArmorPenalties and the missile penalty on a weapon", () => {
     for (const type of ["npc", "creature"]) {
       const a = { type, system: { armor_info: {} }, items: [body({ at: 18 })] };
       expect(getMissilePenaltyForWeapon(a, bow)).toBe(0);
+    }
+  });
+});
+
+describe("getCastingPenalty: what the armor and helmet worn take off a spell", () => {
+  const piece = (slot, system) => ({ type: "armor", system: { equipped: true, armorSlot: slot, ...system } });
+  const character = (armorInfo, ...items) => ({ type: "character", system: { armor_info: armorInfo }, items });
+
+  it("body armor counts by its penalty AT, not the AT it protects as", () => {
+    const a = character({}, piece("body", { at: 9, at_penalty: 15 }));
+    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -70, helmet: 0, total: -70 });
+  });
+
+  it("a helmet adds to the armor's penalty, by its kind", () => {
+    const a = character({}, piece("body", { at: 10 }), piece("helmet", { helmet_type: "metal" }));
+    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -25, helmet: -40, total: -65 });
+  });
+
+  it("body armor never hampers mentalism, but the helmet does", () => {
+    const a = character({}, piece("body", { at: 20 }), piece("helmet", { helmet_type: "leather" }));
+    expect(getCastingPenalty(a, "mentalism")).toEqual({ armor: 0, helmet: -30, total: -30 });
+  });
+
+  it("a shield counts for nothing", () => {
+    const a = character({}, piece("shield", { at: 20, isShield: true, db: 25 }));
+    expect(getCastingPenalty(a, "essence").total).toBe(0);
+  });
+
+  it("an unequipped armor or helmet counts for nothing", () => {
+    const a = character({}, { type: "armor", system: { equipped: false, armorSlot: "body", at: 20 } },
+      { type: "armor", system: { equipped: false, armorSlot: "helmet", helmet_type: "metal" } });
+    expect(getCastingPenalty(a, "essence").total).toBe(0);
+  });
+
+  it("the items' own values win over the table's", () => {
+    const a = character({}, piece("body", { at: 10, cast_penalty_essence: -5 }),
+      piece("helmet", { helmet_type: "metal", cast_penalty_essence: 0 }));
+    expect(getCastingPenalty(a, "essence")).toEqual({ armor: -5, helmet: 0, total: -5 });
+  });
+
+  it("a spell of two realms takes the worst for each piece", () => {
+    const a = character({}, piece("body", { at: 15 }), piece("helmet", { helmet_type: "metal" }));
+    expect(getCastingPenalty(a, "essence/mentalism")).toEqual({ armor: -70, helmet: -60, total: -130 });
+  });
+
+  it("with no body armor equipped it reads the AT typed on the sheet", () => {
+    expect(getCastingPenalty(character({ armor_type: 12 }), "essence").armor).toBe(-50);
+  });
+
+  it("NPCs and creatures are ignored", () => {
+    for (const type of ["npc", "creature"]) {
+      const a = { type, system: { armor_info: { armor_type: 20 } }, items: [piece("helmet", { helmet_type: "metal" })] };
+      expect(getCastingPenalty(a, "essence")).toEqual({ armor: 0, helmet: 0, total: 0 });
     }
   });
 });

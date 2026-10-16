@@ -102,6 +102,11 @@ describe('ManeuverPenaltiesService', () => {
             expect(ManeuverPenaltiesService.getTotalAutoPenalty(penalties)).toBe(20);
         });
 
+        test('helmet casting penalty is added in full too', () => {
+            const base = { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0 };
+            expect(ManeuverPenaltiesService.getTotalAutoPenalty({ ...base, armor: -25, helmet: -40 })).toBe(-65);
+        });
+
         test('armor (MMP) is added in full, and is optional so spell callers without it are unaffected', () => {
             const base = { hitsTaken: -10, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0 };
             expect(ManeuverPenaltiesService.getTotalAutoPenalty({ ...base, armor: -40 })).toBe(-50);
