@@ -165,6 +165,32 @@ describe('confirmAndConsumeItem', () => {
         expect(order).toEqual(['macro', 'consume']);
     });
 
+    test('a herb (even a prepared one tagged as a potion) is used up one at a time, running its macro', async () => {
+        global.Dialog.confirm.mockResolvedValue(true);
+        const herb = makeItem(["potion", "consumable"], 3);
+        herb.type = 'herb_or_poison';
+        herb.name = 'Elixir of Kelventari';
+        herb._executeItemMacro = jest.fn().mockResolvedValue(undefined);
+
+        const result = await confirmAndConsumeItem(makeActor(), herb);
+
+        expect(result).toEqual({ applied: true });
+        expect(herb._executeItemMacro).toHaveBeenCalledTimes(1);
+        expect(herb.update).toHaveBeenCalledWith({ "system.quantity": 2 });
+        expect(global.ChatMessage.create).toHaveBeenCalledTimes(1);
+    });
+
+    test('the last unit of a herb is deleted', async () => {
+        global.Dialog.confirm.mockResolvedValue(true);
+        const herb = makeItem([], 1);
+        herb.type = 'herb_or_poison';
+
+        const result = await confirmAndConsumeItem(makeActor(), herb);
+
+        expect(result).toEqual({ itemDeleted: true, applied: true });
+        expect(herb.delete).toHaveBeenCalled();
+    });
+
     test('declined: the item macro does not run', async () => {
         global.Dialog.confirm.mockResolvedValue(false);
         const item = makeItem(["consumable"], 2);
