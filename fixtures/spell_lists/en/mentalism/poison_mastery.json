@@ -382,7 +382,7 @@
           "area_of_effect": "varies",
           "duration": "10 min/lvl",
           "range": "10'",
-          "type": "E",
+          "type": "F",
           "subType": "-",
           "attack_table": "",
           "skillName": "",

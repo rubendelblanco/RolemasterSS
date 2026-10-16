@@ -280,7 +280,7 @@
           "area_of_effect": "varies",
           "duration": "varies",
           "range": "self",
-          "type": "E",
+          "type": "F",
           "subType": "-",
           "attack_table": "",
           "skillName": "",

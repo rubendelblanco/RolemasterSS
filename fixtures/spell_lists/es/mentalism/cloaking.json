@@ -93,7 +93,7 @@
           "area_of_effect": "caster",
           "duration": "1 hr/nvl",
           "range": "self",
-          "type": "E",
+          "type": "F",
           "subType": "-",
           "attack_table": "",
           "skillName": "",
