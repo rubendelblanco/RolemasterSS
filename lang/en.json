@@ -1472,6 +1472,7 @@
             "hands": "Hands",
             "armor_casting_penalty": "Armor",
             "transcend_armor_relief": "Transcend Armor",
+            "cast_from_item_no_roll": "Cast from an item: no casting maneuver.",
             "helmet_casting_penalty": "Helmet",
             "hands_occupied": "Hands occupied: {current} / {max}",
             "voice": "Voice",

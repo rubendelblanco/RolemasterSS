@@ -1472,6 +1472,7 @@
       "hands": "Manos",
       "armor_casting_penalty": "Armadura",
       "transcend_armor_relief": "Trascender armadura",
+      "cast_from_item_no_roll": "Lanzado desde un objeto: no hay maniobra de lanzamiento.",
       "helmet_casting_penalty": "Yelmo",
       "hands_occupied": "Manos ocupadas: {current} / {max}",
       "voice": "Voz",

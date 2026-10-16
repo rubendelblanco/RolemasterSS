@@ -125,31 +125,41 @@ export default class ForceSpellService {
         const targets = Array.from(game.user.targets);
         const hasTargets = targets.length > 0;
 
-        // Roll the dice - open-ended upward (explodes on 96+)
-        const roll = await new Roll("1d100x>95").evaluate();
-        
-        // Natural roll is the FIRST die result (before explosions)
-        const naturalRoll = roll.dice[0].results[0].result;
-        
-        // 100 is special (UM 100) - don't use explosive total, only the natural 100
-        // 96-99 explode normally
-        const rollTotal = naturalRoll === 100 ? 100 : roll.total;
-        
-        // Show dice animation if Dice So Nice is active
-        if (game.dice3d) {
-            await game.dice3d.showForRoll(roll, game.user, syncDice3d);
+        // The d100 is only rolled when it is needed: a Force spell aimed at targets (its Basic Spell Attack, which gives
+        // each target's resistance roll modifier) or a spell that isn't cast from an item (its casting maneuver). Cast
+        // from an item there is no casting maneuver, so with nothing to attack no dice are rolled at all. The two
+        // things are separate: using an item never rolls the casting maneuver, but a Force spell still needs its attack.
+        const isForceSpell = spell.system.type === "F";
+        const needsRoll = !fromEnchantment || (isForceSpell && hasTargets);
+
+        let naturalRoll = null;
+        let rollTotal = null;
+        if (needsRoll) {
+            // Open-ended upward (explodes on 96+)
+            const roll = await new Roll("1d100x>95").evaluate();
+
+            // Natural roll is the FIRST die result (before explosions)
+            naturalRoll = roll.dice[0].results[0].result;
+
+            // 100 is special (UM 100) - don't use explosive total, only the natural 100
+            // 96-99 explode normally
+            rollTotal = naturalRoll === 100 ? 100 : roll.total;
+
+            // Show dice animation if Dice So Nice is active
+            if (game.dice3d) {
+                await game.dice3d.showForRoll(roll, game.user, syncDice3d);
+            }
         }
 
         // Unmodified rolls: 01-02 and 96-100 (don't add skill bonus or casting modifiers)
         // For unmodified high rolls (96-99), use the explosive total
         // For 100, use just 100 (special result UM 100)
         // Modified rolls: 03-95 (add skill bonus and casting modifiers to first roll only)
-        const isUnmodified = naturalRoll <= 2 || naturalRoll >= 96;
+        const isUnmodified = needsRoll && (naturalRoll <= 2 || naturalRoll >= 96);
         const totalBonus = skillBonus + totalCastingModifier + enchantmentAttackBonus;
-        const finalResult = isUnmodified ? rollTotal : naturalRoll + totalBonus;
+        const finalResult = !needsRoll ? null : (isUnmodified ? rollTotal : naturalRoll + totalBonus);
 
         // Only process RR for Force (F) type spells with targets
-        const isForceSpell = spell.system.type === "F";
         let isFumble = false;
         let targetRRs = [];
         let failureResult = null;
@@ -450,6 +460,7 @@ export default class ForceSpellService {
         const totalBonus = skillBonus + castingModifier + enchantmentAttackBonus;
         const formatMod = (n) => n >= 0 ? `+${n}` : `${n}`;
         const isExplosive = rollTotal && rollTotal !== naturalRoll;
+        const rolled = naturalRoll !== null && naturalRoll !== undefined;
         
         let content = `
             <div style="border: 1px solid #555; border-radius: 8px; padding: 8px 10px; background: rgba(0,0,0,0.25); box-shadow: 0 0 6px rgba(0,0,0,0.4);">
@@ -467,8 +478,8 @@ export default class ForceSpellService {
                 </div>
                 <hr style="border: none; border-top: 1px solid #333; margin: 6px 0;">
                 <div style="font-size: 0.9em; color: #fff;">
-                    <div>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${naturalRoll}</strong>${isExplosive ? ` → <strong style="color: orange;">${rollTotal}</strong> 💥` : ''}${isUnmodified ? ` <em style="color:#aaa;">(${game.i18n.localize("rmss.spells.unmodified")})</em>` : ''}</div>
-                    ${!isUnmodified ? `
+                    ${!rolled ? `<div>✨ ${game.i18n.localize("rmss.spells.cast_from_item_no_roll")}</div>` : `<div>🎲 ${game.i18n.localize("rmss.spells.roll")}: <strong>${naturalRoll}</strong>${isExplosive ? ` → <strong style="color: orange;">${rollTotal}</strong> 💥` : ''}${isUnmodified ? ` <em style="color:#aaa;">(${game.i18n.localize("rmss.spells.unmodified")})</em>` : ''}</div>`}
+                    ${rolled && !isUnmodified ? `
                     <div>📊 Skill: <strong>${formatMod(skillBonus)}</strong></div>
                     ${castingModifier !== 0 ? `<div>🎯 Casting: <strong>${formatMod(castingModifier)}</strong></div>` : ''}
                     ${enchantmentAttackBonus !== 0 ? `<div>✨ ${game.i18n.localize("rmss.item.enchantments_attack_bonus")}: <strong>${formatMod(enchantmentAttackBonus)}</strong></div>` : ''}
@@ -478,7 +489,7 @@ export default class ForceSpellService {
                     ${penaltyEffect !== 0 ? `<div>🩹 ${game.i18n.localize("rmss.combat.penalty")}: <strong>${formatMod(Math.min(0, penaltyEffect))}</strong></div>` : ''}
                     ${movementPenalty !== 0 ? `<div>🏃 ${game.i18n.localize("rmss.spells.movement_penalty")}: <strong>${formatMod(movementPenalty)}</strong></div>` : ''}
                     ` : ''}
-                    <div>📈 Total: <strong>${finalResult}</strong></div>
+                    ${rolled ? `<div>📈 Total: <strong>${finalResult}</strong></div>` : ''}
                 </div>
         `;
 
