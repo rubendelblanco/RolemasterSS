@@ -26,6 +26,7 @@
                             {{else}}{{#if showShieldDb}}{{localize "rmss.armor.db"}}
                             {{else}}—{{/if}}{{/if}}
                         </th>
+                        {{#if showArmorAt}}<th title="{{localize 'rmss.armor.at_penalty_hint'}}">{{localize "rmss.armor.at_penalty"}}</th>{{/if}}
                     </tr>
                     <tr>
                         <td>
@@ -50,6 +51,11 @@
                             <span class="rmss-armor-slot-na">—</span>
                             {{/if}}{{/if}}
                         </td>
+                        {{#if showArmorAt}}
+                        <td>
+                            <input name="system.at_penalty" type="text" value="{{system.at_penalty}}" placeholder="{{system.at}}" data-dtype="Number" title="{{localize 'rmss.armor.at_penalty_hint'}}"/>
+                        </td>
+                        {{/if}}
                     </tr>
                 </table>
             </div>

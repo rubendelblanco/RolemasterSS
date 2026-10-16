@@ -51,6 +51,7 @@ import { computeFoodImpliesConsumableGuard } from "./module/sheets/items/consume
 import { registerParrySetting } from "./module/combat/services/parry_settings.js";
 import { registerCombatEventSettings, runCombatEventMacro } from "./module/combat/services/combat_event_macro_service.js";
 import { findStaleBridgeItems } from "./module/sheets/items/embedded_spell_flag_util.js";
+import { computeAutoArmorGroup } from "./module/core/armor/armor_skill_group.js";
 
 export let socket;
 
@@ -1042,6 +1043,30 @@ Hooks.once("init", function () {
     if (derivedSlug) {
       update.system = foundry.utils.mergeObject(update.system ?? {}, { slug: derivedSlug });
     }
+  });
+
+  // Armor skills: when one is created or renamed and its armor group is still empty, fill it in from its name
+  // (compared as a slug, see armor_skill_group.js). The penalty calculation reads the group, never the name.
+  Hooks.on("preCreateItem", (item, data) => {
+    if (item.type !== "skill") return;
+    const group = computeAutoArmorGroup({
+      name: item.name ?? data.name,
+      categorySlug: item.system?.categorySlug ?? data.system?.categorySlug,
+      currentGroup: item.system?.armor_group ?? data.system?.armor_group
+    });
+    if (group) item.updateSource({ "system.armor_group": group });
+  });
+
+  Hooks.on("preUpdateItem", (item, update) => {
+    if (item.type !== "skill") return;
+    const touchesIt = "name" in update || update.system?.categorySlug !== undefined || update.system?.armor_group !== undefined;
+    if (!touchesIt) return;
+    const group = computeAutoArmorGroup({
+      name: update.name ?? item.name,
+      categorySlug: update.system?.categorySlug ?? item.system?.categorySlug,
+      currentGroup: update.system?.armor_group ?? item.system?.armor_group
+    });
+    if (group) update.system = foundry.utils.mergeObject(update.system ?? {}, { armor_group: group });
   });
 
   // Items dropped onto an actor are worn by default (character is carrying them)

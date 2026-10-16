@@ -101,5 +101,11 @@ describe('ManeuverPenaltiesService', () => {
             const penalties = { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 20 };
             expect(ManeuverPenaltiesService.getTotalAutoPenalty(penalties)).toBe(20);
         });
+
+        test('armor (MMP) is added in full, and is optional so spell callers without it are unaffected', () => {
+            const base = { hitsTaken: -10, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0 };
+            expect(ManeuverPenaltiesService.getTotalAutoPenalty({ ...base, armor: -40 })).toBe(-50);
+            expect(ManeuverPenaltiesService.getTotalAutoPenalty(base)).toBe(-10);
+        });
     });
 });

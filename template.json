@@ -454,6 +454,7 @@
       "weight": 0,
       "cost": 0,
       "at": 1,
+      "at_penalty": null,
       "db": 0,
       "armorSlot": "body",
       "isShield": false,
@@ -551,7 +552,8 @@
       "favorite": false,
       "designation": "None",
       "offensive_skill": "none",
-      "maneuver_type": ""
+      "maneuver_type": "",
+      "armor_group": ""
     },
     "skill_category": {
       "templates": ["base"],

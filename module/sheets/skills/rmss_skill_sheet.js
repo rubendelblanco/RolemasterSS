@@ -2,6 +2,7 @@
 import RankCalculator from "../../core/skills/rmss_rank_calculator.js";
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import { bindMacroDropZone } from "../items/macro_drop_util.js";
+import { isArmorCategory } from "../../core/armor/armor_skill_group.js";
 
 export default class RMSSSkillSheet extends ItemSheet {
 
@@ -39,6 +40,14 @@ export default class RMSSSkillSheet extends ItemSheet {
       enrichedDescription: enrichedDescription,
       selected_skillcat: selectedSkillCategory,
       designations: CONFIG.rmss.skill_designations,
+      showArmorGroup: isArmorCategory(baseData.item.system?.categorySlug),
+      armorGroups: {
+        "": game.i18n.localize("rmss.skill.armor_group_none"),
+        soft_leather: game.i18n.localize("rmss.skill.armor_group_soft_leather"),
+        rigid_leather: game.i18n.localize("rmss.skill.armor_group_rigid_leather"),
+        chain: game.i18n.localize("rmss.skill.armor_group_chain"),
+        plate: game.i18n.localize("rmss.skill.armor_group_plate")
+      },
       maneuverTypes: {
         "": game.i18n.localize("rmss.skill.maneuver_type_auto"),
         moving: game.i18n.localize("rmss.skill.maneuver_type_moving"),

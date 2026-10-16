@@ -1,4 +1,5 @@
 import EquipmentService from "../actors/services/equipment_service.js";
+import { getMovingManeuverPenalty } from "../core/armor/armor_penalty_service.js";
 
 /** A bonus_skills/bonus_skill_categories array may come back as an object with numeric keys
  *  (form submission quirk) instead of a real array - normalize either shape to an array. */
@@ -59,6 +60,9 @@ export class RMSSActor extends Actor {
 
     // Iterate through and apply Skill Category Bonuses for Skill items
     this.calculateSkillBonuses();
+
+    // Armor's moving maneuver penalty (needs the armor skill's final bonus from the step above)
+    this.calculateArmorManeuverPenalty(actorData);
   }
 
   /**
@@ -192,6 +196,14 @@ export class RMSSActor extends Actor {
     actorData.system.stats.strength.stat_bonus = Number(systemData.stats.strength.racial_bonus)
                                                + Number(systemData.stats.strength.special_bonus)
                                                + Number(systemData.stats.strength.basic_bonus);
+  }
+
+  // MMP shown on the sheet: derived from the armor type worn and the character's skill in that armor
+  // (RMFRP 8.4), so it can no longer be typed in by hand. Characters only.
+  calculateArmorManeuverPenalty(actorData) {
+    const armorInfo = actorData.system.armor_info;
+    if (!armorInfo) return;
+    armorInfo.mmp = getMovingManeuverPenalty(this).mmp;
   }
 
   // Weight penalty (encumbrance): carrying more than 10% of body weight (only items marked
