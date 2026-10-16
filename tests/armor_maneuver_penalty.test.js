@@ -4,7 +4,7 @@
 import { describe, it, expect } from "@jest/globals";
 import {
   ARMOR_SKILL_GROUP, getArmorTableRow, getArmorSkillGroup, computeMovingManeuverPenalty,
-  parseManeuverModOverride, resolveManeuverMods
+  parseManeuverModOverride, resolveManeuverMods, resolveArmorPenalties, parsePenaltyAmountOverride
 } from "../module/core/armor/armor_maneuver_penalty.js";
 
 describe("getArmorTableRow (Armor Table T-3.3)", () => {
@@ -133,5 +133,32 @@ describe("an armor's own minimum and maximum", () => {
   it("no overrides gives the table's result", () => {
     expect(computeMovingManeuverPenalty(9, 27, {})).toBe(-23);
     expect(computeMovingManeuverPenalty(9, 27, { minMod: null, maxMod: "" })).toBe(-23);
+  });
+});
+
+describe("resolveArmorPenalties and the missile / Quickness overrides", () => {
+  it("the table's values when the armor has none of its own", () => {
+    expect(resolveArmorPenalties(18)).toEqual({ minMod: -20, maxMod: -110, missilePenalty: 10, quicknessPenalty: 20 });
+    expect(resolveArmorPenalties(9)).toEqual({ minMod: -5, maxMod: -50, missilePenalty: 0, quicknessPenalty: 0 });
+  });
+
+  it("the armor's own missile and Quickness penalties replace the table's, each on its own", () => {
+    expect(resolveArmorPenalties(18, { missilePenalty: 3 })).toMatchObject({ missilePenalty: 3, quicknessPenalty: 20 });
+    expect(resolveArmorPenalties(18, { quicknessPenalty: 5 })).toMatchObject({ missilePenalty: 10, quicknessPenalty: 5 });
+    expect(resolveArmorPenalties(18, { missilePenalty: 0, quicknessPenalty: 0 })).toMatchObject({ missilePenalty: 0, quicknessPenalty: 0 });
+  });
+
+  it("they are amounts to take off: the sign typed does not matter", () => {
+    expect(resolveArmorPenalties(9, { missilePenalty: -7, quicknessPenalty: "-4" })).toMatchObject({ missilePenalty: 7, quicknessPenalty: 4 });
+  });
+
+  it("empty or nonsense counts as not set", () => {
+    expect(resolveArmorPenalties(18, { missilePenalty: "", quicknessPenalty: null })).toMatchObject({ missilePenalty: 10, quicknessPenalty: 20 });
+    expect(parsePenaltyAmountOverride("abc")).toBeUndefined();
+  });
+
+  it("carries the maneuver mods too, and is null for an unknown armor type", () => {
+    expect(resolveArmorPenalties(9, { maxMod: -30 })).toMatchObject({ minMod: -5, maxMod: -30 });
+    expect(resolveArmorPenalties(99)).toBeNull();
   });
 });

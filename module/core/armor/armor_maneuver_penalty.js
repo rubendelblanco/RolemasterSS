@@ -99,6 +99,37 @@ export function resolveManeuverMods(armorType, overrides = {}) {
 }
 
 /**
+ * An armor's own missile attack penalty or armor Quickness penalty, as typed on the armor item. Empty means
+ * "use the table's". The table prints them as positive amounts to take off, so the sign typed is ignored.
+ * @param {*} value
+ * @returns {number|undefined} undefined when nothing was set
+ */
+export function parsePenaltyAmountOverride(value) {
+    if (value === null || value === undefined || value === "") return undefined;
+    const n = Number(value);
+    return Number.isFinite(n) ? Math.abs(n) : undefined;
+}
+
+/**
+ * Every penalty an armor type carries (Armor Table T-3.3), with the armor's own values on top: the minimum and
+ * maximum moving maneuver modification, the missile attack penalty and the armor Quickness penalty.
+ * @param {number|string} armorType
+ * @param {{ minMod?: *, maxMod?: *, missilePenalty?: *, quicknessPenalty?: * }} [overrides] raw values from the armor item
+ * @returns {{ minMod: number, maxMod: number, missilePenalty: number, quicknessPenalty: number }|null}
+ */
+export function resolveArmorPenalties(armorType, overrides = {}) {
+    const row = getArmorTableRow(armorType);
+    if (!row) return null;
+    const { minMod, maxMod } = resolveManeuverMods(armorType, overrides);
+    return {
+        minMod,
+        maxMod,
+        missilePenalty: parsePenaltyAmountOverride(overrides?.missilePenalty) ?? row.missilePenalty,
+        quicknessPenalty: parsePenaltyAmountOverride(overrides?.quicknessPenalty) ?? row.quicknessPenalty
+    };
+}
+
+/**
  * The moving maneuver penalty for an armor type and the wearer's bonus in the armor's skill.
  * @param {number|string} armorType
  * @param {number} [armorSkillBonus=0] total bonus of the armor skill (category and stat bonuses included)

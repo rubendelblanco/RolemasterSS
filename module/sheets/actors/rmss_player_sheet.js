@@ -16,6 +16,7 @@ import ForceSpellService from "../../spells/services/force_spell_service.js";
 import RaceService from "../../actors/services/race_service.js";
 import { chatMessageOtherStyle } from "../../chat/chatMessages.js";
 import RestService from "../../actors/services/rest_service.js";
+import ArmorInfoService from "../../actors/services/armor_info_service.js";
 
 export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
@@ -775,12 +776,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
       quicknessPenalty = parseValue(armorInfo.quickness_penalty);
     }
     
-    // Sum only the fields from template.json lines 39-43
-    // quickness_penalty subtracts (not adds)
-    const total = quicknessBonus + adrenalDefense + magic + shieldBonus - quicknessPenalty;
-    
-    // Ensure total_db is never negative (minimum value is 0)
-    return Math.max(0, total);
+    // The armor's Quickness penalty only takes off the Quickness bonus, which never goes below 0;
+    // total_db is never negative either
+    return ArmorInfoService.computeCharacterTotalDb({ quicknessBonus, quicknessPenalty, adrenalDefense, magic, shieldBonus });
   }
 
   /**

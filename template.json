@@ -457,6 +457,8 @@
       "at_penalty": null,
       "maneuver_min": null,
       "maneuver_max": null,
+      "missile_penalty": null,
+      "quickness_penalty": null,
       "db": 0,
       "armorSlot": "body",
       "isShield": false,

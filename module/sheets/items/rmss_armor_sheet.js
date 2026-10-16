@@ -1,6 +1,6 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
-import { resolveManeuverMods } from "../../core/armor/armor_maneuver_penalty.js";
+import { resolveArmorPenalties } from "../../core/armor/armor_maneuver_penalty.js";
 import { bindItemTagsEditor, getItemTagListId, getItemTagsArray } from "./item_tags_ui.js";
 import { castEnchantmentFromItem, itemHasArtifactTag } from "./cast_enchantment_from_item.js";
 import {
@@ -74,11 +74,13 @@ export default class RMSSArmorSheet extends ItemSheet {
     const armorSlot = system.armorSlot || (system.isShield ? "shield" : "body");
     // What the table says for the AT this armor penalizes as: shown as the placeholder of the min / max fields
     const penaltyAt = Math.trunc(Number(system.at_penalty)) >= 1 ? Math.trunc(Number(system.at_penalty)) : system.at;
-    const tableMods = resolveManeuverMods(penaltyAt) ?? { minMod: 0, maxMod: 0 };
+    const tableMods = resolveArmorPenalties(penaltyAt) ?? { minMod: 0, maxMod: 0, missilePenalty: 0, quicknessPenalty: 0 };
 
     return {
       tableManeuverMin: tableMods.minMod,
       tableManeuverMax: tableMods.maxMod,
+      tableMissilePenalty: tableMods.missilePenalty,
+      tableQuicknessPenalty: tableMods.quicknessPenalty,
       owner: this.item.isOwner,
       editable: this.isEditable,
       item: baseData.item,

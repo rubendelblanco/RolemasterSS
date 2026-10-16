@@ -1,5 +1,5 @@
 import {
-    ARMOR_SKILL_GROUP, getArmorSkillGroup, computeMovingManeuverPenalty
+    ARMOR_SKILL_GROUP, getArmorSkillGroup, computeMovingManeuverPenalty, resolveArmorPenalties
 } from "./armor_maneuver_penalty.js";
 import { getSkillManeuverType, MANEUVER_TYPE } from "../skills/skill_maneuver_type.js";
 import { getSkillArmorGroup, armorGroupFromName, isArmorCategory } from "./armor_skill_group.js";
@@ -47,7 +47,15 @@ export function getPenaltyArmor(actor) {
     }
     const penaltyAt = Math.trunc(Number(body.system.at_penalty));
     const armorType = penaltyAt >= 1 ? penaltyAt : (Math.trunc(Number(body.system.at)) || 1);
-    return { armorType, overrides: { minMod: body.system.maneuver_min, maxMod: body.system.maneuver_max } };
+    return {
+        armorType,
+        overrides: {
+            minMod: body.system.maneuver_min,
+            maxMod: body.system.maneuver_max,
+            missilePenalty: body.system.missile_penalty,
+            quicknessPenalty: body.system.quickness_penalty
+        }
+    };
 }
 
 /**
@@ -103,4 +111,34 @@ export function getArmorPenaltyForSkill(actor, skill) {
     if (actor?.type !== "character") return 0;
     if (getSkillManeuverType(skill) !== MANEUVER_TYPE.MOVING) return 0;
     return getMovingManeuverPenalty(actor).mmp;
+}
+
+/**
+ * Every penalty of the armor the actor wears, from the equipped body armor (its penalty AT and its own values)
+ * or, with none equipped, from the AT typed on the sheet.
+ * @param {Actor} actor
+ * @returns {{ armorType: number, hasBodyArmor: boolean, minMod: number, maxMod: number, missilePenalty: number, quicknessPenalty: number }}
+ */
+export function getArmorPenalties(actor) {
+    const { armorType, overrides } = getPenaltyArmor(actor);
+    const hasBodyArmor = [...(actor?.items ?? [])].some((i) => i.type === "armor" && i.system?.equipped
+        && (i.system.armorSlot || (i.system.isShield ? "shield" : "body")) === "body");
+    const all = resolveArmorPenalties(armorType, overrides) ?? { minMod: 0, maxMod: 0, missilePenalty: 0, quicknessPenalty: 0 };
+    return { armorType, hasBodyArmor, ...all };
+}
+
+/**
+ * What armor takes off an attack with this weapon: its missile attack penalty, for a character shooting a
+ * missile weapon, zero otherwise. With a body armor equipped it comes from that armor; without one, from the
+ * value typed on the sheet. NPCs and creatures are ignored on purpose.
+ * @param {Actor} actor
+ * @param {Item} weapon
+ * @returns {number} zero or positive: the amount to subtract from the OB
+ */
+export function getMissilePenaltyForWeapon(actor, weapon) {
+    if (actor?.type !== "character") return 0;
+    if (weapon?.system?.type !== "mis") return 0;
+    const { hasBodyArmor, missilePenalty } = getArmorPenalties(actor);
+    if (hasBodyArmor) return missilePenalty;
+    return Math.abs(Number(actor?.system?.armor_info?.missile_penalty)) || 0;
 }

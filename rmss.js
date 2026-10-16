@@ -1197,7 +1197,10 @@ Hooks.once("init", function () {
       "system.equipped" in update || "system.bonus" in update || "system.at" in update || "system.db" in update ||
       "system.armorSlot" in update || "system.material" in update ||
       s?.equipped !== undefined || s?.bonus !== undefined || s?.at !== undefined || s?.db !== undefined ||
-      s?.armorSlot !== undefined || s?.material !== undefined;
+      s?.armorSlot !== undefined || s?.material !== undefined ||
+      // penalty AT and the armor's own penalties (see core/armor)
+      ["at_penalty", "maneuver_min", "maneuver_max", "missile_penalty", "quickness_penalty"]
+        .some((k) => s?.[k] !== undefined || `system.${k}` in update);
     if (!armorRelevant) return;
     const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
     await ArmorInfoService.updateActorArmorInfo(actor);

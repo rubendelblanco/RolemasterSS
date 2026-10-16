@@ -18,6 +18,7 @@ import { pickMissileAmmoForAttack, consumeChosenAmmo } from "../actors/utils/amm
 import { withPublicRollMode } from "../chat/chatMessages.js";
 import { getWeaponSlayingArray } from "../sheets/items/weapon_slaying_ui.js";
 import { getCreatureTagsArray } from "../sheets/actors/creature_tags_ui.js";
+import { getMissilePenaltyForWeapon } from "../core/armor/armor_penalty_service.js";
 
 export class RMSSWeaponSkillManager {
 
@@ -259,6 +260,8 @@ export class RMSSWeaponSkillManager {
             const ammoLikeForOb = ammoAsWeaponLike(tokenData?.ammo);
             if (ammoLikeForOb) bonusValue += RMSSWeaponSkillManager._getSlayingBonusDelta(ammoLikeForOb, realEnemy, enemy);
             bonusValue += Number(tokenData?.ammoBonus) || 0;
+            // Armor on the arms and hands hampers missile fire (Armor Table T-3.3); characters shooting a missile weapon only
+            bonusValue -= getMissilePenaltyForWeapon(realActor, realWeapon);
             bonusValue -= Math.round((1 - (move.current / moveMax)) * 100);
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.value ?? 0) > 0;
         }

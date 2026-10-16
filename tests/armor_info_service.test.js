@@ -290,3 +290,96 @@ describe('ArmorInfoService.migrateNaturalDbIfMissing', () => {
     expect(actor.getLastUpdatePayload()).toBeUndefined();
   });
 });
+
+describe('ArmorInfoService.updateActorArmorInfo: a character\'s armor penalties', () => {
+  function makeCharacterActor(armorInfo, items) {
+    const updateCalls = [];
+    return {
+      type: "character",
+      system: { armor_info: armorInfo },
+      items,
+      async update(data) { updateCalls.push(data); },
+      getLastUpdatePayload() { return updateCalls[updateCalls.length - 1]; }
+    };
+  }
+
+  test('body armor on: Quickness and missile penalties come from its penalty AT, and the Quickness one lowers total_db', async () => {
+    const body = makeArmor({ slot: "body", at: 18 });
+    const actor = makeCharacterActor({ quickness_bonus: 30, adrenal_defense: 0, quickness_penalty: 0, missile_penalty: 0 }, [body]);
+    await ArmorInfoService.updateActorArmorInfo(actor);
+    const payload = actor.getLastUpdatePayload();
+    expect(payload["system.armor_info.armor_type"]).toBe(18);
+    expect(payload["system.armor_info.quickness_penalty"]).toBe(20);
+    expect(payload["system.armor_info.missile_penalty"]).toBe(10);
+    expect(payload["system.armor_info.total_db"]).toBe(10);
+  });
+
+  test('the armor\'s own penalty AT and values win: protects as 18, penalizes as 9 with its own missile penalty', async () => {
+    const body = makeArmor({ slot: "body", at: 18 });
+    body.system.at_penalty = 9;
+    body.system.missile_penalty = 3;
+    const actor = makeCharacterActor({ quickness_bonus: 30 }, [body]);
+    await ArmorInfoService.updateActorArmorInfo(actor);
+    const payload = actor.getLastUpdatePayload();
+    expect(payload["system.armor_info.armor_type"]).toBe(18);
+    expect(payload["system.armor_info.quickness_penalty"]).toBe(0);
+    expect(payload["system.armor_info.missile_penalty"]).toBe(3);
+    expect(payload["system.armor_info.total_db"]).toBe(30);
+  });
+
+  test('no body armor: what is typed on the sheet stays untouched', async () => {
+    const actor = makeCharacterActor({ quickness_bonus: 30, quickness_penalty: 5, missile_penalty: 7 }, []);
+    await ArmorInfoService.updateActorArmorInfo(actor);
+    const payload = actor.getLastUpdatePayload();
+    expect(payload).not.toHaveProperty("system.armor_info.quickness_penalty");
+    expect(payload).not.toHaveProperty("system.armor_info.missile_penalty");
+    expect(payload["system.armor_info.total_db"]).toBe(25);
+  });
+});
+
+describe('ArmorInfoService.computeCharacterTotalDb', () => {
+  test('without a penalty it is the plain sum', () => {
+    expect(ArmorInfoService.computeCharacterTotalDb({ quicknessBonus: 30, adrenalDefense: 5, magic: 10, shieldBonus: 20 })).toBe(65);
+  });
+
+  test('the Quickness penalty takes off the Quickness bonus', () => {
+    expect(ArmorInfoService.computeCharacterTotalDb({ quicknessBonus: 30, quicknessPenalty: 20 })).toBe(10);
+  });
+
+  test('the Quickness bonus never goes below 0: a bigger penalty does not eat into the rest of the DB', () => {
+    const total = ArmorInfoService.computeCharacterTotalDb({ quicknessBonus: 9, quicknessPenalty: 40, adrenalDefense: 5, magic: 10, shieldBonus: 20 });
+    expect(total).toBe(35);
+  });
+
+  test('a penalty equal to the bonus cancels it exactly', () => {
+    expect(ArmorInfoService.computeCharacterTotalDb({ quicknessBonus: 15, quicknessPenalty: 15, shieldBonus: 20 })).toBe(20);
+  });
+
+  test('a negative Quickness bonus is floored too, and the total is never negative', () => {
+    expect(ArmorInfoService.computeCharacterTotalDb({ quicknessBonus: -9, quicknessPenalty: 10 })).toBe(0);
+    expect(ArmorInfoService.computeCharacterTotalDb({ quicknessBonus: 0, adrenalDefense: -5 })).toBe(0);
+  });
+
+  test('copes with missing or non-numeric parts', () => {
+    expect(ArmorInfoService.computeCharacterTotalDb()).toBe(0);
+    expect(ArmorInfoService.computeCharacterTotalDb({ quicknessBonus: "12", quicknessPenalty: "x", shieldBonus: undefined })).toBe(12);
+  });
+});
+
+describe('a character in heavy armor with a shield keeps the shield and magic bonuses', () => {
+  test('updateActorArmorInfo: penalty 40 against Quickness 9 leaves shield and magic whole', async () => {
+    const body = makeArmor({ slot: "body", at: 20 });
+    const shield = makeArmor({ slot: "shield", db: 25, bonus: 0 });
+    const actor = {
+      type: "character",
+      system: { armor_info: { quickness_bonus: 9, adrenal_defense: 0 } },
+      items: [body, shield],
+      updates: [],
+      async update(d) { this.updates.push(d); }
+    };
+    await ArmorInfoService.updateActorArmorInfo(actor);
+    const payload = actor.updates.at(-1);
+    expect(payload["system.armor_info.quickness_penalty"]).toBe(40);
+    expect(payload["system.armor_info.total_db"]).toBe(25);
+  });
+});

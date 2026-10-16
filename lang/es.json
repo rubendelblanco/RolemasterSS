@@ -875,6 +875,10 @@
     },
     "armor": {
       "at": "TA",
+      "missile_penalty": "Penaliz. a proyectiles",
+      "missile_penalty_hint": "Se resta a la OB de los ataques con proyectiles hechos con esta armadura. Déjalo vacío para usar el de la tabla para su TA de penalización (sale en gris).",
+      "quickness_penalty": "Penaliz. de Rapidez",
+      "quickness_penalty_hint": "Se resta a la bonificación de Rapidez que da la DB. Déjalo vacío para usar el de la tabla para su TA de penalización (sale en gris).",
       "maneuver_min": "Mod. mín. a maniobras",
       "maneuver_max": "Mod. máx. a maniobras",
       "maneuver_mod_hint": "Modificación mínima / máxima de esta armadura a las maniobras de movimiento. Déjalo vacío para usar la de la tabla para su TA de penalización (sale en gris).",

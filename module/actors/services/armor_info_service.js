@@ -3,7 +3,8 @@
  * - armor_type (AT): from equipped body armor only
  * - shield_bonus: from equipped shield system.db (defensive bonus)
  * - magic: sum of material bonuses (system.bonus > 0) from all equipped armor (body, helmet, shield)
- * - total_db: recalculated from quickness_bonus + adrenal_defense + magic + shield_bonus - quickness_penalty
+ * - total_db: recalculated from quickness_bonus + adrenal_defense + magic + shield_bonus, where the armor's
+ *   quickness_penalty only ever takes off quickness_bonus, which can't drop below 0 (see computeCharacterTotalDb)
  * - quickness_bonus (characters): (stats.quickness.stat_bonus) * 3 — stat_bonus is racial + special + basic (table from temp)
  * - creature actors: total_db = intrinsic_db + magic + shield_bonus (intrinsic = previous total minus previous
  *   magic/shield from this service); armor_type is updated only when body armor is equipped (manual AT is kept
@@ -15,6 +16,8 @@
  *   (which npc never populates quickness_bonus/adrenal_defense for) and just replaced the
  *   natural DB with the armor bonus instead of adding to it.
  */
+import { getArmorPenalties } from "../../core/armor/armor_penalty_service.js";
+
 export default class ArmorInfoService {
 
   /**
@@ -42,18 +45,30 @@ export default class ArmorInfoService {
    * For character actors only; uses current armor_info fields for the other total_db terms.
    * @param {Actor} actor
    */
+  /**
+   * A character's total DB. The armor's Quickness penalty reduces the Quickness bonus and nothing else, and that
+   * bonus never goes below zero: the penalty cannot eat into the adrenal, magic or shield parts of the DB.
+   * @param {{ quicknessBonus?: number, quicknessPenalty?: number, adrenalDefense?: number, magic?: number, shieldBonus?: number }} parts
+   * @returns {number} never negative
+   */
+  static computeCharacterTotalDb({ quicknessBonus = 0, quicknessPenalty = 0, adrenalDefense = 0, magic = 0, shieldBonus = 0 } = {}) {
+    const num = (v) => Number(v) || 0;
+    const effectiveQuickness = Math.max(0, num(quicknessBonus) - num(quicknessPenalty));
+    return Math.max(0, effectiveQuickness + num(adrenalDefense) + num(magic) + num(shieldBonus));
+  }
+
   static async syncQuicknessArmorBonus(actor) {
     if (actor?.type !== "character" || !actor.system?.armor_info) return;
     actor.prepareData();
     const quickness_bonus = (Number(actor.system.stats?.quickness?.stat_bonus) || 0) * 3;
     const info = actor.system.armor_info;
-    const total_db = Math.max(0,
-      quickness_bonus +
-      (Number(info.adrenal_defense) || 0) +
-      (Number(info.magic) || 0) +
-      (Number(info.shield_bonus) || 0) -
-      (Number(info.quickness_penalty) || 0)
-    );
+    const total_db = this.computeCharacterTotalDb({
+      quicknessBonus: quickness_bonus,
+      quicknessPenalty: info.quickness_penalty,
+      adrenalDefense: info.adrenal_defense,
+      magic: info.magic,
+      shieldBonus: info.shield_bonus
+    });
     const prevQb = Number(actor.system.armor_info.quickness_bonus) || 0;
     const prevDb = Number(actor.system.armor_info.total_db) || 0;
     if (prevQb === quickness_bonus && prevDb === total_db) return;
@@ -183,11 +198,19 @@ export default class ArmorInfoService {
     } else {
       const quicknessBonus = Number(armorInfo.quickness_bonus) || 0;
       const adrenalDefense = Number(armorInfo.adrenal_defense) || 0;
-      const quicknessPenalty = Number(armorInfo.quickness_penalty) || 0;
+      let quicknessPenalty = Number(armorInfo.quickness_penalty) || 0;
+      // With a body armor on, its penalties (Armor Table T-3.3 for its penalty AT, or the armor's own values) are
+      // the ones that count; without one, whatever is typed on the sheet stays.
+      if (equipped.body) {
+        const penalties = getArmorPenalties(actor);
+        quicknessPenalty = penalties.quicknessPenalty;
+        updates["system.armor_info.quickness_penalty"] = penalties.quicknessPenalty;
+        updates["system.armor_info.missile_penalty"] = penalties.missilePenalty;
+      }
       updates["system.armor_info.armor_type"] = armor_type;
-      updates["system.armor_info.total_db"] = Math.max(0,
-        quicknessBonus + adrenalDefense + magic + shield_bonus - quicknessPenalty
-      );
+      updates["system.armor_info.total_db"] = this.computeCharacterTotalDb({
+        quicknessBonus, quicknessPenalty, adrenalDefense, magic, shieldBonus: shield_bonus
+      });
     }
 
     await actor.update(updates);

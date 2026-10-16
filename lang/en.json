@@ -875,6 +875,10 @@
         },
         "armor": {
             "at": "AT",
+            "missile_penalty": "Missile penalty",
+            "missile_penalty_hint": "Taken off the OB of missile attacks made in this armor. Leave empty to use the table's for its penalty AT (shown greyed out).",
+            "quickness_penalty": "Quickness penalty",
+            "quickness_penalty_hint": "Taken off the Quickness bonus the wearer's DB gets. Leave empty to use the table's for its penalty AT (shown greyed out).",
             "maneuver_min": "Min. maneuver mod",
             "maneuver_max": "Max. maneuver mod",
             "maneuver_mod_hint": "This armor's own minimum / maximum moving maneuver modification. Leave empty to use the table's for its penalty AT (shown greyed out).",

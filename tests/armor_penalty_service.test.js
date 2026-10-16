@@ -3,7 +3,7 @@
  */
 import { describe, it, expect, beforeEach, afterEach } from "@jest/globals";
 import { rmss } from "../module/config.js";
-import { findArmorSkill, getMovingManeuverPenalty, getArmorPenaltyForSkill, getPenaltyArmorType } from "../module/core/armor/armor_penalty_service.js";
+import { findArmorSkill, getMovingManeuverPenalty, getArmorPenaltyForSkill, getPenaltyArmorType, getArmorPenalties, getMissilePenaltyForWeapon } from "../module/core/armor/armor_penalty_service.js";
 
 const skill = (name, categorySlug, total_bonus) => ({ type: "skill", name, system: { categorySlug, total_bonus } });
 const actor = (armor_type, ...items) => ({ system: { armor_info: { armor_type } }, items });
@@ -173,5 +173,47 @@ describe("getPenaltyArmorType", () => {
   it("the MMP follows the penalty AT, with the skill of the penalty AT's group", () => {
     const a = actor(1, body({ at: 9, at_penalty: 12 }), skill("Cuero endurecido", "armor-light", 30));
     expect(getMovingManeuverPenalty(a)).toMatchObject({ armorType: 12, group: "rigid_leather", skillBonus: 30, mmp: -80 });
+  });
+});
+
+describe("getArmorPenalties and the missile penalty on a weapon", () => {
+  const body = (system) => ({ type: "armor", system: { equipped: true, armorSlot: "body", ...system } });
+  const character = (armorInfo, ...items) => ({ type: "character", system: { armor_info: armorInfo }, items });
+  const bow = { system: { type: "mis" } };
+  const sword = { system: { type: "1he" } };
+
+  it("takes every penalty from the equipped body armor's penalty AT, with its own values on top", () => {
+    const a = character({}, body({ at: 9, at_penalty: 18, missile_penalty: 4 }));
+    expect(getArmorPenalties(a)).toMatchObject({ armorType: 18, hasBodyArmor: true, missilePenalty: 4, quicknessPenalty: 20, minMod: -20, maxMod: -110 });
+  });
+
+  it("with no body armor it reads the AT typed on the sheet and says so", () => {
+    expect(getArmorPenalties(character({ armor_type: 18 }))).toMatchObject({ armorType: 18, hasBodyArmor: false, missilePenalty: 10 });
+  });
+
+  it("a missile weapon loses the armor's missile penalty", () => {
+    expect(getMissilePenaltyForWeapon(character({}, body({ at: 18 })), bow)).toBe(10);
+  });
+
+  it("the armor's own missile penalty wins over the table's", () => {
+    expect(getMissilePenaltyForWeapon(character({}, body({ at: 18, missile_penalty: 2 })), bow)).toBe(2);
+    expect(getMissilePenaltyForWeapon(character({}, body({ at: 18, missile_penalty: 0 })), bow)).toBe(0);
+  });
+
+  it("a melee weapon is not affected", () => {
+    expect(getMissilePenaltyForWeapon(character({}, body({ at: 18 })), sword)).toBe(0);
+  });
+
+  it("without a body armor equipped, the missile penalty typed on the sheet is used", () => {
+    expect(getMissilePenaltyForWeapon(character({ armor_type: 1, missile_penalty: 6 }), bow)).toBe(6);
+    expect(getMissilePenaltyForWeapon(character({ armor_type: 1, missile_penalty: -6 }), bow)).toBe(6);
+    expect(getMissilePenaltyForWeapon(character({ armor_type: 1 }), bow)).toBe(0);
+  });
+
+  it("NPCs and creatures are ignored", () => {
+    for (const type of ["npc", "creature"]) {
+      const a = { type, system: { armor_info: {} }, items: [body({ at: 18 })] };
+      expect(getMissilePenaltyForWeapon(a, bow)).toBe(0);
+    }
   });
 });
