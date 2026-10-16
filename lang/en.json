@@ -1000,6 +1000,11 @@
             "designation": "Designation",
             "category": "Category",
             "offensive": "Offensive?",
+            "maneuver_type": "Maneuver type",
+            "maneuver_type_auto": "Auto (by category)",
+            "maneuver_type_moving": "Moving",
+            "maneuver_type_static": "Static",
+            "maneuver_type_none": "Not a maneuver",
             "section_classification": "Classification",
             "section_progression": "Progression"
         },

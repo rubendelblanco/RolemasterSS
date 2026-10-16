@@ -12,6 +12,7 @@
                     <th>{{localize "rmss.skill.category"}}</th>
                     <th>{{localize "rmss.skill.designation"}}</th>
                     <th>{{localize "rmss.skill.offensive"}}</th>
+                    <th>{{localize "rmss.skill.maneuver_type"}}</th>
                 </tr>
                 <tr>
                     <td>
@@ -31,6 +32,11 @@
                     <td>
                         <select name="system.offensive_skill" class="app-stat-selector" value="{{system.offensive_skill}}" itemid="{{ item._id }}">
                             {{selectOptions config.attack.types selected=system.offensive_skill}}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="system.maneuver_type" class="app-stat-selector" value="{{system.maneuver_type}}" itemid="{{ item._id }}">
+                            {{selectOptions maneuverTypes selected=system.maneuver_type}}
                         </select>
                     </td>
                 </tr>

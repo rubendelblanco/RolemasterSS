@@ -89,6 +89,76 @@ rmss.skill_designations = {
   Restricted: "Restricted"
 };
 
+/**
+ * Default maneuver type of each skill category: "moving" (armor's moving maneuver penalty applies),
+ * "static" or "none" (not a maneuver: attacks, directed spells, martial arts, development).
+ * From the "Classification" line of each category in the RMFRP core rules (Appendix A-4).
+ * Where the book says "Moving Maneuver or Static Maneuver" (the Athletic categories) the default is
+ * "moving"; a skill that is static just sets system.maneuver_type on itself.
+ * Categories the book doesn't classify (Power Manipulation, Special Attacks, Special Defenses) are
+ * assumed: static, none and static respectively.
+ */
+rmss.skill_category_maneuver_type = {
+  "armor-light": "moving",
+  "armor-medium": "moving",
+  "armor-heavy": "moving",
+  "athletic-brawn": "moving",
+  "athletic-endurance": "moving",
+  "athletic-gymnastics": "moving",
+  "artistic-active": "static",
+  "artistic-passive": "static",
+  "awareness-perceptions": "static",
+  "awareness-searching": "static",
+  "awareness-senses": "static",
+  "body-development": "none",
+  "combat-maneuvers": "static",
+  "communications": "static",
+  "crafts": "static",
+  "directed-spells": "none",
+  "influence": "static",
+  "lore-general": "static",
+  "lore-magical": "static",
+  "lore-obscure": "static",
+  "lore-technical": "static",
+  "martial-arts-striking": "none",
+  "martial-arts-sweeps": "none",
+  "martial-arts-combat-maneuvers": "none",
+  "outdoor-animal": "static",
+  "outdoor-environmental": "static",
+  "power-awareness": "static",
+  "power-manipulation": "static",
+  "power-point-development": "none",
+  "scienceanalytic-basic": "static",
+  "scienceanalytic-specialized": "static",
+  "self-control": "static",
+  "special-attacks": "none",
+  "special-defenses": "static",
+  "spells-arcane-open-lists": "static",
+  "spells-arcane-closed-lists": "static",
+  "spells-arcane-base-lists": "static",
+  "spells-own-realm-open-lists": "static",
+  "spells-own-realm-closed-lists": "static",
+  "spells-own-realm-own-base-lists": "static",
+  "spells-own-realm-other-base-lists": "static",
+  "spells-other-realm-open-lists": "static",
+  "spells-other-realm-closed-lists": "static",
+  "spells-other-realm-base-lists": "static",
+  "subterfuge-attack": "static",
+  "subterfuge-mechanics": "static",
+  "subterfuge-stealth": "static",
+  "technicaltrade-general": "static",
+  "technicaltrade-professional": "static",
+  "technicaltrade-vocational": "static",
+  "urban": "static",
+  "weapon-1-h-edged": "none",
+  "weapon-1-h-concussion": "none",
+  "weapon-2-handed": "none",
+  "weapon-missile": "none",
+  "weapon-missile-artillery": "none",
+  "weapon-pole-arms": "none",
+  "weapon-thrown": "none"
+};
+
 rmss.skill_category_progression = {
   standard: {
     name: "Standard",

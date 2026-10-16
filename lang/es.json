@@ -1000,6 +1000,11 @@
       "designation": "Designación",
       "category": "Categoría",
       "offensive": "¿Ofensiva?",
+      "maneuver_type": "Tipo de maniobra",
+      "maneuver_type_auto": "Auto (según la categoría)",
+      "maneuver_type_moving": "De movimiento",
+      "maneuver_type_static": "Estática",
+      "maneuver_type_none": "No es una maniobra",
       "section_classification": "Clasificación",
       "section_progression": "Progresión"
     },

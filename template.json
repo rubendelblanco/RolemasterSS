@@ -550,7 +550,8 @@
       "total_bonus": 0,
       "favorite": false,
       "designation": "None",
-      "offensive_skill": "none"
+      "offensive_skill": "none",
+      "maneuver_type": ""
     },
     "skill_category": {
       "templates": ["base"],

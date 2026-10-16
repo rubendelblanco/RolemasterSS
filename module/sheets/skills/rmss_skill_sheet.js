@@ -38,7 +38,13 @@ export default class RMSSSkillSheet extends ItemSheet {
       owned_skillcats: ownedSkillCategories,
       enrichedDescription: enrichedDescription,
       selected_skillcat: selectedSkillCategory,
-      designations: CONFIG.rmss.skill_designations
+      designations: CONFIG.rmss.skill_designations,
+      maneuverTypes: {
+        "": game.i18n.localize("rmss.skill.maneuver_type_auto"),
+        moving: game.i18n.localize("rmss.skill.maneuver_type_moving"),
+        static: game.i18n.localize("rmss.skill.maneuver_type_static"),
+        none: game.i18n.localize("rmss.skill.maneuver_type_none")
+      }
     };
 
     return sheetData;
