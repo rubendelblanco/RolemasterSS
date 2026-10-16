@@ -5,6 +5,15 @@ node_modules/
 .idea/
 packs/*
 !packs/skill-categories
+# Foundry rewrites this LevelDB compendium every time it runs (new .ldb/.log/MANIFEST files, logs, lost/), which is
+# data churn, not a change to the categories. The committed snapshot stays; to update it on purpose use `git add -f`.
+packs/skill-categories/lost/
+packs/skill-categories/LOCK
+packs/skill-categories/LOG
+packs/skill-categories/LOG.old
+packs/skill-categories/*.ldb
+packs/skill-categories/*.log
+packs/skill-categories/MANIFEST-*
 .cursorrules
 docs/
 coverage/

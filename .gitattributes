@@ -1,0 +1,3 @@
+# The compendium databases (LevelDB) are binary: never change their line endings.
+# LevelDB needs CURRENT to end in a bare LF, and core.autocrlf=true turns it into CRLF on checkout.
+packs/** -text
