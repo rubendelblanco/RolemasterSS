@@ -3,7 +3,7 @@
  */
 import { describe, it, expect } from "@jest/globals";
 import {
-  slugify, armorGroupFromName, computeAutoArmorGroup, getSkillArmorGroup, isArmorCategory
+  slugify, armorGroupFromName, isArmorCategory
 } from "../module/core/armor/armor_skill_group.js";
 
 describe("slugify", () => {
@@ -42,34 +42,7 @@ describe("armorGroupFromName", () => {
   });
 });
 
-describe("computeAutoArmorGroup", () => {
-  it("fills in the group for an Armor-category skill with a known name and no group yet", () => {
-    expect(computeAutoArmorGroup({ name: "Cuero endurecido", categorySlug: "armor-light", currentGroup: "" })).toBe("rigid_leather");
-    expect(computeAutoArmorGroup({ name: "Plate", categorySlug: "armor-heavy", currentGroup: undefined })).toBe("plate");
-  });
-
-  it("does nothing outside the Armor categories", () => {
-    expect(computeAutoArmorGroup({ name: "Plate", categorySlug: "athletic-brawn", currentGroup: "" })).toBe("");
-    expect(computeAutoArmorGroup({ name: "Plate", categorySlug: undefined, currentGroup: "" })).toBe("");
-  });
-
-  it("never overwrites a group that is already set", () => {
-    expect(computeAutoArmorGroup({ name: "Plate", categorySlug: "armor-heavy", currentGroup: "chain" })).toBe("");
-  });
-
-  it("a name it does not know leaves the field empty", () => {
-    expect(computeAutoArmorGroup({ name: "Armadura élfica", categorySlug: "armor-light", currentGroup: "" })).toBe("");
-  });
-});
-
-describe("getSkillArmorGroup / isArmorCategory", () => {
-  it("returns the stored group only when it is a valid one", () => {
-    expect(getSkillArmorGroup({ system: { armor_group: "chain" } })).toBe("chain");
-    expect(getSkillArmorGroup({ system: { armor_group: "banana" } })).toBe("");
-    expect(getSkillArmorGroup({ system: {} })).toBe("");
-    expect(getSkillArmorGroup(null)).toBe("");
-  });
-
+describe("isArmorCategory", () => {
   it("the three Armor categories", () => {
     expect(["armor-light", "armor-medium", "armor-heavy"].every(isArmorCategory)).toBe(true);
     expect(isArmorCategory("weapon-missile")).toBe(false);

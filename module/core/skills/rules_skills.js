@@ -11,7 +11,11 @@ import { slugify } from "../armor/armor_skill_group.js";
 
 export const RULES_SKILLS_SETTING = "rulesSkills";
 
-export const RULES_SKILL = Object.freeze({ TRANSCEND_ARMOR: "transcend_armor" });
+export const RULES_SKILL = Object.freeze({
+    TRANSCEND_ARMOR: "transcend_armor",
+    SOFT_LEATHER_ARMOR: "soft_leather_armor",
+    RIGID_LEATHER_ARMOR: "rigid_leather_armor"
+});
 
 /** One entry per function: lang keys for the menu and the category the skill is expected to be in. */
 export const RULES_SKILL_DEFS = Object.freeze({
@@ -19,6 +23,18 @@ export const RULES_SKILL_DEFS = Object.freeze({
         label: "rmss.rules_skills.transcend_armor",
         hint: "rmss.rules_skills.transcend_armor_hint",
         categorySlug: "power-manipulation"
+    },
+    // Armor - Light holds two skills, so which one covers AT 5-8 and which AT 9-12 has to be said. Chain and plate
+    // need no setting: each is the only skill of its category
+    [RULES_SKILL.SOFT_LEATHER_ARMOR]: {
+        label: "rmss.rules_skills.soft_leather_armor",
+        hint: "rmss.rules_skills.soft_leather_armor_hint",
+        categorySlug: "armor-light"
+    },
+    [RULES_SKILL.RIGID_LEATHER_ARMOR]: {
+        label: "rmss.rules_skills.rigid_leather_armor",
+        hint: "rmss.rules_skills.rigid_leather_armor_hint",
+        categorySlug: "armor-light"
     }
 });
 

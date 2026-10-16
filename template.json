@@ -560,8 +560,7 @@
       "favorite": false,
       "designation": "None",
       "offensive_skill": "none",
-      "maneuver_type": "",
-      "armor_group": ""
+      "maneuver_type": ""
     },
     "skill_category": {
       "templates": ["base"],

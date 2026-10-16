@@ -104,28 +104,47 @@ describe("getArmorPenaltyForSkill", () => {
   });
 });
 
-describe("the skill is found by its armor group, not by its name", () => {
-  const marked = (name, group, bonus, categorySlug = "armor-light") => ({ type: "skill", name, system: { categorySlug, armor_group: group, total_bonus: bonus } });
+describe("the leather skills are the ones chosen in the settings", () => {
+  let previousGame;
+  beforeEach(() => { previousGame = globalThis.game; });
+  afterEach(() => { globalThis.game = previousGame; });
 
-  it("a skill marked with the group is found whatever it is called", () => {
-    expect(findArmorSkill(actor(9, marked("Cuero de campaña", "rigid_leather", 25)), "rigid_leather")?.name).toBe("Cuero de campaña");
+  const choose = (setting) => {
+    globalThis.game = { settings: { get: (ns, key) => (ns === "rmss" && key === "rulesSkills" ? setting : undefined) } };
+  };
+
+  it("the skill chosen for AT 9-12 is found whatever it is called", () => {
+    choose({ rigid_leather_armor: { name: "Cuero de campaña" } });
+    expect(findArmorSkill(actor(9, skill("Cuero de campaña", "armor-light", 25), skill("Otro cuero", "armor-light", 5)), "rigid_leather")?.system.total_bonus).toBe(25);
   });
 
-  it("the marked skill wins over an unmarked one that happens to have a known name", () => {
-    const a = actor(9, skill("Rigid Leather", "armor-light", 5), marked("Mi cuero", "rigid_leather", 40));
+  it("the two leathers of Armor - Light are told apart by the setting, never mixed up", () => {
+    choose({ soft_leather_armor: { name: "Piel" }, rigid_leather_armor: { name: "Coraza de cuero" } });
+    const a = actor(9, skill("Piel", "armor-light", 30), skill("Coraza de cuero", "armor-light", 5));
+    expect(findArmorSkill(a, "soft_leather")?.system.total_bonus).toBe(30);
+    expect(findArmorSkill(a, "rigid_leather")?.system.total_bonus).toBe(5);
+  });
+
+  it("the choice wins over an unchosen skill that happens to have a known name", () => {
+    choose({ rigid_leather_armor: { name: "Mi cuero" } });
+    const a = actor(9, skill("Rigid Leather", "armor-light", 5), skill("Mi cuero", "armor-light", 40));
     expect(findArmorSkill(a, "rigid_leather")?.system.total_bonus).toBe(40);
   });
 
-  it("Cuero endurecido is found even when it has not been marked", () => {
+  it("with nothing chosen, a known name is still found", () => {
+    choose({});
     expect(findArmorSkill(actor(9, skill("Cuero endurecido", "armor-light", 12)), "rigid_leather")?.name).toBe("Cuero endurecido");
   });
 
-  it("a known name outside the Armor categories is not taken for an armor skill", () => {
-    expect(findArmorSkill(actor(18, skill("Plate", "athletic-brawn", 99)), "plate")).toBeNull();
+  it("chain and plate need no setting, whatever their names", () => {
+    choose({});
+    expect(findArmorSkill(actor(14, skill("Cota de anillas", "armor-medium", 20)), "chain")?.name).toBe("Cota de anillas");
+    expect(findArmorSkill(actor(18, skill("Armadura completa", "armor-heavy", 20)), "plate")?.name).toBe("Armadura completa");
   });
 
-  it("an armor skill marked for another group is not mistaken for the only one of its category", () => {
-    expect(findArmorSkill(actor(18, marked("Algo", "chain", 10, "armor-heavy")), "plate")).toBeNull();
+  it("a known name outside the Armor categories is not taken for an armor skill", () => {
+    choose({});
+    expect(findArmorSkill(actor(18, skill("Plate", "athletic-brawn", 99)), "plate")).toBeNull();
   });
 });
 

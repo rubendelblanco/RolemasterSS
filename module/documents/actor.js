@@ -1,5 +1,6 @@
 import EquipmentService from "../actors/services/equipment_service.js";
-import { getMovingManeuverPenalty } from "../core/armor/armor_penalty_service.js";
+import { getMovingManeuverPenalty, getArmorPenalties } from "../core/armor/armor_penalty_service.js";
+import ArmorInfoService from "../actors/services/armor_info_service.js";
 
 /** A bonus_skills/bonus_skill_categories array may come back as an object with numeric keys
  *  (form submission quirk) instead of a real array - normalize either shape to an array. */
@@ -198,12 +199,26 @@ export class RMSSActor extends Actor {
                                                + Number(systemData.stats.strength.basic_bonus);
   }
 
-  // MMP shown on the sheet: derived from the armor type worn and the character's skill in that armor
-  // (RMFRP 8.4), so it can no longer be typed in by hand. Characters only.
+  // What armor costs, shown on the sheet and derived every time, so it can no longer be typed in by hand: the MMP
+  // from the armor type worn and the character's skill in that armor (RMFRP 8.4), and the missile and Quickness
+  // penalties from the armor worn (or the Armor Table for the AT typed on the sheet). The Quickness penalty takes
+  // off the Quickness bonus, so the DB follows it. Characters only.
   calculateArmorManeuverPenalty(actorData) {
     const armorInfo = actorData.system.armor_info;
     if (!armorInfo) return;
     armorInfo.mmp = getMovingManeuverPenalty(this).mmp;
+
+    const { missilePenalty, quicknessPenalty } = getArmorPenalties(this);
+    armorInfo.missile_penalty = missilePenalty;
+    armorInfo.quickness_penalty = quicknessPenalty;
+    armorInfo.quickness_bonus = (Number(actorData.system.stats?.quickness?.stat_bonus) || 0) * 3;
+    armorInfo.total_db = ArmorInfoService.computeCharacterTotalDb({
+      quicknessBonus: armorInfo.quickness_bonus,
+      quicknessPenalty,
+      adrenalDefense: Number(armorInfo.adrenal_defense) || 0,
+      magic: Number(armorInfo.magic) || 0,
+      shieldBonus: Number(armorInfo.shield_bonus) || 0
+    });
   }
 
   // Weight penalty (encumbrance): carrying more than 10% of body weight (only items marked

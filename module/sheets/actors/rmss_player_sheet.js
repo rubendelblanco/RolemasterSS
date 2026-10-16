@@ -701,9 +701,8 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
   }
 
   _registerArmorInfoListeners(html) {
-    // Only fields from template.json lines 39-43 (excluding total_db and quickness_bonus which are calculated)
+    // Only the fields that are typed in (total_db, quickness_bonus and the armor's penalties are calculated)
     const armorInfoFields = [
-      "system.armor_info.quickness_penalty",
       "system.armor_info.adrenal_defense",
       "system.armor_info.magic"
     ];
@@ -711,21 +710,8 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     armorInfoFields.forEach(fieldName => {
       html.find(`input[name="${fieldName}"]`).on("change", async (ev) => {
         const updates = {};
-        
-        // Special handling for quickness_penalty: convert negative to positive
-        if (fieldName === "system.armor_info.quickness_penalty") {
-          const value = Number(ev.currentTarget.value) || 0;
-          if (value < 0) {
-            const positiveValue = Math.abs(value);
-            updates[fieldName] = positiveValue;
-            ev.currentTarget.value = positiveValue;
-          } else {
-            updates[fieldName] = value;
-          }
-        } else {
-          updates[fieldName] = Number(ev.currentTarget.value) || 0;
-        }
-        
+        updates[fieldName] = Number(ev.currentTarget.value) || 0;
+
         // Calculate total_db with the new values
         const totalDB = this._calculateTotalDB(html);
         updates["system.armor_info.total_db"] = totalDB;

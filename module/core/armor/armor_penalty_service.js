@@ -2,9 +2,9 @@ import {
     ARMOR_SKILL_GROUP, getArmorSkillGroup, computeMovingManeuverPenalty, resolveArmorPenalties
 } from "./armor_maneuver_penalty.js";
 import { getSkillManeuverType, MANEUVER_TYPE } from "../skills/skill_maneuver_type.js";
-import { getSkillArmorGroup, armorGroupFromName, isArmorCategory } from "./armor_skill_group.js";
+import { armorGroupFromName, isArmorCategory } from "./armor_skill_group.js";
 import { computeBodyArmorCastingPenalty, computeHelmetCastingPenalty, computeTranscendRelief } from "./armor_casting_penalty.js";
-import { RULES_SKILL, getActorRulesSkillBonus } from "../skills/rules_skills.js";
+import { RULES_SKILL, getActorRulesSkill, getActorRulesSkillBonus } from "../skills/rules_skills.js";
 
 /**
  * Moving maneuver penalty (MMP) of the armor an actor wears. See armor_maneuver_penalty.js for the rule.
@@ -60,10 +60,16 @@ export function getPenaltyArmor(actor) {
     };
 }
 
+/** Rules-skill setting that says which skill is each kind of leather (Armor - Light holds both). */
+const LEATHER_RULES_SKILL = {
+    [ARMOR_SKILL_GROUP.SOFT_LEATHER]: RULES_SKILL.SOFT_LEATHER_ARMOR,
+    [ARMOR_SKILL_GROUP.RIGID_LEATHER]: RULES_SKILL.RIGID_LEATHER_ARMOR
+};
+
 /**
- * The actor's skill for an armor group, or null if it hasn't got one. In order: a skill marked with that
- * group; an unmarked Armor-category skill whose name is one of the known ones; and, for Chain and Plate,
- * the only skill of their category (Armor - Medium has just Chain, Armor - Heavy just Plate).
+ * The actor's skill for an armor group, or null if it hasn't got one. Leather: the skill chosen in the settings
+ * for it or, when none is chosen, an Armor-category skill with one of the known names. Chain and Plate: the
+ * only skill of their category (Armor - Medium has just Chain, Armor - Heavy just Plate).
  * @param {Actor} actor
  * @param {string} group one of ARMOR_SKILL_GROUP
  * @returns {Item|null}
@@ -73,15 +79,14 @@ export function findArmorSkill(actor, group) {
     if (!categorySlug) return null;
     const skills = [...(actor?.items ?? [])].filter((i) => i.type === "skill");
 
-    const marked = skills.find((s) => getSkillArmorGroup(s) === group);
-    if (marked) return marked;
+    const leatherRole = LEATHER_RULES_SKILL[group];
+    const chosen = leatherRole ? getActorRulesSkill(actor, leatherRole) : null;
+    if (chosen) return chosen;
 
-    const byName = skills.find((s) => !getSkillArmorGroup(s)
-        && isArmorCategory(s.system?.categorySlug) && armorGroupFromName(s.name) === group);
-    if (byName) return byName;
+    const byName = skills.find((s) => isArmorCategory(s.system?.categorySlug) && armorGroupFromName(s.name) === group);
+    if (byName || leatherRole) return byName ?? null;
 
-    if (group === ARMOR_SKILL_GROUP.SOFT_LEATHER || group === ARMOR_SKILL_GROUP.RIGID_LEATHER) return null;
-    const inCategory = skills.filter((s) => s.system?.categorySlug === categorySlug && !getSkillArmorGroup(s));
+    const inCategory = skills.filter((s) => s.system?.categorySlug === categorySlug);
     return inCategory.length === 1 ? inCategory[0] : null;
 }
 

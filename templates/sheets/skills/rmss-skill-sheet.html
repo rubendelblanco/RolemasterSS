@@ -13,7 +13,6 @@
                     <th>{{localize "rmss.skill.designation"}}</th>
                     <th>{{localize "rmss.skill.offensive"}}</th>
                     <th>{{localize "rmss.skill.maneuver_type"}}</th>
-                    {{#if showArmorGroup}}<th>{{localize "rmss.skill.armor_group"}}</th>{{/if}}
                 </tr>
                 <tr>
                     <td>
@@ -40,13 +39,6 @@
                             {{selectOptions maneuverTypes selected=system.maneuver_type}}
                         </select>
                     </td>
-                    {{#if showArmorGroup}}
-                    <td>
-                        <select name="system.armor_group" class="app-stat-selector" value="{{system.armor_group}}" itemid="{{ item._id }}">
-                            {{selectOptions armorGroups selected=system.armor_group}}
-                        </select>
-                    </td>
-                    {{/if}}
                 </tr>
             </table>
         </div>
