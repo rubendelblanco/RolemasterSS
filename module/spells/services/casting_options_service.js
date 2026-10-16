@@ -4,6 +4,7 @@
 import ManeuverPenaltiesService from "../../core/maneuver_penalties_service.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { getCastingPenalty } from "../../core/armor/armor_penalty_service.js";
+import { modifierStyle } from "../../core/skills/modifier_tone.js";
 
 export default class CastingOptionsService {
 
@@ -174,14 +175,14 @@ export default class CastingOptionsService {
         const penaltyDisplay = Math.min(0, penaltyEffect);
         const autoPenaltiesBlock = showAutoPenalties ? `
                 <div class="form-group" style="font-size:0.9em; color:#555;">
-                    <div>${game.i18n.localize("rmss.combat.hits_taken")}: ${fmt(hitsTaken)}</div>
-                    <div>${game.i18n.localize("rmss.maneuvers.bleeding")}: ${fmt(bleeding)}</div>
-                    <div>${game.i18n.localize("rmss.maneuvers.stunned")}: ${fmt(stunned)}</div>
-                    ${penaltyEffect !== 0 ? `<div>${game.i18n.localize("rmss.combat.penalty")}: ${fmt(penaltyDisplay)}</div>` : ""}
-                    ${activeBonus !== 0 ? `<div>${game.i18n.localize("rmss.maneuvers.active_effect_bonus")}: ${fmt(activeBonus)}</div>` : ""}
-                    ${armor !== 0 ? `<div>${game.i18n.localize("rmss.spells.armor_casting_penalty")}: ${fmt(armor)}</div>` : ""}
-                    ${helmet !== 0 ? `<div>${game.i18n.localize("rmss.spells.helmet_casting_penalty")}: ${fmt(helmet)}</div>` : ""}
-                    ${armorRelief !== 0 ? `<div>${game.i18n.localize("rmss.spells.transcend_armor_relief")}: ${fmt(armorRelief)}</div>` : ""}
+                    <div style="${modifierStyle(hitsTaken)}">${game.i18n.localize("rmss.combat.hits_taken")}: ${fmt(hitsTaken)}</div>
+                    <div style="${modifierStyle(bleeding)}">${game.i18n.localize("rmss.maneuvers.bleeding")}: ${fmt(bleeding)}</div>
+                    <div style="${modifierStyle(stunned)}">${game.i18n.localize("rmss.maneuvers.stunned")}: ${fmt(stunned)}</div>
+                    ${penaltyEffect !== 0 ? `<div style="${modifierStyle(penaltyDisplay)}">${game.i18n.localize("rmss.combat.penalty")}: ${fmt(penaltyDisplay)}</div>` : ""}
+                    ${activeBonus !== 0 ? `<div style="${modifierStyle(activeBonus)}">${game.i18n.localize("rmss.maneuvers.active_effect_bonus")}: ${fmt(activeBonus)}</div>` : ""}
+                    ${armor !== 0 ? `<div style="${modifierStyle(armor)}">${game.i18n.localize("rmss.spells.armor_casting_penalty")}: ${fmt(armor)}</div>` : ""}
+                    ${helmet !== 0 ? `<div style="${modifierStyle(helmet)}">${game.i18n.localize("rmss.spells.helmet_casting_penalty")}: ${fmt(helmet)}</div>` : ""}
+                    ${armorRelief !== 0 ? `<div style="${modifierStyle(armorRelief)}">${game.i18n.localize("rmss.spells.transcend_armor_relief")}: ${fmt(armorRelief)}</div>` : ""}
                 </div>
 ` : "";
         const handsHintBlock = showAutoPenalties ? `

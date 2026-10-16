@@ -5531,3 +5531,22 @@ button.rmss-crit-reenable-local:hover {
   border-color: #1f1812;
   box-shadow: 0 0 6px rgba(90, 69, 51, 0.6);
 }
+
+/* Skill rows on the character sheet: badge on a moving maneuver that armor penalizes (walking figure + the penalty) */
+.actor-sheet .skill-maneuver-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: 4px;
+  padding: 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+.actor-sheet .skill-maneuver-badge i {
+  font-size: 10px;
+}

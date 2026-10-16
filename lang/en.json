@@ -1038,10 +1038,11 @@
             "armor_group_rigid_leather": "Rigid Leather",
             "armor_group_chain": "Chain",
             "armor_group_plate": "Plate",
-            "maneuver_type_auto": "Auto (by category)",
+            "maneuver_type_auto": "Auto (by category: {type})",
             "maneuver_type_moving": "Moving",
             "maneuver_type_static": "Static",
             "maneuver_type_none": "Not a maneuver",
+            "badge_moving_penalty": "Moving maneuver. Armor penalty (MMP): {value}",
             "section_classification": "Classification",
             "section_progression": "Progression"
         },

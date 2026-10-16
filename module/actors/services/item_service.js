@@ -3,6 +3,9 @@ import { attachItemMagicActionFlags } from "../../sheets/items/cast_enchantment_
 import { ContainerHandler } from "../utils/container_handler.js";
 import { attachIdentityDisplayFlags } from "../utils/item_identity_util.js";
 import RankCalculator from "../../core/skills/rmss_rank_calculator.js";
+import { getSkillManeuverType } from "../../core/skills/skill_maneuver_type.js";
+import { buildSkillManeuverBadge } from "../../core/skills/skill_maneuver_badge.js";
+import { getMovingManeuverPenalty } from "../../core/armor/armor_penalty_service.js";
 import FoodSpoilageService from "./food_spoilage_service.js";
 
 /**
@@ -579,6 +582,18 @@ export default class ItemService {
                 ?? "";
             const costString = RankCalculator.getEffectiveDevelopmentCost(actor, skill);
             skill.newRankMax = Math.min(3, String(costString).split("/").length);
+        }
+        // Maneuver badge next to each of a character's skills (moving: with what armor costs; static): see skill_maneuver_badge.js.
+        // Spell lists and languages don't get one, and neither do NPCs and creatures (armor doesn't penalize them).
+        if (actor.type === "character") {
+            const mmp = getMovingManeuverPenalty(actor).mmp;
+            for (const skill of playerskill) {
+                const badge = buildSkillManeuverBadge(getSkillManeuverType(skill), mmp);
+                skill.maneuverBadge = badge && {
+                    ...badge,
+                    tooltip: game.i18n.format(badge.tooltipKey, { value: badge.penalty })
+                };
+            }
         }
         for (const category of skillcat) {
             const costString = RankCalculator.getEffectiveDevelopmentCost(actor, category);

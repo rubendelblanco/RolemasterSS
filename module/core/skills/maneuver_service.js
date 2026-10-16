@@ -5,6 +5,7 @@
 import ManeuverPenaltiesService from "../maneuver_penalties_service.js";
 import SkillManeuverService from "./skill_maneuver_service.js";
 import { getArmorPenaltyForSkill } from "../armor/armor_penalty_service.js";
+import { modifierStyle } from "./modifier_tone.js";
 import ExperiencePointsCalculator from "../../sheets/experience/rmss_experience_manager.js";
 import { sendExpMessage, whisperIdsForNpcRollPrivacy, dice3dSynchronizeForNpcRoll, chatMessageOtherStyle } from "../../chat/chatMessages.js";
 
@@ -198,12 +199,12 @@ export default class ManeuverService {
                 </div>
                 <hr style="margin:8px 0; border:none; border-top:1px solid #ccc;">
                 <div class="form-group" style="font-size:0.9em; color:#555;">
-                    <div>${game.i18n.localize("rmss.maneuvers.hits_taken")}: ${fmt(hitsTaken)}</div>
-                    <div>${game.i18n.localize("rmss.maneuvers.bleeding")}: ${fmt(bleeding)}</div>
-                    <div>${game.i18n.localize("rmss.maneuvers.stunned")}: ${fmt(stunned)}</div>
-                    ${penaltyEffect !== 0 ? `<div>${game.i18n.localize("rmss.combat.penalty")}: ${fmt(penaltyDisplay)}</div>` : ""}
-                    ${activeBonus !== 0 ? `<div>${game.i18n.localize("rmss.maneuvers.active_effect_bonus")}: ${fmt(activeBonus)}</div>` : ""}
-                    ${armor !== 0 ? `<div>${game.i18n.localize("rmss.maneuvers.armor_penalty")}: ${fmt(armor)}</div>` : ""}
+                    <div style="${modifierStyle(hitsTaken)}">${game.i18n.localize("rmss.maneuvers.hits_taken")}: ${fmt(hitsTaken)}</div>
+                    <div style="${modifierStyle(bleeding)}">${game.i18n.localize("rmss.maneuvers.bleeding")}: ${fmt(bleeding)}</div>
+                    <div style="${modifierStyle(stunned)}">${game.i18n.localize("rmss.maneuvers.stunned")}: ${fmt(stunned)}</div>
+                    ${penaltyEffect !== 0 ? `<div style="${modifierStyle(penaltyDisplay)}">${game.i18n.localize("rmss.combat.penalty")}: ${fmt(penaltyDisplay)}</div>` : ""}
+                    ${activeBonus !== 0 ? `<div style="${modifierStyle(activeBonus)}">${game.i18n.localize("rmss.maneuvers.active_effect_bonus")}: ${fmt(activeBonus)}</div>` : ""}
+                    ${armor !== 0 ? `<div style="${modifierStyle(armor)}">${game.i18n.localize("rmss.maneuvers.armor_penalty")}: ${fmt(armor)}</div>` : ""}
                 </div>
                 <hr style="margin:8px 0; border:none; border-top:1px solid #ccc;">
                 <div class="form-group">

@@ -3,6 +3,7 @@ import RankCalculator from "../../core/skills/rmss_rank_calculator.js";
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import { bindMacroDropZone } from "../items/macro_drop_util.js";
 import { isArmorCategory } from "../../core/armor/armor_skill_group.js";
+import { getCategoryManeuverType } from "../../core/skills/skill_maneuver_type.js";
 
 export default class RMSSSkillSheet extends ItemSheet {
 
@@ -49,7 +50,10 @@ export default class RMSSSkillSheet extends ItemSheet {
         plate: game.i18n.localize("rmss.skill.armor_group_plate")
       },
       maneuverTypes: {
-        "": game.i18n.localize("rmss.skill.maneuver_type_auto"),
+        // "Auto" says which type the skill's category gives it, so it is clear what it would be without a setting of its own
+        "": game.i18n.format("rmss.skill.maneuver_type_auto", {
+          type: game.i18n.localize(`rmss.skill.maneuver_type_${getCategoryManeuverType(baseData.item.system?.categorySlug)}`)
+        }),
         moving: game.i18n.localize("rmss.skill.maneuver_type_moving"),
         static: game.i18n.localize("rmss.skill.maneuver_type_static"),
         none: game.i18n.localize("rmss.skill.maneuver_type_none")

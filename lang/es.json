@@ -1038,10 +1038,11 @@
       "armor_group_rigid_leather": "Cuero endurecido",
       "armor_group_chain": "Malla",
       "armor_group_plate": "Placas",
-      "maneuver_type_auto": "Auto (según la categoría)",
+      "maneuver_type_auto": "Auto (según la categoría: {type})",
       "maneuver_type_moving": "De movimiento",
       "maneuver_type_static": "Estática",
       "maneuver_type_none": "No es una maniobra",
+      "badge_moving_penalty": "Maniobra de movimiento. Penalización de armadura (MMP): {value}",
       "section_classification": "Clasificación",
       "section_progression": "Progresión"
     },
