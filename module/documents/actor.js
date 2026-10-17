@@ -212,13 +212,9 @@ export class RMSSActor extends Actor {
     armorInfo.missile_penalty = missilePenalty;
     armorInfo.quickness_penalty = quicknessPenalty;
     armorInfo.quickness_bonus = (Number(actorData.system.stats?.quickness?.stat_bonus) || 0) * 3;
-    armorInfo.total_db = ArmorInfoService.computeCharacterTotalDb({
-      quicknessBonus: armorInfo.quickness_bonus,
-      quicknessPenalty,
-      adrenalDefense: Number(armorInfo.adrenal_defense) || 0,
-      magic: Number(armorInfo.magic) || 0,
-      shieldBonus: Number(armorInfo.shield_bonus) || 0
-    });
+    // Worked out from the stored values plus what the effects add, not from the prepared fields: the effects are
+    // already in those, and preparing the data twice would count them twice
+    armorInfo.total_db = ArmorInfoService.computeCharacterDb(this, { withEffects: true, quicknessBonus: armorInfo.quickness_bonus });
   }
 
   // Weight penalty (encumbrance): carrying more than 10% of body weight (only items marked

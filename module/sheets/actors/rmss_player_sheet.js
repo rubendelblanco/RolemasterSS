@@ -283,6 +283,18 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
   /** @override - Inject pp_development_progression when realm changes (single update, no flicker) */
   async _updateObject(event, formData) {
+    // The form shows the PREPARED armor figures, with the actor's Active Effects already in them. Saved back as
+    // they are, an effect that adds +10 to the magic bonus gets written into the actor on every save and then
+    // applied again on top, so the figure grows each time. The calculated ones are never saved from the form,
+    // and the typed magic bonus is saved without the effects' share.
+    for (const key of ["mmp", "missile_penalty", "quickness_penalty", "quickness_bonus", "total_db"]) {
+      delete formData[`system.armor_info.${key}`];
+    }
+    const magicKey = "system.armor_info.magic";
+    if (magicKey in formData) {
+      formData[magicKey] = (Number(formData[magicKey]) || 0) - ArmorInfoService.sumEffectAdds(this.actor, magicKey);
+    }
+
     const realm = formData["system.fixed_info.realm"];
     if (realm != null) {
       const progressions = foundry.utils.getProperty(this.actor.system, "race_stat_fixed_info.race_pp_progressions")
@@ -321,8 +333,9 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
     // Auto-calculate quickness_bonus when any Quickness stat field that affects stat_bonus changes
     this._registerQuicknessBonusListener(html);
     
-    // Calculate quickness_bonus on initial load
-    this._updateQuicknessBonus(html);
+    // The DB, the Quickness bonus and the armor penalties are worked out when the actor's data is prepared, so
+    // nothing is written when the sheet opens: every client with the sheet open would be writing its own copy
+    // and they would overwrite each other
     
     // Auto-calculate recover_hits_per_hour_resting when constitution.basic_bonus changes
     this._registerConstitutionRecoveryListener(html);
@@ -691,9 +704,14 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
    * @param {jQuery} html - The jQuery object containing the sheet HTML (optional)
    */
   async _updateQuicknessBonus(html = null) {
+    // Preparing the data again picks up the Quickness field that has just been edited. It is only done here,
+    // on an edit: it applies the actor's Active Effects once more, so it is never done on a plain render
     this.actor.prepareData();
     const quicknessBonus = (Number(this.actor.system.stats?.quickness?.stat_bonus) || 0) * 3;
-    const totalDB = this._calculateTotalDB(html, quicknessBonus);
+    const totalDB = ArmorInfoService.computeCharacterDb(this.actor, { quicknessBonus });
+    // Nothing to write when it already matches what is stored
+    const stored = this.actor._source?.system?.armor_info ?? {};
+    if ((Number(stored.quickness_bonus) || 0) === quicknessBonus && (Number(stored.total_db) || 0) === totalDB) return;
     await this.actor.update({
       "system.armor_info.quickness_bonus": quicknessBonus,
       "system.armor_info.total_db": totalDB
@@ -709,62 +727,19 @@ export default class RMSSPlayerSheet extends RMSSCharacterSheet {
 
     armorInfoFields.forEach(fieldName => {
       html.find(`input[name="${fieldName}"]`).on("change", async (ev) => {
-        const updates = {};
-        updates[fieldName] = Number(ev.currentTarget.value) || 0;
+        const typed = Number(ev.currentTarget.value) || 0;
+        // The magic field shows what the actor's effects add as well; only the rest is the stored bonus
+        const isMagic = fieldName === "system.armor_info.magic";
+        const stored = isMagic ? typed - ArmorInfoService.sumEffectAdds(this.actor, fieldName) : typed;
+        const override = isMagic ? { magic: stored } : { adrenalDefense: stored };
 
-        // Calculate total_db with the new values
-        const totalDB = this._calculateTotalDB(html);
-        updates["system.armor_info.total_db"] = totalDB;
-        
         // Update all values in a single actor update to prevent flickering
-        await this.actor.update(updates);
+        await this.actor.update({
+          [fieldName]: stored,
+          "system.armor_info.total_db": ArmorInfoService.computeCharacterDb(this.actor, override)
+        });
       });
     });
-  }
-
-  /**
-   * Calculates the total_db value without updating the actor.
-   * Used internally to calculate the value before updating.
-   * @param {jQuery} html - The jQuery object containing the sheet HTML (optional, falls back to actor data)
-   * @param {number} quicknessBonusOverride - Optional override for quickness_bonus value
-   * @returns {number} The calculated total_db value
-   */
-  _calculateTotalDB(html = null, quicknessBonusOverride = null) {
-    // Parse values more carefully, handling empty strings and null/undefined
-    const parseValue = (val) => {
-      if (val === null || val === undefined || val === '') return 0;
-      const num = Number(val);
-      return isNaN(num) ? 0 : num;
-    };
-    
-    let quicknessBonus, adrenalDefense, magic, shieldBonus, quicknessPenalty;
-    
-    // Use override if provided, otherwise calculate from actor data
-    if (quicknessBonusOverride !== null) {
-      quicknessBonus = quicknessBonusOverride;
-    } else {
-      this.actor.prepareData();
-      quicknessBonus = (Number(this.actor.system.stats?.quickness?.stat_bonus) || 0) * 3;
-    }
-    
-    if (html) {
-      // Read values directly from form inputs (current values before actor update)
-      adrenalDefense = parseValue(html.find('input[name="system.armor_info.adrenal_defense"]').val());
-      magic = parseValue(html.find('input[name="system.armor_info.magic"]').val());
-      shieldBonus = parseValue(html.find('input[name="system.armor_info.shield_bonus"]').val());
-      quicknessPenalty = parseValue(html.find('input[name="system.armor_info.quickness_penalty"]').val());
-    } else {
-      // Fallback to actor data if HTML not provided
-      const armorInfo = this.actor.system.armor_info || {};
-      adrenalDefense = parseValue(armorInfo.adrenal_defense);
-      magic = parseValue(armorInfo.magic);
-      shieldBonus = parseValue(armorInfo.shield_bonus);
-      quicknessPenalty = parseValue(armorInfo.quickness_penalty);
-    }
-    
-    // The armor's Quickness penalty only takes off the Quickness bonus, which never goes below 0;
-    // total_db is never negative either
-    return ArmorInfoService.computeCharacterTotalDb({ quicknessBonus, quicknessPenalty, adrenalDefense, magic, shieldBonus });
   }
 
   /**

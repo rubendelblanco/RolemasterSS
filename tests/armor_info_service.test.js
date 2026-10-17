@@ -383,3 +383,76 @@ describe('a character in heavy armor with a shield keeps the shield and magic bo
     expect(payload["system.armor_info.total_db"]).toBe(25);
   });
 });
+
+describe('the DB follows the stored figures and the effects, however many times the data is prepared', () => {
+  const MAGIC = "system.armor_info.magic";
+  const DB = "system.armor_info.total_db";
+  const effect = (key, value, extra = {}) => ({ disabled: false, isSuppressed: false, changes: [{ key, mode: 2, value }], ...extra });
+
+  // `prepared` is what the sheet form shows, with the effects already applied; `_source` is what is stored
+  const character = ({ effects = [], stored = {}, prepared = {}, items = [], quickness = 0 } = {}) => ({
+    type: "character",
+    system: { stats: { quickness: { stat_bonus: quickness } }, armor_info: { armor_type: 1, ...prepared } },
+    _source: { system: { armor_info: { adrenal_defense: 0, magic: 0, shield_bonus: 0, ...stored } } },
+    effects,
+    items
+  });
+
+  test('sumEffectAdds adds up the effects on one path and skips disabled, suppressed and other modes', () => {
+    const actor = character({
+      effects: [
+        effect(MAGIC, 10),
+        effect(MAGIC, "5"),
+        effect(MAGIC, 100, { disabled: true }),
+        effect(MAGIC, 100, { isSuppressed: true }),
+        { disabled: false, changes: [{ key: MAGIC, mode: 5, value: 99 }] },
+        effect(DB, 7)
+      ]
+    });
+    expect(ArmorInfoService.sumEffectAdds(actor, MAGIC)).toBe(15);
+    expect(ArmorInfoService.sumEffectAdds(actor, DB)).toBe(7);
+    expect(ArmorInfoService.sumEffectAdds(character(), MAGIC)).toBe(0);
+  });
+
+  test('the stored DB leaves the effects out, so saving it cannot add them again', () => {
+    const actor = character({ effects: [effect(MAGIC, 10)], stored: { magic: 0 }, prepared: { magic: 10 }, quickness: 3 });
+    expect(ArmorInfoService.computeCharacterDb(actor)).toBe(9);
+  });
+
+  test('the live DB is the stored one plus what the effects add to the magic bonus and to the DB', () => {
+    const actor = character({ effects: [effect(MAGIC, 10), effect(DB, 5)], stored: { magic: 4, adrenal_defense: 2 }, quickness: 3 });
+    expect(ArmorInfoService.computeCharacterDb(actor, { withEffects: true })).toBe(9 + 2 + 4 + 10 + 5);
+  });
+
+  test('it does not matter that the prepared values have the effects applied twice', () => {
+    const once = character({ effects: [effect(MAGIC, 10)], stored: { magic: 0 }, prepared: { magic: 10 }, quickness: 3 });
+    const twice = character({ effects: [effect(MAGIC, 10)], stored: { magic: 0 }, prepared: { magic: 20, total_db: 99 }, quickness: 3 });
+    expect(ArmorInfoService.computeCharacterDb(twice, { withEffects: true })).toBe(ArmorInfoService.computeCharacterDb(once, { withEffects: true }));
+  });
+
+  test("the armor's Quickness penalty takes off the Quickness bonus and nothing else", () => {
+    const chain = makeArmor({ slot: "body", at: 13 });
+    const actor = character({ effects: [effect(MAGIC, 10)], stored: { magic: 0 }, quickness: 3, items: [chain] });
+    expect(ArmorInfoService.computeCharacterDb(actor, { withEffects: true })).toBe((9 - 5) + 10);
+  });
+
+  test('a figure just typed on the sheet stands in for the stored one', () => {
+    const actor = character({ stored: { adrenal_defense: 2, magic: 4 }, quickness: 3 });
+    expect(ArmorInfoService.computeCharacterDb(actor, { adrenalDefense: 8, magic: 1 })).toBe(9 + 8 + 1);
+  });
+
+  test('syncQuicknessArmorBonus writes once and then leaves a settled actor alone', async () => {
+    const writes = [];
+    const actor = character({ effects: [effect(MAGIC, 10)], stored: { magic: 0, quickness_bonus: 0, total_db: 0 }, prepared: { magic: 10 }, quickness: 3 });
+    actor.update = async (d) => { writes.push(d); foundryMerge(actor, d); };
+    await ArmorInfoService.syncQuicknessArmorBonus(actor);
+    await ArmorInfoService.syncQuicknessArmorBonus(actor);
+    expect(writes).toHaveLength(1);
+    expect(writes[0]["system.armor_info.total_db"]).toBe(9);
+  });
+});
+
+function foundryMerge(actor, d) {
+  actor._source.system.armor_info.quickness_bonus = d["system.armor_info.quickness_bonus"];
+  actor._source.system.armor_info.total_db = d["system.armor_info.total_db"];
+}

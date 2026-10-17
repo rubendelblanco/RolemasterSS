@@ -1380,7 +1380,9 @@ Hooks.once("init", function () {
       }
     }
 
-    if (actor.type === "character" && actor.system?.armor_info && update.system?.stats?.quickness) {
+    // Only the client that made the change: this hook runs on every connected client, and each would write its own
+    // copy of the DB at the same time
+    if (userId === game.user.id && actor.type === "character" && actor.system?.armor_info && update.system?.stats?.quickness) {
       const ArmorInfoService = (await import("./module/actors/services/armor_info_service.js")).default;
       await ArmorInfoService.syncQuicknessArmorBonus(actor);
     }

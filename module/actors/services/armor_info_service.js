@@ -57,21 +57,61 @@ export default class ArmorInfoService {
     return Math.max(0, effectiveQuickness + num(adrenalDefense) + num(magic) + num(shieldBonus));
   }
 
+  /**
+   * What the Active Effects on the actor add (mode ADD) to one data path. Read from the effects themselves, so
+   * the answer is the same however many times the actor's data has been prepared (a prepared value that has
+   * had the effects applied twice would not be).
+   * @param {Actor} actor
+   * @param {string} key e.g. "system.armor_info.magic"
+   * @returns {number}
+   */
+  static sumEffectAdds(actor, key) {
+    let sum = 0;
+    for (const effect of actor?.effects ?? []) {
+      if (effect.disabled || effect.isSuppressed) continue;
+      for (const change of effect.changes ?? []) {
+        if (change.key !== key) continue;
+        if (change.mode === 2 || change.type === "add") sum += Number(change.value) || 0;
+      }
+    }
+    return sum;
+  }
+
+  /**
+   * A character's total DB worked out from what is STORED on the actor (adrenal defense, magic, shield) and the
+   * armor's penalties, never from prepared values that effects have already been applied to. What gets written
+   * to the actor is the plain figure (withEffects false), so it can't feed back into itself: writing the prepared,
+   * effect-inflated figure made every save add the effect again. The live figure (withEffects true) is the plain
+   * one plus what the actor's effects add to the magic bonus and to the DB.
+   * @param {Actor} actor
+   * @param {{ withEffects?: boolean, quicknessBonus?: number, adrenalDefense?: number, magic?: number }} [options]
+   *   adrenalDefense / magic stand in for the stored value (a field that has just been typed on the sheet)
+   * @returns {number}
+   */
+  static computeCharacterDb(actor, { withEffects = false, quicknessBonus, adrenalDefense, magic } = {}) {
+    const stored = actor?._source?.system?.armor_info ?? {};
+    const num = (v) => Number(v) || 0;
+    const quickness = quicknessBonus ?? num(actor?.system?.stats?.quickness?.stat_bonus) * 3;
+    const { quicknessPenalty } = getArmorPenalties(actor);
+    const effectMagic = withEffects ? this.sumEffectAdds(actor, "system.armor_info.magic") : 0;
+    const db = this.computeCharacterTotalDb({
+      quicknessBonus: quickness,
+      quicknessPenalty,
+      adrenalDefense: adrenalDefense ?? stored.adrenal_defense,
+      magic: num(magic ?? stored.magic) + effectMagic,
+      shieldBonus: stored.shield_bonus
+    });
+    return withEffects ? db + this.sumEffectAdds(actor, "system.armor_info.total_db") : db;
+  }
+
   static async syncQuicknessArmorBonus(actor) {
     if (actor?.type !== "character" || !actor.system?.armor_info) return;
-    actor.prepareData();
+    // The actor has just been updated, so its data is already prepared: preparing it again would apply its
+    // Active Effects a second time
     const quickness_bonus = (Number(actor.system.stats?.quickness?.stat_bonus) || 0) * 3;
-    const info = actor.system.armor_info;
-    const total_db = this.computeCharacterTotalDb({
-      quicknessBonus: quickness_bonus,
-      quicknessPenalty: info.quickness_penalty,
-      adrenalDefense: info.adrenal_defense,
-      magic: info.magic,
-      shieldBonus: info.shield_bonus
-    });
-    const prevQb = Number(actor.system.armor_info.quickness_bonus) || 0;
-    const prevDb = Number(actor.system.armor_info.total_db) || 0;
-    if (prevQb === quickness_bonus && prevDb === total_db) return;
+    const total_db = this.computeCharacterDb(actor, { quicknessBonus: quickness_bonus });
+    const stored = actor._source?.system?.armor_info ?? {};
+    if ((Number(stored.quickness_bonus) || 0) === quickness_bonus && (Number(stored.total_db) || 0) === total_db) return;
     await actor.update({
       "system.armor_info.quickness_bonus": quickness_bonus,
       "system.armor_info.total_db": total_db
