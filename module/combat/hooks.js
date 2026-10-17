@@ -205,7 +205,7 @@ export function registerCombatHooks() {
 
     // preMoveToken only fires on the client that starts the move (unlike preUpdateToken, which ran
     // on every connected client), and carries the route already measured by Foundry with terrain
-    // applied: Regions with "Increase Movement Cost" multiply only the stretches they cover.
+    // applied (movement.passed): Regions with "Increase Movement Cost" multiply only the stretches they cover.
     Hooks.on("preMoveToken", (tokenDoc, movement) => {
         if (!game.combat?.started) return;
 

@@ -5,12 +5,18 @@
  * straight line between the start and the end of the move.
  *
  * Costs and the remaining rate are both in scene distance units (feet).
+ *
+ * Which part of the movement is paid for: Foundry splits a move at its first checkpoint (a Region whose
+ * behavior listens to token movement). `passed` is what this operation moves and is already measured with
+ * the terrain applied; `pending` is only what is left after that checkpoint, and gets paid by the operation
+ * that continues the move. With no checkpoint everything is in `passed` and `pending` is empty (cost 0), so
+ * reading `pending` spends nothing on an ordinary move.
  */
 
 /** Moves that are not the token walking: forced displacement, or undoing a move already paid for. */
 function isFreeMovement(movement) {
     if (movement?.method === "undo") return true;
-    const waypoints = movement?.pending?.waypoints ?? [];
+    const waypoints = movement?.passed?.waypoints ?? [];
     return waypoints.length > 0 && waypoints.every((w) => w.action === "displace");
 }
 
@@ -23,7 +29,7 @@ function isFreeMovement(movement) {
  */
 export function evaluateMovement(remaining, movement) {
     if (isFreeMovement(movement)) return null;
-    const rawCost = movement?.pending?.cost;
+    const rawCost = movement?.passed?.cost;
     if (typeof rawCost !== "number" || Number.isNaN(rawCost) || rawCost <= 0) return null;
 
     const left = Math.round(remaining || 0);

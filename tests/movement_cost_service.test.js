@@ -4,7 +4,7 @@
 import { describe, it, expect } from "@jest/globals";
 import { evaluateMovement } from "../module/combat/services/movement_cost_service.js";
 
-const move = (cost, extra = {}) => ({ pending: { cost, waypoints: [{ action: "walk" }] }, ...extra });
+const move = (cost, extra = {}) => ({ passed: { cost, waypoints: [{ action: "walk" }] }, pending: { cost: 0, waypoints: [] }, ...extra });
 
 describe("evaluateMovement", () => {
   it("spends the route cost from the remaining movement", () => {
@@ -37,8 +37,17 @@ describe("evaluateMovement", () => {
     expect(evaluateMovement(undefined, move(5))).toMatchObject({ allowed: false, remaining: 0 });
   });
 
+  it("pays for the stretch this move covers, not for what is left after a checkpoint", () => {
+    const split = { passed: { cost: 12, waypoints: [{ action: "walk" }] }, pending: { cost: 30, waypoints: [{ action: "walk" }] } };
+    expect(evaluateMovement(50, split)).toMatchObject({ cost: 12, newRemaining: 38 });
+  });
+
+  it("an ordinary move has its whole cost in passed and nothing pending", () => {
+    expect(evaluateMovement(50, move(20))).toMatchObject({ cost: 20, newRemaining: 30 });
+  });
+
   it("spends nothing for displacement (pushes, teleports)", () => {
-    const displace = { pending: { cost: 40, waypoints: [{ action: "displace" }] } };
+    const displace = { passed: { cost: 40, waypoints: [{ action: "displace" }] } };
     expect(evaluateMovement(10, displace)).toBeNull();
   });
 
@@ -48,7 +57,7 @@ describe("evaluateMovement", () => {
 
   it("spends nothing when the move has no cost or Foundry gave none", () => {
     expect(evaluateMovement(10, move(0))).toBeNull();
-    expect(evaluateMovement(10, { pending: {} })).toBeNull();
+    expect(evaluateMovement(10, { passed: {} })).toBeNull();
     expect(evaluateMovement(10, undefined)).toBeNull();
   });
 });
