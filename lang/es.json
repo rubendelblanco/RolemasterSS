@@ -1140,6 +1140,7 @@
       "critical": "PE por crítico",
       "kill": "PE por \"pieza\"",
       "hp": "PE por PV",
+      "hp_taken": "PE por PV recibidos",
       "level_up": "Subir nivel",
       "end_level_up": "Terminar de subir nivel",
       "dps": "Puntos de desarrollo",

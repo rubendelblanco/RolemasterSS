@@ -6,7 +6,7 @@ export class ExperienceManager {
     /*
       Suma la experiencia al actor y avisa por el chat
     */
-    static async applyExperience(target, xp) {
+    static async applyExperience(target, xp, reason = "hp") {
         const actor = Utils.getActor(target);
 
         if (!actor) {
@@ -15,7 +15,7 @@ export class ExperienceManager {
             return;
         }
 
-        const breakDown = { 'hp': xp };
+        const breakDown = { [reason]: xp };
         let totalExpActor = parseInt(actor.system.attributes.experience_points.value);
         totalExpActor = totalExpActor + xp;
         await actor.update({ "system.attributes.experience_points.value": totalExpActor });

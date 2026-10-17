@@ -1140,6 +1140,7 @@
             "critical": "Critical EPs",
             "kill": "Kill EPs",
             "hp": "Hit points Eps",
+            "hp_taken": "Eps for hit points taken",
             "level_up": "Level up",
             "end_level_up": "End level up",
             "dps": "Development points",

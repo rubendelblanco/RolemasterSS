@@ -10,6 +10,7 @@ import { registerParryHooks } from "./parry_hooks.js";
 import { registerDelayedActionHooks } from "./delayed_action_service.js";
 import { socket } from "../../rmss.js";
 import { evaluateMovement } from "./services/movement_cost_service.js";
+import { damageTaken } from "./services/damage_taken_experience_service.js";
 
 export function registerCombatHooks() {
     registerCombatTurnTickHooks();
@@ -201,6 +202,21 @@ export function registerCombatHooks() {
         }
 
         ui.notifications.info("⚔️ Se ha restaurado el movimiento de todos los personajes.");
+    });
+
+    // A player character who loses hit points in combat earns 1 XP per hit point lost. Every way of losing them
+    // is a write of a lower hits.current, so it is noticed here: preUpdateActor (only on the client that makes
+    // the change) notes how many were lost, and updateActor on that same client pays the experience.
+    Hooks.on("preUpdateActor", (actor, changes, options) => {
+        if (actor.type !== "character" || !game.combat?.started) return;
+        const lost = damageTaken(actor.system?.attributes?.hits?.current, changes);
+        if (lost > 0) options.rmssDamageTaken = lost;
+    });
+
+    Hooks.on("updateActor", async (actor, changes, options, userId) => {
+        if (userId !== game.user.id || !(options?.rmssDamageTaken > 0)) return;
+        const { ExperienceManager } = await import("../sheets/experience/rmss_experience_manager.js");
+        await ExperienceManager.applyExperience(actor, options.rmssDamageTaken, "hp_taken");
     });
 
     // preMoveToken only fires on the client that starts the move (unlike preUpdateToken, which ran
