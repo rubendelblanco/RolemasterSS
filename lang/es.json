@@ -934,6 +934,9 @@
       "natural_no_hands": "Las armas naturales no ocupan manos",
       "attack_table": "Tabla de ataque",
       "skill": "Habilidad",
+      "skill_fixed": "Cantidad fija",
+      "fixed_ob": "OB fijo",
+      "fixed_ob_hint": "El OB de este ataque, sin habilidad: p. ej. el ataque que concede un hechizo (Apresar +50). Es el OB total; no se le suma nada más.",
       "default_critical": "Crítico por defecto",
       "type_cod": {
         "1he": "1 mano de filo",

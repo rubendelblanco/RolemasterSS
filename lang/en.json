@@ -934,6 +934,9 @@
             "natural_no_hands": "Natural weapons do not occupy hands",
             "attack_table": "Attack table",
             "skill": "Skill",
+            "skill_fixed": "Fixed amount",
+            "fixed_ob": "Fixed OB",
+            "fixed_ob_hint": "The OB of this attack, with no skill: e.g. the attack a spell grants (Grapple +50). It is the whole OB; nothing else is added to it.",
             "default_critical": "Default critical",
             "type_cod": {
                 "1he": "1 hand edge",

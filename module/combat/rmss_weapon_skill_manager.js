@@ -20,6 +20,9 @@ import { getWeaponSlayingArray } from "../sheets/items/weapon_slaying_ui.js";
 import { getCreatureTagsArray } from "../sheets/actors/creature_tags_ui.js";
 import { getMissilePenaltyForWeapon } from "../core/armor/armor_penalty_service.js";
 
+/** Value of a weapon's `system.offensive_skill` that means "no skill: the OB is the fixed amount in `system.fixed_ob`". */
+export const FIXED_OFFENSIVE_SKILL = "fixed";
+
 export class RMSSWeaponSkillManager {
 
     static async handleAttack(actor, enemy, weapon, attackerToken = null, defenderToken = null) {
@@ -494,6 +497,11 @@ export class RMSSWeaponSkillManager {
         // Handle creature_attack: they have bonus directly in system.bonus
         if (weapon.type === "creature_attack") {
             return weapon.system.bonus ?? 0;
+        }
+
+        // A weapon whose OB is a fixed amount instead of a skill (e.g. the attack a spell grants, "Grab +50")
+        if (weapon.system?.offensive_skill === FIXED_OFFENSIVE_SKILL) {
+            return Number(weapon.system.fixed_ob) || 0;
         }
 
         // Handle weapon: they use offensive_skill to get bonus from a skill item

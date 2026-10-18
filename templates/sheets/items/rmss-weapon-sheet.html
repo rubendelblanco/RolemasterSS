@@ -34,8 +34,15 @@
                         {{#each offensiveSkills}}
                         <option value="{{this.id}}" {{#if (eq this.id ../system.offensive_skill)}}selected{{/if}}>{{this.name}}</option>
                         {{/each}}
+                        <option value="fixed" {{#if (eq system.offensive_skill "fixed")}}selected{{/if}}>{{localize "rmss.weapon.skill_fixed"}}</option>
                     </select>
                 </div>
+                {{#if (eq system.offensive_skill "fixed")}}
+                <div>
+                    <div>{{localize "rmss.weapon.fixed_ob"}}</div>
+                    <input type="number" name="system.fixed_ob" value="{{fallback system.fixed_ob 0}}" placeholder="0" step="1" data-dtype="Number" title="{{localize 'rmss.weapon.fixed_ob_hint'}}"/>
+                </div>
+                {{/if}}
                 {{/if}}
                 <div>
                     <div>{{localize "rmss.weapon.default_critical"}}</div>

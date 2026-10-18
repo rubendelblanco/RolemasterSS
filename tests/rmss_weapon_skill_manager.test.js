@@ -26,6 +26,18 @@ describe('RMSSWeaponSkillManager._getOffensiveBonusFromWeapon', () => {
         expect(RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, { items: {} })).toBe(0);
     });
 
+    test('fixed amount: the OB is fixed_ob, with no skill involved (a spell that grants an attack, Grab +50)', () => {
+        const weapon = { type: 'weapon', system: { bonus: 10, offensive_skill: 'fixed', fixed_ob: 50 } };
+        expect(RMSSWeaponSkillManager._getOffensiveBonusFromWeapon(weapon, { items: {} })).toBe(50);
+    });
+
+    test('fixed amount: ignores any skill the actor has, and an empty or odd amount is 0', () => {
+        const actor = makeActorWithSkill('fixed', 99);
+        expect(RMSSWeaponSkillManager._getOffensiveBonusFromWeapon({ type: 'weapon', system: { offensive_skill: 'fixed', fixed_ob: 35 } }, actor)).toBe(35);
+        expect(RMSSWeaponSkillManager._getOffensiveBonusFromWeapon({ type: 'weapon', system: { offensive_skill: 'fixed' } }, actor)).toBe(0);
+        expect(RMSSWeaponSkillManager._getOffensiveBonusFromWeapon({ type: 'weapon', system: { offensive_skill: 'fixed', fixed_ob: 'abc' } }, actor)).toBe(0);
+    });
+
     test('normal weapon: returns the skill total_bonus as-is, regardless of slaying/slaying_bonus', () => {
         const actor = makeActorWithSkill('skill1', 42);
         const weapon = { type: 'weapon', system: { bonus: 10, offensive_skill: 'skill1', slaying: ['orc'], slaying_bonus: 25 } };

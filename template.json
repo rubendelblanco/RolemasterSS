@@ -499,6 +499,7 @@
       "attack_table": "",
       "critical_type": "",
       "offensive_skill": "",
+      "fixed_ob": 0,
       "material": "iron",
       "bonus": 0,
       "magical": false,
