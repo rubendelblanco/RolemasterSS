@@ -66,7 +66,9 @@ export async function createProfession(professionKey, options = {}) {
       "system.spellUserType": system.spellUserType,
       "system.spellRealm": system.spellRealm,
       "system.spellRealm2": system.spellRealm2,
-      "system.primeStats": system.primeStats,
+      // One key per slot, the way the profession sheet itself writes them: the stored field can be an object keyed 0-3
+      // (what the sheet's form saves) and replacing it with a whole array there has lost the first stat
+      ...Object.fromEntries(system.primeStats.map((stat, i) => [`system.primeStats.${i}`, stat])),
       "system.skillCategoryCosts": system.skillCategoryCosts,
       "system.professionBonuses": system.professionBonuses,
       "system.skillDesignations": system.skillDesignations,
