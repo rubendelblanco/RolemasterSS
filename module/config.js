@@ -490,7 +490,8 @@ rmss.spell_list_slug_to_table = {
 rmss.spell_list_dp_costs = {
   own_realm: {
     own_base: {
-      "1+": { pure: 3, semi: 6, hybrid: 3 },
+      // Three ranks per level ("3/3/3"), not one: a plain number would mean a single rank per level
+      "1+": { pure: "3/3/3", semi: "6/6/6", hybrid: "3/3/3" },
       "1-5": { arcane_pure: "3/3/3", arcane_semi: "6/6/6" },
       "6-10": { arcane_pure: "3/3/3", arcane_semi: "7/7/7" },
       "11-15": { arcane_pure: "3/3/3", arcane_semi: "7/7/7" },

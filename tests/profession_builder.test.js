@@ -47,9 +47,15 @@ describe("the Paladin (Character Law 2.9)", () => {
 
   it("its spell costs are the semi spell user's: base lists 6, open 8/8, closed 10/10", () => {
     const spell = getSpellCategoryCosts("semi", rmss);
-    expect(spell["spells-own-realm-own-base-lists"]).toBe("6");
+    expect(spell["spells-own-realm-own-base-lists"]).toBe("6/6/6");
     expect(spell["spells-own-realm-open-lists"]).toBe("8/8");
     expect(spell["spells-own-realm-closed-lists"]).toBe("10/10");
+  });
+
+  it("base lists of the own realm allow three ranks per level, as \"6/6/6\" and not a single \"6\" (a pure caster: 3/3/3)", () => {
+    expect(getSpellCategoryCosts("semi", rmss)["spells-own-realm-own-base-lists"]).toBe("6/6/6");
+    expect(getSpellCategoryCosts("pure", rmss)["spells-own-realm-own-base-lists"]).toBe("3/3/3");
+    expect(getSpellCategoryCosts("hybrid", rmss)["spells-own-realm-own-base-lists"]).toBe("3/3/3");
   });
 
   it("profession bonuses: armor +5, athletic +5, awareness +5, weapons +10, combat maneuvers +10, power manipulation +5, body development +10", () => {
