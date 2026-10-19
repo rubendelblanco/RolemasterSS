@@ -1366,7 +1366,7 @@ Hooks.once("init", function () {
           await ChatMessage.create({
             content: `
                     <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
-                    <video src="systems/rmss/assets/default/level_up.mp4" autoplay playsinline style="width:100px; height:auto; border: 2px solid #333;"></video>
+                    <img src="systems/rmss/assets/default/level_up.webp" alt="Nivel" style="width:100px; height:auto; border: 2px solid #333;">
                       <p style="color: #333; font-size: 16px;">
                         <b>${actor.name}</b> sube a <b>nivel ${calcLevel}</b>
                       </p>
