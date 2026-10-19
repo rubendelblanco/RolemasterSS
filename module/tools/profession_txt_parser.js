@@ -272,7 +272,7 @@ Conocimiento·General	1/3
 Conocimiento·Mágico	3/6
 Conocimiento·Oscuro	3/7
 Conocimiento·Técnico	2/6
-Defensas Especiales	30
+Defensas Especiales	40
 Desarrollo de Puntos de Poder	8
 Desarrollo Físico	4/10
 Exteriores·Animales	2/6
@@ -411,11 +411,45 @@ export const PROFESSION_DEFINITIONS = {
     spellRealm2: "",
     img: "systems/rmss/assets/default/bonus.svg"
   },
+  // Character Law 2.9 (RMFRP). Semi spell user: Arms + Channeling, so its spell costs are the "semi" ones.
   Paladin: {
-    spellUserType: "pure",
+    spellUserType: "semi",
     spellRealm: "channeling",
     spellRealm2: "",
-    img: "systems/rmss/assets/default/bonus.svg"
+    img: "systems/rmss/assets/default/bonus.svg",
+    primeStats: ["self_discipline", "intuition", "", ""],
+    description: "<p>Semilanzador que combina el reino de las Armas con el de la Canalización. Sus hechizos básicos tratan sobre todo de combate y protección. Un ejemplo de la literatura: Lancelot o Percival, caballeros del rey Arturo.</p>" +
+        "<p><strong>Características primarias:</strong> Autodisciplina e Intuición.</p>" +
+        "<p><strong>Nota especial:</strong> +20 a la habilidad Trascender armadura.</p>" +
+        "<p><strong>Listas básicas:</strong> Comunión, Exorcismos, Armas Sagradas, Curación Sagrada, Escudos Sagrados y Caminos Inspiradores.</p>" +
+        "<p><strong>Habilidades:</strong> corriente (Everyman): Justa. De profesión (Occupational): Religión. Restringidas: ninguna.</p>",
+    categoryBonuses: {
+      "armor-light": 5,
+      "armor-medium": 5,
+      "armor-heavy": 5,
+      "combat-maneuvers": 10,
+      "athletic-brawn": 5,
+      "athletic-endurance": 5,
+      "athletic-gymnastics": 5,
+      "power-manipulation": 5,
+      "awareness-perceptions": 5,
+      "awareness-searching": 5,
+      "awareness-senses": 5,
+      "weapon-1-h-edged": 10,
+      "weapon-1-h-concussion": 10,
+      "weapon-2-handed": 10,
+      "weapon-missile": 10,
+      "weapon-missile-artillery": 10,
+      "weapon-pole-arms": 10,
+      "weapon-thrown": 10,
+      "body-development": 10
+    },
+    skillBonuses: [{ names: ["Trascender armadura", "Transcend Armor"], bonus: 20 }],
+    designations: [
+      { names: ["Justa", "Justas", "Torneo", "Jousting"], designation: "Everyman" },
+      { names: ["Religión", "Religion"], designation: "Occupational" }
+    ],
+    basicLists: ["Comunión", "Exorcismos", "Armas Sagradas", "Curación Sagrada", "Escudos Sagrados", "Caminos Inspiradores"]
   },
   Monk: {
     spellUserType: "none",
