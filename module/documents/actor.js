@@ -1,6 +1,7 @@
 import EquipmentService from "../actors/services/equipment_service.js";
 import { getMovingManeuverPenalty, getArmorPenalties } from "../core/armor/armor_penalty_service.js";
 import ArmorInfoService from "../actors/services/armor_info_service.js";
+import { computeResistanceRolls } from "../actors/utils/resistance_rolls.js";
 
 /** A bonus_skills/bonus_skill_categories array may come back as an object with numeric keys
  *  (form submission quirk) instead of a real array - normalize either shape to an array. */
@@ -266,27 +267,7 @@ export class RMSSActor extends Actor {
 
   // Calculate each Resistance Roll with the formula on the character sheet.
   calculateResistanceRolls(actorData) {
-    const stats = actorData.system.stats;
-    const rolls = actorData.system.resistance_rolls;
-
-    const configs = [
-      { key: "essence", value: () => stats.empathy.stat_bonus * 3 },
-      { key: "channeling", value: () => stats.intuition.stat_bonus * 3 },
-      { key: "mentalism", value: () => stats.presence.stat_bonus * 3 },
-      { key: "fear", value: () => stats.self_discipline.stat_bonus * 3 },
-      { key: "poison", value: () => stats.constitution.stat_bonus * 3, noRaceMod: true },
-      { key: "disease", value: () => stats.constitution.stat_bonus * 3, noRaceMod: true },
-      { key: "chann_ess", value: () => stats.intuition.stat_bonus + stats.empathy.stat_bonus },
-      { key: "chann_ment", value: () => stats.intuition.stat_bonus + stats.presence.stat_bonus },
-      { key: "ess_ment", value: () => stats.empathy.stat_bonus + stats.presence.stat_bonus },
-      { key: "arcane", value: () => stats.empathy.stat_bonus + stats.intuition.stat_bonus + stats.presence.stat_bonus },
-    ];
-
-    for (const { key, value, noRaceMod } of configs) {
-      const val = Number(value());
-      rolls[key].value = val;
-      rolls[key].total = val + (noRaceMod ? 0 : rolls[key].race_mod);
-    }
+    computeResistanceRolls(actorData.system.stats, actorData.system.resistance_rolls);
   }
 
   calculateSkillBonuses() {
