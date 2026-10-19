@@ -1,3 +1,5 @@
+import { compareDevelopmentCosts } from "../utils/development_cost_order.js";
+
 /**
  * Dialog to assign weapon preference order and development costs.
  * Costs come from the profession (skillCategoryCosts). They are sorted ascending
@@ -21,15 +23,6 @@ export default class WeaponPreferenceDialog extends Application {
         });
     }
 
-    /** Parse cost string to numeric value for sorting. "1/5"=0.2, "5"=5. Lower = cheaper. */
-    _parseCost(costStr) {
-        if (typeof costStr === "number") return costStr;
-        const s = String(costStr ?? "").trim();
-        const m = s.match(/^(\d+)\/(\d+)$/);
-        if (m) return parseInt(m[1], 10) / parseInt(m[2], 10);
-        return parseFloat(s) || 5;
-    }
-
     /** Get profession costs for weapon categories. Returns { slug -> cost }. */
     _getProfessionWeaponCosts() {
         const profession = this.actor.items.find(i => i.type === "profession");
@@ -47,7 +40,8 @@ export default class WeaponPreferenceDialog extends Application {
     _getSortedCosts() {
         const costsBySlug = this._getProfessionWeaponCosts();
         const costs = Object.values(costsBySlug);
-        return [...costs].sort((a, b) => this._parseCost(a) - this._parseCost(b));
+        // Cheapest first by the first number of each cost, then the next ones: 2/5 comes before 3/8
+        return [...costs].sort(compareDevelopmentCosts);
     }
 
     getData() {
