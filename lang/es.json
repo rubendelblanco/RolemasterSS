@@ -1,5 +1,12 @@
 {
     "rmss": {
+      "hits_state": {
+        "unconscious_title": "Inconsciente",
+        "unconscious_line": "{name} ha llegado a 0 puntos de vida y cae inconsciente.",
+        "death_limit_line": "Morirá si sus puntos de vida bajan de −{limit} (su Constitución temporal).",
+        "awake_title": "Recupera el conocimiento",
+        "awake_line": "{name} vuelve a tener puntos de vida y despierta."
+      },
       "rules_skills": {
         "menu_name": "Habilidades con función de reglas",
         "menu_label": "Elegir habilidades",

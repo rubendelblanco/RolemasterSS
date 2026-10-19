@@ -8,6 +8,8 @@ import ParryService from "./services/parry_service.js";
 import { ammoAsWeaponLike } from "./services/ammo_effects_service.js";
 import ParryChat from "./services/parry_chat.js";
 import { isParryAutomatic } from "./services/parry_settings.js";
+import { evaluateHitsThreshold, HITS_OUTCOME } from "./services/hits_thresholds.js";
+import { applyUnconsciousFromHits, removeUnconsciousFromHits } from "./services/hits_state_service.js";
 
 /**
  * @class RMSSEffectApplier
@@ -96,6 +98,24 @@ export class RMSSEffectApplier {
         const prior = Number(priorHits);
         const next = Number(newHits);
         if (!Number.isFinite(prior) || !Number.isFinite(next)) return false;
+
+        // A player character does not die at 0: they fall unconscious, and die only once they have lost their hit points
+        // plus their temporary Constitution (see hits_thresholds.js). NPCs and creatures keep dying at 0.
+        if (actor?.type === "character") {
+            const outcome = evaluateHitsThreshold({
+                priorHits: prior,
+                newHits: next,
+                constitutionTemp: actor.system?.stats?.constitution?.temp
+            });
+            if (outcome === HITS_OUTCOME.DEAD) {
+                await removeUnconsciousFromHits(actor, { announce: false });
+                await RMSSEffectApplier._executeDeath(actor, attackerId, preferredToken);
+                return true;
+            }
+            if (outcome === HITS_OUTCOME.UNCONSCIOUS) await applyUnconsciousFromHits(actor);
+            return false;
+        }
+
         if (next > 0 || prior <= 0) return false;
 
         await RMSSEffectApplier._executeDeath(actor, attackerId, preferredToken);

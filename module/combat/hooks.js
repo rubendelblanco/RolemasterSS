@@ -10,7 +10,9 @@ import { registerParryHooks } from "./parry_hooks.js";
 import { registerDelayedActionHooks } from "./delayed_action_service.js";
 import { socket } from "../../rmss.js";
 import { evaluateMovement } from "./services/movement_cost_service.js";
-import { damageTaken } from "./services/damage_taken_experience_service.js";
+import { damageTaken, hitsAfterUpdate } from "./services/damage_taken_experience_service.js";
+import { shouldWakeUp } from "./services/hits_thresholds.js";
+import { removeUnconsciousFromHits } from "./services/hits_state_service.js";
 
 export function registerCombatHooks() {
     registerCombatTurnTickHooks();
@@ -208,15 +210,24 @@ export function registerCombatHooks() {
     // is a write of a lower hits.current, so it is noticed here: preUpdateActor (only on the client that makes
     // the change) notes how many were lost, and updateActor on that same client pays the experience.
     Hooks.on("preUpdateActor", (actor, changes, options) => {
-        if (actor.type !== "character" || !game.combat?.started) return;
-        const lost = damageTaken(actor.system?.attributes?.hits?.current, changes);
-        if (lost > 0) options.rmssDamageTaken = lost;
+        if (actor.type !== "character") return;
+        const hitsBefore = actor.system?.attributes?.hits?.current;
+        if (game.combat?.started) {
+            const lost = damageTaken(hitsBefore, changes);
+            if (lost > 0) options.rmssDamageTaken = lost;
+        }
+        // A character who was at 0 hit points or less and is back above 0 wakes up (only from the unconscious state
+        // that losing hit points puts them in; see hits_state_service.js), in or out of combat
+        if (shouldWakeUp(hitsBefore, hitsAfterUpdate(changes))) options.rmssWakeUp = true;
     });
 
     Hooks.on("updateActor", async (actor, changes, options, userId) => {
-        if (userId !== game.user.id || !(options?.rmssDamageTaken > 0)) return;
-        const { ExperienceManager } = await import("../sheets/experience/rmss_experience_manager.js");
-        await ExperienceManager.applyExperience(actor, options.rmssDamageTaken, "hp_taken");
+        if (userId !== game.user.id) return;
+        if (options?.rmssDamageTaken > 0) {
+            const { ExperienceManager } = await import("../sheets/experience/rmss_experience_manager.js");
+            await ExperienceManager.applyExperience(actor, options.rmssDamageTaken, "hp_taken");
+        }
+        if (options?.rmssWakeUp) await removeUnconsciousFromHits(actor);
     });
 
     // preMoveToken only fires on the client that starts the move (unlike preUpdateToken, which ran

@@ -1,5 +1,12 @@
 {
     "rmss": {
+        "hits_state": {
+            "unconscious_title": "Unconscious",
+            "unconscious_line": "{name} has reached 0 hit points and falls unconscious.",
+            "death_limit_line": "They die if their hit points drop below −{limit} (their temporary Constitution).",
+            "awake_title": "Regains consciousness",
+            "awake_line": "{name} has hit points again and wakes up."
+        },
         "rules_skills": {
             "menu_name": "Skills with a rules function",
             "menu_label": "Choose skills",
