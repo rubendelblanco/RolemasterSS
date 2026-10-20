@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 import { describe, it, expect } from "@jest/globals";
-import { evaluateMovement, activityRatio } from "../module/combat/services/movement_cost_service.js";
+import { evaluateMovement, activityRatio, staticActivityPenalty } from "../module/combat/services/movement_cost_service.js";
 
 const move = (cost, extra = {}) => ({ passed: { cost, waypoints: [{ action: "walk" }] }, pending: { cost: 0, waypoints: [] }, ...extra });
 
@@ -78,5 +78,41 @@ describe('activityRatio', () => {
   it('missing or non-numeric values count as fully active', () => {
     expect(activityRatio(undefined, 30)).toBe(1);
     expect(activityRatio('x', 30)).toBe(1);
+  });
+});
+
+describe('staticActivityPenalty', () => {
+  it('is -1 per 1% of the unencumbered rate that has been spent', () => {
+    expect(staticActivityPenalty({ value: 50, effective_value: 50, current: 25 })).toBe(-50);
+    expect(staticActivityPenalty({ value: 50, effective_value: 50, current: 40 })).toBe(-20);
+  });
+
+  it('has no penalty until the actor has moved', () => {
+    expect(staticActivityPenalty({ value: 50, effective_value: 50, current: 50 })).toBe(0);
+  });
+
+  it('the weight carried costs nothing: starting the round with the lowered rate is not movement spent', () => {
+    expect(staticActivityPenalty({ value: 50, effective_value: 34, current: 34 })).toBe(0);
+  });
+
+  it('only what is spent counts, measured against the unencumbered rate, so weight does not change it', () => {
+    const spent17 = (effective) => staticActivityPenalty({ value: 50, effective_value: effective, current: effective - 17 });
+    expect(spent17(50)).toBe(-34);
+    expect(spent17(34)).toBe(-34);
+    expect(spent17(40)).toBe(-34);
+  });
+
+  it('without an effective value it falls back to the rate itself', () => {
+    expect(staticActivityPenalty({ value: 40, current: 30 })).toBe(-25);
+  });
+
+  it('an actor with no Movement Rate, or no current value, has no penalty', () => {
+    expect(staticActivityPenalty({ value: 0, effective_value: 0, current: 0 })).toBe(0);
+    expect(staticActivityPenalty({ value: 50, effective_value: 50 })).toBe(0);
+    expect(staticActivityPenalty(undefined)).toBe(0);
+  });
+
+  it('a current value above the starting one is not a bonus', () => {
+    expect(staticActivityPenalty({ value: 50, effective_value: 34, current: 50 })).toBe(0);
   });
 });

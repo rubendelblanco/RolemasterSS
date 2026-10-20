@@ -52,3 +52,21 @@ export function activityRatio(current, max) {
     if (!Number.isFinite(cur) || !Number.isFinite(top) || top <= 0) return 1;
     return cur / top;
 }
+
+/**
+ * Penalty a static maneuver (a spell cast, not an attack or a movement maneuver) takes for the movement already spent
+ * this round: -1 per 1% of the unencumbered Movement Rate used. The weight a character carries lowers the Movement Rate
+ * they start the round with (effective_value) but must not cost them anything on a static maneuver, so what counts is
+ * what they have SPENT (effective_value - current), measured against the unencumbered rate (value). Measuring what is
+ * left against the unencumbered rate charged the weight on every cast, before the character had moved at all.
+ * @param {{ value?: number, effective_value?: number, current?: number }|null|undefined} rate  the actor's movement_rate
+ * @returns {number} 0 or negative
+ */
+export function staticActivityPenalty(rate) {
+    const value = Number(rate?.value);
+    const current = Number(rate?.current);
+    if (!(value > 0) || !Number.isFinite(current)) return 0;
+    const effective = Number.isFinite(Number(rate?.effective_value)) ? Number(rate.effective_value) : value;
+    const spent = Math.max(0, effective - current);
+    return spent > 0 ? -Math.round((spent / value) * 100) : 0;
+}

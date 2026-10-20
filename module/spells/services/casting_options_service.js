@@ -4,7 +4,8 @@
 import ManeuverPenaltiesService from "../../core/maneuver_penalties_service.js";
 import EquipmentService from "../../actors/services/equipment_service.js";
 import { getCastingPenalty } from "../../core/armor/armor_penalty_service.js";
-import { modifierStyle } from "../../core/skills/modifier_tone.js";
+import { modifierStyle, MODIFIER_COLOR } from "../../core/skills/modifier_tone.js";
+import { staticActivityPenalty } from "../../combat/services/movement_cost_service.js";
 
 export default class CastingOptionsService {
 
@@ -85,9 +86,11 @@ export default class CastingOptionsService {
             ? (() => {
                 // Armor and helmet hamper casting (Table T-4.6); characters only, by the spell list's realm
                 const { armor, helmet, relief } = getCastingPenalty(actor, realm);
-                return { ...ManeuverPenaltiesService.getManeuverPenalties(actor, { spellType: spellType }), armor, helmet, armorRelief: relief };
+                // Movement already spent this round (combat only). BE and DE take it in the attack window, instant spells have no roll
+                const movement = this._castingMovementPenalty(actor, spellType);
+                return { ...ManeuverPenaltiesService.getManeuverPenalties(actor, { spellType: spellType }), armor, helmet, armorRelief: relief, movement };
             })()
-            : { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0, armor: 0, helmet: 0, armorRelief: 0 };
+            : { hitsTaken: 0, bleeding: 0, stunned: 0, penaltyEffect: 0, activeBonus: 0, armor: 0, helmet: 0, armorRelief: 0, movement: 0 };
         const showAutoPenalties = actor != null;
         const handsOccupied = (actor != null) ? EquipmentService.getHandsOccupiedForCasting(actor) : 0;
         const spellTypeUpper = String(spellType ?? "").toUpperCase();
@@ -164,6 +167,19 @@ export default class CastingOptionsService {
     }
 
     /**
+     * Penalty for the movement already spent this round, for the spell types whose casting is a static maneuver roll.
+     * Weight carried does not count (see staticActivityPenalty).
+     * @param {Actor} actor
+     * @param {string} spellType
+     * @returns {number} 0 or negative
+     */
+    static _castingMovementPenalty(actor, spellType) {
+        if (!game.combat?.started) return 0;
+        if (["BE", "DE", "I"].includes(String(spellType ?? "").toUpperCase())) return 0;
+        return staticActivityPenalty(actor?.system?.attributes?.movement_rate);
+    }
+
+    /**
      * Build the HTML content for the casting options dialog.
      * @param {number} [handsOccupied] - Actor's occupied hands (0-2) for pre-selecting hands option
      */
@@ -171,7 +187,7 @@ export default class CastingOptionsService {
         const handsModifiers = this._getHandsModifiers(realm, modifiers);
         const voiceModifiers = this._getVoiceModifiers(realm, modifiers);
         const fmt = (n) => (n >= 0 ? `+${n}` : `${n}`);
-        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0, activeBonus = 0, armor = 0, helmet = 0, armorRelief = 0 } = autoPenalties;
+        const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0, activeBonus = 0, armor = 0, helmet = 0, armorRelief = 0, movement = 0 } = autoPenalties;
         const penaltyDisplay = Math.min(0, penaltyEffect);
         const autoPenaltiesBlock = showAutoPenalties ? `
                 <div class="form-group" style="font-size:0.9em; color:#555;">
@@ -183,6 +199,7 @@ export default class CastingOptionsService {
                     ${armor !== 0 ? `<div style="${modifierStyle(armor)}">${game.i18n.localize("rmss.spells.armor_casting_penalty")}: ${fmt(armor)}</div>` : ""}
                     ${helmet !== 0 ? `<div style="${modifierStyle(helmet)}">${game.i18n.localize("rmss.spells.helmet_casting_penalty")}: ${fmt(helmet)}</div>` : ""}
                     ${armorRelief !== 0 ? `<div style="${modifierStyle(armorRelief)}">${game.i18n.localize("rmss.spells.transcend_armor_relief")}: ${fmt(armorRelief)}</div>` : ""}
+                    ${movement !== 0 ? `<div style="${modifierStyle(movement)}">${game.i18n.localize("rmss.spells.movement_penalty")}: ${fmt(movement)}</div>` : ""}
                 </div>
 ` : "";
         const handsHintBlock = showAutoPenalties ? `
@@ -211,28 +228,28 @@ export default class CastingOptionsService {
                 <div class="form-group">
                     <label>${game.i18n.localize("rmss.spells.hands")}</label>
                     <select name="hands">
-                        <option value="two"${handsTwoSelected}>Two Hands (${this._formatModifier(handsModifiers.two)})</option>
-                        <option value="one"${handsOneSelected}>One Hand (${this._formatModifier(handsModifiers.one)})</option>
-                        <option value="none"${handsNoneSelected}>No Hands (${this._formatModifier(handsModifiers.none)})</option>
+                        <option value="two"${handsTwoSelected} style="${modifierStyle(handsModifiers.two)}">Two Hands (${this._formatModifier(handsModifiers.two)})</option>
+                        <option value="one"${handsOneSelected} style="${modifierStyle(handsModifiers.one)}">One Hand (${this._formatModifier(handsModifiers.one)})</option>
+                        <option value="none"${handsNoneSelected} style="${modifierStyle(handsModifiers.none)}">No Hands (${this._formatModifier(handsModifiers.none)})</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <label>${game.i18n.localize("rmss.spells.voice")}</label>
                     <select name="voice">
-                        <option value="shout">Shout (${this._formatModifier(voiceModifiers.shout)})</option>
-                        <option value="normal" selected>Normal (+0)</option>
-                        <option value="whisper">Whisper (${this._formatModifier(voiceModifiers.whisper)})</option>
-                        <option value="none">Silent (${this._formatModifier(voiceModifiers.none)})</option>
+                        <option value="shout" style="${modifierStyle(voiceModifiers.shout)}">Shout (${this._formatModifier(voiceModifiers.shout)})</option>
+                        <option value="normal" selected style="${modifierStyle(voiceModifiers.normal)}">Normal (${this._formatModifier(voiceModifiers.normal)})</option>
+                        <option value="whisper" style="${modifierStyle(voiceModifiers.whisper)}">Whisper (${this._formatModifier(voiceModifiers.whisper)})</option>
+                        <option value="none" style="${modifierStyle(voiceModifiers.none)}">Silent (${this._formatModifier(voiceModifiers.none)})</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <label>${game.i18n.localize("rmss.spells.preparation")}</label>
                     <select name="preparation">
-                        <option value="0" selected>No Extra Prep (+0)</option>
-                        <option value="1">1 Round (+10)</option>
-                        <option value="2">2 Rounds (+20)</option>
+                        <option value="0" selected style="${modifierStyle(0)}">No Extra Prep (+0)</option>
+                        <option value="1" style="${modifierStyle(10)}">1 Round (+10)</option>
+                        <option value="2" style="${modifierStyle(20)}">2 Rounds (+20)</option>
                     </select>
                 </div>
                 
@@ -275,11 +292,13 @@ export default class CastingOptionsService {
                         const stunnedMod = ${stunned};
                         const penaltyEffectMod = Math.min(0, ${penaltyEffect});
                         const activeBonusMod = ${activeBonus};
-                        const armorMod = ${armor} + ${helmet} + ${armorRelief};
+                        const armorMod = ${armor} + ${helmet} + ${armorRelief} + ${movement};
 
                         const total = handsMod + voiceMod + prepMod + otherMods + hitsTakenMod + bleedingMod + stunnedMod + penaltyEffectMod + activeBonusMod + armorMod;
                         const sign = total >= 0 ? '+' : '';
-                        document.getElementById('casting-total-modifier').innerHTML = '<strong>' + sign + total + '</strong>';
+                        const totalEl = document.getElementById('casting-total-modifier');
+                        totalEl.innerHTML = '<strong>' + sign + total + '</strong>';
+                        totalEl.style.color = total > 0 ? '${MODIFIER_COLOR.POSITIVE}' : (total < 0 ? '${MODIFIER_COLOR.NEGATIVE}' : '${MODIFIER_COLOR.NEUTRAL}');
                     };
                     
                     form.querySelectorAll('select, input').forEach(el => el.addEventListener('change', updateTotal));

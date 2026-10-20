@@ -79,23 +79,14 @@ export default class ForceSpellService {
             return false;
         }
 
-        let totalCastingModifier = castingOptions.totalModifier;
+        const totalCastingModifier = castingOptions.totalModifier;
         const castingModifier = castingOptions.castingModifier ?? castingOptions.totalModifier;
         const { hitsTaken = 0, bleeding = 0, stunned = 0, penaltyEffect = 0, publicRollToPlayers = true } = castingOptions;
         const syncDice3d = dice3dSynchronizeForNpcRoll(actor, publicRollToPlayers);
 
-        // Movement penalty in combat: -1 per 1% of activity dedicated to movement (applies to non-BE, non-DE, non-instant spells)
-        let movementPenalty = 0;
-        const spellType = spell.system?.type ?? "";
-        const needsManeuverRoll = !["BE", "DE", "I"].includes(spellType);
-        if (game.combat?.started && needsManeuverRoll) {
-            const movement = actor.system.attributes?.movement_rate;
-            if (movement?.value > 0) {
-                const moveRatio = movement.current / movement.value;
-                movementPenalty = -Math.round((1 - moveRatio) * 100);
-                totalCastingModifier += movementPenalty;
-            }
-        }
+        // The movement penalty (-1 per 1% of the Movement Rate spent this round, weight not counted) comes already inside
+        // the dialog's total, where the player saw it; it is only kept apart here to show it in the chat message
+        const movementPenalty = castingOptions.movement ?? 0;
 
         // Find the skill with the same name as the spell list; if from enchantment, maneuver ability is always 0
         let skillBonus;
