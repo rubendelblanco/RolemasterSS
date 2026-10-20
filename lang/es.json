@@ -1480,6 +1480,7 @@
       "targets_must_roll": "Objetivos deben superar",
       "defender_stunned_rr": "Defensor aturdido: +20 a RR",
       "movement_penalty": "Penalización por movimiento",
+      "casting_negative_warning": "Modificador negativo: te la estás jugando",
       "casting_options": "Opciones de Lanzamiento",
       "casting_options_insufficient_pp": "¡Sin puntos de poder suficientes! Puedes usar el hechizador, o cancelar.",
       "hands": "Manos",

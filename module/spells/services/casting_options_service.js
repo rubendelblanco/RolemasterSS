@@ -273,6 +273,9 @@ export default class CastingOptionsService {
                     <label><strong>${game.i18n.localize("rmss.spells.total_modifier")}:</strong></label>
                     <span id="casting-total-modifier"><strong>+0</strong></span>
                 </div>
+                <div class="form-group" id="casting-negative-warning-row" style="display:none; justify-content:center;">
+                    <span class="encumbrance-penalty-badge" id="casting-negative-warning">&#9888; ${game.i18n.localize("rmss.spells.casting_negative_warning")}</span>
+                </div>
             </form>
             
             <script>
@@ -298,6 +301,7 @@ export default class CastingOptionsService {
                         const sign = total >= 0 ? '+' : '';
                         const totalEl = document.getElementById('casting-total-modifier');
                         totalEl.innerHTML = '<strong>' + sign + total + '</strong>';
+                        document.getElementById('casting-negative-warning-row').style.display = total < 0 ? 'flex' : 'none';
                         totalEl.style.color = total > 0 ? '${MODIFIER_COLOR.POSITIVE}' : (total < 0 ? '${MODIFIER_COLOR.NEGATIVE}' : '${MODIFIER_COLOR.NEUTRAL}');
                     };
                     

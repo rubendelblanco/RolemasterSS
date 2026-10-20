@@ -1480,6 +1480,7 @@
             "targets_must_roll": "Targets must roll above",
             "defender_stunned_rr": "Defender stunned: +20 to RR",
             "movement_penalty": "Movement penalty",
+            "casting_negative_warning": "Negative modifier: you are taking a risk",
             "casting_options": "Casting Options",
             "casting_options_insufficient_pp": "Not enough Power Points! You can use your Spell Adder, or close.",
             "hands": "Hands",

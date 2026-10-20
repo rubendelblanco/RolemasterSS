@@ -118,3 +118,17 @@ describe('_castingMovementPenalty', () => {
         for (const t of ["BE", "DE", "I", "be"]) expect(CastingOptionsService._castingMovementPenalty(moved, t)).toBe(0);
     });
 });
+
+describe('the warning for a negative total', () => {
+    test('the dialog carries a warning badge, hidden until the total is negative', () => {
+        const html = build({});
+        expect(html).toContain('class="encumbrance-penalty-badge" id="casting-negative-warning"');
+        expect(html).toContain('rmss.spells.casting_negative_warning');
+        expect(html).toMatch(/id="casting-negative-warning-row" style="display:none;/);
+    });
+
+    test('recalculating the total shows the warning when it is below zero and hides it otherwise', () => {
+        const html = build({});
+        expect(html).toContain("getElementById('casting-negative-warning-row').style.display = total < 0 ? 'flex' : 'none';");
+    });
+});
