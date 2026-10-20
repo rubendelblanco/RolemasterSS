@@ -2,8 +2,10 @@
  * Geometry and defense helpers for BE area (ball) spells using Foundry measured templates.
  */
 
+import { getElementalDefenseBonus } from "./elemental_defense_service.js";
+
 /**
- * DB for area elemental attacks: ignore shield bonus when breakdown exists.
+ * DB for area elemental attacks: ignore shield bonus when breakdown exists, plus the actor's elemental defense.
  * @param {Actor} actor
  * @returns {number}
  */
@@ -12,10 +14,11 @@ export function getAreaDefenseDb(actor) {
     if (!info) return 0;
     const total = Number(info.total_db) || 0;
     const shield = Number(info.shield_bonus);
+    const elemental = getElementalDefenseBonus(actor);
     if (Number.isFinite(shield)) {
-        return Math.max(0, total - shield);
+        return Math.max(0, total - shield) + elemental;
     }
-    return Math.max(0, total);
+    return Math.max(0, total) + elemental;
 }
 
 /**

@@ -16,6 +16,7 @@ import { socket } from "../../../rmss.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 import { getMatchingSpellAdder, consumeSpellAdderUse, validatePpForSpellCastAfterDialog } from "../../actors/utils/power_points_util.js";
 import Utils from "../../utils.js";
+import { getElementalDefenseBonus } from "../../combat/services/elemental_defense_service.js";
 
 export default class DirectedElementalSpellService {
 
@@ -245,7 +246,7 @@ export default class DirectedElementalSpellService {
             const targetActor = target.actor;
             if (!targetActor?.system?.armor_info) continue;
 
-            const targetDefense = parseInt(targetActor.system.armor_info?.total_db ?? 0) || 0;
+            const targetDefense = (parseInt(targetActor.system.armor_info?.total_db ?? 0) || 0) + getElementalDefenseBonus(targetActor);
             const areaPenalty = i === 0 ? 0 : 20;
             let finalForTarget = baseEnergy - targetDefense - areaPenalty;
             finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(

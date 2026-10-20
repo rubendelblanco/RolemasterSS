@@ -25,6 +25,7 @@ import {
     isTokenAtEpicenter,
     getAreaDefenseDb
 } from "../../combat/services/area_spell_resolution_service.js";
+import { getElementalDefenseBonus } from "../../combat/services/elemental_defense_service.js";
 
 export default class BaseElementalSpellService {
 
@@ -316,7 +317,7 @@ export default class BaseElementalSpellService {
                     continue;
                 }
 
-                const targetDefense = parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0;
+                const targetDefense = (parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0) + getElementalDefenseBonus(enemyActor);
                 const areaPenalty = i === 0 ? CENTRAL_TARGET_PENALTY : AREA_TARGET_PENALTY;
                 let finalForTarget = baseEnergy - targetDefense - areaPenalty;
                 finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(
@@ -502,7 +503,7 @@ export default class BaseElementalSpellService {
                 failureResult: null,
                 isSpellFailure: false
             });
-            const targetDefense = parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0;
+            const targetDefense = (parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0) + getElementalDefenseBonus(enemyActor);
             const areaPenalty = 0;
             let finalForTarget = baseEnergy - targetDefense - areaPenalty;
             finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(

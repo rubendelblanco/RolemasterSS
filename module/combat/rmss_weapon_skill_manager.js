@@ -8,6 +8,7 @@ import WeaponBreakageService from "./services/weapon_breakage_service.js";
 import FacingService from "./services/facing_service.js";
 import ParryService, { PARRY_REASON } from "./services/parry_service.js";
 import ShieldService from "./services/shield_service.js";
+import { getElementalDefenseBonus } from "./services/elemental_defense_service.js";
 import { snapshotAmmo, ammoAsWeaponLike, runAttackMacro } from "./services/ammo_effects_service.js";
 import { weaponUsesAmmo } from "../actors/utils/ammunition_util.js";
 import { isParryAutomatic, isShieldFacingEnabled } from "./services/parry_settings.js";
@@ -302,9 +303,11 @@ export class RMSSWeaponSkillManager {
         // ignore the shield (their DB starts at 0 here), so there is nothing to adjust for them.
         const shieldOn = isShieldFacingEnabled();
         const shieldBonus = (areaElementalBall || !shieldOn) ? 0 : ShieldService.getShieldBonus(enemyForTemplate);
+        // Elemental spell attacks (never weapon attacks) also count the target's elemental defense. Area balls start at 0.
+        const elementalDefense = isSpellAttack && !areaElementalBall ? getElementalDefenseBonus(enemyForTemplate) : 0;
         const defenderDbValue = areaElementalBall ? 0
-            : shieldOn ? ShieldService.getDefenseDb(enemyForTemplate, facingValue)
-            : (enemyForTemplate?.system?.armor_info?.total_db ?? 0);
+            : (shieldOn ? ShieldService.getDefenseDb(enemyForTemplate, facingValue)
+            : (enemyForTemplate?.system?.armor_info?.total_db ?? 0)) + elementalDefense;
 
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: realActor,
