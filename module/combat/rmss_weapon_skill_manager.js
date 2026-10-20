@@ -8,6 +8,7 @@ import WeaponBreakageService from "./services/weapon_breakage_service.js";
 import FacingService from "./services/facing_service.js";
 import ParryService, { PARRY_REASON } from "./services/parry_service.js";
 import ShieldService from "./services/shield_service.js";
+import { activityRatio } from "./services/movement_cost_service.js";
 import { getElementalDefenseBonus } from "./services/elemental_defense_service.js";
 import { snapshotAmmo, ammoAsWeaponLike, runAttackMacro } from "./services/ammo_effects_service.js";
 import { weaponUsesAmmo } from "../actors/utils/ammunition_util.js";
@@ -240,12 +241,12 @@ export class RMSSWeaponSkillManager {
             bonusValue = spellOptions.bonusValue ?? 0;
             // Activity vs movement (matches non-spell path; "Bonus" effects are already in bonusValue from cast total)
             bonusValue -= Math.round(
-                (1 - (move.current / moveMax)) * 100
+                (1 - activityRatio(move.current, moveMax)) * 100
             );
             const stunEffect = realEnemy ? Utils.getEffectByName(realEnemy, "Stunned") : [];
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.value ?? 0) > 0;
         } else {
-            const moveRatio = (move.current / moveMax);
+            const moveRatio = activityRatio(move.current, moveMax);
             if (moveRatio < 0.5) {
                 ui.notifications.warn("Unable to attack (activity behind 50%)", {localize: true});
                 return null;
@@ -266,7 +267,7 @@ export class RMSSWeaponSkillManager {
             bonusValue += Number(tokenData?.ammoBonus) || 0;
             // Armor on the arms and hands hampers missile fire (Armor Table T-3.3); characters shooting a missile weapon only
             bonusValue -= getMissilePenaltyForWeapon(realActor, realWeapon);
-            bonusValue -= Math.round((1 - (move.current / moveMax)) * 100);
+            bonusValue -= Math.round((1 - activityRatio(move.current, moveMax)) * 100);
             stunnedValue = stunEffect.length > 0 && (stunEffect[0].duration?.value ?? 0) > 0;
         }
 

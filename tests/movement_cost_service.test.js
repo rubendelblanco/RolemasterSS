@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 import { describe, it, expect } from "@jest/globals";
-import { evaluateMovement } from "../module/combat/services/movement_cost_service.js";
+import { evaluateMovement, activityRatio } from "../module/combat/services/movement_cost_service.js";
 
 const move = (cost, extra = {}) => ({ passed: { cost, waypoints: [{ action: "walk" }] }, pending: { cost: 0, waypoints: [] }, ...extra });
 
@@ -59,5 +59,24 @@ describe("evaluateMovement", () => {
     expect(evaluateMovement(10, move(0))).toBeNull();
     expect(evaluateMovement(10, { passed: {} })).toBeNull();
     expect(evaluateMovement(10, undefined)).toBeNull();
+  });
+});
+
+describe('activityRatio', () => {
+  it('is the fraction of the Movement Rate that is left', () => {
+    expect(activityRatio(30, 30)).toBe(1);
+    expect(activityRatio(15, 30)).toBe(0.5);
+    expect(activityRatio(0, 30)).toBe(0);
+  });
+
+  it('an actor with no Movement Rate set counts as fully active, not NaN', () => {
+    expect(activityRatio(0, 0)).toBe(1);
+    expect(activityRatio(0, undefined)).toBe(1);
+    expect(activityRatio(10, -5)).toBe(1);
+  });
+
+  it('missing or non-numeric values count as fully active', () => {
+    expect(activityRatio(undefined, 30)).toBe(1);
+    expect(activityRatio('x', 30)).toBe(1);
   });
 });

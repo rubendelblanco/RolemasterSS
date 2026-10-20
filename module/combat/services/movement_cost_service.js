@@ -37,3 +37,18 @@ export function evaluateMovement(remaining, movement) {
     const allowed = cost <= left;
     return { cost, remaining: left, allowed, newRemaining: allowed ? left - cost : left };
 }
+
+/**
+ * How much of its Movement Rate an actor has left, as a fraction (1 = all of it). An actor whose Movement Rate is
+ * not set (0, or missing) has nothing to measure against, so it counts as fully active: dividing by zero gave NaN,
+ * which blanked the attack modifier in the confirm-attack window and dropped every bonus that was being added to it.
+ * @param {number} current  Movement Rate left this round
+ * @param {number} max      Movement Rate for the round (weight-penalized when the actor has one)
+ * @returns {number}
+ */
+export function activityRatio(current, max) {
+    const cur = Number(current);
+    const top = Number(max);
+    if (!Number.isFinite(cur) || !Number.isFinite(top) || top <= 0) return 1;
+    return cur / top;
+}
