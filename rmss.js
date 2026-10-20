@@ -117,6 +117,10 @@ Hooks.once("socketlib.ready", () => {
     const { default: SpellHealService } = await import("./module/spells/services/spell_heal_service.js");
     return SpellHealService.applySpellHealHitsGM(payload);
   });
+  socket.register("applyEffectsAsGM", async (payload) => {
+    const { default: EffectApplyService } = await import("./module/actors/services/effect_apply_service.js");
+    return EffectApplyService.applyEffectsAsGM(payload);
+  });
   socket.register("stampCircleTemplateAuthor", async (regionUuid, userId) => {
     const { stampCircleTemplateAuthorGM } = await import("./module/combat/services/area_spell_resolution_service.js");
     return stampCircleTemplateAuthorGM(regionUuid, userId);
@@ -326,6 +330,13 @@ Hooks.once("init", function () {
     lastSpellContext: null, // Set by ForceSpellService before spell.use(); used by item macros
     /** Get normalized sex for any actor (character, npc, creature). For spell macros: game.rmss.getActorSex(actor) */
     getActorSex: (actor) => utils.getActorSex(actor),
+    /**
+     * For macros: put an effect on other actors through a GM client (a player cannot create effects on actors they do not own).
+     * Without replaceKey the effect is just created; with it, the effects carrying that key on each actor are replaced.
+     * @param {{ actorUuids: string[], effectData: object, replaceKey?: string }} payload
+     * @returns {Promise<{ applied: string[], failed: string[] }>}
+     */
+    applyEffectsAsGM: (payload) => socket.executeAsGM("applyEffectsAsGM", payload),
     applications: {
       RMSSActorSheetConfig
     },
