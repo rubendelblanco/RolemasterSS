@@ -1,6 +1,7 @@
 // Our Item Sheet extends the default
 import { ContainerHandler } from "../../actors/utils/container_handler.js";
 import { buildDeleteConfirmContent } from "../items/item_delete_confirm_util.js";
+import { embeddedSpellRows } from "./embedded_spell_rows.js";
 
 export default class RMSSSpellListSheet extends ItemSheet {
     // Default options
@@ -105,8 +106,8 @@ export default class RMSSSpellListSheet extends ItemSheet {
         let spells = [];
         if (this.isEmbeddedMode) {
             // Compendium: use embedded system.spells
-            spells = [...(this.item.system.spells ?? [])];
-            spells.sort((a, b) => ((a.system?.level ?? 0) - (b.system?.level ?? 0)));
+            // Sorted by level, but each row keeps its position in the stored array (_idx): edit, delete and drag work on that
+            spells = embeddedSpellRows(this.item.system.spells);
         } else {
             // Actor: use ContainerHandler
             const handler = ContainerHandler.for(this.item);

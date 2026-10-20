@@ -1444,6 +1444,7 @@
             "profession": "Profession",
             "imported": "Spell list \"{name}\" added.",
             "imported_with_spells": "Spell list \"{name}\" added with {count} spell(s).",
+            "edit_position_lost": "The spell is no longer where it was when you opened it (the list changed). Nothing was saved, so it is not duplicated. Open it again from the list.",
             "drop_spells_hint": "Drop spells here, drag from other lists, or create new.",
             "no_skill_categories": "The character has no skill categories. Apply a profession first.",
             "create_skill_title": "Create skill for \"{name}\"",

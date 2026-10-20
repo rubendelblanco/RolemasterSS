@@ -1151,7 +1151,10 @@ Hooks.once("init", function () {
         if (Number.isFinite(i) && i >= 0 && i < spells.length) {
           spells[i] = spellPayload;
         } else {
-          spells.push(spellPayload);
+          // The spell is no longer where it was when the sheet was opened: pushing a copy would duplicate it
+          console.warn("rmss | embedded spell sync: position " + editCtx.spellIndex + " is not in the list, nothing saved");
+          ui.notifications.warn(game.i18n.localize("rmss.spell_lists.edit_position_lost"));
+          return;
         }
       }
 
