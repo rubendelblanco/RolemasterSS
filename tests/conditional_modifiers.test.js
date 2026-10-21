@@ -228,7 +228,7 @@ describe('spellTags', () => {
   });
 
   test('the tags written on the spell are added, without repeating what was derived', () => {
-    expect(spellTags({ type: "F", realm: "essence", authored: ["Cold", "charm"] })).toEqual(["spell", "essence", "cold", "charm"]);
+    expect(spellTags({ type: "F", realm: "essence", authored: ["Cold", "charm"] })).toEqual(["spell", "essence", "cold", "ice", "charm"]);
     expect(spellTags({ type: "DE", attackTable: "fire_bolt", authored: ["fire", "spell"] })).toEqual(["spell", "elemental", "fire", "heat"]);
   });
 });
@@ -271,5 +271,38 @@ describe('getResistanceModifier', () => {
   test('nothing to ask about adds nothing', () => {
     expect(getResistanceModifier(protectedAgainstFire)).toBe(0);
     expect(getResistanceModifier(null, { category: "essence" })).toBe(0);
+  });
+});
+
+describe('element partners', () => {
+  test('an element written on a spell brings its partner, whichever way it is written', () => {
+    expect(spellTags({ type: "F", authored: ["ice"] })).toEqual(["spell", "ice", "cold"]);
+    expect(spellTags({ type: "F", authored: ["cold"] })).toEqual(["spell", "cold", "ice"]);
+    expect(spellTags({ type: "F", authored: ["fire"] })).toEqual(["spell", "fire", "heat"]);
+    expect(spellTags({ type: "F", authored: ["heat"] })).toEqual(["spell", "heat", "fire"]);
+  });
+
+  test('so a protection against cold covers a spell written as ice, and the other way round', () => {
+    const againstCold = actorWith(effect([{ target: "rr", value: 20, versus: ["spell", "cold"] }]));
+    const againstIce = actorWith(effect([{ target: "rr", value: 20, versus: ["spell", "ice"] }]));
+    for (const written of ["ice", "cold"]) {
+      const tags = spellTags({ type: "F", realm: "essence", authored: [written] });
+      expect(getResistanceModifier(againstCold, { category: "essence", tags })).toBe(20);
+      expect(getResistanceModifier(againstIce, { category: "essence", tags })).toBe(20);
+    }
+  });
+
+  test('the partner is not repeated when both are already there', () => {
+    expect(spellTags({ type: "F", authored: ["ice", "cold"] })).toEqual(["spell", "ice", "cold"]);
+    expect(spellTags({ type: "DE", attackTable: "ice_bolt", authored: ["cold"] })).toEqual(["spell", "elemental", "ice", "cold"]);
+  });
+
+  test('an element with no partner brings nothing else', () => {
+    expect(spellTags({ type: "F", authored: ["electricity", "charm"] })).toEqual(["spell", "electricity", "charm"]);
+  });
+
+  test('an attack table called cold_bolt or heat_bolt is the same element as an ice or fire one', () => {
+    expect(spellTags({ type: "DE", attackTable: "cold_bolt" })).toEqual(["spell", "elemental", "ice", "cold"]);
+    expect(spellTags({ type: "DE", attackTable: "heat_ball" })).toEqual(["spell", "elemental", "fire", "heat"]);
   });
 });

@@ -32,8 +32,8 @@ const MISSILE_WEAPON_TYPES = ["mis", "th"];
 
 /** The element of an elemental attack, from the name of its attack table (fire_bolt, ice_ball, lighting_bolt...). */
 const ELEMENTS = [
-    [/fire/i, ["fire", "heat"]],
-    [/ice/i, ["ice", "cold"]],
+    [/fire|heat/i, ["fire", "heat"]],
+    [/ice|cold/i, ["ice", "cold"]],
     [/lighting|lightning|shock/i, ["electricity"]],
     [/water/i, ["water"]]
 ];
@@ -46,6 +46,13 @@ const ELEMENTS = [
 export function weaponAttackTags(weapon) {
     return ["weapon", MISSILE_WEAPON_TYPES.includes(weapon?.system?.type) ? "missile" : "melee"];
 }
+
+/**
+ * Elements the rules (and the books) name in two ways: a tag written on a spell brings its partner, so a protection against
+ * cold covers a spell written as ice and the other way round. (The books tell an ice bolt from a cold bolt, but whatever
+ * protects against one protects against the other.)
+ */
+const ELEMENT_PARTNER = Object.freeze({ ice: "cold", cold: "ice", fire: "heat", heat: "fire" });
 
 /** The realms of magic a spell can belong to. */
 const SPELL_REALMS = ["essence", "channeling", "mentalism", "arcane"];
@@ -66,7 +73,7 @@ export function normalizeTagList(raw) {
  * - the realm(s) it is cast from: essence, channeling, mentalism, arcane (a hybrid list gives both)
  * - bolts and balls (BE, DE, or any spell with an attack table): elemental, and the element the attack table names
  * - the tags written on the spell itself (`system.spell_tags`), for what the other rules cannot know: a force spell of
- *   cold, a charm, an illusion...
+ *   cold, a charm, an illusion... An element written on a spell brings its partner (ice/cold, fire/heat).
  * @param {{ type?: string, attackTable?: string, realm?: string, authored?: string[]|string }} [spell]
  * @returns {string[]}
  */
@@ -82,7 +89,10 @@ export function spellTags({ type, attackTable, realm, authored } = {}) {
             if (pattern.test(String(attackTable ?? ""))) tags.push(...elementTags);
         }
     }
-    tags.push(...normalizeTagList(authored));
+    for (const tag of normalizeTagList(authored)) {
+        tags.push(tag);
+        if (ELEMENT_PARTNER[tag]) tags.push(ELEMENT_PARTNER[tag]);
+    }
     return [...new Set(tags)];
 }
 
