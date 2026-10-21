@@ -1011,6 +1011,9 @@
             "section_attack_table": "Attack Table",
             "section_rr_bonus": "Resistance Roll Bonus",
             "rr_bonus": "RR Bonus",
+            "tags_section": "Tags",
+            "tags_placeholder": "e.g. fire, cold, charm (empty = none)",
+            "tags_hint": "For effects that protect or help only against a kind of spell. Spell, realm and, for bolts and balls, elemental and its element are added on their own.",
             "rr_bonus_hint": "For F (Force) spells only. Added to the target's Resistance Roll when this spell is cast against them. Positive helps the target resist, negative hurts them."
         },
         "skill_category": {

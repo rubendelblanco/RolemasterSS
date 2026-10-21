@@ -38,7 +38,7 @@ const enemy = (effects = []) => ({
 
 const sword = { id: "w1", type: "weapon", name: "Sword", system: { type: "1he", offensive_skill: "" } };
 const bow = { id: "w2", type: "weapon", name: "Bow", system: { type: "mis", offensive_skill: "" } };
-const spellWeapon = (attackTable) => ({ type: "spell", system: { attack_table: attackTable } });
+const spellWeapon = (attackTable, system = {}) => ({ type: "spell", system: { attack_table: attackTable, ...system } });
 const spellOptions = { ob: 30, hitsTaken: 0, bleeding: 0, penaltyValue: 0, bonusValue: 0 };
 
 let rendered;
@@ -94,6 +94,14 @@ describe("the confirm-attack window: the defender's DB", () => {
     const defender = enemy([{ flags: { rmss: { elementalDefenseBonus: 5 } } }]);
     await RMSSWeaponSkillManager.attackMessagePopup(actor(), defender, spellWeapon("fire_bolt"), spellOptions);
     expect(rendered.data.defenderDbValue).toBe(45);
+  });
+
+  it("the tags written on the spell count too: a defense against cold also covers a force-of-cold spell attack", async () => {
+    const defender = enemy([mod("db", 30, ["cold"])]);
+    await RMSSWeaponSkillManager.attackMessagePopup(actor(), defender, spellWeapon("water_bolt", { spell_type: "DE", spell_tags: ["cold"] }), spellOptions);
+    expect(rendered.data.defenderDbValue).toBe(70);
+    await RMSSWeaponSkillManager.attackMessagePopup(actor(), defender, spellWeapon("water_bolt", { spell_type: "DE" }), spellOptions);
+    expect(rendered.data.defenderDbValue).toBe(40);
   });
 
   it("an area ball starts from 0 here: its DB is worked out with the area rules", async () => {

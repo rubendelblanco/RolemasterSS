@@ -323,6 +323,16 @@ rmss.passive_modifier_actions = {
   override: "rmss.item.passive_mod_action_override"
 }
 
+/**
+ * Suggested tags for a spell (`system.spell_tags`), for the modifiers that name what they are against (see
+ * module/effects/conditional_modifiers.js). Spell, its realm and, for bolts and balls, elemental and its element are already
+ * derived; these are for what the rules cannot know. The field is free: any tag can be written.
+ */
+rmss.spell_tag_types = [
+  "fire", "heat", "ice", "cold", "electricity", "water", "earth", "air", "light", "acid",
+  "charm", "fear", "illusion", "mind-control", "sleep", "holy", "unholy", "death"
+];
+
 /** Slaying weapon creature types (for autocomplete). Includes general types, professions, and undead creature names (kebab-case). */
 rmss.slaying_types = [
   "air-elemental", "alchemist", "amphibian", "angel", "animal", "animist", "apparition", "aquatic",

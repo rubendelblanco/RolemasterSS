@@ -10,7 +10,11 @@ import {
   matchesVersus,
   effectModifiers,
   getConditionalModifier,
-  normalizeModifiers
+  normalizeModifiers,
+  normalizeTagList,
+  spellTags,
+  spellTagsOf,
+  getResistanceModifier
 } from '../module/effects/conditional_modifiers.js';
 import {
   buildConditionalModifierEffect,
@@ -189,5 +193,83 @@ describe('isRoundTickedEffect', () => {
   test('so does any effect that says so with the flag, whatever its name', () => {
     expect(isRoundTickedEffect({ name: "Sacred Strike", flags: { rmss: { [TICKS_PER_ROUND_FLAG]: true } } })).toBe(true);
     expect(isRoundTickedEffect({ name: "Sacred Strike", flags: { rmss: {} } })).toBe(false);
+  });
+});
+
+describe('normalizeTagList', () => {
+  test('trims, lower-cases and drops empty and repeated tags', () => {
+    expect(normalizeTagList([" Fire ", "cold", "fire", "", "  "])).toEqual(["fire", "cold"]);
+  });
+
+  test('accepts a comma-separated string, and anything else is an empty list', () => {
+    expect(normalizeTagList("fire, Cold ,")).toEqual(["fire", "cold"]);
+    expect(normalizeTagList(undefined)).toEqual([]);
+    expect(normalizeTagList(5)).toEqual([]);
+  });
+});
+
+describe('spellTags', () => {
+  test('every spell is a spell, and nothing else when there is nothing else to say', () => {
+    expect(spellTags()).toEqual(["spell"]);
+    expect(spellTags({ type: "F" })).toEqual(["spell"]);
+  });
+
+  test('it carries the realm it is cast from, and a hybrid list gives both', () => {
+    expect(spellTags({ type: "F", realm: "Essence" })).toEqual(["spell", "essence"]);
+    expect(spellTags({ type: "F", realm: "essence/channeling" })).toEqual(["spell", "essence", "channeling"]);
+    expect(spellTags({ type: "F", realm: "arcane" })).toEqual(["spell", "arcane"]);
+    expect(spellTags({ type: "F", realm: "nonsense" })).toEqual(["spell"]);
+  });
+
+  test('bolts and balls are elemental, with the element their attack table names', () => {
+    expect(spellTags({ type: "DE", attackTable: "ice_bolt" })).toEqual(["spell", "elemental", "ice", "cold"]);
+    expect(spellTags({ type: "BE", attackTable: "fire_ball", realm: "essence" })).toEqual(["spell", "essence", "elemental", "fire", "heat"]);
+    expect(spellTags({ type: "DE" })).toEqual(["spell", "elemental"]);
+  });
+
+  test('the tags written on the spell are added, without repeating what was derived', () => {
+    expect(spellTags({ type: "F", realm: "essence", authored: ["Cold", "charm"] })).toEqual(["spell", "essence", "cold", "charm"]);
+    expect(spellTags({ type: "DE", attackTable: "fire_bolt", authored: ["fire", "spell"] })).toEqual(["spell", "elemental", "fire", "heat"]);
+  });
+});
+
+describe('spellTagsOf', () => {
+  test('reads the type, attack table and written tags of a spell item', () => {
+    const spell = { system: { type: "DE", attack_table: "lighting_bolt", spell_tags: ["shock"] } };
+    expect(spellTagsOf(spell, { realm: "essence" })).toEqual(["spell", "essence", "elemental", "electricity", "shock"]);
+  });
+
+  test('a spell with no data is just a spell', () => {
+    expect(spellTagsOf(null)).toEqual(["spell"]);
+    expect(spellTagsOf({ system: {} })).toEqual(["spell"]);
+  });
+});
+
+describe('getResistanceModifier', () => {
+  const protectedAgainstFire = actorWith(effect([
+    { target: "rr", value: 20, versus: ["spell", "fire"] },
+    { target: "rr", value: 5, versus: ["spell"] }
+  ]));
+
+  test('counts what is given against the category, and against the tags of the spell', () => {
+    expect(getResistanceModifier(protectedAgainstFire, { category: "essence", tags: ["spell", "fire", "heat"] })).toBe(25);
+  });
+
+  test('without the spell tags only the category counts: a fire protection does not apply to just any spell', () => {
+    expect(getResistanceModifier(protectedAgainstFire, { category: "essence" })).toBe(5);
+    expect(getResistanceModifier(protectedAgainstFire, { category: "essence", tags: ["spell", "ice", "cold"] })).toBe(5);
+  });
+
+  test('the spell tags alone are enough, with no category', () => {
+    expect(getResistanceModifier(protectedAgainstFire, { tags: ["spell", "fire"] })).toBe(25);
+  });
+
+  test('a poison roll gets nothing against spells', () => {
+    expect(getResistanceModifier(protectedAgainstFire, { category: "poison" })).toBe(0);
+  });
+
+  test('nothing to ask about adds nothing', () => {
+    expect(getResistanceModifier(protectedAgainstFire)).toBe(0);
+    expect(getResistanceModifier(null, { category: "essence" })).toBe(0);
   });
 });

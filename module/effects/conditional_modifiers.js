@@ -47,17 +47,67 @@ export function weaponAttackTags(weapon) {
     return ["weapon", MISSILE_WEAPON_TYPES.includes(weapon?.system?.type) ? "missile" : "melee"];
 }
 
+/** The realms of magic a spell can belong to. */
+const SPELL_REALMS = ["essence", "channeling", "mentalism", "arcane"];
+
+/**
+ * A list of tags as it should be stored and compared: trimmed, lower case, no empty ones, no repeats.
+ * @param {string[]|string|null|undefined} raw an array, or a comma-separated string
+ * @returns {string[]}
+ */
+export function normalizeTagList(raw) {
+    const list = Array.isArray(raw) ? raw : (typeof raw === "string" ? raw.split(",") : []);
+    return [...new Set(list.map((tag) => String(tag).trim().toLowerCase()).filter(Boolean))];
+}
+
+/**
+ * Every tag a spell carries, for the modifiers that name what they are against.
+ * - always: spell
+ * - the realm(s) it is cast from: essence, channeling, mentalism, arcane (a hybrid list gives both)
+ * - bolts and balls (BE, DE, or any spell with an attack table): elemental, and the element the attack table names
+ * - the tags written on the spell itself (`system.spell_tags`), for what the other rules cannot know: a force spell of
+ *   cold, a charm, an illusion...
+ * @param {{ type?: string, attackTable?: string, realm?: string, authored?: string[]|string }} [spell]
+ * @returns {string[]}
+ */
+export function spellTags({ type, attackTable, realm, authored } = {}) {
+    const tags = ["spell"];
+    for (const found of String(realm ?? "").toLowerCase().match(/essence|channeling|mentalism|arcane/g) ?? []) {
+        if (SPELL_REALMS.includes(found)) tags.push(found);
+    }
+    const kind = String(type ?? "").toUpperCase();
+    if (kind === "BE" || kind === "DE" || attackTable) {
+        tags.push("elemental");
+        for (const [pattern, elementTags] of ELEMENTS) {
+            if (pattern.test(String(attackTable ?? ""))) tags.push(...elementTags);
+        }
+    }
+    tags.push(...normalizeTagList(authored));
+    return [...new Set(tags)];
+}
+
+/**
+ * The tags of a spell item (see {@link spellTags}).
+ * @param {{ system?: { type?: string, attack_table?: string, spell_tags?: string[] } }|null|undefined} spell
+ * @param {{ realm?: string }} [options] the realm it is cast from, when it is known
+ * @returns {string[]}
+ */
+export function spellTagsOf(spell, { realm } = {}) {
+    return spellTags({
+        type: spell?.system?.type,
+        attackTable: spell?.system?.attack_table,
+        authored: spell?.system?.spell_tags,
+        realm
+    });
+}
+
 /**
  * Tags of an elemental spell attack (bolt or ball), with its element when the attack table says which.
  * @param {string|null|undefined} attackTable e.g. "fire_bolt"
  * @returns {string[]}
  */
 export function spellAttackTags(attackTable) {
-    const tags = ["spell", "elemental"];
-    for (const [pattern, elementTags] of ELEMENTS) {
-        if (pattern.test(String(attackTable ?? ""))) tags.push(...elementTags);
-    }
-    return tags;
+    return spellTags({ type: "DE", attackTable });
 }
 
 /**
@@ -79,6 +129,18 @@ export function resistanceRollTags(key) {
         case "fear": return ["fear"];
         default: return [];
     }
+}
+
+/**
+ * What the active effects of an actor add to a resistance roll: the ones that count for what the category resists (spells
+ * of its realm, poison...) and for the spell the roll is against, when its tags are known.
+ * @param {Actor|null|undefined} actor
+ * @param {{ category?: string|null, tags?: string[] }} [roll]
+ * @returns {number}
+ */
+export function getResistanceModifier(actor, { category = null, tags = [] } = {}) {
+    const rollTags = [...new Set([...resistanceRollTags(category), ...(Array.isArray(tags) ? tags : [])])];
+    return getConditionalModifier(actor, MODIFIER_TARGET.RR, rollTags);
 }
 
 /**

@@ -2,7 +2,7 @@ import ResistanceRollService from "./resistance_roll_service.js";
 import { postWeaponFumble, postSpellFailure, parseManualRoll, SPELL_FAILURE_CHOICES, SPELL_FAILURE_CODES } from "../../combat/services/manual_fumble_service.js";
 import { rmss } from "../../config.js";
 import { chatMessageOtherStyle } from "../../chat/chatMessages.js";
-import { getConditionalModifier, resistanceRollTags, MODIFIER_TARGET } from "../../effects/conditional_modifiers.js";
+import { getResistanceModifier } from "../../effects/conditional_modifiers.js";
 
 /** Keys of Actor#system.resistance_rolls (character sheet only — npc/creature don't have this template). */
 const RESISTANCE_ROLL_KEYS = [
@@ -25,7 +25,7 @@ export default class EffectsPopupService {
     static _resistanceOptions(actor) {
         return RESISTANCE_ROLL_KEYS.map((key) => {
             const sheetTotal = actor.system?.resistance_rolls?.[key]?.total ?? 0;
-            const fromEffects = getConditionalModifier(actor, MODIFIER_TARGET.RR, resistanceRollTags(key));
+            const fromEffects = getResistanceModifier(actor, { category: key });
             const label = game.i18n.localize(`rmss.pc_sheet_resistances.${key}`);
             const note = fromEffects !== 0
                 ? ` [${fromEffects > 0 ? "+" : ""}${fromEffects} ${game.i18n.localize("rmss.combat.rr_from_effects")}]`

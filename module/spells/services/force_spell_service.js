@@ -9,6 +9,7 @@ import { sendExpMessage, whisperIdsForNpcRollPrivacy, dice3dSynchronizeForNpcRol
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 import Utils from "../../utils.js";
 import { getMatchingSpellAdder, consumeSpellAdderUse, validatePpForSpellCastAfterDialog } from "../../actors/utils/power_points_util.js";
+import { spellTagsOf } from "../../effects/conditional_modifiers.js";
 
 /**
  * Service to handle spell casting for non-elemental spells (F, P, U, I, E types).
@@ -332,7 +333,7 @@ export default class ForceSpellService {
             // Store RR context for item macro (see Item._executeItemMacro JSDoc; e.g. Dormir V: roll RR per target, apply sleep if failed)
             game.rmss = game.rmss || {};
             game.rmss.lastSpellContext = targetRRs.length > 0
-                ? { targetRRs, casterLevel: effectiveCasterLevel, realm: targetRRsRealm }
+                ? { targetRRs, casterLevel: effectiveCasterLevel, realm: targetRRsRealm, tags: spellTagsOf(spell, { realm: targetRRsRealm }) }
                 : null;
 
             const sourceToken = getActorToken(actor);

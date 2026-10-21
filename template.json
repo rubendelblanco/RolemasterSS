@@ -591,6 +591,7 @@
     },
     "spell": {
       "tags": ["spell"],
+      "spell_tags": [],
       "favorite": false,
       "instant": false,
       "no_pp": false,

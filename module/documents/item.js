@@ -13,6 +13,7 @@
  * @typedef {Object} SpellContext
  * @property {SpellContextTargetRR[]} targetRRs - Targets with their RR values
  * @property {number} casterLevel - Caster level
+ * @property {string[]} tags - Tags of the spell (spell, its realm, fire, cold...), for game.rmss.rollResistance({ tags })
  */
 
 import { normalizeTagArray } from "../sheets/items/item_tags_ui.js";

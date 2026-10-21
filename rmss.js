@@ -479,7 +479,9 @@ Hooks.once("init", function () {
      *   if (success) { / * A: resisted * / } else { / * B: failed * / }
      * }
      * ```
-     * @param {{ target: string|Token|TokenDocument, attackerLevel: number, defenderLevel?: number, modifier?: number, category?: string, silent?: boolean, rrTarget?: number }} options
+     * @param {{ target: string|Token|TokenDocument, attackerLevel: number, defenderLevel?: number, modifier?: number, category?: string, tags?: string[], silent?: boolean, rrTarget?: number }} options
+     *   - tags: the tags of the spell (`spellContext.tags` of a Force spell). What the target's effects give against spells of that
+     *     kind (e.g. +20 against fire) is added to its bonus, together with what they give against the category.
      *   - rrTarget: a target number you already have, instead of deriving it from the levels - typically
      *     `spellContext.targetRRs[i].finalRR` of a Force spell, which already includes the spell table's
      *     modifier (the one the cast card shows). modifier/category are still taken off it.
@@ -495,7 +497,7 @@ Hooks.once("init", function () {
      *     instead of one card per target.
      * @returns {Promise<{ success: boolean, finalRoll: number, naturalRoll: number, rollTotal: number, rrTarget: number }|null>} null if target not found
      */
-    async rollResistance({ target, attackerLevel, defenderLevel, modifier = 0, category = null, silent = false, rrTarget: explicitTarget = null }) {
+    async rollResistance({ target, attackerLevel, defenderLevel, modifier = 0, category = null, tags = [], silent = false, rrTarget: explicitTarget = null }) {
       const token = typeof target === "string"
         ? (canvas.tokens?.get(target) ?? canvas.scene?.tokens?.get(target) ?? null)
         : (target ?? null);
@@ -521,6 +523,10 @@ Hooks.once("init", function () {
           }
         }
       }
+
+      // What the target's effects add against this kind of resistance roll (see module/effects/conditional_modifiers.js)
+      const { getResistanceModifier } = await import("./module/effects/conditional_modifiers.js");
+      totalModifier += getResistanceModifier(token.actor, { category, tags });
 
       const resolvedDefenderLevel = defenderLevel ?? (parseInt(token.actor?.system?.attributes?.level?.value, 10) || 1);
       // executeResistanceRoll compares the raw roll against rrTarget as-is (it no longer adds

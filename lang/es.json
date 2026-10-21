@@ -1011,6 +1011,9 @@
       "section_attack_table": "Tabla de ataque",
       "section_rr_bonus": "Bonificación a la Tirada de Resistencia",
       "rr_bonus": "Bonif. RR",
+      "tags_section": "Etiquetas",
+      "tags_placeholder": "p. ej. fire, cold, charm (vacío = ninguna)",
+      "tags_hint": "Para efectos que protegen o ayudan solo contra cierto tipo de hechizo. Hechizo, reino y, en bolts y bolas, elemental y su elemento se ponen solos.",
       "rr_bonus_hint": "Solo para hechizos tipo F (Fuerza). Se suma a la Tirada de Resistencia del objetivo cuando este hechizo se lanza contra él. Positivo ayuda al objetivo a resistir, negativo lo perjudica."
     },
     "skill_category": {

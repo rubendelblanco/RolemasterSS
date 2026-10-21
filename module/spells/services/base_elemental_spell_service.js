@@ -25,7 +25,7 @@ import {
     isTokenAtEpicenter,
     getAreaDefenseDb
 } from "../../combat/services/area_spell_resolution_service.js";
-import { getConditionalModifier, spellAttackTags } from "../../effects/conditional_modifiers.js";
+import { getConditionalModifier, spellTagsOf } from "../../effects/conditional_modifiers.js";
 
 export default class BaseElementalSpellService {
 
@@ -119,7 +119,7 @@ export default class BaseElementalSpellService {
 
         const penaltyValue = Math.min(0, penaltyEffect);
         const restModifier = totalCastingModifier - hitsTaken - bleeding - penaltyValue;
-        const virtualWeapon = { type: "spell", system: { attack_table: spell.system?.attack_table } };
+        const virtualWeapon = { type: "spell", system: { attack_table: spell.system?.attack_table, spell_type: spell.system?.type, spell_tags: spell.system?.spell_tags ?? [] } };
 
         if (isBallSpell) {
             return BaseElementalSpellService._castBaseElementalBallSpell({
@@ -317,7 +317,7 @@ export default class BaseElementalSpellService {
                     continue;
                 }
 
-                const targetDefense = (parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0) + getConditionalModifier(enemyActor, "db", spellAttackTags(attackTableName));
+                const targetDefense = (parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0) + getConditionalModifier(enemyActor, "db", spellTagsOf(spell));
                 const areaPenalty = i === 0 ? CENTRAL_TARGET_PENALTY : AREA_TARGET_PENALTY;
                 let finalForTarget = baseEnergy - targetDefense - areaPenalty;
                 finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(
@@ -503,7 +503,7 @@ export default class BaseElementalSpellService {
                 failureResult: null,
                 isSpellFailure: false
             });
-            const targetDefense = (parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0) + getConditionalModifier(enemyActor, "db", spellAttackTags(attackTableName));
+            const targetDefense = (parseInt(enemyActor.system.armor_info?.total_db ?? 0) || 0) + getConditionalModifier(enemyActor, "db", spellTagsOf(spell));
             const areaPenalty = 0;
             let finalForTarget = baseEnergy - targetDefense - areaPenalty;
             finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(
@@ -759,7 +759,7 @@ export default class BaseElementalSpellService {
             }
 
             const centerBonus = isTokenAtEpicenter(target, epicenter.x, epicenter.y) ? 20 : 0;
-            const targetDefense = getAreaDefenseDb(enemyActorT, spellAttackTags(attackTableName));
+            const targetDefense = getAreaDefenseDb(enemyActorT, spellTagsOf(spell));
             let finalForTarget = attackColumnValue - targetDefense + centerBonus;
             finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(
                     finalForTarget,
@@ -869,7 +869,8 @@ export default class BaseElementalSpellService {
         game.rmss.lastSpellContext = {
             areaEpicenter: { x: epicenter.x, y: epicenter.y },
             areaDiameter: getCircleRadiusInGridUnits(template) * 2,
-            targetTokenUuids: areaTokens.map((t) => t.document.uuid)
+            targetTokenUuids: areaTokens.map((t) => t.document.uuid),
+            tags: spellTagsOf(spell)
         };
         // Item macros need the real caster token even when `spell` is a detached/temp Item
         // with no .actor (e.g. cast from a potion enchantment) — see Item._executeItemMacro.

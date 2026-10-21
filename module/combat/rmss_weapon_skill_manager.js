@@ -9,7 +9,7 @@ import FacingService from "./services/facing_service.js";
 import ParryService, { PARRY_REASON } from "./services/parry_service.js";
 import ShieldService from "./services/shield_service.js";
 import { activityRatio } from "./services/movement_cost_service.js";
-import { getConditionalModifier, weaponAttackTags, spellAttackTags } from "../effects/conditional_modifiers.js";
+import { getConditionalModifier, weaponAttackTags, spellTags } from "../effects/conditional_modifiers.js";
 import { snapshotAmmo, ammoAsWeaponLike, runAttackMacro } from "./services/ammo_effects_service.js";
 import { weaponUsesAmmo } from "../actors/utils/ammunition_util.js";
 import { isParryAutomatic, isShieldFacingEnabled } from "./services/parry_settings.js";
@@ -222,7 +222,13 @@ export class RMSSWeaponSkillManager {
         const realWeapon = (weapon?.id && realActor?.items?.get) ? (realActor.items.get(weapon.id) ?? weapon) : weapon;
 
         // What kind of attack this is, for the conditional modifiers of the attacker (OB) and of the defender (DB)
-        const attackTags = spellOptions ? spellAttackTags(realWeapon?.system?.attack_table) : weaponAttackTags(realWeapon);
+        const attackTags = spellOptions
+            ? spellTags({
+                type: realWeapon?.system?.spell_type ?? "DE",
+                attackTable: realWeapon?.system?.attack_table,
+                authored: realWeapon?.system?.spell_tags
+            })
+            : weaponAttackTags(realWeapon);
 
         if (Utils.isTargetDefeated(realEnemy)) {
             ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));

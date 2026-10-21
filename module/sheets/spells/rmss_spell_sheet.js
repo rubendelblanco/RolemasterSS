@@ -1,6 +1,8 @@
 // Our Item Sheet extends the default
 import ItemMacroEditor from "../../core/macros/item_macro_editor.js";
 import { bindMacroDropZone } from "../items/macro_drop_util.js";
+import { bindWeaponSlayingEditor } from "../items/weapon_slaying_ui.js";
+import { normalizeTagArray } from "../items/item_tags_ui.js";
 
 export default class RMSSSpellSheet extends ItemSheet {
 
@@ -32,7 +34,10 @@ export default class RMSSSpellSheet extends ItemSheet {
       item: baseData.item,
       system: baseData.item.system,
       config: CONFIG.rmss,
-      enrichedDescription: enrichedDescription
+      enrichedDescription: enrichedDescription,
+      // The tags written on the spell (spell_tags); the rest are derived when it is cast
+      spellTags: normalizeTagArray(this.item.system.spell_tags),
+      spellTagsListId: this.item.id ?? "new"
     };
 
     if (this.item.system.type === "BE") {
@@ -91,6 +96,8 @@ export default class RMSSSpellSheet extends ItemSheet {
       await this.render(false);
     });
     bindMacroDropZone(this, html);
+    // Same chips-and-input editor as the slaying tags of a weapon, on this spell's own list
+    bindWeaponSlayingEditor(this, html, { path: "system.spell_tags" });
   }
 
   /** @override */

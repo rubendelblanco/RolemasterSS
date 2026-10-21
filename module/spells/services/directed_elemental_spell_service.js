@@ -16,7 +16,7 @@ import { socket } from "../../../rmss.js";
 import { CombatHistoryTracker } from "../../combat/combat_history_tracker.js";
 import { getMatchingSpellAdder, consumeSpellAdderUse, validatePpForSpellCastAfterDialog } from "../../actors/utils/power_points_util.js";
 import Utils from "../../utils.js";
-import { getConditionalModifier, spellAttackTags } from "../../effects/conditional_modifiers.js";
+import { getConditionalModifier, spellTagsOf } from "../../effects/conditional_modifiers.js";
 
 export default class DirectedElementalSpellService {
 
@@ -119,7 +119,7 @@ export default class DirectedElementalSpellService {
 
         const penaltyValue = Math.min(0, penaltyEffect);
         const restModifier = totalCastingModifier - hitsTaken - bleeding - penaltyValue;
-        const virtualWeapon = { type: "spell", system: { attack_table: attackTableName } };
+        const virtualWeapon = { type: "spell", system: { attack_table: attackTableName, spell_type: spell.system?.type, spell_tags: spell.system?.spell_tags ?? [] } };
         const firstTarget = targets[0];
         const enemyActor = firstTarget.actor;
         if (!enemyActor?.system?.armor_info) {
@@ -246,7 +246,7 @@ export default class DirectedElementalSpellService {
             const targetActor = target.actor;
             if (!targetActor?.system?.armor_info) continue;
 
-            const targetDefense = (parseInt(targetActor.system.armor_info?.total_db ?? 0) || 0) + getConditionalModifier(targetActor, "db", spellAttackTags(attackTableName));
+            const targetDefense = (parseInt(targetActor.system.armor_info?.total_db ?? 0) || 0) + getConditionalModifier(targetActor, "db", spellTagsOf(spell));
             const areaPenalty = i === 0 ? 0 : 20;
             let finalForTarget = baseEnergy - targetDefense - areaPenalty;
             finalForTarget = RMSSTableManager.capSpellDamageLookupIndex(
