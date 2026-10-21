@@ -591,7 +591,7 @@ export class RMSSWeaponCriticalManager {
      * @returns {string} - One of: normal, magic, mithril, holy
      */
     /**
-     * Filter criticals for large/superlarge creatures: A is ignored (large), A-B ignored (superlarge).
+     * Filter criticals for large/superlarge creatures: A is ignored (large), A, B and C are ignored (superlarge).
      * For remaining criticals, set critType to large_melee or superlarge_melee.
      * @param {Object} criticalResult - { damage, criticals }
      * @param {Actor} enemy - Target actor
@@ -601,7 +601,7 @@ export class RMSSWeaponCriticalManager {
         const ct = enemy?.system?.attributes?.critical_codes?.critical_table;
         if (!ct || !["la", "sl"].includes(ct)) return criticalResult;
         const critType = ct === "la" ? "large_melee" : "superlarge_melee";
-        const ignoreSeverities = ct === "la" ? ["A"] : ["A", "B"];
+        const ignoreSeverities = ct === "la" ? ["A"] : ["A", "B", "C"];
         const filtered = (criticalResult.criticals || []).filter(
             (c) => !c.severity || !ignoreSeverities.includes(c.severity)
         );
