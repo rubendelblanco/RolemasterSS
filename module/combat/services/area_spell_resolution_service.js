@@ -2,19 +2,20 @@
  * Geometry and defense helpers for BE area (ball) spells using Foundry measured templates.
  */
 
-import { getElementalDefenseBonus } from "./elemental_defense_service.js";
+import { getConditionalModifier, spellAttackTags } from "../../effects/conditional_modifiers.js";
 
 /**
- * DB for area elemental attacks: ignore shield bonus when breakdown exists, plus the actor's elemental defense.
+ * DB for area elemental attacks: ignore shield bonus when breakdown exists, plus what the actor's effects add against this attack.
  * @param {Actor} actor
+ * @param {string[]} [tags] tags of the attack (an elemental spell without a known element by default)
  * @returns {number}
  */
-export function getAreaDefenseDb(actor) {
+export function getAreaDefenseDb(actor, tags = spellAttackTags()) {
     const info = actor?.system?.armor_info;
     if (!info) return 0;
     const total = Number(info.total_db) || 0;
     const shield = Number(info.shield_bonus);
-    const elemental = getElementalDefenseBonus(actor);
+    const elemental = getConditionalModifier(actor, "db", tags);
     if (Number.isFinite(shield)) {
         return Math.max(0, total - shield) + elemental;
     }

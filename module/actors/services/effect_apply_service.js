@@ -23,14 +23,6 @@ export default class EffectApplyService {
       result.failed.push(...actorUuids);
       return result;
     }
-    const key = typeof replaceKey === "string" && replaceKey ? replaceKey : null;
-
-    const data = foundry.utils.deepClone(effectData);
-    if (key) {
-      data.flags ??= {};
-      data.flags.rmss = { ...(data.flags.rmss ?? {}), [EFFECT_KEY_FLAG]: key };
-    }
-
     for (const uuid of actorUuids) {
       const actor = await EffectApplyService.#resolveActor(uuid);
       if (!actor) {
@@ -38,11 +30,7 @@ export default class EffectApplyService {
         continue;
       }
       try {
-        if (key) {
-          const old = actor.effects.filter((e) => e.getFlag("rmss", EFFECT_KEY_FLAG) === key).map((e) => e.id);
-          if (old.length) await actor.deleteEmbeddedDocuments("ActiveEffect", old);
-        }
-        await actor.createEmbeddedDocuments("ActiveEffect", [data]);
+        await EffectApplyService.applyToActor(actor, effectData, replaceKey);
         result.applied.push(uuid);
       } catch (e) {
         console.error("rmss | applyEffectsAsGM", uuid, e);
@@ -50,6 +38,26 @@ export default class EffectApplyService {
       }
     }
     return result;
+  }
+
+  /**
+   * Puts the effect on one actor. With `replaceKey`, the effects of that actor stamped with the same key are removed first and
+   * the new one is stamped with it, so asking again replaces instead of stacking. The data given is not modified.
+   * The caller must be able to write to the actor (a GM, or its owner).
+   * @param {Actor} actor
+   * @param {object} effectData
+   * @param {string} [replaceKey]
+   */
+  static async applyToActor(actor, effectData, replaceKey) {
+    const key = typeof replaceKey === "string" && replaceKey ? replaceKey : null;
+    const data = foundry.utils.deepClone(effectData);
+    if (key) {
+      data.flags ??= {};
+      data.flags.rmss = { ...(data.flags.rmss ?? {}), [EFFECT_KEY_FLAG]: key };
+      const old = actor.effects.filter((e) => e.getFlag("rmss", EFFECT_KEY_FLAG) === key).map((e) => e.id);
+      if (old.length) await actor.deleteEmbeddedDocuments("ActiveEffect", old);
+    }
+    await actor.createEmbeddedDocuments("ActiveEffect", [data]);
   }
 
   /**

@@ -51,6 +51,7 @@ import { computeFoodImpliesConsumableGuard } from "./module/sheets/items/consume
 import { registerParrySetting } from "./module/combat/services/parry_settings.js";
 import { registerCombatEventSettings, runCombatEventMacro } from "./module/combat/services/combat_event_macro_service.js";
 import { findStaleBridgeItems } from "./module/sheets/items/embedded_spell_flag_util.js";
+import { applyConditionalModifier } from "./module/effects/effects_api.js";
 
 export let socket;
 
@@ -337,6 +338,13 @@ Hooks.once("init", function () {
      * @returns {Promise<{ applied: string[], failed: string[] }>}
      */
     applyEffectsAsGM: (payload) => socket.executeAsGM("applyEffectsAsGM", payload),
+    /**
+     * Effects for macros. applyConditionalModifier(actors, { name, modifiers, seconds | rounds, replaceKey }) puts an effect that
+     * adds to DB, OB or resistance rolls only against some kinds of attack (see module/effects/effects_api.js).
+     */
+    effects: {
+      applyConditionalModifier: (actors, options) => applyConditionalModifier(actors, options)
+    },
     applications: {
       RMSSActorSheetConfig
     },

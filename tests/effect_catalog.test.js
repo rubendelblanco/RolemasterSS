@@ -186,7 +186,16 @@ describe('buildEffectData', () => {
   test('every definition has a name or leaves it to the caller, and a unit', () => {
     for (const [key, def] of Object.entries(EFFECT_DEFINITIONS)) {
       expect(["rounds", "seconds"]).toContain(def.units);
-      if (key !== "parryStance") expect(typeof def.name).toBe("string");
+      if (!["parryStance", "conditionalModifier"].includes(key)) expect(typeof def.name).toBe("string");
     }
+  });
+});
+
+describe('expiry', () => {
+  test('is only in the data when it is asked for, so the other effects keep what Foundry gives them by default', () => {
+    const plain = buildEffectData("bonus", { origin: ME, iconsFolder: ICONS, rmss: { value: 5 }, duration: 1 });
+    expect("expiry" in plain.duration).toBe(false);
+    const timed = buildEffectData("conditionalModifier", { origin: ME, name: "X", duration: 60, expiry: null });
+    expect(timed.duration).toEqual({ value: 60, units: "seconds", expiry: null });
   });
 });

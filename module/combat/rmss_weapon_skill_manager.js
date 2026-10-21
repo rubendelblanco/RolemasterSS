@@ -9,7 +9,7 @@ import FacingService from "./services/facing_service.js";
 import ParryService, { PARRY_REASON } from "./services/parry_service.js";
 import ShieldService from "./services/shield_service.js";
 import { activityRatio } from "./services/movement_cost_service.js";
-import { getElementalDefenseBonus } from "./services/elemental_defense_service.js";
+import { getConditionalModifier, weaponAttackTags, spellAttackTags } from "../effects/conditional_modifiers.js";
 import { snapshotAmmo, ammoAsWeaponLike, runAttackMacro } from "./services/ammo_effects_service.js";
 import { weaponUsesAmmo } from "../actors/utils/ammunition_util.js";
 import { isParryAutomatic, isShieldFacingEnabled } from "./services/parry_settings.js";
@@ -221,6 +221,9 @@ export class RMSSWeaponSkillManager {
         // slaying bonus.
         const realWeapon = (weapon?.id && realActor?.items?.get) ? (realActor.items.get(weapon.id) ?? weapon) : weapon;
 
+        // What kind of attack this is, for the conditional modifiers of the attacker (OB) and of the defender (DB)
+        const attackTags = spellOptions ? spellAttackTags(realWeapon?.system?.attack_table) : weaponAttackTags(realWeapon);
+
         if (Utils.isTargetDefeated(realEnemy)) {
             ui.notifications.warn(game.i18n.localize("rmss.combat.target_already_defeated"));
             return { confirmed: false };
@@ -239,6 +242,7 @@ export class RMSSWeaponSkillManager {
             bleeding = spellOptions.bleeding ?? 0;
             penaltyValue = spellOptions.penaltyValue ?? 0;
             bonusValue = spellOptions.bonusValue ?? 0;
+            bonusValue += getConditionalModifier(realActor, "ob", attackTags);
             // Activity vs movement (matches non-spell path; "Bonus" effects are already in bonusValue from cast total)
             bonusValue -= Math.round(
                 (1 - activityRatio(move.current, moveMax)) * 100
@@ -261,6 +265,7 @@ export class RMSSWeaponSkillManager {
             const stunEffect = Utils.getEffectByName(realEnemy, "Stunned");
             bonusValue = 0;
             bonusEffects.forEach((bonus) => { bonusValue += bonus.flags.rmss.value; });
+            bonusValue += getConditionalModifier(realActor, "ob", attackTags);
             bonusValue += RMSSWeaponSkillManager._getSlayingBonusDelta(realWeapon, realEnemy, enemy);
             const ammoLikeForOb = ammoAsWeaponLike(tokenData?.ammo);
             if (ammoLikeForOb) bonusValue += RMSSWeaponSkillManager._getSlayingBonusDelta(ammoLikeForOb, realEnemy, enemy);
@@ -304,11 +309,11 @@ export class RMSSWeaponSkillManager {
         // ignore the shield (their DB starts at 0 here), so there is nothing to adjust for them.
         const shieldOn = isShieldFacingEnabled();
         const shieldBonus = (areaElementalBall || !shieldOn) ? 0 : ShieldService.getShieldBonus(enemyForTemplate);
-        // Elemental spell attacks (never weapon attacks) also count the target's elemental defense. Area balls start at 0.
-        const elementalDefense = isSpellAttack && !areaElementalBall ? getElementalDefenseBonus(enemyForTemplate) : 0;
+        // What the target's effects add to its DB against this kind of attack (see conditional_modifiers.js). Area balls start at 0.
+        const conditionalDefense = areaElementalBall ? 0 : getConditionalModifier(enemyForTemplate, "db", attackTags);
         const defenderDbValue = areaElementalBall ? 0
             : (shieldOn ? ShieldService.getDefenseDb(enemyForTemplate, facingValue)
-            : (enemyForTemplate?.system?.armor_info?.total_db ?? 0)) + elementalDefense;
+            : (enemyForTemplate?.system?.armor_info?.total_db ?? 0)) + conditionalDefense;
 
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-attack.hbs", {
             actor: realActor,

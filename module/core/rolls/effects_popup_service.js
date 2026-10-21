@@ -2,6 +2,7 @@ import ResistanceRollService from "./resistance_roll_service.js";
 import { postWeaponFumble, postSpellFailure, parseManualRoll, SPELL_FAILURE_CHOICES, SPELL_FAILURE_CODES } from "../../combat/services/manual_fumble_service.js";
 import { rmss } from "../../config.js";
 import { chatMessageOtherStyle } from "../../chat/chatMessages.js";
+import { getConditionalModifier, resistanceRollTags, MODIFIER_TARGET } from "../../effects/conditional_modifiers.js";
 
 /** Keys of Actor#system.resistance_rolls (character sheet only — npc/creature don't have this template). */
 const RESISTANCE_ROLL_KEYS = [
@@ -13,6 +14,25 @@ const RESISTANCE_ROLL_KEYS = [
  * Service to handle the RMSS Effects popup with tabs for Critical and Resistance Roll.
  */
 export default class EffectsPopupService {
+
+    /**
+     * The resistance categories of the dropdown with their total: the one on the sheet plus what the actor's active effects
+     * add to rolls resisting that kind of thing (see conditional_modifiers.js). The label says when effects are in the total,
+     * so the player knows where the number comes from.
+     * @param {Actor} actor
+     * @returns {{ key: string, label: string, total: number }[]}
+     */
+    static _resistanceOptions(actor) {
+        return RESISTANCE_ROLL_KEYS.map((key) => {
+            const sheetTotal = actor.system?.resistance_rolls?.[key]?.total ?? 0;
+            const fromEffects = getConditionalModifier(actor, MODIFIER_TARGET.RR, resistanceRollTags(key));
+            const label = game.i18n.localize(`rmss.pc_sheet_resistances.${key}`);
+            const note = fromEffects !== 0
+                ? ` [${fromEffects > 0 ? "+" : ""}${fromEffects} ${game.i18n.localize("rmss.combat.rr_from_effects")}]`
+                : "";
+            return { key, label: label + note, total: sheetTotal + fromEffects };
+        });
+    }
 
     /**
      * Show the effects popup for a token.
@@ -35,11 +55,7 @@ export default class EffectsPopupService {
             .filter(c => c.actor?.type === "character")
             .map(c => ({ id: c.actor.id, name: c.actor.name }));
 
-        const resistanceOptions = RESISTANCE_ROLL_KEYS.map((key) => ({
-            key,
-            label: game.i18n.localize(`rmss.pc_sheet_resistances.${key}`),
-            total: actor.system?.resistance_rolls?.[key]?.total ?? 0
-        }));
+        const resistanceOptions = this._resistanceOptions(actor);
 
         const context = {
             token: token.document,
@@ -140,11 +156,7 @@ export default class EffectsPopupService {
         if (!actor) return null;
 
         const defenderLevel = actor.system?.attributes?.level?.value ?? 1;
-        const resistanceOptions = RESISTANCE_ROLL_KEYS.map((key) => ({
-            key,
-            label: game.i18n.localize(`rmss.pc_sheet_resistances.${key}`),
-            total: actor.system?.resistance_rolls?.[key]?.total ?? 0
-        }));
+        const resistanceOptions = this._resistanceOptions(actor);
 
         const htmlContent = await renderTemplate(
             "systems/rmss/templates/combat/rmss-resistance-only-popup.hbs",
