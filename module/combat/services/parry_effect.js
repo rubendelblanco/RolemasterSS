@@ -1,5 +1,6 @@
 import ParryService from "./parry_service.js";
 import { isParryEnabled } from "./parry_settings.js";
+import { buildEffectData } from "../../effects/effect_catalog.js";
 
 const ICON_ACTIVE = "systems/rmss/assets/default/shield-parry.svg";
 const ICON_USED = "systems/rmss/assets/default/shield-parry-used.svg";
@@ -37,12 +38,7 @@ export async function syncParryEffect(actor) {
         await existing.update({ name, img });
         return;
     }
-    await actor.createEmbeddedDocuments("ActiveEffect", [{
-        name,
-        img,
-        origin: actor.uuid,
-        disabled: false,
-        duration: { value: 999, units: "rounds" },
-        flags: { rmss: { [FLAG]: true } }
-    }]);
+    await actor.createEmbeddedDocuments("ActiveEffect", [
+        buildEffectData("parryStance", { origin: actor.uuid, name, img, rmss: { [FLAG]: true } })
+    ]);
 }

@@ -1,5 +1,6 @@
 import { CombatHistoryTracker } from "./combat_history_tracker.js";
 import { RMSSEffectApplier } from "./rmss_effect_applier.js";
+import { ROUND_TICKED_EFFECT_NAMES } from "../effects/effect_catalog.js";
 /** @type {Map<string, { turn: number, round: number, turns: (string|null)[] }>} */
 const _combatPrev = new Map();
 
@@ -128,8 +129,7 @@ export async function processCombatantTurnEnd(combat, finishedCombatantId) {
 
         if (name === "Penalty" && effect.flags?.rmss?.temporaryPenalty !== true) continue;
 
-        const roundNames = ["Stunned", "Parry", "No parry", "Bonus", "Penalty"];
-        if (!roundNames.includes(name)) continue;
+        if (!ROUND_TICKED_EFFECT_NAMES.includes(name)) continue;
 
         const hadDefer = effect.flags?.rmss?.tickDeferredUntilRound != null;
         await decreaseRoundsEffect(effect);

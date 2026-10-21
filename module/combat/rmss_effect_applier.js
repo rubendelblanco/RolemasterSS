@@ -10,6 +10,7 @@ import ParryChat from "./services/parry_chat.js";
 import { isParryAutomatic } from "./services/parry_settings.js";
 import { evaluateHitsThreshold, HITS_OUTCOME } from "./services/hits_thresholds.js";
 import { applyUnconsciousFromHits, removeUnconsciousFromHits } from "./services/hits_state_service.js";
+import { buildEffectData } from "../effects/effect_catalog.js";
 
 /**
  * @class RMSSEffectApplier
@@ -185,14 +186,9 @@ export class RMSSEffectApplier {
         }
 
         const rmss = { attackerId: originId ?? null, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity) };
-        await entity.createEmbeddedDocuments("ActiveEffect", [{
-            name: "Dying",
-            img: `${CONFIG.rmss.paths.icons_folder}dead-head.svg`,
-            origin: entity.uuid,
-            disabled: false,
-            flags: { rmss },
-            duration: { value: rounds, units: "rounds" }
-        }]);
+        await entity.createEmbeddedDocuments("ActiveEffect", [
+            buildEffectData("dying", { origin: entity.uuid, iconsFolder: CONFIG.rmss.paths.icons_folder, rmss, duration: rounds })
+        ]);
     }
 
     static async _applyHPDamage(entity, hp, originId = null) {
@@ -225,14 +221,9 @@ export class RMSSEffectApplier {
             await existing.update({ "duration.value": total });
         } else {
             const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
-            await entity.createEmbeddedDocuments("ActiveEffect", [{
-                name: "Stunned",
-                img: `${CONFIG.rmss.paths.icons_folder}stunned.svg`,
-                origin: entity.uuid,
-                disabled: false,
-                ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
-                duration: { value: rounds, units: "rounds" }
-            }]);
+            await entity.createEmbeddedDocuments("ActiveEffect", [
+                buildEffectData("stunned", { origin: entity.uuid, iconsFolder: CONFIG.rmss.paths.icons_folder, rmss, duration: rounds })
+            ]);
         }
     }
 
@@ -248,15 +239,14 @@ export class RMSSEffectApplier {
                 rate += WeaponEffectsService.getWeaponOfBleedingHprBonus(mainSev);
             }
         }
-        await entity.createEmbeddedDocuments("ActiveEffect", [{
-            name: "Bleeding",
-            img: `${CONFIG.rmss.paths.icons_folder}bleeding.svg`,
-            origin: entity.uuid,
-            description,
-            disabled: false,
-            flags: { rmss: { value: rate, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity) } },
-            duration: { value: 99, units: "rounds" }
-        }]);
+        await entity.createEmbeddedDocuments("ActiveEffect", [
+            buildEffectData("bleeding", {
+                origin: entity.uuid,
+                iconsFolder: CONFIG.rmss.paths.icons_folder,
+                description,
+                rmss: { value: rate, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity) }
+            })
+        ]);
     }
 
     static async _applyPenalty(entity, data, description) {
@@ -271,27 +261,20 @@ export class RMSSEffectApplier {
                 temporaryPenalty: true,
                 ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity)
             };
-            await entity.createEmbeddedDocuments("ActiveEffect", [{
-                name: "Penalty",
-                img: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
-                origin: entity.uuid,
-                description,
-                disabled: false,
-                flags: { rmss },
-                duration: { value: timedRounds, units: "rounds" }
-            }]);
+            await entity.createEmbeddedDocuments("ActiveEffect", [
+                buildEffectData("penalty", { origin: entity.uuid, iconsFolder: CONFIG.rmss.paths.icons_folder, description, rmss, duration: timedRounds })
+            ]);
             return;
         }
 
-        await entity.createEmbeddedDocuments("ActiveEffect", [{
-            name: "Penalty",
-            img: `${CONFIG.rmss.paths.icons_folder}broken-bone.svg`,
-            origin: entity.uuid,
-            description,
-            disabled: false,
-            flags: { rmss: { value: penalty, permanentPenalty: true } },
-            duration: { value: 99, units: "rounds" }
-        }]);
+        await entity.createEmbeddedDocuments("ActiveEffect", [
+            buildEffectData("penalty", {
+                origin: entity.uuid,
+                iconsFolder: CONFIG.rmss.paths.icons_folder,
+                description,
+                rmss: { value: penalty, permanentPenalty: true }
+            })
+        ]);
     }
 
     static async _applyParry(entity, data) {
@@ -301,14 +284,14 @@ export class RMSSEffectApplier {
         const value = -Math.abs(parseInt(data?.VALUE) || 0);
         // One effect per critical (not merged), so each one expires on its own and the penalties
         // of the ones still running add up.
-        await entity.createEmbeddedDocuments("ActiveEffect", [{
-            name: "Parry",
-            img: `${CONFIG.rmss.paths.icons_folder}sword-clash.svg`,
-            origin: entity.uuid,
-            disabled: false,
-            flags: { rmss: { ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity), value } },
-            duration: { value: rounds, units: "rounds" }
-        }]);
+        await entity.createEmbeddedDocuments("ActiveEffect", [
+            buildEffectData("parry", {
+                origin: entity.uuid,
+                iconsFolder: CONFIG.rmss.paths.icons_folder,
+                rmss: { ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity), value },
+                duration: rounds
+            })
+        ]);
         // Only the indicator effect unless parry is fully automatic.
         if (!isParryAutomatic()) return;
         try {
@@ -331,14 +314,9 @@ export class RMSSEffectApplier {
             await existing.update({ "duration.value": total });
         } else {
             const rmss = RMSSEffectApplier._tickDeferralRmssFlags(game.combat, entity);
-            await entity.createEmbeddedDocuments("ActiveEffect", [{
-                name: "No parry",
-                img: `${CONFIG.rmss.paths.icons_folder}shield-disabled.svg`,
-                origin: entity.uuid,
-                disabled: false,
-                ...(Object.keys(rmss).length ? { flags: { rmss } } : {}),
-                duration: { value: r, units: "rounds" }
-            }]);
+            await entity.createEmbeddedDocuments("ActiveEffect", [
+                buildEffectData("noParry", { origin: entity.uuid, iconsFolder: CONFIG.rmss.paths.icons_folder, rmss, duration: r })
+            ]);
         }
     }
 
@@ -349,15 +327,9 @@ export class RMSSEffectApplier {
         if (!attacker) return;
 
         const rmss = { value, ...RMSSEffectApplier._tickDeferralRmssFlags(game.combat, attacker) };
-        await attacker.createEmbeddedDocuments("ActiveEffect", [{
-            name: "Bonus",
-            img: `${CONFIG.rmss.paths.icons_folder}bonus.svg`,
-            origin: attacker.uuid,
-            description,
-            disabled: false,
-            flags: { rmss },
-            duration: { value: rounds, units: "rounds" }
-        }]);
+        await attacker.createEmbeddedDocuments("ActiveEffect", [
+            buildEffectData("bonus", { origin: attacker.uuid, iconsFolder: CONFIG.rmss.paths.icons_folder, description, rmss, duration: rounds })
+        ]);
     }
 
     /**
@@ -370,16 +342,15 @@ export class RMSSEffectApplier {
 
         const actor = token.actor;
         // 1) Create overlay effect ON THE TOKEN (not actor)
-        await token.actor.createEmbeddedDocuments("ActiveEffect", [{
-            name: "Dead",
-            img: globalThis.CONFIG.controlIcons.defeated,  // core skull
-            origin: actor.uuid,
-            disabled: false,
-            flags: { core: { overlay: true } },
-            // Use a large numeric duration so FVTT renders it reliably (v14 schema: value + units,
-            // "startRound"/"seconds"/"startTime" from the old rounds/turns/seconds fields are gone).
-            duration: { value: 999999, units: "seconds" }
-        }]);
+        // The long duration (see the catalog) is so FVTT renders it reliably (v14 schema: value + units,
+        // "startRound"/"seconds"/"startTime" from the old rounds/turns/seconds fields are gone).
+        await token.actor.createEmbeddedDocuments("ActiveEffect", [
+            buildEffectData("dead", {
+                origin: actor.uuid,
+                img: globalThis.CONFIG.controlIcons.defeated,  // core skull
+                coreFlags: { overlay: true }
+            })
+        ]);
 
         // 2) If this token is in the active combat, mark its combatant defeated (greys the portrait)
         const combatant = game.combat?.getCombatantByToken(token.id);

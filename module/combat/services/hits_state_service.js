@@ -1,4 +1,5 @@
 import { chatMessageOtherStyle } from "../../chat/chatMessages.js";
+import { buildEffectData } from "../../effects/effect_catalog.js";
 
 /**
  * The "Unconscious" state a player character falls into when their hit points reach 0 (see hits_thresholds.js).
@@ -36,15 +37,10 @@ async function postCard(actor, { title, icon, lines }) {
  */
 export async function applyUnconsciousFromHits(actor) {
     if (!actor || findUnconsciousFromHits(actor).length) return;
-    await actor.createEmbeddedDocuments("ActiveEffect", [{
-        name: "Unconscious",
-        img: `${CONFIG.rmss.paths.icons_folder}knockout.svg`,
-        origin: actor.uuid,
-        disabled: false,
-        flags: { rmss: { [UNCONSCIOUS_FROM_HITS_FLAG]: true } },
-        // Same large duration the "Dead" effect uses, so Foundry renders it reliably; it is removed by hand or on waking
-        duration: { value: 999999, units: "seconds" }
-    }]);
+    // Same large duration the "Dead" effect uses, so Foundry renders it reliably; it is removed by hand or on waking
+    await actor.createEmbeddedDocuments("ActiveEffect", [
+        buildEffectData("unconscious", { origin: actor.uuid, iconsFolder: CONFIG.rmss.paths.icons_folder, rmss: { [UNCONSCIOUS_FROM_HITS_FLAG]: true } })
+    ]);
 
     const limit = Math.max(0, Number(actor.system?.stats?.constitution?.temp) || 0);
     await postCard(actor, {

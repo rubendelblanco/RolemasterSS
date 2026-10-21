@@ -1,5 +1,6 @@
 import { getItemTagsArray } from "../../sheets/items/item_tags_ui.js";
 import { whisperIdsForOwnersAndGMs, chatMessageOtherStyle } from "../../chat/chatMessages.js";
+import { buildEffectData } from "../../effects/effect_catalog.js";
 
 /**
  * Ayuno Total (fasting), per the RM rulebook: a character who goes a full day without eating
@@ -103,15 +104,14 @@ export default class FastingService {
       return;
     }
 
-    await actor.createEmbeddedDocuments("ActiveEffect", [{
-      name: "Penalty",
-      img: `${CONFIG.rmss.paths.icons_folder}fasting.svg`,
-      origin: actor.uuid,
-      description: game.i18n.localize("rmss.fasting.effect_description"),
-      disabled: false,
-      flags: { rmss: { value: penalty, permanentPenalty: true, fastingPenalty: true } },
-      duration: { value: 99, units: "rounds" }
-    }]);
+    await actor.createEmbeddedDocuments("ActiveEffect", [
+      buildEffectData("fastingPenalty", {
+        origin: actor.uuid,
+        iconsFolder: CONFIG.rmss.paths.icons_folder,
+        description: game.i18n.localize("rmss.fasting.effect_description"),
+        rmss: { value: penalty, permanentPenalty: true, fastingPenalty: true }
+      })
+    ]);
   }
 
   /**
