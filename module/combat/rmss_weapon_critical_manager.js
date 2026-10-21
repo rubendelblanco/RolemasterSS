@@ -13,6 +13,7 @@ import { withPublicRollMode } from "../chat/chatMessages.js";
 import { getWeaponSlayingArray } from "../sheets/items/weapon_slaying_ui.js";
 import { getCreatureTagsArray } from "../sheets/actors/creature_tags_ui.js";
 import { ammoAsWeaponLike, encodeAmmo } from "./services/ammo_effects_service.js";
+import { needsSlayingExtraCritical, appendFollowUp, SLAYING_EXTRA_TABLE, SLAYING_EXTRA_COLUMN } from "./services/slaying_critical.js";
 
 
 /* ---------------------------------------------
@@ -542,6 +543,24 @@ export class RMSSWeaponCriticalManager {
             }
         }
 
+        // A Slaying weapon against a creature that is not large: a second critical on the Slaying column of the Large
+        // Creature table, with the same d100 as the first one (see slaying_critical.js)
+        if (tableResult && gmResponse.slayingExtra === true) {
+            const slayingResult = await RMSSTableManager.getCriticalTableResult(
+                result,
+                target,
+                SLAYING_EXTRA_COLUMN,
+                SLAYING_EXTRA_TABLE,
+                roll,
+                null,
+                { isEffectWeaponExtra: true }
+            );
+            if (slayingResult) {
+                slayingResult._rmssContext = { ...tableResult._rmssContext };
+                appendFollowUp(tableResult, slayingResult);
+            }
+        }
+
         return tableResult;
     }
 
@@ -724,6 +743,9 @@ export class RMSSWeaponCriticalManager {
         if (gmResponse.effectWeapon?.enabled) {
             applyPayload.effectWeapon = { ...gmResponse.effectWeapon };
         }
+        if (gmResponse.slayingExtra === true) {
+            applyPayload.slayingExtra = true;
+        }
 
         const largeCreatureCritTypes = ["large_melee", "superlarge_melee", "large_spell", "superlarge_spell"];
         if (largeCreatureCritTypes.includes(critType)) {
@@ -762,9 +784,9 @@ export class RMSSWeaponCriticalManager {
         let modifier = 0;
         const isMeleeCrit = MELEE_CRIT_TYPES.has(critType);
         const ammoLike = ammoAsWeaponLike(ammo);
-        // A matching Slaying weapon always resolves on the Superlarge critical table,
-        // regardless of the target's own Critical Table setting (RMSS: Slaying overrides
-        // the normal/large/superlarge choice whenever the weapon's tag matches the target).
+        // A matching Slaying weapon does not choose the critical table: the target's own Critical Table setting does.
+        // Against a Large or Super Large creature the single critical is the one on its Slaying column; against any other
+        // creature the normal critical is resolved and a second one is added on the Large Creature table (slayingExtra).
         const slayingMatch = isMeleeCrit && RMSSWeaponCriticalManager.weaponSlaysEnemy(attackerId, enemy, weaponItemId, ammoLike);
         // Weapons with a fixed damage multiplier (e.g. "does double concussion hit damage")
         // pre-select the multiplier below instead of always defaulting to x1 — melee only,
@@ -786,8 +808,7 @@ export class RMSSWeaponCriticalManager {
             }
 
             // Default critical table from defender: la → large, sl → superlarge.
-            // A Slaying match forces superlarge even if the defender is set to normal/large.
-            const criticalTable = slayingMatch ? "sl" : (enemy.system.attributes.critical_codes?.critical_table ?? "-");
+            const criticalTable = enemy.system.attributes.critical_codes?.critical_table ?? "-";
             if (criticalTable === "la" || criticalTable === "sl") {
                 const isSpell = SPELL_CRIT_TYPES.has(critType);
                 const isMelee = MELEE_CRIT_TYPES.has(critType);
@@ -808,7 +829,8 @@ export class RMSSWeaponCriticalManager {
         const criticalHasSubtypes = largeSubtypes.length > 0;
         const defaultSubtype = criticalHasSubtypes ? RMSSWeaponCriticalManager.getDefaultCriticalSubtype(attackerId, critType, enemy, weaponItemId, ammoLike) : "normal";
         const enemyCriticalTable = enemy?.system?.attributes?.critical_codes?.critical_table;
-        const useLargeCreatureSeverityLabels = ["la", "sl"].includes(enemyCriticalTable) || slayingMatch;
+        const useLargeCreatureSeverityLabels = ["la", "sl"].includes(enemyCriticalTable);
+        const slayingExtra = needsSlayingExtraCritical(slayingMatch, enemyCriticalTable);
         const initialContext = {
             enemy: enemy,
             damage: damage,
@@ -825,6 +847,7 @@ export class RMSSWeaponCriticalManager {
             criticalHasSubtypes,
             defaultSubtype,
             useLargeCreatureSeverityLabels,
+            slayingExtra,
         };
         const htmlContent = await renderTemplate("systems/rmss/templates/combat/confirm-critical.hbs", initialContext);
 
@@ -861,7 +884,8 @@ export class RMSSWeaponCriticalManager {
                                     modifier,
                                     attackerId,
                                     weaponItemId: weaponItemId ?? null,
-                                    attackerUuid: attackerUuid ?? null
+                                    attackerUuid: attackerUuid ?? null,
+                                    slayingExtra
                                 });
                             }
                         },
