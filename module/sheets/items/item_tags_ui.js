@@ -2,6 +2,8 @@
  * Shared UI for {@link Item#system.tags} on item types that use the "item" data template.
  */
 
+import { isDatalistSelection } from "../tag_input_util.js";
+
 /**
  * Normalize stored tag lists (array or comma-separated string).
  * @param {string[]|string|null|undefined} raw
@@ -55,12 +57,8 @@ export function bindItemTagsEditor(sheet, html) {
         sheet.render(false);
     });
 
-    html.off(`keydown${ns}`, ".rmss-item-tags input.rmss-item-tag-input");
-    html.on(`keydown${ns}`, ".rmss-item-tags input.rmss-item-tag-input", async (ev) => {
-        if (ev.key !== "Enter") return;
-        ev.preventDefault();
-        ev.stopPropagation();
-        const input = ev.currentTarget;
+    // The tag in the field goes in with Enter, or as soon as one of the suggestions is picked
+    const addTag = async (input) => {
         const v = String(input.value ?? "").trim();
         if (!v) return;
         const tags = [...getItemTagsArray(sheet.item.system)];
@@ -73,5 +71,18 @@ export function bindItemTagsEditor(sheet, html) {
         await sheet.item.update({ "system.tags": tags });
         input.value = "";
         sheet.render(false);
+    };
+
+    html.off(`keydown${ns}`, ".rmss-item-tags input.rmss-item-tag-input");
+    html.on(`keydown${ns}`, ".rmss-item-tags input.rmss-item-tag-input", async (ev) => {
+        if (ev.key !== "Enter") return;
+        ev.preventDefault();
+        ev.stopPropagation();
+        await addTag(ev.currentTarget);
+    });
+
+    html.off(`input${ns}`, ".rmss-item-tags input.rmss-item-tag-input");
+    html.on(`input${ns}`, ".rmss-item-tags input.rmss-item-tag-input", async (ev) => {
+        if (isDatalistSelection(ev, ev.currentTarget)) await addTag(ev.currentTarget);
     });
 }

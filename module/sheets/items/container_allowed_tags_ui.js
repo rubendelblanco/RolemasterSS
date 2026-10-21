@@ -1,4 +1,5 @@
 import { getItemTagListId, normalizeTagArray } from "./item_tags_ui.js";
+import { isDatalistSelection } from "../tag_input_util.js";
 
 /**
  * Allowed tags for a container item ({@link Item#system.container.allowedTags}).
@@ -32,10 +33,8 @@ export function bindContainerAllowedTagsEditor(sheet, html) {
         sheet.render(false);
     });
 
-    html.find(".rmss-container-allowed-tags input.rmss-container-allowed-tag-input").on("keydown", async (ev) => {
-        if (ev.key !== "Enter") return;
-        ev.preventDefault();
-        const input = ev.currentTarget;
+    // The tag in the field goes in with Enter, or as soon as one of the suggestions is picked
+    const addTag = async (input) => {
         const v = String(input.value ?? "").trim();
         if (!v) return;
         const tags = [...getContainerAllowedTagsArray(sheet.item.system)];
@@ -48,5 +47,15 @@ export function bindContainerAllowedTagsEditor(sheet, html) {
         await sheet.item.update({ "system.container.allowedTags": tags });
         input.value = "";
         sheet.render(false);
+    };
+
+    const field = html.find(".rmss-container-allowed-tags input.rmss-container-allowed-tag-input");
+    field.on("keydown", async (ev) => {
+        if (ev.key !== "Enter") return;
+        ev.preventDefault();
+        await addTag(ev.currentTarget);
+    });
+    field.on("input", async (ev) => {
+        if (isDatalistSelection(ev, ev.currentTarget)) await addTag(ev.currentTarget);
     });
 }

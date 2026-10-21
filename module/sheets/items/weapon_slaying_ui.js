@@ -1,4 +1,5 @@
 import { normalizeTagArray, getItemTagListId } from "./item_tags_ui.js";
+import { isDatalistSelection } from "../tag_input_util.js";
 
 /**
  * Shared UI for {@link Item#system.slaying} on weapon items — which creature
@@ -50,12 +51,8 @@ export function bindWeaponSlayingEditor(sheet, html, { path = "system.slaying" }
         sheet.render(false);
     });
 
-    html.off(`keydown${ns}`, ".rmss-weapon-slaying input.rmss-weapon-slaying-input");
-    html.on(`keydown${ns}`, ".rmss-weapon-slaying input.rmss-weapon-slaying-input", async (ev) => {
-        if (ev.key !== "Enter") return;
-        ev.preventDefault();
-        ev.stopPropagation();
-        const input = ev.currentTarget;
+    // The tag in the field goes in with Enter, or as soon as one of the suggestions is picked
+    const addTag = async (input) => {
         const v = String(input.value ?? "").trim();
         if (!v) return;
         const tags = [...readTags()];
@@ -68,5 +65,18 @@ export function bindWeaponSlayingEditor(sheet, html, { path = "system.slaying" }
         await sheet.item.update({ [path]: tags });
         input.value = "";
         sheet.render(false);
+    };
+
+    html.off(`keydown${ns}`, ".rmss-weapon-slaying input.rmss-weapon-slaying-input");
+    html.on(`keydown${ns}`, ".rmss-weapon-slaying input.rmss-weapon-slaying-input", async (ev) => {
+        if (ev.key !== "Enter") return;
+        ev.preventDefault();
+        ev.stopPropagation();
+        await addTag(ev.currentTarget);
+    });
+
+    html.off(`input${ns}`, ".rmss-weapon-slaying input.rmss-weapon-slaying-input");
+    html.on(`input${ns}`, ".rmss-weapon-slaying input.rmss-weapon-slaying-input", async (ev) => {
+        if (isDatalistSelection(ev, ev.currentTarget)) await addTag(ev.currentTarget);
     });
 }

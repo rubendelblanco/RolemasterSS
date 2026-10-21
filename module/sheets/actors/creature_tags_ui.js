@@ -1,4 +1,5 @@
 import { normalizeTagArray } from "../items/item_tags_ui.js";
+import { isDatalistSelection } from "../tag_input_util.js";
 
 /**
  * Shared UI for {@link Actor#system.creature_tags} on npc/creature actors — what
@@ -45,12 +46,8 @@ export function bindCreatureTagsEditor(sheet, html) {
         sheet.render(false);
     });
 
-    html.off(`keydown${ns}`, ".rmss-creature-tags input.rmss-creature-tag-input");
-    html.on(`keydown${ns}`, ".rmss-creature-tags input.rmss-creature-tag-input", async (ev) => {
-        if (ev.key !== "Enter") return;
-        ev.preventDefault();
-        ev.stopPropagation();
-        const input = ev.currentTarget;
+    // The tag in the field goes in with Enter, or as soon as one of the suggestions is picked
+    const addTag = async (input) => {
         const v = String(input.value ?? "").trim();
         if (!v) return;
         const tags = [...getCreatureTagsArray(sheet.actor.system)];
@@ -63,5 +60,18 @@ export function bindCreatureTagsEditor(sheet, html) {
         await sheet.actor.update({ "system.creature_tags": tags });
         input.value = "";
         sheet.render(false);
+    };
+
+    html.off(`keydown${ns}`, ".rmss-creature-tags input.rmss-creature-tag-input");
+    html.on(`keydown${ns}`, ".rmss-creature-tags input.rmss-creature-tag-input", async (ev) => {
+        if (ev.key !== "Enter") return;
+        ev.preventDefault();
+        ev.stopPropagation();
+        await addTag(ev.currentTarget);
+    });
+
+    html.off(`input${ns}`, ".rmss-creature-tags input.rmss-creature-tag-input");
+    html.on(`input${ns}`, ".rmss-creature-tags input.rmss-creature-tag-input", async (ev) => {
+        if (isDatalistSelection(ev, ev.currentTarget)) await addTag(ev.currentTarget);
     });
 }
